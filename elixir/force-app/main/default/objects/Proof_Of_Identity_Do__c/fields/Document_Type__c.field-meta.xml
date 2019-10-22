@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Document_Type__c</fullName>
+    <externalId>false</externalId>
+    <label>Document Type</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Australian Birth Certificate</fullName>
+                <default>false</default>
+                <label>Australian Birth Certificate</label>
+            </value>
+            <value>
+                <fullName>Australian Citizenship Certificate</fullName>
+                <default>false</default>
+                <label>Australian Citizenship Certificate</label>
+            </value>
+            <value>
+                <fullName>Australian Drivers Licence</fullName>
+                <default>false</default>
+                <label>Australian Drivers Licence</label>
+            </value>
+            <value>
+                <fullName>Australian Passport</fullName>
+                <default>false</default>
+                <label>Australian Passport</label>
+            </value>
+            <value>
+                <fullName>Australian Photo Firearms Licence</fullName>
+                <default>false</default>
+                <label>Australian Photo Firearms Licence</label>
+            </value>
+            <value>
+                <fullName>Australian Taxation Office Correspondence (with TFN)</fullName>
+                <default>false</default>
+                <label>Australian Taxation Office Correspondence (with TFN)</label>
+            </value>
+            <value>
+                <fullName>Bank Statement</fullName>
+                <default>false</default>
+                <label>Bank Statement</label>
+            </value>
+            <value>
+                <fullName>Centrelink or Social Security Card</fullName>
+                <default>false</default>
+                <label>Centrelink or Social Security Card</label>
+            </value>
+            <value>
+                <fullName>Credit Card</fullName>
+                <default>false</default>
+                <label>Credit Card</label>
+            </value>
+            <value>
+                <fullName>Deed Poll</fullName>
+                <default>false</default>
+                <label>Deed Poll</label>
+            </value>
+            <value>
+                <fullName>Department of Veterans Affairs Card</fullName>
+                <default>false</default>
+                <label>Department of Veterans Affairs Card</label>
+            </value>
+            <value>
+                <fullName>Electoral Roll Acknowledgement</fullName>
+                <default>false</default>
+                <label>Electoral Roll Acknowledgement</label>
+            </value>
+            <value>
+                <fullName>Electricity Bill</fullName>
+                <default>false</default>
+                <label>Electricity Bill</label>
+            </value>
+            <value>
+                <fullName>Gas Bill</fullName>
+                <default>false</default>
+                <label>Gas Bill</label>
+            </value>
+            <value>
+                <fullName>Government Benefits Notice</fullName>
+                <default>false</default>
+                <label>Government Benefits Notice</label>
+            </value>
+            <value>
+                <fullName>Health Care Card</fullName>
+                <default>false</default>
+                <label>Health Care Card</label>
+            </value>
+            <value>
+                <fullName>International Passport</fullName>
+                <default>false</default>
+                <label>International Passport</label>
+            </value>
+            <value>
+                <fullName>Internet Service Provider Bill</fullName>
+                <default>false</default>
+                <label>Internet Service Provider Bill</label>
+            </value>
+            <value>
+                <fullName>Landline Phone Bill</fullName>
+                <default>false</default>
+                <label>Landline Phone Bill</label>
+            </value>
+            <value>
+                <fullName>Marriage Certificate</fullName>
+                <default>false</default>
+                <label>Marriage Certificate</label>
+            </value>
+            <value>
+                <fullName>Medicare Card</fullName>
+                <default>false</default>
+                <label>Medicare Card</label>
+            </value>
+            <value>
+                <fullName>Motor Vehicle Registration or Insurance Papers</fullName>
+                <default>false</default>
+                <label>Motor Vehicle Registration or Insurance Papers</label>
+            </value>
+            <value>
+                <fullName>National Identity Card</fullName>
+                <default>false</default>
+                <label>National Identity Card</label>
+            </value>
+            <value>
+                <fullName>Other</fullName>
+                <default>false</default>
+                <label>Other</label>
+            </value>
+            <value>
+                <fullName>Pension Card</fullName>
+                <default>false</default>
+                <label>Pension Card</label>
+            </value>
+            <value>
+                <fullName>Professional or Trade Association Card</fullName>
+                <default>false</default>
+                <label>Professional or Trade Association Card</label>
+            </value>
+            <value>
+                <fullName>Proof of Age Card</fullName>
+                <default>false</default>
+                <label>Proof of Age Card</label>
+            </value>
+            <value>
+                <fullName>Property Insurance Papers</fullName>
+                <default>false</default>
+                <label>Property Insurance Papers</label>
+            </value>
+            <value>
+                <fullName>Property Lease or Rental Agreement</fullName>
+                <default>false</default>
+                <label>Property Lease or Rental Agreement</label>
+            </value>
+            <value>
+                <fullName>Rates Notice</fullName>
+                <default>false</default>
+                <label>Rates Notice</label>
+            </value>
+            <value>
+                <fullName>State or Federal Government Employee Photo Identity Card</fullName>
+                <default>false</default>
+                <label>State or Federal Government Employee Photo Identity Card</label>
+            </value>
+            <value>
+                <fullName>Tax Assessment</fullName>
+                <default>false</default>
+                <label>Tax Assessment</label>
+            </value>
+            <value>
+                <fullName>Tertiary Education Institution Photo Identity Card</fullName>
+                <default>false</default>
+                <label>Tertiary Education Institution Photo Identity Card</label>
+            </value>
+            <value>
+                <fullName>Verification of Identity Document</fullName>
+                <default>false</default>
+                <label>Verification of Identity Document</label>
+            </value>
+            <value>
+                <fullName>Water Utility Bill</fullName>
+                <default>false</default>
+                <label>Water Utility Bill</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

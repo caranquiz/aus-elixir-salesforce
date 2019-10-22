@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Commercial_Type__c</fullName>
+    <externalId>false</externalId>
+    <label>Commercial Type</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Block of Units or Flats</fullName>
+                <default>false</default>
+                <label>Block of Units or Flats</label>
+            </value>
+            <value>
+                <fullName>Factory</fullName>
+                <default>false</default>
+                <label>Factory</label>
+            </value>
+            <value>
+                <fullName>Multiple Dwelling Development</fullName>
+                <default>false</default>
+                <label>Multiple Dwelling Development</label>
+            </value>
+            <value>
+                <fullName>Non Specialised Commercial</fullName>
+                <default>false</default>
+                <label>Non Specialised Commercial</label>
+            </value>
+            <value>
+                <fullName>Offices</fullName>
+                <default>false</default>
+                <label>Offices</label>
+            </value>
+            <value>
+                <fullName>Other</fullName>
+                <default>false</default>
+                <label>Other</label>
+            </value>
+            <value>
+                <fullName>Professional Chambers</fullName>
+                <default>false</default>
+                <label>Professional Chambers</label>
+            </value>
+            <value>
+                <fullName>Residential Commercial</fullName>
+                <default>false</default>
+                <label>Residential Commercial</label>
+            </value>
+            <value>
+                <fullName>Retirement Village</fullName>
+                <default>false</default>
+                <label>Retirement Village</label>
+            </value>
+            <value>
+                <fullName>Retail Shop</fullName>
+                <default>false</default>
+                <label>Retail Shop</label>
+            </value>
+            <value>
+                <fullName>Vacant Land</fullName>
+                <default>false</default>
+                <label>Vacant Land</label>
+            </value>
+            <value>
+                <fullName>Warehouse</fullName>
+                <default>false</default>
+                <label>Warehouse</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

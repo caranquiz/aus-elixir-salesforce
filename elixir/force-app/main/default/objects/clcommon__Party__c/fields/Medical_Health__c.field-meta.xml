@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Medical_Health__c</fullName>
+    <externalId>false</externalId>
+    <inlineHelpText>Doctor,dentist,physiotherapy,medicines,eye care,glasses,gym membership</inlineHelpText>
+    <label>Medical &amp; Health</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackTrending>false</trackTrending>
+    <type>Currency</type>
+</CustomField>
