@@ -1,0 +1,417 @@
+<skuidpage personalizationmode="server" showsidebar="false" showheader="false">
+  <models>
+    <model id="GeneralLoanCLProduct" limit="1" query="true" createrowifnonefound="false" sobject="clcommon__CL_Product__c" datasource="salesforce">
+      <fields>
+        <field id="clcommon__Asset_Class__c"/>
+        <field id="clcommon__Asset_Class__r.Name"/>
+        <field id="Name"/>
+        <field id="clcommon__Product_Name__c"/>
+        <field id="clcommon__Primary_Collateral_Type__c"/>
+        <field id="clcommon__Primary_Collateral_Type__r.Name"/>
+        <field id="RecordType.Name"/>
+        <field id="Id"/>
+        <field id="RecordTypeId"/>
+      </fields>
+      <conditions>
+        <condition type="fieldvalue" value="Purchase" enclosevalueinquotes="true" field="clcommon__Product_Name__c" operator="=" model="OrgParameterModel"/>
+        <condition type="fieldvalue" value="Commercial Secured" enclosevalueinquotes="true" field="clcommon__Asset_Class__r.Name" operator="=" model="OrgParameterModel"/>
+      </conditions>
+      <actions/>
+    </model>
+    <model id="GeneralLoanApplication" limit="1" query="false" createrowifnonefound="false" sobject="genesis__Applications__c" datasource="salesforce">
+      <fields>
+        <field id="genesis__Loan_Number__c"/>
+        <field id="genesis__Credit_Limit__c"/>
+        <field id="genesis__CL_Company__c"/>
+        <field id="genesis__CL_Company__r.Name"/>
+        <field id="genesis__CL_Purpose__c"/>
+        <field id="genesis__CL_Purpose__r.Name"/>
+        <field id="genesis__Primary_Source_of_Repayment__c"/>
+        <field id="genesis__Secondary_Source_of_Repayment__c"/>
+        <field id="genesis__Status__c"/>
+        <field id="genesis__Expected_Close_Date__c"/>
+        <field id="genesis__Expected_First_Payment_Date__c"/>
+        <field id="genesis__Maturity_Date__c"/>
+        <field id="genesis__Participation_Date__c"/>
+        <field id="genesis__Interest_Rate__c"/>
+        <field id="genesis__Spread__c"/>
+        <field id="genesis__Margin__c"/>
+        <field id="genesis__Payment_Frequency__c"/>
+        <field id="genesis__Interest_Only_Period__c"/>
+        <field id="genesis__Discount_Rate__c"/>
+        <field id="genesis__Discount_Rate_Based_On__c"/>
+        <field id="genesis__Term__c"/>
+        <field id="genesis__Amortization_Term__c"/>
+        <field id="genesis__Payment_Amount__c"/>
+        <field id="genesis__Balloon_Payment__c"/>
+        <field id="genesis__Prepayment_Penalty__c"/>
+        <field id="genesis__Prepayment_Penalty_Description__c"/>
+        <field id="genesis__Call_Code__c"/>
+        <field id="genesis__Class_Code__c"/>
+        <field id="genesis__Portfolio__c"/>
+        <field id="genesis__Primary_Collateral_Code__c"/>
+        <field id="genesis__Regulation_O__c"/>
+        <field id="genesis__Loan_Amount__c"/>
+        <field id="genesis__Disbursement_Date__c"/>
+        <field id="genesis__Rate_Floor__c"/>
+        <field id="genesis__Rate_Ceiling__c"/>
+        <field id="genesis__Expected_Start_Date__c"/>
+        <field id="genesis__Company__c"/>
+        <field id="genesis__Company__r.Name"/>
+        <field id="genesis__Days_Convention__c"/>
+        <field id="genesis__Interest_Calculation_Method__c"/>
+        <field id="genesis__Collateral_Type__c"/>
+        <field id="genesis__Collateral_Type__r.Name"/>
+        <field id="genesis__Draw_Term__c"/>
+        <field id="Id"/>
+        <field id="RecordType.Name"/>
+        <field id="RecordTypeId"/>
+        <field id="genesis__APR__c"/>
+        <field id="genesis__CL_Company__r.clcommon__Company_Name__c"/>
+      </fields>
+      <conditions>
+        <condition type="fieldvalue" value="" field="Id" operator="=" novaluebehavior="" enclosevalueinquotes="true" state="filterableoff" inactive="true" name="Id" model="OrgParameterModel"/>
+      </conditions>
+      <actions/>
+    </model>
+    <model id="ApplicationComplianceInformation" limit="1" query="true" createrowifnonefound="false" datasource="salesforce" sobject="genesis__Application_Compliance_Information__c">
+      <fields>
+        <field id="genesis__Covered_Under_MLA__c"/>
+        <field id="genesis__Employee_Application__c"/>
+        <field id="genesis__Insider_Relationship__c"/>
+        <field id="genesis__Application__c"/>
+        <field id="genesis__Application__r.Name"/>
+      </fields>
+      <conditions>
+        <condition type="param" value="Id" field="genesis__Application__c" fieldtargetobjects="genesis__Applications__c" operator="=" novaluebehavior="noquery" enclosevalueinquotes="true" model="OrgParameterModel"/>
+      </conditions>
+      <actions/>
+    </model>
+    <model limit="20" query="true" createrowifnonefound="false" datasource="salesforce" sobject="genesis__Org_Parameters__c" id="OrgParameterModel">
+      <fields>
+        <field id="genesis__Use_CL_Product__c"/>
+      </fields>
+      <conditions/>
+      <actions/>
+    </model>
+  </models>
+  <components>
+    <wrapper uniqueid="PurchaseCREApplicationDetails">
+      <components>
+        <basicfieldeditor showheader="true" showsavecancel="false" showerrorsinline="true" model="GeneralLoanApplication" uniqueid="sk-2RcMWz-443" mode="edit">
+          <columns>
+            <column width="100%">
+              <sections>
+                <section title="Loan Information" collapsible="no">
+                  <fields>
+                    <columns layoutmode="responsive" columngutter="4px" rowgutter="4px" uniqueid="sk-12k9-227">
+                      <column ratio="1" minwidth="300px" behavior="flex" verticalalign="top">
+                        <sections>
+                          <section title="New Section" collapsible="no" showheader="false">
+                            <fields>
+                              <field id="genesis__Loan_Number__c" readonly="true" uniqueid="sk-12k9-204">
+                                <renderconditions logictype="and" onhidedatabehavior="keep">
+                                  <rendercondition type="blank" operator="!=" fieldmodel="PurchaseCREApplication" sourcetype="fieldvalue" field="genesis__Loan_Number__c" value="null" enclosevalueinquotes="false" nosourcerowbehavior="deactivate"/>
+                                </renderconditions>
+                                <enableconditions/>
+                              </field>
+                              <field id="genesis__Loan_Amount__c" type="CUSTOM" snippet="fieldsRenderMode" uniqueid="sk-12k9-207" required="true"/>
+                              <field uniqueid="sk-1FBS-618" id="genesis__CL_Company__c" snippet="fieldsRenderMode" pagesize="5" displaytemplate="{{clcommon__Company_Name__c}}" redirecttype="datasourcedefault" searchtemplate="{{clcommon__Company_Name__c}}" readonly="false" type="CUSTOM">
+                                <renderconditions logictype="and" onhidedatabehavior="keep">
+                                  <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="false" fieldmodel="OrgParameterModel" sourcetype="fieldvalue" nosourcerowbehavior="skipandrender" field="genesis__Use_CL_Product__c" fieldtargetobjects="genesis__Org_Parameters__c" value="true"/>
+                                </renderconditions>
+                                <enableconditions/>
+                                <searchfields/>
+                                <filters/>
+                              </field>
+                              <field id="genesis__Company__c" type="CUSTOM" snippet="fieldsRenderMode" uniqueid="sk-12k9-210" pagesize="5" readonly="false">
+                                <renderconditions logictype="and" onhidedatabehavior="keep">
+                                  <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="false" fieldmodel="OrgParameterModel" sourcetype="fieldvalue" nosourcerowbehavior="skipandnorender" field="genesis__Use_CL_Product__c" fieldtargetobjects="genesis__Org_Parameters__c" value="false"/>
+                                </renderconditions>
+                                <enableconditions/>
+                                <searchfields/>
+                              </field>
+                              <field id="genesis__CL_Purpose__c" type="CUSTOM" cssclass="" snippet="fieldsRenderMode" uniqueid="sk-12k9-213" pagesize="5" redirecttype="datasourcedefault">
+                                <searchfields/>
+                                <filters/>
+                                <renderconditions logictype="and" onhidedatabehavior="keep"/>
+                                <enableconditions logictype="and"/>
+                              </field>
+                            </fields>
+                          </section>
+                        </sections>
+                      </column>
+                      <column ratio="1" minwidth="300px" behavior="flex">
+                        <sections>
+                          <section title="New Section" collapsible="no" showheader="false">
+                            <fields>
+                              <field id="genesis__Primary_Source_of_Repayment__c" valuehalign="" type="CUSTOM" snippet="fieldsRenderMode" uniqueid="sk-12k9-219"/>
+                              <field id="genesis__Secondary_Source_of_Repayment__c" valuehalign="" type="CUSTOM" snippet="fieldsRenderMode" uniqueid="sk-12k9-222"/>
+                              <field id="genesis__Status__c" valuehalign="" type="CUSTOM" snippet="fieldsRenderMode" uniqueid="sk-12k9-225"/>
+                              <field uniqueid="sk-1IzP-400" id="genesis__Days_Convention__c" required="true"/>
+                            </fields>
+                          </section>
+                        </sections>
+                      </column>
+                    </columns>
+                  </fields>
+                </section>
+              </sections>
+            </column>
+            <column width="100%">
+              <sections>
+                <section title="Key Dates" collapsible="no">
+                  <fields>
+                    <columns layoutmode="responsive" columngutter="4px" rowgutter="4px" uniqueid="sk-12k9-257">
+                      <column ratio="1" minwidth="300px" behavior="flex">
+                        <sections>
+                          <section title="New Section" collapsible="no" showheader="false">
+                            <fields>
+                              <field id="genesis__Expected_Start_Date__c" valuehalign="" type="CUSTOM" snippet="fieldsRenderMode" uniqueid="sk-12k9-237"/>
+                              <field id="genesis__Expected_Close_Date__c" valuehalign="" type="CUSTOM" snippet="fieldsRenderMode" uniqueid="sk-12k9-240"/>
+                              <field id="genesis__Expected_First_Payment_Date__c" valuehalign="" type="CUSTOM" snippet="fieldsRenderMode" uniqueid="sk-12k9-243"/>
+                              <field uniqueid="sk-1Izo-480" id="genesis__Interest_Calculation_Method__c" required="true"/>
+                            </fields>
+                          </section>
+                        </sections>
+                      </column>
+                      <column ratio="1" minwidth="300px" behavior="flex">
+                        <sections>
+                          <section title="New Section" collapsible="no" showheader="false">
+                            <fields>
+                              <field id="genesis__Maturity_Date__c" valuehalign="" type="CUSTOM" snippet="fieldsRenderMode" uniqueid="sk-12k9-249"/>
+                              <field id="genesis__Participation_Date__c" valuehalign="" type="CUSTOM" snippet="fieldsRenderMode" uniqueid="sk-12k9-252"/>
+                              <field id="genesis__Disbursement_Date__c" valuehalign="" type="CUSTOM" snippet="fieldsRenderMode" uniqueid="sk-12k9-255"/>
+                            </fields>
+                          </section>
+                        </sections>
+                      </column>
+                    </columns>
+                  </fields>
+                </section>
+              </sections>
+            </column>
+            <column width="100%">
+              <sections>
+                <section title="Interest Information" collapsible="no">
+                  <fields>
+                    <columns layoutmode="responsive" columngutter="4px" rowgutter="4px" uniqueid="sk-12k9-290">
+                      <column ratio="1" minwidth="300px" behavior="flex">
+                        <sections>
+                          <section title="New Section" collapsible="no" showheader="false">
+                            <fields>
+                              <field id="genesis__Interest_Rate__c" type="CUSTOM" snippet="fieldsRenderMode" uniqueid="sk-12k9-267" required="true"/>
+                              <field id="genesis__Spread__c" valuehalign="" type="CUSTOM" snippet="fieldsRenderMode" decimalplaces="" uniqueid="sk-12k9-270"/>
+                              <field id="genesis__Margin__c" valuehalign="" type="CUSTOM" snippet="fieldsRenderMode" decimalplaces="" uniqueid="sk-12k9-273"/>
+                            </fields>
+                          </section>
+                        </sections>
+                      </column>
+                      <column ratio="1" minwidth="300px" behavior="flex">
+                        <sections>
+                          <section title="New Section" collapsible="no" showheader="false">
+                            <fields>
+                              <field id="genesis__Payment_Frequency__c" type="CUSTOM" snippet="fieldsRenderMode" uniqueid="sk-12k9-279" required="true"/>
+                              <field id="genesis__Interest_Only_Period__c" valuehalign="" type="CUSTOM" snippet="fieldsRenderMode" decimalplaces="" uniqueid="sk-12k9-282"/>
+                              <field id="genesis__Discount_Rate__c" valuehalign="" type="CUSTOM" snippet="fieldsRenderMode" decimalplaces="" uniqueid="sk-12k9-285"/>
+                              <field id="genesis__Discount_Rate_Based_On__c" valuehalign="" type="CUSTOM" snippet="fieldsRenderMode" uniqueid="sk-12k9-288"/>
+                            </fields>
+                          </section>
+                        </sections>
+                      </column>
+                    </columns>
+                  </fields>
+                </section>
+              </sections>
+            </column>
+            <column width="100%">
+              <sections>
+                <section title="Payment Information" collapsible="no">
+                  <fields>
+                    <columns layoutmode="responsive" columngutter="4px" rowgutter="4px" uniqueid="sk-12k9-326">
+                      <column ratio="1" minwidth="300px" behavior="flex">
+                        <sections>
+                          <section title="New Section" collapsible="no" showheader="false">
+                            <fields>
+                              <field id="genesis__Term__c" type="CUSTOM" snippet="fieldsRenderMode" uniqueid="sk-12k9-300" required="true"/>
+                              <field id="genesis__Amortization_Term__c" type="CUSTOM" snippet="fieldsRenderMode" uniqueid="sk-12k9-303"/>
+                              <field id="genesis__Payment_Amount__c" decimalplaces="" valuehalign="" type="CUSTOM" snippet="fieldsRenderMode" uniqueid="sk-12k9-306"/>
+                              <field uniqueid="sk--eR-491" id="genesis__APR__c" readonly="true"/>
+                              <field id="genesis__Rate_Floor__c" decimalplaces="" valuehalign="" type="CUSTOM" snippet="fieldsRenderMode" uniqueid="sk-12k9-309"/>
+                            </fields>
+                          </section>
+                        </sections>
+                      </column>
+                      <column ratio="1" minwidth="300px" behavior="flex">
+                        <sections>
+                          <section title="New Section" collapsible="no" showheader="false">
+                            <fields>
+                              <field id="genesis__Balloon_Payment__c" decimalplaces="" valuehalign="" type="CUSTOM" snippet="fieldsRenderMode" uniqueid="sk-12k9-315"/>
+                              <field id="genesis__Prepayment_Penalty__c" valuehalign="" type="CUSTOM" snippet="fieldsRenderMode" uniqueid="sk-12k9-318"/>
+                              <field id="genesis__Prepayment_Penalty_Description__c" valuehalign="" type="CUSTOM" snippet="fieldsRenderMode" uniqueid="sk-12k9-321"/>
+                              <field id="genesis__Rate_Ceiling__c" decimalplaces="" valuehalign="" type="CUSTOM" snippet="fieldsRenderMode" uniqueid="sk-12k9-324"/>
+                            </fields>
+                          </section>
+                        </sections>
+                      </column>
+                    </columns>
+                  </fields>
+                </section>
+              </sections>
+            </column>
+            <column width="100%">
+              <sections>
+                <section title="Loan Codes" collapsible="no">
+                  <fields>
+                    <columns layoutmode="responsive" columngutter="4px" rowgutter="4px" uniqueid="sk-12k9-350">
+                      <column ratio="1" minwidth="300px" behavior="flex" verticalalign="top">
+                        <sections>
+                          <section title="New Section" collapsible="no" showheader="false">
+                            <fields>
+                              <field id="genesis__Call_Code__c" valuehalign="" type="CUSTOM" snippet="fieldsRenderMode" uniqueid="sk-12k9-336"/>
+                              <field id="genesis__Class_Code__c" valuehalign="" type="CUSTOM" snippet="fieldsRenderMode" uniqueid="sk-12k9-339"/>
+                              <field id="genesis__Portfolio__c" valuehalign="" type="CUSTOM" snippet="fieldsRenderMode" uniqueid="sk-12k9-345"/>
+                            </fields>
+                          </section>
+                        </sections>
+                        <renderconditions logictype="and"/>
+                      </column>
+                      <column ratio="1" minwidth="300px" behavior="flex" verticalalign="top">
+                        <sections>
+                          <section title="New Section" collapsible="no" showheader="false">
+                            <fields>
+                              <field id="genesis__Portfolio__c" valuehalign="" type="CUSTOM" snippet="fieldsRenderMode" uniqueid="sk-12k9-345"/>
+                              <field id="genesis__Primary_Collateral_Code__c" type="CUSTOM" snippet="fieldsRenderMode" uniqueid="sk-12k9-348">
+                                <renderconditions logictype="and" onhidedatabehavior="keep"/>
+                                <enableconditions/>
+                              </field>
+                            </fields>
+                          </section>
+                        </sections>
+                        <renderconditions logictype="and"/>
+                      </column>
+                    </columns>
+                  </fields>
+                  <renderconditions logictype="and"/>
+                </section>
+              </sections>
+              <renderconditions logictype="and"/>
+            </column>
+          </columns>
+          <renderconditions logictype="and">
+            <rendercondition type="multiple" operator="not in" fieldmodel="GeneralLoanApplication" sourcetype="fieldvalue" nosourcerowbehavior="skipandnorender" field="RecordType.Name" fieldtargetobjects="RecordType" value="" enclosevalueinquotes="true">
+              <values>
+                <value>Line Of Credit</value>
+              </values>
+            </rendercondition>
+          </renderconditions>
+        </basicfieldeditor>
+        <basicfieldeditor showheader="true" showsavecancel="false" showerrorsinline="true" model="ApplicationComplianceInformation" uniqueid="sk-25yb-563" mode="edit">
+          <columns>
+            <column width="100%">
+              <sections>
+                <section title="New Section" collapsible="no" uniqueid="sk-25ys-782" showheader="false">
+                  <fields>
+                    <field uniqueid="sk-25yy-792" id="genesis__Covered_Under_MLA__c" readonly="true">
+                      <renderconditions logictype="and" onhidedatabehavior="keep">
+                        <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="ApplicationComplianceInformation" sourcetype="param" sourceparam="mode" value="read"/>
+                      </renderconditions>
+                      <enableconditions/>
+                    </field>
+                    <field uniqueid="sk-25yy-793" id="genesis__Employee_Application__c" readonly="true">
+                      <renderconditions logictype="and" onhidedatabehavior="keep">
+                        <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="ApplicationComplianceInformation" sourcetype="param" sourceparam="mode" value="read"/>
+                      </renderconditions>
+                      <enableconditions/>
+                    </field>
+                    <field uniqueid="sk-25yy-794" id="genesis__Insider_Relationship__c" showhelp="true" readonly="true">
+                      <renderconditions logictype="and" onhidedatabehavior="keep">
+                        <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="ApplicationComplianceInformation" sourcetype="param" sourceparam="mode" value="read"/>
+                      </renderconditions>
+                      <enableconditions/>
+                    </field>
+                  </fields>
+                </section>
+              </sections>
+              <renderconditions logictype="and"/>
+            </column>
+          </columns>
+          <renderconditions logictype="and">
+            <rendercondition type="multiple" operator="not in" fieldmodel="GeneralLoanApplication" sourcetype="fieldvalue" nosourcerowbehavior="skipandnorender" field="RecordType.Name" fieldtargetobjects="RecordType" value="" enclosevalueinquotes="true">
+              <values>
+                <value>Line Of Credit</value>
+              </values>
+            </rendercondition>
+          </renderconditions>
+        </basicfieldeditor>
+      </components>
+      <styles>
+        <styleitem type="background"/>
+        <styleitem type="border"/>
+        <styleitem type="size"/>
+      </styles>
+      <renderconditions logictype="and"/>
+    </wrapper>
+  </components>
+  <resources>
+    <labels/>
+    <javascript>
+      <jsitem location="inline" name="loadModels" cachelocation="false" url="">(function(skuid){
+	var $ = skuid.$;
+	$(document.body).one('pageload',function(){
+	var paramId = skuid.page.params.id;
+	    var pageName = skuid.page.params.page;
+	    if(pageName &amp;&amp; pageName == 'AddDealsToPackage'){
+	        var newRow = skuid.model.getModel('GeneralLoanApplication').createRow({});
+	    } else{
+    	    if(paramId){
+        	    queryApplication(paramId);
+        	}else{
+        	    var newRow = skuid.model.getModel('GeneralLoanApplication').createRow({
+        	        additionalConditions: [
+                        { field: 'RecordTypeId', value: skuid.page.params.RecordType}
+                    ]
+        	    });
+        	}
+	    }
+	});
+})(skuid);
+
+function queryApplication(id){
+    var applicationModel = skuid.model.getModel('GeneralLoanApplication');
+    var appIdCondition = applicationModel.getConditionByName('AppId');
+    applicationModel.setCondition(appIdCondition,id);
+    skuid.model.updateData([applicationModel],function(){});
+}
+</jsitem>
+      <jsitem location="inlinesnippet" name="fieldsRenderMode" cachelocation="false">var field = arguments[0],
+    value = arguments[1];
+ var renderMode = skuid.page.params.mode;
+if(renderMode &amp;&amp; renderMode == "read"){
+    skuid.ui.fieldRenderers[field.metadata.displaytype].read(field, value);
+}else{
+    skuid.ui.fieldRenderers[field.metadata.displaytype].edit(field, value);
+}
+</jsitem>
+      <jsitem location="inlinesnippet" name="getIncludedPageData" cachelocation="false" url="">var params = arguments[0],
+	$ = skuid.$;
+var productRow = skuid.model.getModel('GeneralLoanCLProduct').getFirstRow();
+var applicationModel = skuid.model.getModel('GeneralLoanApplication');
+if(applicationModel &amp;&amp; applicationModel.data &amp;&amp; applicationModel.data[0] &amp;&amp; productRow){
+    applicationModel.data[0].genesis__CL_Product__c = productRow.Id;
+}
+var result = {
+    'genesis__Applications__c' : applicationModel,
+};
+
+return result;
+
+</jsitem>
+    </javascript>
+    <css/>
+    <actionsequences uniqueid="sk-1Aip-470"/>
+  </resources>
+  <styles>
+    <styleitem type="background" bgtype="none"/>
+  </styles>
+</skuidpage>

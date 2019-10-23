@@ -1,0 +1,10 @@
+{
+   "uniqueId": "ngUi_CreateNewApplication",
+   "type": "Desktop",
+   "name": "CreateNewApplication",
+   "module": "ngUi",
+   "maxAutoSaves": 25,
+   "masterPageUniqueId": null,
+   "isMasterPage": false,
+   "composerSettings": null
+}

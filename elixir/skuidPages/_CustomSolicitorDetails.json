@@ -1,0 +1,10 @@
+{
+   "uniqueId": "_CustomSolicitorDetails",
+   "type": "Desktop",
+   "name": "CustomSolicitorDetails",
+   "module": null,
+   "maxAutoSaves": 25,
+   "masterPageUniqueId": null,
+   "isMasterPage": false,
+   "composerSettings": null
+}

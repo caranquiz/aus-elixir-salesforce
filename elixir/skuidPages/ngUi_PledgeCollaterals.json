@@ -1,0 +1,10 @@
+{
+   "uniqueId": "ngUi_PledgeCollaterals",
+   "type": "Desktop",
+   "name": "PledgeCollaterals",
+   "module": "ngUi",
+   "maxAutoSaves": 25,
+   "masterPageUniqueId": null,
+   "isMasterPage": false,
+   "composerSettings": null
+}

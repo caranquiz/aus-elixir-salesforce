@@ -1,0 +1,1710 @@
+<skuidpage personalizationmode="server" showsidebar="false" showheader="false">
+  <models>
+    <model id="SelectedApplicationCollateral" limit="1" query="true" createrowifnonefound="false" sobject="genesis__Application_Collateral__c" datasource="salesforce">
+      <fields>
+        <field id="genesis__Application__c"/>
+        <field id="genesis__Application__r.Name"/>
+        <field id="genesis__Pledge_Amount__c"/>
+        <field id="Id"/>
+        <field id="genesis__Collateral__c"/>
+        <field id="genesis__Collateral__r.Name"/>
+        <field id="Name"/>
+      </fields>
+      <conditions logic="1">
+        <condition type="param" value="id" field="Id" operator="=" enclosevalueinquotes="true" novaluebehavior="noquery" model="QBE_Postcode"/>
+        <condition type="param" value="mode" field="Name" operator="=" enclosevalueinquotes="true" novaluebehavior="noquery" model="QBE_Postcode"/>
+      </conditions>
+      <actions/>
+    </model>
+    <model id="SelectedCollateral" limit="1" query="true" createrowifnonefound="false" sobject="clcommon__Collateral__c" datasource="salesforce">
+      <fields>
+        <field id="clcommon__Account_Number__c"/>
+        <field id="clcommon__Acknowledgement_Type__c"/>
+        <field id="clcommon__Address__c"/>
+        <field id="clcommon__Agricultural_Use__c"/>
+        <field id="clcommon__Airport__c"/>
+        <field id="genesis__Application__c"/>
+        <field id="genesis__Application__r.Name"/>
+        <field id="clcommon__Block__c"/>
+        <field id="clcommon__Style__c"/>
+        <field id="clcommon__Book_Entry__c"/>
+        <field id="clcommon__CUSIP_Number__c"/>
+        <field id="clcommon__Certificated__c"/>
+        <field id="clcommon__Collateral_Affixed_to_Site__c"/>
+        <field id="clcommon__City__c"/>
+        <field id="clcommon__Collateral_Category__c"/>
+        <field id="clcommon__Collateral_Category__r.Name"/>
+        <field id="clcommon__Collateral_Code__c"/>
+        <field id="Name"/>
+        <field id="clcommon__Collateral_Insurance_Required__c"/>
+        <field id="clcommon__Collateral_Name__c"/>
+        <field id="clcommon__Collateral_Secures__c"/>
+        <field id="clcommon__Collateral_Type__c"/>
+        <field id="clcommon__Collateral_Type__r.Name"/>
+        <field id="clcommon__Collateral_Value_Limit__c"/>
+        <field id="clcommon__Commercial_Use__c"/>
+        <field id="clcommon__Condo__c"/>
+        <field id="clcommon__Contract_Date__c"/>
+        <field id="clcommon__Contract_Number__c"/>
+        <field id="clcommon__Contracting_Party__c"/>
+        <field id="CreatedById"/>
+        <field id="CreatedBy.Name"/>
+        <field id="CreatedDate"/>
+        <field id="IsDeleted"/>
+        <field id="clcommon__Describe_Log_Books__c"/>
+        <field id="clcommon__Description__c"/>
+        <field id="clcommon__Dwelling__c"/>
+        <field id="clcommon__Existing_Beneficiaries__c"/>
+        <field id="clcommon__Existing_Lien__c"/>
+        <field id="clcommon__FAA_Cover_Letter__c"/>
+        <field id="clcommon__FAA_Number__c"/>
+        <field id="clcommon__First_Lien__c"/>
+        <field id="clcommon__Gross_Tonnage__c"/>
+        <field id="clcommon__Held_By__c"/>
+        <field id="clcommon__Homestead_Property__c"/>
+        <field id="clcommon__IDERA__c"/>
+        <field id="clcommon__State__c"/>
+        <field id="clcommon__UCC_Financing_Statement__c"/>
+        <field id="clcommon__Registration_State__c"/>
+        <field id="clcommon__Record_Financial_Statement__c"/>
+        <field id="clcommon__Postal_Code__c"/>
+        <field id="clcommon__Purchase_Money__c"/>
+        <field id="clcommon__Refinance__c"/>
+        <field id="clcommon__Include_Collateral_Receipt__c"/>
+        <field id="clcommon__Include_Land__c"/>
+        <field id="clcommon__Inspection_Report__c"/>
+        <field id="clcommon__Insurance_Amount__c"/>
+        <field id="clcommon__Insurance_Company_Name__c"/>
+        <field id="clcommon__Is_UCC__c"/>
+        <field id="clcommon__Issued_By__c"/>
+        <field id="LastModifiedById"/>
+        <field id="LastModifiedBy.Name"/>
+        <field id="LastModifiedDate"/>
+        <field id="LastReferencedDate"/>
+        <field id="clcommon__Leasehold__c"/>
+        <field id="LastViewedDate"/>
+        <field id="clcommon__Letter_of_Credit_Date__c"/>
+        <field id="clcommon__Lot__c"/>
+        <field id="clcommon__Make__c"/>
+        <field id="clcommon__Manufactured_Home__c"/>
+        <field id="clcommon__Manufacturer__c"/>
+        <field id="clcommon__Market_Value_Limit__c"/>
+        <field id="clcommon__Model__c"/>
+        <field id="clcommon__Name_of_Insured__c"/>
+        <field id="clcommon__Name_of_Vessel__c"/>
+        <field id="clcommon__Net_Tonnage__c"/>
+        <field id="clcommon__Number_of_Shares__c"/>
+        <field id="clcommon__Number_of_Units__c"/>
+        <field id="clcommon__Official_Number__c"/>
+        <field id="Owner.Name"/>
+        <field id="clcommon__Owner_Occupied__c"/>
+        <field id="clcommon__Owners_Interest__c"/>
+        <field id="clcommon__Parcel_Number__c"/>
+        <field id="clcommon__Policy_Number__c"/>
+        <field id="clcommon__Policy_Return_Address__c"/>
+        <field id="clcommon__Port_Name__c"/>
+        <field id="clcommon__Possessory_Current_Balance__c"/>
+        <field id="clcommon__Possessory_Type__c"/>
+        <field id="genesis__Primary__c"/>
+        <field id="clcommon__Principal_Dwelling__c"/>
+        <field id="clcommon__Property_Tax_ID_Number__c"/>
+        <field id="clcommon__Range__c"/>
+        <field id="Id"/>
+        <field id="RecordTypeId"/>
+        <field id="RecordType.Name"/>
+        <field id="clcommon__Residential_Property__c"/>
+        <field id="clcommon__Restriction_on_Sale__c"/>
+        <field id="clcommon__Section__c"/>
+        <field id="clcommon__Secure_Future_Advances__c"/>
+        <field id="clcommon__Secured_By_Interest_In_Property__c"/>
+        <field id="clcommon__Seller_Financed_Transaction__c"/>
+        <field id="clcommon__Timeshare__c"/>
+        <field id="clcommon__Year__c"/>
+        <field id="clcommon__Vehicle_Serial_Number__c"/>
+        <field id="clcommon__Vehicle_ID_Number__c"/>
+        <field id="clcommon__Value_Source__c"/>
+        <field id="clcommon__Value_Date__c"/>
+        <field id="clcommon__Vehicle_Color__c"/>
+        <field id="clcommon__Value__c"/>
+        <field id="clcommon__Township__c"/>
+        <field id="genesis__Property__r.Name"/>
+        <field id="Rural_Residential_Area_in_acres__c"/>
+        <field id="Rural_Area_in_acres__c"/>
+        <field id="Enter_Address_Manually__c"/>
+        <field id="Unit_No__c"/>
+        <field id="Street_Name__c"/>
+        <field id="Street_No__c"/>
+        <field id="Street_Type__c"/>
+        <field id="Country__c"/>
+        <field id="Primary_Usage__c"/>
+        <field id="Primary_Purpose__c"/>
+        <field id="clcommon__Status__c"/>
+        <field id="Construction__c"/>
+        <field id="Estimated_Value__c"/>
+        <field id="Contract_Of_Sale__c"/>
+        <field id="Contract_Price_Amount__c"/>
+        <field id="Licenced_Real_Estate_Agent_Contract__c"/>
+        <field id="Arms_Length_Transaction__c"/>
+        <field id="Rental_Income_Amount__c"/>
+        <field id="Rental_Income_Basis__c"/>
+        <field id="Rental_Income_Frequency__c"/>
+        <field id="Residential_Type_List__c"/>
+        <field id="Rural_Type__c"/>
+        <field id="Rural_Usage_List__c"/>
+        <field id="Commercial_Type__c"/>
+        <field id="Industrial_Type__c"/>
+        <field id="Land_Area__c"/>
+        <field id="Land_Area_Units__c"/>
+        <field id="Floor_Area__c"/>
+        <field id="Energy_Rating__c"/>
+        <field id="Visit_Contact_Type__c"/>
+        <field id="Actual_Value_Valuer__c"/>
+        <field id="Title_System__c"/>
+        <field id="Title_Tenure_Type__c"/>
+        <field id="Title_Volume__c"/>
+        <field id="Title_Plan__c"/>
+        <field id="Title_Lot__c"/>
+        <field id="Title_Folio__c"/>
+        <field id="Title_Reference__c"/>
+        <field id="Construction_Details_Initial_Amount__c"/>
+        <field id="Construction_Type__c"/>
+        <field id="Construction_Details_Total_Amount__c"/>
+        <field id="Construction_Details_Build_Price_Amount__c"/>
+        <field id="Land_Value__c"/>
+        <field id="Land_Value_Basis__c"/>
+        <field id="Estimated_Completion_Date__c"/>
+        <field id="Builder__c"/>
+        <field id="Builder__r.Name"/>
+        <field id="Builder_Type_List__c"/>
+        <field id="Signed_Contract__c"/>
+        <field id="Fixed_Price_Contract__c"/>
+        <field id="Detailed_Costings_Held__c"/>
+        <field id="Copy_Builders_Licence_Held__c"/>
+        <field id="Copy_Home_Owners_Warranty_Certificate_He__c"/>
+        <field id="Council_Approval_Held__c"/>
+        <field id="Home_Insurance_Certificate_Provided__c"/>
+        <field id="Title_Insurance_Required__c"/>
+        <field id="NewField" uionly="true" displaytype="TEXT"/>
+        <field id="Valuation_Required__c" overridemetadata="true" ogdisplaytype="PICKLIST" displaytype="PICKLIST" picklistsource="manual" returntype="TEXT" defaultvaluetype="fieldvalue" defaultValue="Yes">
+          <picklistentries/>
+        </field>
+        <field id="Contract_Party__c"/>
+        <field id="Contract_Party__r.Name"/>
+        <field id="clcommon__Property_Type__c"/>
+        <field id="NRAS_Property__c"/>
+        <field id="Transaction__c" overridemetadata="true" ogdisplaytype="PICKLIST" displaytype="PICKLIST" picklistsource="manual" returntype="TEXT" defaultvaluetype="fieldvalue" defaultValue="Purchase"/>
+        <field id="Deposit_Paid__c"/>
+        <field id="Deposit_Paid_Amount__c"/>
+        <field id="Licenced_Builder__c"/>
+        <field id="Valuation_Received__c"/>
+        <field id="Full_Address__c"/>
+        <field id="Type__c"/>
+        <field id="Contact_Name__c"/>
+        <field id="Contact_Type__c"/>
+        <field id="Email__c"/>
+        <field id="Business_Phone__c"/>
+        <field id="Mobile_Phone__c"/>
+        <field id="Valuation_Ordered__c"/>
+        <field id="Valuation_Ordered_Date__c"/>
+        <field id="Valuation_Ordered_by_Lender__c"/>
+        <field id="Valuation_Invoice_Number__c"/>
+        <field id="Valuation_Invoice_Date__c"/>
+        <field id="Valuation_Invoice_Amount__c"/>
+        <field id="Valuation_Payment_Amount__c"/>
+        <field id="Valuation_Paid__c"/>
+        <field id="Valuation_Payment_Type__c"/>
+      </fields>
+      <conditions logic="">
+        <condition type="modelmerge" value="" field="Id" operator="=" model="SelectedApplicationCollateral" enclosevalueinquotes="true" mergefield="genesis__Collateral__c" novaluebehavior="noquery"/>
+      </conditions>
+      <actions/>
+    </model>
+    <model id="CollateralOwner" limit="20" query="true" createrowifnonefound="false" datasource="salesforce" sobject="clcommon__Collateral_Owner__c">
+      <fields>
+        <field id="clcommon__Account__c"/>
+        <field id="clcommon__Account__r.Name"/>
+        <field id="clcommon__Collateral__c"/>
+        <field id="clcommon__Collateral__r.Name"/>
+        <field id="clcommon__Collateral__r.Id"/>
+        <field id="clcommon__Ownership__c"/>
+      </fields>
+      <conditions>
+        <condition type="modelmerge" value="" field="clcommon__Collateral__r.Id" fieldtargetobjects="clcommon__Collateral__c" operator="=" model="SelectedCollateral" enclosevalueinquotes="true" mergefield="Id" novaluebehavior="noquery"/>
+      </conditions>
+      <actions/>
+    </model>
+    <model id="SecurityOwnerContact" limit="20" query="true" createrowifnonefound="false" datasource="salesforce" sobject="Contact">
+      <fields>
+        <field id="Name"/>
+        <field id="HomePhone"/>
+        <field id="AccountId"/>
+        <field id="Account.Name"/>
+        <field id="Id"/>
+        <field id="Email"/>
+        <field id="loan__Contact_Type__c"/>
+        <field id="Phone"/>
+      </fields>
+      <conditions>
+        <condition type="modelmerge" value="" field="AccountId" operator="=" model="CollateralOwner" enclosevalueinquotes="true" mergefield="clcommon__Account__c" novaluebehavior="noquery" fieldtargetobjects="Account"/>
+        <condition type="blank" value="null" field="AccountId" fieldtargetobjects="Account" operator="!=" enclosevalueinquotes="false" model="QBE_Postcode"/>
+      </conditions>
+      <actions/>
+    </model>
+    <model id="SandP_Postcode" limit="20" query="true" createrowifnonefound="false" datasource="salesforce" sobject="S_P_Postcode__c">
+      <fields>
+        <field id="PostCode_Low_RangeNumber__c"/>
+        <field id="PostCode_High_RangeNumber__c"/>
+        <field id="Id"/>
+        <field id="Location__c"/>
+        <field id="Name"/>
+      </fields>
+      <conditions>
+        <condition type="modelmerge" value="" field="PostCode_High_RangeNumber__c" operator="gte" model="SelectedCollateral" enclosevalueinquotes="false" mergefield="clcommon__Postal_Code__c" novaluebehavior="deactivate"/>
+        <condition type="modelmerge" value="" field="PostCode_Low_RangeNumber__c" operator="lte" model="SelectedCollateral" enclosevalueinquotes="false" mergefield="clcommon__Postal_Code__c" novaluebehavior="deactivate"/>
+      </conditions>
+      <actions/>
+    </model>
+    <model limit="20" query="true" createrowifnonefound="false" datasource="salesforce" id="QBE_Postcode" sobject="QBEpostCode__c">
+      <fields>
+        <field id="Id"/>
+        <field id="PostCode_Low_RangeNumber__c"/>
+        <field id="PostCode_High_RangeNumber__c"/>
+        <field id="Name"/>
+        <field id="Location__c"/>
+      </fields>
+      <conditions>
+        <condition type="modelmerge" value="" field="PostCode_High_RangeNumber__c" operator="gte" model="SelectedCollateral" enclosevalueinquotes="false" mergefield="clcommon__Postal_Code__c" novaluebehavior="deactivate"/>
+        <condition type="modelmerge" value="" field="PostCode_Low_RangeNumber__c" operator="lte" model="SelectedCollateral" enclosevalueinquotes="false" mergefield="clcommon__Postal_Code__c" novaluebehavior="deactivate"/>
+      </conditions>
+      <actions/>
+    </model>
+  </models>
+  <components>
+    <pagetitle model="SelectedCollateral" uniqueid="collateralDetails-save-pt">
+      <actions>
+        <action type="multi" label="Save" cssclass="iconic-button iconic-button-save" uniqueid="sk-3Cq9-1014">
+          <actions>
+            <action type="custom" snippet="populateSecAddressInSecName"/>
+            <action type="save" rollbackonanyerror="true">
+              <models>
+                <model>SelectedApplicationCollateral</model>
+                <model>SelectedCollateral</model>
+                <model>CollateralOwner</model>
+                <model>SecurityOwnerContact</model>
+              </models>
+            </action>
+            <action type="custom" snippet="CloseDialog"/>
+          </actions>
+          <renderconditions logictype="and"/>
+          <enableconditions/>
+        </action>
+        <action type="multi" label="Delete" uniqueid="sk-3XzA-845" icon="fa-trash-o">
+          <actions>
+            <action type="showPopup">
+              <popup title="Delete this Security?" width="90%">
+                <components>
+                  <pagetitle uniqueid="sk-3Xzc-1002" model="SelectedApplicationCollateral">
+                    <maintitle>Are you sure you want to delete application collateral {{Name}} ?</maintitle>
+                    <actions/>
+                  </pagetitle>
+                  <buttonset uniqueid="sk-3Xzk-1019" model="QBE_Postcode">
+                    <buttons>
+                      <button type="multi" label="Cancel" uniqueid="sk-3Xzl-1025">
+                        <actions>
+                          <action type="closeTopmostPopup"/>
+                        </actions>
+                      </button>
+                      <button type="multi" label="Yes, continue" uniqueid="sk-3Xzl-1030">
+                        <actions>
+                          <action type="custom" snippet="DeleteSecurity"/>
+                          <action type="closeTopmostPopup"/>
+                        </actions>
+                      </button>
+                    </buttons>
+                  </buttonset>
+                </components>
+              </popup>
+            </action>
+          </actions>
+        </action>
+      </actions>
+      <renderconditions logictype="and"></renderconditions>
+      <maintitle>Security Details</maintitle>
+    </pagetitle>
+    <wrapper uniqueid="sk-15VvHt-366" cssclass="">
+      <components>
+        <basicfieldeditor showheader="true" showsavecancel="false" showerrorsinline="true" model="SelectedCollateral" uniqueid="sk-15MqPq-385" mode="edit" layout="">
+          <columns layoutmode="responsive" columngutter="4px" rowgutter="4px">
+            <column ratio="1" minwidth="300px" behavior="flex" verticalalign="top">
+              <sections>
+                <section title="" collapsible="no" showheader="false">
+                  <fields>
+                    <field uniqueid="sk-3rgl-848" type="COMBO" editmodebehavior="autopopup" allowhtml="true" readonly="true">
+                      <label>Security Address</label>
+                      <editmodepopup title="Address" width="450">
+                        <components>
+                          <basicfieldeditor showsavecancel="false" mode="edit" model="SelectedCollateral" uniqueid="sk-3rib-1063">
+                            <columns>
+                              <column width="100%">
+                                <sections>
+                                  <section title="">
+                                    <fields/>
+                                  </section>
+                                </sections>
+                              </column>
+                            </columns>
+                          </basicfieldeditor>
+                        </components>
+                      </editmodepopup>
+                      <renderconditions logictype="and" onhidedatabehavior="keep"/>
+                      <enableconditions/>
+                      <template>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+
+&lt;head&gt;
+    &lt;script&gt;
+        var autocomplete,
+            accModel = skuid.model.getModel('SelectedCollateral'),
+            accRow = accModel.data[0],
+            autoCompleteInput = document.getElementById('CollateralAddress');
+            //Google Place Initialize
+            function initAutocomplete() {
+                autocomplete = new google.maps.places.Autocomplete(autoCompleteInput, {types: ['geocode']});
+               
+                //Restrict the google place only show the specified country address and not allow other country address.
+                autocomplete.setComponentRestrictions({
+                   country: ["aus","in"]
+                });
+                
+                google.maps.event.addListener(autocomplete, "place_changed", function() {
+                  var place = autocomplete.getPlace();
+                  autoCompleteInput.value = place.formatted_address;
+                  if(place){
+                    var formatted_address = place.formatted_address;
+                    var placeComponent = place.address_components;
+                    fillInAddress(placeComponent,formatted_address);
+                  }else{
+                    alert('Address not found.Please check your address details.');
+                  }
+                });
+            }
+            
+            //Address data fillup for each type.
+            function fillInAddress(placeComponent,formatted_address) {
+              $.each(placeComponent,function(i,row){ 
+                    console.log(placeComponent); 
+                    if(row.types=='premise' || row.types=='route'){
+                        //accRow.OtherStreet = row.long_name ;
+                         accModel.updateRow(accRow,{
+                            Street_Name__c : row.long_name.split(" ")[0]
+                        });
+                        accModel.updateRow(accRow,{
+                            Street_Type__c : row.long_name.split(" ")[1]
+                        });
+                        console.log('OtherStreet'+row.long_name+'====='+accRow.OtherStreet);
+                    }
+                    else if(row.types.includes('sublocality_level_1')){
+                        //accRow.OtherStreet = accRow.OtherStreet + ', ' + row.long_name ;
+                        accModel.updateRow(accRow,{
+                            Street_Name__c : row.long_name.split(" ")[0]
+                        });
+                        accModel.updateRow(accRow,{
+                            Street_Type__c : row.long_name.split(" ")[1]
+                        });
+                    }
+                    else if(row.types.includes('locality')){
+                        //accRow.OtherCity = row.long_name ;
+                        accModel.updateRow(accRow,{
+                            clcommon__City__c : row.long_name
+                        });
+                        console.log('OtherCity'+row.long_name+'====='+accRow.OtherCity);
+                    }
+                    else if(row.types.includes('administrative_area_level_1')){
+                        //accRow.OtherState = row.long_name ;
+                        accModel.updateRow(accRow,{
+                            clcommon__State__c : row.long_name
+                        });
+                        console.log('OtherState'+row.long_name+'====='+accRow.OtherState);
+                    }
+                    else if(row.types.includes('country')){
+                        //accRow.OtherCountry = row.long_name ;
+                        accModel.updateRow(accRow,{
+                            Country__c : row.long_name
+                        });
+                        console.log('OtherCountry'+row.long_name+'====='+accRow.OtherCountry);
+                    }
+                    else if(row.types.includes('street_number')){
+                        //accRow.OtherCountry = row.long_name ;
+                        accModel.updateRow(accRow,{
+                            Street_No__c : row.long_name
+                        });
+                        console.log('OtherCountry'+row.long_name+'====='+accRow.OtherCountry);
+                    }
+                    else if(row.types.includes('postal_code')){
+                        //accRow.OtherPostalCode = row.long_name ;
+                        accModel.updateRow(accRow,{
+                            clcommon__Postal_Code__c : row.long_name
+                        });
+                        console.log('OtherPostalCode'+row.long_name+'====='+accRow.OtherPostalCode);
+                    }
+                    accModel.updateRow(accRow,{
+                        Full_Address__c : formatted_address
+                    });
+
+              }) ; 
+            }
+
+            //Get and Set the location.
+            function geolocate() {
+                if (navigator.geolocation) {
+                    navigator.geolocation.getCurrentPosition(function(position) {
+                      var geolocation = {
+                        lat: position.coords.latitude,
+                        lng: position.coords.longitude
+                      };
+                      var circle = new google.maps.Circle(
+                          {center: geolocation, radius: position.coords.accuracy});
+                      autocomplete.setBounds(circle.getBounds());
+                    });
+                }
+            }
+        &lt;/script&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+    &lt;div id="locationField"&gt;
+        &lt;input id="CollateralAddress" placeholder="Enter your address" onFocus="geolocate()" type="text" /&gt;
+    &lt;/div&gt;
+    &lt;!-- Replace the value of the key parameter with your own API key. --&gt;
+    &lt;script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDRh8kZcxEfA2gb31x2_RtuPk2YIlECgNA&amp;&amp;libraries=places&amp;callback=initAutocomplete"&gt;&lt;/script&gt;
+&lt;/body&gt;
+
+&lt;/html&gt;</template>
+                    </field>
+                    <field uniqueid="sk-3DO1-855" id="Enter_Address_Manually__c"/>
+                  </fields>
+                </section>
+                <section title="New Section" collapsible="no" uniqueid="sk-3CqJ-1774" showheader="false">
+                  <fields>
+                    <columns uniqueid="sk-3CqK-1791" layoutmode="fixed">
+                      <column width="100%" uniqueid="sk-3KKl-1231">
+                        <sections>
+                          <section title="New Section" collapsible="no" uniqueid="sk-3KKl-1232" showheader="false">
+                            <fields>
+                              <field uniqueid="sk-3KKw-1289" id="Full_Address__c">
+                                <renderconditions logictype="and" onhidedatabehavior="keep"/>
+                                <enableconditions logictype="and">
+                                  <condition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="SelectedCollateral" sourcetype="fieldvalue" field="Id" fieldtargetobjects="clcommon__Collateral__c" value="1234"/>
+                                </enableconditions>
+                              </field>
+                              <columns uniqueid="sk-3KKm-1250" layoutmode="fixed">
+                                <column width="100%" uniqueid="sk-3KKm-1239">
+                                  <sections>
+                                    <section title="New Section" collapsible="no" uniqueid="sk-3KKm-1240" showheader="false">
+                                      <fields>
+                                        <columns uniqueid="sk-3KKo-1263" layoutmode="fixed">
+                                          <column width="50%" uniqueid="sk-3KKo-1252">
+                                            <sections>
+                                              <section title="New Section" collapsible="no" uniqueid="sk-3KKo-1253" showheader="false">
+                                                <fields>
+                                                  <field uniqueid="sk-3DO6-873" id="Unit_No__c">
+                                                    <renderconditions logictype="and" onhidedatabehavior="keep"/>
+                                                    <enableconditions logictype="and">
+                                                      <condition type="fieldvalue" operator="=" enclosevalueinquotes="false" fieldmodel="SelectedCollateral" sourcetype="fieldvalue" field="Enter_Address_Manually__c" fieldtargetobjects="clcommon__Collateral__c" value="true"/>
+                                                    </enableconditions>
+                                                  </field>
+                                                  <field uniqueid="sk-3DOC-929" id="Street_Name__c">
+                                                    <renderconditions logictype="and" onhidedatabehavior="keep"/>
+                                                    <enableconditions logictype="and">
+                                                      <condition type="fieldvalue" operator="=" enclosevalueinquotes="false" fieldmodel="SelectedCollateral" sourcetype="fieldvalue" field="Enter_Address_Manually__c" fieldtargetobjects="clcommon__Collateral__c" value="true"/>
+                                                    </enableconditions>
+                                                  </field>
+                                                  <field uniqueid="sk-3DOJ-978" id="clcommon__City__c">
+                                                    <label>Suburb</label>
+                                                    <renderconditions logictype="and" onhidedatabehavior="keep"/>
+                                                    <enableconditions logictype="and">
+                                                      <condition type="fieldvalue" operator="=" enclosevalueinquotes="false" fieldmodel="SelectedCollateral" sourcetype="fieldvalue" field="Enter_Address_Manually__c" fieldtargetobjects="clcommon__Collateral__c" value="true"/>
+                                                    </enableconditions>
+                                                  </field>
+                                                  <field uniqueid="sk-3DPD-1085" id="clcommon__Postal_Code__c">
+                                                    <label>Post Code</label>
+                                                    <renderconditions logictype="and" onhidedatabehavior="keep"/>
+                                                    <enableconditions logictype="and">
+                                                      <condition type="fieldvalue" operator="=" enclosevalueinquotes="false" fieldmodel="SelectedCollateral" sourcetype="fieldvalue" field="Enter_Address_Manually__c" fieldtargetobjects="clcommon__Collateral__c" value="true"/>
+                                                    </enableconditions>
+                                                  </field>
+                                                </fields>
+                                              </section>
+                                            </sections>
+                                          </column>
+                                          <column width="50%" uniqueid="sk-3KKp-1267">
+                                            <sections>
+                                              <section title="New Section" collapsible="no" uniqueid="sk-3KKp-1268" showheader="false">
+                                                <fields>
+                                                  <field uniqueid="sk-3DOD-937" id="Street_No__c">
+                                                    <renderconditions logictype="and" onhidedatabehavior="keep"/>
+                                                    <enableconditions logictype="and">
+                                                      <condition type="fieldvalue" operator="=" enclosevalueinquotes="false" fieldmodel="SelectedCollateral" sourcetype="fieldvalue" field="Enter_Address_Manually__c" fieldtargetobjects="clcommon__Collateral__c" value="true"/>
+                                                    </enableconditions>
+                                                  </field>
+                                                  <field uniqueid="sk-3DOE-945" id="Street_Type__c">
+                                                    <renderconditions logictype="and" onhidedatabehavior="keep"/>
+                                                    <enableconditions logictype="and">
+                                                      <condition type="fieldvalue" operator="=" enclosevalueinquotes="false" fieldmodel="SelectedCollateral" sourcetype="fieldvalue" field="Enter_Address_Manually__c" fieldtargetobjects="clcommon__Collateral__c" value="true"/>
+                                                    </enableconditions>
+                                                  </field>
+                                                  <field uniqueid="sk-3DP4-1034" id="clcommon__State__c">
+                                                    <renderconditions logictype="and" onhidedatabehavior="keep"/>
+                                                    <enableconditions logictype="and">
+                                                      <condition type="fieldvalue" operator="=" enclosevalueinquotes="false" fieldmodel="SelectedCollateral" sourcetype="fieldvalue" field="Enter_Address_Manually__c" fieldtargetobjects="clcommon__Collateral__c" value="true"/>
+                                                    </enableconditions>
+                                                  </field>
+                                                  <field uniqueid="sk-3DP9-1066" id="Country__c">
+                                                    <renderconditions logictype="and" onhidedatabehavior="keep"/>
+                                                    <enableconditions logictype="and">
+                                                      <condition type="fieldvalue" operator="=" enclosevalueinquotes="false" fieldmodel="SelectedCollateral" sourcetype="fieldvalue" field="Enter_Address_Manually__c" fieldtargetobjects="clcommon__Collateral__c" value="true"/>
+                                                    </enableconditions>
+                                                  </field>
+                                                </fields>
+                                              </section>
+                                            </sections>
+                                          </column>
+                                        </columns>
+                                      </fields>
+                                    </section>
+                                  </sections>
+                                </column>
+                              </columns>
+                            </fields>
+                          </section>
+                        </sections>
+                      </column>
+                    </columns>
+                  </fields>
+                </section>
+              </sections>
+            </column>
+          </columns>
+          <renderconditions logictype="and"/>
+        </basicfieldeditor>
+        <basicfieldeditor showheader="true" showsavecancel="false" showerrorsinline="true" model="SelectedCollateral" uniqueid="sk-3Ec0-2592" mode="edit" layout="">
+          <columns layoutmode="responsive" columngutter="4px" rowgutter="4px">
+            <column ratio="1" minwidth="300px" behavior="flex" verticalalign="top">
+              <sections>
+                <section title="" collapsible="no" showheader="false">
+                  <fields></fields>
+                </section>
+                <section title="New Section" collapsible="no" uniqueid="sk-3Ec0-2596" showheader="false">
+                  <fields>
+                    <field uniqueid="sk-3Ec0-2610" id="Primary_Usage__c" selectedlist="3">
+                      <renderconditions logictype="and" onhidedatabehavior="keep"/>
+                      <enableconditions/>
+                    </field>
+                    <field uniqueid="sk-3OcJ-1178" id="Type__c">
+                      <renderconditions logictype="and" onhidedatabehavior="keep"/>
+                      <enableconditions/>
+                      <label>Property Type</label>
+                    </field>
+                    <field uniqueid="sk-3ToL-1314" id="Rural_Usage_List__c">
+                      <renderconditions logictype="and" onhidedatabehavior="keep">
+                        <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="SelectedCollateral" sourcetype="fieldvalue" field="Primary_Usage__c" fieldtargetobjects="clcommon__Collateral__c" value="Rural"/>
+                      </renderconditions>
+                      <enableconditions/>
+                    </field>
+                    <field uniqueid="sk-3Ec0-2612" id="clcommon__Status__c">
+                      <renderconditions logictype="and" onhidedatabehavior="keep"/>
+                      <enableconditions/>
+                    </field>
+                    <field uniqueid="sk-3Ec0-2613" id="Primary_Purpose__c">
+                      <renderconditions logictype="and" onhidedatabehavior="keep"/>
+                      <enableconditions/>
+                    </field>
+                    <field uniqueid="sk-3Ec0-2614" id="Transaction__c" snippet="newSnippet">
+                      <renderconditions logictype="and" onhidedatabehavior="keep"/>
+                      <enableconditions/>
+                    </field>
+                    <field uniqueid="sk-3Ec0-2615" id="Deposit_Paid__c">
+                      <renderconditions logictype="and" onhidedatabehavior="keep"/>
+                      <enableconditions/>
+                    </field>
+                    <field uniqueid="sk-3Ec0-2616" id="Deposit_Paid_Amount__c">
+                      <renderconditions logictype="and" onhidedatabehavior="keep"/>
+                      <enableconditions/>
+                    </field>
+                    <field uniqueid="sk-3Ec0-2617" id="NRAS_Property__c">
+                      <renderconditions logictype="and" onhidedatabehavior="keep"/>
+                      <enableconditions/>
+                    </field>
+                    <field uniqueid="sk-3Ec0-2618" id="Estimated_Value__c">
+                      <label>Estimated Market Value ($)</label>
+                    </field>
+                  </fields>
+                </section>
+                <section collapsible="no" uniqueid="sk-3Ec0-2619">
+                  <fields>
+                    <field uniqueid="sk-3Ec0-2620" id="Construction__c">
+                      <renderconditions logictype="and" onhidedatabehavior="keep"/>
+                      <enableconditions/>
+                    </field>
+                    <columns uniqueid="sk-3Ec0-2621" layoutmode="fixed">
+                      <column width="50%" uniqueid="sk-3Ec0-2622">
+                        <sections>
+                          <section title="New Section" collapsible="no" uniqueid="sk-3Ec0-2623" showheader="false">
+                            <fields>
+                              <field uniqueid="sk-3Ec0-2624" id="Construction_Type__c">
+                                <renderconditions logictype="and" onhidedatabehavior="keep">
+                                  <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="SelectedCollateral" sourcetype="fieldvalue" field="Id" fieldtargetobjects="clcommon__Collateral__c" value="123"/>
+                                </renderconditions>
+                                <enableconditions/>
+                              </field>
+                              <field uniqueid="sk-3Ec0-2625" id="Construction_Details_Initial_Amount__c">
+                                <label>Initial Amount</label>
+                                <renderconditions logictype="and" onhidedatabehavior="keep"/>
+                              </field>
+                              <field uniqueid="sk-3Ec0-2626" id="Construction_Details_Build_Price_Amount__c">
+                                <label>Build Price ($)</label>
+                              </field>
+                              <field uniqueid="sk-3Ec0-2627" id="Land_Value_Basis__c">
+                                <renderconditions logictype="and" onhidedatabehavior="keep"/>
+                                <enableconditions/>
+                              </field>
+                              <field uniqueid="sk-3Ec0-2628" id="Licenced_Builder__c"/>
+                              <field uniqueid="sk-3Ec0-2629" id="Signed_Contract__c"/>
+                              <field uniqueid="sk-3Ec0-2630" id="Detailed_Costings_Held__c"/>
+                              <field uniqueid="sk-3Ec0-2640" id="Council_Approval_Held__c"/>
+                            </fields>
+                          </section>
+                        </sections>
+                        <renderconditions logictype="and">
+                          <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="SelectedCollateral" sourcetype="fieldvalue" field="Construction__c" fieldtargetobjects="clcommon__Collateral__c" value="Yes"/>
+                        </renderconditions>
+                      </column>
+                      <column width="50%" uniqueid="sk-3Ec0-2631">
+                        <sections>
+                          <section title="New Section" collapsible="no" uniqueid="sk-3Ec0-2632" showheader="false">
+                            <fields>
+                              <field uniqueid="sk-3Ec0-2633" id="Copy_Home_Owners_Warranty_Certificate_He__c">
+                                <label>Copy Home Owners Warranty Certificate Held</label>
+                              </field>
+                              <field uniqueid="sk-3Ec0-2634" id="Construction_Details_Total_Amount__c">
+                                <label>Total Amount</label>
+                              </field>
+                              <field uniqueid="sk-3Ec0-2635" id="Land_Value__c"/>
+                              <field uniqueid="sk-3Ec0-2636" id="Estimated_Completion_Date__c" monthpicker="true" yearpicker="true" yearpickermin="c-30" yearpickermax="c+30"/>
+                              <field uniqueid="sk-3Ec0-2637" id="Builder__c"/>
+                              <field uniqueid="sk-3Ec0-2638" id="Fixed_Price_Contract__c"/>
+                              <field uniqueid="sk-3Ec0-2639" id="Copy_Builders_Licence_Held__c"/>
+                            </fields>
+                            <renderconditions logictype="and">
+                              <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="SelectedCollateral" sourcetype="fieldvalue" field="Construction__c" fieldtargetobjects="clcommon__Collateral__c" value="Yes"/>
+                            </renderconditions>
+                          </section>
+                        </sections>
+                      </column>
+                    </columns>
+                  </fields>
+                </section>
+                <section collapsible="no" uniqueid="sk-3Ec0-2641" showheader="true">
+                  <fields>
+                    <columns uniqueid="sk-3Pcy-1753" layoutmode="fixed">
+                      <column width="100%" uniqueid="sk-3Pcy-1740">
+                        <sections>
+                          <section title="Property Access Contact Details" collapsible="no" uniqueid="sk-3Pcy-1741" showheader="true">
+                            <fields>
+                              <columns uniqueid="sk-3Pd1-1802" layoutmode="fixed">
+                                <column width="50%" uniqueid="sk-3Pd1-1791">
+                                  <sections>
+                                    <section title="New Section" collapsible="no" uniqueid="sk-3Pd1-1792" showheader="false">
+                                      <fields>
+                                        <field uniqueid="sk-3PdS-1924" id="Contact_Type__c"/>
+                                        <field uniqueid="sk-3PdS-1925" id="Contact_Name__c"/>
+                                        <field uniqueid="sk-3PdS-1926" id="Email__c"/>
+                                      </fields>
+                                    </section>
+                                  </sections>
+                                </column>
+                                <column width="50%" uniqueid="sk-3PdD-1853">
+                                  <sections>
+                                    <section title="New Section" collapsible="no" uniqueid="sk-3PdD-1854" showheader="false">
+                                      <fields>
+                                        <field uniqueid="sk-3PdS-1928" id="Mobile_Phone__c"/>
+                                        <field uniqueid="sk-3PdS-1927" id="Business_Phone__c"/>
+                                      </fields>
+                                    </section>
+                                  </sections>
+                                </column>
+                              </columns>
+                            </fields>
+                          </section>
+                        </sections>
+                      </column>
+                    </columns>
+                  </fields>
+                </section>
+                <section title="Valuation Details" collapsible="no" uniqueid="sk-3Ec0-2642">
+                  <fields>
+                    <columns uniqueid="sk-3Ec0-2643" layoutmode="fixed">
+                      <column width="50%" uniqueid="sk-3Ec0-2644">
+                        <sections>
+                          <section title="New Section" collapsible="no" uniqueid="sk-3Ec0-2645" showheader="false">
+                            <fields>
+                              <field uniqueid="sk-3Ec0-2652" id="Valuation_Required__c">
+                                <renderconditions logictype="and" onhidedatabehavior="keep"/>
+                              </field>
+                              <field uniqueid="sk-3Q6T-1245" id="Valuation_Ordered__c">
+                                <renderconditions logictype="and" onhidedatabehavior="keep">
+                                  <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="SelectedCollateral" sourcetype="fieldvalue" field="Valuation_Required__c" fieldtargetobjects="clcommon__Collateral__c" value="Yes"/>
+                                </renderconditions>
+                                <enableconditions/>
+                              </field>
+                              <field uniqueid="sk-3Q6V-1253" id="Valuation_Ordered_Date__c" monthpicker="true" yearpicker="true" yearpickermin="c-30" yearpickermax="c+30">
+                                <renderconditions logictype="and" onhidedatabehavior="keep">
+                                  <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="SelectedCollateral" sourcetype="fieldvalue" field="Valuation_Ordered__c" fieldtargetobjects="clcommon__Collateral__c" value="Yes"/>
+                                </renderconditions>
+                                <enableconditions/>
+                              </field>
+                              <field uniqueid="sk-3Q6a-1282" id="Valuation_Ordered_by_Lender__c">
+                                <renderconditions logictype="and" onhidedatabehavior="keep">
+                                  <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="SelectedCollateral" sourcetype="fieldvalue" field="Valuation_Ordered__c" fieldtargetobjects="clcommon__Collateral__c" value="Yes"/>
+                                </renderconditions>
+                                <enableconditions/>
+                              </field>
+                              <field uniqueid="sk-3Q6e-1290" id="Valuation_Invoice_Number__c">
+                                <renderconditions logictype="and" onhidedatabehavior="keep">
+                                  <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="SelectedCollateral" sourcetype="fieldvalue" field="Valuation_Ordered_by_Lender__c" fieldtargetobjects="clcommon__Collateral__c" value="Yes"/>
+                                </renderconditions>
+                                <enableconditions/>
+                              </field>
+                              <field uniqueid="sk-3Q7G-1324" id="Valuation_Invoice_Amount__c">
+                                <renderconditions logictype="and" onhidedatabehavior="keep">
+                                  <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="SelectedCollateral" sourcetype="fieldvalue" field="Valuation_Ordered_by_Lender__c" fieldtargetobjects="clcommon__Collateral__c" value="Yes"/>
+                                </renderconditions>
+                                <enableconditions/>
+                              </field>
+                              <field uniqueid="sk-3Q6m-1298" id="Valuation_Invoice_Date__c" monthpicker="true" yearpicker="true" yearpickermin="c-30" yearpickermax="c+30">
+                                <renderconditions logictype="and" onhidedatabehavior="keep">
+                                  <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="SelectedCollateral" sourcetype="fieldvalue" field="Valuation_Ordered_by_Lender__c" fieldtargetobjects="clcommon__Collateral__c" value="Yes"/>
+                                </renderconditions>
+                                <enableconditions/>
+                              </field>
+                              <field uniqueid="sk-3Q7K-1332" id="Valuation_Payment_Amount__c">
+                                <renderconditions logictype="and" onhidedatabehavior="keep">
+                                  <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="SelectedCollateral" sourcetype="fieldvalue" field="Valuation_Ordered_by_Lender__c" fieldtargetobjects="clcommon__Collateral__c" value="Yes"/>
+                                </renderconditions>
+                                <enableconditions/>
+                              </field>
+                              <field uniqueid="sk-3Q7R-1340" id="Valuation_Paid__c">
+                                <renderconditions logictype="and" onhidedatabehavior="keep">
+                                  <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="SelectedCollateral" sourcetype="fieldvalue" field="Valuation_Ordered_by_Lender__c" fieldtargetobjects="clcommon__Collateral__c" value="Yes"/>
+                                </renderconditions>
+                                <enableconditions/>
+                              </field>
+                              <field uniqueid="sk-3Q7U-1348" id="Valuation_Payment_Type__c">
+                                <renderconditions logictype="and" onhidedatabehavior="keep">
+                                  <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="SelectedCollateral" sourcetype="fieldvalue" field="Valuation_Ordered_by_Lender__c" fieldtargetobjects="clcommon__Collateral__c" value="Yes"/>
+                                </renderconditions>
+                                <enableconditions/>
+                              </field>
+                            </fields>
+                          </section>
+                        </sections>
+                      </column>
+                      <column width="50%" uniqueid="sk-3Ec0-2649">
+                        <sections>
+                          <section title="New Section" collapsible="no" uniqueid="sk-3Ec0-2650" showheader="false">
+                            <fields>
+                              <field uniqueid="sk-3Ec0-2646" id="clcommon__Value__c">
+                                <renderconditions logictype="and" onhidedatabehavior="keep"/>
+                                <enableconditions/>
+                              </field>
+                              <field uniqueid="sk-3Ec0-2647" id="Actual_Value_Valuer__c">
+                                <label>Valuer</label>
+                              </field>
+                              <field uniqueid="sk-3Ec0-2651" id="clcommon__Value_Date__c" monthpicker="true" yearpicker="true" yearpickermin="c-30" yearpickermax="c+30"/>
+                              <field uniqueid="sk-3Ec0-2648" id="Valuation_Received__c"/>
+                            </fields>
+                          </section>
+                        </sections>
+                      </column>
+                    </columns>
+                    <field uniqueid="sk-3Ec0-2653" id="Contract_Of_Sale__c">
+                      <renderconditions logictype="and" onhidedatabehavior="keep">
+                        <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="SelectedCollateral" sourcetype="fieldvalue" field="Transaction__c" fieldtargetobjects="clcommon__Collateral__c" value="Purchase"/>
+                      </renderconditions>
+                      <enableconditions/>
+                    </field>
+                  </fields>
+                  <renderconditions logictype="and"/>
+                </section>
+                <section title="Contract Details" collapsible="no" uniqueid="sk-3Ec0-2654">
+                  <fields>
+                    <columns uniqueid="sk-3Ec0-2655" layoutmode="fixed">
+                      <column width="50%" uniqueid="sk-3Ec0-2656">
+                        <sections>
+                          <section title="New Section" collapsible="no" uniqueid="sk-3Ec0-2657" showheader="false">
+                            <fields>
+                              <field uniqueid="sk-3Ec0-2658" id="Contract_Price_Amount__c">
+                                <label>Contract Price ($)</label>
+                                <renderconditions logictype="and" onhidedatabehavior="keep">
+                                  <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="SelectedCollateral" sourcetype="fieldvalue" field="Transaction__c" fieldtargetobjects="clcommon__Collateral__c" value="Purchase"/>
+                                </renderconditions>
+                                <enableconditions logictype="and"/>
+                              </field>
+                              <field uniqueid="sk-3Ec0-2659" id="Licenced_Real_Estate_Agent_Contract__c"/>
+                            </fields>
+                          </section>
+                        </sections>
+                        <renderconditions logictype="and">
+                          <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="SelectedCollateral" sourcetype="fieldvalue" field="Transaction__c" fieldtargetobjects="clcommon__Collateral__c" value="Purchase"/>
+                        </renderconditions>
+                      </column>
+                      <column width="50%" uniqueid="sk-3Ec0-2660">
+                        <sections>
+                          <section title="New Section" collapsible="no" uniqueid="sk-3Ec0-2661" showheader="false">
+                            <fields>
+                              <field uniqueid="sk-3Ec0-2662" id="clcommon__Contract_Date__c" monthpicker="true" yearpicker="true" yearpickermin="c-30" yearpickermax="c+30"/>
+                              <field uniqueid="sk-3Ec0-2663" id="Arms_Length_Transaction__c"/>
+                            </fields>
+                          </section>
+                        </sections>
+                        <renderconditions logictype="and">
+                          <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="SelectedCollateral" sourcetype="fieldvalue" field="Transaction__c" fieldtargetobjects="clcommon__Collateral__c" value="Purchase"/>
+                        </renderconditions>
+                      </column>
+                    </columns>
+                  </fields>
+                  <renderconditions logictype="and">
+                    <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="SelectedCollateral" sourcetype="fieldvalue" field="Transaction__c" fieldtargetobjects="clcommon__Collateral__c" value="Purchase"/>
+                  </renderconditions>
+                </section>
+                <section collapsible="no" uniqueid="sk-3Ec0-2664" title="Rental Income">
+                  <fields>
+                    <columns uniqueid="sk-3Ec0-2665" layoutmode="fixed">
+                      <column width="50%" uniqueid="sk-3Ec0-2666">
+                        <sections>
+                          <section title="New Section" collapsible="no" uniqueid="sk-3Ec0-2667" showheader="false">
+                            <fields>
+                              <field uniqueid="sk-3Ec0-2668" id="Rental_Income_Amount__c"/>
+                              <field uniqueid="sk-3Ec0-2669" id="Rental_Income_Frequency__c"/>
+                            </fields>
+                          </section>
+                        </sections>
+                      </column>
+                      <column width="50%" uniqueid="sk-3Ec0-2670">
+                        <sections>
+                          <section title="New Section" collapsible="no" uniqueid="sk-3Ec0-2671" showheader="false">
+                            <fields>
+                              <field uniqueid="sk-3Ec0-2672" id="Rental_Income_Basis__c"/>
+                            </fields>
+                          </section>
+                        </sections>
+                      </column>
+                    </columns>
+                  </fields>
+                </section>
+                <section title="Residential" collapsible="no" uniqueid="sk-3Ec0-2673">
+                  <fields>
+                    <field uniqueid="sk-3Ec0-2674" id="Residential_Type_List__c">
+                      <renderconditions logictype="and" onhidedatabehavior="keep"/>
+                      <enableconditions/>
+                      <label>Residential Type</label>
+                    </field>
+                  </fields>
+                  <renderconditions logictype="and">
+                    <rendercondition type="fieldvalue" operator="includes" enclosevalueinquotes="true" fieldmodel="SelectedCollateral" sourcetype="fieldvalue" field="Id" fieldtargetobjects="clcommon__Collateral__c" value="1234"/>
+                  </renderconditions>
+                </section>
+                <section title="Rural" collapsible="no" uniqueid="sk-3Ec0-2675">
+                  <fields>
+                    <columns uniqueid="sk-3Ec0-2676" layoutmode="fixed">
+                      <column width="50%" uniqueid="sk-3Ec0-2677">
+                        <sections>
+                          <section title="New Section" collapsible="no" uniqueid="sk-3Ec0-2678" showheader="false">
+                            <fields>
+                              <field uniqueid="sk-3Ec0-2679" id="Rural_Type__c"/>
+                            </fields>
+                          </section>
+                        </sections>
+                      </column>
+                      <column width="50%" uniqueid="sk-3Ec0-2680">
+                        <sections>
+                          <section title="New Section" collapsible="no" uniqueid="sk-3Ec0-2681" showheader="false">
+                            <fields>
+                              <field uniqueid="sk-3Ec0-2682" id="Rural_Usage_List__c">
+                                <label>Rural Usage</label>
+                              </field>
+                            </fields>
+                          </section>
+                        </sections>
+                      </column>
+                    </columns>
+                  </fields>
+                  <renderconditions logictype="and">
+                    <rendercondition type="fieldvalue" operator="includes" enclosevalueinquotes="true" fieldmodel="SelectedCollateral" sourcetype="fieldvalue" field="Id" fieldtargetobjects="clcommon__Collateral__c" value="1234"/>
+                  </renderconditions>
+                </section>
+                <section title="Commercial" collapsible="no" uniqueid="sk-3Ec0-2683">
+                  <fields>
+                    <field uniqueid="sk-3Ec0-2684" id="Commercial_Type__c"/>
+                  </fields>
+                  <renderconditions logictype="and">
+                    <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="SelectedCollateral" sourcetype="fieldvalue" field="Id" fieldtargetobjects="clcommon__Collateral__c" value="1234"/>
+                  </renderconditions>
+                </section>
+                <section title="Industrial" collapsible="no" uniqueid="sk-3Ec0-2685">
+                  <fields>
+                    <field uniqueid="sk-3Ec0-2686" id="Industrial_Type__c">
+                      <renderconditions logictype="and" onhidedatabehavior="keep">
+                        <rendercondition type="fieldvalue" operator="excludes" enclosevalueinquotes="true" fieldmodel="SelectedCollateral" sourcetype="fieldvalue" field="Primary_Usage__c" fieldtargetobjects="clcommon__Collateral__c" value="Industrial"/>
+                      </renderconditions>
+                      <enableconditions/>
+                    </field>
+                  </fields>
+                  <renderconditions logictype="and">
+                    <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="SelectedCollateral" sourcetype="fieldvalue" field="Id" fieldtargetobjects="clcommon__Collateral__c" value="1234"/>
+                  </renderconditions>
+                </section>
+                <section collapsible="no" uniqueid="sk-3Ec0-2687" title="Property Features">
+                  <fields>
+                    <columns uniqueid="sk-3Ec0-2688" layoutmode="fixed">
+                      <column width="50%" uniqueid="sk-3Ec0-2689">
+                        <sections>
+                          <section title="New Section" collapsible="no" uniqueid="sk-3Ec0-2690" showheader="false">
+                            <fields>
+                              <field uniqueid="sk-3Ec0-2691" id="Land_Area__c"/>
+                              <field uniqueid="sk-3Ec0-2692" id="Floor_Area__c"/>
+                              <field uniqueid="sk-3Ec0-2693" id="Home_Insurance_Certificate_Provided__c"/>
+                            </fields>
+                          </section>
+                        </sections>
+                      </column>
+                      <column width="50%" uniqueid="sk-3Ec0-2694">
+                        <sections>
+                          <section title="New Section" collapsible="no" uniqueid="sk-3Ec0-2695" showheader="false">
+                            <fields>
+                              <field uniqueid="sk-3Ec0-2696" id="Land_Area_Units__c"/>
+                              <field uniqueid="sk-3Ec0-2697" id="Energy_Rating__c"/>
+                            </fields>
+                          </section>
+                        </sections>
+                      </column>
+                    </columns>
+                  </fields>
+                </section>
+                <section title="Title Information" collapsible="no" uniqueid="sk-3Ec0-2698">
+                  <fields>
+                    <columns uniqueid="sk-3Ec0-2699" layoutmode="fixed">
+                      <column width="50%" uniqueid="sk-3Ec0-2700">
+                        <sections>
+                          <section title="New Section" collapsible="no" uniqueid="sk-3Ec0-2701" showheader="false">
+                            <fields>
+                              <field uniqueid="sk-3Ec0-2702" id="Visit_Contact_Type__c">
+                                <label>Type</label>
+                                <renderconditions logictype="and" onhidedatabehavior="keep">
+                                  <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="SelectedCollateral" sourcetype="fieldvalue" field="Id" fieldtargetobjects="clcommon__Collateral__c" value="123"/>
+                                </renderconditions>
+                                <enableconditions/>
+                              </field>
+                              <field uniqueid="sk-3Ec0-2703" id="Title_Tenure_Type__c">
+                                <label>Tenure Type</label>
+                              </field>
+                              <field uniqueid="sk-3Ec0-2704" id="Title_Plan__c">
+                                <label>Plan</label>
+                              </field>
+                              <field uniqueid="sk-3Ec0-2705" id="Title_Folio__c">
+                                <label>Folio</label>
+                              </field>
+                              <field uniqueid="sk-3Ec0-2706" id="Title_Insurance_Required__c"/>
+                            </fields>
+                          </section>
+                        </sections>
+                      </column>
+                      <column width="50%" uniqueid="sk-3Ec0-2707">
+                        <sections>
+                          <section title="New Section" collapsible="no" uniqueid="sk-3Ec0-2708" showheader="false">
+                            <fields>
+                              <field uniqueid="sk-3Ec0-2709" id="Title_System__c"/>
+                              <field uniqueid="sk-3Ec0-2710" id="Title_Lot__c">
+                                <label>Lot</label>
+                              </field>
+                              <field uniqueid="sk-3Ec0-2711" id="Title_Volume__c">
+                                <label>Volume</label>
+                              </field>
+                              <field uniqueid="sk-3Ec0-2712" id="Title_Reference__c"/>
+                            </fields>
+                          </section>
+                        </sections>
+                      </column>
+                    </columns>
+                  </fields>
+                </section>
+              </sections>
+            </column>
+          </columns>
+          <renderconditions logictype="and"/>
+        </basicfieldeditor>
+        <skootable showconditions="true" showsavecancel="true" showerrorsinline="true" searchmethod="server" searchbox="true" showexportbuttons="false" hideheader="false" hidefooter="false" pagesize="10" alwaysresetpagination="false" createrecords="true" model="CollateralOwner" buttonposition="" mode="edit" allowcolumnreordering="true" responsive="true" uniqueid="sk-26IQ-1105" heading="Registered Proprietors">
+          <fields>
+            <field id="clcommon__Account__c" hideable="true" uniqueid="fi-26Ih-1244">
+              <label>Full Name</label>
+            </field>
+            <field id="clcommon__Ownership__c" hideable="true" uniqueid="fi-26Ik-1265">
+              <label>Ownership %</label>
+            </field>
+          </fields>
+          <rowactions>
+            <action type="edit"/>
+            <action type="delete"/>
+          </rowactions>
+          <massactions usefirstitemasdefault="true">
+            <action type="massupdate"/>
+            <action type="massdelete"/>
+          </massactions>
+          <views>
+            <view type="standard"/>
+          </views>
+        </skootable>
+        <basicfieldeditor showheader="true" showsavecancel="false" showerrorsinline="true" model="SandP_Postcode" uniqueid="sk-14jg-1575" mode="edit">
+          <columns>
+            <column width="100%" uniqueid="sk-14jg-1571">
+              <sections>
+                <section title="S&amp;P Location" uniqueid="sk-14jg-1572" collapsible="no">
+                  <fields>
+                    <field uniqueid="sk-14js-1668" id="Location__c" readonly="true"/>
+                  </fields>
+                </section>
+              </sections>
+            </column>
+          </columns>
+          <renderconditions logictype="and"/>
+        </basicfieldeditor>
+        <basicfieldeditor showheader="true" showsavecancel="false" showerrorsinline="true" model="QBE_Postcode" uniqueid="sk-14jV-1468" mode="edit">
+          <columns>
+            <column width="100%" uniqueid="sk-14jV-1464">
+              <sections>
+                <section uniqueid="sk-14jV-1465" collapsible="no" title="QBE Location">
+                  <fields>
+                    <field uniqueid="sk-14jc-1559" id="Location__c" readonly="true"/>
+                  </fields>
+                </section>
+              </sections>
+            </column>
+          </columns>
+          <renderconditions logictype="and"/>
+        </basicfieldeditor>
+        <basicfieldeditor showheader="true" showsavecancel="false" showerrorsinline="true" model="SecurityOwnerContact" uniqueid="sk-3DFS-1053" mode="edit">
+          <columns>
+            <column width="100%" uniqueid="sk-3DIE-875">
+              <sections>
+                <section title="Contact Details" collapsible="no" uniqueid="sk-3DIE-876">
+                  <fields>
+                    <columns uniqueid="sk-3DIG-895" layoutmode="fixed">
+                      <column width="50%" uniqueid="sk-3DIG-884">
+                        <sections>
+                          <section title="New Section" collapsible="no" uniqueid="sk-3DIG-885" showheader="false">
+                            <fields>
+                              <field uniqueid="sk-35ST-1188" id="loan__Contact_Type__c" showhelp="true"/>
+                              <field uniqueid="sk-3DHt-840" id="AccountId">
+                                <label>Contact Name</label>
+                              </field>
+                              <field uniqueid="sk-35SN-1169" id="Email"/>
+                            </fields>
+                          </section>
+                        </sections>
+                      </column>
+                      <column width="50%" uniqueid="sk-3DIH-898">
+                        <sections>
+                          <section title="New Section" collapsible="no" uniqueid="sk-3DIH-899" showheader="false">
+                            <fields>
+                              <field uniqueid="sk-3DHR-1293" id="HomePhone">
+                                <label>Mobile Phone</label>
+                              </field>
+                              <field uniqueid="sk-38zP-1155" id="Phone"/>
+                            </fields>
+                          </section>
+                        </sections>
+                      </column>
+                    </columns>
+                  </fields>
+                  <renderconditions logictype="and"/>
+                </section>
+              </sections>
+            </column>
+          </columns>
+          <renderconditions logictype="and">
+            <rendercondition type="fieldvalue" operator="=" fieldmodel="SecurityOwnerContact" sourcetype="fieldvalue" nosourcerowbehavior="skipandrender" field="Id" fieldtargetobjects="Contact" value="123" enclosevalueinquotes="true"/>
+          </renderconditions>
+        </basicfieldeditor>
+        <basicfieldeditor showheader="true" showsavecancel="false" showerrorsinline="true" model="SelectedCollateral" buttonposition="" uniqueid="sk-3HR1zW-154" mode="edit" layout="">
+          <columns layoutmode="responsive" columngutter="4px" rowgutter="4px">
+            <column ratio="1" minwidth="300px" behavior="flex">
+              <sections>
+                <section title="" collapsible="no" showheader="false">
+                  <fields>
+                    <field id="clcommon__Style__c" type="CUSTOM" snippet="fieldRenderMode" uniqueid="sk-3Cq9-1066"/>
+                    <field id="clcommon__Make__c" valuehalign="" type="CUSTOM" snippet="fieldRenderMode" uniqueid="sk-3Cq9-1069"/>
+                    <field id="clcommon__Model__c" valuehalign="" type="CUSTOM" snippet="fieldRenderMode" uniqueid="sk-3Cq9-1072"/>
+                    <field id="clcommon__Manufacturer__c" valuehalign="" type="CUSTOM" snippet="fieldRenderMode" uniqueid="sk-3Cq9-1075"/>
+                    <field id="clcommon__Vehicle_Serial_Number__c" valuehalign="" type="CUSTOM" snippet="fieldRenderMode" uniqueid="sk-3Cq9-1078"/>
+                    <field id="clcommon__Vehicle_Color__c" valuehalign="" type="CUSTOM" snippet="fieldRenderMode" uniqueid="sk-3Cq9-1081"/>
+                    <field id="clcommon__Year__c" valuehalign="" type="CUSTOM" snippet="fieldRenderMode" uniqueid="sk-3Cq9-1084"/>
+                    <field id="clcommon__IDERA__c" valuehalign="" type="CUSTOM" snippet="fieldRenderMode" uniqueid="sk-3Cq9-1087"/>
+                  </fields>
+                </section>
+              </sections>
+            </column>
+            <column behavior="flex" ratio="1" minwidth="300px" verticalalign="top">
+              <sections>
+                <section title="" collapsible="no" showheader="false">
+                  <fields>
+                    <field id="clcommon__Commercial_Use__c" valuehalign="" type="CUSTOM" snippet="fieldRenderMode" uniqueid="sk-3Cq9-1093"/>
+                    <field id="clcommon__Registration_State__c" valuehalign="" type="CUSTOM" snippet="fieldRenderMode" uniqueid="sk-3Cq9-1096"/>
+                    <field id="clcommon__Airport__c" valuehalign="" type="CUSTOM" snippet="fieldRenderMode" uniqueid="sk-3Cq9-1099"/>
+                    <field id="clcommon__Describe_Log_Books__c" valuehalign="" type="CUSTOM" snippet="fieldRenderMode" uniqueid="sk-3Cq9-1102"/>
+                    <field id="clcommon__FAA_Cover_Letter__c" valuehalign="" type="CUSTOM" snippet="fieldRenderMode" uniqueid="sk-3Cq9-1105"/>
+                    <field id="clcommon__FAA_Number__c" valuehalign="" type="CUSTOM" snippet="fieldRenderMode" uniqueid="sk-3Cq9-1108"/>
+                    <field id="clcommon__Inspection_Report__c" valuehalign="" type="CUSTOM" snippet="fieldRenderMode" uniqueid="sk-3Cq9-1111"/>
+                  </fields>
+                </section>
+              </sections>
+            </column>
+          </columns>
+          <renderconditions logictype="and">
+            <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="SelectedCollateral" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="clcommon__Collateral_Type__r.Name" value="Aircraft"/>
+          </renderconditions>
+        </basicfieldeditor>
+        <basicfieldeditor showheader="true" showsavecancel="false" showerrorsinline="true" model="SelectedCollateral" buttonposition="" uniqueid="sk-3I_Icf-346" mode="edit" layout="">
+          <columns layoutmode="responsive" columngutter="4px" rowgutter="4px">
+            <column ratio="1" minwidth="300px" behavior="flex">
+              <sections>
+                <section title="" collapsible="no" showheader="false">
+                  <fields>
+                    <field id="clcommon__Agricultural_Use__c" valuehalign="" type="CUSTOM" snippet="fieldRenderMode" uniqueid="sk-3Cq9-1120"/>
+                    <field id="clcommon__Collateral_Secures__c" valuehalign="" type="CUSTOM" snippet="fieldRenderMode" uniqueid="sk-3Cq9-1123"/>
+                    <field id="clcommon__Property_Tax_ID_Number__c" type="CUSTOM" snippet="fieldRenderMode" uniqueid="sk-3Cq9-1126"/>
+                    <field id="clcommon__Condo__c" valuehalign="" type="CUSTOM" snippet="fieldRenderMode" uniqueid="sk-3Cq9-1129"/>
+                    <field id="clcommon__First_Lien__c" valuehalign="" type="CUSTOM" snippet="fieldRenderMode" uniqueid="sk-3Cq9-1132"/>
+                    <field id="clcommon__Existing_Lien__c" valuehalign="" type="CUSTOM" snippet="fieldRenderMode" uniqueid="sk-3Cq9-1135"/>
+                  </fields>
+                </section>
+              </sections>
+            </column>
+            <column ratio="1" minwidth="300px" behavior="flex">
+              <sections>
+                <section title="" collapsible="no" showheader="false">
+                  <fields>
+                    <field id="clcommon__Homestead_Property__c" type="CUSTOM" snippet="fieldRenderMode" uniqueid="sk-3Cq9-1141"/>
+                    <field id="clcommon__Leasehold__c" valuehalign="" type="CUSTOM" snippet="fieldRenderMode" uniqueid="sk-3Cq9-1144"/>
+                    <field id="clcommon__Number_of_Units__c" decimalplaces="" valuehalign="" type="CUSTOM" snippet="fieldRenderMode" uniqueid="sk-3Cq9-1147"/>
+                    <field id="clcommon__Dwelling__c" valuehalign="" type="CUSTOM" snippet="fieldRenderMode" uniqueid="sk-3Cq9-1150"/>
+                    <field id="clcommon__Owner_Occupied__c" valuehalign="" type="CUSTOM" snippet="fieldRenderMode" uniqueid="sk-3Cq9-1153"/>
+                    <field id="clcommon__Timeshare__c" valuehalign="" type="CUSTOM" snippet="fieldRenderMode" uniqueid="sk-3Cq9-1156"/>
+                  </fields>
+                </section>
+              </sections>
+            </column>
+          </columns>
+          <renderconditions logictype="and">
+            <rendercondition type="multiple" operator="in" fieldmodel="SelectedCollateral" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="clcommon__Collateral_Type__r.Name" value="" enclosevalueinquotes="true">
+              <values>
+                <value>1-4 Family</value>
+                <value>Multi-Family</value>
+                <value>Construction</value>
+                <value>Lot</value>
+                <value>Land</value>
+                <value>Farm Land</value>
+                <value>Office</value>
+                <value>Warehouse</value>
+                <value>Retail</value>
+                <value>Oil and Gas</value>
+                <value>Other RE</value>
+              </values>
+            </rendercondition>
+          </renderconditions>
+        </basicfieldeditor>
+        <basicfieldeditor showheader="true" showsavecancel="false" showerrorsinline="true" model="SelectedCollateral" uniqueid="sk-3I-v0O-569" mode="edit" layout="">
+          <columns layoutmode="fixed">
+            <column width="50%">
+              <sections>
+                <section title="" collapsible="no" showheader="false">
+                  <fields>
+                    <field id="clcommon__Contract_Date__c" type="CUSTOM" snippet="fieldRenderMode" uniqueid="sk-3Cq9-1165" monthpicker="true" yearpicker="true" yearpickermin="c-30" yearpickermax="c+30"/>
+                    <field id="clcommon__Contract_Number__c" valuehalign="" type="CUSTOM" snippet="fieldRenderMode" uniqueid="sk-3Cq9-1168"/>
+                  </fields>
+                </section>
+              </sections>
+            </column>
+            <column width="50%">
+              <sections>
+                <section title="" collapsible="no" showheader="false">
+                  <fields>
+                    <field uniqueid="sk-1EPk-1294" id="Contract_Party__c"/>
+                    <field id="clcommon__Secure_Future_Advances__c" valuehalign="" type="CUSTOM" snippet="fieldRenderMode" uniqueid="sk-3Cq9-1177"/>
+                  </fields>
+                </section>
+              </sections>
+            </column>
+          </columns>
+          <renderconditions logictype="and">
+            <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="SelectedCollateral" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="clcommon__Collateral_Type__r.Name" value="Government"/>
+          </renderconditions>
+        </basicfieldeditor>
+        <basicfieldeditor showheader="true" showsavecancel="false" showerrorsinline="true" model="SelectedCollateral" buttonposition="" uniqueid="sk-3J08yp-624" mode="edit">
+          <columns>
+            <column width="50%">
+              <sections>
+                <section title="" collapsible="no" showheader="false">
+                  <fields>
+                    <field id="clcommon__Possessory_Type__c" valuehalign="" type="CUSTOM" snippet="fieldRenderMode" uniqueid="sk-3Cq9-1186"/>
+                    <field id="clcommon__Possessory_Current_Balance__c" decimalplaces="" valuehalign="" type="CUSTOM" snippet="fieldRenderMode" uniqueid="sk-3Cq9-1189"/>
+                  </fields>
+                </section>
+              </sections>
+            </column>
+            <column width="50%">
+              <sections>
+                <section title="" collapsible="no" showheader="false">
+                  <fields>
+                    <field id="clcommon__Letter_of_Credit_Date__c" type="CUSTOM" snippet="fieldRenderMode" uniqueid="sk-3Cq9-1195" monthpicker="true" yearpicker="true" yearpickermin="c-30" yearpickermax="c+30"/>
+                    <field id="clcommon__Account_Number__c" valuehalign="" type="CUSTOM" snippet="fieldRenderMode" uniqueid="sk-3Cq9-1198"/>
+                  </fields>
+                </section>
+              </sections>
+            </column>
+          </columns>
+          <renderconditions logictype="and">
+            <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="SelectedCollateral" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="clcommon__Collateral_Type__r.Name" value="Letter of Credit"/>
+          </renderconditions>
+        </basicfieldeditor>
+        <basicfieldeditor showheader="true" showsavecancel="false" showerrorsinline="true" model="SelectedCollateral" buttonposition="" uniqueid="sk-3J0VBV-682" mode="edit" layout="">
+          <columns layoutmode="fixed">
+            <column width="50%">
+              <sections>
+                <section title="" collapsible="no" showheader="false">
+                  <fields>
+                    <field id="clcommon__Policy_Number__c" valuehalign="" type="CUSTOM" snippet="fieldRenderMode" uniqueid="sk-3Cq9-1207"/>
+                    <field id="clcommon__Possessory_Type__c" valuehalign="" type="CUSTOM" snippet="fieldRenderMode" uniqueid="sk-3Cq9-1210"/>
+                    <field id="clcommon__Possessory_Current_Balance__c" decimalplaces="" valuehalign="" type="CUSTOM" snippet="fieldRenderMode" uniqueid="sk-3Cq9-1213"/>
+                    <field id="clcommon__Account_Number__c" valuehalign="" type="CUSTOM" snippet="fieldRenderMode" uniqueid="sk-3Cq9-1216"/>
+                  </fields>
+                </section>
+              </sections>
+            </column>
+            <column width="50%">
+              <sections>
+                <section title="" collapsible="no" showheader="false">
+                  <fields>
+                    <field id="clcommon__Insurance_Company_Name__c" valuehalign="" type="CUSTOM" snippet="fieldRenderMode" uniqueid="sk-3Cq9-1222"/>
+                    <field id="clcommon__Name_of_Insured__c" valuehalign="" type="CUSTOM" snippet="fieldRenderMode" uniqueid="sk-3Cq9-1225"/>
+                    <field id="clcommon__Existing_Beneficiaries__c" valuehalign="" type="CUSTOM" snippet="fieldRenderMode" uniqueid="sk-3Cq9-1228"/>
+                  </fields>
+                </section>
+              </sections>
+            </column>
+          </columns>
+          <renderconditions logictype="and">
+            <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="SelectedCollateral" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="clcommon__Collateral_Type__r.Name" value="Life Insurance"/>
+          </renderconditions>
+        </basicfieldeditor>
+        <basicfieldeditor showheader="true" showsavecancel="false" showerrorsinline="true" model="SelectedCollateral" buttonposition="" uniqueid="sk-3J0uoB-752" mode="edit">
+          <columns>
+            <column width="50%">
+              <sections>
+                <section title="" collapsible="no" showheader="false">
+                  <fields>
+                    <field id="clcommon__Style__c" valuehalign="" type="CUSTOM" snippet="fieldRenderMode" uniqueid="sk-3Cq9-1237"/>
+                    <field id="clcommon__Make__c" valuehalign="" type="CUSTOM" snippet="fieldRenderMode" uniqueid="sk-3Cq9-1240"/>
+                    <field id="clcommon__Manufacturer__c" valuehalign="" type="CUSTOM" snippet="fieldRenderMode" uniqueid="sk-3Cq9-1243"/>
+                    <field id="clcommon__Model__c" valuehalign="" type="CUSTOM" snippet="fieldRenderMode" uniqueid="sk-3Cq9-1246"/>
+                    <field id="clcommon__Vehicle_Serial_Number__c" valuehalign="" type="CUSTOM" snippet="fieldRenderMode" uniqueid="sk-3Cq9-1249"/>
+                    <field id="clcommon__Vehicle_Color__c" valuehalign="" type="CUSTOM" snippet="fieldRenderMode" uniqueid="sk-3Cq9-1252"/>
+                    <field id="clcommon__Year__c" valuehalign="" type="CUSTOM" snippet="fieldRenderMode" uniqueid="sk-3Cq9-1255"/>
+                    <field id="clcommon__First_Lien__c" valuehalign="" type="CUSTOM" snippet="fieldRenderMode" uniqueid="sk-3Cq9-1258"/>
+                    <field id="clcommon__Existing_Lien__c" valuehalign="" type="CUSTOM" snippet="fieldRenderMode" uniqueid="sk-3Cq9-1261"/>
+                  </fields>
+                </section>
+              </sections>
+            </column>
+            <column width="50%">
+              <sections>
+                <section title="" collapsible="no" showheader="false">
+                  <fields>
+                    <field id="clcommon__Number_of_Units__c" decimalplaces="" valuehalign="" type="CUSTOM" snippet="fieldRenderMode" uniqueid="sk-3Cq9-1267"/>
+                    <field id="clcommon__Registration_State__c" valuehalign="" type="CUSTOM" snippet="fieldRenderMode" uniqueid="sk-3Cq9-1270"/>
+                    <field id="clcommon__Secure_Future_Advances__c" valuehalign="" type="CUSTOM" snippet="fieldRenderMode" uniqueid="sk-3Cq9-1273"/>
+                    <field id="clcommon__Restriction_on_Sale__c" valuehalign="" type="CUSTOM" snippet="fieldRenderMode" uniqueid="sk-3Cq9-1276"/>
+                    <field id="clcommon__Residential_Property__c" type="CUSTOM" snippet="fieldRenderMode" uniqueid="sk-3Cq9-1279"/>
+                    <field id="clcommon__Owner_Occupied__c" valuehalign="" type="CUSTOM" snippet="fieldRenderMode" uniqueid="sk-3Cq9-1282"/>
+                    <field id="clcommon__Dwelling__c" valuehalign="" type="CUSTOM" snippet="fieldRenderMode" uniqueid="sk-3Cq9-1285"/>
+                    <field id="clcommon__Include_Land__c" valuehalign="" type="CUSTOM" snippet="fieldRenderMode" uniqueid="sk-3Cq9-1288"/>
+                  </fields>
+                </section>
+              </sections>
+            </column>
+          </columns>
+          <renderconditions logictype="and">
+            <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="SelectedCollateral" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="clcommon__Collateral_Type__r.Name" value="Mobile Home"/>
+          </renderconditions>
+        </basicfieldeditor>
+        <basicfieldeditor showheader="true" showsavecancel="false" showerrorsinline="true" model="SelectedCollateral" buttonposition="" uniqueid="sk-3J1Rgc-816" mode="edit">
+          <columns>
+            <column width="100%">
+              <sections>
+                <section title="" collapsible="no" showheader="false">
+                  <fields>
+                    <field id="clcommon__Style__c" valuehalign="" type="CUSTOM" snippet="fieldRenderMode" uniqueid="sk-3Cq9-1297"/>
+                    <field id="clcommon__Vehicle_Color__c" valuehalign="" type="CUSTOM" snippet="fieldRenderMode" uniqueid="sk-3Cq9-1300"/>
+                    <field id="clcommon__Vehicle_ID_Number__c" valuehalign="" type="CUSTOM" snippet="fieldRenderMode" uniqueid="sk-3Cq9-1303"/>
+                    <field id="clcommon__Make__c" valuehalign="" type="CUSTOM" snippet="fieldRenderMode" uniqueid="sk-3Cq9-1306"/>
+                    <field id="clcommon__Manufacturer__c" valuehalign="" type="CUSTOM" snippet="fieldRenderMode" uniqueid="sk-3Cq9-1309"/>
+                    <field id="clcommon__Model__c" valuehalign="" type="CUSTOM" snippet="fieldRenderMode" uniqueid="sk-3Cq9-1312"/>
+                    <field id="clcommon__Year__c" valuehalign="" type="CUSTOM" snippet="fieldRenderMode" uniqueid="sk-3Cq9-1315"/>
+                  </fields>
+                </section>
+              </sections>
+            </column>
+          </columns>
+          <renderconditions logictype="and">
+            <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="SelectedCollateral" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="clcommon__Collateral_Type__r.Name" value="Motor Vehicle"/>
+          </renderconditions>
+        </basicfieldeditor>
+        <basicfieldeditor showheader="true" showsavecancel="false" showerrorsinline="true" model="SelectedCollateral" buttonposition="" uniqueid="sk-3J1jbX-892" mode="edit">
+          <columns>
+            <column width="50%">
+              <sections>
+                <section title="" collapsible="no" showheader="false">
+                  <fields>
+                    <field id="clcommon__Possessory_Type__c" valuehalign="" type="CUSTOM" snippet="fieldRenderMode" uniqueid="sk-3Cq9-1324"/>
+                    <field id="clcommon__Possessory_Current_Balance__c" decimalplaces="" valuehalign="" type="CUSTOM" snippet="fieldRenderMode" uniqueid="sk-3Cq9-1327"/>
+                  </fields>
+                </section>
+              </sections>
+            </column>
+            <column width="50%">
+              <sections>
+                <section title="New Section" collapsible="no" showheader="false">
+                  <fields>
+                    <field id="clcommon__Account_Number__c" valuehalign="" type="CUSTOM" snippet="fieldRenderMode" uniqueid="sk-3Cq9-1333"/>
+                    <field id="clcommon__Secured_By_Interest_In_Property__c" type="CUSTOM" snippet="fieldRenderMode" uniqueid="sk-3Cq9-1336"/>
+                  </fields>
+                </section>
+              </sections>
+            </column>
+          </columns>
+          <renderconditions logictype="and">
+            <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="SelectedCollateral" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="clcommon__Collateral_Type__r.Name" value="Note/Instrument"/>
+          </renderconditions>
+        </basicfieldeditor>
+        <basicfieldeditor showheader="true" showsavecancel="false" showerrorsinline="true" model="SelectedCollateral" buttonposition="" uniqueid="sk-3J2BZ4-962" mode="edit">
+          <columns>
+            <column width="100%">
+              <sections>
+                <section title="" collapsible="no" showheader="false">
+                  <fields>
+                    <field id="clcommon__Possessory_Type__c" valuehalign="" type="CUSTOM" snippet="fieldRenderMode" uniqueid="sk-3Cq9-1345"/>
+                    <field id="clcommon__Possessory_Current_Balance__c" uniqueid="sk-3Cq9-1348"/>
+                    <field id="clcommon__Account_Number__c" uniqueid="sk-3Cq9-1351"/>
+                  </fields>
+                </section>
+              </sections>
+            </column>
+          </columns>
+          <renderconditions logictype="and">
+            <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="SelectedCollateral" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="clcommon__Collateral_Type__r.Name" value="Other Possessory"/>
+          </renderconditions>
+        </basicfieldeditor>
+        <basicfieldeditor showheader="true" showsavecancel="false" showerrorsinline="true" model="SelectedCollateral" buttonposition="" uniqueid="sk-3J2Nm9-1012" mode="edit">
+          <columns>
+            <column width="50%">
+              <sections>
+                <section title="" collapsible="no" showheader="false">
+                  <fields>
+                    <field id="clcommon__Style__c" valuehalign="" type="CUSTOM" snippet="fieldRenderMode" uniqueid="sk-3Cq9-1360"/>
+                    <field id="clcommon__Make__c" valuehalign="" type="CUSTOM" snippet="fieldRenderMode" uniqueid="sk-3Cq9-1363"/>
+                    <field id="clcommon__Manufacturer__c" valuehalign="" type="CUSTOM" snippet="fieldRenderMode" uniqueid="sk-3Cq9-1366"/>
+                    <field id="clcommon__Model__c" valuehalign="" type="CUSTOM" snippet="fieldRenderMode" uniqueid="sk-3Cq9-1369"/>
+                    <field id="clcommon__Year__c" valuehalign="" type="CUSTOM" snippet="fieldRenderMode" uniqueid="sk-3Cq9-1372"/>
+                  </fields>
+                </section>
+              </sections>
+            </column>
+            <column width="50%">
+              <sections>
+                <section title="New Section" collapsible="no" showheader="false">
+                  <fields>
+                    <field id="clcommon__Vehicle_Serial_Number__c" valuehalign="" type="CUSTOM" snippet="fieldRenderMode" uniqueid="sk-3Cq9-1378"/>
+                    <field id="clcommon__Vehicle_Color__c" valuehalign="" type="CUSTOM" snippet="fieldRenderMode" uniqueid="sk-3Cq9-1381"/>
+                    <field id="clcommon__Secure_Future_Advances__c" valuehalign="" type="CUSTOM" snippet="fieldRenderMode" uniqueid="sk-3Cq9-1384"/>
+                    <field id="clcommon__Registration_State__c" valuehalign="" type="CUSTOM" snippet="fieldRenderMode" uniqueid="sk-3Cq9-1387"/>
+                  </fields>
+                </section>
+              </sections>
+            </column>
+          </columns>
+          <renderconditions logictype="and">
+            <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="SelectedCollateral" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="clcommon__Collateral_Type__r.Name" value="Other Titled"/>
+          </renderconditions>
+        </basicfieldeditor>
+        <basicfieldeditor showheader="true" showsavecancel="false" showerrorsinline="true" model="SelectedCollateral" buttonposition="" uniqueid="sk-3J2lbk-1078" mode="edit">
+          <columns>
+            <column width="50%">
+              <sections>
+                <section title="" collapsible="no" showheader="false">
+                  <fields>
+                    <field id="clcommon__Style__c" valuehalign="" type="CUSTOM" snippet="fieldRenderMode" uniqueid="sk-3Cq9-1396"/>
+                    <field id="clcommon__Make__c" valuehalign="" type="CUSTOM" snippet="fieldRenderMode" uniqueid="sk-3Cq9-1399"/>
+                    <field id="clcommon__Manufacturer__c" valuehalign="" type="CUSTOM" snippet="fieldRenderMode" uniqueid="sk-3Cq9-1402"/>
+                    <field id="clcommon__Model__c" valuehalign="" type="CUSTOM" snippet="fieldRenderMode" uniqueid="sk-3Cq9-1405"/>
+                    <field id="clcommon__Year__c" valuehalign="" type="CUSTOM" snippet="fieldRenderMode" uniqueid="sk-3Cq9-1408"/>
+                  </fields>
+                </section>
+              </sections>
+            </column>
+            <column width="50%">
+              <sections>
+                <section title="New Section" collapsible="no" showheader="false">
+                  <fields>
+                    <field id="clcommon__Vehicle_Serial_Number__c" valuehalign="" type="CUSTOM" snippet="fieldRenderMode" uniqueid="sk-3Cq9-1414"/>
+                    <field id="clcommon__Vehicle_Color__c" valuehalign="" type="CUSTOM" snippet="fieldRenderMode" uniqueid="sk-3Cq9-1417"/>
+                    <field id="clcommon__Describe_Log_Books__c" valuehalign="" type="CUSTOM" snippet="fieldRenderMode" uniqueid="sk-3Cq9-1420"/>
+                    <field id="clcommon__Registration_State__c" valuehalign="" type="CUSTOM" snippet="fieldRenderMode" uniqueid="sk-3Cq9-1423"/>
+                  </fields>
+                </section>
+              </sections>
+            </column>
+          </columns>
+          <renderconditions logictype="and">
+            <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="SelectedCollateral" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="clcommon__Collateral_Type__r.Name" value="Pleasure Boat"/>
+          </renderconditions>
+        </basicfieldeditor>
+        <basicfieldeditor showheader="true" showsavecancel="false" showerrorsinline="true" model="SelectedCollateral" buttonposition="" uniqueid="sk-3J37mO-1142" mode="edit">
+          <columns>
+            <column width="100%">
+              <sections>
+                <section title="" collapsible="no" showheader="false">
+                  <fields>
+                    <field id="clcommon__Possessory_Type__c" valuehalign="" type="CUSTOM" snippet="fieldRenderMode" uniqueid="sk-3Cq9-1432"/>
+                    <field id="clcommon__Possessory_Current_Balance__c" decimalplaces="" valuehalign="" type="CUSTOM" snippet="fieldRenderMode" uniqueid="sk-3Cq9-1435"/>
+                    <field id="clcommon__Account_Number__c" valuehalign="" type="CUSTOM" snippet="fieldRenderMode" uniqueid="sk-3Cq9-1438"/>
+                  </fields>
+                </section>
+              </sections>
+            </column>
+          </columns>
+          <renderconditions logictype="and">
+            <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="SelectedCollateral" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="clcommon__Collateral_Type__r.Name" value="Receipts/Bills"/>
+          </renderconditions>
+        </basicfieldeditor>
+        <basicfieldeditor showheader="true" showsavecancel="false" showerrorsinline="true" model="SelectedCollateral" buttonposition="" uniqueid="sk-3J3J6k-1200" mode="edit">
+          <columns>
+            <column width="50%">
+              <sections>
+                <section title="" collapsible="no" showheader="false">
+                  <fields>
+                    <field id="clcommon__Possessory_Type__c" valuehalign="" type="CUSTOM" snippet="fieldRenderMode" uniqueid="sk-3Cq9-1447"/>
+                    <field id="clcommon__Possessory_Current_Balance__c" decimalplaces="" valuehalign="" type="CUSTOM" snippet="fieldRenderMode" uniqueid="sk-3Cq9-1450"/>
+                    <field id="clcommon__Account_Number__c" valuehalign="" type="CUSTOM" snippet="fieldRenderMode" uniqueid="sk-3Cq9-1453"/>
+                  </fields>
+                </section>
+              </sections>
+            </column>
+            <column width="50%">
+              <sections>
+                <section title="" collapsible="no" showheader="false">
+                  <fields>
+                    <field id="clcommon__Issued_By__c" valuehalign="" type="CUSTOM" snippet="fieldRenderMode" uniqueid="sk-3Cq9-1459"/>
+                    <field id="clcommon__Certificated__c" valuehalign="" type="CUSTOM" snippet="fieldRenderMode" uniqueid="sk-3Cq9-1462"/>
+                  </fields>
+                </section>
+              </sections>
+            </column>
+          </columns>
+          <renderconditions logictype="and">
+            <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="SelectedCollateral" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="clcommon__Collateral_Type__r.Name" value="Savings/CD's"/>
+          </renderconditions>
+        </basicfieldeditor>
+        <basicfieldeditor showheader="true" showsavecancel="false" showerrorsinline="true" model="SelectedCollateral" buttonposition="" uniqueid="sk-3J3akQ-1254" mode="edit">
+          <columns>
+            <column width="50%">
+              <sections>
+                <section title="" collapsible="no" showheader="false">
+                  <fields>
+                    <field id="clcommon__Possessory_Type__c" valuehalign="" type="CUSTOM" snippet="fieldRenderMode" uniqueid="sk-3Cq9-1471"/>
+                    <field id="clcommon__Possessory_Current_Balance__c" decimalplaces="" valuehalign="" type="CUSTOM" snippet="fieldRenderMode" uniqueid="sk-3Cq9-1474"/>
+                    <field id="clcommon__Account_Number__c" valuehalign="" type="CUSTOM" snippet="fieldRenderMode" uniqueid="sk-3Cq9-1477"/>
+                  </fields>
+                </section>
+              </sections>
+            </column>
+            <column width="50%">
+              <sections>
+                <section title="New Section" collapsible="no" showheader="false">
+                  <fields>
+                    <field id="clcommon__CUSIP_Number__c" valuehalign="" type="CUSTOM" snippet="fieldRenderMode" uniqueid="sk-3Cq9-1483"/>
+                    <field id="clcommon__Held_By__c" valuehalign="" type="CUSTOM" snippet="fieldRenderMode" uniqueid="sk-3Cq9-1486"/>
+                    <field id="clcommon__Number_of_Shares__c" decimalplaces="" valuehalign="" type="CUSTOM" snippet="fieldRenderMode" uniqueid="sk-3Cq9-1489"/>
+                  </fields>
+                </section>
+              </sections>
+            </column>
+          </columns>
+          <renderconditions logictype="and">
+            <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="SelectedCollateral" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="clcommon__Collateral_Type__r.Name" value="Securities"/>
+          </renderconditions>
+        </basicfieldeditor>
+        <basicfieldeditor showheader="true" showsavecancel="false" showerrorsinline="true" model="SelectedCollateral" buttonposition="" uniqueid="sk-3J3uo7-1310" mode="edit">
+          <columns>
+            <column width="50%">
+              <sections>
+                <section title="" collapsible="no" showheader="false">
+                  <fields>
+                    <field id="clcommon__Style__c" valuehalign="" type="CUSTOM" snippet="fieldRenderMode" uniqueid="sk-3Cq9-1498"/>
+                    <field id="clcommon__Make__c" valuehalign="" type="CUSTOM" snippet="fieldRenderMode" uniqueid="sk-3Cq9-1501"/>
+                    <field id="clcommon__Manufacturer__c" valuehalign="" type="CUSTOM" snippet="fieldRenderMode" uniqueid="sk-3Cq9-1504"/>
+                    <field id="clcommon__Model__c" valuehalign="" type="CUSTOM" snippet="fieldRenderMode" uniqueid="sk-3Cq9-1507"/>
+                    <field id="clcommon__Vehicle_Color__c" valuehalign="" type="CUSTOM" snippet="fieldRenderMode" uniqueid="sk-3Cq9-1510"/>
+                    <field id="clcommon__Year__c" valuehalign="" type="CUSTOM" snippet="fieldRenderMode" uniqueid="sk-3Cq9-1513"/>
+                    <field id="clcommon__Vehicle_Serial_Number__c" valuehalign="" type="CUSTOM" snippet="fieldRenderMode" uniqueid="sk-3Cq9-1516"/>
+                  </fields>
+                </section>
+              </sections>
+            </column>
+            <column width="50%">
+              <sections>
+                <section title="" collapsible="no" showheader="false">
+                  <fields>
+                    <field id="clcommon__Name_of_Vessel__c" valuehalign="" type="CUSTOM" snippet="fieldRenderMode" uniqueid="sk-3Cq9-1522"/>
+                    <field id="clcommon__Port_Name__c" valuehalign="" type="CUSTOM" snippet="fieldRenderMode" uniqueid="sk-3Cq9-1525"/>
+                    <field id="clcommon__Official_Number__c" valuehalign="" type="CUSTOM" snippet="fieldRenderMode" uniqueid="sk-3Cq9-1528"/>
+                    <field id="clcommon__Gross_Tonnage__c" decimalplaces="" valuehalign="" type="CUSTOM" snippet="fieldRenderMode" uniqueid="sk-3Cq9-1531"/>
+                    <field id="clcommon__Net_Tonnage__c" decimalplaces="" valuehalign="" type="CUSTOM" snippet="fieldRenderMode" uniqueid="sk-3Cq9-1534"/>
+                    <field id="clcommon__Owners_Interest__c" valuehalign="" type="CUSTOM" snippet="fieldRenderMode" uniqueid="sk-3Cq9-1537"/>
+                    <field id="clcommon__Registration_State__c" valuehalign="" type="CUSTOM" snippet="fieldRenderMode" uniqueid="sk-3Cq9-1540"/>
+                  </fields>
+                </section>
+              </sections>
+            </column>
+          </columns>
+          <renderconditions logictype="and">
+            <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="SelectedCollateral" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="clcommon__Collateral_Type__r.Name" value="Ship"/>
+          </renderconditions>
+        </basicfieldeditor>
+        <basicfieldeditor showheader="true" showsavecancel="false" showerrorsinline="true" model="SelectedCollateral" buttonposition="" uniqueid="sk-3J4Goh-1373" mode="edit">
+          <columns>
+            <column width="50%">
+              <sections>
+                <section title="" collapsible="no" showheader="false">
+                  <fields>
+                    <field id="clcommon__Style__c" valuehalign="" type="CUSTOM" snippet="fieldRenderMode" uniqueid="sk-3Cq9-1549"/>
+                    <field id="clcommon__Make__c" valuehalign="" type="CUSTOM" snippet="fieldRenderMode" uniqueid="sk-3Cq9-1552"/>
+                    <field id="clcommon__Manufacturer__c" valuehalign="" type="CUSTOM" snippet="fieldRenderMode" uniqueid="sk-3Cq9-1555"/>
+                    <field id="clcommon__Model__c" valuehalign="" type="CUSTOM" snippet="fieldRenderMode" uniqueid="sk-3Cq9-1558"/>
+                    <field id="clcommon__Year__c" valuehalign="" type="CUSTOM" snippet="fieldRenderMode" uniqueid="sk-3Cq9-1561"/>
+                  </fields>
+                </section>
+              </sections>
+            </column>
+            <column width="50%">
+              <sections>
+                <section title="" collapsible="no" showheader="false">
+                  <fields>
+                    <field id="clcommon__Vehicle_Color__c" valuehalign="" type="CUSTOM" snippet="fieldRenderMode" uniqueid="sk-3Cq9-1567"/>
+                    <field id="clcommon__Vehicle_Serial_Number__c" valuehalign="" type="CUSTOM" snippet="fieldRenderMode" uniqueid="sk-3Cq9-1570"/>
+                    <field id="clcommon__Registration_State__c" valuehalign="" type="CUSTOM" snippet="fieldRenderMode" uniqueid="sk-3Cq9-1573"/>
+                    <field id="clcommon__Secure_Future_Advances__c" valuehalign="" type="CUSTOM" snippet="fieldRenderMode" uniqueid="sk-3Cq9-1576"/>
+                  </fields>
+                </section>
+              </sections>
+            </column>
+          </columns>
+          <renderconditions logictype="and">
+            <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="SelectedCollateral" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="clcommon__Collateral_Type__r.Name" value="Trailer"/>
+          </renderconditions>
+        </basicfieldeditor>
+      </components>
+      <styles>
+        <styleitem type="background" bgtype="color">
+          <styles>
+            <styleitem property="background-color" value="white"/>
+          </styles>
+        </styleitem>
+        <styleitem type="border"/>
+        <styleitem type="size"/>
+      </styles>
+      <renderconditions logictype="and"/>
+    </wrapper>
+  </components>
+  <resources>
+    <labels/>
+    <javascript>
+      <jsitem location="staticresource" name="CLSNGUIComponent" cachelocation="false" url="" namespace="genesisExtn" filepath="messageUtils.js">var params = arguments[0],
+            	$ = skuid.$;
+            </jsitem>
+      <jsitem location="staticresource" name="CLSNGUIComponent" cachelocation="false" url="" namespace="genesisExtn" filepath="commonUtils.js">var params = arguments[0],
+                $ = skuid.$;
+            </jsitem>
+      <jsitem location="inlinesnippet" name="fieldRenderMode" cachelocation="false">var field = arguments[0],
+    value = arguments[1];
+
+var model = skuid.$M('SelectedApplicationCollateral');
+var renderMode = model.conditions[1].value;
+if(renderMode !== 'read') {
+    renderMode = 'edit';
+}
+// var renderMode = skuid.page.params.mode;
+fieldModeToRender(field,value,renderMode);</jsitem>
+      <jsitem location="inlinesnippet" name="CloseDialog" cachelocation="false">var params = arguments[0],
+	$ = skuid.$;
+
+closeTopLevelDialogAndRefresh({divIds: ['deal-dashboard-iframe,collateral-tab']});
+</jsitem>
+      <jsitem location="inlinesnippet" name="isReadMode" cachelocation="false">var params = arguments[0],
+	$ = skuid.$;
+var model = skuid.$M('SelectedApplicationCollateral');
+var renderMode = model.conditions[1].value;
+return renderMode !== 'read';</jsitem>
+      <jsitem location="inlinesnippet" name="DeleteSecurity" cachelocation="false">var params = arguments[0],
+    $ = skuid.$;
+
+var appCollModel = skuid.model.getModel('SelectedApplicationCollateral');
+var appCollRow = appCollModel.data[0];
+var appCollId = appCollRow.Id;
+var delResult = sforce.connection.deleteIds([appCollId]);
+skuid.$('#collateral-tab').data('object').load();</jsitem>
+      <jsitem location="inlinesnippet" name="newSnippet" cachelocation="false">var params = arguments[0],
+	$ = skuid.$;
+var customSelect = skuid.ui.renderers.PICKLIST.edit({
+
+    entries : initials,
+
+    required : false,
+
+    defaultValue : Purchase
+
+})</jsitem>
+      <jsitem location="inlinesnippet" name="populateSecAddressInSecName" cachelocation="false">var colModel = skuid.model.getModel('SelectedCollateral');
+var colRow = colModel.data[0];
+var address = (((colRow.Unit_No__c === undefined || colRow.Unit_No__c === null || colRow.Unit_No__c.length &lt;= 0) ? '' : (colRow.Unit_No__c+' '))+((colRow.Street_No__c === undefined || colRow.Street_No__c === null || colRow.Street_No__c.length &lt;= 0) ? '' : (colRow.Street_No__c+' '))+((colRow.Street_Name__c === undefined || colRow.Street_Name__c === null || colRow.Street_Name__c.length &lt;= 0) ? '' : (colRow.Street_Name__c+' '))+((colRow.Street_Type__c === undefined || colRow.Street_Type__c === null || colRow.Street_Type__c.length &lt;= 0) ? '' : (colRow.Street_Type__c+' '))+((colRow.clcommon__City__c === undefined || colRow.clcommon__City__c === null || colRow.clcommon__City__c.length &lt;= 0) ? '' : (colRow.clcommon__City__c+' '))+((colRow.clcommon__State__c === undefined || colRow.clcommon__State__c === null || colRow.clcommon__State__c.length &lt;= 0) ? '' : (colRow.clcommon__State__c+' '))+((colRow.Country__c === undefined || colRow.Country__c === null || colRow.Country__c.length &lt;= 0) ? '' : (colRow.Country__c+' '))+((colRow.clcommon__Postal_Code__c === undefined || colRow.clcommon__Postal_Code__c === null || colRow.clcommon__Postal_Code__c.length &lt;= 0) ? '' : (colRow.clcommon__Postal_Code__c+' ')));
+colModel.updateRow(colRow,'clcommon__Collateral_Name__c',address);</jsitem>
+    </javascript>
+    <css>
+      <cssitem location="staticresource" name="CLSStyleSheetPack" cachelocation="false" url="" namespace="genesisExtn" filepath="cls-common.css"/>
+      <cssitem location="staticresource" name="CLSStyleSheetPack" cachelocation="false" url="" namespace="genesisExtn" filepath="cls-dashboard.css"/>
+      <cssitem location="staticresource" name="CLSStyleSheetPack" cachelocation="false" url="" namespace="genesisExtn" filepath="customcss.css"/>
+      <cssitem location="inline" name="cyclotroncss" cachelocation="false">
+
+#collateralDetails-save-pt {
+    margin-top:-8px;
+}</cssitem>
+    </css>
+    <actionsequences uniqueid="sk-3CqS-1819"/>
+  </resources>
+  <styles>
+    <styleitem type="background" bgtype="color">
+      <styles>
+        <styleitem property="background-color" value="transparent"/>
+      </styles>
+    </styleitem>
+  </styles>
+  <interactions/>
+</skuidpage>

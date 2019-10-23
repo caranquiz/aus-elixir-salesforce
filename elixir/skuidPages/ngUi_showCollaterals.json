@@ -1,0 +1,10 @@
+{
+   "uniqueId": "ngUi_showCollaterals",
+   "type": "Desktop",
+   "name": "showCollaterals",
+   "module": "ngUi",
+   "maxAutoSaves": 25,
+   "masterPageUniqueId": null,
+   "isMasterPage": false,
+   "composerSettings": null
+}

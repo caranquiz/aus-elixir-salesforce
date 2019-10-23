@@ -1,0 +1,10 @@
+{
+   "uniqueId": "ngUi_RelationshipDashboard",
+   "type": "Desktop",
+   "name": "RelationshipDashboard",
+   "module": "ngUi",
+   "maxAutoSaves": 25,
+   "masterPageUniqueId": null,
+   "isMasterPage": false,
+   "composerSettings": null
+}

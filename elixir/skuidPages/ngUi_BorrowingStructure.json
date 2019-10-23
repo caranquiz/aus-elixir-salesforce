@@ -1,0 +1,10 @@
+{
+   "uniqueId": "ngUi_BorrowingStructure",
+   "type": "Desktop",
+   "name": "BorrowingStructure",
+   "module": "ngUi",
+   "maxAutoSaves": 25,
+   "masterPageUniqueId": null,
+   "isMasterPage": false,
+   "composerSettings": null
+}

@@ -1,0 +1,206 @@
+<skuidpage unsavedchangeswarning="yes" personalizationmode="server" showsidebar="false" showheader="false">
+  <models>
+    <model id="RDParty" limit="20" query="true" createrowifnonefound="false" sobject="clcommon__Party__c" orderby="clcommon__Type__r.Name, clcommon__Account__r.Name" datasource="salesforce">
+      <fields>
+        <field id="clcommon__Account__r.Name"/>
+        <field id="Name"/>
+        <field id="Id"/>
+        <field id="clcommon__Type__r.Name"/>
+        <field id="clcommon__Account__c"/>
+        <field id="genesis__Application__c"/>
+        <field id="genesis__Application__r.Name"/>
+        <field id="clcommon__Contact__c"/>
+        <field id="clcommon__Contact__r.Name"/>
+        <field id="CreatedById"/>
+        <field id="CreatedBy.Name"/>
+        <field id="CreatedDate"/>
+        <field id="genesis__Credit_Report__c"/>
+        <field id="genesis__Credit_Report__r.Name"/>
+        <field id="IsDeleted"/>
+        <field id="genesis__Is_Internal_User__c"/>
+        <field id="LastModifiedById"/>
+        <field id="LastModifiedBy.Name"/>
+        <field id="LastModifiedDate"/>
+        <field id="LastReferencedDate"/>
+        <field id="LastViewedDate"/>
+        <field id="OwnerId"/>
+        <field id="Owner.Name"/>
+        <field id="genesis__Party_Name__c"/>
+        <field id="clcommon__Type__c"/>
+        <field id="clcommon__Party_Type__c"/>
+        <field id="clcommon__Signer_Capacity__c"/>
+        <field id="clcommon__Signing_on_Behalf_of__c"/>
+        <field id="clcommon__Signing_on_Behalf_of__r.Name"/>
+        <field id="SystemModstamp"/>
+        <field id="clcommon__User__c"/>
+        <field id="clcommon__User__r.Name"/>
+      </fields>
+      <conditions>
+        <condition type="param" value="Id" field="genesis__Application__c" operator="=" enclosevalueinquotes="true"/>
+      </conditions>
+      <actions/>
+    </model>
+  </models>
+  <components>
+    <panelset type="custom" uniqueid="sk-2zCg-372">
+      <panels>
+        <panel width="33.3%">
+          <components/>
+        </panel>
+        <panel width="33.3%">
+          <components>
+            <template multiple="false" uniqueid="sk-2zCt-437">
+              <contents>&lt;div class="cls-page-title-header"&gt;No Parties To Display&lt;/div&gt;</contents>
+              <renderconditions logictype="and"/>
+            </template>
+          </components>
+        </panel>
+        <panel width="33.3%">
+          <components/>
+        </panel>
+      </panels>
+      <renderconditions logictype="and">
+        <rendercondition fieldmodel="RDParty" sourcetype="modelproperty" nosourcerowbehavior="deactivate" sourceproperty="hasNoRows"/>
+      </renderconditions>
+    </panelset>
+    <panelset type="custom" uniqueid="sk-2zD8-463" cssclass="party-queue-panel" scroll="fixed" height="100%">
+      <panels>
+        <panel width="25%">
+          <components>
+            <queue tagrendertype="template" searchbox="true" tokenizesearch="true" showsearchbydefault="false" hideheader="false" hidefooter="false" uniqueid="sk-2zDF-489" model="RDParty" cssclass="simple-queue" itemicon="sk-webicon-font-awesome:user" instantfilters="false">
+              <rendertemplate>{{clcommon__Account__r.Name}}
+{{clcommon__Type__r.Name}}</rendertemplate>
+              <interactions>
+                <interaction type="tap">
+                  <action type="custom" querystring="id={{Id}}" snippet="UpdateRelationShipIFrame2"/>
+                </interaction>
+              </interactions>
+              <searchfields/>
+              <renderconditions logictype="and"/>
+            </queue>
+          </components>
+        </panel>
+        <panel width="75%">
+          <components>
+            <template multiple="false" uniqueid="sk-2zFF-301">
+              <contents>&lt;iframe id="relationship-iframe" src="/apex/skuid__ui?page=CustomCreditAssessPage&amp;id={{{$Model.RDParty.data.0.Id}}}" width="100%" height="100%" frameborder="0"/&gt;</contents>
+              <renderconditions logictype="and"/>
+            </template>
+          </components>
+        </panel>
+      </panels>
+      <renderconditions logictype="and">
+        <rendercondition type="fieldvalue" enclosevalueinquotes="true" fieldmodel="RDParty" sourcetype="modelproperty" nosourcerowbehavior="deactivate" sourceproperty="hasRows"/>
+      </renderconditions>
+    </panelset>
+  </components>
+  <resources>
+    <labels/>
+    <javascript>
+      <jsitem location="staticresource" name="CLSNGUIComponent" cachelocation="false" url="" namespace="genesisExtn" filepath="commonUtils.js">var params = arguments[0],
+    $ = skuid.$;
+</jsitem>
+      <jsitem location="inlinesnippet" cachelocation="false" name="UpdateRelationShipIFrame2">var params = arguments[0],
+  $ = skuid.$;
+
+var url = $('#relationship-iframe').attr('src');
+if (url.lastIndexOf('&amp;id=') &gt;= 0) {
+    url = url.substring(0, url.lastIndexOf('&amp;id=')) + '&amp;id=' + params.row.Id;
+} else {
+    url += '&amp;id=' + params.row.Id;
+}
+
+$('#relationship-iframe').attr('src', url);
+$('#relationship-iframe').hide();
+$('#relationship-iframe').on('load', function() {
+    $("#relationship-iframe").show();
+});</jsitem>
+    </javascript>
+    <css>
+      <cssitem location="staticresource" name="FontAwesomePack" cachelocation="false" url="" namespace="genesisExtn" filepath="font-awesome-4.6.3/css/font-awesome.css"/>
+      <cssitem location="inline" cachelocation="false" name="simple-queue">.party-queue-panel .nx-queue-header {
+    display: none;
+}
+
+.party-queue-panel .nx-list-footer {
+    display: none;
+}
+
+.party-queue-panel .simple-queue.nx-queue {
+    border-top: 0;
+}
+
+.party-queue-panel .nx-queue-item{
+    color: white;
+}
+.party-queue-panel .nx-queue-item-inner-with-icon {
+    height: 30px;
+}
+
+.party-queue-panel .sk-icon {
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    border-radius: 50%;
+    border: 2px solid white;
+    margin: 0 15px 0 0;
+}
+
+ /*to get the font content, go https://astronautweb.co/snippet/font-awesome/ */
+
+.party-queue-panel .sk-icon.sk-icon-members:before {
+    font-family: FontAwesome;
+    content: "\f007";
+    padding: 4px;
+    font-size: 20px;
+    vertical-align: middle;
+}
+
+.party-queue-panel .nx-item.nx-queue-item.nx-queue-item-selected &gt; .nx-queue-item-inner {
+    color: white;
+}
+
+.party-queue-panel .nx-item.nx-queue-item.nx-queue-item-selected .sk-icon {
+    color: #48ce94;
+    border: 2px solid #48ce94;
+}
+
+.party-queue-panel .nx-item.nx-queue-item {
+    border-left: 5px solid #7f7f7f;
+    background: #7f7f7f;
+}
+
+.party-queue-panel .nx-item.nx-queue-item .nx-template {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.party-queue-panel .nx-item.nx-queue-item .nx-queue-loader {
+    display: none;
+}
+
+.party-queue-panel .nx-item.nx-queue-item:hover {
+    border-left: 5px solid #2d5074;
+}
+
+.party-queue-panel .nx-item.nx-queue-item.nx-queue-item-selected {
+    border-left: 5px solid #48ce94;
+}
+.nx-page .nx-page-content {
+    height:1000px !important;
+}</cssitem>
+      <cssitem location="inline" name="newcss" cachelocation="false"/>
+    </css>
+    <actionsequences/>
+  </resources>
+  <styles>
+    <styleitem type="background" bgtype="none"/>
+    <styleitem property="position" value="absolute"/>
+    <styleitem property="top" value="0"/>
+    <styleitem property="bottom" value="0"/>
+    <styleitem property="left" value="0"/>
+    <styleitem property="right" value="0"/>
+  </styles>
+  <interactions/>
+</skuidpage>

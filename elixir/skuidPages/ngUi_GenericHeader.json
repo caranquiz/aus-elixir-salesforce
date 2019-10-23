@@ -1,0 +1,10 @@
+{
+   "uniqueId": "ngUi_GenericHeader",
+   "type": "Desktop",
+   "name": "GenericHeader",
+   "module": "ngUi",
+   "maxAutoSaves": 25,
+   "masterPageUniqueId": null,
+   "isMasterPage": false,
+   "composerSettings": null
+}

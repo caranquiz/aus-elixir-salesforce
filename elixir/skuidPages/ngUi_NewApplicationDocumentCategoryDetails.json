@@ -1,0 +1,10 @@
+{
+   "uniqueId": "ngUi_NewApplicationDocumentCategoryDetails",
+   "type": "Desktop",
+   "name": "NewApplicationDocumentCategoryDetails",
+   "module": "ngUi",
+   "maxAutoSaves": 25,
+   "masterPageUniqueId": null,
+   "isMasterPage": false,
+   "composerSettings": null
+}

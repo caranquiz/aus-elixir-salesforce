@@ -1,0 +1,10 @@
+{
+   "uniqueId": "_CustomPricingDetails",
+   "type": "Desktop",
+   "name": "CustomPricingDetails",
+   "module": null,
+   "maxAutoSaves": 25,
+   "masterPageUniqueId": null,
+   "isMasterPage": false,
+   "composerSettings": null
+}
