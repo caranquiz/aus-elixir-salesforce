@@ -464,6 +464,11 @@
         <members>S_P_Postcode__c</members>
         <members>Telephone_Contact_Number__c</members>
         <members>Warehouse__c</members>
+        <members>clcommon__Bank_Account__c</members>
+        <members>clcommon__CL_Product__c</members>
+        <members>clcommon__Collateral__c</members>
+        <members>loan__Bank_Account__c</members>
+        <members>loan__Loan_Account__c</members>
         <name>CustomObject</name>
     </types>
     <types>
