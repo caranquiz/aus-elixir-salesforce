@@ -44,3 +44,11 @@ sfdx force:data:tree:export --query \
       "SELECT Id, Name FROM genesis__Loan_Product__c" \
      --prefix export-data --outputdir sfdx-out --plan
 
+sfdx force:data:tree:export --query \
+      "SELECT Id, Name, PostCode_Low_RangeNumber__c, PostCode_High_RangeNumber__c, Location__c FROM S_P_Postcode__c" \
+     --prefix export-data --outputdir sfdx-out --plan
+
+
+sfdx force:data:tree:export --query \
+      "SELECT Id, IsDeleted, Name, Location__c, PostCode_High_RangeNumber__c, PostCode_Low_RangeNumber__c FROM QBEpostCode__c" \
+     --prefix export-data --outputdir sfdx-out --plan

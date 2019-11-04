@@ -1,0 +1,10 @@
+[
+    {
+        "sobject": "S_P_Postcode__c",
+        "saveRefs": true,
+        "resolveRefs": false,
+        "files": [
+            "export-data-S_P_Postcode__cs.json"
+        ]
+    }
+]
