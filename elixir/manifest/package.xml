@@ -487,7 +487,6 @@
         <members>Account-Broker Type</members>
         <members>Account-Sales Channel Type</members>
         <members>Account-Solicitor</members>
-        <members>Warehouse__c-Warehouse Layout</members>
         <name>Layout</name>
     </types>
     <types>
