@@ -35,7 +35,7 @@
         <members>PrepaidFeeCalculatorClassTest</members>
         <members>ValidationUtilClass</members>
         <members>WarehouseFunding</members>
-        <members>ABNResponseHelper</members>
+	<members>ABNResponseHelper</members>
         <name>ApexClass</name>
     </types>
     <types>
@@ -100,16 +100,22 @@
         <members>ACN_Information__c.Organisation_Name__c</members>
         <members>ACN_Information__c.Party__c</members>
         <members>Account.ACL__c</members>
+        <members>Account.Account_Number__c</members>
         <members>Account.Admin_Account_Name__c</members>
         <members>Account.Aggregator__c</members>
+        <members>Account.BSB__c</members>
+        <members>Account.Bank_Account_Name__c</members>
         <members>Account.Billing_Address_Street_No__c</members>
         <members>Account.Billing_Address_Street_Type__c</members>
         <members>Account.Billing_Address_Unit_No__c</members>
+        <members>Account.Broker_ACL_Number__c</members>
+        <members>Account.Broker_Membership_Type__c</members>
         <members>Account.Brokers_BDM__c</members>
         <members>Account.Commision_Account_Name__c</members>
         <members>Account.Commision_Email__c</members>
         <members>Account.Commision_Status__c</members>
         <members>Account.Correspondence_Address__c</members>
+        <members>Account.Does_the_Broker_have_ACL__c</members>
         <members>Account.Enter_Address_Manually__c</members>
         <members>Account.Enter_Correspondence_Address_Manually__c</members>
         <members>Account.Enter_Trading_Address_Manually__c</members>
@@ -118,6 +124,7 @@
         <members>Account.Is_the_postal_address__c</members>
         <members>Account.Is_this_the_trading_address__c</members>
         <members>Account.Last_Approved_Application_ID__c</members>
+        <members>Account.License_Verified__c</members>
         <members>Account.Membership_Number__c</members>
         <members>Account.Membership_Type__c</members>
         <members>Account.Membership_Verified__c</members>
@@ -149,6 +156,10 @@
         <members>Account.Trading_address_Unit_No__c</members>
         <members>Account.Trust_Date_Of_Establishment__c</members>
         <members>Account.Type_of_trust__c</members>
+        <members>Contact.Age_of_Applicant__c</members>
+        <members>Contact.Broker_Underwriter__c</members>
+        <members>Contact.Main_Business_Contacts__c</members>
+        <members>Contact.Position__c</members>
         <members>Credit_History__c.Amount__c</members>
         <members>Credit_History__c.Date__c</members>
         <members>Credit_History__c.Details__c</members>
@@ -280,10 +291,28 @@
         <members>clcommon__Collateral__c.Valuation_Received__c</members>
         <members>clcommon__Collateral__c.Valuation_Required__c</members>
         <members>clcommon__Collateral__c.Visit_Contact_Type__c</members>
+        <members>clcommon__Party__c.Account_Name__c</members>
+        <members>clcommon__Party__c.Company_DocType__c</members>
+        <members>clcommon__Party__c.Company_Name__c</members>
         <members>clcommon__Party__c.Number_of_Directors__c</members>
         <members>clcommon__Party__c.Number_of_Shareholders__c</members>
+        <members>clcommon__Party__c.Other_Expenses__c</members>
+        <members>clcommon__Party__c.Recreation_Entertainment__c</members>
         <members>clcommon__Party__c.Share__c</members>
         <members>clcommon__Party__c.Shareholder__c</members>
+        <members>clcommon__Party__c.Telephone_Media_Streaming_Amount__c</members>
+        <members>clcommon__Party__c.Total_Living_Expenses__c</members>
+        <members>clcommon__Party__c.Transport_Monthly_Amount__c</members>
+        <members>clcommon__Party__c.Trust_Purpose1__c</members>
+        <members>clcommon__Party__c.Trust_Purpose__c</members>
+        <members>clcommon__Party__c.Trustee_ABN_Status__c</members>
+        <members>clcommon__Party__c.Trustee_ABN__c</members>
+        <members>clcommon__Party__c.Trustee_ACN_Effective_From__c</members>
+        <members>clcommon__Party__c.Trustee_ACN__c</members>
+        <members>clcommon__Party__c.Trustee_Entity_Description__c</members>
+        <members>clcommon__Party__c.Trustee_GST_Effective_From__c</members>
+        <members>clcommon__Party__c.Trustee_Name__c</members>
+        <members>clcommon__Party__c.Trustee_Record_Extract_date__c</members>
         <members>genesis__Applications__c.ABS_lending_purpose__c</members>
         <members>genesis__Applications__c.Actual_LVR__c</members>
         <members>genesis__Applications__c.Actual_Security_Value__c</members>
@@ -403,7 +432,7 @@
         <members>loan__Loan_Account__c.Loan_Application__c</members>
         <members>loan__Loan_Account__c.Warehouse__c</members>
         <members>peer__Investment_Booking__c.Invest__c</members>
-	<members>Account.Broker_Membership_Type__c</members>
+	    <members>Account.Broker_Membership_Type__c</members>
         <members>Account.Licence_Type__c</members>
         <members>Account.License_Verified__c</members>
         <members>Account.Office_Phone__c</members>
