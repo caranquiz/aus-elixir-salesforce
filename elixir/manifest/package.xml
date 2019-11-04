@@ -405,48 +405,7 @@
         <name>CustomField</name>
     </types>
     <types>
-        <members>ACH</members>
-        <members>AccountNotFound</members>
-        <members>Account_Object</members>
-        <members>Account_Owner_ID</members>
-        <members>Active</members>
-        <members>ApplicantNotFoundErrorMsg</members>
-        <members>ApplicationStatusAfterCLContractConverted</members>
-        <members>ApplicationStatusAfterConvertedToContract</members>
-        <members>ApplicationToCLContractSuccessStatus</members>
-        <members>Application_converted_to_Contract_message</members>
-        <members>Company_ABN</members>
-        <members>Company_Legal_Entity</members>
-        <members>ConvertedToContractStatus</members>
-        <members>Director_party</members>
-        <members>Disbursement</members>
-        <members>Elixir_Custom_Community_Portal_Profile</members>
-        <members>Family_Trust_Legal_Entity</members>
-        <members>Family_corporate_party</members>
-        <members>Family_individual_party</members>
-        <members>First_Tranche_Prepaid_Interest</members>
-        <members>Funded</members>
-        <members>FundingMsg</members>
-        <members>InFunding</members>
-        <members>Individiual_party</members>
-        <members>Individual_Legal_Entity</members>
-        <members>Investor_Record_Type</members>
-        <members>Joint_Individual_party</members>
-        <members>Joint_Legal_Entity</members>
-        <members>Joint_party</members>
-        <members>LastBilledAmt</members>
-        <members>LoanWarehouseTrigger</members>
-        <members>Product_Name</members>
-        <members>Recurring</members>
-        <members>Regular</members>
-        <members>SMSF_Legal_Entity</members>
-        <members>Smsf_corporate_party</members>
-        <members>Smsf_individual_party</members>
-        <members>Subsequent_Drawdown_Prepaid_Interest</members>
-        <members>SuccessMessage</members>
-        <members>True</members>
-        <members>Trustee_Party</members>
-        <members>UnableToFund</members>
+        <members>*</members>
         <name>CustomLabel</name>
     </types>
     <types>
@@ -477,149 +436,17 @@
         <name>Flow</name>
     </types>
     <types>
-        <members>ABN_Company_Information__c-ABN Company Information Layout</members>
-        <members>ABN_Company_List__c-ABN Company List Layout</members>
-        <members>ABN_Information__c-ABN Information Layout</members>
-        <members>ACN_Information__c-ACN Information Layout</members>
         <members>Account-Account Layout</members>
         <members>Account-Aggregator</members>
         <members>Account-Broker Type</members>
         <members>Account-Sales Channel Type</members>
         <members>Account-Solicitor</members>
-        <members>Adback__c-Adback Layout</members>
-        <members>Asset-Asset Layout</members>
-        <members>AssetRelationship-Asset Relationship Layout</members>
-        <members>Campaign-Campaign Layout</members>
-        <members>CampaignMember-Campaign Member Page Layout</members>
-        <members>Case-Case Layout</members>
-        <members>Cash_Out__c-Cash Out Layout</members>
-        <members>Contact-Contact Layout</members>
-        <members>Contact-Main Business Contact Layout</members>
-        <members>Contract-Contract Layout</members>
-        <members>Credit_History__c-Credit History Layout</members>
-        <members>DuplicateRecordSet-Duplicate Record Set Layout</members>
-        <members>Event-Event Layout</members>
-        <members>Global-Global Layout</members>
-        <members>Idea-Idea Layout</members>
-        <members>Individual-Individual Layout</members>
-        <members>Lead-Lead Layout</members>
-        <members>Loan_Warehouse__c-Loan Warehouse Layout</members>
-        <members>Macro-Macro Layout</members>
-        <members>Opportunity-Opportunity Layout</members>
-        <members>OpportunityLineItem-Opportunity Product Layout</members>
-        <members>Order-Order Layout</members>
-        <members>OrderItem-Order Product Layout</members>
-        <members>Party_Relationship__c-Party Relationship Layout</members>
-        <members>Pricebook2-Price Book Layout</members>
-        <members>Product2-Product Layout</members>
-        <members>Proof_Of_Identity_Do__c-Proof Of Identity Document Layout</members>
-        <members>QuickText-Quick Text Layout</members>
-        <members>Scorecard-Scorecard Layout</members>
-        <members>ScorecardAssociation-Scorecard Association Layout</members>
-        <members>ScorecardMetric-Scorecard Metric Layout</members>
-        <members>SocialPersona-Social Persona Layout</members>
-        <members>SocialPost-Social Post Layout</members>
-        <members>Solution-Solution Layout</members>
-        <members>Task-Task Layout</members>
-        <members>Telephone_Contact_Number__c-Telephone Contact Number Layout</members>
-        <members>User-User Layout</members>
         <members>Warehouse__c-Warehouse Layout</members>
         <name>Layout</name>
     </types>
     <types>
-        <members>ABN_Company_Information__c.All</members>
-        <members>ABN_Company_List__c.All</members>
-        <members>ABN_Information__c.All</members>
-        <members>ACN_Information__c.All</members>
-        <members>Account.AllAccounts</members>
-        <members>Account.MyAccounts</members>
-        <members>Account.NewThisWeek</members>
-        <members>AccountBrand.All_Account_Brands</members>
-        <members>Activity.MyActivities</members>
-        <members>Activity.MyDelegatedActivities</members>
-        <members>Activity.MyTeamsActivities</members>
-        <members>Activity.TodaysTasks</members>
-        <members>Activity.UpcomingEvents</members>
-        <members>Asset.AllAssets</members>
-        <members>AuthorizationForm.All_AuthorizationForms</members>
-        <members>AuthorizationFormConsent.All_AuthorizationFormConsents</members>
-        <members>AuthorizationFormDataUse.All_AuthorizationFormDataUses</members>
-        <members>AuthorizationFormText.All_AuthorizationFormTexts</members>
-        <members>Campaign.AllActiveCampaigns</members>
-        <members>Campaign.MyActiveCampaigns</members>
-        <members>Case.AllOpenCases</members>
-        <members>Case.MyCases</members>
-        <members>Case.MyOpenCases</members>
-        <members>Contact.AllContacts</members>
-        <members>Contact.BirthdaysThisMonth</members>
-        <members>Contact.NewThisWeek</members>
-        <members>ContactPointTypeConsent.All_ContactPointTypeConsent</members>
-        <members>ContactRequest.My_ContactRequests</members>
-        <members>Contract.AllActivatedContracts</members>
-        <members>Contract.AllContracts</members>
-        <members>Contract.AllDraftContracts</members>
-        <members>Contract.AllInApprovalContracts</members>
-        <members>Contract.MyActivatedContracts</members>
-        <members>Contract.MyDraftContracts</members>
-        <members>Contract.MyInApprovalContracts</members>
-        <members>DataUseLegalBasis.All_DataUseLegalBasis</members>
-        <members>DataUsePurpose.All_DataUsePurpose</members>
-        <members>Idea.Ideas_Last_7_Days</members>
-        <members>Lead.AllOpenLeads</members>
-        <members>Lead.MyUnreadLeads</members>
-        <members>Lead.TodaysLeads</members>
-        <members>Loan_Warehouse__c.All</members>
-        <members>Opportunity.AllOpportunities</members>
-        <members>Opportunity.ClosingNextMonth</members>
-        <members>Opportunity.ClosingThisMonth</members>
-        <members>Opportunity.Default_Opportunity_Pipeline</members>
-        <members>Opportunity.MyOpportunities</members>
-        <members>Opportunity.NewThisWeek</members>
-        <members>Opportunity.Won</members>
-        <members>Order.AllActivatedOrders</members>
-        <members>Order.AllDraftOrders</members>
-        <members>Order.AllOrders</members>
-        <members>Product2.AllProducts</members>
-        <members>Recommendation.All_Recommendations</members>
-        <members>Scorecard.AllScorecards</members>
-        <members>Scorecard.MyScorecards</members>
-        <members>SocialPersona.AllSocialPersonas</members>
-        <members>SocialPost.AllSocialPosts</members>
-        <members>Solution.AllReviewedSolutions</members>
-        <members>Solution.AllUnreviewedSolutions</members>
-        <members>Task.CompletedTasks</members>
-        <members>Task.DelegatedTasks</members>
-        <members>Task.OpenTasks</members>
-        <members>Task.OverdueTasks</members>
-        <members>Task.RecurringTasks</members>
-        <members>Task.TodaysTasks</members>
-        <members>Task.UnscheduledTasks</members>
-        <members>User.ActiveUsers</members>
-        <members>User.AdminUsers</members>
-        <members>User.AllUsers</members>
-        <members>Warehouse__c.All</members>
-        <members>clcommon__Asset_Class__c.All</members>
-        <members>clcommon__Collateral_Owner__c.All</members>
-        <members>clcommon__ComponentStructure__c.All</members>
-        <members>clcommon__Css_Configuration__c.All</members>
-        <members>clcommon__Log__c.All</members>
-        <members>clcommon__NavigationStructure__c.All</members>
-        <members>clcommon__Party__c.All</members>
-        <members>clcommon__Reciprocal_Role__c.All1</members>
-        <members>genesis__Application_Collateral__c.All</members>
         <members>genesis__Applications__c.Investor_Applications</members>
         <members>genesis__Applications__c.Loans_Applications</members>
-        <members>genesis__Asset_Information__c.All</members>
-        <members>genesis__Employment_Information__c.All</members>
-        <members>genesis__Income__c.All</members>
-        <members>ints__Integration_Configuration__c.All</members>
-        <members>loan__Bank_Account__c.All</members>
-        <members>loan__Collateral__c.All</members>
-        <members>loan__Investor_Fund_Transaction__c.All</members>
-        <members>loan__Investor_Loan__c.All</members>
-        <members>loan__Payment_Mode__c.All</members>
-        <members>peer__Booking_Order__c.All</members>
-        <members>peer__Investment_Booking__c.All</members>
         <name>ListView</name>
     </types>
     <types>
@@ -662,5 +489,13 @@
         <members>loan__Loan_Account__c.Fixed_Rate_Term_Validation</members>
         <name>ValidationRule</name>
     </types>
+      <types>
+      <members>Address_Street_Type</members>
+      <members>Document_Type_Set</members>
+      <members>Employment_Status</members>
+      <members>Income_Frequency</members>
+      <members>YesNo</members>
+      <name>GlobalValueSet</name>
+  </types>
     <version>44.0</version>
 </Package>
