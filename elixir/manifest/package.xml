@@ -373,6 +373,8 @@
         <members>genesis__Applications__c.Type_of_Investor__c</members>
         <members>genesis__Applications__c.Unique_ID__c</members>
         <members>genesis__Applications__c.Urgent__c</members>
+        <members>genesis__Applications__c.Sales_Channel_type__c</members>
+        <members>genesis__Applications__c.Fixed_Rate_Term__c</members>
         <members>genesis__Applications__c.Valuation_Fee__c</members>
         <members>genesis__Asset_Information__c.Address__c</members>
         <members>genesis__Asset_Information__c.Liability__c</members>
@@ -437,6 +439,8 @@
         <members>Account.License_Verified__c</members>
         <members>Account.Office_Phone__c</members>
         <members>Account.TFN_Number__c</members>
+        <members>clcommon__Bank_Account__c.BSB__c</members>
+        <members>Contact.Create_user_for_this_contact__c</members>
         <name>CustomField</name>
     </types>
     <types>
@@ -464,6 +468,13 @@
         <members>S_P_Postcode__c</members>
         <members>Telephone_Contact_Number__c</members>
         <members>Warehouse__c</members>
+        <members>clcommon__Bank_Account__c</members>
+        <members>clcommon__Collateral__c</members>
+        <members>clcommon__CL_Product__c</members>
+        <members>clcommon__Party__c</members>
+        <members>loan__Bank_Account__c</members>
+        <members>loan__Loan_Account__c</members>
+        <members>Contact</members>
         <name>CustomObject</name>
     </types>
     <types>
