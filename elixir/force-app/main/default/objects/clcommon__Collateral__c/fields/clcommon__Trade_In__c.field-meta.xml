@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>clcommon__Trade_In__c</fullName>
+    <defaultValue>false</defaultValue>
+    <deprecated>false</deprecated>
+    <description>A checkbox to know whether trade is in</description>
+    <externalId>false</externalId>
+    <label>Trade In</label>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

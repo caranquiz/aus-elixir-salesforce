@@ -2,7 +2,7 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Insurance__c</fullName>
     <externalId>false</externalId>
-    <inlineHelpText>Car,home and contents,life,income protection,landlord,private health</inlineHelpText>
+    <inlineHelpText>Car,home&amp;contents,life,income protection,landlord,private health</inlineHelpText>
     <label>Insurance</label>
     <precision>18</precision>
     <required>false</required>
