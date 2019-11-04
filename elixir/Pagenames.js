@@ -32,8 +32,24 @@ exports.init = function(grunt){
 			'ApplicationView',
 			'CollateralDetailView',
 			'AnyLoanProductApplicationForm',
-			'NewApplicationDocumentCategoryDetails'
+			'NewApplicationDocumentCategoryDetails',
+			'CustomBorrowerDetails',
+			'CustomInvestmentDetails',
+			'CustomApplicantPage',
+			'customNewBorrowerApplicationPage',
+			'CustomBorrowingStructure3',
+			'CustomCreditAssess',
+			'CustomCreditConditions',
+			'CustomAnyLoanProductApplicationForm',
+			'CustomBDetails',
+			'CustomBorrowingStructure',
+			'CustomBorrowingStructure2',
+			'CustomConsolidatedAssetsAndLiabilities'
 		];
 	};
 	return exports;
 };
+
+
+
+
