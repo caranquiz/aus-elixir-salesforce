@@ -35,6 +35,7 @@
         <members>PrepaidFeeCalculatorClassTest</members>
         <members>ValidationUtilClass</members>
         <members>WarehouseFunding</members>
+	<members>ABNResponseHelper</members>
         <name>ApexClass</name>
     </types>
     <types>
@@ -402,6 +403,11 @@
         <members>loan__Loan_Account__c.Loan_Application__c</members>
         <members>loan__Loan_Account__c.Warehouse__c</members>
         <members>peer__Investment_Booking__c.Invest__c</members>
+	<members>Account.Broker_Membership_Type__c</members>
+        <members>Account.Licence_Type__c</members>
+        <members>Account.License_Verified__c</members>
+        <members>Account.Office_Phone__c</members>
+        <members>Account.TFN_Number__c</members>
         <name>CustomField</name>
     </types>
     <types>
@@ -497,5 +503,9 @@
       <members>YesNo</members>
       <name>GlobalValueSet</name>
   </types>
+    <types>
+        <members>Warehouse__c</members>
+        <name>CustomTab</name>
+    </types>
     <version>44.0</version>
 </Package>
