@@ -155,6 +155,8 @@
         <members>Account.Trading_address_Street_Type__c</members>
         <members>Account.Trading_address_Unit_No__c</members>
         <members>Account.Trust_Date_Of_Establishment__c</members>
+        <members>Account.Transfer_need_to_approve__c</members>
+        <members>Account.Sales_Channel_Type__c</members>
         <members>Account.Type_of_trust__c</members>
         <members>Contact.Age_of_Applicant__c</members>
         <members>Contact.Broker_Underwriter__c</members>
@@ -547,5 +549,5 @@
         <members>Warehouse__c</members>
         <name>CustomTab</name>
     </types>
-    <version>44.0</version>
+    <version>46.0</version>
 </Package>
