@@ -51,6 +51,8 @@ global class ABNAPICallout{
         
     }
     
+    //******* Update ABN values to Party Object & Employment Information Object. *******//
+
     private static void updateParentRecord(ABN_Information__c abnObj){
         try{
             //CHECK IF NEWLY CREATED ABN INFORMATION OBJECT IS BLANK OR NOT
@@ -100,7 +102,7 @@ global class ABNAPICallout{
         
     }
     
-    
+    // ***** Delete Unwanted Company Record from ABN Company Search ******//
     
     private static void deleteUnwantedCompanyRecords(Id companyListId){
         updatedCompanyList = [SELECT Id, 
@@ -117,7 +119,8 @@ global class ABNAPICallout{
         
     }
     
-    
+    // Webservice method for calling this ABNAPICallout class &  makeABNCallout() method for ABN COmpany Search Integration. ******//
+
     Webservice static String makeABNCompanySkuidCallout(Id companyId){
         try{
             makeABNCallout(companyId);
