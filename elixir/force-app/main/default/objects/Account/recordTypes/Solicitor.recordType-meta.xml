@@ -1299,6 +1299,25 @@
         </values>
     </picklistValues>
     <picklistValues>
+        <picklist>Sales_Channel_Type__c</picklist>
+        <values>
+            <fullName>Direct</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Mortgage Broker</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Mortgage Manager</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Online Channel</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
         <picklist>Type</picklist>
         <values>
             <fullName>Analyst</fullName>
