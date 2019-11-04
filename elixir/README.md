@@ -1,3 +1,4 @@
+ONE TIME
 Installation of Skuid package
 
 After installing the SKUID Extension package, go to the Pages tab. (Click on the '+' in the tab bar, and search for Pages tab.) and click "Unpack Pages..."  in the  + Create New Page drop down. Select one by one the static resources named:
@@ -65,6 +66,9 @@ Run the query mentioned in the earlier section. If the script ran successfully, 
 
 
 The above steps will ensure the necessary seed data is loaded into Sandbox for CL Loan.
+
+
+RECURRING
 
 4. Package.xml update from Git is deployed into the new org
 
