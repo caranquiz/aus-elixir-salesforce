@@ -440,6 +440,7 @@
         <members>Account.Licence_Type__c</members>
         <members>Account.License_Verified__c</members>
         <members>Account.Office_Phone__c</members>
+        <members>Account.Read_and_Accept_Privacy_Policy__c</members>
         <members>Account.TFN_Number__c</members>
         <members>clcommon__Bank_Account__c.BSB__c</members>
         <members>Contact.Create_user_for_this_contact__c</members>
