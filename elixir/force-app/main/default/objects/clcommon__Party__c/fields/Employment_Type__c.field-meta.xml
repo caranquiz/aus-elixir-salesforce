@@ -21,11 +21,6 @@
                 <label>Self Employed</label>
             </value>
             <value>
-                <fullName>Contractor</fullName>
-                <default>false</default>
-                <label>Contractor</label>
-            </value>
-            <value>
                 <fullName>Student</fullName>
                 <default>false</default>
                 <label>Student</label>
@@ -49,6 +44,12 @@
                 <fullName>Other</fullName>
                 <default>false</default>
                 <label>Other</label>
+            </value>
+            <value>
+                <fullName>Contractor</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Contractor</label>
             </value>
         </valueSetDefinition>
     </valueSet>

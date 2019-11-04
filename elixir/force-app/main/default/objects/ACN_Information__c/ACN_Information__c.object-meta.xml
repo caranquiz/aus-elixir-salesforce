@@ -51,6 +51,7 @@
     <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>ReadWrite</externalSharingModel>
     <label>ACN Information</label>
     <nameField>
         <label>ACN Information Name</label>

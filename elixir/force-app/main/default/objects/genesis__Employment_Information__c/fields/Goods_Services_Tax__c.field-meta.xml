@@ -3,9 +3,9 @@
     <fullName>Goods_Services_Tax__c</fullName>
     <externalId>false</externalId>
     <label>Goods &amp; Services Tax</label>
-    <precision>18</precision>
+    <length>255</length>
     <required>false</required>
-    <scale>2</scale>
     <trackTrending>false</trackTrending>
-    <type>Currency</type>
+    <type>Text</type>
+    <unique>false</unique>
 </CustomField>

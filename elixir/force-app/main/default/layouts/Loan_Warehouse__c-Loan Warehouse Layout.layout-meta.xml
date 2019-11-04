@@ -31,10 +31,6 @@
                 <behavior>Edit</behavior>
                 <field>Principal_Paid__c</field>
             </layoutItems>
-            <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>Loan_Warehouse_Number__c</field>
-            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
@@ -56,6 +52,10 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>Previous_Warehouse__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>Loan_Warehouse_Number__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsTopToBottom</style>

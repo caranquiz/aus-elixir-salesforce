@@ -2,6 +2,8 @@
 Description : This class is used for creating investment orders for invesment booking
                and also their disbursal distributions
 Developer : Rameswari Barman
+Implementation Code : peer__Loan_Application__c loanApp = [select id from peer__Loan_Application__c where id = 'XXX'];
+       Invest.makeAllInvestment(loanApp.id);
 *********************************************************************************/
 
 Global with sharing class Invest{
@@ -11,8 +13,10 @@ Global with sharing class Invest{
         Savepoint sp=Database.setSavepoint();
         try{
             Decimal amount = 0;
-            String loans,loanId;
+            String loans,
+                   loanId;
             List<loan__Investor_Loan__c> objList = new List<loan__Investor_Loan__c>();
+            
             genesis__Applications__c app = [SELECT id,
                                                       genesis__Fees_Amount__c,
                                                       Loan_Application__c, 
@@ -27,8 +31,10 @@ Global with sharing class Invest{
                                                       Loan_Application__r.peer__Requested_Loan_Amount__c,
                                                       genesis__CL_Product__c, 
                                                       Fixed_Rate_Term__c,
+                                                      First_Tranche_Prepaid_Interest__c,
                                                       genesis__CL_Product__r.loan__Lending_Product__r.loan__Funding_in_Tranches__c
                                                       FROM genesis__Applications__c WHERE Loan_Application__c =: iden];
+            
             List<peer__Investment_Booking__c> ibList = [Select id,
                                                                 Invest__c, 
                                                                 peer__Stage__c,
@@ -42,34 +48,34 @@ Global with sharing class Invest{
                                                                 peer__Booking_Order__r.peer__Investor__r.Name, 
                                                                 peer__Service_Rate__c 
                                                          From peer__Investment_Booking__c where peer__Loan_Application__c =: iden
-                                                         And peer__Stage__c =: ConstantValues.inFunding
+                                                         And peer__Stage__c =: System.label.InFunding
                                                          And Invest__c = True];
-        
+            //Mapping of application fields to CL Contract
             Date currentSystemDate = (Test.isRunningTest() ?  Date.today() : (new loan.GlobalLoanUtilFacade()).getCurrentSystemDate());
             loan__Loan_Account__c loanAcc = new loan__Loan_Account__c();            
             loanAcc.Id=app.Loan_Application__r.peer__Loan__c;
             loanAcc.loan__Application_Date__c=currentSystemDate;
-            System.debug('Hi 1');
             loanAcc.loan__Expected_Disbursal_Date__c=currentSystemDate;
             loanAcc.loan__Accrual_Start_Date__c=currentSystemDate;
             loanAcc.loan__Disbursal_Date__c=currentSystemDate;
             loanAcc.loan__Draw_Period_End_Date__c=currentSystemDate;
             loanAcc.Fixed_Rate_Term__c = app.Fixed_Rate_Term__c;
-            if(app.Loan_Application__r.peer__Loan__r.loan__Frequency_of_Loan_Payment__c.equals(ConstantValues.biWeekly)){
+            //Maping of dates
+            if(app.Loan_Application__r.peer__Loan__r.loan__Frequency_of_Loan_Payment__c.equals(ConstantValues.BIWEEKLY)){
                 loanAcc.loan__Expected_Repayment_Start_Date__c=currentSystemDate.addDays(14);
                 loanAcc.loan__First_Installment_Date__c=loanAcc.loan__Expected_Repayment_Start_Date__c;
                 loanAcc.loan__Due_Day__c=loanAcc.loan__Expected_Repayment_Start_Date__c.day();
                 loanAcc.loan__Contractual_Due_Day__c=loanAcc.loan__Expected_Repayment_Start_Date__c.day();
                 loanAcc.loan__Maturity_Date_Current__c=null;
             }
-            else if(app.Loan_Application__r.peer__Loan__r.loan__Frequency_of_Loan_Payment__c.equals(ConstantValues.weekly)){
+            else if(app.Loan_Application__r.peer__Loan__r.loan__Frequency_of_Loan_Payment__c.equals(ConstantValues.WEEKLY)){
                 loanAcc.loan__Expected_Repayment_Start_Date__c=currentSystemDate.addDays(7);
                 loanAcc.loan__First_Installment_Date__c=loanAcc.loan__Expected_Repayment_Start_Date__c;
                 loanAcc.loan__Due_Day__c=loanAcc.loan__Expected_Repayment_Start_Date__c.day();
                 loanAcc.loan__Contractual_Due_Day__c=loanAcc.loan__Expected_Repayment_Start_Date__c.day();
                 loanAcc.loan__Maturity_Date_Current__c=null;
             }
-            else if(app.Loan_Application__r.peer__Loan__r.loan__Frequency_of_Loan_Payment__c.equals(ConstantValues.monthly)){
+            else if(app.Loan_Application__r.peer__Loan__r.loan__Frequency_of_Loan_Payment__c.equals(ConstantValues.MONTHLY)){
                 loanAcc.loan__Expected_Repayment_Start_Date__c=currentSystemDate.addMonths(1);
                 loanAcc.loan__First_Installment_Date__c=loanAcc.loan__Expected_Repayment_Start_Date__c;
                 loanAcc.loan__Due_Day__c=loanAcc.loan__Expected_Repayment_Start_Date__c.day();
@@ -77,7 +83,10 @@ Global with sharing class Invest{
                 loanAcc.loan__Maturity_Date_Current__c=null;
             }
             try{
-                update loanAcc;
+                if(loanAcc != null){
+                    update loanAcc;
+                }
+                //generating of schedule
                 loan.RegenerateAmortizationScheduleCtrl.regenerateAmortizationSchedule(loanAcc.Id);
             }
             catch(Exception e){
@@ -86,39 +95,41 @@ Global with sharing class Invest{
             if(ibList.size() == 0){
                 return ConstantValues.noActiveInvestmentFound;
             }
-            for(peer__Investment_Booking__c iBook : ibList){
-                amount = iBook.peer__Investment_Amount__c + amount;
-                loans = iBook.peer__Loan_Application__r.peer__Loan__c;
-                loanId=iBook.peer__Loan_Application__r.peer__Loan__r.Name;
-                loan__Investor_Loan__c obj = new loan__Investor_Loan__c();
-                obj.loan__Account__c = iBook.peer__Booking_Order__r.peer__Investor__c;
-                obj.loan__Certificate_Rate__c = iBook.peer__Certificate_Rate__c;
-                obj.loan__Service_Rate__c = iBook.peer__Service_Rate__c;
-                obj.loan__Loan__c = iBook.peer__Loan_Application__r.peer__Loan__c;
-                obj.loan__Loan_Principal_Remaining__c = iBook.peer__Investment_Amount__c;
-                obj.loan__Investment_Amount__c = iBook.peer__Investment_Amount__c;
-                objList.add(obj);
-                //obj.peer__Credit_Band_Allocation__c = iBook.peer__Credit_Band_Allocation__c;
+            if(ibList != null && ibList.size() > 0){
+                for(peer__Investment_Booking__c iBook : ibList){
+                    //Updating the investment booking record after the funding
+                    amount = iBook.peer__Investment_Amount__c + amount;
+                    loans = iBook.peer__Loan_Application__r.peer__Loan__c;
+                    loanId=iBook.peer__Loan_Application__r.peer__Loan__r.Name;
+                    loan__Investor_Loan__c obj = new loan__Investor_Loan__c();
+                    obj.loan__Account__c = iBook.peer__Booking_Order__r.peer__Investor__c;
+                    obj.loan__Certificate_Rate__c = iBook.peer__Certificate_Rate__c;
+                    obj.loan__Service_Rate__c = iBook.peer__Service_Rate__c;
+                    obj.loan__Loan__c = iBook.peer__Loan_Application__r.peer__Loan__c;
+                    obj.loan__Loan_Principal_Remaining__c = iBook.peer__Investment_Amount__c;
+                    obj.loan__Investment_Amount__c = iBook.peer__Investment_Amount__c;
+                    objList.add(obj);
+                    iBook.peer__Stage__c = System.label.Funded;
+                }
             }
             //****check if Funding in tranches activated on loan*****
             if(app.genesis__CL_Product__r.loan__Lending_Product__r.loan__Funding_in_Tranches__c!=null && app.genesis__CL_Product__r.loan__Lending_Product__r.loan__Funding_in_Tranches__c==false){
                 if(amount<app.Loan_Application__r.peer__Requested_Loan_Amount__c){
-                    return ConstantValues.investmentAmountCannotBeLess;
+                    return ConstantValues.INVESTMENT_AMT_CANNOT_BE_LESS_MSG;
                 }else if(amount>app.Loan_Application__r.peer__Requested_Loan_Amount__c){
                     return ConstantValues.investmentAmountCannotBeGreater;
                 }
             }
             //************Creating Disbursal and Distributions******************************
             if(!(Test.isRunningTest())){
-                System.debug('===========>'+loans+'==='+amount+'==='+loanId+'==='+app);
                 loan__Loan_Disbursal_Transaction__c ldt= createDisbursalwithDist(loans,amount,loanId,app);
             }
             //******************************************************************************
             
             AggregateResult[] groupedResults = [SELECT SUM(loan__Investment_Amount__c)aver FROM loan__Investor_Loan__c where loan__Loan__c =: loans and loan__Status__c =: System.label.Active];
-            Decimal avgAmount = Integer.valueOf(groupedResults[0].get('aver'));
+            Decimal avgAmount = Integer.valueOf(groupedResults[0].get(ConstantValues.AVER));
             
-            Decimal totalInvested = (avgAmount==null?0:avgAmount) + amount;
+            Decimal totalInvested = (avgAmount==null?0:avgAmount) + amount;//Calculates the total amount invested on the loan
             
             List<loan__Investor_Loan__c> ioList = new List<loan__Investor_Loan__c>([Select id,
                                                                                         loan__Loan__c,
@@ -134,19 +145,32 @@ Global with sharing class Invest{
                                                                                         From loan__Investor_Loan__c
                                                                                     Where loan__Loan__c =: loans 
                                                                                     And loan__Status__c =: System.label.Active]);
-             for(loan__Investor_Loan__c io : ioList){
-               io.loan__Share__c = (io.loan__Investment_Amount__c / totalInvested) * 100;
+            if(ioList.size() > 0 && ioList != null){
+                for(loan__Investor_Loan__c io : ioList){
+                    io.loan__Share__c = (io.loan__Investment_Amount__c / totalInvested) * 100;
+                }
             }
-            update ioList;
-            
+            if(ioList != null && ioList.size() > 0 && Schema.sObjectType.loan__Investor_Loan__c.fields.loan__Share__c.isUpdateable()){
+                update ioList;
+            }
+            if(ibList.size() > 0 && ibList != null){
+                update ibList;
+            }
             loan.InvestorAPI invAPI = loan.APIFactory.getInvestorAPI();
             list<loan__Investor_Loan__c> inorList = invAPI.createInvestmentOrders(objList); 
-            update ibList;
-            peer__Loan_Application__c loanApp= new peer__Loan_Application__c(id=app.Loan_Application__c, peer__Stage__c=System.label.Funded);
-            update loanApp;
-            //app.genesis__Status__c=System.label.COMPLETED;
+            if(ibList != null && ibList.size() > 0){
+                update ibList;
+            }
+            peer__Loan_Application__c loanApp= new peer__Loan_Application__c(id=iden, peer__Stage__c=System.label.Funded);
+            if(loanApp != null && Schema.sObjectType.peer__Loan_Application__c.fields.peer__Stage__c.isUpdateable()){
+                update loanApp;
+            }
             app.First_Drawdown_Complete__c = True;
-            update app;
+            if(app != null && Schema.sObjectType.genesis__Applications__c.fields.First_Drawdown_Complete__c.isUpdateable()){
+                update app;
+            }
+            loan__Loan_Account__c loanRec = [select id,name,Loan_Application__c,loan__Account__c,APS_Created__c,Application__r.genesis__Payment_Frequency__c,loan__Last_Installment_Date__c,loan__Next_Installment_Date__c,loan__Last_Disbursal_Amount__c,Warehouse__c from loan__Loan_Account__c where Loan_Application__c =: iden];
+            WarehouseFunding.createAPS(loanRec);
             return ConstantValues.fundingSuccessful;                                                                              
             
         }
@@ -163,7 +187,7 @@ Global with sharing class Invest{
                                                                                                            From loan__Loan_Disbursal_Transaction__c
                                                                                                            Where loan__Loan_Account__c =: loans]);
         loan__Loan_Disbursal_Transaction__c ldt= new loan__Loan_Disbursal_Transaction__c();
-        ldt.loan__Loan_Disbursal_Transaction_Type__c = ConstantValues.regular;
+        ldt.loan__Loan_Disbursal_Transaction_Type__c = System.label.Regular;
         ldt.loan__Disbursed_Amt__c = totalDisbursal;
         ldt.loan__Disbursal_Date__c = currentSystemDate;
         ldt.loan__Mode_of_Payment__c = mode.id;
@@ -173,44 +197,66 @@ Global with sharing class Invest{
                                             Where loan__Amount__c>0 
                                                   AND loan__Contract__c =:loans 
                                                   AND loan__Loan_Disbursal_Transaction__c=null];
-        Decimal feeAmount = Double.valueOf(groupedResults[0].get('feeAmnt'));            
+        Decimal feeAmount = Double.valueOf(groupedResults[0].get(ConstantValues.FEE_AMNT));            
         ldt.loan__Financed_Amount__c = (feeAmount!=null?totalDisbursal-feeAmount:totalDisbursal);
-        insert ldt;
-        //map<String,Fee_Structure_mappings__c> feeMappingSet= Fee_Structure_mappings__c.getAll();
+        if(ldt != null){
+            insert ldt;
+        }
         list< loan__Disbursal_Txn_Distribution__c > ddtList= new list< loan__Disbursal_Txn_Distribution__c >();
         loan__Disbursal_Txn_Distribution__c ddtObj;
+        list<loan__Contract_Pre_Paid_Fee__c> prepaifFeeList=[select id, Name , 
+                                                             loan__Loan_Disbursal_Transaction__c ,
+                                                             loan__Fee_Type__r.Name, 
+                                                             loan__Fee_Type__c,
+                                                             loan__Amount__c,
+                                                             loan__Contract__c,
+                                                             loan__Contract__r.Application__c,
+                                                             loan__Contract__r.Application__r.First_Tranche_Prepaid_Interest__c 
+                                                      from loan__Contract_Pre_Paid_Fee__c 
+                                                      Where loan__Amount__c>0 AND loan__Contract__c =:loans
+                                                      and loan__Fee_Type__r.Name =: System.label.First_Tranche_Prepaid_Interest
+                                                      and loan__Contract__r.Application__r.First_Drawdown_Complete__c = true]; 
+        if(prepaifFeeList.size()>0 && prepaifFeeList != null){
+            for(loan__Contract_Pre_Paid_Fee__c preFee : prepaifFeeList){
+            preFee.loan__Amount__c = preFee.loan__Contract__r.Application__r.First_Tranche_Prepaid_Interest__c;
+        }
+        }
+        if(prepaifFeeList != null && prepaifFeeList.size() > 0){
+            update prepaifFeeList;  
+        }
         list<loan__Contract_Pre_Paid_Fee__c> ppfList=[select id, Name , 
                                                              loan__Loan_Disbursal_Transaction__c ,
                                                              loan__Fee_Type__r.Name, 
                                                              loan__Fee_Type__c,
                                                              loan__Amount__c 
                                                       from loan__Contract_Pre_Paid_Fee__c 
-                                                      Where loan__Amount__c>0 AND loan__Contract__c =:loans];
-        for(loan__Contract_Pre_Paid_Fee__c ppf: ppfList){
-            if(ppf.loan__Amount__c!=null && ppf.loan__Amount__c>0 && ppf.loan__Loan_Disbursal_Transaction__c==null){
-                ddtObj= new loan__Disbursal_Txn_Distribution__c();
-                //ddtObj.loan__Distribution_Type__c=feeMappingSet.get(ppf.loan__Fee_Type__r.Name).Distribution_Type__c;
-                ddtObj.loan__Loan_Disbursal_Transaction__c=ldt.Id;
-                ddtObj.loan__Distribution_Amount__c=ppf.loan__Amount__c;
-                ddtObj.loan__Name_of_Entity__c=ppf.loan__Fee_Type__r.Name;
-                ddtObj.loan__Reference__c=ppf.Name;
-                ddtObj.loan__Fee__c=ppf.loan__Fee_Type__c;
-                ddtObj.loan__Source_Record_Name__c=ppf.Name;
-                ddtObj.loan__Source_Record_ID__c =ppf.Id;
-                ddtObj.loan__Loan_Disbursal_Transaction__c=ldt.Id;
-                if(ldtList != null && ldtList.size() > 0){
-                    ddtObj.First_Drawdown__c = False;
+                                                      Where loan__Amount__c>0 AND loan__Contract__c =:loans];                                                                           
+        if(ppfList.size() > 0 && ppfList != null){
+            for(loan__Contract_Pre_Paid_Fee__c ppf: ppfList){
+                if(ppf.loan__Amount__c!=null && ppf.loan__Amount__c>0 && ppf.loan__Loan_Disbursal_Transaction__c==null){
+                    ddtObj= new loan__Disbursal_Txn_Distribution__c();
+                    ddtObj.loan__Loan_Disbursal_Transaction__c=ldt.Id;
+                    ddtObj.loan__Distribution_Amount__c=ppf.loan__Amount__c;
+                    ddtObj.loan__Name_of_Entity__c=ppf.loan__Fee_Type__r.Name;
+                    ddtObj.loan__Reference__c=ppf.Name;
+                    ddtObj.loan__Fee__c=ppf.loan__Fee_Type__c;
+                    ddtObj.loan__Source_Record_Name__c=ppf.Name;
+                    ddtObj.loan__Source_Record_ID__c =ppf.Id;
+                    ddtObj.loan__Loan_Disbursal_Transaction__c=ldt.Id;
+                    if(ldtList != null && ldtList.size() > 0){
+                        ddtObj.First_Drawdown__c = False;
+                    }
+                    else{
+                        ddtObj.First_Drawdown__c = True;
+                    }
+                    ddtList.add(ddtObj);
+                    ppf.loan__Loan_Disbursal_Transaction__c=ldt.Id;
                 }
-                else{
-                    ddtObj.First_Drawdown__c = True;
-                }
-                ddtList.add(ddtObj);
-                ppf.loan__Loan_Disbursal_Transaction__c=ldt.Id;
             }
         }
         //*****creating DDT for Borrower distribution...
         ddtObj= new loan__Disbursal_Txn_Distribution__c();
-        ddtObj.loan__Distribution_Type__c=ConstantValues.disbursement;
+        ddtObj.loan__Distribution_Type__c=ConstantValues.DISBURSEMENT;
         ddtObj.loan__Loan_Disbursal_Transaction__c=ldt.Id;
         ddtObj.loan__Distribution_Amount__c=ldt.loan__Financed_Amount__c;
         ddtObj.loan__Name_of_Entity__c=loanId;
@@ -221,10 +267,27 @@ Global with sharing class Invest{
         else{
             ddtObj.First_Drawdown__c = True;
         }
+        List < loan__Loan_Account__c > contList = [select id,Application__c,loan__Disbursed_Amount__c,Application__r.Drawdown_Prepaid_Interest__c from loan__Loan_Account__c where id =: loans and Application__r.Drawdown_Prepaid_Interest__c != null and Application__r.Drawdown_Prepaid_Interest__c != 0];
+        List < loan__Disbursal_Txn_Distribution__c > ldtListCheck = [select id,loan__Loan_Disbursal_Transaction__c from loan__Disbursal_Txn_Distribution__c where loan__Loan_Disbursal_Transaction__c =: ldt.Id];
+        if(contList != null && ldtListCheck != null){       
+            for(loan__Loan_Account__c cont : contList){     
+                loan__Disbursal_Txn_Distribution__c ddtObjPrepaid = new loan__Disbursal_Txn_Distribution__c();
+                ddtObjPrepaid.loan__Distribution_Type__c=ConstantValues.DISBURSEMENT;        
+                ddtObjPrepaid.loan__Loan_Disbursal_Transaction__c=ldt.Id;       
+                ddtObjPrepaid.loan__Distribution_Amount__c=cont.Application__r.Drawdown_Prepaid_Interest__c;        
+                ddtObjPrepaid.loan__Name_of_Entity__c=System.label.Subsequent_Drawdown_Prepaid_Interest;     
+                ddtObjPrepaid.loan__Reference__c=loanId;        
+                ddtObj.loan__Distribution_Amount__c = ldt.loan__Financed_Amount__c-cont.Application__r.Drawdown_Prepaid_Interest__c;        
+                ddtList.add(ddtObjPrepaid);
+            }       
+        }
         ddtList.add(ddtObj);
-        
-        insert ddtList;
-        update ppfList;
+        if(ddtList != null && ddtList.size() > 0){
+            insert ddtList;
+        }
+        if(ppfList != null && ppfList.size() > 0){
+            update ppfList;
+        }
         return ldt;
     }
 }

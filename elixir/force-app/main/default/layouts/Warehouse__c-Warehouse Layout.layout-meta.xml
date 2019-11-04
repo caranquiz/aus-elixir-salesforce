@@ -78,13 +78,34 @@
         <fields>CREATEDBY_USER</fields>
         <relatedList>Loan_Warehouse__c.Warehouse__c</relatedList>
     </relatedLists>
+    <relatedLists>
+        <fields>NAME</fields>
+        <fields>loan__Loan_Status__c</fields>
+        <fields>loan__Account__c</fields>
+        <fields>loan__Loan_Amount__c</fields>
+        <fields>loan__Loan_Product_Name__c</fields>
+        <fields>loan__Amount_to_Current__c</fields>
+        <fields>loan__Pmt_Amt_Cur__c</fields>
+        <fields>loan__Number_of_Installments__c</fields>
+        <fields>loan__Last_Installment_Date__c</fields>
+        <relatedList>loan__Loan_Account__c.Warehouse__c</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <fields>NAME</fields>
+        <fields>genesis__Account__c</fields>
+        <fields>genesis__Contact__c</fields>
+        <fields>genesis__Status__c</fields>
+        <fields>genesis__Estimated_Selling_Price__c</fields>
+        <fields>genesis__Financed_Amount__c</fields>
+        <relatedList>genesis__Applications__c.Funder_List__c</relatedList>
+    </relatedLists>
     <showEmailCheckbox>false</showEmailCheckbox>
     <showHighlightsPanel>false</showHighlightsPanel>
     <showInteractionLogPanel>false</showInteractionLogPanel>
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>false</showSubmitAndAttachButton>
     <summaryLayout>
-        <masterLabel>00h0p000000P8Ku</masterLabel>
+        <masterLabel>00h9D000000OAfF</masterLabel>
         <sizeX>4</sizeX>
         <sizeY>0</sizeY>
         <summaryLayoutStyle>Default</summaryLayoutStyle>

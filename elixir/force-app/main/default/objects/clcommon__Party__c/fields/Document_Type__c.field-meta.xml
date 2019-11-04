@@ -23,6 +23,7 @@
             <value>
                 <fullName>Lease</fullName>
                 <default>false</default>
+                <isActive>false</isActive>
                 <label>Lease</label>
             </value>
         </valueSetDefinition>

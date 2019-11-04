@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Layout xmlns="http://soap.sforce.com/2006/04/metadata">
+    <excludeButtons>DataDotComAccountInsights</excludeButtons>
+    <excludeButtons>DataDotComClean</excludeButtons>
+    <excludeButtons>DataDotComCompanyHierarchy</excludeButtons>
     <excludeButtons>Submit</excludeButtons>
     <layoutSections>
         <customLabel>true</customLabel>
@@ -14,7 +17,7 @@
         <customLabel>true</customLabel>
         <detailHeading>false</detailHeading>
         <editHeading>false</editHeading>
-        <label>Fields</label>
+        <label>Solicitor Details</label>
         <layoutColumns>
             <layoutItems>
                 <behavior>Edit</behavior>
@@ -26,29 +29,29 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Name_Title__c</field>
+                <field>Insurer__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>peer__First_Name__c</field>
+                <field>Policy_Number__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Policy_Expiry_Date__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>Office_Phone__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Status_Updates__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Phone</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>RecordTypeId</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>clcommon__Legal_Entity_Type__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsLeftToRight</style>
@@ -71,40 +74,18 @@
         </relatedContentItems>
     </relatedContent>
     <relatedLists>
-        <fields>NAME</fields>
-        <fields>genesis__Account__c</fields>
-        <fields>genesis__Contact__c</fields>
-        <fields>genesis__Status__c</fields>
-        <fields>genesis__Estimated_Selling_Price__c</fields>
-        <fields>genesis__Financed_Amount__c</fields>
-        <relatedList>genesis__Applications__c.Broker__c</relatedList>
+        <fields>FULL_NAME</fields>
+        <fields>CONTACT.TITLE</fields>
+        <fields>CONTACT.EMAIL</fields>
+        <fields>CONTACT.PHONE1</fields>
+        <relatedList>RelatedContactList</relatedList>
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
-        <fields>genesis__Account__c</fields>
-        <fields>genesis__Contact__c</fields>
-        <fields>genesis__Status__c</fields>
-        <fields>genesis__Estimated_Selling_Price__c</fields>
-        <fields>genesis__Financed_Amount__c</fields>
-        <relatedList>genesis__Applications__c.Aggregator__c</relatedList>
-    </relatedLists>
-    <relatedLists>
-        <fields>NAME</fields>
-        <fields>genesis__Account__c</fields>
-        <fields>genesis__Contact__c</fields>
-        <fields>genesis__Status__c</fields>
-        <fields>genesis__Estimated_Selling_Price__c</fields>
-        <fields>genesis__Financed_Amount__c</fields>
-        <relatedList>genesis__Applications__c.Brokers_BDM__c</relatedList>
-    </relatedLists>
-    <relatedLists>
-        <fields>NAME</fields>
-        <fields>genesis__Account__c</fields>
-        <fields>genesis__Contact__c</fields>
-        <fields>genesis__Status__c</fields>
-        <fields>genesis__Estimated_Selling_Price__c</fields>
-        <fields>genesis__Financed_Amount__c</fields>
-        <relatedList>genesis__Applications__c.Solicitor__c</relatedList>
+        <fields>BSB_Number__c</fields>
+        <fields>loan__Bank_Account_Number__c</fields>
+        <fields>loan__Bank_Name__c</fields>
+        <relatedList>loan__Bank_Account__c.loan__Account__c</relatedList>
     </relatedLists>
     <relatedObjects>ParentId</relatedObjects>
     <showEmailCheckbox>false</showEmailCheckbox>

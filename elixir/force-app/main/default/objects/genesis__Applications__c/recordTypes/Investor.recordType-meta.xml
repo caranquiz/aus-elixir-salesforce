@@ -40,21 +40,6 @@
         </values>
     </picklistValues>
     <picklistValues>
-        <picklist>Additional_Requirements__c</picklist>
-        <values>
-            <fullName>Ability To make additional repayments</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>Other</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>Redraw</fullName>
-            <default>false</default>
-        </values>
-    </picklistValues>
-    <picklistValues>
         <picklist>Business_purpose_list__c</picklist>
         <values>
             <fullName>Buy Asset %2F Investment</fullName>
@@ -109,21 +94,6 @@
         </values>
     </picklistValues>
     <picklistValues>
-        <picklist>Document_Type__c</picklist>
-        <values>
-            <fullName>Full Doc</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>Lease Doc</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>Lite Doc</fullName>
-            <default>false</default>
-        </values>
-    </picklistValues>
-    <picklistValues>
         <picklist>Interest_only_reason__c</picklist>
         <values>
             <fullName>Create funds for investment purposes</fullName>
@@ -167,13 +137,13 @@
         </values>
     </picklistValues>
     <picklistValues>
-        <picklist>Interest_type__c</picklist>
+        <picklist>LMI_Approved__c</picklist>
         <values>
-            <fullName>Fixed Rate</fullName>
+            <fullName>No</fullName>
             <default>false</default>
         </values>
         <values>
-            <fullName>Variable</fullName>
+            <fullName>Yes</fullName>
             <default>false</default>
         </values>
     </picklistValues>
@@ -215,6 +185,41 @@
         </values>
     </picklistValues>
     <picklistValues>
+        <picklist>Loan_Purpose__c</picklist>
+        <values>
+            <fullName>Construction of dwelling - House</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Construction of dwelling - Other dwelling</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Purchase  - Existing</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Purchase  - New</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Purchase  - Off the Plan</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Refinance - Debt Consolidation</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Refinance - Equity Release</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Refinance - Existing Mortgages</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
         <picklist>NCCP_status_list__c</picklist>
         <values>
             <fullName>Regulated</fullName>
@@ -226,6 +231,17 @@
         </values>
     </picklistValues>
     <picklistValues>
+        <picklist>Override__c</picklist>
+        <values>
+            <fullName>No</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Yes</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
         <picklist>Owner_Occupied_Investment_Product__c</picklist>
         <values>
             <fullName>Investment Product</fullName>
@@ -233,6 +249,152 @@
         </values>
         <values>
             <fullName>Owner Occupied</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Primary_loan_purpose_list__c</picklist>
+        <values>
+            <fullName>Investment</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Owner Occupied</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Proposed_repayment_method_list__c</picklist>
+        <values>
+            <fullName>Bpay</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Credit Card</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Direct Debit Existing Account</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Direct Debit New Account</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Refinance_purpose_list__c</picklist>
+        <values>
+            <fullName>Refinance - Business Purposes</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Refinance - Cash Out</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Regulated_Unregulated__c</picklist>
+        <values>
+            <fullName>Regulated</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Repayment_Type__c</picklist>
+        <values>
+            <fullName>Interest Only</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Interest Only reverting to Principal and Interest</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Prepaid Interest</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Principal and Interest</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Repayment_frequency__c</picklist>
+        <values>
+            <fullName>Fortnightly</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Monthly</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Weekly</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Risk_grade_list__c</picklist>
+        <values>
+            <fullName>Advance</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Advance Max</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Platinum</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Recovery</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Recovery Max</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Term_type__c</picklist>
+        <values>
+            <fullName>Interest Only</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Interest Only reverting to Principal and Interest</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Prepaid Interest</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Principal and Interest</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Type_of_Investor__c</picklist>
+        <values>
+            <fullName>Contributory Investor</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Warehouse Investor</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Urgent__c</picklist>
+        <values>
+            <fullName>No</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Yes</fullName>
             <default>false</default>
         </values>
     </picklistValues>

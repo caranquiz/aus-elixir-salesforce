@@ -123,7 +123,23 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
+                <field>Create_user_for_this_contact__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
                 <field>Applicant_reside_in_Australia__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Residential_address__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Position__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>Age_of_Applicant__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
@@ -348,10 +364,12 @@
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
+        <fields>clcommon__Address__c</fields>
         <relatedList>clcommon__Collateral__c.Builder__c</relatedList>
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
+        <fields>clcommon__Address__c</fields>
         <relatedList>clcommon__Collateral__c.Contract_Party__c</relatedList>
     </relatedLists>
     <relatedObjects>AccountId</relatedObjects>

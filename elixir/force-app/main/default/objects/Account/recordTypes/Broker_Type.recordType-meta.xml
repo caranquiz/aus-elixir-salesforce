@@ -1030,39 +1030,13 @@
         </values>
     </picklistValues>
     <picklistValues>
-        <picklist>Commission_Mandate__c</picklist>
+        <picklist>Commision_Status__c</picklist>
         <values>
-            <fullName>No</fullName>
+            <fullName>Active</fullName>
             <default>false</default>
         </values>
         <values>
-            <fullName>Yes</fullName>
-            <default>false</default>
-        </values>
-    </picklistValues>
-    <picklistValues>
-        <picklist>Commission_Paid__c</picklist>
-        <values>
-            <fullName>No</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>Yes</fullName>
-            <default>false</default>
-        </values>
-    </picklistValues>
-    <picklistValues>
-        <picklist>Commission_Structure__c</picklist>
-        <values>
-            <fullName>Trail Only</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>Up Front Only</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>Up Front Plus Trail</fullName>
+            <fullName>Suspended</fullName>
             <default>false</default>
         </values>
     </picklistValues>
@@ -1220,28 +1194,6 @@
         </values>
     </picklistValues>
     <picklistValues>
-        <picklist>Licence_Type__c</picklist>
-        <values>
-            <fullName>ACL</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>ACR</fullName>
-            <default>false</default>
-        </values>
-    </picklistValues>
-    <picklistValues>
-        <picklist>Licence_Verified__c</picklist>
-        <values>
-            <fullName>No</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>Yes</fullName>
-            <default>false</default>
-        </values>
-    </picklistValues>
-    <picklistValues>
         <picklist>Membership_Type__c</picklist>
         <values>
             <fullName>CAFBA</fullName>
@@ -1268,33 +1220,6 @@
         </values>
         <values>
             <fullName>Yes</fullName>
-            <default>false</default>
-        </values>
-    </picklistValues>
-    <picklistValues>
-        <picklist>Name_Title__c</picklist>
-        <values>
-            <fullName>Dr</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>Miss</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>Mr</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>Mrs</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>Ms</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>Other</fullName>
             <default>false</default>
         </values>
     </picklistValues>
@@ -1372,6 +1297,29 @@
         </values>
         <values>
             <fullName>Reseller</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Type_of_trust__c</picklist>
+        <values>
+            <fullName>Discretionary</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Fixed</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Hybrid</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Simple</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Unit</fullName>
             <default>false</default>
         </values>
     </picklistValues>

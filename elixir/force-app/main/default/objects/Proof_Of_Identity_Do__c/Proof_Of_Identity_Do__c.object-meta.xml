@@ -51,6 +51,7 @@
     <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>ControlledByParent</externalSharingModel>
     <label>Proof Of Identity Document</label>
     <nameField>
         <label>Proof Of Identity Do Name</label>

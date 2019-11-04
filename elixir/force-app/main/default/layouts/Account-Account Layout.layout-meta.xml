@@ -209,6 +209,10 @@
                 <behavior>Edit</behavior>
                 <field>Terms_And_Conditions_Of_PDS__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Last_Approved_Application_ID__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
@@ -364,6 +368,10 @@
     </quickActionList>
     <relatedLists>
         <fields>NAME</fields>
+        <fields>clcommon__Bank_Account_Name__c</fields>
+        <fields>BSB__c</fields>
+        <fields>clcommon__Bank_Account_Number__c</fields>
+        <fields>clcommon__Bank_Name__c</fields>
         <relatedList>clcommon__Bank_Account__c.clcommon__Account__c</relatedList>
     </relatedLists>
     <relatedLists>
@@ -384,6 +392,9 @@
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
+        <fields>Bank_Account_Name__c</fields>
+        <fields>loan__Bank_Name__c</fields>
+        <fields>BSB_Number__c</fields>
         <relatedList>loan__Bank_Account__c.loan__Account__c</relatedList>
     </relatedLists>
     <relatedLists>
@@ -412,6 +423,15 @@
     <relatedLists>
         <fields>NAME</fields>
         <relatedList>Party_Relationship__c.Company_Trust__c</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <fields>NAME</fields>
+        <fields>genesis__Account__c</fields>
+        <fields>genesis__Contact__c</fields>
+        <fields>genesis__Status__c</fields>
+        <fields>genesis__Estimated_Selling_Price__c</fields>
+        <fields>genesis__Financed_Amount__c</fields>
+        <relatedList>genesis__Applications__c.Sales_Channel_type__c</relatedList>
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>

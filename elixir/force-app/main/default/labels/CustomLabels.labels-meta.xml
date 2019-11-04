@@ -8,6 +8,28 @@
         <value>ACH</value>
     </labels>
     <labels>
+        <fullName>AccountNotFound</fullName>
+        <categories>Error Messages</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AccountNotFound</shortDescription>
+        <value>Account could not be found!</value>
+    </labels>
+    <labels>
+        <fullName>Account_Object</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Account Object</shortDescription>
+        <value>Account</value>
+    </labels>
+    <labels>
+        <fullName>Account_Owner_ID</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Account Owner</shortDescription>
+        <value>provisioningcls@38trialforce.com.develixir</value>
+    </labels>
+    <labels>
         <fullName>Active</fullName>
         <categories>status</categories>
         <language>en_US</language>
@@ -16,11 +38,276 @@
         <value>Active</value>
     </labels>
     <labels>
+        <fullName>ApplicantNotFoundErrorMsg</fullName>
+        <categories>Error Messages</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ApplicantNotFoundErrorMsg</shortDescription>
+        <value>Application not found.</value>
+    </labels>
+    <labels>
+        <fullName>ApplicationStatusAfterCLContractConverted</fullName>
+        <categories>status</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ApplicationStatusAfterCLContractConverted</shortDescription>
+        <value>APPROVED - CONVERTED TO CONTRACT</value>
+    </labels>
+    <labels>
+        <fullName>ApplicationStatusAfterConvertedToContract</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ApplicationStatusAfterConvertedToContract</shortDescription>
+        <value>APPROVED - CONVERTED TO CONTRACT</value>
+    </labels>
+    <labels>
+        <fullName>ApplicationToCLContractSuccessStatus</fullName>
+        <categories>status</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ApplicationToCLContractSuccessStatus</shortDescription>
+        <value>Application is converted to contract successfully.</value>
+    </labels>
+    <labels>
+        <fullName>Application_converted_to_Contract_message</fullName>
+        <categories>status</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Application converted to Contract message</shortDescription>
+        <value>Application is converted to contract successfully</value>
+    </labels>
+    <labels>
+        <fullName>Company_ABN</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Company ABN</shortDescription>
+        <value>companyABN</value>
+    </labels>
+    <labels>
+        <fullName>Company_Legal_Entity</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Company Legal Entity</shortDescription>
+        <value>Company</value>
+    </labels>
+    <labels>
+        <fullName>ConvertedToContractStatus</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ConvertedToContractStatus</shortDescription>
+        <value>APPROVED - CONVERTED TO CONTRACT</value>
+    </labels>
+    <labels>
+        <fullName>Director_party</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Director party</shortDescription>
+        <value>Director</value>
+    </labels>
+    <labels>
+        <fullName>Disbursement</fullName>
+        <categories>Distribution Type</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Disbursement</shortDescription>
+        <value>Disbursement</value>
+    </labels>
+    <labels>
+        <fullName>Elixir_Custom_Community_Portal_Profile</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Elixir Custom Community Portal Profile</shortDescription>
+        <value>Elixir Custom Community Plus User</value>
+    </labels>
+    <labels>
+        <fullName>Family_Trust_Legal_Entity</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Family Trust Legal Entity</shortDescription>
+        <value>Family Trust</value>
+    </labels>
+    <labels>
+        <fullName>Family_corporate_party</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Family corporate party</shortDescription>
+        <value>Family Corporate Trustee</value>
+    </labels>
+    <labels>
+        <fullName>Family_individual_party</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Family individual party</shortDescription>
+        <value>Family Individual Trustee</value>
+    </labels>
+    <labels>
+        <fullName>First_Tranche_Prepaid_Interest</fullName>
+        <categories>Prepaid Fee Name</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>First Tranche Prepaid Interest</shortDescription>
+        <value>First Tranche Prepaid Interest</value>
+    </labels>
+    <labels>
         <fullName>Funded</fullName>
         <categories>status</categories>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Funded</shortDescription>
         <value>Funded</value>
+    </labels>
+    <labels>
+        <fullName>FundingMsg</fullName>
+        <categories>status</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>FundingMsg</shortDescription>
+        <value>CL Contract has been funded.</value>
+    </labels>
+    <labels>
+        <fullName>InFunding</fullName>
+        <categories>status</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>InFunding</shortDescription>
+        <value>In Funding</value>
+    </labels>
+    <labels>
+        <fullName>Individiual_party</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Individiual party</shortDescription>
+        <value>Individual Investor</value>
+    </labels>
+    <labels>
+        <fullName>Individual_Legal_Entity</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Individual Legal Entity</shortDescription>
+        <value>Individual</value>
+    </labels>
+    <labels>
+        <fullName>Investor_Record_Type</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Investor Record Type</shortDescription>
+        <value>Investor</value>
+    </labels>
+    <labels>
+        <fullName>Joint_Individual_party</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Joint Individual party</shortDescription>
+        <value>Joint Individual Investor</value>
+    </labels>
+    <labels>
+        <fullName>Joint_Legal_Entity</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Joint Legal Entity</shortDescription>
+        <value>Joint</value>
+    </labels>
+    <labels>
+        <fullName>Joint_party</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Joint party</shortDescription>
+        <value>Joint Investor</value>
+    </labels>
+    <labels>
+        <fullName>LastBilledAmt</fullName>
+        <categories>APS creation parameters</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>LastBilledAmt</shortDescription>
+        <value>LAST BILLED AMOUNT</value>
+    </labels>
+    <labels>
+        <fullName>LoanWarehouseTrigger</fullName>
+        <categories>Trigger Name</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>LoanWarehouseTrigger</shortDescription>
+        <value>LoanWarehouseTrigger</value>
+    </labels>
+    <labels>
+        <fullName>Product_Name</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Product Name</shortDescription>
+        <value>Investor</value>
+    </labels>
+    <labels>
+        <fullName>Recurring</fullName>
+        <categories>APS creation parameters</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Recurring</shortDescription>
+        <value>RECURRING</value>
+    </labels>
+    <labels>
+        <fullName>Regular</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Regular</shortDescription>
+        <value>Regular</value>
+    </labels>
+    <labels>
+        <fullName>SMSF_Legal_Entity</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SMSF Legal Entity</shortDescription>
+        <value>SMSF</value>
+    </labels>
+    <labels>
+        <fullName>Smsf_corporate_party</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Smsf corporate party</shortDescription>
+        <value>SMSF Corporate Trustee</value>
+    </labels>
+    <labels>
+        <fullName>Smsf_individual_party</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Smsf individual party</shortDescription>
+        <value>SMSF Individual Trustee</value>
+    </labels>
+    <labels>
+        <fullName>Subsequent_Drawdown_Prepaid_Interest</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Subsequent Drawdown Prepaid Interest</shortDescription>
+        <value>Subsequent Drawdown Prepaid Interest</value>
+    </labels>
+    <labels>
+        <fullName>SuccessMessage</fullName>
+        <categories>status</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SuccessMessage</shortDescription>
+        <value>SUCCESS</value>
+    </labels>
+    <labels>
+        <fullName>True</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>True</shortDescription>
+        <value>TRUE</value>
+    </labels>
+    <labels>
+        <fullName>Trustee_Party</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Trustee party</shortDescription>
+        <value>Trustee</value>
+    </labels>
+    <labels>
+        <fullName>UnableToFund</fullName>
+        <categories>Error Messages</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>UnableToFund</shortDescription>
+        <value>Unable to fund!</value>
     </labels>
 </CustomLabels>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Rental_Income_Basis__c</fullName>
+    <externalId>false</externalId>
+    <label>Rental Income Basis</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Real Estate Agent</fullName>
+                <default>false</default>
+                <label>Real Estate Agent</label>
+            </value>
+            <value>
+                <fullName>RP Data</fullName>
+                <default>false</default>
+                <label>RP Data</label>
+            </value>
+            <value>
+                <fullName>Tenancy Agreement</fullName>
+                <default>false</default>
+                <label>Tenancy Agreement</label>
+            </value>
+            <value>
+                <fullName>Valuation</fullName>
+                <default>false</default>
+                <label>Valuation</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

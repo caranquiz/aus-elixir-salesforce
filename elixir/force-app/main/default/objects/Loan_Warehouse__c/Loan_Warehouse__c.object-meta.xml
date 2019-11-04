@@ -51,6 +51,7 @@
     <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>Private</externalSharingModel>
     <label>Loan Warehouse</label>
     <nameField>
         <label>Loan Warehouse Name</label>

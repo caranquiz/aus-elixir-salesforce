@@ -77,7 +77,7 @@ public with sharing class ElixirTestHelper {
         
         
         account dummyClient = new account(); 
-        dummyClient.Name = 'SCP';
+        dummyClient.Name = 'Elixir';
         insert dummyClient;
         
         //Create a dummy Loan Account

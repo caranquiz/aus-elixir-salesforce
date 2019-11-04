@@ -6,17 +6,17 @@ Created Date:   05/10/2018
 global class ConstantValues{
 
     //Lending Calculator Constant Values 
-    global static string TermValidationMsg='Please define the loan term.'; 
-    global static string AppAlreadyConvertedMsg='Application has already been converted to Loan Application.';
-    global static string IntRateValidationMsg='Interest Rate can not be left blank or a negative value.';
-    global static string PmntFreqReqMsg='Please define the payment frequency.';
-    global static String loanAmntValidation='Please provide a valid loan amount.';
-    global static string investmentAmountCannotBeLess = 'Investment amount cannot be less than requested loan amount for this single tranche loan.';
-    global static string disbursement = 'Disbursement';
-    global static string inFunding = 'In Funding';
-    global static string regular = 'Regular';
-    global static string approved = 'Approved';
-        
+    global static final String TERM_VALIDATION_MSG='Please define the loan term.'; 
+    global static final String APP_ALREADY_CONVERTED_MSG='Application has already been converted to Loan Application.';
+    global static final String INTEREST_RATE_VALIDATION_MSG='Interest Rate can not be left blank or a negative value.';
+    global static final String PAYMENT_FREQUENCY_VALIDATION_MSG='Please define the payment frequency.';
+    global static final String LOAN_AMT_VALIDATION_MSG='Please provide a valid loan amount.';
+    global static final String INVESTMENT_AMT_CANNOT_BE_LESS_MSG = 'Investment amount cannot be less than requested loan amount for this single tranche loan.';
+    global static final String DISBURSEMENT = 'Disbursement';
+    global static final String APPROVED = 'Approved';
+    global static final String AVER = 'aver';
+    global static final String FEE_AMNT = 'feeAmnt';
+
     //Personal Info Api Constant values
     global static string gmtFormat = 'yyyy-MM-dd HH:mm:ss.SSS';
     global static string personal = 'Personal';
@@ -75,6 +75,7 @@ global class ConstantValues{
     global static string validState = 'Please Enter Valid State';
     global static string validPostCode = 'Please Enter Postal Code';
     global static string validCountry = 'Please Enter Country';
+    global static string validateAddress = 'Please enter valid Address';
     global static string validPass = 'Please Enter Valid Password';
     global static string validconPass = 'Please Enter Confirm Password';
     global static string validconEmail = 'Please Enter Confirm Email';
@@ -87,5 +88,79 @@ global class ConstantValues{
     global static string diffrentValue = 'Not expecting this value';
     global static string userExist = 'User already Exists !!';
     global static string provideAccId = 'Please provide account id';
+    
+    
+    
+    
+    //Constant exception msg values for ABNName API   
+    global static final String exceptionNoType = 'Could not determine which entity to relate to.';
+    global static final String partyNotFound = 'Party Record Not Found';
+    global static final String employeeNotFound = 'Employee Record Not Found';
+    global static final String genericExceptionmsg = 'Something went wrong. Please contact System Administrator';
+    global static final String genericException2 = 'Something went wrong in ABNName API. Please contact System Administrator. Reason: ';
+    global static final String genericResponseError = 'Something went wrong while receiving response. Reason: ';
+    global static final String abnAPIemptyMap = 'Service Layer Provided an Empty Request Map';
+    global static final String recordCreationException = 'Something went wrong during record creation. Reason: ';
+    global static final String responseParsingException = 'Something went wrong in Response Parsing. Reason: ';
+    global static final String uniqueBlank = '/00/';
+    
+    //Constant Values for ABNNameAPI
+    global static final String serviceName = 'ID Verification';
+    global static final String abnAPIservice = 'service';
+    global static final String abnAPIcompanyABN = 'companyABN';
+    global static final String abnAPIpostcode = 'postcode';
+    global static final String abnAPItradingName = 'tradingName';
+    global static final String abnAPIbusinessName = 'businessName';
+    global static final String abnAPIlegalName = 'legalName';
+    global static final String abnAPIactiveABNsOnly = 'activeABNsOnly';
+    global static final String abnAPInsw = 'NSW';
+    global static final String abnAPIsa = 'SA';
+    global static final String abnAPIact = 'ACT';
+    global static final String abnAPIvic = 'VIC';
+    global static final String abnAPIwa = 'WA';
+    global static final String abnAPInt = 'NT';
+    global static final String abnAPIqld = 'QLD';
+    global static final String abnAPItas = 'TAS';
+    global static final String abnAPIsearchWidth = 'searchWidth';
+    global static final String abnAPIminimumScore = 'minimumScore';
+    global static final String abnAPImaxSearchResults = 'maxSearchResults';
+    global static final String testString1 = 'ABRSearchByNameAdvancedSimpleProtocol2017';
+    global static final String partyInfo = 'partyInfo';
+    
+    //Constant Exception Msg for ABN API
+    global static final String abnInfoException = 'ABN Information record not found';
+    global static final String effectiveDateError = 'Proper Organization Name could not be determined based on effective date. Please contact System Administrator';
+    global static final String lookupConflict = 'Conflicting lookup relationship found. Please contact System Administrator' ;
+    global static final String parentRecordLookupException = 'Error occurred while relating to parent record. Please contact System Administrator';
+    global static final String companyNotFound = 'Company List ID Not Found';
+    global static final String OrganizationNameNotfound = 'Proper Organization Name could not be determined based on effective date. Please contact System Administrator';
+    
+    
+    //Constant Values for ABN_API
+    global static final String abn_API_service = 'service';
+    global static final String abn_API_companyABN = 'companyABN';
+    global static final String abn_API_histdetails = 'histdetails';
+    global static final String abn_API_controlField = '12345';
+    global static final String CompanyInfo = 'companyInfo';
+    
+    
+    //Constant Exception Message for ACN API
+    global static final String acn_API_service = 'service';
+    global static final String acn_API_companyACN = 'companyACN';
+    global static final String acn_API_histdetails = 'histdetails';
+    global static final String acn_API_controlField = '12345';
+    
+    //Constant Exception Message for ACN API
+    
+    global static final String acnAPIemptyMap = 'Service Layer Provided an Empty Request Map';
+    global static final String Success = 'Success';
+    global static final String acnInfoNotFound = 'ACN Information record not found';
+    global static final String acnInfoError = 'This indicates that we did not get the expected response from ACN API';
+    global static final String acnResponseError  = 'This indicates that we did not get the expected response parsing from ACN API';
+    global static final String abnResponseError  = 'This indicates that we did not get the expected response parsing from ABN API';
+    
+
+    
+    
     
 }

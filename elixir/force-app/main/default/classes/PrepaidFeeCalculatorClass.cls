@@ -8,17 +8,19 @@ public without sharing class PrepaidFeeCalculatorClass implements loan.CustomFee
     public Decimal computeFee(loan__Fee__c fee, loan__Loan_Account__c loan){
         try{
             //Decimal amt = 0;
-            System.debug('Entered into prepaid calculator class');
             loan__Loan_Account__c lacc = [Select id,
                                                  loan__Account__c,
                                                  loan__Frequency_of_Loan_Payment__c,
-                                                 Application__c
+                                                 Application__c,
+                                                 Loan_Application__c,
+                                                 loan__Account__r.last_Approved_Application_ID__c
                                           From loan__Loan_Account__c 
                                           Where id =: loan.id];
-                                          
-    
             //---------------------------------------------------------------------------------
-            
+            if(lacc != null && lacc.loan__Account__r.last_Approved_Application_ID__c != null){
+                lacc.Application__c = lacc.loan__Account__r.last_Approved_Application_ID__c;
+                update lacc;
+            }
             
             //--------------------------------------------------------------------------------                              
             //       code to dynamically get all the fields                               
@@ -33,7 +35,6 @@ public without sharing class PrepaidFeeCalculatorClass implements loan.CustomFee
             //   Creating Query using the Fields
             //---------------------------------------------------------------------------------
             String query='Select '+String.join(apiNames,',')+' From genesis__Applications__c Where id=\''+lacc.Application__c+'\'';
-            System.debug('==check query ===='+query);                              
             genesis__Applications__c genApp=Database.query(query);
             
             //---------------------------------------------------------------------------------

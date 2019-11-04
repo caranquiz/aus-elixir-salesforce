@@ -1,6 +1,29 @@
 /********************************************************************************
     * Description: Loan Application Convert Class to convert app to loan app and contract
     * Developer: Rameswari Barman
+    * Creation Date : 8/08/2019
+    * Implementation code : genesis__Applications__c app = [SELECT    id,
+                                                Name,
+                                                genesis__Balloon_Payment__c,
+                                                genesis__Account__c,
+                                                genesis__Interest_Rate__c,
+                                                genesis__Term__c,
+                                                genesis__Payment_Frequency__c,
+                                                genesis__Expected_First_Payment_Date__c,
+                                                genesis__Expected_Start_Date__c,
+                                                genesis__CL_Purpose__r.loan__Lending_Purpose__c,
+                                                genesis__CL_Product__r.loan__Lending_Product__c,
+                                                genesis__CL_Product__c,
+                                                genesis__CL_Product__r.clcommon__Product_Name__c,
+                                                genesis__CL_Product__r.loan__Lending_Product__r.id,
+                                                genesis__Status__c,
+                                                Loan_Application__c,
+                                                genesis__Loan_Amount__c,
+                                                genesis__Days_Convention__c,
+                                                genesis__Interest_Only_Period__c,
+                                                Fixed_Rate_Term__c
+                                                FROM genesis__Applications__c where id = 'XXXXXX'];
+    String st=LoanApplicationConvert.convertLoanApplicationCtrl(app.Id);
 ********************************************************************************/
 
 
@@ -20,14 +43,18 @@ global class LoanApplicationConvert{
         Account acc; 
         loanApplicationList = new List<peer__Loan_Application__c>();
         if(genApp != NULL){
-            acc = [SELECT id FROM Account WHERE id =: genApp.genesis__Account__c]; 
+            acc = [SELECT id,Last_Approved_Application_ID__c FROM Account WHERE id =: genApp.genesis__Account__c]; 
+            acc.Last_Approved_Application_ID__c = genApp.Id;
+            if(acc != null && Schema.sObjectType.Account.fields.Last_Approved_Application_ID__c.isUpdateable()){
+                update acc;
+            }
             if(acc != null){
                 peer.LoanApplicationBuilder loanApplication1 = new peer.LoanApplicationBuilder(acc,
-                                                                                          genApp.genesis__Loan_Amount__c,
-                                                                                          genApp.genesis__Term__c,
-                                                                                          genApp.genesis__Interest_Rate__c,
-                                                                                          genApp.genesis__CL_Purpose__r.loan__Lending_Purpose__c);
-                                                                                          
+                                                                                            genApp.genesis__Loan_Amount__c,
+                                                                                            genApp.genesis__Term__c,
+                                                                                            genApp.genesis__Interest_Rate__c,
+                                                                                            genApp.genesis__CL_Purpose__r.loan__Lending_Purpose__c);
+                                                                                            
                 //Set Disbursal Date
                 loanApplication1.setExpectedDisbursalDate(currentSystemDate);
                 
@@ -59,45 +86,51 @@ global class LoanApplicationConvert{
                 if(loanApplication != NULL){  
                     //Displays created loan appliaction id on genesis application  
                     genApp.Loan_Application__c = loanApplication.Id;
-                    genApp.genesis__Status__c = 'APPROVED - CONVERTED TO CONTRACT';
+                    genApp.genesis__Status__c = System.label.ApplicationStatusAfterCLContractConverted;
                     
                     //loanApplication.Application__c = genApp.Id;   
-                    loanApplication.peer__Stage__c = 'In Funding';   
+                    loanApplication.peer__Stage__c = System.label.InFunding;   
                     
                     //Added for updation
                     loanApplicationList.add(loanApplication);
                     
                     //query loan Account
                     loanAcc = [SELECT ID,
-                                      loan__Loan_Status__c,
-                                  Loan_Application__c
-                               FROM loan__loan_account__c
-                               WHERE ID =: loanApplication.peer__Loan__c];
-                    
+                                loan__Loan_Status__c,
+                                Loan_Application__c,
+                                Fixed_Rate_Term__c,
+                                Application__c
+                                FROM loan__loan_account__c
+                            WHERE ID =: loanApplication.peer__Loan__c];
                     //Map data from Application to CL contract
-                    loanAcc.Loan_Application__c =loanApplication.Id;
-                    loanAcc.loan__Loan_Status__c = 'Approved';
+                    loanAcc.Loan_Application__c = loanApplication.Id;
+                    loanAcc.loan__Loan_Status__c = ConstantValues.APPROVED;
                     loanAcc.Application__c=genApp.Id;
+                    loanAcc.Fixed_Rate_Term__c  = genApp.Fixed_Rate_Term__c;
                     
                 }
             }
             else{
-                returnString = 'Account could not be found!';
+                returnString = System.label.AccountNotFound;
             }
             if(!loanApplicationList.isEmpty()){
                 update loanApplicationList;
-                update genApp;
-                update loanAcc;
-                returnString = 'Application converted to contract successfully!';
+                if(genApp != null){//updates the status and loan application field of application record
+                    update genApp;
+                }
+                if(loanAcc != null){
+                    update loanAcc;
+                }
+                returnString = System.label.ApplicationToCLContractSuccessStatus;
             }
         }
         else{
-            returnString = 'Application not found!';
+            returnString = System.label.ApplicantNotFoundErrorMsg;
         }
     return returnString;
     }
-    webservice static String convertLoanApplicationCtrl(String appId) {
-    genesis__Applications__c  genApp =[SELECT id,
+    webservice static String convertLoanApplicationCtrl(Id appId) {
+        genesis__Applications__c  genApp =[SELECT id,
                                         Name,
                                         genesis__Balloon_Payment__c,
                                         genesis__Account__c,
@@ -115,23 +148,23 @@ global class LoanApplicationConvert{
                                         Loan_Application__c,
                                         genesis__Loan_Amount__c,
                                         genesis__Days_Convention__c,
-                                        genesis__Interest_Only_Period__c
-                                FROM genesis__Applications__c where id = :appId];
-                                            
+                                        genesis__Interest_Only_Period__c,
+                                        Fixed_Rate_Term__c
+                                FROM genesis__Applications__c where id = :appId];                                
         if(genApp.genesis__Term__c==null){
-            return ConstantValues.termValidationMsg;
+            return ConstantValues.TERM_VALIDATION_MSG;
         }
         if(genApp.Loan_Application__c!=null){
-            return ConstantValues.AppAlreadyConvertedMsg ;
+            return ConstantValues.APP_ALREADY_CONVERTED_MSG;
         }
         if(genApp.genesis__Interest_Rate__c == null || genApp.genesis__Interest_Rate__c <0){
-            return ConstantValues.IntRateValidationMsg ;
+            return ConstantValues.INTEREST_RATE_VALIDATION_MSG;
         }
         if(genApp.genesis__Payment_Frequency__c==null){
-            return ConstantValues.PmntFreqReqMsg;
+            return ConstantValues.PAYMENT_FREQUENCY_VALIDATION_MSG;
         }
         if(genApp.genesis__Loan_Amount__c==null || genApp.genesis__Loan_Amount__c==0){
-            return ConstantValues.loanAmntValidation;
+            return ConstantValues.LOAN_AMT_VALIDATION_MSG;
         }
         String result = convertLoanApplication(genApp); 
         return result;
