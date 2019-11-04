@@ -1,0 +1,52 @@
+{
+    "records": [
+        {
+            "attributes": {
+                "type": "clcommon__Legal_Entity__c",
+                "referenceId": "clcommon__Legal_Entity__cRef1"
+            },
+            "Name": "Joint",
+            "IsDeleted": false
+        },
+        {
+            "attributes": {
+                "type": "clcommon__Legal_Entity__c",
+                "referenceId": "clcommon__Legal_Entity__cRef2"
+            },
+            "Name": "Individual",
+            "IsDeleted": false
+        },
+        {
+            "attributes": {
+                "type": "clcommon__Legal_Entity__c",
+                "referenceId": "clcommon__Legal_Entity__cRef3"
+            },
+            "Name": "SMSF",
+            "IsDeleted": false
+        },
+        {
+            "attributes": {
+                "type": "clcommon__Legal_Entity__c",
+                "referenceId": "clcommon__Legal_Entity__cRef4"
+            },
+            "Name": "Trust",
+            "IsDeleted": false
+        },
+        {
+            "attributes": {
+                "type": "clcommon__Legal_Entity__c",
+                "referenceId": "clcommon__Legal_Entity__cRef5"
+            },
+            "Name": "Company",
+            "IsDeleted": false
+        },
+        {
+            "attributes": {
+                "type": "clcommon__Legal_Entity__c",
+                "referenceId": "clcommon__Legal_Entity__cRef6"
+            },
+            "Name": "Family Trust",
+            "IsDeleted": false
+        }
+    ]
+}

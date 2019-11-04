@@ -1,0 +1,10 @@
+[
+    {
+        "sobject": "ints__Integration_Configuration__c",
+        "saveRefs": true,
+        "resolveRefs": false,
+        "files": [
+            "export-data-ints__Integration_Configuration__cs.json"
+        ]
+    }
+]

@@ -1,0 +1,10 @@
+[
+    {
+        "sobject": "clcommon__Legal_Entity__c",
+        "saveRefs": true,
+        "resolveRefs": false,
+        "files": [
+            "export-data-clcommon__Legal_Entity__cs.json"
+        ]
+    }
+]
