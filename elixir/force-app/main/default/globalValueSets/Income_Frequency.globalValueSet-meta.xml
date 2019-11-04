@@ -11,9 +11,14 @@
         <label>Monthly</label>
     </customValue>
     <customValue>
-        <fullName>Annualy</fullName>
+        <fullName>Yearly</fullName>
         <default>false</default>
-        <label>Annualy</label>
+        <label>Yearly</label>
+    </customValue>
+    <customValue>
+        <fullName>Fortnightly</fullName>
+        <default>false</default>
+        <label>Fortnightly</label>
     </customValue>
     <masterLabel>Income Frequency</masterLabel>
     <sorted>false</sorted>

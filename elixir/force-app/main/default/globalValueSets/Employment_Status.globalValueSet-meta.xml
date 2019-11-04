@@ -51,6 +51,12 @@
         <label>Other</label>
     </customValue>
     <customValue>
+        <fullName>Secondary</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>Secondary</label>
+    </customValue>
+    <customValue>
         <fullName>Primary</fullName>
         <default>false</default>
         <isActive>false</isActive>
@@ -61,12 +67,6 @@
         <default>false</default>
         <isActive>false</isActive>
         <label>Previous</label>
-    </customValue>
-    <customValue>
-        <fullName>Secondary</fullName>
-        <default>false</default>
-        <isActive>false</isActive>
-        <label>Secondary</label>
     </customValue>
     <masterLabel>Employment Status</masterLabel>
     <sorted>false</sorted>
