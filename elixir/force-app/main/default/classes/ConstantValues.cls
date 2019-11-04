@@ -33,7 +33,10 @@ global class ConstantValues{
     global static string emailEncodingKey = 'ISO-8859-1';
     global static string langLocalKey = 'en_US';
     global static string localesidkey = 'en_AU';
-    global static string timezonesidkey = 'Australia/Sydney';   
+    global static string timezonesidkey = 'Australia/Sydney'; 
+    global static final String RESPONSE  = 'RESPONSE';
+    
+      
     
     //Financial Info Api
     global static string validTfnNum= 'Please enter valid tfn number';
@@ -158,6 +161,8 @@ global class ConstantValues{
     global static final String acnInfoError = 'This indicates that we did not get the expected response from ACN API';
     global static final String acnResponseError  = 'This indicates that we did not get the expected response parsing from ACN API';
     global static final String abnResponseError  = 'This indicates that we did not get the expected response parsing from ABN API';
+    global static final String acnPartyInfo  = 'partyInfo';
+    
     
 
     

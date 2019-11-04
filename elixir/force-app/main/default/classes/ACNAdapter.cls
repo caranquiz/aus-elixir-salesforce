@@ -17,7 +17,7 @@ global without sharing class ACNAdapter extends ints.AbstractMockAdapter{
         ints.HttpRequestObject httpReq = new ints.HttpRequestObject();
         try{
                 if(acnRequestMap != NULL){
-                    List<Map<String,Object>> partyMap = (List<Map<String,Object>>)acnRequestMap.get('partyInfo');
+                    List<Map<String,Object>> partyMap = (List<Map<String,Object>>)acnRequestMap.get(ConstantValues.acnPartyInfo);
                     ABN_Values__c guidValue = ABN_Values__c.getOrgDefaults();
                     String store = String.valueOf(acnRequestMap.get(ConstantValues.acn_API_service)) + '?searchString=' + String.valueOf(partyMap.get(0).get(ConstantValues.acn_API_companyACN)) + '&includeHistoricalDetails=' + String.valueOf(acnRequestMap.get(ConstantValues.acn_API_histdetails)) + '&authenticationGuid='+ guidValue.Guid__c;
                     httpReq.endpoint =IntegrationConfiguration.apiEndpoint+store;
@@ -35,10 +35,6 @@ global without sharing class ACNAdapter extends ints.AbstractMockAdapter{
                     }
                     httpReq.addHeaderParameter('Content-type','application/x-www-form-urlencoded');
                     
-                    /************************Creating and assigning header values******************************/                    
-                    //Map<String,String> headerMap = new Map<String,String>();
-                    //headerMap.put('Content-type','application/x-www-form-urlencoded'); 
-                    //httpReq.headerMap = (headerMap);
                     
                  }else{
                     throw new CustomException(ConstantValues.acnAPIemptyMap);

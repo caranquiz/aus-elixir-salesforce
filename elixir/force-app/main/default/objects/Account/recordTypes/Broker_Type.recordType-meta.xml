@@ -1030,6 +1030,25 @@
         </values>
     </picklistValues>
     <picklistValues>
+        <picklist>Broker_Membership_Type__c</picklist>
+        <values>
+            <fullName>CAFBA</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>FBAA</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>MFAA</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>None</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
         <picklist>Commision_Status__c</picklist>
         <values>
             <fullName>Active</fullName>
@@ -1184,6 +1203,28 @@
     </picklistValues>
     <picklistValues>
         <picklist>Is_this_the_trading_address__c</picklist>
+        <values>
+            <fullName>No</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Yes</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Licence_Type__c</picklist>
+        <values>
+            <fullName>ACL</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>ACR</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>License_Verified__c</picklist>
         <values>
             <fullName>No</fullName>
             <default>false</default>
