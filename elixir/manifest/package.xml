@@ -137,11 +137,9 @@
         <members>Account.Office_Phone__c</members>
         <members>Account.Policy_Expiry_Date__c</members>
         <members>Account.Policy_Number__c</members>
-<<<<<<< HEAD
         <members>Account.TFN_Number__c</members>
         <members>Account.Terms_And_Conditions_Of_PDS__c</members>
         <members>Account.Transfer_need_to_approve__c</members>
-=======
         <members>Account.Property_Corporate_Trustee_ACN__c</members>
         <members>Account.Property_Corporate_Trustee_Name__c</members>
         <members>Account.Property_Corporate_Trustee_Start_Date__c</members>
@@ -167,7 +165,6 @@
         <members>Account.Trust_Date_Of_Establishment__c</members>
         <members>Account.Transfer_need_to_approve__c</members>
         <members>Account.Sales_Channel_Type__c</members>
->>>>>>> c6bb7ba539dc1686d029cfd48c347490669ad96b
         <members>Account.Type_of_trust__c</members>
         <members>Contact.Address__c</members>
         <members>Contact.Age_of_Applicant__c</members>
