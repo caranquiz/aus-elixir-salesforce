@@ -602,6 +602,7 @@
         <members>Account.TFN_Number__c</members>
         <members>clcommon__Bank_Account__c.BSB__c</members>
         <members>Contact.Create_user_for_this_contact__c</members>
+        <members>loan__Disbursal_Txn_Distribution__c.First_Drawdown__c</members>
         <name>CustomField</name>
     </types>
     <types>
@@ -631,6 +632,7 @@
     <members>Elixir_Before_Or_On_Settlement_Fees__c</members>
     <members>QBEpostCode__c</members>
     <members>S_P_Postcode__c</members>
+    <members>loan__Disbursal_Txn_Distribution__c</members>
     <name>CustomObject</name>
     </types>
     <types>
