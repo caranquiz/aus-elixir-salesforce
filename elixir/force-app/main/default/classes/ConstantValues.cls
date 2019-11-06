@@ -162,6 +162,7 @@ global class ConstantValues{
     global static final String acnResponseError  = 'This indicates that we did not get the expected response parsing from ACN API';
     global static final String abnResponseError  = 'This indicates that we did not get the expected response parsing from ABN API';
     global static final String acnPartyInfo  = 'partyInfo';
+    global static final String acnNotFound = 'ACN Not Found';
     
     
 

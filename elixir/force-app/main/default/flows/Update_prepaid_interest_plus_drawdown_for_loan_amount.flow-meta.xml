@@ -102,7 +102,7 @@
         <locationX>0</locationX>
         <locationY>0</locationY>
         <defaultConnector>
-            <targetReference>myDecision</targetReference>
+            <targetReference>isChangedDecision6_myRule_1_genesis_Loan_Amount_c</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>default</defaultConnectorLabel>
         <rules>
@@ -123,9 +123,41 @@
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>myDecision</targetReference>
+                <targetReference>isChangedDecision6_myRule_1_genesis_Loan_Amount_c</targetReference>
             </connector>
             <label>isChangedRule_5_myRule_1_Subsequent_Drawdown_Prepaid_Interest_Sum_c</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>isChangedDecision6_myRule_1_genesis_Loan_Amount_c</name>
+        <label>isChangedDecision6_myRule_1_genesis_Loan_Amount_c</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>myDecision</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>default</defaultConnectorLabel>
+        <rules>
+            <name>isChangedRule_6_myRule_1_genesis_Loan_Amount_c</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>myVariable_old</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>myVariable_old.genesis__Loan_Amount__c</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <elementReference>myVariable_current.genesis__Loan_Amount__c</elementReference>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>myDecision</targetReference>
+            </connector>
+            <label>isChangedRule_6_myRule_1_genesis_Loan_Amount_c</label>
         </rules>
     </decisions>
     <decisions>
@@ -142,7 +174,7 @@
         <defaultConnectorLabel>default</defaultConnectorLabel>
         <rules>
             <name>myRule_1</name>
-            <conditionLogic>(1 OR 2 OR 4 OR 5) AND 3</conditionLogic>
+            <conditionLogic>((1 OR 2 OR 4 OR 5) AND 3) OR (3 AND 6)</conditionLogic>
             <conditions>
                 <processMetadataValues>
                     <name>inputDataType</name>
@@ -298,6 +330,37 @@
                     <booleanValue>true</booleanValue>
                 </rightValue>
             </conditions>
+            <conditions>
+                <processMetadataValues>
+                    <name>inputDataType</name>
+                    <value>
+                        <stringValue>Boolean</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>leftHandSideType</name>
+                    <value>
+                        <stringValue>Number</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>operatorDataType</name>
+                    <value>
+                        <stringValue>Number</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>rightHandSideType</name>
+                    <value>
+                        <stringValue>Boolean</stringValue>
+                    </value>
+                </processMetadataValues>
+                <leftValueReference>isChangedRule_6_myRule_1_genesis_Loan_Amount_c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
             <connector>
                 <targetReference>myRule_1_A1</targetReference>
             </connector>
@@ -311,12 +374,12 @@
                 <stringValue>[genesis__Applications__c].genesis__Initial_Advance__c+[genesis__Applications__c].First_Tranche_Prepaid_Interest__c+[genesis__Applications__c].Subsequent_Drawdown_Prepaid_Interest_Sum__c+[genesis__Applications__c].Total_Subsequent_Drawdown__c</stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_6_myRule_1_A1_4009921844</name>
+        <name>formula_7_myRule_1_A1_5300308918</name>
         <dataType>Number</dataType>
         <expression>{!myVariable_current.genesis__Initial_Advance__c}+{!myVariable_current.First_Tranche_Prepaid_Interest__c}+{!myVariable_current.Subsequent_Drawdown_Prepaid_Interest_Sum__c}+{!myVariable_current.Total_Subsequent_Drawdown__c}</expression>
         <scale>18</scale>
     </formulas>
-    <interviewLabel>Update_prepaid_interest_plus_drawdown_for_loan_amount-9_InterviewLabel</interviewLabel>
+    <interviewLabel>Update_prepaid_interest_plus_drawdown_for_loan_amount-11_InterviewLabel</interviewLabel>
     <label>Update prepaid interest plus drawdown for loan amount</label>
     <processMetadataValues>
         <name>ObjectType</name>
@@ -389,6 +452,42 @@
             <processMetadataValues>
                 <name>dataType</name>
                 <value>
+                    <stringValue>Picklist</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Interest Calculation Method</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideReferenceTo</name>
+                <value>
+                    <stringValue/>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Picklist</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>genesis__Interest_Calculation_Method__c</field>
+            <value>
+                <stringValue>Flat</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
                     <stringValue>Number</stringValue>
                 </value>
             </processMetadataValues>
@@ -418,7 +517,7 @@
             </processMetadataValues>
             <field>genesis__Loan_Amount__c</field>
             <value>
-                <elementReference>formula_6_myRule_1_A1_4009921844</elementReference>
+                <elementReference>formula_7_myRule_1_A1_5300308918</elementReference>
             </value>
         </inputAssignments>
         <object>genesis__Applications__c</object>

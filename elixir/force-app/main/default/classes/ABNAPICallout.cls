@@ -10,8 +10,8 @@ global class ABNAPICallout{
     
     public static List<ABN_Company_List__c> companyList = new List<ABN_Company_List__c>();
     public static List<ABN_Company_List__c> updatedCompanyList = new List<ABN_Company_List__c>();
-    
     global static void makeABNCallout(Id companyListId){
+         Savepoint sp;
         try{
             companyList = [SELECT Id,
                                   Name, 
@@ -30,12 +30,12 @@ global class ABNAPICallout{
             compInfo.put('abnCompanyId',companyList.get(0).id);
             companyMap.put('companyInfo',compInfo);
             companyMap.put('ExecutionPriority', 1);
-
-            ints.AbstractMockService   mc  = ints.APIFactory.getPassthroughService();
-            ints.IntegrationResponseObject responseObject = mc.runPassthroughService(companyMap,ConstantValues.serviceName,'');
             
+            ints.AbstractMockService   mc  = ints.APIFactory.getPassthroughService();
+            ints.IntegrationResponseObject responseObject = mc.runPassthroughService(companyMap,ConstantValues.serviceName,'');           
             ABN_Information__c abnObj = new ABN_Information__c();
             abnObj = ABNResponse.saveResponse(responseObject);
+            sp = Database.setSavepoint();
             insert abnObj;
             updateParentRecord(abnObj);
             
@@ -43,9 +43,11 @@ global class ABNAPICallout{
             
         }
         catch(Exception e){
+            Database.rollback(sp);
             insert new clcommon__Log__c(
                         clcommon__Message__c = 'ABN_API :Exception:: '+e.getStackTraceString()+'error='+e.getMessage()+' at Line Number '+e.getLineNumber(),
                         clcommon__Time__c = System.Now());
+            
             //return ConstantValues.EXCEPTION_OCCURED;
         }
         
@@ -56,6 +58,7 @@ global class ABNAPICallout{
     private static void updateParentRecord(ABN_Information__c abnObj){
         try{
             //CHECK IF NEWLY CREATED ABN INFORMATION OBJECT IS BLANK OR NOT
+            
             if(abnObj == NULL){
                 throw new CustomException(ConstantValues.abnInfoException);
             }
@@ -93,6 +96,7 @@ global class ABNAPICallout{
             }else if(String.isNotBlank(companyList.get(0).ABN_Company_Information__r.Party__c) && String.isNotBlank(companyList.get(0).ABN_Company_Information__r.Employment_Information__c)){
                 throw new CustomException(ConstantValues.lookupConflict);
             }else{
+                 
                  throw new CustomException(ConstantValues.parentRecordLookupException);   
             }
         }catch(Exception e){
@@ -105,18 +109,21 @@ global class ABNAPICallout{
     // ***** Delete Unwanted Company Record from ABN Company Search ******//
     
     private static void deleteUnwantedCompanyRecords(Id companyListId){
-        updatedCompanyList = [SELECT Id, 
-                                     Name, 
-                                     Selected_for_ABN_Search__c 
-                                     FROM  ABN_Company_List__c 
-                                     WHERE Id !=: companyListId
-                                     AND Selected_for_ABN_Search__c = false];
-        
-        companyList.get(0).Selected_for_ABN_Search__c = true;
-        UPDATE companyList.get(0);        
-        DELETE updatedCompanyList;
-        
-        
+        try{
+            updatedCompanyList = [SELECT Id, 
+                                        Name, 
+                                        Selected_for_ABN_Search__c 
+                                        FROM  ABN_Company_List__c 
+                                        WHERE Id !=: companyListId
+                                        AND Selected_for_ABN_Search__c = false];
+
+                companyList.get(0).Selected_for_ABN_Search__c = true;
+                UPDATE companyList.get(0);        
+                DELETE updatedCompanyList;
+
+        }catch(Exception e){
+            throw new CustomException(e.getMessage());
+        } 
     }
     
     // Webservice method for calling this ABNAPICallout class &  makeABNCallout() method for ABN COmpany Search Integration. ******//

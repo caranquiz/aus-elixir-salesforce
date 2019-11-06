@@ -1,7 +1,6 @@
 /****************************************
  This class runs the exception snippet
- Developer : Deep Bhattacharjee
- ****************************************/
+  ****************************************/
 
 global class ExceptionUtilClass{
     public static clcommon.Response systemExceptionSnippet(clcommon.Response r, Exception e){

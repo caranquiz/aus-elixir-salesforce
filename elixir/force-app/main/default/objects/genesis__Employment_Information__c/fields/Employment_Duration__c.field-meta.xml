@@ -2,7 +2,7 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Employment_Duration__c</fullName>
     <externalId>false</externalId>
-    <formula>(Today() - genesis__Start_Date__c) / 30</formula>
+    <formula>(Today() -  genesis__Start_Date__c) / 30</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
     <label>Employment Duration</label>
     <precision>18</precision>

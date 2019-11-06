@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>clcommon__Left_Over_Depreciation_Value__c</fullName>
+    <deprecated>false</deprecated>
+    <description>Internal field. Used to reduce the number of records for batch processing as we cannot dynamically check the book value is less than or equal to salvage value.</description>
+    <externalId>false</externalId>
+    <formula>if(ISPICKVAL( clcommon__Warehouse_Depreciation_Setup__r.clcommon__Depreciation_Method__c,&#39;STL&#39;),(clcommon__Equipment_NBV__c  -  clcommon__Salvage_Value__c), clcommon__Equipment_NBV__c)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Left Over Depreciation Value</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackTrending>false</trackTrending>
+    <type>Currency</type>
+</CustomField>

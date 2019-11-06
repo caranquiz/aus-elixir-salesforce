@@ -361,6 +361,7 @@ global class ABNNameResponse{
         //RECORD GEN METHOD
         global static void createRecords(String sfId, String identifier){
             //INITIALIZING AND POPULATING VALUES INTO PARENT RECORD
+            Savepoint sp;
             try{
                 ABN_Company_Information__c abnInfo = new ABN_Company_Information__c();
                 List<ABN_Company_List__c> companyList = new List<ABN_Company_List__c>();
@@ -374,6 +375,7 @@ global class ABNNameResponse{
                     }else if(identifier.equalsIgnoreCase('E')){
                         abnInfo.Employment_Information__c = sfId;
                     }
+                    sp = Database.setSavepoint();
                     INSERT abnInfo;
                 }
                 
@@ -435,10 +437,12 @@ global class ABNNameResponse{
                     }
                     //INSERTING CHILD RECORDS            
                     if(companyList.isEmpty() == false){
+                        sp = Database.setSavepoint();
                         INSERT companyList; 
                     }
                 } 
             }catch(Exception e){
+                Database.rollback(sp);
                 throw new CustomException (ConstantValues.recordCreationException+e);
             }
             

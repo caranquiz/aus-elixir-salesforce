@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>genesis__Date_of_Acquisition__c</fullName>
+    <deprecated>false</deprecated>
+    <description>Date of Acquisition of asset</description>
+    <externalId>false</externalId>
+    <label>Date of Acquisition</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Date</type>
+</CustomField>
