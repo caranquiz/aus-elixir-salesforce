@@ -137,9 +137,37 @@
         <members>Account.Office_Phone__c</members>
         <members>Account.Policy_Expiry_Date__c</members>
         <members>Account.Policy_Number__c</members>
+<<<<<<< HEAD
         <members>Account.TFN_Number__c</members>
         <members>Account.Terms_And_Conditions_Of_PDS__c</members>
         <members>Account.Transfer_need_to_approve__c</members>
+=======
+        <members>Account.Property_Corporate_Trustee_ACN__c</members>
+        <members>Account.Property_Corporate_Trustee_Name__c</members>
+        <members>Account.Property_Corporate_Trustee_Start_Date__c</members>
+        <members>Account.Property_Trust_ABN__c</members>
+        <members>Account.Property_Trust_Name__c</members>
+        <members>Account.Property_Trust_Start_Date__c</members>
+        <members>Account.SMSF_Corporate_Trustee_ACN__c</members>
+        <members>Account.SMSF_Corporate_Trustee_Name__c</members>
+        <members>Account.SMSF_Corporate_Trustee_Start_Date__c</members>
+        <members>Account.SMSF_Trust_Name__c</members>
+        <members>Account.SMSF_Trust_Start_Date__c</members>
+        <members>Account.Shipping_Address_Street_No__c</members>
+        <members>Account.Shipping_Address_Street_Type__c</members>
+        <members>Account.Shipping_Address_Unit_No__c</members>
+        <members>Account.Trading_address_City__c</members>
+        <members>Account.Trading_address_Country__c</members>
+        <members>Account.Trading_address_PostCode__c</members>
+        <members>Account.Trading_address_State__c</members>
+        <members>Account.Trading_address_Street_N0__c</members>
+        <members>Account.Trading_address_Street_Name__c</members>
+        <members>Account.Trading_address_Street_Type__c</members>
+        <members>Account.Trading_address_Unit_No__c</members>
+        <members>Account.Trust_Date_Of_Establishment__c</members>
+        <members>Account.Transfer_need_to_approve__c</members>
+        <members>Account.Sales_Channel_Type__c</members>
+>>>>>>> c6bb7ba539dc1686d029cfd48c347490669ad96b
         <members>Account.Type_of_trust__c</members>
         <members>Contact.Address__c</members>
         <members>Contact.Age_of_Applicant__c</members>
@@ -560,6 +588,7 @@
         <members>loan__Loan_Account__c.Total_no_of_generated_bills__c</members>
         <members>loan__Loan_Payment_Transaction__c.Arrears__c</members>
         <members>peer__Investment_Booking__c.Invest__c</members>
+<<<<<<< HEAD
         <members>Disable_Custom_Triggers__c.LoanWarehouseTrigger__c</members>
         <members>Elixir_Before_Or_On_Settlement_Fees__c.Distribution_Type__c</members>
         <members>Elixir_Before_Or_On_Settlement_Fees__c.Fee_Field_API_Name__c</members>
@@ -569,6 +598,16 @@
         <members>S_P_Postcode__c.Location__c</members>
         <members>S_P_Postcode__c.PostCode_High_RangeNumber__c</members>
         <members>S_P_Postcode__c.PostCode_Low_RangeNumber__c</members>
+=======
+	    <members>Account.Broker_Membership_Type__c</members>
+        <members>Account.Licence_Type__c</members>
+        <members>Account.License_Verified__c</members>
+        <members>Account.Office_Phone__c</members>
+        <members>Account.Read_and_Accept_Privacy_Policy__c</members>
+        <members>Account.TFN_Number__c</members>
+        <members>clcommon__Bank_Account__c.BSB__c</members>
+        <members>Contact.Create_user_for_this_contact__c</members>
+>>>>>>> c6bb7ba539dc1686d029cfd48c347490669ad96b
         <name>CustomField</name>
     </types>
     <types>
@@ -675,5 +714,5 @@
         <members>Warehouse__c</members>
         <name>CustomTab</name>
     </types>
-    <version>44.0</version>
+    <version>46.0</version>
 </Package>

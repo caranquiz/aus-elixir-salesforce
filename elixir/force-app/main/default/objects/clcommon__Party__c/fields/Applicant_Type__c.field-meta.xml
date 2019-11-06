@@ -22,7 +22,7 @@
             </value>
             <value>
                 <fullName>Mortgagor</fullName>
-                <default>false</default>
+                <default>true</default>
                 <label>Mortgagor</label>
             </value>
         </valueSetDefinition>

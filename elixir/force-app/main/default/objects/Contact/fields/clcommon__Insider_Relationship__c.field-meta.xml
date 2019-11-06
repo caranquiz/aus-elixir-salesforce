@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>clcommon__Insider_Relationship__c</fullName>
+    <deprecated>false</deprecated>
+    <description>Choose whether the Contact is an Insider or Related Interest of an Insider</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Choose whether the contact is an Insider or Related Interest of an Insider</inlineHelpText>
+    <label>Insider Relationship</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Insider</fullName>
+                <default>false</default>
+                <label>Insider</label>
+            </value>
+            <value>
+                <fullName>Related Interest of Insider</fullName>
+                <default>false</default>
+                <label>Related Interest of Insider</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>
