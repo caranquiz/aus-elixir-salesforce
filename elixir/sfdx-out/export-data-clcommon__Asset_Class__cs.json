@@ -5,7 +5,6 @@
                 "type": "clcommon__Asset_Class__c",
                 "referenceId": "clcommon__Asset_Class__cRef1"
             },
-            "IsDeleted": false,
             "Name": "Consumer Unsecured"
         },
         {
@@ -13,7 +12,6 @@
                 "type": "clcommon__Asset_Class__c",
                 "referenceId": "clcommon__Asset_Class__cRef2"
             },
-            "IsDeleted": false,
             "Name": "Consumer Secured"
         },
         {
@@ -21,7 +19,6 @@
                 "type": "clcommon__Asset_Class__c",
                 "referenceId": "clcommon__Asset_Class__cRef3"
             },
-            "IsDeleted": false,
             "Name": "Commercial Secured"
         },
         {
@@ -29,7 +26,6 @@
                 "type": "clcommon__Asset_Class__c",
                 "referenceId": "clcommon__Asset_Class__cRef4"
             },
-            "IsDeleted": false,
             "Name": "Commercial Unsecured"
         }
     ]

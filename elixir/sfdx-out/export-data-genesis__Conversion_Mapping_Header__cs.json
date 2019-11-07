@@ -5,8 +5,6 @@
                 "type": "genesis__Conversion_Mapping_Header__c",
                 "referenceId": "genesis__Conversion_Mapping_Header__cRef1"
             },
-            "IsDeleted": false,
-            "Name": "CMH-0000000000",
             "genesis__Product_Type__c": "LOAN"
         }
     ]

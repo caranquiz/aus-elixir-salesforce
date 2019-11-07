@@ -5,7 +5,6 @@
                 "type": "Elixir_Before_Or_On_Settlement_Fees__c",
                 "referenceId": "Elixir_Before_Or_On_Settlement_Fees__cRef1"
             },
-            "IsDeleted": false,
             "Name": "Rate Lock In Fee",
             "Distribution_Type__c": "Pre-Paid Fee",
             "Fee_Field_API_Name__c": "Rate_Lock_In_Fee__c"
@@ -15,7 +14,6 @@
                 "type": "Elixir_Before_Or_On_Settlement_Fees__c",
                 "referenceId": "Elixir_Before_Or_On_Settlement_Fees__cRef2"
             },
-            "IsDeleted": false,
             "Name": "Application Fee",
             "Distribution_Type__c": "Pre-Paid Fee",
             "Fee_Field_API_Name__c": "Application_Fee__c"
@@ -25,7 +23,6 @@
                 "type": "Elixir_Before_Or_On_Settlement_Fees__c",
                 "referenceId": "Elixir_Before_Or_On_Settlement_Fees__cRef3"
             },
-            "IsDeleted": false,
             "Name": "GSA Registration Fee",
             "Distribution_Type__c": "Pre-Paid Fee",
             "Fee_Field_API_Name__c": "General_Security_Agreement_GSA_Fee__c"
@@ -35,7 +32,6 @@
                 "type": "Elixir_Before_Or_On_Settlement_Fees__c",
                 "referenceId": "Elixir_Before_Or_On_Settlement_Fees__cRef4"
             },
-            "IsDeleted": false,
             "Name": "NonRegulated Product Lender's Legals",
             "Distribution_Type__c": "Pre-Paid Fee",
             "Fee_Field_API_Name__c": "Non_Regulated_Product_Lender_s_Legals__c"
@@ -45,7 +41,6 @@
                 "type": "Elixir_Before_Or_On_Settlement_Fees__c",
                 "referenceId": "Elixir_Before_Or_On_Settlement_Fees__cRef5"
             },
-            "IsDeleted": false,
             "Name": "Mortgage Registration Fee",
             "Distribution_Type__c": "Pre-Paid Fee",
             "Fee_Field_API_Name__c": "Mortgage_Registration_Fee__c"
@@ -55,7 +50,6 @@
                 "type": "Elixir_Before_Or_On_Settlement_Fees__c",
                 "referenceId": "Elixir_Before_Or_On_Settlement_Fees__cRef6"
             },
-            "IsDeleted": false,
             "Name": "Settlement Rescheduling Fee",
             "Distribution_Type__c": "Pre-Paid Fee",
             "Fee_Field_API_Name__c": "Settlement_Rescheduling_Fee__c"
@@ -65,7 +59,6 @@
                 "type": "Elixir_Before_Or_On_Settlement_Fees__c",
                 "referenceId": "Elixir_Before_Or_On_Settlement_Fees__cRef7"
             },
-            "IsDeleted": false,
             "Name": "Title Insurance Fee",
             "Distribution_Type__c": "Pre-Paid Fee",
             "Fee_Field_API_Name__c": "Title_Insurance_Fee__c"
@@ -75,7 +68,6 @@
                 "type": "Elixir_Before_Or_On_Settlement_Fees__c",
                 "referenceId": "Elixir_Before_Or_On_Settlement_Fees__cRef8"
             },
-            "IsDeleted": false,
             "Name": "Valuation Fee",
             "Distribution_Type__c": "Pre-Paid Fee",
             "Fee_Field_API_Name__c": "Valuation_Fee__c"
@@ -85,7 +77,6 @@
                 "type": "Elixir_Before_Or_On_Settlement_Fees__c",
                 "referenceId": "Elixir_Before_Or_On_Settlement_Fees__cRef9"
             },
-            "IsDeleted": false,
             "Name": "Credit Providers Mortgage Insurance",
             "Distribution_Type__c": "Pre-Paid Fee",
             "Fee_Field_API_Name__c": "Credit_Providers_Mortgage_Insurance__c"
@@ -95,7 +86,6 @@
                 "type": "Elixir_Before_Or_On_Settlement_Fees__c",
                 "referenceId": "Elixir_Before_Or_On_Settlement_Fees__cRef10"
             },
-            "IsDeleted": false,
             "Name": "Settlement Advance Fee",
             "Distribution_Type__c": "Pre-Paid Fee",
             "Fee_Field_API_Name__c": "Settlement_Advance_Fee__c"
@@ -105,7 +95,6 @@
                 "type": "Elixir_Before_Or_On_Settlement_Fees__c",
                 "referenceId": "Elixir_Before_Or_On_Settlement_Fees__cRef11"
             },
-            "IsDeleted": false,
             "Name": "Associated Out of Pocket Expense",
             "Distribution_Type__c": "Pre-Paid Fee",
             "Fee_Field_API_Name__c": "Associated_Out_of_Pocket_Expense_Fee__c"
@@ -115,7 +104,6 @@
                 "type": "Elixir_Before_Or_On_Settlement_Fees__c",
                 "referenceId": "Elixir_Before_Or_On_Settlement_Fees__cRef12"
             },
-            "IsDeleted": false,
             "Name": "Regulated Product Lender's Legals",
             "Distribution_Type__c": "Pre-Paid Fee",
             "Fee_Field_API_Name__c": "Regulated_Product_Lender_s_Legals__c"
@@ -125,7 +113,6 @@
                 "type": "Elixir_Before_Or_On_Settlement_Fees__c",
                 "referenceId": "Elixir_Before_Or_On_Settlement_Fees__cRef13"
             },
-            "IsDeleted": false,
             "Name": "Mortgage Stamp Duty",
             "Distribution_Type__c": "Pre-Paid Fee",
             "Fee_Field_API_Name__c": "Mortgage_Stamp_Duty__c"
@@ -135,7 +122,6 @@
                 "type": "Elixir_Before_Or_On_Settlement_Fees__c",
                 "referenceId": "Elixir_Before_Or_On_Settlement_Fees__cRef14"
             },
-            "IsDeleted": false,
             "Name": "First Tranche Prepaid Interest",
             "Distribution_Type__c": "Pre-Paid Fee",
             "Fee_Field_API_Name__c": "First_Tranche_Prepaid_Interest__c"

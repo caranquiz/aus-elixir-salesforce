@@ -5,8 +5,6 @@
                 "type": "genesis__Conversion_Mapping__c",
                 "referenceId": "genesis__Conversion_Mapping__cRef1"
             },
-            "IsDeleted": false,
-            "Name": "CM-0000000000",
             "genesis__Application_Field_Name__c": "genesis__Loan_Amount__c",
             "genesis__Application_Object_Name__c": "genesis__Applications__c",
             "genesis__Contract_Field_Name__c": "loan__Loan_Amount__c",
@@ -20,8 +18,6 @@
                 "type": "genesis__Conversion_Mapping__c",
                 "referenceId": "genesis__Conversion_Mapping__cRef2"
             },
-            "IsDeleted": false,
-            "Name": "CM-0000000001",
             "genesis__Application_Field_Name__c": "genesis__Interest_Only_Period__c",
             "genesis__Application_Object_Name__c": "genesis__Applications__c",
             "genesis__Contract_Field_Name__c": "loan__Interest_Only_Period__c",
@@ -35,8 +31,6 @@
                 "type": "genesis__Conversion_Mapping__c",
                 "referenceId": "genesis__Conversion_Mapping__cRef3"
             },
-            "IsDeleted": false,
-            "Name": "CM-0000000002",
             "genesis__Application_Field_Name__c": "Id",
             "genesis__Application_Object_Name__c": "genesis__Applications__c",
             "genesis__Contract_Field_Name__c": "Application__c",
@@ -50,8 +44,6 @@
                 "type": "genesis__Conversion_Mapping__c",
                 "referenceId": "genesis__Conversion_Mapping__cRef4"
             },
-            "IsDeleted": false,
-            "Name": "CM-0000000003",
             "genesis__Application_Field_Name__c": "genesis__Financed_Amount__c",
             "genesis__Application_Object_Name__c": "genesis__Applications__c",
             "genesis__Contract_Field_Name__c": "loan__Disbursal_Amount__c",
@@ -65,8 +57,6 @@
                 "type": "genesis__Conversion_Mapping__c",
                 "referenceId": "genesis__Conversion_Mapping__cRef5"
             },
-            "IsDeleted": false,
-            "Name": "CM-0000000004",
             "genesis__Application_Field_Name__c": "genesis__Contact__c",
             "genesis__Application_Object_Name__c": "genesis__Applications__c",
             "genesis__Contract_Field_Name__c": "loan__Contact__c",
@@ -80,8 +70,6 @@
                 "type": "genesis__Conversion_Mapping__c",
                 "referenceId": "genesis__Conversion_Mapping__cRef6"
             },
-            "IsDeleted": false,
-            "Name": "CM-0000000005",
             "genesis__Application_Field_Name__c": "genesis__Expected_First_Payment_Date__c",
             "genesis__Application_Object_Name__c": "genesis__Applications__c",
             "genesis__Contract_Field_Name__c": "loan__Next_Installment_Date__c",
@@ -95,8 +83,6 @@
                 "type": "genesis__Conversion_Mapping__c",
                 "referenceId": "genesis__Conversion_Mapping__cRef7"
             },
-            "IsDeleted": false,
-            "Name": "CM-0000000006",
             "genesis__Application_Field_Name__c": "genesis__Interest_Rate__c",
             "genesis__Application_Object_Name__c": "genesis__Applications__c",
             "genesis__Contract_Field_Name__c": "loan__Interest_Rate__c",
@@ -110,8 +96,6 @@
                 "type": "genesis__Conversion_Mapping__c",
                 "referenceId": "genesis__Conversion_Mapping__cRef8"
             },
-            "IsDeleted": false,
-            "Name": "CM-0000000007",
             "genesis__Application_Field_Name__c": "genesis__Account__c",
             "genesis__Application_Object_Name__c": "genesis__Applications__c",
             "genesis__Contract_Field_Name__c": "loan__Account__c",
@@ -125,8 +109,6 @@
                 "type": "genesis__Conversion_Mapping__c",
                 "referenceId": "genesis__Conversion_Mapping__cRef9"
             },
-            "IsDeleted": false,
-            "Name": "CM-0000000008",
             "genesis__Application_Field_Name__c": "genesis__Status__c",
             "genesis__Application_Object_Name__c": "genesis__Applications__c",
             "genesis__Contract_Field_Name__c": "loan__Loan_Status__c",
@@ -140,8 +122,6 @@
                 "type": "genesis__Conversion_Mapping__c",
                 "referenceId": "genesis__Conversion_Mapping__cRef10"
             },
-            "IsDeleted": false,
-            "Name": "CM-0000000009",
             "genesis__Application_Field_Name__c": "genesis__Product_Type__c",
             "genesis__Application_Object_Name__c": "genesis__Applications__c",
             "genesis__Contract_Field_Name__c": "loan__Product_Type__c",
@@ -155,8 +135,6 @@
                 "type": "genesis__Conversion_Mapping__c",
                 "referenceId": "genesis__Conversion_Mapping__cRef11"
             },
-            "IsDeleted": false,
-            "Name": "CM-0000000010",
             "genesis__Application_Field_Name__c": "genesis__Interest_Rate__c",
             "genesis__Application_Object_Name__c": "genesis__Applications__c",
             "genesis__Contract_Field_Name__c": "loan__Contractual_Interest_Rate__c",
@@ -170,8 +148,6 @@
                 "type": "genesis__Conversion_Mapping__c",
                 "referenceId": "genesis__Conversion_Mapping__cRef12"
             },
-            "IsDeleted": false,
-            "Name": "CM-0000000011",
             "genesis__Application_Field_Name__c": "genesis__Expected_First_Payment_Date__c",
             "genesis__Application_Object_Name__c": "genesis__Applications__c",
             "genesis__Contract_Field_Name__c": "loan__Expected_Repayment_Start_Date__c",
@@ -185,8 +161,6 @@
                 "type": "genesis__Conversion_Mapping__c",
                 "referenceId": "genesis__Conversion_Mapping__cRef13"
             },
-            "IsDeleted": false,
-            "Name": "CM-0000000012",
             "genesis__Application_Field_Name__c": "genesis__Payment_Frequency__c",
             "genesis__Application_Object_Name__c": "genesis__Applications__c",
             "genesis__Contract_Field_Name__c": "loan__Frequency_of_Loan_Payment__c",
@@ -200,8 +174,6 @@
                 "type": "genesis__Conversion_Mapping__c",
                 "referenceId": "genesis__Conversion_Mapping__cRef14"
             },
-            "IsDeleted": false,
-            "Name": "CM-0000000013",
             "genesis__Application_Field_Name__c": "genesis__Interest_Calculation_Method__c",
             "genesis__Application_Object_Name__c": "genesis__Applications__c",
             "genesis__Contract_Field_Name__c": "loan__Interest_Calculation_Method__c",
@@ -215,8 +187,6 @@
                 "type": "genesis__Conversion_Mapping__c",
                 "referenceId": "genesis__Conversion_Mapping__cRef15"
             },
-            "IsDeleted": false,
-            "Name": "CM-0000000014",
             "genesis__Application_Field_Name__c": "genesis__Expected_Start_Date__c",
             "genesis__Application_Object_Name__c": "genesis__Applications__c",
             "genesis__Contract_Field_Name__c": "loan__Accrual_Start_Date__c",
@@ -230,8 +200,6 @@
                 "type": "genesis__Conversion_Mapping__c",
                 "referenceId": "genesis__Conversion_Mapping__cRef16"
             },
-            "IsDeleted": false,
-            "Name": "CM-0000000015",
             "genesis__Application_Field_Name__c": "genesis__Expected_Start_Date__c",
             "genesis__Application_Object_Name__c": "genesis__Applications__c",
             "genesis__Contract_Field_Name__c": "loan__Disbursal_Date__c",
@@ -245,8 +213,6 @@
                 "type": "genesis__Conversion_Mapping__c",
                 "referenceId": "genesis__Conversion_Mapping__cRef17"
             },
-            "IsDeleted": false,
-            "Name": "CM-0000000016",
             "genesis__Application_Field_Name__c": "genesis__Amortization_Term__c",
             "genesis__Application_Object_Name__c": "genesis__Applications__c",
             "genesis__Contract_Field_Name__c": "loan__Amortization_Term__c",
@@ -260,8 +226,6 @@
                 "type": "genesis__Conversion_Mapping__c",
                 "referenceId": "genesis__Conversion_Mapping__cRef18"
             },
-            "IsDeleted": false,
-            "Name": "CM-0000000017",
             "genesis__Application_Field_Name__c": "genesis__Term__c",
             "genesis__Application_Object_Name__c": "genesis__Applications__c",
             "genesis__Contract_Field_Name__c": "loan__Number_of_Installments__c",
@@ -275,8 +239,6 @@
                 "type": "genesis__Conversion_Mapping__c",
                 "referenceId": "genesis__Conversion_Mapping__cRef19"
             },
-            "IsDeleted": false,
-            "Name": "CM-0000000018",
             "genesis__Application_Field_Name__c": "genesis__Expected_Start_Date__c",
             "genesis__Application_Object_Name__c": "genesis__Applications__c",
             "genesis__Contract_Field_Name__c": "loan__Disbursal_Date__c",
@@ -290,8 +252,6 @@
                 "type": "genesis__Conversion_Mapping__c",
                 "referenceId": "genesis__Conversion_Mapping__cRef20"
             },
-            "IsDeleted": false,
-            "Name": "CM-0000000019",
             "genesis__Application_Field_Name__c": "genesis__Draw_Period_End_Date__c",
             "genesis__Application_Object_Name__c": "genesis__Applications__c",
             "genesis__Contract_Field_Name__c": "loan__Draw_Period_End_Date__c",
@@ -305,8 +265,6 @@
                 "type": "genesis__Conversion_Mapping__c",
                 "referenceId": "genesis__Conversion_Mapping__cRef21"
             },
-            "IsDeleted": false,
-            "Name": "CM-0000000020",
             "genesis__Application_Field_Name__c": "genesis__Expected_First_Payment_Date__c",
             "genesis__Application_Object_Name__c": "genesis__Applications__c",
             "genesis__Contract_Field_Name__c": "loan__First_Installment_Date__c",
@@ -320,8 +278,6 @@
                 "type": "genesis__Conversion_Mapping__c",
                 "referenceId": "genesis__Conversion_Mapping__cRef22"
             },
-            "IsDeleted": false,
-            "Name": "CM-0000000021",
             "genesis__Application_Field_Name__c": "genesis__Expected_Start_Date__c",
             "genesis__Application_Object_Name__c": "genesis__Applications__c",
             "genesis__Contract_Field_Name__c": "loan__Expected_Disbursal_Date__c",
@@ -335,8 +291,6 @@
                 "type": "genesis__Conversion_Mapping__c",
                 "referenceId": "genesis__Conversion_Mapping__cRef23"
             },
-            "IsDeleted": false,
-            "Name": "CM-0000000022",
             "genesis__Application_Field_Name__c": "genesis__Due_Day__c",
             "genesis__Application_Object_Name__c": "genesis__Applications__c",
             "genesis__Contract_Field_Name__c": "loan__Due_Day__c",
@@ -350,8 +304,6 @@
                 "type": "genesis__Conversion_Mapping__c",
                 "referenceId": "genesis__Conversion_Mapping__cRef24"
             },
-            "IsDeleted": false,
-            "Name": "CM-0000000028",
             "genesis__Application_Field_Name__c": "Fixed_Rate_Term__c",
             "genesis__Application_Object_Name__c": "genesis__Applications__c",
             "genesis__Contract_Field_Name__c": "Fixed_Rate_Term__c",

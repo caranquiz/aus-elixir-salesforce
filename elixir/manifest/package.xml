@@ -10,7 +10,6 @@
         <members>ABNNameCalloutTest</members>
         <members>ABNNameResponse</members>
         <members>ABNNameResponseParser</members>
-        <members>ABNNameResponseParserTest</members>
         <members>ABNResponse</members>
         <members>ABNResponseParser</members>
         <members>ABNResponseParser_Test</members>
@@ -636,16 +635,10 @@
     <name>CustomObject</name>
     </types>
     <types>
-        <members>Admin</members>
-        <members>System Admin Custom</members>
-        <name>Profile</name>
-    </types>
-    <types>
         <members>Update_prepaid_interest_plus_drawdown_for_loan_amount</members>
         <name>Flow</name>
     </types>
     <types>
-        <members>Account-Account Layout</members>
         <members>Account-Aggregator</members>
         <members>Account-Broker Type</members>
         <members>Account-Sales Channel Type</members>
@@ -657,11 +650,6 @@
         <members>genesis__Applications__c.Investor_Applications</members>
         <members>genesis__Applications__c.Loans_Applications</members>
         <name>ListView</name>
-    </types>
-    <types>
-        <members>Admin</members>
-        <members>System Admin Custom</members>
-        <name>Profile</name>
     </types>
     <types>
         <members>Account.Aggregator</members>
@@ -690,7 +678,6 @@
         <name>Role</name>
     </types>
     <types>
-        <members>Contact.Middle_Name_Check</members>
         <members>Telephone_Contact_Number__c.Phone_Number_Check</members>
         <members>clcommon__Collateral_Owner__c.Ownership_validation</members>
         <members>genesis__Employment_Information__c.Phone_Number_Check</members>

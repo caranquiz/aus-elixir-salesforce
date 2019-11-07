@@ -5,7 +5,6 @@
                 "type": "Disable_Custom_Triggers__c",
                 "referenceId": "Disable_Custom_Triggers__cRef1"
             },
-            "IsDeleted": false,
             "Name": "aCY9D000000002q",
             "LoanWarehouseTrigger__c": false
         }
