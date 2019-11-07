@@ -1201,6 +1201,8 @@
 &lt;/body&gt;
 
 &lt;/html&gt;</template>
+                                  <renderconditions logictype="and" onhidedatabehavior="keep"/>
+                                  <enableconditions/>
                                 </field>
                                 <field uniqueid="sk-3DJb-1910" id="Enter_Address_Manually__c"/>
                               </fields>
@@ -1208,74 +1210,84 @@
                             <section title="New Section" collapsible="no" uniqueid="sk-3CoA-1900" showheader="false">
                               <fields>
                                 <columns uniqueid="sk-3CoB-1921" layoutmode="fixed">
-                                  <column width="50%" uniqueid="sk-3CoB-1908">
+                                  <column width="100%" uniqueid="sk-3oEo-1891">
                                     <sections>
-                                      <section title="New Section" collapsible="no" uniqueid="sk-3CoB-1909" showheader="false">
+                                      <section title="New Section" collapsible="no" uniqueid="sk-3oEo-1892" showheader="false">
                                         <fields>
                                           <field uniqueid="sk-3EoX-2694" id="Full_Address__c">
                                             <renderconditions logictype="and" onhidedatabehavior="keep"/>
                                             <enableconditions logictype="and">
-                                              <condition type="fieldvalue" operator="=" enclosevalueinquotes="false" fieldmodel="Collateral" sourcetype="fieldvalue" field="Enter_Address_Manually__c" fieldtargetobjects="clcommon__Collateral__c" value="true"/>
+                                              <condition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="Collateral" sourcetype="fieldvalue" field="Id" fieldtargetobjects="clcommon__Collateral__c" value="123"/>
                                             </enableconditions>
                                           </field>
-                                          <field uniqueid="sk-3DMQ-3824" id="Street_Name__c">
-                                            <renderconditions logictype="and" onhidedatabehavior="keep"/>
-                                            <enableconditions logictype="and">
-                                              <condition type="fieldvalue" operator="=" enclosevalueinquotes="false" fieldmodel="Collateral" sourcetype="fieldvalue" field="Enter_Address_Manually__c" fieldtargetobjects="clcommon__Collateral__c" value="true" model="SecurityAddressModel"/>
-                                            </enableconditions>
-                                          </field>
-                                          <field uniqueid="sk-3DMM-3800" id="Street_No__c">
-                                            <renderconditions logictype="and" onhidedatabehavior="keep"/>
-                                            <enableconditions logictype="and">
-                                              <condition type="fieldvalue" operator="=" enclosevalueinquotes="false" fieldmodel="Collateral" sourcetype="fieldvalue" field="Enter_Address_Manually__c" fieldtargetobjects="clcommon__Collateral__c" value="true" model="SecurityAddressModel"/>
-                                            </enableconditions>
-                                          </field>
-                                          <field uniqueid="sk-3DMT-3851" id="clcommon__City__c">
-                                            <label>Suburb</label>
-                                            <renderconditions logictype="and" onhidedatabehavior="keep"/>
-                                            <enableconditions logictype="and">
-                                              <condition type="fieldvalue" operator="=" enclosevalueinquotes="false" fieldmodel="Collateral" sourcetype="fieldvalue" field="Enter_Address_Manually__c" fieldtargetobjects="clcommon__Collateral__c" value="true" model="SecurityAddressModel"/>
-                                            </enableconditions>
-                                          </field>
-                                          <field uniqueid="sk-3DMc-3951" id="clcommon__Postal_Code__c">
-                                            <label>Post Code</label>
-                                            <renderconditions logictype="and" onhidedatabehavior="keep"/>
-                                            <enableconditions logictype="and">
-                                              <condition type="fieldvalue" operator="=" enclosevalueinquotes="false" fieldmodel="Collateral" sourcetype="fieldvalue" field="Enter_Address_Manually__c" fieldtargetobjects="clcommon__Collateral__c" value="true" model="SecurityAddressModel"/>
-                                            </enableconditions>
-                                          </field>
-                                        </fields>
-                                      </section>
-                                    </sections>
-                                  </column>
-                                  <column width="50%" uniqueid="sk-3CoC-1927">
-                                    <sections>
-                                      <section title="New Section" collapsible="no" uniqueid="sk-3CoC-1928" showheader="false">
-                                        <fields>
-                                          <field uniqueid="sk-3DMK-3774" id="Unit_No__c">
-                                            <renderconditions logictype="and" onhidedatabehavior="keep"/>
-                                            <enableconditions logictype="and">
-                                              <condition type="fieldvalue" operator="=" enclosevalueinquotes="false" fieldmodel="Collateral" sourcetype="fieldvalue" field="Enter_Address_Manually__c" fieldtargetobjects="clcommon__Collateral__c" value="true" model="SecurityAddressModel"/>
-                                            </enableconditions>
-                                          </field>
-                                          <field uniqueid="sk-3DMN-3812" id="Street_Type__c">
-                                            <renderconditions logictype="and" onhidedatabehavior="keep"/>
-                                            <enableconditions logictype="and">
-                                              <condition type="fieldvalue" operator="=" enclosevalueinquotes="false" fieldmodel="Collateral" sourcetype="fieldvalue" field="Enter_Address_Manually__c" fieldtargetobjects="clcommon__Collateral__c" value="true" model="SecurityAddressModel"/>
-                                            </enableconditions>
-                                          </field>
-                                          <field uniqueid="sk-3DMY-3901" id="clcommon__State__c">
-                                            <renderconditions logictype="and" onhidedatabehavior="keep"/>
-                                            <enableconditions logictype="and">
-                                              <condition type="fieldvalue" operator="=" enclosevalueinquotes="false" fieldmodel="Collateral" sourcetype="fieldvalue" field="Enter_Address_Manually__c" fieldtargetobjects="clcommon__Collateral__c" value="true" model="SecurityAddressModel"/>
-                                            </enableconditions>
-                                          </field>
-                                          <field uniqueid="sk-3DMb-3929" id="Country__c">
-                                            <renderconditions logictype="and" onhidedatabehavior="keep"/>
-                                            <enableconditions logictype="and">
-                                              <condition type="fieldvalue" operator="=" enclosevalueinquotes="false" fieldmodel="Collateral" sourcetype="fieldvalue" field="Enter_Address_Manually__c" fieldtargetobjects="clcommon__Collateral__c" value="true" model="SecurityAddressModel"/>
-                                            </enableconditions>
-                                          </field>
+                                          <columns uniqueid="sk-3oEr-1918" layoutmode="fixed">
+                                            <column width="50%" uniqueid="sk-3oEr-1905">
+                                              <sections>
+                                                <section title="New Section" collapsible="no" uniqueid="sk-3oEr-1906" showheader="false">
+                                                  <fields>
+                                                    <field uniqueid="sk-3DMK-3774" id="Unit_No__c">
+                                                      <renderconditions logictype="and" onhidedatabehavior="keep"/>
+                                                      <enableconditions logictype="and">
+                                                        <condition type="fieldvalue" operator="=" enclosevalueinquotes="false" fieldmodel="Collateral" sourcetype="fieldvalue" field="Enter_Address_Manually__c" fieldtargetobjects="clcommon__Collateral__c" value="true" model="SecurityAddressModel"/>
+                                                      </enableconditions>
+                                                    </field>
+                                                    <field uniqueid="sk-3DMQ-3824" id="Street_Name__c">
+                                                      <renderconditions logictype="and" onhidedatabehavior="keep"/>
+                                                      <enableconditions logictype="and">
+                                                        <condition type="fieldvalue" operator="=" enclosevalueinquotes="false" fieldmodel="Collateral" sourcetype="fieldvalue" field="Enter_Address_Manually__c" fieldtargetobjects="clcommon__Collateral__c" value="true" model="SecurityAddressModel"/>
+                                                      </enableconditions>
+                                                    </field>
+                                                    <field uniqueid="sk-3DMT-3851" id="clcommon__City__c">
+                                                      <label>Suburb</label>
+                                                      <renderconditions logictype="and" onhidedatabehavior="keep"/>
+                                                      <enableconditions logictype="and">
+                                                        <condition type="fieldvalue" operator="=" enclosevalueinquotes="false" fieldmodel="Collateral" sourcetype="fieldvalue" field="Enter_Address_Manually__c" fieldtargetobjects="clcommon__Collateral__c" value="true" model="SecurityAddressModel"/>
+                                                      </enableconditions>
+                                                    </field>
+                                                    <field uniqueid="sk-3DMc-3951" id="clcommon__Postal_Code__c">
+                                                      <label>Post Code</label>
+                                                      <renderconditions logictype="and" onhidedatabehavior="keep"/>
+                                                      <enableconditions logictype="and">
+                                                        <condition type="fieldvalue" operator="=" enclosevalueinquotes="false" fieldmodel="Collateral" sourcetype="fieldvalue" field="Enter_Address_Manually__c" fieldtargetobjects="clcommon__Collateral__c" value="true" model="SecurityAddressModel"/>
+                                                      </enableconditions>
+                                                    </field>
+                                                  </fields>
+                                                </section>
+                                              </sections>
+                                            </column>
+                                            <column width="50%" uniqueid="sk-3oEr-1923">
+                                              <sections>
+                                                <section title="New Section" collapsible="no" uniqueid="sk-3oEr-1924" showheader="false">
+                                                  <fields>
+                                                    <field uniqueid="sk-3DMM-3800" id="Street_No__c">
+                                                      <renderconditions logictype="and" onhidedatabehavior="keep"/>
+                                                      <enableconditions logictype="and">
+                                                        <condition type="fieldvalue" operator="=" enclosevalueinquotes="false" fieldmodel="Collateral" sourcetype="fieldvalue" field="Enter_Address_Manually__c" fieldtargetobjects="clcommon__Collateral__c" value="true" model="SecurityAddressModel"/>
+                                                      </enableconditions>
+                                                    </field>
+                                                    <field uniqueid="sk-3DMN-3812" id="Street_Type__c">
+                                                      <renderconditions logictype="and" onhidedatabehavior="keep"/>
+                                                      <enableconditions logictype="and">
+                                                        <condition type="fieldvalue" operator="=" enclosevalueinquotes="false" fieldmodel="Collateral" sourcetype="fieldvalue" field="Enter_Address_Manually__c" fieldtargetobjects="clcommon__Collateral__c" value="true" model="SecurityAddressModel"/>
+                                                      </enableconditions>
+                                                    </field>
+                                                    <field uniqueid="sk-3DMY-3901" id="clcommon__State__c">
+                                                      <renderconditions logictype="and" onhidedatabehavior="keep"/>
+                                                      <enableconditions logictype="and">
+                                                        <condition type="fieldvalue" operator="=" enclosevalueinquotes="false" fieldmodel="Collateral" sourcetype="fieldvalue" field="Enter_Address_Manually__c" fieldtargetobjects="clcommon__Collateral__c" value="true" model="SecurityAddressModel"/>
+                                                      </enableconditions>
+                                                    </field>
+                                                    <field uniqueid="sk-3DMb-3929" id="Country__c">
+                                                      <renderconditions logictype="and" onhidedatabehavior="keep"/>
+                                                      <enableconditions logictype="and">
+                                                        <condition type="fieldvalue" operator="=" enclosevalueinquotes="false" fieldmodel="Collateral" sourcetype="fieldvalue" field="Enter_Address_Manually__c" fieldtargetobjects="clcommon__Collateral__c" value="true" model="SecurityAddressModel"/>
+                                                      </enableconditions>
+                                                    </field>
+                                                  </fields>
+                                                </section>
+                                              </sections>
+                                            </column>
+                                          </columns>
                                         </fields>
                                       </section>
                                     </sections>
@@ -1338,7 +1350,7 @@
                         </rendercondition>
                       </renderconditions>
                     </basicfieldeditor>
-                    <basicfieldeditor showheader="true" showsavecancel="false" showerrorsinline="true" model="Collateral" buttonposition="" uniqueid="pleaseureBotReceivablesEditor" mode="edit" layout="">
+                    <basicfieldeditor showheader="true" showsavecancel="false" showerrorsinline="true" model="Collateral" uniqueid="pleaseureBotReceivablesEditor" mode="edit" layout="">
                       <columns>
                         <column width="50%">
                           <sections>
@@ -1377,7 +1389,7 @@
                         </rendercondition>
                       </renderconditions>
                     </basicfieldeditor>
-                    <basicfieldeditor showheader="true" showsavecancel="false" showerrorsinline="true" model="Collateral" buttonposition="" uniqueid="shipEditor" mode="edit" layout="">
+                    <basicfieldeditor showheader="true" showsavecancel="false" showerrorsinline="true" model="Collateral" uniqueid="shipEditor" mode="edit" layout="">
                       <columns>
                         <column width="50%">
                           <sections>
@@ -1827,7 +1839,7 @@
                   <renderconditions logictype="and" onhidedatabehavior="keep"/>
                   <enableconditions/>
                 </field>
-                <field id="clcommon__Ownership__c" hideable="true" uniqueid="fi-3KPKwQ-4069" decimalplaces="" valuehalign="" type=""/>
+                <field id="clcommon__Ownership__c" hideable="true" uniqueid="fi-3KPKwQ-4069"/>
               </fields>
               <rowactions>
                 <action type="edit"/>
@@ -1856,7 +1868,7 @@
                   <renderconditions logictype="and" onhidedatabehavior="keep"/>
                   <enableconditions/>
                 </field>
-                <field id="clcommon__Ownership__c" hideable="true" uniqueid="sk-wtcWn-3775" decimalplaces="" valuehalign="" type=""/>
+                <field id="clcommon__Ownership__c" hideable="true" uniqueid="sk-wtcWn-3775"/>
               </fields>
               <rowactions>
                 <action type="edit"/>
@@ -1901,7 +1913,6 @@
               </actions>
               <renderconditions logictype="and"/>
               <enableconditions/>
-              <hotkeys/>
             </action>
             <action type="multi" label="Cancel" stepid="step1" uniqueid="sk-3CxV-11356" window="self">
               <actions>
@@ -3021,8 +3032,7 @@ newAppCollModel.updateData();</jsitem>
       <jsitem location="inlinesnippet" name="CloseCollateralDialog" cachelocation="false">var params = arguments[0],
     $ = skuid.$;
 
-closeTopLevelDialogAndRefresh({divIds: ['deal-dashboard-iframe,collateral-tab','deal-dashboard-iframe,document-iframe']});
-console.log('Hi3');</jsitem>
+closeTopLevelDialogAndRefresh({divIds: ['deal-dashboard-iframe,collateral-tab','deal-dashboard-iframe,document-iframe']});</jsitem>
       <jsitem location="inlinesnippet" name="buttonHighlight" cachelocation="false">var params = arguments[0],
     $ = skuid.$;
 $('#newcollateralid').addClass('selected-btn');
@@ -3175,7 +3185,7 @@ if(useAppraisalMgmt === true) {
     }
 
 }
-console.log('Hi1');
+
 
 
 
@@ -3541,17 +3551,22 @@ $.each(collOwner.getRows(),function(i,row){
         }
     }
 });
+console.log('Test 1');
 
 if(percentageSum &gt; 100){
     percentExceeded = true;
     collOwner.cancel();
     alert('Ownership percentage cannot exceed 100%!');
 }
+//console.log('Test 2');
  
- if(zeroOwnership === true){
+ else if(zeroOwnership === true){
     collOwner.cancel();
     alert('Ownership percentage cannot be 0%!'); 
  }
+ else
+ collOwner.save();
+ //console.log('Test 3');
  
  var dfd = new $.Deferred();
 
@@ -3562,7 +3577,8 @@ if(percentageSum &gt; 100){
         .fail(function(){
            dfd.reject();
         });
-console.log('Hi2');
+        console.log('Test 4');
+
     return dfd.promise();
 </jsitem>
       <jsitem location="inlinesnippet" name="highlightRow" cachelocation="false">var collateralClone = skuid.model.getModel('CollateralClone');

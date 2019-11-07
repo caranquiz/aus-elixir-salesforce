@@ -9,6 +9,7 @@
         <field id="genesis__Collateral__c"/>
         <field id="genesis__Collateral__r.Name"/>
         <field id="Name"/>
+        <field id="genesis__Application__r.Id"/>
       </fields>
       <conditions logic="1">
         <condition type="param" value="id" field="Id" operator="=" enclosevalueinquotes="true" novaluebehavior="noquery" model="QBE_Postcode"/>
@@ -219,6 +220,17 @@
       </conditions>
       <actions/>
     </model>
+    <model id="Application" query="true" createrowifnonefound="false" datasource="salesforce" sobject="genesis__Applications__c">
+      <fields>
+        <field id="RecordTypeId"/>
+        <field id="Name"/>
+        <field id="Id"/>
+      </fields>
+      <conditions>
+        <condition type="modelmerge" value="" field="Id" operator="in" model="SelectedApplicationCollateral" enclosevalueinquotes="true" mergefield="genesis__Application__c" novaluebehavior="deactivate" fieldtargetobjects="genesis__Applications__c"/>
+      </conditions>
+      <actions/>
+    </model>
     <model id="CollateralOwner" limit="20" query="true" createrowifnonefound="false" datasource="salesforce" sobject="clcommon__Collateral_Owner__c">
       <fields>
         <field id="clcommon__Account__c"/>
@@ -278,19 +290,58 @@
       </conditions>
       <actions/>
     </model>
+    <model id="AllAppCollateral" query="true" createrowifnonefound="false" datasource="salesforce" sobject="genesis__Application_Collateral__c">
+      <fields>
+        <field id="genesis__Application__c"/>
+        <field id="genesis__Application__r.Name"/>
+        <field id="genesis__Collateral__c"/>
+        <field id="genesis__Collateral__r.Name"/>
+        <field id="genesis__Collateral__r.Id"/>
+        <field id="genesis__Collateral__r.genesis__Application__c"/>
+        <field id="genesis__Collateral__r.genesis__Application__r.Name"/>
+        <field id="genesis__Collateral__r.genesis__Application__r.Id"/>
+      </fields>
+      <conditions>
+        <condition type="modelmerge" value="" field="genesis__Application__c" fieldtargetobjects="genesis__Applications__c" operator="=" model="SelectedApplicationCollateral" enclosevalueinquotes="true" mergefield="genesis__Application__c" novaluebehavior="deactivate"/>
+      </conditions>
+      <actions/>
+    </model>
+    <model id="AllCollateral" query="true" createrowifnonefound="false" datasource="salesforce" sobject="clcommon__Collateral__c">
+      <fields>
+        <field id="RecordTypeId"/>
+        <field id="Id"/>
+        <field id="Name"/>
+        <field id="clcommon__Value__c"/>
+      </fields>
+      <conditions>
+        <condition type="modelmerge" value="" field="Id" operator="in" model="AllAppCollateral" enclosevalueinquotes="true" mergefield="genesis__Collateral__c" novaluebehavior="deactivate" fieldtargetobjects="clcommon__Collateral__c"/>
+      </conditions>
+      <actions/>
+    </model>
   </models>
   <components>
     <pagetitle model="SelectedCollateral" uniqueid="collateralDetails-save-pt">
       <actions>
         <action type="multi" label="Save" cssclass="iconic-button iconic-button-save" uniqueid="sk-3Cq9-1014">
           <actions>
-            <action type="custom" snippet="populateSecAddressInSecName"/>
-            <action type="save" rollbackonanyerror="true">
+            <action type="save">
+              <models>
+                <model>SelectedCollateral</model>
+              </models>
+            </action>
+            <action type="requeryModels" behavior="standard">
               <models>
                 <model>SelectedApplicationCollateral</model>
                 <model>SelectedCollateral</model>
-                <model>CollateralOwner</model>
-                <model>SecurityOwnerContact</model>
+                <model>Application</model>
+                <model>AllAppCollateral</model>
+                <model>AllCollateral</model>
+              </models>
+            </action>
+            <action type="custom" snippet="SummationOfValue"/>
+            <action type="save">
+              <models>
+                <model>Application</model>
               </models>
             </action>
             <action type="custom" snippet="CloseDialog"/>
@@ -326,9 +377,11 @@
               </popup>
             </action>
           </actions>
+          <renderconditions logictype="and"/>
+          <enableconditions/>
         </action>
       </actions>
-      <renderconditions logictype="and"></renderconditions>
+      <renderconditions logictype="and"/>
       <maintitle>Security Details</maintitle>
     </pagetitle>
     <wrapper uniqueid="sk-15VvHt-366" cssclass="">
@@ -358,128 +411,6 @@
                       </editmodepopup>
                       <renderconditions logictype="and" onhidedatabehavior="keep"/>
                       <enableconditions/>
-                      <template>&lt;!DOCTYPE html&gt;
-&lt;html&gt;
-
-&lt;head&gt;
-    &lt;script&gt;
-        var autocomplete,
-            accModel = skuid.model.getModel('SelectedCollateral'),
-            accRow = accModel.data[0],
-            autoCompleteInput = document.getElementById('CollateralAddress');
-            //Google Place Initialize
-            function initAutocomplete() {
-                autocomplete = new google.maps.places.Autocomplete(autoCompleteInput, {types: ['geocode']});
-               
-                //Restrict the google place only show the specified country address and not allow other country address.
-                autocomplete.setComponentRestrictions({
-                   country: ["aus","in"]
-                });
-                
-                google.maps.event.addListener(autocomplete, "place_changed", function() {
-                  var place = autocomplete.getPlace();
-                  autoCompleteInput.value = place.formatted_address;
-                  if(place){
-                    var formatted_address = place.formatted_address;
-                    var placeComponent = place.address_components;
-                    fillInAddress(placeComponent,formatted_address);
-                  }else{
-                    alert('Address not found.Please check your address details.');
-                  }
-                });
-            }
-            
-            //Address data fillup for each type.
-            function fillInAddress(placeComponent,formatted_address) {
-              $.each(placeComponent,function(i,row){ 
-                    console.log(placeComponent); 
-                    if(row.types=='premise' || row.types=='route'){
-                        //accRow.OtherStreet = row.long_name ;
-                         accModel.updateRow(accRow,{
-                            Street_Name__c : row.long_name.split(" ")[0]
-                        });
-                        accModel.updateRow(accRow,{
-                            Street_Type__c : row.long_name.split(" ")[1]
-                        });
-                        console.log('OtherStreet'+row.long_name+'====='+accRow.OtherStreet);
-                    }
-                    else if(row.types.includes('sublocality_level_1')){
-                        //accRow.OtherStreet = accRow.OtherStreet + ', ' + row.long_name ;
-                        accModel.updateRow(accRow,{
-                            Street_Name__c : row.long_name.split(" ")[0]
-                        });
-                        accModel.updateRow(accRow,{
-                            Street_Type__c : row.long_name.split(" ")[1]
-                        });
-                    }
-                    else if(row.types.includes('locality')){
-                        //accRow.OtherCity = row.long_name ;
-                        accModel.updateRow(accRow,{
-                            clcommon__City__c : row.long_name
-                        });
-                        console.log('OtherCity'+row.long_name+'====='+accRow.OtherCity);
-                    }
-                    else if(row.types.includes('administrative_area_level_1')){
-                        //accRow.OtherState = row.long_name ;
-                        accModel.updateRow(accRow,{
-                            clcommon__State__c : row.long_name
-                        });
-                        console.log('OtherState'+row.long_name+'====='+accRow.OtherState);
-                    }
-                    else if(row.types.includes('country')){
-                        //accRow.OtherCountry = row.long_name ;
-                        accModel.updateRow(accRow,{
-                            Country__c : row.long_name
-                        });
-                        console.log('OtherCountry'+row.long_name+'====='+accRow.OtherCountry);
-                    }
-                    else if(row.types.includes('street_number')){
-                        //accRow.OtherCountry = row.long_name ;
-                        accModel.updateRow(accRow,{
-                            Street_No__c : row.long_name
-                        });
-                        console.log('OtherCountry'+row.long_name+'====='+accRow.OtherCountry);
-                    }
-                    else if(row.types.includes('postal_code')){
-                        //accRow.OtherPostalCode = row.long_name ;
-                        accModel.updateRow(accRow,{
-                            clcommon__Postal_Code__c : row.long_name
-                        });
-                        console.log('OtherPostalCode'+row.long_name+'====='+accRow.OtherPostalCode);
-                    }
-                    accModel.updateRow(accRow,{
-                        Full_Address__c : formatted_address
-                    });
-
-              }) ; 
-            }
-
-            //Get and Set the location.
-            function geolocate() {
-                if (navigator.geolocation) {
-                    navigator.geolocation.getCurrentPosition(function(position) {
-                      var geolocation = {
-                        lat: position.coords.latitude,
-                        lng: position.coords.longitude
-                      };
-                      var circle = new google.maps.Circle(
-                          {center: geolocation, radius: position.coords.accuracy});
-                      autocomplete.setBounds(circle.getBounds());
-                    });
-                }
-            }
-        &lt;/script&gt;
-&lt;/head&gt;
-
-&lt;body&gt;
-    &lt;div id="locationField"&gt;
-        &lt;input id="CollateralAddress" placeholder="Enter your address" onFocus="geolocate()" type="text" /&gt;
-    &lt;/div&gt;
-    &lt;!-- Replace the value of the key parameter with your own API key. --&gt;
-    &lt;script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDRh8kZcxEfA2gb31x2_RtuPk2YIlECgNA&amp;&amp;libraries=places&amp;callback=initAutocomplete"&gt;&lt;/script&gt;
-&lt;/body&gt;
-
-&lt;/html&gt;</template>
                     </field>
                     <field uniqueid="sk-3DO1-855" id="Enter_Address_Manually__c"/>
                   </fields>
@@ -493,9 +424,7 @@
                             <fields>
                               <field uniqueid="sk-3KKw-1289" id="Full_Address__c">
                                 <renderconditions logictype="and" onhidedatabehavior="keep"/>
-                                <enableconditions logictype="and">
-                                  <condition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="SelectedCollateral" sourcetype="fieldvalue" field="Id" fieldtargetobjects="clcommon__Collateral__c" value="1234"/>
-                                </enableconditions>
+                                <enableconditions logictype="and"/>
                               </field>
                               <columns uniqueid="sk-3KKm-1250" layoutmode="fixed">
                                 <column width="100%" uniqueid="sk-3KKm-1239">
@@ -509,29 +438,21 @@
                                                 <fields>
                                                   <field uniqueid="sk-3DO6-873" id="Unit_No__c">
                                                     <renderconditions logictype="and" onhidedatabehavior="keep"/>
-                                                    <enableconditions logictype="and">
-                                                      <condition type="fieldvalue" operator="=" enclosevalueinquotes="false" fieldmodel="SelectedCollateral" sourcetype="fieldvalue" field="Enter_Address_Manually__c" fieldtargetobjects="clcommon__Collateral__c" value="true"/>
-                                                    </enableconditions>
+                                                    <enableconditions logictype="and"/>
                                                   </field>
                                                   <field uniqueid="sk-3DOC-929" id="Street_Name__c">
                                                     <renderconditions logictype="and" onhidedatabehavior="keep"/>
-                                                    <enableconditions logictype="and">
-                                                      <condition type="fieldvalue" operator="=" enclosevalueinquotes="false" fieldmodel="SelectedCollateral" sourcetype="fieldvalue" field="Enter_Address_Manually__c" fieldtargetobjects="clcommon__Collateral__c" value="true"/>
-                                                    </enableconditions>
+                                                    <enableconditions logictype="and"/>
                                                   </field>
                                                   <field uniqueid="sk-3DOJ-978" id="clcommon__City__c">
                                                     <label>Suburb</label>
                                                     <renderconditions logictype="and" onhidedatabehavior="keep"/>
-                                                    <enableconditions logictype="and">
-                                                      <condition type="fieldvalue" operator="=" enclosevalueinquotes="false" fieldmodel="SelectedCollateral" sourcetype="fieldvalue" field="Enter_Address_Manually__c" fieldtargetobjects="clcommon__Collateral__c" value="true"/>
-                                                    </enableconditions>
+                                                    <enableconditions logictype="and"/>
                                                   </field>
                                                   <field uniqueid="sk-3DPD-1085" id="clcommon__Postal_Code__c">
                                                     <label>Post Code</label>
                                                     <renderconditions logictype="and" onhidedatabehavior="keep"/>
-                                                    <enableconditions logictype="and">
-                                                      <condition type="fieldvalue" operator="=" enclosevalueinquotes="false" fieldmodel="SelectedCollateral" sourcetype="fieldvalue" field="Enter_Address_Manually__c" fieldtargetobjects="clcommon__Collateral__c" value="true"/>
-                                                    </enableconditions>
+                                                    <enableconditions logictype="and"/>
                                                   </field>
                                                 </fields>
                                               </section>
@@ -543,27 +464,19 @@
                                                 <fields>
                                                   <field uniqueid="sk-3DOD-937" id="Street_No__c">
                                                     <renderconditions logictype="and" onhidedatabehavior="keep"/>
-                                                    <enableconditions logictype="and">
-                                                      <condition type="fieldvalue" operator="=" enclosevalueinquotes="false" fieldmodel="SelectedCollateral" sourcetype="fieldvalue" field="Enter_Address_Manually__c" fieldtargetobjects="clcommon__Collateral__c" value="true"/>
-                                                    </enableconditions>
+                                                    <enableconditions logictype="and"/>
                                                   </field>
                                                   <field uniqueid="sk-3DOE-945" id="Street_Type__c">
                                                     <renderconditions logictype="and" onhidedatabehavior="keep"/>
-                                                    <enableconditions logictype="and">
-                                                      <condition type="fieldvalue" operator="=" enclosevalueinquotes="false" fieldmodel="SelectedCollateral" sourcetype="fieldvalue" field="Enter_Address_Manually__c" fieldtargetobjects="clcommon__Collateral__c" value="true"/>
-                                                    </enableconditions>
+                                                    <enableconditions logictype="and"/>
                                                   </field>
                                                   <field uniqueid="sk-3DP4-1034" id="clcommon__State__c">
                                                     <renderconditions logictype="and" onhidedatabehavior="keep"/>
-                                                    <enableconditions logictype="and">
-                                                      <condition type="fieldvalue" operator="=" enclosevalueinquotes="false" fieldmodel="SelectedCollateral" sourcetype="fieldvalue" field="Enter_Address_Manually__c" fieldtargetobjects="clcommon__Collateral__c" value="true"/>
-                                                    </enableconditions>
+                                                    <enableconditions logictype="and"/>
                                                   </field>
                                                   <field uniqueid="sk-3DP9-1066" id="Country__c">
                                                     <renderconditions logictype="and" onhidedatabehavior="keep"/>
-                                                    <enableconditions logictype="and">
-                                                      <condition type="fieldvalue" operator="=" enclosevalueinquotes="false" fieldmodel="SelectedCollateral" sourcetype="fieldvalue" field="Enter_Address_Manually__c" fieldtargetobjects="clcommon__Collateral__c" value="true"/>
-                                                    </enableconditions>
+                                                    <enableconditions logictype="and"/>
                                                   </field>
                                                 </fields>
                                               </section>
@@ -592,7 +505,7 @@
             <column ratio="1" minwidth="300px" behavior="flex" verticalalign="top">
               <sections>
                 <section title="" collapsible="no" showheader="false">
-                  <fields></fields>
+                  <fields/>
                 </section>
                 <section title="New Section" collapsible="no" uniqueid="sk-3Ec0-2596" showheader="false">
                   <fields>
@@ -845,12 +758,13 @@
                             <fields>
                               <field uniqueid="sk-3Ec0-2658" id="Contract_Price_Amount__c">
                                 <label>Contract Price ($)</label>
-                                <renderconditions logictype="and" onhidedatabehavior="keep">
-                                  <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="SelectedCollateral" sourcetype="fieldvalue" field="Transaction__c" fieldtargetobjects="clcommon__Collateral__c" value="Purchase"/>
-                                </renderconditions>
+                                <renderconditions logictype="and" onhidedatabehavior="keep"/>
                                 <enableconditions logictype="and"/>
                               </field>
-                              <field uniqueid="sk-3Ec0-2659" id="Licenced_Real_Estate_Agent_Contract__c"/>
+                              <field uniqueid="sk-3Ec0-2659" id="Licenced_Real_Estate_Agent_Contract__c">
+                                <renderconditions logictype="and" onhidedatabehavior="keep"/>
+                                <enableconditions/>
+                              </field>
                             </fields>
                           </section>
                         </sections>
@@ -862,8 +776,14 @@
                         <sections>
                           <section title="New Section" collapsible="no" uniqueid="sk-3Ec0-2661" showheader="false">
                             <fields>
-                              <field uniqueid="sk-3Ec0-2662" id="clcommon__Contract_Date__c" monthpicker="true" yearpicker="true" yearpickermin="c-30" yearpickermax="c+30"/>
-                              <field uniqueid="sk-3Ec0-2663" id="Arms_Length_Transaction__c"/>
+                              <field uniqueid="sk-3Ec0-2662" id="clcommon__Contract_Date__c" monthpicker="true" yearpicker="true" yearpickermin="c-30" yearpickermax="c+30">
+                                <renderconditions logictype="and" onhidedatabehavior="keep"/>
+                                <enableconditions/>
+                              </field>
+                              <field uniqueid="sk-3Ec0-2663" id="Arms_Length_Transaction__c">
+                                <renderconditions logictype="and" onhidedatabehavior="keep"/>
+                                <enableconditions/>
+                              </field>
                             </fields>
                           </section>
                         </sections>
@@ -1043,7 +963,7 @@
           </columns>
           <renderconditions logictype="and"/>
         </basicfieldeditor>
-        <skootable showconditions="true" showsavecancel="true" showerrorsinline="true" searchmethod="server" searchbox="true" showexportbuttons="false" hideheader="false" hidefooter="false" pagesize="10" alwaysresetpagination="false" createrecords="true" model="CollateralOwner" buttonposition="" mode="edit" allowcolumnreordering="true" responsive="true" uniqueid="sk-26IQ-1105" heading="Registered Proprietors">
+        <skootable showconditions="true" showsavecancel="true" showerrorsinline="true" searchmethod="server" searchbox="true" showexportbuttons="false" hideheader="false" hidefooter="false" pagesize="10" alwaysresetpagination="false" createrecords="true" model="CollateralOwner" mode="edit" allowcolumnreordering="true" responsive="true" uniqueid="sk-26IQ-1105" heading="Registered Proprietors" cssclass="textCSS">
           <fields>
             <field id="clcommon__Account__c" hideable="true" uniqueid="fi-26Ih-1244">
               <label>Full Name</label>
@@ -1063,6 +983,7 @@
           <views>
             <view type="standard"/>
           </views>
+          <searchfields/>
         </skootable>
         <basicfieldeditor showheader="true" showsavecancel="false" showerrorsinline="true" model="SandP_Postcode" uniqueid="sk-14jg-1575" mode="edit">
           <columns>
@@ -1686,6 +1607,24 @@ var customSelect = skuid.ui.renderers.PICKLIST.edit({
 var colRow = colModel.data[0];
 var address = (((colRow.Unit_No__c === undefined || colRow.Unit_No__c === null || colRow.Unit_No__c.length &lt;= 0) ? '' : (colRow.Unit_No__c+' '))+((colRow.Street_No__c === undefined || colRow.Street_No__c === null || colRow.Street_No__c.length &lt;= 0) ? '' : (colRow.Street_No__c+' '))+((colRow.Street_Name__c === undefined || colRow.Street_Name__c === null || colRow.Street_Name__c.length &lt;= 0) ? '' : (colRow.Street_Name__c+' '))+((colRow.Street_Type__c === undefined || colRow.Street_Type__c === null || colRow.Street_Type__c.length &lt;= 0) ? '' : (colRow.Street_Type__c+' '))+((colRow.clcommon__City__c === undefined || colRow.clcommon__City__c === null || colRow.clcommon__City__c.length &lt;= 0) ? '' : (colRow.clcommon__City__c+' '))+((colRow.clcommon__State__c === undefined || colRow.clcommon__State__c === null || colRow.clcommon__State__c.length &lt;= 0) ? '' : (colRow.clcommon__State__c+' '))+((colRow.Country__c === undefined || colRow.Country__c === null || colRow.Country__c.length &lt;= 0) ? '' : (colRow.Country__c+' '))+((colRow.clcommon__Postal_Code__c === undefined || colRow.clcommon__Postal_Code__c === null || colRow.clcommon__Postal_Code__c.length &lt;= 0) ? '' : (colRow.clcommon__Postal_Code__c+' ')));
 colModel.updateRow(colRow,'clcommon__Collateral_Name__c',address);</jsitem>
+      <jsitem location="inlinesnippet" name="SummationOfValue" cachelocation="false">var params = arguments[0],
+	$ = skuid.$;
+var allColModel = skuid.model.getModel('AllCollateral');
+var colModel = skuid.model.getModel('SelectedCollateral');
+var appModel = skuid.model.getModel('Application');
+var appRow = appModel.data[0];
+var totalValue=0;
+$.each(allColModel.data,function(i,row){
+    var val=0;
+    console.log(row);
+    console.log(row.clcommon__Value__c) ;
+    val=(row.clcommon__Value__c!==undefined &amp;&amp; row.clcommon__Value__c!==null &amp;&amp; row.clcommon__Value__c!=='') ? row.clcommon__Value__c : 0
+    totalValue = totalValue + val;
+});
+console.log(totalValue);
+appModel.updateRow(appRow,'Actual_Security_Value__c',totalValue);
+
+//app model update</jsitem>
     </javascript>
     <css>
       <cssitem location="staticresource" name="CLSStyleSheetPack" cachelocation="false" url="" namespace="genesisExtn" filepath="cls-common.css"/>
@@ -1696,6 +1635,11 @@ colModel.updateRow(colRow,'clcommon__Collateral_Name__c',address);</jsitem>
 #collateralDetails-save-pt {
     margin-top:-8px;
 }</cssitem>
+      <cssitem location="inline" name="textCSS" cachelocation="false">    .nx-editor-header-heading {
+    color: #0288d1e3 !important;
+    font-size: 13px !important;
+    font-family: 'Lucida Grande','Lucida Sans',Arial,Helvetica,sans-serif;
+    }</cssitem>
     </css>
     <actionsequences uniqueid="sk-3CqS-1819"/>
   </resources>

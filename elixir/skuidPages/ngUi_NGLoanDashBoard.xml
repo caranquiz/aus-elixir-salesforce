@@ -11,8 +11,6 @@
         <field id="genesis__Asset_Class__c"/>
         <field id="RecordType.Name"/>
         <field id="Id"/>
-        <field id="genesis__Account__r.clcommon__Legal_Entity_Type__c"/>
-        <field id="genesis__Account__r.clcommon__Legal_Entity_Type__r.Name"/>
       </fields>
       <conditions>
         <condition type="param" value="id" field="Id" operator="=" userinfotype="userid" enclosevalueinquotes="true" novaluebehavior="noquery"/>
@@ -61,27 +59,6 @@
   <components>
     <tabset rememberlastusertab="false" defertabrendering="true" uniqueid="cls-originate-page" cssclass="cls-dashboard-tab-content">
       <tabs>
-        <tab name="Application Details" loadlazypanels="true">
-          <components>
-            <wrapper uniqueid="sk-1hRk-456">
-              <components>
-                <includepanel type="skuid" uniqueid="sk-1hRm-468" pagename="CustomBorrowerDetails" querystring="?id={{$Model.NGLDApplication.data.0.Id}}"/>
-              </components>
-              <styles>
-                <styleitem type="background"/>
-                <styleitem type="border"/>
-                <styleitem type="size"/>
-              </styles>
-              <interactions/>
-              <renderconditions logictype="and"/>
-            </wrapper>
-          </components>
-          <oninitialshowactions/>
-          <onshowactions/>
-          <renderconditions logictype="and">
-            <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="NGLDApplication" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="Name" fieldtargetobjects="genesis__Applications__c" value="876545678"/>
-          </renderconditions>
-        </tab>
         <tab name="Loan">
           <components>
             <grid uniqueid="loan-dashboard-grid" columngutter="10px">
@@ -228,6 +205,27 @@
             <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="NGLDApplication" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="Id" fieldtargetobjects="genesis__Applications__c" value="4345432"/>
           </renderconditions>
         </tab>
+        <tab name="Application Details" loadlazypanels="true">
+          <components>
+            <wrapper uniqueid="sk-1hRk-456">
+              <components>
+                <includepanel type="skuid" uniqueid="sk-1hRm-468" pagename="CustomBorrowerDetails" querystring="?id={{$Model.NGLDApplication.data.0.Id}}"/>
+              </components>
+              <styles>
+                <styleitem type="background"/>
+                <styleitem type="border"/>
+                <styleitem type="size"/>
+              </styles>
+              <interactions/>
+              <renderconditions logictype="and"/>
+            </wrapper>
+          </components>
+          <oninitialshowactions/>
+          <onshowactions/>
+          <renderconditions logictype="and">
+            <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="NGLDApplication" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="Name" fieldtargetobjects="genesis__Applications__c" value="876545678"/>
+          </renderconditions>
+        </tab>
         <tab name="Construction" loadlazypanels="true">
           <components>
             <pagetitle uniqueid="construction-title" model="NGLDApplication">
@@ -330,6 +328,14 @@
             <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="NGLDApplication" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="Id" fieldtargetobjects="genesis__Applications__c" value="076546789"/>
           </renderconditions>
         </tab>
+        <tab name="Loan Details" loadlazypanels="true">
+          <components>
+            <includepanel type="skuid" uniqueid="sk-2fuF-416" querystring="?id={{$Model.NGLDApplication.data.0.Id}}" pagename="CustomBorrowerDetails">
+              <renderconditions logictype="and"/>
+            </includepanel>
+          </components>
+          <renderconditions logictype="and"/>
+        </tab>
         <tab name="Applicants" loadlazypanels="false" uniqueid="party-include-panel">
           <components>
             <includepanel type="skuid" uniqueid="relationship-dashboard" pagename="RelationshipDashboard" module="ngUi" querystring="?id={{$Model.NGLDApplication.data.0.Id}}">
@@ -342,14 +348,6 @@
           <onshowactions>
             <action type="custom" snippet="AdjustLayoutRelationshipDashboard"/>
           </onshowactions>
-          <renderconditions logictype="and"/>
-        </tab>
-        <tab name="Loan Details" loadlazypanels="true">
-          <components>
-            <includepanel type="skuid" uniqueid="sk-2fuF-416" querystring="?id={{$Model.NGLDApplication.data.0.Id}}" pagename="CustomBorrowerDetails">
-              <renderconditions logictype="and"/>
-            </includepanel>
-          </components>
           <renderconditions logictype="and"/>
         </tab>
         <tab name="Securities" loadlazypanels="false">
@@ -445,8 +443,13 @@
         </tab>
         <tab loadlazypanels="true" name="Pricing">
           <components>
-            <includepanel type="skuid" uniqueid="sk-BSD-1201" querystring="?id={{$Model.NGLDApplication.data.0.Id}}" pagename="CustomPricingDetails"/>
+            <includepanel type="skuid" uniqueid="sk-BSD-1201" querystring="?id={{$Model.NGLDApplication.data.0.Id}}" pagename="CustomPricingDetails">
+              <renderconditions logictype="and"/>
+            </includepanel>
           </components>
+          <renderconditions logictype="and">
+            <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="NGLDApplication" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="Id" fieldtargetobjects="genesis__Applications__c" value="1234"/>
+          </renderconditions>
         </tab>
         <tab name="Documents" loadlazypanels="true">
           <components>
@@ -473,12 +476,11 @@
         <tab name="Conditions" loadlazypanels="true">
           <components>
             <includepanel type="skuid" uniqueid="sk-36Wy-510" pagename="CustomCreditConditions" querystring="?Id={{$Model.BorrowerParty.data.0.Id}}">
-              <renderconditions logictype="and"/>
+              <renderconditions logictype="and">
+                <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="BorrowerParty" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="clcommon__Type__r.Name" value="Individual"/>
+              </renderconditions>
             </includepanel>
           </components>
-          <renderconditions logictype="and">
-            <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="NGLDApplication" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="genesis__Account__r.clcommon__Legal_Entity_Type__r.Name" value="Individual"/>
-          </renderconditions>
         </tab>
       </tabs>
       <renderconditions logictype="and"/>

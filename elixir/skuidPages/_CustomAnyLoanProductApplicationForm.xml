@@ -1,0 +1,214 @@
+<skuidpage personalizationmode="server" showsidebar="false" showheader="false">
+  <models>
+    <model id="GeneralLoanCLProduct" limit="1" query="true" createrowifnonefound="false" sobject="clcommon__CL_Product__c" datasource="salesforce">
+      <fields>
+        <field id="clcommon__Asset_Class__c"/>
+        <field id="clcommon__Asset_Class__r.Name"/>
+        <field id="Name"/>
+        <field id="clcommon__Product_Name__c"/>
+        <field id="clcommon__Primary_Collateral_Type__c"/>
+        <field id="clcommon__Primary_Collateral_Type__r.Name"/>
+        <field id="RecordType.Name"/>
+        <field id="Id"/>
+        <field id="RecordTypeId"/>
+      </fields>
+      <conditions>
+        <condition type="fieldvalue" value="Purchase" enclosevalueinquotes="true" field="clcommon__Product_Name__c" operator="=" model="OrgParameterModel"/>
+        <condition type="fieldvalue" value="Commercial Secured" enclosevalueinquotes="true" field="clcommon__Asset_Class__r.Name" operator="=" model="OrgParameterModel"/>
+      </conditions>
+      <actions/>
+    </model>
+    <model id="GeneralLoanApplication" limit="1" query="false" createrowifnonefound="false" sobject="genesis__Applications__c" datasource="salesforce">
+      <fields>
+        <field id="genesis__Loan_Number__c"/>
+        <field id="genesis__Credit_Limit__c"/>
+        <field id="genesis__CL_Company__c"/>
+        <field id="genesis__CL_Company__r.Name"/>
+        <field id="genesis__CL_Purpose__c"/>
+        <field id="genesis__CL_Purpose__r.Name"/>
+        <field id="genesis__Primary_Source_of_Repayment__c"/>
+        <field id="genesis__Secondary_Source_of_Repayment__c"/>
+        <field id="genesis__Status__c"/>
+        <field id="genesis__Expected_Close_Date__c"/>
+        <field id="genesis__Expected_First_Payment_Date__c"/>
+        <field id="genesis__Maturity_Date__c"/>
+        <field id="genesis__Participation_Date__c"/>
+        <field id="genesis__Interest_Rate__c"/>
+        <field id="genesis__Spread__c"/>
+        <field id="genesis__Margin__c"/>
+        <field id="genesis__Payment_Frequency__c"/>
+        <field id="genesis__Interest_Only_Period__c"/>
+        <field id="genesis__Discount_Rate__c"/>
+        <field id="genesis__Discount_Rate_Based_On__c"/>
+        <field id="genesis__Term__c"/>
+        <field id="genesis__Amortization_Term__c"/>
+        <field id="genesis__Payment_Amount__c"/>
+        <field id="genesis__Balloon_Payment__c"/>
+        <field id="genesis__Prepayment_Penalty__c"/>
+        <field id="genesis__Prepayment_Penalty_Description__c"/>
+        <field id="genesis__Call_Code__c"/>
+        <field id="genesis__Class_Code__c"/>
+        <field id="genesis__Portfolio__c"/>
+        <field id="genesis__Primary_Collateral_Code__c"/>
+        <field id="genesis__Regulation_O__c"/>
+        <field id="genesis__Loan_Amount__c"/>
+        <field id="genesis__Disbursement_Date__c"/>
+        <field id="genesis__Rate_Floor__c"/>
+        <field id="genesis__Rate_Ceiling__c"/>
+        <field id="genesis__Expected_Start_Date__c"/>
+        <field id="genesis__Company__c"/>
+        <field id="genesis__Company__r.Name"/>
+        <field id="genesis__Days_Convention__c"/>
+        <field id="genesis__Interest_Calculation_Method__c"/>
+        <field id="genesis__Collateral_Type__c"/>
+        <field id="genesis__Collateral_Type__r.Name"/>
+        <field id="genesis__Draw_Term__c"/>
+        <field id="Id"/>
+        <field id="RecordType.Name"/>
+        <field id="RecordTypeId"/>
+        <field id="genesis__APR__c"/>
+        <field id="genesis__CL_Company__r.clcommon__Company_Name__c"/>
+        <field id="Details_for_Interest_Only_Period__c"/>
+        <field id="Regulated_Unregulated__c"/>
+        <field id="Purchase_Type__c"/>
+        <field id="Document_Type__c"/>
+        <field id="Owner_Occupied_Investment_Product__c"/>
+        <field id="Purchase__c"/>
+        <field id="genesis__Funding_in_Tranches__c"/>
+      </fields>
+      <conditions>
+        <condition type="fieldvalue" value="" field="Id" operator="=" novaluebehavior="" enclosevalueinquotes="true" state="filterableoff" inactive="true" name="Id" model="OrgParameterModel"/>
+      </conditions>
+      <actions/>
+    </model>
+    <model id="ApplicationComplianceInformation" limit="1" query="true" createrowifnonefound="false" datasource="salesforce" sobject="genesis__Application_Compliance_Information__c">
+      <fields>
+        <field id="genesis__Covered_Under_MLA__c"/>
+        <field id="genesis__Employee_Application__c"/>
+        <field id="genesis__Insider_Relationship__c"/>
+        <field id="genesis__Application__c"/>
+        <field id="genesis__Application__r.Name"/>
+      </fields>
+      <conditions>
+        <condition type="param" value="Id" field="genesis__Application__c" fieldtargetobjects="genesis__Applications__c" operator="=" novaluebehavior="noquery" enclosevalueinquotes="true" model="OrgParameterModel"/>
+      </conditions>
+      <actions/>
+    </model>
+    <model limit="20" query="true" createrowifnonefound="false" datasource="salesforce" sobject="genesis__Org_Parameters__c" id="OrgParameterModel">
+      <fields>
+        <field id="genesis__Use_CL_Product__c"/>
+      </fields>
+      <conditions/>
+      <actions/>
+    </model>
+  </models>
+  <components>
+    <wrapper uniqueid="sk-zpm-289">
+      <components>
+        <basicfieldeditor showheader="true" showsavecancel="false" showerrorsinline="true" model="GeneralLoanApplication" uniqueid="sk-zpq-306" mode="edit">
+          <columns>
+            <column width="50%" uniqueid="sk-zpq-302">
+              <sections>
+                <section title="Section A" uniqueid="sk-zpq-303" collapsible="no" showheader="false">
+                  <fields>
+                    <field uniqueid="sk-_45-367" id="genesis__Loan_Amount__c" snippet="fieldsRenderMode" required="true"/>
+                    <field uniqueid="sk-_4C-373" id="genesis__Payment_Frequency__c" snippet="fieldsRenderMode"/>
+                    <field uniqueid="sk-_4K-385" id="genesis__Interest_Only_Period__c" snippet="fieldsRenderMode"/>
+                    <field uniqueid="sk-_BL-346" id="Regulated_Unregulated__c" snippet="fieldsRenderMode"/>
+                    <field uniqueid="sk-_BN-352" id="Purchase_Type__c" snippet="fieldsRenderMode"/>
+                    <field uniqueid="sk-_BR-358" id="Document_Type__c" snippet="fieldsRenderMode"/>
+                  </fields>
+                </section>
+              </sections>
+            </column>
+            <column width="50%" uniqueid="sk-zpq-304">
+              <sections>
+                <section title="Section B" uniqueid="sk-zpq-305" collapsible="no" showheader="false">
+                  <fields>
+                    <field uniqueid="sk-_4D-379" id="genesis__Interest_Rate__c" snippet="fieldsRenderMode"/>
+                    <field uniqueid="sk-_4N-393" id="genesis__Term__c" snippet="fieldsRenderMode"/>
+                    <field uniqueid="sk-_BH-340" id="Details_for_Interest_Only_Period__c" snippet="fieldsRenderMode"/>
+                    <field uniqueid="sk-_Bl-364" id="Owner_Occupied_Investment_Product__c" snippet="fieldsRenderMode"/>
+                    <field uniqueid="sk-_Bt-376" id="genesis__Funding_in_Tranches__c" snippet="fieldsRenderMode"/>
+                  </fields>
+                </section>
+              </sections>
+            </column>
+          </columns>
+          <renderconditions logictype="and">
+            <rendercondition type="multiple" operator="not in" fieldmodel="GeneralLoanApplication" sourcetype="fieldvalue" nosourcerowbehavior="skipandnorender" field="RecordType.Name" value="" enclosevalueinquotes="true">
+              <values>
+                <value>Line Of Credit</value>
+              </values>
+            </rendercondition>
+          </renderconditions>
+        </basicfieldeditor>
+      </components>
+      <styles>
+        <styleitem type="background"/>
+        <styleitem type="border"/>
+        <styleitem type="size"/>
+      </styles>
+    </wrapper>
+  </components>
+  <resources>
+    <labels/>
+    <javascript>
+      <jsitem location="inline" name="loadModels" cachelocation="false" url="">(function(skuid){
+	var $ = skuid.$;
+	$(document.body).one('pageload',function(){
+	var paramId = skuid.page.params.id;
+	    var pageName = skuid.page.params.page;
+	    if(pageName &amp;&amp; pageName == 'AddDealsToPackage'){
+	        var newRow = skuid.model.getModel('GeneralLoanApplication').createRow({});
+	    } else{
+    	    if(paramId){
+        	    queryApplication(paramId);
+        	}else{
+        	    var newRow = skuid.model.getModel('GeneralLoanApplication').createRow({
+        	        additionalConditions: [
+                        { field: 'RecordTypeId', value: skuid.page.params.RecordType}
+                    ]
+        	    });
+        	}
+	    }
+	});
+})(skuid);
+
+function queryApplication(id){
+    var applicationModel = skuid.model.getModel('GeneralLoanApplication');
+    var appIdCondition = applicationModel.getConditionByName('AppId');
+    applicationModel.setCondition(appIdCondition,id);
+    skuid.model.updateData([applicationModel],function(){});
+}
+</jsitem>
+      <jsitem location="inlinesnippet" name="fieldsRenderMode" cachelocation="false">var field = arguments[0],
+    value = arguments[1];
+ var renderMode = skuid.page.params.mode;
+if(renderMode &amp;&amp; renderMode == "read"){
+    skuid.ui.fieldRenderers[field.metadata.displaytype].read(field, value);
+}else{
+    skuid.ui.fieldRenderers[field.metadata.displaytype].edit(field, value);
+}</jsitem>
+      <jsitem location="inlinesnippet" name="getIncludedPageData" cachelocation="false" url="">var params = arguments[0],
+	$ = skuid.$;
+var productRow = skuid.model.getModel('GeneralLoanCLProduct').getFirstRow();
+var applicationModel = skuid.model.getModel('GeneralLoanApplication');
+if(applicationModel &amp;&amp; applicationModel.data &amp;&amp; applicationModel.data[0] &amp;&amp; productRow){
+    applicationModel.data[0].genesis__CL_Product__c = productRow.Id;
+}
+var result = {
+    'genesis__Applications__c' : applicationModel,
+};
+
+return result;
+
+</jsitem>
+    </javascript>
+    <css/>
+    <actionsequences uniqueid="sk-1Aip-470"/>
+  </resources>
+  <styles>
+    <styleitem type="background" bgtype="none"/>
+  </styles>
+</skuidpage>

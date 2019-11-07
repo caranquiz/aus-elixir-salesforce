@@ -1,0 +1,138 @@
+<skuidpage unsavedchangeswarning="yes" personalizationmode="server" showsidebar="true" useviewportmeta="true" showheader="true" theme="Ayush">
+  <models>
+    <model id="Party" limit="20" query="true" createrowifnonefound="false" datasource="salesforce" sobject="clcommon__Party__c">
+      <fields>
+        <field id="Applicant_ever_declared_banckrupt__c"/>
+        <field id="Name"/>
+        <field id="genesis__Party_Name__c"/>
+        <field id="clcommon__Contact__c"/>
+        <field id="clcommon__Contact__r.Name"/>
+        <field id="clcommon__Account__r.clcommon__Legal_Entity_Type__r.Name"/>
+        <field id="Independent_Financial_Advice__c"/>
+        <field id="Independent_Legal_Advice__c"/>
+        <field id="Non_English_Speaking_Borrower__c"/>
+        <field id="Independent_Financial_Advice_Sighted__c"/>
+        <field id="Independent_Legal_Advice_Sighted__c"/>
+        <field id="Non_English_Speaking_Borrower_Sighted__c"/>
+        <field id="clcommon__Account__c"/>
+        <field id="clcommon__Account__r.Name"/>
+      </fields>
+      <conditions>
+        <condition type="param" value="Id" field="Id" operator="=" enclosevalueinquotes="true" novaluebehavior="noquery"/>
+      </conditions>
+      <actions/>
+    </model>
+    <model id="CreditHistory" limit="20" query="true" createrowifnonefound="false" datasource="salesforce" sobject="Credit_History__c">
+      <fields>
+        <field id="Amount__c"/>
+        <field id="Is_Current__c"/>
+        <field id="Details__c"/>
+        <field id="Date__c"/>
+        <field id="Party__c"/>
+        <field id="Party__r.Name"/>
+        <field id="Id"/>
+        <field id="Issue__c"/>
+      </fields>
+      <conditions>
+        <condition type="param" value="Id" field="Party__c" fieldtargetobjects="clcommon__Party__c" operator="=" enclosevalueinquotes="true"/>
+      </conditions>
+      <actions/>
+    </model>
+    <model id="AccountModel" limit="20" query="true" createrowifnonefound="false" datasource="salesforce" sobject="Account">
+      <fields>
+        <field id="Id"/>
+        <field id="clcommon__Legal_Entity_Type__r.Name"/>
+        <field id="clcommon__Legal_Entity_Type__c"/>
+      </fields>
+      <conditions>
+        <condition type="modelmerge" value="" field="Id" operator="=" model="Party" enclosevalueinquotes="true" mergefield="clcommon__Account__c" novaluebehavior="deactivate" fieldtargetobjects="Account"/>
+      </conditions>
+      <actions/>
+    </model>
+  </models>
+  <components>
+    <pagetitle model="Party" uniqueid="sk-Ztv-540">
+      <actions>
+        <action type="multi" label="Save" uniqueid="sk-_xu-328" window="self">
+          <actions>
+            <action type="save">
+              <models>
+                <model>Party</model>
+                <model>CreditHistory</model>
+              </models>
+            </action>
+            <action type="custom" snippet="refresh1"/>
+          </actions>
+          <models>
+            <model>CreditHistory</model>
+          </models>
+          <hotkeys/>
+          <renderconditions logictype="and"/>
+          <enableconditions/>
+        </action>
+      </actions>
+    </pagetitle>
+    <basicfieldeditor showheader="true" showsavecancel="false" showerrorsinline="true" model="Party" uniqueid="sk-193v-552" mode="edit">
+      <columns layoutmode="fixed">
+        <column width="100%" uniqueid="sk-193v-553">
+          <sections>
+            <section title="Section A" uniqueid="sk-193v-554" collapsible="no" showheader="false">
+              <fields>
+                <field uniqueid="sk-193v-561" id="Independent_Financial_Advice__c" snippet="FieldRenderer2">
+                  <renderconditions logictype="and" onhidedatabehavior="keep"/>
+                  <enableconditions/>
+                </field>
+                <field uniqueid="sk-193v-562" id="Independent_Financial_Advice_Sighted__c" snippet="FieldRenderer2">
+                  <renderconditions logictype="and" onhidedatabehavior="keep">
+                    <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="Party" sourcetype="fieldvalue" field="Independent_Financial_Advice__c" fieldtargetobjects="clcommon__Party__c" value="Yes"/>
+                  </renderconditions>
+                  <enableconditions/>
+                </field>
+                <field uniqueid="sk-193v-563" id="Independent_Legal_Advice__c" snippet="FieldRenderer2">
+                  <renderconditions logictype="and" onhidedatabehavior="keep"/>
+                  <enableconditions/>
+                </field>
+                <field uniqueid="sk-193v-564" id="Independent_Legal_Advice_Sighted__c" snippet="FieldRenderer2">
+                  <renderconditions logictype="and" onhidedatabehavior="keep">
+                    <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="Party" sourcetype="fieldvalue" field="Independent_Legal_Advice__c" fieldtargetobjects="clcommon__Party__c" value="Yes"/>
+                  </renderconditions>
+                  <enableconditions/>
+                </field>
+                <field uniqueid="sk-193v-565" id="Non_English_Speaking_Borrower__c" snippet="FieldRenderer2"/>
+                <field uniqueid="sk-193v-566" id="Non_English_Speaking_Borrower_Sighted__c" snippet="FieldRenderer2">
+                  <label>Non English Speaking Borrower Interpreters Certificate Sighted</label>
+                  <renderconditions logictype="and" onhidedatabehavior="keep">
+                    <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="Party" sourcetype="fieldvalue" field="Non_English_Speaking_Borrower__c" fieldtargetobjects="clcommon__Party__c" value="Yes"/>
+                  </renderconditions>
+                  <enableconditions/>
+                </field>
+              </fields>
+            </section>
+          </sections>
+          <renderconditions logictype="and"/>
+        </column>
+      </columns>
+      <renderconditions logictype="and">
+        <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="AccountModel" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="clcommon__Legal_Entity_Type__r.Name" value="Individual"/>
+      </renderconditions>
+    </basicfieldeditor>
+  </components>
+  <resources>
+    <labels/>
+    <javascript>
+      <jsitem location="inlinesnippet" cachelocation="false" name="refresh1">var params = arguments[0],
+	$ = skuid.$;
+Window.location.reload();</jsitem>
+      <jsitem location="inlinesnippet" name="FieldRenderer2" cachelocation="false">var field = arguments[0],
+    value = arguments[1];
+var renderMode = skuid.page.params.mode;
+fieldModeToRender(field,value,renderMode);</jsitem>
+    </javascript>
+    <css/>
+    <actionsequences uniqueid="sk-2zfu-304"/>
+  </resources>
+  <styles>
+    <styleitem type="background" bgtype="none"/>
+  </styles>
+  <interactions/>
+</skuidpage>

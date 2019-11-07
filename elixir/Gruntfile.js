@@ -7,10 +7,10 @@ module.exports = function(grunt) {
   var pageNameList = require('./PageNames').init(grunt);
 
   var orgOptions = {
-    'clientId':'3MVG9iLRabl2Tf4hKxUFhiBKU_kbpZ2NwhzDAWgfp09mdYXh2gPipHzyK2NTV2CqZgyDqHTUEgaI3HyPL74ZV',
-    'clientSecret':'0399795E433FF28D61C4607EC0AEECFD3422C766C30C6FC17CFB1F2C2A86EB4E',
-    'username':'provisioningcls@38trialforce.com.khaliddev',
-    'password':'Welcome@12345hxAl4qbawnxYo9BE8xac3tW35',
+    'clientId':'3MVG9pcaEGrGRoTJhcW176ph6xXV8J3rlp16gYmxcFrlDQZsb.q6yKMqcxmU4kdpARaBPsJZNOIiZwizXYmGr',
+    'clientSecret':'F33BF4DAA66DC148FF029EAF2D007713FA013A3E601E0B65DC14F0261AA1D9BD',
+    'username':'provisioningcls@38trialforce.com.staging',
+    'password':'Welcome@123456vOzJLbqttUYeCynhtq1OYGjBl',
     'nforceOptions': {
       'environment':'sandbox'
    }
@@ -58,7 +58,7 @@ module.exports = function(grunt) {
         'dest': 'skuidPages/',
         'mode': 'single',
         'redirectUri': 'http://localhost:3000/oauth/_callback',
-     'clientId':'3MVG9aWdXtdHRrI0e4qHQ7X8QIBbA6lfLvf3FAHoSdpOG5QbpQzGEFT_uT3fPAyPqlKWL6vTZSEDkAB3LZ4Qn',
+     'clientId':'3MVG9N6eDmZRVJOl_QHMBHqHh9q7ppTc0NkBf033w2pCizLwxn58NTno8s.0cA68gvwjNXuUWa2sYsmId4EwY',
     'clientSecret':'838FC5257B336DAFE6B055D02954C9E7128CE90B44510DFFEB098895EF454AF4',
     'username':'provisioningcls@38trialforce.com.uatelixir',
     'password':'Welcome@12345KrK0dBXQJFuLdCF78fyv8x9wr',
@@ -114,10 +114,10 @@ module.exports = function(grunt) {
         'dest': 'skuidPages/',
         'mode': 'single',
         'redirectUri': 'http://localhost:3000/oauth/_callback',
-     'clientId':'3MVG9iLRabl2Tf4hKxUFhiBKU_kbpZ2NwhzDAWgfp09mdYXh2gPipHzyK2NTV2CqZgyDqHTUEgaI3HyPL74ZV',
-    'clientSecret':'0399795E433FF28D61C4607EC0AEECFD3422C766C30C6FC17CFB1F2C2A86EB4E',
-    'username':'provisioningcls@38trialforce.com.khaliddev',
-    'password':'Welcome@12345hxAl4qbawnxYo9BE8xac3tW35',
+        'clientId':'3MVG9N6eDmZRVJOl_QHMBHqHh9q7ppTc0NkBf033w2pCizLwxn58NTno8s.0cA68gvwjNXuUWa2sYsmId4EwY',
+    'clientSecret':'D733F04A12331C192811B3131AF87A26E03F9C396977CDA065CE0B9CD6683099',
+    'username':'provisioningcls@38trialforce.com.devElixir',
+    'password':'Welcome@123456mWPhUcWzRbbuWyDkQ7rPjKJdh',
     'nforceOptions': {
       'environment':'sandbox'
    }
@@ -158,7 +158,7 @@ module.exports = function(grunt) {
     });
 
     grunt.loadNpmTasks("grunt-contrib-uglify");
-    grunt.registerTask('default', ["skuid-pull-uat"]);
+    grunt.registerTask('default', ["skuid-pull-dev"]);
     grunt.registerTask('pull-code', ["skuid-pull"]);
     grunt.registerTask('push-code', ["skuid-push:specific"]);
     grunt.loadNpmTasks('skuid-grunt');

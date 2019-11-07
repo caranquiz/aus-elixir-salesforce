@@ -56,6 +56,7 @@
         <field id="Purchase_Type__c"/>
         <field id="Submission_notes__c"/>
         <field id="genesis__Disbursement_Date__c"/>
+        <field id="genesis__Due_Day__c"/>
       </fields>
       <conditions>
         <condition type="param" value="Id" field="Id" operator="=" enclosevalueinquotes="true" model="InvestmentBookModel"/>
@@ -217,6 +218,7 @@
                                 <fields>
                                   <field uniqueid="sk-1hWr-540" id="genesis__Loan_Amount__c" snippet="fieldRenderer4"/>
                                   <field uniqueid="sk-BaM-724" id="genesis__Interest_Rate__c" snippet="fieldRenderer4"/>
+                                  <field uniqueid="sk-3pBq-464" id="genesis__Interest_Compounding_Frequency__c" showhelp="true"/>
                                   <field uniqueid="sk-1hWz-588" id="genesis__Interest_Only_Period__c" snippet="fieldRenderer4"/>
                                   <field uniqueid="sk-BbU-848" id="genesis__Interest_Calculation_Method__c" snippet="fieldRenderer4"/>
                                   <field uniqueid="sk-3tRq-557" id="genesis__Expected_Start_Date__c" snippet="fieldRenderer4"/>
@@ -230,6 +232,7 @@
                                 <fields>
                                   <field uniqueid="sk-3wav-810" id="genesis__Status__c" snippet="fieldRenderer4"/>
                                   <field uniqueid="sk-1hWt-554" id="genesis__Term__c" snippet="fieldRenderer4"/>
+                                  <field uniqueid="sk-3pBT-423" id="genesis__Due_Day__c" showhelp="true"/>
                                   <field uniqueid="sk-3wat-779" id="genesis__Payment_Frequency__c" snippet="fieldRenderer4">
                                     <renderconditions logictype="and" onhidedatabehavior="keep">
                                       <rendercondition type="multiple" operator="in" fieldmodel="CommonApplicationModel" sourcetype="fieldvalue" field="genesis__Payment_Frequency__c" fieldtargetobjects="genesis__Applications__c" value="" enclosevalueinquotes="true">
