@@ -1,0 +1,109 @@
+{
+    "records": [
+        {
+            "attributes": {
+                "type": "clcommon__CL_Product__c",
+                "referenceId": "clcommon__CL_Product__cRef1"
+            },
+            "clcommon__Class__c": "Consumer",
+            "clcommon__Covered_under_MLA__c": false,
+            "clcommon__Product_Name__c": "SMSF Resi",
+            "genesis__Allow_SubLimits__c": false,
+            "genesis__Digits_After_Decimal__c": 2,
+            "genesis__Move_Across_Month__c": false,
+            "genesis__Schedule_Adjustment_Method__c": "After",
+            "genesis__Use_As_Package_Product__c": false,
+            "genesis__Use_As_SubLimit_Product__c": false
+        },
+        {
+            "attributes": {
+                "type": "clcommon__CL_Product__c",
+                "referenceId": "clcommon__CL_Product__cRef2"
+            },
+            "clcommon__Class__c": "Commercial",
+            "clcommon__Covered_under_MLA__c": false,
+            "clcommon__Product_Name__c": "Construction Development",
+            "genesis__Allow_SubLimits__c": false,
+            "genesis__Digits_After_Decimal__c": 2,
+            "genesis__Move_Across_Month__c": false,
+            "genesis__Schedule_Adjustment_Method__c": "After",
+            "genesis__Use_As_Package_Product__c": false,
+            "genesis__Use_As_SubLimit_Product__c": false
+        },
+        {
+            "attributes": {
+                "type": "clcommon__CL_Product__c",
+                "referenceId": "clcommon__CL_Product__cRef3"
+            },
+            "clcommon__Class__c": "Commercial",
+            "clcommon__Covered_under_MLA__c": false,
+            "clcommon__Product_Name__c": "SMSF Commercial",
+            "genesis__Allow_SubLimits__c": false,
+            "genesis__Digits_After_Decimal__c": 2,
+            "genesis__Move_Across_Month__c": false,
+            "genesis__Schedule_Adjustment_Method__c": "After",
+            "genesis__Use_As_Package_Product__c": false,
+            "genesis__Use_As_SubLimit_Product__c": false
+        },
+        {
+            "attributes": {
+                "type": "clcommon__CL_Product__c",
+                "referenceId": "clcommon__CL_Product__cRef4"
+            },
+            "clcommon__Class__c": "Consumer",
+            "clcommon__Covered_under_MLA__c": false,
+            "clcommon__Product_Name__c": "Resi - Regulated (NCCP)",
+            "genesis__Allow_SubLimits__c": false,
+            "genesis__Digits_After_Decimal__c": 2,
+            "genesis__Move_Across_Month__c": false,
+            "genesis__Schedule_Adjustment_Method__c": "After",
+            "genesis__Use_As_Package_Product__c": false,
+            "genesis__Use_As_SubLimit_Product__c": false
+        },
+        {
+            "attributes": {
+                "type": "clcommon__CL_Product__c",
+                "referenceId": "clcommon__CL_Product__cRef5"
+            },
+            "clcommon__Class__c": "Consumer",
+            "clcommon__Covered_under_MLA__c": false,
+            "clcommon__Product_Name__c": "Resi Unregulated",
+            "genesis__Allow_SubLimits__c": false,
+            "genesis__Digits_After_Decimal__c": 2,
+            "genesis__Move_Across_Month__c": false,
+            "genesis__Schedule_Adjustment_Method__c": "After",
+            "genesis__Use_As_Package_Product__c": false,
+            "genesis__Use_As_SubLimit_Product__c": false
+        },
+        {
+            "attributes": {
+                "type": "clcommon__CL_Product__c",
+                "referenceId": "clcommon__CL_Product__cRef6"
+            },
+            "clcommon__Class__c": "Commercial",
+            "clcommon__Covered_under_MLA__c": false,
+            "clcommon__Product_Name__c": "Commercial - Regulated(NCCP)",
+            "genesis__Allow_SubLimits__c": false,
+            "genesis__Digits_After_Decimal__c": 2,
+            "genesis__Move_Across_Month__c": false,
+            "genesis__Schedule_Adjustment_Method__c": "After",
+            "genesis__Use_As_Package_Product__c": false,
+            "genesis__Use_As_SubLimit_Product__c": false
+        },
+        {
+            "attributes": {
+                "type": "clcommon__CL_Product__c",
+                "referenceId": "clcommon__CL_Product__cRef7"
+            },
+            "clcommon__Class__c": "Commercial",
+            "clcommon__Covered_under_MLA__c": false,
+            "clcommon__Product_Name__c": "Commercial - Unregulated",
+            "genesis__Allow_SubLimits__c": false,
+            "genesis__Digits_After_Decimal__c": 2,
+            "genesis__Move_Across_Month__c": false,
+            "genesis__Schedule_Adjustment_Method__c": "After",
+            "genesis__Use_As_Package_Product__c": false,
+            "genesis__Use_As_SubLimit_Product__c": false
+        }
+    ]
+}

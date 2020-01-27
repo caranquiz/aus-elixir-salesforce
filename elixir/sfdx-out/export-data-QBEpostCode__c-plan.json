@@ -1,0 +1,10 @@
+[
+    {
+        "sobject": "QBEpostCode__c",
+        "saveRefs": true,
+        "resolveRefs": false,
+        "files": [
+            "export-data-QBEpostCode__cs.json"
+        ]
+    }
+]

@@ -1,0 +1,32 @@
+{
+    "records": [
+        {
+            "attributes": {
+                "type": "clcommon__Asset_Class__c",
+                "referenceId": "clcommon__Asset_Class__cRef1"
+            },
+            "Name": "Consumer Unsecured"
+        },
+        {
+            "attributes": {
+                "type": "clcommon__Asset_Class__c",
+                "referenceId": "clcommon__Asset_Class__cRef2"
+            },
+            "Name": "Consumer Secured"
+        },
+        {
+            "attributes": {
+                "type": "clcommon__Asset_Class__c",
+                "referenceId": "clcommon__Asset_Class__cRef3"
+            },
+            "Name": "Commercial Secured"
+        },
+        {
+            "attributes": {
+                "type": "clcommon__Asset_Class__c",
+                "referenceId": "clcommon__Asset_Class__cRef4"
+            },
+            "Name": "Commercial Unsecured"
+        }
+    ]
+}

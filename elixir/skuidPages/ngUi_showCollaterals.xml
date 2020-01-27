@@ -1,0 +1,257 @@
+<skuidpage personalizationmode="server" showsidebar="false" showheader="false" theme="Cool Grey">
+  <models>
+    <model id="ApplicationCollaterals" limit="" query="true" createrowifnonefound="false" sobject="genesis__Application_Collateral__c" orderby="LastModifiedDate DESC" datasource="salesforce">
+      <fields>
+        <field id="Name"/>
+        <field id="Id"/>
+        <field id="genesis__Application__c"/>
+        <field id="genesis__Application__r.Name"/>
+        <field id="genesis__Collateral__c"/>
+        <field id="genesis__Collateral__r.Name"/>
+        <field id="genesis__Pledge_Amount__c"/>
+        <field id="genesis__Collateral__r.clcommon__Collateral_Name__c"/>
+        <field id="genesis__Collateral__r.clcommon__Collateral_Type__c"/>
+        <field id="genesis__Collateral__r.clcommon__Collateral_Type__r.Name"/>
+        <field id="clicked" uionly="true" displaytype="BOOLEAN" label="clicked" ogdisplaytype="TEXT"/>
+        <field id="genesis__Collateral__r.clcommon__Address__c"/>
+      </fields>
+      <conditions>
+        <condition type="param" value="id" field="genesis__Application__c" operator="=" enclosevalueinquotes="true" novaluebehavior=""/>
+      </conditions>
+      <actions/>
+    </model>
+    <model id="SelectedApplicationForCollaterals" limit="1" query="false" createrowifnonefound="false" sobject="genesis__Applications__c" orderby="ID ASC" datasource="salesforce">
+      <fields>
+        <field id="Id"/>
+      </fields>
+      <conditions>
+        <condition type="param" value="id" field="Id" operator="=" enclosevalueinquotes="true" novaluebehavior=""/>
+      </conditions>
+      <actions/>
+    </model>
+  </models>
+  <components>
+    <grid uniqueid="sk-3wDh1z-142" cssclass="hide-scroll">
+      <divisions>
+        <division behavior="flex" minwidth="100px" ratio="1" verticalalign="top">
+          <components>
+            <panelset type="custom" uniqueid="sk-3wDi13-152" cssclass="hide-scroll">
+              <panels>
+                <panel width="15%" uniqueid="topParentPanelQueueWithAdd">
+                  <components>
+                    <panelset type="vertical" uniqueid="sk-3yAkP4-1251">
+                      <panels>
+                        <panel width="100%" uniqueid="panelQueue">
+                          <components>
+                            <pagetitle uniqueid="sk-10uSsD-175" model="SelectedApplicationForCollaterals" cssclass="queue-button-container pullLeft">
+                              <actions>
+                                <action type="multi" label="Add New Security" cssclass="" icon="fa-plus" secondary="true" uniqueid="sk-2_Nc-224">
+                                  <actions>
+                                    <action type="custom" snippet="LaunchCollateralDialog"/>
+                                  </actions>
+                                  <hotkeys/>
+                                  <renderconditions logictype="and"/>
+                                  <enableconditions/>
+                                </action>
+                              </actions>
+                              <renderconditions logictype="and">
+                                <rendercondition fieldmodel="ApplicationCollaterals" sourcetype="modelproperty" nosourcerowbehavior="deactivate" sourceproperty="hasNoRows"/>
+                              </renderconditions>
+                            </pagetitle>
+                            <pagetitle uniqueid="sk-15FUHC-109" model="SelectedApplicationForCollaterals" cssclass="queue-button-container">
+                              <actions>
+                                <action type="multi" label="Add New Security" icon="fa-plus" secondary="true" uniqueid="sk-2_Nc-230">
+                                  <actions>
+                                    <action type="custom" snippet="LaunchCollateralDialog"/>
+                                  </actions>
+                                  <hotkeys/>
+                                  <renderconditions logictype="and"/>
+                                  <enableconditions/>
+                                </action>
+                              </actions>
+                              <renderconditions logictype="and">
+                                <rendercondition type="fieldvalue" enclosevalueinquotes="true" fieldmodel="ApplicationCollaterals" sourcetype="modelproperty" nosourcerowbehavior="deactivate" sourceproperty="hasRows"/>
+                              </renderconditions>
+                            </pagetitle>
+                          </components>
+                        </panel>
+                        <panel width="100%" uniqueid="panelAddNewCollateral">
+                          <components>
+                            <queue tagrendertype="template" querystring="id={{Id}}" defaultitemparameter="id" searchbox="false" tokenizesearch="true" uniqueid="application-collateral-queue" model="ApplicationCollaterals" cssclass="" instantfilters="false" searchmethod="server">
+                              <rendertemplate>{{genesis__Collateral__r.clcommon__Collateral_Name__c}}
+{{genesis__Collateral__r.Occupancy__c}}</rendertemplate>
+                              <searchfields/>
+                              <renderconditions logictype="and">
+                                <rendercondition type="fieldvalue" enclosevalueinquotes="true" fieldmodel="ApplicationCollaterals" sourcetype="modelproperty" nosourcerowbehavior="deactivate" sourceproperty="hasRows"/>
+                              </renderconditions>
+                              <interactions>
+                                <interaction type="tap">
+                                  <action type="updateIncludePanel" panelid="collDetailViewId" pagename="CollateralDetailView" module="ngUi" querystring="id={{Id}}"/>
+                                </interaction>
+                              </interactions>
+                            </queue>
+                          </components>
+                        </panel>
+                      </panels>
+                      <renderconditions logictype="and"/>
+                    </panelset>
+                  </components>
+                </panel>
+                <panel width="85%" uniqueid="coll-detailview-container" cssclass="">
+                  <components>
+                    <includepanel type="skuid" uniqueid="collDetailViewId" pagename="CollateralDetailView" module="ngUi" querystring="?id={{$Model.ApplicationCollaterals.data.0.Id}}">
+                      <renderconditions logictype="and"/>
+                    </includepanel>
+                    <template multiple="false" uniqueid="sk-y5lQ4-734">
+                      <contents>&lt;div class="no-record-message"&gt;No Security to Display&lt;/div&gt;</contents>
+                      <renderconditions logictype="and">
+                        <rendercondition fieldmodel="ApplicationCollaterals" sourcetype="modelproperty" nosourcerowbehavior="deactivate" sourceproperty="hasNoRows"/>
+                      </renderconditions>
+                    </template>
+                  </components>
+                </panel>
+              </panels>
+            </panelset>
+          </components>
+        </division>
+      </divisions>
+      <styles>
+        <styleitem type="background" bgtype="none"/>
+      </styles>
+    </grid>
+  </components>
+  <resources>
+    <labels/>
+    <javascript>
+      <jsitem location="staticresource" name="CLSNGUIComponent" cachelocation="false" url="" namespace="genesisExtn" filepath="mainPage.js">var params = arguments[0],
+    $ = skuid.$;
+</jsitem>
+      <jsitem location="staticresource" name="CLSNGUIComponent" cachelocation="false" url="" namespace="genesisExtn" filepath="commonUtils.js">var params = arguments[0],
+    $ = skuid.$;
+</jsitem>
+      <jsitem location="staticresource" name="CLSNGUIComponent" cachelocation="false" url="" namespace="genesisExtn" filepath="messageUtils.js">var params = arguments[0],
+    $ = skuid.$;
+</jsitem>
+      <jsitem location="inline" name="OnLoadCollateralJs" cachelocation="false" url="">(function(skuid){
+var $ = skuid.$;
+    $(document.body).one('pageload',function(){
+        // set height of window
+        var windowHeight = window.innerHeight;
+        $('#collateral-details-iframe').height(windowHeight);
+        // trigger click of first item in queue
+        $($('#application-collateral-queue .nx-item.nx-queue-item')[0]).trigger('click');
+    });
+})(skuid);</jsitem>
+      <jsitem location="inlinesnippet" name="UpdateCollateralDetailIframe" cachelocation="false">var params = arguments[0],
+$ = skuid.$;
+
+// var url = $('#collateral-details-iframe').attr('src');
+// if (url.lastIndexOf('&amp;id=') &gt;= 0) {
+//     url = url.substring(0, url.lastIndexOf('&amp;id=')) + '&amp;id=' + params.row.Id + '&amp;mode=read&amp;appId='+params.row.genesis__Application__c;
+// } else {
+//     url += '&amp;id=' + params.row.Id + '&amp;mode=read';
+// }
+// $('#collateral-details-iframe').attr('src', url);
+// $('#collateral-details-iframe').hide();
+// $('#collateral-details-iframe').on('load', function() {
+//     $("#collateral-details-iframe").show();
+// });
+</jsitem>
+      <jsitem location="inlinesnippet" name="LaunchCollateralDialog" cachelocation="false">var params = arguments[0],
+    $ = skuid.$;
+var appId = skuid.page.params.id;
+var title = 'Manage Security Details';
+var skuidPage = 'PledgeCollaterals';
+var iframeUrl = '/apex/skuid__ui?page=' + skuidPage + '&amp;id=' + appId;
+
+openTopLevelDialog({
+    title: title,
+    iframeUrl: iframeUrl
+});</jsitem>
+    </javascript>
+    <css>
+      <cssitem location="staticresource" name="CLSStyleSheetPack" cachelocation="false" url="" namespace="genesisExtn" filepath="cls-common.css"/>
+      <cssitem location="staticresource" name="CLSStyleSheetPack" cachelocation="false" url="" namespace="genesisExtn" filepath="cls-dashboard.css"/>
+      <cssitem location="staticresource" name="CLSStyleSheetPack" cachelocation="false" url="" namespace="genesisExtn" filepath="customcss.css"/>
+      <cssitem location="staticresource" name="CLSStyleSheetPack" cachelocation="false" url="" namespace="genesisExtn" filepath="cls-queue.css"/>
+      <cssitem location="inline" name="inlinecss" cachelocation="false">body {
+    background-color: #ebeef0;
+}
+
+body &gt; .nx-page {
+    padding: 0;
+}
+
+#topParentPanelQueueWithAdd {
+    min-height: 1px;
+}
+
+#panelQueue {
+    min-height: 1px; 
+}
+
+#application-collateral-queue {
+    border-top: 1px solid transparent;
+}
+
+.pullLeft {
+    float:left;
+}
+
+#coll-detailview-container {
+    height: 643px;;
+}
+
+#collateral-details-iframe {
+    height:900px !important;
+}
+
+#collateral-section {
+    height: 900px;
+}
+
+#collDetailViewId {
+    min-height:0;
+}
+
+
+/*#collateral-detailview-cont {*/
+/*    position: absolute;*/
+/*    top: 0;*/
+/*    bottom: 0;*/
+/*    left: 250px;*/
+/*    right: 0;*/
+/*    overflow-y: hidden;*/
+
+/*}*/
+
+/*#coll-detail-iframe{*/
+/*    position: absolute;*/
+/*    top: 0;*/
+/*    bottom: 0;*/
+/*    left: 0;*/
+/*    right: 0;*/
+/*}*/
+
+/*div[pagename="showCollaterals"] {*/
+/*    position: absolute;*/
+/*    top: 0;*/
+/*    bottom: 0;*/
+/*    left: 0;*/
+/*    right: 0;*/
+/*}*/</cssitem>
+      <cssitem location="inline" name="cyclotroncss" cachelocation="false">#application-collateral-queue .nx-queue-item-selected&gt;.nx-queue-item-inner {
+    background-color: #2d507a !important;
+}</cssitem>
+    </css>
+    <actionsequences uniqueid="sk-3Cop-392"/>
+  </resources>
+  <styles>
+    <styleitem type="background" bgtype="none"/>
+    <styleitem property="position" value="absolute"/>
+    <styleitem property="top" value="0"/>
+    <styleitem property="bottom" value="0"/>
+    <styleitem property="left" value="0"/>
+    <styleitem property="right" value="0"/>
+  </styles>
+</skuidpage>

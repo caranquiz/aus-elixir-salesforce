@@ -1,0 +1,86 @@
+{
+    "records": [
+        {
+            "attributes": {
+                "type": "ints__Integration_Configuration__c",
+                "referenceId": "ints__Integration_Configuration__cRef1"
+            },
+            "Name": "ACN_API",
+            "ints__API_Endpoint__c": "https://abr.business.gov.au/abrxmlsearch/AbrXmlSearch.asmx/",
+            "ints__API_Named_Credential__c": "ABN_Api",
+            "ints__Active__c": true,
+            "ints__Adaptor_Class__c": "ACNAdapter",
+            "ints__Authorization_Named_Credential__c": "ABN_Api",
+            "ints__Execution_Priority__c": 3,
+            "ints__Integration_Service__c": "ID Verification",
+            "ints__Request_Mapping__c": "{\r\n \"thirdPartySystem\": {\r\n   \"name\": \"abnRequest\",\r\n   \"dynamicDataMapping\": [\r\n     {\r\n       \"Alias\": \"abn_request\"\r\n     }\r\n   ],\r\n   \"filters\": [\r\n     {\r\n       \"tablename\": \"clcommon__Party__c\",\r\n       \"tableAlias\": \"partyInfo\",\r\n       \"fields\": [\r\n         {\r\n           \"Alias\": \"companyACN\",\r\n           \"fieldAPI\": \"Trustee_ACN__c\"\r\n         }\r\n         \r\n       ],\r\n       \"whereClause\": \"Id=:pId\"\r\n     }\r\n   ],\r\n   \"otherParameters\": {\r\n     \"service\": \"SearchByASICv201408\",\r\n     \"histdetails\": \"N\",\r\n     \"actualAcn\":\"{!$actualAcn}\"\r\n   }\r\n }\r\n}",
+            "ints__Response_Mapping__c": "{\r\n  \"StorageConfiguration\": {\r\n    \"StoreInDB\": \"False\"\r\n  },\r\n  \"DMLOperations\": [\r\n    {\r\n      \"DML\": \"Insert\",\r\n      \"ObjectMapping\": [\r\n        {\r\n          \"objectName\": \"ABN_Information__c\",\r\n          \"objectAlias\": \"=>response=>businessEntity201408=>entityType\",\r\n          \"fields\": [\r\n{\r\n              \"Alias\": \"entityDescription\",\r\n              \"fieldAPI\": \"Organisation_Name__c\"\r\n            },\r\n {\r\n              \"Alias\": \"partyId\",\r\n              \"fieldAPI\": \"Party__c\"\r\n            }\r\n          ]\r\n        }\r\n      ]\r\n    }\r\n  ]\r\n}",
+            "ints__Use_Mocker__c": false
+        },
+        {
+            "attributes": {
+                "type": "ints__Integration_Configuration__c",
+                "referenceId": "ints__Integration_Configuration__cRef2"
+            },
+            "Name": "ABN_NameAPI",
+            "ints__API_Endpoint__c": "https://abr.business.gov.au/abrxmlsearch/AbrXmlSearch.asmx/",
+            "ints__Active__c": true,
+            "ints__Adaptor_Class__c": "ABNNameAdapter",
+            "ints__Authorization_Named_Credential__c": "ABN_Api",
+            "ints__Execution_Priority__c": 2,
+            "ints__Integration_Service__c": "ID Verification",
+            "ints__Request_Mapping__c": "{\r\n \"thirdPartySystem\": {\r\n   \"name\": \"abnNameRequest\",\r\n   \"dynamicDataMapping\": [\r\n     {\r\n       \"Alias\": \"abn_request\"\r\n     }\r\n   ],\r\n   \"filters\": [\r\n     {\r\n       \"tablename\": \"clcommon__Party__c\",\r\n       \"tableAlias\": \"partyInfo\",\r\n       \"fields\": [\r\n         {\r\n           \"Alias\": \"companyABN\",\r\n           \"fieldAPI\": \"clcommon__Account__r.Name\"\r\n         }\r\n         \r\n       ],\r\n       \"whereClause\": \"Id=:partyId\"\r\n     }\r\n   ],\r\n   \"otherParameters\": {\r\n     \"service\": \"ABRSearchByNameAdvancedSimpleProtocol2017\",\r\n     \"postcode\": \"\",\r\n     \"tradingName\": \"\",\r\n     \"legalName\":\"\",\r\n     \"businessName\": \"\",\r\n     \"activeABNsOnly\": \"\",\r\n     \"QLD\": \"\",\r\n     \"NT\": \"\",\r\n     \"SA\": \"\",\r\n     \"WA\": \"\",\r\n     \"VIC\": \"\",\r\n     \"ACT\": \"\",\r\n     \"TAS\": \"\",\r\n     \"NSW\": \"\",\r\n     \"searchWidth\": \"\",\r\n     \"minimumScore\": \"\",\r\n     \"maxSearchResults\": \"\"  \r\n   }\r\n }\r\n}",
+            "ints__Response_Mapping__c": "{\r\n  \"StorageConfiguration\": {\r\n    \"StoreInDB\": \"False\"\r\n  },\r\n  \"DMLOperations\": [\r\n    {\r\n      \"DML\": \"Insert\",\r\n      \"ObjectMapping\": [\r\n        {\r\n          \"objectName\": \"ABN_Information__c\",\r\n          \"objectAlias\": \"=>response=>businessEntity=>mainName\",\r\n          \"fields\": [\r\n            {\r\n              \"Alias\": \"organisationName\",\r\n              \"fieldAPI\": \"Organisation_Name__c\"\r\n            \r\n            }\r\n            \r\n            ]\r\n        }\r\n      ]\r\n    }\r\n  ]\r\n}",
+            "ints__Use_Mocker__c": false
+        },
+        {
+            "attributes": {
+                "type": "ints__Integration_Configuration__c",
+                "referenceId": "ints__Integration_Configuration__cRef3"
+            },
+            "Name": "ABN_API2",
+            "ints__API_Endpoint__c": "https://abr.business.gov.au/abrxmlsearch/AbrXmlSearch.asmx/",
+            "ints__Active__c": true,
+            "ints__Adaptor_Class__c": "ABNAdapter",
+            "ints__Authorization_Named_Credential__c": "ABN_Api",
+            "ints__Execution_Priority__c": 4,
+            "ints__Integration_Service__c": "ID Verification",
+            "ints__Request_Mapping__c": "{\r\n \"thirdPartySystem\": {\r\n   \"name\": \"abnRequest\",\r\n   \"dynamicDataMapping\": [\r\n     {\r\n       \"Alias\": \"abn_request\"\r\n     }\r\n   ],\r\n   \"filters\": [\r\n     {\r\n       \"tablename\": \"genesis__Employment_Information__c\",\r\n       \"tableAlias\": \"partyInfo\",\r\n       \"fields\": [\r\n         {\r\n           \"Alias\": \"companyABN\",\r\n           \"fieldAPI\": \"Company_ABN__c\"\r\n         }\r\n         \r\n       ],\r\n       \"whereClause\": \"Id=:empId\"\r\n     }\r\n   ],\r\n   \"otherParameters\": {\r\n     \"service\": \"ABRSearchByABN\",\r\n     \"histdetails\": \"Y\"\r\n   }\r\n }\r\n}",
+            "ints__Response_Mapping__c": "{\r\n  \"StorageConfiguration\": {\r\n    \"StoreInDB\": \"False\"\r\n  },\r\n  \"DMLOperations\": [\r\n    {\r\n      \"DML\": \"Insert\",\r\n      \"ObjectMapping\": [\r\n        {\r\n          \"objectName\": \"ABN_Information__c\",\r\n          \"objectAlias\": \"=>response=>businessEntity=>mainName\",\r\n          \"fields\": [\r\n            {\r\n              \"Alias\": \"organisationName\",\r\n              \"fieldAPI\": \"Organisation_Name__c\"\r\n            \r\n            }\r\n            \r\n            ]\r\n        }\r\n      ]\r\n    }\r\n  ]\r\n}",
+            "ints__Use_Mocker__c": false
+        },
+        {
+            "attributes": {
+                "type": "ints__Integration_Configuration__c",
+                "referenceId": "ints__Integration_Configuration__cRef4"
+            },
+            "Name": "ABN_API",
+            "ints__API_Endpoint__c": "https://abr.business.gov.au/abrxmlsearch/AbrXmlSearch.asmx/",
+            "ints__API_Named_Credential__c": "ABN_Api",
+            "ints__Active__c": true,
+            "ints__Adaptor_Class__c": "ABNAdapter",
+            "ints__Authorization_Named_Credential__c": "ABN_Api",
+            "ints__Execution_Priority__c": 1,
+            "ints__Integration_Service__c": "ID Verification",
+            "ints__Request_Mapping__c": "{\r\n \"thirdPartySystem\": {\r\n   \"name\": \"abnRequest\",\r\n   \"dynamicDataMapping\": [\r\n     {\r\n       \"Alias\": \"abn_request\"\r\n     }\r\n   ],\r\n   \"filters\": [\r\n     {\r\n       \"tablename\": \"ABN_Company_List__c\",\r\n       \"tableAlias\": \"companyInfo\",\r\n       \"fields\": [\r\n         {\r\n           \"Alias\": \"companyABN\",\r\n           \"fieldAPI\": \"ABN_Identifier_Value__c\"\r\n         }\r\n         \r\n       ],\r\n       \"whereClause\": \"Id=:abnCompanyId\"\r\n     }\r\n   ],\r\n   \"otherParameters\": {\r\n     \"service\": \"ABRSearchByABN\",\r\n     \"histdetails\": \"N\"\r\n   }\r\n }\r\n}",
+            "ints__Response_Mapping__c": "{\r\n  \"StorageConfiguration\": {\r\n    \"StoreInDB\": \"False\"\r\n  },\r\n  \"DMLOperations\": [\r\n    {\r\n      \"DML\": \"Insert\",\r\n      \"ObjectMapping\": [\r\n        {\r\n          \"objectName\": \"ABN_Information__c\",\r\n          \"objectAlias\": \"=>response=>businessEntity=>mainName\",\r\n          \"fields\": [\r\n            {\r\n              \"Alias\": \"organisationName\",\r\n              \"fieldAPI\": \"Organisation_Name__c\"\r\n            \r\n            }\r\n            \r\n            ]\r\n        }\r\n      ]\r\n    }\r\n  ]\r\n}",
+            "ints__Use_Mocker__c": false
+        },
+        {
+            "attributes": {
+                "type": "ints__Integration_Configuration__c",
+                "referenceId": "ints__Integration_Configuration__cRef5"
+            },
+            "Name": "ABN_NameAPI2",
+            "ints__API_Endpoint__c": "https://abr.business.gov.au/abrxmlsearch/AbrXmlSearch.asmx/",
+            "ints__Active__c": true,
+            "ints__Adaptor_Class__c": "ABNNameAdapter",
+            "ints__Authorization_Named_Credential__c": "ABN_Api",
+            "ints__Execution_Priority__c": 5,
+            "ints__Integration_Service__c": "ID Verification",
+            "ints__Request_Mapping__c": "{\r\n \"thirdPartySystem\": {\r\n   \"name\": \"abnNameRequest\",\r\n   \"dynamicDataMapping\": [\r\n     {\r\n       \"Alias\": \"abn_request\"\r\n     }\r\n   ],\r\n   \"filters\": [\r\n     {\r\n       \"tablename\": \"genesis__Employment_Information__c\",\r\n       \"tableAlias\": \"partyInfo\",\r\n       \"fields\": [\r\n         {\r\n           \"Alias\": \"companyABN\",\r\n           \"fieldAPI\": \"Company_Name__c\"\r\n         }\r\n         \r\n       ],\r\n       \"whereClause\": \"Id=:empId\"\r\n     }\r\n   ],\r\n   \"otherParameters\": {\r\n     \"service\": \"ABRSearchByNameAdvancedSimpleProtocol2017\",\r\n     \"postcode\": \"\",\r\n     \"tradingName\": \"\",\r\n     \"legalName\":\"\",\r\n     \"businessName\": \"\",\r\n     \"activeABNsOnly\": \"\",\r\n     \"QLD\": \"\",\r\n     \"NT\": \"\",\r\n     \"SA\": \"\",\r\n     \"WA\": \"\",\r\n     \"VIC\": \"\",\r\n     \"ACT\": \"\",\r\n     \"TAS\": \"\",\r\n     \"NSW\": \"\",\r\n     \"searchWidth\": \"\",\r\n     \"minimumScore\": \"\",\r\n     \"maxSearchResults\": \"\"  \r\n   }\r\n }\r\n}",
+            "ints__Response_Mapping__c": "{\r\n  \"StorageConfiguration\": {\r\n    \"StoreInDB\": \"False\"\r\n  },\r\n  \"DMLOperations\": [\r\n    {\r\n      \"DML\": \"Insert\",\r\n      \"ObjectMapping\": [\r\n        {\r\n          \"objectName\": \"ABN_Information__c\",\r\n          \"objectAlias\": \"=>response=>businessEntity=>mainName\",\r\n          \"fields\": [\r\n            {\r\n              \"Alias\": \"organisationName\",\r\n              \"fieldAPI\": \"Organisation_Name__c\"\r\n            \r\n            }\r\n            \r\n            ]\r\n        }\r\n      ]\r\n    }\r\n  ]\r\n}",
+            "ints__Use_Mocker__c": false
+        }
+    ]
+}

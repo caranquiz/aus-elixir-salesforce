@@ -1,0 +1,10 @@
+[
+    {
+        "sobject": "Disable_Custom_Triggers__c",
+        "saveRefs": true,
+        "resolveRefs": false,
+        "files": [
+            "export-data-Disable_Custom_Triggers__cs.json"
+        ]
+    }
+]

@@ -1,0 +1,10 @@
+{
+   "uniqueId": "_CustomFinancialDetails",
+   "type": "Desktop",
+   "name": "CustomFinancialDetails",
+   "module": null,
+   "maxAutoSaves": 25,
+   "masterPageUniqueId": null,
+   "isMasterPage": false,
+   "composerSettings": null
+}

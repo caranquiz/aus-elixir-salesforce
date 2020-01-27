@@ -1,0 +1,624 @@
+{
+    "records": [
+        {
+            "attributes": {
+                "type": "S_P_Postcode__c",
+                "referenceId": "S_P_Postcode__cRef1"
+            },
+            "Name": "53",
+            "PostCode_Low_RangeNumber__c": 7800,
+            "PostCode_High_RangeNumber__c": 7899,
+            "Location__c": "Metro"
+        },
+        {
+            "attributes": {
+                "type": "S_P_Postcode__c",
+                "referenceId": "S_P_Postcode__cRef2"
+            },
+            "Name": "58",
+            "PostCode_Low_RangeNumber__c": 9000,
+            "PostCode_High_RangeNumber__c": 9299,
+            "Location__c": "Inner city"
+        },
+        {
+            "attributes": {
+                "type": "S_P_Postcode__c",
+                "referenceId": "S_P_Postcode__cRef3"
+            },
+            "Name": "3",
+            "PostCode_Low_RangeNumber__c": 828,
+            "PostCode_High_RangeNumber__c": 832,
+            "Location__c": "Metro"
+        },
+        {
+            "attributes": {
+                "type": "S_P_Postcode__c",
+                "referenceId": "S_P_Postcode__cRef4"
+            },
+            "Name": "29",
+            "PostCode_Low_RangeNumber__c": 3926,
+            "PostCode_High_RangeNumber__c": 3944,
+            "Location__c": "Metro"
+        },
+        {
+            "attributes": {
+                "type": "S_P_Postcode__c",
+                "referenceId": "S_P_Postcode__cRef5"
+            },
+            "Name": "34",
+            "PostCode_Low_RangeNumber__c": 3984,
+            "PostCode_High_RangeNumber__c": 3999,
+            "Location__c": "Nonmetro"
+        },
+        {
+            "attributes": {
+                "type": "S_P_Postcode__c",
+                "referenceId": "S_P_Postcode__cRef6"
+            },
+            "Name": "47",
+            "PostCode_Low_RangeNumber__c": 6005,
+            "PostCode_High_RangeNumber__c": 6214,
+            "Location__c": "Metro"
+        },
+        {
+            "attributes": {
+                "type": "S_P_Postcode__c",
+                "referenceId": "S_P_Postcode__cRef7"
+            },
+            "Name": "50",
+            "PostCode_Low_RangeNumber__c": 7000,
+            "PostCode_High_RangeNumber__c": 7003,
+            "Location__c": "Inner city"
+        },
+        {
+            "attributes": {
+                "type": "S_P_Postcode__c",
+                "referenceId": "S_P_Postcode__cRef8"
+            },
+            "Name": "52",
+            "PostCode_Low_RangeNumber__c": 7200,
+            "PostCode_High_RangeNumber__c": 7799,
+            "Location__c": "Nonmetro"
+        },
+        {
+            "attributes": {
+                "type": "S_P_Postcode__c",
+                "referenceId": "S_P_Postcode__cRef9"
+            },
+            "Name": "28",
+            "PostCode_Low_RangeNumber__c": 3921,
+            "PostCode_High_RangeNumber__c": 3925,
+            "Location__c": "Nonmetro"
+        },
+        {
+            "attributes": {
+                "type": "S_P_Postcode__c",
+                "referenceId": "S_P_Postcode__cRef10"
+            },
+            "Name": "39",
+            "PostCode_Low_RangeNumber__c": 4307,
+            "PostCode_High_RangeNumber__c": 4499,
+            "Location__c": "Nonmetro"
+        },
+        {
+            "attributes": {
+                "type": "S_P_Postcode__c",
+                "referenceId": "S_P_Postcode__cRef11"
+            },
+            "Name": "44",
+            "PostCode_Low_RangeNumber__c": 5200,
+            "PostCode_High_RangeNumber__c": 5799,
+            "Location__c": "Nonmetro"
+        },
+        {
+            "attributes": {
+                "type": "S_P_Postcode__c",
+                "referenceId": "S_P_Postcode__cRef12"
+            },
+            "Name": "46",
+            "PostCode_Low_RangeNumber__c": 6000,
+            "PostCode_High_RangeNumber__c": 6004,
+            "Location__c": "Inner city"
+        },
+        {
+            "attributes": {
+                "type": "S_P_Postcode__c",
+                "referenceId": "S_P_Postcode__cRef13"
+            },
+            "Name": "48",
+            "PostCode_Low_RangeNumber__c": 6215,
+            "PostCode_High_RangeNumber__c": 6799,
+            "Location__c": "Nonmetro"
+        },
+        {
+            "attributes": {
+                "type": "S_P_Postcode__c",
+                "referenceId": "S_P_Postcode__cRef14"
+            },
+            "Name": "0",
+            "PostCode_Low_RangeNumber__c": 200,
+            "PostCode_High_RangeNumber__c": 799,
+            "Location__c": "Nonmetro"
+        },
+        {
+            "attributes": {
+                "type": "S_P_Postcode__c",
+                "referenceId": "S_P_Postcode__cRef15"
+            },
+            "Name": "27",
+            "PostCode_Low_RangeNumber__c": 3910,
+            "PostCode_High_RangeNumber__c": 3920,
+            "Location__c": "Metro"
+        },
+        {
+            "attributes": {
+                "type": "S_P_Postcode__c",
+                "referenceId": "S_P_Postcode__cRef16"
+            },
+            "Name": "2",
+            "PostCode_Low_RangeNumber__c": 821,
+            "PostCode_High_RangeNumber__c": 827,
+            "Location__c": "Nonmetro"
+        },
+        {
+            "attributes": {
+                "type": "S_P_Postcode__c",
+                "referenceId": "S_P_Postcode__cRef17"
+            },
+            "Name": "5",
+            "PostCode_Low_RangeNumber__c": 1000,
+            "PostCode_High_RangeNumber__c": 1920,
+            "Location__c": "Metro"
+        },
+        {
+            "attributes": {
+                "type": "S_P_Postcode__c",
+                "referenceId": "S_P_Postcode__cRef18"
+            },
+            "Name": "15",
+            "PostCode_Low_RangeNumber__c": 2787,
+            "PostCode_High_RangeNumber__c": 2899,
+            "Location__c": "Nonmetro"
+        },
+        {
+            "attributes": {
+                "type": "S_P_Postcode__c",
+                "referenceId": "S_P_Postcode__cRef19"
+            },
+            "Name": "12",
+            "PostCode_Low_RangeNumber__c": 2600,
+            "PostCode_High_RangeNumber__c": 2639,
+            "Location__c": "Metro"
+        },
+        {
+            "attributes": {
+                "type": "S_P_Postcode__c",
+                "referenceId": "S_P_Postcode__cRef20"
+            },
+            "Name": "14",
+            "PostCode_Low_RangeNumber__c": 2740,
+            "PostCode_High_RangeNumber__c": 2786,
+            "Location__c": "Metro"
+        },
+        {
+            "attributes": {
+                "type": "S_P_Postcode__c",
+                "referenceId": "S_P_Postcode__cRef21"
+            },
+            "Name": "6",
+            "PostCode_Low_RangeNumber__c": 1921,
+            "PostCode_High_RangeNumber__c": 1999,
+            "Location__c": "Nonmetro"
+        },
+        {
+            "attributes": {
+                "type": "S_P_Postcode__c",
+                "referenceId": "S_P_Postcode__cRef22"
+            },
+            "Name": "9",
+            "PostCode_Low_RangeNumber__c": 2250,
+            "PostCode_High_RangeNumber__c": 2557,
+            "Location__c": "Nonmetro"
+        },
+        {
+            "attributes": {
+                "type": "S_P_Postcode__c",
+                "referenceId": "S_P_Postcode__cRef23"
+            },
+            "Name": "13",
+            "PostCode_Low_RangeNumber__c": 2640,
+            "PostCode_High_RangeNumber__c": 2739,
+            "Location__c": "Nonmetro"
+        },
+        {
+            "attributes": {
+                "type": "S_P_Postcode__c",
+                "referenceId": "S_P_Postcode__cRef24"
+            },
+            "Name": "11",
+            "PostCode_Low_RangeNumber__c": 2575,
+            "PostCode_High_RangeNumber__c": 2599,
+            "Location__c": "Nonmetro"
+        },
+        {
+            "attributes": {
+                "type": "S_P_Postcode__c",
+                "referenceId": "S_P_Postcode__cRef25"
+            },
+            "Name": "20",
+            "PostCode_Low_RangeNumber__c": 3217,
+            "PostCode_High_RangeNumber__c": 3334,
+            "Location__c": "Nonmetro"
+        },
+        {
+            "attributes": {
+                "type": "S_P_Postcode__c",
+                "referenceId": "S_P_Postcode__cRef26"
+            },
+            "Name": "33",
+            "PostCode_Low_RangeNumber__c": 3980,
+            "PostCode_High_RangeNumber__c": 3983,
+            "Location__c": "Metro"
+        },
+        {
+            "attributes": {
+                "type": "S_P_Postcode__c",
+                "referenceId": "S_P_Postcode__cRef27"
+            },
+            "Name": "35",
+            "PostCode_Low_RangeNumber__c": 4000,
+            "PostCode_High_RangeNumber__c": 4004,
+            "Location__c": "Inner city"
+        },
+        {
+            "attributes": {
+                "type": "S_P_Postcode__c",
+                "referenceId": "S_P_Postcode__cRef28"
+            },
+            "Name": "18",
+            "PostCode_Low_RangeNumber__c": 3000,
+            "PostCode_High_RangeNumber__c": 3010,
+            "Location__c": "Inner city"
+        },
+        {
+            "attributes": {
+                "type": "S_P_Postcode__c",
+                "referenceId": "S_P_Postcode__cRef29"
+            },
+            "Name": "25",
+            "PostCode_Low_RangeNumber__c": 3750,
+            "PostCode_High_RangeNumber__c": 3811,
+            "Location__c": "Metro"
+        },
+        {
+            "attributes": {
+                "type": "S_P_Postcode__c",
+                "referenceId": "S_P_Postcode__cRef30"
+            },
+            "Name": "4",
+            "PostCode_Low_RangeNumber__c": 833,
+            "PostCode_High_RangeNumber__c": 999,
+            "Location__c": "Nonmetro"
+        },
+        {
+            "attributes": {
+                "type": "S_P_Postcode__c",
+                "referenceId": "S_P_Postcode__cRef31"
+            },
+            "Name": "1",
+            "PostCode_Low_RangeNumber__c": 800,
+            "PostCode_High_RangeNumber__c": 820,
+            "Location__c": "Metro"
+        },
+        {
+            "attributes": {
+                "type": "S_P_Postcode__c",
+                "referenceId": "S_P_Postcode__cRef32"
+            },
+            "Name": "24",
+            "PostCode_Low_RangeNumber__c": 3444,
+            "PostCode_High_RangeNumber__c": 3749,
+            "Location__c": "Nonmetro"
+        },
+        {
+            "attributes": {
+                "type": "S_P_Postcode__c",
+                "referenceId": "S_P_Postcode__cRef33"
+            },
+            "Name": "38",
+            "PostCode_Low_RangeNumber__c": 4300,
+            "PostCode_High_RangeNumber__c": 4306,
+            "Location__c": "Metro"
+        },
+        {
+            "attributes": {
+                "type": "S_P_Postcode__c",
+                "referenceId": "S_P_Postcode__cRef34"
+            },
+            "Name": "57",
+            "PostCode_Low_RangeNumber__c": 8900,
+            "PostCode_High_RangeNumber__c": 8999,
+            "Location__c": "Nonmetro"
+        },
+        {
+            "attributes": {
+                "type": "S_P_Postcode__c",
+                "referenceId": "S_P_Postcode__cRef35"
+            },
+            "Name": "61",
+            "PostCode_Low_RangeNumber__c": 9597,
+            "PostCode_High_RangeNumber__c": 9597,
+            "Location__c": "Nonmetro"
+        },
+        {
+            "attributes": {
+                "type": "S_P_Postcode__c",
+                "referenceId": "S_P_Postcode__cRef36"
+            },
+            "Name": "36",
+            "PostCode_Low_RangeNumber__c": 4005,
+            "PostCode_High_RangeNumber__c": 4209,
+            "Location__c": "Metro"
+        },
+        {
+            "attributes": {
+                "type": "S_P_Postcode__c",
+                "referenceId": "S_P_Postcode__cRef37"
+            },
+            "Name": "7",
+            "PostCode_Low_RangeNumber__c": 2000,
+            "PostCode_High_RangeNumber__c": 2005,
+            "Location__c": "Inner city"
+        },
+        {
+            "attributes": {
+                "type": "S_P_Postcode__c",
+                "referenceId": "S_P_Postcode__cRef38"
+            },
+            "Name": "21",
+            "PostCode_Low_RangeNumber__c": 3335,
+            "PostCode_High_RangeNumber__c": 3341,
+            "Location__c": "Metro"
+        },
+        {
+            "attributes": {
+                "type": "S_P_Postcode__c",
+                "referenceId": "S_P_Postcode__cRef39"
+            },
+            "Name": "40",
+            "PostCode_Low_RangeNumber__c": 4500,
+            "PostCode_High_RangeNumber__c": 4549,
+            "Location__c": "Metro"
+        },
+        {
+            "attributes": {
+                "type": "S_P_Postcode__c",
+                "referenceId": "S_P_Postcode__cRef40"
+            },
+            "Name": "43",
+            "PostCode_Low_RangeNumber__c": 5006,
+            "PostCode_High_RangeNumber__c": 5199,
+            "Location__c": "Metro"
+        },
+        {
+            "attributes": {
+                "type": "S_P_Postcode__c",
+                "referenceId": "S_P_Postcode__cRef41"
+            },
+            "Name": "49",
+            "PostCode_Low_RangeNumber__c": 6800,
+            "PostCode_High_RangeNumber__c": 6999,
+            "Location__c": "Metro"
+        },
+        {
+            "attributes": {
+                "type": "S_P_Postcode__c",
+                "referenceId": "S_P_Postcode__cRef42"
+            },
+            "Name": "32",
+            "PostCode_Low_RangeNumber__c": 3979,
+            "PostCode_High_RangeNumber__c": 3979,
+            "Location__c": "Nonmetro"
+        },
+        {
+            "attributes": {
+                "type": "S_P_Postcode__c",
+                "referenceId": "S_P_Postcode__cRef43"
+            },
+            "Name": "45",
+            "PostCode_Low_RangeNumber__c": 5800,
+            "PostCode_High_RangeNumber__c": 5999,
+            "Location__c": "Metro"
+        },
+        {
+            "attributes": {
+                "type": "S_P_Postcode__c",
+                "referenceId": "S_P_Postcode__cRef44"
+            },
+            "Name": "55",
+            "PostCode_Low_RangeNumber__c": 8000,
+            "PostCode_High_RangeNumber__c": 8399,
+            "Location__c": "Inner city"
+        },
+        {
+            "attributes": {
+                "type": "S_P_Postcode__c",
+                "referenceId": "S_P_Postcode__cRef45"
+            },
+            "Name": "10",
+            "PostCode_Low_RangeNumber__c": 2558,
+            "PostCode_High_RangeNumber__c": 2574,
+            "Location__c": "Metro"
+        },
+        {
+            "attributes": {
+                "type": "S_P_Postcode__c",
+                "referenceId": "S_P_Postcode__cRef46"
+            },
+            "Name": "17",
+            "PostCode_Low_RangeNumber__c": 2921,
+            "PostCode_High_RangeNumber__c": 2999,
+            "Location__c": "Nonmetro"
+        },
+        {
+            "attributes": {
+                "type": "S_P_Postcode__c",
+                "referenceId": "S_P_Postcode__cRef47"
+            },
+            "Name": "37",
+            "PostCode_Low_RangeNumber__c": 4210,
+            "PostCode_High_RangeNumber__c": 4299,
+            "Location__c": "Nonmetro"
+        },
+        {
+            "attributes": {
+                "type": "S_P_Postcode__c",
+                "referenceId": "S_P_Postcode__cRef48"
+            },
+            "Name": "30",
+            "PostCode_Low_RangeNumber__c": 3945,
+            "PostCode_High_RangeNumber__c": 3971,
+            "Location__c": "Nonmetro"
+        },
+        {
+            "attributes": {
+                "type": "S_P_Postcode__c",
+                "referenceId": "S_P_Postcode__cRef49"
+            },
+            "Name": "26",
+            "PostCode_Low_RangeNumber__c": 3812,
+            "PostCode_High_RangeNumber__c": 3909,
+            "Location__c": "Nonmetro"
+        },
+        {
+            "attributes": {
+                "type": "S_P_Postcode__c",
+                "referenceId": "S_P_Postcode__cRef50"
+            },
+            "Name": "19",
+            "PostCode_Low_RangeNumber__c": 3011,
+            "PostCode_High_RangeNumber__c": 3216,
+            "Location__c": "Metro"
+        },
+        {
+            "attributes": {
+                "type": "S_P_Postcode__c",
+                "referenceId": "S_P_Postcode__cRef51"
+            },
+            "Name": "23",
+            "PostCode_Low_RangeNumber__c": 3425,
+            "PostCode_High_RangeNumber__c": 3443,
+            "Location__c": "Metro"
+        },
+        {
+            "attributes": {
+                "type": "S_P_Postcode__c",
+                "referenceId": "S_P_Postcode__cRef52"
+            },
+            "Name": "31",
+            "PostCode_Low_RangeNumber__c": 3972,
+            "PostCode_High_RangeNumber__c": 3978,
+            "Location__c": "Metro"
+        },
+        {
+            "attributes": {
+                "type": "S_P_Postcode__c",
+                "referenceId": "S_P_Postcode__cRef53"
+            },
+            "Name": "8",
+            "PostCode_Low_RangeNumber__c": 2006,
+            "PostCode_High_RangeNumber__c": 2249,
+            "Location__c": "Metro"
+        },
+        {
+            "attributes": {
+                "type": "S_P_Postcode__c",
+                "referenceId": "S_P_Postcode__cRef54"
+            },
+            "Name": "16",
+            "PostCode_Low_RangeNumber__c": 2900,
+            "PostCode_High_RangeNumber__c": 2920,
+            "Location__c": "Metro"
+        },
+        {
+            "attributes": {
+                "type": "S_P_Postcode__c",
+                "referenceId": "S_P_Postcode__cRef55"
+            },
+            "Name": "22",
+            "PostCode_Low_RangeNumber__c": 3342,
+            "PostCode_High_RangeNumber__c": 3424,
+            "Location__c": "Nonmetro"
+        },
+        {
+            "attributes": {
+                "type": "S_P_Postcode__c",
+                "referenceId": "S_P_Postcode__cRef56"
+            },
+            "Name": "41",
+            "PostCode_Low_RangeNumber__c": 4550,
+            "PostCode_High_RangeNumber__c": 4999,
+            "Location__c": "Nonmetro"
+        },
+        {
+            "attributes": {
+                "type": "S_P_Postcode__c",
+                "referenceId": "S_P_Postcode__cRef57"
+            },
+            "Name": "51",
+            "PostCode_Low_RangeNumber__c": 7004,
+            "PostCode_High_RangeNumber__c": 7199,
+            "Location__c": "Metro"
+        },
+        {
+            "attributes": {
+                "type": "S_P_Postcode__c",
+                "referenceId": "S_P_Postcode__cRef58"
+            },
+            "Name": "42",
+            "PostCode_Low_RangeNumber__c": 5000,
+            "PostCode_High_RangeNumber__c": 5005,
+            "Location__c": "Inner city"
+        },
+        {
+            "attributes": {
+                "type": "S_P_Postcode__c",
+                "referenceId": "S_P_Postcode__cRef59"
+            },
+            "Name": "54",
+            "PostCode_Low_RangeNumber__c": 7900,
+            "PostCode_High_RangeNumber__c": 7999,
+            "Location__c": "Nonmetro"
+        },
+        {
+            "attributes": {
+                "type": "S_P_Postcode__c",
+                "referenceId": "S_P_Postcode__cRef60"
+            },
+            "Name": "59",
+            "PostCode_Low_RangeNumber__c": 9300,
+            "PostCode_High_RangeNumber__c": 9399,
+            "Location__c": "Nonmetro"
+        },
+        {
+            "attributes": {
+                "type": "S_P_Postcode__c",
+                "referenceId": "S_P_Postcode__cRef61"
+            },
+            "Name": "60",
+            "PostCode_Low_RangeNumber__c": 9400,
+            "PostCode_High_RangeNumber__c": 9596,
+            "Location__c": "Metro"
+        },
+        {
+            "attributes": {
+                "type": "S_P_Postcode__c",
+                "referenceId": "S_P_Postcode__cRef62"
+            },
+            "Name": "56",
+            "PostCode_Low_RangeNumber__c": 8400,
+            "PostCode_High_RangeNumber__c": 8899,
+            "Location__c": "Metro"
+        }
+    ]
+}

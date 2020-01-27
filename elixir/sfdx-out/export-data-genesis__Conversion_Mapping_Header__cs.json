@@ -1,0 +1,11 @@
+{
+    "records": [
+        {
+            "attributes": {
+                "type": "genesis__Conversion_Mapping_Header__c",
+                "referenceId": "genesis__Conversion_Mapping_Header__cRef1"
+            },
+            "genesis__Product_Type__c": "LOAN"
+        }
+    ]
+}

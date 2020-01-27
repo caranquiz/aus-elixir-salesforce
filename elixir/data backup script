@@ -1,0 +1,110 @@
+sfdx force:data:tree:export --query \
+      "SELECT Id, Name FROM clcommon__Party_Type__c" \
+     --prefix export-data --outputdir sfdx-out --plan  --targetusername provisioningcls@38trialforce.com.devElixir
+
+sfdx force:data:tree:export --query \
+      "SELECT Id, Name FROM clcommon__Asset_Class__c" \
+     --prefix export-data --outputdir sfdx-out --plan --targetusername provisioningcls@38trialforce.com.devElixir
+
+sfdx force:data:tree:export --query \
+      "SELECT Id, genesis__Product_Type__c, genesis__Custom_Contract_Generation_Class__c FROM genesis__Conversion_Mapping_Header__c" \
+     --prefix export-data --outputdir sfdx-out --plan  --targetusername provisioningcls@38trialforce.com.devElixir
+
+==
+sfdx force:data:tree:export --query \
+      "SELECT Id, genesis__Application_Field_Name__c, genesis__Application_Object_Name__c, genesis__Contract_Field_Name__c, genesis__Contract_Object_Name__c, genesis__Product_Type__c, genesis__Required_For_Conversion__c, genesis__Type_of_child_relation__c, genesis__Use_For_Renewal__c, genesis__Conversion_Mapping_Header__c FROM genesis__Conversion_Mapping__c " \
+     --prefix export-data --outputdir sfdx-out --plan  --targetusername provisioningcls@38trialforce.com.devElixir
+==
+
+sfdx force:data:tree:export --query \
+      "SELECT Id, Name, Guid__c FROM ABN_Values__c" \
+     --prefix export-data --outputdir sfdx-out --plan  --targetusername provisioningcls@38trialforce.com.devElixir
+
+sfdx force:data:tree:export --query \
+      "SELECT Id, Name,LoanWarehouseTrigger__c FROM Disable_Custom_Triggers__c" \
+     --prefix export-data --outputdir sfdx-out --plan  --targetusername provisioningcls@38trialforce.com.devElixir
+
+
+sfdx force:data:tree:export --query \
+      "SELECT Id, Name, Distribution_Type__c, Fee_Field_API_Name__c FROM Elixir_Before_Or_On_Settlement_Fees__c" \
+     --prefix export-data --outputdir sfdx-out --plan --targetusername provisioningcls@38trialforce.com.devElixir
+
+
+sfdx force:data:tree:export --query \
+      "SELECT Id, Name, ints__API_Endpoint__c, ints__API_Named_Credential__c, ints__Active__c, ints__Adaptor_Class__c, ints__Authorization_Named_Credential__c, ints__Execution_Priority__c, ints__HTTP_Method__c, ints__Header_Parameters__c, ints__Integration_Service__c, ints__Request_Mapping__c, ints__Response_Mapping__c, ints__Type__c, ints__Use_Mocker__c FROM ints__Integration_Configuration__c" \
+     --prefix export-data --outputdir sfdx-out --plan --targetusername provisioningcls@38trialforce.com.devElixir
+
+
+sfdx force:data:tree:export --query \
+      "SELECT Id, Name FROM clcommon__Legal_Entity__c" \
+     --prefix export-data --outputdir sfdx-out --plan --targetusername provisioningcls@38trialforce.com.devElixir
+
+==
+sfdx force:data:tree:export --query \
+      "SELECT Id, Name FROM genesis__Loan_Product__c" \
+     --prefix export-data --outputdir sfdx-out --plan --targetusername provisioningcls@38trialforce.com.devElixir
+==
+
+sfdx force:data:tree:export --query \
+      "SELECT Id, Name, PostCode_Low_RangeNumber__c, PostCode_High_RangeNumber__c, Location__c FROM S_P_Postcode__c" \
+     --prefix export-data --outputdir sfdx-out --plan
+
+
+sfdx force:data:tree:export --query \
+      "SELECT Id, Name, Location__c, PostCode_High_RangeNumber__c, PostCode_Low_RangeNumber__c FROM QBEpostCode__c order by Name limit 199" \
+     --prefix export-data --outputdir sfdx-out --plan --targetusername provisioningcls@38trialforce.com.devElixir
+
+sfdx force:data:tree:export --query \
+      "SELECT Id, Name, Location__c, PostCode_High_RangeNumber__c, PostCode_Low_RangeNumber__c FROM QBEpostCode__c order by Name limit 199 offset 199" \
+     --prefix export-data-1 --outputdir sfdx-out --plan --targetusername provisioningcls@38trialforce.com.devElixir
+
+     
+
+     IMPORT
+
+
+         sfdx force:data:tree:import --targetusername provisioningcls@38trialforce.com.staging \
+    --plan sfdx-out/export-data-clcommon__Asset_Class__c-plan.json
+
+
+     sfdx force:data:tree:import --targetusername provisioningcls@38trialforce.com.staging \
+    --plan sfdx-out/export-data-genesis__Conversion_Mapping_Header__c-plan.json
+
+
+     sfdx force:data:tree:import --targetusername provisioningcls@38trialforce.com.staging \
+    --plan sfdx-out/export-data-genesis__Conversion_Mapping__c-plan.json
+
+
+
+     sfdx force:data:tree:import --targetusername provisioningcls@38trialforce.com.staging \
+    --plan sfdx-out/export-data-ABN_Values__c-plan.json
+
+
+
+     sfdx force:data:tree:import --targetusername provisioningcls@38trialforce.com.staging \
+    --plan sfdx-out/export-data-Disable_Custom_Triggers__c-plan.json
+
+
+
+     sfdx force:data:tree:import --targetusername provisioningcls@38trialforce.com.staging \
+    --plan sfdx-out/export-data-Elixir_Before_Or_On_Settlement_Fees__c-plan.json
+
+     sfdx force:data:tree:import --targetusername provisioningcls@38trialforce.com.staging \
+    --plan sfdx-out/export-data-ints__Integration_Configuration__c-plan.json
+
+
+     sfdx force:data:tree:import --targetusername provisioningcls@38trialforce.com.staging \
+    --plan sfdx-out/export-data-clcommon__Legal_Entity__c-plan.json
+
+
+
+     sfdx force:data:tree:import --targetusername provisioningcls@38trialforce.com.staging \
+    --plan sfdx-out/export-data-genesis__Loan_Product__c-plan.json
+
+
+     sfdx force:data:tree:import --targetusername provisioningcls@38trialforce.com.staging \
+    --plan sfdx-out/export-data-QBEpostCode__c-plan.json
+
+     sfdx force:data:tree:import --targetusername provisioningcls@38trialforce.com.staging \
+    --plan sfdx-out/export-data-1-QBEpostCode__c-plan.json
+    

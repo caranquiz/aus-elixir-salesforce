@@ -1,0 +1,10 @@
+{
+   "uniqueId": "ngUi_PartyRelationshipDetails",
+   "type": "Desktop",
+   "name": "PartyRelationshipDetails",
+   "module": "ngUi",
+   "maxAutoSaves": 25,
+   "masterPageUniqueId": null,
+   "isMasterPage": false,
+   "composerSettings": null
+}

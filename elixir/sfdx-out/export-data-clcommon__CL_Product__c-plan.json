@@ -1,0 +1,10 @@
+[
+    {
+        "sobject": "clcommon__CL_Product__c",
+        "saveRefs": true,
+        "resolveRefs": false,
+        "files": [
+            "export-data-clcommon__CL_Product__cs.json"
+        ]
+    }
+]

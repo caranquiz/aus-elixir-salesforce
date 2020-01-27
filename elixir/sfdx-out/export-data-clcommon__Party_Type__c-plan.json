@@ -1,0 +1,10 @@
+[
+    {
+        "sobject": "clcommon__Party_Type__c",
+        "saveRefs": true,
+        "resolveRefs": false,
+        "files": [
+            "export-data-clcommon__Party_Type__cs.json"
+        ]
+    }
+]

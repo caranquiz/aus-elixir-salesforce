@@ -1,0 +1,10 @@
+{
+   "uniqueId": "ngUi_ApplicationForm",
+   "type": "Desktop",
+   "name": "ApplicationForm",
+   "module": "ngUi",
+   "maxAutoSaves": 25,
+   "masterPageUniqueId": null,
+   "isMasterPage": false,
+   "composerSettings": null
+}

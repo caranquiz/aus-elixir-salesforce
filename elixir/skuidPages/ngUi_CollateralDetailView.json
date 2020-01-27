@@ -1,0 +1,10 @@
+{
+   "uniqueId": "ngUi_CollateralDetailView",
+   "type": "Desktop",
+   "name": "CollateralDetailView",
+   "module": "ngUi",
+   "maxAutoSaves": 25,
+   "masterPageUniqueId": null,
+   "isMasterPage": false,
+   "composerSettings": null
+}

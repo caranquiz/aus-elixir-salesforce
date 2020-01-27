@@ -1,0 +1,10 @@
+{
+   "uniqueId": "_CustomApplicantPage",
+   "type": "Desktop",
+   "name": "CustomApplicantPage",
+   "module": null,
+   "maxAutoSaves": 25,
+   "masterPageUniqueId": null,
+   "isMasterPage": false,
+   "composerSettings": null
+}
