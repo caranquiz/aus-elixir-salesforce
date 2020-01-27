@@ -1,0 +1,20 @@
+td.nx-cal-month {
+                color: white;
+                }
+
+                td.nx-cal-month .nx-cal-event {
+                padding-top: 10px;
+                padding-bottom: 10px;
+                font-size: 14px;
+                }
+.nx-page{
+                padding: 0 0 0 0 !important;
+                }
+                .nx-pagetitle-maintitle{
+                padding: 0 0 0 6px;
+                }
+
+                /*fix past event identation problem            */
+                .nx-page .nx-page-content{
+                padding-left: 0px !important;
+                }

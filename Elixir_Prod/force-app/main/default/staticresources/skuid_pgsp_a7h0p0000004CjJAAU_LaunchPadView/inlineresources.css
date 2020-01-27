@@ -1,0 +1,46 @@
+html {
+    height: 100%;
+}
+
+body {
+    overflow-x: hidden;
+}
+
+	      
+#ApplicationHeader {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 49px;
+}
+	      
+
+#myPkgView {
+    position: absolute;
+    top: 50px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.myPkgView body {
+	background-color: #EBEEF0;
+    font: normal normal 400 12px Lato;
+    padding: 0 !important;
+}
+
+.myPkgView > .nx-page {
+    margin-top: -1px;
+    margin-right: -10px;
+    margin-left: -10px;
+    background-color: #EBEEF0;
+}
+
+div[pagename="LaunchPadView"] {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}

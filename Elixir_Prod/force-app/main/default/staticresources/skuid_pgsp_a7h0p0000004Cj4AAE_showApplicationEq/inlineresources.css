@@ -1,0 +1,77 @@
+body {
+    background-color: #ebeef0;
+}
+
+body > .nx-page {
+    padding: 0;
+}
+
+#topParentPanelQueueWithAdd {
+    min-height: 1px;
+}
+
+#panelQueue {
+    min-height: 1px; 
+}
+
+#application-collateral-queue {
+    border-top: 1px solid transparent;
+}
+
+.pullLeft {
+    float:left;
+}
+
+#coll-detailview-container {
+    height: 643px;;
+}
+
+#collateral-details-iframe {
+    height:900px !important;
+}
+
+#collateral-section {
+    height: 900px;
+}
+
+#collDetailViewId {
+    min-height:0;
+}
+
+
+/*#collateral-detailview-cont {*/
+/*    position: absolute;*/
+/*    top: 0;*/
+/*    bottom: 0;*/
+/*    left: 250px;*/
+/*    right: 0;*/
+/*    overflow-y: hidden;*/
+
+/*}*/
+
+/*#coll-detail-iframe{*/
+/*    position: absolute;*/
+/*    top: 0;*/
+/*    bottom: 0;*/
+/*    left: 0;*/
+/*    right: 0;*/
+/*}*/
+
+/*div[pagename="showCollaterals"] {*/
+/*    position: absolute;*/
+/*    top: 0;*/
+/*    bottom: 0;*/
+/*    left: 0;*/
+/*    right: 0;*/
+/*}*/
+#application-collateral-queue .nx-queue-item-selected>.nx-queue-item-inner {
+    background-color: #2d507a !important;
+}
+.pullLeft {
+    float:left;
+    display:flex;
+}
+
+.nx-panel {
+    min-height: 50px;
+}

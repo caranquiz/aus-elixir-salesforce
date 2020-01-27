@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Loan_Purpose__c</fullName>
+    <externalId>false</externalId>
+    <label>Loan Purpose</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Construction of dwelling - Other dwelling</fullName>
+                <default>false</default>
+                <label>Construction of dwelling - Other dwelling</label>
+            </value>
+            <value>
+                <fullName>Construction of dwelling - House</fullName>
+                <default>false</default>
+                <label>Construction of dwelling - House</label>
+            </value>
+            <value>
+                <fullName>Purchase  - Existing</fullName>
+                <default>false</default>
+                <label>Purchase  - Existing</label>
+            </value>
+            <value>
+                <fullName>Purchase  - New</fullName>
+                <default>false</default>
+                <label>Purchase  - New</label>
+            </value>
+            <value>
+                <fullName>Purchase  - Off the Plan</fullName>
+                <default>false</default>
+                <label>Purchase  - Off the Plan</label>
+            </value>
+            <value>
+                <fullName>Refinance - Existing Mortgages</fullName>
+                <default>false</default>
+                <label>Refinance - Existing Mortgages</label>
+            </value>
+            <value>
+                <fullName>Refinance - Debt Consolidation</fullName>
+                <default>false</default>
+                <label>Refinance - Debt Consolidation</label>
+            </value>
+            <value>
+                <fullName>Refinance - Equity Release</fullName>
+                <default>false</default>
+                <label>Refinance - Equity Release</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

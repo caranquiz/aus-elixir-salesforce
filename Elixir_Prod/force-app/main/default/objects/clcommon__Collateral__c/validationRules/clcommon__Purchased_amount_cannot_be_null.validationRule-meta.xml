@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>clcommon__Purchased_amount_cannot_be_null</fullName>
+    <active>false</active>
+    <errorConditionFormula>ISPICKVAL(clcommon__Status__c , &quot;Warehouse&quot;) &amp;&amp; (ISBLANK(clcommon__Purchased_Price__c )|| clcommon__Purchased_Price__c &lt; 0)</errorConditionFormula>
+    <errorDisplayField>clcommon__Purchased_Price__c</errorDisplayField>
+    <errorMessage>Purchased Price should be greater than 0</errorMessage>
+</ValidationRule>

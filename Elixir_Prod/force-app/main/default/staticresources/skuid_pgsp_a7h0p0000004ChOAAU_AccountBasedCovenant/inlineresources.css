@@ -1,0 +1,36 @@
+body {    background-color: #ffffff;}body > .nx-page {    background-color: #ffffff;}
+.status-label {
+  font-weight: 400;
+  width: initial !important;
+  color: white;
+  border: 0 none #0070d2;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  padding: 5px 5px 5px 5px;
+  display: flex;
+  justify-content: center;
+  text-align: center; }
+  .status-label.accepted {
+    background: #48ce94; }
+  .status-label.expired {
+    background: #FF3333; }
+  .status-label.clear {
+    background: #e8e8e8;
+    color: black; }
+  .status-label.exception {
+    background: #ffa21d; }
+  .status-label.pending {
+    background: #e8e8e8;
+    color: black; }
+
+/*# sourceMappingURL=covenant-status.css.map */
+.sk-webicon{
+    line-height: 16px;
+    font-size: 16px;
+    color: white;
+    background: #38c987;
+    text-align: center;
+    padding: 5px 5px 5px 6px;
+    border-radius: 50% !important;  
+}

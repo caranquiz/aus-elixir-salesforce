@@ -1,0 +1,74 @@
+.detail-names-table .statement-detail-table tr[level="2"] td:nth-child(1) {
+    padding-left: 30px;
+}
+
+.detail-names-table .statement-detail-table tr[level="3"] td:nth-child(1) {
+    padding-left: 60px;
+}
+
+.detail-names-table .statement-detail-table tr[level="4"] td:nth-child(1) {
+    padding-left: 90px;
+}
+
+/*.statement-detail-table thead {
+    display: none;
+}*/
+
+.statement-detail-table table tbody td {
+    background: none;
+    border-right: none;
+}
+
+.statement-detail-table tbody tr[row-type="HEADER"] {
+    height: 50px;
+}
+.statement-detail-table tbody tr[row-type="HEADER"] td {
+    border-bottom: 2px solid #333333;
+}
+
+.statement-detail-table tbody tr[row-type="HEADER"] td div {
+    height: 50px;
+    line-height: 60px;
+    vertical-align: bottom;
+}
+
+.statement-detail-table tbody tr[row-type="COMPUTE"] td,
+.statement-detail-table tbody tr[row-type="ROLLUP"] td {
+    font-weight: 900;
+}
+
+.field-label-hidden > .nx-basicfieldeditor-item-label{
+    display: none;
+}
+
+.field-label-hidden .nx-field {
+    width: 100% !important;
+}
+.statement-detail-table table.nx-skootable-data tbody tr td:first-child {
+    border-left: none;
+}
+
+.statement-detail-table table.nx-skootable-data tbody tr td:first-child {
+    width: 50%;
+}
+
+.statement-detail-table table.nx-skootable-data tbody tr td:last-child {
+    width: 50%;
+}
+
+div[pagename="StatementDetails"] .nx-basicfieldeditor .nx-basicfieldeditor-item .nx-basicfieldeditor-item-label {
+    width: 50%;
+}
+
+div[pagename="StatementDetails"] div.nx-basicfieldeditor-section-body > div.nx-basicfieldeditor-item > .nx-field, div.nx-basicfieldeditor-item > .nx-field {
+    width: 50%;
+}
+
+
+div[pagename="StatementDetails"]{
+    padding: 0px !important;
+}
+
+.statement-detail-table .nx-editor-contents .nx-list-footer{
+    display: none;
+}

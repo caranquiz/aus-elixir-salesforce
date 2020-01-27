@@ -1,0 +1,57 @@
+<apex:page lightningStylesheets="true" controller="TransactionController"  docType="html-5.0"  >
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/latest/jquery.js"></script>
+    <script>
+    var isClicked = false; 
+    function checkDoubleSubmit(obj){ 
+        if (isClicked) { 
+            return false; 
+        }else { 
+            isClicked = true; 
+            return isClicked;
+        } 
+     }
+    </script>
+    <style>
+    .apexp .bPageBlock.apexDefaultPageBlock .pbBody .pbSubheader {
+        color:Black;
+        background-color:white;
+    }
+    </style> 
+  <apex:form >
+  
+  <apex:sectionHeader title="List of Transactions" />
+        <apex:outputPanel id="searchOutputPanel">
+            <apex:pageblock id="transactionList">
+                <center>
+                    <h1 style="font-size: 12px;">Accounting Transactions Search</h1>
+                    <br />
+                    <br />
+                </center>
+               <apex:commandButton action="{!exportToPDF}" value="Export to PDF" id="ExportPDF"/>
+   <apex:pageblockSection title="Search Transactions" columns="2" 
+                    collapsible="true">            
+        <apex:input type="date" value="{!StartDate}" label="StartDate" />
+        <apex:input type="date" value="{!EndDate}" label="EndDate" />
+    </apex:pageblockSection>
+    
+   <center> <apex:commandButton value="Search" action="{!doSearch}" onclick="return checkDoubleSubmit(this)" /> </center>
+     <apex:actionStatus id="searchStatus" startText="Searching..."  /> 
+   
+          <apex:pageBlockTable value="{!txnList}" var="a">
+                <apex:column value="{!a.name}"/>
+                <apex:column value="{!a.loan__Transaction_Type__c}"/>
+                <apex:column value="{!a.loan__Type__c}"/>
+                <apex:column value="{!a.loan__Txn_Date__c}"/>
+                <apex:column value="{!a.loan__Principal__c}"/>
+                <apex:column value="{!a.loan__Interest__c}"/>
+                <apex:column value="{!a.loan__Fees__c}"/>
+                <apex:column value="{!a.loan__Fee_Name__c}"/>
+                <apex:column value="{!a.loan__Txn_Amt__c}"/>
+                <apex:column value="{!a.loan__Principal_Remaining__c}"/>
+                <apex:column value="{!a.loan__Balance__c}"/>
+                
+            </apex:pageBlockTable>
+     </apex:pageblock>
+     </apex:outputPanel>
+     </apex:form>              
+</apex:page>

@@ -1,0 +1,211 @@
+#launchPadGrid {
+    margin: 10px;
+    margin-top: 0px;
+}
+
+
+#vfpage-iframeid-template {
+    margin-left: 12px;
+    margin-right: 12px;
+}
+
+#vfpage-iframeid iframe {
+    border-width: 0;
+
+}
+
+.launchpad-iframe-prop {
+    display:inline-block;
+    margin-top:40px;
+    min-height: 100%;
+    min-height: 100vh;
+}
+#launchpadDeckQueue img {
+    /*height: 80% !important;*/
+    height: auto;
+    width: 80% !important;
+    padding-top: 7px !important;
+}
+
+.image-button.deckImage {
+    width: 170px;
+    height: 170px;
+
+}
+
+#add-new-app-wrapper img {
+    height: 120px !important;
+    width: 120px !important;
+    padding-top: 0px !important;
+}
+
+#launchpadDeckQueue button{
+     padding:0 !important;
+}
+
+#add-new-app-wrapper button{
+     padding:0 !important;
+}
+
+#launchpadDeckQueue article.nx-item.sk-grid-division.sk-card:hover {
+    background: #c8c8c8;
+    cursor: pointer;
+}
+
+#launchpadDeckQueue article.nx-item.sk-grid-division.sk-card:hover img {
+    background: #c8c8c8;
+    cursor: pointer;
+}
+
+#add-new-app-wrapper:hover {
+    background: #c8c8c8;
+}
+
+#add-new-app-wrapper:hover img{
+    background: #c8c8c8;
+}
+
+.pageTitleAppName {
+    /* width: 170px; */
+    margin-top: -30px;
+    vertical-align: top;
+    display: inline-block;
+    margin-left: -13px;
+}
+
+.pageTitleAppName .nx-fieldtext {
+    font-size: 13px;
+}
+
+.pageTitleAppNameWithoutImg {
+    /* width: 170px; */
+    /* margin-top: -30px; */
+    /* vertical-align: top; */
+    /*display: inline-block;*/
+    /* margin-left: -21px; */
+    /* position: absolute; */
+    /* bottom: 13px; */
+    /* margin-right: 25px; */
+    /* margin-left: -20px; */
+    margin-top: -30px;
+    vertical-align: top;
+    display: inline-block;
+    /*margin-left: -10px; */
+}
+
+
+.pageTitleAppNameWithoutImg .nx-fieldtext {
+    font-size: 13px;
+}
+
+
+#launchpadDeckQueue .nx-item.sk-grid-division.sk-card {
+    flex: auto !important;
+    display: block;
+    text-align: center;
+    /* height: 170px; */
+    /* width: 170px; */
+    background-color: white;
+    /* margin-right: 10px; */
+    width: 12%;
+    /* height: auto; */
+    flex-wrap: wrap;
+    /* justify-content: space-between; */
+    position: relative;
+    justify-content: flex-start;
+    height: auto;
+    margin-right: 20px;
+    min-height: 120px;
+}
+
+
+
+
+#launchpadDeckQueue {
+    margin-left: 10px;
+    padding-left: 2px;
+    vertical-align: top;
+    /*display: inline-block;*/
+    /*margin-top: -24px;*/
+    float: left;
+    /*width:100%;*/
+}
+
+.nx-list-footer {
+    display:none;
+}
+
+#dynamicPageInclude {
+    display: inline-block;
+    margin-top: 40px;
+    width: 100%;
+}
+
+
+
+#add-new-app-wrapper {
+    margin-top: -16px;
+    float: left;
+    text-align: center;
+    height: 157px;
+    width: 13%;
+    background-color: white;
+}
+
+#add-new-app-wrapper .nx-template{
+    font-size: 13px;
+    margin-top: 4px;
+}
+
+/*.templateImageContainer {*/
+/*    margin-top: -26px;*/
+/*}*/
+
+#launchpadDeckQueue .nx-pagetitle-maintitle {
+    margin-top:10px;
+}
+
+#add-new-app-wrapper .nx-pagetitle-maintitle {
+    margin-top:-4px;
+}
+
+#LaunchpadConfigButton {
+    float: right;
+    margin-top: -42px;
+    margin-right: 8px;
+}
+
+
+#LaunchpadConfigButton .ui-button.ui-widget.ui-state-default.ui-corner-all.ui-button-text-icon-primary{
+    display: inline-block;
+    background: none;
+}
+
+#launchpadDeckQueue .sk-card.sk-grid-division.sk-grid-division-filler {
+    display:none;
+}
+
+#launchpadDeckQueue .nx-editor-contents {
+    width:100%;
+}
+
+
+/*#add-new-app-wrapper {*/
+/*    margin-left:5px;*/
+/*}*/
+
+#launchpadDeckQueue .nx-list-contents.sk-deck.sk-grid {
+    margin-right:17px;
+}
+
+#launchpadDeckQueue .templateImageContainer {
+    width: 100%;
+    text-align: center;
+}
+
+
+#launchPadGrid .ui-tabs-panel.ui-widget-content.ui-corner-bottom {
+    display: block;
+    margin-right: 12px;
+    margin-left: 12px;
+}

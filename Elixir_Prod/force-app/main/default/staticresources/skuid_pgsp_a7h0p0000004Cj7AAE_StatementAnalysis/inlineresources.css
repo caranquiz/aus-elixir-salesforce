@@ -1,0 +1,198 @@
+.field-label-hidden > .nx-basicfieldeditor-item-label{
+    display: none;
+}
+
+.field-label-hidden .nx-field {
+    width: 100% !important;
+}
+
+
+.st-detail-field{
+    /*padding-top:4px;*/
+    /*border-top: 2px solid #333333;*/
+    background-color:blue;
+}
+.coa-name .statement-analysis-table tr[level="2"] td:nth-child(1) {
+    padding-left: 20px;
+}
+
+.coa-name .statement-analysis-table tr[level="3"] td:nth-child(1) {
+    padding-left: 40px;
+}
+
+.coa-name .statement-analysis-table tr[level="4"] td:nth-child(1) {
+    padding-left: 60px;
+}
+
+.coa-name.nx-panel{
+    /* Change this values if the horizontal lines are not aligned  */
+    padding-top: 8px!important;
+}
+
+.statement-analysis-table thead {
+    display: none;
+}
+
+.statement-analysis-table table tbody td {
+    background: none;
+    border-right: none;
+}
+
+.statement-analysis-table tbody tr[row-type="HEADER"] {
+    height: 50px;
+}
+.statement-analysis-table tbody tr[row-type="HEADER"] td {
+    border-bottom: 1px solid #333333;
+}
+
+.statement-analysis-table tbody tr[row-type="HEADER"] td div {
+    height: 50px;
+    line-height: 60px;
+    vertical-align: bottom;
+}
+
+.statement-analysis-table tbody tr[row-type="COMPUTE"] td,
+.statement-analysis-table tbody tr[row-type="ROLLUP"] td {
+    font-weight: 900;
+}
+
+.custom-deck{
+    padding-top:10px;
+}
+.custom-deck .sk-deck article {
+    padding: 0px;
+    border: 0px;
+}
+.custom-deck .nx-editor-contents{
+    margin: 0;
+}
+
+.field-value-hidden > .nx-basicfieldeditor-item-label{
+   width: 100% !important;
+}
+
+.field-value-hidden .nx-field {
+    display: none;
+}
+
+.main-header-label-editor .nx-editor-contents{
+   margin: 0; 
+}
+/*.statement-analysis-detail .nx-template:first-child {
+    border-left: none;
+}
+
+.statement-analysis-detail .nx-template:first-child {
+    width: 50%;
+}
+
+.statement-analysis-detail .nx-template:last-child {
+    width: 50%;
+}
+
+.statement-analysis-detail .nx-basicfieldeditor .nx-basicfieldeditor-item .nx-basicfieldeditor-item-label {
+    width: 50%;
+}
+
+.statement-analysis-detail div.nx-basicfieldeditor-section-body > div.nx-basicfieldeditor-item > .nx-field, div.nx-basicfieldeditor-item > .nx-field {
+    width: 50%;
+}
+
+
+.statement-analysis-detail{
+    padding: 0px !important;
+}
+
+.statement-analysis-detail .nx-editor-contents .nx-list-footer{
+    display: none;
+}*/
+/*.coa-name .statement-analysis-detail tr[level="2"] td:nth-child(1) {
+    padding-left: 20px;
+}
+
+.coa-name .statement-analysis-detail tr[level="3"] td:nth-child(1) {
+    padding-left: 40px;
+}
+
+.coa-name .statement-analysis-detail tr[level="4"] td:nth-child(1) {
+    padding-left: 60px;
+}
+
+.coa-name.nx-panel{
+    
+    padding-top: 8px!important;
+}
+
+
+.statement-analysis-detail table tbody td {
+    background: none;
+    border-right: none;
+}
+*/
+
+
+.stAnalysisColumn .nx-basicfieldeditor-section .nx-basicfieldeditor-section-header{
+    padding:0px;
+}
+
+
+.statement-analysis-detail .nx-field div.nx-fieldtext div.nx-template[row-type="HEADER"]{
+    
+    vertical-align: bottom;
+    border-bottom: 1px solid black;
+    width:100%;
+    padding-bottom:2px;
+    position:absolute;
+   
+}
+
+.statement-analysis-detail .nx-field div.nx-fieldtext div.nx-template[row-type="INPUT"]{
+   
+    vertical-align: bottom;
+    border-bottom: 1px solid #d8dde6;
+    width:100%;
+    padding-bottom:2px;
+    position:absolute;
+    
+    
+}
+
+.statement-analysis-detail .nx-field div.nx-fieldtext div.nx-template[row-type="COMPUTE"],
+.statement-analysis-detail .nx-field div.nx-fieldtext div.nx-template[row-type="ROLLUP"]{
+    vertical-align: bottom;
+    border-bottom: 1px solid #d8dde6;
+    width:100%;
+    padding-bottom:2px;
+    position:absolute;
+    
+}
+
+
+
+
+.field-label-hidden > .nx-basicfieldeditor-item-label{
+    display: none;
+}
+
+.field-label-hidden .nx-field {
+    width: 100% !important;
+}
+
+.nx-basicfieldeditor-item.statement-analysis-detail #sk-3Nqa-747.nx-field{
+    width:100%;
+    position:relative;
+    line-height:37px;
+    
+}
+.nx-basicfieldeditor-item.statement-analysis-detail #sk-AN4-427{
+    width:100%;
+}
+
+.statement-analysis-detail #sk-3Nqa-747.nx-field .nx-fieldtext{
+    position:relative;
+}
+
+.nx-basicfieldeditor-item.statement-analysis-detail {
+    padding-bottom:33px;
+    padding-top:37px;
+}

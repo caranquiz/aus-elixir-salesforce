@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Type__c</fullName>
+    <externalId>false</externalId>
+    <label>Type</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Home Improvements</fullName>
+                <default>false</default>
+                <label>Home Improvements</label>
+            </value>
+            <value>
+                <fullName>Purchase Goods</fullName>
+                <default>false</default>
+                <label>Purchase Goods</label>
+            </value>
+            <value>
+                <fullName>Holiday/Travel</fullName>
+                <default>false</default>
+                <label>Holiday/Travel</label>
+            </value>
+            <value>
+                <fullName>Divorce Settlement</fullName>
+                <default>false</default>
+                <label>Divorce Settlement</label>
+            </value>
+            <value>
+                <fullName>Personal Investments - shares etc</fullName>
+                <default>false</default>
+                <label>Personal Investments - shares etc</label>
+            </value>
+            <value>
+                <fullName>Property Purchase</fullName>
+                <default>false</default>
+                <label>Property Purchase</label>
+            </value>
+            <value>
+                <fullName>Other</fullName>
+                <default>false</default>
+                <label>Other</label>
+            </value>
+            <value>
+                <fullName>Working Capital</fullName>
+                <default>false</default>
+                <label>Working Capital</label>
+            </value>
+            <value>
+                <fullName>Buy Asset/Investment</fullName>
+                <default>false</default>
+                <label>Buy Asset/Investment</label>
+            </value>
+            <value>
+                <fullName>Marketing/Advertising Expenses</fullName>
+                <default>false</default>
+                <label>Marketing/Advertising Expenses</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

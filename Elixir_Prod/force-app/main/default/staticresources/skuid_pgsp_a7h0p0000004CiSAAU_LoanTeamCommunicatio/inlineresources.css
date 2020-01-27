@@ -1,0 +1,27 @@
+.nx-page[pagename=LoanTeamCommunication] {
+  padding-top: 24px;
+  padding-right: 0;
+  padding-left: 0;
+  background-color: white;
+  padding-right: 10px;
+  overflow: hidden !important;
+  display: inherit;
+}
+
+body {
+  background-color: #FFFFFF;
+}
+
+body > .nx-page {
+    background-color: #FFFFFF;
+}
+
+@media screen and (max-width:960px) {
+  #ltc-iframe {
+        min-height:840px;
+        height: 300vh;
+    }
+}
+::-webkit-scrollbar {
+    display: none;
+}

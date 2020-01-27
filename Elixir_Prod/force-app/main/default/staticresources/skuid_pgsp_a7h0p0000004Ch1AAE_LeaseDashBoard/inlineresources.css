@@ -1,0 +1,38 @@
+.taskListIframe{
+              margin-top : 11px;
+              margin-right : -10px;
+            /*  border:1px solid #b2b2b2; */
+              font-family : Arial !important;
+              
+            }
+            .nx-basicfieldeditor-item {
+              /*  background-color: #fff !important; */
+                border-bottom: 1px solid #f2f2f2;
+                padding: 0 8px;
+            }
+            .nx-basicfieldeditor-section-header {
+                background: #bfe8f5 none repeat scroll 0 0;
+                border-bottom: 1px solid #ddd;
+                color: #000;
+                font-weight: 700;
+                padding: 10px;
+            }
+            .publishercontainer {
+               border-left: 1px solid #b2b2b2;
+               border-bottom : 1px solid #b2b2b2;
+               line-height: normal;
+               overflow: visible;
+               padding-bottom: 20px;    
+               padding-top: 23px;
+               position: relative;
+               width: 95%;
+               padding-left : 20px;
+            }
+            .feedcontainer {
+               font-family: arial !important;
+               line-height: 16px;
+               overflow: visible;
+               padding-bottom: 5px;
+               padding-left: 20px;
+               padding-top: 20px;
+            }

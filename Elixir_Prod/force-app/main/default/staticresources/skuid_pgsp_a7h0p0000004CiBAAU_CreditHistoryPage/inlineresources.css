@@ -1,0 +1,7 @@
+body {
+    background-color: #ebeef0;
+}
+
+body > .nx-page {
+    padding: 0;
+}

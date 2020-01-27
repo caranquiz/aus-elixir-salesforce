@@ -1,0 +1,19 @@
+body {
+    background-color: white;
+}
+.ui-button.iconic-button.iconic-button-generate,
+.ui-button.iconic-button.iconic-button-generate.ui-state-hover,
+.ui-button.iconic-button.iconic-button-generate.ui-state-focus {
+    border: 2px solid #1CBDD4;
+}
+
+.ui-button.iconic-button.iconic-button-generate:before,
+.ui-button.iconic-button.iconic-button-generate.ui-state-hover:before,
+.ui-button.iconic-button.iconic-button-generate.ui-state-focus:before {
+    /*background-image: url('icons/Document-Add-32.png');*/
+    font-family: FontAwesome;
+    content: "\f063";
+    font-size: 20px;
+    color: #1CBDD4;
+    vertical-align: middle;
+}

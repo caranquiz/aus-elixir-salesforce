@@ -1,0 +1,7 @@
+body {
+	background-color: #FFFFFF;
+}
+
+body > .nx-page {
+    background-color: #FFFFFF;
+}

@@ -1,0 +1,111 @@
+#collateralDetailPageId > .nx-page {
+    height: 827px;
+    padding: 0 !important;
+}
+
+body {
+    background-color: #ebeef0;
+}
+
+body > .nx-page {
+    padding: 0 !important;
+    margin:0 !important;
+}
+
+
+.image-button.flood:after {
+    content: 'Flood Determination';
+}
+
+.image-button.house:after {
+    content: 'Appraisal';
+}
+
+.image-button.property:after {
+    content: 'Cash Flow Details';
+}
+
+.image-button.cone:after {
+    content: 'Construction Dashboard';
+}
+
+.image-button.Appraisal:after {
+    content: 'Request New Appraisal';
+}
+
+.image-button.dollar:after {
+    content: 'Pledged Amount';
+    margin-top: 14px;
+}
+
+.image-button.coll-house:after {
+    content: 'Collateral Analysis';
+}
+
+#constructionDashI {
+    min-height: 400px;
+}
+
+.rent-roll-upload {
+    overflow-y: hidden;
+    overflow-x: hidden;
+}
+
+.ui-dialog {
+    top:10px !important;
+}
+
+#pledge-amt-wrapper .image-button button > img {
+    height: 37px;
+    width: 58px;
+    padding-top: 29px;
+}
+
+.nx-page {
+    padding:0;
+}
+
+.vf-page {
+    height: 800px;
+}
+
+#sk-10ULo0-104{
+    width : 69.7rem;
+}
+#app-coll-delete-btn-set {
+    float: right;
+}
+
+#appraisal-remaining-amt-division {
+    margin-left: 30px;
+}
+
+
+#coll-valuation-pt .nx-pagetitle-maintitle, .nx-pagetitle-subtitle {
+    float:none;
+}
+
+#coll-analysis-pt .nx-pagetitle-maintitle, .nx-pagetitle-subtitle {
+    float:none;
+}
+
+#app-pledging-pt .nx-pagetitle-maintitle, .nx-pagetitle-subtitle {
+    float:none;
+}
+
+#coll-analysis-pt {
+    text-align:center;
+}
+
+#app-pledging-pt {
+    text-align:center;
+}
+
+#coll-valuation-pt {
+    text-align:center;
+}
+#collNameTitlePanel .sk-dropnav, div.sk-navigation.sk-navigation-dropdown {
+    float: right;
+    top: -45px;
+    right: 100px;
+}

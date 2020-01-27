@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Aggregator_Account</fullName>
+    <columns>ACCOUNT.NAME</columns>
+    <columns>clcommon__Legal_Entity_Type__c</columns>
+    <columns>loan__Broker__c</columns>
+    <columns>ACL__c</columns>
+    <columns>Brokers_BDM__c</columns>
+    <columns>Licence_Verified__c</columns>
+    <columns>CREATEDBY_USER.ALIAS</columns>
+    <columns>UPDATEDBY_USER.ALIAS</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>ACCOUNT.RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>Account.Aggregator</value>
+    </filters>
+    <label>Aggregator Account</label>
+</ListView>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Total_fees_amount__c</fullName>
+    <externalId>false</externalId>
+    <formula>Application_Fee__c +  Valuation_Fee__c + Settlement_Rescheduling_Fee__c + Credit_Providers_Mortgage_Insurance__c +  Mortgage_Registration_Fee__c +  Rate_Lock_In_Fee__c + Associated_Out_of_Pocket_Expense_Fee__c + Settlement_Advance_Fee__c + Regulated_Product_Lender_s_Legals__c +    Title_Insurance_Fee__c +  General_Security_Agreement_GSA_Fee__c + Mortgage_Stamp_Duty__c + Commission_Mandate_Amount__c</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>custom Total fees amount</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Currency</type>
+</CustomField>

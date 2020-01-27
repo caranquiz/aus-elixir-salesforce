@@ -1,0 +1,22 @@
+#pageTitleContact {
+    margin-top : 10px;
+    margin-left : -20px;
+}
+
+.nx-skootable-buttonicon {
+    margin: -2px 0px -2px 7px;
+}
+
+.nx-skootable-buttonicon .sk-icon {
+    width : 25px;
+    height : 25px;
+    border : 0px;
+    border-radius : 20%;
+}
+
+.sk-icon.sk-icon-add {
+    width : 25px;
+    height : 25px;
+    border : 0px;
+    border-radius : 20%;
+}

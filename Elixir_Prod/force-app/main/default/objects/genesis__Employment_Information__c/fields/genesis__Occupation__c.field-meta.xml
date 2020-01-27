@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>genesis__Occupation__c</fullName>
+    <deprecated>false</deprecated>
+    <description>List of occupations</description>
+    <externalId>false</externalId>
+    <label>Occupation</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Clerical</fullName>
+                <default>false</default>
+                <label>Clerical</label>
+            </value>
+            <value>
+                <fullName>Executive</fullName>
+                <default>false</default>
+                <label>Executive</label>
+            </value>
+            <value>
+                <fullName>Government</fullName>
+                <default>false</default>
+                <label>Government</label>
+            </value>
+            <value>
+                <fullName>Hourly Wage Earner</fullName>
+                <default>false</default>
+                <label>Hourly Wage Earner</label>
+            </value>
+            <value>
+                <fullName>Life</fullName>
+                <default>false</default>
+                <label>Life</label>
+            </value>
+            <value>
+                <fullName>Manager</fullName>
+                <default>false</default>
+                <label>Manager</label>
+            </value>
+            <value>
+                <fullName>Military Enlisted</fullName>
+                <default>false</default>
+                <label>Military Enlisted</label>
+            </value>
+            <value>
+                <fullName>Military officer</fullName>
+                <default>false</default>
+                <label>Military officer</label>
+            </value>
+            <value>
+                <fullName>Professional</fullName>
+                <default>false</default>
+                <label>Professional</label>
+            </value>
+            <value>
+                <fullName>Retired</fullName>
+                <default>false</default>
+                <label>Retired</label>
+            </value>
+            <value>
+                <fullName>Sales</fullName>
+                <default>false</default>
+                <label>Sales</label>
+            </value>
+            <value>
+                <fullName>Self Employed</fullName>
+                <default>false</default>
+                <label>Self Employed</label>
+            </value>
+            <value>
+                <fullName>Service</fullName>
+                <default>false</default>
+                <label>Service</label>
+            </value>
+            <value>
+                <fullName>Student</fullName>
+                <default>false</default>
+                <label>Student</label>
+            </value>
+            <value>
+                <fullName>Unemployed with Income</fullName>
+                <default>false</default>
+                <label>Unemployed with Income</label>
+            </value>
+            <value>
+                <fullName>Unemployed without Income</fullName>
+                <default>false</default>
+                <label>Unemployed without Income</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

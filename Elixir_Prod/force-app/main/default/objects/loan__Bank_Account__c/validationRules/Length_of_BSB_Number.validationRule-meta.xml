@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Length_of_BSB_Number</fullName>
+    <active>true</active>
+    <errorConditionFormula>IF(LEN(BSB_Number__c)==6, true,OR(CONTAINS(BSB_Number__c,&#39;-&#39;),CONTAINS(BSB_Number__c,&#39; &#39;)))</errorConditionFormula>
+    <errorMessage>BSB Number must be 6 characters long .</errorMessage>
+</ValidationRule>

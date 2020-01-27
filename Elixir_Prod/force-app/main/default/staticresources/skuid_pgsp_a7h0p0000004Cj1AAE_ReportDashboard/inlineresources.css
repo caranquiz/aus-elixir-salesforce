@@ -1,0 +1,80 @@
+.cls-home-detail-wrapper {
+    padding: 16px;
+}
+.cls-home-detail-title {
+    font-size: 12px;
+    font-weight: 700;
+    margin-left: -15px;
+}
+.cls-home-search-box {
+    font-size: 14px;
+    color: #121212;
+}
+.sk-search .ui-autocomplete-input {
+    font-size: 14px;
+    color: #121212;
+}
+.cls-home-logo-display {
+    margin: auto;
+}
+.graph-wrapper {
+    background-color: #f5f5f5;
+    border-radius: 5px;
+    border: 1px solid #d0d0d0;
+    margin-top: 30px;
+    margin-right: 12px;
+}
+.graph-wrapper-list {
+    background-color: #f5f5f5;
+    border-radius: 5px;
+    border: 1px solid #d0d0d0;
+    margin-top: 30px;
+    padding: 8px;
+    height: 250px;
+}
+.graph-wrapper-image {
+    background-color: #f5f5f5;
+    border-radius: 5px;
+    border: 1px solid #d0d0d0;
+    margin-top: 12px;
+    padding: 8px;
+    height: 96px;
+    display: block;
+    text-align: center;
+    margin-right: 12px;
+}
+.account-logo-image {
+    margin: auto;
+}
+tspan {
+    font-size: 12px;
+    font-weight: normal;
+}
+.highcharts-legend-item {
+    font-size: 12px;
+    font-weight: normal;
+}
+.highcharts-title {
+    font-size: 12px;
+    font-weight: normal;
+}
+.cls-home-spacer {
+    padding-top: 12px;
+}
+.nx-list-footer {
+  /*  display: none; */
+}
+#reportsTitle .nx-pagetitle-maintitle {
+	margin-left: 10px;
+        margin-top: 10px;
+}
+
+#topResponsiveGridContainer .sk-grid-division {
+    padding-left:10px;
+    padding-right:10px;
+}
+
+#viewMoreReportsTempId {
+    padding-left:10px;
+    padding-right:10px;
+}

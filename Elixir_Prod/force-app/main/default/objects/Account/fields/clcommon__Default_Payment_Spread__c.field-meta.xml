@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>clcommon__Default_Payment_Spread__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <deprecated>false</deprecated>
+    <description>This is the payment spread used for allocating the cash-receipt-application amount to the dues selected for this borrower.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>The default payment spread</inlineHelpText>
+    <label>Default Payment Spread</label>
+    <referenceTo>clcommon__Payment_Spread__c</referenceTo>
+    <relationshipLabel>Accounts</relationshipLabel>
+    <relationshipName>Accounts</relationshipName>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Lookup</type>
+</CustomField>

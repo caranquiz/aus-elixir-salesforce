@@ -1,0 +1,113 @@
+.dti-queue-panel .nx-queue-header {
+    display: none;
+}
+
+.dti-queue-panel .nx-list-footer {
+    display: none;
+}
+
+.dti-queue-panel .simple-queue.nx-queue {
+    border-top: 0;
+}
+
+.dti-queue-panel .nx-queue-item{
+    color: white;
+}
+.dti-queue-panel .nx-queue-item-inner-with-icon {
+    height: 60px;
+}
+
+.dti-queue-panel .sk-icon {
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    border-radius: 50%;
+    border: 2px solid white;
+    margin: 0 15px 0 0;
+}
+
+ /*to get the font content, go https://astronautweb.co/snippet/font-awesome/ */
+
+.dti-queue-panel .sk-icon.sk-icon-members:before {
+    font-family: FontAwesome;
+    content: "\f007";
+    padding: 4px;
+    font-size: 20px;
+    vertical-align: middle;
+}
+
+.dti-queue-panel .nx-item.nx-queue-item.nx-queue-item-selected > .nx-queue-item-inner {
+    color: white;
+}
+
+.dti-queue-panel .nx-item.nx-queue-item.nx-queue-item-selected .sk-icon {
+    color: #48ce94;
+    border: 2px solid #48ce94;
+}
+
+.dti-queue-panel .nx-item.nx-queue-item {
+    border-left: 5px solid #7f7f7f;
+    background: #7f7f7f;
+}
+
+.dti-queue-panel .nx-item.nx-queue-item .nx-template {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.dti-queue-panel .nx-item.nx-queue-item .nx-queue-loader {
+    display: none;
+}
+
+.dti-queue-panel .nx-item.nx-queue-item:hover {
+    border-left: 5px solid #2d5074;
+}
+
+.dti-queue-panel .nx-item.nx-queue-item.nx-queue-item-selected {
+    border-left: 5px solid #48ce94;
+}
+#relationship-dashboard-panelset {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height:100%;
+}
+
+#party-queue {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 250px;
+    height: 100%;
+}
+
+#party-container {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 250px;
+    right: 0;
+    height:100%;
+}
+
+#party-dti-page-include {
+    height:100%;
+    overflow:visible;
+}
+
+#partyDTI-queue {
+    margin: 50px 0 0 0;
+}
+
+div[pagename="PartyDTIDashboard"] {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height:100%;
+}

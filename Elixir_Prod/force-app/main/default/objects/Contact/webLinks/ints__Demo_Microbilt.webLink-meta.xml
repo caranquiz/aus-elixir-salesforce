@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <fullName>ints__Demo_Microbilt</fullName>
+    <availability>online</availability>
+    <displayType>button</displayType>
+    <linkType>javascript</linkType>
+    <masterLabel>Microbilt IBV</masterLabel>
+    <openType>onClickJavaScript</openType>
+    <protected>false</protected>
+    <url>{!REQUIRESCRIPT(&quot;/soap/ajax/13.0/connection.js&quot;)} 
+{!REQUIRESCRIPT(&quot;/soap/ajax/10.0/apex.js&quot;)} 
+
+var contactId = &#39;{!Contact.Id }&#39; ;
+var reference= &#39;{!Contact.ints__Reference_Token__c}&#39;;
+var checker = reference.length;
+if(checker == 0){
+reference= sforce.apex.execute(&quot;ints.IntegrationsDemoClass&quot;,&quot;requestMicrobiltRequest&quot;,{customerId:contactId});  
+var url = &#39;{!$Setup.ints__MicroBlitParams__c.ints__End_Point__c}&#39;;
+url = &quot;https://sdkstage.microbilt.com/WebServices/IBV/Home/AddCustomer?reference=&quot; + reference;
+//window.alert(reference); 
+window.open(url);
+}
+else{
+var resp = sforce.apex.execute(&quot;ints.IntegrationsDemoClass&quot;,&quot;requestMicrobiltReport&quot;,{token:reference,contactId:&#39;{!Contact.Id}&#39;});
+window.alert(resp);
+}
+window.location.reload();</url>
+</WebLink>

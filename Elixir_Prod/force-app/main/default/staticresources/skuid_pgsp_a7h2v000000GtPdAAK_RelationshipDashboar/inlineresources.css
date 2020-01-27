@@ -1,0 +1,69 @@
+.nx-queue-header {
+    display: none;
+}
+
+.nx-list-footer {
+    display: none;
+}
+
+/*.nx-queue-loader {
+    display: none;
+}*/
+
+.simple-queue.nx-queue {
+    border-top: 0;
+}
+
+.nx-queue-item-inner-with-icon {
+    height: 32px;
+}
+
+.sk-icon {
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    border-radius: 50%;
+    border: 2px solid white;
+    margin: 0 15px 0 0;
+}
+
+/* to get the font content, go https://astronautweb.co/snippet/font-awesome/ */
+
+.sk-icon.sk-icon-members:before {
+    font-family: FontAwesome;
+    content: "\f007";
+    padding: 4px;
+    font-size: 24px;
+    vertical-align: middle;
+}
+
+.nx-item.nx-queue-item.nx-queue-item-selected > .nx-queue-item-inner {
+    color: white;
+}
+
+.nx-item.nx-queue-item.nx-queue-item-selected .sk-icon {
+    color: #48ce94;
+    border: 2px solid #48ce94;
+}
+
+.nx-item.nx-queue-item {
+    border-left: 5px solid #7f7f7f;
+}
+
+.nx-item.nx-queue-item .nx-template {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.nx-item.nx-queue-item .nx-queue-loader {
+    display: none;
+}
+
+.nx-item.nx-queue-item:hover {
+    border-left: 5px solid #2d5074;
+}
+
+.nx-item.nx-queue-item.nx-queue-item-selected {
+    border-left: 5px solid #48ce94;
+}
