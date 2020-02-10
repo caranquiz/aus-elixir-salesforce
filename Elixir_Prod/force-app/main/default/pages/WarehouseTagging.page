@@ -1,0 +1,14 @@
+<apex:page controller="WarehouseController" sidebar="false">
+    <apex:form >
+        <apex:pageBlock title="Add Loan Warehouse">
+            <apex:pageBlockButtons >
+                <apex:commandButton value="Save" action="{!Save}"/>
+                <apex:commandButton value="Cancel" action="{!Cancel}"/> 
+            </apex:pageBlockButtons>
+            <label for="warehouse">Warehouse: </label>
+            <apex:inputField id="warehouse" value="{!acct.Warehouse__c}"/>  
+            <label for="app">Application: </label>
+            <apex:outputText value="{!acct.Application__r.Name}"/>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>
