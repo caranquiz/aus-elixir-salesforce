@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <rules>
+        <fullName>Is Approved checkbox updated</fullName>
+        <actions>
+            <name>Update_Approval_Date</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>Update_is_Approved</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>genesis__Applications__c.genesis__Status__c</field>
+            <operation>equals</operation>
+            <value>Formally Approved</value>
+        </criteriaItems>
+        <description>Whenever loan status is Approved , is Approved checkbox sets to true</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+</Workflow>
