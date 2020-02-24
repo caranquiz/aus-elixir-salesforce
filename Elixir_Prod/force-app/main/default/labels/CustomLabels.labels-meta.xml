@@ -91,14 +91,14 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>ApplicationStatusAfterCLContractConverted</shortDescription>
-        <value>APPROVED - CONVERTED TO CONTRACT</value>
+        <value>Approved - Converted to Contract</value>
     </labels>
     <labels>
         <fullName>ApplicationStatusAfterConvertedToContract</fullName>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>ApplicationStatusAfterConvertedToContract</shortDescription>
-        <value>APPROVED - CONVERTED TO CONTRACT</value>
+        <value>Approved - Converted to Contract</value>
     </labels>
     <labels>
         <fullName>ApplicationToCLContractSuccessStatus</fullName>

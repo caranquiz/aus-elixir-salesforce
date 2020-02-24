@@ -1,2 +1,0 @@
-(function(skuid){
-}(window.skuid));

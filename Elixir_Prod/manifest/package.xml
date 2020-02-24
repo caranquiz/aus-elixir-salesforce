@@ -1,5 +1,11 @@
  <?xml version="1.0" encoding="UTF-8"?>
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
+    <types>
+        <members>ApplicationStatusAfterCLContractConverted</members>
+        <members>ApplicationStatusAfterConvertedToContract</members>
+        <name>CustomLabel</name>
+    </types>
+    <types>
     <fullName>Post Go Live Items Git Versioning</fullName>
     <types>
         <members>ABNAPICalloutTest</members>
@@ -30,15 +36,18 @@
         <name>CustomLabel</name>
     </types>
     <types>
-        <members>CustomLabels</members>
-        <name>CustomLabels</name>
-    </types>
-    <types>
         <members>Admin</members>
         <members>System Admin Custom</members>
         <name>Profile</name>
     </types>
     <types>
+        <members>Custom_Applications_Parties_Employment_Info</members>
+        <members>Custom_Applications_with_Parties</members>
+        <members>Custom_Collateral_App_Collateral_Applications</members>
+        <name>ReportType</name>
+    </types>
+    <types>
+        <members>genesis__Applications__c.Is Approved checkbox updated</members>
         <members>loan__Loan_Account__c.Add_Warehouse</members>
         <name>WebLink</name>
     </types>

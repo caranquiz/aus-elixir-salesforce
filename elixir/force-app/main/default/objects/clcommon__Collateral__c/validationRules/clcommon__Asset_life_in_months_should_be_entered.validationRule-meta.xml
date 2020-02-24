@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>clcommon__Asset_life_in_months_should_be_entered</fullName>
-    <active>false</active>
-    <errorConditionFormula>ISPICKVAL(clcommon__Status__c, &quot;Warehouse&quot;) &amp;&amp; clcommon__Warehouse_Depreciation_Setup__c != null &amp;&amp; ISBLANK(clcommon__Equipment_Life_in_Months__c)</errorConditionFormula>
-    <errorDisplayField>clcommon__Equipment_Life_in_Months__c</errorDisplayField>
-    <errorMessage>If the equipment needs to depreciated then Equipment Life in Months should be provided with a positive value</errorMessage>
-</ValidationRule>

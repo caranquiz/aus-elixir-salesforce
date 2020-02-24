@@ -1,1 +1,0 @@
-global class ABNResponseHelper extends ints.IntegrationResponseObject{}

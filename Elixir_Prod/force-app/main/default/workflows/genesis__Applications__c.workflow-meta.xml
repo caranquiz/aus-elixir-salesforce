@@ -41,6 +41,7 @@
         <criteriaItems>
             <field>genesis__Applications__c.genesis__Status__c</field>
             <operation>equals</operation>
+            <value>Formally Approved</value>
             <value>APPROVED</value>
         </criteriaItems>
         <description>Whenever loan status is Approved , is Approved checkbox sets to true</description>

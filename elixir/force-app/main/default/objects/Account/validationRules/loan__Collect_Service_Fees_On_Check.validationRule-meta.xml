@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>loan__Collect_Service_Fees_On_Check</fullName>
-    <active>true</active>
-    <description>We cannot select No Fees along with other values.</description>
-    <errorConditionFormula>AND(INCLUDES(loan__Collect_Service_Fees_on__c, &#39;No Fees&#39;), OR(INCLUDES(loan__Collect_Service_Fees_on__c, &#39;Principal&#39;), INCLUDES(loan__Collect_Service_Fees_on__c, &#39;Interest&#39;), INCLUDES(loan__Collect_Service_Fees_on__c, &#39;Fees&#39;)))</errorConditionFormula>
-    <errorMessage>In &quot;Collect Service Fees On&quot;, &quot;No Fees&quot; cannot be selected with other values.</errorMessage>
-</ValidationRule>
