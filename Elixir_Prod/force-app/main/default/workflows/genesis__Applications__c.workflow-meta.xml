@@ -1,5 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fieldUpdates>
+        <fullName>Application_is_un_approved</fullName>
+        <field>Is_Approved__c</field>
+        <literalValue>0</literalValue>
+        <name>Application is un approved</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Approval_Date</fullName>
+        <field>Approval_Date__c</field>
+        <formula>$User.loan__Current_Branch_s_System_Date__c</formula>
+        <name>Update Approval Date</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_is_Approved</fullName>
+        <field>Is_Approved__c</field>
+        <literalValue>1</literalValue>
+        <name>Update is Approved</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
     <rules>
         <fullName>Is Approved checkbox updated</fullName>
         <actions>
@@ -15,8 +42,23 @@
             <field>genesis__Applications__c.genesis__Status__c</field>
             <operation>equals</operation>
             <value>Formally Approved</value>
+            <value>APPROVED</value>
         </criteriaItems>
         <description>Whenever loan status is Approved , is Approved checkbox sets to true</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Whenever loan status is Recommended%2C Is Approved checkbox sets to false</fullName>
+        <actions>
+            <name>Application_is_un_approved</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>genesis__Applications__c.genesis__Status__c</field>
+            <operation>equals</operation>
+            <value>Recommended</value>
+        </criteriaItems>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
 </Workflow>
