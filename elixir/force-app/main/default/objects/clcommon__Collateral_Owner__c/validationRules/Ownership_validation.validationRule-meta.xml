@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>Ownership_validation</fullName>
-    <active>true</active>
-    <errorConditionFormula>clcommon__Ownership__c &gt;1</errorConditionFormula>
-    <errorMessage>Ownership should not exceed 100 %</errorMessage>
-</ValidationRule>

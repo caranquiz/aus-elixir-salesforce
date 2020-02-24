@@ -1,9 +1,0 @@
-@IsTest
-public class ACNRespHelper_Test {
-
-    static testMethod void testParse() {
-        String json = '{\"response\":{\"businessEntity201408\":{\"mainBusinessPhysicalAddress\":{\"effectiveTo\":\"0000-12-30\",\"effectiveFrom\":\"2019-07-10\",\"postcode\":3000,\"stateCode\":\"VIC\"},\"mainName\":{\"effectiveFrom\":\"2019-07-10\",\"organisationName\":\"WINGATE ELIXIR FINANCIAL PTY LTD\"},\"goodsAndServicesTax\":{\"effectiveTo\":\"0000-12-30\",\"effectiveFrom\":\"2019-07-10\"},\"entityType\":{\"entityDescription\":\"Australian Private Company\",\"entityTypeCode\":\"PRV\"},\"ASICNumber\":634779990,\"entityStatus\":{\"effectiveTo\":\"0000-12-30\",\"effectiveFrom\":\"2019-07-10\",\"entityStatusCode\":\"Active\"},\"ABN\":{\"replacedFrom\":\"0000-12-30\",\"isCurrentIndicator\":\"Y\",\"identifierValue\":27634779990},\"recordLastUpdatedDate\":\"2019-07-10\"},\"dateTimeRetrieved\":\"2019-09-27T20:21:22.1579141+10:00\",\"dateRegisterLastUpdated\":\"2019-09-27\",\"usageStatement\":\"The Registrar of the ABR monitors the quality of the information available on this website and updates the information regularly. However, neither the Registrar of the ABR nor the Commonwealth guarantee that the information available through this service (including search results) is accurate, up to date, complete or accept any liability arising from the use of or reliance upon this site.\"},\"request\":{\"identifierSearchRequest\":{\"history\":\"Y\",\"identifierValue\":634779990,\"identifierType\":\"ASIC\",\"authenticationGUID\":\"c74fa70d-610f-4a9c-9703-2321c82ce510\"}}}';
-        ACNRespHelper obj = ACNRespHelper.parse(json);
-        System.assert(obj != null);
-    }
-}

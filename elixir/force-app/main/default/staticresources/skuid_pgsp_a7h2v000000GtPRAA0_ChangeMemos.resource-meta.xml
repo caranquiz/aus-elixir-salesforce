@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<StaticResource xmlns="http://soap.sforce.com/2006/04/metadata">
-    <cacheControl>Private</cacheControl>
-    <contentType>application/zip</contentType>
-    <description>Skuid Support File for ChangeMemos (a7h2v000000GtPRAA0)</description>
-</StaticResource>

@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-    <fullName>Middle_Name_Check</fullName>
-    <active>true</active>
-    <errorConditionFormula>AND(NOT(ISBLANK(MiddleName)),NOT(REGEX(MiddleName,&quot;([a-zA-Z- ])*&quot;)))</errorConditionFormula>
-    <errorMessage>Middle name can contain only letters.</errorMessage>
-</ValidationRule>

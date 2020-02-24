@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>genesis__Validate_Asset_Class</fullName>
-    <active>false</active>
-    <description>Asset Class should be entered while creating a CL Product.</description>
-    <errorConditionFormula>clcommon__Asset_Class__c  = null</errorConditionFormula>
-    <errorDisplayField>clcommon__Asset_Class__c</errorDisplayField>
-    <errorMessage>Please enter the Asset Class.</errorMessage>
-</ValidationRule>
