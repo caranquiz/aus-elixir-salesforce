@@ -5,7 +5,6 @@
     <isNavAutoTempTabsDisabled>false</isNavAutoTempTabsDisabled>
     <isNavPersonalizationDisabled>false</isNavPersonalizationDisabled>
     <label>Elixir Loan</label>
-    <logo>SharedDocuments/ORDEFinancial_Logo.jpg</logo>
     <tabs>standard-Account</tabs>
     <tabs>genesis__Applications__c</tabs>
     <tabs>loan__Loan_Account__c</tabs>
