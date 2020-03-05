@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>genesis__Liability_Type__c</fullName>
+    <deprecated>false</deprecated>
+    <description>Type of liability. Values could be, Personal Loan, Student Loan, Credit Card, Notes Payable, Real Estate/Mortgage, Other Expenses, Fed and State Tax, HELOC, Utility Payments etc.</description>
+    <externalId>false</externalId>
+    <label>Liability Type</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Owner Occupied Property</fullName>
+                <default>false</default>
+                <label>Owner Occupied Property</label>
+            </value>
+            <value>
+                <fullName>Investment Property</fullName>
+                <default>false</default>
+                <label>Investment Property</label>
+            </value>
+            <value>
+                <fullName>Personal Loan</fullName>
+                <default>false</default>
+                <label>Personal Loan</label>
+            </value>
+            <value>
+                <fullName>Motor Vehicle</fullName>
+                <default>false</default>
+                <label>Motor Vehicle</label>
+            </value>
+            <value>
+                <fullName>Other Vehicle</fullName>
+                <default>false</default>
+                <label>Other Vehicle</label>
+            </value>
+            <value>
+                <fullName>Credit Card</fullName>
+                <default>false</default>
+                <label>Credit Card</label>
+            </value>
+            <value>
+                <fullName>Other Debt</fullName>
+                <default>false</default>
+                <label>Other Debt</label>
+            </value>
+            <value>
+                <fullName>ATO Debt</fullName>
+                <default>false</default>
+                <label>ATO Debt</label>
+            </value>
+            <value>
+                <fullName>Fed and State Tax</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Fed and State Tax</label>
+            </value>
+            <value>
+                <fullName>HELOC</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>HELOC</label>
+            </value>
+            <value>
+                <fullName>Notes Payable</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Notes Payable</label>
+            </value>
+            <value>
+                <fullName>Other</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Other</label>
+            </value>
+            <value>
+                <fullName>Other Expenses</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Other Expenses</label>
+            </value>
+            <value>
+                <fullName>Real Estate/Mortgage</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Real Estate/Mortgage</label>
+            </value>
+            <value>
+                <fullName>Student Loan</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Student Loan</label>
+            </value>
+            <value>
+                <fullName>Utility Payments</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Utility Payments</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

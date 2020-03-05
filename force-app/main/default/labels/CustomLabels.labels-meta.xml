@@ -247,6 +247,22 @@
         <value>Elixir Custom Community Plus User</value>
     </labels>
     <labels>
+        <fullName>Execution_Priority_for_ABN_from_Employment_Information</fullName>
+        <categories>Execution Priority</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Execution Priority for ABN from Employment Information</shortDescription>
+        <value>5</value>
+    </labels>
+    <labels>
+        <fullName>Execution_Priority_for_ABN_from_Parties</fullName>
+        <categories>Execution Priority</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Execution Priority for ABN from Parties</shortDescription>
+        <value>2</value>
+    </labels>
+    <labels>
         <fullName>Family_Trust_Legal_Entity</fullName>
         <language>en_US</language>
         <protected>false</protected>

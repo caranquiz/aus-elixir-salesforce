@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <fullName>clcommon__Check_Valid_Month_Value</fullName>
+    <active>true</active>
+    <description>Month can not have value greater than 11</description>
+    <errorConditionFormula>clcommon__Months_at_current_address__c &gt;11||clcommon__Months_at_current_address__c &lt;0</errorConditionFormula>
+    <errorDisplayField>clcommon__Months_at_current_address__c</errorDisplayField>
+    <errorMessage>Month can not have value more than 11</errorMessage>
+</ValidationRule>

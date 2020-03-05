@@ -1175,16 +1175,6 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>genesis__Application__c.Account_division_type__c</field>
-            <table>clcommon__Collateral__c.genesis__Application_Collaterals__r</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>genesis__Application__c.Account_type__c</field>
-            <table>clcommon__Collateral__c.genesis__Application_Collaterals__r</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
             <field>genesis__Application__c.genesis__Action__c</field>
             <table>clcommon__Collateral__c.genesis__Application_Collaterals__r</table>
         </columns>
@@ -1935,11 +1925,6 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>genesis__Application__c.Loan_Purpose__c</field>
-            <table>clcommon__Collateral__c.genesis__Application_Collaterals__r</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
             <field>genesis__Application__c.genesis__LTV_Pledged_Collateral__c</field>
             <table>clcommon__Collateral__c.genesis__Application_Collaterals__r</table>
         </columns>
@@ -2011,11 +1996,6 @@
         <columns>
             <checkedByDefault>false</checkedByDefault>
             <field>genesis__Application__c.Name_Title__c</field>
-            <table>clcommon__Collateral__c.genesis__Application_Collaterals__r</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>genesis__Application__c.National_Credit_Code_Loan__c</field>
             <table>clcommon__Collateral__c.genesis__Application_Collaterals__r</table>
         </columns>
         <columns>
@@ -2335,32 +2315,12 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>genesis__Application__c.Reason__c</field>
-            <table>clcommon__Collateral__c.genesis__Application_Collaterals__r</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
             <field>genesis__Application__c.RecordType</field>
             <table>clcommon__Collateral__c.genesis__Application_Collaterals__r</table>
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>genesis__Application__c.Refinance_Consolidation_Amount__c</field>
-            <table>clcommon__Collateral__c.genesis__Application_Collaterals__r</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>genesis__Application__c.Refinance_Description__c</field>
-            <table>clcommon__Collateral__c.genesis__Application_Collaterals__r</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
             <field>genesis__Application__c.Refinance_Equity_Release__c</field>
-            <table>clcommon__Collateral__c.genesis__Application_Collaterals__r</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>genesis__Application__c.Refinance_Mortgages_Amount__c</field>
             <table>clcommon__Collateral__c.genesis__Application_Collaterals__r</table>
         </columns>
         <columns>
@@ -2650,11 +2610,6 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>genesis__Application__c.Trail_Percentage__c</field>
-            <table>clcommon__Collateral__c.genesis__Application_Collaterals__r</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
             <field>genesis__Application__c.Trust_Type_of_Document_Sighted__c</field>
             <table>clcommon__Collateral__c.genesis__Application_Collaterals__r</table>
         </columns>
@@ -2710,11 +2665,6 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>genesis__Application__c.User__c</field>
-            <table>clcommon__Collateral__c.genesis__Application_Collaterals__r</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
             <field>genesis__Application__c.Utilised_Subsequent_Drawdown_Prepaid_Fee__c</field>
             <table>clcommon__Collateral__c.genesis__Application_Collaterals__r</table>
         </columns>
@@ -2736,11 +2686,6 @@
         <columns>
             <checkedByDefault>false</checkedByDefault>
             <field>genesis__Application__c.Verification_Sighted__c</field>
-            <table>clcommon__Collateral__c.genesis__Application_Collaterals__r</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>genesis__Application__c.Warehouse_Investor_1__c</field>
             <table>clcommon__Collateral__c.genesis__Application_Collaterals__r</table>
         </columns>
         <columns>

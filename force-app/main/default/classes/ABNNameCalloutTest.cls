@@ -1,14 +1,20 @@
+/******** Description : Callout class for ABNNameAdapter,ABNNameCallout and ABNNameResponse
+Developer : Rameswari Barman
+*********/
 @isTest
 private class ABNNameCalloutTest{
     @testSetup static void setup(){
         Account accObj = new Account(Name = 'Test Account');
         INSERT accObj;
+        System.assertEquals(accObj.Name,'Test Account');
         
         clcommon__Party__c partyObj = new clcommon__Party__c(clcommon__Account__C = accObj.id);
         INSERT partyObj;
+        System.assertEquals(partyObj.clcommon__Account__C,accObj.id);
         
         genesis__Employment_Information__c empObj = new genesis__Employment_Information__c(Name = 'Test Emp 101', Company_Name__c = 'Test Emp 201');
         INSERT empObj;
+        System.assertEquals(empObj.Name,'Test Emp 101');
         
         //INTEGRATION CONFIG FOR ABNNAMEAPI_1
         ints__Integration_Configuration__c icObj = new ints__Integration_Configuration__c();
@@ -25,7 +31,7 @@ private class ABNNameCalloutTest{
         icObj.ints__Request_Mapping__c = '{"thirdPartySystem":{"name":"abnNameRequest","dynamicDataMapping":[{"Alias":"abn_request"}],"filters":[{"tablename":"clcommon__Party__c","tableAlias":"partyInfo","fields":[{"Alias":"companyABN","fieldAPI":"clcommon__Account__r.Name"}],"whereClause":"Id=:partyId"}],"otherParameters":{"service":"ABRSearchByNameAdvancedSimpleProtocol2017","postcode":"","tradingName":"","legalName":"","businessName":"","activeABNsOnly":"","QLD":"","NT":"","SA":"","WA":"","VIC":"","ACT":"","TAS":"","NSW":"","searchWidth":"","minimumScore":"","maxSearchResults":""}}}';
         icObj.ints__Response_Mapping__c = '{"StorageConfiguration":{"StoreInDB":"False"},"DMLOperations":[{"DML":"Insert","ObjectMapping":[{"objectName":"ABN_Information__c","objectAlias":"=>response=>businessEntity=>mainName","fields":[{"Alias":"organisationName","fieldAPI":"Organisation_Name__c"}]}]}]}';        
         insert icObj;
-        
+        System.assertEquals(icObj.ints__Use_Mocker__c,true);
         
         //Mocker Object FOR ABNNAMEAPI_1
         ints__Mocker__c mockObj = new ints__Mocker__c();
@@ -36,7 +42,7 @@ private class ABNNameCalloutTest{
         mockObj.ints__content_Type__c = 'application/json';
         
         insert mockObj;
-        //System.assertequals('12345',mockObj.ints__Control_Field_Value__c);
+        System.assertequals('ABRSearchByNameAdvancedSimpleProtocol2017',mockObj.ints__Control_Field_Value__c);
         
         //Create additional parameter with key 'Control_Field'FOR ABNNAMEAPI_1
         ints__Additional_Parameters__c param = new ints__Additional_Parameters__c();
@@ -44,7 +50,7 @@ private class ABNNameCalloutTest{
         param.ints__Value__c = 'service';
         param.ints__Integration_Configuration__c = icObj.Id;
         insert param;
-        
+        System.assertEquals(param.ints__Value__c,'service');
         
         //INTEGRATION CONFIG FOR ABNNAMEAPI_2
         ints__Integration_Configuration__c integrationObj = new ints__Integration_Configuration__c();
@@ -61,6 +67,7 @@ private class ABNNameCalloutTest{
         integrationObj.ints__Request_Mapping__c = '{"thirdPartySystem":{"name":"abnNameRequest","dynamicDataMapping":[{"Alias":"abn_request"}],"filters":[{"tablename":"genesis__Employment_Information__c","tableAlias":"partyInfo","fields":[{"Alias":"companyABN","fieldAPI":"Company_Name__c"}],"whereClause":"Id=:empId"}],"otherParameters":{"service":"ABRSearchByNameAdvancedSimpleProtocol2017","postcode":"","tradingName":"","legalName":"","businessName":"","activeABNsOnly":"","QLD":"","NT":"","SA":"","WA":"","VIC":"","ACT":"","TAS":"","NSW":"","searchWidth":"","minimumScore":"","maxSearchResults":""}}}';
         integrationObj.ints__Response_Mapping__c = '{"StorageConfiguration":{"StoreInDB":"False"},"DMLOperations":[{"DML":"Insert","ObjectMapping":[{"objectName":"ABN_Information__c","objectAlias":"=>response=>businessEntity=>mainName","fields":[{"Alias":"organisationName","fieldAPI":"Organisation_Name__c"}]}]}]}';        
         INSERT integrationObj;
+        System.assertEquals(integrationObj.ints__Use_Mocker__c,true);
         
         //Mocker Object FOR ABNNAMEAPI_2
         ints__Mocker__c mockerObj = new ints__Mocker__c();
@@ -70,6 +77,7 @@ private class ABNNameCalloutTest{
         mockerObj.ints__Control_Field_Value__c = 'ABRSearchByNameAdvancedSimpleProtocol2017';  
         mockerObj.ints__content_Type__c = 'application/json';        
         insert mockerObj;
+        System.assertEquals(mockerObj.ints__content_Type__c,'application/json');
         
         //Create additional parameter with key 'Control_Field' FOR ABNNAMEAPI_2
         ints__Additional_Parameters__c xtraparam = new ints__Additional_Parameters__c();
@@ -77,6 +85,7 @@ private class ABNNameCalloutTest{
         xtraparam.ints__Value__c = 'service';
         xtraparam.ints__Integration_Configuration__c = integrationObj.Id;
         insert xtraparam;   
+        System.assertEquals(xtraparam.ints__Value__c,'service');
     }
     
     //HAPPY FLOW WITH PARTY OBJ
@@ -103,7 +112,7 @@ private class ABNNameCalloutTest{
                                           ORDER BY CreatedDate DESC LIMIT 1];
         mockObj.ints__Response_Status__c = '400 - Bad Request';   
         UPDATE mockObj;
-        
+        System.assertEquals(mockObj.ints__Response_Status__c,'400 - Bad Request');
         
         Test.startTest();
         String s = ABNNameCallout.makeABNSkuidCallout(partyObj.id, 'P');

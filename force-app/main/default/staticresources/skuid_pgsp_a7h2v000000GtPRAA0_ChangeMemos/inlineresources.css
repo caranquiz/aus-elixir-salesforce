@@ -1,0 +1,9 @@
+#submitForApprovalVfButtonId {
+   background-color: white;
+
+}
+
+#submitForApprovalVfButtonId:focus {
+    outline:0;
+
+}

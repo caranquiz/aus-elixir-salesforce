@@ -1,7 +1,7 @@
 /***********************************************
 Developer - Khalid Fazlullah
 Development Date - 12/11/2019
-Description -  Controller class for withdrawing deposit amount - used during redraw when the respective button is clicked in CL contract
+Description -  Controller class for withrawing deposit amount - used during redraw when the respective button is clicked in CL contratc
 ************************************************/
 
 public class RedrawController {

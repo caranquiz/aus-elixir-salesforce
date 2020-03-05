@@ -109,7 +109,7 @@
             conMapList.add(conMap3);
             conMapList.add(conMap4);
             insert conMapList;
-            //System.assertEquals(conMap1.size(),4);
+            System.assertEquals(conMapList.size(),4);
             
             loan__Loan_Account__c loanC = ElixirTestHelper.returnLoanAccount();
             loanC.loan__Account__c = acc.Id;
@@ -295,7 +295,7 @@
             conMapList.add(conMap3);
             conMapList.add(conMap4);
             insert conMapList;
-            //System.assertEquals(conMap1.size(),4);
+            System.assertEquals(conMapList.size(),4);
             
             loan__Loan_Account__c loanC = ElixirTestHelper.returnLoanAccount();
             loanC.loan__Account__c = acc.Id;
@@ -407,6 +407,10 @@
             app.genesis__CL_Product__c = clProd.id;
             app.Proposed_repayment_method_list__c = 'Bpay';
             app.Primary_loan_purpose_list__c = 'Investment';
+            app.genesis__Initial_Advance__c = 100000;
+            app.First_Tranche_Prepaid_Interest__c = 1000;
+            app.Total_Subsequent_Drawdown__c = 2000000;
+            app.Subsequent_Drawdown_Prepaid_Interest_Sum__c = 50000;
             insert app;
             System.assertEquals(app.genesis__account__c,acc.Id);
             
@@ -461,7 +465,7 @@
             conMapList.add(conMap3);
             conMapList.add(conMap4);
             insert conMapList;
-            //System.assertEquals(conMap1.size(),4);
+            System.assertEquals(conMapList.size(),4);
             
             loan__Loan_Account__c loanC = ElixirTestHelper.returnLoanAccount();
             loanC.loan__Account__c = acc.Id;
@@ -628,7 +632,7 @@
             conMapList.add(conMap3);
             conMapList.add(conMap4);
             insert conMapList;
-            //System.assertEquals(conMap1.size(),4);
+            System.assertEquals(conMapList.size(),4);
             
             loan__Loan_Account__c loanC = ElixirTestHelper.returnLoanAccount();
             loanC.loan__Account__c = acc.Id;

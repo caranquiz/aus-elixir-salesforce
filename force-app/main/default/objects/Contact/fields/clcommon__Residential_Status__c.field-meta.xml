@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <fullName>clcommon__Residential_Status__c</fullName>
+    <deprecated>false</deprecated>
+    <description>It will track the residential status of person</description>
+    <externalId>false</externalId>
+    <label>Residential Status</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Temporary</fullName>
+                <default>false</default>
+                <label>Temporary</label>
+            </value>
+            <value>
+                <fullName>Permanent</fullName>
+                <default>false</default>
+                <label>Permanent</label>
+            </value>
+            <value>
+                <fullName>Living with Parents</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Living with Parents</label>
+            </value>
+            <value>
+                <fullName>Other</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Other</label>
+            </value>
+            <value>
+                <fullName>Own Home</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Own Home</label>
+            </value>
+            <value>
+                <fullName>Rent</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Rent</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

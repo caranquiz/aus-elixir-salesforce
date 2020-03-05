@@ -1,3 +1,7 @@
+/* Name - ABNAPICalloutTest 
+Description - Test class for ABN API callout
+Developer - Soumik Sarkar
+*/
 @isTest
 public with sharing class ABNAPICalloutTest{    
 
@@ -19,21 +23,12 @@ public with sharing class ABNAPICalloutTest{
         
         clcommon__Party__c broParty = new clcommon__Party__c(clcommon__Type__c=partyType.Id,clcommon__Account__c = acc.id);
         insert broParty;
+        System.assertEquals(broParty.clcommon__Account__c,acc.id);
 
         ABN_Company_Information__c cObj = new ABN_Company_Information__c();
         cObj.Party__c = broParty.id;
         insert cObj;
-
-        /*clcommon__Party__c  pObj = new  clcommon__Party__c();
-        insert pObj;
-        
-        //genesis__Employment_Information__c eObj = new genesis__Employment_Information__c();
-        //insert eObj;
-        
-        ABN_Company_Information__c cObj = new ABN_Company_Information__c();
-        cObj.Party__c = pObj.id;
-        //cObj.Employment_Information__c = eObj.id;
-        insert cObj;*/
+        System.assertEquals(cObj.Party__c,broParty.id);
         
         List<ABN_Company_List__c> companyList = new List<ABN_Company_List__c>();
         
@@ -43,7 +38,7 @@ public with sharing class ABNAPICalloutTest{
         insert obj;
         //obj.ABN_Company_Information__r.Employment_Information__c =  cObj.Employment_Information__c;
         //insert obj;
-        System.assertequals('jhsjfjh',obj.ABN_Identifier_Value__c);
+        System.assertEquals('jhsjfjh',obj.ABN_Identifier_Value__c);
         
         ints.IntegrationConfigurationDTO IntegrationConfiguration = new ints.IntegrationConfigurationDTO();
         HttpResponse res = new HttpResponse();
@@ -64,7 +59,7 @@ public with sharing class ABNAPICalloutTest{
         icObj.ints__Use_Mocker__c = true;
         
         insert icObj;
-        System.assertequals('ABN_API',icObj.name);        
+        System.assertEquals('ABN_API',icObj.name);        
         //Mocker Object
         ints__Mocker__c mockObj = new ints__Mocker__c();
         mockObj.ints__Integration_Configuration__c = icObj.Id;
@@ -81,6 +76,7 @@ public with sharing class ABNAPICalloutTest{
         param.ints__Value__c = 'Provider';
         param.ints__Integration_Configuration__c = icObj.Id;
         insert param;
+        System.assertEquals(param.ints__Value__c,'Provider');
         Test.startTest();
         ABNAPICallout.makeABNCallout(obj.id);
         Test.stopTest(); 
@@ -98,6 +94,7 @@ public with sharing class ABNAPICalloutTest{
         //cObj.Party__c = pObj.id;
         cObj.Employment_Information__c = eObj.id;
         insert cObj;
+        System.assertequals(cObj.Employment_Information__c,eObj.id);
         
         List<ABN_Company_List__c> companyList = new List<ABN_Company_List__c>();
         
@@ -145,6 +142,7 @@ public with sharing class ABNAPICalloutTest{
         param.ints__Value__c = 'Provider';
         param.ints__Integration_Configuration__c = icObj.Id;
         insert param;
+        System.assertEquals(param.ints__Value__c,'Provider');
         Test.startTest();
         ABNAPICallout.makeABNCompanySkuidCallout(obj.id);
         Test.stopTest(); 
@@ -209,6 +207,7 @@ public with sharing class ABNAPICalloutTest{
         param.ints__Value__c = 'Provider';
         param.ints__Integration_Configuration__c = icObj.Id;
         insert param;
+        System.assertequals(param.ints__Value__c,'Provider');
         Test.startTest();
         ABNAPICallout.makeABNCallout(obj.id);
         Test.stopTest(); 
@@ -273,6 +272,7 @@ public with sharing class ABNAPICalloutTest{
         param.ints__Value__c = 'Provider';
         param.ints__Integration_Configuration__c = icObj.Id;
         insert param;
+        System.assertequals(param.ints__Value__c,'Provider');
         Test.startTest();
         ABNAPICallout.makeABNCallout(obj.id);
         Test.stopTest(); 
@@ -328,7 +328,6 @@ public with sharing class ABNAPICalloutTest{
         mockObj.ints__Response_Status__c = '200 - OK';  
         mockObj.ints__Control_Field_Value__c = '12345';  
         mockObj.ints__content_Type__c = 'application/xml';
-        
         insert mockObj;
         System.assertequals('12345',mockObj.ints__Control_Field_Value__c);
         
@@ -337,6 +336,7 @@ public with sharing class ABNAPICalloutTest{
         param.ints__Value__c = 'Provider';
         param.ints__Integration_Configuration__c = icObj.Id;
         insert param;
+        System.assertequals(param.ints__Value__c,'Provider');
         Test.startTest();
         ABNAPICallout.makeABNCallout(obj.id);
         Test.stopTest(); 

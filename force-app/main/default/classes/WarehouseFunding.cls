@@ -1,6 +1,6 @@
 /********************************************************************************
 Class Name : WarehouseFunding
-Description : This class is used to fund a loan through warehouse- by creating LDTs, disbursal disctributions and changes the status of
+Description : This class is used to fund a loan through warehouse- by creating LDTs, disbursal distributions and changes the status of
               the CL Contract to Active
 Developer : Rameswari Barman
 Development Date : 27/09/2019
@@ -16,7 +16,7 @@ static Date currentSystemDate =(Test.isRunningTest()?Date.Today():(new loan.Glob
         Id broIden;
         Savepoint sp = Database.setSavepoint();
         try{
-            loan__Loan_Account__c loanAcc = [select id,name,Application__c,Application__r.genesis__Expected_Start_Date__c,loan__Account__c,loan__Loan_Product_Name__c,APS_Created__c,Application__r.genesis__Expected_First_Payment_Date__c,Application__r.genesis__Payment_Frequency__c,loan__Last_Installment_Date__c,loan__Next_Installment_Date__c,loan__Last_Disbursal_Amount__c,Warehouse__c from loan__Loan_Account__c where id =: iden];
+            loan__Loan_Account__c loanAcc = [select id,name,Paid_Prepaid_Interest__c,Application__c,Application__r.genesis__Expected_Start_Date__c,loan__Account__c,loan__Loan_Product_Name__c,APS_Created__c,Application__r.genesis__Expected_First_Payment_Date__c,Application__r.genesis__Payment_Frequency__c,loan__Last_Installment_Date__c,loan__Next_Installment_Date__c,loan__Last_Disbursal_Amount__c,Warehouse__c from loan__Loan_Account__c where id =: iden];
             genesis__applications__c app = [select id,genesis__Expected_Start_Date__c,Utilised_Subsequent_Drawdown_Prepaid_Fee__c,Paid_Subsequent_Drawdown_PrepaidInterest__c,Paid_Subsequent_Drawdown__c,genesis__Maturity_Date__c,Construction_Progress_Payment_Fee__c,genesis__CL_Product_Name__c,genesis__Initial_Advance__c,First_Tranche_Prepaid_Interest__c,First_Drawdown_Complete__c,Subsequent_Drawdown__c,Drawdown_Prepaid_Interest__c,genesis__Interest_Rate__c,genesis__Status__c,CL_Contract__c,genesis__Loan_Amount__c from genesis__applications__c where CL_Contract__c =: iden];
             List <clcommon__Party__c> broParty = [select id,Upfront_Payment_Percentage__c,Commission_Paid_To__c,clcommon__Account__c,clcommon__Account__r.parentId from clcommon__Party__c where genesis__Application__c =: app.Id and clcommon__Type__r.name =: 'Broker'];
             if(loanAcc != null && app.First_Drawdown_Complete__c == false){
@@ -50,24 +50,21 @@ static Date currentSystemDate =(Test.isRunningTest()?Date.Today():(new loan.Glob
                 else{
                     throw new CustomException(System.label.Broker_not_present_error);
                 }
-            //loanAcc.loan__Last_Disbursal_Date__c = app.genesis__Maturity_Date__c;
             }
             loanAcc.Warehouse__c = investor;
             loanAcc.loan__Last_Installment_Date__c = app.genesis__Maturity_Date__c;
-            
-            if(loanAcc != null){
-                update loanAcc;
-            }
             if((app.genesis__CL_Product_Name__c == System.label.Construction_Development || app.genesis__CL_Product_Name__c == System.label.Residential_Construction) && app.First_Drawdown_Complete__c == false){
                 retCheck = createDisbusals(loanAcc.Id,(app.genesis__Initial_Advance__c+app.First_Tranche_Prepaid_Interest__c),loanAcc.Name,app);
                 app.Paid_Subsequent_Drawdown__c = 0;
                 app.Paid_Subsequent_Drawdown_PrepaidInterest__c = 0;
                 app.Utilised_Subsequent_Drawdown_Prepaid_Fee__c = 0;
+                loanAcc.Paid_Prepaid_Interest__c = app.First_Tranche_Prepaid_Interest__c;
             }
             else if((app.genesis__CL_Product_Name__c == System.label.Construction_Development || app.genesis__CL_Product_Name__c == System.label.Residential_Construction) && app.First_Drawdown_Complete__c == true){
                 retCheck = createDisbusals(loanAcc.Id,(app.Subsequent_Drawdown__c+app.Drawdown_Prepaid_Interest__c+app.Construction_Progress_Payment_Fee__c),loanAcc.Name,app);
                 app.Paid_Subsequent_Drawdown__c = app.Paid_Subsequent_Drawdown__c+app.Subsequent_Drawdown__c;
                 app.Paid_Subsequent_Drawdown_PrepaidInterest__c=app.Paid_Subsequent_Drawdown_PrepaidInterest__c+app.Drawdown_Prepaid_Interest__c;
+                loanAcc.Paid_Prepaid_Interest__c=loanAcc.Paid_Prepaid_Interest__c+app.Drawdown_Prepaid_Interest__c;
                 app.Utilised_Subsequent_Drawdown_Prepaid_Fee__c = app.Utilised_Subsequent_Drawdown_Prepaid_Fee__c+app.Construction_Progress_Payment_Fee__c;
                 app.Subsequent_Drawdown__c = 0;
                 app.Drawdown_Prepaid_Interest__c = 0;
@@ -88,8 +85,7 @@ static Date currentSystemDate =(Test.isRunningTest()?Date.Today():(new loan.Glob
                 retCheck = createDisbusals(loanAcc.Id,app.genesis__Loan_Amount__c,loanAcc.Name,app);
             }
             ret = retCheck;
-            //This will be uncommented in Phase 1b when we have banking integration
-            if(app.First_Drawdown_Complete__c == false){
+            if(app.First_Drawdown_Complete__c == false && app.genesis__CL_Product_Name__c != System.label.Construction_Development && app.genesis__CL_Product_Name__c != System.label.Residential_Construction){
                 restAPSCheck = createAPS(loanAcc);
             }
             app.First_Drawdown_Complete__c = true;
@@ -97,7 +93,9 @@ static Date currentSystemDate =(Test.isRunningTest()?Date.Today():(new loan.Glob
             if(app != null && Schema.sObjectType.genesis__Applications__c.fields.First_Drawdown_Complete__c.isUpdateable() && Schema.sObjectType.genesis__Applications__c.fields.genesis__Status__c.isUpdateable()){
                 update app;
             }
-            
+            if(loanAcc != null){
+                update loanAcc;
+            }
         }
         catch(Exception e){
             insert new clcommon__Batch_Process_Log__c(clcommon__Message__c = 'WarehouseFunding :'+e.getStackTraceString()+':Error::'+e.getMessage()+' at Line Number '+e.getLineNumber(), clcommon__Timestamp__c = System.Now(),clcommon__Log_Level__c = 'ERROR'); 
@@ -238,8 +236,6 @@ static Date currentSystemDate =(Test.isRunningTest()?Date.Today():(new loan.Glob
                                             where Name =: System.label.ACH limit 1];
             loan__Automated_Payment_Setup__c pmtSetup = new loan__Automated_Payment_Setup__c();
             pmtSetup.loan__Active__c = Boolean.ValueOf(System.label.True);
-            
-            //pmtSetup.loan__Bank_Account__c = loanRec.loan__Borrower_ACH__c;
             pmtSetup.loan__CL_Contract__c = loanRec.Id;
             Date startDate;
             if(loanRec.Application__r.genesis__Payment_Frequency__c == System.label.WEEKLY){
@@ -251,7 +247,6 @@ static Date currentSystemDate =(Test.isRunningTest()?Date.Today():(new loan.Glob
                     pmtSetup.loan__Debit_Date__c = currentSystemDate+7;
                     startDate = currentSystemDate+7;
                 }
-                //pmtSetup.loan__Recurring_ACH_End_Date__c = loanRec.loan__Last_Installment_Date__c+7;
                 pmtSetup.loan__Amount_Type_Split_Factor__c = 4;
                 pmtSetup.loan__Amount_Type__c = System.label.APS_Payment_Amount;
                 pmtSetup.loan__Frequency__c = loanRec.Application__r.genesis__Payment_Frequency__c;
@@ -265,13 +260,11 @@ static Date currentSystemDate =(Test.isRunningTest()?Date.Today():(new loan.Glob
                     pmtSetup.loan__Debit_Date__c = currentSystemDate+14;
                     startDate = currentSystemDate+14;
                 }
-                //pmtSetup.loan__Recurring_ACH_End_Date__c = loanRec.loan__Last_Installment_Date__c+14;
                 pmtSetup.loan__Amount_Type_Split_Factor__c = 2;
                 pmtSetup.loan__Amount_Type__c = System.label.APS_Payment_Amount;
                 pmtSetup.loan__Frequency__c = loanRec.Application__r.genesis__Payment_Frequency__c;
             }
             else if(loanRec.Application__r.genesis__Payment_Frequency__c == System.label.MONTHLY){
-                pmtSetup.loan__Debit_Date__c = currentSystemDate.addMonths(1);
                 pmtSetup.loan__Debit_Date__c = loanRec.loan__Next_Installment_Date__c;
                 pmtSetup.loan__Recurring_ACH_End_Date__c = loanRec.loan__Last_Installment_Date__c;
                 startDate = loanRec.loan__Next_Installment_Date__c;

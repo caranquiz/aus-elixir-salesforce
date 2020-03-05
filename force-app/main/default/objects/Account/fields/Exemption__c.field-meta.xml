@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Exemption__c</fullName>
+    <externalId>false</externalId>
+    <label>Exemption</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Aged Pension</fullName>
+                <default>false</default>
+                <label>Aged Pension</label>
+            </value>
+            <value>
+                <fullName>Invalid Pension</fullName>
+                <default>false</default>
+                <label>Invalid Pension</label>
+            </value>
+            <value>
+                <fullName>Rehabilitation Allowance</fullName>
+                <default>false</default>
+                <label>Rehabilitation Allowance</label>
+            </value>
+            <value>
+                <fullName>Sole Parent&#39;s Pension</fullName>
+                <default>false</default>
+                <label>Sole Parent&#39;s Pension</label>
+            </value>
+            <value>
+                <fullName>Widow&#39;s Pension</fullName>
+                <default>false</default>
+                <label>Widow&#39;s Pension</label>
+            </value>
+            <value>
+                <fullName>Carer&#39;s Pension</fullName>
+                <default>false</default>
+                <label>Carer&#39;s Pension</label>
+            </value>
+            <value>
+                <fullName>Service/Vetran&#39;s Pension</fullName>
+                <default>false</default>
+                <label>Service/Vetran&#39;s Pension</label>
+            </value>
+            <value>
+                <fullName>Special Benefit</fullName>
+                <default>false</default>
+                <label>Special Benefit</label>
+            </value>
+            <value>
+                <fullName>Wife&#39;s Pension</fullName>
+                <default>false</default>
+                <label>Wife&#39;s Pension</label>
+            </value>
+            <value>
+                <fullName>Non Profit Organisation</fullName>
+                <default>false</default>
+                <label>Non Profit Organisation</label>
+            </value>
+            <value>
+                <fullName>Company Not Required to Lodge a Tax Return</fullName>
+                <default>false</default>
+                <label>Company Not Required to Lodge a Tax Return</label>
+            </value>
+            <value>
+                <fullName>Non Resident (10%W/Tax to Apply)</fullName>
+                <default>false</default>
+                <label>Non Resident (10%W/Tax to Apply)</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

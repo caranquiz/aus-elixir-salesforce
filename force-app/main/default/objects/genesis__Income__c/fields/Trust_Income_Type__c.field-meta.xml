@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Trust_Income_Type__c</fullName>
+    <externalId>false</externalId>
+    <label>Trust Income Type</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Super Concessional Contribution</fullName>
+                <default>false</default>
+                <label>Super Concessional Contribution</label>
+            </value>
+            <value>
+                <fullName>Super Excess Concessional Contribution</fullName>
+                <default>false</default>
+                <label>Super Excess Concessional Contribution</label>
+            </value>
+            <value>
+                <fullName>Super Non Concessional Contribution</fullName>
+                <default>false</default>
+                <label>Super Non Concessional Contribution</label>
+            </value>
+            <value>
+                <fullName>Annuities</fullName>
+                <default>false</default>
+                <label>Annuities</label>
+            </value>
+            <value>
+                <fullName>Dividends</fullName>
+                <default>false</default>
+                <label>Dividends</label>
+            </value>
+            <value>
+                <fullName>Interest Income</fullName>
+                <default>false</default>
+                <label>Interest Income</label>
+            </value>
+            <value>
+                <fullName>Deemed Income</fullName>
+                <default>false</default>
+                <label>Deemed Income</label>
+            </value>
+            <value>
+                <fullName>Other Income</fullName>
+                <default>false</default>
+                <label>Other Income</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>clcommon__Book_Value__c</fullName>
+    <deprecated>false</deprecated>
+    <description>Used to store current value of an equipment.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Initially it will be same as purchased price and on equipment depreciation this field will be updated to ending NBV</inlineHelpText>
+    <label>Book Value</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackTrending>false</trackTrending>
+    <type>Currency</type>
+</CustomField>

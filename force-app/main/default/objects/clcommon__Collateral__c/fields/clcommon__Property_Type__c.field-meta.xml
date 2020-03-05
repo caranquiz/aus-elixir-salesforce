@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>clcommon__Property_Type__c</fullName>
+    <deprecated>false</deprecated>
+    <externalId>false</externalId>
+    <label>Property Type</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Residential Dwelling</fullName>
+                <default>false</default>
+                <label>Residential Dwelling</label>
+            </value>
+            <value>
+                <fullName>Residential Vacant Land</fullName>
+                <default>false</default>
+                <label>Residential Vacant Land</label>
+            </value>
+            <value>
+                <fullName>Residential Unit</fullName>
+                <default>false</default>
+                <label>Residential Unit</label>
+            </value>
+            <value>
+                <fullName>Serviced/Managed apartment</fullName>
+                <default>false</default>
+                <label>Serviced/Managed apartment</label>
+            </value>
+            <value>
+                <fullName>Retail Shop</fullName>
+                <default>false</default>
+                <label>Retail Shop</label>
+            </value>
+            <value>
+                <fullName>Commercial Office</fullName>
+                <default>false</default>
+                <label>Commercial Office</label>
+            </value>
+            <value>
+                <fullName>Industrial Unit</fullName>
+                <default>false</default>
+                <label>Industrial Unit</label>
+            </value>
+            <value>
+                <fullName>Commercial Vacant Land</fullName>
+                <default>false</default>
+                <label>Commercial Vacant Land</label>
+            </value>
+            <value>
+                <fullName>Rural Residential</fullName>
+                <default>false</default>
+                <label>Rural Residential</label>
+            </value>
+            <value>
+                <fullName>Rural(&gt;100acres)</fullName>
+                <default>false</default>
+                <label>Rural(&gt;100acres)</label>
+            </value>
+            <value>
+                <fullName>Other</fullName>
+                <default>false</default>
+                <label>Other</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

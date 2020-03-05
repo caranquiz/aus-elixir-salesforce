@@ -20,7 +20,6 @@ public class ABNResponseParserListClass {
                         } else if (text == 'entityTypeCode') {
                             entityTypeCode = parser.getText();
                         } else {
-                            System.debug(LoggingLevel.WARN, 'EntityType consuming unrecognized property: '+text);
                             consumeObject(parser);
                         }
                     }
@@ -49,7 +48,6 @@ public class ABNResponseParserListClass {
                         } else if (text == 'usageStatement') {
                             usageStatement = parser.getText();
                         } else {
-                            System.debug(LoggingLevel.WARN, 'Response consuming unrecognized property: '+text);
                             consumeObject(parser);
                         }
                     }
@@ -78,7 +76,6 @@ public class ABNResponseParserListClass {
                         } else if (text == 'stateCode') {
                             stateCode = parser.getText();
                         } else {
-                            System.debug(LoggingLevel.WARN, 'MainBusinessPhysicalAddress consuming unrecognized property: '+text);
                             consumeObject(parser);
                         }
                     }
@@ -101,7 +98,6 @@ public class ABNResponseParserListClass {
                         } else if (text == 'effectiveFrom') {
                             effectiveFrom = parser.getText();
                         } else {
-                            System.debug(LoggingLevel.WARN, 'GoodsAndServicesTax consuming unrecognized property: '+text);
                             consumeObject(parser);
                         }
                     }
@@ -128,7 +124,6 @@ public class ABNResponseParserListClass {
                          else if (text == 'organisationName') {
                             organisationName = parser.getText();
                         } else {
-                            System.debug(LoggingLevel.WARN, 'MainTradingName consuming unrecognized property: '+text);
                             consumeObject(parser);
                         }
                     }
@@ -164,7 +159,6 @@ public class ABNResponseParserListClass {
                             otherGivenName = parser.getText();
                         } 
                         else {
-                            System.debug(LoggingLevel.WARN, 'LegalName consuming unrecognized property: '+text);
                             consumeObject(parser);
                         }
                     }
@@ -193,7 +187,6 @@ public class ABNResponseParserListClass {
                         } else if (text == 'authenticationGUID') {
                             authenticationGUID = parser.getText();
                         } else {
-                            System.debug(LoggingLevel.WARN, 'IdentifierSearchRequest consuming unrecognized property: '+text);
                             consumeObject(parser);
                         }
                     }
@@ -215,7 +208,6 @@ public class ABNResponseParserListClass {
                     } else if (text == 'request') {
                         request = new Request(parser);
                     } else {
-                        System.debug(LoggingLevel.WARN, 'ABNResponseParserListClass consuming unrecognized property: '+text);
                         consumeObject(parser);
                     }
                 }
@@ -234,7 +226,6 @@ public class ABNResponseParserListClass {
                         if (text == 'identifierSearchRequest') {
                             identifierSearchRequest = new IdentifierSearchRequest(parser);
                         } else {
-                            System.debug(LoggingLevel.WARN, 'Request consuming unrecognized property: '+text);
                             consumeObject(parser);
                         }
                     }
@@ -260,7 +251,6 @@ public class ABNResponseParserListClass {
                         } else if (text == 'entityStatusCode') {
                             entityStatusCode = parser.getText();
                         } else {
-                            System.debug(LoggingLevel.WARN, 'EntityStatus consuming unrecognized property: '+text);
                             consumeObject(parser);
                         }
                     }
@@ -307,7 +297,6 @@ public class ABNResponseParserListClass {
                         }else if (text == 'legalName') {
                             legalName = new LegalName(parser);
                         } else {
-                            System.debug(LoggingLevel.WARN, 'BusinessEntity consuming unrecognized property: '+text);
                             consumeObject(parser);
                         }
                     }
@@ -336,7 +325,6 @@ public class ABNResponseParserListClass {
                         } else if (text == 'replacedIdentifierValue') {
                             replacedIdentifierValue = parser.getLongValue();
                         } else {
-                            System.debug(LoggingLevel.WARN, 'ABN consuming unrecognized property: '+text);
                             consumeObject(parser);
                         }
                     }

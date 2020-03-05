@@ -1,9 +1,7 @@
-/********
-Developer : Deepro De
-Description : Adds as a parser class for ABN Name Response
-Development Date : 24/20/2019
-
-*********/
+/******
+Description : Acts as a parser class for ABNNameReponse
+Developer : Soumik Sarkar
+*******/
 public class ABNNameResponseParser {
 
     public class Response {

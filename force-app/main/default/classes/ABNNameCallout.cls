@@ -13,12 +13,11 @@ global without sharing class ABNNameCallout{
         global static String makeABNNameCallout(Id sfId, String typeIndicator){           
             String entityName = '',resp = '';
             try{
-                    if(String.isNotBlank(typeIndicator) == false){
-                        throw new CustomException(ConstantValues.exceptionNoType);
-                    }else if(String.isNotBlank(typeIndicator) && typeIndicator.equalsIgnoreCase('P')){
+                if(String.isNotBlank(typeIndicator) == false){
+                    throw new CustomException(ConstantValues.exceptionNoType);
+                }else if(String.isNotBlank(typeIndicator) && typeIndicator.equalsIgnoreCase('P')){
     
-                //PROCESSINGS FROM PARTIES
-                    
+                    //PROCESSINGS FROM PARTIES
                     String party;
                     List<clcommon__Party__c> pList = [SELECT Id, 
                                                          Name,
@@ -34,25 +33,21 @@ global without sharing class ABNNameCallout{
                     Map<String,Object> companyMap = new Map<String,Object>();
                     empInfo.put('partyId',pList.get(0).id);
                     companyMap.put('partyInfo',empInfo);
-                    companyMap.put('ExecutionPriority', 2);
+                    companyMap.put('ExecutionPriority', Integer.valueof(System.label.Execution_Priority_for_ABN_from_Parties.trim()));
             
                     ints.IntegrationResponseObject responseObject = invokeCLIntegrationAPI(companyMap, 'ID Verification');
                                         
-                //PARSING RESPONSE AND INSERTING RECORDS
+                    //PARSING RESPONSE AND INSERTING RECORDS
                     ABNNameResponse.ABNNameWrapperPopulate(responseObject);
                     resp = ABNNameResponse.createRecords(party,typeIndicator);
                     
-                //EXTRA DML FOR CUSTOM SKUID LOGIC
+                    //EXTRA DML FOR CUSTOM SKUID LOGIC
                     pList.get(0).Flag_Party__c = true;
                     UPDATE pList;
                     
-                //LOGIC ADDED TO CREATE ATTACHMENT
-                    //createAttachment('ABN_NAME_RESPONSE_'+String.valueOf(DateTime.now())+'.xml', responseObject.message, sfId);
-                    
                 }else if(String.isNotBlank(typeIndicator) && typeIndicator.equalsIgnoreCase('E')){
                     
-                //PROCESSING FROM EMPLOYMENT INFORMATION
-    
+                    //PROCESSING FROM EMPLOYMENT INFORMATION
                     List<genesis__Employment_Information__c> empList = [SELECT Id, 
                                                         Name,
                                                         Flag_Emp__c
@@ -67,22 +62,19 @@ global without sharing class ABNNameCallout{
                     Map<String,Object> companyMap = new Map<String,Object>();
                     empInfo.put('empId',empList.get(0).id);
                     companyMap.put('partyInfo',empInfo);
-                    companyMap.put('ExecutionPriority', 5);
+                    companyMap.put('ExecutionPriority', Integer.valueof(System.label.Execution_Priority_for_ABN_from_Employment_Information.trim()));
     
                     ints.IntegrationResponseObject responseObject = invokeCLIntegrationAPI(companyMap, 'ID Verification');
     
                     
-                //PARSING RESPONSE AND INSERTING RECORDS
+                    //PARSING RESPONSE AND INSERTING RECORDS
                     ABNNameResponse.ABNNameWrapperPopulate(responseObject);
                     resp = ABNNameResponse.createRecords(emp,typeIndicator);    
                     
                     
-                //EXTRA DML FOR CUSTOM SKUID LOGIC
+                    //EXTRA DML FOR CUSTOM SKUID LOGIC
                     empList.get(0).Flag_Emp__c = true;
                     UPDATE empList;
-                
-                //LOGIC ADDED TO CREATE ATTACHMENT
-                    //createAttachment('ABN_NAME_RESPONSE_'+String.valueOf(DateTime.now())+'.xml' ,responseObject.message, sfId);
                                      
                 }else{
                     throw new CustomException(ConstantValues.genericExceptionmsg);
@@ -147,7 +139,7 @@ global without sharing class ABNNameCallout{
                 else if(String.isNotBlank(typeIndicator) && typeIndicator.equalsIgnoreCase('E')){
                     existantCompanyList = [select id,ABN_Company_Information__r.Employment_Information__r.Party__c from ABN_Company_List__c where ABN_Company_Information__r.Employment_Information__r.Party__c =: sfId];
                 }
-                if(existantCompanyList.size() > 0 && existantCompanyList != null){
+                if(existantCompanyList != null && existantCompanyList.size() > 0){
                     delete existantCompanyList;
                 }
                 return ConstantValues.msg; 

@@ -31,16 +31,6 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>Account_division_type__c</field>
-            <table>genesis__Applications__c</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>Account_type__c</field>
-            <table>genesis__Applications__c</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
             <field>genesis__Action__c</field>
             <table>genesis__Applications__c</table>
         </columns>
@@ -791,11 +781,6 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>Loan_Purpose__c</field>
-            <table>genesis__Applications__c</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
             <field>genesis__LTV_Pledged_Collateral__c</field>
             <table>genesis__Applications__c</table>
         </columns>
@@ -867,11 +852,6 @@
         <columns>
             <checkedByDefault>false</checkedByDefault>
             <field>Name_Title__c</field>
-            <table>genesis__Applications__c</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>National_Credit_Code_Loan__c</field>
             <table>genesis__Applications__c</table>
         </columns>
         <columns>
@@ -1191,32 +1171,12 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>Reason__c</field>
-            <table>genesis__Applications__c</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
             <field>RecordType</field>
             <table>genesis__Applications__c</table>
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>Refinance_Consolidation_Amount__c</field>
-            <table>genesis__Applications__c</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>Refinance_Description__c</field>
-            <table>genesis__Applications__c</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
             <field>Refinance_Equity_Release__c</field>
-            <table>genesis__Applications__c</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>Refinance_Mortgages_Amount__c</field>
             <table>genesis__Applications__c</table>
         </columns>
         <columns>
@@ -1506,11 +1466,6 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>Trail_Percentage__c</field>
-            <table>genesis__Applications__c</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
             <field>Trust_Type_of_Document_Sighted__c</field>
             <table>genesis__Applications__c</table>
         </columns>
@@ -1566,11 +1521,6 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>User__c</field>
-            <table>genesis__Applications__c</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
             <field>Utilised_Subsequent_Drawdown_Prepaid_Fee__c</field>
             <table>genesis__Applications__c</table>
         </columns>
@@ -1591,12 +1541,12 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>Verification_Sighted__c</field>
-            <table>genesis__Applications__c</table>
+            <field>Trail_Percentage__c</field>
+            <table>genesis__Applications__c.genesis__Parties__r</table>
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>Warehouse_Investor_1__c</field>
+            <field>Verification_Sighted__c</field>
             <table>genesis__Applications__c</table>
         </columns>
         <columns>
@@ -1621,17 +1571,17 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>CL_Contract__c.loan__Metro2_Account_Status_Code__c</field>
-            <table>genesis__Applications__c</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
             <field>CL_Contract__c.loan__Account_Type__c</field>
             <table>genesis__Applications__c</table>
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
             <field>CL_Contract__c.loan__Metro2_Account_Type_Code__c</field>
+            <table>genesis__Applications__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>CL_Contract__c.loan__Metro2_Account_Status_Code__c</field>
             <table>genesis__Applications__c</table>
         </columns>
         <columns>
@@ -3704,17 +3654,7 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>Childcare__c</field>
-            <table>genesis__Applications__c.genesis__Parties__r</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
             <field>Childcare_Monthly_Income__c</field>
-            <table>genesis__Applications__c.genesis__Parties__r</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>Citizenship__c</field>
             <table>genesis__Applications__c.genesis__Parties__r</table>
         </columns>
         <columns>
@@ -3769,11 +3709,6 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>Company_DocType__c</field>
-            <table>genesis__Applications__c.genesis__Parties__r</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
             <field>Company_Name__c</field>
             <table>genesis__Applications__c.genesis__Parties__r</table>
         </columns>
@@ -3790,11 +3725,6 @@
         <columns>
             <checkedByDefault>false</checkedByDefault>
             <field>clcommon__Contingent_Liability__c</field>
-            <table>genesis__Applications__c.genesis__Parties__r</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>Contractor__c</field>
             <table>genesis__Applications__c.genesis__Parties__r</table>
         </columns>
         <columns>
@@ -3820,11 +3750,6 @@
         <columns>
             <checkedByDefault>false</checkedByDefault>
             <field>Credit_Status__c</field>
-            <table>genesis__Applications__c.genesis__Parties__r</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>Current_Employer__c</field>
             <table>genesis__Applications__c.genesis__Parties__r</table>
         </columns>
         <columns>
@@ -3929,11 +3854,6 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>First_Name__c</field>
-            <table>genesis__Applications__c.genesis__Parties__r</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
             <field>Flag_Party__c</field>
             <table>genesis__Applications__c.genesis__Parties__r</table>
         </columns>
@@ -3969,42 +3889,12 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>Has_applied_for_Australian_Citizenship__c</field>
-            <table>genesis__Applications__c.genesis__Parties__r</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>Has_applied_for_Permanent_Residency_Visa__c</field>
-            <table>genesis__Applications__c.genesis__Parties__r</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>Home_Duties__c</field>
-            <table>genesis__Applications__c.genesis__Parties__r</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
             <field>Income_Verified__c</field>
             <table>genesis__Applications__c.genesis__Parties__r</table>
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
             <field>Independent_Financial_Advice__c</field>
-            <table>genesis__Applications__c.genesis__Parties__r</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>Independent_Financial_Advice_Sighted__c</field>
-            <table>genesis__Applications__c.genesis__Parties__r</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>Independent_Legal_Advice__c</field>
-            <table>genesis__Applications__c.genesis__Parties__r</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>Independent_Legal_Advice_Sighted__c</field>
             <table>genesis__Applications__c.genesis__Parties__r</table>
         </columns>
         <columns>
@@ -4040,11 +3930,6 @@
         <columns>
             <checkedByDefault>false</checkedByDefault>
             <field>Is_Director_a_Beneficiary_Member__c</field>
-            <table>genesis__Applications__c.genesis__Parties__r</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>Is_Existing_Customer__c</field>
             <table>genesis__Applications__c.genesis__Parties__r</table>
         </columns>
         <columns>
@@ -4089,11 +3974,6 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>Last_Name__c</field>
-            <table>genesis__Applications__c.genesis__Parties__r</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
             <field>Loan_Status__c</field>
             <table>genesis__Applications__c.genesis__Parties__r</table>
         </columns>
@@ -4119,32 +3999,12 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>Middle_Name__c</field>
-            <table>genesis__Applications__c.genesis__Parties__r</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>Mobile__c</field>
-            <table>genesis__Applications__c.genesis__Parties__r</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
             <field>New_Rental_Income__c</field>
             <table>genesis__Applications__c.genesis__Parties__r</table>
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
             <field>Non_Compulsory_Superannuation__c</field>
-            <table>genesis__Applications__c.genesis__Parties__r</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>Non_English_Speaking_Borrower__c</field>
-            <table>genesis__Applications__c.genesis__Parties__r</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>Non_English_Speaking_Borrower_Sighted__c</field>
             <table>genesis__Applications__c.genesis__Parties__r</table>
         </columns>
         <columns>
@@ -4175,11 +4035,6 @@
         <columns>
             <checkedByDefault>false</checkedByDefault>
             <field>Number_Of_Trustees__c</field>
-            <table>genesis__Applications__c.genesis__Parties__r</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>Other_Employment__c</field>
             <table>genesis__Applications__c.genesis__Parties__r</table>
         </columns>
         <columns>
@@ -4229,17 +4084,7 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>PAYG__c</field>
-            <table>genesis__Applications__c.genesis__Parties__r</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
             <field>Percentage_Of_Commission__c</field>
-            <table>genesis__Applications__c.genesis__Parties__r</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>Percent_Owned__c</field>
             <table>genesis__Applications__c.genesis__Parties__r</table>
         </columns>
         <columns>
@@ -4270,11 +4115,6 @@
         <columns>
             <checkedByDefault>false</checkedByDefault>
             <field>clcommon__isPrimary__c</field>
-            <table>genesis__Applications__c.genesis__Parties__r</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>Primary_Applicant__c</field>
             <table>genesis__Applications__c.genesis__Parties__r</table>
         </columns>
         <columns>
@@ -4334,16 +4174,6 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>Retired__c</field>
-            <table>genesis__Applications__c.genesis__Parties__r</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>Self_Employed__c</field>
-            <table>genesis__Applications__c.genesis__Parties__r</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
             <field>Share__c</field>
             <table>genesis__Applications__c.genesis__Parties__r</table>
         </columns>
@@ -4374,17 +4204,7 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>Student__c</field>
-            <table>genesis__Applications__c.genesis__Parties__r</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
             <field>Telephone_Media_Streaming_Amount__c</field>
-            <table>genesis__Applications__c.genesis__Parties__r</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>Telephone_Business__c</field>
             <table>genesis__Applications__c.genesis__Parties__r</table>
         </columns>
         <columns>
@@ -4405,11 +4225,6 @@
         <columns>
             <checkedByDefault>false</checkedByDefault>
             <field>Trail_Amount__c</field>
-            <table>genesis__Applications__c.genesis__Parties__r</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>Trail_Percentage__c</field>
             <table>genesis__Applications__c.genesis__Parties__r</table>
         </columns>
         <columns>
@@ -4464,11 +4279,6 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>Trust_Name__c</field>
-            <table>genesis__Applications__c.genesis__Parties__r</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
             <field>Trust_Purpose__c</field>
             <table>genesis__Applications__c.genesis__Parties__r</table>
         </columns>
@@ -4489,17 +4299,7 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>Type__c</field>
-            <table>genesis__Applications__c.genesis__Parties__r</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
             <field>Type_of_Documents_Sighted__c</field>
-            <table>genesis__Applications__c.genesis__Parties__r</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>Unemployed__c</field>
             <table>genesis__Applications__c.genesis__Parties__r</table>
         </columns>
         <columns>
@@ -4510,11 +4310,6 @@
         <columns>
             <checkedByDefault>false</checkedByDefault>
             <field>Upfront_Payment_Percentage__c</field>
-            <table>genesis__Applications__c.genesis__Parties__r</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>clcommon__User__c</field>
             <table>genesis__Applications__c.genesis__Parties__r</table>
         </columns>
         <masterLabel>Parties</masterLabel>
@@ -4528,11 +4323,6 @@
         <columns>
             <checkedByDefault>false</checkedByDefault>
             <field>ABN_Status__c</field>
-            <table>genesis__Applications__c.genesis__Parties__r.Employment_Information__r</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>Amount__c</field>
             <table>genesis__Applications__c.genesis__Parties__r.Employment_Information__r</table>
         </columns>
         <columns>
@@ -4552,16 +4342,6 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>Bonus_Amount__c</field>
-            <table>genesis__Applications__c.genesis__Parties__r.Employment_Information__r</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>Bonus_Frequency__c</field>
-            <table>genesis__Applications__c.genesis__Parties__r.Employment_Information__r</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
             <field>Business_Income_Period__c</field>
             <table>genesis__Applications__c.genesis__Parties__r.Employment_Information__r</table>
         </columns>
@@ -4573,26 +4353,6 @@
         <columns>
             <checkedByDefault>false</checkedByDefault>
             <field>Business_Start_Date__c</field>
-            <table>genesis__Applications__c.genesis__Parties__r.Employment_Information__r</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>Car_Allowance_Amount__c</field>
-            <table>genesis__Applications__c.genesis__Parties__r.Employment_Information__r</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>Car_Allowance_Frequency__c</field>
-            <table>genesis__Applications__c.genesis__Parties__r.Employment_Information__r</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>Commission_Amount__c</field>
-            <table>genesis__Applications__c.genesis__Parties__r.Employment_Information__r</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>Commission_Frequency__c</field>
             <table>genesis__Applications__c.genesis__Parties__r.Employment_Information__r</table>
         </columns>
         <columns>
@@ -4613,11 +4373,6 @@
         <columns>
             <checkedByDefault>false</checkedByDefault>
             <field>genesis__Contact__c</field>
-            <table>genesis__Applications__c.genesis__Parties__r.Employment_Information__r</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>Contractor_Details__c</field>
             <table>genesis__Applications__c.genesis__Parties__r.Employment_Information__r</table>
         </columns>
         <columns>
@@ -4672,7 +4427,7 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>Employer_Verfied__c</field>
+            <field>Party__c</field>
             <table>genesis__Applications__c.genesis__Parties__r.Employment_Information__r</table>
         </columns>
         <columns>
@@ -4722,36 +4477,6 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>Government_Benefits_Amount__c</field>
-            <table>genesis__Applications__c.genesis__Parties__r.Employment_Information__r</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>Government_Benefits_Frequency__c</field>
-            <table>genesis__Applications__c.genesis__Parties__r.Employment_Information__r</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>Gross_Regular_Overtime_Amount__c</field>
-            <table>genesis__Applications__c.genesis__Parties__r.Employment_Information__r</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>Gross_Regular_Overtime_Frequency__c</field>
-            <table>genesis__Applications__c.genesis__Parties__r.Employment_Information__r</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>Gross_Salary_Amount__c</field>
-            <table>genesis__Applications__c.genesis__Parties__r.Employment_Information__r</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>Gross_Salary_Frequency__c</field>
-            <table>genesis__Applications__c.genesis__Parties__r.Employment_Information__r</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
             <field>Income_for_servicing_purposes__c</field>
             <table>genesis__Applications__c.genesis__Parties__r.Employment_Information__r</table>
         </columns>
@@ -4782,11 +4507,6 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>Is_this_part_of_other_income__c</field>
-            <table>genesis__Applications__c.genesis__Parties__r.Employment_Information__r</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
             <field>LastModifiedBy</field>
             <table>genesis__Applications__c.genesis__Parties__r.Employment_Information__r</table>
         </columns>
@@ -4808,21 +4528,6 @@
         <columns>
             <checkedByDefault>false</checkedByDefault>
             <field>genesis__Name_of_employer__c</field>
-            <table>genesis__Applications__c.genesis__Parties__r.Employment_Information__r</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>Newstart_Allowance_Amount__c</field>
-            <table>genesis__Applications__c.genesis__Parties__r.Employment_Information__r</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>Newstart_Allowance_Frequency__c</field>
-            <table>genesis__Applications__c.genesis__Parties__r.Employment_Information__r</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>Not_Employed_Type__c</field>
             <table>genesis__Applications__c.genesis__Parties__r.Employment_Information__r</table>
         </columns>
         <columns>
@@ -4852,36 +4557,6 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>Other_Income_Amount__c</field>
-            <table>genesis__Applications__c.genesis__Parties__r.Employment_Information__r</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>Other_Income_Description__c</field>
-            <table>genesis__Applications__c.genesis__Parties__r.Employment_Information__r</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>Other_Income_Frequency__c</field>
-            <table>genesis__Applications__c.genesis__Parties__r.Employment_Information__r</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>Other_Income_Is_Taxable__c</field>
-            <table>genesis__Applications__c.genesis__Parties__r.Employment_Information__r</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>Other_Income_Type__c</field>
-            <table>genesis__Applications__c.genesis__Parties__r.Employment_Information__r</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>Other_Income_Verification__c</field>
-            <table>genesis__Applications__c.genesis__Parties__r.Employment_Information__r</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
             <field>Override__c</field>
             <table>genesis__Applications__c.genesis__Parties__r.Employment_Information__r</table>
         </columns>
@@ -4902,11 +4577,6 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>PAYG_Income__c</field>
-            <table>genesis__Applications__c.genesis__Parties__r.Employment_Information__r</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
             <field>genesis__Phone__c</field>
             <table>genesis__Applications__c.genesis__Parties__r.Employment_Information__r</table>
         </columns>
@@ -4922,22 +4592,7 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>Private_Pension_Amount__c</field>
-            <table>genesis__Applications__c.genesis__Parties__r.Employment_Information__r</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>Private_Pension_Frequency__c</field>
-            <table>genesis__Applications__c.genesis__Parties__r.Employment_Information__r</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
             <field>Probation_Date_Ends__c</field>
-            <table>genesis__Applications__c.genesis__Parties__r.Employment_Information__r</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>Proof_Sighted__c</field>
             <table>genesis__Applications__c.genesis__Parties__r.Employment_Information__r</table>
         </columns>
         <columns>
@@ -4957,22 +4612,7 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>Self_Employed_Amount__c</field>
-            <table>genesis__Applications__c.genesis__Parties__r.Employment_Information__r</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
             <field>genesis__Start_Date__c</field>
-            <table>genesis__Applications__c.genesis__Parties__r.Employment_Information__r</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>Superannuation_Amount__c</field>
-            <table>genesis__Applications__c.genesis__Parties__r.Employment_Information__r</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>Superannuation_Frequency__c</field>
             <table>genesis__Applications__c.genesis__Parties__r.Employment_Information__r</table>
         </columns>
         <columns>
@@ -4993,31 +4633,6 @@
         <columns>
             <checkedByDefault>false</checkedByDefault>
             <field>Type_of_Documents_Sighted__c</field>
-            <table>genesis__Applications__c.genesis__Parties__r.Employment_Information__r</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>Unemployed__c</field>
-            <table>genesis__Applications__c.genesis__Parties__r.Employment_Information__r</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>Work_Allowance_Amount__c</field>
-            <table>genesis__Applications__c.genesis__Parties__r.Employment_Information__r</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>Work_Allowance_Frequency__c</field>
-            <table>genesis__Applications__c.genesis__Parties__r.Employment_Information__r</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>Workers_Compensation_Amount__c</field>
-            <table>genesis__Applications__c.genesis__Parties__r.Employment_Information__r</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>Workers_Compensation_Frequency__c</field>
             <table>genesis__Applications__c.genesis__Parties__r.Employment_Information__r</table>
         </columns>
         <masterLabel>Employment Information</masterLabel>

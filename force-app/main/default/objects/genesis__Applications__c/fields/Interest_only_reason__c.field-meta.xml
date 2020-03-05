@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Interest_only_reason__c</fullName>
+    <externalId>false</externalId>
+    <label>Interest only reason</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Create funds for investment purposes</fullName>
+                <default>false</default>
+                <label>Create funds for investment purposes</label>
+            </value>
+            <value>
+                <fullName>Large non-recurring expenses</fullName>
+                <default>false</default>
+                <label>Large non-recurring expenses</label>
+            </value>
+            <value>
+                <fullName>Maximise cash flow</fullName>
+                <default>false</default>
+                <label>Maximise cash flow</label>
+            </value>
+            <value>
+                <fullName>Minimise Cash Flow Impact During Construction</fullName>
+                <default>false</default>
+                <label>Minimise Cash Flow Impact During Construction</label>
+            </value>
+            <value>
+                <fullName>Minimise Cash Flow Impact During the Bridging Period</fullName>
+                <default>false</default>
+                <label>Minimise Cash Flow Impact During the Bridging Period</label>
+            </value>
+            <value>
+                <fullName>Other reason</fullName>
+                <default>false</default>
+                <label>Other reason</label>
+            </value>
+            <value>
+                <fullName>Plan to convert to investment property</fullName>
+                <default>false</default>
+                <label>Plan to convert to investment property</label>
+            </value>
+            <value>
+                <fullName>Recommendation From Independent Financial Adviser</fullName>
+                <default>false</default>
+                <label>Recommendation From Independent Financial Adviser</label>
+            </value>
+            <value>
+                <fullName>Taxation, financial or accounting reasons</fullName>
+                <default>false</default>
+                <label>Taxation, financial or accounting reasons</label>
+            </value>
+            <value>
+                <fullName>Temporary reduction in income</fullName>
+                <default>false</default>
+                <label>Temporary reduction in income</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>
