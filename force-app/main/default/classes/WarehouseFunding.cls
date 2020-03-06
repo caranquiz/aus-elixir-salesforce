@@ -16,7 +16,7 @@ static Date currentSystemDate =(Test.isRunningTest()?Date.Today():(new loan.Glob
         Id broIden;
         Savepoint sp = Database.setSavepoint();
         try{
-            loan__Loan_Account__c loanAcc = [select id,name,Paid_Prepaid_Interest__c,Application__c,Application__r.genesis__Expected_Start_Date__c,loan__Account__c,loan__Loan_Product_Name__c,APS_Created__c,Application__r.genesis__Expected_First_Payment_Date__c,Application__r.genesis__Payment_Frequency__c,loan__Last_Installment_Date__c,loan__Next_Installment_Date__c,loan__Last_Disbursal_Amount__c,Warehouse__c from loan__Loan_Account__c where id =: iden];
+            loan__Loan_Account__c loanAcc = [select id,name,APS_Frequency__c,loan__Due_Day__c,Paid_Prepaid_Interest__c,Application__c,Application__r.genesis__Expected_Start_Date__c,loan__Account__c,loan__Loan_Product_Name__c,APS_Created__c,Application__r.genesis__Expected_First_Payment_Date__c,Application__r.genesis__Payment_Frequency__c,loan__Last_Installment_Date__c,loan__Next_Installment_Date__c,loan__Last_Disbursal_Amount__c,Warehouse__c from loan__Loan_Account__c where id =: iden];
             genesis__applications__c app = [select id,genesis__Expected_Start_Date__c,Utilised_Subsequent_Drawdown_Prepaid_Fee__c,Paid_Subsequent_Drawdown_PrepaidInterest__c,Paid_Subsequent_Drawdown__c,genesis__Maturity_Date__c,Construction_Progress_Payment_Fee__c,genesis__CL_Product_Name__c,genesis__Initial_Advance__c,First_Tranche_Prepaid_Interest__c,First_Drawdown_Complete__c,Subsequent_Drawdown__c,Drawdown_Prepaid_Interest__c,genesis__Interest_Rate__c,genesis__Status__c,CL_Contract__c,genesis__Loan_Amount__c from genesis__applications__c where CL_Contract__c =: iden];
             List <clcommon__Party__c> broParty = [select id,Upfront_Payment_Percentage__c,Commission_Paid_To__c,clcommon__Account__c,clcommon__Account__r.parentId from clcommon__Party__c where genesis__Application__c =: app.Id and clcommon__Type__r.name =: 'Broker'];
             if(loanAcc != null && app.First_Drawdown_Complete__c == false){
@@ -238,33 +238,21 @@ static Date currentSystemDate =(Test.isRunningTest()?Date.Today():(new loan.Glob
             pmtSetup.loan__Active__c = Boolean.ValueOf(System.label.True);
             pmtSetup.loan__CL_Contract__c = loanRec.Id;
             Date startDate;
-            if(loanRec.Application__r.genesis__Payment_Frequency__c == System.label.WEEKLY){
-                if(loanRec.Application__r.genesis__Expected_First_Payment_Date__c != null){
-                    pmtSetup.loan__Debit_Date__c = loanRec.Application__r.genesis__Expected_First_Payment_Date__c;
-                    startDate = loanRec.Application__r.genesis__Expected_First_Payment_Date__c;
-                }
-                else{
-                    pmtSetup.loan__Debit_Date__c = currentSystemDate+7;
-                    startDate = currentSystemDate+7;
-                }
+            if(loanRec.APS_Frequency__c == System.label.WEEKLY){
+                pmtSetup.loan__Debit_Date__c = currentSystemDate+7;
+                startDate = currentSystemDate+7;
                 pmtSetup.loan__Amount_Type_Split_Factor__c = 4;
                 pmtSetup.loan__Amount_Type__c = System.label.APS_Payment_Amount;
-                pmtSetup.loan__Frequency__c = loanRec.Application__r.genesis__Payment_Frequency__c;
+                pmtSetup.loan__Frequency__c = loanRec.APS_Frequency__c;
             }
-            else if(loanRec.Application__r.genesis__Payment_Frequency__c == System.label.BI_WEEKLY){
-                if(loanRec.Application__r.genesis__Expected_First_Payment_Date__c != null){
-                    pmtSetup.loan__Debit_Date__c = loanRec.Application__r.genesis__Expected_First_Payment_Date__c;
-                    startDate = loanRec.Application__r.genesis__Expected_First_Payment_Date__c;
-                }
-                else{
-                    pmtSetup.loan__Debit_Date__c = currentSystemDate+14;
-                    startDate = currentSystemDate+14;
-                }
+            else if(loanRec.APS_Frequency__c == System.label.BI_WEEKLY){
+                pmtSetup.loan__Debit_Date__c = currentSystemDate+14;
+                startDate = currentSystemDate+14;
                 pmtSetup.loan__Amount_Type_Split_Factor__c = 2;
                 pmtSetup.loan__Amount_Type__c = System.label.APS_Payment_Amount;
-                pmtSetup.loan__Frequency__c = loanRec.Application__r.genesis__Payment_Frequency__c;
+                pmtSetup.loan__Frequency__c = loanRec.APS_Frequency__c;
             }
-            else if(loanRec.Application__r.genesis__Payment_Frequency__c == System.label.MONTHLY){
+            else if(loanRec.APS_Frequency__c == System.label.MONTHLY){
                 pmtSetup.loan__Debit_Date__c = loanRec.loan__Next_Installment_Date__c;
                 pmtSetup.loan__Recurring_ACH_End_Date__c = loanRec.loan__Last_Installment_Date__c;
                 startDate = loanRec.loan__Next_Installment_Date__c;
@@ -278,7 +266,12 @@ static Date currentSystemDate =(Test.isRunningTest()?Date.Today():(new loan.Glob
             pmtSetup.loan__Recurring_ACH_Start_Date__c = currentSystemDate;
             pmtSetup.loan__Type__c = System.label.Recurring;
             pmtSetup.loan__Setup_Date__c = currentSystemDate;
-            PmtSetup.loan__Debit_Day__c = startDate.day();
+            if(loanRec.APS_Frequency__c == System.label.MONTHLY){
+                pmtSetup.loan__Debit_Day__c = loanRec.loan__Due_Day__c;
+            }
+            else{
+                pmtSetup.loan__Debit_Day__c = startDate.day();
+            }
             loanRec.APS_Created__c = true;
             loanRec.loan__Expected_Disbursal_Date__c = currentSystemDate;
             if(pmtSetup != null){
