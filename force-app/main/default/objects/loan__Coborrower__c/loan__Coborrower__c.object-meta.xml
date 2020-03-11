@@ -44,30 +44,23 @@
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
     <deploymentStatus>Deployed</deploymentStatus>
     <deprecated>false</deprecated>
-    <enableActivities>true</enableActivities>
+    <enableActivities>false</enableActivities>
     <enableBulkApi>true</enableBulkApi>
-    <enableEnhancedLookup>true</enableEnhancedLookup>
     <enableFeeds>false</enableFeeds>
-    <enableHistory>true</enableHistory>
+    <enableHistory>false</enableHistory>
     <enableLicensing>false</enableLicensing>
-    <enableReports>false</enableReports>
+    <enableReports>true</enableReports>
     <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
-    <label>Party</label>
+    <label>Contract Party</label>
     <nameField>
-        <displayFormat>PAR-{00000000}</displayFormat>
-        <label>Party Name</label>
-        <trackHistory>true</trackHistory>
+        <displayFormat>CID-{000000000}</displayFormat>
+        <label>Contract Party Id</label>
         <type>AutoNumber</type>
     </nameField>
-    <pluralLabel>Parties</pluralLabel>
-    <searchLayouts>
-        <customTabListAdditionalFields>clcommon__Account__c</customTabListAdditionalFields>
-        <lookupDialogsAdditionalFields>clcommon__Account__c</lookupDialogsAdditionalFields>
-        <lookupDialogsAdditionalFields>clcommon__Contact__c</lookupDialogsAdditionalFields>
-        <lookupDialogsAdditionalFields>clcommon__Party_Type__c</lookupDialogsAdditionalFields>
-    </searchLayouts>
+    <pluralLabel>Contract Parties</pluralLabel>
+    <searchLayouts/>
     <sharingModel>ReadWrite</sharingModel>
     <visibility>Public</visibility>
 </CustomObject>
