@@ -4,6 +4,7 @@
         <members>loan__Coborrower__c</members>
         <members>clcommon__Collateral__c</members>
         <members>clcommon__Party__c</members>
+        <members>loan__Loan_Account__c</members>
         <name>CustomObject</name>
     </types>
     <types>
@@ -20,8 +21,9 @@
         <name>ApexClass</name>
     </types>
     <types>
-        <members>AMTickets19_20_21_22_24</members>
-        <name>StaticResource</name>
+        <members>Account-Account Layout</members>
+        <members>loan__Loan_Account__c-loan__Loan Account Layout</members>
+        <name>Layout</name>
     </types>
     <version>45.0</version>
 </Package>
