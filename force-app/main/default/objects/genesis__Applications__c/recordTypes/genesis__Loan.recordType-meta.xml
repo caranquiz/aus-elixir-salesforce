@@ -118,6 +118,10 @@
             <fullName>Security</fullName>
             <default>false</default>
         </values>
+        <values>
+            <fullName>Withdrawn</fullName>
+            <default>false</default>
+        </values>
     </picklistValues>
     <picklistValues>
         <picklist>Business_purpose_list__c</picklist>
