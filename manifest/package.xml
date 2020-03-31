@@ -2,7 +2,6 @@
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
     <types>
         <members>genesis__Applications__c.Application_Declined_Cancelled_Reason__c</members>
-        <members>genesis__Applications__c.genesis__Status__c</members>
         <name>CustomField</name>
     </types>
     <types>
