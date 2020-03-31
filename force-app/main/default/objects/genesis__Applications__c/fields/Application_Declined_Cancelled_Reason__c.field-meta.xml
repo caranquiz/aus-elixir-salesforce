@@ -47,6 +47,11 @@
                 <default>false</default>
                 <label>Opened in Error</label>
             </value>
+            <value>
+                <fullName>Withdrawn</fullName>
+                <default>false</default>
+                <label>Withdrawn</label>
+            </value>
         </valueSetDefinition>
     </valueSet>
 </CustomField>
