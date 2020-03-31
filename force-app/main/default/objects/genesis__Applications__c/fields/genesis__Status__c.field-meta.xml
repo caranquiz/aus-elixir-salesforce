@@ -68,11 +68,6 @@
                 <label>Approved</label>
             </value>
             <value>
-                <fullName>Approved - Converted to Contract</fullName>
-                <default>false</default>
-                <label>Approved - Converted to Contract</label>
-            </value>
-            <value>
                 <fullName>Loan Settled</fullName>
                 <default>false</default>
                 <label>Loan Settled</label>
