@@ -684,7 +684,7 @@
             //WarehouseFunding.executeFun(loanCBro.Id,ware.Id);
             test.stopTest();
         }
-                static testMethod void test5(){
+        static testMethod void test5(){
             
             Elixir_Before_Or_On_Settlement_Fees__c fee = new Elixir_Before_Or_On_Settlement_Fees__c();
             fee.name = 'Application Fee';
@@ -739,6 +739,7 @@
             app.Subsequent_Drawdown_Prepaid_Interest_Sum__c = 0;
             app.Paid_Subsequent_Drawdown_PrepaidInterest__c = 0;
             app.Drawdown_Prepaid_Interest__c = 0;
+            app.First_Drawdown_Complete__c = true;
             insert app;
             System.assertEquals(app.genesis__account__c,acc.Id);
             
@@ -806,7 +807,7 @@
             loanC.loan__Last_Installment_Date__c = Date.today();
             loanC.loan__Next_Installment_Date__c = Date.today();
             loanC.loan__Principal_Remaining__c = 100;
-            loanC.APS_Frequency__c = 'Weekly'
+            loanC.APS_Frequency__c = 'WEEKLY';
             update loanC;
             System.assertEquals(loanC.loan__Next_Installment_Date__c,Date.today());
             
