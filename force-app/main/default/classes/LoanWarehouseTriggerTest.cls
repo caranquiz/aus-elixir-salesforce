@@ -806,7 +806,7 @@
             loanC.loan__Last_Installment_Date__c = Date.today();
             loanC.loan__Next_Installment_Date__c = Date.today();
             loanC.loan__Principal_Remaining__c = 100;
-            loanC.APS_Frequency__c = 'Weekly'
+            loanC.APS_Frequency__c = 'Weekly';
             update loanC;
             System.assertEquals(loanC.loan__Next_Installment_Date__c,Date.today());
             
