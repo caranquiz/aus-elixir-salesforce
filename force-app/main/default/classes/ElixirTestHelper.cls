@@ -198,14 +198,14 @@ public with sharing class ElixirTestHelper {
         loan__Investor_Loan_Account_Txns__c ilTid = loan.TestHelper2.createInvestorPaymentTxn(io,p,i,f);
         return ilTid;
     }
-    public static genesis__Conversion_Mapping__c returnConversionMapping(Id conHead,String sourceObject, String sourceField,String DestinationObject,String DestinationField){
+    public static genesis__Conversion_Mapping__c returnConversionMapping(Id conHead,String sourceObject, String sourceField,String destinationObject,String destinationField){
         genesis__Conversion_Mapping__c conMap = new genesis__Conversion_Mapping__c();
         conMap.genesis__Conversion_Mapping_Header__c = conHead;
         conMap.genesis__Product_Type__c = 'LOAN';
         conMap.genesis__Application_Object_Name__c = sourceObject;
         conMap.genesis__Application_Field_Name__c = sourceField;
-        conMap.genesis__Contract_Object_Name__c = DestinationObject;
-        conMap.genesis__Contract_Field_Name__c = DestinationField;
+        conMap.genesis__Contract_Object_Name__c = destinationObject;
+        conMap.genesis__Contract_Field_Name__c = destinationField;
         return conMap;
     }
 }
