@@ -18,7 +18,7 @@ static Date currentSystemDate =(Test.isRunningTest()?Date.Today():(new loan.Glob
         try{
             loan__Loan_Account__c loanAcc = [select id,name,APS_Frequency__c,loan__Due_Day__c,Paid_Prepaid_Interest__c,Application__c,Application__r.genesis__Expected_Start_Date__c,loan__Account__c,loan__Loan_Product_Name__c,APS_Created__c,Application__r.genesis__Expected_First_Payment_Date__c,Application__r.genesis__Payment_Frequency__c,loan__Last_Installment_Date__c,loan__Next_Installment_Date__c,loan__Last_Disbursal_Amount__c,Warehouse__c from loan__Loan_Account__c where id =: iden];
             genesis__applications__c app = [select id,genesis__Expected_Start_Date__c,Utilised_Subsequent_Drawdown_Prepaid_Fee__c,Paid_Subsequent_Drawdown_PrepaidInterest__c,Paid_Subsequent_Drawdown__c,genesis__Maturity_Date__c,Construction_Progress_Payment_Fee__c,genesis__CL_Product_Name__c,genesis__Initial_Advance__c,First_Tranche_Prepaid_Interest__c,First_Drawdown_Complete__c,Subsequent_Drawdown__c,Drawdown_Prepaid_Interest__c,genesis__Interest_Rate__c,genesis__Status__c,CL_Contract__c,genesis__Loan_Amount__c from genesis__applications__c where CL_Contract__c =: iden];
-            List <clcommon__Party__c> broParty = [select id,Upfront_Payment_Percentage__c,Commission_Paid_To__c,clcommon__Account__c,clcommon__Account__r.parentId from clcommon__Party__c where genesis__Application__c =: app.Id and clcommon__Type__r.name =: 'Broker'];
+            List <clcommon__Party__c> broParty = [select id,Upfront_Payment_Percentage__c,Commission_Paid_To__c,clcommon__Account__c,clcommon__Account__r.parentId from clcommon__Party__c where genesis__Application__c =: app.Id and clcommon__Type__r.name =: System.label.Broker];
             if(loanAcc != null && app.First_Drawdown_Complete__c == false){
                 if(broParty != null && broParty.size() > 0){
                     if(broParty[0].Upfront_Payment_Percentage__c != null){
@@ -26,7 +26,7 @@ static Date currentSystemDate =(Test.isRunningTest()?Date.Today():(new loan.Glob
                             broIden = broParty[0].clcommon__Account__c;
                         }
                         else if(broParty[0].Commission_Paid_To__c == System.label.Aggregator){
-                            if(broParty[0].clcommon__Account__r.parentId != null){
+                            if(broParty[0].clcommon__Account__c != null && broParty[0].clcommon__Account__r.parentId != null){
                                 broIden = broParty[0].clcommon__Account__r.parentId;
                             }
                             else{
@@ -128,7 +128,9 @@ static Date currentSystemDate =(Test.isRunningTest()?Date.Today():(new loan.Glob
             if(groupedResults.size() > 0){
                 feeAmount = Double.valueOf(groupedResults[0].get(ConstantValues.FEE_AMNT)); 
             }           
-            ldt.loan__Financed_Amount__c = (feeAmount!=null?totalDisbursal-feeAmount:totalDisbursal);
+            if(totalDisbursal != null && feeAmount != null && totalDisbursal != null){
+                ldt.loan__Financed_Amount__c = (feeAmount!=null?totalDisbursal-feeAmount:totalDisbursal);
+            }
             if(!(Test.isRunningTest()) && ldt != null){
                 insert ldt;
             }
