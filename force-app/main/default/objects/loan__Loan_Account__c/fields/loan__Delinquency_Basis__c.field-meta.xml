@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>loan__Delinquency_Basis__c</fullName>
+    <deprecated>false</deprecated>
+    <description>This field will represent the delinquency method, whether the delinquency needs to be derived from bills or schedules.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>This field will represent the delinquency method, whether the delinquency needs to be derived from bills or schedules.</inlineHelpText>
+    <label>Delinquency Basis</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Bills</fullName>
+                <default>false</default>
+                <label>Bills</label>
+            </value>
+            <value>
+                <fullName>Balances</fullName>
+                <default>false</default>
+                <label>Balances</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

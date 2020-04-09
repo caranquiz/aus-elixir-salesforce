@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>loan__Suspend_Fees</fullName>
+    <availability>online</availability>
+    <description>Suspended Fees Config.Charges will not be created for the given fees</description>
+    <displayType>button</displayType>
+    <height>600</height>
+    <linkType>page</linkType>
+    <masterLabel>Suspend Fees</masterLabel>
+    <openType>sidebar</openType>
+    <page>loan__frozenFeeConfig</page>
+    <protected>false</protected>
+</WebLink>
