@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>clcommon__Default_Payment_Spread_not_present</fullName>
+    <active>true</active>
+    <description>Default Payment Spread must be set when Generate invoice is set to true and Cash Receipt is Enabled.</description>
+    <errorConditionFormula>clcommon__Generate_Invoice_Letter__c = true &amp;&amp;  clcommon__Default_Payment_Spread__c = null &amp;&amp; $Setup.clcommon__CL_Platform_Settings__c.clcommon__Enable_Cash_Receipts__c = true</errorConditionFormula>
+    <errorMessage>&quot;Default Payment Spread&quot; must be set When Generate invoice is set to true and Cash Receipt is Enabled.</errorMessage>
+</ValidationRule>

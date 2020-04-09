@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FIT_loans_budget_validation</fullName>
+    <active>true</active>
+    <errorConditionFormula>IF(genesis__CL_Product_Name__c == &#39;Construction Development&#39; || genesis__CL_Product_Name__c == &#39;Residential Construction&#39;,  IF((Total_Subsequent_Drawdown__c &lt; (Paid_Subsequent_Drawdown__c+Subsequent_Drawdown__c+Utilised_Subsequent_Drawdown_Prepaid_Fee__c + Construction_Progress_Payment_Fee__c)) || (Subsequent_Drawdown_Prepaid_Interest_Sum__c &lt; (Paid_Subsequent_Drawdown_PrepaidInterest__c+Drawdown_Prepaid_Interest__c)), true, false) , false)</errorConditionFormula>
+    <errorMessage>Please enter subsequent drawdown, construction progress payment fee and subsequent drawdown prepaid interest within the budget limit!</errorMessage>
+</ValidationRule>

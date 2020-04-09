@@ -1,0 +1,534 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomLabels xmlns="http://soap.sforce.com/2006/04/metadata">
+    <labels>
+        <fullName>ABN_Search_results_error_message</fullName>
+        <categories>Error Messages</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ABN Search results error message</shortDescription>
+        <value>Kindly provide a valid name search for ABN search.</value>
+    </labels>
+    <labels>
+        <fullName>ACH</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ACH</shortDescription>
+        <value>ACH</value>
+    </labels>
+    <labels>
+        <fullName>APS_Frequency</fullName>
+        <categories>APS creation parameters</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>APS Frequency</shortDescription>
+        <value>Billing Frequency</value>
+    </labels>
+    <labels>
+        <fullName>APS_Payment_Amount</fullName>
+        <categories>APS creation parameters</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>APS Payment Amount</shortDescription>
+        <value>CURRENT PAYMENT AMOUNT</value>
+    </labels>
+    <labels>
+        <fullName>AccountNotFound</fullName>
+        <categories>Error Messages</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AccountNotFound</shortDescription>
+        <value>Account could not be found!</value>
+    </labels>
+    <labels>
+        <fullName>Account_Object</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Account Object</shortDescription>
+        <value>Account</value>
+    </labels>
+    <labels>
+        <fullName>Account_Owner_ID</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Account Owner</shortDescription>
+        <value>provisioningcls@38trialforce.com.develixir</value>
+    </labels>
+    <labels>
+        <fullName>Active</fullName>
+        <categories>status</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Active</shortDescription>
+        <value>Active</value>
+    </labels>
+    <labels>
+        <fullName>Aggregator</fullName>
+        <categories>Commission Paid To</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Aggregator</shortDescription>
+        <value>Aggregator</value>
+    </labels>
+    <labels>
+        <fullName>Aggregator_missing_msg</fullName>
+        <categories>Commission Paid To</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Aggregator missing msg</shortDescription>
+        <value>Please attach an Aggregator to proceed the broker commission for this application needs to be paid to the Aggregator.</value>
+    </labels>
+    <labels>
+        <fullName>ApplicantNotFoundErrorMsg</fullName>
+        <categories>Error Messages</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ApplicantNotFoundErrorMsg</shortDescription>
+        <value>Application not found.</value>
+    </labels>
+    <labels>
+        <fullName>ApplicationStatusAfterCLContractConverted</fullName>
+        <categories>status</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ApplicationStatusAfterCLContractConverted</shortDescription>
+        <value>Approved - Converted to Contract</value>
+    </labels>
+    <labels>
+        <fullName>ApplicationStatusAfterConvertedToContract</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ApplicationStatusAfterConvertedToContract</shortDescription>
+        <value>Approved - Converted to Contract</value>
+    </labels>
+    <labels>
+        <fullName>ApplicationToCLContractSuccessStatus</fullName>
+        <categories>status</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ApplicationToCLContractSuccessStatus</shortDescription>
+        <value>Application is converted to contract successfully.</value>
+    </labels>
+    <labels>
+        <fullName>Application_converted_to_Contract_message</fullName>
+        <categories>status</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Application converted to Contract message</shortDescription>
+        <value>Application is converted to contract successfully</value>
+    </labels>
+    <labels>
+        <fullName>BI_WEEKLY</fullName>
+        <categories>Frequency</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BI-WEEKLY</shortDescription>
+        <value>BI-WEEKLY</value>
+    </labels>
+    <labels>
+        <fullName>Borrower_Bank_Account_Type</fullName>
+        <categories>Bank Details</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Borrower Bank Account Type</shortDescription>
+        <value>Borrower/Investor Account</value>
+    </labels>
+    <labels>
+        <fullName>Broker</fullName>
+        <categories>Commission Paid To</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Broker</shortDescription>
+        <value>Broker</value>
+    </labels>
+    <labels>
+        <fullName>Broker_not_present_error</fullName>
+        <categories>Commission Paid To</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Broker not present error</shortDescription>
+        <value>Broker has not been attached. Please attach a broker with the application to proceed.</value>
+    </labels>
+    <labels>
+        <fullName>Commercial</fullName>
+        <categories>Product Name</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Commercial</shortDescription>
+        <value>Commercial</value>
+    </labels>
+    <labels>
+        <fullName>Commission_Paid_Message_Upfront_Not_present</fullName>
+        <categories>Commission Paid To</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Commission Paid  Message - Upfront Not present</shortDescription>
+        <value>Please define the broker upfront payment percentage.</value>
+    </labels>
+    <labels>
+        <fullName>Commission_Paid_To_Exception</fullName>
+        <categories>Commission Paid To</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Commission Paid To Exception</shortDescription>
+        <value>It is not defined that to whom broker commission will go!</value>
+    </labels>
+    <labels>
+        <fullName>Company_ABN</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Company ABN</shortDescription>
+        <value>companyABN</value>
+    </labels>
+    <labels>
+        <fullName>Company_Legal_Entity</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Company Legal Entity</shortDescription>
+        <value>Company</value>
+    </labels>
+    <labels>
+        <fullName>Construction_Development</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Construction Development</shortDescription>
+        <value>Construction Development</value>
+    </labels>
+    <labels>
+        <fullName>Construction_Progress_Payment_Fee</fullName>
+        <categories>Fee Name</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Construction Progress Payment Fee</shortDescription>
+        <value>Construction Progress Payment Fee</value>
+    </labels>
+    <labels>
+        <fullName>ConvertedToContractStatus</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ConvertedToContractStatus</shortDescription>
+        <value>APPROVED - CONVERTED TO CONTRACT</value>
+    </labels>
+    <labels>
+        <fullName>Deposit_Withdrawal_Message</fullName>
+        <categories>Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Deposit Withdrawal Message</shortDescription>
+        <value>Redraw has been recorded!</value>
+    </labels>
+    <labels>
+        <fullName>Director_party</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Director party</shortDescription>
+        <value>Director</value>
+    </labels>
+    <labels>
+        <fullName>Disbursement</fullName>
+        <categories>Distribution Type</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Disbursement</shortDescription>
+        <value>Disbursement</value>
+    </labels>
+    <labels>
+        <fullName>Drawdown_Prepaid_Interest</fullName>
+        <categories>Prepaid Interest</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Drawdown Prepaid Interest</shortDescription>
+        <value>Drawdown Prepaid Interest</value>
+    </labels>
+    <labels>
+        <fullName>Elixir_Custom_Community_Portal_Profile</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Elixir Custom Community Portal Profile</shortDescription>
+        <value>Elixir Custom Community Plus User</value>
+    </labels>
+    <labels>
+        <fullName>Execution_Priority_for_ABN_from_Employment_Information</fullName>
+        <categories>Execution Priority</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Execution Priority for ABN from Employment Information</shortDescription>
+        <value>5</value>
+    </labels>
+    <labels>
+        <fullName>Execution_Priority_for_ABN_from_Parties</fullName>
+        <categories>Execution Priority</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Execution Priority for ABN from Parties</shortDescription>
+        <value>2</value>
+    </labels>
+    <labels>
+        <fullName>Family_Trust_Legal_Entity</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Family Trust Legal Entity</shortDescription>
+        <value>Family Trust</value>
+    </labels>
+    <labels>
+        <fullName>Family_corporate_party</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Family corporate party</shortDescription>
+        <value>Family Corporate Trustee</value>
+    </labels>
+    <labels>
+        <fullName>Family_individual_party</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Family individual party</shortDescription>
+        <value>Family Individual Trustee</value>
+    </labels>
+    <labels>
+        <fullName>First_Tranche_Prepaid_Interest</fullName>
+        <categories>Prepaid Fee Name</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>First Tranche Prepaid Interest</shortDescription>
+        <value>First Tranche Prepaid Interest</value>
+    </labels>
+    <labels>
+        <fullName>Funded</fullName>
+        <categories>status</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Funded</shortDescription>
+        <value>Funded</value>
+    </labels>
+    <labels>
+        <fullName>FundingMsg</fullName>
+        <categories>status</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>FundingMsg</shortDescription>
+        <value>CL Contract has been funded.</value>
+    </labels>
+    <labels>
+        <fullName>InFunding</fullName>
+        <categories>status</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>InFunding</shortDescription>
+        <value>In Funding</value>
+    </labels>
+    <labels>
+        <fullName>Individiual_party</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Individiual party</shortDescription>
+        <value>Individual Investor</value>
+    </labels>
+    <labels>
+        <fullName>Individual_Legal_Entity</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Individual Legal Entity</shortDescription>
+        <value>Individual</value>
+    </labels>
+    <labels>
+        <fullName>Invest_Error</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Invest Error</shortDescription>
+        <value>There is an error in the process of investment creation. Please contact the admin.</value>
+    </labels>
+    <labels>
+        <fullName>Investor_Record_Type</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Investor Record Type</shortDescription>
+        <value>Investor</value>
+    </labels>
+    <labels>
+        <fullName>Joint_Individual_party</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Joint Individual party</shortDescription>
+        <value>Joint Individual Investor</value>
+    </labels>
+    <labels>
+        <fullName>Joint_Legal_Entity</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Joint Legal Entity</shortDescription>
+        <value>Joint</value>
+    </labels>
+    <labels>
+        <fullName>Joint_party</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Joint party</shortDescription>
+        <value>Joint Investor</value>
+    </labels>
+    <labels>
+        <fullName>LastBilledAmt</fullName>
+        <categories>APS creation parameters</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>LastBilledAmt</shortDescription>
+        <value>LAST BILLED AMOUNT</value>
+    </labels>
+    <labels>
+        <fullName>LoanWarehouseTrigger</fullName>
+        <categories>Trigger Name</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>LoanWarehouseTrigger</shortDescription>
+        <value>LoanWarehouseTrigger</value>
+    </labels>
+    <labels>
+        <fullName>Loan_Settled</fullName>
+        <categories>Application statuses</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Loan Settled</shortDescription>
+        <value>Loan Settled</value>
+    </labels>
+    <labels>
+        <fullName>MONTHLY</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>MONTHLY</shortDescription>
+        <value>MONTHLY</value>
+    </labels>
+    <labels>
+        <fullName>Pre_Paid_Fee</fullName>
+        <categories>Prepaid Fee</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Pre-Paid Fee</shortDescription>
+        <value>Pre-Paid Fee</value>
+    </labels>
+    <labels>
+        <fullName>Prepaid_Interest</fullName>
+        <categories>Drawdown prepaid interest</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Prepaid Interest</shortDescription>
+        <value>Prepaid Interest</value>
+    </labels>
+    <labels>
+        <fullName>Product_Name</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Product Name</shortDescription>
+        <value>Investor</value>
+    </labels>
+    <labels>
+        <fullName>Recurring</fullName>
+        <categories>APS creation parameters</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Recurring</shortDescription>
+        <value>RECURRING</value>
+    </labels>
+    <labels>
+        <fullName>Redraw_Error_Msg</fullName>
+        <categories>Error Messages</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Redraw Error Msg</shortDescription>
+        <value>Only redraws allowed, please provide a positive amount</value>
+    </labels>
+    <labels>
+        <fullName>Redraw_Success_Msg</fullName>
+        <categories>Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Redraw Success Msg</shortDescription>
+        <value>Redraw has been recorded!</value>
+    </labels>
+    <labels>
+        <fullName>Regular</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Regular</shortDescription>
+        <value>Regular</value>
+    </labels>
+    <labels>
+        <fullName>Residential</fullName>
+        <categories>Product Name</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Residential</shortDescription>
+        <value>Residential</value>
+    </labels>
+    <labels>
+        <fullName>Residential_Construction</fullName>
+        <categories>Product Name</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Residential Construction</shortDescription>
+        <value>Residential Construction</value>
+    </labels>
+    <labels>
+        <fullName>SMSF_Legal_Entity</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SMSF Legal Entity</shortDescription>
+        <value>SMSF</value>
+    </labels>
+    <labels>
+        <fullName>Smsf_corporate_party</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Smsf corporate party</shortDescription>
+        <value>SMSF Corporate Trustee</value>
+    </labels>
+    <labels>
+        <fullName>Smsf_individual_party</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Smsf individual party</shortDescription>
+        <value>SMSF Individual Trustee</value>
+    </labels>
+    <labels>
+        <fullName>Subsequent_Drawdown_Prepaid_Interest</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Subsequent Drawdown Prepaid Interest</shortDescription>
+        <value>Subsequent Drawdown Prepaid Interest</value>
+    </labels>
+    <labels>
+        <fullName>SuccessMessage</fullName>
+        <categories>status</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SuccessMessage</shortDescription>
+        <value>SUCCESS</value>
+    </labels>
+    <labels>
+        <fullName>True</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>True</shortDescription>
+        <value>TRUE</value>
+    </labels>
+    <labels>
+        <fullName>Trustee_Party</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Trustee party</shortDescription>
+        <value>Trustee</value>
+    </labels>
+    <labels>
+        <fullName>UnableToFund</fullName>
+        <categories>Error Messages</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>UnableToFund</shortDescription>
+        <value>Unable to fund!</value>
+    </labels>
+    <labels>
+        <fullName>WEEKLY</fullName>
+        <categories>Frequency</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>WEEKLY</shortDescription>
+        <value>WEEKLY</value>
+    </labels>
+</CustomLabels>

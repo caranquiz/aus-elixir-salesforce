@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>PrePaid_Interest_Amount_Funded__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF(Application__r.genesis__CL_Product_Name__c == &#39;Construction Development&#39; || Application__r.genesis__CL_Product_Name__c == &#39;Residential Construction&#39;, Application__r.PrePaid_Interest_Amount_Funded__c, 0)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>PrePaid Interest Amount Funded</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Currency</type>
+</CustomField>

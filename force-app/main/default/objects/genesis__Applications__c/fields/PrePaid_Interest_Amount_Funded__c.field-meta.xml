@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>PrePaid_Interest_Amount_Funded__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF(CL_Contract__c != null &amp;&amp; First_Drawdown_Complete__c = true,First_Tranche_Prepaid_Interest__c+Paid_Subsequent_Drawdown_PrepaidInterest__c, 0)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>PrePaid Interest Amount Funded</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Currency</type>
+</CustomField>
