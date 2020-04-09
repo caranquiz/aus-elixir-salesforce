@@ -1,1 +1,4 @@
 CustomEmploymentAndIncomeDetails
+CustomNewBorrowerApplicationPage
+CustomBorrowerDetails
+CustomInvestmentDetails

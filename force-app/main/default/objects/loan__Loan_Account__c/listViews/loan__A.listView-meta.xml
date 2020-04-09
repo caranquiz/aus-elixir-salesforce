@@ -7,6 +7,6 @@
     <columns>loan__Next_Installment_Date__c</columns>
     <columns>loan__Loan_Status__c</columns>
     <columns>loan__Loan_Product_Name__c</columns>
-    <filterScope>Everything</filterScope>
+    <columns>CREATEDBY_USER</columns>
     <label>All</label>
 </ListView>
