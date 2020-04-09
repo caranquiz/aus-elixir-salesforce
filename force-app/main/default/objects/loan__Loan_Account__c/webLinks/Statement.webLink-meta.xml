@@ -8,5 +8,5 @@
     <masterLabel>Statement</masterLabel>
     <openType>replace</openType>
     <protected>false</protected>
-    <url>https://c.ap15.visual.force.com/apex/Transactionpage?id={!loan__Loan_Account__c.Id}</url>
+    <url>/apex/Transactionpage?id={!loan__Loan_Account__c.Id}</url>
 </WebLink>
