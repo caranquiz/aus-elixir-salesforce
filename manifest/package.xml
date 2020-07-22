@@ -1,34 +1,86 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
     <types>
-        <members>ConstantValues</members>
-        <members>GenericUtility</members>
-        <members>GenericUtilityTestHelper</members>
-        <members>PricingUpdate</members>
-        <members>PricingUpdateTest</members>
+        <members>EraseRedundantData</members>
         <name>ApexClass</name>
     </types>
     <types>
-        <members>clcommon__Address__c.Applicant_and_its_address__c</members>
-        <members>clcommon__Collateral__c.Mortgagor__c</members>
-        <members>clcommon__Party__c.Applicant_Name__c</members>
-        <members>clcommon__Party__c.Is_GSA_Being_Taken_over_this_Applicant__c</members>
+        <members>Credit_History__c.Default_to_be_ignored__c</members>
+        <members>Rendered_Field__c.Evaluation_Expression__c</members>
+        <members>Rendered_Field__c.Related_Object_Name__c</members>
+        <members>Rendered_Field__c.Rendered_Object__c</members>
+        <members>Rendering_Criteria__c.Associated_Value__c</members>
+        <members>Rendering_Criteria__c.Matching_Type_c__c</members>
+        <members>Rendering_Criteria__c.Related_Field__c</members>
+        <members>Rendering_Criteria__c.Rendered_Field__c</members>
+        <members>Rendering_Criteria__c.Serial_Number__c</members>
+        <members>clcommon__Collateral__c.Arms_Length_Valuer_Commentary__c</members>
+        <members>clcommon__Collateral__c.Check_Val_Received__c</members>
+        <members>clcommon__Collateral__c.Check_Val_Value__c</members>
+        <members>clcommon__Collateral__c.Comparable_Sales_Commentary__c</members>
+        <members>clcommon__Collateral__c.Comparable_Sales_Evident__c</members>
+        <members>clcommon__Collateral__c.Distressed_Asset__c</members>
+        <members>clcommon__Collateral__c.Favorable_Purchase_Commentary__c</members>
+        <members>clcommon__Collateral__c.Favorable_Purchase__c</members>
+        <members>clcommon__Collateral__c.Is_Purchaser_the_Mortgagor__c</members>
+        <members>clcommon__Collateral__c.Longer_than_12Month_Completion_Explanati__c</members>
+        <members>clcommon__Collateral__c.Replacement_Type__c</members>
+        <members>clcommon__Collateral__c.Replacement_Value__c</members>
+        <members>clcommon__Collateral__c.Valuer_Risk_Gradings_3_or_more__c</members>
+        <members>clcommon__Collateral__c.Valuer_Risk_Gradings_Commentary__c</members>
+        <members>clcommon__Collateral__c.X110_check__c</members>
+        <members>clcommon__Party__c.Confirm_Possible_Match_Credit_Report_Run__c</members>
+        <members>clcommon__Party__c.Explanation_of_Age_of_Credit_File_Commen__c</members>
+        <members>clcommon__Party__c.Explanation_of_Age_of_Credit_File_Suitab__c</members>
+        <members>clcommon__Party__c.Explanation_of_Bankruptcy_Commentary__c</members>
+        <members>clcommon__Party__c.Explanation_of_Bankruptcy_Received__c</members>
+        <members>clcommon__Party__c.Explanation_of_Bankruptcy_Suitable__c</members>
+        <members>clcommon__Party__c.Explanation_of_Credit_Enquiries_Commenta__c</members>
+        <members>clcommon__Party__c.Explanation_of_Credit_Enquiries_Suitable__c</members>
+        <members>clcommon__Party__c.Explanation_of_Credit_Events_Commentary__c</members>
+        <members>clcommon__Party__c.Explanation_of_Credit_Events_Suitable__c</members>
+        <members>clcommon__Party__c.Is_General_Security_Aggrement_Being_Take__c</members>
         <members>clcommon__Party__c.Name_for_Purpose_of_GSA_Contract__c</members>
-        <members>genesis__Applications__c.CL_Date__c</members>
+        <members>genesis__Applications__c.BAS__c</members>
+        <members>genesis__Applications__c.Cash_Out_Purpose_Explanation_Provided__c</members>
+        <members>genesis__Applications__c.Cash_Out_Purpose_Suitable_Commentary__c</members>
+        <members>genesis__Applications__c.Cash_Out_Purpose_Suitable__c</members>
+        <members>genesis__Applications__c.Confirm_repayments_do_not_double__c</members>
         <members>genesis__Applications__c.Current_Reverting_Variable_Rate__c</members>
+        <members>genesis__Applications__c.Customer_Interview__c</members>
+        <members>genesis__Applications__c.Customer_Interview_completed__c</members>
+        <members>genesis__Applications__c.Exit_Strategy_Commentary__c</members>
+        <members>genesis__Applications__c.Exit_Strategy_Provided__c</members>
+        <members>genesis__Applications__c.Exit_Strategy_Suitable__c</members>
         <members>genesis__Applications__c.Fixed_Rate_Lock_In_Date__c</members>
         <members>genesis__Applications__c.Fixed_Rate_Lock_In__c</members>
+        <members>genesis__Applications__c.Income_Commentary__c</members>
+        <members>genesis__Applications__c.Income_Consistent_with_Declaration__c</members>
+        <members>genesis__Applications__c.Interest_Only_Other_Reason_explain__c</members>
         <members>genesis__Applications__c.Matrix_Rate__c</members>
         <members>genesis__Applications__c.PEXA_Transaction_Fee__c</members>
         <members>genesis__Applications__c.Re_documentation_Fee__c</members>
-        <members>genesis__Applications__c.Replacement_Value__c</members>
-        <members>genesis__Applications__c.Simplified_Repayment_Type__c</members>
-        <members>genesis__Applications__c.Total_fees_amount__c</members>
+        <members>genesis__Applications__c.Satisfactory_Explanation_Provided__c</members>
+        <members>genesis__Applications__c.Supporting_Documentation_Sighted__c</members>
+        <members>genesis__Applications__c.Valuation_Fee_Collected_at_Settlement__c</members>
+        <members>genesis__Income__c.Accountant_Call_Commentary__c</members>
+        <members>genesis__Income__c.Accountant_Call_Suitable__c</members>
+        <members>genesis__Income__c.BAS__c</members>
+        <members>genesis__Income__c.Confirm_letter_prepared_by_accountant__c</members>
+        <members>genesis__Income__c.Confirm_stated_annual_income__c</members>
+        <members>genesis__Income__c.Date_of_Call__c</members>
+        <members>genesis__Income__c.Does_stated_income_include_rental_income__c</members>
+        <members>genesis__Income__c.Income_Commentary__c</members>
+        <members>genesis__Income__c.Income_Consistent_with_Declaration__c</members>
+        <members>genesis__Income__c.Is_the_accountant_aware_of_any_circumsta__c</members>
+        <members>genesis__Income__c.Satisfactory_Explanation_Provided__c</members>
+        <members>genesis__Income__c.Supporting_Documentation_Sighted__c</members>
         <name>CustomField</name>
     </types>
     <types>
-        <members>genesis__Applications__c.Conga_Composer_Generate_Loan_Offer</members>
-        <name>WebLink</name>
+        <members>Rendered_Field__c</members>
+        <members>Rendering_Criteria__c</members>
+        <name>CustomObject</name>
     </types>
     <version>45.0</version>
 </Package>
