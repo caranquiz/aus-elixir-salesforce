@@ -195,5 +195,11 @@ global class ConstantValues{
     //Constant values for ACNSubmitApi    
     
     global static final String validateACN = 'Please Provide ACN Number';
-
+    
+    //Constant Values for PricingUpdate
+    public static final String APPLICATION_ID_NULL = 'Pricing Update Failed: Application ID is null';
+    public static final String USER_DOES_NOT_HAVE_ACCESS = 'User does not have access to proceed.';
+    public static final String NO_PRICING_RECORDS_FOUND = 'No pricing records found';
+    public static final String PRICING_SUCCESSFULLY_UPDATED = 'Pricing successfuly updated.';
+    public static final String UNABLE_UPDATE_PRICING = 'Unable to update the pricing';
 }
