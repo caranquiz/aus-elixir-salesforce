@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Evaluation_Expression__c</fullName>
+    <description>Expression will be evaluated from left to right, specify accordingly (braces won&apos;t help)</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Expression will be evaluated from left to right, specify accordingly (braces won&apos;t help)</inlineHelpText>
+    <label>Evaluation Expression</label>
+    <length>255</length>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>
