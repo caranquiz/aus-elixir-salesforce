@@ -2,6 +2,11 @@
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
     <types>
         <members>EraseRedundantData</members>
+        <members>ConstantValues</members>
+        <members>GenericUtility</members>
+        <members>GenericUtilityTestHelper</members>
+        <members>PricingUpdate</members>
+        <members>PricingUpdateTest</members>
         <name>ApexClass</name>
     </types>
     <types>
@@ -63,6 +68,9 @@
         <members>genesis__Applications__c.Satisfactory_Explanation_Provided__c</members>
         <members>genesis__Applications__c.Supporting_Documentation_Sighted__c</members>
         <members>genesis__Applications__c.Valuation_Fee_Collected_at_Settlement__c</members>
+        <members>genesis__Applications__c.Replacement_Value__c</members>
+        <members>genesis__Applications__c.Simplified_Repayment_Type__c</members>
+        <members>genesis__Applications__c.Total_fees_amount__c</members>
         <members>genesis__Income__c.Accountant_Call_Commentary__c</members>
         <members>genesis__Income__c.Accountant_Call_Suitable__c</members>
         <members>genesis__Income__c.BAS__c</members>
@@ -80,6 +88,8 @@
     <types>
         <members>Rendered_Field__c</members>
         <members>Rendering_Criteria__c</members>
+        <members>clcommon__Collateral__c</members>
+        <members>clcommon__Party__c</members>
         <name>CustomObject</name>
     </types>
     <version>45.0</version>
