@@ -14,7 +14,6 @@
         <members>Rendered_Field__c.Evaluation_Expression__c</members>
         <members>Rendered_Field__c.Related_Object_Name__c</members>
         <members>Rendered_Field__c.Rendered_Object__c</members>
-        <members>Rendering_Criteria__c.Associated_Value__c</members>
         <members>Rendering_Criteria__c.Matching_Type_c__c</members>
         <members>Rendering_Criteria__c.Related_Field__c</members>
         <members>Rendering_Criteria__c.Rendered_Field__c</members>
@@ -57,8 +56,6 @@
         <members>genesis__Applications__c.Exit_Strategy_Commentary__c</members>
         <members>genesis__Applications__c.Exit_Strategy_Provided__c</members>
         <members>genesis__Applications__c.Exit_Strategy_Suitable__c</members>
-        <members>genesis__Applications__c.Fixed_Rate_Lock_In_Date__c</members>
-        <members>genesis__Applications__c.Fixed_Rate_Lock_In__c</members>
         <members>genesis__Applications__c.Income_Commentary__c</members>
         <members>genesis__Applications__c.Income_Consistent_with_Declaration__c</members>
         <members>genesis__Applications__c.Interest_Only_Other_Reason_explain__c</members>
