@@ -1,4 +1,8 @@
-CustomEmploymentAndIncomeDetails
-CustomNewBorrowerApplicationPage
 CustomBorrowerDetails
+CustomApplicantPage
+CustomEmploymentAndIncomeDetails
+CustomIncomeDetails
+CustomCreditAssess
+CollateralDetails
+CustomNewBorrowerApplicationPage
 CustomInvestmentDetails
