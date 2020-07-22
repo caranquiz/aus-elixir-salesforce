@@ -4,7 +4,7 @@
     <deprecated>false</deprecated>
     <externalId>false</externalId>
     <formula>IF(  ISBLANK( clcommon__Contact__c )  ,
-       IF( ISBLANK( clcommon__Account__c ) ,  IF(  ISBLANK( clcommon__User__c ) , &#39;&#39;,  clcommon__User__r.FirstName + &#39; &#39; + clcommon__User__r.LastName) ,  clcommon__Account__r.Name )   , clcommon__Contact__r.FirstName + &#39; &#39; +  clcommon__Contact__r.LastName)</formula>
+       IF( ISBLANK( clcommon__Account__c ) ,  IF(  ISBLANK( clcommon__User__c ) , &apos;&apos;,  clcommon__User__r.FirstName + &apos; &apos; + clcommon__User__r.LastName) ,  clcommon__Account__r.Name )   , clcommon__Contact__r.FirstName + &apos; &apos; +  clcommon__Contact__r.LastName)</formula>
     <label>Party</label>
     <required>false</required>
     <trackHistory>false</trackHistory>
