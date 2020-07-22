@@ -1,4 +1,4 @@
-# SFDX App
+# Salesforce App
 
 ## Dev, Build and Test
 
