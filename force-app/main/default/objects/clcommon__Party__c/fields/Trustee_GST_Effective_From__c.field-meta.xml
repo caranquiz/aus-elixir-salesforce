@@ -2,6 +2,7 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Trustee_GST_Effective_From__c</fullName>
     <externalId>false</externalId>
+    <inlineHelpText>A business  is registered for Goods &amp; Services Tax (G.S.T) if annual income is greater than $75,000.  [7.6]</inlineHelpText>
     <label>Trustee GST Effective From</label>
     <length>255</length>
     <required>false</required>
