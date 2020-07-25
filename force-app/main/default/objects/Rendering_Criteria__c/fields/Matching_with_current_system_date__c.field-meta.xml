@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Matching_with_current_system_date__c</fullName>
+    <defaultValue>false</defaultValue>
+    <externalId>false</externalId>
+    <inlineHelpText>If matching with current system date then replace the field name in the dependent expression to CurrentSystemDate</inlineHelpText>
+    <label>Matching with current system date</label>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

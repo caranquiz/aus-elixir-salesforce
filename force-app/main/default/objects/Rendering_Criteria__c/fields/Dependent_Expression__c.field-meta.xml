@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Dependent_Expression__c</fullName>
+    <externalId>false</externalId>
+    <inlineHelpText>This field should be in this format &quot;First_field_name - Second_field_name &gt; 60&quot;. First operator should be arithmetic and Second operator should be logical. Data type can only be of decimal, number or date type.</inlineHelpText>
+    <label>Dependent Expression</label>
+    <length>255</length>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

@@ -3,11 +3,24 @@
     <fullName>Valuation_Fee_Collected_at_Settlement__c</fullName>
     <externalId>false</externalId>
     <label>Valuation Fee Collected at Settlement</label>
-    <precision>18</precision>
     <required>false</required>
-    <scale>2</scale>
     <trackFeedHistory>false</trackFeedHistory>
     <trackHistory>false</trackHistory>
     <trackTrending>false</trackTrending>
-    <type>Currency</type>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Yes</fullName>
+                <default>false</default>
+                <label>Yes</label>
+            </value>
+            <value>
+                <fullName>No</fullName>
+                <default>false</default>
+                <label>No</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
 </CustomField>
