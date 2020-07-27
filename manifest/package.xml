@@ -140,6 +140,11 @@
         <members>genesis__Income__c.Accountant_Phone_Number_independently_ve__c</members>
         <members>genesis__Income__c.Employment_Information__c</members>
         <members>genesis__Income__c.Does_applicant_understand_English__c</members>
+        <members>genesis__Income__c.Documents_Verified__c</members>
+        <members>genesis__Applications__c.Total_Monthly_Living_Expenses_Declared__c</members>
+        <members>genesis__Applications__c.Monthly_Living_Expenses_Used__c</members>
+        <members>clcommon__Collateral__c.Cover_Type__c</members>
+        <members>clcommon__Collateral__c.Interested_Party__c</members>
 
         <!-- Credit Contract changes made by Rameswari -->
         <members>genesis__Applications__c.CL_Date__c</members>
@@ -159,10 +164,6 @@
         <members>Rendering_Criteria__c</members>
         <name>CustomObject</name>
     </types>
-    <types>
-        <!-- Credit Contract changes made by Rameswari -->
-        <members>genesis__Applications__c.Conga_Composer_Generate_Loan_Offer</members>
-        <name>WebLink</name>
-    </types>
+    
     <version>45.0</version>
 </Package>
