@@ -4,5 +4,9 @@ CustomEmploymentAndIncomeDetails
 CustomIncomeDetails
 CustomCreditAssess
 CollateralDetails
-CustomNewBorrowerApplicationPage
 CustomInvestmentDetails
+PolicyExceptions
+CustomAssetsAndLiabilities
+CustomIdentification
+CustomLivingExpenses
+CustomPricingDetails

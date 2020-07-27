@@ -405,6 +405,11 @@
               </models>
             </action>
             <action type="custom" snippet="checkOwnershipPercentage"/>
+            <action type="save">
+              <models>
+                <model>SelectedCollateral</model>
+              </models>
+            </action>
             <action type="custom" snippet="callEraseRedundantData"/>
             <action type="blockUI" message="The changes are being recorded!" timeout="1000"/>
             <action type="custom" snippet="CloseDialog"/>
@@ -880,9 +885,7 @@
                                 <enableconditions/>
                               </field>
                               <field uniqueid="sk-3Q6T-1245" id="Valuation_Ordered__c">
-                                <renderconditions logictype="and" onhidedatabehavior="cancel">
-                                  <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="SelectedCollateral" sourcetype="fieldvalue" field="Valuation_Required__c" fieldtargetobjects="clcommon__Collateral__c" value="Yes"/>
-                                </renderconditions>
+                                <renderconditions logictype="and" onhidedatabehavior="cancel"/>
                                 <enableconditions/>
                               </field>
                               <field uniqueid="sk-3Q6V-1253" id="Valuation_Ordered_Date__c" monthpicker="true" yearpicker="true" yearpickermin="c-30" yearpickermax="c+30">
@@ -900,40 +903,47 @@
                               <field uniqueid="sk-3Q6e-1290" id="Valuation_Invoice_Number__c">
                                 <renderconditions logictype="and" onhidedatabehavior="cancel">
                                   <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="SelectedCollateral" sourcetype="fieldvalue" field="Valuation_Ordered_by_Lender__c" fieldtargetobjects="clcommon__Collateral__c" value="Yes"/>
+                                  <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="SelectedCollateral" sourcetype="fieldvalue" field="Valuation_Ordered__c" fieldtargetobjects="clcommon__Collateral__c" value="Yes"/>
                                 </renderconditions>
                                 <enableconditions/>
                               </field>
                               <field uniqueid="sk-3Q7G-1324" id="Valuation_Invoice_Amount__c">
                                 <renderconditions logictype="and" onhidedatabehavior="cancel">
                                   <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="SelectedCollateral" sourcetype="fieldvalue" field="Valuation_Ordered_by_Lender__c" fieldtargetobjects="clcommon__Collateral__c" value="Yes"/>
+                                  <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="SelectedCollateral" sourcetype="fieldvalue" field="Valuation_Ordered__c" fieldtargetobjects="clcommon__Collateral__c" value="Yes"/>
                                 </renderconditions>
                                 <enableconditions/>
                               </field>
                               <field uniqueid="sk-3Q6m-1298" id="Valuation_Invoice_Date__c" monthpicker="true" yearpicker="true" yearpickermin="c-30" yearpickermax="c+30">
                                 <renderconditions logictype="and" onhidedatabehavior="cancel">
                                   <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="SelectedCollateral" sourcetype="fieldvalue" field="Valuation_Ordered_by_Lender__c" fieldtargetobjects="clcommon__Collateral__c" value="Yes"/>
+                                  <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="SelectedCollateral" sourcetype="fieldvalue" field="Valuation_Ordered__c" fieldtargetobjects="clcommon__Collateral__c" value="Yes"/>
                                 </renderconditions>
                                 <enableconditions/>
                               </field>
                               <field uniqueid="sk-3Q7K-1332" id="Valuation_Payment_Amount__c">
                                 <renderconditions logictype="and" onhidedatabehavior="cancel">
                                   <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="SelectedCollateral" sourcetype="fieldvalue" field="Valuation_Ordered_by_Lender__c" fieldtargetobjects="clcommon__Collateral__c" value="Yes"/>
+                                  <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="SelectedCollateral" sourcetype="fieldvalue" field="Valuation_Ordered__c" fieldtargetobjects="clcommon__Collateral__c" value="Yes"/>
                                 </renderconditions>
                                 <enableconditions/>
                               </field>
                               <field uniqueid="sk-3Q7R-1340" id="Valuation_Paid__c">
                                 <renderconditions logictype="and" onhidedatabehavior="cancel">
                                   <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="SelectedCollateral" sourcetype="fieldvalue" field="Valuation_Ordered_by_Lender__c" fieldtargetobjects="clcommon__Collateral__c" value="Yes"/>
+                                  <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="SelectedCollateral" sourcetype="fieldvalue" field="Valuation_Ordered__c" fieldtargetobjects="clcommon__Collateral__c" value="Yes"/>
                                 </renderconditions>
                                 <enableconditions/>
                               </field>
                               <field uniqueid="sk-3Q7U-1348" id="Valuation_Payment_Type__c">
                                 <renderconditions logictype="and" onhidedatabehavior="cancel">
                                   <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="SelectedCollateral" sourcetype="fieldvalue" field="Valuation_Ordered_by_Lender__c" fieldtargetobjects="clcommon__Collateral__c" value="Yes"/>
+                                  <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="SelectedCollateral" sourcetype="fieldvalue" field="Valuation_Ordered__c" fieldtargetobjects="clcommon__Collateral__c" value="Yes"/>
                                 </renderconditions>
                                 <enableconditions/>
                               </field>
                             </fields>
+                            <renderconditions logictype="and"/>
                           </section>
                         </sections>
                       </column>
@@ -1013,12 +1023,104 @@
                         </sections>
                       </column>
                     </columns>
-                    <field uniqueid="sk-3Ec0-2653" id="Contract_Of_Sale__c">
-                      <renderconditions logictype="and" onhidedatabehavior="cancel">
-                        <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="SelectedCollateral" sourcetype="fieldvalue" field="Transaction__c" fieldtargetobjects="clcommon__Collateral__c" value="Purchase"/>
-                      </renderconditions>
-                      <enableconditions/>
-                    </field>
+                    <columns uniqueid="sk-2BYN-2754" layoutmode="fixed">
+                      <column width="80%" uniqueid="sk-2BYN-2713">
+                        <sections>
+                          <section title="New Section" collapsible="no" uniqueid="sk-2BYN-2714" showheader="false">
+                            <fields>
+                              <field uniqueid="sk-3Ec0-2653" id="Contract_Of_Sale__c">
+                                <renderconditions logictype="and" onhidedatabehavior="cancel">
+                                  <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="SelectedCollateral" sourcetype="fieldvalue" field="Transaction__c" fieldtargetobjects="clcommon__Collateral__c" value="Purchase"/>
+                                </renderconditions>
+                                <enableconditions/>
+                              </field>
+                            </fields>
+                          </section>
+                        </sections>
+                      </column>
+                      <column width="20%" uniqueid="sk-2BYW-2877">
+                        <sections>
+                          <section title="New Section" collapsible="no" uniqueid="sk-2BYW-2878" showheader="false">
+                            <fields>
+                              <field uniqueid="sk-2BYd-2939" type="COMBO" editmodebehavior="autopopup" readonly="true" cssclass="requiredCss">
+                                <label>Required</label>
+                                <template>
+                                  <contents/>
+                                </template>
+                                <renderconditions logictype="and" onhidedatabehavior="keep">
+                                  <rendercondition type="blank" operator="=" fieldmodel="SelectedCollateral" sourcetype="fieldvalue" field="Contract_Of_Sale__c" fieldtargetobjects="clcommon__Collateral__c" value="null" enclosevalueinquotes="false"/>
+                                </renderconditions>
+                                <enableconditions/>
+                              </field>
+                            </fields>
+                          </section>
+                        </sections>
+                      </column>
+                    </columns>
+                    <columns uniqueid="sk-2BYO-2796" layoutmode="fixed">
+                      <column width="80%" uniqueid="sk-2BYO-2755">
+                        <sections>
+                          <section title="New Section" collapsible="no" uniqueid="sk-2BYO-2756" showheader="false">
+                            <fields>
+                              <field uniqueid="sk-15Gc-4637" id="Arms_Length_Transaction__c">
+                                <renderconditions logictype="and" onhidedatabehavior="keep"/>
+                                <enableconditions/>
+                              </field>
+                            </fields>
+                          </section>
+                        </sections>
+                      </column>
+                      <column width="20%" uniqueid="sk-2BYU-2861">
+                        <sections>
+                          <section title="New Section" collapsible="no" uniqueid="sk-2BYU-2862" showheader="false">
+                            <fields>
+                              <field uniqueid="sk-2BYe-2948" type="COMBO" editmodebehavior="autopopup" readonly="true" cssclass="requiredCss">
+                                <label>Required</label>
+                                <template>
+                                  <contents/>
+                                </template>
+                                <renderconditions logictype="and" onhidedatabehavior="keep">
+                                  <rendercondition type="blank" operator="=" fieldmodel="SelectedCollateral" sourcetype="fieldvalue" field="Arms_Length_Transaction__c" fieldtargetobjects="clcommon__Collateral__c" value="null" enclosevalueinquotes="false"/>
+                                </renderconditions>
+                                <enableconditions/>
+                              </field>
+                            </fields>
+                          </section>
+                        </sections>
+                      </column>
+                    </columns>
+                    <columns uniqueid="sk-2BYP-2840" layoutmode="fixed">
+                      <column width="80%" uniqueid="sk-2BYP-2797">
+                        <sections>
+                          <section title="New Section" collapsible="no" uniqueid="sk-2BYP-2798" showheader="false">
+                            <fields>
+                              <field uniqueid="sk-1sIK-1440" id="X110_check__c">
+                                <renderconditions logictype="and" onhidedatabehavior="keep"/>
+                                <enableconditions/>
+                              </field>
+                            </fields>
+                          </section>
+                        </sections>
+                      </column>
+                      <column width="20%" uniqueid="sk-2BYX-2894">
+                        <sections>
+                          <section title="New Section" collapsible="no" uniqueid="sk-2BYX-2895" showheader="false">
+                            <fields>
+                              <field uniqueid="sk-2BYf-2957" type="COMBO" editmodebehavior="autopopup" readonly="true" cssclass="requiredCss">
+                                <label>Required</label>
+                                <template>
+                                  <contents/>
+                                </template>
+                                <renderconditions logictype="and" onhidedatabehavior="keep">
+                                  <rendercondition type="blank" operator="=" fieldmodel="SelectedCollateral" sourcetype="fieldvalue" field="X110_check__c" fieldtargetobjects="clcommon__Collateral__c" value="null" enclosevalueinquotes="false"/>
+                                </renderconditions>
+                                <enableconditions/>
+                              </field>
+                            </fields>
+                          </section>
+                        </sections>
+                      </column>
+                    </columns>
                   </fields>
                   <renderconditions logictype="and"/>
                 </section>
@@ -1047,7 +1149,6 @@
                                 <renderconditions logictype="and" onhidedatabehavior="keep"/>
                                 <enableconditions/>
                               </field>
-                              <field uniqueid="sk-1sDY-1315" id="Is_Purchaser_the_Mortgagor__c"/>
                             </fields>
                           </section>
                         </sections>
@@ -1060,17 +1161,16 @@
                                 <renderconditions logictype="and" onhidedatabehavior="keep"/>
                                 <enableconditions/>
                               </field>
-                              <field uniqueid="sk-15Gc-4637" id="Arms_Length_Transaction__c">
-                                <renderconditions logictype="and" onhidedatabehavior="keep"/>
-                                <enableconditions/>
-                              </field>
+                              <field uniqueid="sk-1sDY-1315" id="Is_Purchaser_the_Mortgagor__c"/>
                             </fields>
                           </section>
                         </sections>
                       </column>
                     </columns>
                   </fields>
-                  <renderconditions logictype="and"/>
+                  <renderconditions logictype="and">
+                    <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="SelectedCollateral" sourcetype="fieldvalue" field="Transaction__c" fieldtargetobjects="clcommon__Collateral__c" value="Purchase"/>
+                  </renderconditions>
                 </section>
                 <section collapsible="no" uniqueid="sk-1sHA-1340">
                   <fields>
@@ -1080,11 +1180,13 @@
                           <section title="New Section" collapsible="no" uniqueid="sk-1sHE-1356" showheader="false">
                             <fields>
                               <field uniqueid="sk-1sIG-1411" id="Favorable_Purchase__c">
-                                <renderconditions logictype="and" onhidedatabehavior="keep"/>
+                                <renderconditions logictype="and" onhidedatabehavior="cancel"/>
                                 <enableconditions/>
                               </field>
-                              <field uniqueid="sk-1sID-1404" id="Arms_Length_Valuer_Commentary__c"/>
-                              <field uniqueid="sk-1sIJ-1433" id="Distressed_Asset__c"/>
+                              <field uniqueid="sk-1sID-1404" id="Arms_Length_Valuer_Commentary__c">
+                                <renderconditions logictype="and" onhidedatabehavior="cancel"/>
+                                <enableconditions/>
+                              </field>
                             </fields>
                           </section>
                         </sections>
@@ -1093,8 +1195,14 @@
                         <sections>
                           <section title="New Section" collapsible="no" uniqueid="sk-1sHF-1370" showheader="false">
                             <fields>
-                              <field uniqueid="sk-1sIH-1418" id="Favorable_Purchase_Commentary__c"/>
-                              <field uniqueid="sk-1sIK-1440" id="X110_check__c"/>
+                              <field uniqueid="sk-1sIH-1418" id="Favorable_Purchase_Commentary__c">
+                                <renderconditions logictype="and" onhidedatabehavior="cancel"/>
+                                <enableconditions/>
+                              </field>
+                              <field uniqueid="sk-1sIJ-1433" id="Distressed_Asset__c">
+                                <renderconditions logictype="and" onhidedatabehavior="cancel"/>
+                                <enableconditions/>
+                              </field>
                             </fields>
                           </section>
                         </sections>
@@ -2137,7 +2245,7 @@
       <jsitem location="inlinesnippet" name="populateSecAddressInSecName" cachelocation="false">var colModel = skuid.model.getModel('SelectedCollateral'); var colRow = colModel.data[0]; var address = (((colRow.Unit_No__c === undefined || colRow.Unit_No__c === null || colRow.Unit_No__c.length &lt;= 0) ? '' : (colRow.Unit_No__c+' '))+((colRow.Street_No__c === undefined || colRow.Street_No__c === null || colRow.Street_No__c.length &lt;= 0) ? '' : (colRow.Street_No__c+' '))+((colRow.Street_Name__c === undefined || colRow.Street_Name__c === null || colRow.Street_Name__c.length &lt;= 0) ? '' : (colRow.Street_Name__c+' '))+((colRow.Street_Type__c === undefined || colRow.Street_Type__c === null || colRow.Street_Type__c.length &lt;= 0) ? '' : (colRow.Street_Type__c+' '))+((colRow.clcommon__City__c === undefined || colRow.clcommon__City__c === null || colRow.clcommon__City__c.length &lt;= 0) ? '' : (colRow.clcommon__City__c+' '))+((colRow.clcommon__State__c === undefined || colRow.clcommon__State__c === null || colRow.clcommon__State__c.length &lt;= 0) ? '' : (colRow.clcommon__State__c+' '))+((colRow.Country__c === undefined || colRow.Country__c === null || colRow.Country__c.length &lt;= 0) ? '' : (colRow.Country__c+' '))+((colRow.clcommon__Postal_Code__c === undefined || colRow.clcommon__Postal_Code__c === null || colRow.clcommon__Postal_Code__c.length &lt;= 0) ? '' : (colRow.clcommon__Postal_Code__c+' '))); colModel.updateRow(colRow,'clcommon__Collateral_Name__c',address);</jsitem>
       <jsitem location="inlinesnippet" name="SummationOfValue" cachelocation="false">var params = arguments[0], 	$ = skuid.$; var allColModel = skuid.model.getModel('AllCollateral'); var colModel = skuid.model.getModel('SelectedCollateral'); var appModel = skuid.model.getModel('Application'); var appRow = appModel.data[0]; var totalValue=0; $.each(allColModel.data,function(i,row){     var val=0;     //console.log(row);     //console.log(row.clcommon__Value__c) ;     val=(row.clcommon__Value__c!==undefined &amp;&amp; row.clcommon__Value__c!==null &amp;&amp; row.clcommon__Value__c!=='') ? row.clcommon__Value__c : 0     totalValue = totalValue + val; }); //console.log(totalValue); appModel.updateRow(appRow,'Actual_Security_Value__c',totalValue);  //app model update</jsitem>
       <jsitem location="inlinesnippet" cachelocation="false" name="Reload">var params = arguments[0], 	$ = skuid.$; window.location.reload(true);</jsitem>
-      <jsitem location="inlinesnippet" name="checkOwnershipPercentage" cachelocation="false">var params = arguments[0], 	$ = skuid.$; var colOwner = skuid.model.getModel('CollateralOwner'); var colRow = colOwner.data[0];  var pageTitle2 = $('#sk-2Ipz-2635'); // pagetitle unique id var editor2 = pageTitle2.data('object').editor;  var sum =0; $.each(colOwner.getRows(),function(i,row){        sum = sum + row.clcommon__Ownership__c; });  if(sum&gt;100){     alert('Total ownership should not exceed 100%');     return false; } else{     colOwner.save();     return true; }</jsitem>
+      <jsitem location="inlinesnippet" name="checkOwnershipPercentage" cachelocation="false">var params = arguments[0], 	$ = skuid.$; var colOwner = skuid.model.getModel('CollateralOwner'); var colRow = colOwner.data[0]; var colModel = skuid.model.getModel('SelectedCollateral'); var selectedRow = colModel.data[0]; var pageTitle2 = $('#sk-2Ipz-2635'); // pagetitle unique id var editor2 = pageTitle2.data('object').editor; var owners = ''; var sum = 0; $.each(colOwner.getRows(),function(i,row){        sum = sum + row.clcommon__Ownership__c; });  if(sum&gt;100){     alert('Total ownership should not exceed 100%');     return false; } else{     if((colOwner.data).length &gt; 0){         $.each(colOwner.data,function(i,row){             if(i !== 0){                 owners = owners + ' and '+row.clcommon__Account__r.Name;             }             else if(i === 0){                 owners = owners+row.clcommon__Account__r.Name;             }         });         colModel.updateRow(selectedRow,'Mortgagor__c',owners);     }     return true; }</jsitem>
       <jsitem location="inlinesnippet" name="callEraseRedundantData" cachelocation="false">var params = arguments[0], 	$ = skuid.$; 	 var collateralModel = skuid.model.getModel('SelectedCollateral'); var appModel = skuid.model.getModel('Application'); sforce.apex.execute('EraseRedundantData','eraseHiddenFieldsDataOf', { objectName : 'clcommon__Collateral__c', paramId : collateralModel.data[0].Id }); if(collateralModel.data[0].clcommon__Value_Date__c !== null &amp;&amp; appModel.data[0].genesis__Expected_Start_Date__c !== null){     if(appModel.data[0].Actual_LVR__c !== null &amp;&amp; Number(appModel.data[0].Expected_LVR__c) &gt; 70){         var value1 = collateralModel.data[0].clcommon__Value_Date__c;         var value2 = appModel.data[0].genesis__Expected_Start_Date__c;         var date1 = new Date(value1);         var date2 = new Date(value2);         var diffInTime = date2.getTime() - date1.getTime();          var diffInMonths = diffInTime / (1000 * 3600 * 24 * 30);         console.log(diffInMonths);         console.log(collateralModel.data[0].Id);         if(diffInMonths &lt;= 3){             sforce.apex.execute('EraseRedundantData','eraseRelatedObjectFieldData',             {   objectName : 'clcommon__Collateral__c',                  sectionName : 'Check Val Section',                 renderedObjectName : 'clcommon__Collateral__c',                 paramId : collateralModel.data[0].Id,                 listOfIds : collateralModel.data[0].Id,                 isFieldData : true,                 listOffieldNamesIfFieldData : 'Check_Val_Received__c',                 shouldClearField : true             });         }     } } var officeModel = skuid.model.getModel('Office'); if(collateralModel.data[0].Construction__c === null || collateralModel.data[0].Construction__c !== 'Yes' || collateralModel.data[0].Estimated_Completion_Date__c === null){     console.log('Called');     sforce.apex.execute('EraseRedundantData','eraseRelatedObjectFieldData',     {   objectName : 'clcommon__Collateral__c',         sectionName : 'Check Val Section',         renderedObjectName : 'clcommon__Collateral__c',         paramId : collateralModel.data[0].Id,         listOfIds : collateralModel.data[0].Id,         isFieldData : true,         listOffieldNamesIfFieldData : 'Longer_than_12Month_Completion_Explanati__c',         shouldClearField : true     }); } var value1 = collateralModel.data[0].Estimated_Completion_Date__c; var value2 = officeModel.data[0].loan__Current_System_Date__c; var date1 = new Date(value1); var date2 = new Date(value2); var diffInTime = date1.getTime() - date2.getTime();  var diffInMonths = diffInTime / (1000 * 3600 * 24 * 30); if(diffInMonths &lt;= 12){     console.log('Called');     sforce.apex.execute('EraseRedundantData','eraseRelatedObjectFieldData',     {   objectName : 'clcommon__Collateral__c',          sectionName : 'Check Val Section',         renderedObjectName : 'clcommon__Collateral__c',         paramId : collateralModel.data[0].Id,         listOfIds : collateralModel.data[0].Id,         isFieldData : true,         listOffieldNamesIfFieldData : 'Longer_than_12Month_Completion_Explanati__c',         shouldClearField : true     }); }</jsitem>
       <jsitem location="inlinesnippet" cachelocation="false" name="checkValReceivedCheck">var params = arguments[0], 	$ = skuid.$; var collateralModel = skuid.model.getModel('SelectedCollateral'); var appModel = skuid.model.getModel('Application'); if(collateralModel.data[0].clcommon__Value_Date__c === null){     return false; } if(appModel.data[0].genesis__Expected_Start_Date__c === null){     return false; } if(appModel.data[0].Expected_LVR__c === null){     return false; } var value1 = collateralModel.data[0].clcommon__Value_Date__c; var value2 = appModel.data[0].genesis__Expected_Start_Date__c; var date1 = new Date(value1); var date2 = new Date(value2); var diffInTime = date2.getTime() - date1.getTime();  var diffInMonths = diffInTime / (1000 * 3600 * 24 * 30); console.log(Number(appModel.data[0].Expected_LVR__c)); if(diffInMonths &gt; 3 &amp;&amp; Number(appModel.data[0].Expected_LVR__c) &gt; 70){     console.log('returned true');     return true; } return false;</jsitem>
       <jsitem location="inlinesnippet" name="checkLongerCompletionExp" cachelocation="false">var params = arguments[0], 	$ = skuid.$; var collateralModel = skuid.model.getModel('SelectedCollateral'); var officeModel = skuid.model.getModel('Office');  var value1 = collateralModel.data[0].Estimated_Completion_Date__c; var value2 = officeModel.data[0].loan__Current_System_Date__c; var date2 = new Date(value1); var date1 = new Date(value2); var diffInTime = date2.getTime() - date1.getTime();  var diffInMonths = diffInTime / (1000 * 3600 * 24 * 30); if(diffInMonths &gt; 12){     console.log('returned true');     return true; } return false;</jsitem>
@@ -2148,6 +2256,7 @@
       <cssitem location="staticresource" name="CLSStyleSheetPack" cachelocation="false" url="" namespace="genesisExtn" filepath="customcss.css"/>
       <cssitem location="inline" name="cyclotroncss" cachelocation="false">  #collateralDetails-save-pt {     margin-top:-8px; }</cssitem>
       <cssitem location="inline" name="textCSS" cachelocation="false">    .nx-editor-header-heading {     color: #0288d1e3 !important;     font-size: 13px !important;     font-family: 'Lucida Grande','Lucida Sans',Arial,Helvetica,sans-serif;     }</cssitem>
+      <cssitem location="inline" name="requiredCss" cachelocation="false">#sk-2BYW-2878,#sk-2BYU-2862,#sk-2BYX-2895 .nx-template {     color: red; }</cssitem>
     </css>
     <actionsequences uniqueid="sk-3CqS-1819">
       <actionsequence id="21ba9f97-8044-4d0a-a048-2657f922a6c6" label="Page Load" type="event-triggered" event-scope="component" event-name="page.rendered" uniqueid="sk-1sDW-1310">
