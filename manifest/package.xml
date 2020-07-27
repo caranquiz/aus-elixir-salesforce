@@ -3,6 +3,7 @@
     <types>
         <!-- Rendering Changes made by Souvik -->
         <members>EraseRedundantData</members>
+        <members>EraseRedundantDataTest</members>
 
         <!-- Pricing Changes made by Rameswari -->
         <members>ConstantValues</members>

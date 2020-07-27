@@ -219,7 +219,16 @@
             </action>
           </actions>
         </button>
-        <button type="cancel" label="Cancel" uniqueid="sk-2C5G-509" window="self">
+        <button type="cancel" label="Cancel" uniqueid="sk-1oJk-463" window="self">
+          <models>
+            <model>PolicyException</model>
+            <model>PolicyExceptionTemplate</model>
+            <model>PolicyExceptionCreate</model>
+            <model>ApplicationStatus</model>
+            <model>Party</model>
+            <model>Application</model>
+            <model>ApplicationUtil</model>
+          </models>
           <renderconditions logictype="and">
             <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="false" fieldmodel="Application" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="Is_Approved__c" fieldtargetobjects="genesis__Applications__c" value="false"/>
           </renderconditions>
@@ -247,14 +256,8 @@
           <sections>
             <section uniqueid="sk-26Ex-1041" collapsible="no" title="Application Declined/Cancelled Details" showheader="false">
               <fields>
-                <field uniqueid="sk-26E--1074" id="Application_Declined_Cancelled_Reason__c">
-                  <renderconditions logictype="and" onhidedatabehavior="cancel"/>
-                  <enableconditions/>
-                </field>
-                <field uniqueid="sk-26F0-1079" id="Application_Declined_Cancelled_Details__c">
-                  <renderconditions logictype="and" onhidedatabehavior="cancel"/>
-                  <enableconditions/>
-                </field>
+                <field uniqueid="sk-26E--1074" id="Application_Declined_Cancelled_Reason__c"/>
+                <field uniqueid="sk-26F0-1079" id="Application_Declined_Cancelled_Details__c"/>
               </fields>
             </section>
           </sections>

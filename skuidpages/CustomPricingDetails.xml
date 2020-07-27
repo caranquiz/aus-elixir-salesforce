@@ -108,7 +108,7 @@
                 <condition type="fieldvalue" enclosevalueinquotes="false" fieldmodel="CommonApplicationModelPricing" sourcetype="modelproperty" sourceproperty="hasChanged" value="true" operator="="/>
               </enableconditions>
             </action>
-            <action type="cancel" label="Cancel" uniqueid="sk-2D1v-333" window="self">
+            <action type="cancel" label="Cancel" uniqueid="sk-1Cm2-332" window="self">
               <models>
                 <model>AmortizationScheduleCheck</model>
               </models>
