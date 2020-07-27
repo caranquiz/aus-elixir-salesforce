@@ -74,19 +74,7 @@ global with sharing class EraseRedundantData {
             return !refResult;
         }
         catch(Exception ex){
-            Database.insert(
-                new clcommon__Log__c(
-                    Name = 'EraseRedundantData',
-                    clcommon__Message__c = 'EraseRedundantData:' +
-                    '|::Exception occured in::' +
-                    ex.getStackTraceString() +
-                    '|::Error::' +
-                    ex.getMessage() +
-                    ' at Line Number::' +
-                    ex.getLineNumber(),
-                    clcommon__Time__c = System.Now()
-                )
-            );
+            GenericUtility.insertLog('EraseRedundantData', ex);
             return true;
         }
     }
@@ -304,19 +292,7 @@ global with sharing class EraseRedundantData {
             Database.update(objectData, false);
         }
         catch(Exception ex){
-            Database.insert(
-                new clcommon__Log__c(
-                    Name = 'EraseRedundantData',
-                    clcommon__Message__c = 'EraseRedundantData:' +
-                    '|::Exception occured in::' +
-                    ex.getStackTraceString() +
-                    '|::Error::' +
-                    ex.getMessage() +
-                    ' at Line Number::' +
-                    ex.getLineNumber(),
-                    clcommon__Time__c = System.Now()
-                )
-            );
+            GenericUtility.insertLog('EraseRedundantData', ex);
         }
     }
     webService static void eraseHiddenFieldsDataOfMultipleRecords(String objectName, String listOfIds){
@@ -388,19 +364,7 @@ global with sharing class EraseRedundantData {
             Database.update(objectDataList, false);
         }
         catch(Exception ex){
-            Database.insert(
-                new clcommon__Log__c(
-                    Name = 'EraseRedundantData',
-                    clcommon__Message__c = 'EraseRedundantData:' +
-                    '|::Exception occured in::' +
-                    ex.getStackTraceString() +
-                    '|::Error::' +
-                    ex.getMessage() +
-                    ' at Line Number::' +
-                    ex.getLineNumber(),
-                    clcommon__Time__c = System.Now()
-                )
-            );
+            GenericUtility.insertLog('EraseRedundantData', ex);
         }
     }
     static Boolean isRendered;
@@ -530,19 +494,7 @@ global with sharing class EraseRedundantData {
             }
         }
         catch(Exception ex){
-            Database.insert(
-                new clcommon__Log__c(
-                    Name = 'EraseRedundantData',
-                    clcommon__Message__c = 'EraseRedundantData:' +
-                    '|::Exception occured in::' +
-                    ex.getStackTraceString() +
-                    '|::Error::' +
-                    ex.getMessage() +
-                    ' at Line Number::' +
-                    ex.getLineNumber(),
-                    clcommon__Time__c = System.Now()
-                )
-            );
+            GenericUtility.insertLog('EraseRedundantData', ex);
         }
     }
 }
