@@ -1,0 +1,152 @@
+<skuidpage unsavedchangeswarning="yes" personalizationmode="server" showsidebar="true" useviewportmeta="true" showheader="true" theme="ElixirThemepPlan">
+  <models>
+    <model id="BorrowerApplication" limit="20" query="true" createrowifnonefound="false" datasource="salesforce" sobject="genesis__Applications__c">
+      <fields>
+        <field id="Id"/>
+        <field id="RecordTypeId"/>
+        <field id="RecordType.Name"/>
+        <field id="Total_HEM_Living_Expenses__c"/>
+        <field id="Interest_Cover_Ratio__c"/>
+        <field id="Net_Surplus_Income__c"/>
+        <field id="Debt_Service_Ratio__c"/>
+        <field id="Debt_to_Income_Ratio__c"/>
+        <field id="Is_Approved__c"/>
+        <field id="Monthly_Living_Expenses_Used__c" overridemetadata="false" ogdisplaytype="CURRENCY" displaytype="CURRENCY" defaultvaluetype="fieldvalue" defaultValue="0.00"/>
+        <field id="Total_Monthly_Living_Expenses_Declared__c" overridemetadata="false" ogdisplaytype="CURRENCY" displaytype="CURRENCY" defaultvaluetype="fieldvalue" defaultValue="0.00"/>
+      </fields>
+      <conditions>
+        <condition type="param" value="Id" field="Id" operator="=" enclosevalueinquotes="true"/>
+      </conditions>
+      <actions/>
+    </model>
+  </models>
+  <components>
+    <grid uniqueid="sk-1rrL-376">
+      <divisions>
+        <division behavior="flex" minwidth="100px" ratio="1" verticalalign="top">
+          <components>
+            <wrapper uniqueid="sk-1hSh-209">
+              <components>
+                <buttonset model="BorrowerApplication" uniqueid="sk-208A-1240">
+                  <buttons>
+                    <button type="multi" label="Save" uniqueid="sk-208A-1245">
+                      <actions>
+                        <action type="save">
+                          <models>
+                            <model>BorrowerApplication</model>
+                          </models>
+                        </action>
+                      </actions>
+                      <renderconditions logictype="and">
+                        <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="false" fieldmodel="BorrowerApplication" sourcetype="fieldvalue" field="Is_Approved__c" fieldtargetobjects="genesis__Applications__c" value="false"/>
+                      </renderconditions>
+                      <enableconditions logictype="and">
+                        <condition type="fieldvalue" enclosevalueinquotes="false" fieldmodel="BorrowerApplication" sourcetype="modelproperty" sourceproperty="hasChanged" value="true" operator="="/>
+                        <condition type="fieldvalue" operator="=" enclosevalueinquotes="false" fieldmodel="BorrowerApplication" sourcetype="fieldvalue" field="Is_Approved__c" fieldtargetobjects="genesis__Applications__c" value="false"/>
+                      </enableconditions>
+                    </button>
+                    <button type="cancel" uniqueid="sk-2GBx-264" window="self" label="Cancel" icon="sk-icon-cancel">
+                      <actions>
+                        <action type="cancel">
+                          <models>
+                            <model>BorrowerApplication</model>
+                          </models>
+                        </action>
+                      </actions>
+                      <renderconditions logictype="and">
+                        <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="false" fieldmodel="BorrowerApplication" sourcetype="fieldvalue" field="Is_Approved__c" fieldtargetobjects="genesis__Applications__c" value="false"/>
+                      </renderconditions>
+                      <enableconditions/>
+                    </button>
+                  </buttons>
+                </buttonset>
+                <basicfieldeditor showheader="true" showsavecancel="false" showerrorsinline="true" model="BorrowerApplication" uniqueid="sk-208J-1275" mode="edit">
+                  <columns>
+                    <column width="100%" uniqueid="sk-208J-1271">
+                      <sections>
+                        <section collapsible="no" uniqueid="sk-20Db-363" title="Details" showheader="false">
+                          <fields>
+                            <columns uniqueid="sk-20Dc-379" layoutmode="fixed">
+                              <column width="100%" uniqueid="sk-20Dc-369">
+                                <sections>
+                                  <section title="New Section" collapsible="no" uniqueid="sk-20Dc-370" showheader="false">
+                                    <fields>
+                                      <field uniqueid="sk-20CT-296" id="Net_Surplus_Income__c"/>
+                                      <field uniqueid="sk-20CV-312" id="Debt_Service_Ratio__c"/>
+                                      <field uniqueid="sk-20Cc-331" id="Debt_to_Income_Ratio__c"/>
+                                      <field uniqueid="sk-20CO-282" id="Interest_Cover_Ratio__c"/>
+                                      <field uniqueid="sk-20CM-262" id="Total_HEM_Living_Expenses__c">
+                                        <renderconditions logictype="and" onhidedatabehavior="keep"/>
+                                        <enableconditions/>
+                                      </field>
+                                      <field uniqueid="sk-2GDg-386" id="Total_Monthly_Living_Expenses_Declared__c" decimalplaces="2">
+                                        <renderconditions logictype="and" onhidedatabehavior="keep"/>
+                                        <enableconditions/>
+                                      </field>
+                                      <field uniqueid="sk-2GDi-393" id="Monthly_Living_Expenses_Used__c" decimalplaces="2"/>
+                                    </fields>
+                                  </section>
+                                </sections>
+                              </column>
+                            </columns>
+                          </fields>
+                        </section>
+                        <section title="Section A" uniqueid="sk-208J-1272" collapsible="no" showheader="false">
+                          <fields/>
+                        </section>
+                      </sections>
+                      <renderconditions logictype="and"/>
+                    </column>
+                  </columns>
+                  <renderconditions logictype="and"/>
+                </basicfieldeditor>
+              </components>
+              <styles>
+                <styleitem type="background" bgtype="color">
+                  <styles>
+                    <styleitem property="background-color" value="transparent"/>
+                  </styles>
+                </styleitem>
+                <styleitem type="border"/>
+                <styleitem type="size"/>
+              </styles>
+              <interactions/>
+              <renderconditions logictype="and"/>
+            </wrapper>
+          </components>
+        </division>
+      </divisions>
+      <styles>
+        <styleitem type="background" bgtype="color">
+          <styles>
+            <styleitem property="background-color" value="transparent"/>
+          </styles>
+        </styleitem>
+      </styles>
+      <renderconditions logictype="and"/>
+    </grid>
+  </components>
+  <resources>
+    <labels/>
+    <javascript/>
+    <css/>
+    <actionsequences uniqueid="sk-1hSz-322">
+      <actionsequence id="3db39258-3e15-430c-883d-c105b7b4a255" type="event-triggered" label="MakeFieldsViewOnly" event-scope="component" event-name="page.rendered" uniqueid="sk-2UVZ-395">
+        <description/>
+        <actions>
+          <action type="branch" whenfinished="stop" model="BorrowerApplication">
+            <iftrueactions>
+              <action type="runComponentAction" componentid="sk-208J-1275" action="changeMode" mode="read"/>
+            </iftrueactions>
+            <formula>{{Is_Approved__c}}</formula>
+          </action>
+        </actions>
+        <inputs/>
+      </actionsequence>
+    </actionsequences>
+  </resources>
+  <styles>
+    <styleitem type="background" bgtype="none"/>
+  </styles>
+  <interactions/>
+</skuidpage>

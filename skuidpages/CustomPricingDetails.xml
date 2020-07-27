@@ -94,12 +94,12 @@
                 <model>Cash Out</model>
               </models>
               <actions>
+                <action type="blockUI" message="The changes are being recorded!" timeout="3000"/>
                 <action type="save" window="self" rollbackonanyerror="true">
                   <models>
                     <model>CommonApplicationModelPricing</model>
                   </models>
                 </action>
-                <action type="blockUI" message="The changes are being recorded!" timeout="1000"/>
               </actions>
               <renderconditions logictype="and">
                 <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="false" fieldmodel="CommonApplicationModelPricing" sourcetype="fieldvalue" field="Is_Approved__c" fieldtargetobjects="genesis__Applications__c" value="false"/>
@@ -108,7 +108,7 @@
                 <condition type="fieldvalue" enclosevalueinquotes="false" fieldmodel="CommonApplicationModelPricing" sourcetype="modelproperty" sourceproperty="hasChanged" value="true" operator="="/>
               </enableconditions>
             </action>
-            <action type="cancel" label="Cancel" uniqueid="sk-1Cm2-332" window="self">
+            <action type="cancel" label="Cancel" uniqueid="sk-2D1v-333" window="self">
               <models>
                 <model>AmortizationScheduleCheck</model>
               </models>

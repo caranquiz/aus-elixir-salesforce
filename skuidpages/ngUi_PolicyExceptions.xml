@@ -194,6 +194,7 @@
             <condition type="fieldvalue" enclosevalueinquotes="false" fieldmodel="Application" sourcetype="modelproperty" nosourcerowbehavior="deactivate" sourceproperty="hasChanged" value="true" operator="=" model="ConditionHistory"/>
           </enableconditions>
           <actions>
+            <action type="blockUI" message="The changes are being recorded!" timeout="2000"/>
             <action type="save">
               <models>
                 <model>PolicyException</model>
@@ -212,6 +213,7 @@
             <condition type="fieldvalue" enclosevalueinquotes="false" fieldmodel="PolicyException" sourcetype="modelproperty" nosourcerowbehavior="deactivate" sourceproperty="hasChanged" value="true" operator="="/>
           </enableconditions>
           <actions>
+            <action type="blockUI" message="The changes are being recorded!" timeout="2000"/>
             <action type="save">
               <models>
                 <model>PolicyException</model>
@@ -219,7 +221,11 @@
             </action>
           </actions>
         </button>
-        <button type="cancel" label="Cancel" uniqueid="sk-1oJk-463" window="self">
+        <button type="cancel" label="Cancel" uniqueid="sk-2C5G-509" window="self">
+          <renderconditions logictype="and">
+            <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="false" fieldmodel="Application" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="Is_Approved__c" fieldtargetobjects="genesis__Applications__c" value="false"/>
+          </renderconditions>
+          <enableconditions/>
           <models>
             <model>PolicyException</model>
             <model>PolicyExceptionTemplate</model>
@@ -229,10 +235,6 @@
             <model>Application</model>
             <model>ApplicationUtil</model>
           </models>
-          <renderconditions logictype="and">
-            <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="false" fieldmodel="Application" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="Is_Approved__c" fieldtargetobjects="genesis__Applications__c" value="false"/>
-          </renderconditions>
-          <enableconditions/>
         </button>
       </buttons>
     </buttonset>
@@ -256,8 +258,14 @@
           <sections>
             <section uniqueid="sk-26Ex-1041" collapsible="no" title="Application Declined/Cancelled Details" showheader="false">
               <fields>
-                <field uniqueid="sk-26E--1074" id="Application_Declined_Cancelled_Reason__c"/>
-                <field uniqueid="sk-26F0-1079" id="Application_Declined_Cancelled_Details__c"/>
+                <field uniqueid="sk-26E--1074" id="Application_Declined_Cancelled_Reason__c">
+                  <renderconditions logictype="and" onhidedatabehavior="cancel"/>
+                  <enableconditions/>
+                </field>
+                <field uniqueid="sk-26F0-1079" id="Application_Declined_Cancelled_Details__c">
+                  <renderconditions logictype="and" onhidedatabehavior="cancel"/>
+                  <enableconditions/>
+                </field>
               </fields>
             </section>
           </sections>
@@ -332,7 +340,7 @@
                                       </field>
                                       <field uniqueid="sk-1kYz-501" id="Description1__c">
                                         <label>Description</label>
-                                        <renderconditions logictype="and" onhidedatabehavior="keep"/>
+                                        <renderconditions logictype="and" onhidedatabehavior="cancel"/>
                                         <enableconditions logictype="and">
                                           <condition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="PolicyExceptionCreate" sourcetype="fieldvalue" field="genesis__Condition_Type__c" fieldtargetobjects="genesis__Policy_Exception__c" value="Other" model="ConditionHistory"/>
                                         </enableconditions>
@@ -345,9 +353,12 @@
                                         <enableconditions/>
                                         <searchfields/>
                                       </field>
-                                      <field uniqueid="sk-1Qzy-898" id="genesis__Status__c"/>
+                                      <field uniqueid="sk-1Qzy-898" id="genesis__Status__c">
+                                        <renderconditions logictype="and" onhidedatabehavior="cancel"/>
+                                        <enableconditions/>
+                                      </field>
                                       <field uniqueid="sk-1kYt-477" id="Waiver_Reason__c">
-                                        <renderconditions logictype="and" onhidedatabehavior="keep">
+                                        <renderconditions logictype="and" onhidedatabehavior="cancel">
                                           <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="PolicyExceptionCreate" sourcetype="fieldvalue" field="genesis__Status__c" fieldtargetobjects="genesis__Policy_Exception__c" value="Waived"/>
                                         </renderconditions>
                                         <enableconditions/>
@@ -395,7 +406,7 @@
                     </action>
                     <action type="custom" snippet="initPolicyExceptionCreate"/>
                     <action type="requeryModel" model="PolicyExceptionCreate" behavior="standard"/>
-                    <action type="createRow" model="PolicyExceptionCreate" behavior="standard" appendorprepend="prepend" defaultmodefornewitems="edit"/>
+                    <action type="createRow" model="PolicyExceptionCreate" behavior="standard" appendorprepend="prepend" defaultmodefornewitems="edit" affectedrows="context"/>
                   </actions>
                   <renderconditions logictype="and">
                     <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="false" fieldmodel="Application" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="Is_Approved__c" fieldtargetobjects="genesis__Applications__c" value="false"/>

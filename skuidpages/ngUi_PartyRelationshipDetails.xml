@@ -217,6 +217,25 @@
       </conditions>
       <actions/>
     </model>
+    <model id="PartiesContact" limit="20" query="true" createrowifnonefound="false" datasource="salesforce" sobject="Contact">
+      <fields>
+        <field id="RecordTypeId"/>
+      </fields>
+      <conditions>
+        <condition type="modelmerge" value="" field="AccountId" fieldtargetobjects="Account" operator="=" model="CLENGParty" enclosevalueinquotes="true" mergefield="clcommon__Account__c" novaluebehavior="deactivate"/>
+      </conditions>
+      <actions/>
+    </model>
+    <model id="CLENGParty" limit="20" query="true" createrowifnonefound="false" datasource="salesforce" sobject="clcommon__Party__c">
+      <fields>
+        <field id="clcommon__Account__c"/>
+        <field id="clcommon__Account__r.Name"/>
+      </fields>
+      <conditions>
+        <condition type="param" value="Id" field="Id" operator="=" enclosevalueinquotes="true"/>
+      </conditions>
+      <actions/>
+    </model>
   </models>
   <components>
     <grid uniqueid="sk-3uyyZv-428">
@@ -356,13 +375,17 @@
                                       </values>
                                     </rendercondition>
                                   </renderconditions>
+                                  <interactions/>
                                 </wrapper>
                               </components>
                               <oninitialshowactions/>
                               <onshowactions>
                                 <action type="requeryModels" datasource="SkuidDataService" model="PartiesContact" behavior="standard">
                                   <models>
+                                    <model>Account</model>
                                     <model>CLEParty</model>
+                                    <model>PartiesContact</model>
+                                    <model>CLENGParty</model>
                                   </models>
                                 </action>
                               </onshowactions>

@@ -11,3 +11,5 @@ CustomIdentification
 CustomLivingExpenses
 CustomPricingDetails
 PartyRelationshipDetails
+NGLoanDashBoard
+CustomServiceabilityPage

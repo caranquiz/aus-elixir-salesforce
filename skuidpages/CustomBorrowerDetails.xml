@@ -106,7 +106,7 @@
         <field id="Aggregator__c"/>
         <field id="Aggregator__r.Name"/>
         <field id="Total Fees Amount" uionly="true" displaytype="FORMULA" ogdisplaytype="TEXT" readonly="true" returntype="CURRENCY" precision="9" scale="2">
-          <formula>IF(ISBLANK({{Valuation_Fee__c}}),0,{{Valuation_Fee__c}}) + IF(ISBLANK({{Associated_Out_of_Pocket_Expense_Fee__c}}),0,{{Associated_Out_of_Pocket_Expense_Fee__c}}) +IF(ISBLANK({{Application_Fee__c}}),0,{{Application_Fee__c}}) +IF(ISBLANK({{Settlement_Advance_Fee__c}}),0,{{Settlement_Advance_Fee__c}}) + IF(ISBLANK({{Settlement_Rescheduling_Fee__c}}),0,{{Settlement_Rescheduling_Fee__c}})+IF(ISBLANK({{Regulated_Product_Lender_s_Legals__c}}),0,{{Regulated_Product_Lender_s_Legals__c}})+IF(ISBLANK({{Credit_Providers_Mortgage_Insurance__c}}),0,{{Credit_Providers_Mortgage_Insurance__c}})+IF(ISBLANK({{Non_Regulated_Product_Lender_s_Legals__c}}),0,{{Non_Regulated_Product_Lender_s_Legals__c}})+IF(ISBLANK({{Mortgage_Registration_Fee__c}}),0,{{Mortgage_Registration_Fee__c}})+IF(ISBLANK({{Title_Insurance_Fee__c}}),0,{{Title_Insurance_Fee__c}})+IF(ISBLANK({{Rate_Lock_In_Fee__c}}),0,{{Rate_Lock_In_Fee__c}})+IF(ISBLANK({{General_Security_Agreement_GSA_Fee__c}}),0,{{General_Security_Agreement_GSA_Fee__c}})+IF(ISBLANK({{Mortgage_Stamp_Duty__c}}),0,{{Mortgage_Stamp_Duty__c}})+IF(ISBLANK({{Commission_Mandate_Amount__c}}),0,{{Commission_Mandate_Amount__c}})</formula>
+          <formula>IF(ISBLANK({{Valuation_Fee__c}}),0,{{Valuation_Fee__c}}) + IF(ISBLANK({{Associated_Out_of_Pocket_Expense_Fee__c}}),0,{{Associated_Out_of_Pocket_Expense_Fee__c}}) +IF(ISBLANK({{Application_Fee__c}}),0,{{Application_Fee__c}}) +IF(ISBLANK({{Settlement_Advance_Fee__c}}),0,{{Settlement_Advance_Fee__c}}) + IF(ISBLANK({{Settlement_Rescheduling_Fee__c}}),0,{{Settlement_Rescheduling_Fee__c}})+IF(ISBLANK({{Regulated_Product_Lender_s_Legals__c}}),0,{{Regulated_Product_Lender_s_Legals__c}})+IF(ISBLANK({{Credit_Providers_Mortgage_Insurance__c}}),0,{{Credit_Providers_Mortgage_Insurance__c}})+IF(ISBLANK({{Non_Regulated_Product_Lender_s_Legals__c}}),0,{{Non_Regulated_Product_Lender_s_Legals__c}})+IF(ISBLANK({{Mortgage_Registration_Fee__c}}),0,{{Mortgage_Registration_Fee__c}})+IF(ISBLANK({{Title_Insurance_Fee__c}}),0,{{Title_Insurance_Fee__c}})+IF(ISBLANK({{Rate_Lock_In_Fee__c}}),0,{{Rate_Lock_In_Fee__c}})+IF(ISBLANK({{General_Security_Agreement_GSA_Fee__c}}),0,{{General_Security_Agreement_GSA_Fee__c}})+IF(ISBLANK({{Mortgage_Stamp_Duty__c}}),0,{{Mortgage_Stamp_Duty__c}})+IF(ISBLANK({{Commission_Mandate_Amount__c}}),0,{{Commission_Mandate_Amount__c}})+IF(ISBLANK({{PEXA_Transaction_Fee__c}}),0,{{PEXA_Transaction_Fee__c}})+IF(ISBLANK({{Re_documentation_Fee__c}}),0,{{Re_documentation_Fee__c}})</formula>
         </field>
         <field id="LMI_Approved__c"/>
         <field id="Repayment_Type__c"/>
@@ -187,6 +187,10 @@
         <field id="Cash_Out_Purpose_Explanation_Provided__c"/>
         <field id="Cash_Out_Purpose_Suitable_Commentary__c"/>
         <field id="Confirm_repayments_do_not_double__c"/>
+        <field id="Replacement_Value__c"/>
+        <field id="Interest_Only_Suitable__c"/>
+        <field id="Interest_Only_Commentary__c"/>
+        <field id="Is_the_Application_Form_fully_completed__c"/>
       </fields>
       <conditions>
         <condition type="param" value="Id" field="Id" operator="=" enclosevalueinquotes="true" model="DebtConsolidation"/>
@@ -373,12 +377,32 @@
               <components>
                 <pagetitle uniqueid="sk-1hSj-222" model="CommonApplicationLoanDetails">
                   <actions>
+                    <action type="multi" label="Generate Pricing" uniqueid="sk-1vkb-1025">
+                      <actions>
+                        <action type="custom" snippet="Generate Pricing"/>
+                        <action type="requeryModel" model="CommonApplicationLoanDetails" behavior="standard"/>
+                      </actions>
+                      <renderconditions logictype="and">
+                        <rendercondition type="multiple" operator="in" fieldmodel="CommonApplicationLoanDetails" sourcetype="fieldvalue" field="genesis__Status__c" fieldtargetobjects="genesis__Applications__c" value="" enclosevalueinquotes="true">
+                          <values>
+                            <value>App Received</value>
+                            <value>App Processed</value>
+                            <value>App Processed</value>
+                            <value>Indicative Accepted</value>
+                            <value>Val Ordered</value>
+                            <value>Val Received</value>
+                          </values>
+                        </rendercondition>
+                      </renderconditions>
+                      <enableconditions/>
+                    </action>
                     <action type="multi" uniqueid="sk-1lbe-355" window="self" label="Save" icon="sk-webicon-font-awesome:floppy-o">
                       <models>
                         <model>Loan_Application</model>
                         <model>Cash Out</model>
                       </models>
                       <actions>
+                        <action type="blockUI" message="The changes are being recorded!" timeout="8000"/>
                         <action type="custom" snippet="DataLockingConfirmationPopupLoanDetails"/>
                         <action type="save" window="self" rollbackonanyerror="true">
                           <models>
@@ -387,6 +411,7 @@
                             <model>DebtConsolidation</model>
                           </models>
                         </action>
+                        <action type="custom" snippet="approvedReload"/>
                         <action type="custom" snippet="callEraseRedundantData"/>
                         <action type="requeryModels" model="CommonApplicationLoanDetails" behavior="standard">
                           <models>
@@ -402,8 +427,6 @@
                             <model>QBEModel</model>
                           </models>
                         </action>
-                        <action type="blockUI" message="The changes are being recorded!" timeout="1000"/>
-                        <action type="custom" snippet="approvedReload"/>
                       </actions>
                       <renderconditions logictype="and">
                         <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="false" fieldmodel="CommonApplicationLoanDetails" sourcetype="fieldvalue" field="Is_Approved__c" fieldtargetobjects="genesis__Applications__c" value="false"/>
@@ -508,6 +531,11 @@
                                             </renderconditions>
                                             <enableconditions/>
                                           </field>
+                                          <field uniqueid="sk-2BCt-1151" id="Interest_Only_Suitable__c"/>
+                                          <field uniqueid="sk-2BCt-1159" id="Interest_Only_Commentary__c" displayrows="3">
+                                            <renderconditions logictype="and" onhidedatabehavior="keep"/>
+                                            <enableconditions/>
+                                          </field>
                                           <field uniqueid="sk-1oRR-1037" id="Exit_Strategy_Provided__c">
                                             <renderconditions logictype="and" onhidedatabehavior="cancel">
                                               <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="CommonApplicationLoanDetails" sourcetype="fieldvalue" field="Repayment_Type__c" fieldtargetobjects="genesis__Applications__c" value="Interest Only"/>
@@ -520,7 +548,7 @@
                                             </renderconditions>
                                             <enableconditions/>
                                           </field>
-                                          <field uniqueid="sk-1oS9-1062" id="Exit_Strategy_Commentary__c">
+                                          <field uniqueid="sk-1oS9-1062" id="Exit_Strategy_Commentary__c" displayrows="3">
                                             <renderconditions logictype="and" onhidedatabehavior="cancel">
                                               <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="CommonApplicationLoanDetails" sourcetype="fieldvalue" field="Repayment_Type__c" fieldtargetobjects="genesis__Applications__c" value="Interest Only"/>
                                             </renderconditions>
@@ -551,14 +579,7 @@
                                           <field uniqueid="sk-1hWt-554" id="genesis__Term__c" snippet="fieldRenderer3">
                                             <label>Term Duration (Months)</label>
                                             <renderconditions logictype="and" onhidedatabehavior="cancel">
-                                              <rendercondition type="multiple" operator="in" fieldmodel="CommonApplicationLoanDetails" sourcetype="fieldvalue" field="Repayment_Type__c" fieldtargetobjects="genesis__Applications__c" value="" enclosevalueinquotes="true">
-                                                <values>
-                                                  <value>Principal and Interest</value>
-                                                  <value>Interest Only</value>
-                                                  <value>Prepaid Interest</value>
-                                                  <value>Interest Only reverting to Principal and Interest</value>
-                                                </values>
-                                              </rendercondition>
+                                              <rendercondition type="blank" operator="!=" fieldmodel="CommonApplicationLoanDetails" sourcetype="fieldvalue" field="Repayment_Type__c" fieldtargetobjects="genesis__Applications__c" value="null" enclosevalueinquotes="false"/>
                                             </renderconditions>
                                             <enableconditions/>
                                           </field>
@@ -585,6 +606,7 @@
                                           <field uniqueid="sk-1obg-1229" id="Fixed_Rate_Lock_In_Date__c">
                                             <renderconditions logictype="and" onhidedatabehavior="cancel">
                                               <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="CommonApplicationLoanDetails" sourcetype="fieldvalue" field="Interest_type__c" fieldtargetobjects="genesis__Applications__c" value="Fixed Rate"/>
+                                              <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="CommonApplicationLoanDetails" sourcetype="fieldvalue" field="Fixed_Rate_Lock_In__c" fieldtargetobjects="genesis__Applications__c" value="Yes"/>
                                             </renderconditions>
                                             <enableconditions/>
                                           </field>
@@ -745,6 +767,18 @@
                                             <renderconditions logictype="and" onhidedatabehavior="keep"/>
                                             <enableconditions/>
                                           </field>
+                                          <field uniqueid="sk-1p1p-1614" id="Cash_Out_Purpose_Explanation_Provided__c">
+                                            <renderconditions logictype="and" onhidedatabehavior="cancel">
+                                              <rendercondition type="fieldvalue" operator="includes" enclosevalueinquotes="true" fieldmodel="CommonApplicationLoanDetails" sourcetype="fieldvalue" field="Refinance_purpose_list__c" fieldtargetobjects="genesis__Applications__c" value="Refinance - Cash Out"/>
+                                            </renderconditions>
+                                            <enableconditions/>
+                                          </field>
+                                          <field uniqueid="sk-1p1r-1626" id="Cash_Out_Purpose_Suitable_Commentary__c">
+                                            <renderconditions logictype="and" onhidedatabehavior="cancel">
+                                              <rendercondition type="fieldvalue" operator="includes" enclosevalueinquotes="true" fieldmodel="CommonApplicationLoanDetails" sourcetype="fieldvalue" field="Refinance_purpose_list__c" fieldtargetobjects="genesis__Applications__c" value="Refinance - Cash Out"/>
+                                            </renderconditions>
+                                            <enableconditions/>
+                                          </field>
                                         </fields>
                                       </section>
                                     </sections>
@@ -776,19 +810,7 @@
                                             </renderconditions>
                                             <enableconditions/>
                                           </field>
-                                          <field uniqueid="sk-1p1p-1614" id="Cash_Out_Purpose_Explanation_Provided__c">
-                                            <renderconditions logictype="and" onhidedatabehavior="cancel">
-                                              <rendercondition type="fieldvalue" operator="includes" enclosevalueinquotes="true" fieldmodel="CommonApplicationLoanDetails" sourcetype="fieldvalue" field="Refinance_purpose_list__c" fieldtargetobjects="genesis__Applications__c" value="Refinance - Cash Out"/>
-                                            </renderconditions>
-                                            <enableconditions/>
-                                          </field>
                                           <field uniqueid="sk-1p1q-1620" id="Cash_Out_Purpose_Suitable__c">
-                                            <renderconditions logictype="and" onhidedatabehavior="cancel">
-                                              <rendercondition type="fieldvalue" operator="includes" enclosevalueinquotes="true" fieldmodel="CommonApplicationLoanDetails" sourcetype="fieldvalue" field="Refinance_purpose_list__c" fieldtargetobjects="genesis__Applications__c" value="Refinance - Cash Out"/>
-                                            </renderconditions>
-                                            <enableconditions/>
-                                          </field>
-                                          <field uniqueid="sk-1p1r-1626" id="Cash_Out_Purpose_Suitable_Commentary__c">
                                             <renderconditions logictype="and" onhidedatabehavior="cancel">
                                               <rendercondition type="fieldvalue" operator="includes" enclosevalueinquotes="true" fieldmodel="CommonApplicationLoanDetails" sourcetype="fieldvalue" field="Refinance_purpose_list__c" fieldtargetobjects="genesis__Applications__c" value="Refinance - Cash Out"/>
                                             </renderconditions>
@@ -1464,7 +1486,7 @@
                                     <sections>
                                       <section title="New Section" collapsible="no" uniqueid="sk-cHF-5555" showheader="false">
                                         <fields>
-                                          <field uniqueid="sk-cHF-5556" id="Valuation_Fee__c">
+                                          <field uniqueid="sk-1mW9-1049" id="Valuation_Fee_Collected_at_Settlement__c">
                                             <renderconditions logictype="and" onhidedatabehavior="keep"/>
                                             <enableconditions/>
                                           </field>
@@ -1510,7 +1532,7 @@
                                     <sections>
                                       <section title="New Section" collapsible="no" uniqueid="sk-cHF-5563" showheader="false">
                                         <fields>
-                                          <field uniqueid="sk-1mW9-1049" id="Valuation_Fee_Collected_at_Settlement__c">
+                                          <field uniqueid="sk-cHF-5556" id="Valuation_Fee__c">
                                             <renderconditions logictype="and" onhidedatabehavior="keep"/>
                                             <enableconditions/>
                                           </field>
@@ -1645,31 +1667,184 @@
                       <sections>
                         <section title="Applicant Consents" uniqueid="sk-15gM-656" collapsible="no">
                           <fields>
-                            <field uniqueid="sk-15lc-749" id="Signed_The_Form__c">
-                              <label>Have all applicants signed the Application Form?</label>
-                              <renderconditions logictype="and" onhidedatabehavior="keep"/>
-                              <enableconditions/>
-                            </field>
-                            <field uniqueid="sk-15ld-753" id="signed_the_Privacy_Act_Consent__c">
-                              <label>Have all applicants signed the Privacy Act Consent?</label>
-                              <renderconditions logictype="and" onhidedatabehavior="keep"/>
-                              <enableconditions/>
-                            </field>
-                            <field uniqueid="sk-15m3-789" id="Allow_Credit_Check__c">
-                              <renderconditions logictype="and" onhidedatabehavior="cancel">
-                                <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="CommonApplicationLoanDetails" sourcetype="fieldvalue" field="Signed_The_Form__c" fieldtargetobjects="genesis__Applications__c" value="Yes"/>
-                                <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="CommonApplicationLoanDetails" sourcetype="fieldvalue" field="signed_the_Privacy_Act_Consent__c" fieldtargetobjects="genesis__Applications__c" value="Yes"/>
-                              </renderconditions>
-                              <enableconditions/>
-                            </field>
-                            <field uniqueid="sk-15mB-819" id="Allow_Direct_Marketing__c">
-                              <renderconditions logictype="and" onhidedatabehavior="keep"/>
-                              <enableconditions/>
-                            </field>
-                            <field uniqueid="sk-15mB-823" id="Allow_Telemarketing__c">
-                              <renderconditions logictype="and" onhidedatabehavior="keep"/>
-                              <enableconditions/>
-                            </field>
+                            <columns uniqueid="sk-2BEq-1277" layoutmode="fixed">
+                              <column width="100%" uniqueid="sk-2BEq-1262">
+                                <sections>
+                                  <section title="New Section" collapsible="no" uniqueid="sk-2BEq-1263" showheader="false">
+                                    <fields>
+                                      <field uniqueid="sk-2BG7-1519" id="Is_the_Application_Form_fully_completed__c"/>
+                                    </fields>
+                                  </section>
+                                </sections>
+                              </column>
+                            </columns>
+                            <columns uniqueid="sk-2BQV-1643" layoutmode="fixed">
+                              <column width="80%" uniqueid="sk-2BQV-1618">
+                                <sections>
+                                  <section title="New Section" collapsible="no" uniqueid="sk-2BQV-1619" showheader="false">
+                                    <fields>
+                                      <field uniqueid="sk-15lc-749" id="Signed_The_Form__c">
+                                        <label>Have all applicants signed the Application Form?</label>
+                                        <renderconditions logictype="and" onhidedatabehavior="keep"/>
+                                        <enableconditions/>
+                                      </field>
+                                    </fields>
+                                  </section>
+                                </sections>
+                              </column>
+                              <column width="20%" uniqueid="sk-2BQX-1646">
+                                <sections>
+                                  <section title="New Section" collapsible="no" uniqueid="sk-2BQX-1647" showheader="false">
+                                    <fields>
+                                      <field uniqueid="sk-2BF0-1323" type="COMBO" editmodebehavior="autopopup" cssclass="requiredCss" readonly="true">
+                                        <label>Required</label>
+                                        <template>
+                                          <contents/>
+                                        </template>
+                                        <renderconditions logictype="and" onhidedatabehavior="cancel">
+                                          <rendercondition type="blank" operator="=" fieldmodel="CommonApplicationLoanDetails" sourcetype="fieldvalue" field="Signed_The_Form__c" fieldtargetobjects="genesis__Applications__c" value="null" enclosevalueinquotes="false"/>
+                                        </renderconditions>
+                                        <enableconditions/>
+                                      </field>
+                                    </fields>
+                                  </section>
+                                </sections>
+                              </column>
+                            </columns>
+                            <columns uniqueid="sk-2BRx-2903" layoutmode="fixed">
+                              <column width="80%" uniqueid="sk-2BRx-2875">
+                                <sections>
+                                  <section title="New Section" collapsible="no" uniqueid="sk-2BRx-2876" showheader="false">
+                                    <fields>
+                                      <field uniqueid="sk-15ld-753" id="signed_the_Privacy_Act_Consent__c">
+                                        <label>Have all applicants signed the Privacy Act Consent?</label>
+                                        <renderconditions logictype="and" onhidedatabehavior="keep"/>
+                                        <enableconditions/>
+                                      </field>
+                                    </fields>
+                                  </section>
+                                </sections>
+                              </column>
+                              <column width="20%" uniqueid="sk-2BRz-3001">
+                                <sections>
+                                  <section title="New Section" collapsible="no" uniqueid="sk-2BRz-3002" showheader="false">
+                                    <fields>
+                                      <field uniqueid="sk-2BFR-1389" type="COMBO" editmodebehavior="autopopup" readonly="true" cssclass="requiredCss">
+                                        <label>Required</label>
+                                        <template>
+                                          <contents/>
+                                        </template>
+                                        <renderconditions logictype="and" onhidedatabehavior="keep">
+                                          <rendercondition type="blank" operator="=" fieldmodel="CommonApplicationLoanDetails" sourcetype="fieldvalue" field="signed_the_Privacy_Act_Consent__c" fieldtargetobjects="genesis__Applications__c" value="null" enclosevalueinquotes="false"/>
+                                        </renderconditions>
+                                        <enableconditions/>
+                                      </field>
+                                    </fields>
+                                  </section>
+                                </sections>
+                              </column>
+                            </columns>
+                            <columns uniqueid="sk-2BRx-2933" layoutmode="fixed">
+                              <column width="80%" uniqueid="sk-2BRx-2904">
+                                <sections>
+                                  <section title="New Section" collapsible="no" uniqueid="sk-2BRx-2905" showheader="false">
+                                    <fields>
+                                      <field uniqueid="sk-15m3-789" id="Allow_Credit_Check__c">
+                                        <renderconditions logictype="and" onhidedatabehavior="cancel">
+                                          <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="CommonApplicationLoanDetails" sourcetype="fieldvalue" field="Signed_The_Form__c" fieldtargetobjects="genesis__Applications__c" value="Yes"/>
+                                          <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="CommonApplicationLoanDetails" sourcetype="fieldvalue" field="signed_the_Privacy_Act_Consent__c" fieldtargetobjects="genesis__Applications__c" value="Yes"/>
+                                        </renderconditions>
+                                        <enableconditions/>
+                                      </field>
+                                    </fields>
+                                  </section>
+                                </sections>
+                              </column>
+                              <column width="20%" uniqueid="sk-2BRz-3008">
+                                <sections>
+                                  <section title="New Section" collapsible="no" uniqueid="sk-2BRz-3009" showheader="false">
+                                    <fields>
+                                      <field uniqueid="sk-2BFV-1403" type="COMBO" editmodebehavior="autopopup" readonly="true" cssclass="requiredCss">
+                                        <label>Required</label>
+                                        <template>
+                                          <contents/>
+                                        </template>
+                                        <renderconditions logictype="and" onhidedatabehavior="keep">
+                                          <rendercondition type="blank" operator="=" fieldmodel="CommonApplicationLoanDetails" sourcetype="fieldvalue" field="Allow_Credit_Check__c" fieldtargetobjects="genesis__Applications__c" value="null" enclosevalueinquotes="false"/>
+                                          <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="CommonApplicationLoanDetails" sourcetype="fieldvalue" field="signed_the_Privacy_Act_Consent__c" fieldtargetobjects="genesis__Applications__c" value="Yes"/>
+                                          <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="CommonApplicationLoanDetails" sourcetype="fieldvalue" field="Signed_The_Form__c" fieldtargetobjects="genesis__Applications__c" value="Yes"/>
+                                        </renderconditions>
+                                        <enableconditions/>
+                                      </field>
+                                    </fields>
+                                  </section>
+                                </sections>
+                              </column>
+                            </columns>
+                            <columns uniqueid="sk-2BRx-2965" layoutmode="fixed">
+                              <column width="80%" uniqueid="sk-2BRx-2934">
+                                <sections>
+                                  <section title="New Section" collapsible="no" uniqueid="sk-2BRx-2935" showheader="false">
+                                    <fields>
+                                      <field uniqueid="sk-15mB-819" id="Allow_Direct_Marketing__c">
+                                        <renderconditions logictype="and" onhidedatabehavior="keep"/>
+                                        <enableconditions/>
+                                      </field>
+                                    </fields>
+                                  </section>
+                                </sections>
+                              </column>
+                              <column width="20%" uniqueid="sk-2BR_-3015">
+                                <sections>
+                                  <section title="New Section" collapsible="no" uniqueid="sk-2BR_-3016" showheader="false">
+                                    <fields>
+                                      <field uniqueid="sk-2BFQ-1382" type="COMBO" editmodebehavior="autopopup" readonly="true" cssclass="requiredCss">
+                                        <label>Required</label>
+                                        <template>
+                                          <contents/>
+                                        </template>
+                                        <renderconditions logictype="and" onhidedatabehavior="keep">
+                                          <rendercondition type="blank" operator="=" fieldmodel="CommonApplicationLoanDetails" sourcetype="fieldvalue" field="Allow_Direct_Marketing__c" fieldtargetobjects="genesis__Applications__c" value="null" enclosevalueinquotes="false"/>
+                                        </renderconditions>
+                                        <enableconditions/>
+                                      </field>
+                                    </fields>
+                                  </section>
+                                </sections>
+                              </column>
+                            </columns>
+                            <columns uniqueid="sk-2BRy-2999" layoutmode="fixed">
+                              <column width="80%" uniqueid="sk-2BRy-2966">
+                                <sections>
+                                  <section title="New Section" collapsible="no" uniqueid="sk-2BRy-2967" showheader="false">
+                                    <fields>
+                                      <field uniqueid="sk-15mB-823" id="Allow_Telemarketing__c">
+                                        <renderconditions logictype="and" onhidedatabehavior="keep"/>
+                                        <enableconditions/>
+                                      </field>
+                                    </fields>
+                                  </section>
+                                </sections>
+                              </column>
+                              <column width="20%" uniqueid="sk-2BR_-3022">
+                                <sections>
+                                  <section title="New Section" collapsible="no" uniqueid="sk-2BR_-3023" showheader="false">
+                                    <fields>
+                                      <field uniqueid="sk-2BFU-1396" type="COMBO" editmodebehavior="autopopup" cssclass="requiredCss" readonly="true">
+                                        <label>Required</label>
+                                        <template>
+                                          <contents/>
+                                        </template>
+                                        <renderconditions logictype="and" onhidedatabehavior="keep">
+                                          <rendercondition type="blank" operator="=" fieldmodel="CommonApplicationLoanDetails" sourcetype="fieldvalue" field="Allow_Telemarketing__c" fieldtargetobjects="genesis__Applications__c" value="null" enclosevalueinquotes="false"/>
+                                        </renderconditions>
+                                        <enableconditions/>
+                                      </field>
+                                    </fields>
+                                  </section>
+                                </sections>
+                              </column>
+                            </columns>
                           </fields>
                           <renderconditions logictype="and"/>
                         </section>
@@ -1677,6 +1852,7 @@
                           <fields/>
                         </section>
                       </sections>
+                      <renderconditions logictype="and"/>
                     </column>
                   </columns>
                   <renderconditions logictype="and"/>
@@ -1740,9 +1916,12 @@
       <jsitem location="inlinesnippet" name="SumOfExpenses" cachelocation="false">var params = arguments[0], 	$ = skuid.$; var appModel = skuid.model.getModel('CommonApplicationLoanDetails'); var appRow = appModel.data[0];  var mortgageModel = skuid.model.getModel('MortgageModel'); var mortgageRow = mortgageModel.data[0];  var debtModel= skuid.model.getModel('DebtConsolidation'); var debtRow = debtModel.data[0];  var totalAmount =0, mortgageSum =0, debtSum=0;  $.each(mortgageModel.getRows(),function(i,row){        mortgageSum = mortgageSum + row.Refinance_Mortgages_Amount__c; }); $.each(debtModel.getRows(),function(i,row){        debtSum = debtSum + row.Refinance_Consolidation_Amount__c; }); if(appRow.House_dewelling_Amount__c === null || appRow.House_dewelling_Amount__c === undefined || appRow.House_dewelling_Amount__c ===''){     appRow.House_dewelling_Amount__c =0.00; } if(appRow.Other_dewelling_Amount__c === null || appRow.Other_dewelling_Amount__c === undefined || appRow.Other_dewelling_Amount__c ===''){     appRow.Other_dewelling_Amount__c =0.00; } if(appRow.Purchase_Existing_Amount__c === null || appRow.Purchase_Existing_Amount__c === undefined || appRow.Purchase_Existing_Amount__c ===''){     appRow.Purchase_Existing_Amount__c =0.00; } if(appRow.Purchase_New_Amount__c === null || appRow.Purchase_New_Amount__c === undefined || appRow.Purchase_New_Amount__c ===''){     appRow.Purchase_New_Amount__c =0.00; } if(appRow.Purchase_Off_the_Plan_Amount__c === null || appRow.Purchase_Off_the_Plan_Amount__c === undefined || appRow.Purchase_Off_the_Plan_Amount__c ===''){     appRow.Purchase_Off_the_Plan_Amount__c =0.00; } if(appRow.Buy_Asset_Investment_Amount__c === null || appRow.Buy_Asset_Investment_Amount__c === undefined || appRow.Buy_Asset_Investment_Amount__c ===''){     appRow.Buy_Asset_Investment_Amount__c =0.00; }  if(appRow.Marketing_Advertising_Amount__c === null || appRow.Marketing_Advertising_Amount__c === undefined || appRow.Marketing_Advertising_Amount__c ===''){     appRow.Marketing_Advertising_Amount__c =0.00; }  if(appRow.Business_Other_Amount__c === null || appRow.Business_Other_Amount__c === undefined || appRow.Business_Other_Amount__c ===''){     appRow.Business_Other_Amount__c =0.00; }  if(appRow.Purchase_Business_Amount__c === null || appRow.Purchase_Business_Amount__c === undefined || appRow.Purchase_Business_Amount__c ===''){     appRow.Purchase_Business_Amount__c =0.00; }  if(appRow.Working_Capital_Amount__c === null || appRow.Working_Capital_Amount__c === undefined || appRow.Working_Capital_Amount__c ===''){     appRow.Working_Capital_Amount__c =0.00; }  if(appRow.Divorce_Settlement_Amount__c === null || appRow.Divorce_Settlement_Amount__c === undefined || appRow.Divorce_Settlement_Amount__c ===''){     appRow.Divorce_Settlement_Amount__c =0.00; }  if(appRow.Holiday_Travel_Amount__c === null || appRow.Holiday_Travel_Amount__c === undefined || appRow.Holiday_Travel_Amount__c ===''){     appRow.Holiday_Travel_Amount__c =0.00; }  if(appRow.Home_Imaprovements_Amount__c === null || appRow.Home_Imaprovements_Amount__c === undefined || appRow.Home_Imaprovements_Amount__c ===''){     appRow.Home_Imaprovements_Amount__c =0.00; }  if(appRow.Cash_Out_Other_Amount__c === null || appRow.Cash_Out_Other_Amount__c === undefined || appRow.Cash_Out_Other_Amount__c ===''){     appRow.Cash_Out_Other_Amount__c =0.00; } if(appRow.Personal_Investments_Amount__c === null || appRow.Personal_Investments_Amount__c === undefined || appRow.Personal_Investments_Amount__c ===''){     appRow.Personal_Investments_Amount__c =0.00; } if(appRow.Property_Purchase_Amount__c === null || appRow.Property_Purchase_Amount__c === undefined || appRow.Property_Purchase_Amount__c ===''){     appRow.Property_Purchase_Amount__c =0.00; } if(appRow.Purchase_Goods_Amount__c === null || appRow.Purchase_Goods_Amount__c === undefined || appRow.Purchase_Goods_Amount__c ===''){     appRow.Purchase_Goods_Amount__c =0.00; }else{     totalAmount= appRow.House_dewelling_Amount__c + appRow.Other_dewelling_Amount__c + appRow.Purchase_Existing_Amount__c + appRow.Purchase_New_Amount__c +                   appRow.Purchase_Off_the_Plan_Amount__c + appRow.Buy_Asset_Investment_Amount__c + appRow.Marketing_Advertising_Amount__c +                   appRow.Business_Other_Amount__c + appRow.Purchase_Business_Amount__c + appRow.Working_Capital_Amount__c + appRow.Divorce_Settlement_Amount__c +                   appRow.Holiday_Travel_Amount__c + appRow.Home_Imaprovements_Amount__c + appRow.Cash_Out_Other_Amount__c + appRow.Personal_Investments_Amount__c +                   appRow.Property_Purchase_Amount__c + mortgageSum + debtSum + appRow.Purchase_Goods_Amount__c; } /*appModel.updateRow(appRow ,                 {'TotalAmount': totalAmount});*/ appModel.updateRow(appRow ,                 {'Total_Loan_Purpose_Amount__c': totalAmount});</jsitem>
       <jsitem location="inline" name="newInlineJS" cachelocation="false" url="">/*console.log('I am in inline JS'); (function(skuid){ 	var $ = skuid.$; 	$(document.body).one('pageload',function(){ 		var params = arguments[0],     	$ = skuid.$;         var appModel = skuid.model.getModel('CommonApplicationModel');         var appRow = appModel.data[0];                  var mortgageModel = skuid.model.getModel('MortgageModel');         var mortgageRow = mortgageModel.data[0];                  var debtModel= skuid.model.getModel('DebtConsolidation');         var debtRow = debtModel.data[0];                  var totalAmount =0, mortgageSum =0, debtSum=0;                  $.each(mortgageModel.getRows(),function(i,row){                mortgageSum = mortgageSum + row.Refinance_Mortgages_Amount__c;         });         $.each(debtModel.getRows(),function(i,row){                debtSum = debtSum + row.Refinance_Consolidation_Amount__c;         });totalAmount= mortgageSum + debtSum;                  appModel.updateRow(appRow ,                         {'TotalAmount': totalAmount});         });          })(skuid);*/</jsitem>
       <jsitem location="inlinesnippet" name="approvedReload" cachelocation="false">var params = arguments[0], 	$ = skuid.$; var appModel = skuid.model.getModel('CommonApplicationLoanDetails'); var appRow = appModel.data[0]; if(appRow.genesis__Status__c === 'Formally Approved'){     var collModel = skuid.model.getModel('AllCollModel');     var spModel = skuid.model.getModel('S_P_Model');     var qbeModel = skuid.model.getModel('QBEModel');     if(collModel !== undefined &amp;&amp; collModel !== null &amp;&amp; collModel.data.length !== 0){         $.each(collModel.data,function(i,row){             if(row.clcommon__Postal_Code__c !== undefined &amp;&amp; row.clcommon__Postal_Code__c !== ''){                 if(spModel !== undefined &amp;&amp; spModel !== null &amp;&amp; spModel.data.length !== 0){                     $.each(spModel.data,function(i,spRow){                         if(spRow.PostCode_High_RangeNumber__c &gt;= row.clcommon__Postal_Code__c &amp;&amp; spRow.PostCode_Low_RangeNumber__c &lt;= row.clcommon__Postal_Code__c){                             collModel.updateRow(row,'S_P_Location__c',spRow.Location__c);                         }                     });                 }                 if(qbeModel !== undefined &amp;&amp; qbeModel !== null &amp;&amp; qbeModel.data.length !== 0){                     $.each(qbeModel.data,function(i,qbeRow){                         if(qbeRow.PostCode_High_RangeNumber__c &gt;= row.clcommon__Postal_Code__c &amp;&amp; qbeRow.PostCode_Low_RangeNumber__c &lt;= row.clcommon__Postal_Code__c){                             collModel.updateRow(row,'QBE_Location__c',qbeRow.Location__c);                         }                     });                 }             }         });         skuid.model.save([                collModel         ]) ;     }     window.location.reload(true); }</jsitem>
-      <jsitem location="inlinesnippet" name="callEraseRedundantData" cachelocation="false">var params = arguments[0], 	$ = skuid.$; 	 var appModel = skuid.model.getModel('CommonApplicationLoanDetails'); sforce.apex.execute('EraseRedundantData','eraseHiddenFieldsDataOf', { objectName : 'genesis__Applications__c', paramId : appModel.data[0].Id });  var loanPurposeModel = skuid.model.getModel('MortgageModel'); var stringOfIds = ''; for(var index = 0; index&lt;loanPurposeModel.data.length; index++){     stringOfIds += loanPurposeModel.data[index].Id + ';'; } console.log(loanPurposeModel.data.length); sforce.apex.execute('EraseRedundantData','eraseHiddenObjectData', { objectName : 'genesis__Applications__c',      sectionName : 'Refinance - Existing Mortgages',     renderedObjectName : 'Refinance_Loan_Purpose__c',     paramId : appModel.data[0].Id,     listOfIds : stringOfIds }); loanPurposeModel = skuid.model.getModel('DebtConsolidation'); stringOfIds = ''; for(var index = 0; index&lt;loanPurposeModel.data.length; index++){     stringOfIds += loanPurposeModel.data[index].Id + ';'; } console.log(loanPurposeModel.data.length); sforce.apex.execute('EraseRedundantData','eraseHiddenObjectData', { objectName : 'genesis__Applications__c',      sectionName : 'Refinance - Debt Consolidation Details',     renderedObjectName : 'Refinance_Loan_Purpose__c',     paramId : appModel.data[0].Id,     listOfIds : stringOfIds });</jsitem>
+      <jsitem location="inlinesnippet" name="callEraseRedundantData" cachelocation="false">var params = arguments[0], 	$ = skuid.$; 	 var appModel = skuid.model.getModel('CommonApplicationLoanDetails'); sforce.apex.execute('EraseRedundantData','eraseHiddenFieldsDataOf', { objectName : 'genesis__Applications__c', paramId : appModel.data[0].Id });  var loanPurposeModel = skuid.model.getModel('MortgageModel'); var stringOfIds = ''; for(var index = 0; index&lt;loanPurposeModel.data.length; index++){     stringOfIds += loanPurposeModel.data[index].Id + ';'; } console.log(loanPurposeModel.data.length); console.log(stringOfIds); sforce.apex.execute('EraseRedundantData','eraseHiddenObjectData', { objectName : 'genesis__Applications__c',      sectionName : 'Refinance - Existing Mortgages',     renderedObjectName : 'Refinance_Loan_Purpose__c',     paramId : appModel.data[0].Id,     listOfIds : stringOfIds }); loanPurposeModel = skuid.model.getModel('DebtConsolidation'); stringOfIds = ''; for(var index = 0; index&lt;loanPurposeModel.data.length; index++){     stringOfIds += loanPurposeModel.data[index].Id + ';'; } console.log(loanPurposeModel.data.length); sforce.apex.execute('EraseRedundantData','eraseHiddenObjectData', { objectName : 'genesis__Applications__c',      sectionName : 'Refinance - Debt Consolidation Details',     renderedObjectName : 'Refinance_Loan_Purpose__c',     paramId : appModel.data[0].Id,     listOfIds : stringOfIds }); if(appModel.data[0].NCCP_status_list__c !== 'Regulated' || (appModel.data[0].genesis__CL_Product_Name__c !== 'SMSF Commercial' &amp;&amp; appModel.data[0].genesis__CL_Product_Name__c !== 'SMSF Residential')){     console.log(appModel.data[0].NCCP_status_list__c + ' : ' + appModel.data[0].genesis__CL_Product_Name__c);     console.log('called');     sforce.apex.execute('EraseRedundantData','eraseRelatedObjectFieldData',     {   objectName : 'genesis__Applications__c',          sectionName : 'Some Section',         renderedObjectName : 'genesis__Applications__c',         paramId : appModel.data[0].Id,         listOfIds : appModel.data[0].Id,         isFieldData : true,         listOffieldNamesIfFieldData : 'Customer_Interview_completed__c',         shouldClearField : true     }); }</jsitem>
+      <jsitem location="inlinesnippet" name="Generate Pricing" cachelocation="false">var appModel = skuid.model.getModel('CommonApplicationLoanDetails'); var appRow = appModel.data[0]; if(!(appRow.Repayment_Type__c === '' || appRow.Repayment_Type__c === undefined || appRow.Actual_LVR__c === '' || appRow.Actual_LVR__c === undefined || appRow.Interest_type__c === '' || appRow.Interest_type__c === undefined || appRow.Primary_loan_purpose_list__c === '' || appRow.Primary_loan_purpose_list__c === undefined || appRow.Document_Type__c === '' || appRow.Document_Type__c === undefined || appRow.Risk_grade_list__c === '' || appRow.Risk_grade_list__c === undefined || appRow.genesis__Loan_Amount__c === '' || appRow.genesis__Loan_Amount__c === undefined)){     $.blockUI({         message: 'Pricing is getting generated.',         onBlock:function(){             var pricingResult2 = sforce.apex.execute('genesis.SkuidPricingCtrl','generatePricing',             {                        applicationId : appRow.Id             });             var pricingResult = sforce.apex.execute('PricingUpdate','updatePricing',             {                        applicationId : appRow.Id             });             var scheduleResult2 = sforce.apex.execute('genesis.SkuidNewApplication','generateSchedule',             {                        applicationId : appRow.Id             });             setTimeout(function(){             alert(pricingResult2);             appModel.updateData();             $.unblockUI();          }, 5000); // 5 Seconds timeout         }     }); } else{     alert('Please enter all the Pricing Criteia - Document Type, LVR, Interest Type, Repayment Type, Risk Grade, Primary Purpose and Loan Amount to generate Pricing.'); }</jsitem>
     </javascript>
-    <css/>
+    <css>
+      <cssitem location="inline" name="requiredCss" cachelocation="false">#sk-2BQX-1647,#sk-2BRz-3002,#sk-2BRz-3009,#sk-2BR_-3016,#sk-2BR_-3023 .nx-template {     color: red; }</cssitem>
+    </css>
     <actionsequences uniqueid="sk-1hSz-322">
       <actionsequence id="5efc11c3-3900-40e5-8ebd-27585630214a" label="Page Load" type="event-triggered" event-scope="component" event-name="page.rendered" uniqueid="sk-36kg-963">
         <description/>

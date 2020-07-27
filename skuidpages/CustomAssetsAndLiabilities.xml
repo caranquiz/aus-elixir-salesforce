@@ -130,6 +130,9 @@
         <field id="Trust_Purpose1__c"/>
         <field id="Application_ID__c"/>
         <field id="genesis__Application__r.Is_Approved__c"/>
+        <field id="Gift_Stat_Dec_Received__c"/>
+        <field id="Rental_Income_Verified__c"/>
+        <field id="Rental_Income_Verfication_Source__c"/>
       </fields>
       <conditions>
         <condition type="param" value="Id" field="Id" operator="=" enclosevalueinquotes="true"/>
@@ -190,6 +193,16 @@
       </conditions>
       <actions/>
     </model>
+    <model id="Application" limit="20" query="true" createrowifnonefound="false" datasource="salesforce" sobject="genesis__Applications__c">
+      <fields>
+        <field id="RecordTypeId"/>
+        <field id="Is_Approved__c"/>
+      </fields>
+      <conditions>
+        <condition type="modelmerge" value="" operator="=" field="Id" model="ALNGParty" enclosevalueinquotes="true" mergefield="genesis__Application__r.Id" novaluebehavior="deactivate"/>
+      </conditions>
+      <actions/>
+    </model>
   </models>
   <components>
     <wrapper uniqueid="sk-Avb-10801">
@@ -198,6 +211,7 @@
           <actions>
             <action type="multi" label="Save" uniqueid="sk-AzF-11711" icon="sk-webicon-font-awesome:floppy-o">
               <actions>
+                <action type="blockUI" message="The changes are being recorded!" timeout="5500"/>
                 <action type="save">
                   <models>
                     <model>ALNGParty</model>
@@ -205,7 +219,14 @@
                     <model>Liabilities</model>
                   </models>
                 </action>
-                <action type="blockUI" message="The changes are being recorded!" timeout="1000"/>
+                <action type="custom" snippet="callEraseRedundentData"/>
+                <action type="requeryModels" behavior="standard">
+                  <models>
+                    <model>ALNGParty</model>
+                    <model>Assets</model>
+                    <model>Liabilities</model>
+                  </models>
+                </action>
               </actions>
               <renderconditions logictype="and">
                 <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="false" fieldmodel="ALNGParty" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="genesis__Application__r.Is_Approved__c" value="false"/>
@@ -213,6 +234,7 @@
               <enableconditions logictype="or">
                 <condition type="fieldvalue" enclosevalueinquotes="false" fieldmodel="Assets" sourcetype="modelproperty" nosourcerowbehavior="deactivate" sourceproperty="hasChanged" value="true" operator="="/>
                 <condition type="fieldvalue" enclosevalueinquotes="false" fieldmodel="Liabilities" sourcetype="modelproperty" sourceproperty="hasChanged" value="true" operator="="/>
+                <condition type="fieldvalue" enclosevalueinquotes="false" fieldmodel="ALNGParty" sourcetype="modelproperty" sourceproperty="hasChanged" value="true" operator="="/>
               </enableconditions>
             </action>
             <action type="cancel" label="Cancel" uniqueid="sk-1Cji-454" window="self">
@@ -306,6 +328,47 @@
           <searchfields/>
           <renderconditions logictype="and"/>
         </skootable>
+        <basicfieldeditor showheader="true" showsavecancel="false" showerrorsinline="true" model="ALNGParty" uniqueid="sk-22Cr-486" mode="edit">
+          <columns layoutmode="fixed">
+            <column width="50%" uniqueid="sk-22Cr-482">
+              <sections>
+                <section uniqueid="sk-22Cr-483" collapsible="no">
+                  <fields>
+                    <field uniqueid="sk-22F5-720" id="Gift_Stat_Dec_Received__c">
+                      <renderconditions logictype="and" onhidedatabehavior="cancel">
+                        <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="ALNGParty" sourcetype="snippet" sourcesnippet="giftStatDecReceivedRender"/>
+                        <rendercondition type="blank" operator="!=" fieldmodel="Assets" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="genesis__Asset_Type__c" fieldtargetobjects="genesis__Asset_Information__c" value="null" enclosevalueinquotes="false"/>
+                      </renderconditions>
+                      <enableconditions/>
+                    </field>
+                    <field uniqueid="sk-22F6-726" id="Rental_Income_Verified__c">
+                      <renderconditions logictype="and" onhidedatabehavior="cancel" logic="1 AND 2">
+                        <rendercondition type="blank" operator="!=" fieldmodel="Assets" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="genesis__Asset_Type__c" fieldtargetobjects="genesis__Asset_Information__c" value="null" enclosevalueinquotes="false"/>
+                        <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="ALNGParty" sourcetype="snippet" sourcesnippet="rentalIncomeVerified"/>
+                      </renderconditions>
+                      <enableconditions logictype="and"/>
+                    </field>
+                  </fields>
+                </section>
+              </sections>
+            </column>
+            <column width="50%" uniqueid="sk-22F9-751">
+              <sections>
+                <section collapsible="no" uniqueid="sk-22F9-752">
+                  <fields>
+                    <field uniqueid="sk-22F6-732" id="Rental_Income_Verfication_Source__c">
+                      <renderconditions logictype="or" onhidedatabehavior="cancel" logic="1 AND (2 || 3)">
+                        <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="ALNGParty" sourcetype="fieldvalue" field="Rental_Income_Verified__c" fieldtargetobjects="clcommon__Party__c" value="Yes"/>
+                      </renderconditions>
+                      <enableconditions/>
+                    </field>
+                  </fields>
+                </section>
+              </sections>
+            </column>
+          </columns>
+          <renderconditions logictype="and"/>
+        </basicfieldeditor>
         <skootable showconditions="true" showsavecancel="false" showerrorsinline="true" searchmethod="server" searchbox="false" showexportbuttons="false" hideheader="false" hidefooter="false" pagesize="10" alwaysresetpagination="false" createrecords="true" model="Liabilities" buttonposition="" mode="read" allowcolumnreordering="true" responsive="true" uniqueid="sk-Awk-10965" emptysearchbehavior="query" allowscrollbars="false" tablescrollheight="500px">
           <fields>
             <field id="genesis__Liability_Type__c" hideable="true" uniqueid="fi-AxB-11060">
@@ -410,6 +473,9 @@
       <jsitem location="inlinesnippet" name="LaunchRelationshipGraph" cachelocation="false">var params = arguments[0],   $ = skuid.$; var partyModel = skuid.model.getModel('NGParty'); var party = partyModel.data[0]; var appId = skuid.page.params.id; var title = 'Relationship Graph'; var skuidPage = 'RelationshipGraph'; console.debug(appId); console.debug(party); var iframeUrl = '/apex/skuid__ui?page=' + skuidPage + '&amp;id=' + party.clcommon__Account__c;  openTopLevelDialog({     title: title,     iframeUrl: iframeUrl });</jsitem>
       <jsitem location="inlinesnippet" name="LaunchEmploymentAndIncome" cachelocation="false">var params = arguments[0],   $ = skuid.$; var partyModel = skuid.model.getModel('NGParty'); var party = partyModel.data[0]; var title = 'Employment and Income'; var skuidPage = 'EmploymentAndIncome'; var iframeUrl = '/apex/skuid__ui?page=' + skuidPage + '&amp;Id=' + party.clcommon__Contact__c+ '&amp;appId=' + party.genesis__Application__c;  openTopLevelDialog({     title: title,     iframeUrl: iframeUrl });</jsitem>
       <jsitem location="inlinesnippet" name="LaunchAssetsAndLiabilities" cachelocation="false">var params = arguments[0],   $ = skuid.$; var partyModel = skuid.model.getModel('NGParty'); var party = partyModel.data[0]; var title = 'Assets and Liabilities'; var skuidPage = 'AssetsAndLiabilities'; var iframeUrl = '/apex/skuid__ui?page=' + skuidPage + '&amp;Id=' + party.clcommon__Contact__c+ '&amp;appId=' + party.genesis__Application__c;  openTopLevelDialog({     title: title,     iframeUrl: iframeUrl });</jsitem>
+      <jsitem location="inlinesnippet" name="giftStatDecReceivedRender" cachelocation="false">var params = arguments[0], $ = skuid.$; var assetModel = skuid.model.getModel('Assets'); var flag = false ; $.each(assetModel.getRows(),function(i,row){     if(row.genesis__Asset_Type__c !== undefined &amp;&amp; row.genesis__Asset_Type__c === 'Gifts'){         flag = true ;     } }); console.log(flag); return flag ;</jsitem>
+      <jsitem location="inlinesnippet" name="callEraseRedundentData" cachelocation="false">var params = arguments[0], 	$ = skuid.$; var partyModel = skuid.model.getModel('ALNGParty'); var assetModel = skuid.model.getModel('Assets'); var flag = true ; $.each(assetModel.getRows(),function(i,row){     if(row.genesis__Asset_Type__c === 'Gifts'){         flag = false ;     } }); console.log('CHECK'); sforce.apex.execute('EraseRedundantData','eraseRelatedObjectFieldData', {   objectName : 'clcommon__Party__c',      sectionName : 'Some Section',     renderedObjectName : 'clcommon__Party__c',     paramId : partyModel.data[0].Id,     listOfIds : partyModel.data[0].Id,     isFieldData : true,     listOffieldNamesIfFieldData : 'Gift_Stat_Dec_Received__c',     shouldClearField : flag }); flag = true ; $.each(assetModel.getRows(),function(i,row){     if(row.genesis__Asset_Type__c === 'Investment Property'     || row.genesis__Asset_Type__c === 'Rental Income'){         flag = false ;     } }); console.log('CHECK'); sforce.apex.execute('EraseRedundantData','eraseRelatedObjectFieldData', {   objectName : 'clcommon__Party__c',      sectionName : 'Some Section',     renderedObjectName : 'clcommon__Party__c',     paramId : partyModel.data[0].Id,     listOfIds : partyModel.data[0].Id,     isFieldData : true,     listOffieldNamesIfFieldData : 'Rental_Income_Verified__c;Rental_Income_Verfication_Source__c',     shouldClearField : flag });</jsitem>
+      <jsitem location="inlinesnippet" name="rentalIncomeVerified" cachelocation="false">var params = arguments[0], $ = skuid.$; var assetModel = skuid.model.getModel('Assets'); var flag = false ; $.each(assetModel.getRows(),function(i,row){     if(row.genesis__Asset_Type__c !== undefined &amp;&amp; (row.genesis__Asset_Type__c === 'Investment Property'     || row.genesis__Asset_Type__c === 'Rental Income')){         flag = true ;     } }); console.log(flag); return flag ;</jsitem>
     </javascript>
     <css>
       <cssitem location="staticresource" name="CLSStyleSheetPack" cachelocation="false" url="" namespace="genesisExtn" filepath="cls-common.css"/>
@@ -423,7 +489,19 @@
       <cssitem location="inline" name="BackgroundCss" cachelocation="false">#sk-30Ly-1691{     background: #EAEEF1; }  #sk-30Lz-1699{     background: #EAEEF1; }  #sk-30L_-1707{     background: #EAEEF1; }  #sk-30L--1715{     background: #EAEEF1; } </cssitem>
       <cssitem location="inline" name="textCss" cachelocation="false">#sk-30L--1715     .nx-template {     color: #0288d1e3 !important;     font-size: 13px !important;     font-family: 'Lucida Grande','Lucida Sans',Arial,Helvetica,sans-serif;     }  #sk-30L_-1707 .nx-template {     color: #0288d1e3 !important;     font-size: 13px !important;     font-family: 'Lucida Grande','Lucida Sans',Arial,Helvetica,sans-serif;     }      #sk-30Lz-1699 .nx-template { color: #0288d1e3 !important; font-size: 13px !important; font-family: 'Lucida Grande','Lucida Sans',Arial,Helvetica,sans-serif; }      #sk-30Ly-1691 .nx-template { color: #0288d1e3 !important; font-size: 13px !important; font-family: 'Lucida Grande','Lucida Sans',Arial,Helvetica,sans-serif; }</cssitem>
     </css>
-    <actionsequences uniqueid="sk-1G2j-612"/>
+    <actionsequences uniqueid="sk-1G2j-612">
+      <actionsequence id="78302966-a3cd-4256-9cac-388096fdb767" label="Page Load" type="event-triggered" event-scope="component" event-name="page.rendered" uniqueid="sk-22DU-602">
+        <description/>
+        <actions>
+          <action type="branch" whenfinished="continue" model="Application">
+            <formula>{{Is_Approved__c}}</formula>
+            <iftrueactions>
+              <action type="runComponentAction" componentid="sk-22Cr-486" action="changeMode" mode="read"/>
+            </iftrueactions>
+          </action>
+        </actions>
+      </actionsequence>
+    </actionsequences>
   </resources>
   <styles>
     <styleitem type="background" bgtype="color">

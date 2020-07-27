@@ -1,0 +1,8 @@
+{
+	"name": "NGLoanDashBoard",
+	"isMasterPage": false,
+	"maxAutoSaves": 25,
+	"module": "ngUi",
+	"type": "Desktop",
+	"uniqueId": "ngUi_NGLoanDashBoard"
+}

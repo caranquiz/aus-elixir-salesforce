@@ -2,7 +2,6 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Number_of_Directors__c</fullName>
     <externalId>false</externalId>
-    <inlineHelpText>Loans to corporate borrowers must be supported by the unlimited joint and several guarantees of the company director/s, unless waived by Rely e.g. nominal directors will not normally be required to provide a guarantee. [6.3]</inlineHelpText>
     <label>Number of Directors</label>
     <precision>18</precision>
     <required>false</required>
