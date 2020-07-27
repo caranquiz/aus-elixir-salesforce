@@ -215,6 +215,13 @@
         <field id="RecordType.Id"/>
         <field id="Flag_Emp__c"/>
         <field id="Primary_Employment__c"/>
+        <field id="ABN_Status_Suitability_Commentary__c"/>
+        <field id="Employment_Duration_suitability_Commenta__c"/>
+        <field id="Probation_suitability_Commentary__c"/>
+        <field id="Employment_Call_Made__c"/>
+        <field id="Date_of_Call__c"/>
+        <field id="EmpCallConf_Employment_Basis__c"/>
+        <field id="Employment_Call_Confirmations_Employme__c"/>
       </fields>
       <conditions>
         <condition type="modelmerge" value="" field="Party__c" fieldtargetobjects="clcommon__Party__c" operator="=" model="NGPartyEmp" enclosevalueinquotes="true" mergefield="Id" novaluebehavior="deactivate"/>
@@ -239,6 +246,15 @@
         <field id="Record_Extract_Date__c"/>
         <field id="Employment_Duration__c"/>
         <field id="genesis__Start_Date__c"/>
+        <field id="Employment_Call_Made__c"/>
+        <field id="Date_of_Call__c"/>
+        <field id="EmpCallConf_Employment_Basis__c"/>
+        <field id="Employment_Call_Commentary__c"/>
+        <field id="Employment_Call_Suitable__c"/>
+        <field id="Employment_Call_Confirmations_Ongoing__c"/>
+        <field id="Employment_Call_Confirmations_Employme__c"/>
+        <field id="EmpCallConf_Income__c"/>
+        <field id="Employer_Representative_Name__c"/>
       </fields>
       <conditions>
         <condition type="modelmerge" value="" field="Party__c" fieldtargetobjects="clcommon__Party__c" operator="=" model="NGPartyEmp" enclosevalueinquotes="true" mergefield="Id" novaluebehavior="deactivate"/>
@@ -397,6 +413,7 @@
         <condition type="modelmerge" value="" field="Party__c" fieldtargetobjects="clcommon__Party__c" operator="=" model="NGPartyEmp" enclosevalueinquotes="true" mergefield="Id" novaluebehavior="deactivate"/>
       </conditions>
       <actions/>
+      <groupby method="simple"/>
     </model>
     <model query="true" createrowifnonefound="false" datasource="salesforce" id="SelfEmploymentIncomeFullType" sobject="genesis__Income__c">
       <fields>
@@ -421,6 +438,7 @@
         <field id="Income_Full__c"/>
         <field id="Income_Alt__c"/>
         <field id="Description__c"/>
+        <field id="Document_Type__c"/>
       </fields>
       <conditions>
         <condition type="modelmerge" value="" field="Employment_Information__c" fieldtargetobjects="genesis__Employment_Information__c" operator="in" model="SelfEmploymentDetails" enclosevalueinquotes="true" mergefield="Id" novaluebehavior="deactivate"/>
@@ -475,6 +493,9 @@
         <field id="Is_the_accountant_aware_of_any_circumsta__c"/>
         <field id="Accountant_Call_Commentary__c"/>
         <field id="Accountant_Call_Suitable__c"/>
+        <field id="Accountant_ABN_Search_Conducted__c"/>
+        <field id="Accountant_ABN_Status__c"/>
+        <field id="Accountant_Phone_Number_independently_ve__c"/>
       </fields>
       <conditions>
         <condition type="modelmerge" value="" field="Employment_Information__c" fieldtargetobjects="genesis__Employment_Information__c" operator="in" mergefield="Id" novaluebehavior="deactivate" model="SelfEmploymentDetails" enclosevalueinquotes="true"/>
@@ -523,6 +544,7 @@
         <field id="genesis__Frequency__c"/>
         <field id="genesis__Taxable__c"/>
         <field id="Income_Verification__c"/>
+        <field id="genesis__Income_Type__c"/>
       </fields>
       <conditions>
         <condition type="modelmerge" value="" field="Party__c" fieldtargetobjects="clcommon__Party__c" operator="=" model="NGPartyEmp" enclosevalueinquotes="true" mergefield="Id" novaluebehavior="deactivate"/>
@@ -681,6 +703,14 @@
       </conditions>
       <actions/>
     </model>
+    <model id="Office" limit="20" query="true" createrowifnonefound="false" datasource="salesforce" sobject="loan__Office_Name__c">
+      <fields>
+        <field id="RecordTypeId"/>
+        <field id="loan__Current_System_Date__c"/>
+      </fields>
+      <conditions/>
+      <actions/>
+    </model>
   </models>
   <components>
     <wrapper uniqueid="partyDetailPageId" cssclass="cls-dashboard-section">
@@ -692,28 +722,78 @@
                 <action type="save" rollbackonanyerror="true">
                   <models>
                     <model>NGPartyEmp</model>
+                    <model>PAYGRecordType</model>
+                    <model>SelfEmployedRecordType</model>
                     <model>PayGEmploymentDetails</model>
                     <model>PreviousEmploymentHistory</model>
                     <model>SelfEmploymentDetails</model>
+                    <model>OriginalApplication</model>
+                    <model>ApplicationParty</model>
+                    <model>ABNCompanyListModel</model>
+                    <model>ABNCompanyModelPAYG</model>
                     <model>PAYGIncomeModel</model>
                     <model>SelfEmploymentIncomeFullType</model>
                     <model>SelfEmploymentIncomeAltType</model>
                     <model>UnemploymentDetailsModel</model>
                     <model>OtherIncome</model>
                     <model>ServicingIncomeApplication</model>
+                    <model>CompanyIncomeDetailsFull</model>
+                    <model>CompanyIncomeDetailsAlt</model>
                     <model>IncomeSummaryEmpModel</model>
-                  </models>
-                </action>
-                <action type="blockUI" message="The changes are being recorded!" timeout="5000"/>
-                <action type="custom" snippet="IncomeSummaryEmpModelReload"/>
-                <action type="requeryModels" model="PrimaryEmploymentModel" behavior="standard">
-                  <models>
+                    <model>Party</model>
                     <model>PrimaryEmploymentModel</model>
                     <model>PrimaryEmploymentSelectedModel</model>
                   </models>
                 </action>
+                <action type="requeryModels" model="NGPartyEmp" behavior="standard">
+                  <models>
+                    <model>NGPartyEmp</model>
+                    <model>PAYGRecordType</model>
+                    <model>SelfEmployedRecordType</model>
+                    <model>PayGEmploymentDetails</model>
+                    <model>PreviousEmploymentHistory</model>
+                    <model>SelfEmploymentDetails</model>
+                    <model>OriginalApplication</model>
+                    <model>ApplicationParty</model>
+                    <model>ABNCompanyListModel</model>
+                    <model>ABNCompanyModelPAYG</model>
+                    <model>PAYGIncomeModel</model>
+                    <model>SelfEmploymentIncomeFullType</model>
+                    <model>SelfEmploymentIncomeAltType</model>
+                    <model>UnemploymentDetailsModel</model>
+                    <model>OtherIncome</model>
+                    <model>ServicingIncomeApplication</model>
+                    <model>CompanyIncomeDetailsFull</model>
+                    <model>CompanyIncomeDetailsAlt</model>
+                    <model>IncomeSummaryEmpModel</model>
+                    <model>Party</model>
+                    <model>PrimaryEmploymentModel</model>
+                    <model>PrimaryEmploymentSelectedModel</model>
+                  </models>
+                </action>
+                <action type="custom" snippet="IncomeSummaryEmpModelReload"/>
                 <action type="custom" snippet="DefaultPrimaryEmp"/>
                 <action type="custom" snippet="callEraseRedundantData"/>
+                <action type="requeryModels" model="PrimaryEmploymentModel" behavior="standard">
+                  <models>
+                    <model>PayGEmploymentDetails</model>
+                    <model>PreviousEmploymentHistory</model>
+                    <model>SelfEmploymentDetails</model>
+                    <model>ABNCompanyModelPAYG</model>
+                    <model>PAYGIncomeModel</model>
+                    <model>SelfEmploymentIncomeFullType</model>
+                    <model>SelfEmploymentIncomeAltType</model>
+                    <model>UnemploymentDetailsModel</model>
+                    <model>OtherIncome</model>
+                    <model>ServicingIncomeApplication</model>
+                    <model>CompanyIncomeDetailsFull</model>
+                    <model>CompanyIncomeDetailsAlt</model>
+                    <model>IncomeSummaryEmpModel</model>
+                    <model>PrimaryEmploymentModel</model>
+                    <model>PrimaryEmploymentSelectedModel</model>
+                  </models>
+                </action>
+                <action type="blockUI" message="The changes are being recorded!" timeout="8000"/>
               </actions>
               <renderconditions logictype="and">
                 <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="false" fieldmodel="OriginalApplication" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="Is_Approved__c" fieldtargetobjects="genesis__Applications__c" value="false"/>
@@ -781,7 +861,7 @@
               </columns>
               <renderconditions logictype="and"/>
             </basicfieldeditor>
-            <skootable showconditions="true" showsavecancel="false" showerrorsinline="true" searchmethod="server" searchbox="false" showexportbuttons="false" hideheader="false" hidefooter="false" pagesize="10" alwaysresetpagination="false" createrecords="true" model="PayGEmploymentDetails" mode="read" allowcolumnreordering="true" responsive="false" uniqueid="sk-3AlH-1880" heading="PAYG Details" emptysearchbehavior="query" allowscrollbars="false" tablescrollheight="500px">
+            <skootable showconditions="true" showsavecancel="false" showerrorsinline="true" searchmethod="server" searchbox="false" showexportbuttons="false" hideheader="false" hidefooter="false" pagesize="10" alwaysresetpagination="false" createrecords="true" model="PayGEmploymentDetails" mode="read" allowcolumnreordering="true" responsive="false" uniqueid="sk-3AlH-1880" heading="PAYG Details" emptysearchbehavior="query" allowscrollbars="true" tablescrollheight="400px">
               <fields>
                 <field id="Primary_Employment__c" hideable="true" uniqueid="fi-1rtA-1067" readonly="true"/>
                 <field id="Basis__c" hideable="true" uniqueid="fi-3Am8-2282">
@@ -815,6 +895,12 @@
                     <condition type="fieldvalue" operator="=" enclosevalueinquotes="false" fieldmodel="PayGEmploymentDetails" sourcetype="fieldvalue" field="Flag_Emp__c" fieldtargetobjects="genesis__Employment_Information__c" value="false" model="Party"/>
                   </enableconditions>
                 </field>
+                <field id="ABN_Status_Suitability_Commentary__c" hideable="true" uniqueid="fi-1-z6-1144">
+                  <renderconditions logictype="and" onhidedatabehavior="cancel">
+                    <rendercondition type="fieldvalue" operator="!=" enclosevalueinquotes="true" fieldmodel="PayGEmploymentDetails" sourcetype="fieldvalue" field="ABN_Status__c" fieldtargetobjects="genesis__Employment_Information__c" value="Registered"/>
+                  </renderconditions>
+                  <enableconditions/>
+                </field>
                 <field id="Record_Extract_Date__c" hideable="true" uniqueid="fi-3Eym-4067" monthpicker="true" yearpicker="true" yearpickermin="c-30" yearpickermax="c+30">
                   <renderconditions logictype="and" onhidedatabehavior="keep"/>
                   <enableconditions logictype="and">
@@ -840,6 +926,12 @@
                 </field>
                 <field id="On_Probation__c" hideable="true" uniqueid="fi-3Eym-4069">
                   <renderconditions logictype="and" onhidedatabehavior="keep"/>
+                  <enableconditions/>
+                </field>
+                <field id="Probation_suitability_Commentary__c" hideable="true" uniqueid="fi-205y-1582">
+                  <renderconditions logictype="and" onhidedatabehavior="keep">
+                    <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="PayGEmploymentDetails" sourcetype="fieldvalue" field="On_Probation__c" fieldtargetobjects="genesis__Employment_Information__c" value="Yes"/>
+                  </renderconditions>
                   <enableconditions/>
                 </field>
                 <field id="Probation_Date_Ends__c" hideable="true" uniqueid="fi-3Eym-4071" yearpicker="true" yearpickermin="c-30" yearpickermax="c+30" monthpicker="true">
@@ -978,7 +1070,7 @@
                 </action>
               </actions>
             </skootable>
-            <skootable showconditions="true" showsavecancel="false" showerrorsinline="true" searchmethod="server" searchbox="true" showexportbuttons="false" hideheader="false" hidefooter="false" pagesize="10" alwaysresetpagination="false" createrecords="true" model="PreviousEmploymentHistory" mode="read" allowcolumnreordering="true" responsive="true" uniqueid="sk-3yuV-4681" heading="Previous Employment Details" emptysearchbehavior="query">
+            <skootable showconditions="true" showsavecancel="false" showerrorsinline="true" searchmethod="server" searchbox="true" showexportbuttons="false" hideheader="false" hidefooter="false" pagesize="10" alwaysresetpagination="false" createrecords="true" model="PreviousEmploymentHistory" mode="read" allowcolumnreordering="true" responsive="true" uniqueid="sk-3yuV-4681" heading="Previous Employment Details" emptysearchbehavior="query" allowscrollbars="true" floatheader="true" tablescrollheight="400px">
               <fields>
                 <field id="Basis__c" hideable="true" uniqueid="fi-3yuu-4784"/>
                 <field id="Occupation__c" hideable="true" uniqueid="fi-3yu--4789"/>
@@ -992,6 +1084,62 @@
                 <field id="Employment_Duration__c" hideable="true" uniqueid="fi-3yvS-4824">
                   <label>Employment Duration(Months)</label>
                   <renderconditions logictype="and" onhidedatabehavior="keep"/>
+                  <enableconditions/>
+                </field>
+                <field id="Employment_Call_Made__c" hideable="true" uniqueid="fi-228L-1556">
+                  <renderconditions logictype="and" onhidedatabehavior="keep"/>
+                  <enableconditions/>
+                </field>
+                <field id="Employer_Representative_Name__c" hideable="true" uniqueid="fi-228s-1726">
+                  <renderconditions logictype="and" onhidedatabehavior="cancel">
+                    <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="PreviousEmploymentHistory" sourcetype="fieldvalue" field="Employment_Call_Made__c" fieldtargetobjects="genesis__Employment_Information__c" value="Yes"/>
+                  </renderconditions>
+                  <enableconditions/>
+                </field>
+                <field id="Date_of_Call__c" hideable="true" uniqueid="fi-228L-1565">
+                  <renderconditions logictype="and" onhidedatabehavior="cancel">
+                    <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="PreviousEmploymentHistory" sourcetype="fieldvalue" field="Employment_Call_Made__c" fieldtargetobjects="genesis__Employment_Information__c" value="Yes"/>
+                  </renderconditions>
+                  <enableconditions/>
+                </field>
+                <field id="Employment_Call_Confirmations_Employme__c" hideable="true" uniqueid="fi-228R-1574">
+                  <label>Employment Call Confirmations - Employment Term</label>
+                  <renderconditions logictype="and" onhidedatabehavior="cancel">
+                    <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="PreviousEmploymentHistory" sourcetype="fieldvalue" field="Employment_Call_Made__c" fieldtargetobjects="genesis__Employment_Information__c" value="Yes"/>
+                  </renderconditions>
+                  <enableconditions/>
+                </field>
+                <field id="EmpCallConf_Employment_Basis__c" hideable="true" uniqueid="fi-228V-1588">
+                  <label>Employment Call Confirmations - Employment Basis</label>
+                  <renderconditions logictype="and" onhidedatabehavior="cancel">
+                    <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="PreviousEmploymentHistory" sourcetype="fieldvalue" field="Employment_Call_Made__c" fieldtargetobjects="genesis__Employment_Information__c"/>
+                  </renderconditions>
+                  <enableconditions/>
+                </field>
+                <field id="EmpCallConf_Income__c" hideable="true" uniqueid="fi-228a-1602">
+                  <label>Employment Call Confirmations - Income (Gross, overtime, allowance, commission, bonus)</label>
+                  <renderconditions logictype="and" onhidedatabehavior="cancel">
+                    <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="PreviousEmploymentHistory" sourcetype="fieldvalue" field="Employment_Call_Made__c" fieldtargetobjects="genesis__Employment_Information__c" value="Yes"/>
+                  </renderconditions>
+                  <enableconditions/>
+                </field>
+                <field id="Employment_Call_Confirmations_Ongoing__c" hideable="true" uniqueid="fi-228c-1616">
+                  <label>Employment Call Confirmations - Ongoing Employment</label>
+                  <renderconditions logictype="and" onhidedatabehavior="cancel">
+                    <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="PreviousEmploymentHistory" sourcetype="fieldvalue" field="Employment_Call_Made__c" fieldtargetobjects="genesis__Employment_Information__c" value="Yes"/>
+                  </renderconditions>
+                  <enableconditions/>
+                </field>
+                <field id="Employment_Call_Suitable__c" hideable="true" uniqueid="fi-228e-1629">
+                  <renderconditions logictype="and" onhidedatabehavior="keep">
+                    <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="PreviousEmploymentHistory" sourcetype="fieldvalue" field="Employment_Call_Made__c" fieldtargetobjects="genesis__Employment_Information__c" value="Yes"/>
+                  </renderconditions>
+                  <enableconditions/>
+                </field>
+                <field id="Employment_Call_Commentary__c" hideable="true" uniqueid="fi-228g-1638">
+                  <renderconditions logictype="and" onhidedatabehavior="keep">
+                    <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="PreviousEmploymentHistory" sourcetype="fieldvalue" field="Employment_Call_Made__c" fieldtargetobjects="genesis__Employment_Information__c" value="Yes"/>
+                  </renderconditions>
                   <enableconditions/>
                 </field>
               </fields>
@@ -1025,26 +1173,34 @@
               </views>
               <renderconditions logictype="and">
                 <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="PayGEmploymentDetails" sourcetype="snippet" nosourcerowbehavior="deactivate" sourcesnippet="PreviousEmploymentRender"/>
-                <rendercondition type="fieldvalue" enclosevalueinquotes="true" fieldmodel="PayGEmploymentDetails" sourcetype="modelproperty" nosourcerowbehavior="deactivate" sourceproperty="hasRows"/>
+                <rendercondition fieldmodel="PayGEmploymentDetails" sourcetype="modelproperty" nosourcerowbehavior="deactivate" sourceproperty="hasRows"/>
                 <rendercondition type="fieldvalue" operator="includes" enclosevalueinquotes="true" fieldmodel="NGPartyEmp" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="Employment_Type__c" fieldtargetobjects="clcommon__Party__c" value="PAYG"/>
               </renderconditions>
               <searchfields/>
             </skootable>
-            <skootable showconditions="true" showsavecancel="false" showerrorsinline="true" searchmethod="server" searchbox="true" showexportbuttons="false" hideheader="false" hidefooter="false" pagesize="10" alwaysresetpagination="false" createrecords="true" model="PAYGIncomeModel" mode="read" allowcolumnreordering="true" responsive="true" uniqueid="sk-3ppA-3072" heading="PAYG Income Details" emptysearchbehavior="query">
+            <skootable showconditions="true" showsavecancel="false" showerrorsinline="true" searchmethod="server" searchbox="true" showexportbuttons="false" hideheader="false" hidefooter="false" pagesize="10" alwaysresetpagination="false" createrecords="true" model="PAYGIncomeModel" mode="read" allowcolumnreordering="true" responsive="true" uniqueid="sk-3ppA-3072" heading="PAYG Income Details" emptysearchbehavior="query" allowscrollbars="true" tablescrollheight="400px">
               <fields>
-                <field id="Employment_Information__c" hideable="true" uniqueid="fi-3pry-3545" pagesize="10" redirecttype="datasourcedefault" optionsource="model" optionmodel="PayGEmploymentDetails" tokenizesearch="true" searchtemplate="{{Company_Name__c}}" displaytemplate="{{Company_Name__c}}" allowordering="true">
+                <field id="Employment_Information__c" hideable="true" uniqueid="fi-1yNn-2952" pagesize="10" redirecttype="datasourcedefault" allowordering="true" optionsource="model" optionmodel="PayGEmploymentDetails" displaytemplate="{{Company_Name__c}}" searchtemplate="{{Company_Name__c}}" tokenizesearch="true">
                   <searchfields/>
                   <filters/>
+                  <label>Employer Name</label>
                   <renderconditions logictype="and" onhidedatabehavior="keep"/>
                   <enableconditions/>
-                  <label>Employer Name</label>
                 </field>
-                <field id="PAYG_Income_Type__c" hideable="true" uniqueid="fi-3pqd-3371"/>
+                <field id="PAYG_Income_Type__c" hideable="true" uniqueid="fi-3pqd-3371">
+                  <renderconditions logictype="and" onhidedatabehavior="keep"/>
+                  <enableconditions/>
+                </field>
                 <field id="genesis__Amount__c" hideable="true" uniqueid="fi-3pqe-3383"/>
                 <field id="genesis__Frequency__c" hideable="true" uniqueid="fi-3pqf-3395"/>
                 <field id="Income_Verification_Sighted__c" hideable="true" uniqueid="fi-3pqh-3407"/>
                 <field id="Number_of_Documents_Sighted__c" hideable="true" uniqueid="fi-3pqi-3419"/>
-                <field id="Type_of_Documents_Sighted__c" hideable="true" uniqueid="fi-3pqk-3431" selectedlist="3"/>
+                <field id="Type_of_Documents_Sighted__c" hideable="true" uniqueid="fi-3pqk-3431" selectedlist="3">
+                  <renderconditions logictype="and" onhidedatabehavior="cancel">
+                    <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="PAYGIncomeModel" sourcetype="fieldvalue" field="Income_Verification_Sighted__c" fieldtargetobjects="genesis__Income__c" value="Yes"/>
+                  </renderconditions>
+                  <enableconditions logictype="and"/>
+                </field>
                 <field id="Employer_Call_Verified__c" hideable="true" uniqueid="fi-3pql-3446">
                   <label>Employer Verified</label>
                 </field>
@@ -1081,7 +1237,7 @@
               </renderconditions>
               <searchfields/>
             </skootable>
-            <skootable showconditions="true" showsavecancel="false" showerrorsinline="true" searchmethod="server" searchbox="false" showexportbuttons="false" hideheader="false" hidefooter="false" pagesize="10" alwaysresetpagination="false" createrecords="true" model="SelfEmploymentDetails" mode="read" allowcolumnreordering="true" responsive="false" uniqueid="sk-3Ao1-2913" heading="Self Employment Details" emptysearchbehavior="query" allowscrollbars="false" tablescrollheight="500px">
+            <skootable showconditions="true" showsavecancel="false" showerrorsinline="true" searchmethod="server" searchbox="false" showexportbuttons="false" hideheader="false" hidefooter="false" pagesize="10" alwaysresetpagination="false" createrecords="true" model="SelfEmploymentDetails" mode="read" allowcolumnreordering="true" responsive="false" uniqueid="sk-3Ao1-2913" heading="Self Employment Details" emptysearchbehavior="query" allowscrollbars="true" tablescrollheight="400px">
               <fields>
                 <field id="Primary_Employment__c" hideable="true" uniqueid="fi-1rtF-1121" readonly="true"/>
                 <field id="Company_Name__c" hideable="true" uniqueid="fi-3As6-4706" allowordering="true">
@@ -1277,7 +1433,7 @@
                 </action>
               </actions>
             </skootable>
-            <skootable showconditions="true" showsavecancel="false" showerrorsinline="true" searchmethod="server" searchbox="true" showexportbuttons="false" hideheader="false" hidefooter="false" pagesize="10" alwaysresetpagination="false" createrecords="true" model="SelfEmploymentIncomeFullType" mode="read" allowcolumnreordering="true" responsive="false" uniqueid="sk-3qUT-2158" heading="Business Income(Full)" emptysearchbehavior="query">
+            <skootable showconditions="true" showsavecancel="false" showerrorsinline="true" searchmethod="server" searchbox="true" showexportbuttons="false" hideheader="false" hidefooter="false" pagesize="10" alwaysresetpagination="false" createrecords="true" model="SelfEmploymentIncomeFullType" mode="read" allowcolumnreordering="true" responsive="true" uniqueid="sk-3qUT-2158" heading="Business Income(Full)" emptysearchbehavior="query" allowscrollbars="true" tablescrollheight="400px">
               <fields>
                 <field id="Employment_Information__c" hideable="true" uniqueid="fi-3qWK-2303" pagesize="5" optionsource="model" optionmodel="SelfEmploymentDetails" searchtemplate="{{Company_Name__c}}&#10;{{Document_Type__c}}" displaytemplate="{{Company_Name__c}}" redirecttype="datasourcedefault" allowordering="true">
                   <searchfields/>
@@ -1336,9 +1492,9 @@
               </renderconditions>
               <searchfields/>
             </skootable>
-            <skootable showconditions="true" showsavecancel="false" showerrorsinline="true" searchmethod="server" searchbox="false" showexportbuttons="false" hideheader="false" hidefooter="false" pagesize="10" alwaysresetpagination="false" createrecords="false" model="IncomeSummaryEmpModel" buttonposition="" mode="read" allowcolumnreordering="true" responsive="true" uniqueid="sk-1Q4B-2120" heading="Income Summary" emptysearchbehavior="query">
+            <skootable showconditions="true" showsavecancel="false" showerrorsinline="true" searchmethod="server" searchbox="false" showexportbuttons="false" hideheader="false" hidefooter="false" pagesize="10" alwaysresetpagination="false" createrecords="false" model="IncomeSummaryEmpModel" buttonposition="" mode="read" allowcolumnreordering="true" responsive="true" uniqueid="sk-1Q4B-2120" heading="Income Summary" emptysearchbehavior="query" allowscrollbars="true" tablescrollheight="400px">
               <fields>
-                <field id="Company_Name__c" hideable="true" uniqueid="fi-1Q4P-2224" allowordering="true" readonly="true">
+                <field id="Company_Name__c" hideable="true" uniqueid="fi-1Q4P-2224" allowordering="true" readonly="true" required="true">
                   <renderconditions logictype="and" onhidedatabehavior="keep"/>
                   <enableconditions/>
                 </field>
@@ -1392,43 +1548,18 @@
               </renderconditions>
               <searchfields/>
             </skootable>
-            <skootable showconditions="true" showsavecancel="false" showerrorsinline="true" searchmethod="server" searchbox="true" showexportbuttons="false" hideheader="false" hidefooter="false" pagesize="10" alwaysresetpagination="false" createrecords="true" model="SelfEmploymentIncomeAltType" mode="read" allowcolumnreordering="true" responsive="true" uniqueid="sk-3qox-3124" heading="Business Income(Alt)">
+            <skootable showconditions="true" showsavecancel="false" showerrorsinline="true" searchmethod="server" searchbox="true" showexportbuttons="false" hideheader="false" hidefooter="false" pagesize="10" alwaysresetpagination="false" createrecords="true" model="SelfEmploymentIncomeAltType" mode="read" allowcolumnreordering="true" responsive="true" uniqueid="sk-3qox-3124" heading="Business Income(Alt)" emptysearchbehavior="query" allowscrollbars="true" tablescrollheight="400px">
               <fields>
                 <field id="Employment_Information__c" hideable="true" uniqueid="fi-3tpo-2387" pagesize="5" optionsource="model" optionmodel="SelfEmploymentDetails" searchtemplate="{{Company_Name__c}}&#10;{{Document_Type__c}}" displaytemplate="{{Company_Name__c}}" allowordering="true">
                   <searchfields/>
                   <label>Company Name</label>
                 </field>
-                <field id="genesis__Amount__c" hideable="true" uniqueid="fi-2Dz-2210"/>
-                <field id="Other_Supporting_Document_Verified__c" hideable="true" uniqueid="fi-3u64-3464">
-                  <label>Documents Verified</label>
-                </field>
                 <field id="Company_Type_of_Documents_Sighted__c" hideable="true" uniqueid="fi-1HNZ-1899" selectedlist="3">
                   <label>Type Of Documents Sighted</label>
                 </field>
-                <field id="Accountant__c" hideable="true" uniqueid="fi-3u5y-3416">
-                  <renderconditions logictype="and" onhidedatabehavior="cancel">
-                    <rendercondition type="fieldvalue" operator="includes" enclosevalueinquotes="true" fieldmodel="SelfEmploymentIncomeAltType" sourcetype="fieldvalue" field="Company_Type_of_Documents_Sighted__c" fieldtargetobjects="genesis__Income__c" value="Accountants Declaration"/>
-                  </renderconditions>
-                  <enableconditions/>
-                </field>
-                <field id="Accountant_Phone_Number_Verified__c" hideable="true" uniqueid="fi-3u5z-3433">
-                  <label>Accountant Phone Number</label>
-                  <renderconditions logictype="and" onhidedatabehavior="cancel">
-                    <rendercondition type="fieldvalue" operator="includes" enclosevalueinquotes="true" fieldmodel="SelfEmploymentIncomeAltType" sourcetype="fieldvalue" field="Company_Type_of_Documents_Sighted__c" fieldtargetobjects="genesis__Income__c" value="Accountants Declaration"/>
-                  </renderconditions>
-                  <enableconditions/>
-                </field>
-                <field id="Accountant_Letter_Verified__c" hideable="true" uniqueid="fi-3u60-3445">
-                  <renderconditions logictype="and" onhidedatabehavior="cancel">
-                    <rendercondition type="fieldvalue" operator="includes" enclosevalueinquotes="true" fieldmodel="SelfEmploymentIncomeAltType" sourcetype="fieldvalue" field="Company_Type_of_Documents_Sighted__c" fieldtargetobjects="genesis__Income__c" value="Accountants Declaration"/>
-                  </renderconditions>
-                  <enableconditions/>
-                </field>
-                <field id="Accountant_Call__c" hideable="true" uniqueid="fi-3u62-3452">
-                  <renderconditions logictype="and" onhidedatabehavior="cancel">
-                    <rendercondition type="fieldvalue" operator="includes" enclosevalueinquotes="true" fieldmodel="SelfEmploymentIncomeAltType" sourcetype="fieldvalue" field="Company_Type_of_Documents_Sighted__c" fieldtargetobjects="genesis__Income__c" value="Accountants Declaration"/>
-                  </renderconditions>
-                  <enableconditions/>
+                <field id="genesis__Amount__c" hideable="true" uniqueid="fi-2Dz-2210"/>
+                <field id="Other_Supporting_Document_Verified__c" hideable="true" uniqueid="fi-3u64-3464">
+                  <label>Documents Verified</label>
                 </field>
                 <field id="BAS__c" hideable="true" uniqueid="fi-1rC9-1118">
                   <renderconditions logictype="and" onhidedatabehavior="cancel">
@@ -1461,6 +1592,36 @@
                   </renderconditions>
                   <enableconditions/>
                 </field>
+                <field id="Accountant__c" hideable="true" uniqueid="fi-3u5y-3416">
+                  <renderconditions logictype="and" onhidedatabehavior="cancel">
+                    <rendercondition type="fieldvalue" operator="includes" enclosevalueinquotes="true" fieldmodel="SelfEmploymentIncomeAltType" sourcetype="fieldvalue" field="Company_Type_of_Documents_Sighted__c" fieldtargetobjects="genesis__Income__c" value="Accountants Declaration"/>
+                  </renderconditions>
+                  <enableconditions/>
+                </field>
+                <field id="Accountant_ABN_Status__c" hideable="true" uniqueid="fi-2Cd0-1990"/>
+                <field id="Accountant_ABN_Search_Conducted__c" hideable="true" uniqueid="fi-2Cc--1981"/>
+                <field id="Accountant_Phone_Number_Verified__c" hideable="true" uniqueid="fi-3u5z-3433">
+                  <label>Accountant Phone Number</label>
+                  <renderconditions logictype="and" onhidedatabehavior="cancel">
+                    <rendercondition type="fieldvalue" operator="includes" enclosevalueinquotes="true" fieldmodel="SelfEmploymentIncomeAltType" sourcetype="fieldvalue" field="Company_Type_of_Documents_Sighted__c" fieldtargetobjects="genesis__Income__c" value="Accountants Declaration"/>
+                  </renderconditions>
+                  <enableconditions/>
+                </field>
+                <field id="Accountant_Phone_Number_independently_ve__c" hideable="true" uniqueid="fi-2CdJ-2025">
+                  <label>Accountant Phone Number independently verified</label>
+                </field>
+                <field id="Accountant_Letter_Verified__c" hideable="true" uniqueid="fi-3u60-3445">
+                  <renderconditions logictype="and" onhidedatabehavior="cancel">
+                    <rendercondition type="fieldvalue" operator="includes" enclosevalueinquotes="true" fieldmodel="SelfEmploymentIncomeAltType" sourcetype="fieldvalue" field="Company_Type_of_Documents_Sighted__c" fieldtargetobjects="genesis__Income__c" value="Accountants Declaration"/>
+                  </renderconditions>
+                  <enableconditions/>
+                </field>
+                <field id="Accountant_Call__c" hideable="true" uniqueid="fi-3u62-3452">
+                  <renderconditions logictype="and" onhidedatabehavior="cancel">
+                    <rendercondition type="fieldvalue" operator="includes" enclosevalueinquotes="true" fieldmodel="SelfEmploymentIncomeAltType" sourcetype="fieldvalue" field="Company_Type_of_Documents_Sighted__c" fieldtargetobjects="genesis__Income__c" value="Accountants Declaration"/>
+                  </renderconditions>
+                  <enableconditions/>
+                </field>
                 <field id="Date_of_Call__c" hideable="true" uniqueid="fi-1rTS-1942"/>
                 <field id="Confirm_letter_prepared_by_accountant__c" hideable="true" uniqueid="fi-1rTT-1951">
                   <renderconditions logictype="and" onhidedatabehavior="cancel">
@@ -1479,21 +1640,22 @@
                     <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="SelfEmploymentIncomeAltType" sourcetype="fieldvalue" field="Accountant_Call__c" fieldtargetobjects="genesis__Income__c" value="Yes"/>
                   </renderconditions>
                   <enableconditions logictype="and"/>
+                  <label>Does stated income include rental income, if yes specify the split</label>
                 </field>
                 <field id="Is_the_accountant_aware_of_any_circumsta__c" hideable="true" uniqueid="fi-1rTV-1980">
                   <renderconditions logictype="and" onhidedatabehavior="cancel">
                     <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="SelfEmploymentIncomeAltType" sourcetype="fieldvalue" field="Accountant_Call__c" fieldtargetobjects="genesis__Income__c" value="Yes"/>
                   </renderconditions>
                   <enableconditions/>
-                  <label>Is the accountant aware of any circumstances?</label>
+                  <label>Is the accountant aware of any circumstances that may affect the borrowers ability to service the loan since the certification was completed?</label>
                 </field>
-                <field id="Accountant_Call_Commentary__c" hideable="true" uniqueid="fi-1rTW-1989">
+                <field id="Accountant_Call_Suitable__c" hideable="true" uniqueid="fi-1rTX-1999">
                   <renderconditions logictype="and" onhidedatabehavior="cancel">
                     <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="SelfEmploymentIncomeAltType" sourcetype="fieldvalue" field="Accountant_Call__c" fieldtargetobjects="genesis__Income__c" value="Yes"/>
                   </renderconditions>
                   <enableconditions/>
                 </field>
-                <field id="Accountant_Call_Suitable__c" hideable="true" uniqueid="fi-1rTX-1999">
+                <field id="Accountant_Call_Commentary__c" hideable="true" uniqueid="fi-1rTW-1989">
                   <renderconditions logictype="and" onhidedatabehavior="cancel">
                     <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="SelfEmploymentIncomeAltType" sourcetype="fieldvalue" field="Accountant_Call__c" fieldtargetobjects="genesis__Income__c" value="Yes"/>
                   </renderconditions>
@@ -1534,7 +1696,7 @@
                 <rendercondition type="fieldvalue" operator="includes" enclosevalueinquotes="true" fieldmodel="NGPartyEmp" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="Employment_Type__c" fieldtargetobjects="clcommon__Party__c" value="Self Employed"/>
               </renderconditions>
             </skootable>
-            <skootable showconditions="true" showsavecancel="false" showerrorsinline="true" searchmethod="server" searchbox="true" showexportbuttons="false" hideheader="false" hidefooter="false" pagesize="10" alwaysresetpagination="false" createrecords="true" model="UnemploymentDetailsModel" buttonposition="" mode="read" allowcolumnreordering="true" responsive="false" uniqueid="sk-3uPy-9422" heading="Unemployment/Student/Home Duties/Retirement Income Details">
+            <skootable showconditions="true" showsavecancel="false" showerrorsinline="true" searchmethod="server" searchbox="true" showexportbuttons="false" hideheader="false" hidefooter="false" pagesize="10" alwaysresetpagination="false" createrecords="true" model="UnemploymentDetailsModel" buttonposition="" mode="read" allowcolumnreordering="true" responsive="false" uniqueid="sk-3uPy-9422" heading="Unemployment/Student/Home Duties/Retirement Income Details" allowscrollbars="true" tablescrollheight="400px">
               <fields>
                 <field id="Unemployed_Income_Type__c" hideable="true" uniqueid="fi-3uV4-10433">
                   <label>Income Type</label>
@@ -1545,8 +1707,14 @@
                     <condition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="UnemploymentDetailsModel" sourcetype="fieldvalue" field="Unemployed_Income_Type__c" fieldtargetobjects="genesis__Income__c" value="Other Income" model="Party"/>
                   </enableconditions>
                 </field>
-                <field id="genesis__Frequency__c" hideable="true" uniqueid="fi-3uV6-10441"/>
                 <field id="genesis__Amount__c" hideable="true" uniqueid="fi-3uV8-10449"/>
+                <field id="genesis__Frequency__c" hideable="true" uniqueid="fi-3uV6-10441">
+                  <renderconditions logictype="and" onhidedatabehavior="keep">
+                    <rendercondition type="fieldvalue" operator="gt" enclosevalueinquotes="false" fieldmodel="UnemploymentDetailsModel" sourcetype="fieldvalue" field="genesis__Amount__c" fieldtargetobjects="genesis__Income__c" value="0.0"/>
+                    <rendercondition type="blank" operator="!=" fieldmodel="UnemploymentDetailsModel" sourcetype="fieldvalue" field="genesis__Amount__c" fieldtargetobjects="genesis__Income__c" value="null" enclosevalueinquotes="false"/>
+                  </renderconditions>
+                  <enableconditions/>
+                </field>
                 <field id="Proof_Sighted__c" hideable="true" uniqueid="fi-3uVC-10457"/>
               </fields>
               <rowactions>
@@ -1583,7 +1751,7 @@
                 <rendercondition type="fieldvalue" operator="includes" enclosevalueinquotes="true" fieldmodel="NGPartyEmp" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="Employment_Type__c" fieldtargetobjects="clcommon__Party__c" value="Home Duties"/>
               </renderconditions>
             </skootable>
-            <skootable showconditions="true" showsavecancel="false" showerrorsinline="true" searchmethod="server" searchbox="true" showexportbuttons="false" hideheader="false" hidefooter="false" pagesize="10" alwaysresetpagination="false" createrecords="true" model="OtherIncome" buttonposition="" mode="read" allowcolumnreordering="true" responsive="true" uniqueid="sk-3ua8-11221" heading="Other Income Details">
+            <skootable showconditions="true" showsavecancel="false" showerrorsinline="true" searchmethod="server" searchbox="true" showexportbuttons="false" hideheader="false" hidefooter="false" pagesize="10" alwaysresetpagination="false" createrecords="true" model="OtherIncome" buttonposition="" mode="read" allowcolumnreordering="true" responsive="true" uniqueid="sk-3ua8-11221" heading="Other Income Details" allowscrollbars="true" tablescrollheight="400px">
               <fields>
                 <field id="Other_Income_Type__c" hideable="true" uniqueid="fi-3ucT-11597">
                   <label>Income Type</label>
@@ -1591,7 +1759,9 @@
                   <enableconditions/>
                 </field>
                 <field id="Description__c" hideable="true" uniqueid="fi-3ucW-11605">
-                  <renderconditions logictype="and" onhidedatabehavior="keep"/>
+                  <renderconditions logictype="and" onhidedatabehavior="keep">
+                    <rendercondition type="blank" operator="!=" fieldmodel="OtherIncome" sourcetype="fieldvalue" field="Other_Income_Type__c" fieldtargetobjects="genesis__Income__c" value="null" enclosevalueinquotes="false"/>
+                  </renderconditions>
                   <enableconditions/>
                 </field>
                 <field id="genesis__Amount__c" hideable="true" uniqueid="fi-3ucX-11613">
@@ -1742,7 +1912,7 @@
       <jsitem location="inlinesnippet" cachelocation="false" name="ABN Company Check">var params = arguments[0],     $ = skuid.$; var appModel = skuid.model.getModel('OriginalApplication'); var appRow = appModel.data[0]; var records = skuid.$.map(arguments[0].list.getSelectedItems(),function(item){         return item.row;     });     if ( !records[0]  || records.length &lt; 1) {         alert("Please select at least one Company Name");     }else if(records  &amp;&amp; records.length &gt; 1){         alert("Please select at only one Company Name");     } else{         //if(records[0].Company_Name__c !== ''){         var del = sforce.apex.execute('ABNNameCallout','deleteCompanyList',                 {                     sfId : records[0].Party__c,                     typeIndicator : 'E'                             });         var ret = sforce.apex.execute('ABNNameCallout','makeABNSkuidCallout',         {               sfId : records[0].Id,             typeIndicator : 'E'          });         if(ret != 'SUCCESS'){             alert('Kindly provide a valid name search for ABN search.');             var apptyObj = new sforce.SObject("genesis__applications__c");             apptyObj.Id = appRow.Id;             apptyObj.Button_disable__c = 'False';             var result = sforce.connection.update([apptyObj]);             appModel.updateData();             return false;         }         else if(!ret){             alert('Error');             var apptyObj = new sforce.SObject("genesis__applications__c");             apptyObj.Id = appRow.Id;             apptyObj.Button_disable__c = 'False';             var result = sforce.connection.update([apptyObj]);             var appModel = skuid.model.getModel('OriginalApplication');             appModel.updateData();             return false;         }         else{                 return true;             }     }</jsitem>
       <jsitem location="inlinesnippet" cachelocation="false" name="ABNCheck">var params = arguments[0],     $ = skuid.$;     //var partyModel = skuid.model.getModel('Party');     //var partyRow = partyModel.data[0];     //var ABNCompanyModel = skuid.model.getModel('ABN_ComapnyName_Model');     //var ABNCompanyRow = ABNCompanyModel.data[0];     var records = skuid.$.map(arguments[0].list.getSelectedItems(),function(item){         return item.row;     });     if ( !records[0]  || records.length &lt; 1) {         alert("Please select at least one Company");     }else if(records  &amp;&amp; records.length &gt; 1){         alert("Please select at only one Company");     } else{         var result = sforce.apex.execute('ABNAPICallout','makeABNCompanySkuidCallout',         {               companyId : records[0].Id          });                 alert(result);                 //window.location.reload();     }</jsitem>
       <jsitem location="inlinesnippet" name="fullDocument" cachelocation="false" url="">var params = arguments[0], $ = skuid.$; var SelfModel = skuid.model.getModel('SelfEmploymentDetails'); var selfFullModel = skuid.model.getModel('SelfEmploymentIncomeFullType'); var flag = false ; $.each(SelfModel.getRows(),function(i,row){     if(row.Document_Type__c === 'Full'){         flag = true ;     }  }); if(selfFullModel.data.length !== 0){     flag = true ; } return flag ;</jsitem>
-      <jsitem location="inlinesnippet" name="PreviousEmploymentRender" cachelocation="false">var params = arguments[0], $ = skuid.$; var paygModel = skuid.model.getModel('PayGEmploymentDetails'); var flag = false ; $.each(paygModel.getRows(),function(i,row){     if(row.Employment_Duration__c &lt; 24){         flag = true ;     }  }); return flag ;</jsitem>
+      <jsitem location="inlinesnippet" name="PreviousEmploymentRender" cachelocation="false">var params = arguments[0], $ = skuid.$; var paygModel = skuid.model.getModel('PayGEmploymentDetails'); var flag = false ; $.each(paygModel.getRows(),function(i,row){     if(row.Employment_Duration__c &lt; 24){         flag = true ;     }  }); console.log(flag); return flag ;</jsitem>
       <jsitem location="inlinesnippet" name="AltDocument" cachelocation="false">var params = arguments[0], $ = skuid.$; var SelfModel = skuid.model.getModel('SelfEmploymentDetails'); var flag = false ; $.each(SelfModel.getRows(),function(i,row){     if(row.Document_Type__c === 'Alt'){         flag = true ;     }  }); return flag ; </jsitem>
       <jsitem location="inlinesnippet" cachelocation="false" name="IncomeSummary">var params = arguments[0],     $ = skuid.$; var partyRow    = skuid.model.getModel('NGParty').data[0]; var ret;             $.blockUI({                 message: 'Please wait! ',                 onBlock: function(){                         ret = sforce.apex.execute('IncomeSummary','IncomeSummarySkuidCallout',                     {                         appId : partyRow.genesis__Application__c                     });                     if(ret=='SUCCESS'){                         $.unblockUI();                         //window.location.reload();                     }else{                         alert(ret);                         $.unblockUI();                         //window.location.reload();                     }                 },                              }); </jsitem>
       <jsitem location="inlinesnippet" name="DeleteUnwantedSelfEmployment" cachelocation="false">var abnCompanyNameModel = skuid.model.getModel('ABNCompanyListModel'); var delIds = [],i=0; $.each(abnCompanyNameModel.data,function(i,row){     delIds[i] = row.Id;     i=i+1; }); try {     var delResult = sforce.connection.deleteIds([delIds]); } catch (err){     alert('Too many search results have been obtained! Please enter more specific details.');     return false; }</jsitem>
@@ -1751,7 +1921,8 @@
       <jsitem location="inlinesnippet" name="PrimaryEmploymentValidation" cachelocation="false">var primaryEmpModel = skuid.model.getModel('PrimaryEmploymentModel'); var recData = primaryEmpModel.data; var num = recData.length; if(num &gt; 1){     alert('Select only 1 Employment Information record from PAYG or Self Employed section to attach it as Primary Employment.');     return false; }</jsitem>
       <jsitem location="inlinesnippet" name="AddPrimaryEmployment" cachelocation="false">var primEmpModel = skuid.model.getModel('PrimaryEmploymentModel'); var primEmpModelRec  = primEmpModel.data; var records = arguments[0].item; for(var eachRec of primEmpModel.getRows()){     if(eachRec.Id === records.row.Id){         primEmpModel.updateRow(eachRec, {Primary_Employment__c: true});     }     else{         primEmpModel.updateRow(eachRec, {Primary_Employment__c: false});     } }</jsitem>
       <jsitem location="inlinesnippet" cachelocation="false" name="DefaultPrimaryEmp">//if only one or more record is present and no employment record is selected as primary employment then by default it becomes the primary employment var primaryEmpModel = skuid.model.getModel('PrimaryEmploymentModel'); var recData = primaryEmpModel.data; var num = recData.length; var primaryEmpSelectedModel = skuid.model.getModel('PrimaryEmploymentSelectedModel'); var primData = primaryEmpSelectedModel.data; var numPrimData = primData.length; if(numPrimData === 0 &amp;&amp; num &gt; 0){     var empObj = new sforce.SObject("genesis__Employment_Information__c");     empObj.Id = (primaryEmpModel.data[0]).Id;     empObj.Primary_Employment__c = true;     var result = sforce.connection.update([empObj]);     (skuid.model.getModel('PayGEmploymentDetails')).updateData();     (skuid.model.getModel('SelfEmploymentDetails')).updateData(); }</jsitem>
-      <jsitem location="inlinesnippet" name="callEraseRedundantData" cachelocation="false">var params = arguments[0], 	$ = skuid.$; var partyModel = skuid.model.getModel('NGPartyEmp'); var appModel = skuid.model.getModel('ApplicationParty'); var employmentInformation = skuid.model.getModel('PayGEmploymentDetails'); var incomeModel = skuid.model.getModel('PAYGIncomeModel'); var seflEmploymentModel = skuid.model.getModel('SelfEmploymentDetails'); var unemploymentModel = skuid.model.getModel('UnemploymentDetailsModel'); var otherIncomeModel = skuid.model.getModel('OtherIncome'); var selfEmpFullModel = skuid.model.getModel('SelfEmploymentIncomeFullType'); var selfEmpAltModel = skuid.model.getModel('SelfEmploymentIncomeAltType'); var incomeSummaryEmpModel = skuid.model.getModel('IncomeSummaryEmpModel'); console.log('PAYG Details'); var stringOfIds = ''; for(var index = 0; index&lt;employmentInformation.data.length; index++){     stringOfIds += employmentInformation.data[index].Id + ';'; } console.log(stringOfIds); sforce.apex.execute('EraseRedundantData','eraseHiddenObjectData', {   objectName : 'clcommon__Party__c',      sectionName : 'PAYG Details',     renderedObjectName : 'genesis__Employment_Information__c',     paramId : partyModel.data[0].Id,     listOfIds : stringOfIds }); console.log('Previous Employment Details'); skuid.model.updateData([employmentInformation],function(){ console.log('update data complete!'); }); var flag = true; $.each(employmentInformation.getRows(),function(i,row){     if(row.Employment_Duration__c &lt; 24){         flag = false;     }  }); if(employmentInformation.data.length === 0 || !partyModel.data[0].Employment_Type__c.includes('PAYG') || flag){     var prevEmpHistoryModel = skuid.model.getModel('PreviousEmploymentHistory');     stringOfIds = '';     for(var index = 0; index&lt;prevEmpHistoryModel.data.length; index++){         stringOfIds += prevEmpHistoryModel.data[index].Id + ';';     }     sforce.apex.execute('EraseRedundantData','eraseHiddenObjectData',     {   objectName : 'clcommon__Party__c',          sectionName : 'Previous Employment Details',         renderedObjectName : 'genesis__Employment_Information__c',         paramId : partyModel.data[0].Id,         listOfIds : stringOfIds,         shouldClear : true     }); } console.log('PAYG Income Details'); stringOfIds = ''; for(var index = 0; index&lt;incomeModel.data.length; index++){     stringOfIds += incomeModel.data[index].Id + ';'; } sforce.apex.execute('EraseRedundantData','eraseHiddenObjectData', {   objectName : 'clcommon__Party__c',      sectionName : 'PAYG Income Details',     renderedObjectName : 'genesis__Income__c',     paramId : partyModel.data[0].Id,     listOfIds : stringOfIds }); console.log('Self Employment Details'); stringOfIds = ''; for(var index = 0; index&lt;seflEmploymentModel.data.length; index++){     stringOfIds += seflEmploymentModel.data[index].Id + ';'; } sforce.apex.execute('EraseRedundantData','eraseHiddenObjectData', {   objectName : 'clcommon__Party__c',      sectionName : 'Self Employment Details',     renderedObjectName : 'genesis__Employment_Information__c',     paramId : partyModel.data[0].Id,     listOfIds : stringOfIds }); console.log('Unemployment/Student/Home Duties/Retirement Income Details'); stringOfIds = ''; for(var index = 0; index&lt;unemploymentModel.data.length; index++){     stringOfIds += unemploymentModel.data[index].Id + ';'; } sforce.apex.execute('EraseRedundantData','eraseHiddenObjectData', {   objectName : 'clcommon__Party__c',      sectionName : 'Unemployment/Student/Home Duties/Retirement Income Details',     renderedObjectName : 'genesis__Income__c',     paramId : partyModel.data[0].Id,     listOfIds : stringOfIds }); console.log('Other Income Details'); stringOfIds = ''; for(var index = 0; index&lt;otherIncomeModel.data.length; index++){     stringOfIds += otherIncomeModel.data[index].Id + ';'; } sforce.apex.execute('EraseRedundantData','eraseHiddenObjectData', {   objectName : 'clcommon__Party__c',      sectionName : 'Other Income Details',     renderedObjectName : 'genesis__Income__c',     paramId : partyModel.data[0].Id,     listOfIds : stringOfIds }); skuid.model.updateData([seflEmploymentModel],function(){ console.log('update data complete!'); }); var flag = true ; $.each(seflEmploymentModel.getRows(),function(i,row){     if(row.Document_Type__c === 'Full'){         flag = false ;     }  }); if(seflEmploymentModel.data.length === 0 || !partyModel.data[0].Employment_Type__c.includes('Self Employed') || flag){     skuid.model.updateData([incomeSummaryEmpModel],function(){ console.log('update data complete!'); });     stringOfIds = '';     for(var index = 0; index&lt;selfEmpFullModel.data.length; index++){         stringOfIds += selfEmpFullModel.data[index].Id + ';';     }     console.log('Business Income(Full) EXEC on' + selfEmpFullModel.data.length);     sforce.apex.execute('EraseRedundantData','eraseHiddenObjectData',     {   objectName : 'genesis__Applications__c',          sectionName : 'Business Income (Full) - Employment and Income Details tab',         renderedObjectName : 'genesis__Income__c',         paramId : appModel.data[0].Id,         listOfIds : stringOfIds,         shouldClear : true     }); } skuid.model.updateData([incomeSummaryEmpModel],function(){ console.log('update data complete!'); }); skuid.model.updateData([selfEmpFullModel],function(){ console.log('update data complete!'); }); if(selfEmpFullModel.data.length === 0 || !partyModel.data[0].Employment_Type__c.includes('Self Employed')){     stringOfIds = '';     for(var index = 0; index&lt;incomeSummaryEmpModel.data.length; index++){         stringOfIds += incomeSummaryEmpModel.data[index].Id + ';';     }     console.log('Income Summary EXEC on' + incomeSummaryEmpModel.data.length);     sforce.apex.execute('EraseRedundantData','eraseHiddenObjectData',     {   objectName : 'clcommon__Party__c',          sectionName : 'Income Summary',         renderedObjectName : 'genesis__Employment_Information__c',         paramId : partyModel.data[0].Id,         listOfIds : stringOfIds,         shouldClear : true     }); } skuid.model.updateData([seflEmploymentModel],function(){ console.log('update data complete!'); }); var flag = true ; $.each(seflEmploymentModel.getRows(),function(i,row){     if(row.Document_Type__c === 'Alt'){         flag = false ;     }  }); if(seflEmploymentModel.data.length === 0 || !partyModel.data[0].Employment_Type__c.includes('Self Employed') || flag){     skuid.model.updateData([incomeSummaryEmpModel],function(){ console.log('update data complete!'); });     stringOfIds = '';     for(var index = 0; index&lt;selfEmpAltModel.data.length; index++){         stringOfIds += selfEmpAltModel.data[index].Id + ';';     }     console.log('Business Income(Alt) EXEC on' + selfEmpAltModel.data.length);     sforce.apex.execute('EraseRedundantData','eraseHiddenObjectData',     {   objectName : 'clcommon__Party__c',          sectionName : 'Business Income(Alt)',         renderedObjectName : 'genesis__Income__c',         paramId : appModel.data[0].Id,         listOfIds : stringOfIds,         shouldClear : true     }); }</jsitem>
+      <jsitem location="inlinesnippet" name="callEraseRedundantData" cachelocation="false">var params = arguments[0], 	$ = skuid.$; var partyModel = skuid.model.getModel('NGPartyEmp'); var appModel = skuid.model.getModel('ApplicationParty'); var employmentInformation = skuid.model.getModel('PayGEmploymentDetails'); var incomeModel = skuid.model.getModel('PAYGIncomeModel'); var seflEmploymentModel = skuid.model.getModel('SelfEmploymentDetails'); var unemploymentModel = skuid.model.getModel('UnemploymentDetailsModel'); var otherIncomeModel = skuid.model.getModel('OtherIncome'); var selfEmpFullModel = skuid.model.getModel('SelfEmploymentIncomeFullType'); var selfEmpAltModel = skuid.model.getModel('SelfEmploymentIncomeAltType'); var incomeSummaryEmpModel = skuid.model.getModel('IncomeSummaryEmpModel'); var prevEmpHistoryModel = skuid.model.getModel('PreviousEmploymentHistory');  stringOfIds = ''; for(var index = 0; index&lt;incomeModel.data.length; index++){     stringOfIds += incomeModel.data[index].Id + ';'; } console.log(partyModel.data[0].Id); console.log(stringOfIds); if(incomeModel.data.length !== 0){     console.log('PAYG Income Details ' + incomeModel.data.length);     sforce.apex.execute('EraseRedundantData','eraseHiddenObjectData',     {   objectName : 'clcommon__Party__c',          sectionName : 'PAYG Income Details',         renderedObjectName : 'genesis__Income__c',         paramId : partyModel.data[0].Id,         listOfIds : stringOfIds     }); } console.log('CHECK'); var flag = true; for(var index = 0; index&lt;employmentInformation.data.length; index++){     if(employmentInformation.data[0].Employment_Duration__c !== undefined &amp;&amp; employmentInformation.data[0].Employment_Duration__c &lt; 24){         flag = false;     } } skuid.model.updateData([employmentInformation],function(){ console.log('update data complete!'); }); skuid.model.updateData([prevEmpHistoryModel],function(){ console.log('update data complete!'); }); // console.log(partyModel.data[0].Employment_Type__c); var value = partyModel.data[0].Employment_Type__c; if(value === undefined){     value = ''; } // console.log('1 ' + employmentInformation.data.length); console.log('2 ' + flag); console.log(value); console.log('3 ' + value.includes('PAYG')); console.log('4 ' + prevEmpHistoryModel.data.length !== 0); if((employmentInformation.data.length === 0 || !value.includes('PAYG') || flag) &amp;&amp; prevEmpHistoryModel.data.length !== 0){     console.log('Previous Employment Details ' + prevEmpHistoryModel.data.length);     var prevEmpHistoryModel = skuid.model.getModel('PreviousEmploymentHistory');     stringOfIds = '';     for(var index = 0; index&lt;prevEmpHistoryModel.data.length; index++){         stringOfIds += prevEmpHistoryModel.data[index].Id + ';';     }     console.log(stringOfIds);     sforce.apex.execute('EraseRedundantData','eraseHiddenObjectData',     {   objectName : 'clcommon__Party__c',          sectionName : 'Previous Employment Details',         renderedObjectName : 'genesis__Employment_Information__c',         paramId : partyModel.data[0].Id,         listOfIds : stringOfIds,         shouldClear : true     }); } stringOfIds = ''; for(var index = 0; index&lt;unemploymentModel.data.length; index++){     stringOfIds += unemploymentModel.data[index].Id + ';'; } if(unemploymentModel.data.length !== 0){     console.log('Unemployment/Student/Home Duties/Retirement Income Details ' + unemploymentModel.data.length);     sforce.apex.execute('EraseRedundantData','eraseHiddenObjectData',     {   objectName : 'clcommon__Party__c',          sectionName : 'Unemployment/Student/Home Duties/Retirement Income Details',         renderedObjectName : 'genesis__Income__c',         paramId : partyModel.data[0].Id,         listOfIds : stringOfIds     }); } stringOfIds = ''; for(var index = 0; index&lt;otherIncomeModel.data.length; index++){     stringOfIds += otherIncomeModel.data[index].Id + ';'; } if(otherIncomeModel.data.length !== 0){     console.log('Other Income Details ' + otherIncomeModel.data.length);     sforce.apex.execute('EraseRedundantData','eraseHiddenObjectData',     {   objectName : 'clcommon__Party__c',          sectionName : 'Other Income Details',         renderedObjectName : 'genesis__Income__c',         paramId : partyModel.data[0].Id,         listOfIds : stringOfIds     }); } skuid.model.updateData([seflEmploymentModel],function(){ console.log('update data complete!'); }); var flag = true ; $.each(seflEmploymentModel.getRows(),function(i,row){     if(row.Document_Type__c === 'Full'){         flag = false ;     }  }); if((seflEmploymentModel.data.length === 0 || !value.includes('Self Employed') || flag) &amp;&amp; selfEmpFullModel.data.length !== 0){     skuid.model.updateData([incomeSummaryEmpModel],function(){ console.log('update data complete!'); });     stringOfIds = '';     for(var index = 0; index&lt;selfEmpFullModel.data.length; index++){         stringOfIds += selfEmpFullModel.data[index].Id + ';';     }     console.log('Business Income(Full) EXEC on' + selfEmpFullModel.data.length);     sforce.apex.execute('EraseRedundantData','eraseHiddenObjectData',     {   objectName : 'genesis__Applications__c',          sectionName : 'Business Income (Full) - Employment and Income Details tab',         renderedObjectName : 'genesis__Income__c',         paramId : appModel.data[0].Id,         listOfIds : stringOfIds,         shouldClear : true     }); } skuid.model.updateData([incomeSummaryEmpModel],function(){ console.log('update data complete!'); }); skuid.model.updateData([selfEmpFullModel],function(){ console.log('update data complete!'); }); if((selfEmpFullModel.data.length === 0 || !value.includes('Self Employed')) &amp;&amp; incomeSummaryEmpModel.data.length !== 0){     stringOfIds = '';     for(var index = 0; index&lt;incomeSummaryEmpModel.data.length; index++){         stringOfIds += incomeSummaryEmpModel.data[index].Id + ';';     }     console.log('Income Summary EXEC on' + incomeSummaryEmpModel.data.length);     sforce.apex.execute('EraseRedundantData','eraseHiddenObjectData',     {   objectName : 'clcommon__Party__c',          sectionName : 'Income Summary',         renderedObjectName : 'genesis__Employment_Information__c',         paramId : partyModel.data[0].Id,         listOfIds : stringOfIds,         shouldClear : true     }); } skuid.model.updateData([seflEmploymentModel],function(){ console.log('update data complete!'); }); var flag = true ; $.each(seflEmploymentModel.getRows(),function(i,row){     if(row.Document_Type__c === 'Alt'){         flag = false ;     }  }); if((seflEmploymentModel.data.length === 0 || !value.includes('Self Employed') || flag) &amp;&amp; selfEmpAltModel.data.length !== 0){     skuid.model.updateData([incomeSummaryEmpModel],function(){ console.log('update data complete!'); });     stringOfIds = '';     for(var index = 0; index&lt;selfEmpAltModel.data.length; index++){         stringOfIds += selfEmpAltModel.data[index].Id + ';';     }     console.log('Business Income(Alt) EXEC on' + selfEmpAltModel.data.length);     sforce.apex.execute('EraseRedundantData','eraseHiddenObjectData',     {   objectName : 'clcommon__Party__c',          sectionName : 'Business Income(Alt)',         renderedObjectName : 'genesis__Income__c',         paramId : appModel.data[0].Id,         listOfIds : stringOfIds,         shouldClear : true     }); } stringOfIds = ''; for(var index = 0; index&lt;seflEmploymentModel.data.length; index++){     stringOfIds += seflEmploymentModel.data[index].Id + ';'; } if(seflEmploymentModel.data.length !== 0){     console.log('Self Employment Details ' + seflEmploymentModel.data.length);     sforce.apex.execute('EraseRedundantData','eraseHiddenObjectData',     {   objectName : 'clcommon__Party__c',          sectionName : 'Self Employment Details',         renderedObjectName : 'genesis__Employment_Information__c',         paramId : partyModel.data[0].Id,         listOfIds : stringOfIds     }); } skuid.model.updateData([employmentInformation],function(){ console.log('update data complete!'); }); console.log('PAYG Details ' + employmentInformation.data.length); var stringOfIds = ''; for(var index = 0; index&lt;employmentInformation.data.length; index++){     stringOfIds += employmentInformation.data[index].Id + ';'; } if(employmentInformation.data.length &gt; 0){     sforce.apex.execute('EraseRedundantData','eraseHiddenObjectData',     {   objectName : 'clcommon__Party__c',          sectionName : 'PAYG Details',         renderedObjectName : 'genesis__Employment_Information__c',         paramId : partyModel.data[0].Id,         listOfIds : stringOfIds     }); }</jsitem>
+      <jsitem location="inlinesnippet" name="checkEmpDuration" cachelocation="false">var params = arguments[0], 	$ = skuid.$; var contactModel = skuid.model.getModel('Contact'); var officeModel = skuid.model.getModel('Office');  var value1 = contactModel.data[0].Temporary_Visa_Expiry_Date__c; console.log(contactModel.data[0].Temporary_Visa_Expiry_Date__c); var value2 = officeModel.data[0].loan__Current_System_Date__c; var date2 = new Date(value1); var date1 = new Date(value2); var diffInTime = date2.getTime() - date1.getTime();  var diffInMonths = diffInTime / (1000 * 3600 * 24 * 30); console.log('called ' + value1 + ' ' + value2); console.log(diffInMonths); if(diffInMonths &lt; 12){     console.log('returned true');     return true; } return false;</jsitem>
     </javascript>
     <css>
       <cssitem location="staticresource" name="CLSStyleSheetPack" cachelocation="false" url="" namespace="genesisExtn" filepath="cls-common.css"/>
