@@ -146,13 +146,6 @@
         <field id="Total Non-HEM Living Expenses" uionly="true" displaytype="FORMULA" label="Total Non-HEM Living Expenses" ogdisplaytype="TEXT" readonly="true" returntype="CURRENCY" precision="16" scale="2">
           <formula>IF(ISBLANK({{Investment_Property_Costs__c}}),0,{{Investment_Property_Costs__c}})+IF(ISBLANK({{Education_Private_School_Fees__c}}),0,{{Education_Private_School_Fees__c}})+IF(ISBLANK({{Private_Health_Life_and_IP_Insurance__c}}),0,{{Private_Health_Life_and_IP_Insurance__c}})+IF(ISBLANK({{Non_Compulsory_Superannuation__c}}),0,{{Non_Compulsory_Superannuation__c}})+IF(ISBLANK({{Maintenance_Alimony__c}}),0,{{Maintenance_Alimony__c}})+IF(ISBLANK({{Rent_Board_Monthly_Amount__c}}),0,{{Rent_Board_Monthly_Amount__c}})</formula>
         </field>
-        <field id="HEM__c"/>
-        <field id="Living_Expense_Used_for_Servicing_Purpos__c"/>
-        <field id="Living_Expense_Explanation_Received__c"/>
-        <field id="Living_Expense_Explanation_Suitable__c"/>
-        <field id="Living_Expense_Suitale_Commentary__c"/>
-        <field id="Bank_Statements_Required_to_be_Reviewed__c"/>
-        <field id="Bank_Statments_Reviewed__c"/>
       </fields>
       <conditions>
         <condition type="param" value="Id" field="Id" operator="=" enclosevalueinquotes="true"/>
@@ -264,12 +257,6 @@
               </enableconditions>
               <actions>
                 <action type="save">
-                  <models>
-                    <model>CLENGParty</model>
-                  </models>
-                </action>
-                <action type="custom" snippet="callEraseRedundentData"/>
-                <action type="requeryModels" behavior="standard">
                   <models>
                     <model>CLENGParty</model>
                   </models>
@@ -477,55 +464,6 @@
                             <field uniqueid="sk-2Usb-1077" id="Total Non-HEM Living Expenses"/>
                           </fields>
                         </section>
-                        <section collapsible="no" uniqueid="sk-21z6-563">
-                          <fields>
-                            <columns uniqueid="sk-21zA-585">
-                              <column width="100%" uniqueid="sk-21zA-575">
-                                <sections>
-                                  <section title="New Section" collapsible="no" uniqueid="sk-21zA-576" showheader="false">
-                                    <fields>
-                                      <field uniqueid="sk-21zU-721" id="HEM__c"/>
-                                      <field uniqueid="sk-21zV-727" id="Living_Expense_Used_for_Servicing_Purpos__c">
-                                        <label>Living Expense Used for Servicing Purpose</label>
-                                      </field>
-                                      <field uniqueid="sk-21zW-733" id="Living_Expense_Explanation_Received__c">
-                                        <renderconditions logictype="and" onhidedatabehavior="cancel">
-                                          <rendercondition type="blank" operator="!=" fieldmodel="CLENGParty" sourcetype="fieldvalue" field="HEM__c" fieldtargetobjects="clcommon__Party__c" value="null" enclosevalueinquotes="false"/>
-                                          <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="CLENGParty" sourcetype="snippet" sourcesnippet="checkMonthlyExp"/>
-                                        </renderconditions>
-                                        <enableconditions/>
-                                      </field>
-                                      <field uniqueid="sk-21zX-739" id="Living_Expense_Explanation_Suitable__c">
-                                        <renderconditions logictype="and" onhidedatabehavior="cancel">
-                                          <rendercondition type="blank" operator="!=" fieldmodel="CLENGParty" sourcetype="fieldvalue" field="HEM__c" fieldtargetobjects="clcommon__Party__c" value="null" enclosevalueinquotes="false"/>
-                                          <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="CLENGParty" sourcetype="snippet" sourcesnippet="checkMonthlyExp"/>
-                                        </renderconditions>
-                                        <enableconditions/>
-                                      </field>
-                                      <field uniqueid="sk-21zY-745" id="Living_Expense_Suitale_Commentary__c">
-                                        <renderconditions logictype="and" onhidedatabehavior="cancel">
-                                          <rendercondition type="blank" operator="!=" fieldmodel="CLENGParty" sourcetype="fieldvalue" field="HEM__c" fieldtargetobjects="clcommon__Party__c" value="null" enclosevalueinquotes="false"/>
-                                          <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="CLENGParty" sourcetype="snippet" sourcesnippet="checkMonthlyExp"/>
-                                        </renderconditions>
-                                        <enableconditions/>
-                                      </field>
-                                      <field uniqueid="sk-21zb-752" id="Bank_Statements_Required_to_be_Reviewed__c">
-                                        <renderconditions logictype="and" onhidedatabehavior="keep"/>
-                                        <enableconditions/>
-                                      </field>
-                                      <field uniqueid="sk-21zd-758" id="Bank_Statments_Reviewed__c">
-                                        <renderconditions logictype="and" onhidedatabehavior="cancel">
-                                          <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="CLENGParty" sourcetype="fieldvalue" field="Bank_Statements_Required_to_be_Reviewed__c" fieldtargetobjects="clcommon__Party__c" value="Yes"/>
-                                        </renderconditions>
-                                        <enableconditions logictype="and"/>
-                                      </field>
-                                    </fields>
-                                  </section>
-                                </sections>
-                              </column>
-                            </columns>
-                          </fields>
-                        </section>
                       </sections>
                     </column>
                   </columns>
@@ -616,10 +554,7 @@
   </components>
   <resources>
     <labels/>
-    <javascript>
-      <jsitem location="inlinesnippet" name="checkMonthlyExp" cachelocation="false">var params = arguments[0], 	$ = skuid.$; var partyModel = skuid.model.getModel('CLENGParty'); console.log(partyModel.getFieldValue(partyModel.getFirstRow(), 'Total HEM Monthly Living Expenses')); if(Number(partyModel.data[0].HEM__c) &gt; Number(partyModel.getFieldValue(partyModel.getFirstRow(), 'Total HEM Monthly Living Expenses'))){     console.log(true);     return true; } return false;</jsitem>
-      <jsitem location="inlinesnippet" name="callEraseRedundentData" cachelocation="false">var params = arguments[0], 	$ = skuid.$; var partyModel = skuid.model.getModel('CLENGParty'); sforce.apex.execute('EraseRedundantData','eraseHiddenFieldsDataOf', { objectName : 'clcommon__Party__c', paramId : partyModel.data[0].Id });  if(Number(partyModel.data[0].HEM__c) &lt;= Number(partyModel.getFieldValue(partyModel.getFirstRow(), 'Total HEM Monthly Living Expenses'))){     console.log('called');     sforce.apex.execute('EraseRedundantData','eraseRelatedObjectFieldData',     {   objectName : 'clcommon__Party__c',          sectionName : 'Some Section',         renderedObjectName : 'clcommon__Party__c',         paramId : partyModel.data[0].Id,         listOfIds : partyModel.data[0].Id,         isFieldData : true,         listOffieldNamesIfFieldData : 'Living_Expense_Explanation_Received__c;Living_Expense_Explanation_Suitable__c;Living_Expense_Suitale_Commentary__c',         shouldClearField : true     }); }</jsitem>
-    </javascript>
+    <javascript/>
     <css>
       <cssitem location="staticresource" name="CLSStyleSheetPack" cachelocation="false" url="" namespace="genesisExtn" filepath="cls-common.css"/>
       <cssitem location="staticresource" name="CLSStyleSheetPack" cachelocation="false" url="" namespace="genesisExtn" filepath="cls-dashboard.css"/>

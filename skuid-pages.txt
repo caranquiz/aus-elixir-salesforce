@@ -10,3 +10,4 @@ CustomAssetsAndLiabilities
 CustomIdentification
 CustomLivingExpenses
 CustomPricingDetails
+PartyRelationshipDetails

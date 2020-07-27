@@ -1,6 +1,6 @@
 <skuidpage personalizationmode="server" showsidebar="false" showheader="false" useviewportmeta="true" theme="CustomClassic" unsavedchangeswarning="yes">
   <models>
-    <model id="ALNGParty" limit="20" query="true" createrowifnonefound="false" sobject="clcommon__Party__c" datasource="salesforce">
+    <model id="NGParty" limit="20" query="true" createrowifnonefound="false" sobject="clcommon__Party__c" datasource="salesforce">
       <fields>
         <field id="Id"/>
         <field id="clcommon__Account__r.Name"/>
@@ -122,268 +122,344 @@
         <field id="Number_of_Documents_Sighted__c"/>
         <field id="Type_of_Documents_Sighted__c"/>
         <field id="Telephone_Media_Streaming_Amount__c"/>
-        <field id="Total Monthly living Expenses" uionly="true" displaytype="FORMULA" ogdisplaytype="TEXT" precision="9" scale="2" defaultvaluetype="fieldvalue" readonly="true" returntype="CURRENCY">
-          <formula>IF(ISBLANK({{Childcare_Monthly_Income__c}}),0,{{Childcare_Monthly_Income__c}}) + IF(ISBLANK({{Clothing_Personal_Care__c}}),0,{{Clothing_Personal_Care__c}}) + IF(ISBLANK({{Education_Monthly_Amount__c}}),0,{{Education_Monthly_Amount__c}}) + IF(ISBLANK({{Groceries__c}}),0,{{Groceries__c}}) + IF(ISBLANK({{Insurance__c}}),0,{{Insurance__c}}) + IF(ISBLANK({{Investment_property_utilities__c}}),0,{{Investment_property_utilities__c}}) + IF(ISBLANK({{Medical_Health__c}}),0,{{Medical_Health__c}}) + IF(ISBLANK({{Other_Expenses__c}}),0,{{Other_Expenses__c}}) + IF(ISBLANK({{Owner_occupied_property_utilities_rates__c}}),0,{{Owner_occupied_property_utilities_rates__c}}) + IF(ISBLANK({{Recreation_Entertainment__c}}),0,{{Recreation_Entertainment__c}}) + IF(ISBLANK({{Transport_Monthly_Amount__c}}),0,{{Transport_Monthly_Amount__c}}) + IF(ISBLANK({{Rent_Board_Monthly_Amount__c}}),0,{{Rent_Board_Monthly_Amount__c}}) + IF(ISBLANK({{Telephone_Media_Streaming_Amount__c}}),0,{{Telephone_Media_Streaming_Amount__c}}) + IF(ISBLANK({{Description_for_Other_Discretionary_exp__c}}),0,{{Description_for_Other_Discretionary_exp__c}}) </formula>
-        </field>
         <field id="genesis__Application__r.Id"/>
         <field id="genesis__Application__r.RecordTypeId"/>
         <field id="Trust_Purpose1__c"/>
-        <field id="Application_ID__c"/>
+        <field id="Maintenance_Alimony__c"/>
+        <field id="Non_Compulsory_Superannuation__c"/>
+        <field id="Investment_Property_Costs__c"/>
+        <field id="Education_excluding_Private_School_Fees__c"/>
+        <field id="Education_Private_School_Fees__c"/>
+        <field id="Private_Health_Life_and_IP_Insurance__c"/>
+        <field id="Total Non-HEM Living Expenses" uionly="true" displaytype="FORMULA" ogdisplaytype="TEXT" readonly="true" returntype="CURRENCY" precision="16" scale="2" label="Total Non-HEM Living Expenses">
+          <formula>IF(ISBLANK({{Investment_Property_Costs__c}}),0,{{Investment_Property_Costs__c}})+IF(ISBLANK({{Education_Private_School_Fees__c}}),0,{{Education_Private_School_Fees__c}})+IF(ISBLANK({{Private_Health_Life_and_IP_Insurance__c}}),0,{{Private_Health_Life_and_IP_Insurance__c}})+IF(ISBLANK({{Non_Compulsory_Superannuation__c}}),0,{{Non_Compulsory_Superannuation__c}})+IF(ISBLANK({{Maintenance_Alimony__c}}),0,{{Maintenance_Alimony__c}})+IF(ISBLANK({{Rent_Board_Monthly_Amount__c}}),0,{{Rent_Board_Monthly_Amount__c}})</formula>
+        </field>
+        <field id="Memberships_gym_sporting_clubs_etc__c"/>
+        <field id="Primary_Residence_Property_Costs__c"/>
+        <field uionly="true" displaytype="FORMULA" id="Total HEM Monthly Living Expenses" label="Total HEM Monthly Living Expenses" ogdisplaytype="TEXT" readonly="true" returntype="CURRENCY" precision="16" scale="2">
+          <formula>IF(ISBLANK({{Primary_Residence_Property_Costs__c}}),0,{{Primary_Residence_Property_Costs__c}})+IF(ISBLANK({{Groceries__c}}),0,{{Groceries__c}})+IF(ISBLANK({{Clothing_Personal_Care__c}}),0,{{Clothing_Personal_Care__c}})+IF(ISBLANK({{Transport_Monthly_Amount__c}}),0,{{Transport_Monthly_Amount__c}})+IF(ISBLANK({{Medical_Health__c}}),0,{{Medical_Health__c}})+IF(ISBLANK({{Education_excluding_Private_School_Fees__c}}),0,{{Education_excluding_Private_School_Fees__c}})+IF(ISBLANK({{Childcare_Monthly_Income__c}}),0, {{Childcare_Monthly_Income__c}})+IF(ISBLANK({{Insurance__c}}),0,{{Insurance__c}})+IF(ISBLANK({{Telephone_Media_Streaming_Amount__c}}),0,{{Telephone_Media_Streaming_Amount__c}})+IF(ISBLANK({{Recreation_Entertainment__c}}),0,{{Recreation_Entertainment__c}})+IF(ISBLANK({{Memberships_gym_sporting_clubs_etc__c}}),0,{{Memberships_gym_sporting_clubs_etc__c}})+IF(ISBLANK({{Other_Expenses__c}}),0,{{Other_Expenses__c}})+IF(ISBLANK({{Description_for_Other_Discretionary_exp__c}}),0,{{Description_for_Other_Discretionary_exp__c}})</formula>
+        </field>
         <field id="genesis__Application__r.Is_Approved__c"/>
       </fields>
       <conditions>
-        <condition type="param" value="Id" field="Id" operator="=" enclosevalueinquotes="true"/>
+        <condition type="param" value="Id" field="Id" operator="=" enclosevalueinquotes="true" novaluebehavior="noquery" model="ApplicationParty"/>
       </conditions>
       <actions>
         <action>
           <actions>
-            <action type="requeryModels" model="NGParty" behavior="loadmore">
-              <models>
-                <model>CompanyIncomeDetailsFull</model>
-                <model>CompanyIncomeDetailsAlt</model>
-              </models>
+            <action type="branch" whenfinished="continue" model="NGParty">
+              <onerroractions/>
+              <formula>{{Document_Type__c}}=="Alt"</formula>
+              <iftrueactions>
+                <action type="save">
+                  <models>
+                    <model>CompanyIncomeDetailsFull</model>
+                  </models>
+                </action>
+                <action type="markRowsForDeletion" model="CompanyIncomeDetailsFull" affectedrows="all"/>
+                <action type="save">
+                  <models>
+                    <model>CompanyIncomeDetailsFull</model>
+                  </models>
+                </action>
+              </iftrueactions>
             </action>
-            <action type="custom"/>
+            <action type="branch" whenfinished="stop" model="NGParty">
+              <iftrueactions>
+                <action type="save">
+                  <models>
+                    <model>CompanyIncomeDetailsAlt</model>
+                  </models>
+                </action>
+              </iftrueactions>
+              <formula>{{Document_Type__c}}=="Full"</formula>
+            </action>
           </actions>
           <events>
-            <event>row.updated</event>
+            <event>models.saved</event>
           </events>
-          <fields>
-            <field>Document_Type__c</field>
-          </fields>
         </action>
       </actions>
     </model>
-    <model id="Assets" limit="20" query="true" createrowifnonefound="false" datasource="salesforce" sobject="genesis__Asset_Information__c">
+    <model limit="20" query="true" createrowifnonefound="false" datasource="salesforce" id="ApplicationParty" sobject="genesis__Applications__c">
       <fields>
-        <field id="genesis__Application__c"/>
-        <field id="genesis__Application__r.Name"/>
-        <field id="genesis__Asset_Type__c"/>
-        <field id="Address__c"/>
-        <field id="genesis__Market_Value__c"/>
+        <field id="RecordTypeId"/>
+        <field id="Name"/>
+        <field id="genesis__Account__c"/>
+        <field id="genesis__Account__r.Name"/>
+        <field id="genesis__Account__r.Id"/>
         <field id="Id"/>
-        <field id="Liability__c"/>
-        <field id="Security__c"/>
-        <field id="Monthly_Income__c"/>
       </fields>
       <conditions>
-        <condition type="modelmerge" value="" field="genesis__Application__c" fieldtargetobjects="genesis__Applications__c" operator="=" model="ALNGParty" enclosevalueinquotes="true" mergefield="genesis__Application__c" novaluebehavior="deactivate"/>
-        <condition type="modelmerge" value="" field="Party__c" fieldtargetobjects="clcommon__Party__c" operator="=" model="ALNGParty" enclosevalueinquotes="true" mergefield="Id" novaluebehavior="deactivate"/>
+        <condition type="modelmerge" value="" field="Id" operator="=" model="NGParty" enclosevalueinquotes="true" mergefield="genesis__Application__c" novaluebehavior="deactivate" fieldtargetobjects="genesis__Applications__c"/>
       </conditions>
       <actions/>
     </model>
-    <model id="Liabilities" limit="20" query="true" createrowifnonefound="false" datasource="salesforce" sobject="genesis__Liability__c">
+    <model id="Account" limit="20" query="true" createrowifnonefound="false" datasource="salesforce" sobject="Account">
       <fields>
-        <field id="genesis__Application__c"/>
-        <field id="genesis__Application__r.Name"/>
-        <field id="genesis__Liability_Type__c"/>
-        <field id="genesis__Payment_Amount__c"/>
-        <field id="To_Be_Refinanced__c"/>
-        <field id="genesis__Name_of_Creditor__c"/>
-        <field id="genesis__Original_Amount__c"/>
-        <field id="Refinanced__c"/>
-        <field id="Ownership_Percentage__c"/>
+        <field id="RecordTypeId"/>
+        <field id="clcommon__Legal_Entity_Type__c"/>
+        <field id="clcommon__Legal_Entity_Type__r.Name"/>
       </fields>
       <conditions>
-        <condition type="modelmerge" value="" field="genesis__Application__c" fieldtargetobjects="genesis__Applications__c" operator="=" model="ALNGParty" enclosevalueinquotes="true" mergefield="genesis__Application__c" novaluebehavior="deactivate"/>
-        <condition type="modelmerge" value="" field="Party__c" fieldtargetobjects="clcommon__Party__c" operator="=" model="ALNGParty" enclosevalueinquotes="true" mergefield="Id" novaluebehavior="deactivate"/>
+        <condition type="modelmerge" value="" field="Id" operator="=" model="NGParty" enclosevalueinquotes="true" mergefield="clcommon__Account__c" novaluebehavior="deactivate" fieldtargetobjects="Account"/>
+      </conditions>
+      <actions/>
+    </model>
+    <model limit="20" query="true" createrowifnonefound="false" datasource="salesforce" id="CLEParty" sobject="clcommon__Party__c">
+      <fields>
+        <field id="Trust_Structure__c"/>
+        <field id="Id"/>
+        <field id="Is_this_a_joint_applicant__c"/>
+      </fields>
+      <conditions>
+        <condition type="param" value="Id" field="Id" operator="=" enclosevalueinquotes="true"/>
       </conditions>
       <actions/>
     </model>
   </models>
   <components>
-    <wrapper uniqueid="sk-Avb-10801">
-      <components>
-        <pagetitle model="Liabilities" uniqueid="sk-AzF-11706">
-          <actions>
-            <action type="multi" label="Save" uniqueid="sk-AzF-11711" icon="sk-webicon-font-awesome:floppy-o">
-              <actions>
-                <action type="save">
-                  <models>
-                    <model>ALNGParty</model>
-                    <model>Assets</model>
-                    <model>Liabilities</model>
-                  </models>
-                </action>
-                <action type="blockUI" message="The changes are being recorded!" timeout="1000"/>
-              </actions>
-              <renderconditions logictype="and">
-                <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="false" fieldmodel="ALNGParty" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="genesis__Application__r.Is_Approved__c" value="false"/>
-              </renderconditions>
-              <enableconditions logictype="or">
-                <condition type="fieldvalue" enclosevalueinquotes="false" fieldmodel="Assets" sourcetype="modelproperty" nosourcerowbehavior="deactivate" sourceproperty="hasChanged" value="true" operator="="/>
-                <condition type="fieldvalue" enclosevalueinquotes="false" fieldmodel="Liabilities" sourcetype="modelproperty" sourceproperty="hasChanged" value="true" operator="="/>
-              </enableconditions>
-            </action>
-            <action type="cancel" label="Cancel" uniqueid="sk-1Cji-454" window="self">
-              <models>
-                <model>ALNGParty</model>
-                <model>Assets</model>
-              </models>
-              <renderconditions logictype="and">
-                <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="false" fieldmodel="ALNGParty" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="genesis__Application__r.Is_Approved__c" value="false"/>
-              </renderconditions>
-              <enableconditions/>
-            </action>
-          </actions>
-          <renderconditions logictype="and"/>
-        </pagetitle>
-        <skootable showconditions="true" showsavecancel="false" showerrorsinline="true" searchmethod="server" searchbox="false" showexportbuttons="false" hideheader="false" hidefooter="false" pagesize="10" alwaysresetpagination="false" createrecords="true" model="Assets" mode="read" allowcolumnreordering="true" responsive="true" uniqueid="sk-AyT-11628" instantfilters="true" emptysearchbehavior="query" allowscrollbars="false" tablescrollheight="500px">
-          <fields>
-            <field id="genesis__Asset_Type__c" hideable="true" uniqueid="fi-Aze-11825">
-              <label>Current Assets</label>
-              <renderconditions logictype="and" onhidedatabehavior="keep"/>
-              <enableconditions/>
-            </field>
-            <field id="Address__c" hideable="true" uniqueid="fi-Azg-11835">
-              <label>Address/Details</label>
-              <renderconditions logictype="and" onhidedatabehavior="keep"/>
-              <enableconditions logictype="and"/>
-            </field>
-            <field id="genesis__Market_Value__c" hideable="true" uniqueid="fi-Azi-11846">
-              <label>Asset Value ($)</label>
-              <renderconditions logictype="and" onhidedatabehavior="keep"/>
-              <enableconditions/>
-            </field>
-            <field id="Monthly_Income__c" hideable="true" uniqueid="fi-1aUO-1844">
-              <renderconditions logictype="and" onhidedatabehavior="keep"/>
-              <enableconditions logictype="and">
-                <condition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="Assets" sourcetype="fieldvalue" field="genesis__Asset_Type__c" fieldtargetobjects="genesis__Asset_Information__c" value="Investment Property"/>
-              </enableconditions>
-            </field>
-            <field id="Liability__c" hideable="true" uniqueid="fi--3N-1644">
-              <renderconditions logictype="and" onhidedatabehavior="keep"/>
-              <enableconditions logictype="and">
-                <condition type="multiple" operator="in" fieldmodel="Assets" sourcetype="fieldvalue" field="genesis__Asset_Type__c" fieldtargetobjects="genesis__Asset_Information__c" value="" enclosevalueinquotes="true">
-                  <values>
-                    <value>Owner Occupied</value>
-                    <value>Investment Property</value>
-                    <value>Motor Vehicle</value>
-                    <value>Other Vehicles</value>
-                  </values>
-                </condition>
-              </enableconditions>
-            </field>
-            <field id="Security__c" hideable="true" uniqueid="fi--3Q-1667">
-              <renderconditions logictype="and" onhidedatabehavior="keep"/>
-              <enableconditions logictype="and">
-                <condition type="multiple" operator="in" fieldmodel="Assets" sourcetype="fieldvalue" field="genesis__Asset_Type__c" fieldtargetobjects="genesis__Asset_Information__c" value="" enclosevalueinquotes="true">
-                  <values>
-                    <value>Owner Occupied</value>
-                    <value>Investment Property</value>
-                  </values>
-                </condition>
-              </enableconditions>
-            </field>
-          </fields>
-          <rowactions>
-            <action type="edit">
-              <renderconditions logictype="and">
-                <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="false" fieldmodel="ALNGParty" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="genesis__Application__r.Is_Approved__c" value="false"/>
-              </renderconditions>
-            </action>
-            <action type="delete">
-              <renderconditions logictype="and">
-                <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="false" fieldmodel="ALNGParty" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="genesis__Application__r.Is_Approved__c" value="false"/>
-              </renderconditions>
-            </action>
-          </rowactions>
-          <massactions usefirstitemasdefault="true">
-            <action type="massupdate">
-              <renderconditions logictype="and">
-                <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="false" fieldmodel="ALNGParty" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="genesis__Application__r.Is_Approved__c" value="false"/>
-              </renderconditions>
-            </action>
-            <action type="massdelete">
-              <renderconditions logictype="and">
-                <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="false" fieldmodel="ALNGParty" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="genesis__Application__r.Is_Approved__c" value="false"/>
-              </renderconditions>
-            </action>
-          </massactions>
-          <views>
-            <view type="standard"/>
-          </views>
-          <searchfields/>
-          <renderconditions logictype="and"/>
-        </skootable>
-        <skootable showconditions="true" showsavecancel="false" showerrorsinline="true" searchmethod="server" searchbox="false" showexportbuttons="false" hideheader="false" hidefooter="false" pagesize="10" alwaysresetpagination="false" createrecords="true" model="Liabilities" buttonposition="" mode="read" allowcolumnreordering="true" responsive="true" uniqueid="sk-Awk-10965" emptysearchbehavior="query" allowscrollbars="false" tablescrollheight="500px">
-          <fields>
-            <field id="genesis__Liability_Type__c" hideable="true" uniqueid="fi-AxB-11060">
-              <renderconditions logictype="and" onhidedatabehavior="keep"/>
-              <enableconditions/>
-              <label>Current Liabilities</label>
-            </field>
-            <field id="genesis__Name_of_Creditor__c" hideable="true" uniqueid="fi-AxW-11235">
-              <label>Lender Details</label>
-              <renderconditions logictype="and" onhidedatabehavior="keep"/>
-              <enableconditions/>
-            </field>
-            <field id="genesis__Original_Amount__c" hideable="true" uniqueid="fi-Ay5-11498">
-              <label>Facility Balance/Limit</label>
-              <renderconditions logictype="and" onhidedatabehavior="keep"/>
-              <enableconditions/>
-            </field>
-            <field id="genesis__Payment_Amount__c" hideable="true" uniqueid="fi-Axc-11296">
-              <label>Monthly Payment ($)</label>
-              <renderconditions logictype="and" onhidedatabehavior="keep"/>
-              <enableconditions/>
-            </field>
-            <field id="To_Be_Refinanced__c" hideable="true" uniqueid="fi-AxG-11109">
-              <renderconditions logictype="and" onhidedatabehavior="keep"/>
-              <enableconditions/>
-            </field>
-            <field id="Refinanced__c" hideable="true" uniqueid="fi--9z-1783">
-              <renderconditions logictype="and" onhidedatabehavior="keep"/>
-              <enableconditions/>
-            </field>
-            <field id="Ownership_Percentage__c" hideable="true" uniqueid="fi-1zbe-2506">
-              <label>Ownership %</label>
-              <renderconditions logictype="and" onhidedatabehavior="keep"/>
-              <enableconditions/>
-            </field>
-          </fields>
-          <rowactions>
-            <action type="edit">
-              <renderconditions logictype="and">
-                <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="false" fieldmodel="ALNGParty" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="genesis__Application__r.Is_Approved__c" value="false"/>
-              </renderconditions>
-            </action>
-            <action type="delete">
-              <renderconditions logictype="and">
-                <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="false" fieldmodel="ALNGParty" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="genesis__Application__r.Is_Approved__c" value="false"/>
-              </renderconditions>
-            </action>
-          </rowactions>
-          <massactions usefirstitemasdefault="true">
-            <action type="massupdate">
-              <renderconditions logictype="and">
-                <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="false" fieldmodel="ALNGParty" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="genesis__Application__r.Is_Approved__c" value="false"/>
-              </renderconditions>
-            </action>
-            <action type="massdelete">
-              <renderconditions logictype="and">
-                <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="false" fieldmodel="ALNGParty" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="genesis__Application__r.Is_Approved__c" value="false"/>
-              </renderconditions>
-            </action>
-          </massactions>
-          <views>
-            <view type="standard"/>
-          </views>
-          <searchfields/>
-          <renderconditions logictype="and"/>
-        </skootable>
-      </components>
+    <grid uniqueid="sk-3uyyZv-428">
+      <divisions>
+        <division behavior="flex" minwidth="100px" ratio="1" verticalalign="top">
+          <components>
+            <wrapper uniqueid="relationship-dashboard-details">
+              <components>
+                <panelset type="custom" uniqueid="sk-13B0QE-815">
+                  <panels>
+                    <panel width="100%">
+                      <components>
+                        <pagetitle uniqueid="sk-B6l-1887" model="NGParty">
+                          <actions>
+                            <action type="multi" uniqueid="sk-B75-1947" icon="sk-webicon-material-icons:delete" label="Delete">
+                              <actions>
+                                <action type="custom" snippet="deletePartyConfirmation"/>
+                              </actions>
+                              <renderconditions logictype="and">
+                                <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="false" fieldmodel="NGParty" sourcetype="fieldvalue" field="genesis__Application__r.Is_Approved__c" value="false"/>
+                              </renderconditions>
+                              <enableconditions/>
+                            </action>
+                            <action type="multi" uniqueid="sk-B6l-1895" label="Add" icon="sk-icon-add">
+                              <actions>
+                                <action type="custom" snippet="addNewParty"/>
+                              </actions>
+                              <hotkeys/>
+                              <renderconditions logictype="and">
+                                <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="false" fieldmodel="NGParty" sourcetype="fieldvalue" field="genesis__Application__r.Is_Approved__c" value="false"/>
+                              </renderconditions>
+                              <enableconditions/>
+                            </action>
+                          </actions>
+                        </pagetitle>
+                        <tabset rememberlastusertab="true" defertabrendering="true" uniqueid="sk-AfH-1308">
+                          <tabs>
+                            <tab name="Contact Details" loadlazypanels="true">
+                              <components>
+                                <includepanel type="skuid" uniqueid="sk-Alw-10642" pagename="CustomApplicantPage" querystring="?id={{$Model.NGParty.data.0.clcommon__Account__c}}&amp;appId={{$Model.ApplicationParty.data.0.Id}}"/>
+                              </components>
+                              <oninitialshowactions/>
+                              <onshowactions/>
+                              <renderconditions logictype="and"/>
+                            </tab>
+                            <tab name="Employment And Income Details">
+                              <components>
+                                <includepanel type="skuid" uniqueid="sk-34Bo-3342" querystring="?id={{$Model.NGParty.data.0.Id}}" pagename="CustomEmploymentAndIncomeDetails">
+                                  <renderconditions logictype="and"/>
+                                </includepanel>
+                              </components>
+                              <renderconditions logictype="and">
+                                <rendercondition type="multiple" operator="in" fieldmodel="Account" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="clcommon__Legal_Entity_Type__r.Name" value="" enclosevalueinquotes="true">
+                                  <values>
+                                    <value>Individual</value>
+                                    <value>Joint</value>
+                                  </values>
+                                </rendercondition>
+                                <rendercondition type="multiple" operator="not in" fieldmodel="NGParty" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="clcommon__Type__r.Name" value="" enclosevalueinquotes="true">
+                                  <values>
+                                    <value>Household</value>
+                                    <value>Solicitor</value>
+                                  </values>
+                                </rendercondition>
+                              </renderconditions>
+                              <oninitialshowactions/>
+                              <onshowactions>
+                                <action type="requeryModels" behavior="standard">
+                                  <models>
+                                    <model>NGParty</model>
+                                    <model>PayGEmploymentDetails</model>
+                                    <model>PreviousEmploymentHistory</model>
+                                    <model>SelfEmploymentDetails</model>
+                                    <model>PAYGIncomeModel</model>
+                                    <model>SelfEmploymentIncomeFullType</model>
+                                    <model>SelfEmploymentIncomeAltType</model>
+                                    <model>UnemploymentDetailsModel</model>
+                                    <model>OtherIncome</model>
+                                    <model>ServicingIncomeApplication</model>
+                                    <model>IncomeSummaryEmpModel</model>
+                                  </models>
+                                  <onerroractions/>
+                                </action>
+                              </onshowactions>
+                            </tab>
+                            <tab name="Income" loadlazypanels="true">
+                              <components>
+                                <includepanel type="skuid" uniqueid="sk-33Bl-2067" pagename="CustomIncomeDetails" querystring="?id={{$Model.NGParty.data.0.Id}}">
+                                  <renderconditions logictype="and"/>
+                                </includepanel>
+                              </components>
+                              <oninitialshowactions/>
+                              <onshowactions>
+                                <action type="requeryModel" model="Party" behavior="standard"/>
+                              </onshowactions>
+                              <renderconditions logictype="and">
+                                <rendercondition type="multiple" operator="not in" fieldmodel="NGParty" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="clcommon__Type__r.Name" fieldtargetobjects="clcommon__Party__c" value="" enclosevalueinquotes="true">
+                                  <values>
+                                    <value>Solicitor</value>
+                                    <value>Broker</value>
+                                    <value>Aggregator</value>
+                                    <value>Broker Underwriter</value>
+                                    <value>Valuer</value>
+                                    <value>Sales Channel</value>
+                                  </values>
+                                </rendercondition>
+                                <rendercondition type="fieldvalue" operator="!=" enclosevalueinquotes="true" fieldmodel="NGParty" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="Is_this_a_joint_applicant__c" fieldtargetobjects="clcommon__Party__c" value="Yes"/>
+                                <rendercondition type="multiple" operator="in" fieldmodel="Account" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="clcommon__Legal_Entity_Type__r.Name" value="" enclosevalueinquotes="true">
+                                  <values>
+                                    <value>Company</value>
+                                    <value>Trust</value>
+                                    <value>SMSF</value>
+                                  </values>
+                                </rendercondition>
+                              </renderconditions>
+                            </tab>
+                            <tab name="Living Expenses" loadlazypanels="true">
+                              <components>
+                                <wrapper uniqueid="sk-3Cla-4060">
+                                  <components>
+                                    <includepanel type="skuid" uniqueid="sk-33AD-1874" pagename="CustomLivingExpenses" querystring="?id={{$Model.CLEParty.data.0.Id}}">
+                                      <renderconditions logictype="and"/>
+                                    </includepanel>
+                                  </components>
+                                  <styles>
+                                    <styleitem type="background"/>
+                                    <styleitem type="border"/>
+                                    <styleitem type="size"/>
+                                  </styles>
+                                  <renderconditions logictype="custom" logic="(1 AND 2 AND 3) OR 4 OR (5 AND 6)">
+                                    <rendercondition type="fieldvalue" operator="!=" enclosevalueinquotes="true" fieldmodel="NGParty" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="clcommon__Type__r.Name" value="Solicitor"/>
+                                    <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="CLEParty" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="Is_this_a_joint_applicant__c" fieldtargetobjects="clcommon__Party__c" value="No"/>
+                                    <rendercondition type="multiple" operator="in" fieldmodel="NGParty" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="clcommon__Type__r.Name" value="" enclosevalueinquotes="true">
+                                      <values>
+                                        <value>Household</value>
+                                        <value>Guarantor</value>
+                                      </values>
+                                    </rendercondition>
+                                  </renderconditions>
+                                </wrapper>
+                              </components>
+                              <oninitialshowactions/>
+                              <onshowactions>
+                                <action type="requeryModels" datasource="SkuidDataService" model="PartiesContact" behavior="standard">
+                                  <models>
+                                    <model>CLEParty</model>
+                                  </models>
+                                </action>
+                              </onshowactions>
+                              <renderconditions logictype="and"/>
+                            </tab>
+                            <tab loadlazypanels="true" name="Assets &amp; Liabilities">
+                              <components>
+                                <includepanel type="skuid" uniqueid="sk-337E-2022" pagename="CustomAssetsAndLiabilities" querystring="?id={{$Model.NGParty.data.0.Id}}"/>
+                              </components>
+                              <renderconditions logictype="custom" logic="(1 AND 2 AND 3) OR 4">
+                                <rendercondition type="fieldvalue" operator="!=" enclosevalueinquotes="true" fieldmodel="NGParty" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="clcommon__Type__r.Name" value="Solicitor"/>
+                                <rendercondition type="fieldvalue" operator="!=" enclosevalueinquotes="true" fieldmodel="NGParty" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="Is_this_a_joint_applicant__c" fieldtargetobjects="clcommon__Party__c" value="Yes"/>
+                                <rendercondition type="multiple" operator="not in" fieldmodel="Account" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="clcommon__Legal_Entity_Type__r.Name" value="" enclosevalueinquotes="true">
+                                  <values>
+                                    <value>Company</value>
+                                    <value>Trust</value>
+                                    <value>SMSF</value>
+                                  </values>
+                                </rendercondition>
+                                <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="NGParty" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="clcommon__Type__r.Name" value="Household"/>
+                              </renderconditions>
+                            </tab>
+                            <tab name="Credit History" loadlazypanels="true">
+                              <components>
+                                <panelset type="custom" uniqueid="sk-B45-1567">
+                                  <panels>
+                                    <panel width="100%">
+                                      <components>
+                                        <includepanel type="skuid" uniqueid="sk-B4r-1771" querystring="?Id={{$Model.NGParty.data.0.Id}}" pagename="CustomCreditAssess"/>
+                                      </components>
+                                    </panel>
+                                  </panels>
+                                  <renderconditions logictype="and">
+                                    <rendercondition type="fieldvalue" enclosevalueinquotes="true" fieldmodel="NGParty" sourcetype="modelproperty" nosourcerowbehavior="skipandnorender" sourceproperty="hasRows"/>
+                                  </renderconditions>
+                                </panelset>
+                              </components>
+                              <renderconditions logictype="and">
+                                <rendercondition type="multiple" operator="not in" fieldmodel="NGParty" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="clcommon__Type__r.Name" value="" enclosevalueinquotes="true">
+                                  <values>
+                                    <value>Solicitor</value>
+                                    <value>Aggregator</value>
+                                    <value>Broker</value>
+                                    <value>Broker Underwriter</value>
+                                    <value>Valuer</value>
+                                    <value>Sales Channel</value>
+                                    <value>Household</value>
+                                  </values>
+                                </rendercondition>
+                              </renderconditions>
+                              <oninitialshowactions/>
+                              <onshowactions/>
+                            </tab>
+                            <tab name="Identification" loadlazypanels="true">
+                              <components>
+                                <includepanel type="skuid" uniqueid="sk-32yJ-1947" pagename="CustomIdentification" querystring="?id={{$Model.NGParty.data.0.Id}}">
+                                  <renderconditions logictype="and"/>
+                                </includepanel>
+                              </components>
+                              <renderconditions logictype="and">
+                                <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="Account" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="clcommon__Legal_Entity_Type__r.Name" fieldtargetobjects="clcommon__Legal_Entity__c" value="Individual"/>
+                              </renderconditions>
+                              <oninitialshowactions/>
+                              <onshowactions/>
+                            </tab>
+                            <tab name="Relationship Graph" loadlazypanels="true" icon="sk-webicon-font-awesome:sitemap">
+                              <components>
+                                <includepanel type="skuid" uniqueid="sk-1zdg-1914" pagename="RelationshipGraph" module="ngUi" querystring="?Id={{$Model.NGParty.data.0.clcommon__Account__c}}"/>
+                              </components>
+                              <oninitialshowactions/>
+                              <onshowactions/>
+                              <renderconditions logictype="and"/>
+                            </tab>
+                          </tabs>
+                          <renderconditions logictype="and"/>
+                        </tabset>
+                      </components>
+                    </panel>
+                  </panels>
+                  <renderconditions logictype="and"/>
+                </panelset>
+              </components>
+              <styles>
+                <styleitem type="background"/>
+                <styleitem type="border"/>
+                <styleitem type="size"/>
+              </styles>
+              <renderconditions logictype="and"/>
+              <interactions/>
+            </wrapper>
+          </components>
+        </division>
+      </divisions>
       <styles>
-        <styleitem type="background" bgtype="color">
-          <styles>
-            <styleitem property="background-color" value="transparent"/>
-          </styles>
-        </styleitem>
-        <styleitem type="border"/>
-        <styleitem type="size"/>
+        <styleitem type="background" bgtype="none"/>
       </styles>
-      <renderconditions logictype="and"/>
-    </wrapper>
+    </grid>
   </components>
   <resources>
     <labels/>
@@ -410,6 +486,7 @@
       <jsitem location="inlinesnippet" name="LaunchRelationshipGraph" cachelocation="false">var params = arguments[0],   $ = skuid.$; var partyModel = skuid.model.getModel('NGParty'); var party = partyModel.data[0]; var appId = skuid.page.params.id; var title = 'Relationship Graph'; var skuidPage = 'RelationshipGraph'; console.debug(appId); console.debug(party); var iframeUrl = '/apex/skuid__ui?page=' + skuidPage + '&amp;id=' + party.clcommon__Account__c;  openTopLevelDialog({     title: title,     iframeUrl: iframeUrl });</jsitem>
       <jsitem location="inlinesnippet" name="LaunchEmploymentAndIncome" cachelocation="false">var params = arguments[0],   $ = skuid.$; var partyModel = skuid.model.getModel('NGParty'); var party = partyModel.data[0]; var title = 'Employment and Income'; var skuidPage = 'EmploymentAndIncome'; var iframeUrl = '/apex/skuid__ui?page=' + skuidPage + '&amp;Id=' + party.clcommon__Contact__c+ '&amp;appId=' + party.genesis__Application__c;  openTopLevelDialog({     title: title,     iframeUrl: iframeUrl });</jsitem>
       <jsitem location="inlinesnippet" name="LaunchAssetsAndLiabilities" cachelocation="false">var params = arguments[0],   $ = skuid.$; var partyModel = skuid.model.getModel('NGParty'); var party = partyModel.data[0]; var title = 'Assets and Liabilities'; var skuidPage = 'AssetsAndLiabilities'; var iframeUrl = '/apex/skuid__ui?page=' + skuidPage + '&amp;Id=' + party.clcommon__Contact__c+ '&amp;appId=' + party.genesis__Application__c;  openTopLevelDialog({     title: title,     iframeUrl: iframeUrl });</jsitem>
+      <jsitem location="inlinesnippet" name="addNewParty" cachelocation="false">var params = arguments[0],     $ = skuid.$;  var app = skuid.model.getModel('ApplicationParty'); var appModel = app.data[0]; var appId = appModel.Id; console.log('ID'+appId); var title = 'Party'; var skuidPage = 'CustomBorrowingStructure3'; var iframeUrl = '/apex/skuid__ui?page=' + skuidPage + '&amp;id=' + appId;  openTopLevelDialog({     title: title,     iframeUrl: iframeUrl }); //window.location.reload();</jsitem>
     </javascript>
     <css>
       <cssitem location="staticresource" name="CLSStyleSheetPack" cachelocation="false" url="" namespace="genesisExtn" filepath="cls-common.css"/>
