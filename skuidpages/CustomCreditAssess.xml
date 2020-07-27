@@ -50,6 +50,8 @@
         <field id="Explanation_of_Age_of_Credit_File_Suitab__c"/>
         <field id="Confirm_Possible_Match_Credit_Report_Run__c"/>
         <field id="Explanation_of_Age_of_Credit_File_Commen__c"/>
+        <field id="bankrupt_discharged__c"/>
+        <field id="Risk_Grade__c"/>
       </fields>
       <conditions>
         <condition type="param" value="Id" field="Id" operator="=" enclosevalueinquotes="true" novaluebehavior="noquery"/>
@@ -154,6 +156,7 @@
             </section>
             <section title="Section A" uniqueid="sk-2zfr-287" collapsible="no" showheader="false">
               <fields>
+                <field uniqueid="sk-2D07-408" id="Risk_Grade__c"/>
                 <field uniqueid="sk-WRM-535" id="Credit_Status__c" snippet="FieldRenderer2" showhelp="true">
                   <renderconditions logictype="and" onhidedatabehavior="keep"/>
                   <enableconditions/>
@@ -225,6 +228,7 @@
                   </renderconditions>
                   <enableconditions/>
                 </field>
+                <field uniqueid="sk-2C8W-542" id="bankrupt_discharged__c"/>
                 <field uniqueid="sk-WTR-878" id="Previously_Bankrupt_Discharged__c" snippet="FieldRenderer2" showhelp="true">
                   <renderconditions logictype="and" onhidedatabehavior="cancel">
                     <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="CCAParty" sourcetype="fieldvalue" field="Applicant_ever_declared_banckrupt__c" fieldtargetobjects="clcommon__Party__c" value="Yes"/>
@@ -275,6 +279,7 @@
                     <rendercondition type="blank" operator="!=" fieldmodel="CCAParty" sourcetype="fieldvalue" field="Age_of_Credit_File__c" fieldtargetobjects="clcommon__Party__c" value="null" enclosevalueinquotes="false"/>
                   </renderconditions>
                   <enableconditions/>
+                  <label>Explanation of Age of Credit File Commentary</label>
                 </field>
                 <field uniqueid="sk-WTV-916" id="Possible_Matches__c" snippet="FieldRenderer2">
                   <renderconditions logictype="and" onhidedatabehavior="keep"/>
@@ -308,7 +313,7 @@
     <skootable showconditions="true" showsavecancel="false" showerrorsinline="true" searchmethod="server" searchbox="false" showexportbuttons="false" hideheader="false" hidefooter="false" pagesize="10" alwaysresetpagination="false" createrecords="true" model="CreditHistory" buttonposition="" mode="read" allowcolumnreordering="true" responsive="true" uniqueid="sk-WOx-391" emptysearchbehavior="query" heading="Credit History Details">
       <fields>
         <field id="Issue__c" hideable="true" uniqueid="fi-Zx6-342">
-          <label>Issue Type</label>
+          <label>Issue </label>
           <renderconditions logictype="and" onhidedatabehavior="keep"/>
           <enableconditions/>
         </field>
