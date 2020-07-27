@@ -2315,7 +2315,7 @@
           <renderconditions logictype="and"/>
         </grid>
         <basicfieldeditor showheader="true" showsavecancel="false" showerrorsinline="true" model="Contact" uniqueid="sk-3dYK-6571" mode="edit">
-          <columns>
+          <columns layoutmode="fixed">
             <column width="100%" uniqueid="sk-3dYK-6567">
               <sections>
                 <section title="Current Residential Address" uniqueid="sk-3dYK-6568" collapsible="no" showheader="true">
@@ -8037,6 +8037,7 @@
               <action type="runComponentAction" componentid="sk-MAt-1726" action="changeMode" mode="read"/>
               <action type="runComponentAction" componentid="sk-10nb-2403" action="changeMode" mode="read"/>
               <action type="runComponentAction" componentid="sk-3BRE-1171" action="changeMode" mode="read"/>
+              <action type="runComponentAction" componentid="sk-3dYK-6571" action="changeMode" mode="toggle"/>
             </iftrueactions>
             <formula>{{genesis__Application__r.Is_Approved__c}}</formula>
           </action>
