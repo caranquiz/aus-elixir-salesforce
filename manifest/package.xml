@@ -1,18 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
-    <types>
-        <!-- Rendering Changes made by Souvik -->
-        <members>EraseRedundantData</members>
-        <members>EraseRedundantDataTest</members>
-
-        <!-- Pricing Changes made by Rameswari -->
-        <members>ConstantValues</members>
-        <members>GenericUtility</members>
-        <members>GenericUtilityTestHelper</members>
-        <members>PricingUpdate</members>
-        <members>PricingUpdateTest</members>
-        <name>ApexClass</name>
-    </types>
+    <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     <types>
         <!-- Rendering Changes made by Souvik -->
         <members>Contact.Exit_Strategy_Commentary__c</members>
@@ -76,10 +64,6 @@
         <members>clcommon__Party__c.Rental_Income_Verfication_Source__c</members>
         <members>clcommon__Party__c.Rental_Income_Verified__c</members>
         <members>clcommon__Party__c.Trustee_GST_Effective_From__c</members>
-        <members>clcommon__Party__c.GST_Commentary__c</members>
-        <members>clcommon__Party__c.GST_Suitable__c</members>
-        <members>clcommon__Party__c.Risk_Grade__c</members>
-        <members>clcommon__Party__c.bankrupt_discharged__c</members>
         <members>genesis__Applications__c.BAS__c</members>
         <members>genesis__Applications__c.Cash_Out_Purpose_Explanation_Provided__c</members>
         <members>genesis__Applications__c.Cash_Out_Purpose_Suitable_Commentary__c</members>
@@ -107,9 +91,6 @@
         <members>genesis__Applications__c.Total_fees_amount__c</members>
         <members>genesis__Applications__c.Valuation_Fee_Collected_at_Settlement__c</members>
         <members>genesis__Applications__c.Verification_Sighted__c</members>
-        <members>genesis__Applications__c.Interest_Only_Commentary__c</members>
-        <members>genesis__Applications__c.Interest_Only_Suitable__c</members>
-        <members>genesis__Applications__c.Is_the_Application_Form_fully_completed__c</members>
         <members>genesis__Employment_Information__c.ABN_Status_Suitability_Commentary__c</members>
         <members>genesis__Employment_Information__c.Date_of_Call__c</members>
         <members>genesis__Employment_Information__c.EmpCallConf_Employment_Basis__c</members>
@@ -135,34 +116,21 @@
         <members>genesis__Income__c.Is_the_accountant_aware_of_any_circumsta__c</members>
         <members>genesis__Income__c.Satisfactory_Explanation_Provided__c</members>
         <members>genesis__Income__c.Supporting_Documentation_Sighted__c</members>
+        <members>clcommon__Collateral__c.Cover_Type__c</members>
+        <members>clcommon__Collateral__c.Interested_Party__c</members>
+        <members>clcommon__Party__c.GST_Commentary__c</members>
+        <members>clcommon__Party__c.GST_Suitable__c</members>
+        <members>clcommon__Party__c.Risk_Grade__c</members>
+        <members>genesis__Applications__c.Does_applicant_understand_English__c</members>
+        <members>genesis__Applications__c.Interest_Only_Commentary__c</members>
+        <members>genesis__Applications__c.Monthly_Living_Expenses_Used__c</members>
+        <members>genesis__Applications__c.Total_Monthly_Living_Expenses_Declared__c</members>
         <members>genesis__Income__c.Accountant_ABN_Search_Conducted__c</members>
         <members>genesis__Income__c.Accountant_ABN_Status__c</members>
         <members>genesis__Income__c.Accountant_Phone_Number_independently_ve__c</members>
+        <members>genesis__Income__c.Documents_Verified__c</members>
         <members>genesis__Income__c.Employment_Information__c</members>
-        <members>genesis__Income__c.Does_applicant_understand_English__c</members>
-
-        <!-- Credit Contract changes made by Rameswari -->
-        <members>genesis__Applications__c.CL_Date__c</members>
-        <members>clcommon__Address__c.Applicant_and_its_address__c</members>
-        <members>clcommon__Party__c.Applicant_Name__c</members>
-        <members>clcommon__Collateral__c.Mortgagor__c</members>
-
-        <!-- Pricing Changes made by Rameswari -->
-        <members>genesis__Applications__c.Matrix_Rate__c</members>
-        <members>genesis__Applications__c.Simplified_Repayment_Type__c</members>
-        <members>genesis__Applications__c.Total_fees_amount__c</members>
         <name>CustomField</name>
-    </types>
-    <types>
-        <!-- Rendering Changes made by Souvik -->
-        <members>Rendered_Field__c</members>
-        <members>Rendering_Criteria__c</members>
-        <name>CustomObject</name>
-    </types>
-    <types>
-        <!-- Credit Contract changes made by Rameswari -->
-        <members>genesis__Applications__c.Conga_Composer_Generate_Loan_Offer</members>
-        <name>WebLink</name>
     </types>
     <version>45.0</version>
 </Package>

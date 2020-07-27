@@ -179,13 +179,13 @@
               <actions>
                 <action type="multi" label="Save" uniqueid="sk-VoG-1500" window="self" icon="sk-webicon-font-awesome:floppy-o">
                   <actions>
+                    <action type="blockUI" message="The changes are being recorded!" timeout="2500"/>
                     <action type="save">
                       <models>
                         <model>CIParty</model>
                         <model>ProofOfIdentity</model>
                       </models>
                     </action>
-                    <action type="blockUI" message="The changes are being recorded!" timeout="1000"/>
                   </actions>
                   <renderconditions logictype="and">
                     <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="false" fieldmodel="CIParty" sourcetype="fieldvalue" field="genesis__Application__r.Is_Approved__c" value="false"/>
@@ -195,14 +195,14 @@
                     <condition type="fieldvalue" enclosevalueinquotes="false" fieldmodel="ProofOfIdentity" sourcetype="modelproperty" sourceproperty="hasChanged" value="true" operator="="/>
                   </enableconditions>
                 </action>
-                <action type="cancel" label="Cancel" uniqueid="sk-1Ck2-411" window="self">
+                <action type="cancel" label="Cancel" uniqueid="sk-2D11-412" window="self">
+                  <renderconditions logictype="and">
+                    <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="false" fieldmodel="CIParty" sourcetype="fieldvalue" field="genesis__Application__r.Is_Approved__c" value="false"/>
+                  </renderconditions>
+                  <enableconditions/>
                   <models>
                     <model>ProofOfIdentity</model>
                   </models>
-                  <renderconditions logictype="and">
-                    <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="false" fieldmodel="CIParty" sourcetype="fieldvalue" field="genesis__Application__r.Is_Approved__c" value="true"/>
-                  </renderconditions>
-                  <enableconditions/>
                 </action>
               </actions>
               <renderconditions logictype="and"/>
