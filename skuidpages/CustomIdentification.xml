@@ -195,9 +195,12 @@
                     <condition type="fieldvalue" enclosevalueinquotes="false" fieldmodel="ProofOfIdentity" sourcetype="modelproperty" sourceproperty="hasChanged" value="true" operator="="/>
                   </enableconditions>
                 </action>
-                <action type="cancel" label="Cancel" uniqueid="sk-2D11-412" window="self">
+                <action type="cancel" label="Cancel" uniqueid="sk-1Ck2-411" window="self">
+                  <models>
+                    <model>ProofOfIdentity</model>
+                  </models>
                   <renderconditions logictype="and">
-                    <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="false" fieldmodel="CIParty" sourcetype="fieldvalue" field="genesis__Application__r.Is_Approved__c" value="false"/>
+                    <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="false" fieldmodel="CIParty" sourcetype="fieldvalue" field="genesis__Application__r.Is_Approved__c" value="true"/>
                   </renderconditions>
                   <enableconditions/>
                 </action>
