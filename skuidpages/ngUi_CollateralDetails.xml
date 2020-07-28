@@ -983,6 +983,7 @@
                             <renderconditions logictype="and"/>
                           </section>
                         </sections>
+                        <renderconditions logictype="and"/>
                       </column>
                       <column width="50%" uniqueid="sk-3Ec0-2649">
                         <sections>
@@ -1058,6 +1059,7 @@
                             </fields>
                           </section>
                         </sections>
+                        <renderconditions logictype="and"/>
                       </column>
                     </columns>
                     <columns uniqueid="sk-2BYN-2754" layoutmode="fixed">
@@ -1224,7 +1226,7 @@
             <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="SelectedCollateral" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="Contract_Of_Sale__c" fieldtargetobjects="clcommon__Collateral__c" value="Yes"/>
           </renderconditions>
         </basicfieldeditor>
-        <basicfieldeditor showheader="true" showsavecancel="false" showerrorsinline="true" model="SelectedCollateral" uniqueid="sk-2GQt-1421" mode="read">
+        <basicfieldeditor showheader="true" showsavecancel="false" showerrorsinline="true" model="SelectedCollateral" uniqueid="sk-2GQt-1421" mode="edit">
           <columns>
             <column width="100%" uniqueid="sk-2GQz-1455">
               <sections>
@@ -1431,7 +1433,9 @@
                                 <renderconditions logictype="and" onhidedatabehavior="cancel"/>
                                 <enableconditions/>
                               </field>
-                              <field uniqueid="sk-2GrT-2653" id="Cover_Type__c"/>
+                              <field uniqueid="sk-2GrT-2653" id="Cover_Type__c">
+                                <renderconditions logictype="and" onhidedatabehavior="keep"/>
+                              </field>
                             </fields>
                           </section>
                         </sections>
@@ -2330,6 +2334,7 @@
               <action type="runComponentAction" componentid="sk-15FT-4384" action="changeMode" mode="read"/>
               <action type="runComponentAction" componentid="sk-2Y9n-2534" action="changeMode" mode="read"/>
               <action type="runComponentAction" componentid="sk-15FC-3941" action="changeMode" mode="read"/>
+              <action type="runComponentAction" componentid="sk-2GQt-1421" action="changeMode" mode="read"/>
             </iftrueactions>
           </action>
         </actions>
