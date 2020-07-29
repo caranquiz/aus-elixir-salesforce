@@ -1500,7 +1500,7 @@
                               <section title="New Section" collapsible="no" uniqueid="sk-3ngg-3299" showheader="false">
                                 <fields>
                                   <field uniqueid="sk-M0M-989" id="Visa_Subclass_Code__c" snippet="fieldRenderer2">
-                                    <renderconditions logictype="custom" onhidedatabehavior="keep" logic="1 OR (2 AND 3)"/>
+                                    <renderconditions logictype="and" onhidedatabehavior="keep"/>
                                     <enableconditions logictype="and" message="1 OR (2 AND 3)"/>
                                   </field>
                                 </fields>
@@ -1530,11 +1530,7 @@
                           </column>
                         </columns>
                       </fields>
-                      <renderconditions logictype="custom" logic="1 OR (2 AND 3)">
-                        <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="Contact" sourcetype="fieldvalue" field="clcommon__Residential_Status__c" fieldtargetobjects="Contact" value="Temporary"/>
-                        <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="Contact" sourcetype="fieldvalue" field="Australian_Citizen__c" fieldtargetobjects="Contact" value="No"/>
-                        <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="Contact" sourcetype="fieldvalue" field="clcommon__Residential_Status__c" fieldtargetobjects="Contact" value="Permanent"/>
-                      </renderconditions>
+                      <renderconditions logictype="custom"/>
                     </section>
                     <section title="New Section" collapsible="no" uniqueid="sk-3ngi-3326" showheader="false">
                       <fields>
@@ -1944,7 +1940,7 @@
                 <section title="New Section" collapsible="no" uniqueid="sk-3dTa-7537" showheader="false">
                   <fields>
                     <columns uniqueid="sk-3dTb-7558" layoutmode="fixed">
-                      <column width="50%" uniqueid="sk-3dTb-7545">
+                      <column width="80%" uniqueid="sk-3dTb-7545">
                         <sections>
                           <section title="New Section" collapsible="no" uniqueid="sk-3dTb-7546" showheader="false">
                             <fields>
@@ -1972,7 +1968,7 @@
                           </rendercondition>
                         </renderconditions>
                       </column>
-                      <column width="50%" uniqueid="sk-3dTc-7563">
+                      <column width="20%" uniqueid="sk-3dTc-7563">
                         <sections>
                           <section title="New Section" collapsible="no" uniqueid="sk-3dTc-7564" showheader="false">
                             <fields>
@@ -4780,7 +4776,10 @@
                               <section title="New Section" collapsible="no" uniqueid="sk-2WYw-8883" showheader="false">
                                 <fields>
                                   <field uniqueid="sk-2WYw-8884" id="Number_Of_Trustees__c">
-                                    <renderconditions logictype="and" onhidedatabehavior="cancel"/>
+                                    <renderconditions logictype="and" onhidedatabehavior="cancel">
+                                      <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="Party" sourcetype="fieldvalue" field="Trust_Structure__c" fieldtargetobjects="clcommon__Party__c" value="SMSF"/>
+                                      <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="Party" sourcetype="fieldvalue" field="Trustee_Type__c" fieldtargetobjects="clcommon__Party__c" value="Individual"/>
+                                    </renderconditions>
                                     <enableconditions/>
                                   </field>
                                 </fields>
@@ -8136,6 +8135,7 @@
               <action type="runComponentAction" componentid="sk-10nb-2403" action="changeMode" mode="read"/>
               <action type="runComponentAction" componentid="sk-3BRE-1171" action="changeMode" mode="read"/>
               <action type="runComponentAction" componentid="sk-3dYK-6571" action="changeMode" mode="toggle"/>
+              <action type="runComponentAction" componentid="sk-1rx_-3362" action="changeMode" mode="read"/>
             </iftrueactions>
             <formula>{{genesis__Application__r.Is_Approved__c}}</formula>
           </action>

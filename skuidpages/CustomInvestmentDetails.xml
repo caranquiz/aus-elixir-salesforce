@@ -571,7 +571,7 @@
                       <renderconditions logictype="and"/>
                     </basicfieldeditor>
                     <basicfieldeditor showheader="true" showsavecancel="false" showerrorsinline="true" model="CommonApplicationModel" uniqueid="sk-1sSF-791" mode="edit">
-                      <columns>
+                      <columns layoutmode="fixed">
                         <column width="100%" uniqueid="sk-1sSF-787">
                           <sections>
                             <section uniqueid="sk-1sSF-788" collapsible="no" title="Customer Interview">
@@ -617,7 +617,7 @@
                       <renderconditions logictype="and"/>
                     </basicfieldeditor>
                     <basicfieldeditor showheader="true" showsavecancel="false" showerrorsinline="true" model="CommonApplicationModel" uniqueid="sk-3rSP-800" mode="edit">
-                      <columns>
+                      <columns layoutmode="fixed">
                         <column width="100%" uniqueid="sk-3rSP-801">
                           <sections>
                             <section title="Loan Details" collapsible="no" uniqueid="sk-3rSP-804" showheader="false">
@@ -679,6 +679,7 @@
                                             </renderconditions>
                                             <enableconditions/>
                                           </field>
+                                          <field uniqueid="sk-2HZe-868" id="Repayment_Type__c"/>
                                           <field uniqueid="sk-3rSP-813" id="genesis__Term__c" snippet="fieldRenderer5">
                                             <label>Term (Months)</label>
                                             <renderconditions logictype="and" onhidedatabehavior="cancel">
@@ -692,6 +693,7 @@
                                                   <value>Formally Approved</value>
                                                 </values>
                                               </rendercondition>
+                                              <rendercondition type="blank" operator="!=" fieldmodel="CommonApplicationModel" sourcetype="fieldvalue" field="Repayment_Type__c" fieldtargetobjects="genesis__Applications__c" value="null" enclosevalueinquotes="false"/>
                                             </renderconditions>
                                             <enableconditions/>
                                           </field>
@@ -708,6 +710,7 @@
                                                   <value>Formally Approved</value>
                                                 </values>
                                               </rendercondition>
+                                              <rendercondition type="blank" operator="!=" fieldmodel="CommonApplicationModel" sourcetype="fieldvalue" field="Repayment_Type__c" fieldtargetobjects="genesis__Applications__c" value="null" enclosevalueinquotes="false"/>
                                             </renderconditions>
                                             <enableconditions/>
                                           </field>

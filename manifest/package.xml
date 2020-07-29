@@ -5,12 +5,28 @@
         <!-- Rendering Changes made by Souvik -->
         <members>EraseRedundantData</members>
 
+        <!-- Credit Rule changes by Koushik -->
+        <members>CheckRules</members>
+
         <!-- Pricing Changes made by Rameswari -->
         <members>ConstantValues</members>
         <members>GenericUtility</members>
         <members>GenericUtilityTestHelper</members>
         <members>PricingUpdate</members>
         <members>PricingUpdateTest</members>
+        <name>ApexClass</name>
+        
+    </types>
+    <types>
+        <members>genesis__Applications__c.Fixed_Duration</members>
+        <members>genesis__Applications__c.Interest_Only_Duration</members>
+        <members>genesis__Applications__c.LMI_Approved</members>
+        <members>genesis__Applications__c.Repayment_Type</members>
+        <name>ValidationRule</name>
+    </types>
+    <types>
+        <members>CheckRules</members>
+        <members>ConstantValues</members>
         <name>ApexClass</name>
     </types>
     <types>
@@ -168,6 +184,15 @@
         <members>Rendered_Field__c</members>
         <members>Rendering_Criteria__c</members>
         <name>CustomObject</name>
+    </types>
+
+    <types>
+        <!-- Credit Rule Changes added by Koushik -->
+        <members>genesis__Applications__c.Fixed_Duration</members>
+        <members>genesis__Applications__c.Interest_Only_Duration</members>
+        <members>genesis__Applications__c.LMI_Approved</members>
+        <members>genesis__Applications__c.Repayment_Type</members>
+        <name>ValidationRule</name>
     </types>
     
     <version>45.0</version>

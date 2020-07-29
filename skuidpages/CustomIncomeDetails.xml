@@ -210,6 +210,7 @@
         <field id="Number_of_Documents_Sighted__c"/>
         <field id="Type_Of_Documents_Sighted__c"/>
         <field id="Trust_Type_of_Document_Sighted__c"/>
+        <field id="Document_Type__c"/>
       </fields>
       <conditions>
         <condition type="modelmerge" value="" field="Id" operator="=" model="ApplicationParty" enclosevalueinquotes="true" mergefield="Id" novaluebehavior="deactivate"/>
@@ -452,11 +453,17 @@
                                         <enableconditions/>
                                       </field>
                                       <field uniqueid="sk-2UM-5226" id="Override__c">
-                                        <renderconditions logictype="and" onhidedatabehavior="keep"/>
+                                        <renderconditions logictype="and" onhidedatabehavior="cancel">
+                                          <rendercondition type="fieldvalue" enclosevalueinquotes="true" fieldmodel="NGPartyClone" sourcetype="modelproperty" nosourcerowbehavior="deactivate" sourceproperty="hasRows"/>
+                                          <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="ServicingIncomeApplication" sourcetype="fieldvalue" field="Document_Type__c" fieldtargetobjects="genesis__Applications__c" value="Full"/>
+                                        </renderconditions>
                                         <enableconditions/>
                                       </field>
                                       <field uniqueid="sk-28uo-2164" id="Number_of_Documents_Sighted__c">
-                                        <renderconditions logictype="and" onhidedatabehavior="keep"/>
+                                        <renderconditions logictype="and" onhidedatabehavior="cancel">
+                                          <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="NGPartyClone" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="Document_Type__c" fieldtargetobjects="genesis__Income__c" value="Full"/>
+                                          <rendercondition type="fieldvalue" enclosevalueinquotes="true" fieldmodel="CompanyIncomeDetailsFull" sourcetype="modelproperty" sourceproperty="hasRows"/>
+                                        </renderconditions>
                                         <enableconditions/>
                                       </field>
                                     </fields>
@@ -482,11 +489,17 @@
                                         <enableconditions/>
                                       </field>
                                       <field uniqueid="sk-28ul-2138" id="Verification_Sighted__c" showhelp="true">
-                                        <renderconditions logictype="and" onhidedatabehavior="keep"/>
+                                        <renderconditions logictype="and" onhidedatabehavior="cancel">
+                                          <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="NGPartyClone" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="Document_Type__c" fieldtargetobjects="genesis__Income__c" value="Full"/>
+                                          <rendercondition type="fieldvalue" enclosevalueinquotes="true" fieldmodel="CompanyIncomeDetailsFull" sourcetype="modelproperty" sourceproperty="hasRows"/>
+                                        </renderconditions>
                                         <enableconditions/>
                                       </field>
                                       <field uniqueid="sk-28ur-2186" id="Type_Of_Documents_Sighted__c" selectedlist="3">
-                                        <renderconditions logictype="and" onhidedatabehavior="keep"/>
+                                        <renderconditions logictype="and" onhidedatabehavior="cancel">
+                                          <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="NGPartyClone" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="Document_Type__c" fieldtargetobjects="genesis__Income__c" value="Full"/>
+                                          <rendercondition type="fieldvalue" enclosevalueinquotes="true" fieldmodel="CompanyIncomeDetailsFull" sourcetype="modelproperty" nosourcerowbehavior="deactivate" sourceproperty="hasRows"/>
+                                        </renderconditions>
                                         <enableconditions/>
                                       </field>
                                     </fields>
@@ -663,19 +676,21 @@
                                         </renderconditions>
                                         <enableconditions/>
                                       </field>
-                                      <field uniqueid="sk-2Cim-1434" id="Other_Supporting_Document_Verified__c"/>
+                                      <field uniqueid="sk-2Cim-1434" id="Other_Supporting_Document_Verified__c">
+                                        <renderconditions logictype="and" onhidedatabehavior="keep"/>
+                                        <enableconditions/>
+                                      </field>
                                     </fields>
                                   </section>
                                 </sections>
+                                <renderconditions logictype="and"/>
                               </column>
                             </columns>
                           </fields>
                           <renderconditions logictype="and"/>
                         </section>
                       </sections>
-                      <renderconditions logictype="and">
-                        <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="NGPartyClone" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="Document_Type__c" fieldtargetobjects="clcommon__Party__c" value="Alt"/>
-                      </renderconditions>
+                      <renderconditions logictype="and"/>
                     </column>
                   </columns>
                   <renderconditions logictype="and"/>
@@ -788,11 +803,17 @@
                                         <enableconditions/>
                                       </field>
                                       <field uniqueid="sk-14vf-4179" id="Override__c">
-                                        <renderconditions logictype="and" onhidedatabehavior="keep"/>
+                                        <renderconditions logictype="and" onhidedatabehavior="cancel">
+                                          <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="NGPartyClone" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="Document_Type__c" fieldtargetobjects="clcommon__Party__c" value="Full"/>
+                                          <rendercondition type="fieldvalue" enclosevalueinquotes="true" fieldmodel="CompanyIncomeDetailsFull" sourcetype="modelproperty" nosourcerowbehavior="deactivate" sourceproperty="hasRows"/>
+                                        </renderconditions>
                                         <enableconditions/>
                                       </field>
                                       <field uniqueid="sk-14vf-4180" id="Number_of_Documents_Sighted__c">
-                                        <renderconditions logictype="and" onhidedatabehavior="keep"/>
+                                        <renderconditions logictype="and" onhidedatabehavior="cancel">
+                                          <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="NGPartyClone" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="Document_Type__c" fieldtargetobjects="genesis__Income__c" value="Full"/>
+                                          <rendercondition type="fieldvalue" enclosevalueinquotes="true" fieldmodel="CompanyIncomeDetailsFull" sourcetype="modelproperty" nosourcerowbehavior="deactivate" sourceproperty="hasRows"/>
+                                        </renderconditions>
                                         <enableconditions/>
                                       </field>
                                     </fields>
@@ -818,11 +839,17 @@
                                         <enableconditions/>
                                       </field>
                                       <field uniqueid="sk-14vf-4186" id="Verification_Sighted__c">
-                                        <renderconditions logictype="and" onhidedatabehavior="keep"/>
+                                        <renderconditions logictype="and" onhidedatabehavior="cancel">
+                                          <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="NGPartyClone" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="Document_Type__c" fieldtargetobjects="genesis__Income__c" value="Full"/>
+                                          <rendercondition type="fieldvalue" enclosevalueinquotes="true" fieldmodel="CompanyIncomeDetailsFull" sourcetype="modelproperty" nosourcerowbehavior="deactivate" sourceproperty="hasRows"/>
+                                        </renderconditions>
                                         <enableconditions/>
                                       </field>
                                       <field uniqueid="sk-14vf-4187" id="Type_Of_Documents_Sighted__c" selectedlist="3">
-                                        <renderconditions logictype="and" onhidedatabehavior="keep"/>
+                                        <renderconditions logictype="and" onhidedatabehavior="cancel">
+                                          <rendercondition type="fieldvalue" enclosevalueinquotes="true" fieldmodel="CompanyIncomeDetailsFull" sourcetype="modelproperty" nosourcerowbehavior="deactivate" sourceproperty="hasRows"/>
+                                          <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="NGPartyClone" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="Document_Type__c" fieldtargetobjects="genesis__Income__c" value="Full"/>
+                                        </renderconditions>
                                         <enableconditions/>
                                       </field>
                                     </fields>
@@ -859,16 +886,21 @@
                                     <fields>
                                       <field uniqueid="sk-14wU-4455" id="genesis__Amount__c">
                                         <label>Income Amount</label>
-                                        <renderconditions logictype="and" onhidedatabehavior="keep"/>
+                                        <renderconditions logictype="and" onhidedatabehavior="cancel">
+                                          <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="NGPartyClone" sourcetype="fieldvalue" field="Document_Type__c" fieldtargetobjects="genesis__Income__c" value="Alt" nosourcerowbehavior="deactivate"/>
+                                        </renderconditions>
                                         <enableconditions/>
                                       </field>
                                       <field uniqueid="sk-14wU-4456" id="Number_of_Documents_Sighted__c">
-                                        <renderconditions logictype="and" onhidedatabehavior="keep"/>
+                                        <renderconditions logictype="and" onhidedatabehavior="cancel">
+                                          <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="NGPartyClone" sourcetype="fieldvalue" field="Document_Type__c" fieldtargetobjects="genesis__Income__c" value="Alt" nosourcerowbehavior="deactivate"/>
+                                        </renderconditions>
                                         <enableconditions/>
                                       </field>
-                                      <field uniqueid="sk-14wU-4457" id="Other_Supporting_Document_Verified__c">
-                                        <label>Documents Verified</label>
-                                        <renderconditions logictype="and" onhidedatabehavior="keep"/>
+                                      <field uniqueid="sk-2Hsj-901" id="Documents_Verified__c">
+                                        <renderconditions logictype="and" onhidedatabehavior="cancel">
+                                          <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="NGPartyClone" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="Document_Type__c" fieldtargetobjects="clcommon__Party__c" value="Alt"/>
+                                        </renderconditions>
                                         <enableconditions/>
                                       </field>
                                       <field uniqueid="sk-1qww-785" id="BAS__c">
@@ -984,6 +1016,12 @@
                                         </renderconditions>
                                         <enableconditions/>
                                       </field>
+                                      <field uniqueid="sk-2HsR-874" id="Other_Supporting_Document_Verified__c">
+                                        <renderconditions logictype="and" onhidedatabehavior="cancel">
+                                          <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="NGPartyClone" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="Document_Type__c" fieldtargetobjects="clcommon__Party__c" value="Alt"/>
+                                        </renderconditions>
+                                        <enableconditions/>
+                                      </field>
                                     </fields>
                                   </section>
                                 </sections>
@@ -1070,12 +1108,18 @@
                                             <enableconditions/>
                                           </field>
                                           <field uniqueid="sk-14z3-4860" id="Override__c">
-                                            <renderconditions logictype="and" onhidedatabehavior="keep"/>
+                                            <renderconditions logictype="and" onhidedatabehavior="cancel">
+                                              <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="NGPartyClone" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="Document_Type__c" fieldtargetobjects="clcommon__Party__c"/>
+                                              <rendercondition type="fieldvalue" enclosevalueinquotes="true" fieldmodel="CompanyIncomeDetailsFull" sourcetype="modelproperty" nosourcerowbehavior="deactivate" sourceproperty="hasRows"/>
+                                            </renderconditions>
                                             <enableconditions/>
                                           </field>
                                           <field uniqueid="sk-14z3-4861" id="Number_of_Documents_Sighted__c">
-                                            <renderconditions logictype="and" onhidedatabehavior="keep"/>
-                                            <enableconditions/>
+                                            <renderconditions logictype="and" onhidedatabehavior="cancel">
+                                              <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="NGPartyClone" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="Document_Type__c" fieldtargetobjects="clcommon__Party__c" value="Full"/>
+                                              <rendercondition type="fieldvalue" enclosevalueinquotes="true" fieldmodel="CompanyIncomeDetailsFull" sourcetype="modelproperty" nosourcerowbehavior="deactivate" sourceproperty="hasRows"/>
+                                            </renderconditions>
+                                            <enableconditions logictype="and"/>
                                           </field>
                                         </fields>
                                       </section>
@@ -1100,12 +1144,18 @@
                                             <enableconditions/>
                                           </field>
                                           <field uniqueid="sk-14z3-4867" id="Verification_Sighted__c" showhelp="true">
-                                            <renderconditions logictype="and" onhidedatabehavior="cancel"/>
+                                            <renderconditions logictype="and" onhidedatabehavior="cancel">
+                                              <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="NGPartyClone" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="Document_Type__c" fieldtargetobjects="clcommon__Party__c" value="Full"/>
+                                              <rendercondition type="fieldvalue" enclosevalueinquotes="true" fieldmodel="CompanyIncomeDetailsFull" sourcetype="modelproperty" nosourcerowbehavior="deactivate" sourceproperty="hasRows"/>
+                                            </renderconditions>
                                             <enableconditions/>
                                           </field>
                                           <field uniqueid="sk-14z3-4868" id="Trust_Type_of_Document_Sighted__c" selectedlist="3">
                                             <label>Type of Documents Sighted</label>
-                                            <renderconditions logictype="and" onhidedatabehavior="cancel"/>
+                                            <renderconditions logictype="and" onhidedatabehavior="cancel">
+                                              <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="NGPartyClone" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="Document_Type__c" fieldtargetobjects="clcommon__Party__c" value="Full"/>
+                                              <rendercondition type="fieldvalue" enclosevalueinquotes="true" fieldmodel="CompanyIncomeDetailsFull" sourcetype="modelproperty" nosourcerowbehavior="deactivate" sourceproperty="hasRows"/>
+                                            </renderconditions>
                                             <enableconditions/>
                                           </field>
                                         </fields>
@@ -1138,15 +1188,22 @@
                                         <fields>
                                           <field uniqueid="sk-14zd-5024" id="genesis__Amount__c">
                                             <label>Income Amount</label>
-                                            <renderconditions logictype="and" onhidedatabehavior="keep"/>
+                                            <renderconditions logictype="and" onhidedatabehavior="cancel">
+                                              <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="NGPartyClone" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="Document_Type__c" fieldtargetobjects="clcommon__Party__c" value="Alt"/>
+                                            </renderconditions>
                                             <enableconditions/>
                                           </field>
                                           <field uniqueid="sk-14zd-5025" id="Number_of_Documents_Sighted__c">
-                                            <renderconditions logictype="and" onhidedatabehavior="keep"/>
+                                            <renderconditions logictype="and" onhidedatabehavior="cancel">
+                                              <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="NGPartyClone" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="Document_Type__c" fieldtargetobjects="clcommon__Party__c" value="Alt"/>
+                                            </renderconditions>
                                             <enableconditions/>
                                           </field>
-                                          <field uniqueid="sk-14zd-5026" id="Other_Supporting_Document_Verified__c">
-                                            <label>Documents Verified</label>
+                                          <field uniqueid="sk-2Hss-969" id="Documents_Verified__c">
+                                            <renderconditions logictype="and" onhidedatabehavior="cancel">
+                                              <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="CompanyIncomeDetailsAlt" sourcetype="fieldvalue" field="Document_Type__c" fieldtargetobjects="genesis__Income__c" value="Alt"/>
+                                            </renderconditions>
+                                            <enableconditions/>
                                           </field>
                                           <field uniqueid="sk-1qw--816" id="BAS__c">
                                             <renderconditions logictype="and" onhidedatabehavior="cancel">
@@ -1258,6 +1315,12 @@
                                           <field uniqueid="sk-1r52-2238" id="Accountant_Call_Suitable__c">
                                             <renderconditions logictype="and" onhidedatabehavior="cancel">
                                               <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="CompanyIncomeDetailsAlt" sourcetype="fieldvalue" field="Accountant_Call__c" fieldtargetobjects="genesis__Income__c" value="Yes"/>
+                                            </renderconditions>
+                                            <enableconditions/>
+                                          </field>
+                                          <field uniqueid="sk-2HsS-880" id="Other_Supporting_Document_Verified__c">
+                                            <renderconditions logictype="and" onhidedatabehavior="cancel">
+                                              <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="NGPartyClone" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="Document_Type__c" fieldtargetobjects="clcommon__Party__c" value="Alt"/>
                                             </renderconditions>
                                             <enableconditions/>
                                           </field>
