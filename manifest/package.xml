@@ -18,6 +18,7 @@
         
     </types>
     <types>
+        <members>Contact.Date_Of_Birth</members>
         <members>genesis__Applications__c.Fixed_Duration</members>
         <members>genesis__Applications__c.Interest_Only_Duration</members>
         <members>genesis__Applications__c.LMI_Approved</members>
