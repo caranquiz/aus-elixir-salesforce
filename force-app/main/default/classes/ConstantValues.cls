@@ -205,4 +205,5 @@ global class ConstantValues{
     public static final String NO_PRICING_RECORDS_FOUND = 'No pricing records found';
     public static final String PRICING_SUCCESSFULLY_UPDATED = 'Pricing successfuly updated.';
     public static final String UNABLE_UPDATE_PRICING = 'Unable to update the pricing';
+    public static final String PRICING_RATE_DOES_MATCH = 'The current matrix rate is not in accordance with the interest obtained from Pricing table. Please click on the Generate Pricing button on Loan Details tab to proceed.';
 }
