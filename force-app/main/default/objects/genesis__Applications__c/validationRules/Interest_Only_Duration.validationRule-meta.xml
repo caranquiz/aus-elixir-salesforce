@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Interest_Only_Duration</fullName>
+    <active>true</active>
+    <errorConditionFormula>IF ((AND((NOT(ISNULL(genesis__Interest_Only_Period__c))), (genesis__Interest_Only_Period__c &gt; 60))), true, false)</errorConditionFormula>
+    <errorMessage>Interest Only Duration (Months)  should not greater than 60 months.</errorMessage>
+</ValidationRule>
