@@ -36,7 +36,7 @@ global with sharing class CheckRules {
                 List<genesis__Checklist__c> checkList = genesis.RulesAPI.evaluateRules(application, mapRules.values(), true, true);
             }
 
-            returnValue = ConstantValues.CHECKRULES_SUCCESS;
+            returnValue = ConstantValues.Success;
 
         } 
         catch (Exception e) {
