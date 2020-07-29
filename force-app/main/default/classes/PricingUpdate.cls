@@ -3,7 +3,7 @@ Company: Cloudkaptan Consultancy Services Pvt. Ltd.
 Author: Rameswari Barman
 Description: This is class is used to calculate the interest rate of the application and update it in Matrix Rate field in Application.
 Development Date: 20/7/2020
-Last Modified Date - 20/07/2020
+Last Modified Date - 30/07/2020
 */
 global with sharing class PricingUpdate {
   webService static String updatePricing(String applicationId, Boolean checkPricing) {
