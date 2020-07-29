@@ -27,7 +27,6 @@
     </types>
     <types>
         <members>CheckRules</members>
-        <members>ConstantValues</members>
         <name>ApexClass</name>
     </types>
     <types>
