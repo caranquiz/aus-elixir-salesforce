@@ -193,6 +193,7 @@
         <members>genesis__Applications__c.Interest_Only_Duration</members>
         <members>genesis__Applications__c.LMI_Approved</members>
         <members>genesis__Applications__c.Repayment_Type</members>
+        <members>Contact.Date_Of_Birth</members>
         <name>ValidationRule</name>
     </types>
     
