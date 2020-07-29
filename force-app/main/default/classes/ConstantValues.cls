@@ -7,7 +7,6 @@ global class ConstantValues{
 
     //Check Rules Constant Values
     public static final string CHECKRULES_APPLICATION_ID_NULL = 'Application ID is null';
-    public static final string CHECKRULES_SUCCESS = 'Success';
 
     //Lending Calculator Constant Values 
     global static final string TERM_VALIDATION_MSG='Please define the loan term.'; 
