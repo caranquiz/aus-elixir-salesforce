@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
     <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+     <types>
+        <!-- Rendering Changes made by Souvik -->
+        <members>EraseRedundantData</members>
+
+        <!-- Pricing Changes made by Rameswari -->
+        <members>ConstantValues</members>
+        <members>GenericUtility</members>
+        <members>GenericUtilityTestHelper</members>
+        <members>PricingUpdate</members>
+        <members>PricingUpdateTest</members>
+        <name>ApexClass</name>
+    </types>
     <types>
         <!-- Rendering Changes made by Souvik -->
         <members>Contact.Exit_Strategy_Commentary__c</members>
@@ -130,13 +142,14 @@
         <members>genesis__Income__c.Accountant_Phone_Number_independently_ve__c</members>
         <members>genesis__Income__c.Documents_Verified__c</members>
         <members>genesis__Income__c.Employment_Information__c</members>
-<<<<<<< HEAD
         <members>genesis__Income__c.Does_applicant_understand_English__c</members>
         <members>genesis__Income__c.Documents_Verified__c</members>
         <members>genesis__Applications__c.Total_Monthly_Living_Expenses_Declared__c</members>
         <members>genesis__Applications__c.Monthly_Living_Expenses_Used__c</members>
         <members>clcommon__Collateral__c.Cover_Type__c</members>
         <members>clcommon__Collateral__c.Interested_Party__c</members>
+        <members>genesis__Applications__c.Interest_Only_Suitable__c</members>
+        <members>genesis__Applications__c.Is_the_Application_Form_fully_completed__c</members>
 
         <!-- Credit Contract changes made by Rameswari -->
         <members>genesis__Applications__c.CL_Date__c</members>
@@ -157,9 +170,5 @@
         <name>CustomObject</name>
     </types>
     
-=======
-        <name>CustomField</name>
-    </types>
->>>>>>> 8fef60e94e1e8d14babe35745b985d5cf7122c5f
     <version>45.0</version>
 </Package>
