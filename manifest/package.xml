@@ -9,7 +9,7 @@
         <members>CheckRules</members>
         <members>CheckRulesTest</members>
 
-        <!-- Pricing Changes made by Rameswari -->
+        <!-- Pricing Changes made by Rameswari-->
         <members>ConstantValues</members>
         <members>GenericUtility</members>
         <members>GenericUtilityTestHelper</members>
@@ -19,16 +19,13 @@
         
     </types>
     <types>
+        <!-- Credit Rule changes by Koushik -->
         <members>Contact.Date_Of_Birth</members>
         <members>genesis__Applications__c.Fixed_Duration</members>
         <members>genesis__Applications__c.Interest_Only_Duration</members>
         <members>genesis__Applications__c.LMI_Approved</members>
         <members>genesis__Applications__c.Repayment_Type</members>
         <name>ValidationRule</name>
-    </types>
-    <types>
-        <members>CheckRules</members>
-        <name>ApexClass</name>
     </types>
     <types>
         <!-- Rendering Changes made by Souvik -->
@@ -183,16 +180,5 @@
         <members>Rendering_Criteria__c</members>
         <name>CustomObject</name>
     </types>
-
-    <types>
-        <!-- Credit Rule Changes added by Koushik -->
-        <members>genesis__Applications__c.Fixed_Duration</members>
-        <members>genesis__Applications__c.Interest_Only_Duration</members>
-        <members>genesis__Applications__c.LMI_Approved</members>
-        <members>genesis__Applications__c.Repayment_Type</members>
-        <members>Contact.Date_Of_Birth</members>
-        <name>ValidationRule</name>
-    </types>
-    
     <version>45.0</version>
 </Package>
