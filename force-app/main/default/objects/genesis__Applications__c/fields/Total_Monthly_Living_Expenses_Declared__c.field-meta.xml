@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Total_Monthly_Living_Expenses_Declared__c</fullName>
+    <defaultValue>0.00</defaultValue>
     <externalId>false</externalId>
     <label>Total Monthly Living Expenses Declared</label>
     <precision>18</precision>

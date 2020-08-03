@@ -31,7 +31,7 @@ global with sharing class PricingUpdate {
         FROM genesis__Application_Pricing_Detail__c
         WHERE genesis__Application__c = :applicationId
       ];
-      if (applicationPricingDetailList == null || applicationPricingDetailList.isEmpty()) {
+      if (applicationPricingDetailList.isEmpty()) {
         throw new CustomException(ConstantValues.NO_PRICING_RECORDS_FOUND);
       }
       if(checkPricing == true){

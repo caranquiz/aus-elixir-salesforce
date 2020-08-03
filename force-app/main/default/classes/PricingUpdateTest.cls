@@ -3,6 +3,9 @@ Company: Cloudkaptan Consultancy Services Pvt. Ltd.
 Author: Rameswari Barman
 Description: This class provides coverage to PricingUpdateCtrl.
 Development Date: 20/7/2020
+Scenarios Tested: 1)Generate Pricing button from Loan Details tab is clicked and pricing obtained from rate card is updated in tMatrix rate of loan
+                  2)When application's status is changed to Recommended, it is checked whether the interest rate obtained
+                   from rate card matches with the current matrix rate
 */
 @isTest
 private class PricingUpdateTest {
@@ -52,11 +55,17 @@ private class PricingUpdateTest {
         System.assertNotEquals(pricingDetail.Id,NULL,'Application Pricing detail inserted successfully');
     }
     @isTest
-    static void scenario() 
+    static void scenario1() 
     {
         genesis__Applications__c app=[select id from genesis__Applications__c limit 1];
+        System.assertNotEquals(app.Id,NULL,'Application is present.');
         Test.startTest();
-        PricingUpdate.updatePricing(app.Id);
+        String checkReturn1 = PricingUpdate.updatePricing(app.Id,false);
+        System.assertEquals(checkReturn1,'Unable to update the pricing',true);
+        String checkReturn2 = PricingUpdate.updatePricing(app.Id,true);
+        System.assertEquals(checkReturn2,
+            'The current matrix rate is not in accordance with the interest obtained from Pricing table. Please click on the Generate Pricing button on Loan Details tab to proceed.',
+            true);
         Test.stopTest();
     }
  }
