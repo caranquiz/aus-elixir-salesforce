@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Bankrupt_Discharged</fullName>
+    <active>true</active>
+    <errorConditionFormula>IF(OR((ISPICKVAL(Risk_Grade__c,&apos;Prime&apos;)),(ISPICKVAL(Risk_Grade__c,&apos;Near Prime&apos;))),IF(ISPICKVAL(bankrupt_discharged__c,&apos;Yes&apos;),true,false),false)</errorConditionFormula>
+    <errorMessage>Bankrupt Discharged is Yes, then Risk Grade can not be Prime or Near Prime.</errorMessage>
+</ValidationRule>
