@@ -176,6 +176,9 @@
         <members>clcommon__Collateral__c.Check_Val_Value_Render__c</members>
         <members>clcommon__Collateral__c.Check_Val_Value_Rule_Check__c</members>
         <members>clcommon__Collateral__c.Distressed_Asset_Render__c</members>
+        <members>genesis__Income__c.Accountant_Call_Suitable_Render__c</members>
+        <members>genesis__Income__c.Satisfactory_Explanation_Provided_Render__c</members>
+        <members>genesis__Income__c.Income_Consistent_with_Declaration_Rende__c</members>
         <name>CustomField</name>
     </types>
     <types>

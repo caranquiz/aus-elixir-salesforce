@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Income_Consistent_with_Declaration_Rende__c</fullName>
+    <description>Income Consistent with Declaration Render</description>
+    <externalId>false</externalId>
+    <formula>IF(OR(AND(INCLUDES(Company_Type_of_Documents_Sighted__c,&apos;BAS&apos;),INCLUDES(Company_Type_of_Documents_Sighted__c,&apos;Trading Statements&apos;)), INCLUDES(Company_Type_of_Documents_Sighted__c,&apos;&apos;)),&apos;Not Render&apos;,&apos;Render&apos;)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Income Consistent with Declaration Rende</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>
