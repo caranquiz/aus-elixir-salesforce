@@ -189,6 +189,7 @@
         <members>genesis__Applications__c.LMI_Approved</members>
         <members>genesis__Applications__c.Repayment_Type</members>
         <members>clcommon__Party__c.Bankrupt_Discharged</members>
+        <members>clcommon__Party__c.Bankrupt_Discharged_Date</members>
         <name>ValidationRule</name>
     </types>
     
