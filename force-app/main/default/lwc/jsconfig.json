@@ -2,8 +2,7 @@
     "compilerOptions": {
         "experimentalDecorators": true,
         "baseUrl": ".",
-        "paths": {},
-        "experimentalDecorators": true
+        "paths": {}
     },
     "include": [
         "**/*",

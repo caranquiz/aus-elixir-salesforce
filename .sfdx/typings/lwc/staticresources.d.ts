@@ -18,3 +18,15 @@ declare module "@salesforce/resourceUrl/ORDEFinancial_Logo" {
     var ORDEFinancial_Logo: string;
     export default ORDEFinancial_Logo;
 }
+declare module "@salesforce/resourceUrl/Sample_Deliver_Document_Success_Response" {
+    var Sample_Deliver_Document_Success_Response: string;
+    export default Sample_Deliver_Document_Success_Response;
+}
+declare module "@salesforce/resourceUrl/Sample_Order_Document_Response" {
+    var Sample_Order_Document_Response: string;
+    export default Sample_Order_Document_Response;
+}
+declare module "@salesforce/resourceUrl/Sample_Title_Search_Response" {
+    var Sample_Title_Search_Response: string;
+    export default Sample_Title_Search_Response;
+}

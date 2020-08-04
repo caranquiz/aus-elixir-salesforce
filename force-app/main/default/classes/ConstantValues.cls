@@ -5,9 +5,6 @@ Created Date:   05/10/2018
 *********************************************************************************/
 global class ConstantValues{
 
-    //Check Rules Constant Values
-    public static final string CHECKRULES_APPLICATION_ID_NULL = 'Application ID is null';
-
     //Lending Calculator Constant Values 
     global static final string TERM_VALIDATION_MSG='Please define the loan term.'; 
     global static final string APP_ALREADY_CONVERTED_MSG='Application has already been converted to Loan Application.';
@@ -205,5 +202,73 @@ global class ConstantValues{
     public static final String NO_PRICING_RECORDS_FOUND = 'No pricing records found';
     public static final String PRICING_SUCCESSFULLY_UPDATED = 'Pricing successfuly updated.';
     public static final String UNABLE_UPDATE_PRICING = 'Unable to update the pricing';
-    public static final String PRICING_RATE_DOES_MATCH = 'The current matrix rate is not in accordance with the interest obtained from Pricing table. Please click on the Generate Pricing button on Loan Details tab to proceed.';
+
+    //General constant
+    public static final String GENERAL_ERROR = 'Something went wrong';
+
+    //Constant Values for EquifaxSearchTitleByAddressCallout
+    public static final String EQUIFAX_FAMILY = 'Equifax';
+    public static final String TITLE_SEARCH_API_TYPE = 'Title Search by Address';
+    public static final String ORDER_DOCUMENT_API_TYPE = 'Order Document';
+    public static final String DELIVER_DOCUMENT_API_TYPE = 'Deliver Document';
+    public static final String COLLATERAL_ID = 'collateralId';
+    public static final String HS_LANDTITLE = '-landTitle';
+    public static final String US_LANDTITLE = 'LandTitle';
+    public static final String HS_TITLE = '-title';
+    public static final String US_TITLE = 'Title';
+    public static final String HS_HEADER = '-header';
+    public static final String US_HEADER = 'Header';
+    public static final String HS_RESPONSE = '-response';
+    public static final String US_RESPONSE = 'Response';
+    public static final String HS_DATA = '-data';
+    public static final String US_DATA = 'Data';
+    public static final String HS_PAID = '-paid';
+    public static final String US_PAID = 'Paid';
+    public static final String HS_TERRITORY = '-territory';
+    public static final String US_TERRITORY = 'Territory';
+    public static final String HS_LAND = '-land';
+    public static final String US_LAND = 'Land';
+    public static final String HS_REGISTRY = '-registry';
+    public static final String US_REGISTRY = 'Registry';
+    public static final String HS_REFERENCE = '-reference';
+    public static final String US_REFERENCE = 'Reference';
+    public static final String HS_DESCRIPTION = '-description';
+    public static final String US_DESCRIPTION = 'Description';
+    public static final String HS_PRICE = '-price';
+    public static final String US_PRICE = 'Price';
+    public static final String HS_VALUE = '-value';
+    public static final String US_VALUE = 'Value';
+    public static final String HS_DOCUMENT = '-document';
+    public static final String US_DOCUMENT = 'Document';
+    public static final String HS_DETAIL = '-detail';
+    public static final String US_DETAIL = 'Detail';
+    public static final String HS_TIME = '-time';
+    public static final String US_TIME = 'TimeV';
+    public static final String HS_ID = '-id';
+    public static final String US_ID = 'Id';
+    public static final String HS_STATUS = '-status';
+    public static final String US_STATUS = 'Status';
+    public static final String LANDTITLE_KEY = '"landTitle"';
+    public static final String ERROR_KEY = '"error"';
+    public static final String NO_COLLATERAL = 'No collateral found';
+    public static final String NO_ENQUIRY_ID = 'Document Enquiry Id missing';
+    public static final String ORDER_DOC_SUCCESS = 'Order Successfully Placed';
+    public static final String INVALID_RESPONSE = 'Invalid Response Structure';
+    public static final String DOCUMENT_ATTACHMENT_PREFIX = 'TITLE||DOCUMENT||';
+    public static final String TITLE_SEARCH_DOCUMENT_CATEGORY_NAME = 'Title Search Document';
+    public static final String DELIVER_DOCUMENT_BATCH_CALLED = 'Document Status Check Batch Successfully called ';
+
+    //Integration Request Structure
+    public static final String REQ_ENVELOPE_START = '<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:land="http://vedaxml.com/vxml2/land-titles-v1-0.xsd" xmlns:vh="http://vedaxml.com/soap/header/v-header-v1-10.xsd" xmlns:wsa="http://www.w3.org/2005/08/addressing">';
+    public static final String REQ_HEADER = '<soap:Header>' +
+    '<wsse:Security mustUnderstand="1" xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd">'
+    + '<wsse:UsernameToken>' + '<wsse:Username>{!$Credential.UserName}</wsse:Username>'
+    + '<wsse:Password>{!$Credential.Password}</wsse:Password>' + '</wsse:UsernameToken>'
+    + '</wsse:Security>'
+    + '<wsa:To>https://vedaxml.com/sys2/soap12/land-titles-v1</wsa:To>';
+    public static final String REQ_SLT_ACTION = '<wsa:Action>http://vedaxml.com/land-titles/searchLandTitlesRequest</wsa:Action></soap:Header>';
+    public static final String REQ_OD_ACTION = '<wsa:Action>http://vedaxml.com/land-titles/orderDocumentRequest</wsa:Action></soap:Header>';
+    public static final String REQ_DD_ACTION = '<wsa:Action>http://vedaxml.com/land-titles/deliverDocumentRequest</wsa:Action></soap:Header>';
+    public static final String REQ_ENVELOPE_END = '</soap:Body></soap:Envelope>';
+    public static final String REQ_BODY = '<soap:Body xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">';
 }

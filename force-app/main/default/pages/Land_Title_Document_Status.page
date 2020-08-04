@@ -1,0 +1,2 @@
+<apex:page controller="LandTitleDocumentStatus" action="{!redirectToRelevent}">
+</apex:page>
