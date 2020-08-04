@@ -100,7 +100,7 @@ global with sharing class EraseRedundantData {
         return records;
     }
     // This method checks if the given string is a decimal value or not
-    private static Boolean isDecimal(String val){
+    public static Boolean isDecimal(String val){
         if(String.isBlank(val)){
             return false;
         }
@@ -131,98 +131,108 @@ global with sharing class EraseRedundantData {
         }
         return true;
     }
+    // Returns mathing result, in case of exception always returns true
     public static Boolean checkIfDataMatched(String actualData, String expectedData, String matchingType){
-        if(expectedData == null || expectedData.equalsIgnoreCase('null')){
-            expectedData = null;
-        }
-        if(actualData != null && actualData.contains(';')){
-            Boolean multiValResult = checkIfDataMatchedForMultivaluedActualData(actualData, expectedData, matchingType);
-            return multiValResult;
-        }
-        switch on matchingType {
-            when '==' {
-                if(actualData == null){
-                    return (actualData == expectedData);
-                }else if(isDecimal(actualData) && isDecimal(expectedData)){
-                    return (Decimal.valueOf(actualData) == Decimal.valueOf(expectedData));
-                }else {
-                    return (actualData.equalsIgnoreCase(expectedData));
-                }
+        try{
+            if(matchingType == null){
+                return true;
             }
-            when '!=' {
-                if(actualData == null){
-                    return (actualData != expectedData);
-                }else if(isDecimal(actualData) && isDecimal(expectedData)){
-                    return (Decimal.valueOf(actualData) != Decimal.valueOf(expectedData));
-                }else {
-                    return (!actualData.equalsIgnoreCase(expectedData));
-                }
+            if(expectedData == null || expectedData.equalsIgnoreCase('null')){
+                expectedData = null;
             }
-            when '<=' {
-                if(actualData == null){
-                    return true;
-                }else if(isDecimal(actualData) && isDecimal(expectedData)){
-                    return (Decimal.valueOf(actualData) <= Decimal.valueOf(expectedData));
-                }else {
-                    return true;
-                }
+            if(actualData != null && actualData.contains(';')){
+                Boolean multiValResult = checkIfDataMatchedForMultivaluedActualData(actualData, expectedData, matchingType);
+                return multiValResult;
             }
-            when '>=' {
-                if(actualData == null){
-                    return true;
-                }else if(isDecimal(actualData) && isDecimal(expectedData)){
-                    return (Decimal.valueOf(actualData) >= Decimal.valueOf(expectedData));
-                }else {
-                    return true;
+            switch on matchingType {
+                when '==' {
+                    if(actualData == null){
+                        return (actualData == expectedData);
+                    }else if(isDecimal(actualData) && isDecimal(expectedData)){
+                        return (Decimal.valueOf(actualData) == Decimal.valueOf(expectedData));
+                    }else {
+                        return (actualData.equalsIgnoreCase(expectedData));
+                    }
                 }
-            }
-            when '<' {
-                if(actualData == null){
-                    return true;
-                }else if(isDecimal(actualData) && isDecimal(expectedData)){
-                    return (Decimal.valueOf(actualData) < Decimal.valueOf(expectedData));
-                }else {
-                    return true;
+                when '!=' {
+                    if(actualData == null){
+                        return (actualData != expectedData);
+                    }else if(isDecimal(actualData) && isDecimal(expectedData)){
+                        return (Decimal.valueOf(actualData) != Decimal.valueOf(expectedData));
+                    }else {
+                        return (!actualData.equalsIgnoreCase(expectedData));
+                    }
                 }
-            }
-            when '>' {
-                if(actualData == null){
-                    return true;
-                }else if(isDecimal(actualData) && isDecimal(expectedData)){
-                    return (Decimal.valueOf(actualData) > Decimal.valueOf(expectedData));
-                }else {
-                    return true;
+                when '<=' {
+                    if(actualData == null){
+                        return true;
+                    }else if(isDecimal(actualData) && isDecimal(expectedData)){
+                        return (Decimal.valueOf(actualData) <= Decimal.valueOf(expectedData));
+                    }else {
+                        return true;
+                    }
                 }
-            }
-            when 'IN' {
-                if(actualData == null && expectedData == null){
+                when '>=' {
+                    if(actualData == null){
+                        return true;
+                    }else if(isDecimal(actualData) && isDecimal(expectedData)){
+                        return (Decimal.valueOf(actualData) >= Decimal.valueOf(expectedData));
+                    }else {
+                        return true;
+                    }
+                }
+                when '<' {
+                    if(actualData == null){
+                        return true;
+                    }else if(isDecimal(actualData) && isDecimal(expectedData)){
+                        return (Decimal.valueOf(actualData) < Decimal.valueOf(expectedData));
+                    }else {
+                        return true;
+                    }
+                }
+                when '>' {
+                    if(actualData == null){
+                        return true;
+                    }else if(isDecimal(actualData) && isDecimal(expectedData)){
+                        return (Decimal.valueOf(actualData) > Decimal.valueOf(expectedData));
+                    }else {
+                        return true;
+                    }
+                }
+                when 'IN' {
+                    if(actualData == null && expectedData == null){
+                        return false;
+                    }
+                    List<String> valueList = expectedData.split('\n');
+                    for(String each : valueList){
+                        if((each == null || each.trim().equalsIgnoreCase('null')) && actualData == null){
+                            return true;
+                        }else if(actualData != null && actualData.equalsIgnoreCase(each.trim())){
+                            return true;
+                        }
+                    }
                     return false;
                 }
-                List<String> valueList = expectedData.split('\n');
-                for(String each : valueList){
-                    if((each == null || each.trim().equalsIgnoreCase('null')) && actualData == null){
-                        return true;
-                    }else if(actualData != null && actualData.equalsIgnoreCase(each.trim())){
-                        return true;
+                when 'NOT IN' {
+                    List<String> valueList = expectedData.split('\n');
+                    for(String each : valueList){
+                        if((each == null || each.trim().equalsIgnoreCase('null')) && actualData == null){
+                            return false;
+                        }
+                        else if(actualData.equalsIgnoreCase(each.trim())){
+                            return false;
+                        }
                     }
+                    return true;
                 }
-                return false;
-            }
-            when 'NOT IN' {
-                List<String> valueList = expectedData.split('\n');
-                for(String each : valueList){
-                    if((each == null || each.trim().equalsIgnoreCase('null')) && actualData == null){
-                        return false;
-                    }
-                    else if(actualData.equalsIgnoreCase(each.trim())){
-                        return false;
-                    }
+                when else {
+                    return true;
                 }
-                return true;
             }
-            when else {
-                return true;
-            }
+        }
+        catch(Exception ex){
+            GenericUtility.insertLog('EraseRedundantData', ex);
+            return true;
         }
     }
     private static Boolean checkRenderingCriteria(SObject objectData, Rendering_Criteria__c renderCriteria){

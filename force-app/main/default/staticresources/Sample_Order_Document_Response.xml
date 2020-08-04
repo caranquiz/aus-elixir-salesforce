@@ -1,0 +1,18 @@
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+   <soap:Body>
+      <order-document-response xmlns="http://vedaxml.com/vxml2/land-titles-v1-0.xsd">
+         <response-header>
+            <datetime-requested>2014-11-05T12:00:01.216+11:00</datetime-requested>
+            <datetime-generated>2014-11-05T12:00:16.192+11:00</datetime-generated>
+            <client-reference>1111</client-reference>
+         </response-header>
+         <order-document-response-data>
+            <order-details>
+               <date-time>2014-11-05T12:00:01.224+11:00</date-time>
+               <enquiry-id>141105-MFDVM-00000</enquiry-id>
+               <mode>Online</mode>
+            </order-details>
+         </order-document-response-data>
+      </order-document-response>
+   </soap:Body>
+</soap:Envelope>

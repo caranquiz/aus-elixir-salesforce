@@ -1,0 +1,31 @@
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+   <soap:Body>
+      <search-land-titles-response xmlns="http://vedaxml.com/vxml2/land-titles-v1-0.xsd">
+         <response-header>
+            <datetime-requested>2014-11-05T11:55:55.731+11:00</datetime-requested>
+            <datetime-generated>2014-11-05T11:55:58.157+11:00</datetime-generated>
+         </response-header>
+         <search-land-titles-response-data>
+            <land-titles>
+               <land-title>
+                  <state-territory-land-registry>QLD</state-territory-land-registry>
+                  <title-reference>50000696</title-reference>
+                  <title-description>1/2 Cavanagh Street Woree, QLD, 4868</title-description>
+                  <document-price>
+                     <price-value>9.6800000000</price-value>
+                  </document-price>
+               </land-title>
+               <land-title>
+                  <state-territory-land-registry>QLD</state-territory-land-registry>
+                  <title-reference>50000697</title-reference>
+                  <title-description>2/2 Cavanagh Street Woree, QLD, 4868</title-description>
+                  <document-price>
+                     <price-value>9.6800000000</price-value>
+                  </document-price>
+               </land-title>
+            </land-titles>
+            <price-paid>9.6800000000</price-paid>
+         </search-land-titles-response-data>
+      </search-land-titles-response>
+   </soap:Body>
+</soap:Envelope>
