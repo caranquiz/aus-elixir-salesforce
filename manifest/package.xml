@@ -198,12 +198,20 @@
         <members>clcommon__Collateral__c.Document_Status__c</members>
         <members>clcommon__Collateral__c.Price_Paid_for_Document__c</members>
         <members>clcommon__Collateral__c.Title_Search_Status__c</members>
+
+        <!-- SMSF ABN changes made by Pratik -->
+        <members>ABN_Search_SMSF__c.Maximum_Search_Results__c</members>
+        <members>ABN_Search_SMSF__c.GUID__c</members>
+        <members>ABN_Search_SMSF__c.Active_Funds_Only__c</members>
         <name>CustomField</name>
     </types>
     <types>
         <!-- Rendering Changes made by Souvik -->
         <members>Rendered_Field__c</members>
         <members>Rendering_Criteria__c</members>
+
+        <!-- SMSF ABN changes made by Pratik -->
+        <members>ABN_Search_SMSF__c</members>
         <name>CustomObject</name>
     </types>
     <types>
@@ -222,12 +230,22 @@
         <members>Sample_Deliver_Document_Success_Response</members>
         <members>Sample_Order_Document_Response</members>
         <members>Sample_Title_Search_Response</members>
+
+        <!-- SMSF ABN changes made by Pratik -->
+        <members>ABNNameSearchDummyXML</members>
+	    <members>ABNNumberSearchDummyXML</members>
         <name>StaticResource</name>
     </types>
     <types>
         <!-- Title Search Changes added by Souvik -->
         <members>Land_Title_Document_Status</members>
         <name>ApexPage</name>
+    </types>
+    <types>
+        <!-- SMSF ABN changes made by Pratik -->
+        <members>ABNSearchSMSF</members>
+        <members>SearchByABNNumber</members>
+        <name>NamedCredential</name>
     </types>
     <version>45.0</version>
 </Package>

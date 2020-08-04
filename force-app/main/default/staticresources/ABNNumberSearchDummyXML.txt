@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SuperFundPayload xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://superfundlookup.gov.au">
+    <Request>
+        <Guid>c4726ad0-af04-4d8d-987b-d15966cd1cfd</Guid>
+        <ABN>58560158971</ABN>
+    </Request>
+    <Response>
+        <UsageStatement>This extract is based on information supplied by superannuation entities to the Commissioner of Taxation. You should consider verifying this information from other sources. Neither the Australian Government nor the Tax Office endorse or guarantee the performance of complying superannuation funds.</UsageStatement>
+        <DateTimeRetrieved>2020-08-02T21:36:15.161495+10:00</DateTimeRetrieved>
+        <SuperannuationFund2015>
+            <RecordLastUpdatedDate>2018-03-30T00:00:00</RecordLastUpdatedDate>
+            <OrganisationName>
+                <Name>LLOYDS SUPERANNUATION FUND</Name>
+                <TypeCode>MN</TypeCode>
+                <StartDate>2000-07-06T00:00:00</StartDate>
+            </OrganisationName>
+            <Identifier>
+                <Value>58560158971</Value>
+                <Name>ABN</Name>
+                <IdentifierStatus>
+                    <Description>Active</Description>
+                    <StartDate>2000-05-31T00:00:00</StartDate>
+                </IdentifierStatus>
+            </Identifier>
+            <FundType>
+                <Code>SMF</Code>
+                <Description>ATO Regulated Self-Managed Superannuation Fund</Description>
+            </FundType>
+            <Address>
+                <PurposeCode>POS</PurposeCode>
+                <Line1>26 CHILDREY PL</Line1>
+                <Line2 />
+                <SuburbLocalityName>CASTLE HILL</SuburbLocalityName>
+                <StateTerritoryCode>NSW</StateTerritoryCode>
+                <Postcode>2154</Postcode>
+                <CountryName>AUSTRALIA</CountryName>
+            </Address>
+            <ComplyingStatus>
+                <Code>Y</Code>
+                <Description>Complying</Description>
+            </ComplyingStatus>
+        </SuperannuationFund2015>
+    </Response>
+</SuperFundPayload>
