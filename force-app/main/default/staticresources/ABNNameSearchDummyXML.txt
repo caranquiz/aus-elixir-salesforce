@@ -1,0 +1,3543 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SuperFundNamesPayload xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://superfundlookup.gov.au">
+    <Request>
+        <Guid>c4726ad0-af04-4d8d-987b-d15966cd1cfd</Guid>
+        <Name>Llloyds</Name>
+        <ActiveFundsOnly>Y</ActiveFundsOnly>
+    </Request>
+    <Response>
+        <UsageStatement>This extract is based on information supplied by superannuation entities to the Commissioner of Taxation. You should consider verifying this information from other sources. Neither the Australian Government nor the Tax Office endorse or guarantee the performance of complying superannuation funds.</UsageStatement>
+        <DateTimeRetrieved>2020-08-02T17:00:01.3553214+10:00</DateTimeRetrieved>
+        <MatchingFundNames201908>
+            <NumberOfRecords>196</NumberOfRecords>
+            <MatchingFundName>
+                <ABN>
+                    <Value>58560158971</Value>
+                    <IdentifierStatus>Active</IdentifierStatus>
+                </ABN>
+                <FundName>
+                    <Name>LLOYDS SUPERANNUATION FUND</Name>
+                    <NameType>Entity Name</NameType>
+                    <Score>83</Score>
+                    <NameStatus>Current</NameStatus>
+                    <FundTypeCode>SMF</FundTypeCode>
+                    <FundTypeDescription>ATO Regulated Self-Managed Superannuation Fund</FundTypeDescription>
+                </FundName>
+                <Location>
+                    <StateTerritoryCode>NSW</StateTerritoryCode>
+                    <Postcode>2154</Postcode>
+                </Location>
+            </MatchingFundName>
+            <MatchingFundName>
+                <ABN>
+                    <Value>23394762204</Value>
+                    <IdentifierStatus>Active</IdentifierStatus>
+                </ABN>
+                <FundName>
+                    <Name>LLOYDS SUPERANNUATION FUND</Name>
+                    <NameType>Entity Name</NameType>
+                    <Score>83</Score>
+                    <NameStatus>Current</NameStatus>
+                    <FundTypeCode>SMF</FundTypeCode>
+                    <FundTypeDescription>ATO Regulated Self-Managed Superannuation Fund</FundTypeDescription>
+                </FundName>
+                <Location>
+                    <StateTerritoryCode>WA</StateTerritoryCode>
+                    <Postcode>6155</Postcode>
+                </Location>
+            </MatchingFundName>
+            <MatchingFundName>
+                <ABN>
+                    <Value>89299029453</Value>
+                    <IdentifierStatus>Active</IdentifierStatus>
+                </ABN>
+                <FundName>
+                    <Name>The Trustee for Lloyds Super Fund</Name>
+                    <NameType>Entity Name</NameType>
+                    <Score>83</Score>
+                    <NameStatus>Current</NameStatus>
+                    <FundTypeCode>SMF</FundTypeCode>
+                    <FundTypeDescription>ATO Regulated Self-Managed Superannuation Fund</FundTypeDescription>
+                </FundName>
+                <Location>
+                    <StateTerritoryCode>NSW</StateTerritoryCode>
+                    <Postcode>2508</Postcode>
+                </Location>
+            </MatchingFundName>
+            <MatchingFundName>
+                <ABN>
+                    <Value>73533633995</Value>
+                    <IdentifierStatus>Active</IdentifierStatus>
+                </ABN>
+                <FundName>
+                    <Name>The Trustee for Lloyds Superannuation Fund</Name>
+                    <NameType>Entity Name</NameType>
+                    <Score>83</Score>
+                    <NameStatus>Current</NameStatus>
+                    <FundTypeCode>SMF</FundTypeCode>
+                    <FundTypeDescription>ATO Regulated Self-Managed Superannuation Fund</FundTypeDescription>
+                </FundName>
+                <Location>
+                    <StateTerritoryCode>WA</StateTerritoryCode>
+                    <Postcode>6163</Postcode>
+                </Location>
+            </MatchingFundName>
+            <MatchingFundName>
+                <ABN>
+                    <Value>84534406056</Value>
+                    <IdentifierStatus>Active</IdentifierStatus>
+                </ABN>
+                <FundName>
+                    <Name>The Trustee for Lloyds Superfund</Name>
+                    <NameType>Entity Name</NameType>
+                    <Score>83</Score>
+                    <NameStatus>Current</NameStatus>
+                    <FundTypeCode>SMF</FundTypeCode>
+                    <FundTypeDescription>ATO Regulated Self-Managed Superannuation Fund</FundTypeDescription>
+                </FundName>
+                <Location>
+                    <StateTerritoryCode>NSW</StateTerritoryCode>
+                    <Postcode>2096</Postcode>
+                </Location>
+            </MatchingFundName>
+            <MatchingFundName>
+                <ABN>
+                    <Value>22871851265</Value>
+                    <IdentifierStatus>Active</IdentifierStatus>
+                </ABN>
+                <FundName>
+                    <Name>The trustee for LLOYDS SUPERANNUATION FUND</Name>
+                    <NameType>Entity Name</NameType>
+                    <Score>83</Score>
+                    <NameStatus>Current</NameStatus>
+                    <FundTypeCode>SMF</FundTypeCode>
+                    <FundTypeDescription>ATO Regulated Self-Managed Superannuation Fund</FundTypeDescription>
+                </FundName>
+                <Location>
+                    <StateTerritoryCode>NSW</StateTerritoryCode>
+                    <Postcode>2566</Postcode>
+                </Location>
+            </MatchingFundName>
+            <MatchingFundName>
+                <ABN>
+                    <Value>76237138077</Value>
+                    <IdentifierStatus>Active</IdentifierStatus>
+                </ABN>
+                <FundName>
+                    <Name>LLOYD'S OF WAHROONGA SUPERANNUATION FUND</Name>
+                    <NameType>Entity Name</NameType>
+                    <Score>80</Score>
+                    <NameStatus>Current</NameStatus>
+                    <FundTypeCode>SMF</FundTypeCode>
+                    <FundTypeDescription>ATO Regulated Self-Managed Superannuation Fund</FundTypeDescription>
+                </FundName>
+                <Location>
+                    <StateTerritoryCode>NSW</StateTerritoryCode>
+                    <Postcode>2000</Postcode>
+                </Location>
+            </MatchingFundName>
+            <MatchingFundName>
+                <ABN>
+                    <Value>54846838187</Value>
+                    <IdentifierStatus>Active</IdentifierStatus>
+                </ABN>
+                <FundName>
+                    <Name>LLOYDS WHARF SUPERANNUATION FUND</Name>
+                    <NameType>Entity Name</NameType>
+                    <Score>80</Score>
+                    <NameStatus>Current</NameStatus>
+                    <FundTypeCode>SMF</FundTypeCode>
+                    <FundTypeDescription>ATO Regulated Self-Managed Superannuation Fund</FundTypeDescription>
+                </FundName>
+                <Location>
+                    <StateTerritoryCode>VIC</StateTerritoryCode>
+                    <Postcode>3079</Postcode>
+                </Location>
+            </MatchingFundName>
+            <MatchingFundName>
+                <ABN>
+                    <Value>11743428950</Value>
+                    <IdentifierStatus>Active</IdentifierStatus>
+                </ABN>
+                <FundName>
+                    <Name>The Trustee for LLOYD'S ENTERPRISES PTY LTD PENSION FUND</Name>
+                    <NameType>Entity Name</NameType>
+                    <Score>80</Score>
+                    <NameStatus>Current</NameStatus>
+                    <FundTypeCode>SMF</FundTypeCode>
+                    <FundTypeDescription>ATO Regulated Self-Managed Superannuation Fund</FundTypeDescription>
+                </FundName>
+                <Location>
+                    <StateTerritoryCode>QLD</StateTerritoryCode>
+                    <Postcode>4109</Postcode>
+                </Location>
+            </MatchingFundName>
+            <MatchingFundName>
+                <ABN>
+                    <Value>96351497817</Value>
+                    <IdentifierStatus>Active</IdentifierStatus>
+                </ABN>
+                <FundName>
+                    <Name>LIGHTRON PTY LTD ATF THE LLOYD SUPERANNUATION FUND</Name>
+                    <NameType>Entity Name</NameType>
+                    <Score>73</Score>
+                    <NameStatus>Current</NameStatus>
+                    <FundTypeCode>SMF</FundTypeCode>
+                    <FundTypeDescription>ATO Regulated Self-Managed Superannuation Fund</FundTypeDescription>
+                </FundName>
+                <Location>
+                    <StateTerritoryCode>WA</StateTerritoryCode>
+                    <Postcode>6018</Postcode>
+                </Location>
+            </MatchingFundName>
+            <MatchingFundName>
+                <ABN>
+                    <Value>37133653279</Value>
+                    <IdentifierStatus>Active</IdentifierStatus>
+                </ABN>
+                <FundName>
+                    <Name>LLOYD SUPER FUND</Name>
+                    <NameType>Entity Name</NameType>
+                    <Score>73</Score>
+                    <NameStatus>Current</NameStatus>
+                    <FundTypeCode>SMF</FundTypeCode>
+                    <FundTypeDescription>ATO Regulated Self-Managed Superannuation Fund</FundTypeDescription>
+                </FundName>
+                <Location>
+                    <StateTerritoryCode>QLD</StateTerritoryCode>
+                    <Postcode>4064</Postcode>
+                </Location>
+            </MatchingFundName>
+            <MatchingFundName>
+                <ABN>
+                    <Value>25584355624</Value>
+                    <IdentifierStatus>Active</IdentifierStatus>
+                </ABN>
+                <FundName>
+                    <Name>LLOYD SUPERANNUATION FUND</Name>
+                    <NameType>Entity Name</NameType>
+                    <Score>73</Score>
+                    <NameStatus>Current</NameStatus>
+                    <FundTypeCode>SMF</FundTypeCode>
+                    <FundTypeDescription>ATO Regulated Self-Managed Superannuation Fund</FundTypeDescription>
+                </FundName>
+                <Location>
+                    <StateTerritoryCode>VIC</StateTerritoryCode>
+                    <Postcode>3123</Postcode>
+                </Location>
+            </MatchingFundName>
+            <MatchingFundName>
+                <ABN>
+                    <Value>70858278424</Value>
+                    <IdentifierStatus>Active</IdentifierStatus>
+                </ABN>
+                <FundName>
+                    <Name>LLOYD SUPERANNUATION FUND</Name>
+                    <NameType>Entity Name</NameType>
+                    <Score>73</Score>
+                    <NameStatus>Current</NameStatus>
+                    <FundTypeCode>SMF</FundTypeCode>
+                    <FundTypeDescription>ATO Regulated Self-Managed Superannuation Fund</FundTypeDescription>
+                </FundName>
+                <Location>
+                    <StateTerritoryCode>VIC</StateTerritoryCode>
+                    <Postcode>3930</Postcode>
+                </Location>
+            </MatchingFundName>
+            <MatchingFundName>
+                <ABN>
+                    <Value>45410202830</Value>
+                    <IdentifierStatus>Active</IdentifierStatus>
+                </ABN>
+                <FundName>
+                    <Name>LLOYD SUPERANNUATION FUND</Name>
+                    <NameType>Entity Name</NameType>
+                    <Score>73</Score>
+                    <NameStatus>Current</NameStatus>
+                    <FundTypeCode>SMF</FundTypeCode>
+                    <FundTypeDescription>ATO Regulated Self-Managed Superannuation Fund</FundTypeDescription>
+                </FundName>
+                <Location>
+                    <StateTerritoryCode>NSW</StateTerritoryCode>
+                    <Postcode>2229</Postcode>
+                </Location>
+            </MatchingFundName>
+            <MatchingFundName>
+                <ABN>
+                    <Value>99165768319</Value>
+                    <IdentifierStatus>Active</IdentifierStatus>
+                </ABN>
+                <FundName>
+                    <Name>LLOYD SUPERANNUATION FUND</Name>
+                    <NameType>Entity Name</NameType>
+                    <Score>73</Score>
+                    <NameStatus>Current</NameStatus>
+                    <FundTypeCode>SAF</FundTypeCode>
+                    <FundTypeDescription>Small APRA Regulated Fund</FundTypeDescription>
+                </FundName>
+                <Location>
+                    <StateTerritoryCode>SA</StateTerritoryCode>
+                    <Postcode>5000</Postcode>
+                </Location>
+            </MatchingFundName>
+            <MatchingFundName>
+                <ABN>
+                    <Value>92096146612</Value>
+                    <IdentifierStatus>Active</IdentifierStatus>
+                </ABN>
+                <FundName>
+                    <Name>LLOYD SUPERANNUATION FUND</Name>
+                    <NameType>Entity Name</NameType>
+                    <Score>73</Score>
+                    <NameStatus>Current</NameStatus>
+                    <FundTypeCode>SMF</FundTypeCode>
+                    <FundTypeDescription>ATO Regulated Self-Managed Superannuation Fund</FundTypeDescription>
+                </FundName>
+                <Location>
+                    <StateTerritoryCode>ACT</StateTerritoryCode>
+                    <Postcode>2607</Postcode>
+                </Location>
+            </MatchingFundName>
+            <MatchingFundName>
+                <ABN>
+                    <Value>94363655179</Value>
+                    <IdentifierStatus>Active</IdentifierStatus>
+                </ABN>
+                <FundName>
+                    <Name>LLOYD SUPERANNUATION FUND</Name>
+                    <NameType>Entity Name</NameType>
+                    <Score>73</Score>
+                    <NameStatus>Current</NameStatus>
+                    <FundTypeCode>SMF</FundTypeCode>
+                    <FundTypeDescription>ATO Regulated Self-Managed Superannuation Fund</FundTypeDescription>
+                </FundName>
+                <Location>
+                    <StateTerritoryCode>NSW</StateTerritoryCode>
+                    <Postcode>2280</Postcode>
+                </Location>
+            </MatchingFundName>
+            <MatchingFundName>
+                <ABN>
+                    <Value>34005958099</Value>
+                    <IdentifierStatus>Active</IdentifierStatus>
+                </ABN>
+                <FundName>
+                    <Name>LLOYD SUPERANNUATION FUND</Name>
+                    <NameType>Entity Name</NameType>
+                    <Score>73</Score>
+                    <NameStatus>Current</NameStatus>
+                    <FundTypeCode>SMF</FundTypeCode>
+                    <FundTypeDescription>ATO Regulated Self-Managed Superannuation Fund</FundTypeDescription>
+                </FundName>
+                <Location>
+                    <StateTerritoryCode>VIC</StateTerritoryCode>
+                    <Postcode>3300</Postcode>
+                </Location>
+            </MatchingFundName>
+            <MatchingFundName>
+                <ABN>
+                    <Value>87488273611</Value>
+                    <IdentifierStatus>Active</IdentifierStatus>
+                </ABN>
+                <FundName>
+                    <Name>LLOYD SUPERANNUATION FUND</Name>
+                    <NameType>Entity Name</NameType>
+                    <Score>73</Score>
+                    <NameStatus>Current</NameStatus>
+                    <FundTypeCode>SMF</FundTypeCode>
+                    <FundTypeDescription>ATO Regulated Self-Managed Superannuation Fund</FundTypeDescription>
+                </FundName>
+                <Location>
+                    <StateTerritoryCode>WA</StateTerritoryCode>
+                    <Postcode>6280</Postcode>
+                </Location>
+            </MatchingFundName>
+            <MatchingFundName>
+                <ABN>
+                    <Value>66189253894</Value>
+                    <IdentifierStatus>Active</IdentifierStatus>
+                </ABN>
+                <FundName>
+                    <Name>LLOYD SUPERANNUATION FUND</Name>
+                    <NameType>Entity Name</NameType>
+                    <Score>73</Score>
+                    <NameStatus>Current</NameStatus>
+                    <FundTypeCode>SMF</FundTypeCode>
+                    <FundTypeDescription>ATO Regulated Self-Managed Superannuation Fund</FundTypeDescription>
+                </FundName>
+                <Location>
+                    <StateTerritoryCode>QLD</StateTerritoryCode>
+                    <Postcode>4573</Postcode>
+                </Location>
+            </MatchingFundName>
+            <MatchingFundName>
+                <ABN>
+                    <Value>68621808429</Value>
+                    <IdentifierStatus>Active</IdentifierStatus>
+                </ABN>
+                <FundName>
+                    <Name>LLOYD SUPERANNUATION FUND</Name>
+                    <NameType>Entity Name</NameType>
+                    <Score>73</Score>
+                    <NameStatus>Current</NameStatus>
+                    <FundTypeCode>SMF</FundTypeCode>
+                    <FundTypeDescription>ATO Regulated Self-Managed Superannuation Fund</FundTypeDescription>
+                </FundName>
+                <Location>
+                    <StateTerritoryCode>WA</StateTerritoryCode>
+                    <Postcode>6157</Postcode>
+                </Location>
+            </MatchingFundName>
+            <MatchingFundName>
+                <ABN>
+                    <Value>93618319585</Value>
+                    <IdentifierStatus>Active</IdentifierStatus>
+                </ABN>
+                <FundName>
+                    <Name>LLOYD SUPERANNUATION FUND</Name>
+                    <NameType>Entity Name</NameType>
+                    <Score>73</Score>
+                    <NameStatus>Current</NameStatus>
+                    <FundTypeCode>SMF</FundTypeCode>
+                    <FundTypeDescription>ATO Regulated Self-Managed Superannuation Fund</FundTypeDescription>
+                </FundName>
+                <Location>
+                    <StateTerritoryCode>VIC</StateTerritoryCode>
+                    <Postcode>3205</Postcode>
+                </Location>
+            </MatchingFundName>
+            <MatchingFundName>
+                <ABN>
+                    <Value>89149195917</Value>
+                    <IdentifierStatus>Active</IdentifierStatus>
+                </ABN>
+                <FundName>
+                    <Name>LLOYD SUPERANNUATION FUND</Name>
+                    <NameType>Entity Name</NameType>
+                    <Score>73</Score>
+                    <NameStatus>Current</NameStatus>
+                    <FundTypeCode>SMF</FundTypeCode>
+                    <FundTypeDescription>ATO Regulated Self-Managed Superannuation Fund</FundTypeDescription>
+                </FundName>
+                <Location>
+                    <StateTerritoryCode>NSW</StateTerritoryCode>
+                    <Postcode>2481</Postcode>
+                </Location>
+            </MatchingFundName>
+            <MatchingFundName>
+                <ABN>
+                    <Value>18859169973</Value>
+                    <IdentifierStatus>Active</IdentifierStatus>
+                </ABN>
+                <FundName>
+                    <Name>LLOYD SUPERANNUATION FUND</Name>
+                    <NameType>Entity Name</NameType>
+                    <Score>73</Score>
+                    <NameStatus>Current</NameStatus>
+                    <FundTypeCode>SMF</FundTypeCode>
+                    <FundTypeDescription>ATO Regulated Self-Managed Superannuation Fund</FundTypeDescription>
+                </FundName>
+                <Location>
+                    <StateTerritoryCode>WA</StateTerritoryCode>
+                    <Postcode>6011</Postcode>
+                </Location>
+            </MatchingFundName>
+            <MatchingFundName>
+                <ABN>
+                    <Value>19380027330</Value>
+                    <IdentifierStatus>Active</IdentifierStatus>
+                </ABN>
+                <FundName>
+                    <Name>LLOYD SUPERANNUATION FUND</Name>
+                    <NameType>Entity Name</NameType>
+                    <Score>73</Score>
+                    <NameStatus>Current</NameStatus>
+                    <FundTypeCode>SMF</FundTypeCode>
+                    <FundTypeDescription>ATO Regulated Self-Managed Superannuation Fund</FundTypeDescription>
+                </FundName>
+                <Location>
+                    <StateTerritoryCode>NSW</StateTerritoryCode>
+                    <Postcode>2821</Postcode>
+                </Location>
+            </MatchingFundName>
+            <MatchingFundName>
+                <ABN>
+                    <Value>63982361882</Value>
+                    <IdentifierStatus>Active</IdentifierStatus>
+                </ABN>
+                <FundName>
+                    <Name>LLOYD SUPERANNUATION FUND</Name>
+                    <NameType>Entity Name</NameType>
+                    <Score>73</Score>
+                    <NameStatus>Current</NameStatus>
+                    <FundTypeCode>SMF</FundTypeCode>
+                    <FundTypeDescription>ATO Regulated Self-Managed Superannuation Fund</FundTypeDescription>
+                </FundName>
+                <Location>
+                    <StateTerritoryCode>NSW</StateTerritoryCode>
+                    <Postcode>2119</Postcode>
+                </Location>
+            </MatchingFundName>
+            <MatchingFundName>
+                <ABN>
+                    <Value>18658891997</Value>
+                    <IdentifierStatus>Active</IdentifierStatus>
+                </ABN>
+                <FundName>
+                    <Name>LLOYD SUPERANNUATION FUND</Name>
+                    <NameType>Entity Name</NameType>
+                    <Score>73</Score>
+                    <NameStatus>Current</NameStatus>
+                    <FundTypeCode>SMF</FundTypeCode>
+                    <FundTypeDescription>ATO Regulated Self-Managed Superannuation Fund</FundTypeDescription>
+                </FundName>
+                <Location>
+                    <StateTerritoryCode>WA</StateTerritoryCode>
+                    <Postcode>6151</Postcode>
+                </Location>
+            </MatchingFundName>
+            <MatchingFundName>
+                <ABN>
+                    <Value>71889011012</Value>
+                    <IdentifierStatus>Active</IdentifierStatus>
+                </ABN>
+                <FundName>
+                    <Name>LLOYD SUPERANNUATION FUND</Name>
+                    <NameType>Entity Name</NameType>
+                    <Score>73</Score>
+                    <NameStatus>Current</NameStatus>
+                    <FundTypeCode>SMF</FundTypeCode>
+                    <FundTypeDescription>ATO Regulated Self-Managed Superannuation Fund</FundTypeDescription>
+                </FundName>
+                <Location>
+                    <StateTerritoryCode>VIC</StateTerritoryCode>
+                    <Postcode>3156</Postcode>
+                </Location>
+            </MatchingFundName>
+            <MatchingFundName>
+                <ABN>
+                    <Value>41907468486</Value>
+                    <IdentifierStatus>Active</IdentifierStatus>
+                </ABN>
+                <FundName>
+                    <Name>LLOYD SUPERANNUATION FUND</Name>
+                    <NameType>Entity Name</NameType>
+                    <Score>73</Score>
+                    <NameStatus>Current</NameStatus>
+                    <FundTypeCode>SMF</FundTypeCode>
+                    <FundTypeDescription>ATO Regulated Self-Managed Superannuation Fund</FundTypeDescription>
+                </FundName>
+                <Location>
+                    <StateTerritoryCode>NSW</StateTerritoryCode>
+                    <Postcode>2232</Postcode>
+                </Location>
+            </MatchingFundName>
+            <MatchingFundName>
+                <ABN>
+                    <Value>85604713823</Value>
+                    <IdentifierStatus>Active</IdentifierStatus>
+                </ABN>
+                <FundName>
+                    <Name>LLOYD SUPERANNUATION FUND</Name>
+                    <NameType>Entity Name</NameType>
+                    <Score>73</Score>
+                    <NameStatus>Current</NameStatus>
+                    <FundTypeCode>SMF</FundTypeCode>
+                    <FundTypeDescription>ATO Regulated Self-Managed Superannuation Fund</FundTypeDescription>
+                </FundName>
+                <Location>
+                    <StateTerritoryCode>NSW</StateTerritoryCode>
+                    <Postcode>2541</Postcode>
+                </Location>
+            </MatchingFundName>
+            <MatchingFundName>
+                <ABN>
+                    <Value>84590520211</Value>
+                    <IdentifierStatus>Active</IdentifierStatus>
+                </ABN>
+                <FundName>
+                    <Name>LLOYD SUPERANNUATION FUND</Name>
+                    <NameType>Entity Name</NameType>
+                    <Score>73</Score>
+                    <NameStatus>Current</NameStatus>
+                    <FundTypeCode>SMF</FundTypeCode>
+                    <FundTypeDescription>ATO Regulated Self-Managed Superannuation Fund</FundTypeDescription>
+                </FundName>
+                <Location>
+                    <StateTerritoryCode>NSW</StateTerritoryCode>
+                    <Postcode>2069</Postcode>
+                </Location>
+            </MatchingFundName>
+            <MatchingFundName>
+                <ABN>
+                    <Value>86877923345</Value>
+                    <IdentifierStatus>Active</IdentifierStatus>
+                </ABN>
+                <FundName>
+                    <Name>LLOYD SUPERANNUATION FUND</Name>
+                    <NameType>Entity Name</NameType>
+                    <Score>73</Score>
+                    <NameStatus>Current</NameStatus>
+                    <FundTypeCode>SMF</FundTypeCode>
+                    <FundTypeDescription>ATO Regulated Self-Managed Superannuation Fund</FundTypeDescription>
+                </FundName>
+                <Location>
+                    <StateTerritoryCode>NSW</StateTerritoryCode>
+                    <Postcode>2060</Postcode>
+                </Location>
+            </MatchingFundName>
+            <MatchingFundName>
+                <ABN>
+                    <Value>89350207332</Value>
+                    <IdentifierStatus>Active</IdentifierStatus>
+                </ABN>
+                <FundName>
+                    <Name>LLOYD SUPERANNUATION FUND</Name>
+                    <NameType>Entity Name</NameType>
+                    <Score>73</Score>
+                    <NameStatus>Current</NameStatus>
+                    <FundTypeCode>SMF</FundTypeCode>
+                    <FundTypeDescription>ATO Regulated Self-Managed Superannuation Fund</FundTypeDescription>
+                </FundName>
+                <Location>
+                    <StateTerritoryCode>NSW</StateTerritoryCode>
+                    <Postcode>2830</Postcode>
+                </Location>
+            </MatchingFundName>
+            <MatchingFundName>
+                <ABN>
+                    <Value>96174354419</Value>
+                    <IdentifierStatus>Active</IdentifierStatus>
+                </ABN>
+                <FundName>
+                    <Name>Lloyd Super Fund</Name>
+                    <NameType>Entity Name</NameType>
+                    <Score>73</Score>
+                    <NameStatus>Current</NameStatus>
+                    <FundTypeCode>SMF</FundTypeCode>
+                    <FundTypeDescription>ATO Regulated Self-Managed Superannuation Fund</FundTypeDescription>
+                </FundName>
+                <Location>
+                    <StateTerritoryCode>NSW</StateTerritoryCode>
+                    <Postcode>2323</Postcode>
+                </Location>
+            </MatchingFundName>
+            <MatchingFundName>
+                <ABN>
+                    <Value>15190251521</Value>
+                    <IdentifierStatus>Active</IdentifierStatus>
+                </ABN>
+                <FundName>
+                    <Name>Lloyd Superannuation Fund</Name>
+                    <NameType>Entity Name</NameType>
+                    <Score>73</Score>
+                    <NameStatus>Current</NameStatus>
+                    <FundTypeCode>SMF</FundTypeCode>
+                    <FundTypeDescription>ATO Regulated Self-Managed Superannuation Fund</FundTypeDescription>
+                </FundName>
+                <Location>
+                    <StateTerritoryCode>SA</StateTerritoryCode>
+                    <Postcode>5139</Postcode>
+                </Location>
+            </MatchingFundName>
+            <MatchingFundName>
+                <ABN>
+                    <Value>32830710503</Value>
+                    <IdentifierStatus>Active</IdentifierStatus>
+                </ABN>
+                <FundName>
+                    <Name>Lloyd Superannuation Fund</Name>
+                    <NameType>Entity Name</NameType>
+                    <Score>73</Score>
+                    <NameStatus>Current</NameStatus>
+                    <FundTypeCode>SMF</FundTypeCode>
+                    <FundTypeDescription>ATO Regulated Self-Managed Superannuation Fund</FundTypeDescription>
+                </FundName>
+                <Location>
+                    <StateTerritoryCode>WA</StateTerritoryCode>
+                    <Postcode>6163</Postcode>
+                </Location>
+            </MatchingFundName>
+            <MatchingFundName>
+                <ABN>
+                    <Value>62520062547</Value>
+                    <IdentifierStatus>Active</IdentifierStatus>
+                </ABN>
+                <FundName>
+                    <Name>THE LLOYD RETIREMENT FUND</Name>
+                    <NameType>Entity Name</NameType>
+                    <Score>73</Score>
+                    <NameStatus>Current</NameStatus>
+                    <FundTypeCode>SMF</FundTypeCode>
+                    <FundTypeDescription>ATO Regulated Self-Managed Superannuation Fund</FundTypeDescription>
+                </FundName>
+                <Location>
+                    <StateTerritoryCode>NSW</StateTerritoryCode>
+                    <Postcode>2110</Postcode>
+                </Location>
+            </MatchingFundName>
+            <MatchingFundName>
+                <ABN>
+                    <Value>63650519186</Value>
+                    <IdentifierStatus>Active</IdentifierStatus>
+                </ABN>
+                <FundName>
+                    <Name>THE LLOYD SUPERANNUATION FUND</Name>
+                    <NameType>Entity Name</NameType>
+                    <Score>73</Score>
+                    <NameStatus>Current</NameStatus>
+                    <FundTypeCode>SMF</FundTypeCode>
+                    <FundTypeDescription>ATO Regulated Self-Managed Superannuation Fund</FundTypeDescription>
+                </FundName>
+                <Location>
+                    <StateTerritoryCode>WA</StateTerritoryCode>
+                    <Postcode>6051</Postcode>
+                </Location>
+            </MatchingFundName>
+            <MatchingFundName>
+                <ABN>
+                    <Value>36415435189</Value>
+                    <IdentifierStatus>Active</IdentifierStatus>
+                </ABN>
+                <FundName>
+                    <Name>THE LLOYD SUPERANNUATION FUND</Name>
+                    <NameType>Entity Name</NameType>
+                    <Score>73</Score>
+                    <NameStatus>Current</NameStatus>
+                    <FundTypeCode>SMF</FundTypeCode>
+                    <FundTypeDescription>ATO Regulated Self-Managed Superannuation Fund</FundTypeDescription>
+                </FundName>
+                <Location>
+                    <StateTerritoryCode>VIC</StateTerritoryCode>
+                    <Postcode>3000</Postcode>
+                </Location>
+            </MatchingFundName>
+            <MatchingFundName>
+                <ABN>
+                    <Value>77389957472</Value>
+                    <IdentifierStatus>Active</IdentifierStatus>
+                </ABN>
+                <FundName>
+                    <Name>THE LLOYD SUPERANNUATION FUND</Name>
+                    <NameType>Entity Name</NameType>
+                    <Score>73</Score>
+                    <NameStatus>Current</NameStatus>
+                    <FundTypeCode>SMF</FundTypeCode>
+                    <FundTypeDescription>ATO Regulated Self-Managed Superannuation Fund</FundTypeDescription>
+                </FundName>
+                <Location>
+                    <StateTerritoryCode>QLD</StateTerritoryCode>
+                    <Postcode>4703</Postcode>
+                </Location>
+            </MatchingFundName>
+            <MatchingFundName>
+                <ABN>
+                    <Value>90314221704</Value>
+                    <IdentifierStatus>Active</IdentifierStatus>
+                </ABN>
+                <FundName>
+                    <Name>THE LLOYD SUPERANNUATION FUND</Name>
+                    <NameType>Entity Name</NameType>
+                    <Score>73</Score>
+                    <NameStatus>Current</NameStatus>
+                    <FundTypeCode>SMF</FundTypeCode>
+                    <FundTypeDescription>ATO Regulated Self-Managed Superannuation Fund</FundTypeDescription>
+                </FundName>
+                <Location>
+                    <StateTerritoryCode>NSW</StateTerritoryCode>
+                    <Postcode>2000</Postcode>
+                </Location>
+            </MatchingFundName>
+            <MatchingFundName>
+                <ABN>
+                    <Value>14377246539</Value>
+                    <IdentifierStatus>Active</IdentifierStatus>
+                </ABN>
+                <FundName>
+                    <Name>THE LLOYD SUPERANNUATION FUND</Name>
+                    <NameType>Entity Name</NameType>
+                    <Score>73</Score>
+                    <NameStatus>Current</NameStatus>
+                    <FundTypeCode>SMF</FundTypeCode>
+                    <FundTypeDescription>ATO Regulated Self-Managed Superannuation Fund</FundTypeDescription>
+                </FundName>
+                <Location>
+                    <StateTerritoryCode>WA</StateTerritoryCode>
+                    <Postcode>6151</Postcode>
+                </Location>
+            </MatchingFundName>
+            <MatchingFundName>
+                <ABN>
+                    <Value>97745369086</Value>
+                    <IdentifierStatus>Active</IdentifierStatus>
+                </ABN>
+                <FundName>
+                    <Name>THE LLOYD SUPERANNUATION FUND</Name>
+                    <NameType>Entity Name</NameType>
+                    <Score>73</Score>
+                    <NameStatus>Current</NameStatus>
+                    <FundTypeCode>SMF</FundTypeCode>
+                    <FundTypeDescription>ATO Regulated Self-Managed Superannuation Fund</FundTypeDescription>
+                </FundName>
+                <Location>
+                    <StateTerritoryCode>VIC</StateTerritoryCode>
+                    <Postcode>3146</Postcode>
+                </Location>
+            </MatchingFundName>
+            <MatchingFundName>
+                <ABN>
+                    <Value>70874819434</Value>
+                    <IdentifierStatus>Active</IdentifierStatus>
+                </ABN>
+                <FundName>
+                    <Name>THE LLOYD SUPERANNUATION FUND</Name>
+                    <NameType>Entity Name</NameType>
+                    <Score>73</Score>
+                    <NameStatus>Current</NameStatus>
+                    <FundTypeCode>SMF</FundTypeCode>
+                    <FundTypeDescription>ATO Regulated Self-Managed Superannuation Fund</FundTypeDescription>
+                </FundName>
+                <Location>
+                    <StateTerritoryCode>QLD</StateTerritoryCode>
+                    <Postcode>4000</Postcode>
+                </Location>
+            </MatchingFundName>
+            <MatchingFundName>
+                <ABN>
+                    <Value>33986507722</Value>
+                    <IdentifierStatus>Active</IdentifierStatus>
+                </ABN>
+                <FundName>
+                    <Name>The Lloyd Superannuation Fund</Name>
+                    <NameType>Entity Name</NameType>
+                    <Score>73</Score>
+                    <NameStatus>Current</NameStatus>
+                    <FundTypeCode>SMF</FundTypeCode>
+                    <FundTypeDescription>ATO Regulated Self-Managed Superannuation Fund</FundTypeDescription>
+                </FundName>
+                <Location>
+                    <StateTerritoryCode>VIC</StateTerritoryCode>
+                    <Postcode>3150</Postcode>
+                </Location>
+            </MatchingFundName>
+            <MatchingFundName>
+                <ABN>
+                    <Value>29723711778</Value>
+                    <IdentifierStatus>Active</IdentifierStatus>
+                </ABN>
+                <FundName>
+                    <Name>The Trustee for DAVE LLOYD SMSF</Name>
+                    <NameType>Entity Name</NameType>
+                    <Score>73</Score>
+                    <NameStatus>Current</NameStatus>
+                    <FundTypeCode>SMF</FundTypeCode>
+                    <FundTypeDescription>ATO Regulated Self-Managed Superannuation Fund</FundTypeDescription>
+                </FundName>
+                <Location>
+                    <StateTerritoryCode>QLD</StateTerritoryCode>
+                    <Postcode>4215</Postcode>
+                </Location>
+            </MatchingFundName>
+            <MatchingFundName>
+                <ABN>
+                    <Value>77112332687</Value>
+                    <IdentifierStatus>Active</IdentifierStatus>
+                </ABN>
+                <FundName>
+                    <Name>The Trustee for LLOYD SUPERANNUATION FUND</Name>
+                    <NameType>Entity Name</NameType>
+                    <Score>73</Score>
+                    <NameStatus>Current</NameStatus>
+                    <FundTypeCode>SMF</FundTypeCode>
+                    <FundTypeDescription>ATO Regulated Self-Managed Superannuation Fund</FundTypeDescription>
+                </FundName>
+                <Location>
+                    <StateTerritoryCode>VIC</StateTerritoryCode>
+                    <Postcode>3221</Postcode>
+                </Location>
+            </MatchingFundName>
+            <MatchingFundName>
+                <ABN>
+                    <Value>91246642528</Value>
+                    <IdentifierStatus>Active</IdentifierStatus>
+                </ABN>
+                <FundName>
+                    <Name>The Trustee for LLOYD SUPERANNUATION FUND</Name>
+                    <NameType>Entity Name</NameType>
+                    <Score>73</Score>
+                    <NameStatus>Current</NameStatus>
+                    <FundTypeCode>SMF</FundTypeCode>
+                    <FundTypeDescription>ATO Regulated Self-Managed Superannuation Fund</FundTypeDescription>
+                </FundName>
+                <Location>
+                    <StateTerritoryCode>NSW</StateTerritoryCode>
+                    <Postcode>2320</Postcode>
+                </Location>
+            </MatchingFundName>
+            <MatchingFundName>
+                <ABN>
+                    <Value>45690804300</Value>
+                    <IdentifierStatus>Active</IdentifierStatus>
+                </ABN>
+                <FundName>
+                    <Name>The Trustee for LLOYD SUPERANNUATION FUND</Name>
+                    <NameType>Entity Name</NameType>
+                    <Score>73</Score>
+                    <NameStatus>Current</NameStatus>
+                    <FundTypeCode>SMF</FundTypeCode>
+                    <FundTypeDescription>ATO Regulated Self-Managed Superannuation Fund</FundTypeDescription>
+                </FundName>
+                <Location>
+                    <StateTerritoryCode>NSW</StateTerritoryCode>
+                    <Postcode>2090</Postcode>
+                </Location>
+            </MatchingFundName>
+            <MatchingFundName>
+                <ABN>
+                    <Value>64312520873</Value>
+                    <IdentifierStatus>Active</IdentifierStatus>
+                </ABN>
+                <FundName>
+                    <Name>The Trustee for LLOYD SUPERANNUATION FUND</Name>
+                    <NameType>Entity Name</NameType>
+                    <Score>73</Score>
+                    <NameStatus>Current</NameStatus>
+                    <FundTypeCode>SMF</FundTypeCode>
+                    <FundTypeDescription>ATO Regulated Self-Managed Superannuation Fund</FundTypeDescription>
+                </FundName>
+                <Location>
+                    <StateTerritoryCode>VIC</StateTerritoryCode>
+                    <Postcode>3182</Postcode>
+                </Location>
+            </MatchingFundName>
+            <MatchingFundName>
+                <ABN>
+                    <Value>86534580307</Value>
+                    <IdentifierStatus>Active</IdentifierStatus>
+                </ABN>
+                <FundName>
+                    <Name>The Trustee for LLOYD SUPERFUND</Name>
+                    <NameType>Entity Name</NameType>
+                    <Score>73</Score>
+                    <NameStatus>Current</NameStatus>
+                    <FundTypeCode>SMF</FundTypeCode>
+                    <FundTypeDescription>ATO Regulated Self-Managed Superannuation Fund</FundTypeDescription>
+                </FundName>
+                <Location>
+                    <StateTerritoryCode>NSW</StateTerritoryCode>
+                    <Postcode>2036</Postcode>
+                </Location>
+            </MatchingFundName>
+            <MatchingFundName>
+                <ABN>
+                    <Value>24635661581</Value>
+                    <IdentifierStatus>Active</IdentifierStatus>
+                </ABN>
+                <FundName>
+                    <Name>The Trustee for LLOYD SUPERFUND</Name>
+                    <NameType>Entity Name</NameType>
+                    <Score>73</Score>
+                    <NameStatus>Current</NameStatus>
+                    <FundTypeCode>SMF</FundTypeCode>
+                    <FundTypeDescription>ATO Regulated Self-Managed Superannuation Fund</FundTypeDescription>
+                </FundName>
+                <Location>
+                    <StateTerritoryCode>NSW</StateTerritoryCode>
+                    <Postcode>2777</Postcode>
+                </Location>
+            </MatchingFundName>
+            <MatchingFundName>
+                <ABN>
+                    <Value>29831300812</Value>
+                    <IdentifierStatus>Active</IdentifierStatus>
+                </ABN>
+                <FundName>
+                    <Name>The Trustee for LLoyd Superannuation Fund</Name>
+                    <NameType>Entity Name</NameType>
+                    <Score>73</Score>
+                    <NameStatus>Current</NameStatus>
+                    <FundTypeCode>SMF</FundTypeCode>
+                    <FundTypeDescription>ATO Regulated Self-Managed Superannuation Fund</FundTypeDescription>
+                </FundName>
+                <Location>
+                    <StateTerritoryCode>NSW</StateTerritoryCode>
+                    <Postcode>2230</Postcode>
+                </Location>
+            </MatchingFundName>
+            <MatchingFundName>
+                <ABN>
+                    <Value>97103070497</Value>
+                    <IdentifierStatus>Active</IdentifierStatus>
+                </ABN>
+                <FundName>
+                    <Name>The Trustee for Little Lloyd Super</Name>
+                    <NameType>Entity Name</NameType>
+                    <Score>73</Score>
+                    <NameStatus>Current</NameStatus>
+                    <FundTypeCode>SMF</FundTypeCode>
+                    <FundTypeDescription>ATO Regulated Self-Managed Superannuation Fund</FundTypeDescription>
+                </FundName>
+                <Location>
+                    <StateTerritoryCode>QLD</StateTerritoryCode>
+                    <Postcode>4064</Postcode>
+                </Location>
+            </MatchingFundName>
+            <MatchingFundName>
+                <ABN>
+                    <Value>55964257180</Value>
+                    <IdentifierStatus>Active</IdentifierStatus>
+                </ABN>
+                <FundName>
+                    <Name>The Trustee for Lloyd Hutchison SMSF</Name>
+                    <NameType>Entity Name</NameType>
+                    <Score>73</Score>
+                    <NameStatus>Current</NameStatus>
+                    <FundTypeCode>SMF</FundTypeCode>
+                    <FundTypeDescription>ATO Regulated Self-Managed Superannuation Fund</FundTypeDescription>
+                </FundName>
+                <Location>
+                    <StateTerritoryCode>QLD</StateTerritoryCode>
+                    <Postcode>4075</Postcode>
+                </Location>
+            </MatchingFundName>
+            <MatchingFundName>
+                <ABN>
+                    <Value>50180240968</Value>
+                    <IdentifierStatus>Active</IdentifierStatus>
+                </ABN>
+                <FundName>
+                    <Name>The Trustee for Lloyd Super Fund</Name>
+                    <NameType>Entity Name</NameType>
+                    <Score>73</Score>
+                    <NameStatus>Current</NameStatus>
+                    <FundTypeCode>SMF</FundTypeCode>
+                    <FundTypeDescription>ATO Regulated Self-Managed Superannuation Fund</FundTypeDescription>
+                </FundName>
+                <Location>
+                    <StateTerritoryCode>SA</StateTerritoryCode>
+                    <Postcode>5000</Postcode>
+                </Location>
+            </MatchingFundName>
+            <MatchingFundName>
+                <ABN>
+                    <Value>28550783097</Value>
+                    <IdentifierStatus>Active</IdentifierStatus>
+                </ABN>
+                <FundName>
+                    <Name>The Trustee for Lloyd Super Fund</Name>
+                    <NameType>Entity Name</NameType>
+                    <Score>73</Score>
+                    <NameStatus>Current</NameStatus>
+                    <FundTypeCode>SMF</FundTypeCode>
+                    <FundTypeDescription>ATO Regulated Self-Managed Superannuation Fund</FundTypeDescription>
+                </FundName>
+                <Location>
+                    <StateTerritoryCode>VIC</StateTerritoryCode>
+                    <Postcode>3039</Postcode>
+                </Location>
+            </MatchingFundName>
+            <MatchingFundName>
+                <ABN>
+                    <Value>72493221077</Value>
+                    <IdentifierStatus>Active</IdentifierStatus>
+                </ABN>
+                <FundName>
+                    <Name>The Trustee for Lloyd Super Fund</Name>
+                    <NameType>Entity Name</NameType>
+                    <Score>73</Score>
+                    <NameStatus>Current</NameStatus>
+                    <FundTypeCode>SMF</FundTypeCode>
+                    <FundTypeDescription>ATO Regulated Self-Managed Superannuation Fund</FundTypeDescription>
+                </FundName>
+                <Location>
+                    <StateTerritoryCode>NSW</StateTerritoryCode>
+                    <Postcode>2478</Postcode>
+                </Location>
+            </MatchingFundName>
+            <MatchingFundName>
+                <ABN>
+                    <Value>42459923830</Value>
+                    <IdentifierStatus>Active</IdentifierStatus>
+                </ABN>
+                <FundName>
+                    <Name>The Trustee for Lloyd Super Fund</Name>
+                    <NameType>Entity Name</NameType>
+                    <Score>73</Score>
+                    <NameStatus>Current</NameStatus>
+                    <FundTypeCode>SMF</FundTypeCode>
+                    <FundTypeDescription>ATO Regulated Self-Managed Superannuation Fund</FundTypeDescription>
+                </FundName>
+                <Location>
+                    <StateTerritoryCode>QLD</StateTerritoryCode>
+                    <Postcode>4130</Postcode>
+                </Location>
+            </MatchingFundName>
+            <MatchingFundName>
+                <ABN>
+                    <Value>74908515867</Value>
+                    <IdentifierStatus>Active</IdentifierStatus>
+                </ABN>
+                <FundName>
+                    <Name>The Trustee for Lloyd Superannuation Fund</Name>
+                    <NameType>Entity Name</NameType>
+                    <Score>73</Score>
+                    <NameStatus>Current</NameStatus>
+                    <FundTypeCode>SMF</FundTypeCode>
+                    <FundTypeDescription>ATO Regulated Self-Managed Superannuation Fund</FundTypeDescription>
+                </FundName>
+                <Location>
+                    <StateTerritoryCode>SA</StateTerritoryCode>
+                    <Postcode>5109</Postcode>
+                </Location>
+            </MatchingFundName>
+            <MatchingFundName>
+                <ABN>
+                    <Value>74996004611</Value>
+                    <IdentifierStatus>Active</IdentifierStatus>
+                </ABN>
+                <FundName>
+                    <Name>The Trustee for Lloyd Superannuation Fund</Name>
+                    <NameType>Entity Name</NameType>
+                    <Score>73</Score>
+                    <NameStatus>Current</NameStatus>
+                    <FundTypeCode>SMF</FundTypeCode>
+                    <FundTypeDescription>ATO Regulated Self-Managed Superannuation Fund</FundTypeDescription>
+                </FundName>
+                <Location>
+                    <StateTerritoryCode>VIC</StateTerritoryCode>
+                    <Postcode>3011</Postcode>
+                </Location>
+            </MatchingFundName>
+            <MatchingFundName>
+                <ABN>
+                    <Value>84900342866</Value>
+                    <IdentifierStatus>Active</IdentifierStatus>
+                </ABN>
+                <FundName>
+                    <Name>The Trustee for Lloyd Superannuation Fund</Name>
+                    <NameType>Entity Name</NameType>
+                    <Score>73</Score>
+                    <NameStatus>Current</NameStatus>
+                    <FundTypeCode>SMF</FundTypeCode>
+                    <FundTypeDescription>ATO Regulated Self-Managed Superannuation Fund</FundTypeDescription>
+                </FundName>
+                <Location>
+                    <StateTerritoryCode>NSW</StateTerritoryCode>
+                    <Postcode>2046</Postcode>
+                </Location>
+            </MatchingFundName>
+            <MatchingFundName>
+                <ABN>
+                    <Value>19641557430</Value>
+                    <IdentifierStatus>Active</IdentifierStatus>
+                </ABN>
+                <FundName>
+                    <Name>The Trustee for Lloyd Superannuation Fund</Name>
+                    <NameType>Entity Name</NameType>
+                    <Score>73</Score>
+                    <NameStatus>Current</NameStatus>
+                    <FundTypeCode>SMF</FundTypeCode>
+                    <FundTypeDescription>ATO Regulated Self-Managed Superannuation Fund</FundTypeDescription>
+                </FundName>
+                <Location>
+                    <StateTerritoryCode>NSW</StateTerritoryCode>
+                    <Postcode>2000</Postcode>
+                </Location>
+            </MatchingFundName>
+            <MatchingFundName>
+                <ABN>
+                    <Value>20408829924</Value>
+                    <IdentifierStatus>Active</IdentifierStatus>
+                </ABN>
+                <FundName>
+                    <Name>The Trustee for Lloyd Superannuation Fund</Name>
+                    <NameType>Entity Name</NameType>
+                    <Score>73</Score>
+                    <NameStatus>Current</NameStatus>
+                    <FundTypeCode>SMF</FundTypeCode>
+                    <FundTypeDescription>ATO Regulated Self-Managed Superannuation Fund</FundTypeDescription>
+                </FundName>
+                <Location>
+                    <StateTerritoryCode>SA</StateTerritoryCode>
+                    <Postcode>5250</Postcode>
+                </Location>
+            </MatchingFundName>
+            <MatchingFundName>
+                <ABN>
+                    <Value>44559020065</Value>
+                    <IdentifierStatus>Active</IdentifierStatus>
+                </ABN>
+                <FundName>
+                    <Name>The Trustee for Lloyd Superannuation Fund</Name>
+                    <NameType>Entity Name</NameType>
+                    <Score>73</Score>
+                    <NameStatus>Current</NameStatus>
+                    <FundTypeCode>SMF</FundTypeCode>
+                    <FundTypeDescription>ATO Regulated Self-Managed Superannuation Fund</FundTypeDescription>
+                </FundName>
+                <Location>
+                    <StateTerritoryCode>VIC</StateTerritoryCode>
+                    <Postcode>3551</Postcode>
+                </Location>
+            </MatchingFundName>
+            <MatchingFundName>
+                <ABN>
+                    <Value>96436308257</Value>
+                    <IdentifierStatus>Active</IdentifierStatus>
+                </ABN>
+                <FundName>
+                    <Name>The Trustee for Lloyd Superannuation Fund</Name>
+                    <NameType>Entity Name</NameType>
+                    <Score>73</Score>
+                    <NameStatus>Current</NameStatus>
+                    <FundTypeCode>SMF</FundTypeCode>
+                    <FundTypeDescription>ATO Regulated Self-Managed Superannuation Fund</FundTypeDescription>
+                </FundName>
+                <Location>
+                    <StateTerritoryCode>WA</StateTerritoryCode>
+                    <Postcode>6701</Postcode>
+                </Location>
+            </MatchingFundName>
+            <MatchingFundName>
+                <ABN>
+                    <Value>66863540468</Value>
+                    <IdentifierStatus>Active</IdentifierStatus>
+                </ABN>
+                <FundName>
+                    <Name>The Trustee for Lloyd Superannuation Fund</Name>
+                    <NameType>Entity Name</NameType>
+                    <Score>73</Score>
+                    <NameStatus>Current</NameStatus>
+                    <FundTypeCode>SMF</FundTypeCode>
+                    <FundTypeDescription>ATO Regulated Self-Managed Superannuation Fund</FundTypeDescription>
+                </FundName>
+                <Location>
+                    <StateTerritoryCode>NSW</StateTerritoryCode>
+                    <Postcode>2069</Postcode>
+                </Location>
+            </MatchingFundName>
+            <MatchingFundName>
+                <ABN>
+                    <Value>37112304752</Value>
+                    <IdentifierStatus>Active</IdentifierStatus>
+                </ABN>
+                <FundName>
+                    <Name>The Trustee for Lloyd Superfund</Name>
+                    <NameType>Entity Name</NameType>
+                    <Score>73</Score>
+                    <NameStatus>Current</NameStatus>
+                    <FundTypeCode>SMF</FundTypeCode>
+                    <FundTypeDescription>ATO Regulated Self-Managed Superannuation Fund</FundTypeDescription>
+                </FundName>
+                <Location>
+                    <StateTerritoryCode>SA</StateTerritoryCode>
+                    <Postcode>5008</Postcode>
+                </Location>
+            </MatchingFundName>
+            <MatchingFundName>
+                <ABN>
+                    <Value>60133299710</Value>
+                    <IdentifierStatus>Active</IdentifierStatus>
+                </ABN>
+                <FundName>
+                    <Name>The Trustee for Lloyd Superfund</Name>
+                    <NameType>Entity Name</NameType>
+                    <Score>73</Score>
+                    <NameStatus>Current</NameStatus>
+                    <FundTypeCode>SMF</FundTypeCode>
+                    <FundTypeDescription>ATO Regulated Self-Managed Superannuation Fund</FundTypeDescription>
+                </FundName>
+                <Location>
+                    <StateTerritoryCode>NSW</StateTerritoryCode>
+                    <Postcode>2323</Postcode>
+                </Location>
+            </MatchingFundName>
+            <MatchingFundName>
+                <ABN>
+                    <Value>64885584561</Value>
+                    <IdentifierStatus>Active</IdentifierStatus>
+                </ABN>
+                <FundName>
+                    <Name>The Trustee for Lloyd-Curley SMSF</Name>
+                    <NameType>Entity Name</NameType>
+                    <Score>73</Score>
+                    <NameStatus>Current</NameStatus>
+                    <FundTypeCode>SMF</FundTypeCode>
+                    <FundTypeDescription>ATO Regulated Self-Managed Superannuation Fund</FundTypeDescription>
+                </FundName>
+                <Location>
+                    <StateTerritoryCode>NSW</StateTerritoryCode>
+                    <Postcode>2046</Postcode>
+                </Location>
+            </MatchingFundName>
+            <MatchingFundName>
+                <ABN>
+                    <Value>20410232239</Value>
+                    <IdentifierStatus>Active</IdentifierStatus>
+                </ABN>
+                <FundName>
+                    <Name>The Trustee for THE LLOYD SUPERANNUATION FUND</Name>
+                    <NameType>Entity Name</NameType>
+                    <Score>73</Score>
+                    <NameStatus>Current</NameStatus>
+                    <FundTypeCode>SMF</FundTypeCode>
+                    <FundTypeDescription>ATO Regulated Self-Managed Superannuation Fund</FundTypeDescription>
+                </FundName>
+                <Location>
+                    <StateTerritoryCode>WA</StateTerritoryCode>
+                    <Postcode>6008</Postcode>
+                </Location>
+            </MatchingFundName>
+            <MatchingFundName>
+                <ABN>
+                    <Value>43618677381</Value>
+                    <IdentifierStatus>Active</IdentifierStatus>
+                </ABN>
+                <FundName>
+                    <Name>The Trustee for THE LLOYD SUPERANNUATION FUND</Name>
+                    <NameType>Entity Name</NameType>
+                    <Score>73</Score>
+                    <NameStatus>Current</NameStatus>
+                    <FundTypeCode>SMF</FundTypeCode>
+                    <FundTypeDescription>ATO Regulated Self-Managed Superannuation Fund</FundTypeDescription>
+                </FundName>
+                <Location>
+                    <StateTerritoryCode>WA</StateTerritoryCode>
+                    <Postcode>6057</Postcode>
+                </Location>
+            </MatchingFundName>
+            <MatchingFundName>
+                <ABN>
+                    <Value>11801910685</Value>
+                    <IdentifierStatus>Active</IdentifierStatus>
+                </ABN>
+                <FundName>
+                    <Name>The Trustee for The Lloyd Superannuation Fund</Name>
+                    <NameType>Entity Name</NameType>
+                    <Score>73</Score>
+                    <NameStatus>Current</NameStatus>
+                    <FundTypeCode>SMF</FundTypeCode>
+                    <FundTypeDescription>ATO Regulated Self-Managed Superannuation Fund</FundTypeDescription>
+                </FundName>
+                <Location>
+                    <StateTerritoryCode>SA</StateTerritoryCode>
+                    <Postcode>5117</Postcode>
+                </Location>
+            </MatchingFundName>
+            <MatchingFundName>
+                <ABN>
+                    <Value>73926094974</Value>
+                    <IdentifierStatus>Active</IdentifierStatus>
+                </ABN>
+                <FundName>
+                    <Name>The Trustee for the Lloyd Superannuation Fund</Name>
+                    <NameType>Entity Name</NameType>
+                    <Score>73</Score>
+                    <NameStatus>Current</NameStatus>
+                    <FundTypeCode>SMF</FundTypeCode>
+                    <FundTypeDescription>ATO Regulated Self-Managed Superannuation Fund</FundTypeDescription>
+                </FundName>
+                <Location>
+                    <StateTerritoryCode>QLD</StateTerritoryCode>
+                    <Postcode>4005</Postcode>
+                </Location>
+            </MatchingFundName>
+            <MatchingFundName>
+                <ABN>
+                    <Value>49047793387</Value>
+                    <IdentifierStatus>Active</IdentifierStatus>
+                </ABN>
+                <FundName>
+                    <Name>The trustee for LLOYD SUPERANNUATION FUND</Name>
+                    <NameType>Entity Name</NameType>
+                    <Score>73</Score>
+                    <NameStatus>Current</NameStatus>
+                    <FundTypeCode>SMF</FundTypeCode>
+                    <FundTypeDescription>ATO Regulated Self-Managed Superannuation Fund</FundTypeDescription>
+                </FundName>
+                <Location>
+                    <StateTerritoryCode>VIC</StateTerritoryCode>
+                    <Postcode>3079</Postcode>
+                </Location>
+            </MatchingFundName>
+            <MatchingFundName>
+                <ABN>
+                    <Value>75334470724</Value>
+                    <IdentifierStatus>Active</IdentifierStatus>
+                </ABN>
+                <FundName>
+                    <Name>The trustee for Lloyd Superannuation Fund</Name>
+                    <NameType>Entity Name</NameType>
+                    <Score>73</Score>
+                    <NameStatus>Current</NameStatus>
+                    <FundTypeCode>SMF</FundTypeCode>
+                    <FundTypeDescription>ATO Regulated Self-Managed Superannuation Fund</FundTypeDescription>
+                </FundName>
+                <Location>
+                    <StateTerritoryCode>NSW</StateTerritoryCode>
+                    <Postcode>2011</Postcode>
+                </Location>
+            </MatchingFundName>
+            <MatchingFundName>
+                <ABN>
+                    <Value>50154961457</Value>
+                    <IdentifierStatus>Active</IdentifierStatus>
+                </ABN>
+                <FundName>
+                    <Name>The trustee for Lloyd Superannuation Fund</Name>
+                    <NameType>Entity Name</NameType>
+                    <Score>73</Score>
+                    <NameStatus>Current</NameStatus>
+                    <FundTypeCode>SMF</FundTypeCode>
+                    <FundTypeDescription>ATO Regulated Self-Managed Superannuation Fund</FundTypeDescription>
+                </FundName>
+                <Location>
+                    <StateTerritoryCode>WA</StateTerritoryCode>
+                    <Postcode>6330</Postcode>
+                </Location>
+            </MatchingFundName>
+            <MatchingFundName>
+                <ABN>
+                    <Value>73862672121</Value>
+                    <IdentifierStatus>Active</IdentifierStatus>
+                </ABN>
+                <FundName>
+                    <Name>The trustee for Lloyd Superannuation Fund</Name>
+                    <NameType>Entity Name</NameType>
+                    <Score>73</Score>
+                    <NameStatus>Current</NameStatus>
+                    <FundTypeCode>SMF</FundTypeCode>
+                    <FundTypeDescription>ATO Regulated Self-Managed Superannuation Fund</FundTypeDescription>
+                </FundName>
+                <Location>
+                    <StateTerritoryCode>VIC</StateTerritoryCode>
+                    <Postcode>3127</Postcode>
+                </Location>
+            </MatchingFundName>
+            <MatchingFundName>
+                <ABN>
+                    <Value>92093621377</Value>
+                    <IdentifierStatus>Active</IdentifierStatus>
+                </ABN>
+                <FundName>
+                    <Name>The trustee for Lloyd Superanuation Fund</Name>
+                    <NameType>Entity Name</NameType>
+                    <Score>73</Score>
+                    <NameStatus>Current</NameStatus>
+                    <FundTypeCode>SMF</FundTypeCode>
+                    <FundTypeDescription>ATO Regulated Self-Managed Superannuation Fund</FundTypeDescription>
+                </FundName>
+                <Location>
+                    <StateTerritoryCode>NSW</StateTerritoryCode>
+                    <Postcode>2444</Postcode>
+                </Location>
+            </MatchingFundName>
+            <MatchingFundName>
+                <ABN>
+                    <Value>35924781335</Value>
+                    <IdentifierStatus>Active</IdentifierStatus>
+                </ABN>
+                <FundName>
+                    <Name>ANDREW LLOYD SUPER FUND</Name>
+                    <NameType>Entity Name</NameType>
+                    <Score>70</Score>
+                    <NameStatus>Current</NameStatus>
+                    <FundTypeCode>SMF</FundTypeCode>
+                    <FundTypeDescription>ATO Regulated Self-Managed Superannuation Fund</FundTypeDescription>
+                </FundName>
+                <Location>
+                    <StateTerritoryCode>NSW</StateTerritoryCode>
+                    <Postcode>2018</Postcode>
+                </Location>
+            </MatchingFundName>
+            <MatchingFundName>
+                <ABN>
+                    <Value>68059400195</Value>
+                    <IdentifierStatus>Active</IdentifierStatus>
+                </ABN>
+                <FundName>
+                    <Name>ANN LLOYD SUPERANNUATION FUND</Name>
+                    <NameType>Entity Name</NameType>
+                    <Score>70</Score>
+                    <NameStatus>Current</NameStatus>
+                    <FundTypeCode>SMF</FundTypeCode>
+                    <FundTypeDescription>ATO Regulated Self-Managed Superannuation Fund</FundTypeDescription>
+                </FundName>
+                <Location>
+                    <StateTerritoryCode>WA</StateTerritoryCode>
+                    <Postcode>6164</Postcode>
+                </Location>
+            </MatchingFundName>
+            <MatchingFundName>
+                <ABN>
+                    <Value>48395316421</Value>
+                    <IdentifierStatus>Active</IdentifierStatus>
+                </ABN>
+                <FundName>
+                    <Name>Bogan Lloyd Superannuation Fund</Name>
+                    <NameType>Entity Name</NameType>
+                    <Score>70</Score>
+                    <NameStatus>Current</NameStatus>
+                    <FundTypeCode>SMF</FundTypeCode>
+                    <FundTypeDescription>ATO Regulated Self-Managed Superannuation Fund</FundTypeDescription>
+                </FundName>
+                <Location>
+                    <StateTerritoryCode>NSW</StateTerritoryCode>
+                    <Postcode>2077</Postcode>
+                </Location>
+            </MatchingFundName>
+            <MatchingFundName>
+                <ABN>
+                    <Value>13844663710</Value>
+                    <IdentifierStatus>Active</IdentifierStatus>
+                </ABN>
+                <FundName>
+                    <Name>CAMERON LLOYD PENSION FUND</Name>
+                    <NameType>Entity Name</NameType>
+                    <Score>70</Score>
+                    <NameStatus>Current</NameStatus>
+                    <FundTypeCode>SMF</FundTypeCode>
+                    <FundTypeDescription>ATO Regulated Self-Managed Superannuation Fund</FundTypeDescription>
+                </FundName>
+                <Location>
+                    <StateTerritoryCode>VIC</StateTerritoryCode>
+                    <Postcode>3108</Postcode>
+                </Location>
+            </MatchingFundName>
+            <MatchingFundName>
+                <ABN>
+                    <Value>24092131914</Value>
+                    <IdentifierStatus>Active</IdentifierStatus>
+                </ABN>
+                <FundName>
+                    <Name>ELIZABETH LLOYD SUPERANNUATION FUND</Name>
+                    <NameType>Entity Name</NameType>
+                    <Score>70</Score>
+                    <NameStatus>Current</NameStatus>
+                    <FundTypeCode>SMF</FundTypeCode>
+                    <FundTypeDescription>ATO Regulated Self-Managed Superannuation Fund</FundTypeDescription>
+                </FundName>
+                <Location>
+                    <StateTerritoryCode>VIC</StateTerritoryCode>
+                    <Postcode>3136</Postcode>
+                </Location>
+            </MatchingFundName>
+            <MatchingFundName>
+                <ABN>
+                    <Value>78057880847</Value>
+                    <IdentifierStatus>Active</IdentifierStatus>
+                </ABN>
+                <FundName>
+                    <Name>GILLIAN LLOYD SUPERFUND</Name>
+                    <NameType>Entity Name</NameType>
+                    <Score>70</Score>
+                    <NameStatus>Current</NameStatus>
+                    <FundTypeCode>SMF</FundTypeCode>
+                    <FundTypeDescription>ATO Regulated Self-Managed Superannuation Fund</FundTypeDescription>
+                </FundName>
+                <Location>
+                    <StateTerritoryCode>NSW</StateTerritoryCode>
+                    <Postcode>2088</Postcode>
+                </Location>
+            </MatchingFundName>
+            <MatchingFundName>
+                <ABN>
+                    <Value>15840112140</Value>
+                    <IdentifierStatus>Active</IdentifierStatus>
+                </ABN>
+                <FundName>
+                    <Name>GW LLOYD SUPERANNUATION FUND</Name>
+                    <NameType>Entity Name</NameType>
+                    <Score>70</Score>
+                    <NameStatus>Current</NameStatus>
+                    <FundTypeCode>SMF</FundTypeCode>
+                    <FundTypeDescription>ATO Regulated Self-Managed Superannuation Fund</FundTypeDescription>
+                </FundName>
+                <Location>
+                    <StateTerritoryCode>WA</StateTerritoryCode>
+                    <Postcode>6012</Postcode>
+                </Location>
+            </MatchingFundName>
+            <MatchingFundName>
+                <ABN>
+                    <Value>85785429921</Value>
+                    <IdentifierStatus>Active</IdentifierStatus>
+                </ABN>
+                <FundName>
+                    <Name>IAN LLOYD SUPERANNUATION FUND</Name>
+                    <NameType>Entity Name</NameType>
+                    <Score>70</Score>
+                    <NameStatus>Current</NameStatus>
+                    <FundTypeCode>SMF</FundTypeCode>
+                    <FundTypeDescription>ATO Regulated Self-Managed Superannuation Fund</FundTypeDescription>
+                </FundName>
+                <Location>
+                    <StateTerritoryCode>WA</StateTerritoryCode>
+                    <Postcode>6151</Postcode>
+                </Location>
+            </MatchingFundName>
+            <MatchingFundName>
+                <ABN>
+                    <Value>26313292848</Value>
+                    <IdentifierStatus>Active</IdentifierStatus>
+                </ABN>
+                <FundName>
+                    <Name>LES LLOYD SUPERANNUATION FUND</Name>
+                    <NameType>Entity Name</NameType>
+                    <Score>70</Score>
+                    <NameStatus>Current</NameStatus>
+                    <FundTypeCode>SMF</FundTypeCode>
+                    <FundTypeDescription>ATO Regulated Self-Managed Superannuation Fund</FundTypeDescription>
+                </FundName>
+                <Location>
+                    <StateTerritoryCode>WA</StateTerritoryCode>
+                    <Postcode>6076</Postcode>
+                </Location>
+            </MatchingFundName>
+            <MatchingFundName>
+                <ABN>
+                    <Value>23903691991</Value>
+                    <IdentifierStatus>Active</IdentifierStatus>
+                </ABN>
+                <FundName>
+                    <Name>LIAN LLOYD SUPERANNUATION FUND</Name>
+                    <NameType>Entity Name</NameType>
+                    <Score>70</Score>
+                    <NameStatus>Current</NameStatus>
+                    <FundTypeCode>SMF</FundTypeCode>
+                    <FundTypeDescription>ATO Regulated Self-Managed Superannuation Fund</FundTypeDescription>
+                </FundName>
+                <Location>
+                    <StateTerritoryCode>SA</StateTerritoryCode>
+                    <Postcode>5000</Postcode>
+                </Location>
+            </MatchingFundName>
+            <MatchingFundName>
+                <ABN>
+                    <Value>56562240538</Value>
+                    <IdentifierStatus>Active</IdentifierStatus>
+                </ABN>
+                <FundName>
+                    <Name>LLEWELLYN LLOYD SUPERANNUATION FUND</Name>
+                    <NameType>Entity Name</NameType>
+                    <Score>70</Score>
+                    <NameStatus>Current</NameStatus>
+                    <FundTypeCode>SMF</FundTypeCode>
+                    <FundTypeDescription>ATO Regulated Self-Managed Superannuation Fund</FundTypeDescription>
+                </FundName>
+                <Location>
+                    <StateTerritoryCode>QLD</StateTerritoryCode>
+                    <Postcode>4562</Postcode>
+                </Location>
+            </MatchingFundName>
+            <MatchingFundName>
+                <ABN>
+                    <Value>71866367100</Value>
+                    <IdentifierStatus>Active</IdentifierStatus>
+                </ABN>
+                <FundName>
+                    <Name>LLOYD AND LORRAINE SUPERFUND</Name>
+                    <NameType>Entity Name</NameType>
+                    <Score>70</Score>
+                    <NameStatus>Current</NameStatus>
+                    <FundTypeCode>SMF</FundTypeCode>
+                    <FundTypeDescription>ATO Regulated Self-Managed Superannuation Fund</FundTypeDescription>
+                </FundName>
+                <Location>
+                    <StateTerritoryCode>VIC</StateTerritoryCode>
+                    <Postcode>3976</Postcode>
+                </Location>
+            </MatchingFundName>
+            <MatchingFundName>
+                <ABN>
+                    <Value>11671726292</Value>
+                    <IdentifierStatus>Active</IdentifierStatus>
+                </ABN>
+                <FundName>
+                    <Name>LLOYD CAMPBELL SUPERANNUATION FUND</Name>
+                    <NameType>Entity Name</NameType>
+                    <Score>70</Score>
+                    <NameStatus>Current</NameStatus>
+                    <FundTypeCode>SMF</FundTypeCode>
+                    <FundTypeDescription>ATO Regulated Self-Managed Superannuation Fund</FundTypeDescription>
+                </FundName>
+                <Location>
+                    <StateTerritoryCode>NSW</StateTerritoryCode>
+                    <Postcode>2320</Postcode>
+                </Location>
+            </MatchingFundName>
+            <MatchingFundName>
+                <ABN>
+                    <Value>15783176845</Value>
+                    <IdentifierStatus>Active</IdentifierStatus>
+                </ABN>
+                <FundName>
+                    <Name>LLOYD FAMILY SUPER FUND</Name>
+                    <NameType>Entity Name</NameType>
+                    <Score>70</Score>
+                    <NameStatus>Current</NameStatus>
+                    <FundTypeCode>SMF</FundTypeCode>
+                    <FundTypeDescription>ATO Regulated Self-Managed Superannuation Fund</FundTypeDescription>
+                </FundName>
+                <Location>
+                    <StateTerritoryCode>NSW</StateTerritoryCode>
+                    <Postcode>2016</Postcode>
+                </Location>
+            </MatchingFundName>
+            <MatchingFundName>
+                <ABN>
+                    <Value>64988087177</Value>
+                    <IdentifierStatus>Active</IdentifierStatus>
+                </ABN>
+                <FundName>
+                    <Name>LLOYD FAMILY SUPER FUND</Name>
+                    <NameType>Entity Name</NameType>
+                    <Score>70</Score>
+                    <NameStatus>Current</NameStatus>
+                    <FundTypeCode>SMF</FundTypeCode>
+                    <FundTypeDescription>ATO Regulated Self-Managed Superannuation Fund</FundTypeDescription>
+                </FundName>
+                <Location>
+                    <StateTerritoryCode>NSW</StateTerritoryCode>
+                    <Postcode>2076</Postcode>
+                </Location>
+            </MatchingFundName>
+            <MatchingFundName>
+                <ABN>
+                    <Value>11476982906</Value>
+                    <IdentifierStatus>Active</IdentifierStatus>
+                </ABN>
+                <FundName>
+                    <Name>LLOYD FAMILY SUPER FUND</Name>
+                    <NameType>Entity Name</NameType>
+                    <Score>70</Score>
+                    <NameStatus>Current</NameStatus>
+                    <FundTypeCode>SMF</FundTypeCode>
+                    <FundTypeDescription>ATO Regulated Self-Managed Superannuation Fund</FundTypeDescription>
+                </FundName>
+                <Location>
+                    <StateTerritoryCode>VIC</StateTerritoryCode>
+                    <Postcode>3089</Postcode>
+                </Location>
+            </MatchingFundName>
+            <MatchingFundName>
+                <ABN>
+                    <Value>74113592078</Value>
+                    <IdentifierStatus>Active</IdentifierStatus>
+                </ABN>
+                <FundName>
+                    <Name>LLOYD FAMILY SUPERANNUATION FUND</Name>
+                    <NameType>Entity Name</NameType>
+                    <Score>70</Score>
+                    <NameStatus>Current</NameStatus>
+                    <FundTypeCode>SMF</FundTypeCode>
+                    <FundTypeDescription>ATO Regulated Self-Managed Superannuation Fund</FundTypeDescription>
+                </FundName>
+                <Location>
+                    <StateTerritoryCode>QLD</StateTerritoryCode>
+                    <Postcode>4051</Postcode>
+                </Location>
+            </MatchingFundName>
+            <MatchingFundName>
+                <ABN>
+                    <Value>36414644851</Value>
+                    <IdentifierStatus>Active</IdentifierStatus>
+                </ABN>
+                <FundName>
+                    <Name>LLOYD FAMILY SUPERANNUATION FUND</Name>
+                    <NameType>Entity Name</NameType>
+                    <Score>70</Score>
+                    <NameStatus>Current</NameStatus>
+                    <FundTypeCode>SMF</FundTypeCode>
+                    <FundTypeDescription>ATO Regulated Self-Managed Superannuation Fund</FundTypeDescription>
+                </FundName>
+                <Location>
+                    <StateTerritoryCode>VIC</StateTerritoryCode>
+                    <Postcode>3215</Postcode>
+                </Location>
+            </MatchingFundName>
+            <MatchingFundName>
+                <ABN>
+                    <Value>47966323729</Value>
+                    <IdentifierStatus>Active</IdentifierStatus>
+                </ABN>
+                <FundName>
+                    <Name>LLOYD FAMILY SUPERANNUATION FUND</Name>
+                    <NameType>Entity Name</NameType>
+                    <Score>70</Score>
+                    <NameStatus>Current</NameStatus>
+                    <FundTypeCode>SMF</FundTypeCode>
+                    <FundTypeDescription>ATO Regulated Self-Managed Superannuation Fund</FundTypeDescription>
+                </FundName>
+                <Location>
+                    <StateTerritoryCode>VIC</StateTerritoryCode>
+                    <Postcode>3059</Postcode>
+                </Location>
+            </MatchingFundName>
+            <MatchingFundName>
+                <ABN>
+                    <Value>28695422924</Value>
+                    <IdentifierStatus>Active</IdentifierStatus>
+                </ABN>
+                <FundName>
+                    <Name>LLOYD FAMILY SUPERANNUATION FUND</Name>
+                    <NameType>Entity Name</NameType>
+                    <Score>70</Score>
+                    <NameStatus>Current</NameStatus>
+                    <FundTypeCode>SMF</FundTypeCode>
+                    <FundTypeDescription>ATO Regulated Self-Managed Superannuation Fund</FundTypeDescription>
+                </FundName>
+                <Location>
+                    <StateTerritoryCode>VIC</StateTerritoryCode>
+                    <Postcode>3191</Postcode>
+                </Location>
+            </MatchingFundName>
+            <MatchingFundName>
+                <ABN>
+                    <Value>85964386574</Value>
+                    <IdentifierStatus>Active</IdentifierStatus>
+                </ABN>
+                <FundName>
+                    <Name>LLOYD FAMILY SUPERANNUATION FUND</Name>
+                    <NameType>Entity Name</NameType>
+                    <Score>70</Score>
+                    <NameStatus>Current</NameStatus>
+                    <FundTypeCode>SMF</FundTypeCode>
+                    <FundTypeDescription>ATO Regulated Self-Managed Superannuation Fund</FundTypeDescription>
+                </FundName>
+                <Location>
+                    <StateTerritoryCode>ACT</StateTerritoryCode>
+                    <Postcode>2603</Postcode>
+                </Location>
+            </MatchingFundName>
+            <MatchingFundName>
+                <ABN>
+                    <Value>52078520924</Value>
+                    <IdentifierStatus>Active</IdentifierStatus>
+                </ABN>
+                <FundName>
+                    <Name>LLOYD FAMILY SUPERANNUATION FUND</Name>
+                    <NameType>Entity Name</NameType>
+                    <Score>70</Score>
+                    <NameStatus>Current</NameStatus>
+                    <FundTypeCode>SMF</FundTypeCode>
+                    <FundTypeDescription>ATO Regulated Self-Managed Superannuation Fund</FundTypeDescription>
+                </FundName>
+                <Location>
+                    <StateTerritoryCode>WA</StateTerritoryCode>
+                    <Postcode>6076</Postcode>
+                </Location>
+            </MatchingFundName>
+            <MatchingFundName>
+                <ABN>
+                    <Value>11917123638</Value>
+                    <IdentifierStatus>Active</IdentifierStatus>
+                </ABN>
+                <FundName>
+                    <Name>LLOYD FRIEND SUPERANNUATION FUND</Name>
+                    <NameType>Entity Name</NameType>
+                    <Score>70</Score>
+                    <NameStatus>Current</NameStatus>
+                    <FundTypeCode>SMF</FundTypeCode>
+                    <FundTypeDescription>ATO Regulated Self-Managed Superannuation Fund</FundTypeDescription>
+                </FundName>
+                <Location>
+                    <StateTerritoryCode>VIC</StateTerritoryCode>
+                    <Postcode>3225</Postcode>
+                </Location>
+            </MatchingFundName>
+            <MatchingFundName>
+                <ABN>
+                    <Value>84985065071</Value>
+                    <IdentifierStatus>Active</IdentifierStatus>
+                </ABN>
+                <FundName>
+                    <Name>LLOYD MICHAELS SUPERANNUATION FUND</Name>
+                    <NameType>Entity Name</NameType>
+                    <Score>70</Score>
+                    <NameStatus>Current</NameStatus>
+                    <FundTypeCode>SMF</FundTypeCode>
+                    <FundTypeDescription>ATO Regulated Self-Managed Superannuation Fund</FundTypeDescription>
+                </FundName>
+                <Location>
+                    <StateTerritoryCode>SA</StateTerritoryCode>
+                    <Postcode>5271</Postcode>
+                </Location>
+            </MatchingFundName>
+            <MatchingFundName>
+                <ABN>
+                    <Value>37083432998</Value>
+                    <IdentifierStatus>Active</IdentifierStatus>
+                </ABN>
+                <FundName>
+                    <Name>LLOYD STOCKTON SUPERANNUATION FUND</Name>
+                    <NameType>Entity Name</NameType>
+                    <Score>70</Score>
+                    <NameStatus>Current</NameStatus>
+                    <FundTypeCode>SMF</FundTypeCode>
+                    <FundTypeDescription>ATO Regulated Self-Managed Superannuation Fund</FundTypeDescription>
+                </FundName>
+                <Location>
+                    <StateTerritoryCode>VIC</StateTerritoryCode>
+                    <Postcode>3730</Postcode>
+                </Location>
+            </MatchingFundName>
+            <MatchingFundName>
+                <ABN>
+                    <Value>43680206920</Value>
+                    <IdentifierStatus>Active</IdentifierStatus>
+                </ABN>
+                <FundName>
+                    <Name>LLOYD STRINGER SUPERANNUATION FUND</Name>
+                    <NameType>Entity Name</NameType>
+                    <Score>70</Score>
+                    <NameStatus>Current</NameStatus>
+                    <FundTypeCode>SMF</FundTypeCode>
+                    <FundTypeDescription>ATO Regulated Self-Managed Superannuation Fund</FundTypeDescription>
+                </FundName>
+                <Location>
+                    <StateTerritoryCode>VIC</StateTerritoryCode>
+                    <Postcode>3340</Postcode>
+                </Location>
+            </MatchingFundName>
+            <MatchingFundName>
+                <ABN>
+                    <Value>73865844043</Value>
+                    <IdentifierStatus>Active</IdentifierStatus>
+                </ABN>
+                <FundName>
+                    <Name>LLOYD WILSON SUPERANNUATION FUND</Name>
+                    <NameType>Entity Name</NameType>
+                    <Score>70</Score>
+                    <NameStatus>Current</NameStatus>
+                    <FundTypeCode>SMF</FundTypeCode>
+                    <FundTypeDescription>ATO Regulated Self-Managed Superannuation Fund</FundTypeDescription>
+                </FundName>
+                <Location>
+                    <StateTerritoryCode>NSW</StateTerritoryCode>
+                    <Postcode>2207</Postcode>
+                </Location>
+            </MatchingFundName>
+            <MatchingFundName>
+                <ABN>
+                    <Value>96757683172</Value>
+                    <IdentifierStatus>Active</IdentifierStatus>
+                </ABN>
+                <FundName>
+                    <Name>LLOYDE HOLDINGS SUPER FUND</Name>
+                    <NameType>Entity Name</NameType>
+                    <Score>70</Score>
+                    <NameStatus>Current</NameStatus>
+                    <FundTypeCode>SMF</FundTypeCode>
+                    <FundTypeDescription>ATO Regulated Self-Managed Superannuation Fund</FundTypeDescription>
+                </FundName>
+                <Location>
+                    <StateTerritoryCode>SA</StateTerritoryCode>
+                    <Postcode>5268</Postcode>
+                </Location>
+            </MatchingFundName>
+            <MatchingFundName>
+                <ABN>
+                    <Value>45898549352</Value>
+                    <IdentifierStatus>Active</IdentifierStatus>
+                </ABN>
+                <FundName>
+                    <Name>LORRAINE LLOYD SUPERANNUATION FUND</Name>
+                    <NameType>Entity Name</NameType>
+                    <Score>70</Score>
+                    <NameStatus>Current</NameStatus>
+                    <FundTypeCode>SMF</FundTypeCode>
+                    <FundTypeDescription>ATO Regulated Self-Managed Superannuation Fund</FundTypeDescription>
+                </FundName>
+                <Location>
+                    <StateTerritoryCode>VIC</StateTerritoryCode>
+                    <Postcode>3575</Postcode>
+                </Location>
+            </MatchingFundName>
+            <MatchingFundName>
+                <ABN>
+                    <Value>20233771374</Value>
+                    <IdentifierStatus>Active</IdentifierStatus>
+                </ABN>
+                <FundName>
+                    <Name>Lloyd Family Super Fund</Name>
+                    <NameType>Entity Name</NameType>
+                    <Score>70</Score>
+                    <NameStatus>Current</NameStatus>
+                    <FundTypeCode>SMF</FundTypeCode>
+                    <FundTypeDescription>ATO Regulated Self-Managed Superannuation Fund</FundTypeDescription>
+                </FundName>
+                <Location>
+                    <StateTerritoryCode>NSW</StateTerritoryCode>
+                    <Postcode>2060</Postcode>
+                </Location>
+            </MatchingFundName>
+            <MatchingFundName>
+                <ABN>
+                    <Value>16116687875</Value>
+                    <IdentifierStatus>Active</IdentifierStatus>
+                </ABN>
+                <FundName>
+                    <Name>Lloyd Hagtharp Superannuation Fund</Name>
+                    <NameType>Entity Name</NameType>
+                    <Score>70</Score>
+                    <NameStatus>Current</NameStatus>
+                    <FundTypeCode>SMF</FundTypeCode>
+                    <FundTypeDescription>ATO Regulated Self-Managed Superannuation Fund</FundTypeDescription>
+                </FundName>
+                <Location>
+                    <StateTerritoryCode>NSW</StateTerritoryCode>
+                    <Postcode>2229</Postcode>
+                </Location>
+            </MatchingFundName>
+            <MatchingFundName>
+                <ABN>
+                    <Value>42423741103</Value>
+                    <IdentifierStatus>Active</IdentifierStatus>
+                </ABN>
+                <FundName>
+                    <Name>MARGOT LLOYD SUPERANNUATION FUND</Name>
+                    <NameType>Entity Name</NameType>
+                    <Score>70</Score>
+                    <NameStatus>Current</NameStatus>
+                    <FundTypeCode>SMF</FundTypeCode>
+                    <FundTypeDescription>ATO Regulated Self-Managed Superannuation Fund</FundTypeDescription>
+                </FundName>
+                <Location>
+                    <StateTerritoryCode>NSW</StateTerritoryCode>
+                    <Postcode>2159</Postcode>
+                </Location>
+            </MatchingFundName>
+            <MatchingFundName>
+                <ABN>
+                    <Value>59304994147</Value>
+                    <IdentifierStatus>Active</IdentifierStatus>
+                </ABN>
+                <FundName>
+                    <Name>MIDDLETON LLOYD SUPER FUND</Name>
+                    <NameType>Entity Name</NameType>
+                    <Score>70</Score>
+                    <NameStatus>Current</NameStatus>
+                    <FundTypeCode>SMF</FundTypeCode>
+                    <FundTypeDescription>ATO Regulated Self-Managed Superannuation Fund</FundTypeDescription>
+                </FundName>
+                <Location>
+                    <StateTerritoryCode>VIC</StateTerritoryCode>
+                    <Postcode>3131</Postcode>
+                </Location>
+            </MatchingFundName>
+            <MatchingFundName>
+                <ABN>
+                    <Value>30301919705</Value>
+                    <IdentifierStatus>Active</IdentifierStatus>
+                </ABN>
+                <FundName>
+                    <Name>MJ &amp; PL LLOYD SUPERANNUATION FUND</Name>
+                    <NameType>Entity Name</NameType>
+                    <Score>70</Score>
+                    <NameStatus>Current</NameStatus>
+                    <FundTypeCode>SMF</FundTypeCode>
+                    <FundTypeDescription>ATO Regulated Self-Managed Superannuation Fund</FundTypeDescription>
+                </FundName>
+                <Location>
+                    <StateTerritoryCode>SA</StateTerritoryCode>
+                    <Postcode>5000</Postcode>
+                </Location>
+            </MatchingFundName>
+            <MatchingFundName>
+                <ABN>
+                    <Value>11574418481</Value>
+                    <IdentifierStatus>Active</IdentifierStatus>
+                </ABN>
+                <FundName>
+                    <Name>NF LLOYD SUPERANNUATION FUND</Name>
+                    <NameType>Entity Name</NameType>
+                    <Score>70</Score>
+                    <NameStatus>Current</NameStatus>
+                    <FundTypeCode>SMF</FundTypeCode>
+                    <FundTypeDescription>ATO Regulated Self-Managed Superannuation Fund</FundTypeDescription>
+                </FundName>
+                <Location>
+                    <StateTerritoryCode>VIC</StateTerritoryCode>
+                    <Postcode>3621</Postcode>
+                </Location>
+            </MatchingFundName>
+            <MatchingFundName>
+                <ABN>
+                    <Value>69633217084</Value>
+                    <IdentifierStatus>Active</IdentifierStatus>
+                </ABN>
+                <FundName>
+                    <Name>NICHOLS LLOYD SUPERANNUATION FUND</Name>
+                    <NameType>Entity Name</NameType>
+                    <Score>70</Score>
+                    <NameStatus>Current</NameStatus>
+                    <FundTypeCode>SMF</FundTypeCode>
+                    <FundTypeDescription>ATO Regulated Self-Managed Superannuation Fund</FundTypeDescription>
+                </FundName>
+                <Location>
+                    <StateTerritoryCode>VIC</StateTerritoryCode>
+                    <Postcode>3000</Postcode>
+                </Location>
+            </MatchingFundName>
+            <MatchingFundName>
+                <ABN>
+                    <Value>18634795496</Value>
+                    <IdentifierStatus>Active</IdentifierStatus>
+                </ABN>
+                <FundName>
+                    <Name>RAUPACH LLOYD SUPER FUND</Name>
+                    <NameType>Entity Name</NameType>
+                    <Score>70</Score>
+                    <NameStatus>Current</NameStatus>
+                    <FundTypeCode>SMF</FundTypeCode>
+                    <FundTypeDescription>ATO Regulated Self-Managed Superannuation Fund</FundTypeDescription>
+                </FundName>
+                <Location>
+                    <StateTerritoryCode>SA</StateTerritoryCode>
+                    <Postcode>5000</Postcode>
+                </Location>
+            </MatchingFundName>
+            <MatchingFundName>
+                <ABN>
+                    <Value>41299088308</Value>
+                    <IdentifierStatus>Active</IdentifierStatus>
+                </ABN>
+                <FundName>
+                    <Name>RC LLOYD SUPERANNUATION FUND</Name>
+                    <NameType>Entity Name</NameType>
+                    <Score>70</Score>
+                    <NameStatus>Current</NameStatus>
+                    <FundTypeCode>SMF</FundTypeCode>
+                    <FundTypeDescription>ATO Regulated Self-Managed Superannuation Fund</FundTypeDescription>
+                </FundName>
+                <Location>
+                    <StateTerritoryCode>NSW</StateTerritoryCode>
+                    <Postcode>2076</Postcode>
+                </Location>
+            </MatchingFundName>
+            <MatchingFundName>
+                <ABN>
+                    <Value>65434241894</Value>
+                    <IdentifierStatus>Active</IdentifierStatus>
+                </ABN>
+                <FundName>
+                    <Name>THE KIM LLOYD SUPERANNUATION FUND</Name>
+                    <NameType>Entity Name</NameType>
+                    <Score>70</Score>
+                    <NameStatus>Current</NameStatus>
+                    <FundTypeCode>SMF</FundTypeCode>
+                    <FundTypeDescription>ATO Regulated Self-Managed Superannuation Fund</FundTypeDescription>
+                </FundName>
+                <Location>
+                    <StateTerritoryCode>WA</StateTerritoryCode>
+                    <Postcode>6244</Postcode>
+                </Location>
+            </MatchingFundName>
+            <MatchingFundName>
+                <ABN>
+                    <Value>31946774685</Value>
+                    <IdentifierStatus>Active</IdentifierStatus>
+                </ABN>
+                <FundName>
+                    <Name>THE LLOYD &amp; SALMON SUPERANNUATION FND</Name>
+                    <NameType>Entity Name</NameType>
+                    <Score>70</Score>
+                    <NameStatus>Current</NameStatus>
+                    <FundTypeCode>SMF</FundTypeCode>
+                    <FundTypeDescription>ATO Regulated Self-Managed Superannuation Fund</FundTypeDescription>
+                </FundName>
+                <Location>
+                    <StateTerritoryCode>QLD</StateTerritoryCode>
+                    <Postcode>4116</Postcode>
+                </Location>
+            </MatchingFundName>
+            <MatchingFundName>
+                <ABN>
+                    <Value>14865954726</Value>
+                    <IdentifierStatus>Active</IdentifierStatus>
+                </ABN>
+                <FundName>
+                    <Name>THE LLOYD FAMILY SUPERANNUATION FUND</Name>
+                    <NameType>Entity Name</NameType>
+                    <Score>70</Score>
+                    <NameStatus>Current</NameStatus>
+                    <FundTypeCode>SMF</FundTypeCode>
+                    <FundTypeDescription>ATO Regulated Self-Managed Superannuation Fund</FundTypeDescription>
+                </FundName>
+                <Location>
+                    <StateTerritoryCode>QLD</StateTerritoryCode>
+                    <Postcode>4217</Postcode>
+                </Location>
+            </MatchingFundName>
+            <MatchingFundName>
+                <ABN>
+                    <Value>24733821177</Value>
+                    <IdentifierStatus>Active</IdentifierStatus>
+                </ABN>
+                <FundName>
+                    <Name>THE LLOYD TILLEY SUPERANNUATION FUND</Name>
+                    <NameType>Entity Name</NameType>
+                    <Score>70</Score>
+                    <NameStatus>Current</NameStatus>
+                    <FundTypeCode>SMF</FundTypeCode>
+                    <FundTypeDescription>ATO Regulated Self-Managed Superannuation Fund</FundTypeDescription>
+                </FundName>
+                <Location>
+                    <StateTerritoryCode>QLD</StateTerritoryCode>
+                    <Postcode>4285</Postcode>
+                </Location>
+            </MatchingFundName>
+            <MatchingFundName>
+                <ABN>
+                    <Value>44659685272</Value>
+                    <IdentifierStatus>Active</IdentifierStatus>
+                </ABN>
+                <FundName>
+                    <Name>THE LLOYD-MOYLE SUPERANNUATION FUND</Name>
+                    <NameType>Entity Name</NameType>
+                    <Score>70</Score>
+                    <NameStatus>Current</NameStatus>
+                    <FundTypeCode>SMF</FundTypeCode>
+                    <FundTypeDescription>ATO Regulated Self-Managed Superannuation Fund</FundTypeDescription>
+                </FundName>
+                <Location>
+                    <StateTerritoryCode>WA</StateTerritoryCode>
+                    <Postcode>6027</Postcode>
+                </Location>
+            </MatchingFundName>
+            <MatchingFundName>
+                <ABN>
+                    <Value>24016720368</Value>
+                    <IdentifierStatus>Active</IdentifierStatus>
+                </ABN>
+                <FundName>
+                    <Name>THE PETER LLOYD SUPERANNUATION FUND</Name>
+                    <NameType>Entity Name</NameType>
+                    <Score>70</Score>
+                    <NameStatus>Current</NameStatus>
+                    <FundTypeCode>SMF</FundTypeCode>
+                    <FundTypeDescription>ATO Regulated Self-Managed Superannuation Fund</FundTypeDescription>
+                </FundName>
+                <Location>
+                    <StateTerritoryCode>WA</StateTerritoryCode>
+                    <Postcode>6244</Postcode>
+                </Location>
+            </MatchingFundName>
+            <MatchingFundName>
+                <ABN>
+                    <Value>94450807329</Value>
+                    <IdentifierStatus>Active</IdentifierStatus>
+                </ABN>
+                <FundName>
+                    <Name>THE ROBERT LLOYD CAPITAL FUND</Name>
+                    <NameType>Entity Name</NameType>
+                    <Score>70</Score>
+                    <NameStatus>Current</NameStatus>
+                    <FundTypeCode>SMF</FundTypeCode>
+                    <FundTypeDescription>ATO Regulated Self-Managed Superannuation Fund</FundTypeDescription>
+                </FundName>
+                <Location>
+                    <StateTerritoryCode>QLD</StateTerritoryCode>
+                    <Postcode>4390</Postcode>
+                </Location>
+            </MatchingFundName>
+            <MatchingFundName>
+                <ABN>
+                    <Value>60472214564</Value>
+                    <IdentifierStatus>Active</IdentifierStatus>
+                </ABN>
+                <FundName>
+                    <Name>THE TRUSTEE FOR DAVID LLOYD SUPERANNUATION FUND</Name>
+                    <NameType>Entity Name</NameType>
+                    <Score>70</Score>
+                    <NameStatus>Current</NameStatus>
+                    <FundTypeCode>SMF</FundTypeCode>
+                    <FundTypeDescription>ATO Regulated Self-Managed Superannuation Fund</FundTypeDescription>
+                </FundName>
+                <Location>
+                    <StateTerritoryCode>NSW</StateTerritoryCode>
+                    <Postcode>2455</Postcode>
+                </Location>
+            </MatchingFundName>
+            <MatchingFundName>
+                <ABN>
+                    <Value>39362218743</Value>
+                    <IdentifierStatus>Active</IdentifierStatus>
+                </ABN>
+                <FundName>
+                    <Name>THE TRUSTEE FOR LLOYD-JONES SUPERANNUATION FUND</Name>
+                    <NameType>Entity Name</NameType>
+                    <Score>70</Score>
+                    <NameStatus>Current</NameStatus>
+                    <FundTypeCode>SMF</FundTypeCode>
+                    <FundTypeDescription>ATO Regulated Self-Managed Superannuation Fund</FundTypeDescription>
+                </FundName>
+                <Location>
+                    <StateTerritoryCode>NSW</StateTerritoryCode>
+                    <Postcode>2070</Postcode>
+                </Location>
+            </MatchingFundName>
+            <MatchingFundName>
+                <ABN>
+                    <Value>68578559284</Value>
+                    <IdentifierStatus>Active</IdentifierStatus>
+                </ABN>
+                <FundName>
+                    <Name>THE TRUSTEE FOR TA &amp; MN LLOYD SUPERANNUATION FUND</Name>
+                    <NameType>Entity Name</NameType>
+                    <Score>70</Score>
+                    <NameStatus>Current</NameStatus>
+                    <FundTypeCode>SMF</FundTypeCode>
+                    <FundTypeDescription>ATO Regulated Self-Managed Superannuation Fund</FundTypeDescription>
+                </FundName>
+                <Location>
+                    <StateTerritoryCode>VIC</StateTerritoryCode>
+                    <Postcode>3630</Postcode>
+                </Location>
+            </MatchingFundName>
+            <MatchingFundName>
+                <ABN>
+                    <Value>75592972968</Value>
+                    <IdentifierStatus>Active</IdentifierStatus>
+                </ABN>
+                <FundName>
+                    <Name>The David Lloyd Superannuation Fund</Name>
+                    <NameType>Entity Name</NameType>
+                    <Score>70</Score>
+                    <NameStatus>Current</NameStatus>
+                    <FundTypeCode>SMF</FundTypeCode>
+                    <FundTypeDescription>ATO Regulated Self-Managed Superannuation Fund</FundTypeDescription>
+                </FundName>
+                <Location>
+                    <StateTerritoryCode>NSW</StateTerritoryCode>
+                    <Postcode>2450</Postcode>
+                </Location>
+            </MatchingFundName>
+            <MatchingFundName>
+                <ABN>
+                    <Value>59489110334</Value>
+                    <IdentifierStatus>Active</IdentifierStatus>
+                </ABN>
+                <FundName>
+                    <Name>The Trustee for AB Lloyd Superannuation Fund</Name>
+                    <NameType>Entity Name</NameType>
+                    <Score>70</Score>
+                    <NameStatus>Current</NameStatus>
+                    <FundTypeCode>SMF</FundTypeCode>
+                    <FundTypeDescription>ATO Regulated Self-Managed Superannuation Fund</FundTypeDescription>
+                </FundName>
+                <Location>
+                    <StateTerritoryCode>WA</StateTerritoryCode>
+                    <Postcode>6163</Postcode>
+                </Location>
+            </MatchingFundName>
+            <MatchingFundName>
+                <ABN>
+                    <Value>70149294657</Value>
+                    <IdentifierStatus>Active</IdentifierStatus>
+                </ABN>
+                <FundName>
+                    <Name>The Trustee for ANTELLA &amp; LLOYD PTY LTD SUPER FUND</Name>
+                    <NameType>Entity Name</NameType>
+                    <Score>70</Score>
+                    <NameStatus>Current</NameStatus>
+                    <FundTypeCode>SMF</FundTypeCode>
+                    <FundTypeDescription>ATO Regulated Self-Managed Superannuation Fund</FundTypeDescription>
+                </FundName>
+                <Location>
+                    <StateTerritoryCode>NSW</StateTerritoryCode>
+                    <Postcode>2065</Postcode>
+                </Location>
+            </MatchingFundName>
+            <MatchingFundName>
+                <ABN>
+                    <Value>37410856723</Value>
+                    <IdentifierStatus>Active</IdentifierStatus>
+                </ABN>
+                <FundName>
+                    <Name>The Trustee for CK Lloyd Superannuation Fund</Name>
+                    <NameType>Entity Name</NameType>
+                    <Score>70</Score>
+                    <NameStatus>Current</NameStatus>
+                    <FundTypeCode>SMF</FundTypeCode>
+                    <FundTypeDescription>ATO Regulated Self-Managed Superannuation Fund</FundTypeDescription>
+                </FundName>
+                <Location>
+                    <StateTerritoryCode>QLD</StateTerritoryCode>
+                    <Postcode>4210</Postcode>
+                </Location>
+            </MatchingFundName>
+            <MatchingFundName>
+                <ABN>
+                    <Value>90234661420</Value>
+                    <IdentifierStatus>Active</IdentifierStatus>
+                </ABN>
+                <FundName>
+                    <Name>The Trustee for DB LLOYD FINANCIAL Superannuation</Name>
+                    <NameType>Entity Name</NameType>
+                    <Score>70</Score>
+                    <NameStatus>Current</NameStatus>
+                    <FundTypeCode>SMF</FundTypeCode>
+                    <FundTypeDescription>ATO Regulated Self-Managed Superannuation Fund</FundTypeDescription>
+                </FundName>
+                <Location>
+                    <StateTerritoryCode>VIC</StateTerritoryCode>
+                    <Postcode>3763</Postcode>
+                </Location>
+            </MatchingFundName>
+            <MatchingFundName>
+                <ABN>
+                    <Value>61645281566</Value>
+                    <IdentifierStatus>Active</IdentifierStatus>
+                </ABN>
+                <FundName>
+                    <Name>The Trustee for Edward Lloyd Super Fund</Name>
+                    <NameType>Entity Name</NameType>
+                    <Score>70</Score>
+                    <NameStatus>Current</NameStatus>
+                    <FundTypeCode>SMF</FundTypeCode>
+                    <FundTypeDescription>ATO Regulated Self-Managed Superannuation Fund</FundTypeDescription>
+                </FundName>
+                <Location>
+                    <StateTerritoryCode>VIC</StateTerritoryCode>
+                    <Postcode>3121</Postcode>
+                </Location>
+            </MatchingFundName>
+            <MatchingFundName>
+                <ABN>
+                    <Value>90877268866</Value>
+                    <IdentifierStatus>Active</IdentifierStatus>
+                </ABN>
+                <FundName>
+                    <Name>The Trustee for JM Lloyd Superannuation Fund</Name>
+                    <NameType>Entity Name</NameType>
+                    <Score>70</Score>
+                    <NameStatus>Current</NameStatus>
+                    <FundTypeCode>SMF</FundTypeCode>
+                    <FundTypeDescription>ATO Regulated Self-Managed Superannuation Fund</FundTypeDescription>
+                </FundName>
+                <Location>
+                    <StateTerritoryCode>WA</StateTerritoryCode>
+                    <Postcode>6281</Postcode>
+                </Location>
+            </MatchingFundName>
+            <MatchingFundName>
+                <ABN>
+                    <Value>66197676140</Value>
+                    <IdentifierStatus>Active</IdentifierStatus>
+                </ABN>
+                <FundName>
+                    <Name>The Trustee for Joanne Lloyd Super Fund</Name>
+                    <NameType>Entity Name</NameType>
+                    <Score>70</Score>
+                    <NameStatus>Current</NameStatus>
+                    <FundTypeCode>SMF</FundTypeCode>
+                    <FundTypeDescription>ATO Regulated Self-Managed Superannuation Fund</FundTypeDescription>
+                </FundName>
+                <Location>
+                    <StateTerritoryCode>NSW</StateTerritoryCode>
+                    <Postcode>2085</Postcode>
+                </Location>
+            </MatchingFundName>
+            <MatchingFundName>
+                <ABN>
+                    <Value>95812983697</Value>
+                    <IdentifierStatus>Active</IdentifierStatus>
+                </ABN>
+                <FundName>
+                    <Name>The Trustee for LLOYD &amp; REED SUPERFUND</Name>
+                    <NameType>Entity Name</NameType>
+                    <Score>70</Score>
+                    <NameStatus>Current</NameStatus>
+                    <FundTypeCode>SMF</FundTypeCode>
+                    <FundTypeDescription>ATO Regulated Self-Managed Superannuation Fund</FundTypeDescription>
+                </FundName>
+                <Location>
+                    <StateTerritoryCode>NSW</StateTerritoryCode>
+                    <Postcode>2320</Postcode>
+                </Location>
+            </MatchingFundName>
+            <MatchingFundName>
+                <ABN>
+                    <Value>66570520484</Value>
+                    <IdentifierStatus>Active</IdentifierStatus>
+                </ABN>
+                <FundName>
+                    <Name>The Trustee for LLOYD EXECUTIVE SUPER FUND</Name>
+                    <NameType>Entity Name</NameType>
+                    <Score>70</Score>
+                    <NameStatus>Current</NameStatus>
+                    <FundTypeCode>SMF</FundTypeCode>
+                    <FundTypeDescription>ATO Regulated Self-Managed Superannuation Fund</FundTypeDescription>
+                </FundName>
+                <Location>
+                    <StateTerritoryCode>VIC</StateTerritoryCode>
+                    <Postcode>3122</Postcode>
+                </Location>
+            </MatchingFundName>
+            <MatchingFundName>
+                <ABN>
+                    <Value>17529963564</Value>
+                    <IdentifierStatus>Active</IdentifierStatus>
+                </ABN>
+                <FundName>
+                    <Name>The Trustee for LLOYD FAMILY SUPER FUND</Name>
+                    <NameType>Entity Name</NameType>
+                    <Score>70</Score>
+                    <NameStatus>Current</NameStatus>
+                    <FundTypeCode>SMF</FundTypeCode>
+                    <FundTypeDescription>ATO Regulated Self-Managed Superannuation Fund</FundTypeDescription>
+                </FundName>
+                <Location>
+                    <StateTerritoryCode>WA</StateTerritoryCode>
+                    <Postcode>6036</Postcode>
+                </Location>
+            </MatchingFundName>
+            <MatchingFundName>
+                <ABN>
+                    <Value>27819974530</Value>
+                    <IdentifierStatus>Active</IdentifierStatus>
+                </ABN>
+                <FundName>
+                    <Name>The Trustee for LLOYD FAMILY SUPERANNUATION FUND</Name>
+                    <NameType>Entity Name</NameType>
+                    <Score>70</Score>
+                    <NameStatus>Current</NameStatus>
+                    <FundTypeCode>SMF</FundTypeCode>
+                    <FundTypeDescription>ATO Regulated Self-Managed Superannuation Fund</FundTypeDescription>
+                </FundName>
+                <Location>
+                    <StateTerritoryCode>NSW</StateTerritoryCode>
+                    <Postcode>2770</Postcode>
+                </Location>
+            </MatchingFundName>
+            <MatchingFundName>
+                <ABN>
+                    <Value>29789518215</Value>
+                    <IdentifierStatus>Active</IdentifierStatus>
+                </ABN>
+                <FundName>
+                    <Name>The Trustee for LLOYD GRAVADOR SUPER FUND</Name>
+                    <NameType>Entity Name</NameType>
+                    <Score>70</Score>
+                    <NameStatus>Current</NameStatus>
+                    <FundTypeCode>SMF</FundTypeCode>
+                    <FundTypeDescription>ATO Regulated Self-Managed Superannuation Fund</FundTypeDescription>
+                </FundName>
+                <Location>
+                    <StateTerritoryCode>NSW</StateTerritoryCode>
+                    <Postcode>2155</Postcode>
+                </Location>
+            </MatchingFundName>
+            <MatchingFundName>
+                <ABN>
+                    <Value>60062830298</Value>
+                    <IdentifierStatus>Active</IdentifierStatus>
+                </ABN>
+                <FundName>
+                    <Name>The Trustee for LLOYD SMITH PTY LTD SUPER FUND</Name>
+                    <NameType>Entity Name</NameType>
+                    <Score>70</Score>
+                    <NameStatus>Current</NameStatus>
+                    <FundTypeCode>SMF</FundTypeCode>
+                    <FundTypeDescription>ATO Regulated Self-Managed Superannuation Fund</FundTypeDescription>
+                </FundName>
+                <Location>
+                    <StateTerritoryCode>VIC</StateTerritoryCode>
+                    <Postcode>3132</Postcode>
+                </Location>
+            </MatchingFundName>
+            <MatchingFundName>
+                <ABN>
+                    <Value>33466038128</Value>
+                    <IdentifierStatus>Active</IdentifierStatus>
+                </ABN>
+                <FundName>
+                    <Name>The Trustee for LLOYD STEVENS SUPERANNUATION FUND</Name>
+                    <NameType>Entity Name</NameType>
+                    <Score>70</Score>
+                    <NameStatus>Current</NameStatus>
+                    <FundTypeCode>SMF</FundTypeCode>
+                    <FundTypeDescription>ATO Regulated Self-Managed Superannuation Fund</FundTypeDescription>
+                </FundName>
+                <Location>
+                    <StateTerritoryCode>SA</StateTerritoryCode>
+                    <Postcode>5044</Postcode>
+                </Location>
+            </MatchingFundName>
+            <MatchingFundName>
+                <ABN>
+                    <Value>53221660311</Value>
+                    <IdentifierStatus>Active</IdentifierStatus>
+                </ABN>
+                <FundName>
+                    <Name>The Trustee for LLOYD THOMAS SUPERANNUATION FUND</Name>
+                    <NameType>Entity Name</NameType>
+                    <Score>70</Score>
+                    <NameStatus>Current</NameStatus>
+                    <FundTypeCode>SMF</FundTypeCode>
+                    <FundTypeDescription>ATO Regulated Self-Managed Superannuation Fund</FundTypeDescription>
+                </FundName>
+                <Location>
+                    <StateTerritoryCode>NSW</StateTerritoryCode>
+                    <Postcode>2756</Postcode>
+                </Location>
+            </MatchingFundName>
+            <MatchingFundName>
+                <ABN>
+                    <Value>32951950784</Value>
+                    <IdentifierStatus>Active</IdentifierStatus>
+                </ABN>
+                <FundName>
+                    <Name>The Trustee for LLOYD WILKINSON SUPERANNUATION FUND</Name>
+                    <NameType>Entity Name</NameType>
+                    <Score>70</Score>
+                    <NameStatus>Current</NameStatus>
+                    <FundTypeCode>SMF</FundTypeCode>
+                    <FundTypeDescription>ATO Regulated Self-Managed Superannuation Fund</FundTypeDescription>
+                </FundName>
+                <Location>
+                    <StateTerritoryCode>SA</StateTerritoryCode>
+                    <Postcode>5000</Postcode>
+                </Location>
+            </MatchingFundName>
+            <MatchingFundName>
+                <ABN>
+                    <Value>54382260970</Value>
+                    <IdentifierStatus>Active</IdentifierStatus>
+                </ABN>
+                <FundName>
+                    <Name>The Trustee for LLOYD-JONES SUPERANNUATION FUND</Name>
+                    <NameType>Entity Name</NameType>
+                    <Score>70</Score>
+                    <NameStatus>Current</NameStatus>
+                    <FundTypeCode>SMF</FundTypeCode>
+                    <FundTypeDescription>ATO Regulated Self-Managed Superannuation Fund</FundTypeDescription>
+                </FundName>
+                <Location>
+                    <StateTerritoryCode>NSW</StateTerritoryCode>
+                    <Postcode>2061</Postcode>
+                </Location>
+            </MatchingFundName>
+            <MatchingFundName>
+                <ABN>
+                    <Value>59787636287</Value>
+                    <IdentifierStatus>Active</IdentifierStatus>
+                </ABN>
+                <FundName>
+                    <Name>The Trustee for LLoyd Nanfra Super Fund</Name>
+                    <NameType>Entity Name</NameType>
+                    <Score>70</Score>
+                    <NameStatus>Current</NameStatus>
+                    <FundTypeCode>SMF</FundTypeCode>
+                    <FundTypeDescription>ATO Regulated Self-Managed Superannuation Fund</FundTypeDescription>
+                </FundName>
+                <Location>
+                    <StateTerritoryCode>VIC</StateTerritoryCode>
+                    <Postcode>3145</Postcode>
+                </Location>
+            </MatchingFundName>
+            <MatchingFundName>
+                <ABN>
+                    <Value>95732450382</Value>
+                    <IdentifierStatus>Active</IdentifierStatus>
+                </ABN>
+                <FundName>
+                    <Name>The Trustee for Lloyd Earl Superannuation Fund</Name>
+                    <NameType>Entity Name</NameType>
+                    <Score>70</Score>
+                    <NameStatus>Current</NameStatus>
+                    <FundTypeCode>SMF</FundTypeCode>
+                    <FundTypeDescription>ATO Regulated Self-Managed Superannuation Fund</FundTypeDescription>
+                </FundName>
+                <Location>
+                    <StateTerritoryCode>QLD</StateTerritoryCode>
+                    <Postcode>4122</Postcode>
+                </Location>
+            </MatchingFundName>
+            <MatchingFundName>
+                <ABN>
+                    <Value>63259143192</Value>
+                    <IdentifierStatus>Active</IdentifierStatus>
+                </ABN>
+                <FundName>
+                    <Name>The Trustee for Lloyd Elderkin Super Fund</Name>
+                    <NameType>Entity Name</NameType>
+                    <Score>70</Score>
+                    <NameStatus>Current</NameStatus>
+                    <FundTypeCode>SMF</FundTypeCode>
+                    <FundTypeDescription>ATO Regulated Self-Managed Superannuation Fund</FundTypeDescription>
+                </FundName>
+                <Location>
+                    <StateTerritoryCode>VIC</StateTerritoryCode>
+                    <Postcode>3220</Postcode>
+                </Location>
+            </MatchingFundName>
+            <MatchingFundName>
+                <ABN>
+                    <Value>31224178782</Value>
+                    <IdentifierStatus>Active</IdentifierStatus>
+                </ABN>
+                <FundName>
+                    <Name>The Trustee for Lloyd Family Super Fund</Name>
+                    <NameType>Entity Name</NameType>
+                    <Score>70</Score>
+                    <NameStatus>Current</NameStatus>
+                    <FundTypeCode>SMF</FundTypeCode>
+                    <FundTypeDescription>ATO Regulated Self-Managed Superannuation Fund</FundTypeDescription>
+                </FundName>
+                <Location>
+                    <StateTerritoryCode>VIC</StateTerritoryCode>
+                    <Postcode>3141</Postcode>
+                </Location>
+            </MatchingFundName>
+            <MatchingFundName>
+                <ABN>
+                    <Value>59950575202</Value>
+                    <IdentifierStatus>Active</IdentifierStatus>
+                </ABN>
+                <FundName>
+                    <Name>The Trustee for Lloyd Family Super Fund</Name>
+                    <NameType>Entity Name</NameType>
+                    <Score>70</Score>
+                    <NameStatus>Current</NameStatus>
+                    <FundTypeCode>SMF</FundTypeCode>
+                    <FundTypeDescription>ATO Regulated Self-Managed Superannuation Fund</FundTypeDescription>
+                </FundName>
+                <Location>
+                    <StateTerritoryCode>VIC</StateTerritoryCode>
+                    <Postcode>3000</Postcode>
+                </Location>
+            </MatchingFundName>
+            <MatchingFundName>
+                <ABN>
+                    <Value>66776475485</Value>
+                    <IdentifierStatus>Active</IdentifierStatus>
+                </ABN>
+                <FundName>
+                    <Name>The Trustee for Lloyd Family Super Fund</Name>
+                    <NameType>Entity Name</NameType>
+                    <Score>70</Score>
+                    <NameStatus>Current</NameStatus>
+                    <FundTypeCode>SMF</FundTypeCode>
+                    <FundTypeDescription>ATO Regulated Self-Managed Superannuation Fund</FundTypeDescription>
+                </FundName>
+                <Location>
+                    <StateTerritoryCode>VIC</StateTerritoryCode>
+                    <Postcode>3000</Postcode>
+                </Location>
+            </MatchingFundName>
+            <MatchingFundName>
+                <ABN>
+                    <Value>60501971372</Value>
+                    <IdentifierStatus>Active</IdentifierStatus>
+                </ABN>
+                <FundName>
+                    <Name>The Trustee for Lloyd Family Super Fund</Name>
+                    <NameType>Entity Name</NameType>
+                    <Score>70</Score>
+                    <NameStatus>Current</NameStatus>
+                    <FundTypeCode>SMF</FundTypeCode>
+                    <FundTypeDescription>ATO Regulated Self-Managed Superannuation Fund</FundTypeDescription>
+                </FundName>
+                <Location>
+                    <StateTerritoryCode>VIC</StateTerritoryCode>
+                    <Postcode>3134</Postcode>
+                </Location>
+            </MatchingFundName>
+            <MatchingFundName>
+                <ABN>
+                    <Value>84653627143</Value>
+                    <IdentifierStatus>Active</IdentifierStatus>
+                </ABN>
+                <FundName>
+                    <Name>The Trustee for Lloyd Family Super Fund</Name>
+                    <NameType>Entity Name</NameType>
+                    <Score>70</Score>
+                    <NameStatus>Current</NameStatus>
+                    <FundTypeCode>SMF</FundTypeCode>
+                    <FundTypeDescription>ATO Regulated Self-Managed Superannuation Fund</FundTypeDescription>
+                </FundName>
+                <Location>
+                    <StateTerritoryCode>WA</StateTerritoryCode>
+                    <Postcode>6210</Postcode>
+                </Location>
+            </MatchingFundName>
+            <MatchingFundName>
+                <ABN>
+                    <Value>12152597717</Value>
+                    <IdentifierStatus>Active</IdentifierStatus>
+                </ABN>
+                <FundName>
+                    <Name>The Trustee for Lloyd Family Super Fund</Name>
+                    <NameType>Entity Name</NameType>
+                    <Score>70</Score>
+                    <NameStatus>Current</NameStatus>
+                    <FundTypeCode>SMF</FundTypeCode>
+                    <FundTypeDescription>ATO Regulated Self-Managed Superannuation Fund</FundTypeDescription>
+                </FundName>
+                <Location>
+                    <StateTerritoryCode>NSW</StateTerritoryCode>
+                    <Postcode>2320</Postcode>
+                </Location>
+            </MatchingFundName>
+            <MatchingFundName>
+                <ABN>
+                    <Value>86543541823</Value>
+                    <IdentifierStatus>Active</IdentifierStatus>
+                </ABN>
+                <FundName>
+                    <Name>The Trustee for Lloyd Family Superannuation Fund</Name>
+                    <NameType>Entity Name</NameType>
+                    <Score>70</Score>
+                    <NameStatus>Current</NameStatus>
+                    <FundTypeCode>SMF</FundTypeCode>
+                    <FundTypeDescription>ATO Regulated Self-Managed Superannuation Fund</FundTypeDescription>
+                </FundName>
+                <Location>
+                    <StateTerritoryCode>VIC</StateTerritoryCode>
+                    <Postcode>3224</Postcode>
+                </Location>
+            </MatchingFundName>
+            <MatchingFundName>
+                <ABN>
+                    <Value>91545889268</Value>
+                    <IdentifierStatus>Active</IdentifierStatus>
+                </ABN>
+                <FundName>
+                    <Name>The Trustee for Lloyd Family Superannuation Fund</Name>
+                    <NameType>Entity Name</NameType>
+                    <Score>70</Score>
+                    <NameStatus>Current</NameStatus>
+                    <FundTypeCode>SMF</FundTypeCode>
+                    <FundTypeDescription>ATO Regulated Self-Managed Superannuation Fund</FundTypeDescription>
+                </FundName>
+                <Location>
+                    <StateTerritoryCode>NSW</StateTerritoryCode>
+                    <Postcode>2068</Postcode>
+                </Location>
+            </MatchingFundName>
+            <MatchingFundName>
+                <ABN>
+                    <Value>26958705196</Value>
+                    <IdentifierStatus>Active</IdentifierStatus>
+                </ABN>
+                <FundName>
+                    <Name>The Trustee for Lloyd Family Superannuation Fund</Name>
+                    <NameType>Entity Name</NameType>
+                    <Score>70</Score>
+                    <NameStatus>Current</NameStatus>
+                    <FundTypeCode>SMF</FundTypeCode>
+                    <FundTypeDescription>ATO Regulated Self-Managed Superannuation Fund</FundTypeDescription>
+                </FundName>
+                <Location>
+                    <StateTerritoryCode>NSW</StateTerritoryCode>
+                    <Postcode>2068</Postcode>
+                </Location>
+            </MatchingFundName>
+            <MatchingFundName>
+                <ABN>
+                    <Value>38135803807</Value>
+                    <IdentifierStatus>Active</IdentifierStatus>
+                </ABN>
+                <FundName>
+                    <Name>The Trustee for Lloyd Family Superannuation Fund</Name>
+                    <NameType>Entity Name</NameType>
+                    <Score>70</Score>
+                    <NameStatus>Current</NameStatus>
+                    <FundTypeCode>SMF</FundTypeCode>
+                    <FundTypeDescription>ATO Regulated Self-Managed Superannuation Fund</FundTypeDescription>
+                </FundName>
+                <Location>
+                    <StateTerritoryCode>NSW</StateTerritoryCode>
+                    <Postcode>2093</Postcode>
+                </Location>
+            </MatchingFundName>
+            <MatchingFundName>
+                <ABN>
+                    <Value>16709812202</Value>
+                    <IdentifierStatus>Active</IdentifierStatus>
+                </ABN>
+                <FundName>
+                    <Name>The Trustee for Lloyd Family Superfund</Name>
+                    <NameType>Entity Name</NameType>
+                    <Score>70</Score>
+                    <NameStatus>Current</NameStatus>
+                    <FundTypeCode>SMF</FundTypeCode>
+                    <FundTypeDescription>ATO Regulated Self-Managed Superannuation Fund</FundTypeDescription>
+                </FundName>
+                <Location>
+                    <StateTerritoryCode>NSW</StateTerritoryCode>
+                    <Postcode>2026</Postcode>
+                </Location>
+            </MatchingFundName>
+            <MatchingFundName>
+                <ABN>
+                    <Value>61995722154</Value>
+                    <IdentifierStatus>Active</IdentifierStatus>
+                </ABN>
+                <FundName>
+                    <Name>The Trustee for Lloyd Holdings Superannuation Fund</Name>
+                    <NameType>Entity Name</NameType>
+                    <Score>70</Score>
+                    <NameStatus>Current</NameStatus>
+                    <FundTypeCode>SMF</FundTypeCode>
+                    <FundTypeDescription>ATO Regulated Self-Managed Superannuation Fund</FundTypeDescription>
+                </FundName>
+                <Location>
+                    <StateTerritoryCode>WA</StateTerritoryCode>
+                    <Postcode>6010</Postcode>
+                </Location>
+            </MatchingFundName>
+            <MatchingFundName>
+                <ABN>
+                    <Value>29424105927</Value>
+                    <IdentifierStatus>Active</IdentifierStatus>
+                </ABN>
+                <FundName>
+                    <Name>The Trustee for Lloyd Pollack Superannuation Fund</Name>
+                    <NameType>Entity Name</NameType>
+                    <Score>70</Score>
+                    <NameStatus>Current</NameStatus>
+                    <FundTypeCode>SMF</FundTypeCode>
+                    <FundTypeDescription>ATO Regulated Self-Managed Superannuation Fund</FundTypeDescription>
+                </FundName>
+                <Location>
+                    <StateTerritoryCode>NSW</StateTerritoryCode>
+                    <Postcode>2114</Postcode>
+                </Location>
+            </MatchingFundName>
+            <MatchingFundName>
+                <ABN>
+                    <Value>98282710300</Value>
+                    <IdentifierStatus>Active</IdentifierStatus>
+                </ABN>
+                <FundName>
+                    <Name>The Trustee for Lloyd Shepherd Super Fund</Name>
+                    <NameType>Entity Name</NameType>
+                    <Score>70</Score>
+                    <NameStatus>Current</NameStatus>
+                    <FundTypeCode>SMF</FundTypeCode>
+                    <FundTypeDescription>ATO Regulated Self-Managed Superannuation Fund</FundTypeDescription>
+                </FundName>
+                <Location>
+                    <StateTerritoryCode>NSW</StateTerritoryCode>
+                    <Postcode>2203</Postcode>
+                </Location>
+            </MatchingFundName>
+            <MatchingFundName>
+                <ABN>
+                    <Value>53945580515</Value>
+                    <IdentifierStatus>Active</IdentifierStatus>
+                </ABN>
+                <FundName>
+                    <Name>The Trustee for Lloyd Smith Super Fund</Name>
+                    <NameType>Entity Name</NameType>
+                    <Score>70</Score>
+                    <NameStatus>Current</NameStatus>
+                    <FundTypeCode>SMF</FundTypeCode>
+                    <FundTypeDescription>ATO Regulated Self-Managed Superannuation Fund</FundTypeDescription>
+                </FundName>
+                <Location>
+                    <StateTerritoryCode>NSW</StateTerritoryCode>
+                    <Postcode>2153</Postcode>
+                </Location>
+            </MatchingFundName>
+            <MatchingFundName>
+                <ABN>
+                    <Value>83980342264</Value>
+                    <IdentifierStatus>Active</IdentifierStatus>
+                </ABN>
+                <FundName>
+                    <Name>The Trustee for Lloyd Vanni Super Fund</Name>
+                    <NameType>Entity Name</NameType>
+                    <Score>70</Score>
+                    <NameStatus>Current</NameStatus>
+                    <FundTypeCode>SMF</FundTypeCode>
+                    <FundTypeDescription>ATO Regulated Self-Managed Superannuation Fund</FundTypeDescription>
+                </FundName>
+                <Location>
+                    <StateTerritoryCode>VIC</StateTerritoryCode>
+                    <Postcode>3124</Postcode>
+                </Location>
+            </MatchingFundName>
+            <MatchingFundName>
+                <ABN>
+                    <Value>79113400860</Value>
+                    <IdentifierStatus>Active</IdentifierStatus>
+                </ABN>
+                <FundName>
+                    <Name>The Trustee for Lloyd Walker Superannuation Fund</Name>
+                    <NameType>Entity Name</NameType>
+                    <Score>70</Score>
+                    <NameStatus>Current</NameStatus>
+                    <FundTypeCode>SMF</FundTypeCode>
+                    <FundTypeDescription>ATO Regulated Self-Managed Superannuation Fund</FundTypeDescription>
+                </FundName>
+                <Location>
+                    <StateTerritoryCode>NSW</StateTerritoryCode>
+                    <Postcode>2035</Postcode>
+                </Location>
+            </MatchingFundName>
+            <MatchingFundName>
+                <ABN>
+                    <Value>57107268915</Value>
+                    <IdentifierStatus>Active</IdentifierStatus>
+                </ABN>
+                <FundName>
+                    <Name>The Trustee for Lloyd-D'Abbondio Super Fund</Name>
+                    <NameType>Entity Name</NameType>
+                    <Score>70</Score>
+                    <NameStatus>Current</NameStatus>
+                    <FundTypeCode>SMF</FundTypeCode>
+                    <FundTypeDescription>ATO Regulated Self-Managed Superannuation Fund</FundTypeDescription>
+                </FundName>
+                <Location>
+                    <StateTerritoryCode>WA</StateTerritoryCode>
+                    <Postcode>6152</Postcode>
+                </Location>
+            </MatchingFundName>
+            <MatchingFundName>
+                <ABN>
+                    <Value>27449422938</Value>
+                    <IdentifierStatus>Active</IdentifierStatus>
+                </ABN>
+                <FundName>
+                    <Name>The Trustee for Lloyd-Smith Superfund</Name>
+                    <NameType>Entity Name</NameType>
+                    <Score>70</Score>
+                    <NameStatus>Current</NameStatus>
+                    <FundTypeCode>SMF</FundTypeCode>
+                    <FundTypeDescription>ATO Regulated Self-Managed Superannuation Fund</FundTypeDescription>
+                </FundName>
+                <Location>
+                    <StateTerritoryCode>VIC</StateTerritoryCode>
+                    <Postcode>3183</Postcode>
+                </Location>
+            </MatchingFundName>
+            <MatchingFundName>
+                <ABN>
+                    <Value>62538175681</Value>
+                    <IdentifierStatus>Active</IdentifierStatus>
+                </ABN>
+                <FundName>
+                    <Name>The Trustee for MJMT Lloyd Super Fund</Name>
+                    <NameType>Entity Name</NameType>
+                    <Score>70</Score>
+                    <NameStatus>Current</NameStatus>
+                    <FundTypeCode>SMF</FundTypeCode>
+                    <FundTypeDescription>ATO Regulated Self-Managed Superannuation Fund</FundTypeDescription>
+                </FundName>
+                <Location>
+                    <StateTerritoryCode>SA</StateTerritoryCode>
+                    <Postcode>5000</Postcode>
+                </Location>
+            </MatchingFundName>
+            <MatchingFundName>
+                <ABN>
+                    <Value>68300412034</Value>
+                    <IdentifierStatus>Active</IdentifierStatus>
+                </ABN>
+                <FundName>
+                    <Name>The Trustee for MOSTYN LLOYD SUPER FUND</Name>
+                    <NameType>Entity Name</NameType>
+                    <Score>70</Score>
+                    <NameStatus>Current</NameStatus>
+                    <FundTypeCode>SMF</FundTypeCode>
+                    <FundTypeDescription>ATO Regulated Self-Managed Superannuation Fund</FundTypeDescription>
+                </FundName>
+                <Location>
+                    <StateTerritoryCode>QLD</StateTerritoryCode>
+                    <Postcode>4121</Postcode>
+                </Location>
+            </MatchingFundName>
+            <MatchingFundName>
+                <ABN>
+                    <Value>97647029422</Value>
+                    <IdentifierStatus>Active</IdentifierStatus>
+                </ABN>
+                <FundName>
+                    <Name>The Trustee for Peter and Loretta Lloyd SMSF</Name>
+                    <NameType>Entity Name</NameType>
+                    <Score>70</Score>
+                    <NameStatus>Current</NameStatus>
+                    <FundTypeCode>SMF</FundTypeCode>
+                    <FundTypeDescription>ATO Regulated Self-Managed Superannuation Fund</FundTypeDescription>
+                </FundName>
+                <Location>
+                    <StateTerritoryCode>VIC</StateTerritoryCode>
+                    <Postcode>3146</Postcode>
+                </Location>
+            </MatchingFundName>
+            <MatchingFundName>
+                <ABN>
+                    <Value>90351756779</Value>
+                    <IdentifierStatus>Active</IdentifierStatus>
+                </ABN>
+                <FundName>
+                    <Name>The Trustee for ROBERT LLOYD SUPERANNUATION FUND</Name>
+                    <NameType>Entity Name</NameType>
+                    <Score>70</Score>
+                    <NameStatus>Current</NameStatus>
+                    <FundTypeCode>SMF</FundTypeCode>
+                    <FundTypeDescription>ATO Regulated Self-Managed Superannuation Fund</FundTypeDescription>
+                </FundName>
+                <Location>
+                    <StateTerritoryCode>NSW</StateTerritoryCode>
+                    <Postcode>2093</Postcode>
+                </Location>
+            </MatchingFundName>
+            <MatchingFundName>
+                <ABN>
+                    <Value>51560669968</Value>
+                    <IdentifierStatus>Active</IdentifierStatus>
+                </ABN>
+                <FundName>
+                    <Name>The Trustee for RRCI LLOYD SUPER FUND</Name>
+                    <NameType>Entity Name</NameType>
+                    <Score>70</Score>
+                    <NameStatus>Current</NameStatus>
+                    <FundTypeCode>SMF</FundTypeCode>
+                    <FundTypeDescription>ATO Regulated Self-Managed Superannuation Fund</FundTypeDescription>
+                </FundName>
+                <Location>
+                    <StateTerritoryCode>NSW</StateTerritoryCode>
+                    <Postcode>2557</Postcode>
+                </Location>
+            </MatchingFundName>
+            <MatchingFundName>
+                <ABN>
+                    <Value>47063991564</Value>
+                    <IdentifierStatus>Active</IdentifierStatus>
+                </ABN>
+                <FundName>
+                    <Name>The Trustee for RSD LLOYD SUPER FUND</Name>
+                    <NameType>Entity Name</NameType>
+                    <Score>70</Score>
+                    <NameStatus>Current</NameStatus>
+                    <FundTypeCode>SMF</FundTypeCode>
+                    <FundTypeDescription>ATO Regulated Self-Managed Superannuation Fund</FundTypeDescription>
+                </FundName>
+                <Location>
+                    <StateTerritoryCode>NSW</StateTerritoryCode>
+                    <Postcode>2537</Postcode>
+                </Location>
+            </MatchingFundName>
+            <MatchingFundName>
+                <ABN>
+                    <Value>18248679561</Value>
+                    <IdentifierStatus>Active</IdentifierStatus>
+                </ABN>
+                <FundName>
+                    <Name>The Trustee for SAP Lloyd Superannuation Fund</Name>
+                    <NameType>Entity Name</NameType>
+                    <Score>70</Score>
+                    <NameStatus>Current</NameStatus>
+                    <FundTypeCode>SMF</FundTypeCode>
+                    <FundTypeDescription>ATO Regulated Self-Managed Superannuation Fund</FundTypeDescription>
+                </FundName>
+                <Location>
+                    <StateTerritoryCode>VIC</StateTerritoryCode>
+                    <Postcode>3084</Postcode>
+                </Location>
+            </MatchingFundName>
+            <MatchingFundName>
+                <ABN>
+                    <Value>21527813739</Value>
+                    <IdentifierStatus>Active</IdentifierStatus>
+                </ABN>
+                <FundName>
+                    <Name>The Trustee for SIDNEY LLOYD PTY LTD SUPERANNUATION FUND</Name>
+                    <NameType>Entity Name</NameType>
+                    <Score>70</Score>
+                    <NameStatus>Current</NameStatus>
+                    <FundTypeCode>SMF</FundTypeCode>
+                    <FundTypeDescription>ATO Regulated Self-Managed Superannuation Fund</FundTypeDescription>
+                </FundName>
+                <Location>
+                    <StateTerritoryCode>NSW</StateTerritoryCode>
+                    <Postcode>2021</Postcode>
+                </Location>
+            </MatchingFundName>
+            <MatchingFundName>
+                <ABN>
+                    <Value>81255477358</Value>
+                    <IdentifierStatus>Active</IdentifierStatus>
+                </ABN>
+                <FundName>
+                    <Name>The Trustee for Stephen Lloyd Superannuation Fund</Name>
+                    <NameType>Entity Name</NameType>
+                    <Score>70</Score>
+                    <NameStatus>Current</NameStatus>
+                    <FundTypeCode>SMF</FundTypeCode>
+                    <FundTypeDescription>ATO Regulated Self-Managed Superannuation Fund</FundTypeDescription>
+                </FundName>
+                <Location>
+                    <StateTerritoryCode>NSW</StateTerritoryCode>
+                    <Postcode>2097</Postcode>
+                </Location>
+            </MatchingFundName>
+            <MatchingFundName>
+                <ABN>
+                    <Value>13784426634</Value>
+                    <IdentifierStatus>Active</IdentifierStatus>
+                </ABN>
+                <FundName>
+                    <Name>The Trustee for TANDY-LLOYD SUPERANNUATION FUND</Name>
+                    <NameType>Entity Name</NameType>
+                    <Score>70</Score>
+                    <NameStatus>Current</NameStatus>
+                    <FundTypeCode>SMF</FundTypeCode>
+                    <FundTypeDescription>ATO Regulated Self-Managed Superannuation Fund</FundTypeDescription>
+                </FundName>
+                <Location>
+                    <StateTerritoryCode>VIC</StateTerritoryCode>
+                    <Postcode>3175</Postcode>
+                </Location>
+            </MatchingFundName>
+            <MatchingFundName>
+                <ABN>
+                    <Value>61414406148</Value>
+                    <IdentifierStatus>Active</IdentifierStatus>
+                </ABN>
+                <FundName>
+                    <Name>The Trustee for THE DAVID LLOYD SUPERANNUATION FUND</Name>
+                    <NameType>Entity Name</NameType>
+                    <Score>70</Score>
+                    <NameStatus>Current</NameStatus>
+                    <FundTypeCode>SMF</FundTypeCode>
+                    <FundTypeDescription>ATO Regulated Self-Managed Superannuation Fund</FundTypeDescription>
+                </FundName>
+                <Location>
+                    <StateTerritoryCode>TAS</StateTerritoryCode>
+                    <Postcode>7250</Postcode>
+                </Location>
+            </MatchingFundName>
+            <MatchingFundName>
+                <ABN>
+                    <Value>32742090087</Value>
+                    <IdentifierStatus>Active</IdentifierStatus>
+                </ABN>
+                <FundName>
+                    <Name>The Trustee for THE NB LLOYD SUPERANNUATION FUND</Name>
+                    <NameType>Entity Name</NameType>
+                    <Score>70</Score>
+                    <NameStatus>Current</NameStatus>
+                    <FundTypeCode>SMF</FundTypeCode>
+                    <FundTypeDescription>ATO Regulated Self-Managed Superannuation Fund</FundTypeDescription>
+                </FundName>
+                <Location>
+                    <StateTerritoryCode>VIC</StateTerritoryCode>
+                    <Postcode>3912</Postcode>
+                </Location>
+            </MatchingFundName>
+            <MatchingFundName>
+                <ABN>
+                    <Value>17576743494</Value>
+                    <IdentifierStatus>Active</IdentifierStatus>
+                </ABN>
+                <FundName>
+                    <Name>The Trustee for THE STEPHEN LLOYD SUPERANNUATION FUND</Name>
+                    <NameType>Entity Name</NameType>
+                    <Score>70</Score>
+                    <NameStatus>Current</NameStatus>
+                    <FundTypeCode>SMF</FundTypeCode>
+                    <FundTypeDescription>ATO Regulated Self-Managed Superannuation Fund</FundTypeDescription>
+                </FundName>
+                <Location>
+                    <StateTerritoryCode>NSW</StateTerritoryCode>
+                    <Postcode>2000</Postcode>
+                </Location>
+            </MatchingFundName>
+            <MatchingFundName>
+                <ABN>
+                    <Value>30586453665</Value>
+                    <IdentifierStatus>Active</IdentifierStatus>
+                </ABN>
+                <FundName>
+                    <Name>The Trustee for The Lloyd Angove Superannuation Fund</Name>
+                    <NameType>Entity Name</NameType>
+                    <Score>70</Score>
+                    <NameStatus>Current</NameStatus>
+                    <FundTypeCode>SMF</FundTypeCode>
+                    <FundTypeDescription>ATO Regulated Self-Managed Superannuation Fund</FundTypeDescription>
+                </FundName>
+                <Location>
+                    <StateTerritoryCode>NSW</StateTerritoryCode>
+                    <Postcode>2156</Postcode>
+                </Location>
+            </MatchingFundName>
+            <MatchingFundName>
+                <ABN>
+                    <Value>34633891614</Value>
+                    <IdentifierStatus>Active</IdentifierStatus>
+                </ABN>
+                <FundName>
+                    <Name>The Trustee for The Lloyd Family Superannuation Fund</Name>
+                    <NameType>Entity Name</NameType>
+                    <Score>70</Score>
+                    <NameStatus>Current</NameStatus>
+                    <FundTypeCode>SMF</FundTypeCode>
+                    <FundTypeDescription>ATO Regulated Self-Managed Superannuation Fund</FundTypeDescription>
+                </FundName>
+                <Location>
+                    <StateTerritoryCode>NSW</StateTerritoryCode>
+                    <Postcode>2100</Postcode>
+                </Location>
+            </MatchingFundName>
+            <MatchingFundName>
+                <ABN>
+                    <Value>89145159098</Value>
+                    <IdentifierStatus>Active</IdentifierStatus>
+                </ABN>
+                <FundName>
+                    <Name>The trustee for JS Lloyd Super Fund</Name>
+                    <NameType>Entity Name</NameType>
+                    <Score>70</Score>
+                    <NameStatus>Current</NameStatus>
+                    <FundTypeCode>SMF</FundTypeCode>
+                    <FundTypeDescription>ATO Regulated Self-Managed Superannuation Fund</FundTypeDescription>
+                </FundName>
+                <Location>
+                    <StateTerritoryCode>NSW</StateTerritoryCode>
+                    <Postcode>2758</Postcode>
+                </Location>
+            </MatchingFundName>
+            <MatchingFundName>
+                <ABN>
+                    <Value>42472581386</Value>
+                    <IdentifierStatus>Active</IdentifierStatus>
+                </ABN>
+                <FundName>
+                    <Name>The trustee for Kimble Lloyd Superannuation Fund</Name>
+                    <NameType>Entity Name</NameType>
+                    <Score>70</Score>
+                    <NameStatus>Current</NameStatus>
+                    <FundTypeCode>SMF</FundTypeCode>
+                    <FundTypeDescription>ATO Regulated Self-Managed Superannuation Fund</FundTypeDescription>
+                </FundName>
+                <Location>
+                    <StateTerritoryCode>ACT</StateTerritoryCode>
+                    <Postcode>2601</Postcode>
+                </Location>
+            </MatchingFundName>
+            <MatchingFundName>
+                <ABN>
+                    <Value>87238316682</Value>
+                    <IdentifierStatus>Active</IdentifierStatus>
+                </ABN>
+                <FundName>
+                    <Name>The trustee for Lloyd Family Super Fund</Name>
+                    <NameType>Entity Name</NameType>
+                    <Score>70</Score>
+                    <NameStatus>Current</NameStatus>
+                    <FundTypeCode>SMF</FundTypeCode>
+                    <FundTypeDescription>ATO Regulated Self-Managed Superannuation Fund</FundTypeDescription>
+                </FundName>
+                <Location>
+                    <StateTerritoryCode>NSW</StateTerritoryCode>
+                    <Postcode>2134</Postcode>
+                </Location>
+            </MatchingFundName>
+            <MatchingFundName>
+                <ABN>
+                    <Value>39882092652</Value>
+                    <IdentifierStatus>Active</IdentifierStatus>
+                </ABN>
+                <FundName>
+                    <Name>The trustee for Lloyd Family Superannuation Fund</Name>
+                    <NameType>Entity Name</NameType>
+                    <Score>70</Score>
+                    <NameStatus>Current</NameStatus>
+                    <FundTypeCode>SMF</FundTypeCode>
+                    <FundTypeDescription>ATO Regulated Self-Managed Superannuation Fund</FundTypeDescription>
+                </FundName>
+                <Location>
+                    <StateTerritoryCode>SA</StateTerritoryCode>
+                    <Postcode>5063</Postcode>
+                </Location>
+            </MatchingFundName>
+            <MatchingFundName>
+                <ABN>
+                    <Value>56964301556</Value>
+                    <IdentifierStatus>Active</IdentifierStatus>
+                </ABN>
+                <FundName>
+                    <Name>The trustee for Lloyd Francis Superannuation Fund</Name>
+                    <NameType>Entity Name</NameType>
+                    <Score>70</Score>
+                    <NameStatus>Current</NameStatus>
+                    <FundTypeCode>SMF</FundTypeCode>
+                    <FundTypeDescription>ATO Regulated Self-Managed Superannuation Fund</FundTypeDescription>
+                </FundName>
+                <Location>
+                    <StateTerritoryCode>NSW</StateTerritoryCode>
+                    <Postcode>2453</Postcode>
+                </Location>
+            </MatchingFundName>
+            <MatchingFundName>
+                <ABN>
+                    <Value>71872396949</Value>
+                    <IdentifierStatus>Active</IdentifierStatus>
+                </ABN>
+                <FundName>
+                    <Name>The trustee for Lloyd Hayes Superannuation Fund</Name>
+                    <NameType>Entity Name</NameType>
+                    <Score>70</Score>
+                    <NameStatus>Current</NameStatus>
+                    <FundTypeCode>SMF</FundTypeCode>
+                    <FundTypeDescription>ATO Regulated Self-Managed Superannuation Fund</FundTypeDescription>
+                </FundName>
+                <Location>
+                    <StateTerritoryCode>SA</StateTerritoryCode>
+                    <Postcode>5007</Postcode>
+                </Location>
+            </MatchingFundName>
+            <MatchingFundName>
+                <ABN>
+                    <Value>30411491726</Value>
+                    <IdentifierStatus>Active</IdentifierStatus>
+                </ABN>
+                <FundName>
+                    <Name>The trustee for Lloyd Holdings Superannuation Fund</Name>
+                    <NameType>Entity Name</NameType>
+                    <Score>70</Score>
+                    <NameStatus>Current</NameStatus>
+                    <FundTypeCode>SMF</FundTypeCode>
+                    <FundTypeDescription>ATO Regulated Self-Managed Superannuation Fund</FundTypeDescription>
+                </FundName>
+                <Location>
+                    <StateTerritoryCode>QLD</StateTerritoryCode>
+                    <Postcode>4064</Postcode>
+                </Location>
+            </MatchingFundName>
+            <MatchingFundName>
+                <ABN>
+                    <Value>35656120594</Value>
+                    <IdentifierStatus>Active</IdentifierStatus>
+                </ABN>
+                <FundName>
+                    <Name>The trustee for Lloyd Mackey Superannuation Fund</Name>
+                    <NameType>Entity Name</NameType>
+                    <Score>70</Score>
+                    <NameStatus>Current</NameStatus>
+                    <FundTypeCode>SMF</FundTypeCode>
+                    <FundTypeDescription>ATO Regulated Self-Managed Superannuation Fund</FundTypeDescription>
+                </FundName>
+                <Location>
+                    <StateTerritoryCode>NSW</StateTerritoryCode>
+                    <Postcode>2250</Postcode>
+                </Location>
+            </MatchingFundName>
+            <MatchingFundName>
+                <ABN>
+                    <Value>37367261125</Value>
+                    <IdentifierStatus>Active</IdentifierStatus>
+                </ABN>
+                <FundName>
+                    <Name>The trustee for Lloyd-Williams Superannuation Fund</Name>
+                    <NameType>Entity Name</NameType>
+                    <Score>70</Score>
+                    <NameStatus>Current</NameStatus>
+                    <FundTypeCode>SMF</FundTypeCode>
+                    <FundTypeDescription>ATO Regulated Self-Managed Superannuation Fund</FundTypeDescription>
+                </FundName>
+                <Location>
+                    <StateTerritoryCode>VIC</StateTerritoryCode>
+                    <Postcode>3000</Postcode>
+                </Location>
+            </MatchingFundName>
+            <MatchingFundName>
+                <ABN>
+                    <Value>34572138936</Value>
+                    <IdentifierStatus>Active</IdentifierStatus>
+                </ABN>
+                <FundName>
+                    <Name>The trustee for Lloyde.Com Superannuation Fund</Name>
+                    <NameType>Entity Name</NameType>
+                    <Score>70</Score>
+                    <NameStatus>Current</NameStatus>
+                    <FundTypeCode>SMF</FundTypeCode>
+                    <FundTypeDescription>ATO Regulated Self-Managed Superannuation Fund</FundTypeDescription>
+                </FundName>
+                <Location>
+                    <StateTerritoryCode>QLD</StateTerritoryCode>
+                    <Postcode>4064</Postcode>
+                </Location>
+            </MatchingFundName>
+            <MatchingFundName>
+                <ABN>
+                    <Value>72811552599</Value>
+                    <IdentifierStatus>Active</IdentifierStatus>
+                </ABN>
+                <FundName>
+                    <Name>The trustee for Saunders Lloyd Super Fund</Name>
+                    <NameType>Entity Name</NameType>
+                    <Score>70</Score>
+                    <NameStatus>Current</NameStatus>
+                    <FundTypeCode>SMF</FundTypeCode>
+                    <FundTypeDescription>ATO Regulated Self-Managed Superannuation Fund</FundTypeDescription>
+                </FundName>
+                <Location>
+                    <StateTerritoryCode>NT</StateTerritoryCode>
+                    <Postcode>0810</Postcode>
+                </Location>
+            </MatchingFundName>
+            <MatchingFundName>
+                <ABN>
+                    <Value>46301140686</Value>
+                    <IdentifierStatus>Active</IdentifierStatus>
+                </ABN>
+                <FundName>
+                    <Name>The trustee for The Lloyd Cruachan Superannuation Fund</Name>
+                    <NameType>Entity Name</NameType>
+                    <Score>70</Score>
+                    <NameStatus>Current</NameStatus>
+                    <FundTypeCode>SMF</FundTypeCode>
+                    <FundTypeDescription>ATO Regulated Self-Managed Superannuation Fund</FundTypeDescription>
+                </FundName>
+                <Location>
+                    <StateTerritoryCode>QLD</StateTerritoryCode>
+                    <Postcode>4105</Postcode>
+                </Location>
+            </MatchingFundName>
+            <MatchingFundName>
+                <ABN>
+                    <Value>78063204059</Value>
+                    <IdentifierStatus>Active</IdentifierStatus>
+                </ABN>
+                <FundName>
+                    <Name>The trustee for W &amp; A Lloyd Superannuation Fund</Name>
+                    <NameType>Entity Name</NameType>
+                    <Score>70</Score>
+                    <NameStatus>Current</NameStatus>
+                    <FundTypeCode>SMF</FundTypeCode>
+                    <FundTypeDescription>ATO Regulated Self-Managed Superannuation Fund</FundTypeDescription>
+                </FundName>
+                <Location>
+                    <StateTerritoryCode>ACT</StateTerritoryCode>
+                    <Postcode>2601</Postcode>
+                </Location>
+            </MatchingFundName>
+            <MatchingFundName>
+                <ABN>
+                    <Value>76292762112</Value>
+                    <IdentifierStatus>Active</IdentifierStatus>
+                </ABN>
+                <FundName>
+                    <Name>The trustee for the Stewart Lloyd Superannuation Fund</Name>
+                    <NameType>Entity Name</NameType>
+                    <Score>70</Score>
+                    <NameStatus>Current</NameStatus>
+                    <FundTypeCode>SMF</FundTypeCode>
+                    <FundTypeDescription>ATO Regulated Self-Managed Superannuation Fund</FundTypeDescription>
+                </FundName>
+                <Location>
+                    <StateTerritoryCode>WA</StateTerritoryCode>
+                    <Postcode>6148</Postcode>
+                </Location>
+            </MatchingFundName>
+        </MatchingFundNames201908>
+    </Response>
+</SuperFundNamesPayload>

@@ -1,3 +1,11 @@
+declare module "@salesforce/resourceUrl/ABNNameSearchDummyXML" {
+    var ABNNameSearchDummyXML: string;
+    export default ABNNameSearchDummyXML;
+}
+declare module "@salesforce/resourceUrl/ABNNumberSearchDummyXML" {
+    var ABNNumberSearchDummyXML: string;
+    export default ABNNumberSearchDummyXML;
+}
 declare module "@salesforce/resourceUrl/AMTickets19_20_21_22_24" {
     var AMTickets19_20_21_22_24: string;
     export default AMTickets19_20_21_22_24;

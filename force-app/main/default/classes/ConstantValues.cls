@@ -5,6 +5,9 @@ Created Date:   05/10/2018
 *********************************************************************************/
 global class ConstantValues{
 
+    //Check Rules Constant Values	
+    global static final string CHECKRULES_APPLICATION_ID_NULL = 'Application ID is null';
+
     //Lending Calculator Constant Values 
     global static final string TERM_VALIDATION_MSG='Please define the loan term.'; 
     global static final string APP_ALREADY_CONVERTED_MSG='Application has already been converted to Loan Application.';
@@ -202,6 +205,7 @@ global class ConstantValues{
     public static final String NO_PRICING_RECORDS_FOUND = 'No pricing records found';
     public static final String PRICING_SUCCESSFULLY_UPDATED = 'Pricing successfuly updated.';
     public static final String UNABLE_UPDATE_PRICING = 'Unable to update the pricing';
+    public static final String PRICING_RATE_DOES_MATCH = 'The current matrix rate is not in accordance with the interest obtained from Pricing table. Please click on the Generate Pricing button on Loan Details tab to proceed.';	
 
     //General constant
     public static final String GENERAL_ERROR = 'Something went wrong';
