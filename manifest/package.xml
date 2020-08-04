@@ -29,6 +29,20 @@
         <members>JsonObjectToArray</members>
         <members>JsonObjectToArrayTest</members>
         <members>LandTitleDocumentStatus</members>
+        
+        <!-- SMSF ABN changes made by Pratik -->
+        <members>SMSFABNNameSearchCallout</members>
+        <members>SMSFABNNameSearchAdapter</members>
+        <members>SMSFABNNameSearchHelper</members>
+        <members>SMSFSearchByABNNumberAdapter</members>
+	    <members>SMSFSearchByABNNumberCallout</members>
+        <members>SMSFSearchByABNNumberHelper</members>
+	    <members>SMSFABNNameSearchCalloutTest</members>
+        <members>SMSFABNNameSearchAdapterTest</members>
+	    <members>SMSFABNNameSearchHelperTest</members>
+        <members>SMSFSearchByABNNumberAdapterTest</members>
+	    <members>SMSFSearchByABNNumberCalloutTest</members>
+        <members>SMSFSearchByABNNumberHelperTest</members>
         <name>ApexClass</name>
     </types>
     <types>
