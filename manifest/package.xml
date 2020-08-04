@@ -20,49 +20,8 @@
         <name>ApexClass</name>
     </types>
     <types>
-        <members>Equifax_Referece__c.Client_Reference__c</members>
-        <members>clcommon__Collateral__c.Document_Enquiry_Id__c</members>
-        <members>clcommon__Collateral__c.Document_Retrived__c</members>
-        <members>clcommon__Collateral__c.Document_Status__c</members>
-        <members>clcommon__Collateral__c.Price_Paid_for_Document__c</members>
-        <members>clcommon__Collateral__c.Title_Search_Status__c</members>
-        <name>CustomField</name>
-    </types>
-    <types>
-        <members>Sample_Deliver_Document_Success_Response</members>
-        <members>Sample_Order_Document_Response</members>
-        <members>Sample_Title_Search_Response</members>
-        <name>StaticResource</name>
-    </types>
-    <types>
-        <members>Land_Title_Document_Status</members>
-        <name>ApexPage</name>
-    </types>
-    <version>48.0</version>
-</Package>
-<?xml version="1.0" encoding="UTF-8"?>
-<Package xmlns="http://soap.sforce.com/2006/04/metadata">
-    <types>
-        <members>ConstantValues</members>
-        <members>DocumentDeliveryCheckBatch</members>
-        <members>EquifaxCallout</members>
-        <members>EquifaxCalloutTest</members>
-        <members>EquifaxDeliverDocumentAdapter</members>
-        <members>EquifaxDeliverDocumentResponseHelper</members>
-        <members>EquifaxOrderDocumentResponseHelper</members>
-        <members>EquifaxOrderDocumentAdapter</members>
-        <members>EquifaxSearchTitleByAddressAdapter</members>
-        <members>EraseRedundantData</members>
-        <members>EraseRedundantDataTest</members>
-        <members>GenericUtility</members>
-        <members>GenericUtilityTestHelper</members>
-        <members>JsonObjectToArray</members>
-        <members>JsonObjectToArrayTest</members>
-        <members>LandTitleDocumentStatus</members>
-        <name>ApexClass</name>
-    </types>
-    <types>
-        <members>Equifax_Referece__c.Client_Reference__c</members>
+        <members>Equifax_Referece__c.Test_Environment__c</members>
+        <members>Equifax_Referece__c.Callback_Notify_url__c</members>
         <members>clcommon__Collateral__c.Document_Enquiry_Id__c</members>
         <members>clcommon__Collateral__c.Document_Retrived__c</members>
         <members>clcommon__Collateral__c.Document_Status__c</members>
