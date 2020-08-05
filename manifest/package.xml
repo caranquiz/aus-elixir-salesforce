@@ -230,6 +230,9 @@
 
         <!-- SMSF ABN changes made by Pratik -->
         <members>ABN_Search_SMSF__c</members>
+
+        <!-- Title Search Changes by Souvik -->
+        <members>Equifax_Referece__c</members>
         <name>CustomObject</name>
     </types>
     <types>
