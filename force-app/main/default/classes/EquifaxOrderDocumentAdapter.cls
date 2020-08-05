@@ -45,6 +45,9 @@ global class EquifaxOrderDocumentAdapter extends intframework.BaseIntegrationAda
                 requestbody += '<land:price-confirm-proceed/>';
               }
             }
+            if(equifaxRefObj != null && String.isNotBlank(equifaxRefObj.Callback_Notify_url__c)){
+                requestbody += '<land:callback-notify>' + equifaxRefObj.Callback_Notify_url__c + '</land:callback-notify>';
+            }
             if(orderTitleProceed != null){
                 requestbody += '<land:order-title-proceed>' + String.valueOf(orderTitleProceed) + '</land:order-title-proceed>';
             }

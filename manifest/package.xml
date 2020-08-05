@@ -205,12 +205,15 @@
         <members>genesis__Income__c.Satisfactory_Explanation_Provided_Render__c</members>
         <members>genesis__Income__c.Income_Consistent_with_Declaration_Rende__c</members>
 
-        <!-- Title Search chnages by Souvik -->
-        <members>Equifax_Referece__c.Client_Reference__c</members>
+        <!-- Title Search changes by Souvik -->
         <members>clcommon__Collateral__c.Document_Enquiry_Id__c</members>
         <members>clcommon__Collateral__c.Document_Retrived__c</members>
         <members>clcommon__Collateral__c.Document_Status__c</members>
         <members>clcommon__Collateral__c.Price_Paid_for_Document__c</members>
+
+        <!-- Custom Settings Fields by Souvik -->
+        <members>Equifax_Referece__c.Test_Environment__c</members>
+        <members>Equifax_Referece__c.Callback_Notify_url__c</members>
         <members>clcommon__Collateral__c.Title_Search_Status__c</members>
 
         <!-- SMSF ABN changes made by Pratik -->
