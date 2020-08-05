@@ -10,15 +10,15 @@ class gets called when post request on the mentioned url gets called. */
 /****************************************************************************************************/
 
 @RestResource(urlMapping='/DocumentStatus/*')
-global without sharing class LandTitleDocumentStatus {
+global class LandTitleDocumentStatus {
     @HttpPost
     global static void createRecord() {
-        RestRequest req = RestContext.request;
-        RestResponse res = RestContext.response;
         String enquiryId;
         String status;
         String dateTimeValue;
         String clientReference;
+        RestRequest req = RestContext.request;
+        RestResponse res = RestContext.response;
         try {
             Blob blb = req.requestBody;
             String requestBody = blb.toString();
@@ -72,15 +72,22 @@ global without sharing class LandTitleDocumentStatus {
             collateralObj.Document_Status__c = status;
             collateralObj.Document_Enquiry_Id__c = enquiryId;
             Database.update(collateralObj);
+            // Responding to Equifax's notify-event request
             res.statusCode = 200;
             res.addHeader('Content-Type', 'application/soap+xml');
             res.responseBody = Blob.valueOf(ConstantValues.RES_HEADER + '<enquiry-id>' + enquiryId + '</enquiry-id>\n'
             + '<status>' + status + '</status>\n' + '<date-time>' + dateTimeValue + '</date-time>\n' + ConstantValues.RES_FOOTER);
+            // Inserting Integration Log on SUCCESS status
+            GenericUtility.insertRestResourceIntegrationLog('@RestResource|:LandTitleDocumentStatus', (req.requestBody).toString(), (res.responseBody).toString());
         } catch (Exception ex) {
+            // Responding to Equifax's notify-event request
             res.statusCode = 500;
             res.addHeader('Content-Type', 'application/soap+xml');
-            res.responseBody = Blob.valueOf(ConstantValues.RES_HEADER + '<errors><error><error-detail>'
-            + ex.getMessage() + '</error-detail></error></errors>' + ConstantValues.RES_FOOTER);
+            res.responseBody = Blob.valueOf(ConstantValues.RES_HEADER + '<errors><error>'
+            + '<error-description>' + ex.getMessage() + '</error-description><error-detail>'
+            + 'Exception type caught: ' + ex.getTypeName() + '</error-detail></error></errors>' + ConstantValues.RES_FOOTER);
+            // Inserting Integration Log on FAILED status
+            GenericUtility.insertRestResourceIntegrationLog('@RestResource|:LandTitleDocumentStatus', true, (req.requestBody).toString(), (res.responseBody).toString(), ex);
         }
     }
 }

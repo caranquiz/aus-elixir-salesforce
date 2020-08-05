@@ -92,13 +92,27 @@ private class EquifaxCalloutTest{
         clcommon__Collateral__c col = GenericUtilityTestHelper.getCollateral('', '342', 'Hammond','Rd', 'DANDENONG', 'VIC','3175');
         col.Document_Enquiry_Id__c = '140805-MFNYX-0000O';
         update col;
+        clcommon__Document_Category__c docCat = new clcommon__Document_Category__c();
+        docCat.clcommon__Category_Name__c = ConstantValues.TITLE_SEARCH_DOCUMENT_CATEGORY_NAME;
+        docCat.clcommon__Collateral__c = col.Id;
+        insert docCat;
+        List<intframework__Integration_Family__c> intFamilies = [SELECT Id FROM intframework__Integration_Family__c];
+        System.assertEquals(intFamilies.size(), 1, 'Integration Family record is not inserted');
+        List<intframework__Integration_API_Type__c> intApiTypes = [SELECT Id FROM intframework__Integration_API_Type__c];
+        System.assertEquals(intApiTypes.size(), 3, 'Integration API Type records are not inserted');
+        List<intframework__Integration_Provider__c> intProviders = [SELECT Id FROM intframework__Integration_Provider__c];
+        System.assertEquals(intProviders.size(), 3, 'Integration Provider records are not inserted');
+        List<intframework__Integration_Configuration__c> intConfigs = [SELECT Id FROM intframework__Integration_Configuration__c];
+        System.assertEquals(intConfigs.size(), 3, 'Integration Configuration records are not inserted');
+        List<intframework__Integration_API_Configuration__c> intApiConfigs = [SELECT Id FROM intframework__Integration_API_Configuration__c];
+        System.assertEquals(intApiConfigs.size(), 3, 'Integration API Configuration records are not inserted');
     }
     @isTest
     static void testTitleSearchWithMockResponse() {
         List<clcommon__Collateral__c> collateralList = [SELECT Id FROM clcommon__Collateral__c];
         Test.setMock(HttpCalloutMock.class, new Mock());
         Test.startTest();
-        String responseString = EquifaxCallout.equifaxTitleSearch(collateralList[0].Id);
+        String responseString = EquifaxCallout.equifaxTitleSearch(collateralList[0].Id, true);
         Test.stopTest();
         List<clcommon__Log__c> logList = [SELECT Id, clcommon__Message__c FROM clcommon__Log__c];
         for(clcommon__Log__c each : logList){
@@ -112,7 +126,7 @@ private class EquifaxCalloutTest{
         List<clcommon__Collateral__c> collateralList = [SELECT Id FROM clcommon__Collateral__c];
         Test.setMock(HttpCalloutMock.class, new Mock());
         Test.startTest();
-        String responseString = EquifaxCallout.equifaxOrderDocument('1234','VIC',collateralList[0].Id);
+        String responseString = EquifaxCallout.equifaxOrderDocument('1234','VIC',collateralList[0].Id, true);
         Test.stopTest();
         List<clcommon__Log__c> logList = [SELECT Id, clcommon__Message__c FROM clcommon__Log__c];
         for(clcommon__Log__c each : logList){

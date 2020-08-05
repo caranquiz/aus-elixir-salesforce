@@ -258,11 +258,6 @@
         <name>StaticResource</name>
     </types>
     <types>
-        <!-- Title Search Changes added by Souvik -->
-        <members>Land_Title_Document_Status</members>
-        <name>ApexPage</name>
-    </types>
-    <types>
         <!-- SMSF ABN changes made by Pratik -->
         <members>ABNSearchSMSF</members>
         <members>SearchByABNNumber</members>
