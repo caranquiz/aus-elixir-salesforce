@@ -206,6 +206,7 @@
         <members>genesis__Income__c.Income_Consistent_with_Declaration_Rende__c</members>
 
         <!-- Title Search changes by Souvik -->
+        <members>Equifax_Referece__c.Client_Reference__c</members>
         <members>clcommon__Collateral__c.Document_Enquiry_Id__c</members>
         <members>clcommon__Collateral__c.Document_Retrived__c</members>
         <members>clcommon__Collateral__c.Document_Status__c</members>
