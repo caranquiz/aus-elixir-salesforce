@@ -206,6 +206,7 @@
         <members>genesis__Income__c.Income_Consistent_with_Declaration_Rende__c</members>
 
         <!-- Title Search changes by Souvik -->
+        <members>Equifax_Referece__c.Client_Reference__c</members>
         <members>clcommon__Collateral__c.Document_Enquiry_Id__c</members>
         <members>clcommon__Collateral__c.Document_Retrived__c</members>
         <members>clcommon__Collateral__c.Document_Status__c</members>
@@ -229,6 +230,9 @@
 
         <!-- SMSF ABN changes made by Pratik -->
         <members>ABN_Search_SMSF__c</members>
+
+        <!-- Title Search Changes by Souvik -->
+        <members>Equifax_Referece__c</members>
         <name>CustomObject</name>
     </types>
     <types>

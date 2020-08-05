@@ -569,4 +569,14 @@ public with sharing class GenericUtility {
     }
     return streetType;
   }
+  public static void isValid(String value,String msg){
+    if(String.isBlank(value)){
+      throw new CustomException(msg);
+    }
+  }
+  public static void isListValid(List<Map<String, Object>> value, String msg){
+    if(value.isEmpty()){
+      throw new CustomException(msg);
+    }
+  }
 }
