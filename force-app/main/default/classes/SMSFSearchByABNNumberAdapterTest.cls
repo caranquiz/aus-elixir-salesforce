@@ -1,4 +1,5 @@
 /******************************************************************************************************************
+  Description : This class gives test coverage for SMSFSearchByABNNumberAdapter class
   Testing Scenario 1  : (testMethod1) This method tests SMSFSearchByABNNumberAdapter class's createRequest method with valid
   initialized data.
   Testing Scenario 2  : (testMethod2) This method tests SMSFSearchByABNNumberAdapter class's createRequest method with no
@@ -9,6 +10,13 @@
 
 @isTest
 public class SMSFSearchByABNNumberAdapterTest {
+    @TestSetup
+    static void makeData(){
+        ABN_Search_SMSF__c guidInfo = GenericUtilityTestHelper.createCustomSettingGUID(ConstantValues.GUID_VALUE,
+        ConstantValues.ACTIVE_FUNDS_ONLY_VALUE,
+        ConstantValues.MAX_SEARCH_RESULTS_VALUE);
+        System.assertNotEquals(guidInfo,null,'Custom Setting not inserted successfully');
+    }
     @isTest
     static void testMethod1() {
         Map<String, Object> filledInRequestMap = new Map<String, Object>();
@@ -16,17 +24,18 @@ public class SMSFSearchByABNNumberAdapterTest {
         intframework.IntegrationAPIConfiguration apiConfig = new intframework.IntegrationAPIConfiguration();
         SMSFSearchByABNNumberAdapter abnAdapter = new SMSFSearchByABNNumberAdapter();
         Map<String, Object> tempMap = new Map<String, Object>();
+        ABN_Search_SMSF__c guidInfo = ABN_Search_SMSF__c.getInstance();
 
         //Mapping data for forming request with a valid data      
-        tempMap.put('guid', 'c4726ad0-af04-4d8d-987b-d15966cd1cfd');
+        tempMap.put(ConstantValues.GUID, guidInfo.GUID__c);
         guidList.add(tempMap);
 
-        filledInRequestMap.put('abndata', '58560158971');
-        filledInRequestMap.put('guidinfo', guidList);
+        filledInRequestMap.put(ConstantValues.ABN_NUMBER, '58560158971');
+        filledInRequestMap.put(ConstantValues.GUID_INFO, guidList);
       
-        apiConfig.httpMethod = 'GET';
-        apiConfig.requestTimeout = 12000;
-        apiConfig.apiNamedCredential = 'https://superfundlookup.gov.au/xmlsearch/SflXmlSearch.asmx/SearchByABN2015';
+        apiConfig.httpMethod = ConstantValues.HTTP_METHOD;
+        apiConfig.requestTimeout = ConstantValues.REQUEST_TIMEOUT;
+        apiConfig.apiNamedCredential = ConstantValues.NUMBER_NAMED_CREDENTIAL;
      
         abnAdapter.setApiConfiguration(apiConfig);
 
@@ -53,11 +62,12 @@ public class SMSFSearchByABNNumberAdapterTest {
         intframework.IntegrationAPIConfiguration apiConfig = new intframework.IntegrationAPIConfiguration();
         SMSFSearchByABNNumberAdapter abnAdapter = new SMSFSearchByABNNumberAdapter();
 
-        filledInRequestMap.put('abndata', '58560158971');
+        //Mapping data for forming request with a valid data 
+        filledInRequestMap.put(ConstantValues.ABN_NUMBER, '58560158971');
       
-        apiConfig.httpMethod = 'GET';
-        apiConfig.requestTimeout = 12000;
-        apiConfig.apiNamedCredential = 'https://superfundlookup.gov.au/xmlsearch/SflXmlSearch.asmx/SearchByABN2015';
+        apiConfig.httpMethod = ConstantValues.HTTP_METHOD;
+        apiConfig.requestTimeout = ConstantValues.REQUEST_TIMEOUT;
+        apiConfig.apiNamedCredential = ConstantValues.NUMBER_NAMED_CREDENTIAL;
      
         abnAdapter.setApiConfiguration(apiConfig);
 

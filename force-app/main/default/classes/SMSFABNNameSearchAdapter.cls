@@ -1,47 +1,44 @@
 /****************************************************************************************************/
-/* Description : This class fetches the ABN search result response from ABN Lookup by using SMSF Name. */
+/* Description : This class fetches the ABN search result response from ABNSearchSMSFAPI config by using SMSF Name. */
 /****************************************************************************************************/
 
 global with sharing class SMSFABNNameSearchAdapter extends intframework.BaseIntegrationAdapter {
-
+  //Wrapper class to store different parts of request URL
+  public class RequestURL{
+    String endPoint;
+    String name;
+    String guid;
+    String activeFundsOnly;
+    String maxSearchResults;
+  }
+  RequestURL reqURL = new RequestURL();
     global override intframework.BaseIntegrationRequest createRequest(Map<String, Object> relatedObjectIds, Map<String, Object> filledInRequestMap) {
       try {
         intframework.BaseIntegrationRequest httpReq = new intframework.BaseIntegrationRequest();
-        String abn = (String) filledInRequestMap.get('abndata');
+        String abn = (String) filledInRequestMap.get(ConstantValues.ABN_DATA);
 
-        // BASIC ABN NUMBER VALIDATION CHECK
-        List<Map<String, Object>> guidList = (List<Map<String, Object>>) filledInRequestMap.get('guidInfo');
-        listValidation(guidList,': GUID is null or blank');
+        List<Map<String, Object>> guidList = (List<Map<String, Object>>) filledInRequestMap.get(ConstantValues.GUID_INFO);
 
-        String guid = (String) guidList[0].get('guid');
-        // This method will throw exception if the guid is null or blank
-        validation(guid,': GUID is null or blank');
+        //GUID
+        reqURL.guid = (String) guidList[0].get(ConstantValues.GUID);
 
         //activeFundsOnly
-        String activeFundsOnly = (String) guidList[0].get('activeFundsOnly');
-        validation(activeFundsOnly,': Active Funds Only is null or blank');
+        reqURL.activeFundsOnly = (String) guidList[0].get(ConstantValues.ACTIVE_FUNDS_ONLY);
 
         //maxSearchResults
-        String maxSearchResults = (String) guidList[0].get('maxSearchResults');
-        validation(maxSearchResults,': Maximum Search Results is null or blank');
+        reqURL.maxSearchResults = (String) guidList[0].get(ConstantValues.MAX_SEARCH_RESULTS); 
 
-        List<Map<String, Object>> nameList = (List<Map<String, Object>>) filledInRequestMap.get('partyinfo');
-        listValidation(nameList,': Name is null or blank');
+        //Name of trust to be searched
+        List<Map<String, Object>> nameList = (List<Map<String, Object>>) filledInRequestMap.get(ConstantValues.PARTY_INFO);
+        reqURL.name = (String) nameList[0].get(ConstantValues.ABN_TRUST_NAME);
 
-        String name = (String) nameList[0].get('name');
-        validation(name,': Name is null or blank');
-
-        //Validating named credential
-        validation(apiConfig.apiNamedCredential,': API named credential is null or blank');
+        //Validating values
+        validate(guidList,nameList,apiConfig.apiNamedCredential);
 
         //forming url for requesting response
-        String ndPoint = 'callout:' + apiConfig.apiNamedCredential;
-        name = '?name=' + name;
-        guid = '&guid=' + guid;
-        activeFundsOnly = '&activeFundsOnly=' + activeFundsOnly;
-        maxSearchResults = '&maxSearchResults=' + maxSearchResults;
-        String url = ndPoint + name + guid + activeFundsOnly + maxSearchResults;
-
+        reqURL.endPoint = 'callout:' + apiConfig.apiNamedCredential;
+        String url = getURL();
+        
         httpReq.setEndpoint(url);
         return httpReq;
       } 
@@ -50,6 +47,32 @@ global with sharing class SMSFABNNameSearchAdapter extends intframework.BaseInte
         return null;
       }
     }
+    //Method to form Request URL
+    public String getURL(){
+      reqURL.name = '?name=' + reqURL.name;
+      reqURL.guid = '&guid=' + reqURL.guid;
+      reqURL.activeFundsOnly = '&activeFundsOnly=' + reqURL.activeFundsOnly;
+      reqURL.maxSearchResults = '&maxSearchResults=' + reqURL.maxSearchResults;
+      String url = reqURL.endPoint + reqURL.name + reqURL.guid + reqURL.activeFundsOnly + reqURL.maxSearchResults;
+      return url;
+    }
+    //Method for validation of values
+    public void validate(List<Map<String, Object>> guidList,List<Map<String, Object>> nameList, String namedCredential){
+      //Validating GUID info
+      GenericUtility.isListValid(guidList,ConstantValues.GUID_EXCEPTION);
+      //GUID
+      GenericUtility.isValid(reqURL.guid,ConstantValues.GUID_EXCEPTION);
+      //ActiveFundsOnly
+      GenericUtility.isValid(reqURL.activeFundsOnly,ConstantValues.ACTIVE_FUNDS_ONLY_EXCEPTION);
+      //MaxSearchResults
+      GenericUtility.isValid(reqURL.maxSearchResults,ConstantValues.MAX_SEARCH_RESULTS_EXCEPTION);
+      //Validating Name of trust to be searched
+      GenericUtility.isListValid(nameList,ConstantValues.ABN_TRUST_NAME_EXCEPTION);
+      GenericUtility.isValid(reqURL.name,ConstantValues.ABN_TRUST_NAME_EXCEPTION);
+      //Validating named credential
+      GenericUtility.isValid(namedCredential,ConstantValues.NAMED_CREDENTIAL_EXCEPTION);
+    }
+    //Methods below are for test classes to get mock response
     global override virtual String generateRequestBody(Map<String, Object> filledInRequestMap) {
       return '';
     }
@@ -65,16 +88,6 @@ global with sharing class SMSFABNNameSearchAdapter extends intframework.BaseInte
       } catch (Exception ex) {
         GenericUtility.insertLog('SMSFABNNameSearchAdapter', ex);
         return null;
-      }
-    }
-    public static void validation(String value,String msg){
-      if(String.isBlank(value)){
-        throw new CustomException(msg);
-      }
-    }
-    public static void listValidation(List<Map<String, Object>> value, String msg){
-      if(value.isEmpty()){
-        throw new CustomException(msg);
       }
     }
   }

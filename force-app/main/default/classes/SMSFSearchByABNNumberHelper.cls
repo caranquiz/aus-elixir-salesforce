@@ -1,5 +1,6 @@
 /****************************************************************************************************/
-/* Description          : This class is used to convert response json into POJO object */
+/* Description : This class is used to convert response from SuperFundLookup for SMSF ABN Number Search
+                 json format into POJO object */
 /****************************************************************************************************/
 
 public class SMSFSearchByABNNumberHelper {
@@ -121,6 +122,7 @@ public class SMSFSearchByABNNumberHelper {
         public Cls_Code code;
         public Cls_Description description;
     }
+    //method to parse the response from SuperFundLookup
     public static SMSFSearchByABNNumberHelper parse(String json) {
         try {
             return (SMSFSearchByABNNumberHelper) System.JSON.deserialize(json, SMSFSearchByABNNumberHelper.class);

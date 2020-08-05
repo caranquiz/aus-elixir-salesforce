@@ -1,5 +1,5 @@
 /****************************************************************************************************/
-/* Description          : This class fetches the ABN search result response from ABN Lookup by using ABN Number. */
+/* Description : This class fetches the ABN search result response from SearchByABNNumber by using ABN Number. */
 /****************************************************************************************************/
 
 global with sharing class SMSFSearchByABNNumberAdapter extends intframework.BaseIntegrationAdapter {
@@ -7,21 +7,15 @@ global with sharing class SMSFSearchByABNNumberAdapter extends intframework.Base
     global override intframework.BaseIntegrationRequest createRequest(Map<String, Object> relatedObjectIds, Map<String, Object> filledInRequestMap) {
       try {
         intframework.BaseIntegrationRequest httpReq = new intframework.BaseIntegrationRequest();
-        String abn = (String) filledInRequestMap.get('abnnumber');
+        String abn = (String) filledInRequestMap.get(ConstantValues.ABN_NUMBER);
 
         // BASIC ABN NUMBER VALIDATION CHECK
-        List<Map<String, Object>> guidList = (List<Map<String, Object>>) filledInRequestMap.get(
-          'guidinfo'
-        );
-        if(guidList.isEmpty()){
-          throw new CustomException(': GUID is null or blank');
-        }
-        String guid = (String) guidList[0].get('guid');
+        List<Map<String, Object>> guidList = (List<Map<String, Object>>) filledInRequestMap.get(ConstantValues.GUID_INFO);
+        GenericUtility.isListValid(guidList,ConstantValues.GUID_EXCEPTION);
+        String guid = (String) guidList[0].get(ConstantValues.GUID);
         // This method will throw exception if the guid is null or blank
-        if(String.isBlank(guid)){
-          throw new CustomException(': GUID is null or blank');
-        }
-        
+        GenericUtility.isValid(guid,ConstantValues.GUID_EXCEPTION);
+
         //forming url for requesting response
         String ndPoint = 'callout:' + apiConfig.apiNamedCredential;
         String url = ndPoint + '?abn=' + abn + '&guid=' + guid;
@@ -34,7 +28,7 @@ global with sharing class SMSFSearchByABNNumberAdapter extends intframework.Base
         return null;
       }
     }
-
+    //Methods below are for test classes to get mock response
     global override virtual String generateRequestBody(Map<String, Object> filledInRequestMap) {
       return '';
     }

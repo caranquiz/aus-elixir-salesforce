@@ -1,5 +1,6 @@
 /****************************************************************************************************/
-/* Description          : This class is used to convert response json into POJO object */
+/* Description : This class is used to convert response from SuperFundLookup for SMSF Name Search
+                 json format into POJO object */
 /****************************************************************************************************/
 
 public class SMSFABNNameSearchHelper {
@@ -97,6 +98,7 @@ public class SMSFABNNameSearchHelper {
     public class Cls_Postcode {
         public String nodeValue;
     }
+    //method for parsing the response from SuperFundLookup
     public static SMSFABNNameSearchHelper parse(String json) {
         try {
             if(json != null){

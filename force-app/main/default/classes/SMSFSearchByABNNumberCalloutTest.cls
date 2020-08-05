@@ -10,63 +10,38 @@ class SMSFSearchByABNNumberCalloutTest{
     @TestSetup
     static void makeData(){
         //Inserting GUID custom settings
-        ABN_Search_SMSF__c guidInfo = new ABN_Search_SMSF__c(GUID__c = 'c4726ad0-af04-4d8d-987b-d15966cd1cfd');
-        insert guidInfo;
+        ABN_Search_SMSF__c guidInfo = GenericUtilityTestHelper.createCustomSettingGUID(ConstantValues.GUID_VALUE,
+        ConstantValues.ACTIVE_FUNDS_ONLY_VALUE,
+        ConstantValues.MAX_SEARCH_RESULTS_VALUE);
         System.assertNotEquals(guidInfo,null,'Custom Setting not inserted successfully');
         //Inserting Account
-        Account acc = new Account();
-        acc.Name = 'Llloyds';
-        insert acc;
+        Account acc = GenericUtilityTestHelper.createAccount();
         System.assertNotEquals(acc,null,'Account not inserted successfully');
         //Inserting Party
-        clcommon__Party__c party = new clcommon__Party__c();
-        party.clcommon__Account__c = acc.Id;
-        insert party;
+        clcommon__Party__c party = GenericUtilityTestHelper.createParty(acc);
         System.assertNotEquals(party,null,'Party not inserted successfully');
         //Inserting Integration Family
-        intframework__Integration_Family__c family = new intframework__Integration_Family__c();
-        family.Name = 'ABNSearchSMSF';
-        insert family;
+        intframework__Integration_Family__c family = GenericUtilityTestHelper.getFamily(ConstantValues.FAMILY_NAME);
         System.assertNotEquals(family,null,'Family not inserted successfully');
         //Inserting Integration API Type
-        intframework__Integration_API_Type__c apiType = new intframework__Integration_API_Type__c();
-        apiType.Name = 'SearchByABNNumberAPI';
-        apiType.intframework__Integration_Family__c = family.Id;
-        insert apiType;
+        intframework__Integration_API_Type__c apiType = GenericUtilityTestHelper.getIntegrationAPIType(family.Id,ConstantValues.NUMBER_API_TYPE);
         System.assertNotEquals(apiType,null,'API Type not inserted successfully');
         //Inserting Integration Provider
-        intframework__Integration_Provider__c provider = new intframework__Integration_Provider__c();
-        provider.Name = 'SearchByABNNumber';
-        provider.intframework__Active__c = true;
-        provider.intframework__Integration_Family__c = family.Id;
-        provider.intframework__Product_Name__c = 'testProduct';
-        provider.intframework__Product_Version__c = '1.0';
-        provider.intframework__Provider_Name__c = 'testProvider';
-        provider.intframework__Support_Type__c = 'Custom';
-        insert provider;
+        intframework__Integration_Provider__c provider = GenericUtilityTestHelper.getIntegrationProvider(family.Id,ConstantValues.NUMBER_PROVIDER);
         System.assertNotEquals(provider,null,'Provider not inserted successfully');
         //Inserting Integration Configuration
-        intframework__Integration_Configuration__c config = new intframework__Integration_Configuration__c();
-        config.Name = 'SearchByABNNumber config';
-        config.intframework__Integration_Provider__c = provider.Id;
-        insert config;
+        intframework__Integration_Configuration__c config = GenericUtilityTestHelper.getIntegrationConfiguration(provider.Id,ConstantValues.NUMBER_CONFIGURATION);
         System.assertNotEquals(config,null,'Configuration not inserted successfully');
         //Inserting API Configuration
-        intframework__Integration_API_Configuration__c apiConfig = new intframework__Integration_API_Configuration__c();
-        apiConfig.Name = 'SearchByABNNumber';
-        apiConfig.intframework__Adapter_Class_Name__c = 'SMSFSearchByABNNumberAdapter';
-        apiConfig.intframework__Use_Response_Mocker__c = true;
-        apiConfig.intframework__HTTP_Method__c = 'GET';
-        apiConfig.intframework__API_Named_Credential__c = 'SearchByABNNumber';
-        apiConfig.intframework__API_Endpoint__c = '';
-        apiConfig.intframework__Execution_Priority__c = 1;
-        apiConfig.intframework__Request_Mapping__c = '{"thirdPartySystem":{"name":"abnRequest","dynamicDataParameters":[{"externalField":"abnnumber"}],"filters":[{"objectAPI":"ABN_Search_SMSF__c","objectAlias":"guidinfo","fields":[{"externalField":"guid","fieldAPI":"GUID__c"}],"whereClause":""}]}}';
-        apiConfig.intframework__Response_Mapping__c = '';
-        apiConfig.intframework__Integration_Family__c = family.Id;
-        apiConfig.intframework__Integration_API_Type__c = apiType.Id;
-        apiConfig.intframework__Integration_Provider__c = provider.Id;
-        apiConfig.intframework__Integration_Configuration__c = config.Id;
-        insert apiConfig;
+        intframework__Integration_API_Configuration__c apiConfig = GenericUtilityTestHelper.getIntegrationAPIConfiguration(family.Id,
+        apiType.Id,
+        provider.Id,
+        config.Id,
+        ConstantValues.NUMBER_ADAPTER_CLASS,
+        ConstantValues.HTTP_METHOD,
+        'SearchByABNNumber',
+        '',
+        ConstantValues.NUMBER_REQUEST_MAPPING);
         System.assertNotEquals(apiConfig,null,'API configuration not inserted succesfully');
     } 
     /* Mock class returns response from static resource depending on endpoint being called */
