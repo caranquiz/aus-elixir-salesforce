@@ -1,7 +1,15 @@
 /****************************************************************************************************/
-/* Class Name: JsonObjectToArray */
-/* Developed By: Souvik Dey */
-/* Description : This class is used to convert json objects into json array */
+/* Company              : Cloudkaptan Consultancy Services Pvt. Ltd. */
+/* Class Name           : JsonObjectToArray */
+/* Created Date         : 01/08/2020 */
+/* Developed By         : Souvik */
+/* Description          : In the new integration framework the XmlToJson class's parseDocumentToMap
+method converts xml format string into json format string. When response returns multiple data in xml
+converting it to json will create an array but if response returns single data in xml converting it to
+json will create an object. This issue is fixed using this class. This class will convert json objects
+into arrays by specifying the key. */
+/* Last Modified Date   : 04/08/2020 */
+/* Last Modified By     : Souvik */
 /****************************************************************************************************/
 
 public without sharing class JsonObjectToArray {
@@ -27,7 +35,7 @@ public without sharing class JsonObjectToArray {
         secondBraceCount -= 1;
       }
     }
-    public Boolean processData(Integer ind, String query) {
+    Boolean processData(Integer ind, String query) {
       if (rest.subString(ind, ind + 1) == '[' && flag == false) {
         root += start;
         modifyRecur(rest, query);
@@ -49,7 +57,7 @@ public without sharing class JsonObjectToArray {
       }
       return false;
     }
-    public void modifyRecur(String queryString, String query) {
+    void modifyRecur(String queryString, String query) {
       if (query == null) {
         return;
       }

@@ -5,16 +5,16 @@
 /* Developed By         : Souvik */
 /* Description          : This class is called from the skuid to erase redundant data (when not rendered)
 if already stored in the back end. This class has some limitations, they are
-1. Evaluation expression serial numbers needs to be between 0-9
+1. Evaluation expression serial numbers needs to be between 0 to 9
 2. Evaluation expression cannot consist braces */
 /* Last Modified Date   : 16/07/2020 */
 /* Last Modified By     : Souvik */
 /*********************************************************************************************************/
 
 global with sharing class EraseRedundantData {
-    private static Map<String, Rendering_Criteria__c> fieldCriteriaMap = new Map<String, Rendering_Criteria__c>();
     private static Map<String, Map<Integer, Boolean>> fieldCriteriaResultMap = new Map<String, Map<Integer, Boolean>>();
     private static List<Map<String, Map<Integer, Boolean>>> fieldCriteriaResultMapList = new List<Map<String, Map<Integer, Boolean>>>();
+    static Boolean isRendered;
 
     /* This method handles if the specified serial number in the evaluation expression does not contains any
     render criteria result */
@@ -27,25 +27,34 @@ global with sharing class EraseRedundantData {
     }
     // This method evaluates the specified expression string and returns a boolean value
     private static Boolean evaluteResultByExpression(String expression, Map<Integer, Boolean> indexBooleanMap){
+        Integer firstSerialNumberIndex;
+        Integer firstSerialNumber;
+        Integer nextSerialNumberIndex;
+        Integer nextSerialNumber;
+        String operator;
+        Integer refIndex;
+        Boolean refResult;
+        Integer numberCount;
+        Integer index;
         try{
-            Integer numberCount = expression.countMatches('$');
+            numberCount = expression.countMatches('$');
             // If no serial number specified returns false
             if(numberCount == 0){
                 return true;
             }
             if(numberCount == 1){
-                Integer index = expression.indexOf('$') + 1;
+                index = expression.indexOf('$') + 1;
                 return !returnReultAtIndex(Integer.valueOf(expression.subString(index, index+1)), indexBooleanMap);
             }
-            Integer refIndex = 0;
-            Boolean refResult;
-            for(Integer index = 0; index < numberCount - 1; index += 1){
+            refIndex = 0;
+            
+            for(index = 0; index < numberCount - 1; index += 1){
                 if(refIndex == 0){
-                    Integer firstSerialNumberIndex = expression.indexOf('$', 0);
-                    Integer firstSerialNumber = Integer.valueOf(expression.subString(firstSerialNumberIndex + 1, firstSerialNumberIndex + 2));
-                    Integer nextSerialNumberIndex = expression.indexOf('$', firstSerialNumberIndex + 1);
-                    Integer nextSerialNumber = Integer.valueOf(expression.subString(nextSerialNumberIndex + 1, nextSerialNumberIndex + 2));
-                    String operator = expression.subString(firstSerialNumberIndex + 2, nextSerialNumberIndex).trim();
+                    firstSerialNumberIndex = expression.indexOf('$', 0);
+                    firstSerialNumber = Integer.valueOf(expression.subString(firstSerialNumberIndex + 1, firstSerialNumberIndex + 2));
+                    nextSerialNumberIndex = expression.indexOf('$', firstSerialNumberIndex + 1);
+                    nextSerialNumber = Integer.valueOf(expression.subString(nextSerialNumberIndex + 1, nextSerialNumberIndex + 2));
+                    operator = expression.subString(firstSerialNumberIndex + 2, nextSerialNumberIndex).trim();
                     switch on operator {
                         when '&&' {
                             refResult = (returnReultAtIndex(firstSerialNumber, indexBooleanMap) && returnReultAtIndex(nextSerialNumber, indexBooleanMap));
@@ -57,9 +66,9 @@ global with sharing class EraseRedundantData {
                     refIndex = nextSerialNumberIndex + 2;
                 }
                 else{
-                    Integer nextSerialNumberIndex = expression.indexOf('$', refIndex);
-                    Integer nextSerialNumber = Integer.valueOf(expression.subString(nextSerialNumberIndex + 1, nextSerialNumberIndex + 2));
-                    String operator = expression.subString(refIndex, nextSerialNumberIndex).trim();
+                    nextSerialNumberIndex = expression.indexOf('$', refIndex);
+                    nextSerialNumber = Integer.valueOf(expression.subString(nextSerialNumberIndex + 1, nextSerialNumberIndex + 2));
+                    operator = expression.subString(refIndex, nextSerialNumberIndex).trim();
                     switch on operator {
                         when '&&' {
                             refResult = (refResult && returnReultAtIndex(nextSerialNumber, indexBooleanMap));
@@ -133,6 +142,7 @@ global with sharing class EraseRedundantData {
     }
     // Returns mathing result, in case of exception always returns true
     public static Boolean checkIfDataMatched(String actualData, String expectedData, String matchingType){
+        List<String> valueList;
         try{
             if(matchingType == null){
                 return true;
@@ -141,8 +151,7 @@ global with sharing class EraseRedundantData {
                 expectedData = null;
             }
             if(actualData != null && actualData.contains(';')){
-                Boolean multiValResult = checkIfDataMatchedForMultivaluedActualData(actualData, expectedData, matchingType);
-                return multiValResult;
+                return checkIfDataMatchedForMultivaluedActualData(actualData, expectedData, matchingType);
             }
             switch on matchingType {
                 when '==' {
@@ -201,9 +210,9 @@ global with sharing class EraseRedundantData {
                 }
                 when 'IN' {
                     if(actualData == null && expectedData == null){
-                        return false;
+                        return true;
                     }
-                    List<String> valueList = expectedData.split('\n');
+                    valueList = expectedData.split('\n');
                     for(String each : valueList){
                         if((each == null || each.trim().equalsIgnoreCase('null')) && actualData == null){
                             return true;
@@ -214,7 +223,10 @@ global with sharing class EraseRedundantData {
                     return false;
                 }
                 when 'NOT IN' {
-                    List<String> valueList = expectedData.split('\n');
+                    if(actualData == null && expectedData == null){
+                        return false;
+                    }
+                    valueList = expectedData.split('\n');
                     for(String each : valueList){
                         if((each == null || each.trim().equalsIgnoreCase('null')) && actualData == null){
                             return false;
@@ -243,10 +255,12 @@ global with sharing class EraseRedundantData {
         );
     }
     webService static void eraseHiddenFieldsDataOf(String objectName, Id paramId){
+        Map<String, Schema.SObjectField> fieldMapForChild;
+        List<Id> renderedFieldIds = new List<Id>();
+        Set<String> fieldNames = new Set<String>();
+        SObject objectData;
         try{
-            Map<String, Schema.SObjectField> fieldMapForChild = Schema.getGlobalDescribe().get(objectName).getDescribe().fields.getMap();
-            List<Id> renderedFieldIds = new List<Id>();
-            Set<String> fieldNames = new Set<String>();
+            fieldMapForChild = Schema.getGlobalDescribe().get(objectName).getDescribe().fields.getMap();
             List<Rendered_Field__c> renderedFields = [
                 SELECT Id,
                 Name,
@@ -277,7 +291,7 @@ global with sharing class EraseRedundantData {
             for(Rendering_Criteria__c each : renderCriteriaList){
                 fieldNames.add(each.Related_Field__c);
             }
-            SObject objectData = getDataOfTheSObject(objectName, paramId, fieldNames);
+            objectData = getDataOfTheSObject(objectName, paramId, fieldNames);
             for(Rendering_Criteria__c each : renderCriteriaList){
                 Map<Integer, Boolean> serialCriteriaResultMap;
                 if(fieldCriteriaResultMap.get(each.Rendered_Field__r.Name) != null){
@@ -306,11 +320,18 @@ global with sharing class EraseRedundantData {
         }
     }
     webService static void eraseHiddenFieldsDataOfMultipleRecords(String objectName, String listOfIds){
+        List<String> ids;
+        Map<String, Schema.SObjectField> fieldMapForChild;
+        List<Id> renderedFieldIds = new List<Id>();
+        Set<String> fieldNames = new Set<String>();
+        List<Boolean> shouldClearList;
+        List<SObject> objectDataList;
+        Map<Integer, Boolean> serialCriteriaResultMap;
+        Integer index = 0;
+        Boolean shouldClear;
         try{
-            List<String> ids = listOfIds.split(';');
-            Map<String, Schema.SObjectField> fieldMapForChild = Schema.getGlobalDescribe().get(objectName).getDescribe().fields.getMap();
-            List<Id> renderedFieldIds = new List<Id>();
-            Set<String> fieldNames = new Set<String>();
+            ids = listOfIds.split(';');
+            fieldMapForChild = Schema.getGlobalDescribe().get(objectName).getDescribe().fields.getMap();
             List<Rendered_Field__c> renderedFields = [
                 SELECT Id,
                 Name,
@@ -341,10 +362,9 @@ global with sharing class EraseRedundantData {
             for(Rendering_Criteria__c each : renderCriteriaList){
                 fieldNames.add(each.Related_Field__c);
             }
-            List<SObject> objectDataList = getDataOfTheSObject(objectName, ids, fieldNames);
+            objectDataList = getDataOfTheSObject(objectName, ids, fieldNames);
             for(SObject objectData : objectDataList){
                 for(Rendering_Criteria__c each : renderCriteriaList){
-                    Map<Integer, Boolean> serialCriteriaResultMap;
                     if(fieldCriteriaResultMap.get(each.Rendered_Field__r.Name) != null){
                         serialCriteriaResultMap = fieldCriteriaResultMap.get(each.Rendered_Field__r.Name);
                         serialCriteriaResultMap.put(Integer.valueOf(each.Serial_Number__c), checkRenderingCriteria(objectData, each));
@@ -357,10 +377,8 @@ global with sharing class EraseRedundantData {
                 }
                 fieldCriteriaResultMapList.add(fieldCriteriaResultMap);
             }
-            List<Boolean> shouldClearList;
-            Integer index = 0;
+            
             for(Map<String,Map<Integer,Boolean>> fieldCriteriaResultMap : fieldCriteriaResultMapList){
-                Boolean shouldClear;
                 for(Rendered_Field__c each : renderedFields){
                     shouldClear = evaluteResultByExpression(each.Evaluation_Expression__c, fieldCriteriaResultMap.get(each.Name));
                     if(shouldClear){
@@ -377,7 +395,6 @@ global with sharing class EraseRedundantData {
             GenericUtility.insertLog('EraseRedundantData', ex);
         }
     }
-    static Boolean isRendered;
     webService static void eraseHiddenObjectData(
         String objectName,
         String sectionName,
@@ -415,10 +432,16 @@ global with sharing class EraseRedundantData {
         String listOffieldNamesIfFieldData,
         Boolean shouldClearField
     ){
+        List<String> ids;
+        List<String> fieldNameIfFieldDataList;
+        List<SObject> relatedObjectRecords;
+        Map<Integer, Boolean> serialCriteriaResultMap;
+        List<Id> renderedFieldIds = new List<Id>();
+        Set<String> fieldNames = new Set<String>();
+        SObject objectData;
         try{
-            List<String> ids = listOfIds.split(';');
-            List<String> fieldNameIfFieldDataList = listOffieldNamesIfFieldData.split(';');
-            List<SObject> relatedObjectRecords;
+            ids = listOfIds.split(';');
+            fieldNameIfFieldDataList = listOffieldNamesIfFieldData.split(';');
             if(!isFieldData){
                 relatedObjectRecords = Database.query('SELECT Id FROM ' + renderedObjectName + ' WHERE Id IN: Ids');
                 // If field rendering is mentioned explicitly then deleting the records
@@ -441,8 +464,6 @@ global with sharing class EraseRedundantData {
                     return;
                 }
             }
-            List<Id> renderedFieldIds = new List<Id>();
-            Set<String> fieldNames = new Set<String>();
             Rendered_Field__c renderedField = [
                 SELECT Id,
                 Name,
@@ -477,12 +498,11 @@ global with sharing class EraseRedundantData {
             for(Rendering_Criteria__c each : renderCriteriaList){
                 fieldNames.add(each.Related_Field__c);
             }
-            SObject objectData = getDataOfTheSObject(objectName, paramId, fieldNames);
+            objectData = getDataOfTheSObject(objectName, paramId, fieldNames);
             if(objectData == null){
                 return;
             }
             for(Rendering_Criteria__c each : renderCriteriaList){
-                Map<Integer, Boolean> serialCriteriaResultMap;
                 if(fieldCriteriaResultMap.get(each.Rendered_Field__r.Name) != null){
                     serialCriteriaResultMap = fieldCriteriaResultMap.get(each.Rendered_Field__r.Name);
                     serialCriteriaResultMap.put(Integer.valueOf(each.Serial_Number__c), checkRenderingCriteria(objectData, each));
