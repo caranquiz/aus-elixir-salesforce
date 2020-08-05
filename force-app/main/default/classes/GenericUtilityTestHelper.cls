@@ -242,4 +242,16 @@ public with sharing class GenericUtilityTestHelper {
     insert guidInfo;
     return guidInfo;
  }
+ public static List<genesis__Rule__c> returnRule(){
+   genesis__Rule__c ruleOne = new genesis__Rule__c(genesis__Object_Type__c = 'Application',Name = 'Rule One',genesis__Enabled__c = true);
+   genesis__Rule__c ruleTwo = new genesis__Rule__c(genesis__Object_Type__c = 'Application',Name = 'Rule Two',genesis__Enabled__c = true);
+   genesis__Rule__c ruleThree = new genesis__Rule__c(genesis__Object_Type__c = 'Application',Name = 'Rule Three',genesis__Enabled__c = true);
+   List<genesis__Rule__c> ruleLists = new List<genesis__Rule__c>();
+   ruleLists.add(ruleOne);
+   ruleLists.add(ruleTwo);
+   ruleLists.add(ruleThree);
+   //Inserting rule
+   insert ruleLists;
+   return ruleLists;
+ }
 }
