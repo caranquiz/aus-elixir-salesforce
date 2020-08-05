@@ -4,7 +4,8 @@
 /* Created Date         : 01/08/2020 */
 /* Developed By         : Souvik */
 /* Description          : This batch class does query on the collaterals for which order document
-has been done previously and do callout with the enquiry Id for delivery document. */
+has been done previously and do callout with the enquiry Id for delivery document. This batch class
+should be executed passing 1 in the batchSize parameter. */
 /* Last Modified Date   : 01/08/2020 */
 /* Last Modified By     : Souvik */
 /****************************************************************************************************/
@@ -17,11 +18,14 @@ public class DocumentDeliveryCheckBatch implements Database.Batchable<sObject>, 
         return Database.getQueryLocator(query);
     }
     public void execute(Database.BatchableContext bc, List<SObject> scope) {
-        if(scope == null || scope.isEmpty()){
-            return;
-        }
-        for(SObject each : scope){
+        try{
+            if(scope == null || scope.isEmpty()){
+                return;
+            }
             EquifaxCallout.equifaxDeliverDocument((Id)scope[0].get('Id'));
+        }
+        catch(Exception ex){
+            GenericUtility.insertLog('DocumentDeliveryCheckBatch', ex);
         }
     }
     public void finish(Database.BatchableContext bc){}

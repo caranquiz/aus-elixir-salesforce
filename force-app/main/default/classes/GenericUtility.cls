@@ -40,6 +40,30 @@ public with sharing class GenericUtility {
       )
     );
   }
+  // This method is used to insert Integration Logs
+  public static void insertRestResourceIntegrationLog(String name, String requestLog, String responseLog){
+    insertRestResourceIntegrationLog(name, false, requestLog, responseLog, (Exception) null);
+  }
+  public static void insertRestResourceIntegrationLog(String name, Boolean isFailed, String requestLog, String responseLog, Exception ex) {
+    String status;
+    String errorMessage;
+    if(isFailed) {
+      status = 'FAILED';
+      errorMessage = name + '|::Exception Occured in::' + ex.getStackTraceString() + '|::Error::' + ex.getMessage() +
+      ' at Line Number::' + ex.getLineNumber();
+    } else {
+      status = 'SUCCESS';
+      errorMessage = name + '|::No Exception Occured';
+    }
+    Database.insert(
+      new intframework__Integration_Log__c(
+        intframework__Error_Message__c = errorMessage,
+          intframework__Request_Log__c = requestLog,
+          intframework__Response_Log__c = responseLog,
+          intframework__Processing_Status__c = status
+      )
+    );
+  }
   public static String modifyJsonKeysIntoCamelcasing(String json){
     json = json.replaceAll(
     'NodeValue',

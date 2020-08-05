@@ -38,6 +38,14 @@ private class EraseRedundantDataTest{
         GenericUtilityTestHelper.insertRenderingCriteria(
             renderedFieldConfig.Id, 1, 'clcommon__Archived__c', '==', 'false'
         );
+        List<Account> acctList = [SELECT Id FROM Account];
+        System.assertEquals(acctList.size(), 1, 'Account is not inserted');
+        List<Contact> conList = [SELECT Id FROM Contact];
+        System.assertEquals(conList.size(), 1, 'Contact is not inserted');
+        List<Rendered_Field__c> renFieldList = [SELECT Id FROM Rendered_Field__c];
+        System.assertEquals(renFieldList.size(), 2, 'Rendered Field record is not inserted');
+        List<Rendering_Criteria__c> renCriteriaList = [SELECT Id FROM Rendering_Criteria__c];
+        System.assertEquals(renCriteriaList.size(), 4, 'Rendering Criteria records aren\'t inserted');
     }
     @isTest
     static void testFieldDataErased(){
@@ -93,5 +101,12 @@ private class EraseRedundantDataTest{
         System.assert(true == EraseRedundantData.checkIfDataMatched('11', '15', '<'), 'Data not matched');
         System.assert(true == EraseRedundantData.checkIfDataMatched('d1', 'd2', '<'), 'Data not matched');
         System.assert(true == EraseRedundantData.checkIfDataMatched((String) null, 'd2', '<'), 'Data not matched');
+        System.assert(true == EraseRedundantData.checkIfDataMatched('null', 'null\n12\n11', 'IN'), 'Data not matched');
+        System.assert(true == EraseRedundantData.checkIfDataMatched((String) null, 'null\n12', 'IN'), 'Data not matched');
+        System.assert(true == EraseRedundantData.checkIfDataMatched((String) null, (String) null, 'IN'), 'Data not matched');
+        System.assert(false == EraseRedundantData.checkIfDataMatched('null', 'null\n12\n19', 'NOT IN'), 'Data not matched');
+        System.assert(false == EraseRedundantData.checkIfDataMatched((String) null, 'null\n12', 'NOT IN'), 'Data not matched');
+        System.assert(false == EraseRedundantData.checkIfDataMatched((String) null, (String) null, 'NOT IN'), 'Data not matched');
+        // Check If Data Matched for Multivalued Actual Data with Single Expected Data
     }
 }
