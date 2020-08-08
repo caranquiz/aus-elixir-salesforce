@@ -76,7 +76,7 @@ global class LandTitleDocumentStatus {
             res.statusCode = 200;
             res.addHeader('Content-Type', 'application/soap+xml');
             res.responseBody = Blob.valueOf(ConstantValues.RES_HEADER + '<enquiry-id>' + enquiryId + '</enquiry-id>\n'
-            + '<status>' + status + '</status>\n' + '<date-time>' + dateTimeValue + '</date-time>\n' + ConstantValues.RES_FOOTER);
+            + '<status>ACK</status>\n' + '<date-time>' + dateTimeValue + '</date-time>\n' + ConstantValues.RES_FOOTER);
             // Inserting Integration Log on SUCCESS status
             GenericUtility.insertRestResourceIntegrationLog('@RestResource|:LandTitleDocumentStatus', (req.requestBody).toString(), (res.responseBody).toString());
         } catch (Exception ex) {

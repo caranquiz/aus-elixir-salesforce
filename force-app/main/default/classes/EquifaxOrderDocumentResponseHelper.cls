@@ -58,6 +58,10 @@ public class EquifaxOrderDocumentResponseHelper{
             }catch(Exception ex){}
             try{
                 orderDocdata.exceptionData = helperObject.envelope.body.orderDocumentResponse.errors.error[0].errorDetail.nodeValue;
+                if(String.isNotBlank(orderDocdata.exceptionData)){
+                    GenericUtility.insertLog('Equifax/orderDocument', new CustomException(orderDocdata.exceptionData));
+                    orderDocdata.exceptionData = ConstantValues.GENERAL_EXCEPTION;
+                }
             }catch(Exception ex){}
             try{
                 orderDocdata.priceValue = helperObject.envelope.body.orderDocumentResponse.orderDocumentResponseData.priceValue.nodeValue;

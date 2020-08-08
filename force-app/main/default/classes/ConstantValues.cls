@@ -252,11 +252,13 @@ global class ConstantValues{
  public static final String US_ID = 'Id';
  public static final String HS_STATUS = '-status';
  public static final String US_STATUS = 'Status';
+ public static final String HS_CODE = '-code';
+ public static final String US_CODE = 'Code';
  public static final String LANDTITLE_KEY = '"landTitle"';
  public static final String ERROR_KEY = '"error"';
  public static final String NO_COLLATERAL = 'No collateral found';
  public static final String NO_ENQUIRY_ID = 'Document Enquiry Id missing';
- public static final String ORDER_DOC_SUCCESS = 'Order Successfully Placed';
+ public static final String ORDER_DOC_SUCCESS = 'Order has been Successfully Placed';
  public static final String INVALID_RESPONSE = 'Invalid Response Structure';
  public static final String DOCUMENT_ATTACHMENT_PREFIX = 'TITLE||DOCUMENT||';
  public static final String TITLE_SEARCH_DOCUMENT_CATEGORY_NAME = 'Title Search Document';

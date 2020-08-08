@@ -153,6 +153,10 @@ public with sharing class GenericUtility {
     ConstantValues.HS_TIME,
     ConstantValues.US_TIME
     );
+    json = json.replaceAll(
+    ConstantValues.HS_CODE,
+    ConstantValues.US_CODE
+    );
     return json;
   }
   public static String convert2StreetTypeCode(String streetType) {
