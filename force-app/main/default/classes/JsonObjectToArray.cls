@@ -57,7 +57,7 @@ public without sharing class JsonObjectToArray {
       }
       return false;
     }
-    void modifyRecur(String queryString, String query) {
+    public void modifyRecur(String queryString, String query) {
       if (query == null) {
         return;
       }

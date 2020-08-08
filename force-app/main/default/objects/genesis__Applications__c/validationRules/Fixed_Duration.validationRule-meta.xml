@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Fixed_Duration</fullName>
-    <active>true</active>
+    <active>false</active>
     <errorConditionFormula>IF ((AND((NOT(ISNULL(Fixed_Rate_Term__c))), (OR((Fixed_Rate_Term__c &gt; 60),(Fixed_Rate_Term__c&gt; genesis__Term__c))))), true, false)</errorConditionFormula>
-    <errorMessage>Fixed Duration (Months) should not greater than 60 months and can&apos;t exceed Term Duration (Months).</errorMessage>
+    <errorMessage>Fixed Duration (Months) should not greater than 60 months and can&apos;t exceed Loan Term Duration (Months).</errorMessage>
 </ValidationRule>
