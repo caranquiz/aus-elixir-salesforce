@@ -146,7 +146,7 @@ global with sharing class EquifaxCallout {
                 AND clcommon__Collateral__c =:collateralObj.Id
             ];
             //Attaching the retrieved document with the collateral
-            if(!docCatList.isEmpty()){
+            if(!docCatList.isEmpty() && documentData.documentAttachment != null){
                 clcommon__Document_Category__c docCat = docCatList[0];
                 clcommon__Category_Attachment_Association__c attachDoc = new clcommon__Category_Attachment_Association__c();
                 attachDoc.Name = documentData.documentAttachment.Name;
@@ -154,11 +154,11 @@ global with sharing class EquifaxCallout {
                 attachDoc.clcommon__Document_Category__c = docCat.Id;
                 Database.insert(attachDoc);
             }
-            return System.JSON.serialize(documentData);
         }
         catch(Exception ex){
             GenericUtility.insertLog('EquifaxCallout', ex);
+            documentData.exceptionData = ConstantValues.GENERAL_ERROR;
         }
-        return ConstantValues.GENERAL_ERROR;
+        return System.JSON.serialize(documentData);
     }
 }

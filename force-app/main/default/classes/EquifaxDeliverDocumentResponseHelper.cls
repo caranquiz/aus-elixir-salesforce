@@ -47,8 +47,12 @@ public class EquifaxDeliverDocumentResponseHelper{
     }
     class Cls_error {
         Cls_errorDetail errorDetail;
+        Cls_errorCode errorCode;
     }
     class Cls_errorDetail {
+        String nodeValue;
+    }
+    class Cls_errorCode {
         String nodeValue;
     }
 
@@ -75,6 +79,10 @@ public class EquifaxDeliverDocumentResponseHelper{
             }catch(Exception ex){}
             try {
                 ltDocumentData.exceptionData = helperObject.envelope.body.deliverDocumentResponse.errors.error[0].errorDetail.nodeValue;
+                if(String.isNotBlank(ltDocumentData.exceptionData)){
+                    GenericUtility.insertLog('Equifax/deliverDocument', new CustomException(ltDocumentData.exceptionData));
+                    ltDocumentData.exceptionData = ConstantValues.GENERAL_EXCEPTION;
+                }
             } catch (Exception ex) {}
         }
         catch(Exception ex){
