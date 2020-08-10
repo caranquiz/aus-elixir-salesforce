@@ -6,12 +6,12 @@
 
 global with sharing class SMSFSearchByABNNumberCallout {
     private static SMSFSearchByABNNumberHelper parserObject = new SMSFSearchByABNNumberHelper();
-    webservice static String searchByABNNumber(String abn) {
+    webservice static String searchByABNNumber(String abn, String partyId) {
       if(String.isBlank(abn)){
         parserObject.errMessage = ConstantValues.ABN_NUMBER_EMPTY;
         return JSON.serialize(parserObject);
       }
-      
+      List<clcommon__Party__c> partyList = new List<clcommon__Party__c>([SELECT Id, Flag_Party__c FROM clcommon__Party__c WHERE Id =: partyId]);
       Map<String, Object> requestParamMap = new Map<String, Object>();
       requestParamMap.put(ConstantValues.ABN_NUMBER, abn);
       dom.Document doc = new dom.Document();
@@ -44,6 +44,8 @@ global with sharing class SMSFSearchByABNNumberCallout {
         Converting the SearchByABNNumberHelper class response object into JSON string format
         to be able to process it in skuid javascript snippet.
         */
+        partyList.get(0).Flag_Party__c = true;
+        Update partyList;
         return System.JSON.serialize(result);
       } 
       catch (Exception ex) {

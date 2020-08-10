@@ -231,6 +231,7 @@ public with sharing class GenericUtilityTestHelper {
  clcommon__Party__c party = new clcommon__Party__c();
  party.clcommon__Account__c = acc.Id;
  party.ABN_Company_Name__c = 'Llloyds';
+ party.Flag_Party__c = false;
  insert party;
  return party;
  }

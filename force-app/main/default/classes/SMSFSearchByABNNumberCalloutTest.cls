@@ -73,9 +73,10 @@ class SMSFSearchByABNNumberCalloutTest{
     }
     @isTest
     static void testSearchByABNNumber() {
+        clcommon__Party__c party = [SELECT Id FROM clcommon__Party__c WHERE clcommon__Account__r.Name = 'Llloyds'];
         Test.setMock(HttpCalloutMock.class, new Mock());
         Test.startTest();
-        String responseString = SMSFSearchByABNNumberCallout.searchByABNNumber('58560158971');
+        String responseString = SMSFSearchByABNNumberCallout.searchByABNNumber('58560158971',party.Id);
         System.assert(responseString != null, 'ABN Response fetch error');
         Test.stopTest();
     }
@@ -93,9 +94,10 @@ class SMSFSearchByABNNumberCalloutTest{
         );
         intApiConfig[0].intframework__API_Endpoint__c = 'nothing';
         update intApiConfig;
+        clcommon__Party__c party = [SELECT Id FROM clcommon__Party__c WHERE clcommon__Account__r.Name = 'Llloyds'];
         Test.setMock(HttpCalloutMock.class, new Mock());
         Test.startTest();
-        String responseString = SMSFSearchByABNNumberCallout.searchByABNNumber('58560158971');
+        String responseString = SMSFSearchByABNNumberCallout.searchByABNNumber('58560158971', party.Id);
         System.assert(responseString != null, 'ABN Response fetch error');
         Test.stopTest();
     }   
