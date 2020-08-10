@@ -26,6 +26,11 @@
                 <default>false</default>
                 <label>Non-complying</label>
             </value>
+            <value>
+                <fullName>This ABN has been cancelled and the fund may no longer be operating</fullName>
+                <default>false</default>
+                <label>This ABN has been cancelled and the fund may no longer be operating</label>
+            </value>
         </valueSetDefinition>
     </valueSet>
 </CustomField>
