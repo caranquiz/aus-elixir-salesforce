@@ -31,6 +31,21 @@
                 <default>false</default>
                 <label>This ABN has been cancelled and the fund may no longer be operating</label>
             </value>
+            <value>
+                <fullName>Election to be regulated is being processed</fullName>
+                <default>false</default>
+                <label>Election to be regulated is being processed</label>
+            </value>
+            <value>
+                <fullName>Regulation details removed</fullName>
+                <default>false</default>
+                <label>Regulation details removed</label>
+            </value>
+            <value>
+                <fullName>Regulation details withheld</fullName>
+                <default>false</default>
+                <label>Regulation details withheld</label>
+            </value>
         </valueSetDefinition>
     </valueSet>
 </CustomField>

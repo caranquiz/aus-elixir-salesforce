@@ -21,24 +21,27 @@ global with sharing class SMSFABNNameSearchAdapter extends intframework.BaseInte
 
         //GUID
         reqURL.guid = (String) guidList[0].get(ConstantValues.GUID);
+        reqURL.guid = (String) EncodingUtil.urlEncode(reqURL.guid,'UTF-8');
 
         //activeFundsOnly
         reqURL.activeFundsOnly = (String) guidList[0].get(ConstantValues.ACTIVE_FUNDS_ONLY);
-
+        reqURL.activeFundsOnly = (String) EncodingUtil.urlEncode(reqURL.activeFundsOnly,'UTF-8');
+        
         //maxSearchResults
         reqURL.maxSearchResults = (String) guidList[0].get(ConstantValues.MAX_SEARCH_RESULTS); 
-
+        reqURL.maxSearchResults = (String) EncodingUtil.urlEncode(reqURL.maxSearchResults,'UTF-8');
+        
         //Name of trust to be searched
         List<Map<String, Object>> nameList = (List<Map<String, Object>>) filledInRequestMap.get(ConstantValues.PARTY_INFO);
         reqURL.name = (String) nameList[0].get(ConstantValues.ABN_TRUST_NAME);
-
+        reqURL.name = (String) EncodingUtil.urlEncode(reqURL.name,'UTF-8');
+        
         //Validating values
         validate(guidList,nameList,apiConfig.apiNamedCredential);
 
         //forming url for requesting response
         reqURL.endPoint = 'callout:' + apiConfig.apiNamedCredential;
         String url = getURL();
-        
         httpReq.setEndpoint(url);
         return httpReq;
       } 

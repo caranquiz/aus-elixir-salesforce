@@ -7,7 +7,7 @@
 global with sharing class SMSFSearchByABNNumberCallout {
     private static SMSFSearchByABNNumberHelper parserObject = new SMSFSearchByABNNumberHelper();
     webservice static String searchByABNNumber(String abn, String partyId) {
-      if(String.isBlank(abn)){
+      if(String.isBlank(abn) || String.isBlank(partyId)){
         parserObject.errMessage = ConstantValues.ABN_NUMBER_EMPTY;
         return JSON.serialize(parserObject);
       }

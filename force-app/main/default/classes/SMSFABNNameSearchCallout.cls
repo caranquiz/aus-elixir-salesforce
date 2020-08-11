@@ -33,6 +33,14 @@ global with sharing class SMSFABNNameSearchCallout {
         parserObject.errMessage = ConstantValues.GENERAL_EXCEPTION;
         return JSON.serialize(parserObject);
       }
+      if(responseObject.getBody().contains('<Exception>')){
+          String excep = responseObject.getBody().substringBetween('<Exception>','</Exception>');
+          String excepCode = responseObject.getBody().substringBetween('<Code>','</Code>');
+          String excepDescription = responseObject.getBody().substringBetween('<Description>','</Description>');
+          if(excepCode == 'WEBSERVICES'){
+              throw new CustomException(excepDescription);
+          }
+      }
       doc.load(responseObject.getBody());
       // Changing the response format from String to Map
       Map<String, Object> responseMap = intframework.XmlToJson.parseDocumentToMap(doc);
