@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Credit_Account__c</fullName>
+    <externalId>false</externalId>
+    <label>Credit Account</label>
+    <referenceTo>Credit_Account__c</referenceTo>
+    <relationshipLabel>Payment Defaults</relationshipLabel>
+    <relationshipName>Payment_Defaults</relationshipName>
+    <relationshipOrder>0</relationshipOrder>
+    <reparentableMasterDetail>false</reparentableMasterDetail>
+    <trackTrending>false</trackTrending>
+    <type>MasterDetail</type>
+    <writeRequiresMasterRead>false</writeRequiresMasterRead>
+</CustomField>
