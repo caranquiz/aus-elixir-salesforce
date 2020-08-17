@@ -22,6 +22,14 @@ declare module "@salesforce/resourceUrl/CustomSkuidPagesSKTHEMEZIP" {
     var CustomSkuidPagesSKTHEMEZIP: string;
     export default CustomSkuidPagesSKTHEMEZIP;
 }
+declare module "@salesforce/resourceUrl/EquifaxMockResponse" {
+    var EquifaxMockResponse: string;
+    export default EquifaxMockResponse;
+}
+declare module "@salesforce/resourceUrl/EquifaxXMLBody" {
+    var EquifaxXMLBody: string;
+    export default EquifaxXMLBody;
+}
 declare module "@salesforce/resourceUrl/ORDEFinancial_Logo" {
     var ORDEFinancial_Logo: string;
     export default ORDEFinancial_Logo;

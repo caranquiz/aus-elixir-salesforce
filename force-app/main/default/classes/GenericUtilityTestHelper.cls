@@ -255,4 +255,11 @@ public with sharing class GenericUtilityTestHelper {
    insert ruleLists;
    return ruleLists;
  }
+ public static EquifaxOrdIdSearch__c createCustomSettingCreds(String subscriberIdentifier, String security){
+  EquifaxOrdIdSearch__c equifaxOrgIdSearchObj = new EquifaxOrdIdSearch__c();
+  equifaxOrgIdSearchObj.Subscriber_Identifier__c = subscriberIdentifier;
+  equifaxOrgIdSearchObj.Security__c = security;
+  insert equifaxOrgIdSearchObj;
+  return equifaxOrgIdSearchObj;
+ }
 }

@@ -321,4 +321,33 @@ global class ConstantValues{
  public static final String INVALID_ABN = 'Invalid ABN';
  public static final String PARTY_ID_EMPTY = 'Party Id is empty';
  public static final String ABN_NUMBER_EMPTY ='ABN field is empty';
+
+  //Equifax Director Org Id Search
+  public static final String EQUIFAX_CREDS = 'credentials';
+  public static final String SUBSCRIBER_IDENTIFIER = 'subscriberIdentifier';
+  public static final String SECURITY = 'security';
+  public static final String PARTY_NAME = 'name';
+  public static final String EQUIFAX_API_TYPE = 'Equifax Org Id Search API';
+  public static final String EQUIFAX_FAMILY_NAME = 'Equifax Org Id Search';
+  public static final String INVALID_REQUEST = 'Invalid Request';
+  public static final String EQUIFAX_ABN_NUMBER = 'abnNumber';
+  public static final String EQUIFAX_XML_REQUEST_BODY = 'equifaxXMLRequestBody';
+  public static final String EQUIFAX_XML_BODY = 'EquifaxXMLBody';
+  public static final String BCA_ERROR = 'BCAerror';
+  public static final String BCA_ERROR_DESCRIPTION_TAG = '<BCAerror-description>';
+  public static final String BCA_ERROR_DESCRIPTION_CLOSE_TAG = '</BCAerror-description>';
+  public static final String CS_SUBSCRIBER_IDENTIFIER = 'CSsubscriberIdentifier';
+  public static final String CS_SECURITY = 'CSsecurity';
+  public static final String REQUEST_BODY_PARTY_NAME = 'partyName';
+  public static final String USERNAME = 'username';
+  public static final String PASSWORD = 'password';
+  public static final String REQUEST_ABN_NUMBER = 'ABNNumber';
+  public static final String CREDENTIAL_USERNAME = '{!$Credential.UserName}';
+  public static final String CREDENTIAL_PASSWORD = '{!$Credential.Password}';
+  public static final String EQUIFAX_CRED_EXCEP = 'Equifax Credentials is null or blank';
+  public static final String PARTY_NAME_EXCEP = 'Party Name is null or blank';
+  public static final String SUBSCRIBER_IDENTIFIER_EXCEP = 'Subsrciber Identifier is null or blank';
+  public static final String SECURITY_EXCEP = 'Security is null or blank';
+  public static final String EQUIFAX_REQUEST_MAPPING = '{"thirdPartySystem":{"name":"EquifaxOrgIdSearch","dynamicDataParameters":[{"externalField":"equifaxXMLRequestBody"},{"externalField":"abnNumber"}],"filters":[{"objectAPI":"clcommon__Party__c","objectAlias":"partyInfo","fields":[{"externalField":"name","fieldAPI":"Name"}],"whereClause":"Id = :partyId"},{"objectAPI":"EquifaxOrdIdSearch__c","objectAlias":"credentials","fields":[{"externalField":"subscriberIdentifier","fieldAPI":"Subscriber_Identifier__c"},{"externalField":"security","fieldAPI":"Security__c"}],"whereClause":""}]}}';
+  public static final String ABN_SEARCH_NUMBER = '46006261623';
 }
