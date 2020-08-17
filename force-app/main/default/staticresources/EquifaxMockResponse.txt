@@ -1,0 +1,555 @@
+<?xml version="1.0"?>
+<BCAmessage service-request-id="00374732305" type="RESPONSE">
+    <BCAservices>
+        <BCAservice>
+            <BCAservice-code>BCA020</BCAservice-code>
+            <BCAservice-code-version>V00</BCAservice-code-version>
+            <BCAservice-client-ref>PAR-00000000</BCAservice-client-ref>
+            <BCAservice-data>
+                <response version="1-36-1">
+                    <org-id-result>
+                        <match-name>UNITED SUPER PTY LTD</match-name>
+                        <organisation-number>006261623</organisation-number>
+                        <organisation-type>P/L</organisation-type>
+                        <australian-business-number>46006261623</australian-business-number>
+                        <organisation-number-heading>ACN</organisation-number-heading>
+                        <asic-report>
+                            <asic-name>UNITED SUPER PTY LTD</asic-name>
+                            <asic-organisation-number>006261623</asic-organisation-number>
+                            <asic-a-b-n>46006261623</asic-a-b-n>
+                            <asic-organisation-number-heading>ACN</asic-organisation-number-heading>
+                            <asic-type>APTY</asic-type>
+                            <asic-status>REGD</asic-status>
+                            <asic-state>VIC</asic-state>
+                            <asic-jurisdiction>ASIC</asic-jurisdiction>
+                            <asic-locality>MELBOURNE</asic-locality>
+                            <asic-address-state>VIC</asic-address-state>
+                            <asic-postcode>3000</asic-postcode>
+                        </asic-report>
+                        <australian-business-register-report>
+                            <ASICNumber>006261623</ASICNumber>
+                            <ASICNumberType>undetermined</ASICNumberType>
+                            <ABN>46006261623</ABN>
+                            <ABNStatus>ACT</ABNStatus>
+                            <ABNStatusFromDate>1999-11-01</ABNStatusFromDate>
+                            <EntityTypeInd>PRV</EntityTypeInd>
+                            <EntityTypeText>Australian Private Company</EntityTypeText>
+                            <Non-IndividualName>UNITED SUPER PTY LTD</Non-IndividualName>
+                            <BusinessAddressState>VIC</BusinessAddressState>
+                            <BusinessAddressPostcode>3000</BusinessAddressPostcode>
+                            <GSTStatus>ACT</GSTStatus>
+                            <GSTStatusFromDate>2000-07-01</GSTStatusFromDate>
+                            <TradingName>UNITED SUPER</TradingName>
+                        </australian-business-register-report>
+                        <bureau-report>
+                            <address first-reported="2007-02-15" type="trading-address">
+                                <street-number>2</street-number>
+                                <property>28 CASSELDEN PLACE</property>
+                                <street-name>LONSDALE</street-name>
+                                <street-type code="ST"/>
+                                <suburb>MELBOURNE</suburb>
+                                <state>VIC</state>
+                                <postcode>3000</postcode>
+                            </address>
+                            <last-search-date>2017-06-08</last-search-date>
+                            <bureau-reference>168779060</bureau-reference>
+                            <bca-company-type>P/L</bca-company-type>
+                            <bca-name>UNITED SUPER</bca-name>
+                        </bureau-report>
+                        <asic-bnr-report>
+                            <business-name-holder>
+                                <ABN>46006261623</ABN>
+                                <abr-entity-name>UNITED SUPER PTY LTD</abr-entity-name>
+                                <organisation>
+                                    <name>UNITED SUPER PTY LTD</name>
+                                    <ACN>006261623</ACN>
+                                </organisation>
+                                <associated-business-names>
+                                    <business-name>
+                                        <registered-business-name>CBUS</registered-business-name>
+                                        <veda-business-name-id>$GKJMOJKFF</veda-business-name-id>
+                                    </business-name>
+                                    <business-name>
+                                        <registered-business-name>CBUS</registered-business-name>
+                                        <veda-business-name-id>$GKIMLLLFF</veda-business-name-id>
+                                    </business-name>
+                                    <business-name>
+                                        <registered-business-name>CBUS</registered-business-name>
+                                        <veda-business-name-id>$GKIMMGKNK</veda-business-name-id>
+                                    </business-name>
+                                    <business-name>
+                                        <registered-business-name>CBUS</registered-business-name>
+                                        <veda-business-name-id>$GKJHOGFFJ</veda-business-name-id>
+                                    </business-name>
+                                    <business-name>
+                                        <registered-business-name>CBUS</registered-business-name>
+                                        <veda-business-name-id>$GKIMJIJIN</veda-business-name-id>
+                                    </business-name>
+                                    <business-name>
+                                        <registered-business-name>CBUSMAIL</registered-business-name>
+                                        <veda-business-name-id>$OHMGHHGK</veda-business-name-id>
+                                    </business-name>
+                                    <business-name>
+                                        <registered-business-name>CBUS</registered-business-name>
+                                        <veda-business-name-id>$GKIMGIMLG</veda-business-name-id>
+                                    </business-name>
+                                    <business-name>
+                                        <registered-business-name>CBUS</registered-business-name>
+                                        <veda-business-name-id>$GKJNIGMMM</veda-business-name-id>
+                                    </business-name>
+                                </associated-business-names>
+                            </business-name-holder>
+                        </asic-bnr-report>
+                    </org-id-result>
+                    <org-id-result>
+                        <match-name>CBUS </match-name>
+                        <organisation-number>F00143648</organisation-number>
+                        <organisation-type>*</organisation-type>
+                        <australian-business-number>46006261623</australian-business-number>
+                        <organisation-number-heading>Number</organisation-number-heading>
+                        <state>ACT</state>
+                        <australian-business-register-report>
+                            <ASICNumber>006261623</ASICNumber>
+                            <ASICNumberType>undetermined</ASICNumberType>
+                            <ABN>46006261623</ABN>
+                            <ABNStatus>ACT</ABNStatus>
+                            <ABNStatusFromDate>1999-11-01</ABNStatusFromDate>
+                            <EntityTypeInd>PRV</EntityTypeInd>
+                            <EntityTypeText>Australian Private Company</EntityTypeText>
+                            <Non-IndividualName>UNITED SUPER PTY LTD</Non-IndividualName>
+                            <BusinessAddressState>VIC</BusinessAddressState>
+                            <BusinessAddressPostcode>3000</BusinessAddressPostcode>
+                            <GSTStatus>ACT</GSTStatus>
+                            <GSTStatusFromDate>2000-07-01</GSTStatusFromDate>
+                            <TradingName>UNITED SUPER</TradingName>
+                        </australian-business-register-report>
+                        <bureau-report>
+                            <address first-reported="2020-07-24" type="trading-address">
+                                <street-number>2</street-number>
+                                <street-name>BADHAM</street-name>
+                                <street-type code="ST"/>
+                                <suburb>DICKSON</suburb>
+                                <state>ACT</state>
+                                <postcode>2602</postcode>
+                            </address>
+                            <last-search-date>2020-07-24</last-search-date>
+                            <bureau-reference>191200619</bureau-reference>
+                            <bca-company-type>*</bca-company-type>
+                            <bca-name>CBUS</bca-name>
+                        </bureau-report>
+                        <asic-bnr-report>
+                            <business-name>
+                                <registered-business-name>CBUS</registered-business-name>
+                                <veda-business-name-id>$GKJMOJKFF</veda-business-name-id>
+                                <previous-state-territory-code>ACT</previous-state-territory-code>
+                                <previous-state-registration-number>F00143648</previous-state-registration-number>
+                                <holder-reference>
+                                    <ABN>46006261623</ABN>
+                                    <abr-entity-name>UNITED SUPER PTY LTD</abr-entity-name>
+                                </holder-reference>
+                                <status>
+                                    <code>REGD</code>
+                                    <description>Registered</description>
+                                </status>
+                                <address>
+                                    <city>DICKSON</city>
+                                    <state>ACT</state>
+                                    <postcode>2602</postcode>
+                                </address>
+                            </business-name>
+                        </asic-bnr-report>
+                    </org-id-result>
+                    <org-id-result>
+                        <match-name>CBUS </match-name>
+                        <organisation-number>BN98599939</organisation-number>
+                        <organisation-type>*</organisation-type>
+                        <australian-business-number>46006261623</australian-business-number>
+                        <organisation-number-heading>Number</organisation-number-heading>
+                        <state>NSW</state>
+                        <australian-business-register-report>
+                            <ASICNumber>006261623</ASICNumber>
+                            <ASICNumberType>undetermined</ASICNumberType>
+                            <ABN>46006261623</ABN>
+                            <ABNStatus>ACT</ABNStatus>
+                            <ABNStatusFromDate>1999-11-01</ABNStatusFromDate>
+                            <EntityTypeInd>PRV</EntityTypeInd>
+                            <EntityTypeText>Australian Private Company</EntityTypeText>
+                            <Non-IndividualName>UNITED SUPER PTY LTD</Non-IndividualName>
+                            <BusinessAddressState>VIC</BusinessAddressState>
+                            <BusinessAddressPostcode>3000</BusinessAddressPostcode>
+                            <GSTStatus>ACT</GSTStatus>
+                            <GSTStatusFromDate>2000-07-01</GSTStatusFromDate>
+                            <TradingName>UNITED SUPER</TradingName>
+                        </australian-business-register-report>
+                        <bureau-report>
+                            <address first-reported="2018-12-12" type="trading-address">
+                                <unit-number>12</unit-number>
+                                <street-number>44</street-number>
+                                <street-name>MARKET</street-name>
+                                <street-type code="ST"/>
+                                <suburb>SYDNEY</suburb>
+                                <state>NSW</state>
+                                <postcode>2000</postcode>
+                            </address>
+                            <last-search-date>2018-12-12</last-search-date>
+                            <bureau-reference>270046224</bureau-reference>
+                            <bca-company-type>*</bca-company-type>
+                            <bca-name>CBUS</bca-name>
+                        </bureau-report>
+                        <asic-bnr-report>
+                            <business-name>
+                                <registered-business-name>CBUS</registered-business-name>
+                                <veda-business-name-id>$GKIMLLLFF</veda-business-name-id>
+                                <previous-state-territory-code>NSW</previous-state-territory-code>
+                                <previous-state-registration-number>BN98599939</previous-state-registration-number>
+                                <holder-reference>
+                                    <ABN>46006261623</ABN>
+                                    <abr-entity-name>UNITED SUPER PTY LTD</abr-entity-name>
+                                </holder-reference>
+                                <status>
+                                    <code>REGD</code>
+                                    <description>Registered</description>
+                                </status>
+                                <address>
+                                    <city>SYDNEY</city>
+                                    <state>NSW</state>
+                                    <postcode>2000</postcode>
+                                </address>
+                            </business-name>
+                        </asic-bnr-report>
+                    </org-id-result>
+                    <org-id-result>
+                        <match-name>CBUS </match-name>
+                        <organisation-number>BN22251625</organisation-number>
+                        <organisation-type>*</organisation-type>
+                        <australian-business-number>46006261623</australian-business-number>
+                        <organisation-number-heading>Number</organisation-number-heading>
+                        <state>QLD</state>
+                        <australian-business-register-report>
+                            <ASICNumber>006261623</ASICNumber>
+                            <ASICNumberType>undetermined</ASICNumberType>
+                            <ABN>46006261623</ABN>
+                            <ABNStatus>ACT</ABNStatus>
+                            <ABNStatusFromDate>1999-11-01</ABNStatusFromDate>
+                            <EntityTypeInd>PRV</EntityTypeInd>
+                            <EntityTypeText>Australian Private Company</EntityTypeText>
+                            <Non-IndividualName>UNITED SUPER PTY LTD</Non-IndividualName>
+                            <BusinessAddressState>VIC</BusinessAddressState>
+                            <BusinessAddressPostcode>3000</BusinessAddressPostcode>
+                            <GSTStatus>ACT</GSTStatus>
+                            <GSTStatusFromDate>2000-07-01</GSTStatusFromDate>
+                            <TradingName>UNITED SUPER</TradingName>
+                        </australian-business-register-report>
+                        <bureau-report>
+                            <address first-reported="2018-12-12" type="trading-address">
+                                <unit-number>2</unit-number>
+                                <street-number>14</street-number>
+                                <street-name>CAMPBELL</street-name>
+                                <street-type code="ST"/>
+                                <suburb>BOWEN HILLS</suburb>
+                                <state>QLD</state>
+                                <postcode>4006</postcode>
+                            </address>
+                            <last-search-date>2018-12-12</last-search-date>
+                            <bureau-reference>277795277</bureau-reference>
+                            <bca-company-type>*</bca-company-type>
+                            <bca-name>CBUS</bca-name>
+                        </bureau-report>
+                        <asic-bnr-report>
+                            <business-name>
+                                <registered-business-name>CBUS</registered-business-name>
+                                <veda-business-name-id>$GKIMMGKNK</veda-business-name-id>
+                                <previous-state-territory-code>QLD</previous-state-territory-code>
+                                <previous-state-registration-number>BN22251625</previous-state-registration-number>
+                                <holder-reference>
+                                    <ABN>46006261623</ABN>
+                                    <abr-entity-name>UNITED SUPER PTY LTD</abr-entity-name>
+                                </holder-reference>
+                                <status>
+                                    <code>REGD</code>
+                                    <description>Registered</description>
+                                </status>
+                                <address>
+                                    <city>BOWEN HILLS</city>
+                                    <state>QLD</state>
+                                    <postcode>4006</postcode>
+                                </address>
+                            </business-name>
+                        </asic-bnr-report>
+                    </org-id-result>
+                    <org-id-result>
+                        <match-name>CBUS </match-name>
+                        <organisation-number>BN05340457</organisation-number>
+                        <organisation-type>*</organisation-type>
+                        <australian-business-number>46006261623</australian-business-number>
+                        <organisation-number-heading>Number</organisation-number-heading>
+                        <state>SA</state>
+                        <australian-business-register-report>
+                            <ASICNumber>006261623</ASICNumber>
+                            <ASICNumberType>undetermined</ASICNumberType>
+                            <ABN>46006261623</ABN>
+                            <ABNStatus>ACT</ABNStatus>
+                            <ABNStatusFromDate>1999-11-01</ABNStatusFromDate>
+                            <EntityTypeInd>PRV</EntityTypeInd>
+                            <EntityTypeText>Australian Private Company</EntityTypeText>
+                            <Non-IndividualName>UNITED SUPER PTY LTD</Non-IndividualName>
+                            <BusinessAddressState>VIC</BusinessAddressState>
+                            <BusinessAddressPostcode>3000</BusinessAddressPostcode>
+                            <GSTStatus>ACT</GSTStatus>
+                            <GSTStatusFromDate>2000-07-01</GSTStatusFromDate>
+                            <TradingName>UNITED SUPER</TradingName>
+                        </australian-business-register-report>
+                        <bureau-report>
+                            <ErrorMsg>Subject of your enquiry was not found.</ErrorMsg>
+                        </bureau-report>
+                        <asic-bnr-report>
+                            <business-name>
+                                <registered-business-name>CBUS</registered-business-name>
+                                <veda-business-name-id>$GKJHOGFFJ</veda-business-name-id>
+                                <previous-state-territory-code>SA</previous-state-territory-code>
+                                <previous-state-registration-number>BN05340457</previous-state-registration-number>
+                                <holder-reference>
+                                    <ABN>46006261623</ABN>
+                                    <abr-entity-name>UNITED SUPER PTY LTD</abr-entity-name>
+                                </holder-reference>
+                                <status>
+                                    <code>REGD</code>
+                                    <description>Registered</description>
+                                </status>
+                                <address>
+                                    <city>ADELAIDE</city>
+                                    <state>SA</state>
+                                    <postcode>5000</postcode>
+                                </address>
+                            </business-name>
+                        </asic-bnr-report>
+                    </org-id-result>
+                    <org-id-result>
+                        <match-name>CBUS </match-name>
+                        <organisation-number>BN01721550</organisation-number>
+                        <organisation-type>*</organisation-type>
+                        <australian-business-number>46006261623</australian-business-number>
+                        <organisation-number-heading>Number</organisation-number-heading>
+                        <state>TAS</state>
+                        <australian-business-register-report>
+                            <ASICNumber>006261623</ASICNumber>
+                            <ASICNumberType>undetermined</ASICNumberType>
+                            <ABN>46006261623</ABN>
+                            <ABNStatus>ACT</ABNStatus>
+                            <ABNStatusFromDate>1999-11-01</ABNStatusFromDate>
+                            <EntityTypeInd>PRV</EntityTypeInd>
+                            <EntityTypeText>Australian Private Company</EntityTypeText>
+                            <Non-IndividualName>UNITED SUPER PTY LTD</Non-IndividualName>
+                            <BusinessAddressState>VIC</BusinessAddressState>
+                            <BusinessAddressPostcode>3000</BusinessAddressPostcode>
+                            <GSTStatus>ACT</GSTStatus>
+                            <GSTStatusFromDate>2000-07-01</GSTStatusFromDate>
+                            <TradingName>UNITED SUPER</TradingName>
+                        </australian-business-register-report>
+                        <bureau-report>
+                            <address first-reported="2018-08-15" type="trading-address">
+                                <unit-number>2</unit-number>
+                                <street-number>119</street-number>
+                                <street-name>MACQUARIE</street-name>
+                                <street-type code="ST"/>
+                                <suburb>HOBART</suburb>
+                                <state>TAS</state>
+                                <postcode>7000</postcode>
+                            </address>
+                            <last-search-date>2018-08-15</last-search-date>
+                            <bureau-reference>283018949</bureau-reference>
+                            <bca-company-type>*</bca-company-type>
+                            <bca-name>CBUS</bca-name>
+                        </bureau-report>
+                        <asic-bnr-report>
+                            <business-name>
+                                <registered-business-name>CBUS</registered-business-name>
+                                <veda-business-name-id>$GKIMJIJIN</veda-business-name-id>
+                                <previous-state-territory-code>TAS</previous-state-territory-code>
+                                <previous-state-registration-number>BN01721550</previous-state-registration-number>
+                                <holder-reference>
+                                    <ABN>46006261623</ABN>
+                                    <abr-entity-name>UNITED SUPER PTY LTD</abr-entity-name>
+                                </holder-reference>
+                                <status>
+                                    <code>REGD</code>
+                                    <description>Registered</description>
+                                </status>
+                                <address>
+                                    <city>HOBART</city>
+                                    <state>TAS</state>
+                                    <postcode>7000</postcode>
+                                </address>
+                            </business-name>
+                        </asic-bnr-report>
+                    </org-id-result>
+                    <org-id-result>
+                        <match-name>CBUSMAIL </match-name>
+                        <organisation-number>B1509576S</organisation-number>
+                        <organisation-type>*</organisation-type>
+                        <australian-business-number>46006261623</australian-business-number>
+                        <organisation-number-heading>Number</organisation-number-heading>
+                        <state>VIC</state>
+                        <australian-business-register-report>
+                            <ASICNumber>006261623</ASICNumber>
+                            <ASICNumberType>undetermined</ASICNumberType>
+                            <ABN>46006261623</ABN>
+                            <ABNStatus>ACT</ABNStatus>
+                            <ABNStatusFromDate>1999-11-01</ABNStatusFromDate>
+                            <EntityTypeInd>PRV</EntityTypeInd>
+                            <EntityTypeText>Australian Private Company</EntityTypeText>
+                            <Non-IndividualName>UNITED SUPER PTY LTD</Non-IndividualName>
+                            <BusinessAddressState>VIC</BusinessAddressState>
+                            <BusinessAddressPostcode>3000</BusinessAddressPostcode>
+                            <GSTStatus>ACT</GSTStatus>
+                            <GSTStatusFromDate>2000-07-01</GSTStatusFromDate>
+                            <TradingName>UNITED SUPER</TradingName>
+                        </australian-business-register-report>
+                        <bureau-report>
+                            <address first-reported="2019-06-11" type="trading-address">
+                                <unit-number>28</unit-number>
+                                <street-number>2</street-number>
+                                <street-name>LONSDALE</street-name>
+                                <street-type code="ST"/>
+                                <suburb>MELBOURNE</suburb>
+                                <state>VIC</state>
+                                <postcode>3000</postcode>
+                            </address>
+                            <last-search-date>2019-06-11</last-search-date>
+                            <bureau-reference>191499840</bureau-reference>
+                            <bca-company-type>*</bca-company-type>
+                            <bca-name>CBUSMAIL</bca-name>
+                        </bureau-report>
+                        <asic-bnr-report>
+                            <business-name>
+                                <registered-business-name>CBUSMAIL</registered-business-name>
+                                <veda-business-name-id>$OHMGHHGK</veda-business-name-id>
+                                <previous-state-territory-code>VIC</previous-state-territory-code>
+                                <previous-state-registration-number>B1509576S</previous-state-registration-number>
+                                <holder-reference>
+                                    <ABN>46006261623</ABN>
+                                    <abr-entity-name>UNITED SUPER PTY LTD</abr-entity-name>
+                                </holder-reference>
+                                <status>
+                                    <code>REGD</code>
+                                    <description>Registered</description>
+                                </status>
+                                <address>
+                                    <city>MELBOURNE</city>
+                                    <state>VIC</state>
+                                    <postcode>3000</postcode>
+                                </address>
+                            </business-name>
+                        </asic-bnr-report>
+                    </org-id-result>
+                    <org-id-result>
+                        <match-name>CBUS </match-name>
+                        <organisation-number>B2414455H</organisation-number>
+                        <organisation-type>*</organisation-type>
+                        <australian-business-number>46006261623</australian-business-number>
+                        <organisation-number-heading>Number</organisation-number-heading>
+                        <state>VIC</state>
+                        <australian-business-register-report>
+                            <ASICNumber>006261623</ASICNumber>
+                            <ASICNumberType>undetermined</ASICNumberType>
+                            <ABN>46006261623</ABN>
+                            <ABNStatus>ACT</ABNStatus>
+                            <ABNStatusFromDate>1999-11-01</ABNStatusFromDate>
+                            <EntityTypeInd>PRV</EntityTypeInd>
+                            <EntityTypeText>Australian Private Company</EntityTypeText>
+                            <Non-IndividualName>UNITED SUPER PTY LTD</Non-IndividualName>
+                            <BusinessAddressState>VIC</BusinessAddressState>
+                            <BusinessAddressPostcode>3000</BusinessAddressPostcode>
+                            <GSTStatus>ACT</GSTStatus>
+                            <GSTStatusFromDate>2000-07-01</GSTStatusFromDate>
+                            <TradingName>UNITED SUPER</TradingName>
+                        </australian-business-register-report>
+                        <bureau-report>
+                            <ErrorMsg>Subject of your enquiry was not found.</ErrorMsg>
+                        </bureau-report>
+                        <asic-bnr-report>
+                            <business-name>
+                                <registered-business-name>CBUS</registered-business-name>
+                                <veda-business-name-id>$GKIMGIMLG</veda-business-name-id>
+                                <previous-state-territory-code>VIC</previous-state-territory-code>
+                                <previous-state-registration-number>B2414455H</previous-state-registration-number>
+                                <holder-reference>
+                                    <ABN>46006261623</ABN>
+                                    <abr-entity-name>UNITED SUPER PTY LTD</abr-entity-name>
+                                </holder-reference>
+                                <status>
+                                    <code>REGD</code>
+                                    <description>Registered</description>
+                                </status>
+                                <address>
+                                    <city>MELBOURNE</city>
+                                    <state>VIC</state>
+                                    <postcode>3000</postcode>
+                                </address>
+                            </business-name>
+                        </asic-bnr-report>
+                    </org-id-result>
+                    <org-id-result>
+                        <match-name>CBUS </match-name>
+                        <organisation-number>BN12021635</organisation-number>
+                        <organisation-type>*</organisation-type>
+                        <australian-business-number>46006261623</australian-business-number>
+                        <organisation-number-heading>Number</organisation-number-heading>
+                        <state>WA</state>
+                        <australian-business-register-report>
+                            <ASICNumber>006261623</ASICNumber>
+                            <ASICNumberType>undetermined</ASICNumberType>
+                            <ABN>46006261623</ABN>
+                            <ABNStatus>ACT</ABNStatus>
+                            <ABNStatusFromDate>1999-11-01</ABNStatusFromDate>
+                            <EntityTypeInd>PRV</EntityTypeInd>
+                            <EntityTypeText>Australian Private Company</EntityTypeText>
+                            <Non-IndividualName>UNITED SUPER PTY LTD</Non-IndividualName>
+                            <BusinessAddressState>VIC</BusinessAddressState>
+                            <BusinessAddressPostcode>3000</BusinessAddressPostcode>
+                            <GSTStatus>ACT</GSTStatus>
+                            <GSTStatusFromDate>2000-07-01</GSTStatusFromDate>
+                            <TradingName>UNITED SUPER</TradingName>
+                        </australian-business-register-report>
+                        <bureau-report>
+                            <address first-reported="2018-09-18" type="trading-address">
+                                <unit-number>2</unit-number>
+                                <street-number>12</street-number>
+                                <street-name>ST GEORGES</street-name>
+                                <street-type code="TCE"/>
+                                <suburb>PERTH</suburb>
+                                <state>WA</state>
+                                <postcode>6000</postcode>
+                            </address>
+                            <last-search-date>2018-09-18</last-search-date>
+                            <bureau-reference>191312598</bureau-reference>
+                            <bca-company-type>*</bca-company-type>
+                            <bca-name>CBUS</bca-name>
+                        </bureau-report>
+                        <asic-bnr-report>
+                            <business-name>
+                                <registered-business-name>CBUS</registered-business-name>
+                                <veda-business-name-id>$GKJNIGMMM</veda-business-name-id>
+                                <previous-state-territory-code>WA</previous-state-territory-code>
+                                <previous-state-registration-number>BN12021635</previous-state-registration-number>
+                                <holder-reference>
+                                    <ABN>46006261623</ABN>
+                                    <abr-entity-name>UNITED SUPER PTY LTD</abr-entity-name>
+                                </holder-reference>
+                                <status>
+                                    <code>REGD</code>
+                                    <description>Registered</description>
+                                </status>
+                                <address>
+                                    <city>PERTH</city>
+                                    <state>WA</state>
+                                    <postcode>6000</postcode>
+                                </address>
+                            </business-name>
+                        </asic-bnr-report>
+                    </org-id-result>
+                </response>
+            </BCAservice-data>
+        </BCAservice>
+    </BCAservices>
+</BCAmessage>
