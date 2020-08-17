@@ -254,17 +254,54 @@ global class ConstantValues{
  public static final String US_STATUS = 'Status';
  public static final String HS_CODE = '-code';
  public static final String US_CODE = 'Code';
+ public static final String HS_RECORD = '-record';
+ public static final String US_RECORD = 'Record';
  public static final String LANDTITLE_KEY = '"landTitle"';
  public static final String ERROR_KEY = '"error"';
  public static final String NO_COLLATERAL = 'No collateral found';
  public static final String NO_ENQUIRY_ID = 'Document Enquiry Id missing';
  public static final String ORDER_DOC_SUCCESS = 'Order has been Successfully Placed';
+ public static final String APPLY_INDIVIDUAL_SUCCESS = 'Individual Credit Report fetched successfully';
  public static final String INVALID_RESPONSE = 'Invalid Response Structure';
  public static final String DOCUMENT_ATTACHMENT_PREFIX = 'TITLE||DOCUMENT||';
  public static final String TITLE_SEARCH_DOCUMENT_CATEGORY_NAME = 'Title Search Document';
  public static final String DELIVER_DOCUMENT_BATCH_CALLED = 'Document Status Check Batch Successfully called ';
+ public static final String NCCP_REGULATED = 'Regulated';
+ public static final String NCCP_NON_REGULATED = 'Unregulated';
+ public static final String APPLY_INDIVIDUAL_API_TYPE = 'Apply Individual';
+ public static final String APPLY_IND_REQUEST_SR = 'ApplyIndividualRequest';
 
  //Integration Request Structure
+ public static final String NC_USERNAME = '{!$Credential.UserName}';
+ public static final String NC_PASSWORD = '{!$Credential.Password}';
+ public static final String USERNAME_KEY = '__Username';
+ public static final String PASSWORD_KEY = '__Password';
+ public static final String CLIENT_REFERENCE = '__partyReference';
+ public static final String PERMISSION_TYPE_CODE = '__permissionTypeCode';
+ public static final String PRODUCT_DATA_LEVEL_CODE = '__productDataLevelCode';
+ public static final String SCORECARD_ID1 = '__scorecardId1';
+ public static final String SCORECARD_ID2 = '__scorecardId2';
+ public static final String CUSTOM_IP_PARAM_KEY = '__cipKey';
+ public static final String CUSTOM_IP_PARAM_VALUE = '__cipValue';
+ public static final String IND_LASTNAME = '__lastName';
+ public static final String IND_FIRSTNAME = '__firstName';
+ public static final String IND_MIDNAME_WKEY = '__middleName__wKey';
+ public static final String ADDR_TYPE = '__addressType';
+ public static final String ADDR_UNITNUMBER_WKEY = '__unitNumber__wkey';
+ public static final String ADDR_STREETNUMBER = '__streetNumber';
+ public static final String ADDR_STREETNAME = '__streetName';
+ public static final String ADDR_STREETTYPE = '__streetType';
+ public static final String ADDR_SUBURB = '__suburb';
+ public static final String ADDR_STATE = '__state';
+ public static final String ADDR_POSTCODE = '__postalCode';
+ public static final String ADDR_COUNTRYCODE = '__countryCode';
+ public static final String IND_GENDERCODE = '__genderCode';
+ public static final String IND_DOB = '__dateOfBirth';
+ public static final String ACCOUNT_TYPE_CODE = '__accountTypeCode';
+ public static final String CURRENCY_CODE = '__currencyCode';
+ public static final String ENQ_AMT = '__enquiryAmount';
+ public static final String RELATIONSHIP_CODE = '__relationshipCode';
+
  public static final String REQ_ENVELOPE_START = '<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:land="http://vedaxml.com/vxml2/land-titles-v1-0.xsd" xmlns:vh="http://vedaxml.com/soap/header/v-header-v1-10.xsd" xmlns:wsa="http://www.w3.org/2005/08/addressing">';
  public static final String REQ_HEADER = '<soap:Header>' +
  '<wsse:Security mustUnderstand="1" xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd">'
@@ -278,8 +315,30 @@ global class ConstantValues{
  public static final String REQ_ENVELOPE_END = '</soap:Body></soap:Envelope>';
  public static final String REQ_BODY = '<soap:Body xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">';
  public static final String RES_HEADER = '<soapenv:Envelope xmlns:soapenv="http://www.w3.org/2003/05/soap-envelope" xmlns:wsa="http://www.w3.org/2005/08/addressing" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">'	
-    + '<SOAP-ENV:Body xmlns:SOAP-ENV="http://www.w3.org/2003/05/soap-envelope"><notify-event-response xmlns="http://veda-services/event-notify-v1-0.xsd" xmlns:xmime="http://www.w3.org/2005/05/xmlmime"><notify-event-data>';	
- public static final String RES_FOOTER ='</notify-event-data></notify-event-response></SOAP-ENV:Body></soapenv:Envelope>';
+    + '<SOAP-ENV:Body xmlns:SOAP-ENV="http://www.w3.org/2003/05/soap-envelope"><notify-event-response xmlns="http://veda-services/event-notify-v1-0.xsd" xmlns:xmime="http://www.w3.org/2005/05/xmlmime"><notify-event-data>';
+   public static final String RES_FOOTER ='</notify-event-data></notify-event-response></SOAP-ENV:Body></soapenv:Envelope>';
+ // Exceptions
+ public static final String NO_APPLICATION = 'No Application found';
+ public static final String NO_PARTY = 'No Party found';
+ public static final String NO_CONTACT = 'No Contact found';
+ public static final String NO_ADDRESS = 'No Address found';
+ public static final String NCCP_STATUS_NOT_FOUND = 'NCCP Status of the Application data not found';
+ public static final String LOAN_AMOUNT_MISSING = 'Loan Amount is missing';
+ public static final String FIRST_NAME_MISSING = 'First name is missing';
+ public static final String LAST_NAME_MISSING = 'Last name is missing';
+ public static final String STREET_NUMBER_MISSING = 'Street number is missing';
+ public static final String STREET_NAME_MISSING = 'Street name is missing';
+ public static final String STREET_TYPE_MISSING = 'Street type is missing';
+ public static final String SUBURB_MISSING = 'Suburb is missing';
+ public static final String STATE_MISSING = 'State is missing';
+ public static final String POST_CODE_MISSING = 'Postal code is missing';
+ public static final String COUNTRY_MISSING ='Country is missing or wrong';
+ public static final String GENDER_MISSING ='Gender is missing';
+ public static final String DOB_MISSING ='Date of Birth is missing';
+ public static final String PARTY_REF_MISSING ='Party Reference is missing';
+ public static final String APPLY_IND_SUCCESS = 'Individual Enquiry Report has been fetched Successfully';
+ public static final String NO_DIRECTORSHIPS = 'No Directorship found';
+ public static final String APPLY_IND_PARAM_NULL ='Equifax Apply Individual Party Update null check exception';
 
  //SMSF ABN Integration
  public static final String GUID_VALUE = 'c4726ad0-af04-4d8d-987b-d15966cd1cfd';
@@ -320,5 +379,5 @@ global class ConstantValues{
  public static final String INVALID_SMSF_NAME = 'Invalid SMSF Name';
  public static final String INVALID_ABN = 'Invalid ABN';
  public static final String PARTY_ID_EMPTY = 'Party Id is empty';
- public static final String ABN_NUMBER_EMPTY ='ABN field is empty';
+ public static final String ABN_NUMBER_EMPTY = 'ABN field is empty';
 }
