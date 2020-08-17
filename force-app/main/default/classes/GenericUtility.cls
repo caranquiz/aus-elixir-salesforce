@@ -584,52 +584,52 @@ public with sharing class GenericUtility {
     }
   }
   public static String convertToDescription(String asicStatus) {
-    String code;
-    asicStatus = asicStatus.trim().toUppercase();
-    Map<String, String> asicStatusCodeMap = new Map<String, String>();
-    code = 'APPR';
-    asicStatusCodeMap.put(code,'APPROVED (trusts)');
-    code = 'ARCH';
-    asicStatusCodeMap.put(code,'Business Names – Archived');
-    code = 'ASOS';
-    asicStatusCodeMap.put(code,'Association Strike Off Status');
-    code = 'CNCL';
-    asicStatusCodeMap.put(code,'Cancelled');
-    code = 'CONV';
-    asicStatusCodeMap.put(code,'Converted (Trust)');
-    code = 'DISS';
-    asicStatusCodeMap.put(code,'Dissolved by special act of parliament');
-    code = 'DIV3';
-    asicStatusCodeMap.put(code,'Organisation transferred registration via DIV3');
-    code = 'DMNT';
-    asicStatusCodeMap.put(code,'Dormant');
-    code = 'DRGD';
-    asicStatusCodeMap.put(code,'Deregistered');
-    code = 'EXAA';
-    asicStatusCodeMap.put(code,'External Administration – Association');
-    code = 'EXAD';
-    asicStatusCodeMap.put(code,'** Under External Administration And/Or Controller Appointed **');
-    code = 'NOAC';
-    asicStatusCodeMap.put(code,'Not Active');
-    code = 'NRGD';
-    asicStatusCodeMap.put(code,'Not Registered');
-    code = 'PEND';
-    asicStatusCodeMap.put(code,'Pending - Schemes');
-    code = 'PROV';
-    asicStatusCodeMap.put(code,'Provisional');
-    code = 'REGD';
-    asicStatusCodeMap.put(code,'Registered');
-    code = 'REXP';
-    asicStatusCodeMap.put(code,'Business Name Expired');
-    code = 'RMVD';
-    asicStatusCodeMap.put(code,'Business Names – Removed');
-    code = 'SOFF';
-    asicStatusCodeMap.put(code,'Strike-Off Action In Progress');
-    code = 'WDUP';
-    asicStatusCodeMap.put(code,'Winding Up – Managed Investments Schemes');
-    if(asicStatusCodeMap.get(asicStatus) != null){
-      return asicStatusCodeMap.get(asicStatus);
+      String code;
+      asicStatus = asicStatus.trim().toUppercase();
+      Map<String, String> asicStatusCodeMap = new Map<String, String>();
+      code = 'APPR';
+      asicStatusCodeMap.put(code,'APPROVED (trusts)');
+      code = 'ARCH';
+      asicStatusCodeMap.put(code,'Business Names – Archived');
+      code = 'ASOS';
+      asicStatusCodeMap.put(code,'Association Strike Off Status');
+      code = 'CNCL';
+      asicStatusCodeMap.put(code,'Cancelled');
+      code = 'CONV';
+      asicStatusCodeMap.put(code,'Converted (Trust)');
+      code = 'DISS';
+      asicStatusCodeMap.put(code,'Dissolved by special act of parliament');
+      code = 'DIV3';
+      asicStatusCodeMap.put(code,'Organisation transferred registration via DIV3');
+      code = 'DMNT';
+      asicStatusCodeMap.put(code,'Dormant');
+      code = 'DRGD';
+      asicStatusCodeMap.put(code,'Deregistered');
+      code = 'EXAA';
+      asicStatusCodeMap.put(code,'External Administration – Association');
+      code = 'EXAD';
+      asicStatusCodeMap.put(code,'** Under External Administration And/Or Controller Appointed **');
+      code = 'NOAC';
+      asicStatusCodeMap.put(code,'Not Active');
+      code = 'NRGD';
+      asicStatusCodeMap.put(code,'Not Registered');
+      code = 'PEND';
+      asicStatusCodeMap.put(code,'Pending - Schemes');
+      code = 'PROV';
+      asicStatusCodeMap.put(code,'Provisional');
+      code = 'REGD';
+      asicStatusCodeMap.put(code,'Registered');
+      code = 'REXP';
+      asicStatusCodeMap.put(code,'Business Name Expired');
+      code = 'RMVD';
+      asicStatusCodeMap.put(code,'Business Names – Removed');
+      code = 'SOFF';
+      asicStatusCodeMap.put(code,'Strike-Off Action In Progress');
+      code = 'WDUP';
+      asicStatusCodeMap.put(code,'Winding Up – Managed Investments Schemes');
+      if(asicStatusCodeMap.get(asicStatus) != null){
+        return asicStatusCodeMap.get(asicStatus);
+      }
+      return asicStatus;
     }
-    return asicStatus;
-  }
 }
