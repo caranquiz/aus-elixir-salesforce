@@ -71,6 +71,9 @@ global class LandTitleDocumentStatus {
             ];
             collateralObj.Document_Status__c = status;
             collateralObj.Document_Enquiry_Id__c = enquiryId;
+            if(status == 'READY'){
+                Equifaxcallout.equifaxDeliverDocument(collateralObj.Id, enquiryId);
+            }
             Database.update(collateralObj);
             // Responding to Equifax's notify-event request
             res.statusCode = 200;
