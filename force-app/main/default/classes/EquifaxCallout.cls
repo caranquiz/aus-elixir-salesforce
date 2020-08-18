@@ -110,18 +110,20 @@ global with sharing class EquifaxCallout {
         public String paidAmount;
         public String exceptionData;
     }
-    webService static String equifaxDeliverDocument(Id collateralId) {
+    webService static String equifaxDeliverDocument(Id collateralId, String enquiryId) {
         LandTitleDocumentData documentData = new LandTitleDocumentData();
         try{
             clcommon__Collateral__c collateralObj = checkCollateralId(collateralId);
             if(collateralObj == null){
                 return ConstantValues.NO_COLLATERAL;
             }
-            if(String.isBlank(collateralObj.Document_Enquiry_Id__c)){
-                return ConstantValues.NO_ENQUIRY_ID;
-            }
             Map<String, Object> requestParamMap = new Map<String, Object>();
-            requestParamMap.put('enquiryId', collateralObj.Document_Enquiry_Id__c);
+            if(String.isNotBlank(collateralObj.Document_Enquiry_Id__c)){
+                requestParamMap.put('enquiryId', collateralObj.Document_Enquiry_Id__c);
+            }
+            if(String.isNotBlank(enquiryId)){
+                requestParamMap.put('enquiryId', enquiryId);
+            }
             requestParamMap.put('clientReference', collateralObj.Name);
             String json = processCallout(ConstantValues.DELIVER_DOCUMENT_API_TYPE, new Map<String, String>(), requestParamMap);
             documentData = EquifaxDeliverDocumentResponseHelper.parse(json);

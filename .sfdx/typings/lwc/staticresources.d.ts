@@ -10,6 +10,10 @@ declare module "@salesforce/resourceUrl/AMTickets19_20_21_22_24" {
     var AMTickets19_20_21_22_24: string;
     export default AMTickets19_20_21_22_24;
 }
+declare module "@salesforce/resourceUrl/ApplyIndividualRequest" {
+    var ApplyIndividualRequest: string;
+    export default ApplyIndividualRequest;
+}
 declare module "@salesforce/resourceUrl/CustomClassicSKTHEME" {
     var CustomClassicSKTHEME: string;
     export default CustomClassicSKTHEME;

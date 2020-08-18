@@ -1,0 +1,60 @@
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/" xmlns:vh="http://vedaxml.com/soap/header/v-header-v1-10.xsd" xmlns:ved="http://vedaxml.com/vxml2/vedascore-apply-v2-0.xsd">
+    <soap:Header xmlns:wsa="http://www.w3.org/2005/08/addressing">
+        <wsse:Security mustUnderstand="1" xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd">
+            <wsse:UsernameToken>
+                <wsse:Username>__Username</wsse:Username>
+                <wsse:Password>__Password</wsse:Password>
+            </wsse:UsernameToken>
+        </wsse:Security>
+        <wsa:To>https://vedaxml.corp.dmz/sys2/soap11/vedascore-apply-2-0</wsa:To>
+        <wsa:Action>http://vedaxml.com/vedascore-apply/EnquiryRequest</wsa:Action>
+    </soap:Header>
+    <soap:Body xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+        <ved:request>
+            <ved:enquiry-header>
+                <ved:client-reference>__partyReference</ved:client-reference>
+                <ved:permission-type-code>__permissionTypeCode</ved:permission-type-code>
+                <ved:product-data-level-code>__productDataLevelCode</ved:product-data-level-code>
+                <ved:requested-scores>
+                    <ved:scorecard-id>__scorecardId1</ved:scorecard-id>
+                    <ved:scorecard-id>__scorecardId2</ved:scorecard-id>
+                </ved:requested-scores>
+                <ved:custom-input-parameters>
+                    <ved:custom-input-parameter>
+                        <ved:key>__cipKey</ved:key>
+                        <ved:value>__cipValue</ved:value>
+                    </ved:custom-input-parameter>
+                </ved:custom-input-parameters>
+            </ved:enquiry-header>
+            <ved:enquiry-data>
+                <ved:individual>
+                    <ved:current-name>
+                        <ved:family-name>__lastName</ved:family-name>
+                        <ved:first-given-name>__firstName</ved:first-given-name>
+                        __middleName__wKey
+                    </ved:current-name>
+                    <ved:addresses>
+                        <ved:address type="__addressType">
+                            __unitNumber__wkey
+                            <ved:street-number>__streetNumber</ved:street-number>
+                            <ved:street-name>__streetName</ved:street-name>
+                            <ved:street-type>__streetType</ved:street-type>
+                            <ved:suburb>__suburb</ved:suburb>
+                            <ved:state>__state</ved:state>
+                            <ved:postcode>__postalCode</ved:postcode>
+                            <ved:country-code>__countryCode</ved:country-code>
+                        </ved:address>
+                    </ved:addresses>
+                    <ved:gender-code>__genderCode</ved:gender-code>
+                    <ved:date-of-birth>__dateOfBirth</ved:date-of-birth>
+                </ved:individual>
+                <ved:enquiry>
+                    <ved:account-type-code>__accountTypeCode</ved:account-type-code>
+                    <ved:enquiry-amount currency-code="__currencyCode">__enquiryAmount</ved:enquiry-amount>
+                    <ved:relationship-code>__relationshipCode</ved:relationship-code>
+                    <ved:enquiry-client-reference>__partyReference</ved:enquiry-client-reference>
+                </ved:enquiry>
+            </ved:enquiry-data>
+        </ved:request>
+    </soap:Body>
+</soap:Envelope>
