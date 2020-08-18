@@ -44,7 +44,7 @@ global class EquifaxDeliverDocumentAdapter extends intframework.BaseIntegrationA
 
     global override System.HttpResponse sendRequest(System.HttpRequest httpReq) {
         try {
-          httpReq.setEndpoint('callout:' + apiConfig.apiNamedCredential);
+          httpReq.setEndpoint('callout:' + apiConfig.apiNamedCredential + apiConfig.apiEndpoint);
           if(Test.isRunningTest()){
             httpReq.setEndpoint(apiConfig.apiEndpoint);
           }
