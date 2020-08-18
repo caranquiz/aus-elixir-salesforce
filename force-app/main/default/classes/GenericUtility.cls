@@ -157,75 +157,6 @@ public with sharing class GenericUtility {
     ConstantValues.HS_CODE,
     ConstantValues.US_CODE
     );
-    json = json.replaceAll(
-    ConstantValues.HS_RECORD,
-    ConstantValues.US_RECORD
-    );
-    json = json.replaceAll(
-    '-or',
-    'Or'
-    );
-    json = json.replaceAll(
-    '-to',
-    'To'
-    );
-    json = json.replaceAll(
-    '-consumer',
-    'Consumer'
-    );
-    json = json.replaceAll(
-    '-credit',
-    'Credit'
-    );
-    json = json.replaceAll(
-    '-report',
-    'Report'
-    );
-    json = json.replaceAll(
-    '-enquir',
-    'Enquir'
-    );
-    json = json.replaceAll(
-    '-file',
-    'File'
-    );
-    json = json.replaceAll(
-    '-information',
-    'Information'
-    );
-    json = json.replaceAll(
-    '-match',
-    'Match'
-    );
-    return json;
-  }
-  public static String modifyJsonKeysIntoCamelcasingV2(String json){
-    json = json.replaceAll('-a', 'A');
-    json = json.replaceAll('-b', 'B');
-    json = json.replaceAll('-c', 'C');
-    json = json.replaceAll('-d', 'D');
-    json = json.replaceAll('-e', 'E');
-    json = json.replaceAll('-f', 'F');
-    json = json.replaceAll('-g', 'G');
-    json = json.replaceAll('-h', 'H');
-    json = json.replaceAll('-i', 'I');
-    json = json.replaceAll('-j', 'J');
-    json = json.replaceAll('-k', 'K');
-    json = json.replaceAll('-l', 'L');
-    json = json.replaceAll('-m', 'M');
-    json = json.replaceAll('-n', 'N');
-    json = json.replaceAll('-o', 'O');
-    json = json.replaceAll('-p', 'P');
-    json = json.replaceAll('-q', 'Q');
-    json = json.replaceAll('-r', 'R');
-    json = json.replaceAll('-s', 'S');
-    json = json.replaceAll('-t', 'T');
-    json = json.replaceAll('-u', 'U');
-    json = json.replaceAll('-v', 'V');
-    json = json.replaceAll('-w', 'W');
-    json = json.replaceAll('-x', 'X');
-    json = json.replaceAll('-y', 'Y');
-    json = json.replaceAll('-z', 'Z');
     return json;
   }
   public static String convert2StreetTypeCode(String streetType) {
@@ -648,9 +579,9 @@ public with sharing class GenericUtility {
     }
   }
   public static void isListValid(List<Map<String, Object>> value, String msg){
-    if(value.isEmpty()){
-      throw new CustomException(msg);
-    }
+      if(value.isEmpty()){
+        throw new CustomException(msg);
+      }
   }
   public static String convertToDescription(String asicStatus) {
       String code;
@@ -701,4 +632,9 @@ public with sharing class GenericUtility {
       }
       return asicStatus;
     }
+  public static void isListValid(List<Map<String, Object>> value, String msg){
+    if(value.isEmpty()){
+      throw new CustomException(msg);
+    }
+  }
 }
