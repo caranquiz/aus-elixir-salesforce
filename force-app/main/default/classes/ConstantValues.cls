@@ -272,9 +272,6 @@ global class ConstantValues{
    public static final String NCCP_NON_REGULATED = 'Unregulated';	
    public static final String APPLY_IND_REQUEST_SR = 'ApplyIndividualRequest';
    public static final String PDF_REPORT_DOWNLOADED = 'PDF Report downloaded successfully';
-   public static final String APPLY_IND_REQUEST_SR = 'ApplyIndividualRequest';
-   public static final String NCCP_NON_REGULATED = 'Unregulated';
-   public static final String NCCP_REGULATED = 'Regulated';
    //Integration Request Structure
    public static final String NC_USERNAME = '{!$Credential.UserName}';
    public static final String NC_PASSWORD = '{!$Credential.Password}';
