@@ -59,7 +59,7 @@ public class EquifaxDeliverDocumentResponseHelper{
     public static EquifaxCallout.LandTitleDocumentData parse(String json){
         EquifaxCallout.LandTitleDocumentData ltDocumentData = new EquifaxCallout.LandTitleDocumentData();
         try{
-            json = GenericUtility.modifyJsonKeysIntoCamelcasing(json);
+            json = GenericUtility.modifyJsonKeysIntoCamelcasingV2(json);
             List<String> queries = new List<String>();
             queries.add(ConstantValues.ERROR_KEY);
             JsonObjectToArray obj = new JsonObjectToArray();
@@ -74,13 +74,13 @@ public class EquifaxDeliverDocumentResponseHelper{
             try{
                 String data = helperObject.envelope.body.deliverDocumentResponse.deliverDocumentResponseData.binaryData.nodeValue;
                 ltDocumentData.documentAttachment = new Attachment();
-                ltDocumentData.documentAttachment.ContentType = 'application/pdf';
+                ltDocumentData.documentAttachment.ContentType = ConstantValues.APP_PDF_CONTENT_TYPE;
                 ltDocumentData.documentAttachment.Body = EncodingUtil.base64Decode(data);
             }catch(Exception ex){}
             try {
                 ltDocumentData.exceptionData = helperObject.envelope.body.deliverDocumentResponse.errors.error[0].errorDetail.nodeValue;
                 if(String.isNotBlank(ltDocumentData.exceptionData)){
-                    GenericUtility.insertLog('Equifax/deliverDocument', new CustomException(ltDocumentData.exceptionData));
+                    GenericUtility.insertLog('EquifaxDeliverDocumentResponseHelper', new CustomException(ltDocumentData.exceptionData));
                     ltDocumentData.exceptionData = ConstantValues.GENERAL_EXCEPTION;
                 }
             } catch (Exception ex) {}
