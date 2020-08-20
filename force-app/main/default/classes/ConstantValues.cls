@@ -268,6 +268,10 @@ global class ConstantValues{
    public static final String DOCUMENT_ATTACHMENT_PREFIX = 'TITLE||DOCUMENT||';
    public static final String TITLE_SEARCH_DOCUMENT_CATEGORY_NAME = 'Title Search Document';
    public static final String DELIVER_DOCUMENT_BATCH_CALLED = 'Document Status Check Batch Successfully called ';
+   public static final String NCCP_REGULATED = 'Regulated';	
+   public static final String NCCP_NON_REGULATED = 'Unregulated';	
+   public static final String APPLY_INDIVIDUAL_API_TYPE = 'Apply Individual';	
+   public static final String APPLY_IND_REQUEST_SR = 'ApplyIndividualRequest';
    public static final String PDF_REPORT_DOWNLOADED = 'PDF Report downloaded successfully';
    public static final String APPLY_IND_REQUEST_SR = 'ApplyIndividualRequest';
    public static final String NCCP_NON_REGULATED = 'Unregulated';
