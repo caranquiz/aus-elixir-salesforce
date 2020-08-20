@@ -263,6 +263,7 @@ global class ConstantValues{
    public static final String NO_COLLATERAL = 'No collateral found';
    public static final String NO_ENQUIRY_ID = 'Document Enquiry Id missing';
    public static final String ORDER_DOC_SUCCESS = 'Order has been Successfully Placed';
+   public static final String APPLY_INDIVIDUAL_SUCCESS = 'Individual Credit Report fetched successfully';
    public static final String INVALID_RESPONSE = 'Invalid Response Structure';
    public static final String DOCUMENT_ATTACHMENT_PREFIX = 'TITLE||DOCUMENT||';
    public static final String TITLE_SEARCH_DOCUMENT_CATEGORY_NAME = 'Title Search Document';
@@ -271,7 +272,6 @@ global class ConstantValues{
    public static final String APPLY_IND_REQUEST_SR = 'ApplyIndividualRequest';
    public static final String NCCP_NON_REGULATED = 'Unregulated';
    public static final String NCCP_REGULATED = 'Regulated';
-  
    //Integration Request Structure
    public static final String NC_USERNAME = '{!$Credential.UserName}';
    public static final String NC_PASSWORD = '{!$Credential.Password}';
@@ -305,12 +305,10 @@ global class ConstantValues{
    public static final String ENQUIY_ID_CODE = '__enquiryId';
    public static final String CONTENT_TYPE_CODE = '__contentType';
    public static final String REQ_ENVELOPE_START = '<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:land="http://vedaxml.com/vxml2/land-titles-v1-0.xsd" xmlns:vh="http://vedaxml.com/soap/header/v-header-v1-10.xsd" xmlns:wsa="http://www.w3.org/2005/08/addressing">';
-   public static final String REQ_HEADER = '<soap:Header>' +
-   '<wsse:Security mustUnderstand="1" xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd">'
-   + '<wsse:UsernameToken>' + '<wsse:Username>{!$Credential.UserName}</wsse:Username>'
-   + '<wsse:Password>{!$Credential.Password}</wsse:Password>' + '</wsse:UsernameToken>'
-   + '</wsse:Security>'
-   + '<wsa:To>https://vedaxml.com/sys2/soap12/land-titles-v1</wsa:To>';
+   public static final String RES_HEADER = '<soapenv:Envelope xmlns:soapenv="http://www.w3.org/2003/05/soap-envelope" xmlns:wsa="http://www.w3.org/2005/08/addressing" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">'	
+   + '<SOAP-ENV:Body xmlns:SOAP-ENV="http://www.w3.org/2003/05/soap-envelope"><notify-event-response xmlns="http://veda-services/event-notify-v1-0.xsd" xmlns:xmime="http://www.w3.org/2005/05/xmlmime"><notify-event-data>';
+   public static final String RES_FOOTER ='</notify-event-data></notify-event-response></SOAP-ENV:Body></soapenv:Envelope>';
+   // Exceptions
    public static final String REQ_SLT_ACTION = '<wsa:Action>http://vedaxml.com/land-titles/searchLandTitlesRequest</wsa:Action></soap:Header>';
    public static final String REQ_OD_ACTION = '<wsa:Action>http://vedaxml.com/land-titles/orderDocumentRequest</wsa:Action></soap:Header>';
    public static final String REQ_DD_ACTION = '<wsa:Action>http://vedaxml.com/land-titles/deliverDocumentRequest</wsa:Action></soap:Header>';

@@ -701,4 +701,9 @@ public with sharing class GenericUtility {
       }
       return asicStatus;
     }
+    public static void isListValid(List<Map<String, Object>> value, String msg){
+      if(value.isEmpty()){
+        throw new CustomException(msg);
+      }
+    }
 }
