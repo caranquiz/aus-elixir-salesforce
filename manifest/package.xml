@@ -390,6 +390,7 @@
         <!-- SMSF ABN changes made by Pratik -->
         <members>ABNSearchSMSF</members>
         <members>SearchByABNNumber</members>
+        <members>EquifaxOrgIdSearch</members>
         <name>NamedCredential</name>
     </types>
     <version>45.0</version>
