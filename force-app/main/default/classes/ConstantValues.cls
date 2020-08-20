@@ -314,7 +314,6 @@ global class ConstantValues{
    public static final String REQ_DD_ACTION = '<wsa:Action>http://vedaxml.com/land-titles/deliverDocumentRequest</wsa:Action></soap:Header>';
    public static final String REQ_ENVELOPE_END = '</soap:Body></soap:Envelope>';
    public static final String REQ_BODY = '<soap:Body xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">';
-   public static final String RES_FOOTER ='</notify-event-data></notify-event-response></SOAP-ENV:Body></soapenv:Envelope>';
 
    public static final String ENVELOPE_KEY = 'Envelope';
    public static final String BODY_KEY = 'Body';
