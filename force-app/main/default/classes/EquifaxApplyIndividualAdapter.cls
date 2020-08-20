@@ -113,10 +113,11 @@ global class EquifaxApplyIndividualAdapter extends intframework.BaseIntegrationA
             }
             requestbody = requestbody.replace(ConstantValues.CUSTOM_IP_PARAM_KEY, 'ITH');
             requestbody = requestbody.replace(ConstantValues.CUSTOM_IP_PARAM_VALUE, String.valueOf(true));
-            requestbody = requestbody.replace(ConstantValues.IND_LASTNAME, EncodingUtil.urlEncode((String) conInfo.get('lastName'), 'UTF-8'));
-            requestbody = requestbody.replace(ConstantValues.IND_FIRSTNAME, EncodingUtil.urlEncode((String) conInfo.get('lastName'), 'UTF-8'));
+            requestbody = requestbody.replace(ConstantValues.IND_LASTNAME, (String) conInfo.get('lastName'));
+            requestbody = requestbody.replace(ConstantValues.IND_FIRSTNAME, (String) conInfo.get('firstName'));
             if(conInfo.containsKey('middleName') && String.isNotBlank((String) conInfo.get('middleName'))){
-                requestbody = requestbody.replace(ConstantValues.IND_MIDNAME_WKEY, EncodingUtil.urlEncode((String) conInfo.get('middleName'), 'UTF-8'));
+                requestbody = requestbody.replace(ConstantValues.IND_MIDNAME_WKEY,
+                '<ved:other-given-name>' + (String) conInfo.get('middleName') + '</ved:other-given-name>');
             } else{
                 requestbody = requestbody.replace(ConstantValues.IND_MIDNAME_WKEY, '');
             }

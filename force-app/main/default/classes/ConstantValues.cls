@@ -215,6 +215,8 @@ global class ConstantValues{
    public static final String TITLE_SEARCH_API_TYPE = 'Title Search by Address';
    public static final String ORDER_DOCUMENT_API_TYPE = 'Order Document';
    public static final String DELIVER_DOCUMENT_API_TYPE = 'Deliver Document';
+   public static final String APPLY_INDIVIDUAL_API_TYPE = 'Apply Individual';
+   public static final String PREVIOUS_ENQUIRY_API_TYPE = 'Previous Enquiry';
    public static final String COLLATERAL_ID = 'collateralId';
    public static final String HS_LANDTITLE = '-landTitle';
    public static final String US_LANDTITLE = 'LandTitle';
@@ -266,10 +268,10 @@ global class ConstantValues{
    public static final String DOCUMENT_ATTACHMENT_PREFIX = 'TITLE||DOCUMENT||';
    public static final String TITLE_SEARCH_DOCUMENT_CATEGORY_NAME = 'Title Search Document';
    public static final String DELIVER_DOCUMENT_BATCH_CALLED = 'Document Status Check Batch Successfully called ';
-   public static final String NCCP_REGULATED = 'Regulated';
-   public static final String NCCP_NON_REGULATED = 'Unregulated';
-   public static final String APPLY_INDIVIDUAL_API_TYPE = 'Apply Individual';
+   public static final String PDF_REPORT_DOWNLOADED = 'PDF Report downloaded successfully';
    public static final String APPLY_IND_REQUEST_SR = 'ApplyIndividualRequest';
+   public static final String NCCP_NON_REGULATED = 'Unregulated';
+   public static final String NCCP_REGULATED = 'Regulated';
    //Integration Request Structure
    public static final String NC_USERNAME = '{!$Credential.UserName}';
    public static final String NC_PASSWORD = '{!$Credential.Password}';
@@ -300,7 +302,8 @@ global class ConstantValues{
    public static final String CURRENCY_CODE = '__currencyCode';
    public static final String ENQ_AMT = '__enquiryAmount';
    public static final String RELATIONSHIP_CODE = '__relationshipCode';
-
+   public static final String ENQUIY_ID_CODE = '__enquiryId';
+   public static final String CONTENT_TYPE_CODE = '__contentType';
    public static final String REQ_ENVELOPE_START = '<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:land="http://vedaxml.com/vxml2/land-titles-v1-0.xsd" xmlns:vh="http://vedaxml.com/soap/header/v-header-v1-10.xsd" xmlns:wsa="http://www.w3.org/2005/08/addressing">';
    public static final String RES_HEADER = '<soapenv:Envelope xmlns:soapenv="http://www.w3.org/2003/05/soap-envelope" xmlns:wsa="http://www.w3.org/2005/08/addressing" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">'	
    + '<SOAP-ENV:Body xmlns:SOAP-ENV="http://www.w3.org/2003/05/soap-envelope"><notify-event-response xmlns="http://veda-services/event-notify-v1-0.xsd" xmlns:xmime="http://www.w3.org/2005/05/xmlmime"><notify-event-data>';
@@ -314,6 +317,14 @@ global class ConstantValues{
    public static final String RES_HEADER = '<soapenv:Envelope xmlns:soapenv="http://www.w3.org/2003/05/soap-envelope" xmlns:wsa="http://www.w3.org/2005/08/addressing" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">'	
       + '<SOAP-ENV:Body xmlns:SOAP-ENV="http://www.w3.org/2003/05/soap-envelope"><notify-event-response xmlns="http://veda-services/event-notify-v1-0.xsd" xmlns:xmime="http://www.w3.org/2005/05/xmlmime"><notify-event-data>';	
    public static final String RES_FOOTER ='</notify-event-data></notify-event-response></SOAP-ENV:Body></soapenv:Envelope>';
+
+   public static final String ENVELOPE_KEY = 'Envelope';
+   public static final String BODY_KEY = 'Body';
+   public static final String RESPONSE_KEY = 'response';
+   public static final String BINARYDATA_KEY = 'binaryData';
+   public static final String NODEVALUE_KEY = 'NodeValue';
+
+   // Exceptions
    public static final String NO_APPLICATION = 'No Application found';
    public static final String NO_PARTY = 'No Party found';
    public static final String NO_CONTACT = 'No Contact found';
@@ -335,6 +346,8 @@ global class ConstantValues{
    public static final String APPLY_IND_SUCCESS = 'Individual Enquiry Report has been fetched Successfully';
    public static final String NO_DIRECTORSHIPS = 'No Directorship found';
    public static final String APPLY_IND_PARAM_NULL ='Equifax Apply Individual Party Update null check exception';
+   public static final String RESPONSE_PARSE_ERR = 'There is Something wrong while parsing the response.';
+   
    //SMSF ABN Integration
    public static final String GUID_VALUE = 'c4726ad0-af04-4d8d-987b-d15966cd1cfd';
    public static final String GUID = 'guid';
@@ -375,4 +388,42 @@ global class ConstantValues{
    public static final String INVALID_ABN = 'Invalid ABN';
    public static final String PARTY_ID_EMPTY = 'Party Id is empty';
    public static final String ABN_NUMBER_EMPTY ='ABN field is empty';
-  }
+
+   //Equifax Director Org Id Search
+  public static final String EQUIFAX_CREDS = 'credentials';
+  public static final String SUBSCRIBER_IDENTIFIER = 'subscriberIdentifier';
+  public static final String SECURITY = 'security';
+  public static final String PARTY_NAME = 'name';
+  public static final String EQUIFAX_API_TYPE = 'Equifax Org Id Search API';
+  public static final String EQUIFAX_FAMILY_NAME = 'Equifax Org Id Search';
+  public static final String INVALID_REQUEST = 'Invalid Request';
+  public static final String EQUIFAX_ABN_NUMBER = 'abnNumber';
+  public static final String EQUIFAX_XML_REQUEST_BODY = 'equifaxXMLRequestBody';
+  public static final String EQUIFAX_XML_BODY = 'EquifaxXMLBody';
+  public static final String BCA_ERROR = 'BCAerror';
+  public static final String BCA_ERROR_DESCRIPTION_TAG = '<BCAerror-description>';
+  public static final String BCA_ERROR_DESCRIPTION_CLOSE_TAG = '</BCAerror-description>';
+  public static final String CS_SUBSCRIBER_IDENTIFIER = 'CSsubscriberIdentifier';
+  public static final String CS_SECURITY = 'CSsecurity';
+  public static final String REQUEST_BODY_PARTY_NAME = 'partyName';
+  public static final String USERNAME = 'username';
+  public static final String PASSWORD = 'password';
+  public static final String REQUEST_ABN_NUMBER = 'ABNNumber';
+  public static final String CREDENTIAL_USERNAME = '{!$Credential.UserName}';
+  public static final String CREDENTIAL_PASSWORD = '{!$Credential.Password}';
+  public static final String EQUIFAX_CRED_EXCEP = 'Equifax Credentials is null or blank';
+  public static final String PARTY_NAME_EXCEP = 'Party Name is null or blank';
+  public static final String SUBSCRIBER_IDENTIFIER_EXCEP = 'Subsrciber Identifier is null or blank';
+  public static final String SECURITY_EXCEP = 'Security is null or blank';
+  public static final String EQUIFAX_REQUEST_MAPPING = '{"thirdPartySystem":{"name":"EquifaxOrgIdSearch","dynamicDataParameters":[{"externalField":"equifaxXMLRequestBody"},{"externalField":"abnNumber"}],"filters":[{"objectAPI":"clcommon__Party__c","objectAlias":"partyInfo","fields":[{"externalField":"name","fieldAPI":"Name"}],"whereClause":"Id = :partyId"},{"objectAPI":"EquifaxOrdIdSearch__c","objectAlias":"credentials","fields":[{"externalField":"subscriberIdentifier","fieldAPI":"Subscriber_Identifier__c"},{"externalField":"security","fieldAPI":"Security__c"}],"whereClause":""}]}}';
+  public static final String ABN_SEARCH_NUMBER = '46006261623';
+
+  //Previous Enquiry Integration
+  public static final String NO_ENQ_ID = 'Enquiry Id field cannot be blank';
+  public static final String PREV_ENQ_REQ_BODY_SRNAME = 'Request body Static Resource not found';
+  public static final String APP_PDF_CONTENT_TYPE = 'application/pdf';
+  public static final String PREV_ENQ_STATIC_RES = 'PreviousEnquiry';
+  public static final String PREV_ENQ_DOC_CAT = 'Equifax Apply Document';
+  public static final String PREV_ENQ_PDF_CONTENT_TYPE = 'application/json';
+  public static final String PREV_ENQ_PDF_NAME_PREF = 'Apply Individual Document for ';
+}

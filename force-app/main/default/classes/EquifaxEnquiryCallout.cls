@@ -3,7 +3,7 @@
 /* Class Name           : EquifaxEnquiryCallout */
 /* Created Date         : 11/08/2020 */
 /* Developed By         : Souvik */
-/* Description          : This is the callout class for Equifax Apply Individual. */
+/* Description          : This is the callout class for Equifax Apply Individual and Previous Enquiry. */
 /* Last Modified Date   : 12/08/2020 */
 /* Last Modified By     : Souvik */
 /*********************************************************************************************************/
@@ -58,8 +58,83 @@ global with sharing class EquifaxEnquiryCallout {
                 doc
             );
             String json = System.JSON.serialize(responseMap);
-            EquifaxApplyIndividualResponseHelper helperObject = EquifaxApplyIndividualResponseHelper.parse(json);
+            EquifaxApplyIndividualResponseHelper helperObject = EquifaxApplyIndividualResponseHelper.parse(json, partyObj.Id);
             return EquifaxApplyIndividualResponseHelper.updatePartyWithApplyIndividualResponse(partyObj, helperObject);
+        }
+        catch(Exception ex){
+            GenericUtility.insertLog('EquifaxEnquiryCallout', ex);
+            return ConstantValues.GENERAL_ERROR;
+        }
+    }
+    webService static String equifaxPreviousEnquiry(String enquiryId, Id partyId){
+        String pdfData;
+        try{
+            clcommon__Party__c partyObj = [SELECT Id, clcommon__Account__c, clcommon__Contact__r.FirstName, clcommon__Contact__r.lastName FROM clcommon__Party__c WHERE Id = :partyId];
+            Map<String, Object> requestParamMap = new Map<String, Object>();
+            StaticResource sr = [SELECT Id, Name, Body FROM StaticResource WHERE Name =:ConstantValues.PREV_ENQ_STATIC_RES];
+            String requestBody = sr.Body.toString();
+            if(sr == null){
+                throw new CustomException(ConstantValues.PREV_ENQ_REQ_BODY_SRNAME);
+            }
+            requestParamMap.put('requestBody', requestBody);
+            if(String.isBlank(enquiryId)){
+                return ConstantValues.NO_ENQ_ID;
+            }
+            requestParamMap.put('enquiryId', enquiryId);
+            requestParamMap.put('contentType', ConstantValues.APP_PDF_CONTENT_TYPE);
+            intframework.AbstractIntegrationService baseintegrationService = intframework.IntegrationServiceFactory.getBaseIntegrationService();
+            intframework.BaseIntegrationResponse responseObject;
+            responseObject = (intframework.BaseIntegrationResponse) baseintegrationService.runSynchronousIntegrationService(
+                ConstantValues.EQUIFAX_FAMILY,
+                ConstantValues.PREVIOUS_ENQUIRY_API_TYPE,
+                new Map<String, String>(),
+                requestParamMap
+            );
+            System.debug(responseObject.getBody());
+            dom.Document doc = new dom.Document();
+            doc.load(responseObject.getBody());
+            Map<String, Object> responseMap = intframework.XmlToJson.parseDocumentToMap(
+                doc
+            );
+            // This inner try catch block terminates the code if any exception occurs during fetching the document
+            try{
+                pdfData = (String)
+                ((Map<String, Object>)
+                ((Map<String, Object>)
+                ((Map<String, Object>)
+                ((Map<String, Object>) responseMap
+                .get(ConstantValues.ENVELOPE_KEY))
+                .get(ConstantValues.BODY_KEY))
+                .get(ConstantValues.RESPONSE_KEY))
+                .get(ConstantValues.BINARYDATA_KEY))
+                .get(ConstantValues.NODEVALUE_KEY);
+                Attachment documentAttachment = new Attachment();
+                documentAttachment.ContentType = ConstantValues.PREV_ENQ_PDF_CONTENT_TYPE;
+                documentAttachment.Body = EncodingUtil.base64Decode(pdfData);
+                documentAttachment.Name = ConstantValues.PREV_ENQ_PDF_NAME_PREF
+                + partyObj.clcommon__Contact__r.FirstName + ' '
+                + partyObj.clcommon__Contact__r.LastName + '.pdf';
+                documentAttachment.parentId = partyObj.Id;
+                Database.insert(documentAttachment);
+                List<clcommon__Document_Category__c> docCatList =
+                [
+                    SELECT Id, clcommon__Category_Name__c
+                    FROM clcommon__Document_Category__c
+                    WHERE clcommon__Category_Name__c =:ConstantValues.PREV_ENQ_DOC_CAT
+                    AND clcommon__Account__c =:partyObj.clcommon__Account__c
+                ];
+                //Attaching the retrieved document with the collateral
+                clcommon__Document_Category__c docCat = docCatList[0];
+                clcommon__Category_Attachment_Association__c attachDoc = new clcommon__Category_Attachment_Association__c();
+                attachDoc.Name = documentAttachment.Name;
+                attachDoc.clcommon__Attachment_Id__c = documentAttachment.Id;
+                attachDoc.clcommon__Document_Category__c = docCat.Id;
+                Database.insert(attachDoc);
+                return ConstantValues.PDF_REPORT_DOWNLOADED;
+            }
+            catch(Exception ex){
+                throw new CustomException(ConstantValues.RESPONSE_PARSE_ERR);
+            }
         }
         catch(Exception ex){
             GenericUtility.insertLog('EquifaxEnquiryCallout', ex);
