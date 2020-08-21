@@ -3,10 +3,9 @@
     <fullName>Exit_Strategy_Suitable_Rule_Check__c</fullName>
     <description>Exit Strategy Suitable Rule Check</description>
     <externalId>false</externalId>
-    <formula>IF(NOT(ISPICKVAL(Repayment_Type__c,&apos;Interest Only&apos;)),true,false)</formula>
+    <formula>IF(IF(ISNULL(Birthdate),true,IF(ISPICKVAL(Exit_Strategy_Suitable__c,&apos;&apos;),true,false)),true,false)</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
     <label>Exit Strategy Suitable Rule Check</label>
     <trackHistory>false</trackHistory>
-    <trackTrending>false</trackTrending>
     <type>Checkbox</type>
 </CustomField>

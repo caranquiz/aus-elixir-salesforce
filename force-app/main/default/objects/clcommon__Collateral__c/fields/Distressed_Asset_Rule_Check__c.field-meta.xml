@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>Check_Val_Value_Rule_Check__c</fullName>
-    <description>Check Val Value Rule Check</description>
+    <fullName>Distressed_Asset_Rule_Check__c</fullName>
     <externalId>false</externalId>
-    <formula>IF(Check_Val_Value__c != NULL &amp;&amp; (Check_Val_Value__c&lt;(clcommon__Value__c*(90/100))),&apos;Yes&apos;,&apos;No&apos;)</formula>
+    <formula>IF(ISPICKVAL(Distressed_Asset__c,&apos;No&apos;),&apos;TRUE&apos;, &apos;FALSE&apos;)</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-    <label>Check Val Value Rule Check</label>
+    <label>Distressed Asset Rule Check</label>
     <required>false</required>
     <trackTrending>false</trackTrending>
     <type>Text</type>

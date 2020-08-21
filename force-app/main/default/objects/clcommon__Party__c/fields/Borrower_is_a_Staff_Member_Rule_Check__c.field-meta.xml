@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>Exit_Strategy_Suitable_Rule_Check__c</fullName>
-    <description>Exit Strategy Suitable Rule Check</description>
+    <fullName>Borrower_is_a_Staff_Member_Rule_Check__c</fullName>
+    <description>Borrower is a Staff Member Rule Check</description>
     <externalId>false</externalId>
-    <formula>IF(NOT(ISPICKVAL(Repayment_Type__c,&apos;Interest Only&apos;)),true,false)</formula>
+    <formula>IF(ISPICKVAL(Is_Borrower_Staff__c,&apos;&apos;),true,false)</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-    <label>Exit Strategy Suitable Rule Check</label>
+    <label>Borrower is a Staff Member Rule Check</label>
     <trackHistory>false</trackHistory>
     <trackTrending>false</trackTrending>
     <type>Checkbox</type>

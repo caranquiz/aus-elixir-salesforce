@@ -3,7 +3,7 @@
     <fullName>Satisfactory_Explanation_Provided_Render__c</fullName>
     <description>Satisfactory Explanation Provided Render</description>
     <externalId>false</externalId>
-    <formula>IF(OR(ISPICKVAL(Income_Consistent_with_Declaration__c,&apos;No&apos;),ISPICKVAL(Income_Consistent_with_Declaration__c,&apos;&apos;)),&apos;Not Render&apos;,&apos;Render&apos;)</formula>
+    <formula>IF(ISPICKVAL(Income_Consistent_with_Declaration__c,&apos;Yes&apos;) &amp;&amp; Income_Alt__c == True,&apos;Render&apos;,&apos;Not Render&apos;)</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
     <label>Satisfactory Explanation Provided Render</label>
     <required>false</required>

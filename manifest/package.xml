@@ -6,9 +6,13 @@
         <members>EraseRedundantData</members>
         <members>EraseRedundantDataTest</members>
 
-        <!-- Credit Rule changes by Koushik -->
+        <!-- Credit Rule changes by Koushik, Khalid and Rameswari-->
+        <members>BooleanExpression</members>
         <members>CheckRules</members>
         <members>CheckRulesTest</members>
+        <members>ChecklistDetailsAPI</members>
+        <members>ChildChecklistAPI</members>
+        <members>GenericUtilityTestHelper</members>
 
         <!-- Pricing Changes made by Rameswari-->
         <members>ConstantValues</members>
@@ -292,6 +296,44 @@
         <members>clcommon__Party__c.Request_Id__c</members>
          <members>EquifaxOrdIdSearch__c.Subscriber_Identifier__c</members>
         <members>EquifaxOrdIdSearch__c.Security__c</members>
+        <members>Checklist_Detail__c.Application_Collateral__c</members>
+        <members>Checklist_Detail__c.Checklist__c</members>
+        <members>Checklist_Detail__c.Employment_Information__c</members>
+        <members>Checklist_Detail__c.Income__c</members>
+        <members>Checklist_Detail__c.Party__c</members>
+        <members>Checklist_Detail__c.Record_Id__c</members>
+        <members>Checklist_Detail__c.Status__c</members>
+        <members>Contact.Exit_Strategy_Suitable_Rule_Check__c</members>
+        <members>Contact.Temporary_Visa_Suitability_Rule_Check__c</members>
+        <members>clcommon__Collateral__c.Check_Val_Value_Render__c</members>
+        <members>clcommon__Collateral__c.Check_Val_Value_Rule_Check__c</members>
+        <members>clcommon__Collateral__c.Distressed_Asset_Render__c</members>
+        <members>clcommon__Collateral__c.Distressed_Asset_Rule_Check__c</members>
+        <members>clcommon__Party__c.ABN_Status_Explanation_Suitable_Rule__c</members>
+        <members>clcommon__Party__c.Bank_Statement_Reviewed_Rule_Check__c</members>
+        <members>clcommon__Party__c.Borrower_is_a_Staff_Member_Rule_Check__c</members>
+        <members>clcommon__Party__c.Exit_Strategy_Commentary__c</members>
+        <members>clcommon__Party__c.Exit_Strategy_Suitable__c</members>
+        <members>clcommon__Party__c.Exit_Strategy__c</members>
+        <members>clcommon__Party__c.Explanation_Of_Credit_Enquiry_Rule_Check__c</members>
+        <members>clcommon__Party__c.Explanation_of_Age_of_Credit_File_Rule_C__c</members>
+        <members>clcommon__Party__c.Explanation_of_Bankruptcy_Rule_Check__c</members>
+        <members>clcommon__Party__c.Explanation_of_Credit_Events_Rule_Check__c</members>
+        <members>clcommon__Party__c.Explanation_of_Living_Expense_Rule_Check__c</members>
+        <members>clcommon__Party__c.GST_Suitable_Rule_Check__c</members>
+        <members>genesis__Applications__c.Cash_Out_Purpose_Suitable_Rule_Check__c</members>
+        <members>genesis__Applications__c.Commission_Mandate_Percentage_Rule_Check__c</members>
+        <members>genesis__Applications__c.Commission_Mandate_Percentage__c</members>
+        <members>genesis__Applications__c.Customer_Interview_Completed_Rule_Check__c</members>
+        <members>genesis__Applications__c.Exit_Strategy_Suitable_Rule_Check__c</members>
+        <members>genesis__Applications__c.Interest_Only_Suitable_Rule_Check__c</members>
+        <members>genesis__Applications__c.Lenders_Mortgage_Insurance_Rule_Check__c</members>
+        <members>genesis__Employment_Information__c.ABN_Effective_from_Rule_Check__c</members>
+        <members>genesis__Employment_Information__c.Employment_Call_Suitable_Rule_Check__c</members>
+        <members>genesis__Income__c.Accountant_Call_Suitable_Render__c</members>
+        <members>genesis__Income__c.Income_Consistant_Rule_Check__c</members>
+        <members>genesis__Income__c.Satisfactory_Explanation_Provided_Render__c</members>
+        <members>genesis__Income__c.Self_Employment_Rule_Check__c</members>
 
         <!-- Credit Contract changes made by Rameswari -->
         <members>genesis__Applications__c.CL_Date__c</members>
@@ -385,6 +427,19 @@
         <members>EquifaxMockResponse</members>
         <members>EquifaxXMLBody</members>
         <name>StaticResource</name>
+    </types>
+
+    <types>
+        <!-- Credit Rules changes by Koushik-->
+        <members>Contact.Date_Of_Birth</members>
+        <members>clcommon__Party__c.Bankrupt_Discharged</members>
+        <members>clcommon__Party__c.Bankrupt_Discharged_Date</members>
+        <members>genesis__Applications__c.Fixed_Duration</members>
+        <members>genesis__Applications__c.Interest_Only_Duration</members>
+        <members>genesis__Applications__c.LMI_Approved</members>
+        <members>genesis__Applications__c.Repayment_Type</members>
+        <members>genesis__Employment_Information__c.ABN_Effective_from</members>
+        <name>ValidationRule</name>
     </types>
     <types>
         <!-- SMSF ABN changes made by Pratik -->
