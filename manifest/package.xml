@@ -397,18 +397,8 @@
 
         <!-- Elixir Director Search Search made by Pratik -->
         <members>EquifaxOrdIdSearch__c</members>
+        <members>Checklist_Detail__c</members>
         <name>CustomObject</name>
-    </types>
-    <types>
-        <!-- Credit Rule Changes added by Koushik -->
-        <members>Contact.Date_Of_Birth</members>
-        <members>genesis__Applications__c.Fixed_Duration</members>
-        <members>genesis__Applications__c.Interest_Only_Duration</members>
-        <members>genesis__Applications__c.LMI_Approved</members>
-        <members>genesis__Applications__c.Repayment_Type</members>
-        <members>clcommon__Party__c.Bankrupt_Discharged</members>
-        <members>clcommon__Party__c.Bankrupt_Discharged_Date</members>
-        <name>ValidationRule</name>
     </types>
     <types>
         <!-- Title Search Changes added by Souvik -->
@@ -445,7 +435,7 @@
         <!-- SMSF ABN changes made by Pratik -->
         <members>ABNSearchSMSF</members>
         <members>SearchByABNNumber</members>
-        <members>EquifaxOrgIdSearch</members>
+        <!--<members>EquifaxOrgIdSearch</members>-->
         <name>NamedCredential</name>
     </types>
     <version>45.0</version>
