@@ -419,6 +419,7 @@ global class ConstantValues{
   public static final String SECURITY_EXCEP = 'Security is null or blank';
   public static final String EQUIFAX_REQUEST_MAPPING = '{"thirdPartySystem":{"name":"EquifaxOrgIdSearch","dynamicDataParameters":[{"externalField":"equifaxXMLRequestBody"},{"externalField":"abnNumber"}],"filters":[{"objectAPI":"clcommon__Party__c","objectAlias":"partyInfo","fields":[{"externalField":"name","fieldAPI":"Name"}],"whereClause":"Id = :partyId"},{"objectAPI":"EquifaxOrdIdSearch__c","objectAlias":"credentials","fields":[{"externalField":"subscriberIdentifier","fieldAPI":"Subscriber_Identifier__c"},{"externalField":"security","fieldAPI":"Security__c"}],"whereClause":""}]}}';
   public static final String ABN_SEARCH_NUMBER = '46006261623';
+  public static final String ASIC_REPORT_NOT_FOUND = 'ASIC Report Not found';
 
   //Previous Enquiry Integration
   public static final String NO_ENQ_ID = 'Enquiry Id field cannot be blank';

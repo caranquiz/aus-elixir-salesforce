@@ -58,6 +58,7 @@ global with sharing class EquifaxOrgIdSearchCallout {
     }
     public static EquifaxOrgIdSearchParser parse(String json){
         if(String.isNotBlank(json)){
+            Boolean res = false;
             // Changing the response format from Map to EquifaxOrgIdSearchParser class object
             EquifaxOrgIdSearchParser parserObject = EquifaxOrgIdSearchParser.parse(json);
             if(parserObject == null){
@@ -78,9 +79,25 @@ global with sharing class EquifaxOrgIdSearchCallout {
                 GenericUtility.insertLog('EquifaxOrgIdSearchCallout', ex);
                 return null;
             }
-            String asicStat = parserObject.bcaMessage.bcaServices.bcaService.bcaServiceData.response.orgIdResult[0].asicReport.asicStatus.nodeValue;
-            asicStat = GenericUtility.convertToDescription(asicStat);
-            parserObject.bcaMessage.bcaServices.bcaService.bcaServiceData.response.orgIdResult[0].asicReport.asicStatus.nodeValue = asicStat;
+            for(EquifaxOrgIdSearchParser.Cls_orgIdResult each: parserObject.bcaMessage.bcaServices.bcaService.bcaServiceData.response.orgIdResult){
+                if(each.asicReport != null){
+                    try{
+                        String asicStat = each.asicReport.asicStatus.nodeValue;
+                        asicStat = GenericUtility.convertToDescription(asicStat);
+                        parserObject.asicStatusData = asicStat;
+                        parserObject.asicNameData = each.asicReport.asicName.nodeValue;
+                        res = true;
+                        break;
+                    }
+                    catch(Exception ex){
+                        GenericUtility.insertLog('EquifaxOrgIdSearchCallout', ex);
+                        break;
+                    } 
+                }
+            }
+            if(!res){
+                parserObject.errMessage = ConstantValues.ASIC_REPORT_NOT_FOUND;
+            }
             return parserObject;
         }
         return null;
