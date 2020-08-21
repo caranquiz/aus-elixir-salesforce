@@ -1,3 +1,11 @@
+/**********************************************************************************************************************************************************
+Company : CloudKaptan Consultancy Services Pvt. Ltd.
+Developer : Khalid Fazlullah
+Development Date : 07/08/2020
+Last Modified By : Rameswari Barman
+Last Modified Date : 21/08/2020
+Description : This class query all the Rules and check the Rule Criteria for the Parties/Securities/Income/employment Information.
+***********************************************************************************************************************************************************/
 public with sharing class ChildChecklistAPI {
     public ChildChecklistAPI() {
 
@@ -15,7 +23,7 @@ public with sharing class ChildChecklistAPI {
         Map <Id,genesis__Rule__c> ruleMap = new Map <Id,genesis__Rule__c>();
         Map <Id,List<genesis__RuleCriteria__c>> criteriaRuleMap = new Map <Id,List<genesis__RuleCriteria__c>>();
         if(!(listOfCheckList != NULL && listOfCheckList.size() > 0)){
-            throw new CustomException('Checklist is empty!');
+            throw new CustomException(ConstantValues.EMPTY_CHECKLIST);
         }
         for (genesis__Checklist__c eachChecklist : listOfCheckList) {
             if(eachChecklist.genesis__Rule__c != NULL){
@@ -23,7 +31,7 @@ public with sharing class ChildChecklistAPI {
             }
         }
         if(!(ruleIds != NULL && ruleIds.size() > 0)){
-            throw new CustomException('No rule is found!');
+            throw new CustomException(ConstantValues.NO_RULE_FOUND);
         }
         ruleList = [Select Id,
                             genesis__Message_failure__c,
@@ -43,7 +51,7 @@ public with sharing class ChildChecklistAPI {
                                 where genesis__Rule__c=:ruleIds order by genesis__Criteria_Sequence__c];
                                 
         if(!(criteriaList != NULL && criteriaList.size() > 0)){
-            throw new CustomException('No rule criteria found!');
+            throw new CustomException(ConstantValues.RULE_CRITERIA_NOT_FOUND);
         }
         for(genesis__Checklist__c eachChecklist : listOfCheckList){
             for(genesis__RuleCriteria__c criteria : criteriaList){
@@ -133,21 +141,42 @@ public with sharing class ChildChecklistAPI {
         for (genesis__Checklist__c checklist : listOfCheckList) {
             type = checklistMap.get(checklist.Id);
             switch on type {
-                when 'clcommon__party__c' {     // when block 1
-                    checklistDetailList.addAll(this.processParties(checklist.genesis__Application__c,checklist,partyList,ruleMap.get(checklist.Id),criteriaRuleMap.get(ruleMap.get(checklist.Id).Id)));
+                when 'clcommon__party__c' {
+                    if(partyList != NULL && partyList.size() > 0){
+                        checklistDetailList.addAll(this.processParties(checklist.genesis__Application__c,checklist,partyList,ruleMap.get(checklist.Id),criteriaRuleMap.get(ruleMap.get(checklist.Id).Id)));
+                    }
+                    else{
+                        throw new CustomException(ConstantValues.RECORDS_NOT_FOUND);
+                    }
                 }   
-                when 'genesis__income__c' {     // when block 2
-                    checklistDetailList.addAll(this.processIncome(checklist.genesis__Application__c,checklist,incomeList,ruleMap.get(checklist.Id),criteriaRuleMap.get(ruleMap.get(checklist.Id).Id)));
+                when 'genesis__income__c' {
+                    if(incomeList != NULL && incomeList.size() > 0){
+                        checklistDetailList.addAll(this.processIncome(checklist.genesis__Application__c,checklist,incomeList,ruleMap.get(checklist.Id),criteriaRuleMap.get(ruleMap.get(checklist.Id).Id)));
+                    }
+                    else{
+                        throw new CustomException(ConstantValues.RECORDS_NOT_FOUND);
+                    }
                 }
-                when 'genesis__application_collateral__c' {     // when block 3
-                    checklistDetailList.addAll(this.processCollateral(checklist.genesis__Application__c,checklist,collateralList,ruleMap.get(checklist.Id),criteriaRuleMap.get(ruleMap.get(checklist.Id).Id)));
+                when 'genesis__application_collateral__c' { 
+                    if(collateralList != NULL && collateralList.size() > 0){
+                        checklistDetailList.addAll(this.processCollateral(checklist.genesis__Application__c,checklist,collateralList,ruleMap.get(checklist.Id),criteriaRuleMap.get(ruleMap.get(checklist.Id).Id)));
+                    }
+                    else{
+                        throw new CustomException(ConstantValues.RECORDS_NOT_FOUND);
+                    }
                 }
-                when 'genesis__employment_information__c' {     // when block 3
-                    checklistDetailList.addAll(this.processEmploymentInformation(checklist.genesis__Application__c,checklist,empInfoList,ruleMap.get(checklist.Id),criteriaRuleMap.get(ruleMap.get(checklist.Id).Id)));
+                when 'genesis__employment_information__c' { 
+                    if(empInfoList != NULL && empInfoList.size() > 0){
+                    checklistDetailList.addAll(this.processEmploymentInformation(checklist.genesis__Application__c,
+                    checklist,empInfoList,ruleMap.get(checklist.Id),
+                    criteriaRuleMap.get(ruleMap.get(checklist.Id).Id)));
+                    }
+                    else{
+                        throw new CustomException(ConstantValues.RECORDS_NOT_FOUND);
+                    }
                 }
-                when else {
-                    System.debug(type+'<======='+checklist.genesis__Rule__r.Name);       
-                    throw new CustomException('Type not supported yet');
+                when else {      
+                    throw new CustomException(ConstantValues.TYPE_NOT_SUPPORTED);
                 }
             }
         }
@@ -162,7 +191,7 @@ public with sharing class ChildChecklistAPI {
                 detail = new Checklist_Detail__c();
                 detail.Checklist__c = checklist.id;
                 detail.Record_Id__c = sObj.id;
-                detail.Status__c = api.runRuleOnChild(sObj,rule,criteriaList)?'SUCCESS':'FAIL';
+                detail.Status__c = api.runRuleOnChild(sObj,rule,criteriaList)?ConstantValues.SUCCESS:ConstantValues.FAIL;
                 if(sObj.getSObjectType() == Schema.genesis__Application_Collateral__c.sObjectType){
                     detail.Application_Collateral__c = sObj.Id;
                 }
@@ -171,22 +200,22 @@ public with sharing class ChildChecklistAPI {
                 }
                 else if(sObj.getSObjectType() == Schema.genesis__Employment_Information__c.sObjectType){
                     detail.Employment_Information__c = sObj.Id;
-                    if(sObj.get('Party__c') != NULL){
-                        Id iden = Id.valueOf(sObj.get('Party__c')+'');
+                    if(sObj.get(ConstantValues.PARTY_API) != NULL){
+                        Id iden = Id.valueOf(sObj.get(ConstantValues.PARTY_API)+'');
                         detail.Party__c = iden;
                     }
                 }
                 else if(sObj.getSObjectType() == Schema.genesis__Income__c.sObjectType){
                     detail.Income__c = sObj.Id;
                     Id iden;
-                    if(sObj.getSobject('Employment_Information__r') != NULL){
-                        if((sObj.getSObject('Employment_Information__r').get('Party__c')) != NULL){
-                            iden = Id.valueOf(sObj.getSObject('Employment_Information__r').get('Party__c')+'');
+                    if(sObj.getSobject(ConstantValues.EMPLOYMENT_INFORMATION_API) != NULL){
+                        if((sObj.getSObject(ConstantValues.EMPLOYMENT_INFORMATION_API).get(ConstantValues.PARTY_API)) != NULL){
+                            iden = Id.valueOf(sObj.getSObject(ConstantValues.EMPLOYMENT_INFORMATION_API).get(ConstantValues.PARTY_API)+'');
                         }
                         detail.Party__c = iden;
                     }
-                    if(sObj.get('Party__c') != NULL){
-                        iden = Id.valueOf(sObj.get('Party__c')+'');
+                    if(sObj.get(ConstantValues.PARTY_API) != NULL){
+                        iden = Id.valueOf(sObj.get(ConstantValues.PARTY_API)+'');
                         detail.Party__c = iden;
                     }
                 }

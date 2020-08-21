@@ -428,4 +428,52 @@ global class ConstantValues{
   public static final String PREV_ENQ_DOC_CAT = 'Equifax Apply Document';
   public static final String PREV_ENQ_PDF_CONTENT_TYPE = 'application/json';
   public static final String PREV_ENQ_PDF_NAME_PREF = 'Apply Individual Document for ';
+
+  //Credit Rule Constant Values
+  public static final String LOAN_DETAILS = 'Loan Details';
+  public static final String CASHOUT_PURPOSE_RULE = 'Cash Out Purpose Suitable Rule';
+  public static final String COMMISSION_MANADATE_PERCENTAGE_RULE = 'Commission Mandate Percentage Rule';
+  public static final String INTEREST_ONLY_SUITABE_RULE = 'Interest Only Suitable Rule';
+  public static final String EXIT_STRATEGY_SUITABLE_RULE = 'Exit Strategy Suitable Rule';
+  public static final String LENDERS_MORTAGE_INSURANCE_RULE = 'Lenders Mortgage Insurance Rule';
+  public static final String SETTLEMENT = 'Settlement';
+  public static final String CUSTOMER_INTERVIEW_COMPLETED_RULE = 'Customer Interview completed Rule';
+  public static final String SECURITIES = 'Securities';
+  public static final String DISTRESSED_ASSET_RULE = 'Distressed Asset Rule';
+  public static final String CHECK_VAL_VALUE_RULE = 'Check Val Value Rule';
+  public static final String INDIVIDUAL_CONTACT_DETAILS = 'Individual Contact Details';
+  public static final String TEMPORARY_VISA_SUITABILITY_RULE = 'Temporary Visa Suitability Rule';
+  public static final String ABN_STATUS_EXPLANATION_SUITABLE_RULE = 'ABN Status Explanation Suitable Rule';
+  public static final String EXIT_STRATEGY_SUITABLE_RULE_CONTACT = 'Exit Strategy Suitable Rule (Contact)';
+  public static final String BORROWER_IS_A_STAFF_MEMBER = 'Borrower is a Staff Member Rule';
+  public static final String NON_INDIVIDUAL_CONTACT_DETAILS = 'Non Individual Contact Details';
+  public static final String GST_SUITABLE_RULE = 'GST Suitable Rule';
+  public static final String CREDIT_HISTORY = 'Credit History';
+  public static final String EXPLANATION_OF_CREDIT_EVENTS = 'Explanation of Credit Events Suitable Rule';
+  public static final String EXPLANATION_OF_CREDIT_ENQUIRIES = 'Explanation of Credit Enquiries Suitable Rule';
+  public static final String EXPLANATION_OF_BANKRUPTCY = 'Explanation of Bankruptcy Suitable Rule';
+  public static final String EXPLANATION_OF_AGE_OF_CREDIT_FILE = 'Explanation of Age of Credit File Suitable Rule';
+  public static final String INDIVIDUAL_EMPLOYMENT_INFORMATION = 'Individual Employment Information';
+  public static final String CONFIRM_LETTER_PREPARED_BY_ACCOUNTANT = 'Confirm letter prepared by accountant Rule';
+  public static final String CONFIRM_STATED_ANNUAL_INCOME = 'Confirm stated annual income Rule';
+  public static final String ACCOUNTANT_AWARE_OF_ANY_CIRCUMSTANCE = 'Accountant aware of any circumstances Rule';
+  public static final String ACCOUNTANT_CALL_SUITABLE_RULE = 'Accountant Call Suitable Rule';
+  public static final String EMPLOYMENT_CALL_SUITABLE_RULE = 'Employment Call Suitable Rule';
+  public static final String INCOME_INCONSISTANT_WITH_DECLARATION_RULE = 'Income Consistent with Declaration Rule';
+  public static final String LIVING_EXPENSE = 'Living Expense';
+  public static final String LIVING_EXPENSE_EXPLANATION_SUITABLE_RULE = 'Living Expense Explanation Suitable Rule';
+  public static final String BANK_STATEMENT_REVIEWED_RULE = 'Bank Statements Reviewed Rule';
+  public static final String COMPANY_INCOME = 'Company Income';
+  public static final String SATISFACTORY_EXPLANATION_PROVIDED_RULE = 'Satisfactory Explanation Provided Rule';
+  public static final String INVALID_RULES = 'Rules not found';
+  public static final String EMPTY_CHECKLIST = 'Checklist is empty!';
+  public static final String NO_RULE_FOUND = 'No rule is found!';
+  public static final String RULE_CRITERIA_NOT_FOUND = 'No rule criteria found!';
+  public static final String TYPE_NOT_SUPPORTED = 'Type not supported yet';
+  public static final String FAIL = 'FAIL';
+  public static final String PARTY_API = 'Party__c';
+  public static final String EMPLOYMENT_INFORMATION_API = 'Employment_Information__r';
+  public static final String RECORDS_NOT_FOUND = 'Records not found';
+  public static final String DOUBLE_CHECK = 'Double';
+  
 }

@@ -2,8 +2,8 @@
 Company : CloudKaptan Consultancy Services Pvt. Ltd.
 Developer : Koushik Mondal
 Development Date : 29/07/2020
-Last Modified By : Koushik Mondal
-Last Modified Date : 29/07/2020
+Last Modified By : Rameswari Barman
+Last Modified Date : 21/08/2020
 Description : This class query all the Rules and check the Rule Criteria for the Loan Application.
 ***********************************************************************************************************************************************************/
 
@@ -12,63 +12,63 @@ global with sharing class CheckRules {
         String returnValue = '';
         String applicationRecordId;
         List <String> rulesNameList = new List<String>();
+        List<genesis__Checklist__c> previousChecklistList = new List<genesis__Checklist__c>();
         Savepoint sp = Database.setSavepoint();
         List<genesis__Checklist__c> checkList = new List<genesis__Checklist__c>();
         try {
             if (applicationId == null) {
                 return (ConstantValues.CHECKRULES_APPLICATION_ID_NULL);
             }
-
             applicationRecordId = applicationId.substring(0,applicationId.length()-3);
-
-            if(tabName == 'Loan Details'){
-                rulesNameList.add('Cash Out Purpose Suitable Rule');
-                rulesNameList.add('Commission Mandate Percentage Rule');
-                rulesNameList.add('Interest Only Suitable Rule');
-                rulesNameList.add('Exit Strategy Suitable Rule');
-                rulesNameList.add('Lenders Mortgage Insurance Rule');
+            //By the name of specific rules are executed
+            if(tabName == ConstantValues.LOAN_DETAILS){
+                rulesNameList.add(ConstantValues.CASHOUT_PURPOSE_RULE);
+                rulesNameList.add(ConstantValues.COMMISSION_MANADATE_PERCENTAGE_RULE);
+                rulesNameList.add(ConstantValues.INTEREST_ONLY_SUITABE_RULE);
+                rulesNameList.add(ConstantValues.EXIT_STRATEGY_SUITABLE_RULE);
+                rulesNameList.add(ConstantValues.LENDERS_MORTAGE_INSURANCE_RULE);
             }
-            else if(tabName == 'Settlement'){
-                rulesNameList.add('Customer Interview completed Rule');
+            else if(tabName == ConstantValues.SETTLEMENT){
+                rulesNameList.add(ConstantValues.CUSTOMER_INTERVIEW_COMPLETED_RULE);
             }
-            else if(tabName == 'Securities'){
-                rulesNameList.add('Distressed Asset Rule');
-                rulesNameList.add('Check Val Value Rule');
+            else if(tabName == ConstantValues.SECURITIES){
+                rulesNameList.add(ConstantValues.DISTRESSED_ASSET_RULE);
+                rulesNameList.add(ConstantValues.CHECK_VAL_VALUE_RULE);
             }
-            else if(tabName == 'Individual Contact Details'){
-                rulesNameList.add('Temporary Visa Suitability Rule');
-                rulesNameList.add('ABN Status Explanation Suitable Rule');
-                rulesNameList.add('Exit Strategy Suitable Rule (Contact)');
-                rulesNameList.add('Borrower is a Staff Member Rule');
+            else if(tabName == ConstantValues.INDIVIDUAL_CONTACT_DETAILS){
+                rulesNameList.add(ConstantValues.TEMPORARY_VISA_SUITABILITY_RULE);
+                rulesNameList.add(ConstantValues.ABN_STATUS_EXPLANATION_SUITABLE_RULE);
+                rulesNameList.add(ConstantValues.EXIT_STRATEGY_SUITABLE_RULE_CONTACT);
+                rulesNameList.add(ConstantValues.BORROWER_IS_A_STAFF_MEMBER);
             }
-            else if(tabName == 'Non Individual Contact Details'){
-                rulesNameList.add('GST Suitable Rule');
+            else if(tabName == ConstantValues.NON_INDIVIDUAL_CONTACT_DETAILS){
+                rulesNameList.add(ConstantValues.GST_SUITABLE_RULE);
             }
-            else if(tabName == 'Credit History'){
-                rulesNameList.add('Explanation of Credit Events Suitable Rule');
-                rulesNameList.add('Explanation of Credit Enquiries Suitable Rule');
-                rulesNameList.add('Explanation of Bankruptcy Suitable Rule');
-                rulesNameList.add('Explanation of Age of Credit File Suitable Rule');
+            else if(tabName == ConstantValues.CREDIT_HISTORY){
+                rulesNameList.add(ConstantValues.EXPLANATION_OF_CREDIT_EVENTS);
+                rulesNameList.add(ConstantValues.EXPLANATION_OF_CREDIT_ENQUIRIES);
+                rulesNameList.add(ConstantValues.EXPLANATION_OF_BANKRUPTCY);
+                rulesNameList.add(ConstantValues.EXPLANATION_OF_AGE_OF_CREDIT_FILE);
             }
-            else if(tabName == 'Individual Employment Information'){
-                rulesNameList.add('Confirm letter prepared by accountant Rule');
-                rulesNameList.add('Confirm stated annual income Rule');
-                rulesNameList.add('Accountant aware of any circumstances Rule');
-                rulesNameList.add('Accountant Call Suitable Rule');
-                rulesNameList.add('Employment Call Suitable Rule');
-                rulesNameList.add('Income Consistent with Declaration Rule');
+            else if(tabName == ConstantValues.INDIVIDUAL_EMPLOYMENT_INFORMATION){
+                rulesNameList.add(ConstantValues.CONFIRM_LETTER_PREPARED_BY_ACCOUNTANT);
+                rulesNameList.add(ConstantValues.CONFIRM_STATED_ANNUAL_INCOME);
+                rulesNameList.add(ConstantValues.ACCOUNTANT_AWARE_OF_ANY_CIRCUMSTANCE);
+                rulesNameList.add(ConstantValues.ACCOUNTANT_CALL_SUITABLE_RULE);
+                rulesNameList.add(ConstantValues.EMPLOYMENT_CALL_SUITABLE_RULE);
+                rulesNameList.add(ConstantValues.INCOME_INCONSISTANT_WITH_DECLARATION_RULE);
             }
-            else if(tabName == 'Living Expense'){
-                rulesNameList.add('Living Expense Explanation Suitable Rule');
-                rulesNameList.add('Bank Statements Reviewed Rule');
+            else if(tabName == ConstantValues.LIVING_EXPENSE){
+                rulesNameList.add(ConstantValues.LIVING_EXPENSE_EXPLANATION_SUITABLE_RULE);
+                rulesNameList.add(ConstantValues.BANK_STATEMENT_REVIEWED_RULE);
             }
-            else if(tabName == 'Company Income'){
-                rulesNameList.add('Income Consistent with Declaration Rule');
-                rulesNameList.add('Satisfactory Explanation Provided Rule');
-                rulesNameList.add('Confirm letter prepared by accountant Rule');
-                rulesNameList.add('Confirm stated annual income Rule');
-                rulesNameList.add('Accountant aware of any circumstances Rule');
-                rulesNameList.add('Accountant Call Suitable Rule');
+            else if(tabName == ConstantValues.COMPANY_INCOME){
+                rulesNameList.add(ConstantValues.INCOME_INCONSISTANT_WITH_DECLARATION_RULE);
+                rulesNameList.add(ConstantValues.SATISFACTORY_EXPLANATION_PROVIDED_RULE);
+                rulesNameList.add(ConstantValues.CONFIRM_LETTER_PREPARED_BY_ACCOUNTANT);
+                rulesNameList.add(ConstantValues.CONFIRM_STATED_ANNUAL_INCOME);
+                rulesNameList.add(ConstantValues.ACCOUNTANT_AWARE_OF_ANY_CIRCUMSTANCE);
+                rulesNameList.add(ConstantValues.ACCOUNTANT_CALL_SUITABLE_RULE);
             }
             Map<Id,genesis__Rule__c> mapRules = new Map<Id,genesis__Rule__c>([SELECT Id,
                                                                             Name
@@ -76,7 +76,20 @@ global with sharing class CheckRules {
                                                                             WHERE genesis__Enabled__c = true
                                                                             AND Name =: rulesNameList]);
 
+            if (!isApplicationAccessValid()) {
+                //Checking if the user has access to Application's relevant fields
+                throw new CustomException(ConstantValues.USER_DOES_NOT_HAVE_ACCESS);
+            }
+            
+            if (!isCheckListAccessValid()) {
+                //Checking if the user has access to checklist's relevant fields
+                throw new CustomException(ConstantValues.USER_DOES_NOT_HAVE_ACCESS);
+            }
 
+            if(!(mapRules != NULL && mapRules.size() > 0)){
+                //Checking if rules are present or not
+                throw new CustomException(ConstantValues.INVALID_RULES);
+            }
             genesis__Applications__c application = [SELECT  Id, 
                                                     Lenders_Mortgage_Insurance__c,
                                                     Actual_LVR__c,
@@ -95,76 +108,77 @@ global with sharing class CheckRules {
                                                     Cash_Out_Purpose_Suitable_Rule_Check__c
                                                     FROM genesis__Applications__c 
                                                     WHERE id = :applicationRecordId
-                                                    LIMIT 1];                                                               
-            If (application != null && mapRules != null) {                              
-                if(Test.isRunningTest() == false){
+                                                    LIMIT 1];   
+            if(Test.isRunningTest() == false){
+                previousChecklistList = [SELECT Id 
+                                            FROM genesis__Checklist__c 
+                                            WHERE genesis__Application__c  =: applicationRecordId
+                                            AND genesis__Rule__r.Name =: rulesNameList];
+                Database.delete(previousChecklistList);
                 checkList = genesis.RulesAPI.evaluateRules(application, mapRules.values(), true, true);
-                /*List<genesis__Checklist__c> archivedChecklistList = [SELECT Id 
-                                                                  FROM genesis__Checklist__c 
-                                                                  WHERE genesis__Application__c  =: applicationRecordId
-                                                                  AND genesis__Is_Archived__c = TRUE];
-                delete archivedChecklistList;*/
-                }
-                else{
-                    
-                    checkList = [Select Id,
-                                        genesis__Application__c,
-                                        genesis__Assessed_Record_Id__c,
-                                        genesis__Is_Archived__c ,
-                                        genesis__Level__c,
-                                        genesis__Message__c,
-                                        genesis__Rule__c,
-                                        genesis__Rule__r.Name,
-                                        genesis__Type__c
-                                        From genesis__Checklist__c];
-                }
-                if(tabName != 'Loan Details' && tabName != 'Settlement'){
-                    ChildChecklistAPI api = new ChildChecklistAPI();
-                    List<Checklist_Detail__c> listOfDetail = api.processListOfChecklist(checkList, applicationRecordId);
-                    
-                    /*if(tabName == 'Individual Employment Information'){
-                        for(Checklist_Detail__c eachCheckListDet : listOfDetail){
-                            if((eachCheckListDet.Employment_Information__c != NULL
-                            && 
-                            && eachCheckListDet.Employment_Information__r.Previous_Employment__c == true
-                            && (eachCheckListDet.Checklist__r.genesis__Rule__r.Name == 'Employment Call Suitable Rule')){
-                                finalSet.add(eachCheckListDet);
-                            }
-                            if((eachCheckListDet.Income__c != NULL
-                            && eachCheckListDet.Income__r.Document_Type__c == 'Alt')
-                            && (eachCheckListDet.Checklist__r.genesis__Rule__r.Name == 'Confirm letter prepared by accountant Rule'
-                            || eachCheckListDet.Checklist__r.genesis__Rule__r.Name == 'Confirm stated annual income Rule'
-                            || eachCheckListDet.Checklist__r.genesis__Rule__r.Name == 'Accountant aware of any circumstances Rule'
-                            || eachCheckListDet.Checklist__r.genesis__Rule__r.Name == 'Employment Call Suitable Rule')){
-                                finalSet.add(eachCheckListDet);
-                            }
-                        }
-                    }
-                    if(tabName == 'Company Income'){
-                        for(Checklist_Detail__c eachCheckListDet : listOfDetail){
-                            if((eachCheckListDet.Income__c != NULL)
-                            && eachCheckListDet.Income__r.Document_Type__c == 'Alt')
-                            && (eachCheckListDet.Checklist__r.genesis__Rule__r.Name == 'Confirm letter prepared by accountant Rule'
-                            || eachCheckListDet.Checklist__r.genesis__Rule__r.Name == 'Confirm stated annual income Rule'
-                            || eachCheckListDet.Checklist__r.genesis__Rule__r.Name == 'Accountant aware of any circumstances Rule'
-                            || eachCheckListDet.Checklist__r.genesis__Rule__r.Name == 'Employment Call Suitable Rule')){
-                                finalSet.add(eachCheckListDet);
-                            }
-                        }
-                    }
-                    else{*/
-                        Database.insert(listOfDetail);
-                    //}
-                }
             }
-
+            else{
+                checkList = [Select Id,
+                                    genesis__Application__c,
+                                    genesis__Assessed_Record_Id__c,
+                                    genesis__Is_Archived__c ,
+                                    genesis__Level__c,
+                                    genesis__Message__c,
+                                    genesis__Rule__c,
+                                    genesis__Rule__r.Name,
+                                    genesis__Type__c
+                                    From genesis__Checklist__c];
+            }
+            if(tabName != ConstantValues.LOAN_DETAILS && tabName != ConstantValues.SETTLEMENT){
+                ChildChecklistAPI api = new ChildChecklistAPI();
+                List<Checklist_Detail__c> listOfDetail = api.processListOfChecklist(checkList, applicationRecordId);
+                Database.insert(listOfDetail);
+            }
             returnValue = ConstantValues.Success;
-
         } 
         catch (Exception e) {
             Database.rollback(sp);
             returnValue = e.getMessage();
+            GenericUtility.insertLog('CheckRules', e);
         }
       return returnValue;
     }
+    static Boolean isCheckListAccessValid() {
+        if (
+          !(Schema.sObjectType.genesis__Checklist__c.fields.id.isAccessible() &&
+          Schema.sObjectType.genesis__Checklist__c.fields.genesis__Application__c.isAccessible() &&
+          Schema.sObjectType.genesis__Checklist__c.fields.genesis__Assessed_Record_Id__c.isAccessible() && 
+          Schema.sObjectType.genesis__Checklist__c.fields.genesis__Is_Archived__c.isAccessible() &&
+          Schema.sObjectType.genesis__Checklist__c.fields.genesis__Level__c.isAccessible() && 
+          Schema.sObjectType.genesis__Checklist__c.fields.genesis__Message__c.isAccessible() &&
+          Schema.sObjectType.genesis__Checklist__c.fields.genesis__Rule__c.isAccessible() &&
+          Schema.sObjectType.genesis__Checklist__c.fields.genesis__Type__c.isAccessible())
+        ) {
+          return false;
+        }
+        return true;
+      }
+      static Boolean isApplicationAccessValid() {
+        if (
+          !(Schema.sObjectType.genesis__Applications__c.fields.id.isAccessible() &&
+          Schema.sObjectType.genesis__Applications__c.fields.Lenders_Mortgage_Insurance__c.isAccessible() &&
+          Schema.sObjectType.genesis__Applications__c.fields.Actual_LVR__c.isAccessible() && 
+          Schema.sObjectType.genesis__Applications__c.fields.Exit_Strategy_Suitable__c.isAccessible() &&
+          Schema.sObjectType.genesis__Applications__c.fields.Exit_Strategy_Suitable_Rule_Check__c.isAccessible() && 
+          Schema.sObjectType.genesis__Applications__c.fields.Exit_Strategy_Provided__c.isAccessible() &&
+          Schema.sObjectType.genesis__Applications__c.fields.Repayment_Type__c.isAccessible() &&
+          Schema.sObjectType.genesis__Applications__c.fields.Customer_Interview_Completed_Rule_Check__c.isAccessible() &&
+          Schema.sObjectType.genesis__Applications__c.fields.Customer_Interview_completed__c.isAccessible() &&
+          Schema.sObjectType.genesis__Applications__c.fields.genesis__CL_Product_Name__c.isAccessible() &&
+          Schema.sObjectType.genesis__Applications__c.fields.NCCP_status_list__c.isAccessible() &&
+          Schema.sObjectType.genesis__Applications__c.fields.Commission_Mandate_Percentage__c.isAccessible() &&
+          Schema.sObjectType.genesis__Applications__c.fields.Commission_Mandate__c.isAccessible() &&
+          Schema.sObjectType.genesis__Applications__c.fields.Commission_Mandate_Percentage_Rule_Check__c.isAccessible() &&
+          Schema.sObjectType.genesis__Applications__c.fields.Cash_Out_Purpose_Suitable__c.isAccessible() && 
+          Schema.sObjectType.genesis__Applications__c.fields.Cash_Out_Purpose_Suitable_Rule_Check__c.isAccessible())
+        ) {
+          return false;
+        }
+        return true;
+      }
 }

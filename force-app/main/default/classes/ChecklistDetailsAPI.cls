@@ -1,3 +1,11 @@
+/**********************************************************************************************************************************************************
+Company : CloudKaptan Consultancy Services Pvt. Ltd.
+Developer : Khalid Fazlullah
+Development Date : 07/08/2020
+Last Modified By : Rameswari Barman
+Last Modified Date : 21/08/2020
+Description : This class query all the Rules and check the Rule Criteria for the Parties/Securities/Income/employment Information.
+***********************************************************************************************************************************************************/
 public with sharing class ChecklistDetailsAPI {
     public ChecklistDetailsAPI() {
     }
@@ -10,7 +18,7 @@ public with sharing class ChecklistDetailsAPI {
         String value;
         Double doubleValue;
         Boolean hasRulePassed;
-        if(criteria.genesis__Field_Type__c == 'Double'){
+        if(criteria.genesis__Field_Type__c == ConstantValues.DOUBLE_CHECK){
             doubleValue = api.getDoubleValue(objectMap,criteria.genesis__Field_API_Name__c);
             hasRulePassed = this.evaluateBasedOnDoubleMatchingType(doubleValue,criteria.genesis__Matching_Type__c,criteria.genesis__Matching_Value__c);
         }
@@ -50,22 +58,9 @@ public with sharing class ChecklistDetailsAPI {
                 }
                 return (matchingOperand1 == matchingOperand2);
                 
-            }   
-            /*when '<=' {     // when block 1
-                System.debug('Check f1');
-                return ((matchingOperand1 < matchingOperand2) || (matchingOperand1 == matchingOperand2));
-                
             }
-            when '>=' {     // when block 1
-                System.debug('Check f1');
-                return ((matchingOperand1 > matchingOperand2) || (matchingOperand1 == matchingOperand2));
-                
-            }*/
-            when else {     
-                System.debug('Check g');  
+            when else {      
                 return true;
-                //TODO needs to be added for others operators
-                //throw new CustomException('Type not supported yet');
             }
         }
     }

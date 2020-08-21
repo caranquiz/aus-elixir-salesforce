@@ -56,8 +56,8 @@ global with sharing class PricingUpdate {
       }
       return ConstantValues.PRICING_SUCCESSFULLY_UPDATED;
     } catch (Exception e) {
-      GenericUtility.insertLog('PricingUpdate', e);
       Database.rollback(sp);
+      GenericUtility.insertLog('PricingUpdate', e);
     }
     return ConstantValues.UNABLE_UPDATE_PRICING;
   }
