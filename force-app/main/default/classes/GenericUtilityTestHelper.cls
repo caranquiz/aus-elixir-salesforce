@@ -262,9 +262,6 @@ public with sharing class GenericUtilityTestHelper {
   insert equifaxOrgIdSearchObj;
   return equifaxOrgIdSearchObj;
  }
- @isTest
-public with sharing class GenericUtilityTestHelper {
-
   //Inserting Rules, Checklist and Criteria of Rules
   public static List<genesis__Rule__c> returnRule(Id appId){
     genesis__Rule__c ruleOne = new genesis__Rule__c(genesis__Object_Type__c = 'Application',Name = 'Cash Out Purpose Suitable Rule',genesis__Enabled__c = true,genesis__Evaluation_Expression__c = '1',genesis__Message_failure__c = 'FAILURE', genesis__Message_success__c = 'SUCCESS');
