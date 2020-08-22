@@ -52,7 +52,6 @@
     <enableSearch>false</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
-    <externalSharingModel>Private</externalSharingModel>
     <label>PPSR Registration</label>
     <nameField>
         <displayFormat>PPSR-{0000}</displayFormat>

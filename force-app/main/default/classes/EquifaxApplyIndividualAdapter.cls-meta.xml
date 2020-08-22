@@ -3,7 +3,7 @@
     <apiVersion>45.0</apiVersion>
     <packageVersions>
         <majorNumber>3</majorNumber>
-        <minorNumber>3000</minorNumber>
+        <minorNumber>2049</minorNumber>
         <namespace>intframework</namespace>
     </packageVersions>
     <status>Active</status>

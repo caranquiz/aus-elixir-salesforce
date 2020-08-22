@@ -295,6 +295,7 @@
         <members>clcommon__Party__c.Report_for__c</members>
         <members>clcommon__Party__c.Request_Id__c</members>
         <members>clcommon__Party__c.General_Messages__c</members>
+        <members>clcommon__Party__c.Legal_Entity_Type__c</members>
         <members>EquifaxOrdIdSearch__c.Subscriber_Identifier__c</members>
         <members>EquifaxOrdIdSearch__c.Security__c</members>
         <members>Checklist_Detail__c.Application_Collateral__c</members>

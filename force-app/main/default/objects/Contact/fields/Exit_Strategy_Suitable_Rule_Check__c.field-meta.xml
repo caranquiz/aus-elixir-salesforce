@@ -6,6 +6,5 @@
     <formula>IF(IF(ISNULL(Birthdate),true,IF(ISPICKVAL(Exit_Strategy_Suitable__c,&apos;&apos;),true,false)),true,false)</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
     <label>Exit Strategy Suitable Rule Check</label>
-    <trackHistory>false</trackHistory>
     <type>Checkbox</type>
 </CustomField>

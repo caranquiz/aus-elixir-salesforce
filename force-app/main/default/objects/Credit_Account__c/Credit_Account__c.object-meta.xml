@@ -52,7 +52,6 @@
     <enableSearch>false</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
-    <externalSharingModel>ControlledByParent</externalSharingModel>
     <label>Credit Account</label>
     <nameField>
         <displayFormat>CA-{0000}</displayFormat>
