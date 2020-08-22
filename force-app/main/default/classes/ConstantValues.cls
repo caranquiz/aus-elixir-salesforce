@@ -314,7 +314,6 @@ global class ConstantValues{
    public static final String REQ_DD_ACTION = '<wsa:Action>http://vedaxml.com/land-titles/deliverDocumentRequest</wsa:Action></soap:Header>';
    public static final String REQ_ENVELOPE_END = '</soap:Body></soap:Envelope>';
    public static final String REQ_BODY = '<soap:Body xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">';
-
    public static final String REQ_HEADER = '<soap:Header>' +
    '<wsse:Security mustUnderstand="1" xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd">'
    + '<wsse:UsernameToken>' + '<wsse:Username>{!$Credential.UserName}</wsse:Username>'
