@@ -105,7 +105,12 @@ public with sharing class ChildChecklistAPI {
                                                 Bank_Statement_Reviewed_Rule_Check__c,
                                                 Explanation_of_Living_Expense_Rule_Check__c,
                                                 Is_Borrower_Staff__c,
-                                                GST_Suitable_Rule_Check__c
+                                                GST_Suitable_Rule_Check__c,
+                                                clcommon__Account__c,
+                                                clcommon__Account__r.Commission_Status__c,
+                                                ACL_ACR_Verified__c,
+                                                Party_Type_Name__c,
+                                                Legal_Entity_Type__c
                                                 from clcommon__Party__c where genesis__Application__c =:appId];
     List<genesis__Income__c> incomeList = [select id,
                                                 Party__c,

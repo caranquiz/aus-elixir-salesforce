@@ -118,7 +118,9 @@ global with sharing class CheckRules {
                                             FROM genesis__Checklist__c 
                                             WHERE genesis__Application__c  =: applicationRecordId
                                             AND genesis__Rule__r.Name =: rulesNameList];
-                Database.delete(previousChecklistList);
+                if(previousChecklistList != NULL && previousChecklistList.size() > 0){
+                    Database.delete(previousChecklistList);
+                }
                 checkList = genesis.RulesAPI.evaluateRules(application, mapRules.values(), true, true);
             }
             else{
