@@ -70,6 +70,10 @@ global with sharing class CheckRules {
                 rulesNameList.add(ConstantValues.ACCOUNTANT_AWARE_OF_ANY_CIRCUMSTANCE);
                 rulesNameList.add(ConstantValues.ACCOUNTANT_CALL_SUITABLE_RULE);
             }
+            else if(tabName == ConstantValues.BROKER_CONTACT_DETAILS){
+                rulesNameList.add(ConstantValues.ACL_VERIFIED_RULE);
+                rulesNameList.add(ConstantValues.COMMISSION_STATUS_RULE);
+            }
             Map<Id,genesis__Rule__c> mapRules = new Map<Id,genesis__Rule__c>([SELECT Id,
                                                                             Name
                                                                             FROM genesis__Rule__c
