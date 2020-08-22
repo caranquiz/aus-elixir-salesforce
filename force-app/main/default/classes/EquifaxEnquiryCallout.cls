@@ -59,6 +59,9 @@ global with sharing class EquifaxEnquiryCallout {
             );
             String json = System.JSON.serialize(responseMap);
             EquifaxApplyIndividualResponseHelper helperObject = EquifaxApplyIndividualResponseHelper.parse(json, partyObj.Id);
+            if(helperObject == null){
+                return ConstantValues.GENERAL_ERROR;
+            }
             return EquifaxApplyIndividualResponseHelper.updatePartyWithApplyIndividualResponse(partyObj, helperObject);
         }
         catch(Exception ex){
@@ -109,7 +112,7 @@ global with sharing class EquifaxEnquiryCallout {
                 .get(ConstantValues.BINARYDATA_KEY))
                 .get(ConstantValues.NODEVALUE_KEY);
                 Attachment documentAttachment = new Attachment();
-                documentAttachment.ContentType = ConstantValues.PREV_ENQ_PDF_CONTENT_TYPE;
+                documentAttachment.ContentType = ConstantValues.APP_PDF_CONTENT_TYPE;
                 documentAttachment.Body = EncodingUtil.base64Decode(pdfData);
                 documentAttachment.Name = ConstantValues.PREV_ENQ_PDF_NAME_PREF
                 + partyObj.clcommon__Contact__r.FirstName + ' '
