@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Explanation_Of_Credit_Enquiry_Rule_Check__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF(NOT(ISNULL(Number_of_Credit_Enquiries_in_Last_12_Mo__c)) &amp;&amp; Number_of_Credit_Enquiries_in_Last_12_Mo__c &gt; 1, &apos;Render&apos;, &apos;Not Render&apos;)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Explanation Of Credit Enquiry Rule Check</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

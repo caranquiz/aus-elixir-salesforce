@@ -3,7 +3,7 @@
     <fullName>Cash_Out_Purpose_Suitable_Rule_Check__c</fullName>
     <description>Cash Out Purpose Suitable Rule Check</description>
     <externalId>false</externalId>
-    <formula>IF(IF(NOT(INCLUDES(Refinance_purpose_list__c,&apos;Refinance - Cash Out&apos;)),true,IF(ISPICKVAL(Cash_Out_Purpose_Suitable__c,&apos;&apos;),true,false)),true,false)</formula>
+    <formula>IF(NOT(INCLUDES(Refinance_purpose_list__c,&apos;Refinance - Cash Out&apos;)),true,false)</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
     <label>Cash Out Purpose Suitable Rule Check</label>
     <trackHistory>false</trackHistory>

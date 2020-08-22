@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Income_Consistant_Rule_Check__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF(INCLUDES(Company_Type_of_Documents_Sighted__c,&apos;BAS&apos;) || INCLUDES(Company_Type_of_Documents_Sighted__c,&apos;Trading Statements&apos;),&apos;Render&apos;,&apos;Not Render&apos;)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Income Consistant Rule Check</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

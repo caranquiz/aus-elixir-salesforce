@@ -2,47 +2,183 @@
 Company : CloudKaptan Consultancy Services Pvt. Ltd.
 Developer : Koushik Mondal
 Development Date : 29/07/2020
-Last Modified By : Koushik Mondal
-Last Modified Date : 29/07/2020
+Last Modified By : Rameswari Barman
+Last Modified Date : 21/08/2020
 Description : This class query all the Rules and check the Rule Criteria for the Loan Application.
 ***********************************************************************************************************************************************************/
 
 global with sharing class CheckRules {
-    webService static String callCheckRulesWS(String applicationId) {
+    webService static String callCheckRulesWS(String applicationId, String tabName) {
         String returnValue = '';
         String applicationRecordId;
-
+        List <String> rulesNameList = new List<String>();
+        List<genesis__Checklist__c> previousChecklistList = new List<genesis__Checklist__c>();
         Savepoint sp = Database.setSavepoint();
-
+        List<genesis__Checklist__c> checkList = new List<genesis__Checklist__c>();
         try {
             if (applicationId == null) {
                 return (ConstantValues.CHECKRULES_APPLICATION_ID_NULL);
             }
-
             applicationRecordId = applicationId.substring(0,applicationId.length()-3);
-
+            //By the name of specific rules are executed
+            if(tabName == ConstantValues.LOAN_DETAILS){
+                rulesNameList.add(ConstantValues.CASHOUT_PURPOSE_RULE);
+                rulesNameList.add(ConstantValues.COMMISSION_MANADATE_PERCENTAGE_RULE);
+                rulesNameList.add(ConstantValues.INTEREST_ONLY_SUITABE_RULE);
+                rulesNameList.add(ConstantValues.EXIT_STRATEGY_SUITABLE_RULE);
+                rulesNameList.add(ConstantValues.LENDERS_MORTAGE_INSURANCE_RULE);
+            }
+            else if(tabName == ConstantValues.SETTLEMENT){
+                rulesNameList.add(ConstantValues.CUSTOMER_INTERVIEW_COMPLETED_RULE);
+            }
+            else if(tabName == ConstantValues.SECURITIES){
+                rulesNameList.add(ConstantValues.DISTRESSED_ASSET_RULE);
+                rulesNameList.add(ConstantValues.CHECK_VAL_VALUE_RULE);
+            }
+            else if(tabName == ConstantValues.INDIVIDUAL_CONTACT_DETAILS){
+                rulesNameList.add(ConstantValues.TEMPORARY_VISA_SUITABILITY_RULE);
+                rulesNameList.add(ConstantValues.ABN_STATUS_EXPLANATION_SUITABLE_RULE);
+                rulesNameList.add(ConstantValues.EXIT_STRATEGY_SUITABLE_RULE_CONTACT);
+                rulesNameList.add(ConstantValues.BORROWER_IS_A_STAFF_MEMBER);
+            }
+            else if(tabName == ConstantValues.NON_INDIVIDUAL_CONTACT_DETAILS){
+                rulesNameList.add(ConstantValues.GST_SUITABLE_RULE);
+            }
+            else if(tabName == ConstantValues.CREDIT_HISTORY){
+                rulesNameList.add(ConstantValues.EXPLANATION_OF_CREDIT_EVENTS);
+                rulesNameList.add(ConstantValues.EXPLANATION_OF_CREDIT_ENQUIRIES);
+                rulesNameList.add(ConstantValues.EXPLANATION_OF_BANKRUPTCY);
+                rulesNameList.add(ConstantValues.EXPLANATION_OF_AGE_OF_CREDIT_FILE);
+            }
+            else if(tabName == ConstantValues.INDIVIDUAL_EMPLOYMENT_INFORMATION){
+                rulesNameList.add(ConstantValues.CONFIRM_LETTER_PREPARED_BY_ACCOUNTANT);
+                rulesNameList.add(ConstantValues.CONFIRM_STATED_ANNUAL_INCOME);
+                rulesNameList.add(ConstantValues.ACCOUNTANT_AWARE_OF_ANY_CIRCUMSTANCE);
+                rulesNameList.add(ConstantValues.ACCOUNTANT_CALL_SUITABLE_RULE);
+                rulesNameList.add(ConstantValues.EMPLOYMENT_CALL_SUITABLE_RULE);
+                rulesNameList.add(ConstantValues.INCOME_INCONSISTANT_WITH_DECLARATION_RULE);
+            }
+            else if(tabName == ConstantValues.LIVING_EXPENSE){
+                rulesNameList.add(ConstantValues.LIVING_EXPENSE_EXPLANATION_SUITABLE_RULE);
+                rulesNameList.add(ConstantValues.BANK_STATEMENT_REVIEWED_RULE);
+            }
+            else if(tabName == ConstantValues.COMPANY_INCOME){
+                rulesNameList.add(ConstantValues.INCOME_INCONSISTANT_WITH_DECLARATION_RULE);
+                rulesNameList.add(ConstantValues.SATISFACTORY_EXPLANATION_PROVIDED_RULE);
+                rulesNameList.add(ConstantValues.CONFIRM_LETTER_PREPARED_BY_ACCOUNTANT);
+                rulesNameList.add(ConstantValues.CONFIRM_STATED_ANNUAL_INCOME);
+                rulesNameList.add(ConstantValues.ACCOUNTANT_AWARE_OF_ANY_CIRCUMSTANCE);
+                rulesNameList.add(ConstantValues.ACCOUNTANT_CALL_SUITABLE_RULE);
+            }
             Map<Id,genesis__Rule__c> mapRules = new Map<Id,genesis__Rule__c>([SELECT Id,
                                                                             Name
                                                                             FROM genesis__Rule__c
                                                                             WHERE genesis__Enabled__c = true
-                                                                            LIMIT 1000]);
+                                                                            AND Name =: rulesNameList]);
 
-            genesis__Applications__c application = [SELECT  Id, 
-                                                    OwnerId, IsDeleted, Name, RecordTypeId, CreatedDate, CreatedById, LastModifiedDate, LastModifiedById, SystemModstamp, LastActivityDate, LastViewedDate, LastReferencedDate, genesis__APR__c, genesis__Account__c, genesis__Action__c, genesis__Additional_Cash_Required__c, genesis__Amortization_Term__c, genesis__Arrears__c, genesis__Asset_Class__c, genesis__Asset_Liability_Info__c, genesis__Assigned_To__c, genesis__Auto_Decisioning__c, genesis__Balloon_Payment__c, genesis__Bank_Account_Number__c, genesis__Bank_Account_Type__c, genesis__Bank_Name__c, genesis__Bank_Transactions_Fetched__c, genesis__CL_Company__c, genesis__CL_Product_Name__c, genesis__CL_Product__c, genesis__CL_Purpose__c, genesis__Calculation_Action__c, genesis__Call_Code__c, genesis__Cap_Reduction__c, genesis__Cash_Collected_By_Dealer__c, genesis__Charge_offs__c, genesis__Class_Code__c, genesis__Collateral_Type__c, genesis__Collateral_Value__c, genesis__Combined_Debt_To_Income_Ratio__c, genesis__Company__c, genesis__Contact__c, genesis__Credit_Limit__c, genesis__Credit_Rating__c, genesis__Customer_Cash_Available__c, genesis__Customer_Cash_Used_For__c, genesis__Days_Convention__c, genesis__Dealer_Payment_Date__c, genesis__Description__c, genesis__Disbursement_Date__c, genesis__Discount_Rate_Based_On__c, genesis__Discount_Rate__c, genesis__Documentation_Charges__c, genesis__Down_Payment__c, genesis__Draw_Period_End_Date__c, genesis__Draw_Term__c, genesis__Due_Day__c, genesis__Employee_Application__c, genesis__Employee_Loan__c, genesis__Estimated_Selling_Price__c, genesis__Expected_Close_Date__c, genesis__Expected_First_Payment_Date__c, genesis__Expected_Second_Pay_Day_Date__c, genesis__Expected_Start_Date__c, genesis__Fees_Amount__c, genesis__Financed_Amount__c, genesis__Funding_in_Tranches__c, genesis__Gross_Annual_Income__c, genesis__Healthcare_Procedure__c, genesis__ID_Number__c, genesis__ID_State__c, genesis__ID_Type__c, genesis__Initial_Advance__c, genesis__Interest_Calculation_Method__c, genesis__Interest_Compounding_Frequency__c, genesis__Interest_Only_Period__c, genesis__Interest_Rate__c, genesis__Is_Get_Yield_Enabled__c, genesis__Is_over_21__c, genesis__LTV_Pledged_Collateral__c, genesis__Landing_Sequence__c, genesis__Lending_Product__c, genesis__Loan_Amount__c, genesis__Loan_Number__c, genesis__Margin__c, genesis__Maturity_Date__c, genesis__Maximum_Loan_Amount_DTI__c, genesis__Minimum_Cash_Required__c, genesis__Monthly_Debt_Payments__c, genesis__Monthly_Income_Expense_Info__c, genesis__Net_Present_Value__c, genesis__No_Of_Payments_Required_Upfront__c, genesis__Number_of_Pieces_of_Equipment__c, genesis__Other_Financed_fees__c, genesis__Overall_Status__c, genesis__Parent_Application__c, genesis__Participation_Date__c, genesis__Payable_To_Dealer__c, genesis__Payment_Amount_Step_Up_Type__c, genesis__Payment_Amount__c, genesis__Payment_Due_Date__c, genesis__Payment_Frequency_Multiplier__c, genesis__Payment_Frequency__c, genesis__Portfolio__c, genesis__Prepaid_Interest_Option__c, genesis__Prepayment_Penalty_Description__c, genesis__Prepayment_Penalty__c, genesis__Pricing_Method__c, genesis__Primary_Collateral_Code__c, genesis__Primary_Property_Address__c, genesis__Primary_Source_of_Repayment__c, genesis__Probability__c, genesis__Product_Sub_Type__c, genesis__Product_Type__c, genesis__Program__c, genesis__Proposed_Debt_to_Income_Ratio__c, genesis__Quick_Quote__c, genesis__Rate_Ceiling__c, genesis__Rate_Discount__c, genesis__Rate_Floor__c, genesis__Regulation_O__c, genesis__Repayment_Procedure__c, genesis__Required_Customer_Cash__c, genesis__Residual_Amount__c, genesis__Retained_Amount__c, genesis__Routing_Number__c, genesis__Sales_Division__c, genesis__Secondary_Source_of_Repayment__c, genesis__Spread__c, genesis__Status__c, genesis__Sublimit_Variance__c, genesis__Subvention_Amount__c, genesis__Subvention_Percent__c, genesis__Tax_Amount__c, genesis__Term__c, genesis__Terms_Selected__c, genesis__Total_Cash_Due_from_Customer__c, genesis__Total_Dealer_Payable__c, genesis__Total_Dealer_Price__c, genesis__Total_Estimated_Interest__c, genesis__Total_Facilities__c, genesis__Total_Facility_Amount__c, genesis__Total_Facility_Variance__c, genesis__Total_Fee_Amount__c, genesis__Total_Pledged_Collateral_Amount__c, genesis__Total_Upfront_Payments__c, genesis__Unsecured_Debt_To_Income_Ratio__c, genesis__Valid_Pricing_Flag__c, genesis__Vendor__c, genesis__Warranty_Amount__c, genesis__Yield__c, genesis__SubLimit_Total__c, genesis__Total_Score__c, CL_Contract__c, First_Tranche_Prepaid_Interest__c, Subsequent_Drawdown_Prepaid_Interest_Sum__c, Total_Subsequent_Drawdown__c, Drawdown_Prepaid_Interest__c, First_Drawdown_Complete__c, Fixed_Rate_Term__c, Loan_Application__c, Subsequent_Drawdown__c, ABS_lending_purpose__c, Actual_LVR__c, Actual_Security_Value__c, Additional_Requirement_Details__c, Application_Fee__c, Associated_Out_of_Pocket_Expense_Fee__c, Business_purpose_list__c, Cash_Out_Commentary__c, Cash_out_purpose_list__c, Credit_Providers_Mortgage_Insurance__c, Document_Type__c, Expected_LVR__c, Expected_security_value__c, Funder_List__c, General_Security_Agreement_GSA_Fee__c, Income_for_servicing_purposes__c, Income_greater_than_previous_year__c, Interest_only_reason__c, Interest_type__c, Interest_type_duration__c, LMI_Approved__c, LMI__c, LMI_provider_list__c, Lenders_Mortgage_Insurance__c, Mortgage_Registration_Fee__c, Mortgage_Stamp_Duty__c, NCCP_status_list__c, Non_Regulated_Product_Lender_s_Legals__c, Originator_ID__c, Override_Amount__c, Override__c, Primary_loan_purpose_list__c, Rate_Lock_In_Fee__c, Refinance_purpose_list__c, Regulated_Product_Lender_s_Legals__c, Regulated_Unregulated__c, Repayment_Type__c, Repayment_frequency__c, Risk_grade_list__c, Sales_Channel_type__c, Settlement_Advance_Fee__c, Settlement_Rescheduling_Fee__c, Term_type__c, Title_Insurance_Fee__c, Total_fees_amount__c, Type_of_Investor__c, Unique_ID__c, Urgent__c, Valuation_Fee__c, Total_Current_Income_Period__c, Total_Previous_Income_Period__c, Construction_Progress_Payment_Fee__c, Details_for_Interest_Only_Period__c, Legal_Entity__c, Owner_Occupied_Investment_Product__c, Paid_Subsequent_Drawdown_PrepaidInterest__c, Paid_Subsequent_Drawdown__c, Proposed_repayment_method_list__c, Purchase_Type__c, Purchase__c, Search_for_duplicate_loan_application__c, Total_Construction_Progress_Payment_Fee__c, Utilised_Subsequent_Drawdown_Prepaid_Fee__c, Allow_Credit_Check__c, Allow_Direct_Marketing__c, Allow_Telemarketing__c, Business_Other_Amount__c, Buy_Asset_Investment_Amount__c, Cash_Out_Other_Amount__c, Commission_Mandate__c, Commission_Paid__c, Commission_Structure__c, Divorce_Settlement_Amount__c, Holiday_Travel_Amount__c, Home_Imaprovements_Amount__c, House_Dwelling_Description__c, House_Dwelling_Type__c, House_dewelling_Amount__c, Marketing_Advertising_Amount__c, Other_Dwelling_Description__c, Other_Dwelling_Type__c, Other_dewelling_Amount__c, Personal_Investments_Amount__c, Property_Purchase_Amount__c, Purchase_Existing_Amount__c, Purchase_Goods_Amount__c, Purchase_New_Amount__c, Purchase_Off_the_Plan_Amount__c, Signed_The_Form__c, Trail_Amount__c, Trail__c, Upfront_Payment_Amount__c, Upfront_Payment__c, Working_Capital_Amount__c, signed_the_Privacy_Act_Consent__c, Additional_Requirements__c, Aggregator__c, Borrowers_Solicitor__c, Broker__c, Brokers_BDM__c, Commision_Mandate_Amount__c, Email__c, First_Name__c, Mobile__c, Name_Title__c, Sales_Channel__c, Status_Updates__c, Submission_notes__c, Surname__c, Third_Party_Company_Name__c, Third_Party_Office_Phone__c, Application_Declined_Cancelled_Details__c, Application_Declined_Cancelled_Reason__c, Broker_Trail_Percentage__c, Cash_Out__c, Commission_Paid_To__c, Construction_Description__c, Details__c, Mortgage_Description__c, Number_of_Documents_Sighted__c, Office_Phone__c, Percentage_Of_Commission__c, Trust_Type_of_Document_Sighted__c, Type_Of_Documents_Sighted__c, Type__c, Verification_Sighted__c, Commission_Mandate_Amount__c, Purchase_Business_Amount__c, Business_purpose_amount__c, Cash_out_purpose_amount__c, House_dewelling__c, Other_dewelling__c, Refinance_Equity_Release__c, Type1__c, Type2__c, Primary_Loan_Purpose__c, Application_Percentage__c, Debt_Service_Ratio__c, Debt_to_Income_Ratio__c, Interest_Cover_Ratio__c, Net_Surplus_Income__c, Total_HEM_Living_Expenses__c, Monthly_Repayments__c, Monthly_Repayments_post_IO_completion__c, Approval_Date__c, Button_disable__c, Is_Approved__c, PrePaid_Interest_Amount_Funded__c, PrePaid_Interest_Remaining_for_funding__c, Total_Loan_Purpose_Amount__c 
-                                                    FROM genesis__Applications__c 
-                                                    WHERE id = :applicationRecordId
-                                                    LIMIT 1];                                                               
-            If (application != null && mapRules != null) {                              
-                List<genesis__Checklist__c> checkList = genesis.RulesAPI.evaluateRules(application, mapRules.values(), true, true);
+            if (!isApplicationAccessValid()) {
+                //Checking if the user has access to Application's relevant fields
+                throw new CustomException(ConstantValues.USER_DOES_NOT_HAVE_ACCESS);
+            }
+            
+            if (!isCheckListAccessValid()) {
+                //Checking if the user has access to checklist's relevant fields
+                throw new CustomException(ConstantValues.USER_DOES_NOT_HAVE_ACCESS);
             }
 
+            if(!(mapRules != NULL && mapRules.size() > 0)){
+                //Checking if rules are present or not
+                throw new CustomException(ConstantValues.INVALID_RULES);
+            }
+            genesis__Applications__c application = [SELECT  Id, 
+                                                    Lenders_Mortgage_Insurance__c,
+                                                    Actual_LVR__c,
+                                                    Exit_Strategy_Suitable__c,
+                                                    Exit_Strategy_Suitable_Rule_Check__c,
+                                                    Exit_Strategy_Provided__c,
+                                                    Repayment_Type__c,
+                                                    Customer_Interview_Completed_Rule_Check__c,
+                                                    Customer_Interview_completed__c,
+                                                    genesis__CL_Product_Name__c,
+                                                    NCCP_status_list__c,
+                                                    Commission_Mandate_Percentage__c,
+                                                    Commission_Mandate__c,
+                                                    Commission_Mandate_Percentage_Rule_Check__c,
+                                                    Cash_Out_Purpose_Suitable__c,
+                                                    Cash_Out_Purpose_Suitable_Rule_Check__c
+                                                    FROM genesis__Applications__c 
+                                                    WHERE id = :applicationRecordId
+                                                    LIMIT 1];   
+            if(Test.isRunningTest() == false){
+                previousChecklistList = [SELECT Id 
+                                            FROM genesis__Checklist__c 
+                                            WHERE genesis__Application__c  =: applicationRecordId
+                                            AND genesis__Rule__r.Name =: rulesNameList];
+                Database.delete(previousChecklistList);
+                checkList = genesis.RulesAPI.evaluateRules(application, mapRules.values(), true, true);
+            }
+            else{
+                checkList = [Select Id,
+                                    genesis__Application__c,
+                                    genesis__Assessed_Record_Id__c,
+                                    genesis__Is_Archived__c ,
+                                    genesis__Level__c,
+                                    genesis__Message__c,
+                                    genesis__Rule__c,
+                                    genesis__Rule__r.Name,
+                                    genesis__Type__c
+                                    From genesis__Checklist__c];
+            }
+            if(tabName != ConstantValues.LOAN_DETAILS && tabName != ConstantValues.SETTLEMENT){
+                ChildChecklistAPI api = new ChildChecklistAPI();
+                List<Checklist_Detail__c> listOfDetail = api.processListOfChecklist(checkList, applicationRecordId);
+                Database.insert(listOfDetail);
+            }
             returnValue = ConstantValues.Success;
-
         } 
         catch (Exception e) {
             Database.rollback(sp);
             returnValue = e.getMessage();
+            GenericUtility.insertLog('CheckRules', e);
         }
       return returnValue;
     }
+    static Boolean isCheckListAccessValid() {
+        if (
+          !(Schema.sObjectType.genesis__Checklist__c.fields.id.isAccessible() &&
+          Schema.sObjectType.genesis__Checklist__c.fields.genesis__Application__c.isAccessible() &&
+          Schema.sObjectType.genesis__Checklist__c.fields.genesis__Assessed_Record_Id__c.isAccessible() && 
+          Schema.sObjectType.genesis__Checklist__c.fields.genesis__Is_Archived__c.isAccessible() &&
+          Schema.sObjectType.genesis__Checklist__c.fields.genesis__Level__c.isAccessible() && 
+          Schema.sObjectType.genesis__Checklist__c.fields.genesis__Message__c.isAccessible() &&
+          Schema.sObjectType.genesis__Checklist__c.fields.genesis__Rule__c.isAccessible() &&
+          Schema.sObjectType.genesis__Checklist__c.fields.genesis__Type__c.isAccessible())
+        ) {
+          return false;
+        }
+        return true;
+      }
+      static Boolean isApplicationAccessValid() {
+        if (
+          !(Schema.sObjectType.genesis__Applications__c.fields.id.isAccessible() &&
+          Schema.sObjectType.genesis__Applications__c.fields.Lenders_Mortgage_Insurance__c.isAccessible() &&
+          Schema.sObjectType.genesis__Applications__c.fields.Actual_LVR__c.isAccessible() && 
+          Schema.sObjectType.genesis__Applications__c.fields.Exit_Strategy_Suitable__c.isAccessible() &&
+          Schema.sObjectType.genesis__Applications__c.fields.Exit_Strategy_Suitable_Rule_Check__c.isAccessible() && 
+          Schema.sObjectType.genesis__Applications__c.fields.Exit_Strategy_Provided__c.isAccessible() &&
+          Schema.sObjectType.genesis__Applications__c.fields.Repayment_Type__c.isAccessible() &&
+          Schema.sObjectType.genesis__Applications__c.fields.Customer_Interview_Completed_Rule_Check__c.isAccessible() &&
+          Schema.sObjectType.genesis__Applications__c.fields.Customer_Interview_completed__c.isAccessible() &&
+          Schema.sObjectType.genesis__Applications__c.fields.genesis__CL_Product_Name__c.isAccessible() &&
+          Schema.sObjectType.genesis__Applications__c.fields.NCCP_status_list__c.isAccessible() &&
+          Schema.sObjectType.genesis__Applications__c.fields.Commission_Mandate_Percentage__c.isAccessible() &&
+          Schema.sObjectType.genesis__Applications__c.fields.Commission_Mandate__c.isAccessible() &&
+          Schema.sObjectType.genesis__Applications__c.fields.Commission_Mandate_Percentage_Rule_Check__c.isAccessible() &&
+          Schema.sObjectType.genesis__Applications__c.fields.Cash_Out_Purpose_Suitable__c.isAccessible() && 
+          Schema.sObjectType.genesis__Applications__c.fields.Cash_Out_Purpose_Suitable_Rule_Check__c.isAccessible())
+        ) {
+          return false;
+        }
+        return true;
+      }
 }

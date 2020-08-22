@@ -3,7 +3,7 @@
     <fullName>Interest_Only_Suitable_Rule_Check__c</fullName>
     <description>Interest Only Suitable Rule Check</description>
     <externalId>false</externalId>
-    <formula>IF(IF(ISPICKVAL(Interest_Only_Suitable__c,&apos;&apos;),true,false),true,false)</formula>
+    <formula>IF(ISPICKVAL(Interest_Only_Suitable__c,&apos;&apos;),False,(IF(ISPICKVAL(Interest_Only_Suitable__c,&apos;No&apos;),False,True)))</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
     <label>Interest Only Suitable Rule Check</label>
     <trackHistory>false</trackHistory>

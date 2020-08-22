@@ -2,7 +2,7 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Commission_Mandate_Percentage__c</fullName>
     <externalId>false</externalId>
-    <formula>(Commission_Mandate_Amount__c/genesis__Loan_Amount__c)*100</formula>
+    <formula>(Commission_Mandate_Amount__c/genesis__Loan_Amount__c)</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
     <label>Commission Mandate Percentage</label>
     <precision>18</precision>

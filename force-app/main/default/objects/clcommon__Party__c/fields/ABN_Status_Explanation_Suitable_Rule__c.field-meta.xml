@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ABN_Status_Explanation_Suitable_Rule__c</fullName>
+    <description>ABN Status Explanation Suitable Rule</description>
+    <externalId>false</externalId>
+    <formula>IF(NOT(Company_ABN_Status__c == &apos;Registered&apos;),&apos;Render&apos;, &apos;Not Render&apos;)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>ABN Status Explanation Suitable Rule</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ABN_Effective_from</fullName>
+    <active>false</active>
+    <errorConditionFormula>IF(AND((OR((ISPICKVAL(Party__r.Risk_Grade__c,&apos;Prime&apos;)),(ISPICKVAL(Party__r.Risk_Grade__c,&apos;Near Prime&apos;)))),(AND(IF(MONTH(TODAY())&gt;MONTH(DATEVALUE(ABN_Effective_From__c) ),YEAR(TODAY())-YEAR(DATEVALUE(ABN_Effective_From__c)),IF(AND(MONTH(TODAY())=MONTH(DATEVALUE (ABN_Effective_From__c)),DAY(TODAY())&gt;=DAY(DATEVALUE (ABN_Effective_From__c))),YEAR(TODAY())-YEAR(DATEVALUE(ABN_Effective_From__c)),(YEAR(TODAY())-YEAR(DATEVALUE(ABN_Effective_From__c)))-1))&lt;2,NOT(ISBLANK( DATEVALUE(ABN_Effective_From__c)))))),true,false)</errorConditionFormula>
+    <errorMessage>ABN Effective from is &lt; 24 Months, So Risk Grade Cannot = Prime or Near Prime</errorMessage>
+</ValidationRule>

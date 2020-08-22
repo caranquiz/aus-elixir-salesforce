@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Explanation_of_Credit_Events_Rule_Check__c</fullName>
+    <description>Explanation of Credit Events Rule Check</description>
+    <externalId>false</externalId>
+    <formula>IF(NOT(ISNULL(Number_Of_Credit_Events__c)) &amp;&amp; Number_Of_Credit_Events__c &gt; 0, &apos;Render&apos;, &apos;Not Render&apos;)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Explanation of Credit Events Rule Check</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

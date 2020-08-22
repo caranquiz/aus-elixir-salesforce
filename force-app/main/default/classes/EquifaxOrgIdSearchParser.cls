@@ -4,7 +4,9 @@
 /********************************************************************************************/
 public class EquifaxOrgIdSearchParser {
     public String errMessage;
-    public Cls_BCAmessage bcamessage;
+	public Cls_BCAmessage bcamessage;
+	public String asicStatusData;
+	public String asicNameData;
     public class Cls_Nodevalue{
         public String nodeValue;
     }
