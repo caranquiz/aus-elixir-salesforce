@@ -423,9 +423,12 @@
         <members>PPSR_Registration__c</members>
         <members>Current_Directorship__c</members>
 
-        <!-- Elixir Director Search Search made by Pratik -->
+        <!-- Equifax Director Search Search made by Pratik -->
         <members>EquifaxOrdIdSearch__c</members>
         <members>Checklist_Detail__c</members>
+
+        <!-- Equifax Director Search Search made by Pratik -->
+        <members>Director__c</members>
         <name>CustomObject</name>
     </types>
     <types>
