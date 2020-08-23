@@ -479,4 +479,6 @@ global class ConstantValues{
   public static final String ACL_VERIFIED_RULE = 'ACL/ACR Verified Rule';
   public static final String COMMISSION_STATUS_RULE = 'Commission Status Rule';
   public static final String BROKER_CONTACT_DETAILS = 'Broker Contact Details';
+  public static final String ASSET_LIABILITY = 'AssetLiabilties';
+  public static final String PREVIOUS_CONDUCT_SUITABLE = 'Previous Conduct Suitable Rule';
 }

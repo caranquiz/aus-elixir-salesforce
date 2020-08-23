@@ -74,6 +74,9 @@ global with sharing class CheckRules {
                 rulesNameList.add(ConstantValues.ACL_VERIFIED_RULE);
                 rulesNameList.add(ConstantValues.COMMISSION_STATUS_RULE);
             }
+            else if(tabName == ConstantValues.ASSET_LIABILITY){
+                rulesNameList.add(ConstantValues.PREVIOUS_CONDUCT_SUITABLE);
+            }
             Map<Id,genesis__Rule__c> mapRules = new Map<Id,genesis__Rule__c>([SELECT Id,
                                                                             Name
                                                                             FROM genesis__Rule__c

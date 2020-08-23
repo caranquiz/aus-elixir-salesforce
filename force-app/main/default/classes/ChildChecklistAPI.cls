@@ -110,7 +110,10 @@ public with sharing class ChildChecklistAPI {
                                                 clcommon__Account__r.Commission_Status__c,
                                                 ACL_ACR_Verified__c,
                                                 Party_Type_Name__c,
-                                                Legal_Entity_Type__c
+                                                Legal_Entity_Type__c,
+                                                bankrupt_discharged__c,
+                                                Explanation_of_Previous_Conduct_Suitable__c,
+                                                Previous_Conduct_Commentary_Rule_Check__c 
                                                 from clcommon__Party__c where genesis__Application__c =:appId];
     List<genesis__Income__c> incomeList = [select id,
                                                 Party__c,
@@ -171,14 +174,9 @@ public with sharing class ChildChecklistAPI {
                     }
                 }
                 when 'genesis__employment_information__c' { 
-                    if(empInfoList != NULL && empInfoList.size() > 0){
                     checklistDetailList.addAll(this.processEmploymentInformation(checklist.genesis__Application__c,
                     checklist,empInfoList,ruleMap.get(checklist.Id),
                     criteriaRuleMap.get(ruleMap.get(checklist.Id).Id)));
-                    }
-                    else{
-                        throw new CustomException(ConstantValues.RECORDS_NOT_FOUND);
-                    }
                 }
                 when else {      
                     throw new CustomException(ConstantValues.TYPE_NOT_SUPPORTED);
