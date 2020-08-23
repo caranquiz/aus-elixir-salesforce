@@ -405,6 +405,11 @@ global class ConstantValues{
   public static final String BCA_ERROR = 'BCAerror';
   public static final String BCA_ERROR_DESCRIPTION_TAG = '<BCAerror-description>';
   public static final String BCA_ERROR_DESCRIPTION_CLOSE_TAG = '</BCAerror-description>';
+  public static final String ERROR = 'error';
+  public static final String ERROR_DESCRIPTION_TAG = '<error-description';
+  public static final String ERROR_DESCRIPTION_CLOSE_TAG = '/error-description>';
+  public static final String OPEN_TAG = '>';
+  public static final String CLOSE_TAG = '<';
   public static final String CS_SUBSCRIBER_IDENTIFIER = 'CSsubscriberIdentifier';
   public static final String CS_SECURITY = 'CSsecurity';
   public static final String REQUEST_BODY_PARTY_NAME = 'partyName';
