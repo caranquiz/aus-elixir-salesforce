@@ -582,6 +582,7 @@ public class EquifaxApplyIndividualResponseHelper{
             if(partyObj == null || helperObject == null){
                 throw new CustomException(ConstantValues.APPLY_IND_PARAM_NULL);
             }
+            clearPartyObjectData(partyObj);
             try{
                 partyObj.Request_Id__c = helperObject.envelope.header.messageId.nodeValue;
             }catch(Exception ex){
@@ -1012,5 +1013,39 @@ public class EquifaxApplyIndividualResponseHelper{
             GenericUtility.insertLog('EquifaxApplyIndividualResponseHelper', ex);
         }
         return ConstantValues.GENERAL_ERROR;
+    }
+    private void clearPartyObjectData(clcommon__Party__c partyObj){
+        partyObj.Request_Id__c = null;
+        partyObj.General_Messages__c = null;
+        partyObj.Report_Created_Date__c = null;
+        partyObj.Permission_Type__c = null;
+        partyObj.Possibly_matched_data__c = null;
+        partyObj.File_Number__c = null;
+        partyObj.Age_of_Credit_File__c = null;
+        partyObj.Adverse_on_file__c = null;
+        partyObj.Consumer_Adverse_on_file__c = null;
+        partyObj.Disqualified_Directorships__c = null;
+        partyObj.Current_Directorships__c = null;
+        partyObj.External_Administrators__c = null;
+        partyObj.Number_of_bankrupt_on_file__c = null;
+        partyObj.Number_of_bankrupt_on_file_in_last_84m__c = null;
+        partyObj.Number_of_Discharged_Insolvencies__c = null;
+        partyObj.Number_of_insolvencies_on_file__c = null;
+        partyObj.No_com_enq_in_60m__c = null;
+        partyObj.Amt_com_enq_in_60m__c = null;
+        partyObj.No_con_enq_in_60m__c = null;
+        partyObj.Amt_con_enq_in_60m__c = null;
+        partyObj.NY7516_df_60_84m__c = null;
+        partyObj.NY7520_df_tcut_60_84m__c = null;
+        partyObj.NY7524_df_RM_60_84m__c = null;
+        partyObj.NY7568_df_sts_unpd_60_84m__c = null;
+        partyObj.No_con_defaults_SCI_in_the_last_60_84m__c = null;
+        partyObj.No_con_telco_util_defaults_SCI_in_60_84m__c = null;
+        partyObj.No_con_mort_deflt_SCI_60_84m__c = null;
+        partyObj.NX7556_df_sts_pd_60_84m__c = null;
+        partyObj.NX7560_df_sts_stld_60_84m__c = null;
+        partyObj.NX7561_df_sts_na_60_84m__c = null;
+        partyObj.NX7568_df_sts_unpd_60_84m__c = null;
+        update partyObj;
     }
 }
