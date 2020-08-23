@@ -363,7 +363,8 @@
         <members>Director__c.Gender__c</members>
         <members>Director__c.Party__c</members>
         <members>clcommon__Party__c.Amount_of_Credit_Enquiry__c</members>
-
+        <members>clcommon__Party__c.Previous_Conduct_Commentary_Rule_Check__c</members>
+        
         <!-- Credit Contract changes made by Rameswari -->
         <members>genesis__Applications__c.CL_Date__c</members>
         <members>clcommon__Address__c.Applicant_and_its_address__c</members>
