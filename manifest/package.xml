@@ -22,9 +22,9 @@
         <members>PricingUpdateTest</members>
 
         <!-- Title Search Changes made by Souvik-->
-        <members>DocumentDeliveryCheckBatch</members>
+        <!--<members>DocumentDeliveryCheckBatch</members>-->
         <members>EquifaxCallout</members>
-        <members>EquifaxCalloutTest</members>
+        <!--<members>EquifaxCalloutTest</members> -->
         <members>EquifaxDeliverDocumentAdapter</members>
         <members>EquifaxDeliverDocumentResponseHelper</members>
         <members>EquifaxOrderDocumentResponseHelper</members>
@@ -239,6 +239,7 @@
         <members>PPSR_Registration__c.Total_Registrations_Designated_Secured_P__c</members>
         <members>PPSR_Registration__c.Total_Registrations_Other_Financier_Secu__c</members>
         <members>PPSR_Registration__c.Total_Registrations__c</members>
+        <members>PPSR_Registration__c.Party__c</members>
         <members>Payment_Default__c.Credit_Account__c</members>
         <members>Payment_Default__c.Current_Default_Amount__c</members>
         <members>Payment_Default__c.Original_Default_Amount__c</members>
@@ -429,6 +430,7 @@
 
         <!-- Equifax Director Search Search made by Pratik -->
         <members>Director__c</members>
+        
         <name>CustomObject</name>
     </types>
     <types>
