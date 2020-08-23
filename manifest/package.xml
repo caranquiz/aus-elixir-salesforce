@@ -60,6 +60,12 @@
         <members>EquifaxOrgIdSearchParserTest</members>
         <members>EquifaxOrgIdSearchCallout</members>
         <members>EquifaxOrgIdSearchCalloutTest</members>
+
+        <!-- Equifax Company Search chnages by Hamza -->
+        <members>EquifaxCompanyEnquiryAdapter</members>
+        <members>EquifaxCompanyEnquiryCallout</members>
+        <members>EquifaxCompanyEnquiryResponseHelper</members>
+
         <name>ApexClass</name>
     </types>
     <types>
@@ -336,6 +342,26 @@
         <members>genesis__Income__c.Income_Consistant_Rule_Check__c</members>
         <members>genesis__Income__c.Satisfactory_Explanation_Provided_Render__c</members>
         <members>genesis__Income__c.Self_Employment_Rule_Check__c</members>
+        <members>Credit_Account__c.Account_Number__c</members>
+        <members>Credit_Account__c.Current_Default_Amount__c</members>
+        <members>Credit_Account__c.Default_Date__c</members>
+        <members>Credit_Account__c.Original_Default_Amount__c</members>
+        <members>Credit_Account__c.Original_Default_Date__c</members>
+        <members>Credit_Account__c.Original_Report_Reason__c</members>
+        <members>Credit_Account__c.Report_Reason__c</members>
+        <members>Credit_Account__c.Role__c</members>
+        <members>Credit_Account__c.Status_Date__c</members>
+        <members>Credit_Account__c.Status__c</members>
+        <members>Director__c.Address__c</members>
+        <members>Director__c.Beneficially_Held__c</members>
+        <members>Director__c.Date_of_birth__c</members>
+        <members>Director__c.Entity_Name__c</members>
+        <members>Director__c.Entity_Type__c</members>
+        <members>Director__c.File_Number__c</members>
+        <members>Director__c.Found_in_Party__c</members>
+        <members>Director__c.Gender__c</members>
+        <members>Director__c.Party__c</members>
+        <members>clcommon__Party__c.Amount_of_Credit_Enquiry__c</members>
 
         <!-- Credit Contract changes made by Rameswari -->
         <members>genesis__Applications__c.CL_Date__c</members>
