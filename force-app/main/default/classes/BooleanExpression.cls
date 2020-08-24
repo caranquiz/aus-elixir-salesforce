@@ -4,7 +4,8 @@ Developer : Khalid Fazlullah
 Development Date : 07/08/2020
 Last Modified By : Rameswari Barman
 Last Modified Date : 21/08/2020
-Description : This class helps in evaluatuion of criterias for generation of rules.
+Description : This class helps in evaluatuion of criterias that are present in the form
+             of boolean expressions for generation of rules.
 ***********************************************************************************************************************************************************/
 public class BooleanExpression {
     static Map<String, String> logicTypes = new Map<String, String>();
