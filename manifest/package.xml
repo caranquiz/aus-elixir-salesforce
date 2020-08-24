@@ -51,7 +51,8 @@
         <!-- Equifax Individual Credit Report changes made by Souvik -->
         <members>EquifaxApplyIndividualAdapter</members>
         <members>EquifaxApplyIndividualResponseHelper</members>
-        <members>EquifaxEnquiryCallout</members>
+        <members>EquifaxEnquiryCallout</members> 
+        <members>EquifaxPreviousEnquiryAdapter</members>
 
         <!-- Equifax Director Search Search made by Pratik -->
         <members>EquifaxOrgIdSearchAdapter</members>
