@@ -39,10 +39,23 @@ public with sharing class ChecklistDetailsAPI {
                 
             }   
             when '<=' {     
+                if(matchingOperand1 == NULL){
+                    return false;
+                }
                 return ((matchingOperand1 < matchingOperandFinal2) || (matchingOperand1 == matchingOperandFinal2)); 
             }
-            when '>=' {     
+            when '>=' {  
+                if(matchingOperand1 == NULL){
+                    return false;
+                }   
                 return ((matchingOperand1 > matchingOperandFinal2) || (matchingOperand1 == matchingOperandFinal2));
+                
+            }
+            when '!=' {   
+                if(matchingOperand1 == NULL){
+                    return false;
+                }  
+                return (matchingOperand1 != matchingOperandFinal2);
                 
             }
             when else {     
@@ -52,11 +65,18 @@ public with sharing class ChecklistDetailsAPI {
     }
     public Boolean evaluateBasedOnMatchingType(String matchingOperand1, String matchingOperator, String matchingOperand2){
         switch on matchingOperator {
-            when '==' {     // when block 1
+            when '==' {   
                 if(matchingOperand1 == NULL || matchingOperand1 == ''){
                     return false;
                 }
                 return (matchingOperand1 == matchingOperand2);
+                
+            }
+            when '!=' { 
+                if(matchingOperand1 == NULL || matchingOperand1 == ''){
+                    return false;
+                }
+                return (matchingOperand1 != matchingOperand2);
                 
             }
             when else {      

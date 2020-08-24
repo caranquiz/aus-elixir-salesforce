@@ -70,6 +70,10 @@ global with sharing class CheckRules {
                 rulesNameList.add(ConstantValues.ACCOUNTANT_AWARE_OF_ANY_CIRCUMSTANCE);
                 rulesNameList.add(ConstantValues.ACCOUNTANT_CALL_SUITABLE_RULE);
             }
+            else if(tabName == ConstantValues.BROKER_CONTACT_DETAILS){
+                rulesNameList.add(ConstantValues.ACL_VERIFIED_RULE);
+                rulesNameList.add(ConstantValues.COMMISSION_STATUS_RULE);
+            }
             Map<Id,genesis__Rule__c> mapRules = new Map<Id,genesis__Rule__c>([SELECT Id,
                                                                             Name
                                                                             FROM genesis__Rule__c
@@ -114,7 +118,9 @@ global with sharing class CheckRules {
                                             FROM genesis__Checklist__c 
                                             WHERE genesis__Application__c  =: applicationRecordId
                                             AND genesis__Rule__r.Name =: rulesNameList];
-                Database.delete(previousChecklistList);
+                if(previousChecklistList != NULL && previousChecklistList.size() > 0){
+                    Database.delete(previousChecklistList);
+                }
                 checkList = genesis.RulesAPI.evaluateRules(application, mapRules.values(), true, true);
             }
             else{

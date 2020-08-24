@@ -7,6 +7,11 @@
         <namespace>clcommon</namespace>
     </packageVersions>
     <packageVersions>
+        <majorNumber>3</majorNumber>
+        <minorNumber>2049</minorNumber>
+        <namespace>intframework</namespace>
+    </packageVersions>
+    <packageVersions>
         <majorNumber>2</majorNumber>
         <minorNumber>9020</minorNumber>
         <namespace>loan</namespace>

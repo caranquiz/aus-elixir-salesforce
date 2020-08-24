@@ -3,7 +3,7 @@
     <fullName>ABN_Status_Explanation_Suitable_Rule__c</fullName>
     <description>ABN Status Explanation Suitable Rule</description>
     <externalId>false</externalId>
-    <formula>IF(NOT(Company_ABN_Status__c == &apos;Registered&apos;),&apos;Render&apos;, &apos;Not Render&apos;)</formula>
+    <formula>IF(NOT(Company_ABN_Status__c == &apos;Registered&apos;) &amp;&amp; OR(clcommon__Account__r.clcommon__Legal_Entity_Type__r.Name == &apos;Individual&apos;,clcommon__Account__r.clcommon__Legal_Entity_Type__r.Name == &apos;Joint&apos;),&apos;Render&apos;, &apos;Not Render&apos;)</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
     <label>ABN Status Explanation Suitable Rule</label>
     <required>false</required>
