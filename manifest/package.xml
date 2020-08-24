@@ -183,6 +183,10 @@
         <members>genesis__Employment_Information__c.Employment_Call_Suitable__c</members>
         <members>genesis__Employment_Information__c.Employment_Duration_suitability_Commenta__c</members>
         <members>genesis__Employment_Information__c.Probation_suitability_Commentary__c</members>
+        <members>genesis__Employment_Information__c.GST_Commentary__c</members>
+        <members>genesis__Employment_Information__c.GST_Suitable__c</members>
+        <members>genesis__Employment_Information__c.Months_Self_Employed_Commentary__c</members>
+        <members>genesis__Employment_Information__c.Months_Self_Employed_Suitable__c</members>
         <members>genesis__Income__c.Accountant_Call_Commentary__c</members>
         <members>genesis__Income__c.Accountant_Call_Suitable__c</members>
         <members>genesis__Income__c.BAS__c</members>
