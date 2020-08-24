@@ -57,6 +57,7 @@ global with sharing class CheckRules {
                 rulesNameList.add(ConstantValues.ACCOUNTANT_CALL_SUITABLE_RULE);
                 rulesNameList.add(ConstantValues.EMPLOYMENT_CALL_SUITABLE_RULE);
                 rulesNameList.add(ConstantValues.INCOME_INCONSISTANT_WITH_DECLARATION_RULE);
+                rulesNameList.add(ConstantValues.GST_EFFECTIVE_FROM_RULE);
             }
             else if(tabName == ConstantValues.LIVING_EXPENSE){
                 rulesNameList.add(ConstantValues.LIVING_EXPENSE_EXPLANATION_SUITABLE_RULE);
@@ -73,6 +74,9 @@ global with sharing class CheckRules {
             else if(tabName == ConstantValues.BROKER_CONTACT_DETAILS){
                 rulesNameList.add(ConstantValues.ACL_VERIFIED_RULE);
                 rulesNameList.add(ConstantValues.COMMISSION_STATUS_RULE);
+            }
+            else if(tabName == ConstantValues.ASSET_LIABILITY){
+                rulesNameList.add(ConstantValues.PREVIOUS_CONDUCT_SUITABLE);
             }
             Map<Id,genesis__Rule__c> mapRules = new Map<Id,genesis__Rule__c>([SELECT Id,
                                                                             Name

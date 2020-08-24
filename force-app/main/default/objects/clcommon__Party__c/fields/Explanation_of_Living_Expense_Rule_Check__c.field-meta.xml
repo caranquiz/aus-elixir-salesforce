@@ -2,7 +2,7 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Explanation_of_Living_Expense_Rule_Check__c</fullName>
     <externalId>false</externalId>
-    <formula>IF(NOT(ISNULL(Total_HEM_Monthly_Living_Expenses__c)) &amp;&amp; NOT(ISNULL(Total_HEM_Monthly_Living_Expenses__c)) &amp;&amp; Total_HEM_Monthly_Living_Expenses__c&gt;HEM__c,&apos;Not Render&apos;,&apos;Render&apos;)</formula>
+    <formula>IF(NOT(ISNULL(Total_HEM_Monthly_Living_Expenses__c)) &amp;&amp; NOT(ISNULL(Total_HEM_Monthly_Living_Expenses__c)) &amp;&amp; Total_HEM_Monthly_Living_Expenses__c&lt;HEM__c,&apos;Render&apos;,&apos;Not Render&apos;)</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
     <label>Explanation of Living Expense Rule Check</label>
     <required>false</required>

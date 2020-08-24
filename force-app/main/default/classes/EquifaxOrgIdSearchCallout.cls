@@ -109,6 +109,11 @@ global with sharing class EquifaxOrgIdSearchCallout {
                     String errorDescription = json.substringBetween(ConstantValues.BCA_ERROR_DESCRIPTION_TAG,ConstantValues.BCA_ERROR_DESCRIPTION_CLOSE_TAG);
                     throw new CustomException(errorDescription);
                 }
+                if(json.contains(ConstantValues.ERROR)){
+                    String errorDescription = json.substringBetween(ConstantValues.ERROR_DESCRIPTION_TAG,ConstantValues.ERROR_DESCRIPTION_CLOSE_TAG);
+                    errorDescription = errorDescription.substringBetween(ConstantValues.OPEN_TAG,ConstantValues.CLOSE_TAG);
+                    throw new CustomException(errorDescription);
+                }
                 return true;
             }
             return false;

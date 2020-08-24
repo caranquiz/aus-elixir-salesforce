@@ -405,6 +405,11 @@ global class ConstantValues{
   public static final String BCA_ERROR = 'BCAerror';
   public static final String BCA_ERROR_DESCRIPTION_TAG = '<BCAerror-description>';
   public static final String BCA_ERROR_DESCRIPTION_CLOSE_TAG = '</BCAerror-description>';
+  public static final String ERROR = 'error';
+  public static final String ERROR_DESCRIPTION_TAG = '<error-description';
+  public static final String ERROR_DESCRIPTION_CLOSE_TAG = '/error-description>';
+  public static final String OPEN_TAG = '>';
+  public static final String CLOSE_TAG = '<';
   public static final String CS_SUBSCRIBER_IDENTIFIER = 'CSsubscriberIdentifier';
   public static final String CS_SECURITY = 'CSsecurity';
   public static final String REQUEST_BODY_PARTY_NAME = 'partyName';
@@ -479,4 +484,7 @@ global class ConstantValues{
   public static final String ACL_VERIFIED_RULE = 'ACL/ACR Verified Rule';
   public static final String COMMISSION_STATUS_RULE = 'Commission Status Rule';
   public static final String BROKER_CONTACT_DETAILS = 'Broker Contact Details';
+  public static final String ASSET_LIABILITY = 'AssetLiabilties';
+  public static final String PREVIOUS_CONDUCT_SUITABLE = 'Previous Conduct Suitable Rule';
+  public static final String GST_EFFECTIVE_FROM_RULE = 'GST Effective from Rule';
 }
