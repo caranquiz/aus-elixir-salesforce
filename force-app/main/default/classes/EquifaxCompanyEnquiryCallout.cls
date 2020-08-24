@@ -37,7 +37,7 @@ global class EquifaxCompanyEnquiryCallout{
             queryIDMap,
             requestParamMap 
             );
-
+            System.debug(responseObject.getBody());
             dom.Document docu = new dom.Document();
             docu.load(responseObject.getBody());
             Map<String, Object> responseMap = intframework.XmlToJson.parseDocumentToMap(docu);

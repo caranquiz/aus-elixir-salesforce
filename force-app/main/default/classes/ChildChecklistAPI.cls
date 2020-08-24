@@ -113,7 +113,7 @@ public with sharing class ChildChecklistAPI {
                                                 Legal_Entity_Type__c,
                                                 bankrupt_discharged__c,
                                                 Explanation_of_Previous_Conduct_Suitable__c,
-                                                Previous_Conduct_Commentary_Rule_Check__c 
+                                                Previous_Conduct_Commentary_Rule_Check__c
                                                 from clcommon__Party__c where genesis__Application__c =:appId];
     List<genesis__Income__c> incomeList = [select id,
                                                 Party__c,
@@ -140,10 +140,11 @@ public with sharing class ChildChecklistAPI {
         List<genesis__Employment_Information__c> empInfoList = [select id,
                                                                     Party__c,
                                                                     Party__r.Id,
-                                                                    ABN_Effective_from_Rule_Check__c,
                                                                     Employment_Call_Suitable__c,
                                                                     Party__r.Risk_Grade__c,
-                                                                    Employment_Call_Suitable_Rule_Check__c
+                                                                    Employment_Call_Suitable_Rule_Check__c,
+                                                                    GST_Effective_from_Rule_Check__c,
+                                                                    GST_Suitable__c
                                                                     from genesis__Employment_Information__c
                                                                     where genesis__Application__c =:appId];
         for (genesis__Checklist__c checklist : listOfCheckList) {
