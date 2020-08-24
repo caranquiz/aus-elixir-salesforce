@@ -1014,7 +1014,7 @@ public class EquifaxApplyIndividualResponseHelper{
         }
         return ConstantValues.GENERAL_ERROR;
     }
-    private void clearPartyObjectData(clcommon__Party__c partyObj){
+    private static void clearPartyObjectData(clcommon__Party__c partyObj){
         partyObj.Request_Id__c = null;
         partyObj.General_Messages__c = null;
         partyObj.Report_Created_Date__c = null;
