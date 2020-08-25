@@ -8,12 +8,6 @@ global class EquifaxCompanyEnquiryCallout{
             genesis__Applications__c res = [SELECT Name, genesis__Loan_Amount__c
             FROM genesis__Applications__c
             WHERE ID = :applicationid];
-            
-            
-    
-        
-            
-
             Map<String, String> queryIDMap = new Map<String, String>();
             queryIDMap.put('partyId', partyid);
             queryIDMap.put('partyTypeId', ans.clcommon__Type__c);
@@ -21,14 +15,13 @@ global class EquifaxCompanyEnquiryCallout{
             
             queryIDMap.put('applicationID', applicationid);
             // queryIDMap.put('enquiryID', enquiryID);
+            List<clcommon__Party__c> partyList = [SELECT Id, genesis__Application__c FROM clcommon__Party__c
+            WHERE genesis__Application__c = :applicationid];
             Map<String, Object> requestParamMap = new Map<String, Object>();
             requestParamMap.put('enrichmentRequired', enrichment);
-
-
-
-        
-            
-            
+            if(partyList.size() > 1){
+                requestParamMap.put('isJoint', true);
+            }
             intframework.AbstractIntegrationService baseintegrationService = intframework.IntegrationServiceFactory.getBaseIntegrationService();
             intframework.BaseIntegrationResponse responseObject;
             responseObject = (intframework.BaseIntegrationResponse) baseintegrationService.runSynchronousIntegrationService(

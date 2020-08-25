@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>Company_Director_s_Related_Entity_Advers__c</fullName>
+    <fullName>EmpCC_Income_Gross_overtime_allowan__c</fullName>
     <externalId>false</externalId>
-    <label>Company Director&apos;s Related Entity Advers</label>
+    <label>EmpCC - Income (Gross, overtime, allowan</label>
     <length>255</length>
     <required>false</required>
-    <trackHistory>false</trackHistory>
     <trackTrending>false</trackTrending>
     <type>Text</type>
     <unique>false</unique>

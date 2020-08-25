@@ -118,11 +118,11 @@ public class EquifaxCompanyEnquiryResponseHelper{
 		public Cls_companySharesList companySharesList;
 		public Cls_organisationLegal organisationLegal;
 		public Cls_asicDocuments asicDocuments;
-		public Cls_ppsrRegistration[] ppsrRegistration;
+		public Cls_ppsrRegistrations ppsrRegistrations;
 		public Cls_dfAddress dfAddress;
 	}
 
-	class Cls_ppsrRegistration{
+	class Cls_ppsrRegistrations{
 		public Cls_reportInformation reportInformation;
 		public Cls_registrationSummary registrationSummary;  
 	}
@@ -139,17 +139,17 @@ public class EquifaxCompanyEnquiryResponseHelper{
 	}
 
 	class Cls_registrationSummary{
-		public Cls_totalRegistration totalRegistration;
-		public Cls_pmsiRegistrations pmsiRegistrations;
+		public Cls_totalRegistrations totalRegistrations;
+		public Cls_totalPmsiRegistrations totalPmsiRegistrations;
 		public Cls_totalRegistrationsDesignatedSecuredParties totalRegistrationsDesignatedSecuredParties;
 		public Cls_totalRegistrationsOtherFinancierSecuredParties totalRegistrationsOtherFinancierSecuredParties; 
 	}
 
-	class Cls_totalRegistration{
+	class Cls_totalRegistrations{
 		public String nodeValue;
 	}
 
-	class Cls_pmsiRegistrations{
+	class Cls_totalPmsiRegistrations{
 		public String nodeValue;
 	}
 	
@@ -435,11 +435,15 @@ public class EquifaxCompanyEnquiryResponseHelper{
 		public String nodeValue;	//1996-11-13
 	}
 	class Cls_addressLines {
-		public String nodeValue;	//
+		public String nodeValue;
+		public Cls_addressPrefix addressPrefix;
 		public Cls_streetDetails streetDetails;
 		public Cls_localityDetails localityDetails;
 		public Cls_state state;
 		public Cls_postcode postcode;
+	}
+	class Cls_addressPrefix {
+		public String nodeValue;
 	}
 	class Cls_streetDetails {
 		public String nodeValue;	//50 BELL STREET
@@ -861,23 +865,22 @@ public class EquifaxCompanyEnquiryResponseHelper{
 
   public static string processAddress(Cls_addressLines s){
 	  String res = '';
-
-	  try {
-		  res += s.streetDetails.nodeValue +' ';
-	  } catch(Exception ex) {}
-
-	  try {
-		  res += s.localityDetails.nodeValue + ' ';
-	  } catch (Exception ex) {}
-
-	  try {
-		  res += s.state.nodeValue + ' ';
-	  } catch (Exception ex) {}
-
-	  try {
-		  res += s.postcode.nodeValue + ' ';
-	  } catch (Exception ex) {}
-	  return res;
+		try {
+			res += s.addressPrefix.nodeValue + ' ';
+		} catch(Exception ex) {}
+		try {
+			res += s.streetDetails.nodeValue + ' ';
+		} catch(Exception ex) {}
+		try {
+			res += s.localityDetails.nodeValue + ' ';
+		} catch (Exception ex) {}
+		try {
+			res += s.state.nodeValue + ' ';
+		} catch (Exception ex) {}
+		try {
+			res += s.postcode.nodeValue + ' ';
+		} catch (Exception ex) {}
+		return res;
   }
 
   public static string processAddress(Cls_address s){
@@ -915,7 +918,7 @@ public class EquifaxCompanyEnquiryResponseHelper{
 
 	
 	public static String parse(String json, clcommon__Party__c partyObj){
-		String returnValue = '';
+		String returnValue = 'Company Enquiry Response Received Successfully';
         try{
 			json = convertToJSONformat(json);
 			List<String> str = new List<String>();
@@ -928,9 +931,7 @@ public class EquifaxCompanyEnquiryResponseHelper{
 			str.add('"fileMessage"');
 			str.add('"shareHolder"');
 			str.add('"creditEnquiry"');
-			str.add('"ppsrRegistration"');
 			str.add('"paymentDefaults"');
-
 			JsonObjectToArray jsonObj = new JsonObjectToArray();
 			json = jsonObj.modifyAllByRecur(json, str);
 			EquifaxCompanyEnquiryResponseHelper helperObject = (EquifaxCompanyEnquiryResponseHelper)System.JSON.deserialize(json, EquifaxCompanyEnquiryResponseHelper.class);
@@ -940,15 +941,18 @@ public class EquifaxCompanyEnquiryResponseHelper{
 				return errorForUser;
 			}
 		} catch (Exception ex) {}
-			try {
+		clearPartyObjectData(partyObj);
+		try {
 			partyObj.File_Number__c	 = helperObject.Envelope.Body.response.companyEnquiryReport.companyResponse.companyIdentity.bureauInfo.bureauReference.nodeValue;
 			partyObj.Request_Id__c = helperObject.Envelope.Body.response.companyEnquiryReport.organisationReportHeader.requestId.nodeValue;
-			// partyObj.Report_Created_Date__c = helperObject.Envelope.Body.response.companyEnquiryReport.organisationReportHeader.reportCreateDate.nodeValue;
+			String createDate = helperObject.Envelope.Body.response.companyEnquiryReport.organisationReportHeader.reportCreateDate.nodeValue;
+			partyObj.Report_Created_Date__c = Date.newInstance(Integer.valueOf(createDate.substring(0,4)),
+			Integer.valueOf(createDate.substring(5,7)),
+			Integer.valueOf(createDate.substring(8,10)));
 		} catch(Exception ex) {
-			GenericUtility.insertLog('EquifaxCompanyEnquiryCallout', ex);
-            return 'Response Error';
+			GenericUtility.insertLog('EquifaxCompanyEnquiryResponseHelper', ex);
+            return ConstantValues.GENERAL_ERROR;
 		}
-
 		//Number of credit enquiries
 		try {
 			Cls_summaryEntry tempSummaryEntry = findInSummaryData(helperObject.Envelope.Body.response.companyEnquiryReport.companyResponse.summaryData.summaryEntry, 'Credit_Enquiries' );
@@ -1047,7 +1051,7 @@ public class EquifaxCompanyEnquiryResponseHelper{
 		
 		// for registered office
 		try {
-		partyObj.Registered_Office__c = processAddress(helperObject.Envelope.Body.response.companyEnquiryReport.companyResponse.companyIdentity.registeredOffice.addressLines);
+			partyObj.Registered_Office__c = processAddress(helperObject.Envelope.Body.response.companyEnquiryReport.companyResponse.companyIdentity.registeredOffice.addressLines);
 		} catch (Exception ex) {}
 
         //  to find file create date
@@ -1089,13 +1093,13 @@ public class EquifaxCompanyEnquiryResponseHelper{
 		//to find company director adverse
 		try {
 			Cls_summaryEntry tempSummaryEntry = findInSummaryData(helperObject.Envelope.Body.response.companyEnquiryReport.companyResponse.summaryData.summaryEntry, 'Directors_Adverse');
-			partyObj.Company_Director_s_Adverse__c = Integer.valueOf(tempSummaryEntry.summaryValue.nodeValue);
+			partyObj.Company_Director_s_Adverse__c = tempSummaryEntry.summaryValue.nodeValue;
 		} catch(Exception ex) {}
 
         //to find company director related entity adverse
 		try {
 			Cls_summaryEntry tempSummaryEntry = findInSummaryData(helperObject.Envelope.Body.response.companyEnquiryReport.companyResponse.summaryData.summaryEntry, 'Directors_Related_Entity_Adverse');
-			partyObj.Company_Director_s_Related_Entity_Advers__c = Integer.valueOf(tempSummaryEntry.summaryValue.nodeValue);
+			partyObj.Company_Director_s_Related_Entity_Advers__c = tempSummaryEntry.summaryValue.nodeValue;
 		} catch(Exception ex) {}
 
 		List<Director__c> entityList =  [SELECT Id,party__c FROM Director__c where party__c = :partyObj.Id]; 
@@ -1132,9 +1136,8 @@ public class EquifaxCompanyEnquiryResponseHelper{
 				
 			}
 		} catch (Exception ex) {
-			returnValue += ' \n no directors found';
+			returnValue += ' \nNo Directors found';
 		}
-
 		try {
 			Cls_shareHolder[] refShareholders = helperObject.Envelope.Body.response.companyEnquiryReport.companyResponse.ownershipOfficers.shareHolderList.shareHolder;
 			for(Cls_shareHolder each : refShareholders){
@@ -1157,22 +1160,20 @@ public class EquifaxCompanyEnquiryResponseHelper{
 
 			}
 		} catch (Exception ex) {
-			returnValue += '\nno shareholders found';	
+			returnValue += '\nNo Shareholders found';	
 		}
 
 		List<Credit_Enquiry__c> finalCreditEnquiryList;
+		finalCreditEnquiryList = [SELECT Id, party__c FROM Credit_Enquiry__c where party__c = :partyObj.Id]; 
+		delete finalCreditEnquiryList;
 		try{
-			finalCreditEnquiryList = [SELECT Id, party__c FROM Credit_Enquiry__c where party__c = :partyObj.Id]; 
-			delete finalCreditEnquiryList;
 			finalCreditEnquiryList = new List<Credit_Enquiry__c>();
-
-
 			Cls_creditEnquiry[] refCreditEnquiry = helperObject.Envelope.Body.response.companyEnquiryReport.companyResponse.organisationCreditHistory.allCreditEnquiryList.creditEnquiryList.creditEnquiry;
 			for(Cls_creditEnquiry each: refCreditEnquiry){
 				Credit_Enquiry__c creditEnquiryObj = new Credit_Enquiry__c();
 				creditEnquiryObj.Party__c = partyObj.Id;
 				try{
-					creditEnquiryObj.Account_Type__c = each.accountType.nodeValue;
+					creditEnquiryObj.Account_Type__c = each.accountType.type.nodeValue;
 				} catch (Exception ex) {}
 				try {
 					creditEnquiryObj.Credit_Enquirer__c = each.enquirer.nodeValue;
@@ -1194,124 +1195,105 @@ public class EquifaxCompanyEnquiryResponseHelper{
 
 				finalCreditEnquiryList.add(creditEnquiryObj);
 				}
-			 } catch (Exception ex) {
-				returnValue += '\nno credit enquiry found';
-				}
-		List<PPSR_Registration__c> ppsrRegistrationList;
+		} catch (Exception ex) {
+			returnValue += '\nNo Credit Enquiries found';
+		}
+		PPSR_Registration__c ppsrRegistrationData;
+		List<PPSR_Registration__c> ppsrRegistrationList = [SELECT Party__c,Id FROM PPSR_Registration__c where Party__c =:partyObj.id];
+		if(ppsrRegistrationList.isEmpty()){
+			ppsrRegistrationData = new PPSR_Registration__c();
+			ppsrRegistrationData.Party__c = partyObj.Id;
+			insert ppsrRegistrationData;
+		} else{
+			ppsrRegistrationData = ppsrRegistrationList[0];
+			ppsrRegistrationData.Organisation_number__c = null;
+			ppsrRegistrationData.Search_Date__c = null;
+			ppsrRegistrationData.Search_Number__c = null;
+			ppsrRegistrationData.Search_Type__c = null;
+			ppsrRegistrationData.Total_PMSI_Registrations__c = null;
+			ppsrRegistrationData.Total_Registrations__c = null;
+			ppsrRegistrationData.Total_Registrations_Designated_Secured_P__c = null;
+			ppsrRegistrationData.Total_Registrations_Other_Financier_Secu__c = null;
+		}
 		try {
-			ppsrRegistrationList = [SELECT Party__c,Id FROM PPSR_Registration__c where Party__c =:partyObj.id];
-			delete ppsrRegistrationList;
-			ppsrRegistrationList = new List<PPSR_Registration__c>(); 
-
-			Cls_ppsrRegistration[] refppsrRegistration = helperObject.Envelope.Body.response.companyEnquiryReport.companyResponse.ppsrRegistration;
-			for(Cls_ppsrRegistration each : refppsrRegistration){
-				PPSR_Registration__c ppsrRegistrationObj = new PPSR_Registration__c();
-
-				try {
-					ppsrRegistrationObj.Organisation_number__c = each.reportInformation.grantorSearchCriteria.organisationNumber.nodeValue;
-				} catch (Exception ex){}
-
-				try {
-					String searchDatePPSR = each.reportInformation.searchDate.nodeValue;
-					ppsrRegistrationObj.Search_Date__c = Date.newInstance(Integer.valueOf(searchDatePPSR.substring(0,4)),
-					Integer.valueOf(searchDatePPSR.substring(5,7)),
-					Integer.valueOf(searchDatePPSR.substring(8,10)));
-				} catch (Exception ex){}
-
-				try {
-					ppsrRegistrationObj.Search_Number__c = each.reportInformation.searchNumber.nodeValue;
-				} catch (Exception ex){}
-
-				try {
-					ppsrRegistrationObj.Search_Type__c = each.reportInformation.searchType.nodeValue;
-				} catch (Exception ex){}
-
-				try {
-					ppsrRegistrationObj.Total_PMSI_Registrations__c = Decimal.valueOf(each.registrationSummary.pmsiRegistrations.nodeValue);
-				} catch (Exception ex){}
-
-				try {
-					ppsrRegistrationObj.Total_Registrations__c = Decimal.valueOf(each.registrationSummary.totalRegistration.nodeValue);
-				} catch (Exception ex){}
-
-				try {
-					ppsrRegistrationObj.Total_Registrations_Designated_Secured_P__c = Decimal.valueOf(each.registrationSummary.totalRegistrationsDesignatedSecuredParties.nodeValue);
-				} catch (Exception ex){}
-
-				try {
-					ppsrRegistrationObj.Total_Registrations_Other_Financier_Secu__c = Decimal.valueOf(each.registrationSummary.totalRegistrationsOtherFinancierSecuredParties.nodeValue);
-				} catch (Exception ex){}
-
-				ppsrRegistrationList.add(ppsrRegistrationObj);
-			}
-
+			try {
+				ppsrRegistrationData.Organisation_number__c = helperObject.Envelope.Body.response.companyEnquiryReport.companyResponse.ppsrRegistrations.reportInformation.grantorSearchCriteria.organisationNumber.nodeValue;
+			} catch (Exception ex){}
+			try {
+				String searchDatePPSR = helperObject.Envelope.Body.response.companyEnquiryReport.companyResponse.ppsrRegistrations.reportInformation.searchDate.nodeValue;
+				ppsrRegistrationData.Search_Date__c = Date.newInstance(Integer.valueOf(searchDatePPSR.substring(0,4)),
+				Integer.valueOf(searchDatePPSR.substring(5,7)),
+				Integer.valueOf(searchDatePPSR.substring(8,10)));
+			} catch (Exception ex){}
+			try {
+				ppsrRegistrationData.Search_Number__c = helperObject.Envelope.Body.response.companyEnquiryReport.companyResponse.ppsrRegistrations.reportInformation.searchNumber.nodeValue;
+			} catch (Exception ex){}
+			try {
+				ppsrRegistrationData.Search_Type__c = helperObject.Envelope.Body.response.companyEnquiryReport.companyResponse.ppsrRegistrations.reportInformation.searchType.nodeValue;
+			} catch (Exception ex){}
+			try {
+				ppsrRegistrationData.Total_PMSI_Registrations__c = Decimal.valueOf(helperObject.Envelope.Body.response.companyEnquiryReport.companyResponse.ppsrRegistrations.registrationSummary.totalPmsiRegistrations.nodeValue);
+			} catch (Exception ex){}
+			try {
+				ppsrRegistrationData.Total_Registrations__c = Decimal.valueOf(helperObject.Envelope.Body.response.companyEnquiryReport.companyResponse.ppsrRegistrations.registrationSummary.totalRegistrations.nodeValue);
+			} catch (Exception ex){}
+			try {
+				ppsrRegistrationData.Total_Registrations_Designated_Secured_P__c = Decimal.valueOf(helperObject.Envelope.Body.response.companyEnquiryReport.companyResponse.ppsrRegistrations.registrationSummary.totalRegistrationsDesignatedSecuredParties.nodeValue);
+			} catch (Exception ex){}
+			try {
+				ppsrRegistrationData.Total_Registrations_Other_Financier_Secu__c = Decimal.valueOf(helperObject.Envelope.Body.response.companyEnquiryReport.companyResponse.ppsrRegistrations.registrationSummary.totalRegistrationsOtherFinancierSecuredParties.nodeValue);
+			} catch (Exception ex){}
 		} catch (Exception Ex) {}
-
-
 		List<Credit_Account__c> creditAccountList= [SELECT Party__c, Id FROM Credit_Account__c WHERE Party__c = :partyObj.Id];
 		delete creditAccountList;
 		creditAccountList = new List<Credit_Account__c>();
 		try {
-			
 			Cls_paymentDefaults[] refCreditAccount = helperObject.Envelope.Body.response.companyEnquiryReport.companyResponse.organisationCreditHistory.paymentDefaultList.paymentDefaults;
-
 			for(Cls_paymentDefaults each : refCreditAccount){
 				Credit_Account__c creditAccountObj = new Credit_Account__c();
 				creditAccountObj.Party__c = partyObj.id;
-				
 				try {
 					creditAccountObj.Account_Type__c = each.accountType.type.nodeValue;
 				} catch (Exception ex) {}
-
 				try {
 					creditAccountObj.Role__c = each.role.nodeValue;
 				} catch (Exception ex) {}
-
 				try {
-					creditAccountObj.Account_Number__c = Decimal.valueOf(each.accountNumber.nodeValue);
+					creditAccountObj.Account_Number__c = each.accountNumber.nodeValue;
 				} catch (Exception ex) {}
-
 				try {
 					creditAccountObj.Latest_Credit_Provider__c = each.provider.nodeValue;
 				} catch(Exception ex) {}
-
 				try {
 					creditAccountObj.Original_Credit_Provider__c = each.originalProvider.nodeValue;
 				} catch (Exception ex) {}
 				try{
 					creditAccountObj.Current_Default_Amount__c = Decimal.valueOf(each.amount.nodeValue);
 				} catch (Exception ex) {}
-
 				try {
 					String strDefDate = each.defaultDate.nodeValue;
 					creditAccountObj.Default_Date__c = Date.newInstance(Integer.valueOf(strDefDate.substring(0,4)),
 					Integer.valueOf(strDefDate.substring(5,7)),
 					Integer.valueOf(strDefDate.substring(8,10)));
 				} catch (Exception ex) {}
-
 				try {
-					creditAccountObj.Report_Reason__c = each.reportReason.nodeValue;
+					creditAccountObj.Report_Reason__c = each.reportReason.type.nodeValue;
 				} catch (Exception ex) {}
-
 				try {
 					String orgDefDate = each.originalDefaultDate.nodeValue;
 					creditAccountObj.Original_Default_Date__c = Date.newInstance(Integer.valueOf(orgDefDate.substring(0,4)),
 					Integer.valueOf(orgDefDate.substring(5,7)),
 					Integer.valueOf(orgDefDate.substring(8,10)));
 				} catch (Exception ex) {}
-
 				try {
 					creditAccountObj.Original_Default_Amount__c = Decimal.valueOf(each.originalAmount.nodeValue);
 				} catch (Exception ex) {}
-
 				try {
-					creditAccountObj.Original_Report_Reason__c = each.originalReportReason.nodeValue;
+					creditAccountObj.Original_Report_Reason__c = each.originalReportReason.type.nodeValue;
 				} catch (Exception ex) {}
-
 				try {
-					creditAccountObj.Status__c = each.paymentStatus.nodeValue;
+					creditAccountObj.Status__c = each.paymentStatus.type.nodeValue;
 				} catch (Exception ex) {}
-
 				try {
 					String statDate = each.statusDate.nodeValue;
 					creditAccountObj.Status_Date__c = Date.newInstance(Integer.valueOf(statDate.substring(0,4)),
@@ -1320,21 +1302,49 @@ public class EquifaxCompanyEnquiryResponseHelper{
 				} catch (Exception ex) {}
 				creditAccountList.add(creditAccountObj);
 			}
-		} catch (Exception ex) {}
-
-		insert creditAccountList;
+		} catch (Exception ex) {
+			returnValue += '\nNo Payment Defaults found';
+		}
 		update partyObj;
+		update ppsrRegistrationData;
 		insert entityList;
 		insert finalCreditEnquiryList;
-		insert ppsrRegistrationList;
+		insert creditAccountList;
         return returnValue;
         } catch(Exception ex){
-            GenericUtility.insertLog('EquifaxCompanyEnquiryCallout', ex);
-            return 'Error';
+            GenericUtility.insertLog('EquifaxCompanyEnquiryResponseHelper', ex);
+            return ConstantValues.GENERAL_ERROR;
 		}
-		
+	}
+	private static void clearPartyObjectData(clcommon__Party__c partyObj){
+        partyObj.Request_Id__c = null;
+        partyObj.Report_Created_Date__c = null;
+        partyObj.File_Number__c = null;
+		partyObj.External_Administrators__c = null;
+		partyObj.Number_Of_Credit_Events__c = null;
+		partyObj.Amount_of_Credit_Enquiry__c = null;
+		partyObj.Number_of_Credit_Enquiries_in_Last_12_Mo__c = null;
+		partyObj.Amount_of_Credit_Enquiries_in_last_12_mo__c = null;
+		partyObj.No_of_Credit_Enquiries_in_more_than_12_M__c = null;
+		partyObj.Amount_of_Credit_Enquiries_in_more_than__c = null;
+		partyObj.Payment_Defaults__c = null;
+		partyObj.Amount_of_Payment_Defaults__c = null;
+		partyObj.Number_Payment_Defaults_in_last_12_Month__c = null;
+		partyObj.Amount_Payment_Defaults_in_last_12_Month__c = null;
+		partyObj.Number_Payment_Defaults_in_more_than_12__c = null;
+		partyObj.Amount_Payment_Defaults_in_more_than_12__c = null;
+		partyObj.ASIC_Extract_Date__c = null;
+		partyObj.Incorporation_Date__c = null;
+		partyObj.Organization_Status__c = null;
+		partyObj.Registered_Office__c = null;
+		partyObj.File_Create_Date__c = null;
+		partyObj.Court_Writs__c = null;
+		partyObj.Court_Writ_Amount__c = null;
+		partyObj.Court_Actions__c = null;
+		partyObj.Court_Action_Amount__c = null;
+		partyObj.Petitions__c = null;
+		partyObj.Company_Director_s_Adverse__c = null;
+		partyObj.Company_Director_s_Related_Entity_Advers__c = null;
+        update partyObj;
     }
-    
-
-	
 }
