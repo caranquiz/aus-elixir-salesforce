@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>GST_Effective_from_Rule_Check__c</fullName>
+    <description>GST Effective from Rule Check</description>
+    <externalId>false</externalId>
+    <formula>IF(NOT(ISNULL(Goods_Services_Tax__c)) &amp;&amp; Goods_Services_Tax__c != &apos;Not currently registered for GST&apos; &amp;&amp;((((YEAR($User.loan__Current_Branch_s_System_Date__c)-(VALUE(MID(Goods_Services_Tax__c,0,4))))*12) + (MONTH($User.loan__Current_Branch_s_System_Date__c) - (VALUE(MID(Goods_Services_Tax__c,6,2)))))&lt;6),&apos;Render&apos;,&apos;Not Render&apos;)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>GST Effective from Rule Check</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

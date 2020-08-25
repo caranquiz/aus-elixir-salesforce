@@ -15,12 +15,14 @@ global class EquifaxCompanyEnquiryCallout{
             
             queryIDMap.put('applicationID', applicationid);
             // queryIDMap.put('enquiryID', enquiryID);
-            List<clcommon__Party__c> partyList = [SELECT Id, genesis__Application__c FROM clcommon__Party__c
-            WHERE genesis__Application__c = :applicationid];
+            List<clcommon__Party__c> partyList = [SELECT Id, genesis__Application__c, Party_Type_Name__c FROM clcommon__Party__c
+            WHERE genesis__Application__c = :applicationid AND Party_Type_Name__c IN ('Borrower', 'Co-applicant')];
             Map<String, Object> requestParamMap = new Map<String, Object>();
             requestParamMap.put('enrichmentRequired', enrichment);
             if(partyList.size() > 1){
                 requestParamMap.put('isJoint', true);
+            }else{
+                requestParamMap.put('isJoint', false);
             }
             intframework.AbstractIntegrationService baseintegrationService = intframework.IntegrationServiceFactory.getBaseIntegrationService();
             intframework.BaseIntegrationResponse responseObject;
