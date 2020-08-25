@@ -128,7 +128,9 @@ public with sharing class ChildChecklistAPI {
                                                 Satisfactory_Explanation_Provided__c,
                                                 Self_Employment_Rule_Check__c,
                                                 Income_Consistant_Rule_Check__c,
-                                                Satisfactory_Explanation_Provided_Render__c
+                                                Satisfactory_Explanation_Provided_Render__c,
+                                                Employment_Call_Suitable__c,
+                                                Employment_Call_Suitable_Rule_Check__c
                                                 from genesis__Income__c
                                                 where genesis__Application__c =:appId];
         List<genesis__Application_Collateral__c> collateralList = [select id,
@@ -140,9 +142,7 @@ public with sharing class ChildChecklistAPI {
         List<genesis__Employment_Information__c> empInfoList = [select id,
                                                                     Party__c,
                                                                     Party__r.Id,
-                                                                    Employment_Call_Suitable__c,
                                                                     Party__r.Risk_Grade__c,
-                                                                    Employment_Call_Suitable_Rule_Check__c,
                                                                     GST_Effective_from_Rule_Check__c,
                                                                     GST_Suitable__c
                                                                     from genesis__Employment_Information__c

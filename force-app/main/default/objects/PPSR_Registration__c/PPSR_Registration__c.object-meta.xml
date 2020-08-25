@@ -152,14 +152,13 @@
     <enableSearch>false</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
-    <label>PPSR Registration</label>
+    <label>PPSR_Registration</label>
     <nameField>
-        <displayFormat>PPSR-{0000}</displayFormat>
-        <label>PPSR Registration Name</label>
-        <type>AutoNumber</type>
+        <label>PPSR_Registration Name</label>
+        <type>Text</type>
     </nameField>
-    <pluralLabel>PPSR Registrations</pluralLabel>
+    <pluralLabel>PPSR_Registration</pluralLabel>
     <searchLayouts/>
-    <sharingModel>ReadWrite</sharingModel>
+    <sharingModel>ControlledByParent</sharingModel>
     <visibility>Public</visibility>
 </CustomObject>
