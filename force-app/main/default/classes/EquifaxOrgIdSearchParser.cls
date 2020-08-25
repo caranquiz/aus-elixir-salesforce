@@ -37,17 +37,22 @@ public class EquifaxOrgIdSearchParser {
 	public static EquifaxOrgIdSearchParser parse(String json){
         try{
             //Replacing unwanted characters from variable names
-            json = json.replaceAll('_service','service');
-            json = json.replaceAll('-request','Request');
-            json = json.replaceAll('-id','Id');
-            json = json.replaceAll('BCA','bca');
-            json = json.replaceAll('-data','Data');
-            json = json.replaceAll('-result','Result');
-            json = json.replaceAll('-business','Business');
-            json = json.replaceAll('-number','Number');
-            json = json.replaceAll('-report','Report');
-            json = json.replaceAll('-name','Name');
-            json = json.replaceAll('-status','Status');
+            json = json.replaceAll(ConstantValues.US_SERVICE,ConstantValues.SERVICE);
+            json = json.replaceAll(ConstantValues.HS_REQUEST,ConstantValues.REQUEST);
+            json = json.replaceAll(ConstantValues.HS_ID,ConstantValues.US_ID);
+            json = json.replaceAll(ConstantValues.US_BCA,ConstantValues.LS_BCA);
+            json = json.replaceAll(ConstantValues.HS_DATA,ConstantValues.US_DATA);
+            json = json.replaceAll(ConstantValues.HS_RESULT,ConstantValues.US_RESULT);
+            json = json.replaceAll(ConstantValues.HS_BUSINESS,ConstantValues.US_BUSINESS);
+            json = json.replaceAll(ConstantValues.HS_NUMBER,ConstantValues.US_NUMBER);
+            json = json.replaceAll(ConstantValues.HS_REPORT,ConstantValues.US_REPORT);
+            json = json.replaceAll(ConstantValues.HS_NAME,ConstantValues.US_NAME);
+			json = json.replaceAll(ConstantValues.HS_STATUS,ConstantValues.US_STATUS);
+			//converting object to array
+			List<String> queries = new List<String>();
+			queries.add(ConstantValues.ORG_ID_RESULT);
+			JsonObjectToArray obj = new JsonObjectToArray();
+            json = obj.modifyAllByRecur(json, queries);
             //Deserializing to convert JSON to Apex POJO Object
             return (EquifaxOrgIdSearchParser) System.JSON.deserialize(json, EquifaxOrgIdSearchParser.class);
         }

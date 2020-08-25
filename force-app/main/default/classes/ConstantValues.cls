@@ -426,6 +426,25 @@ global class ConstantValues{
   public static final String ABN_SEARCH_NUMBER = '46006261623';
   public static final String ASIC_REPORT_NOT_FOUND = 'ASIC Report Not found';
 
+  public static final String US_SERVICE = '_service';
+  public static final String SERVICE = 'service';
+  public static final String HS_REQUEST = '-request';
+  public static final String REQUEST = 'request';
+  public static final String US_BCA = 'BCA';
+  public static final String LS_BCA = 'bca';
+  public static final String HS_RESULT = '-result';
+  public static final String US_RESULT = 'Result';
+  public static final String HS_BUSINESS = '-business';
+  public static final String US_BUSINESS = 'Business';
+  public static final String HS_NUMBER = '-number';
+  public static final String US_NUMBER = 'Number';
+  public static final String HS_REPORT = '-report';
+  public static final String US_REPORT = 'Report';
+  public static final String HS_NAME = '-name';
+  public static final String US_NAME = 'Name';
+  public static final String ORG_ID_RESULT = '"orgIdResult"';
+
+
   //Previous Enquiry Integration
   public static final String NO_ENQ_ID = 'Enquiry Id field cannot be blank';
   public static final String PREV_ENQ_REQ_BODY_SRNAME = 'Request body Static Resource not found';
