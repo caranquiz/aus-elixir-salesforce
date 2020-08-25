@@ -540,7 +540,19 @@ public with sharing class GenericUtilityTestHelper {
       );
       return appCollateral;
     }
-    
+    public static clcommon__Address__c returnAddress(){
+      clcommon__Address__c addressObj = new clcommon__Address__c();
+      addressObj.clcommon__County__c = '12';
+      addressObj.Street_No__c = '21';
+      addressObj.Street_Name__c = 'XYZ';
+      addressObj.Street_Type__c = 'Street';
+      addressObj.clcommon__City__c = 'Street';
+      addressObj.State__c = 'Street';
+      addressObj.clcommon__Zip_Code__c = 'Street';
+      addressObj.clcommon__Country__c = 'Australia';
+      insert addressObj;
+      return addressObj;
+    }
     //Inserting Party
     public static clcommon__Party__c returnParty(Id appId, Id account){
     clcommon__Party__c party = new clcommon__Party__c(genesis__Application__c = appId,

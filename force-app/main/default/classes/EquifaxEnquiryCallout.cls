@@ -51,7 +51,6 @@ global with sharing class EquifaxEnquiryCallout {
                 queryIdMap,
                 requestParamMap
             );
-            System.debug(responseObject.getBody());
             dom.Document doc = new dom.Document();
             doc.load(responseObject.getBody());
             Map<String, Object> responseMap = intframework.XmlToJson.parseDocumentToMap(
@@ -93,7 +92,6 @@ global with sharing class EquifaxEnquiryCallout {
                 new Map<String, String>(),
                 requestParamMap
             );
-            System.debug(responseObject.getBody());
             dom.Document doc = new dom.Document();
             doc.load(responseObject.getBody());
             Map<String, Object> responseMap = intframework.XmlToJson.parseDocumentToMap(
