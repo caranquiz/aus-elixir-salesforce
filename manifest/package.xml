@@ -361,6 +361,18 @@
         <members>clcommon__Party__c.Amount_of_Credit_Enquiry__c</members>
         <members>clcommon__Party__c.Previous_Conduct_Commentary_Rule_Check__c</members>
         <members>clcommon__Party__c.GST_Effective_from_Rule_Check__c</members>
+        <members>Credit_Account__c.Account_Number__c</members>
+        <members>clcommon__Party__c.Company_Director_s_Adverse__c</members>
+        <members>clcommon__Party__c.Company_Director_s_Related_Entity_Advers__c</members>
+        <members>genesis__Income__c.EmpCC_Employment_Basis__c</members>
+        <members>genesis__Income__c.EmpCC_Employment_Term__c</members>
+        <members>genesis__Income__c.EmpCC_Income_Gross_overtime_allowan__c</members>
+        <members>genesis__Income__c.EmpCC_Ongoing_Employment__c</members>
+        <members>genesis__Income__c.Employer_Representative_Name__c</members>
+        <members>genesis__Income__c.Employment_Call_Commentary__c</members>
+        <members>genesis__Income__c.Employment_Call_Made__c</members>
+        <members>genesis__Income__c.Employment_Call_Suitable__c</members>
+        <members>genesis__Income__c.Employment_Call_Suitable_Rule_Check__c</members>
         
         <!-- Credit Contract changes made by Rameswari -->
         <members>genesis__Applications__c.CL_Date__c</members>
