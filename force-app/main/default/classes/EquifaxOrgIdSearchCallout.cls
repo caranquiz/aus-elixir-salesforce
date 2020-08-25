@@ -82,11 +82,18 @@ global with sharing class EquifaxOrgIdSearchCallout {
             for(EquifaxOrgIdSearchParser.Cls_orgIdResult each: parserObject.bcaMessage.bcaServices.bcaService.bcaServiceData.response.orgIdResult){
                 if(each.asicReport != null){
                     try{
-                        String asicStat = each.asicReport.asicStatus.nodeValue;
-                        asicStat = GenericUtility.convertToDescription(asicStat);
-                        parserObject.asicStatusData = asicStat;
-                        parserObject.asicNameData = each.asicReport.asicName.nodeValue;
-                        res = true;
+                        if(each.asicReport.asicStatus != null){
+                            String asicStat = each.asicReport.asicStatus.nodeValue;
+                            asicStat = GenericUtility.convertToDescription(asicStat);
+                            parserObject.asicStatusData = asicStat;
+                            res = true;
+                            break;
+                        }
+                        if(each.asicReport.asicName != null){
+                            parserObject.asicNameData = each.asicReport.asicName.nodeValue;
+                            res = true;
+                            break;
+                        }
                         break;
                     }
                     catch(Exception ex){
