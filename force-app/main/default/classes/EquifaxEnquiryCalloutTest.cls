@@ -5,102 +5,99 @@ public class EquifaxEnquiryCalloutTest {
         intframework__Integration_Family__c family = GenericUtilityTestHelper.getFamily(
             ConstantValues.EQUIFAX_FAMILY
         );
-        // Configuration of Title Search by Address API Integration
+        // Configuration of Apply Individual API Integration
         intframework__Integration_API_Type__c apiType = GenericUtilityTestHelper.getIntegrationAPIType(
             family.Id,
-            ConstantValues.TITLE_SEARCH_API_TYPE
+            'Apply Individual'
         );
         intframework__Integration_Provider__c provider = GenericUtilityTestHelper.getIntegrationProvider(
             family.Id,
-            'TitleSearch'
+            'ApplyIndividual'
         );
         intframework__Integration_Configuration__c config = GenericUtilityTestHelper.getIntegrationConfiguration(
             provider.Id,
-            'EquifaxTitleSearch config'
+            'ApplyIndividual config'
         );
         GenericUtilityTestHelper.getIntegrationAPIConfiguration(
             family.Id,
             apiType.Id,
             provider.Id,
             config.Id,
-            'EquifaxSearchTitleByAddressAdapter',
+            'EquifaxApplyIndividualAdapter',
             'POST',
             'EquifaxCredentials',
-            '/titleSearchByAddress',
-            '{"thirdPartySystem":{"name":"Equifax","dynamicDataParameters":[{"externalField":"equifaxdata"}],"filters":[{"objectAPI":"clcommon__Collateral__c","objectAlias":"collateralInfo","fields":[{"externalField":"unitNo","fieldAPI":"Unit_No__c"},{"externalField":"streetNo","fieldAPI":"Street_No__c"},{"externalField":"streetName","fieldAPI":"Street_Name__c"},{"externalField":"streetType","fieldAPI":"Street_Type__c"},{"externalField":"city","fieldAPI":"clcommon__City__c"},{"externalField":"state","fieldAPI":"clcommon__State__c"},{"externalField":"postalCode","fieldAPI":"clcommon__Postal_Code__c"},{"externalField":"country","fieldAPI":"Country__c"}],"whereClause":"Id = :collateralId"}]}}'
+            '/applyIndividual',
+            '{"thirdPartySystem":{"name":"Equifax","dynamicDataParameters":[{"externalField":"addressType"},{"externalField":"relationshipCode"}],"filters":[{"objectAPI":"genesis__Applications__c","objectAlias":"appInfo","fields":[{"externalField":"nccpStatus","fieldAPI":"NCCP_status_list__c"},{"externalField":"loanAmount","fieldAPI":"genesis__Loan_Amount__c"}],"whereClause":"Id = :appId"},{"objectAPI":"clcommon__Party__c","objectAlias":"partyInfo","fields":[{"externalField":"reference","fieldAPI":"Name"}],"whereClause":"Id = :partyId"},{"objectAPI":"Contact","objectAlias":"conInfo","fields":[{"externalField":"firstName","fieldAPI":"FirstName"},{"externalField":"lastName","fieldAPI":"LastName"},{"externalField":"middleName","fieldAPI":"MiddleName"},{"externalField":"gender","fieldAPI":"Gender__c"},{"externalField":"dob","fieldAPI":"Birthdate"}],"whereClause":"Id = :conId"},{"objectAPI":"clcommon__Address__c","objectAlias":"addressInfo","fields":[{"externalField":"unitNo","fieldAPI":"clcommon__County__c"},{"externalField":"streetNo","fieldAPI":"Street_No__c"},{"externalField":"streetName","fieldAPI":"Street_Name__c"},{"externalField":"streetType","fieldAPI":"Street_Type__c"},{"externalField":"suburb","fieldAPI":"clcommon__City__c"},{"externalField":"state","fieldAPI":"State__c"},{"externalField":"postCode","fieldAPI":"clcommon__Zip_Code__c"},{"externalField":"country","fieldAPI":"clcommon__Country__c"}],"whereClause":"Id = :addressId"}]}}'
         );
-        // Configuration of Order Document API Integration
+        // Configuration of Previous Enquiry API Integration
         apiType = GenericUtilityTestHelper.getIntegrationAPIType(
             family.Id,
-            ConstantValues.ORDER_DOCUMENT_API_TYPE
+            ConstantValues.PREVIOUS_ENQUIRY_API_TYPE
         );
         provider = GenericUtilityTestHelper.getIntegrationProvider(
             family.Id,
-            'OrderDocument'
+            'PreviousEnquiry'
         );
         config = GenericUtilityTestHelper.getIntegrationConfiguration(
             provider.Id,
-            'EquifaxOrderDocument config'
+            'PreviousEnquiry config'
         );
         GenericUtilityTestHelper.getIntegrationAPIConfiguration(
             family.Id,
             apiType.Id,
             provider.Id,
             config.Id,
-            'EquifaxOrderDocumentAdapter',
+            'EquifaxPreviousEnquiryAdapter',
             'POST',
             'EquifaxCredentials',
-            '/OrderDocument',
+            '/previousEnquiry',
             '{"thirdPartySystem":{"name":"Equifax","dynamicDataParameters":[{"externalField":"titleReference"},{"externalField":"testStateRef"},{"externalField":"clientRef"}],"filters":[]}}'
         );
-        // Configuration of Deliver Document API Integration
-        apiType = GenericUtilityTestHelper.getIntegrationAPIType(
-            family.Id,
-            ConstantValues.DELIVER_DOCUMENT_API_TYPE
+        Account acctObj = GenericUtilityTestHelper.insertDummyAccount();
+        genesis__Applications__c appObj = GenericUtilityTestHelper.insertApplication(
+            acctObj.Id,
+            (GenericUtilityTestHelper.returnClProduct()).Id
         );
-        provider = GenericUtilityTestHelper.getIntegrationProvider(
-            family.Id,
-            'DeliverDocument'
-        );
-        config = GenericUtilityTestHelper.getIntegrationConfiguration(
-            provider.Id,
-            'EquifaxDeliverDocument config'
-        );
-        GenericUtilityTestHelper.getIntegrationAPIConfiguration(
-            family.Id,
-            apiType.Id,
-            provider.Id,
-            config.Id,
-            'EquifaxDeliverDocumentAdapter',
-            'POST',
-            'EquifaxCredentials_stub',
-            '/DeliverDocument',
-            '{"thirdPartySystem":{"name":"Equifax","dynamicDataParameters":[{"externalField":"enquiryId"},{"externalField":"clientReference"}],"filters":[]}}'
-        );
-        clcommon__Collateral__c col = GenericUtilityTestHelper.getCollateral('', '342', 'Hammond','Rd', 'DANDENONG', 'VIC','3175');
-        col.Document_Enquiry_Id__c = '140805-MFNYX-0000O';
-        update col;
+        appObj.genesis__Loan_Amount__c = 100000;
+        appObj.NCCP_status_list__c = 'Regulated';
+        update appObj;
+        GenericUtilityTestHelper.createParty(acctObj);
+        Contact conObj = GenericUtilityTestHelper.insertDummyContact(acctObj);
+        conObj.FirstName = 'TEST1';
+        conObj.LastName = 'TEST2';
+        conObj.Birthdate = Date.newInstance(1998, 9, 21);
+        conObj.Gender__c = 'Other';
+        update conObj;
+        GenericUtilityTestHelper.returnAddress();
+
         clcommon__Document_Category__c docCat = new clcommon__Document_Category__c();
-        docCat.clcommon__Category_Name__c = ConstantValues.TITLE_SEARCH_DOCUMENT_CATEGORY_NAME;
-        docCat.clcommon__Collateral__c = col.Id;
+        docCat.clcommon__Category_Name__c = ConstantValues.PREV_ENQ_DOC_CAT;
+        docCat.clcommon__Account__c = acctObj.Id;
         insert docCat;
         List<intframework__Integration_Family__c> intFamilies = [SELECT Id FROM intframework__Integration_Family__c];
         System.assertEquals(intFamilies.size(), 1, 'Integration Family record is not inserted');
         List<intframework__Integration_API_Type__c> intApiTypes = [SELECT Id FROM intframework__Integration_API_Type__c];
-        System.assertEquals(intApiTypes.size(), 3, 'Integration API Type records are not inserted');
+        System.assertEquals(intApiTypes.size(), 2, 'Integration API Type records are not inserted');
         List<intframework__Integration_Provider__c> intProviders = [SELECT Id FROM intframework__Integration_Provider__c];
-        System.assertEquals(intProviders.size(), 3, 'Integration Provider records are not inserted');
+        System.assertEquals(intProviders.size(), 2, 'Integration Provider records are not inserted');
         List<intframework__Integration_Configuration__c> intConfigs = [SELECT Id FROM intframework__Integration_Configuration__c];
-        System.assertEquals(intConfigs.size(), 3, 'Integration Configuration records are not inserted');
+        System.assertEquals(intConfigs.size(), 2, 'Integration Configuration records are not inserted');
         List<intframework__Integration_API_Configuration__c> intApiConfigs = [SELECT Id FROM intframework__Integration_API_Configuration__c];
-        System.assertEquals(intApiConfigs.size(), 3, 'Integration API Configuration records are not inserted');
+        System.assertEquals(intApiConfigs.size(), 2, 'Integration API Configuration records are not inserted');
     }
     @isTest
     static void testEquifaxApplyIndividual() {
-        List<clcommon__Collateral__c> collateralList = [SELECT Id FROM clcommon__Collateral__c];
+        List<genesis__Applications__c> appList = [SELECT Id FROM genesis__Applications__c];
+        System.assertEquals(appList.size(), 1, 'Application record is not inserted');
+        List<clcommon__Party__c> partyList = [SELECT Id FROM clcommon__Party__c];
+        System.assertEquals(partyList.size(), 1, 'Party record is not inserted');
+        List<Contact> conList = [SELECT Id FROM Contact];
+        System.assertEquals(conList.size(), 1, 'Contact record is not inserted');
+        List<clcommon__Address__c> addressList = [SELECT Id FROM clcommon__Address__c];
+        System.assertEquals(addressList.size(), 1, 'Address record is not inserted');
         Test.setMock(HttpCalloutMock.class, new Mock());
         Test.startTest();
-        String responseString = EquifaxCallout.equifaxApplyIndividual(collateralList[0].Id, true);
+        String responseString = EquifaxEnquiryCallout.equifaxApplyIndividual(appList[0].Id, partyList[0].Id, conList[0].Id, addressList[0].Id);
         Test.stopTest();
         List<clcommon__Log__c> logList = [SELECT Id, clcommon__Message__c FROM clcommon__Log__c];
         for(clcommon__Log__c each : logList){
@@ -111,10 +108,10 @@ public class EquifaxEnquiryCalloutTest {
     }
     @isTest
     static void testEquifaxPreviousEnquiry() {
-        List<clcommon__Collateral__c> collateralList = [SELECT Id FROM clcommon__Collateral__c];
+        List<clcommon__Party__c> partyList = [SELECT Id FROM clcommon__Party__c];
         Test.setMock(HttpCalloutMock.class, new Mock());
         Test.startTest();
-        String responseString = EquifaxCallout.equifaxPreviousEnquiry('1234','VIC',collateralList[0].Id, true);
+        String responseString = EquifaxEnquiryCallout.equifaxPreviousEnquiry('200824-C104B-0009F', partyList[0].Id);
         Test.stopTest();
         List<clcommon__Log__c> logList = [SELECT Id, clcommon__Message__c FROM clcommon__Log__c];
         for(clcommon__Log__c each : logList){
@@ -148,22 +145,18 @@ public class EquifaxEnquiryCalloutTest {
         List<StaticResource> srList = [
             SELECT Id, Name, Body
             FROM StaticResource
-            WHERE Name = 'Sample_Title_Search_Response'
-            OR Name = 'Sample_Order_Document_Response'
-            OR Name = 'Sample_Deliver_Document_Success_Response'
+            WHERE Name = 'Sample_APPLY_INDIVIDUAL_Response'
+            OR Name = 'Sample_PREVIOUS_ENQUIRY_Response'
         ];
         for(StaticResource each : srList){
             responseMap.put(each.Name, each.Body.toString());
         }
         System.debug(endpoint);
-        if(endpoint.contains('titleSearchByAddress')){
-            res.setBody(responseMap.get('Sample_Title_Search_Response'));
+        if(endpoint.contains('applyIndividual')){
+            res.setBody(responseMap.get('Sample_APPLY_INDIVIDUAL_Response'));
         }
-        else if(endpoint.contains('OrderDocument')){
-            res.setBody(responseMap.get('Sample_Order_Document_Response'));
-        }
-        else if(endpoint.contains('DeliverDocument')){
-            res.setBody(responseMap.get('Sample_Deliver_Document_Success_Response'));
+        else if(endpoint.contains('previousEnquiry')){
+            res.setBody(responseMap.get('Sample_PREVIOUS_ENQUIRY_Response'));
         }
         else{
             res.setBody('');

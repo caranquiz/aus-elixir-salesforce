@@ -7,19 +7,12 @@ global override virtual String generateRequestBody(Map<String, Object> filledInR
                 String enrType = 'no';
                 
                 Boolean enrichmentType = (Boolean)filledInRequestMap.get('enrichmentRequired');
-                
+                Boolean isJoint = (Boolean)filledInRequestMap.get('isJoint');
                 if(enrichmentType){
                     enrType = 'yes';
                 } else {
                     enrType = 'no';
                 }
-                
-                System.debug(enrType);
-                
-                
-                System.debug(filledInRequestMap);
-                System.debug(filledInRequestMap.get('partyinfo'));
-                
                 List<Map<String, Object>> applicationMap = (List<Map<String, Object>>)filledInRequestMap.get('applicationInfo');
                 String applicationName = (String)applicationMap[0].get('applicationName');
                 Decimal loanAmount = (Decimal)applicationMap[0].get('loanAmount');    
@@ -27,26 +20,18 @@ global override virtual String generateRequestBody(Map<String, Object> filledInR
                 List<Map<String, Object>> partymap = (List<Map<String, Object>>)filledInRequestMap.get('partyinfo');
                 String partyName = (String)partymap[0].get('name');
                 
-                System.debug(partymap[0].get('companyACN'));
-                
-                
                 List<Map<String, Object>> partyTypeMap = (List<Map<String, Object>>)filledInRequestMap.get('partyRelatedInfo');
                 String partyType = (String)partyTypeMap[0].get('partyTypeName');
                 
-                if(partyType == 'Borrower'){
-                    partyUpdate = 'principal';
-                }
-                else if(partyType == 'Co-Applicant'){
-                    partyUpdate = 'coborrower';
-                }
-                else if(partyType == 'Guarantor'){
+                if(partyType == 'Guarantor'){
                     partyUpdate = 'guarantor';
                 }
-                else {
-                    throw new CustomException('Party type not supported');
+                else if(isJoint){
+                    partyUpdate = 'joint';
                 }
-                
-                System.debug(partyUpdate);
+                else{
+                    partyUpdate = 'principal';
+                }
                 
                 List<Map<String, Object>> entityMap = (List<Map<String, Object>>)filledInRequestMap.get('entityRelatedInfo');
                 String legalEntity = (String)entityMap[0].get('entityName');
@@ -68,7 +53,7 @@ global override virtual String generateRequestBody(Map<String, Object> filledInR
                 +acn+'</ns2:australian-company-number></ns2:subject><ns2:current-historic-flag xmlns:ns2="http://vedaxml.com/vxml2/company-enquiry-v3-2.xsd">current-and-historical</ns2:current-historic-flag><ns2:enquiry xmlns:ns2="http://vedaxml.com/vxml2/company-enquiry-v3-2.xsd" type="credit-enquiry"><ns2:account-type code="L">LEASING</ns2:account-type><ns2:enquiry-amount currency-code="AUD">'
                 +loanAmount+'</ns2:enquiry-amount><ns2:client-reference>'
                 +partyName+'</ns2:client-reference></ns2:enquiry><ns2:collateral-information xmlns:ns2="http://vedaxml.com/vxml2/company-enquiry-v3-2.xsd"><ns2:credit-type>COMMERCIAL</ns2:credit-type><ns2:scoring-required>no</ns2:scoring-required><ns2:enrichment-required>'
-                +enrType+'</ns2:enrichment-required><ns2:ppsr-required>no</ns2:ppsr-required></ns2:collateral-information></cenq:request></soapenv:Body></soapenv:Envelope>';
+                +enrType+'</ns2:enrichment-required><ns2:ppsr-required>yes</ns2:ppsr-required></ns2:collateral-information></cenq:request></soapenv:Body></soapenv:Envelope>';
             System.debug(s);
             return s;
 
