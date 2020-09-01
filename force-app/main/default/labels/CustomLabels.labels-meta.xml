@@ -531,4 +531,12 @@
         <shortDescription>WEEKLY</shortDescription>
         <value>WEEKLY</value>
     </labels>
+    <labels>
+        <fullName>APS_Payment_Mode</fullName>
+        <categories>Payment Mode</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>APS Payment Mode</shortDescription>
+        <value>Direct Debit</value>
+    </labels>
 </CustomLabels>
