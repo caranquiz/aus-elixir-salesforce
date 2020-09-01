@@ -17,7 +17,7 @@ global class EquifaxPreviousEnquiryAdapter extends intframework.BaseIntegrationA
             return requestBody;
         }
         catch(Exception ex){
-            GenericUtility.insertLog('EquifaxOrderDocumentAdapter', ex);
+            GenericUtility.insertLog('EquifaxPreviousEnquiryAdapter', ex);
             return null;
         }
     }
@@ -34,7 +34,7 @@ global class EquifaxPreviousEnquiryAdapter extends intframework.BaseIntegrationA
             res = http.send(httpReq);
             return res;
         } catch (Exception ex) {
-            GenericUtility.insertLog('EquifaxOrderDocumentAdapter', ex);
+            GenericUtility.insertLog('EquifaxPreviousEnquiryAdapter', ex);
             return null;
         }
     }

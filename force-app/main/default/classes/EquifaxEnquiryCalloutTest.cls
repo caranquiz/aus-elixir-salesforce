@@ -51,7 +51,7 @@ public class EquifaxEnquiryCalloutTest {
             'POST',
             'EquifaxCredentials',
             '/previousEnquiry',
-            '{"thirdPartySystem":{"name":"Equifax","dynamicDataParameters":[{"externalField":"titleReference"},{"externalField":"testStateRef"},{"externalField":"clientRef"}],"filters":[]}}'
+            '{"thirdPartySystem":{"name":"Equifax","dynamicDataParameters":[{"externalField":"enquiryId"},{"externalField":"contentType"},{"externalField":"requestBody"}],"filters":[]}}'
         );
         Account acctObj = GenericUtilityTestHelper.insertDummyAccount();
         genesis__Applications__c appObj = GenericUtilityTestHelper.insertApplication(
