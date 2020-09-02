@@ -61,7 +61,7 @@
         <members>EquifaxOrgIdSearchCallout</members>
         <members>EquifaxOrgIdSearchCalloutTest</members>
 
-        <!-- Equifax Company Search chnages by Hamza -->
+        <!-- Equifax Company Search changes by Hamza -->
         <members>EquifaxCompanyEnquiryAdapter</members>
         <members>EquifaxCompanyEnquiryCallout</members>
         <members>EquifaxCompanyEnquiryResponseHelper</members>
@@ -70,6 +70,9 @@
         <members>LoanDisbursalFilegen</members>
         <members>LoanDisbursalFilegenTest</members>
         <members>DirectEntryFileRecordGenUtil</members>
+        
+        <!-- APS payment mode changes made by Rameswari-->
+        <members>WarehouseFunding</members>
 
         <name>ApexClass</name>
     </types>
@@ -303,6 +306,7 @@
         <members>clcommon__Party__c.Request_Id__c</members>
         <members>clcommon__Party__c.General_Messages__c</members>
         <members>clcommon__Party__c.Legal_Entity_Type__c</members>
+        <members>Explanation_of_Previous_Conduct_Suitable__c</members>
         <members>EquifaxOrdIdSearch__c.Subscriber_Identifier__c</members>
         <members>EquifaxOrdIdSearch__c.Security__c</members>
         <members>Checklist_Detail__c.Application_Collateral__c</members>
