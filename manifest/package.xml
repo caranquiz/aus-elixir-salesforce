@@ -306,7 +306,11 @@
         <members>clcommon__Party__c.Request_Id__c</members>
         <members>clcommon__Party__c.General_Messages__c</members>
         <members>clcommon__Party__c.Legal_Entity_Type__c</members>
-        <members>Explanation_of_Previous_Conduct_Suitable__c</members>
+        <members>clcommon__Party__c.Explanation_of_Previous_Conduct_Suitable__c</members>
+        <members>clcommon__Party__c.Explanation_of_Previous_Conduct_Commenta__c</members>
+        <members>clcommon__Party__c.Previous_conduct_explanation_received__c</members>
+        <members>clcommon__Party__c.Previous_conduct_issues_identified__c</members>
+        <members>clcommon__Party__c.Previous_conduct_referencing_completed__c</members>
         <members>EquifaxOrdIdSearch__c.Subscriber_Identifier__c</members>
         <members>EquifaxOrdIdSearch__c.Security__c</members>
         <members>Checklist_Detail__c.Application_Collateral__c</members>
@@ -509,6 +513,10 @@
         <!-- LDT filegen changes made by Souvik -->
         <members>LDT_file_name</members>
         <name>CustomLabel</name>
+    </types>
+    <types>
+        <members>YesNo</members>
+        <name>GlobalValueSet</name>
     </types>
     <version>45.0</version>
 </Package>
