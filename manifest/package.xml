@@ -66,6 +66,11 @@
         <members>EquifaxCompanyEnquiryCallout</members>
         <members>EquifaxCompanyEnquiryResponseHelper</members>
 
+        <!-- ABA Filegen classes -->
+        <members>LoanDisbursalFilegen</members>
+        <members>LoanDisbursalFilegenTest</members>
+        <members>DirectEntryFileRecordGenUtil</members>
+
         <name>ApexClass</name>
     </types>
     <types>
