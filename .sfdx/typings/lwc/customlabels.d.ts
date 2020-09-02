@@ -14,6 +14,10 @@ declare module "@salesforce/label/c.APS_Payment_Amount" {
     var APS_Payment_Amount: string;
     export default APS_Payment_Amount;
 }
+declare module "@salesforce/label/c.APS_Payment_Mode" {
+    var APS_Payment_Mode: string;
+    export default APS_Payment_Mode;
+}
 declare module "@salesforce/label/c.AccountNotFound" {
     var AccountNotFound: string;
     export default AccountNotFound;
@@ -190,6 +194,10 @@ declare module "@salesforce/label/c.Joint_party" {
     var Joint_party: string;
     export default Joint_party;
 }
+declare module "@salesforce/label/c.LDT_file_name" {
+    var LDT_file_name: string;
+    export default LDT_file_name;
+}
 declare module "@salesforce/label/c.LastBilledAmt" {
     var LastBilledAmt: string;
     export default LastBilledAmt;
@@ -277,8 +285,4 @@ declare module "@salesforce/label/c.UnableToFund" {
 declare module "@salesforce/label/c.WEEKLY" {
     var WEEKLY: string;
     export default WEEKLY;
-}
-declare module "@salesforce/label/c.LDT_file_name" {
-    var LDT_file_name: string;
-    export default LDT_file_name;
 }
