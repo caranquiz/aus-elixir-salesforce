@@ -149,6 +149,28 @@
         </values>
     </picklistValues>
     <picklistValues>
+        <picklist>Cash_Out_Purpose_Explanation_Provided__c</picklist>
+        <values>
+            <fullName>No</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Yes</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Cash_Out_Purpose_Suitable__c</picklist>
+        <values>
+            <fullName>No</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Yes</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
         <picklist>Cash_Out__c</picklist>
         <values>
             <fullName>No</fullName>
@@ -239,6 +261,17 @@
         </values>
     </picklistValues>
     <picklistValues>
+        <picklist>Confirm_repayments_do_not_double__c</picklist>
+        <values>
+            <fullName>No</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Yes</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
         <picklist>Construction_Description__c</picklist>
         <values>
             <fullName>Duplex</fullName>
@@ -254,6 +287,28 @@
         </values>
     </picklistValues>
     <picklistValues>
+        <picklist>Customer_Interview__c</picklist>
+        <values>
+            <fullName>No</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Yes</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Customer_Interview_completed__c</picklist>
+        <values>
+            <fullName>No</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Yes</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
         <picklist>Document_Type__c</picklist>
         <values>
             <fullName>Alt Doc</fullName>
@@ -265,6 +320,50 @@
         </values>
         <values>
             <fullName>Lease Doc</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Does_applicant_understand_English__c</picklist>
+        <values>
+            <fullName>No</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Yes</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Exit_Strategy_Provided__c</picklist>
+        <values>
+            <fullName>No</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Yes</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Exit_Strategy_Suitable__c</picklist>
+        <values>
+            <fullName>No</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Yes</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Fixed_Rate_Lock_In__c</picklist>
+        <values>
+            <fullName>No</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Yes</fullName>
             <default>false</default>
         </values>
     </picklistValues>
@@ -291,6 +390,28 @@
         </values>
         <values>
             <fullName>Personal</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Income_Consistent_with_Declaration__c</picklist>
+        <values>
+            <fullName>No</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Yes</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Interest_Only_Suitable__c</picklist>
+        <values>
+            <fullName>No</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Yes</fullName>
             <default>false</default>
         </values>
     </picklistValues>
@@ -345,6 +466,17 @@
         </values>
         <values>
             <fullName>Variable</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Is_the_Application_Form_fully_completed__c</picklist>
+        <values>
+            <fullName>No</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Yes</fullName>
             <default>false</default>
         </values>
     </picklistValues>
@@ -511,14 +643,6 @@
             <fullName>Credit Card</fullName>
             <default>false</default>
         </values>
-        <values>
-            <fullName>Direct Debit Existing Account</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>Direct Debit New Account</fullName>
-            <default>false</default>
-        </values>
     </picklistValues>
     <picklistValues>
         <picklist>Purchase_Type__c</picklist>
@@ -622,6 +746,17 @@
         </values>
     </picklistValues>
     <picklistValues>
+        <picklist>Satisfactory_Explanation_Provided__c</picklist>
+        <values>
+            <fullName>No</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Yes</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
         <picklist>Signed_The_Form__c</picklist>
         <values>
             <fullName>No</fullName>
@@ -640,6 +775,17 @@
         </values>
         <values>
             <fullName>Mobile</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Supporting_Documentation_Sighted__c</picklist>
+        <values>
+            <fullName>No</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Yes</fullName>
             <default>false</default>
         </values>
     </picklistValues>
@@ -736,6 +882,17 @@
         </values>
     </picklistValues>
     <picklistValues>
+        <picklist>Valuation_Fee_Collected_at_Settlement__c</picklist>
+        <values>
+            <fullName>No</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Yes</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
         <picklist>Verification_Sighted__c</picklist>
         <values>
             <fullName>No</fullName>
@@ -765,6 +922,17 @@
         </values>
         <values>
             <fullName>Calculate Term</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>genesis__Construction_Type__c</picklist>
+        <values>
+            <fullName>Construction Only</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Construction-to-Permanent</fullName>
             <default>false</default>
         </values>
     </picklistValues>
@@ -914,6 +1082,149 @@
         </values>
     </picklistValues>
     <picklistValues>
+        <picklist>genesis__Interest_Level__c</picklist>
+        <values>
+            <fullName>High</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Low</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Medium</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>genesis__LOC_Payment_Type__c</picklist>
+        <values>
+            <fullName>Accrued Interest Only</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Amortized Payment %28Principal and Interest%29</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Balloon</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Fixed Amount</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Fixed Amount Plus Accrued Interest</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Fixed Amount per %241000 of Outstanding Balance</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Greater of a Fixed Amount or Accrued Interest</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Greater of a Percentage of the Outstanding Balance Plus Accrued Interest or a Fixed Amount</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Greater of a Percentage of the Outstanding Balance or Accrued Interest</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Greater of a Percentage of the Outstanding Balance or a Fixed Amount</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Others %28as specified%29</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Percentage of the Outstanding Balance</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Percentage of the Outstanding Balance Plus Accrued Interest</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>genesis__Loan_Application_Type__c</picklist>
+        <values>
+            <fullName>Credit Card</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Direct Installment</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Indirect Installment</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Letter of Credit</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Line of Credit</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Loan Modification</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Loan Renewal</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Mortgage Loan</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Other</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Single Payment</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Term Loan</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>genesis__Loan_Term_Type__c</picklist>
+        <values>
+            <fullName>Closed Ended</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Open Ended</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>genesis__No_Of_Payments_In_Advance__c</picklist>
+        <values>
+            <fullName>1ST AND LAST</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>1ST AND LAST2</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>1ST AND LAST3</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
         <picklist>genesis__Payment_Amount_Step_Up_Type__c</picklist>
         <values>
             <fullName>Amount</fullName>
@@ -964,6 +1275,44 @@
         </values>
     </picklistValues>
     <picklistValues>
+        <picklist>genesis__Rate_Revision_Frequency__c</picklist>
+        <values>
+            <fullName>Annual</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Daily</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Monthly</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Quarterly</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Semi-Annual</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>genesis__Reg_O_Purpose__c</picklist>
+        <values>
+            <fullName>Educational Purpose</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Other</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Residential Purpose</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
         <picklist>genesis__Regulation_O__c</picklist>
         <values>
             <fullName>Director</fullName>
@@ -997,6 +1346,55 @@
         </values>
         <values>
             <fullName>DIRECT</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>genesis__Solve_For__c</picklist>
+        <values>
+            <fullName>Financed Amount</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Payment Amount</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Yield</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>genesis__Solved_For__c</picklist>
+        <values>
+            <fullName>Financed Amount</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>None</fullName>
+            <default>true</default>
+        </values>
+        <values>
+            <fullName>Payment Amount</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Yield and Yield after Payout</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>genesis__Spousal_Notice__c</picklist>
+        <values>
+            <fullName>A copy of the credit disclosure given to Applicant</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>A copy of the document evidencing extension of credit</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>No enclosure is included with Notice</fullName>
             <default>false</default>
         </values>
     </picklistValues>
