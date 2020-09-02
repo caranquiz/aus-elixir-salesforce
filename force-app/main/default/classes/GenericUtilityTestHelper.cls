@@ -553,11 +553,83 @@ public with sharing class GenericUtilityTestHelper {
       insert addressObj;
       return addressObj;
     }
-    //Inserting Party
-    public static clcommon__Party__c returnParty(Id appId, Id account){
-    clcommon__Party__c party = new clcommon__Party__c(genesis__Application__c = appId,
-    clcommon__Account__c = account);
-    insert party;
-    return party;
-    }
+    //Inserting an LPT
+    public static loan__Loan_Payment_Transaction__c returnLoanPayment(
+    loan__Loan_Account__c contractObj,
+    Id paymentModeId,
+    Decimal interest,
+    Decimal totalAmount
+  ) {
+    loan__Loan_Payment_Transaction__c loanPayment = new loan__Loan_Payment_Transaction__c();
+    loanPayment.loan__Transaction_Amount__c = totalAmount;
+    loanPayment.loan__Interest__c = interest;
+    loanPayment.loan__Loan_Account__c = contractObj.id;
+    loanPayment.loan__Payment_Application_Mode__c = paymentModeId;
+    insert loanPayment;
+    return loanPayment;
+  }
+  public static loan__Loan_Account__c returnLoanAccount() {
+    loan.TestHelper.createSeedDataForTesting();
+
+    loan__Currency__c curr = loan.TestHelper.createCurrency();
+    //Create a dummy MF_Account
+    loan__MF_Account__c dummyAccount = loan.TestHelper.createMFAccount(
+      'XXXAccountForTest',
+      '10000 - ASSETS'
+    );
+    loan__MF_Account__c dummyIncAccount = loan.TestHelper.createMFAccount(
+      'XXXIncAccountForTest',
+      '30000 - INCOME'
+    );
+
+    //Create a Fee Set
+    loan__Fee__c dummyFee = loan.TestHelper.createFee(
+      curr,
+      dummyIncAccount,
+      dummyAccount
+    );
+    loan__Fee_Set__c dummyFeeSet = loan.TestHelper.createFeeSet();
+    loan__Fee_Junction__c dummyFeeJunction = loan.TestHelper.createFeeJunction(
+      dummyFee,
+      dummyFeeSet
+    );
+
+    loan__Office_Name__c dummyOffice = loan.TestHelper.createOffice();
+
+    //Create a dummy Loan Product
+    loan__Loan_Product__c dummyLP = loan.TestHelper.createLoanProduct(
+      dummyOffice,
+      dummyAccount,
+      curr,
+      dummyFeeSet
+    );
+
+    loan__Loan_Purpose__c dummyLoanPurpose = loan.TestHelper.createLoanPurpose();
+    dummyLoanPurpose.loan__Loan_Purpose_Code__c = 'Refinance';
+    upsert dummyLoanPurpose;
+
+    account dummyClient = new account();
+    dummyClient.Name = 'Pegasus';
+    insert dummyClient;
+
+    //Create a dummy Loan Account
+    loan__Loan_Account__c loanAccount = loan.TestHelper.createLoanAccountForAccountObj(
+      dummyLP,
+      dummyClient,
+      dummyFeeSet,
+      dummyLoanPurpose,
+      dummyOffice
+    );
+    loanAccount.loan__Number_of_Installments__c = 12;
+    loanAccount.Loan__Loan_Status__c = loan.LoanConstants.LOAN_STATUS_APPROVED;
+    loanAccount.Loan__Fees_Remaining__c = 100;
+    loanAccount.Loan__Interest_Remaining__c = 500;
+    loanAccount.Loan__Principal_Remaining__c = 1000;
+    loanAccount.Loan__Fractionalization_Status__c = loan.LoanConstants.FRACTIONALIZATION_STATUS_ACTIVE;
+    loanAccount.Loan__Pay_off_Amount_As_Of_Today__c =
+      loanAccount.loan__Fees_Remaining__c +
+      loanAccount.loan__Principal_Remaining__c;
+
+    return loanAccount;
+  }
 }
