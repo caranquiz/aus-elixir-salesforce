@@ -278,3 +278,7 @@ declare module "@salesforce/label/c.WEEKLY" {
     var WEEKLY: string;
     export default WEEKLY;
 }
+declare module "@salesforce/label/c.LDT_file_name" {
+    var LDT_file_name: string;
+    export default LDT_file_name;
+}
