@@ -70,7 +70,7 @@
         <members>LoanDisbursalFilegen</members>
         <members>LoanDisbursalFilegenTest</members>
         <members>DirectEntryFileRecordGenUtil</members>
-        
+
         <!-- APS payment mode changes made by Rameswari-->
         <members>WarehouseFunding</members>
 
@@ -432,6 +432,13 @@
 
         <!-- APS payment mode changes made by Rameswari-->
         <members>genesis__Applications__c.Proposed_repayment_method_list__c</members>
+
+        <!-- APC Custom Fields added -->
+        <members>loan__Automated_Payment_Configuration__c.Description_of_funds__c</members>
+        <members>loan__Automated_Payment_Configuration__c.Name_of_User__c</members>
+        <members>loan__Automated_Payment_Configuration__c.Remitter_Name__c</members>
+        <members>loan__Automated_Payment_Configuration__c.User_Financial_Institution_Name__c</members>
+        <members>loan__Automated_Payment_Configuration__c.User_Id__c</members>
         <name>CustomField</name>
     </types>
     <types>
@@ -464,6 +471,8 @@
         <members>Sample_Deliver_Document_Success_Response</members>
         <members>Sample_Order_Document_Response</members>
         <members>Sample_Title_Search_Response</members>
+        <members>Sample_APPLY_INDIVIDUAL_Response</members>
+        <members>Sample_PREVIOUS_ENQUIRY_Response</members>
 
         <!-- SMSF ABN changes made by Pratik -->
         <members>ABNNameSearchDummyXML</members>
@@ -500,6 +509,9 @@
     <types>
         <!-- APS payment mode changes made by Rameswari-->
         <members>APS_Payment_Mode</members>
+        
+        <!-- LDT filegen changes made by Souvik -->
+        <members>LDT_file_name</members>
         <name>CustomLabel</name>
     </types>
     <types>

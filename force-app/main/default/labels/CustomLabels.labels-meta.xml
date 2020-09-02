@@ -32,6 +32,14 @@
         <value>CURRENT PAYMENT AMOUNT</value>
     </labels>
     <labels>
+        <fullName>APS_Payment_Mode</fullName>
+        <categories>Payment Mode</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>APS Payment Mode</shortDescription>
+        <value>Direct Debit</value>
+    </labels>
+    <labels>
         <fullName>AccountNotFound</fullName>
         <categories>Error Messages</categories>
         <language>en_US</language>
@@ -365,6 +373,13 @@
         <value>Joint Investor</value>
     </labels>
     <labels>
+        <fullName>LDT_file_name</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>LDT File Name</shortDescription>
+        <value>LDT</value>
+    </labels>
+    <labels>
         <fullName>LastBilledAmt</fullName>
         <categories>APS creation parameters</categories>
         <language>en_US</language>
@@ -530,13 +545,5 @@
         <protected>false</protected>
         <shortDescription>WEEKLY</shortDescription>
         <value>WEEKLY</value>
-    </labels>
-    <labels>
-        <fullName>APS_Payment_Mode</fullName>
-        <categories>Payment Mode</categories>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>APS Payment Mode</shortDescription>
-        <value>Direct Debit</value>
     </labels>
 </CustomLabels>
