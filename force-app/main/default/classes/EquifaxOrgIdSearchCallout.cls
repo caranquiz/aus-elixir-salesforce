@@ -87,14 +87,14 @@ global with sharing class EquifaxOrgIdSearchCallout {
                             asicStat = GenericUtility.convertToDescription(asicStat);
                             parserObject.asicStatusData = asicStat;
                             res = true;
-                            break;
                         }
                         if(each.asicReport.asicName != null){
                             parserObject.asicNameData = each.asicReport.asicName.nodeValue;
                             res = true;
+                        }
+                        if(res){
                             break;
                         }
-                        break;
                     }
                     catch(Exception ex){
                         GenericUtility.insertLog('EquifaxOrgIdSearchCallout', ex);
