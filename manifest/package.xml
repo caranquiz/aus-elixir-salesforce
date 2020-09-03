@@ -429,11 +429,9 @@
         <members>ABN_Search_SMSF__c.Maximum_Search_Results__c</members>
         <members>ABN_Search_SMSF__c.GUID__c</members>
         <members>ABN_Search_SMSF__c.Active_Funds_Only__c</members>
-<<<<<<< HEAD
         
         <!-- Return File Processing made by Pratik -->
         <members>loan__Repayment_Transaction_Adjustment__c.Return_Code__c</members>
-=======
 
         <!-- APS payment mode changes made by Rameswari-->
         <members>genesis__Applications__c.Proposed_repayment_method_list__c</members>
@@ -444,7 +442,6 @@
         <members>loan__Automated_Payment_Configuration__c.Remitter_Name__c</members>
         <members>loan__Automated_Payment_Configuration__c.User_Financial_Institution_Name__c</members>
         <members>loan__Automated_Payment_Configuration__c.User_Id__c</members>
->>>>>>> ed070b5090807d36c8a3a6b0c6c9a7cc621d8af6
         <name>CustomField</name>
     </types>
     <types>
