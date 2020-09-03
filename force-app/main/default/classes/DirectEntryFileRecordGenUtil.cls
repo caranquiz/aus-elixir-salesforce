@@ -1,3 +1,6 @@
+/*************************************************************************************************************/
+/* Description          : This class is an utility class for ABA file generation */
+/*************************************************************************************************************/
 public class DirectEntryFileRecordGenUtil{
     public class DescriptiveRecordData {
         public String financialInstitutionName;
@@ -126,8 +129,8 @@ public class DirectEntryFileRecordGenUtil{
     }
     // Throws an exception if the strng is not blank
     public static void checkBlank(String val, String msg) {
-    if (!String.isBlank(val)) {
-        throw new CustomException(msg);
+        if (!String.isBlank(val)) {
+            throw new CustomException(msg);
+        }
     }
-  }
-  }
+}

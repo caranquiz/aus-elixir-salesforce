@@ -58,8 +58,8 @@ private class DEReturnFileProcessorTest {
     Boolean messageFound = false;
     for (ApexPages.Message message : pageMessages) {
       if (
-        message.getSummary() == 'Argument cannot be null.' &&
-        message.getDetail() == 'Argument cannot be null.' &&
+        message.getSummary() == 'Please upload a relevant file to process' &&
+        message.getDetail() == 'Please upload a relevant file to process' &&
         message.getSeverity() == ApexPages.severity.ERROR
       ) {
         messageFound = true;

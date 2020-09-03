@@ -390,7 +390,7 @@ public without sharing class LoanPaymentReturnFileHandler {
             when '0' {
               processHeader(each);
             }
-            when '1' {
+            when '2' {
               processDetails(each);
             }
             when '7' {
