@@ -516,24 +516,17 @@ global class ConstantValues{
   public static final String COMPANY_USER_NAME_NOT_DEFINED = 'Company User name not defined';
   public static final String COMPANY_USERID_NOT_DEFINED = 'Company User Id not defined';
   //APC Filegen Class Constant Values
-  public static final String FILEGEN_HEAD_RECORD_TYPE = '0';
   public static final String FILEGEN_ENTRY_RECORD_TYPE = '1';
   public static final String INDICATOR = ' ';
   public static final String FILEGEN_TRAIL_RECORD_TYPE = '7';
   public static final String TRAIL_BSB_NUM = '999-999';
 
-  public static final String REMITTER_NOT_FOUND = 'Remitter Name not defined';
-  public static final String COMPANY_BANK_DETAILS_MISSING = 'Company Bank Details missing';
   public static final String NO_APC_FOUND = 'No Automated Payment Configured';
   public static final String NO_USERNAME_FOUND = 'Name of User not found';
   public static final String USERID_MISSING = 'Number of User not found';
   public static final String WRONG_BSB_PAYEE = 'Payee BSB Number is wrong';
   public static final String WRONG_BSB_PAYER = 'Borrower BSB Number is wrong';
-  public static final String WRONG_ACOUNT_NUMBER_PAYER = 'Borrower Account Number is wrong';
-  public static final String WRONG_ACOUNT_NUMBER_PAYEE = 'Payee Account Number is wrong';
   public static final String ACCOUNT_NAME_WLEN = 'Account Name length cannot be greater than 32';
-  public static final String BANK_ACC_MISSING_PAYER = 'Borrower Bank Account not found';
-  public static final String BANK_ACC_DETAILS_MISSING_PAYER = 'Borrower Bank Account Holder Name or Bank Name or Account Number is Missing';
   public static final String INVESTOR_BA_MISSING = 'Investor Bank Account not found';
   public static final String INVESTOR_BA_DETAILS_MISSING = 'Investor Bank Account Holder Name or Bank Name or Account Number is Missing';
   public static final String MULTIPLE_LPTS = 'Multiple LPTs found on under same contract';
@@ -544,7 +537,6 @@ global class ConstantValues{
   public static final String WITHDRAWAL = 'WITHDRAWAL';
   public static final String ENTRY_SCOPE_EMPTY = 'Entry Scope is empty';
   public static final Integer STANDARD_BSB_LENGTH = 6;
-  public static final Integer STANDARD_ACCOUNT_NAME_LENGTH = 32;
   public static final Integer STANDARD_ACCOUNT_NUMBER_LENGTH = 9;
   public static final String LPT_FILE_GEN = 'LoanPaymentTransactionFileGen';
 
@@ -610,19 +602,12 @@ global class ConstantValues{
   public static final String NO_APPLICATION_PRICING_DETAILS = 'No Application Pricing Details found';
   public static final Integer STANDARD_ABN_LENGTH = 11;
   public static final Integer STANDARD_ACN_LENGTH = 9;
-  public static final Integer STANDARD_BSB_LENGTH = 6;
   public static final Integer STANDARD_ACCOUNT_NAME_LENGTH = 32;
-  public static final Integer STANDARD_ACCOUNT_NUMBER_LENGTH = 9;
   //APC Filegen Class Exception Constant Values
-  public static final String ENTRY_SCOPE_EMPTY = 'Entry Scope is empty';
   public static final String BANK_ACC_MISSING_PAYER = 'Borrower Bank Account not found';
   public static final String BANK_ACC_DETAILS_MISSING_PAYER = 'Borrower Bank Account Holder Name or Bank Name or Account Number is Missing';
-  public static final String WRONG_BSB_PAYEE = 'Payee BSB Number is wrong';
-  public static final String WRONG_BSB_PAYER = 'Borrower BSB Number is wrong';
   public static final String WRONG_ACOUNT_NUMBER_PAYER = 'Borrower Account Number is wrong';
   public static final String WRONG_ACOUNT_NUMBER_PAYEE = 'Payee Account Number is wrong';
-  public static final String ACCOUNT_NAME_WLEN = 'Account Name length cannot be greater than 32';
   public static final String REMITTER_NOT_FOUND = 'Remitter Name not defined';
   public static final String COMPANY_BANK_DETAILS_MISSING = 'Company Bank Details missing';
-  public static final String NO_APC_FOUND = 'No Automated Payment Configured';
 }
