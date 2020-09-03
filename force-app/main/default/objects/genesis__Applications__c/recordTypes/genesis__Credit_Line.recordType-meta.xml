@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>genesis__Line_Of_Credit</fullName>
+    <fullName>genesis__Credit_Line</fullName>
     <active>true</active>
-    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
-    <description>Line Of Credit Type Of Application</description>
-    <label>Line Of Credit</label>
+    <description>Represents a Credit Line Application</description>
+    <label>Credit Line</label>
     <picklistValues>
         <picklist>ABS_lending_purpose__c</picklist>
         <values>
@@ -107,11 +106,19 @@
             <default>false</default>
         </values>
         <values>
+            <fullName>Opened in Error</fullName>
+            <default>false</default>
+        </values>
+        <values>
             <fullName>Other</fullName>
             <default>false</default>
         </values>
         <values>
             <fullName>Security</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Withdrawn</fullName>
             <default>false</default>
         </values>
     </picklistValues>
@@ -728,6 +735,29 @@
         </values>
     </picklistValues>
     <picklistValues>
+        <picklist>Risk_grade_list__c</picklist>
+        <values>
+            <fullName>Near Prime</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Near Prime %2B</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Prime</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Specialist</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Specialist %2B</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
         <picklist>Sales_Channel__c</picklist>
         <values>
             <fullName>Direct</fullName>
@@ -952,11 +982,19 @@
         <picklist>genesis__Days_Convention__c</picklist>
         <values>
             <fullName>30%2F360</fullName>
-            <default>false</default>
+            <default>true</default>
         </values>
         <values>
             <fullName>365%2F365</fullName>
-            <default>true</default>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>ACTUAL%2F360</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>ACTUAL%2FACTUAL</fullName>
+            <default>false</default>
         </values>
     </picklistValues>
     <picklistValues>
@@ -1221,7 +1259,7 @@
         <picklist>genesis__Payment_Amount_Step_Up_Type__c</picklist>
         <values>
             <fullName>Amount</fullName>
-            <default>false</default>
+            <default>true</default>
         </values>
         <values>
             <fullName>Percentage</fullName>
@@ -1257,6 +1295,10 @@
     <picklistValues>
         <picklist>genesis__Pricing_Method__c</picklist>
         <values>
+            <fullName>MANUAL</fullName>
+            <default>false</default>
+        </values>
+        <values>
             <fullName>RATE CARD</fullName>
             <default>false</default>
         </values>
@@ -1268,14 +1310,38 @@
             <default>false</default>
         </values>
         <values>
+            <fullName>FINANCE LEASE</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>LOAN</fullName>
+            <default>false</default>
+        </values>
+        <values>
             <fullName>OPEN ENDED</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>OPERATING LEASE</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>UNDEFINED</fullName>
             <default>false</default>
         </values>
     </picklistValues>
     <picklistValues>
         <picklist>genesis__Product_Type__c</picklist>
         <values>
+            <fullName>LEASE</fullName>
+            <default>false</default>
+        </values>
+        <values>
             <fullName>LINE OF CREDIT</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>LOAN</fullName>
             <default>true</default>
         </values>
     </picklistValues>

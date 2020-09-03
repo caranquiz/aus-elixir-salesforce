@@ -1,6 +1,9 @@
+<<<<<<< HEAD
 /*************************************************************************************************************/
 /* Description          : This class is an utility class for ABA file generation */
 /*************************************************************************************************************/
+=======
+>>>>>>> ed070b5090807d36c8a3a6b0c6c9a7cc621d8af6
 public class DirectEntryFileRecordGenUtil{
     public class DescriptiveRecordData {
         public String financialInstitutionName;
@@ -27,7 +30,11 @@ public class DirectEntryFileRecordGenUtil{
     }
     private static String currentDate = ((DateTime) (!Test.isRunningTest()
     ? (new loan.GlobalLoanUtilFacade()).getCurrentSystemDate() : Date.Today())).format('ddMMyy');
+<<<<<<< HEAD
   
+=======
+
+>>>>>>> ed070b5090807d36c8a3a6b0c6c9a7cc621d8af6
     // Generates Descriptive Record
     public static String getDescriptiveRecord(DescriptiveRecordData descriptiveRecordDataObj) {
         String headerVal = '';
@@ -121,6 +128,7 @@ public class DirectEntryFileRecordGenUtil{
         entryVal += '\r\n';
         return entryVal;
     }
+<<<<<<< HEAD
     // Throws an exception if the strng is not numeric
     public static void checkNumeric(String val, String msg) {
         if (!val.isNumeric()) {
@@ -133,4 +141,6 @@ public class DirectEntryFileRecordGenUtil{
             throw new CustomException(msg);
         }
     }
+=======
+>>>>>>> ed070b5090807d36c8a3a6b0c6c9a7cc621d8af6
 }

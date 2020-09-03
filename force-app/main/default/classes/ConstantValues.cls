@@ -507,6 +507,7 @@ global class ConstantValues{
   public static final String PREVIOUS_CONDUCT_SUITABLE = 'Previous Conduct Suitable Rule';
   public static final String GST_EFFECTIVE_FROM_RULE = 'GST Effective from Rule';
 
+<<<<<<< HEAD
   // ABA FileGen Class
   public static final String PAYMENT_MODE_ACH = 'ACH';
   public static final String FILEGEN_HEAD_RECORD_TYPE = '0';
@@ -515,10 +516,16 @@ global class ConstantValues{
   public static final String FINACIAL_INST_NOT_DEFINED = 'Financial Institution is not defined';
   public static final String COMPANY_USER_NAME_NOT_DEFINED = 'Company User name not defined';
   public static final String COMPANY_USERID_NOT_DEFINED = 'Company User Id not defined';
+=======
+  //APC Filegen Class Constant Values
+  public static final String FILEGEN_HEAD_RECORD_TYPE = '0';
+  public static final String REEL_SEQ_NUMBER = '01';
+>>>>>>> ed070b5090807d36c8a3a6b0c6c9a7cc621d8af6
   public static final String FILEGEN_ENTRY_RECORD_TYPE = '1';
   public static final String INDICATOR = ' ';
   public static final String FILEGEN_TRAIL_RECORD_TYPE = '7';
   public static final String TRAIL_BSB_NUM = '999-999';
+<<<<<<< HEAD
   public static final String REMITTER_NOT_FOUND = 'Remitter Name not defined';
   public static final String COMPANY_BANK_DETAILS_MISSING = 'Company Bank Details missing';
   public static final String NO_APC_FOUND = 'No Automated Payment Configured';
@@ -546,6 +553,8 @@ global class ConstantValues{
   public static final String LPT_FILE_GEN = 'LoanPaymentTransactionFileGen';
 
   // ABA FileGen Class Txn Codes
+=======
+>>>>>>> ed070b5090807d36c8a3a6b0c6c9a7cc621d8af6
   public static final Integer TXN_CODE_DEBIT = 13;
   public static final Integer TXN_CODE_CREDIT = 50;
   public static final Integer TXN_CODE_AU_GOVT_SEC_INT = 51;
@@ -555,6 +564,7 @@ global class ConstantValues{
   public static final Integer TXN_CODE_ALLOTMENT = 55;
   public static final Integer TXN_CODE_DIVIDEND = 56;
   public static final Integer TXN_CODE_DEBENTURE = 57;
+<<<<<<< HEAD
 
   // LoanPaymentReturnFileHandler Class Return Causes
   public static final String RET_CAUSE_1 = 'due to Invalid BSB Number';
@@ -605,4 +615,23 @@ global class ConstantValues{
   public static final String NO_INVESTMENT_ORDERS_FOUND = 'No investment orders found';
   public static final String PARSED_DOCUMENT_NULL = 'Parsed document is null or blank';
   public static final String NO_APPLICATION_PRICING_DETAILS = 'No Application Pricing Details found';
+=======
+  public static final Integer STANDARD_ABN_LENGTH = 11;
+  public static final Integer STANDARD_ACN_LENGTH = 9;
+  public static final Integer STANDARD_BSB_LENGTH = 6;
+  public static final Integer STANDARD_ACCOUNT_NAME_LENGTH = 32;
+  public static final Integer STANDARD_ACCOUNT_NUMBER_LENGTH = 9;
+  //APC Filegen Class Exception Constant Values
+  public static final String ENTRY_SCOPE_EMPTY = 'Entry Scope is empty';
+  public static final String BANK_ACC_MISSING_PAYER = 'Borrower Bank Account not found';
+  public static final String BANK_ACC_DETAILS_MISSING_PAYER = 'Borrower Bank Account Holder Name or Bank Name or Account Number is Missing';
+  public static final String WRONG_BSB_PAYEE = 'Payee BSB Number is wrong';
+  public static final String WRONG_BSB_PAYER = 'Borrower BSB Number is wrong';
+  public static final String WRONG_ACOUNT_NUMBER_PAYER = 'Borrower Account Number is wrong';
+  public static final String WRONG_ACOUNT_NUMBER_PAYEE = 'Payee Account Number is wrong';
+  public static final String ACCOUNT_NAME_WLEN = 'Account Name length cannot be greater than 32';
+  public static final String REMITTER_NOT_FOUND = 'Remitter Name not defined';
+  public static final String COMPANY_BANK_DETAILS_MISSING = 'Company Bank Details missing';
+  public static final String NO_APC_FOUND = 'No Automated Payment Configured';
+>>>>>>> ed070b5090807d36c8a3a6b0c6c9a7cc621d8af6
 }

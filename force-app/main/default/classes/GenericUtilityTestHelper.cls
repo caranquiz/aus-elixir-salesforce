@@ -540,6 +540,7 @@ public with sharing class GenericUtilityTestHelper {
       );
       return appCollateral;
     }
+<<<<<<< HEAD
     public static clcommon__Address__c returnAddress(){
       clcommon__Address__c addressObj = new clcommon__Address__c();
       addressObj.clcommon__County__c = '12';
@@ -568,6 +569,16 @@ public with sharing class GenericUtilityTestHelper {
     insert loanPayment;
     return loanPayment;
   }
+=======
+    
+    //Inserting Party
+    public static clcommon__Party__c returnParty(Id appId, Id account){
+    clcommon__Party__c party = new clcommon__Party__c(genesis__Application__c = appId,
+    clcommon__Account__c = account);
+    insert party;
+    return party;
+    }
+>>>>>>> ed070b5090807d36c8a3a6b0c6c9a7cc621d8af6
   public static loan__Loan_Account__c returnLoanAccount() {
     loan.TestHelper.createSeedDataForTesting();
 

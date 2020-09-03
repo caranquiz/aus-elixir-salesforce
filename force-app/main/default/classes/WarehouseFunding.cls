@@ -59,6 +59,18 @@ static Date currentSystemDate =(Test.isRunningTest()?Date.Today():(new loan.Glob
                 app.Paid_Subsequent_Drawdown_PrepaidInterest__c = 0;
                 app.Utilised_Subsequent_Drawdown_Prepaid_Fee__c = 0;
                 loanAcc.Paid_Prepaid_Interest__c = app.First_Tranche_Prepaid_Interest__c;
+                if(app.genesis__CL_Product_Name__c == System.label.Residential_Construction){
+                    clcommon__Deposit__c dep = new clcommon__Deposit__c();
+                    dep.loan__Loan_Account__c = loanAcc.Id;
+                    dep.clcommon__Deposit_Rate__c = app.genesis__Interest_Rate__c;
+                    dep.clcommon__Deposit_Amount__c=0;
+                    dep.clcommon__Current_Deposit_Rate__c=app.genesis__Interest_Rate__c;
+                    dep.clcommon__Transaction_Date__c = currentSystemDate;
+                    dep.clcommon__Deposit_Interest_Accrued__c = 0;
+                    dep.clcommon__Sequence__c=1;
+                    dep.clcommon__Priority__c=1;
+                    insert dep;
+                }
             }
             else if((app.genesis__CL_Product_Name__c == System.label.Construction_Development || app.genesis__CL_Product_Name__c == System.label.Residential_Construction) && app.First_Drawdown_Complete__c == true){
                 retCheck = createDisbusals(loanAcc.Id,(app.Subsequent_Drawdown__c+app.Drawdown_Prepaid_Interest__c+app.Construction_Progress_Payment_Fee__c),loanAcc.Name,app);
@@ -69,7 +81,7 @@ static Date currentSystemDate =(Test.isRunningTest()?Date.Today():(new loan.Glob
                 app.Subsequent_Drawdown__c = 0;
                 app.Drawdown_Prepaid_Interest__c = 0;
             }
-            else if(app.genesis__CL_Product_Name__c == System.label.Residential_Construction || app.genesis__CL_Product_Name__c == System.label.Residential || app.genesis__CL_Product_Name__c == System.label.Commercial){
+            else if(app.genesis__CL_Product_Name__c == System.label.Residential || app.genesis__CL_Product_Name__c == System.label.Commercial){
                 clcommon__Deposit__c dep = new clcommon__Deposit__c();
                 dep.loan__Loan_Account__c = loanAcc.Id;
                 dep.clcommon__Deposit_Rate__c = app.genesis__Interest_Rate__c;
@@ -78,6 +90,7 @@ static Date currentSystemDate =(Test.isRunningTest()?Date.Today():(new loan.Glob
                 dep.clcommon__Transaction_Date__c = currentSystemDate;
                 dep.clcommon__Deposit_Interest_Accrued__c = 0;
                 dep.clcommon__Sequence__c=1;
+                dep.clcommon__Priority__c=1;
                 insert dep;
                 retCheck = createDisbusals(loanAcc.Id,app.genesis__Loan_Amount__c,loanAcc.Name,app);
             }
@@ -235,7 +248,7 @@ static Date currentSystemDate =(Test.isRunningTest()?Date.Today():(new loan.Glob
             loan__Payment_Mode__c pmtMode = [Select Id,
                                                     Name 
                                             from loan__Payment_Mode__c 
-                                            where Name =: System.label.ACH limit 1];
+                                            where Name =: System.label.APS_Payment_Mode limit 1];
             loan__Automated_Payment_Setup__c pmtSetup = new loan__Automated_Payment_Setup__c();
             pmtSetup.loan__Active__c = Boolean.ValueOf(System.label.True);
             pmtSetup.loan__CL_Contract__c = loanRec.Id;

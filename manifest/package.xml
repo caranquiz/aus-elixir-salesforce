@@ -61,10 +61,18 @@
         <members>EquifaxOrgIdSearchCallout</members>
         <members>EquifaxOrgIdSearchCalloutTest</members>
 
-        <!-- Equifax Company Search chnages by Hamza -->
+        <!-- Equifax Company Search changes by Hamza -->
         <members>EquifaxCompanyEnquiryAdapter</members>
         <members>EquifaxCompanyEnquiryCallout</members>
         <members>EquifaxCompanyEnquiryResponseHelper</members>
+
+        <!-- ABA Filegen classes -->
+        <members>LoanDisbursalFilegen</members>
+        <members>LoanDisbursalFilegenTest</members>
+        <members>DirectEntryFileRecordGenUtil</members>
+
+        <!-- APS payment mode changes made by Rameswari-->
+        <members>WarehouseFunding</members>
 
         <name>ApexClass</name>
     </types>
@@ -298,6 +306,11 @@
         <members>clcommon__Party__c.Request_Id__c</members>
         <members>clcommon__Party__c.General_Messages__c</members>
         <members>clcommon__Party__c.Legal_Entity_Type__c</members>
+        <members>clcommon__Party__c.Explanation_of_Previous_Conduct_Suitable__c</members>
+        <members>clcommon__Party__c.Explanation_of_Previous_Conduct_Commenta__c</members>
+        <members>clcommon__Party__c.Previous_conduct_explanation_received__c</members>
+        <members>clcommon__Party__c.Previous_conduct_issues_identified__c</members>
+        <members>clcommon__Party__c.Previous_conduct_referencing_completed__c</members>
         <members>EquifaxOrdIdSearch__c.Subscriber_Identifier__c</members>
         <members>EquifaxOrdIdSearch__c.Security__c</members>
         <members>Checklist_Detail__c.Application_Collateral__c</members>
@@ -416,9 +429,22 @@
         <members>ABN_Search_SMSF__c.Maximum_Search_Results__c</members>
         <members>ABN_Search_SMSF__c.GUID__c</members>
         <members>ABN_Search_SMSF__c.Active_Funds_Only__c</members>
+<<<<<<< HEAD
         
         <!-- Return File Processing made by Pratik -->
         <members>loan__Repayment_Transaction_Adjustment__c.Return_Code__c</members>
+=======
+
+        <!-- APS payment mode changes made by Rameswari-->
+        <members>genesis__Applications__c.Proposed_repayment_method_list__c</members>
+
+        <!-- APC Custom Fields added -->
+        <members>loan__Automated_Payment_Configuration__c.Description_of_funds__c</members>
+        <members>loan__Automated_Payment_Configuration__c.Name_of_User__c</members>
+        <members>loan__Automated_Payment_Configuration__c.Remitter_Name__c</members>
+        <members>loan__Automated_Payment_Configuration__c.User_Financial_Institution_Name__c</members>
+        <members>loan__Automated_Payment_Configuration__c.User_Id__c</members>
+>>>>>>> ed070b5090807d36c8a3a6b0c6c9a7cc621d8af6
         <name>CustomField</name>
     </types>
     <types>
@@ -451,6 +477,8 @@
         <members>Sample_Deliver_Document_Success_Response</members>
         <members>Sample_Order_Document_Response</members>
         <members>Sample_Title_Search_Response</members>
+        <members>Sample_APPLY_INDIVIDUAL_Response</members>
+        <members>Sample_PREVIOUS_ENQUIRY_Response</members>
 
         <!-- SMSF ABN changes made by Pratik -->
         <members>ABNNameSearchDummyXML</members>
@@ -486,6 +514,18 @@
         <members>SearchByABNNumber</members>
         <!--<members>EquifaxOrgIdSearch</members>-->
         <name>NamedCredential</name>
+    </types>
+    <types>
+        <!-- APS payment mode changes made by Rameswari-->
+        <members>APS_Payment_Mode</members>
+        
+        <!-- LDT filegen changes made by Souvik -->
+        <members>LDT_file_name</members>
+        <name>CustomLabel</name>
+    </types>
+    <types>
+        <members>YesNo</members>
+        <name>GlobalValueSet</name>
     </types>
     <version>45.0</version>
 </Package>

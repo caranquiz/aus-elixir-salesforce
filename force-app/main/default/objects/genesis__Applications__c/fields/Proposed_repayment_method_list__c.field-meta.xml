@@ -22,14 +22,9 @@
                 <label>Credit Card</label>
             </value>
             <value>
-                <fullName>Direct Debit Existing Account</fullName>
+                <fullName>Direct Debit</fullName>
                 <default>false</default>
-                <label>Direct Debit Existing Account</label>
-            </value>
-            <value>
-                <fullName>Direct Debit New Account</fullName>
-                <default>false</default>
-                <label>Direct Debit New Account</label>
+                <label>Direct Debit</label>
             </value>
         </valueSetDefinition>
     </valueSet>

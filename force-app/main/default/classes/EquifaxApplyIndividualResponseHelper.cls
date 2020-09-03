@@ -28,6 +28,16 @@ public class EquifaxApplyIndividualResponseHelper{
         public Cls_productData productData;
         public Cls_productHeader productHeader;
         public Cls_generalMessages generalMessages;
+        public Cls_errors errors;
+    }
+    class Cls_errors {
+        public Cls_error error;
+    }
+    class Cls_error {
+        public Cls_detail detail;
+    }
+    class Cls_detail {
+        String nodeValue;
     }
     class Cls_generalMessages {
         public Cls_message[] message;
@@ -592,7 +602,10 @@ public class EquifaxApplyIndividualResponseHelper{
             // Checks if any fault exists
             try{
                 String faultString = helperObject.envelope.body.fault.faultstring.nodeValue;
-                GenericUtility.insertLog('Apply Individual Server Error', new CustomException(faultString));
+                return faultString;
+            }catch(Exception ex){}
+            try{
+                String faultString = helperObject.envelope.body.response.errors.error.detail.nodeValue;
                 return faultString;
             }catch(Exception ex){}
             // Checks if any general message exists
@@ -923,7 +936,8 @@ public class EquifaxApplyIndividualResponseHelper{
                             }
                             if(paymentDefaultObj != null){
                                 if(String.isNotBlank(creditAccountObj.Account_Id__c)){
-                                    accountIdDefaultMap.put(creditAccountObj.Account_Id__c, paymentDefaultObj);
+                                    accountIdDefaultMap.put('Commercial'
+                                    + creditAccountObj.Account_Id__c, paymentDefaultObj);
                                 }
                             }
                         }
@@ -985,7 +999,8 @@ public class EquifaxApplyIndividualResponseHelper{
                             }catch(Exception ex){}
                             if(paymentDefaultObj != null){
                                 if(String.isNotBlank(creditAccountObj.Account_Id__c)){
-                                    accountIdDefaultMap.put(creditAccountObj.Account_Id__c, paymentDefaultObj);
+                                    accountIdDefaultMap.put('Consumer'
+                                    + creditAccountObj.Account_Id__c, paymentDefaultObj);
                                 }
                             }
                         }
@@ -995,10 +1010,11 @@ public class EquifaxApplyIndividualResponseHelper{
                 returnVal += '\n' + 'No Consumer Credit Accounts found';
             }
             Database.insert(creditAccounts, false);
-            creditAccounts = [SELECT Id, Party__c, Account_Id__c FROM Credit_Account__c WHERE Party__c =:partyObj.Id];
+            creditAccounts = [SELECT Id, Party__c, Credit_Account_Type__c, Account_Id__c FROM Credit_Account__c WHERE Party__c =:partyObj.Id];
             for(Credit_Account__c each : creditAccounts){
                 if(String.isNotBlank(each.Account_Id__c)){
-                    accountIdIdMap.put(each.Account_Id__c, each.Id);
+                    accountIdIdMap.put(each.Credit_Account_Type__c
+                    + each.Account_Id__c, each.Id);
                 }
             }
             for(String key : accountIdDefaultMap.keySet()){
