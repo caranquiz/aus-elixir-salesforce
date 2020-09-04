@@ -2,7 +2,7 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Simplified_Repayment_Type__c</fullName>
     <externalId>false</externalId>
-    <formula>IF(ISPICKVAL(Repayment_Type__c,&apos;&apos;)==TRUE,&apos;&apos;,IF(ISPICKVAL(Repayment_Type__c,&apos;Interest Only&apos;)==TRUE,&apos;IO&apos;,&apos;P&amp;I&apos;))</formula>
+    <formula>IF(ISPICKVAL(Repayment_Type__c,&apos;&apos;)==TRUE,&apos;&apos;,IF(ISPICKVAL(Repayment_Type__c,&apos;Principal and Interest&apos;)==TRUE,&apos;P&amp;I&apos;,&apos;IO&apos;))</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
     <label>Simplified Repayment Type</label>
     <required>false</required>
