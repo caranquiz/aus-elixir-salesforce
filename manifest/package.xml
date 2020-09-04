@@ -439,6 +439,7 @@
         <members>loan__Automated_Payment_Configuration__c.Remitter_Name__c</members>
         <members>loan__Automated_Payment_Configuration__c.User_Financial_Institution_Name__c</members>
         <members>loan__Automated_Payment_Configuration__c.User_Id__c</members>
+        <members>loan__Loan_Disbursal_Transaction__c.ORDE_Financial_Fees_Total_Amount__c</members>
         <name>CustomField</name>
     </types>
     <types>
