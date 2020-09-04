@@ -104,8 +104,10 @@ global with sharing class LoanDisbursalFilegen extends loan.FileGenerator {
       for(AggregateResult each : ldtTxnDistributions){
         ldtFeesMap.put((Id) each.get('loan__Loan_Disbursal_Transaction__c'), (Decimal) each.get('amt'));
         obj = detailRecordDataLDTMap.get((Id) each.get('loan__Loan_Disbursal_Transaction__c'));
-        obj.transAmt = obj.transAmt - ((Decimal) each.get('amt') * 100).round();
-        detailRecordDataLDTMap.put((Id) each.get('loan__Loan_Disbursal_Transaction__c'), obj);
+        if(obj != null){
+            obj.transAmt = obj.transAmt - ((Decimal) each.get('amt') * 100).round();
+            detailRecordDataLDTMap.put((Id) each.get('loan__Loan_Disbursal_Transaction__c'), obj);
+        }
       }
       List<loan__Coborrower__c> contractPartyList = [SELECT Id, loan__Loan__c, loan__Account__c, loan__Party_Type__c,
       loan__Account__r.Bank_Account_Name__c, loan__Account__r.Bank_Account_Number__c, loan__Account__r.BSB__c
