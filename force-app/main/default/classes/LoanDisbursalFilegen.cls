@@ -64,7 +64,8 @@ global with sharing class LoanDisbursalFilegen extends loan.FileGenerator {
             loan__Loan_Account__r.Warehouse__c,
             loan__Loan_Account__r.Warehouse__r.Institution_Name__c,
             loan__Loan_Account__r.Warehouse__r.Bank_Account_Number__c,
-            loan__Loan_Account__r.Warehouse__r.BSB_Number__c
+            loan__Loan_Account__r.Warehouse__r.BSB_Number__c,
+            ORDE_Financial_Fees_Total_Amount__c
           FROM loan__Loan_Disbursal_Transaction__c
           WHERE
             Id IN :ids
@@ -76,7 +77,7 @@ global with sharing class LoanDisbursalFilegen extends loan.FileGenerator {
       for(loan__Loan_Disbursal_Transaction__c each : ldtTxns){
         obj = new DirectEntryFileRecordGenUtil.DetailRecordData();
         obj.lodgementRef = each.Name;
-        obj.transAmt = (each.loan__Disbursed_Amt__c * 100).round();
+        obj.transAmt = ((each.loan__Disbursed_Amt__c - each.ORDE_Financial_Fees_Total_Amount__c) * 100).round();
         obj.benfBSBNumber = each.loan__Loan_Account__r.Warehouse__r.BSB_Number__c;
         obj.benfAccNumber = each.loan__Loan_Account__r.Warehouse__r.Bank_Account_Number__c;
         obj.remitterName = each.loan__Loan_Account__r.Warehouse__r.Institution_Name__c;
@@ -90,26 +91,9 @@ global with sharing class LoanDisbursalFilegen extends loan.FileGenerator {
         ldtIds.add(each.Id);
         loanAccountLDTIdMap.put(each.loan__Loan_Account__c, ldtIds);
       }
-      List<String> finDistributions = new List<String>();
-      finDistributions.add('Application Fee');
-      finDistributions.add('Rate Lock In Fee');
-      finDistributions.add('Credit Providers Mortgage Insurance');
-      List<AggregateResult> ldtTxnDistributions = new List<AggregateResult>(
-        [SELECT loan__Loan_Disbursal_Transaction__c, SUM(loan__Distribution_Amount__c)amt
-        FROM loan__Disbursal_Txn_Distribution__c
-        WHERE loan__Name_of_Entity__c IN: finDistributions
-        GROUP BY loan__Loan_Disbursal_Transaction__c]
-      );
-      Map<Id, Decimal> ldtFeesMap = new Map<Id, Decimal>();
-      for(AggregateResult each : ldtTxnDistributions){
-        ldtFeesMap.put((Id) each.get('loan__Loan_Disbursal_Transaction__c'), (Decimal) each.get('amt'));
-        obj = detailRecordDataLDTMap.get((Id) each.get('loan__Loan_Disbursal_Transaction__c'));
-        obj.transAmt = obj.transAmt - ((Decimal) each.get('amt') * 100).round();
-        detailRecordDataLDTMap.put((Id) each.get('loan__Loan_Disbursal_Transaction__c'), obj);
-      }
       List<loan__Coborrower__c> contractPartyList = [SELECT Id, loan__Loan__c, loan__Account__c, loan__Party_Type__c,
       loan__Account__r.Bank_Account_Name__c, loan__Account__r.Bank_Account_Number__c, loan__Account__r.BSB__c
-      FROM loan__Coborrower__c WHERE loan__Loan__c IN:clContractIds AND loan__Party_Type__c = 'Solicitor'];
+      FROM loan__Coborrower__c WHERE loan__Loan__c IN:clContractIds AND loan__Party_Type__c =:ConstantValues.SOLICITOR_PARTY_TYPE];
       System.debug(contractPartyList);
       for(loan__Coborrower__c each : contractPartyList){
         System.debug(each);
@@ -138,21 +122,21 @@ global with sharing class LoanDisbursalFilegen extends loan.FileGenerator {
     String entryVal;
     loan__Loan_Disbursal_Transaction__c ldtObj = new loan__Loan_Disbursal_Transaction__c(Id = ldtId);
     if(String.isBlank(recOneDataObj.payerBSBNumber)){
-        addToInvalidScope(ldtObj, 'Solicitor BSB Number is missing');
+        addToInvalidScope(ldtObj, ConstantValues.WRONG_BSB_PAYER);
     } else if(String.isBlank(recOneDataObj.payerAcctNumber)){
-        addToInvalidScope(ldtObj, 'Solicitor Account Number is missing');
+        addToInvalidScope(ldtObj, ConstantValues.WRONG_ACOUNT_NUMBER_PAYER);
     } else if(recOneDataObj.transAmt == null){
-        addToInvalidScope(ldtObj, 'Transaction Amount is missing');
+        addToInvalidScope(ldtObj, ConstantValues.TRANSACTION_AMT_NOT_FOUND);
     } else if(recOneDataObj.payerAcctName == null){
-        addToInvalidScope(ldtObj, 'Solicitor Account Name is missing');
+        addToInvalidScope(ldtObj, ConstantValues.PAYER_ACCOUNT_NAME_MISSING);
     } else if(recOneDataObj.lodgementRef == null){
-        addToInvalidScope(ldtObj, 'Disbursal Txn reference is missing');
+        addToInvalidScope(ldtObj, ConstantValues.LODGMENT_REFERENCE_MISSING);
     } else if(recOneDataObj.benfBSBNumber == null){
-        addToInvalidScope(ldtObj, 'Warehouse BSB Number is missing');
+        addToInvalidScope(ldtObj, ConstantValues.WRONG_BSB_PAYEE);
     } else if(recOneDataObj.benfAccNumber == null){
-        addToInvalidScope(ldtObj, 'Warehouse Account Number is missing');
+        addToInvalidScope(ldtObj, ConstantValues.WRONG_ACOUNT_NUMBER_PAYEE);
     } else if(recOneDataObj.remitterName == null){
-        addToInvalidScope(ldtObj, 'Warehouse Institution Name is missing');
+        addToInvalidScope(ldtObj, ConstantValues.WAREHOUSE_INST_MISSING);
     } else{
         recOneDataObj.indicator = ConstantValues.INDICATOR;
         recOneDataObj.transCode = ConstantValues.TXN_CODE_CREDIT;

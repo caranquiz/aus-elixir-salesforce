@@ -604,10 +604,20 @@ global class ConstantValues{
   public static final Integer STANDARD_ACN_LENGTH = 9;
   public static final Integer STANDARD_ACCOUNT_NAME_LENGTH = 32;
   //APC Filegen Class Exception Constant Values
+  public static final String SOLICITOR_PARTY_TYPE = 'Solicitor';
+  public static final String ENTRY_SCOPE_EMPTY = 'Entry Scope is empty';
   public static final String BANK_ACC_MISSING_PAYER = 'Borrower Bank Account not found';
   public static final String BANK_ACC_DETAILS_MISSING_PAYER = 'Borrower Bank Account Holder Name or Bank Name or Account Number is Missing';
-  public static final String WRONG_ACOUNT_NUMBER_PAYER = 'Borrower Account Number is wrong';
-  public static final String WRONG_ACOUNT_NUMBER_PAYEE = 'Payee Account Number is wrong';
+  public static final String WRONG_BSB_PAYEE = 'Warehouse BSB Number is missing or wrong';
+  public static final String WRONG_BSB_PAYER = 'Solicitor BSB Number is missing or wrong';
+  public static final String WRONG_ACOUNT_NUMBER_PAYER = 'Solicitor Account Number is missing or wrong';
+  public static final String WRONG_ACOUNT_NUMBER_PAYEE = 'Warehouse Account Number is missing or wrong';
+  public static final String ACCOUNT_NAME_WLEN = 'Account Name length cannot be greater than 32';
   public static final String REMITTER_NOT_FOUND = 'Remitter Name not defined';
   public static final String COMPANY_BANK_DETAILS_MISSING = 'Company Bank Details missing';
+  public static final String NO_APC_FOUND = 'No Automated Payment Configured';
+  public static final String TRANSACTION_AMT_NOT_FOUND = 'Transaction Amount is missing';
+  public static final String PAYER_ACCOUNT_NAME_MISSING = 'Solicitor Account Name is missing or missing';
+  public static final String LODGMENT_REFERENCE_MISSING = 'Disbursal Txn Reference is missing';
+  public static final String WAREHOUSE_INST_MISSING = 'Warehouse Institution Name is missing';
 }

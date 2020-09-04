@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ORDE_Financial_Fees_Total_Amount__c</fullName>
+    <externalId>false</externalId>
+    <label>ORDE Financial Fees Total Amount</label>
+    <summarizedField>loan__Disbursal_Txn_Distribution__c.loan__Distribution_Amount__c</summarizedField>
+    <summaryFilterItems>
+        <field>loan__Disbursal_Txn_Distribution__c.Amount_Going_To__c</field>
+        <operation>equals</operation>
+        <value>Elixir</value>
+    </summaryFilterItems>
+    <summaryForeignKey>loan__Disbursal_Txn_Distribution__c.loan__Loan_Disbursal_Transaction__c</summaryForeignKey>
+    <summaryOperation>sum</summaryOperation>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Summary</type>
+</CustomField>
