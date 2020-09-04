@@ -546,11 +546,4 @@
         <shortDescription>WEEKLY</shortDescription>
         <value>WEEKLY</value>
     </labels>
-    <labels>
-        <fullName>LPT_File_Name</fullName>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>LPT File Name</shortDescription>
-        <value>LPT</value>
-    </labels>
 </CustomLabels>

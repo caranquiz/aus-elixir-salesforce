@@ -539,5 +539,9 @@
         <members>DE_Return_Processing</members>
         <name>ApexPage</name>
     </types>
+    <types>
+        <members>CustomLabels</members>
+        <name>CustomLabels</name>
+    </types>
     <version>45.0</version>
 </Package>
