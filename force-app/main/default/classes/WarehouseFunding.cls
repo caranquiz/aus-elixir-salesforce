@@ -141,8 +141,11 @@ static Date currentSystemDate =(Test.isRunningTest()?Date.Today():(new loan.Glob
             if(groupedResults.size() > 0){
                 feeAmount = Double.valueOf(groupedResults[0].get(ConstantValues.FEE_AMNT)); 
             }           
-            if(totalDisbursal != null && feeAmount != null && totalDisbursal != null){
+            if(totalDisbursal != null && feeAmount != null){
                 ldt.loan__Financed_Amount__c = (feeAmount!=null?totalDisbursal-feeAmount:totalDisbursal);
+            }
+            else if(totalDisbursal != null && totalDisbursal > 0){
+                ldt.loan__Financed_Amount__c = totalDisbursal;
             }
             if(!(Test.isRunningTest()) && ldt != null){
                 insert ldt;

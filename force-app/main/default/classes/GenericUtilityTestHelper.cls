@@ -540,6 +540,34 @@ public with sharing class GenericUtilityTestHelper {
       );
       return appCollateral;
     }
+    public static clcommon__Address__c returnAddress(){
+      clcommon__Address__c addressObj = new clcommon__Address__c();
+      addressObj.clcommon__County__c = '12';
+      addressObj.Street_No__c = '21';
+      addressObj.Street_Name__c = 'XYZ';
+      addressObj.Street_Type__c = 'Street';
+      addressObj.clcommon__City__c = 'Street';
+      addressObj.State__c = 'Street';
+      addressObj.clcommon__Zip_Code__c = 'Street';
+      addressObj.clcommon__Country__c = 'Australia';
+      insert addressObj;
+      return addressObj;
+    }
+    //Inserting an LPT
+    public static loan__Loan_Payment_Transaction__c returnLoanPayment(
+    loan__Loan_Account__c contractObj,
+    Id paymentModeId,
+    Decimal interest,
+    Decimal totalAmount
+  ) {
+    loan__Loan_Payment_Transaction__c loanPayment = new loan__Loan_Payment_Transaction__c();
+    loanPayment.loan__Transaction_Amount__c = totalAmount;
+    loanPayment.loan__Interest__c = interest;
+    loanPayment.loan__Loan_Account__c = contractObj.id;
+    loanPayment.loan__Payment_Application_Mode__c = paymentModeId;
+    insert loanPayment;
+    return loanPayment;
+  }
     
     //Inserting Party
     public static clcommon__Party__c returnParty(Id appId, Id account){

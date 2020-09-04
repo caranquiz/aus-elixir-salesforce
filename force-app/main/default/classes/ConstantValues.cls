@@ -507,13 +507,40 @@ global class ConstantValues{
   public static final String PREVIOUS_CONDUCT_SUITABLE = 'Previous Conduct Suitable Rule';
   public static final String GST_EFFECTIVE_FROM_RULE = 'GST Effective from Rule';
 
-  //APC Filegen Class Constant Values
+  // ABA FileGen Class
+  public static final String PAYMENT_MODE_ACH = 'ACH';
   public static final String FILEGEN_HEAD_RECORD_TYPE = '0';
+  public static final String BLANK = ' ';
   public static final String REEL_SEQ_NUMBER = '01';
+  public static final String FINACIAL_INST_NOT_DEFINED = 'Financial Institution is not defined';
+  public static final String COMPANY_USER_NAME_NOT_DEFINED = 'Company User name not defined';
+  public static final String COMPANY_USERID_NOT_DEFINED = 'Company User Id not defined';
+  //APC Filegen Class Constant Values
   public static final String FILEGEN_ENTRY_RECORD_TYPE = '1';
   public static final String INDICATOR = ' ';
   public static final String FILEGEN_TRAIL_RECORD_TYPE = '7';
   public static final String TRAIL_BSB_NUM = '999-999';
+
+  public static final String NO_APC_FOUND = 'No Automated Payment Configured';
+  public static final String NO_USERNAME_FOUND = 'Name of User not found';
+  public static final String USERID_MISSING = 'Number of User not found';
+  public static final String WRONG_BSB_PAYEE = 'Payee BSB Number is wrong';
+  public static final String WRONG_BSB_PAYER = 'Borrower BSB Number is wrong';
+  public static final String ACCOUNT_NAME_WLEN = 'Account Name length cannot be greater than 32';
+  public static final String INVESTOR_BA_MISSING = 'Investor Bank Account not found';
+  public static final String INVESTOR_BA_DETAILS_MISSING = 'Investor Bank Account Holder Name or Bank Name or Account Number is Missing';
+  public static final String MULTIPLE_LPTS = 'Multiple LPTs found on under same contract';
+  public static final String ALREADY_REVERSED = 'This LPT is already reversed';
+  public static final String SUCCESS_LPT_REV = 'This LPT is Successfully reversed';
+  public static final String AMOUNT_NOT_NEGATIVE = 'Transaction amount needs to be negative';
+  public static final String MULTIPLE_BANK = 'Multiple active bank accounts found';
+  public static final String WITHDRAWAL = 'WITHDRAWAL';
+  public static final String ENTRY_SCOPE_EMPTY = 'Entry Scope is empty';
+  public static final Integer STANDARD_BSB_LENGTH = 6;
+  public static final Integer STANDARD_ACCOUNT_NUMBER_LENGTH = 9;
+  public static final String LPT_FILE_GEN = 'LoanPaymentTransactionFileGen';
+
+  // ABA FileGen Class Txn Codes
   public static final Integer TXN_CODE_DEBIT = 13;
   public static final Integer TXN_CODE_CREDIT = 50;
   public static final Integer TXN_CODE_AU_GOVT_SEC_INT = 51;
@@ -523,11 +550,59 @@ global class ConstantValues{
   public static final Integer TXN_CODE_ALLOTMENT = 55;
   public static final Integer TXN_CODE_DIVIDEND = 56;
   public static final Integer TXN_CODE_DEBENTURE = 57;
+
+  // LoanPaymentReturnFileHandler Class Return Causes
+  public static final String RET_CAUSE_1 = 'due to Invalid BSB Number';
+  public static final String RET_CAUSE_2 = 'as the Payment Stopped';
+  public static final String RET_CAUSE_3 = 'because the Account is Closed';
+  public static final String RET_CAUSE_4 = 'as the Customer has been Deceased';
+  public static final String RET_CAUSE_5 = 'because there is No Account or the Account Number is incorrect';
+  public static final String RET_CAUSE_6 = 'it refers to the Customer';
+  public static final String RET_CAUSE_7 = 'as the account is deleted for not being used';
+  public static final String RET_CAUSE_8 = 'because the user Id number is invalid';
+  public static final String RET_CAUSE_9 = 'because it\'s technically invalid';
+  public static final String RET_CAUSE_DEFAULT = 'error unidentified';
+
+  // EXCEPTION
+  public static final String REQUERY_SCOPE_EXCEP = 'Requery Scope failed ';
+  public static final String HEADER_EXCEP = 'Exception occurred while Generating Header ';
+  public static final String TRAILER_EXCEP = 'Exception occurred while Generating Trailer ';
+  public static final String ENTRIES_EXCEP = 'Exception occurred while Generating Entries ';
+  public static final String INIT_ERROR = 'Exception occurred while Initializing';
+  public static final String HEADER_PROCESS_EXCEP = 'Exception occurred while Processing Header, Please make sure input file is correct';
+  public static final String TRAILER_PROCESS_EXCEP = 'Exception occurred while Processing Trailer, Please make sure input file is correct';
+  public static final String DETAILS_PROCESS_EXCEP = 'Exception occurred while Processing Details, Please make sure input file is correct';
+  public static final String DML_EXCEP = 'Exception occurred while doing DML';
+  public static final String LPT_PROCESS_EXCEP = 'Exception occurred while processing LPTs';
+  public static final String RTA_GEN_EXCEP = 'Exception occurred while generating RTA for LPT';
+  public static final String PARSE_EXCEP = 'Exception occurred while parsing Return file';
+  public static final String PARSE_EXCEP_MSG = 'File Processing error, please check the file';
+  public static final String TXN_NOT_FOUND = 'Transaction not found';
+  public static final String TXN_REV_ERR = 'The transaction cannot be reversed as it is not the last transaction of the Loan Contract : ';
+  public static final String PROCESS_ERROR = 'An error has occured while processing data Please make sure input file is correct';
+  public static final String VF_GEN_ERR = 'Something went wrong, check logs for more details';
+  public static final String ALREADY_REV = 'The transaction is already reversed';
+  public static final String NO_RECORDS = 'No records found';
+  public static final String EMAIL_SEND_EXCEP = 'While sending mail';
+  public static final String DEFAULT_NOTFIER = 'Loan In Default Notifier';
+  public static final String APPROVAL_ACTION = 'Approval Action';
+  public static final String APP_EMAIL_SEND_EXCEP = 'While sending mail according to an application';
+  public static final String FILTER_APP = 'While filtering application records for status mail';
+  public static final String FROM_DATE_CANNOT_BE_GREATER_THAN_TODATE = 'From date cannot be greater than Todate';
+  public static final String ACCOUNT_IS_NOT_VALID = 'Account is not valid.';
+  public static final String RESPONSE_IS_NULL = 'Response is null';
+  public static final String ACCOUNT_IS_REQUIRED = 'Account is required';
+  public static final String INCORRECT_DETAIL = 'Incorrect Detail';
+  public static final String SEND_MAIL_LOG = 'Messaging.sendEmail Log';
+  public static final String RETURN_FILE_PROCESSED = 'File processed successfully.';
+  public static final String RETURN_FILE_PROCESS_VF_EXCEP = 'DE Return File processor VF page exception';
+  public static final String UPLOAD_RETURN_VF_NULL_ERROR = 'Please upload a relevant file to process';
+  public static final String NO_INVESTMENT_ORDERS_FOUND = 'No investment orders found';
+  public static final String PARSED_DOCUMENT_NULL = 'Parsed document is null or blank';
+  public static final String NO_APPLICATION_PRICING_DETAILS = 'No Application Pricing Details found';
   public static final Integer STANDARD_ABN_LENGTH = 11;
   public static final Integer STANDARD_ACN_LENGTH = 9;
-  public static final Integer STANDARD_BSB_LENGTH = 6;
   public static final Integer STANDARD_ACCOUNT_NAME_LENGTH = 32;
-  public static final Integer STANDARD_ACCOUNT_NUMBER_LENGTH = 9;
   //APC Filegen Class Exception Constant Values
   public static final String SOLICITOR_PARTY_TYPE = 'Solicitor';
   public static final String ENTRY_SCOPE_EMPTY = 'Entry Scope is empty';
