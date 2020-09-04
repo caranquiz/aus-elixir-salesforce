@@ -543,5 +543,10 @@
         <members>CustomLabels</members>
         <name>CustomLabels</name>
     </types>
+    <types>
+        <!-- Fee amount goinf to changes by Rameswari -->
+        <members>Update_where_the_distribution_amount_is_going</members>
+        <name>Flow</name>
+    </types>
     <version>45.0</version>
 </Package>
