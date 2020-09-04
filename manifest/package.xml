@@ -74,6 +74,14 @@
         <!-- APS payment mode changes made by Rameswari-->
         <members>WarehouseFunding</members>
 
+        <!-- Repayment file classes by Pratik -->
+        <members>LoanPaymentTransactionFileGen</members>
+        <members>LoanPaymentTransactionFileGenTest</members>
+        <members>LoanPaymentReturnFileHandler</members>
+        <members>LoanPaymentReturnFileHandlerTest</members>
+        <members>DEReturnFileProcessor</members>
+        <members>DEReturnFileProcessorTest</members>
+
         <name>ApexClass</name>
     </types>
     <types>
@@ -525,6 +533,11 @@
     <types>
         <members>YesNo</members>
         <name>GlobalValueSet</name>
+    </types>
+    <types>
+        <!-- Repayment file generation utility VF page by Pratik -->
+        <members>DE_Return_Processing</members>
+        <name>ApexPage</name>
     </types>
     <version>45.0</version>
 </Package>
