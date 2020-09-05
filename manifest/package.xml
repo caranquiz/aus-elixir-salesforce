@@ -91,6 +91,8 @@
         <members>Contact.Exit_Strategy_Suitable__c</members>
         <members>Contact.Temporary_Visa_Suitability_Commentary__c</members>
         <members>Contact.Temporary_Visa_Suitability__c</members>
+        <members>Contact.Exit_Strategy_Suitable_Rule_Check__c</members>
+        <members>Contact.Temporary_Visa_Suitability_Rule_Check__c</members>
         <members>Credit_History__c.Default_to_be_ignored__c</members>
         <members>Rendered_Field__c.Evaluation_Expression__c</members>
         <members>Rendered_Field__c.Related_Object_Name__c</members>
@@ -119,6 +121,13 @@
         <members>clcommon__Collateral__c.Interested_Party__c</members>
         <members>clcommon__Collateral__c.Cover_Type__c</members>
         <members>clcommon__Collateral__c.Interested_Party__c</members>
+        <members>clcommon__Collateral__c.Check_Val_Value_Render__c</members>
+        <members>clcommon__Collateral__c.Check_Val_Value_Rule_Check__c</members>
+        <members>clcommon__Collateral__c.Distressed_Asset_Render__c</members>
+        <members>clcommon__Collateral__c.Distressed_Asset_Rule_Check__c</members>
+        <members>clcommon__Collateral__c.Check_Val_Value_Render__c</members>
+        <members>clcommon__Collateral__c.Check_Val_Value_Rule_Check__c</members>
+        <members>clcommon__Collateral__c.Distressed_Asset_Render__c</members>
         <members>clcommon__Party__c.ABN_Status_Commentary__c</members>
         <members>clcommon__Party__c.ABN_Status_Explanation_Provided__c</members>
         <members>clcommon__Party__c.ABN_Status_Explanation_Suitable__c</members>
@@ -154,108 +163,18 @@
         <members>clcommon__Party__c.GST_Commentary__c</members>
         <members>clcommon__Party__c.GST_Suitable__c</members>
         <members>clcommon__Party__c.Risk_Grade__c</members>
-        <members>genesis__Applications__c.BAS__c</members>
-        <members>genesis__Applications__c.Cash_Out_Purpose_Explanation_Provided__c</members>
-        <members>genesis__Applications__c.Cash_Out_Purpose_Suitable_Commentary__c</members>
-        <members>genesis__Applications__c.Cash_Out_Purpose_Suitable__c</members>
-        <members>genesis__Applications__c.Confirm_repayments_do_not_double__c</members>
-        <members>genesis__Applications__c.Current_Reverting_Variable_Rate__c</members>
-        <members>genesis__Applications__c.Customer_Interview__c</members>
-        <members>genesis__Applications__c.Customer_Interview_completed__c</members>
-        <members>genesis__Applications__c.Document_Type__c</members>
-        <members>genesis__Applications__c.Exit_Strategy_Commentary__c</members>
-        <members>genesis__Applications__c.Exit_Strategy_Provided__c</members>
-        <members>genesis__Applications__c.Exit_Strategy_Suitable__c</members>
-        <members>genesis__Applications__c.Fixed_Rate_Lock_In_Date__c</members>
-        <members>genesis__Applications__c.Fixed_Rate_Lock_In__c</members>
-        <members>genesis__Applications__c.Income_Commentary__c</members>
-        <members>genesis__Applications__c.Income_Consistent_with_Declaration__c</members>
-        <members>genesis__Applications__c.Interest_Only_Other_Reason_explain__c</members>
-        <members>genesis__Applications__c.PEXA_Transaction_Fee__c</members>
-        <members>genesis__Applications__c.Re_documentation_Fee__c</members>
-        <members>genesis__Applications__c.Replacement_Value__c</members>
-        <members>genesis__Applications__c.Risk_grade_list__c</members>
-        <members>genesis__Applications__c.Satisfactory_Explanation_Provided__c</members>
-        <members>genesis__Applications__c.Supporting_Documentation_Sighted__c</members>
-        <members>genesis__Applications__c.Total_Current_Income_Period__c</members>
-        <members>genesis__Applications__c.Total_fees_amount__c</members>
-        <members>genesis__Applications__c.Valuation_Fee_Collected_at_Settlement__c</members>
-        <members>genesis__Applications__c.Verification_Sighted__c</members>
-        <members>genesis__Applications__c.Does_applicant_understand_English__c</members>
-        <members>genesis__Applications__c.Interest_Only_Commentary__c</members>
-        <members>genesis__Applications__c.Monthly_Living_Expenses_Used__c</members>
-        <members>genesis__Applications__c.Total_Monthly_Living_Expenses_Declared__c</members>
-        <members>genesis__Applications__c.Interest_Only_Suitable__c</members>
-        <members>genesis__Applications__c.Is_the_Application_Form_fully_completed__c</members>
-        <members>genesis__Employment_Information__c.ABN_Status_Suitability_Commentary__c</members>
-        <members>genesis__Employment_Information__c.Employment_Duration_suitability_Commenta__c</members>
-        <members>genesis__Employment_Information__c.Probation_suitability_Commentary__c</members>
-        <members>genesis__Employment_Information__c.GST_Commentary__c</members>
-        <members>genesis__Employment_Information__c.GST_Suitable__c</members>
-        <members>genesis__Employment_Information__c.Months_Self_Employed_Commentary__c</members>
-        <members>genesis__Employment_Information__c.Months_Self_Employed_Suitable__c</members>
-        <members>genesis__Income__c.Accountant_Call_Commentary__c</members>
-        <members>genesis__Income__c.Accountant_Call_Suitable__c</members>
-        <members>genesis__Income__c.BAS__c</members>
-        <members>genesis__Income__c.Confirm_letter_prepared_by_accountant__c</members>
-        <members>genesis__Income__c.Confirm_stated_annual_income__c</members>
-        <members>genesis__Income__c.Date_of_Call__c</members>
-        <members>genesis__Income__c.Does_stated_income_include_rental_income__c</members>
-        <members>genesis__Income__c.Income_Commentary__c</members>
-        <members>genesis__Income__c.Income_Consistent_with_Declaration__c</members>
-        <members>genesis__Income__c.Income_Verification_Sighted__c</members>
-        <members>genesis__Income__c.Is_the_accountant_aware_of_any_circumsta__c</members>
-        <members>genesis__Income__c.Satisfactory_Explanation_Provided__c</members>
-        <members>genesis__Income__c.Supporting_Documentation_Sighted__c</members>
-        <members>genesis__Income__c.Accountant_ABN_Search_Conducted__c</members>
-        <members>genesis__Income__c.Accountant_ABN_Status__c</members>
-        <members>genesis__Income__c.Accountant_Phone_Number_independently_ve__c</members>
-        <members>genesis__Income__c.Documents_Verified__c</members>
-        <members>genesis__Income__c.Employment_Information__c</members>
-        <members>genesis__Income__c.Documents_Verified__c</members>
-        <members>Credit_Account__c.Account_Id__c</members>
-        <members>Credit_Account__c.Account_Type__c</members>
-        <members>Credit_Account__c.Credit_Account_Type__c</members>
-        <members>Credit_Account__c.Latest_Credit_Provider__c</members>
-        <members>Credit_Account__c.Original_Credit_Provider__c</members>
-        <members>Credit_Account__c.Party__c</members>
-        <members>Credit_Account__c.Relationship__c</members>
-        <members>Credit_Enquiry__c.Account_Type__c</members>
-        <members>Credit_Enquiry__c.Credit_Enquirer__c</members>
-        <members>Credit_Enquiry__c.Credit_Enquiry_Type__c</members>
-        <members>Credit_Enquiry__c.Enquiry_Date__c</members>
-        <members>Credit_Enquiry__c.Enquiry_amount__c</members>
-        <members>Credit_Enquiry__c.Party__c</members>
-        <members>Credit_Enquiry__c.Reference_No__c</members>
-        <members>Credit_Enquiry__c.Role_in_Enquiry__c</members>
-        <members>Current_Directorship__c.ABN__c</members>
-        <members>Current_Directorship__c.ACN__c</members>
-        <members>Current_Directorship__c.Additional_data_field__c</members>
-        <members>Current_Directorship__c.Appointment_Date__c</members>
-        <members>Current_Directorship__c.Company_Status__c</members>
-        <members>Current_Directorship__c.Date_Disqualified__c</members>
-        <members>Current_Directorship__c.Date_disqualified_until__c</members>
-        <members>Current_Directorship__c.Directorship_Type__c</members>
-        <members>Current_Directorship__c.Id_reference__c</members>
-        <members>Current_Directorship__c.Org_Id_verified_Asic_name__c</members>
-        <members>Current_Directorship__c.Org_Id_verified_Asic_status__c</members>
-        <members>Current_Directorship__c.Org_Id_verified__c</members>
-        <members>Current_Directorship__c.Org_Name__c</members>
-        <members>Current_Directorship__c.Party__c</members>
-        <members>PPSR_Registration__c.Organisation_number__c</members>
-        <members>PPSR_Registration__c.Search_Date__c</members>
-        <members>PPSR_Registration__c.Search_Number__c</members>
-        <members>PPSR_Registration__c.Search_Type__c</members>
-        <members>PPSR_Registration__c.Total_PMSI_Registrations__c</members>
-        <members>PPSR_Registration__c.Total_Registrations_Designated_Secured_P__c</members>
-        <members>PPSR_Registration__c.Total_Registrations_Other_Financier_Secu__c</members>
-        <members>PPSR_Registration__c.Total_Registrations__c</members>
-        <members>PPSR_Registration__c.Party__c</members>
-        <members>Payment_Default__c.Credit_Account__c</members>
-        <members>Payment_Default__c.Current_Default_Amount__c</members>
-        <members>Payment_Default__c.Original_Default_Amount__c</members>
-        <members>Payment_Default__c.Status_Date__c</members>
-        <members>Payment_Default__c.Status__c</members>
+        <members>clcommon__Party__c.ABN_Status_Explanation_Suitable_Rule__c</members>
+        <members>clcommon__Party__c.Bank_Statement_Reviewed_Rule_Check__c</members>
+        <members>clcommon__Party__c.Borrower_is_a_Staff_Member_Rule_Check__c</members>
+        <members>clcommon__Party__c.Exit_Strategy_Commentary__c</members>
+        <members>clcommon__Party__c.Exit_Strategy_Suitable__c</members>
+        <members>clcommon__Party__c.Exit_Strategy__c</members>
+        <members>clcommon__Party__c.Explanation_Of_Credit_Enquiry_Rule_Check__c</members>
+        <members>clcommon__Party__c.Explanation_of_Age_of_Credit_File_Rule_C__c</members>
+        <members>clcommon__Party__c.Explanation_of_Bankruptcy_Rule_Check__c</members>
+        <members>clcommon__Party__c.Explanation_of_Credit_Events_Rule_Check__c</members>
+        <members>clcommon__Party__c.Explanation_of_Living_Expense_Rule_Check__c</members>
+        <members>clcommon__Party__c.GST_Suitable_Rule_Check__c</members>
         <members>clcommon__Party__c.ASIC_Extract_Date__c</members>
         <members>clcommon__Party__c.Adverse_on_file__c</members>
         <members>clcommon__Party__c.Amount_Payment_Defaults_in_last_12_Month__c</members>
@@ -319,33 +238,44 @@
         <members>clcommon__Party__c.Previous_conduct_explanation_received__c</members>
         <members>clcommon__Party__c.Previous_conduct_issues_identified__c</members>
         <members>clcommon__Party__c.Previous_conduct_referencing_completed__c</members>
-        <members>EquifaxOrdIdSearch__c.Subscriber_Identifier__c</members>
-        <members>EquifaxOrdIdSearch__c.Security__c</members>
-        <members>Checklist_Detail__c.Application_Collateral__c</members>
-        <members>Checklist_Detail__c.Checklist__c</members>
-        <members>Checklist_Detail__c.Employment_Information__c</members>
-        <members>Checklist_Detail__c.Income__c</members>
-        <members>Checklist_Detail__c.Party__c</members>
-        <members>Checklist_Detail__c.Record_Id__c</members>
-        <members>Checklist_Detail__c.Status__c</members>
-        <members>Contact.Exit_Strategy_Suitable_Rule_Check__c</members>
-        <members>Contact.Temporary_Visa_Suitability_Rule_Check__c</members>
-        <members>clcommon__Collateral__c.Check_Val_Value_Render__c</members>
-        <members>clcommon__Collateral__c.Check_Val_Value_Rule_Check__c</members>
-        <members>clcommon__Collateral__c.Distressed_Asset_Render__c</members>
-        <members>clcommon__Collateral__c.Distressed_Asset_Rule_Check__c</members>
-        <members>clcommon__Party__c.ABN_Status_Explanation_Suitable_Rule__c</members>
-        <members>clcommon__Party__c.Bank_Statement_Reviewed_Rule_Check__c</members>
-        <members>clcommon__Party__c.Borrower_is_a_Staff_Member_Rule_Check__c</members>
-        <members>clcommon__Party__c.Exit_Strategy_Commentary__c</members>
-        <members>clcommon__Party__c.Exit_Strategy_Suitable__c</members>
-        <members>clcommon__Party__c.Exit_Strategy__c</members>
-        <members>clcommon__Party__c.Explanation_Of_Credit_Enquiry_Rule_Check__c</members>
-        <members>clcommon__Party__c.Explanation_of_Age_of_Credit_File_Rule_C__c</members>
-        <members>clcommon__Party__c.Explanation_of_Bankruptcy_Rule_Check__c</members>
-        <members>clcommon__Party__c.Explanation_of_Credit_Events_Rule_Check__c</members>
-        <members>clcommon__Party__c.Explanation_of_Living_Expense_Rule_Check__c</members>
-        <members>clcommon__Party__c.GST_Suitable_Rule_Check__c</members>
+        <members>clcommon__Party__c.Amount_of_Credit_Enquiry__c</members>
+        <members>clcommon__Party__c.Previous_Conduct_Commentary_Rule_Check__c</members>
+        <members>clcommon__Party__c.GST_Effective_from_Rule_Check__c</members>
+        <members>clcommon__Party__c.Company_Director_s_Adverse__c</members>
+        <members>clcommon__Party__c.Company_Director_s_Related_Entity_Advers__c</members>
+        <members>genesis__Applications__c.BAS__c</members>
+        <members>genesis__Applications__c.Cash_Out_Purpose_Explanation_Provided__c</members>
+        <members>genesis__Applications__c.Cash_Out_Purpose_Suitable_Commentary__c</members>
+        <members>genesis__Applications__c.Cash_Out_Purpose_Suitable__c</members>
+        <members>genesis__Applications__c.Confirm_repayments_do_not_double__c</members>
+        <members>genesis__Applications__c.Current_Reverting_Variable_Rate__c</members>
+        <members>genesis__Applications__c.Customer_Interview__c</members>
+        <members>genesis__Applications__c.Customer_Interview_completed__c</members>
+        <members>genesis__Applications__c.Document_Type__c</members>
+        <members>genesis__Applications__c.Exit_Strategy_Commentary__c</members>
+        <members>genesis__Applications__c.Exit_Strategy_Provided__c</members>
+        <members>genesis__Applications__c.Exit_Strategy_Suitable__c</members>
+        <members>genesis__Applications__c.Fixed_Rate_Lock_In_Date__c</members>
+        <members>genesis__Applications__c.Fixed_Rate_Lock_In__c</members>
+        <members>genesis__Applications__c.Income_Commentary__c</members>
+        <members>genesis__Applications__c.Income_Consistent_with_Declaration__c</members>
+        <members>genesis__Applications__c.Interest_Only_Other_Reason_explain__c</members>
+        <members>genesis__Applications__c.PEXA_Transaction_Fee__c</members>
+        <members>genesis__Applications__c.Re_documentation_Fee__c</members>
+        <members>genesis__Applications__c.Replacement_Value__c</members>
+        <members>genesis__Applications__c.Risk_grade_list__c</members>
+        <members>genesis__Applications__c.Satisfactory_Explanation_Provided__c</members>
+        <members>genesis__Applications__c.Supporting_Documentation_Sighted__c</members>
+        <members>genesis__Applications__c.Total_Current_Income_Period__c</members>
+        <members>genesis__Applications__c.Total_fees_amount__c</members>
+        <members>genesis__Applications__c.Valuation_Fee_Collected_at_Settlement__c</members>
+        <members>genesis__Applications__c.Verification_Sighted__c</members>
+        <members>genesis__Applications__c.Does_applicant_understand_English__c</members>
+        <members>genesis__Applications__c.Interest_Only_Commentary__c</members>
+        <members>genesis__Applications__c.Monthly_Living_Expenses_Used__c</members>
+        <members>genesis__Applications__c.Total_Monthly_Living_Expenses_Declared__c</members>
+        <members>genesis__Applications__c.Interest_Only_Suitable__c</members>
+        <members>genesis__Applications__c.Is_the_Application_Form_fully_completed__c</members>
         <members>genesis__Applications__c.Cash_Out_Purpose_Suitable_Rule_Check__c</members>
         <members>genesis__Applications__c.Commission_Mandate_Percentage_Rule_Check__c</members>
         <members>genesis__Applications__c.Commission_Mandate_Percentage__c</members>
@@ -353,13 +283,65 @@
         <members>genesis__Applications__c.Exit_Strategy_Suitable_Rule_Check__c</members>
         <members>genesis__Applications__c.Interest_Only_Suitable_Rule_Check__c</members>
         <members>genesis__Applications__c.Lenders_Mortgage_Insurance_Rule_Check__c</members>
+        <members>genesis__Applications__c.Commission_Mandate_Percentage__c</members>
+        <members>genesis__Applications__c.Interest_Only_Suitable_Rule_Check__c</members>
+        <members>genesis__Applications__c.Exit_Strategy_Suitable_Rule_Check__c</members>
+        <members>genesis__Applications__c.Lenders_Mortgage_Insurance_Rule_Check__c</members>
+        <members>genesis__Applications__c.Cash_Out_Purpose_Suitable_Rule_Check__c</members>
+        <members>genesis__Applications__c.Commission_Mandate_Percentage_Rule_Check__c</members>
+        <members>genesis__Employment_Information__c.ABN_Status_Suitability_Commentary__c</members>
+        <members>genesis__Employment_Information__c.Employment_Duration_suitability_Commenta__c</members>
+        <members>genesis__Employment_Information__c.Probation_suitability_Commentary__c</members>
+        <members>genesis__Employment_Information__c.GST_Commentary__c</members>
+        <members>genesis__Employment_Information__c.GST_Suitable__c</members>
+        <members>genesis__Employment_Information__c.Months_Self_Employed_Commentary__c</members>
+        <members>genesis__Employment_Information__c.Months_Self_Employed_Suitable__c</members>
         <members>genesis__Employment_Information__c.GST_Effective_from_Rule_Check__c</members>
+        <members>genesis__Income__c.Accountant_Call_Commentary__c</members>
+        <members>genesis__Income__c.Accountant_Call_Suitable__c</members>
+        <members>genesis__Income__c.BAS__c</members>
+        <members>genesis__Income__c.Confirm_letter_prepared_by_accountant__c</members>
+        <members>genesis__Income__c.Confirm_stated_annual_income__c</members>
+        <members>genesis__Income__c.Date_of_Call__c</members>
+        <members>genesis__Income__c.Does_stated_income_include_rental_income__c</members>
+        <members>genesis__Income__c.Income_Commentary__c</members>
+        <members>genesis__Income__c.Income_Consistent_with_Declaration__c</members>
+        <members>genesis__Income__c.Income_Verification_Sighted__c</members>
+        <members>genesis__Income__c.Is_the_accountant_aware_of_any_circumsta__c</members>
+        <members>genesis__Income__c.Satisfactory_Explanation_Provided__c</members>
+        <members>genesis__Income__c.Supporting_Documentation_Sighted__c</members>
+        <members>genesis__Income__c.Accountant_ABN_Search_Conducted__c</members>
+        <members>genesis__Income__c.Accountant_ABN_Status__c</members>
+        <members>genesis__Income__c.Accountant_Phone_Number_independently_ve__c</members>
+        <members>genesis__Income__c.Documents_Verified__c</members>
+        <members>genesis__Income__c.Employment_Information__c</members>
+        <members>genesis__Income__c.Documents_Verified__c</members>
         <members>genesis__Income__c.Accountant_Call_Suitable_Render__c</members>
         <members>genesis__Income__c.Income_Consistant_Rule_Check__c</members>
         <members>genesis__Income__c.Satisfactory_Explanation_Provided_Render__c</members>
         <members>genesis__Income__c.Self_Employment_Rule_Check__c</members>
         <members>genesis__Income__c.Employment_Call_Suitable__c</members>
         <members>genesis__Income__c.Employment_Call_Suitable_Rule_Check__c</members>
+        <members>genesis__Income__c.EmpCC_Employment_Basis__c</members>
+        <members>genesis__Income__c.EmpCC_Employment_Term__c</members>
+        <members>genesis__Income__c.EmpCC_Income_Gross_overtime_allowan__c</members>
+        <members>genesis__Income__c.EmpCC_Ongoing_Employment__c</members>
+        <members>genesis__Income__c.Employer_Representative_Name__c</members>
+        <members>genesis__Income__c.Employment_Call_Commentary__c</members>
+        <members>genesis__Income__c.Employment_Call_Made__c</members>
+        <members>genesis__Income__c.Employment_Call_Suitable__c</members>
+        <members>genesis__Income__c.Employment_Call_Suitable_Rule_Check__c</members>
+        <members>genesis__Income__c.Accountant_Call_Suitable_Render__c</members>
+        <members>genesis__Income__c.Satisfactory_Explanation_Provided_Render__c</members>
+        <members>genesis__Income__c.Income_Consistent_with_Declaration_Rende__c</members>
+        <members>Credit_Account__c.Account_Id__c</members>
+        <members>Credit_Account__c.Account_Type__c</members>
+        <members>Credit_Account__c.Credit_Account_Type__c</members>
+        <members>Credit_Account__c.Latest_Credit_Provider__c</members>
+        <members>Credit_Account__c.Original_Credit_Provider__c</members>
+        <members>Credit_Account__c.Party__c</members>
+        <members>Credit_Account__c.Relationship__c</members>
+        <members>Credit_Account__c.Account_Number__c</members>
         <members>Credit_Account__c.Account_Number__c</members>
         <members>Credit_Account__c.Current_Default_Amount__c</members>
         <members>Credit_Account__c.Default_Date__c</members>
@@ -370,6 +352,51 @@
         <members>Credit_Account__c.Role__c</members>
         <members>Credit_Account__c.Status_Date__c</members>
         <members>Credit_Account__c.Status__c</members>
+        <members>Credit_Enquiry__c.Account_Type__c</members>
+        <members>Credit_Enquiry__c.Credit_Enquirer__c</members>
+        <members>Credit_Enquiry__c.Credit_Enquiry_Type__c</members>
+        <members>Credit_Enquiry__c.Enquiry_Date__c</members>
+        <members>Credit_Enquiry__c.Enquiry_amount__c</members>
+        <members>Credit_Enquiry__c.Party__c</members>
+        <members>Credit_Enquiry__c.Reference_No__c</members>
+        <members>Credit_Enquiry__c.Role_in_Enquiry__c</members>
+        <members>Current_Directorship__c.ABN__c</members>
+        <members>Current_Directorship__c.ACN__c</members>
+        <members>Current_Directorship__c.Additional_data_field__c</members>
+        <members>Current_Directorship__c.Appointment_Date__c</members>
+        <members>Current_Directorship__c.Company_Status__c</members>
+        <members>Current_Directorship__c.Date_Disqualified__c</members>
+        <members>Current_Directorship__c.Date_disqualified_until__c</members>
+        <members>Current_Directorship__c.Directorship_Type__c</members>
+        <members>Current_Directorship__c.Id_reference__c</members>
+        <members>Current_Directorship__c.Org_Id_verified_Asic_name__c</members>
+        <members>Current_Directorship__c.Org_Id_verified_Asic_status__c</members>
+        <members>Current_Directorship__c.Org_Id_verified__c</members>
+        <members>Current_Directorship__c.Org_Name__c</members>
+        <members>Current_Directorship__c.Party__c</members>
+        <members>PPSR_Registration__c.Organisation_number__c</members>
+        <members>PPSR_Registration__c.Search_Date__c</members>
+        <members>PPSR_Registration__c.Search_Number__c</members>
+        <members>PPSR_Registration__c.Search_Type__c</members>
+        <members>PPSR_Registration__c.Total_PMSI_Registrations__c</members>
+        <members>PPSR_Registration__c.Total_Registrations_Designated_Secured_P__c</members>
+        <members>PPSR_Registration__c.Total_Registrations_Other_Financier_Secu__c</members>
+        <members>PPSR_Registration__c.Total_Registrations__c</members>
+        <members>PPSR_Registration__c.Party__c</members>
+        <members>Payment_Default__c.Credit_Account__c</members>
+        <members>Payment_Default__c.Current_Default_Amount__c</members>
+        <members>Payment_Default__c.Original_Default_Amount__c</members>
+        <members>Payment_Default__c.Status_Date__c</members>
+        <members>Payment_Default__c.Status__c</members>
+        <members>EquifaxOrdIdSearch__c.Subscriber_Identifier__c</members>
+        <members>EquifaxOrdIdSearch__c.Security__c</members>
+        <members>Checklist_Detail__c.Application_Collateral__c</members>
+        <members>Checklist_Detail__c.Checklist__c</members>
+        <members>Checklist_Detail__c.Employment_Information__c</members>
+        <members>Checklist_Detail__c.Income__c</members>
+        <members>Checklist_Detail__c.Party__c</members>
+        <members>Checklist_Detail__c.Record_Id__c</members>
+        <members>Checklist_Detail__c.Status__c</members>
         <members>Director__c.Address__c</members>
         <members>Director__c.Beneficially_Held__c</members>
         <members>Director__c.Date_of_birth__c</members>
@@ -379,21 +406,6 @@
         <members>Director__c.Found_in_Party__c</members>
         <members>Director__c.Gender__c</members>
         <members>Director__c.Party__c</members>
-        <members>clcommon__Party__c.Amount_of_Credit_Enquiry__c</members>
-        <members>clcommon__Party__c.Previous_Conduct_Commentary_Rule_Check__c</members>
-        <members>clcommon__Party__c.GST_Effective_from_Rule_Check__c</members>
-        <members>Credit_Account__c.Account_Number__c</members>
-        <members>clcommon__Party__c.Company_Director_s_Adverse__c</members>
-        <members>clcommon__Party__c.Company_Director_s_Related_Entity_Advers__c</members>
-        <members>genesis__Income__c.EmpCC_Employment_Basis__c</members>
-        <members>genesis__Income__c.EmpCC_Employment_Term__c</members>
-        <members>genesis__Income__c.EmpCC_Income_Gross_overtime_allowan__c</members>
-        <members>genesis__Income__c.EmpCC_Ongoing_Employment__c</members>
-        <members>genesis__Income__c.Employer_Representative_Name__c</members>
-        <members>genesis__Income__c.Employment_Call_Commentary__c</members>
-        <members>genesis__Income__c.Employment_Call_Made__c</members>
-        <members>genesis__Income__c.Employment_Call_Suitable__c</members>
-        <members>genesis__Income__c.Employment_Call_Suitable_Rule_Check__c</members>
         
         <!-- Credit Contract changes made by Rameswari -->
         <members>genesis__Applications__c.CL_Date__c</members>
@@ -405,20 +417,6 @@
         <members>genesis__Applications__c.Matrix_Rate__c</members>
         <members>genesis__Applications__c.Simplified_Repayment_Type__c</members>
         <members>genesis__Applications__c.Total_fees_amount__c</members>
-
-        <!-- Credit Rule Changes added by Koushik -->
-        <members>genesis__Applications__c.Commission_Mandate_Percentage__c</members>
-        <members>genesis__Applications__c.Interest_Only_Suitable_Rule_Check__c</members>
-        <members>genesis__Applications__c.Exit_Strategy_Suitable_Rule_Check__c</members>
-        <members>genesis__Applications__c.Lenders_Mortgage_Insurance_Rule_Check__c</members>
-        <members>genesis__Applications__c.Cash_Out_Purpose_Suitable_Rule_Check__c</members>
-        <members>genesis__Applications__c.Commission_Mandate_Percentage_Rule_Check__c</members>
-        <members>clcommon__Collateral__c.Check_Val_Value_Render__c</members>
-        <members>clcommon__Collateral__c.Check_Val_Value_Rule_Check__c</members>
-        <members>clcommon__Collateral__c.Distressed_Asset_Render__c</members>
-        <members>genesis__Income__c.Accountant_Call_Suitable_Render__c</members>
-        <members>genesis__Income__c.Satisfactory_Explanation_Provided_Render__c</members>
-        <members>genesis__Income__c.Income_Consistent_with_Declaration_Rende__c</members>
 
         <!-- Title Search changes by Souvik -->
         <members>clcommon__Collateral__c.Document_Enquiry_Id__c</members>
