@@ -480,7 +480,7 @@
                 <leftValueReference>myVariable_current.loan__Name_of_Entity__c</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
-                    <stringValue>Commission Mandate Amount	</stringValue>
+                    <stringValue>Commission Mandate Amount</stringValue>
                 </rightValue>
             </conditions>
             <connector>
@@ -572,7 +572,7 @@
             <label>Elixir Disbursements</label>
         </rules>
     </decisions>
-    <interviewLabel>Update_where_the_distribution_amount_is_going-3_InterviewLabel</interviewLabel>
+    <interviewLabel>Update_where_the_distribution_amount_is_going-5_InterviewLabel</interviewLabel>
     <label>Update where the distribution amount is going</label>
     <processMetadataValues>
         <name>ObjectType</name>
