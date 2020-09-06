@@ -1,9 +1,9 @@
 /****************************************************************************************************/
 /* Description          : This test class mostly covers EquifaxOrgIdSearchCallout class. */
 /* Testing Scenario 1   : (testsearchByABN) This method tests EquifaxOrgIdSearchCallout class's
- searchByABN method and uses the MOCK response that is configured at the end. */
-/* Testing Scenario 2   : (testsearchByABNWithError) This method tests with a error response
- from the ABNLookup callout of using search by ABN. */
+ searchByABN method with valid data and uses the MOCK response that is configured at the end. */
+/* Testing Scenario 2   : (testsearchByABNWithError) This method tests EquifaxOrgIdSearchCallout class's
+ searchByABN method with invalid data and uses the MOCK response that is configured at the end. */
 /****************************************************************************************************/
 @isTest
 class EquifaxOrgIdSearchCalloutTest{

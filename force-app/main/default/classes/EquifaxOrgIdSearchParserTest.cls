@@ -1,7 +1,7 @@
 /****************************************************************************************************/
 /* Description          : This test class mostly covers EquifaxOrgIdSearchParser class. */
-/* Testing Scenario 1   : (testMethod1) This test method will test with a valid response from the
- static resource and checks if successfully parsed. */
+/* Testing Scenario 1   : (testMethod1) This test method will test with a valid response of Org Id from 
+                          the static resource and checks if successfully parsed. */
 /****************************************************************************************************/
 
 @isTest

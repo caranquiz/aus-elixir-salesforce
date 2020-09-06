@@ -1,7 +1,7 @@
 /****************************************************************************************************/
 /* Description          : This class creates an ABA file for the list of Loan Payments Transaction
-Generated on a particular date. The file is generated branch wise using different APC setup wise
-using different APC setup */
+Generated on a particular date. The file is generated branch wise using single APC setup wise
+using single APC setup for Direct debit payments by extending product class loan.FileGenerator*/
 /****************************************************************************************************/
 
 global with sharing class LoanPaymentTransactionFileGen extends loan.FileGenerator {
@@ -78,6 +78,7 @@ global with sharing class LoanPaymentTransactionFileGen extends loan.FileGenerat
               AND loan__Rejected__c = false
           ]
         );
+        //Making list of Bank Account Ids in LPTs
         List<Id> refBankAccountIdList = new List<Id>();
         for(loan__Loan_Payment_Transaction__c each : lptTxns){
           if(String.isNotBlank(each.loan__Loan_Account__r.loan__Borrower_ACH__c)){
@@ -100,7 +101,7 @@ global with sharing class LoanPaymentTransactionFileGen extends loan.FileGenerat
       }
       return lptTxns;
     }
-  
+    //Method to give File Name to the generated file
     global override String getSimpleFileName() {
       return System.label.LPT_File_Name + currDate;
     }
@@ -135,6 +136,7 @@ global with sharing class LoanPaymentTransactionFileGen extends loan.FileGenerat
       } else if (String.valueOf(bank.loan__Bank_Account_Number__c).length() > ConstantValues.STANDARD_ACCOUNT_NUMBER_LENGTH) {
         addToInvalidScope(lptObj, ConstantValues.WRONG_ACOUNT_NUMBER_PAYER);
       } else {
+        //Using DirectEntryFileRecordGenUtil class to store data and further process
         DirectEntryFileRecordGenUtil.DetailRecordData recOneDataObj = new DirectEntryFileRecordGenUtil.DetailRecordData();
         recOneDataObj.payerBSBNumber = String.valueOf(bank.BSB_Number__c);
         recOneDataObj.payerAcctNumber = String.valueOf(
@@ -158,7 +160,7 @@ global with sharing class LoanPaymentTransactionFileGen extends loan.FileGenerat
       }
       return entryVal;
     }
-  
+    //Method to process LPT records and list of detail records
     global override List<String> getEntries(
       loan.TransactionSweepToACHState state,
       List<SObject> scope
@@ -168,6 +170,7 @@ global with sharing class LoanPaymentTransactionFileGen extends loan.FileGenerat
       try {
         loan__Automated_Payment_Configuration__c tempApc = (loan__Automated_Payment_Configuration__c) state.o1;
         loan__Automated_Payment_Configuration__c apc = apcMap.get(tempApc.Id);
+        //Null checks on APC fields
         if (
           String.isBlank(apc.Remitter_Name__c)
         ) {
@@ -215,7 +218,7 @@ global with sharing class LoanPaymentTransactionFileGen extends loan.FileGenerat
           return totalRecords;
         }
         
-  
+        // Creating a Beneficiary detail object
         BenfDetails benfObj = new BenfDetails();
         benfObj.amtWithholdingTax = 0;
         benfObj.remitterName = apc.Remitter_Name__c;
@@ -223,7 +226,7 @@ global with sharing class LoanPaymentTransactionFileGen extends loan.FileGenerat
         benfObj.benfAccNumber = String.valueOf(
           apc.loan__Bank_Account__r.loan__Bank_Account_Number__c
         );
-  
+        //Sending LPTs and corresponding beneficiary detail object for processing
         for (loan__Loan_Payment_Transaction__c each : lptTxns) {
           String entryVal = processScope(each, benfObj);
           if (entryVal != null) {
@@ -238,38 +241,40 @@ global with sharing class LoanPaymentTransactionFileGen extends loan.FileGenerat
       }
       return totalRecords;
     }
-    
+    //Method to get header for the file
     global override String getHeader(
       loan.TransactionSweepToACHState state,
       List<SObject> scope
     ) {
       String headerVal;
       try {
-        loan__Automated_Payment_Configuration__c apc = (loan__Automated_Payment_Configuration__c) state.o1;
-        apc = apcMap.get(apc.Id);
-  
-        if (apc == null) {
-          GenericUtility.insertLog(
-            ConstantValues.LPT_FILE_GEN,
-            new CustomException(ConstantValues.NO_APC_FOUND)
-          );
-          return headerVal;
+        if(state != null && scope != null){
+          loan__Automated_Payment_Configuration__c apc = (loan__Automated_Payment_Configuration__c) state.o1;
+          apc = apcMap.get(apc.Id);
+    
+          if (apc == null) {
+            GenericUtility.insertLog(
+              ConstantValues.LPT_FILE_GEN,
+              new CustomException(ConstantValues.NO_APC_FOUND)
+            );
+            return headerVal;
+          }
+    
+          DirectEntryFileRecordGenUtil.DescriptiveRecordData recZeroDataObj = new DirectEntryFileRecordGenUtil.DescriptiveRecordData();
+          // No null check for User_Financial_Institution_Name__c, Name_of_User__c, User_Id__c as they are mandatory fields
+          recZeroDataObj.financialInstitutionName = apc.User_Financial_Institution_Name__c;
+          recZeroDataObj.username = apc.Name_of_User__c;
+          recZeroDataObj.userId = apc.User_Id__c;
+          recZeroDataObj.description = apc.Description_of_funds__c;
+          //recZeroDataObj.currDate = currentDate;
+          headerVal = DirectEntryFileRecordGenUtil.getDescriptiveRecord(recZeroDataObj);
         }
-  
-        DirectEntryFileRecordGenUtil.DescriptiveRecordData recZeroDataObj = new DirectEntryFileRecordGenUtil.DescriptiveRecordData();
-        // No null check for User_Financial_Institution_Name__c, Name_of_User__c, User_Id__c as they are mandatory fields
-        recZeroDataObj.financialInstitutionName = apc.User_Financial_Institution_Name__c;
-        recZeroDataObj.username = apc.Name_of_User__c;
-        recZeroDataObj.userId = apc.User_Id__c;
-        recZeroDataObj.description = apc.Description_of_funds__c;
-        //recZeroDataObj.currDate = currentDate;
-        headerVal = DirectEntryFileRecordGenUtil.getDescriptiveRecord(recZeroDataObj);
       } catch (Exception ex) {
         GenericUtility.insertLog(ConstantValues.LPT_FILE_GEN, ex);
       }
       return headerVal;
     }
-  
+    //Method to get trailer record for file generation
     global override String getTrailer(
       loan.TransactionSweepToACHState state,
       List<SObject> scope

@@ -640,4 +640,63 @@ public with sharing class GenericUtilityTestHelper {
 
     return loanAccount;
   }
+  public static Account getAccount(){
+    Account testAccount = new Account();
+    testAccount.loan__Active__c = 'Yes';
+    testAccount.loan__Borrower__c = true;
+    testAccount.Name = 'Test';
+    testAccount.BillingPostalcode = '1234';
+    testAccount.BillingCity = 'TestCity';
+    insert testAccount;
+    return testAccount;
+  }
+  public static Contact getContact(Account testAccount){
+    Contact testContact = new Contact();
+    testContact.AccountId = testAccount.id;
+    testContact.LastName = 'Test';
+    insert testContact;
+    return testContact;
+  }
+  public static loan__Bank_Account__c getBankAccount(Account testAccount){
+    loan__Bank_Account__c testPayeebankAccount = new loan__Bank_Account__c();
+    testPayeebankAccount.loan__Bank_Name__c = 'PayeeBank';
+    testPayeebankAccount.BSB_Number__c = '324089';
+    testPayeebankAccount.loan__Bank_Account_Number__c = '234567700';
+    testPayeebankAccount.loan__Account__c = testAccount.Id;
+    testPayeebankAccount.loan__Active__c = true;
+    insert testPayeebankAccount;
+    return testPayeebankAccount;
+  }
+  public static loan__Bank_Account__c getPayerBankAccount(Account testAccount){
+    loan__Bank_Account__c testPayerbankAccount = new loan__Bank_Account__c();
+    testPayerbankAccount.loan__Bank_Name__c = 'PayerBank';
+    testPayerbankAccount.BSB_Number__c = '453009';
+    testPayerbankAccount.loan__Bank_Account_Number__c = '770065432';
+    testPayerbankAccount.loan__Account__c = testAccount.Id;
+    testPayerbankAccount.loan__Active__c = true;
+    insert testPayerbankAccount;
+    return testPayerbankAccount;
+  }
+  public static loan__Payment_Mode__c getPaymentMode(){
+    loan__Payment_Mode__c testDDPaymentMode = new loan__Payment_Mode__c();
+    testDDPaymentMode.Name = 'Direct Debit';
+    insert testDDPaymentMode;
+    return testDDPaymentMode;
+  }
+  public static loan__Automated_Payment_Configuration__c getAPC(loan__Payment_Mode__c testDDPaymentMode,loan__Bank_Account__c testPayeebankAccount){
+    loan__Automated_Payment_Configuration__c apc = new loan__Automated_Payment_Configuration__c();
+    apc.loan__Folder_Name__c = 'ACH Documents';
+    apc.loan__Payment_Mode__c = testDDPaymentMode.Id;
+    apc.loan__File_Type__c = 'Text';
+    apc.loan__Event__c = 'LOAN PAYMENT';
+    apc.loan__Active__c = true;
+    apc.loan__Filegen_Class__c = 'LoanPaymentTransactionFileGen';
+    apc.Name_of_User__c = 'AJAX CRACKERS';
+    apc.Remitter_Name__c = 'AJAX CRACKERS';
+    apc.loan__Bank_Account__c = testPayeebankAccount.Id;
+    apc.User_Financial_Institution_Name__c = 'NAB';
+    apc.User_Id__c = '013095';
+    insert apc;
+    return apc;
+  }
 }
