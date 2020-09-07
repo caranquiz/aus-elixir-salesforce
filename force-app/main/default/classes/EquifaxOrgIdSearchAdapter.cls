@@ -1,11 +1,11 @@
 /********************************************************************************************/
 /* Description : This class is the Adapter class for generating request body under Integration
-                 framework.
+                 framework for Org Id Verification of Current Directorship.
 /********************************************************************************************/
 global without sharing class EquifaxOrgIdSearchAdapter extends intframework.BaseIntegrationAdapter {
     //Wrapper class for dynamic data for generating request body
     private class RequestBody{
-        String subscriber_identifier;
+        String subscriberIdentifier;
         String security;
         String partyName;
         String xmlRequestBody;
@@ -17,7 +17,7 @@ global without sharing class EquifaxOrgIdSearchAdapter extends intframework.Base
             if(filledInRequestMap != null) {
                 //Fetching Details from Request Mapping in API Configuration
                 List<Map<String, Object>> equifaxCredList = (List<Map<String,Object>>)filledInRequestMap.get(ConstantValues.EQUIFAX_CREDS);
-                reqBody.subscriber_identifier = (String) equifaxCredList[0].get(ConstantValues.SUBSCRIBER_IDENTIFIER);
+                reqBody.subscriberIdentifier = (String) equifaxCredList[0].get(ConstantValues.SUBSCRIBER_IDENTIFIER);
                 reqBody.security = (String) equifaxCredList[0].get(ConstantValues.SECURITY);
 
                 List<Map<String, Object>> partyList = (List<Map<String,Object>>)filledInRequestMap.get(ConstantValues.PARTY_INFO);
@@ -28,7 +28,7 @@ global without sharing class EquifaxOrgIdSearchAdapter extends intframework.Base
                 //Null checking for all paramters from Request Mapping
                 isValid(equifaxCredList,partyList);
 
-                reqBody.xmlRequestBody = reqBody.xmlRequestBody.replace(ConstantValues.CS_SUBSCRIBER_IDENTIFIER,reqBody.subscriber_identifier);
+                reqBody.xmlRequestBody = reqBody.xmlRequestBody.replace(ConstantValues.CS_SUBSCRIBER_IDENTIFIER,reqBody.subscriberIdentifier);
                 reqBody.xmlRequestBody = reqBody.xmlRequestBody.replace(ConstantValues.CS_SECURITY,reqBody.security);
                 reqBody.xmlRequestBody = reqBody.xmlRequestBody.replace(ConstantValues.REQUEST_BODY_PARTY_NAME,reqBody.partyName);
                 reqBody.xmlRequestBody = reqBody.xmlRequestBody.replace(ConstantValues.USERNAME,ConstantValues.CREDENTIAL_USERNAME);
@@ -67,7 +67,7 @@ global without sharing class EquifaxOrgIdSearchAdapter extends intframework.Base
         //Null check on Party Name List
         GenericUtility.isListValid(partyList, ConstantValues.PARTY_NAME_EXCEP);
         //Null check on Subsrciber Identifier
-        GenericUtility.isValid(reqBody.subscriber_identifier, ConstantValues.SUBSCRIBER_IDENTIFIER_EXCEP);
+        GenericUtility.isValid(reqBody.subscriberIdentifier, ConstantValues.SUBSCRIBER_IDENTIFIER_EXCEP);
         //Null check on Security
         GenericUtility.isValid(reqBody.security, ConstantValues.SECURITY_EXCEP);
         //Null check on Party Name

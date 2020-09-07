@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Institution_Name_Length_Rule</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND(NOT(REGEX( Institution_Name__c ,&quot;([A-Z])(a-z){16}&quot;)), NOT(ISBLANK( Institution_Name__c)))</errorConditionFormula>
+    <errorDisplayField>Institution_Name__c</errorDisplayField>
+    <errorMessage>Institution Name can only contain alphabets and length cannot be greater than 12</errorMessage>
+</ValidationRule>

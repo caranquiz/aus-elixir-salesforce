@@ -1,6 +1,7 @@
 /********************************************************************************************/
-/* Description : This class calls for sending request using Integration Framework, passes the 
-                 required data and calls the parser class for parsing the response.
+/* Description : This class calls for sending request for Org Id Verification of Current 
+                 Directorship using Integration Framework, passes the required data and 
+                 calls the parser class for parsing the response.
 /********************************************************************************************/
 global with sharing class EquifaxOrgIdSearchCallout {
     private static EquifaxOrgIdSearchParser parserObject = new EquifaxOrgIdSearchParser();

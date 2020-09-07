@@ -15,38 +15,21 @@ is null how will it handle. */
 private class LoanPaymentTransactionFileGenTest {
   @TestSetup
   static Void initialize() {
-    Account testAccount = new Account();
-    testAccount.loan__Active__c = 'Yes';
-    testAccount.loan__Borrower__c = true;
-    testAccount.Name = 'Test';
-    testAccount.BillingPostalcode = '1234';
-    testAccount.BillingCity = 'TestCity';
-    insert testAccount;
+    Account testAccount = GenericUtilityTestHelper.getAccount();
+    System.assertNotEquals(testAccount,null,'Account insert error');
     List<Account> testAccountList = new List<Account>([SELECT Id FROM Account]);
     System.assertEquals(testAccountList.size(), 1, 'Account insert error');
 
-    Contact testContact = new Contact();
-    testContact.AccountId = testAccount.id;
-    testContact.LastName = 'Test';
-    insert testContact;
+    Contact testContact = GenericUtilityTestHelper.getContact(testAccount);
+    System.assertNotEquals(testContact,null,'Contact insert error');
     List<Contact> testContactList = new List<Contact>([SELECT Id FROM Contact]);
     System.assertEquals(testContactList.size(), 1, 'Contact insert error');
 
-    loan__Bank_Account__c testPayeebankAccount = new loan__Bank_Account__c();
-    testPayeebankAccount.loan__Bank_Name__c = 'PayeeBank';
-    testPayeebankAccount.BSB_Number__c = '324089';
-    testPayeebankAccount.loan__Bank_Account_Number__c = '234567700';
-    testPayeebankAccount.loan__Account__c = testAccount.Id;
-    testPayeebankAccount.loan__Active__c = true;
-    insert testPayeebankAccount;
+    loan__Bank_Account__c testPayeebankAccount = GenericUtilityTestHelper.getBankAccount(testAccount);
+    System.assertNotEquals(testPayeebankAccount,null,'Bank Account insert error');
 
-    loan__Bank_Account__c testPayerbankAccount = new loan__Bank_Account__c();
-    testPayerbankAccount.loan__Bank_Name__c = 'PayerBank';
-    testPayerbankAccount.BSB_Number__c = '453009';
-    testPayerbankAccount.loan__Bank_Account_Number__c = '770065432';
-    testPayerbankAccount.loan__Account__c = testAccount.Id;
-    testPayerbankAccount.loan__Active__c = true;
-    insert testPayerbankAccount;
+    loan__Bank_Account__c testPayerbankAccount = GenericUtilityTestHelper.getPayerBankAccount(testAccount);
+    System.assertNotEquals(testPayeebankAccount,null,'Bank Account insert error');
     List<loan__Bank_Account__c> testbankAccountList = new List<loan__Bank_Account__c>(
       [SELECT Id FROM loan__Bank_Account__c]
     );
@@ -56,9 +39,8 @@ private class LoanPaymentTransactionFileGenTest {
       'Bank Account insert error'
     );
 
-    loan__Payment_Mode__c testDDPaymentMode = new loan__Payment_Mode__c();
-    testDDPaymentMode.Name = 'ACH';
-    insert testDDPaymentMode;
+    loan__Payment_Mode__c testDDPaymentMode = GenericUtilityTestHelper.getPaymentMode();
+    System.assertNotEquals(testDDPaymentMode,null,'Payment Mode insert error');
     List<loan__Payment_Mode__c> testPaymentModeList = new List<loan__Payment_Mode__c>(
       [SELECT Id FROM loan__Payment_Mode__c]
     );
@@ -69,6 +51,7 @@ private class LoanPaymentTransactionFileGenTest {
     );
 
     loan__Loan_Account__c testLoanAccount = GenericUtilityTestHelper.returnLoanAccount();
+    System.assertNotEquals(testLoanAccount,null,'Loan account insert error');
     testLoanAccount.loan__Borrower_ACH__c = testPayerbankAccount.Id;
     update testLoanAccount;
     List<loan__Loan_Account__c> testLoanAccountList = new List<loan__Loan_Account__c>(
@@ -80,19 +63,8 @@ private class LoanPaymentTransactionFileGenTest {
       'CL Contract insert error'
     );
 
-    loan__Automated_Payment_Configuration__c apc = new loan__Automated_Payment_Configuration__c();
-    apc.loan__Folder_Name__c = 'ACH Documents';
-    apc.loan__Payment_Mode__c = testDDPaymentMode.Id;
-    apc.loan__File_Type__c = 'Text';
-    apc.loan__Event__c = 'LOAN PAYMENT';
-    apc.loan__Active__c = true;
-    apc.loan__Filegen_Class__c = 'LoanPaymentTransactionFileGen';
-    apc.Name_of_User__c = 'AJAX CRACKERS';
-    apc.Remitter_Name__c = 'AJAX CRACKERS';
-    apc.loan__Bank_Account__c = testPayeebankAccount.Id;
-    apc.User_Financial_Institution_Name__c = 'NAB';
-    apc.User_Id__c = '013095';
-    insert apc;
+    loan__Automated_Payment_Configuration__c apc = GenericUtilityTestHelper.getAPC(testDDPaymentMode,testPayeebankAccount);
+    System.assertNotEquals(apc,null,'Automated Payment Configuration insert error');
     List<loan__Automated_Payment_Configuration__c> testApcList = new List<loan__Automated_Payment_Configuration__c>(
       [SELECT Id FROM loan__Automated_Payment_Configuration__c]
     );
@@ -131,6 +103,7 @@ private class LoanPaymentTransactionFileGenTest {
     string trailor = obj.getTrailer(state, testLptList);
     test.stopTest();
   }
+
   static testMethod void testWithException() {
     loan__Automated_Payment_Configuration__c apc = [
       SELECT Id, Remitter_Name__c
