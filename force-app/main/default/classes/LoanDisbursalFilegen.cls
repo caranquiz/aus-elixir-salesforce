@@ -1,5 +1,5 @@
 global with sharing class LoanDisbursalFilegen extends loan.FileGenerator {
-    Long sumOfAmt = 0;
+  Long sumOfAmt = 0;
   Decimal tempAmt;
   Integer entryCount = 0;
   Map<Id, loan__Loan_Disbursal_Transaction__c> lptMap = new Map<Id, loan__Loan_Disbursal_Transaction__c>();
@@ -141,6 +141,8 @@ global with sharing class LoanDisbursalFilegen extends loan.FileGenerator {
         recOneDataObj.indicator = ConstantValues.INDICATOR;
         recOneDataObj.transCode = ConstantValues.TXN_CODE_CREDIT;
         recOneDataObj.amtWithholdingTax = 0;
+        sumOfAmt += recOneDataObj.transAmt;
+        entryCount += 1;
         addToValidScope(ldtObj);
         entryVal = DirectEntryFileRecordGenUtil.getRecordOne(recOneDataObj);
         addEntry(entryVal);
