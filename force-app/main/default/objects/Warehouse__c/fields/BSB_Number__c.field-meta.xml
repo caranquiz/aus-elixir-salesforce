@@ -3,8 +3,8 @@
     <fullName>BSB_Number__c</fullName>
     <externalId>false</externalId>
     <label>BSB Number</label>
-    <length>7</length>
-    <required>false</required>
+    <length>6</length>
+    <required>true</required>
     <trackTrending>false</trackTrending>
     <type>Text</type>
     <unique>false</unique>

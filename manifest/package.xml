@@ -243,6 +243,7 @@
         <members>clcommon__Party__c.GST_Effective_from_Rule_Check__c</members>
         <members>clcommon__Party__c.Company_Director_s_Adverse__c</members>
         <members>clcommon__Party__c.Company_Director_s_Related_Entity_Advers__c</members>
+        <members>clcommon__Party__c.Confirm_increased_Commission_Reason__c</members>
         <members>genesis__Applications__c.BAS__c</members>
         <members>genesis__Applications__c.Cash_Out_Purpose_Explanation_Provided__c</members>
         <members>genesis__Applications__c.Cash_Out_Purpose_Suitable_Commentary__c</members>
@@ -511,11 +512,13 @@
         <members>genesis__Applications__c.LMI_Approved</members>
         <members>genesis__Applications__c.Repayment_Type</members>
         <members>genesis__Employment_Information__c.ABN_Effective_from</members>
-        <members>Account.Bank_Account_Number__c</members>
-        <members>Account.BSB__c</members>
-        <members>Warehouse__c.Bank_Account_Number__c</members>
-        <members>Warehouse__c.BSB_Number__c</members>
-        <members>Warehouse__c.Institution_Name__c</members>
+        <members>Account.Bank_Account_Number_Length</members>
+        <members>Account.BSB_Number_Length</members>
+        <members>Warehouse__c.Bank_Account_Number_Length</members>
+        <members>Warehouse__c.BSB_Number_Length</members>
+        <members>Warehouse__c.Institution_Name_Length_Rule</members>
+        <members>loan__Bank_Account__c.Bank_Account_Number_Length</members>
+        <members>loan__Bank_Account__c.Length_of_BSB_Number</members>
         <name>ValidationRule</name>
     </types>
     <types>
