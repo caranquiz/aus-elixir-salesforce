@@ -59,7 +59,7 @@ global with sharing class LoanDisbursalFilegen extends loan.FileGenerator {
             loan__Mode_of_Payment__r.Name,
             loan__Sent_to_ACH__c,
             loan__Sent_To_ACH_On__c,
-            loan__Disbursed_Amt__c,
+            loan__Financed_Amount__c,
             loan__Loan_Account__c,
             loan__Loan_Account__r.Warehouse__c,
             loan__Loan_Account__r.Warehouse__r.Institution_Name__c,
@@ -77,7 +77,7 @@ global with sharing class LoanDisbursalFilegen extends loan.FileGenerator {
       for(loan__Loan_Disbursal_Transaction__c each : ldtTxns){
         obj = new DirectEntryFileRecordGenUtil.DetailRecordData();
         obj.lodgementRef = each.Name;
-        obj.transAmt = ((each.loan__Disbursed_Amt__c - each.ORDE_Financial_Fees_Total_Amount__c) * 100).round();
+        obj.transAmt = (each.ORDE_Financial_Fees_Total_Amount__c * 100).round();
         obj.benfBSBNumber = each.loan__Loan_Account__r.Warehouse__r.BSB_Number__c;
         obj.benfAccNumber = each.loan__Loan_Account__r.Warehouse__r.Bank_Account_Number__c;
         obj.remitterName = each.loan__Loan_Account__r.Warehouse__r.Institution_Name__c;
