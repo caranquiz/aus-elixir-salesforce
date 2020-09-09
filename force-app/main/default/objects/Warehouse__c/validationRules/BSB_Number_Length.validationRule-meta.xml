@@ -3,6 +3,5 @@
     <fullName>BSB_Number_Length</fullName>
     <active>true</active>
     <errorConditionFormula>AND(NOT(REGEX(BSB_Number__c ,&quot;([0-9]){6}&quot;)), NOT(ISBLANK( BSB_Number__c)))</errorConditionFormula>
-    <errorDisplayField>BSB_Number__c</errorDisplayField>
     <errorMessage>BSB Number Should Consists of Six Digits.</errorMessage>
 </ValidationRule>
