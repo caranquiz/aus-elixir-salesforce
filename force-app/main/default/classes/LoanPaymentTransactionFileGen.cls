@@ -90,6 +90,7 @@ global with sharing class LoanPaymentTransactionFileGen extends loan.FileGenerat
             SELECT
               Id,
               loan__Bank_Account_Number__c,
+              Bank_Account_Name__c,
               BSB_Number__c,
               loan__Account__c,
               loan__Account__r.Name
@@ -131,7 +132,7 @@ global with sharing class LoanPaymentTransactionFileGen extends loan.FileGenerat
         addToInvalidScope(lptObj, ConstantValues.BANK_ACC_DETAILS_MISSING_PAYER);
       } else if (String.valueOf(bank.BSB_Number__c).length() != ConstantValues.STANDARD_BSB_LENGTH) {
         addToInvalidScope(lptObj, ConstantValues.WRONG_BSB_PAYER);
-      } else if (String.valueOf(bank.loan__Account__r.Name).length() > ConstantValues.STANDARD_ACCOUNT_NAME_LENGTH) {
+      } else if (String.valueOf(bank.Bank_Account_Name__c).length() > ConstantValues.STANDARD_ACCOUNT_NAME_LENGTH) {
         addToInvalidScope(lptObj, ConstantValues.ACCOUNT_NAME_WLEN);
       } else if (String.valueOf(bank.loan__Bank_Account_Number__c).length() > ConstantValues.STANDARD_ACCOUNT_NUMBER_LENGTH) {
         addToInvalidScope(lptObj, ConstantValues.WRONG_ACOUNT_NUMBER_PAYER);
@@ -145,7 +146,7 @@ global with sharing class LoanPaymentTransactionFileGen extends loan.FileGenerat
         recOneDataObj.indicator = ConstantValues.INDICATOR;
         recOneDataObj.transCode = transCode;
         recOneDataObj.transAmt = transAmt;
-        recOneDataObj.payerAcctName = String.valueOf(bank.loan__Account__r.Name);
+        recOneDataObj.payerAcctName = String.valueOf(bank.Bank_Account_Name__c);
         recOneDataObj.lodgementRef = lptObj.Name;
         recOneDataObj.benfBSBNumber = benfObj.benfBSBNumber;
         recOneDataObj.benfAccNumber = benfObj.benfAccNumber;
