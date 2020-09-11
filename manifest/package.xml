@@ -540,11 +540,6 @@
         <name>GlobalValueSet</name>
     </types>
     <types>
-        <!-- Repayment file generation utility VF page by Pratik -->
-        <members>DE_Return_Processing</members>
-        <name>ApexPage</name>
-    </types>
-    <types>
         <members>clcommon__Address__c.Autocapitalise Country</members>
         <name>WorkflowRule</name>
     </types>
