@@ -545,6 +545,10 @@
         <name>ApexPage</name>
     </types>
     <types>
+        <members>clcommon__Address__c.Autocapitalise Country</members>
+        <name>WorkflowRule</name>
+    </types>
+    <types>
         <members>CustomLabels</members>
         <name>CustomLabels</name>
     </types>
