@@ -20,7 +20,7 @@ global with sharing class EquifaxEnquiryCallout {
                 return ConstantValues.NO_APPLICATION;
             }
             appObj = appList[0];
-            List<clcommon__Party__c> partyList = [SELECT Id FROM clcommon__Party__c WHERE Id = :partyId];
+            List<clcommon__Party__c> partyList = [SELECT Id, Party_Type_Name__c FROM clcommon__Party__c WHERE Id = :partyId];
             if(partyList.isEmpty()){
                 return ConstantValues.NO_PARTY;
             }
@@ -42,7 +42,16 @@ global with sharing class EquifaxEnquiryCallout {
             queryIdMap.put('addressId', addressObj.Id);
             Map<String, Object> requestParamMap = new Map<String, Object>();
             requestParamMap.put('addressType', 'C');
-            requestParamMap.put('relationshipCode', '1');
+            partyList = [SELECT Id FROM clcommon__Party__c
+            WHERE genesis__Application__c = :appId AND Party_Type_Name__c IN ('Borrower', 'Co-applicant')];
+            if(String.isNotBlank(partyObj.Party_Type_Name__c) && (partyObj.Party_Type_Name__c).equalsIgnoreCase('Guarantor')){
+                requestParamMap.put('relationshipCode', '3');
+            }
+            else if(partyList.size() > 1){
+                requestParamMap.put('relationshipCode', '2');
+            }else{
+                requestParamMap.put('relationshipCode', '1');
+            }
             intframework.AbstractIntegrationService baseintegrationService = intframework.IntegrationServiceFactory.getBaseIntegrationService();
             intframework.BaseIntegrationResponse responseObject;
             responseObject = (intframework.BaseIntegrationResponse) baseintegrationService.runSynchronousIntegrationService(
@@ -51,7 +60,6 @@ global with sharing class EquifaxEnquiryCallout {
                 queryIdMap,
                 requestParamMap
             );
-            System.debug(responseObject.getBody());
             dom.Document doc = new dom.Document();
             doc.load(responseObject.getBody());
             Map<String, Object> responseMap = intframework.XmlToJson.parseDocumentToMap(
@@ -72,7 +80,8 @@ global with sharing class EquifaxEnquiryCallout {
     webService static String equifaxPreviousEnquiry(String enquiryId, Id partyId){
         String pdfData;
         try{
-            clcommon__Party__c partyObj = [SELECT Id, clcommon__Account__c, clcommon__Contact__r.FirstName, clcommon__Contact__r.lastName FROM clcommon__Party__c WHERE Id = :partyId];
+            clcommon__Party__c partyObj = [SELECT Id, clcommon__Account__c, clcommon__Contact__r.FirstName, clcommon__Contact__r.lastName, genesis__Application__c
+            FROM clcommon__Party__c WHERE Id = :partyId];
             Map<String, Object> requestParamMap = new Map<String, Object>();
             StaticResource sr = [SELECT Id, Name, Body FROM StaticResource WHERE Name =:ConstantValues.PREV_ENQ_STATIC_RES];
             String requestBody = sr.Body.toString();
@@ -93,7 +102,6 @@ global with sharing class EquifaxEnquiryCallout {
                 new Map<String, String>(),
                 requestParamMap
             );
-            System.debug(responseObject.getBody());
             dom.Document doc = new dom.Document();
             doc.load(responseObject.getBody());
             Map<String, Object> responseMap = intframework.XmlToJson.parseDocumentToMap(
@@ -116,7 +124,7 @@ global with sharing class EquifaxEnquiryCallout {
                 documentAttachment.Body = EncodingUtil.base64Decode(pdfData);
                 documentAttachment.Name = ConstantValues.PREV_ENQ_PDF_NAME_PREF
                 + partyObj.clcommon__Contact__r.FirstName + ' '
-                + partyObj.clcommon__Contact__r.LastName + '.pdf';
+                + partyObj.clcommon__Contact__r.LastName + ' (OBSOLETE).pdf';
                 documentAttachment.parentId = partyObj.Id;
                 Database.insert(documentAttachment);
                 List<clcommon__Document_Category__c> docCatList =
@@ -124,7 +132,7 @@ global with sharing class EquifaxEnquiryCallout {
                     SELECT Id, clcommon__Category_Name__c
                     FROM clcommon__Document_Category__c
                     WHERE clcommon__Category_Name__c =:ConstantValues.PREV_ENQ_DOC_CAT
-                    AND clcommon__Account__c =:partyObj.clcommon__Account__c
+                    AND genesis__Application__c =:partyObj.genesis__Application__c
                 ];
                 //Attaching the retrieved document with the collateral
                 clcommon__Document_Category__c docCat = docCatList[0];

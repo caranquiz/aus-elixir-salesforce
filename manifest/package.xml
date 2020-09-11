@@ -552,6 +552,10 @@
         <name>WorkflowRule</name>
     </types>
     <types>
+        <members>clcommon__Address__c.Capitalise_Country</members>
+        <name>WorkflowFieldUpdate</name>
+    </types>
+    <types>
         <members>CustomLabels</members>
         <name>CustomLabels</name>
     </types>
