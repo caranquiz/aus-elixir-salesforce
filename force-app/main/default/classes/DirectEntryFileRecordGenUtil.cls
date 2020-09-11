@@ -122,16 +122,4 @@ public class DirectEntryFileRecordGenUtil{
         entryVal += '\r\n';
         return entryVal;
     }
-    // Throws an exception if the strng is not numeric
-    public static void checkNumeric(String val, String msg) {
-        if (!val.isNumeric()) {
-            throw new CustomException(msg);
-        }
-    }
-    // Throws an exception if the strng is not blank
-    public static void checkBlank(String val, String msg) {
-        if (!String.isBlank(val)) {
-            throw new CustomException(msg);
-        }
-    }
 }

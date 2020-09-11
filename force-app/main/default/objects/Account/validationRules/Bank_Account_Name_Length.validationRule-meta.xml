@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Bank_Account_Name_Length</fullName>
+    <active>true</active>
+    <errorConditionFormula>LEN( Bank_Account_Name__c ) &gt; 32</errorConditionFormula>
+    <errorMessage>Bank Account Name length cannot be greater than 32</errorMessage>
+</ValidationRule>
