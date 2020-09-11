@@ -77,10 +77,7 @@
         <!-- Repayment file classes by Pratik -->
         <members>LoanPaymentTransactionFileGen</members>
         <members>LoanPaymentTransactionFileGenTest</members>
-        <members>LoanPaymentReturnFileHandler</members>
-        <members>LoanPaymentReturnFileHandlerTest</members>
-        <members>DEReturnFileProcessor</members>
-        <members>DEReturnFileProcessorTest</members>
+        <members>LoanPaymentReturnFileProcessor</members>
 
         <name>ApexClass</name>
     </types>
@@ -520,7 +517,7 @@
         <members>loan__Bank_Account__c.Bank_Account_Number_Length</members>
         <members>loan__Bank_Account__c.Length_of_BSB_Number</members>
         <members>loan__Bank_Account__c.Bank_Account_Name_Length</members>
-        <members>clcommon__Bank_Account__c.Bank_Account_Name_Length</members>
+        <members>Account.Bank_Account_Name_Length</members>
         <name>ValidationRule</name>
     </types>
     <types>
