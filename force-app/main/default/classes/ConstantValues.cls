@@ -450,7 +450,7 @@ global class ConstantValues{
   public static final String PREV_ENQ_REQ_BODY_SRNAME = 'Request body Static Resource not found';
   public static final String APP_PDF_CONTENT_TYPE = 'application/pdf';
   public static final String PREV_ENQ_STATIC_RES = 'PreviousEnquiry';
-  public static final String PREV_ENQ_DOC_CAT = 'Equifax Apply Document';
+  public static final String PREV_ENQ_DOC_CAT = 'Credit Report';
   public static final String PREV_ENQ_PDF_CONTENT_TYPE = 'application/json';
   public static final String PREV_ENQ_PDF_NAME_PREF = 'Apply Individual Document for ';
 
