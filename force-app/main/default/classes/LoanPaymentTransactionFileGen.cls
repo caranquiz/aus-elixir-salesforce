@@ -73,7 +73,6 @@ global with sharing class LoanPaymentTransactionFileGen extends loan.FileGenerat
             FROM loan__Loan_Payment_Transaction__c
             WHERE
               Id IN :ids
-              AND loan__Cleared__c = true
               AND loan__Reversed__c = false
               AND loan__Rejected__c = false
           ]
