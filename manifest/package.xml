@@ -79,6 +79,9 @@
         <members>LoanPaymentTransactionFileGenTest</members>
         <members>LoanPaymentReturnFileProcessor</members>
 
+        <!-- Deposit field not updated in CL Contract issue fix by Rameswari -->
+        <members>DepositUpdateHelper</members>
+
         <name>ApexClass</name>
     </types>
     <types>
@@ -404,10 +407,7 @@
         <members>Director__c.Found_in_Party__c</members>
         <members>Director__c.Gender__c</members>
         <members>Director__c.Party__c</members>
-        <members>clcommon__Party__c.Has_Broker_provided_a_fully_completed_Cu__c</members>
-        <members>clcommon__Collateral__c.Rental_Income_Verified__c</members>
-        <members>loan__Bank_Account__c.Warehouse__c</members>
-
+        
         <!-- Credit Contract changes made by Rameswari -->
         <members>genesis__Applications__c.CL_Date__c</members>
         <members>clcommon__Address__c.Applicant_and_its_address__c</members>
@@ -555,7 +555,7 @@
         <name>CustomLabels</name>
     </types>
     <types>
-        <!-- Fee amount goinf to changes by Rameswari -->
+        <!-- Fee amount going to changes by Rameswari -->
         <members>Update_where_the_distribution_amount_is_going</members>
         <name>Flow</name>
     </types>
