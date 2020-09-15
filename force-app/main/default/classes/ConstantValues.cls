@@ -576,4 +576,9 @@ global class ConstantValues{
   public static final String PAYER_ACCOUNT_NAME_MISSING = 'Solicitor Account Name is missing or missing';
   public static final String LODGMENT_REFERENCE_MISSING = 'Disbursal Txn Reference is missing';
   public static final String WAREHOUSE_INST_MISSING = 'Warehouse Institution Name is missing';
+
+  //Return File processor
+  public static final String NAME = 'Name';
+  public static final String LPT_PREFIX = 'LPT-';
+  public static final String LPT_EXCEP = 'LPT not present';
 }
