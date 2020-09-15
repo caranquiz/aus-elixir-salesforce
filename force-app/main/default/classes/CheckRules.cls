@@ -78,6 +78,16 @@ global with sharing class CheckRules {
             else if(tabName == ConstantValues.ASSET_LIABILITY){
                 rulesNameList.add(ConstantValues.PREVIOUS_CONDUCT_SUITABLE);
             }
+            else if(tabName == ConstantValues.REVIEW){
+                rulesNameList.add('Matrix Rate Exception');
+                rulesNameList.add('Confirm Repayments do not double Exception');
+                rulesNameList.add('Arms Length Valuer Commentary Exception');
+                rulesNameList.add('110% Check Exception');
+                rulesNameList.add('Valuation Required Exception');
+                rulesNameList.add('Valuation Received Exception');
+                rulesNameList.add('Licenced Builder Exception');
+                rulesNameList.add('ABN Status Exception');
+            }
             Map<Id,genesis__Rule__c> mapRules = new Map<Id,genesis__Rule__c>([SELECT Id,
                                                                             Name
                                                                             FROM genesis__Rule__c

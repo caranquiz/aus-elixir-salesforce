@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Rule_Classification__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF(ISPICKVAL(Checklist__r.genesis__Rule__r.Rule_Classification__c,&apos;Rule&apos;),&apos;Rule&apos;,IF(ISPICKVAL(Checklist__r.genesis__Rule__r.Rule_Classification__c,&apos;Warning&apos;),&apos;Warning&apos;,IF(ISPICKVAL(Checklist__r.genesis__Rule__r.Rule_Classification__c,&apos;Condition&apos;),&apos;Condition&apos;,&apos;Exception&apos;)))</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Rule Classification</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

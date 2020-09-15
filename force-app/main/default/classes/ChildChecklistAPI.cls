@@ -84,6 +84,7 @@ public with sharing class ChildChecklistAPI {
                                                 clcommon__Contact__c,
                                                 clcommon__Contact__r.Temporary_Visa_Suitability__c,
                                                 clcommon__Contact__r.Temporary_Visa_Suitability_Rule_Check__c,
+                                                Company_ABN_Status__c,
                                                 ABN_Status_Explanation_Suitable__c,
                                                 ABN_Status_Explanation_Suitable_Rule__c,
                                                 Exit_Strategy_Suitable__c,
@@ -137,7 +138,12 @@ public with sharing class ChildChecklistAPI {
                                                                     genesis__Collateral__r.Check_Val_Value_Rule_Check__c,
                                                                     genesis__Collateral__r.Check_Val_Value_Render__c,
                                                                     genesis__Collateral__r.Distressed_Asset_Rule_Check__c,
-                                                                    genesis__Collateral__r.Distressed_Asset_Render__c
+                                                                    genesis__Collateral__r.Distressed_Asset_Render__c,
+                                                                    genesis__Collateral__r.Licenced_Builder__c,
+                                                                    genesis__Collateral__r.Valuation_Received__c,
+                                                                    genesis__Collateral__r.Valuation_Required__c,
+                                                                    genesis__Collateral__r.Arms_Length_Transaction__c,
+                                                                    genesis__Collateral__r.X110_check__c
                                                                     from genesis__Application_Collateral__c where genesis__Application__c =:appId];
         List<genesis__Employment_Information__c> empInfoList = [select id,
                                                                     Party__c,
