@@ -82,6 +82,9 @@
         <!-- Deposit field not updated in CL Contract issue fix by Rameswari -->
         <members>DepositUpdateHelper</members>
 
+        <!-- Re draw amount cannot be in decimal fix by Rameswari -->
+        <members>RedrawController</members>
+
         <name>ApexClass</name>
     </types>
     <types>
