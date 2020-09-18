@@ -1,4 +1,3 @@
-
 /****************************************************************************************************/
 /* Description          : This class extends the CL loan product class ACHReturnPaymentProcessor
                           reads the LPT Return file and returns LPTs which has to be reversed or
@@ -15,12 +14,14 @@ global class LoanPaymentReturnFileProcessor extends loan.ACHReturnPaymentProcess
                 achReturns.clear();
                 String typeOfTask;  
                 Map<String,String> lptMap = new Map<String,String>();
+                Map<String,Decimal> lptAmountMap = new Map<String,Decimal>();
                 Integer i=1;
                 while (i<bodyLines.size()-1){
                     String typeOfService = bodyLines[i].substring(0,1); 
                     if(typeOfService.equals('2')){
                         //Process Reversed Transaction
-                        lptMap.put(bodyLines[i].substring(bodyLines[i].lastIndexOf(ConstantValues.LPT_PREFIX),80).trim(),bodyLines[i].substring(18,19).trim());
+                        lptMap.put(bodyLines[i].substring(bodyLines[i].lastIndexOf(ConstantValues.LPT_PREFIX),80).trim(),bodyLines[i].substring(17,18).trim());
+                        lptAmountMap.put(bodyLines[i].substring(bodyLines[i].lastIndexOf(ConstantValues.LPT_PREFIX),80).trim(),Decimal.valueOf(bodyLines[i].substring(20,30).trim()));
                     }
                     i +=1;
                 } 
@@ -28,12 +29,19 @@ global class LoanPaymentReturnFileProcessor extends loan.ACHReturnPaymentProcess
                     List<loan__Loan_Payment_Transaction__c> payments = new List<loan__Loan_Payment_Transaction__c>();
                     List<String> lptNameList = new List<String>();
                     List<String> excepLPT = new List<String>();
-                    payments = [SELECT Id,Name
+                    List<String> excepLPTAmount = new List<String>();
+                    payments = [SELECT Id,
+                                Name,
+                                loan__Transaction_Amount__c
                                 FROM loan__Loan_Payment_Transaction__c 
                                 WHERE Name IN:lptMap.keySet()];
                     if(payments.size()>0){
                         //Adding LPTs with reason code to be reversed
                         for(loan__Loan_Payment_Transaction__c obj : payments){
+                            if((obj.loan__Transaction_Amount__c * 100) != (lptAmountMap.get(String.valueOf(obj.get(ConstantValues.NAME))))){
+                                excepLPTAmount.add(String.valueOf(obj.get(ConstantValues.NAME)));
+                                continue;
+                            }
                             loan.ACHReturn achRet = new loan.ACHReturn();
                             achRet.payment = obj; 
                             lptNameList.add(String.valueOf(obj.get(ConstantValues.NAME)));
@@ -78,7 +86,7 @@ global class LoanPaymentReturnFileProcessor extends loan.ACHReturnPaymentProcess
                         }
                     }
                     //Method to insert Bank Statement Exception if an LPT is not found
-                    insertBankExcep(excepLPT);
+                    insertBankExcep(excepLPT,excepLPTAmount);
                 }    
                 return achReturns;  
             }
@@ -91,7 +99,7 @@ global class LoanPaymentReturnFileProcessor extends loan.ACHReturnPaymentProcess
             return null;
         }
     }
-    public static void insertBankExcep(List<String> excepLPT){
+    public static void insertBankExcep(List<String> excepLPT, List<String> excepLPTAmount){
         List<peer__Bank_Recon_Exception__c> excepList = new List<peer__Bank_Recon_Exception__c>();
         if(excepLPT != null && excepLPT.size() != 0){
             for(String each : excepLPT){
@@ -102,6 +110,15 @@ global class LoanPaymentReturnFileProcessor extends loan.ACHReturnPaymentProcess
                 excepList.add(bankExcep);
             }
         }
+        if(excepLPTAmount != null && excepLPTAmount.size() != 0){
+            for(String each : excepLPTAmount){
+                peer__Bank_Recon_Exception__c bankExcep = new peer__Bank_Recon_Exception__c();
+                bankExcep.peer__Name__c = each;
+                bankExcep.peer__Recon_Message__c = ConstantValues.LPT_AMOUNT_EXCEP;
+                bankExcep.peer__Statement_Date__c = Date.today();
+                excepList.add(bankExcep);
+            }
+        }
         insert excepList;
     }
-}  
+}
