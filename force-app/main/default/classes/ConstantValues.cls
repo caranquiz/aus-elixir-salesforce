@@ -581,4 +581,5 @@ global class ConstantValues{
   public static final String NAME = 'Name';
   public static final String LPT_PREFIX = 'LPT-';
   public static final String LPT_EXCEP = 'LPT not present';
+  public static final String LPT_AMOUNT_EXCEP = 'Amount does not match';
 }
