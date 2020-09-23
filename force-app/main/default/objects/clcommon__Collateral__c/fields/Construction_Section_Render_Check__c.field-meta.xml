@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Construction_Section_Render_Check__c</fullName>
+    <externalId>false</externalId>
+    <formula>ISPICKVAL(Construction__c, &apos;Yes&apos;)</formula>
+    <label>Construction Section Render Check</label>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

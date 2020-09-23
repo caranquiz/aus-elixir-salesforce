@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Licenced_Builder_Warning_Check__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF(ISPICKVAL(Construction__c, &apos;Yes&apos;), OR(ISPICKVAL(Licenced_Builder__c, &apos;No&apos;), ISPICKVAL(Licenced_Builder__c, &apos;&apos;)), FALSE)</formula>
+    <label>Licenced Builder Warning Check</label>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Accountant_Ph_Num_Verified_Warning_Check__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF(ISPICKVAL(Party__r.Document_Type__c, &apos;Alt&apos;), OR(ISPICKVAL(Accountant_Phone_Number_Verified__c, &apos;No&apos;), ISPICKVAL(Accountant_Phone_Number_Verified__c, &apos;&apos;)), FALSE)</formula>
+    <label>Accountant Ph Num Verified Warning Check</label>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

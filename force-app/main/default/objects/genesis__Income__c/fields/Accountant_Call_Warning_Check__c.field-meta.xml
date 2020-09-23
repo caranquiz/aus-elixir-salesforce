@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Accountant_Call_Warning_Check__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF(OR(ISPICKVAL(Party__r.Document_Type__c, &apos;Alt&apos;),
+AND(Party__r.Legal_Entity_Type__c == &apos;Individual&apos;,
+ISPICKVAL(Document_Type__c, &apos;Alt&apos;),
+Employment_Information__c != NULL)),
+IF(ISPICKVAL(Accountant_Letter_Verified__c, &apos;Yes&apos;), OR(ISPICKVAL(Accountant_Call__c, &apos;No&apos;), ISPICKVAL(Accountant_Call__c, &apos;&apos;)), FALSE), FALSE)</formula>
+    <label>Accountant Call Warning Check</label>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

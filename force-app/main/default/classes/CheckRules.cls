@@ -8,6 +8,14 @@ Description : This class query all the Rules and check the Rule Criteria for the
 ***********************************************************************************************************************************************************/
 
 global with sharing class CheckRules {
+    private static List<genesis__Rule__c> ruleList = [SELECT Id,
+                                                        Name,
+                                                        genesis__Message_success__c,
+                                                        genesis__Message_failure__c
+                                                        FROM genesis__Rule__c
+                                                        WHERE genesis__Enabled__c = true
+                                                        AND (Name = 'Risk Grade Compare Warning'
+                                                        OR Name = 'Primary Purpose Warning')];
     webService static String callCheckRulesWS(String applicationId, String tabName) {
         String returnValue = '';
         String applicationRecordId;
@@ -79,14 +87,100 @@ global with sharing class CheckRules {
                 rulesNameList.add(ConstantValues.PREVIOUS_CONDUCT_SUITABLE);
             }
             else if(tabName == ConstantValues.REVIEW){
-                rulesNameList.add('Matrix Rate Exception');
-                rulesNameList.add('Confirm Repayments do not double Exception');
                 rulesNameList.add('Arms Length Valuer Commentary Exception');
                 rulesNameList.add('110% Check Exception');
                 rulesNameList.add('Valuation Required Exception');
                 rulesNameList.add('Valuation Received Exception');
                 rulesNameList.add('Licenced Builder Exception');
                 rulesNameList.add('ABN Status Exception');
+                rulesNameList.add('BAS % Exception');
+                rulesNameList.add('Broker Documents Warning');
+                rulesNameList.add('Politically Exposed Person Warning');
+                rulesNameList.add('KYC/AML Verified Warning');
+                rulesNameList.add('Risk Grade Warning');
+                rulesNameList.add('Explanation of Credit Events Warning');
+                rulesNameList.add('Explanation Provided Warning');
+                rulesNameList.add('Exit Strategy Provided Applicant Warning');
+                rulesNameList.add('ABN Status Explanation Provided Warning');
+                rulesNameList.add('Living Expense Explanation Received Warning');
+                rulesNameList.add('Telephone, Internet, Pay TV & Media Streaming Warning');
+                rulesNameList.add('Groceries Warning');
+                rulesNameList.add('Recreation and Entertainment Warning');
+                rulesNameList.add('Clothing and Personal Care Warning');
+                rulesNameList.add('Medical and Health Warning');
+                rulesNameList.add('Transport Warning');
+                rulesNameList.add('Insurance (Excluding Private Health, Life, IP) Warning');
+                rulesNameList.add('Contract Of Sale Warning');
+                rulesNameList.add('Valued Date Warning');
+                rulesNameList.add('Licenced Real Estate Agent Contract Warning');
+                rulesNameList.add('Comparable Sales Evident Warning');
+                rulesNameList.add('Valuer Risk Gradings Commentary Warning');
+                rulesNameList.add('Land Area Warning');
+                rulesNameList.add('Floor Area Warning');
+                rulesNameList.add('ABN Effective From Warning');
+                rulesNameList.add('ABN Effective From Exception');
+                rulesNameList.add('Estimated Completion Date Warning');
+                rulesNameList.add('HEM Warning');
+                rulesNameList.add('GST Effective From Warning');
+                rulesNameList.add('Accountant ABN Status Warning');
+                rulesNameList.add('Accountant Phone Number Verified Warning');
+                rulesNameList.add('Accountant Call Warning');
+                rulesNameList.add('Accountant ABN Search Conducted Warning');
+                rulesNameList.add('Primary Residence Property Cost Warning');
+                rulesNameList.add('Employer Phone Independently Verified Warning');
+                rulesNameList.add('Income Verification Sighted Warning');
+                rulesNameList.add('Employment Duration (Months) Warning');
+                rulesNameList.add('Employer Verfied Warning');
+                rulesNameList.add('Is Director a Beneficiary / Member Warning');
+                rulesNameList.add('Is Trustee a Beneficiary / Member Warning');
+                rulesNameList.add('Is General Security Agreement Being Taken over this Applicant Warning Check');
+                rulesNameList.add('Education and Childcare Warning');
+                rulesNameList.add('Investment Property Warning Check');
+                rulesNameList.add('Rent/Board (post settlement of this facility) Warning');
+                rulesNameList.add('Is Purchaser the Mortgagor Condition Check');
+                rulesNameList.add('Home Insurance Certificate Provide Condition');
+                rulesNameList.add('Home Insurance Certificate Provide and Body Corporate Condition');
+                rulesNameList.add('Home Insurance Certificate Provide and Standard Condition');
+                rulesNameList.add('Signed Contract Condition');
+                rulesNameList.add('Fixed Price Contract Condition');
+                rulesNameList.add('Detailed Costings Held Condition');
+                rulesNameList.add('Copy Builders Licence Held Condition');
+                rulesNameList.add('Copy Home Owners Warranty Certificate Held Condition');
+                rulesNameList.add('Council Approval Held Condition');
+                rulesNameList.add('SMSF Status Condition');
+                rulesNameList.add('Trust Deed Provided Condition');
+                rulesNameList.add('ABN Effective From Living Expense Warning');
+                rulesNameList.add('GST Effective From Living Expense Warning');
+                rulesNameList.add('Private Pension Amount Warning');
+                rulesNameList.add('Other Income Amount Warning');
+                rulesNameList.add('Superannuation Amount Warning');
+                rulesNameList.add('Location Warning');
+                rulesNameList.add('Location Not Acceptable Warning');
+                rulesNameList.add('Type of Documents Sighted Warning 1');
+                rulesNameList.add('Type of Documents Sighted Warning 2');
+                rulesNameList.add('To Be Refinance Condition');
+                rulesNameList.add('Gift Stat Dec Received Condition');
+                rulesNameList.add('Rental Income Verified Warning');
+                rulesNameList.add('Previous conduct explanation received Warning');
+                rulesNameList.add('Previous conduct referencing completed Warning');
+            }
+            else if(tabName == 'APP_XCEP'){
+                rulesNameList.add('Matrix Rate Exception');
+                rulesNameList.add('Confirm Repayments do not double Exception');
+                rulesNameList.add('Override Exception');
+                rulesNameList.add('Interest Only Reason Warning');
+                rulesNameList.add('Exit Strategy Provided Warning');
+                rulesNameList.add('Fixed Rate Lock In Date Warning');
+                rulesNameList.add('Matrix Rate Warning');
+                rulesNameList.add('Actual LVR > 80% Warning');
+                rulesNameList.add('Actual LVR > 70% Warning');
+                rulesNameList.add('Actual LVR > 75% Warning');
+                rulesNameList.add('Cash Out Purpose Explanation Provided Warning');
+                rulesNameList.add('Application Fee Warning');
+                rulesNameList.add('Application Fee % Warning');
+                loanDetailsRiskGradeWarningCheck(applicationId);
+                loanDetailsPrimaryPurposeWarningCheck(applicationId);
+                rulesNameList.add('Does applicant understand English Condition');
             }
             Map<Id,genesis__Rule__c> mapRules = new Map<Id,genesis__Rule__c>([SELECT Id,
                                                                             Name
@@ -126,7 +220,7 @@ global with sharing class CheckRules {
                                                     Cash_Out_Purpose_Suitable_Rule_Check__c
                                                     FROM genesis__Applications__c 
                                                     WHERE id = :applicationRecordId
-                                                    LIMIT 1];   
+                                                    LIMIT 1];
             if(Test.isRunningTest() == false){
                 previousChecklistList = [SELECT Id 
                                             FROM genesis__Checklist__c 
@@ -139,17 +233,17 @@ global with sharing class CheckRules {
             }
             else{
                 checkList = [Select Id,
-                                    genesis__Application__c,
-                                    genesis__Assessed_Record_Id__c,
-                                    genesis__Is_Archived__c ,
-                                    genesis__Level__c,
-                                    genesis__Message__c,
-                                    genesis__Rule__c,
-                                    genesis__Rule__r.Name,
-                                    genesis__Type__c
-                                    From genesis__Checklist__c];
+                                genesis__Application__c,
+                                genesis__Assessed_Record_Id__c,
+                                genesis__Is_Archived__c ,
+                                genesis__Level__c,
+                                genesis__Message__c,
+                                genesis__Rule__c,
+                                genesis__Rule__r.Name,
+                                genesis__Type__c
+                                From genesis__Checklist__c];
             }
-            if(tabName != ConstantValues.LOAN_DETAILS && tabName != ConstantValues.SETTLEMENT){
+            if(tabName != ConstantValues.LOAN_DETAILS && tabName != ConstantValues.SETTLEMENT && tabName != 'APP_XCEP'){
                 ChildChecklistAPI api = new ChildChecklistAPI();
                 List<Checklist_Detail__c> listOfDetail = api.processListOfChecklist(checkList, applicationRecordId);
                 Database.insert(listOfDetail);
@@ -200,5 +294,140 @@ global with sharing class CheckRules {
           return false;
         }
         return true;
+      }
+      private static void loanDetailsRiskGradeWarningCheck(Id appId){
+        try{
+            genesis__Rule__c riskGradeCompRule;
+            for(genesis__Rule__c each : ruleList){
+                if((each.Name).equals('Risk Grade Compare Warning')){
+                    riskGradeCompRule = each;
+                }
+            }
+            if(riskGradeCompRule == null){
+                return;
+            }
+            genesis__Applications__c appObj = [SELECT Id,
+                                                Risk_grade_list__c
+                                                FROM genesis__Applications__c
+                                                WHERE Id =:appId
+                                                LIMIT 1];
+            if(appObj == null){
+                return;
+            }
+            Map<String, Integer> riskGradeValued = new Map<String, Integer>();
+            riskGradeValued.put('Prime', 0);
+            riskGradeValued.put('Near Prime', 1);
+            riskGradeValued.put('Near Prime +', 2);
+            riskGradeValued.put('Specialist', 3);
+            riskGradeValued.put('Specialist +', 4);
+            List<genesis__Checklist__c> previousChecklists = [SELECT Id
+                                                                FROM genesis__Checklist__c
+                                                                WHERE genesis__Rule__c =:riskGradeCompRule.Id
+                                                                AND genesis__Application__c =:appId];
+            Database.delete(previousChecklists, false);
+            List<clcommon__Party__c> parties = [SELECT Id,
+                                                Legal_Entity_Type__c,
+                                                Party_Type_Name__c,
+                                                Risk_Grade__c,
+                                                genesis__Application__c
+                                                FROM clcommon__Party__c
+                                                WHERE genesis__Application__c =:appId];
+            Integer lowestRiskGrade = 5;
+            for(clcommon__Party__c each : parties){
+                if(String.IsNotBlank(each.Risk_Grade__c)){
+                    if(riskGradeValued.containsKey(each.Risk_Grade__c) &&
+                    riskGradeValued.get(each.Risk_Grade__c) < lowestRiskGrade){
+                        lowestRiskGrade = riskGradeValued.get(each.Risk_Grade__c);
+                    }
+                }
+            }
+            if(lowestRiskGrade == 5){
+                successCheckList(riskGradeCompRule, appId);
+                return;
+            }
+            else if(String.isBlank(appObj.Risk_grade_list__c)){
+                errorCheckList(riskGradeCompRule, appId);
+                return;
+            }
+            Integer val = riskGradeValued.get(appObj.Risk_grade_list__c);
+            if(lowestRiskGrade != val){
+                errorCheckList(riskGradeCompRule, appId);
+            }
+            else{
+                successCheckList(riskGradeCompRule, appId);
+            }
+        }
+        catch(Exception ex){
+            GenericUtility.insertLog('CheckRules.loanDetailsRiskGradeWarningCheck', ex);
+        }
+      }
+      private static void loanDetailsPrimaryPurposeWarningCheck(Id appId){
+        try{
+            genesis__Rule__c primPurpCompRule;
+            for(genesis__Rule__c each : ruleList){
+                if((each.Name).equals('Primary Purpose Warning')){
+                    primPurpCompRule = each;
+                }
+            }
+            if(primPurpCompRule == null){
+                return;
+            }
+            genesis__Applications__c appObj = [SELECT Id,
+                                                Primary_loan_purpose_list__c
+                                                FROM genesis__Applications__c
+                                                WHERE Id =:appId
+                                                LIMIT 1];
+            if(appObj == null){
+                return;
+            }
+            List<genesis__Checklist__c> previousChecklists = [SELECT Id
+                                                                FROM genesis__Checklist__c
+                                                                WHERE genesis__Rule__c =:primPurpCompRule.Id
+                                                                AND genesis__Application__c =:appId];
+            Database.delete(previousChecklists, false);
+            List<genesis__Application_Collateral__c> appCollaterals = [SELECT Id,
+                                                                        genesis__Application__c,
+                                                                        genesis__Collateral__r.Primary_Purpose__c
+                                                                        FROM genesis__Application_Collateral__c
+                                                                        WHERE genesis__Application__c =:appId];
+            String prevPrimPurp = appCollaterals[0].genesis__Collateral__r.Primary_Purpose__c;
+            for(genesis__Application_Collateral__c each : appCollaterals){
+                if(String.isBlank(each.genesis__Collateral__r.Primary_Purpose__c)){
+                    errorCheckList(primPurpCompRule, appId);
+                    return;
+                }
+                else if(prevPrimPurp != each.genesis__Collateral__r.Primary_Purpose__c){
+                    errorCheckList(primPurpCompRule, appId);
+                    return;
+                }
+                prevPrimPurp = each.genesis__Collateral__r.Primary_Purpose__c;
+            }
+            if(appObj.Primary_loan_purpose_list__c != prevPrimPurp){
+                errorCheckList(primPurpCompRule, appId);
+            }else{
+                successCheckList(primPurpCompRule, appId);
+            }
+        }
+        catch(Exception ex){
+            GenericUtility.insertLog('CheckRules.loanDetailsPrimaryPurposeWarningCheck', ex);
+        }
+      }
+      private static void successCheckList(genesis__Rule__c rule, Id appId){
+        genesis__Checklist__c checklistObj = new genesis__Checklist__c();
+        checklistObj.genesis__Application__c = appId;
+        checklistObj.genesis__Assessed_Record_Id__c = appId;
+        checklistObj.genesis__Level__c = 'INFO';
+        checklistObj.genesis__Rule__c = rule.Id;
+        checklistObj.genesis__Message__c = rule.genesis__Message_success__c;
+        Database.insert(checklistObj);
+      }
+      private static void errorCheckList(genesis__Rule__c rule, Id appId){
+        genesis__Checklist__c checklistObj = new genesis__Checklist__c();
+        checklistObj.genesis__Application__c = appId;
+        checklistObj.genesis__Assessed_Record_Id__c = appId;
+        checklistObj.genesis__Level__c = 'ERROR';
+        checklistObj.genesis__Rule__c = rule.Id;
+        checklistObj.genesis__Message__c = rule.genesis__Message_failure__c;
+        Database.insert(checklistObj);
       }
 }

@@ -500,6 +500,8 @@ global class ConstantValues{
   public static final String EMPLOYMENT_INFORMATION_API = 'Employment_Information__r';
   public static final String RECORDS_NOT_FOUND = 'Records not found';
   public static final String DOUBLE_CHECK = 'Double';
+  public static final String PERCENT_CHECK = 'PERCENT';
+  public static final String CURRENCY_CHECK = 'CURRENCY';
   public static final String ACL_VERIFIED_RULE = 'ACL/ACR Verified Rule';
   public static final String COMMISSION_STATUS_RULE = 'Commission Status Rule';
   public static final String BROKER_CONTACT_DETAILS = 'Broker Contact Details';

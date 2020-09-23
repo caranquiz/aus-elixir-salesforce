@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ABN_Effective_From_Warning_Check__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF(AND((genesis__Application__r.CL_Date__c - DATEVALUE(ABN_Effective_From__c))/365 &gt; 1, (genesis__Application__r.CL_Date__c - DATEVALUE(ABN_Effective_From__c))/365 &lt; 2), AND(Party_Type_Name__c &lt;&gt; &apos;Broker&apos;, Legal_Entity_Type__c &lt;&gt; &apos;Individual&apos;), FALSE)</formula>
+    <label>ABN Effective From Warning Check</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>
