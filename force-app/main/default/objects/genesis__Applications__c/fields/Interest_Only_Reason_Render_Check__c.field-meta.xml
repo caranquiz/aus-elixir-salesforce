@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Interest_Only_Reason_Render_Check__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF(OR(TEXT(Repayment_Type__c) == &apos;Interest Only reverting to Principal and Interest&apos;, TEXT(Repayment_Type__c) == &apos;Interest Only&apos;, TEXT(Repayment_Type__c) == &apos;Prepaid Interest&apos;),  ISPICKVAL(Interest_only_reason__c, &apos;&apos;), FALSE)</formula>
+    <label>Interest Only Reason Render Check</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

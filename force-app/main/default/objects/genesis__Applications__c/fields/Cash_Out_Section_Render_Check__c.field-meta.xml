@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Cash_Out_Section_Render_Check__c</fullName>
+    <externalId>false</externalId>
+    <formula>AND(INCLUDES(ABS_lending_purpose__c, &apos;Refinance - Equity Release&apos;), INCLUDES(Refinance_purpose_list__c, &apos;Refinance - Cash Out&apos;))</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Cash Out Section Render Check</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

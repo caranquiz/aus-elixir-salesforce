@@ -18,7 +18,9 @@ public with sharing class ChecklistDetailsAPI {
         String value;
         Double doubleValue;
         Boolean hasRulePassed;
-        if(criteria.genesis__Field_Type__c == ConstantValues.DOUBLE_CHECK){
+        if(criteria.genesis__Field_Type__c == ConstantValues.DOUBLE_CHECK
+        || criteria.genesis__Field_Type__c == ConstantValues.PERCENT_CHECK
+        || criteria.genesis__Field_Type__c == ConstantValues.CURRENCY_CHECK){
             doubleValue = api.getDoubleValue(objectMap,criteria.genesis__Field_API_Name__c);
             hasRulePassed = this.evaluateBasedOnDoubleMatchingType(doubleValue,criteria.genesis__Matching_Type__c,criteria.genesis__Matching_Value__c);
         }
@@ -58,6 +60,18 @@ public with sharing class ChecklistDetailsAPI {
                 return (matchingOperand1 != matchingOperandFinal2);
                 
             }
+            when '<' {   
+                if(matchingOperand1 == NULL){
+                    return false;
+                }  
+                return (matchingOperand1 < matchingOperandFinal2);
+            }
+            when '>' {   
+                if(matchingOperand1 == NULL){
+                    return false;
+                }  
+                return (matchingOperand1 > matchingOperandFinal2);
+            }
             when else {     
                 return true;
             }
@@ -65,19 +79,23 @@ public with sharing class ChecklistDetailsAPI {
     }
     public Boolean evaluateBasedOnMatchingType(String matchingOperand1, String matchingOperator, String matchingOperand2){
         switch on matchingOperator {
-            when '==' {   
+            when '==' {
+                if(matchingOperand2.equalsIgnoreCase('NULL') && String.isBlank(matchingOperand1)){
+                    return true;
+                } 
                 if(matchingOperand1 == NULL || matchingOperand1 == ''){
                     return false;
                 }
                 return (matchingOperand1 == matchingOperand2);
-                
             }
-            when '!=' { 
+            when '!=' {
+                if(matchingOperand2.equalsIgnoreCase('NULL') && String.isNotBlank(matchingOperand1)){
+                    return true;
+                }
                 if(matchingOperand1 == NULL || matchingOperand1 == ''){
                     return false;
                 }
                 return (matchingOperand1 != matchingOperand2);
-                
             }
             when else {      
                 return true;

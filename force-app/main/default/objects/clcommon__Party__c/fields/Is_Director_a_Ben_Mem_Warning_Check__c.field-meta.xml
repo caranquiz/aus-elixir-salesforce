@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Is_Director_a_Ben_Mem_Warning_Check__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF(OR( Legal_Entity_Type__c == &apos;Trust&apos;, Legal_Entity_Type__c == &apos;Family Trust&apos;, Legal_Entity_Type__c == &apos;SMSF&apos;),IF(ISPICKVAL(Trustee_Type__c, &apos;Corporate&apos;), OR(ISPICKVAL(Is_Director_a_Beneficiary_Member__c, &apos;No&apos;), ISPICKVAL(Is_Director_a_Beneficiary_Member__c, &apos;&apos;)), FALSE), FALSE)</formula>
+    <label>Is Director a Ben/Mem Warning Check</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

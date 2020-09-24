@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Rent_Board_Warning_Check__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF(AND(ISPICKVAL(clcommon__Contact__r.Housing_Status__c, &apos;Renting&apos;), ISPICKVAL(genesis__Application__r.Primary_loan_purpose_list__c, &apos;Investment&apos;), Living_Expense_Section_Render__c == TRUE), OR(Rent_Board_Monthly_Amount__c == 0, Rent_Board_Monthly_Amount__c == null), FALSE)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Rent/Board Warning Check</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

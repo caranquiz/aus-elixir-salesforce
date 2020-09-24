@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Accountant_ABN_Status_Warning_Check__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF(
+OR(ISPICKVAL(Party__r.Document_Type__c, &apos;Alt&apos;),
+AND(Party__r.Legal_Entity_Type__c == &apos;Individual&apos;,
+ISPICKVAL(Document_Type__c, &apos;Alt&apos;),
+Employment_Information__c != NULL)),
+NOT(Accountant_ABN_Status__c == &apos;Active&apos;), FALSE)</formula>
+    <label>Accountant ABN Status Warning Check</label>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

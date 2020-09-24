@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Is_Purchaser_the_Mortgagor_Warning_Check__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF(ISPICKVAL(Contract_Of_Sale__c, &apos;Yes&apos;), OR(ISPICKVAL( Is_Purchaser_the_Mortgagor__c, &apos;No&apos;), ISPICKVAL( Is_Purchaser_the_Mortgagor__c, &apos;&apos;)), FALSE)</formula>
+    <label>Is Purchaser the Mortgagor Warning Check</label>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

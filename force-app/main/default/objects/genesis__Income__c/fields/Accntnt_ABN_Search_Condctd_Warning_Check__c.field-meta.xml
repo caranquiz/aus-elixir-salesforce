@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Accntnt_ABN_Search_Condctd_Warning_Check__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF(
+ OR(
+  ISPICKVAL(Party__r.Document_Type__c, &apos;Alt&apos;),
+   AND(
+    Party__r.Legal_Entity_Type__c == &apos;Individual&apos;,
+    ISPICKVAL(Document_Type__c, &apos;Alt&apos;),
+    Employment_Information__c != NULL
+   )
+  ),
+ OR(
+  ISPICKVAL(Accountant_ABN_Search_Conducted__c, &apos;No&apos;),
+  ISPICKVAL(Accountant_ABN_Search_Conducted__c, &apos;&apos;)
+ ),
+ FALSE
+)</formula>
+    <label>Accntnt ABN Search Condctd Warning Check</label>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>
