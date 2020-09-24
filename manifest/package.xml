@@ -293,6 +293,7 @@
         <members>genesis__Applications__c.Lenders_Mortgage_Insurance_Rule_Check__c</members>
         <members>genesis__Applications__c.Cash_Out_Purpose_Suitable_Rule_Check__c</members>
         <members>genesis__Applications__c.Commission_Mandate_Percentage_Rule_Check__c</members>
+        <members>genesis__Applications__c.RepaymentAmount__c</members>
         <members>genesis__Employment_Information__c.ABN_Status_Suitability_Commentary__c</members>
         <members>genesis__Employment_Information__c.Employment_Duration_suitability_Commenta__c</members>
         <members>genesis__Employment_Information__c.Probation_suitability_Commentary__c</members>
