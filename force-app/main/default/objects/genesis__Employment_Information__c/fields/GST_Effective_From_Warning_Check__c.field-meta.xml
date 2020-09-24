@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>GST_Effective_From_Warning_Check__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF(OR(ISBLANK(Goods_Services_Tax__c), Goods_Services_Tax__c == &apos;Not currently registered for GST&apos;), TRUE, AND((genesis__Application__r.CL_Date__c - DATEVALUE(Goods_Services_Tax__c))/365 &lt; 1, OR(ISPICKVAL(Party__r.Risk_Grade__c, &apos;Prime&apos;), ISPICKVAL(Party__r.Risk_Grade__c, &apos;Near Prime&apos;))))</formula>
+    <label>GST Effective From Warning Check</label>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>
