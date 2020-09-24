@@ -456,6 +456,7 @@
         <members>loan__Loan_Disbursal_Transaction__c.ORDE_Financial_Fees_Total_Amount__c</members>
 
         <!-- Condition, Exception, Warning changes made by Souvik -->
+        <members>genesis__Employment_Information__c.GST_Effective_From_Warning_Check__c</members>
         <members>genesis__Rule__c.Rule_Classification__c</members>
         <members>Checklist_Detail__c.Rule_Classification__c</members>
         <members>Account.Bank_Account_Name__c</members>
