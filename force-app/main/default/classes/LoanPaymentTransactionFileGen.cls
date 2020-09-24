@@ -13,10 +13,6 @@ global with sharing class LoanPaymentTransactionFileGen extends loan.FileGenerat
       [
         SELECT
           Id,
-          loan__Bank_Account__c,
-          loan__Bank_Account__r.loan__Bank_Account_Number__c,
-          loan__Bank_Account__r.BSB_Number__c,
-          Remitter_Name__c,
           User_Financial_Institution_Name__c,
           User_Id__c,
           Name_of_User__c,
@@ -69,7 +65,10 @@ global with sharing class LoanPaymentTransactionFileGen extends loan.FileGenerat
               loan__Cheque_Number__c,
               loan__Transaction_Date__c,
               loan__Loan_Account__c,
-              loan__Loan_Account__r.loan__Borrower_ACH__c
+              loan__Loan_Account__r.loan__Borrower_ACH__c,
+              loan__Loan_Account__r.Warehouse__r.Collection_Bank_Account_Number__c,
+              loan__Loan_Account__r.Warehouse__r.Collection_BSB_Number__c,
+              loan__Loan_Account__r.Warehouse__r.Collection_Bank_Account_Name__c
             FROM loan__Loan_Payment_Transaction__c
             WHERE
               Id IN :ids
@@ -170,64 +169,53 @@ global with sharing class LoanPaymentTransactionFileGen extends loan.FileGenerat
       try {
         loan__Automated_Payment_Configuration__c tempApc = (loan__Automated_Payment_Configuration__c) state.o1;
         loan__Automated_Payment_Configuration__c apc = apcMap.get(tempApc.Id);
-        //Null checks on APC fields
-        if (
-          String.isBlank(apc.Remitter_Name__c)
-        ) {
-          GenericUtility.insertLog(
-            ConstantValues.LPT_FILE_GEN,
-            new CustomException(ConstantValues.REMITTER_NOT_FOUND)
-          );
-          return totalRecords;
-        }
-        if (apc.loan__Bank_Account__c == null) {
-          GenericUtility.insertLog(
-            ConstantValues.LPT_FILE_GEN,
-            new CustomException(ConstantValues.COMPANY_BANK_DETAILS_MISSING)
-          );
-          return totalRecords;
-        }
-        if (
-          String.isBlank(apc.loan__Bank_Account__r.loan__Bank_Account_Number__c)
-        ) {
-          GenericUtility.insertLog(
-            ConstantValues.LPT_FILE_GEN,
-            new CustomException(ConstantValues.COMPANY_BANK_DETAILS_MISSING)
-          );
-          return totalRecords;
-        }
-        if (String.isBlank(apc.loan__Bank_Account__r.BSB_Number__c)) {
-          GenericUtility.insertLog(
-            ConstantValues.LPT_FILE_GEN,
-            new CustomException(ConstantValues.COMPANY_BANK_DETAILS_MISSING)
-          );
-          return totalRecords;
-        }
-        if (String.valueOf(apc.loan__Bank_Account__r.BSB_Number__c).length() != ConstantValues.STANDARD_BSB_LENGTH) {
-          GenericUtility.insertLog(
-            ConstantValues.LPT_FILE_GEN,
-            new CustomException(ConstantValues.WRONG_BSB_PAYEE)
-          );
-          return totalRecords;
-        }
-        if (String.valueOf(apc.loan__Bank_Account__r.loan__Bank_Account_Number__c).length() > ConstantValues.STANDARD_ACCOUNT_NUMBER_LENGTH) {
-          GenericUtility.insertLog(
-            ConstantValues.LPT_FILE_GEN,
-            new CustomException(ConstantValues.WRONG_ACOUNT_NUMBER_PAYEE)
-          );
-          return totalRecords;
-        }
-        
         // Creating a Beneficiary detail object
+        //Sending LPTs and corresponding beneficiary detail object for processing
         BenfDetails benfObj = new BenfDetails();
         benfObj.amtWithholdingTax = 0;
-        benfObj.remitterName = apc.Remitter_Name__c;
-        benfObj.benfBSBNumber = String.valueOf(apc.loan__Bank_Account__r.BSB_Number__c);
-        benfObj.benfAccNumber = String.valueOf(
-          apc.loan__Bank_Account__r.loan__Bank_Account_Number__c
-        );
-        //Sending LPTs and corresponding beneficiary detail object for processing
         for (loan__Loan_Payment_Transaction__c each : lptTxns) {
+          if (
+            String.isBlank(each.loan__Loan_Account__r.Warehouse__r.Collection_Bank_Account_Name__c)
+          ) {
+            GenericUtility.insertLog(
+              ConstantValues.LPT_FILE_GEN,
+              new CustomException(ConstantValues.REMITTER_NOT_FOUND)
+            );
+            return totalRecords;
+          }
+          if (
+            String.isBlank(each.loan__Loan_Account__r.Warehouse__r.Collection_Bank_Account_Number__c)
+          ) {
+            GenericUtility.insertLog(
+              ConstantValues.LPT_FILE_GEN,
+              new CustomException(ConstantValues.COMPANY_BANK_DETAILS_MISSING)
+            );
+            return totalRecords;
+          }
+          if (String.isBlank(each.loan__Loan_Account__r.Warehouse__r.Collection_BSB_Number__c)) {
+            GenericUtility.insertLog(
+              ConstantValues.LPT_FILE_GEN,
+              new CustomException(ConstantValues.COMPANY_BANK_DETAILS_MISSING)
+            );
+            return totalRecords;
+          }
+          if (String.valueOf(each.loan__Loan_Account__r.Warehouse__r.Collection_BSB_Number__c).length() != ConstantValues.STANDARD_BSB_LENGTH) {
+            GenericUtility.insertLog(
+              ConstantValues.LPT_FILE_GEN,
+              new CustomException(ConstantValues.WRONG_BSB_PAYEE)
+            );
+            return totalRecords;
+          }
+          if (String.valueOf(each.loan__Loan_Account__r.Warehouse__r.Collection_Bank_Account_Number__c).length() > ConstantValues.STANDARD_ACCOUNT_NUMBER_LENGTH) {
+            GenericUtility.insertLog(
+              ConstantValues.LPT_FILE_GEN,
+              new CustomException(ConstantValues.WRONG_ACOUNT_NUMBER_PAYEE)
+            );
+            return totalRecords;
+          }
+          benfObj.remitterName = each.loan__Loan_Account__r.Warehouse__r.Collection_Bank_Account_Name__c;
+          benfObj.benfBSBNumber = String.valueOf(each.loan__Loan_Account__r.Warehouse__r.Collection_BSB_Number__c);
+          benfObj.benfAccNumber = String.valueOf(each.loan__Loan_Account__r.Warehouse__r.Collection_Bank_Account_Number__c);
           String entryVal = processScope(each, benfObj);
           if (entryVal != null) {
             totalRecords.add(entryVal);

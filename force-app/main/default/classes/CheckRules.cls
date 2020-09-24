@@ -27,7 +27,8 @@ global with sharing class CheckRules {
             if (applicationId == null) {
                 return (ConstantValues.CHECKRULES_APPLICATION_ID_NULL);
             }
-            applicationRecordId = applicationId.substring(0,applicationId.length()-3);
+            // applicationRecordId = applicationId.substring(0,applicationId.length()-3);
+            applicationRecordId = applicationId;
             //By the name of specific rules are executed
             if(tabName == ConstantValues.LOAN_DETAILS){
                 rulesNameList.add(ConstantValues.CASHOUT_PURPOSE_RULE);

@@ -7,9 +7,7 @@ Last Modified Date : 21/08/2020
 Description : This class query all the Rules and check the Rule Criteria for the Parties/Securities/Income/employment Information.
 ***********************************************************************************************************************************************************/
 public with sharing class ChildChecklistAPI {
-    public ChildChecklistAPI() {
-
-    }
+    public ChildChecklistAPI() {}
     public List<Checklist_Detail__c> processListOfChecklist(List<genesis__Checklist__c> listOfCheckList, Id appId){
         Set<String> types;
         String type;
@@ -244,7 +242,7 @@ public with sharing class ChildChecklistAPI {
                         checklistDetailList.addAll(this.processParties(checklist.genesis__Application__c,checklist,partyList,ruleMap.get(checklist.Id),criteriaRuleMap.get(ruleMap.get(checklist.Id).Id)));
                     }
                     else{
-                        throw new CustomException(ConstantValues.RECORDS_NOT_FOUND);
+                        GenericUtility.insertLog('ChildChecklistAPI', new CustomException(ConstantValues.RECORDS_NOT_FOUND));
                     }
                 }   
                 when 'genesis__income__c' {
@@ -252,7 +250,7 @@ public with sharing class ChildChecklistAPI {
                         checklistDetailList.addAll(this.processIncome(checklist.genesis__Application__c,checklist,incomeList,ruleMap.get(checklist.Id),criteriaRuleMap.get(ruleMap.get(checklist.Id).Id)));
                     }
                     else{
-                        throw new CustomException(ConstantValues.RECORDS_NOT_FOUND);
+                        GenericUtility.insertLog('ChildChecklistAPI', new CustomException(ConstantValues.RECORDS_NOT_FOUND));
                     }
                 }
                 when 'genesis__application_collateral__c' { 
@@ -260,7 +258,7 @@ public with sharing class ChildChecklistAPI {
                         checklistDetailList.addAll(this.processCollateral(checklist.genesis__Application__c,checklist,collateralList,ruleMap.get(checklist.Id),criteriaRuleMap.get(ruleMap.get(checklist.Id).Id)));
                     }
                     else{
-                        throw new CustomException(ConstantValues.RECORDS_NOT_FOUND);
+                        GenericUtility.insertLog('ChildChecklistAPI', new CustomException(ConstantValues.RECORDS_NOT_FOUND));
                     }
                 }
                 when 'genesis__employment_information__c' { 
@@ -268,8 +266,8 @@ public with sharing class ChildChecklistAPI {
                     checklist,empInfoList,ruleMap.get(checklist.Id),
                     criteriaRuleMap.get(ruleMap.get(checklist.Id).Id)));
                 }
-                when else {      
-                    throw new CustomException(ConstantValues.TYPE_NOT_SUPPORTED);
+                when else {
+                    GenericUtility.insertLog('ChildChecklistAPI', new CustomException(ConstantValues.RECORDS_NOT_FOUND));
                 }
             }
         }
