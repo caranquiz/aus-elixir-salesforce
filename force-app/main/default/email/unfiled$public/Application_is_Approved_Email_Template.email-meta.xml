@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>Application is Approved Email Template</name>
+    <style>none</style>
+    <subject>Application has been Formally Approved</subject>
+    <textOnly>Hi User,  This is to notify that the application {!genesis__Applications__c.Name} has been Formally Approved.  Regards. ORDE Financial</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>
