@@ -529,7 +529,6 @@
         <members>genesis__Applications__c.Secondary_Approval_By__c</members>
         <members>genesis__Applications__c.Secondary_Approval_Date__c</members>
         <members>genesis__Applications__c.Age_of_Individual_Applicant</members>
-        <members>genesis__Applications__c.Approval_Level</members>
         <name>CustomField</name>
     </types>
     <types>
