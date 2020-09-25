@@ -1,56 +1,81 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <alerts>
+        <fullName>Application_has_been_Formally_Approved_Email_Alert</fullName>
+        <description>Application has been Formally Approved - Email Alert</description>
+        <protected>false</protected>
+        <recipients>
+            <field>BDM_s_Email_Address__c</field>
+            <type>email</type>
+        </recipients>
+        <recipients>
+            <field>Recommender_s_Email_Address__c</field>
+            <type>email</type>
+        </recipients>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>unfiled$public/Application_is_Approved_Email_Template</template>
+    </alerts>
+    <alerts>
+        <fullName>Application_has_been_Rejected_Email_Alert</fullName>
+        <description>Application has been Rejected - Email Alert</description>
+        <protected>false</protected>
+        <recipients>
+            <field>BDM_s_Email_Address__c</field>
+            <type>email</type>
+        </recipients>
+        <recipients>
+            <field>Recommender_s_Email_Address__c</field>
+            <type>email</type>
+        </recipients>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>unfiled$public/Application_is_Rejected_Email_Template</template>
+    </alerts>
     <fieldUpdates>
-        <fullName>Application_is_un_approved</fullName>
+        <fullName>Deactivate_Is_Approved_field</fullName>
         <field>Is_Approved__c</field>
         <literalValue>0</literalValue>
-        <name>Application is un approved</name>
+        <name>Deactivate Is Approved field</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>Literal</operation>
         <protected>false</protected>
     </fieldUpdates>
     <fieldUpdates>
-        <fullName>Update_Approval_Date</fullName>
+        <fullName>Delete_BDM_s_email_Address</fullName>
+        <field>BDM_s_Email_Address__c</field>
+        <name>Delete BDM&apos;s email Address</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Null</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Is_Approved_made_true_when_Recommended</fullName>
+        <field>Is_Approved__c</field>
+        <literalValue>1</literalValue>
+        <name>Is Approved made true when Recommended</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Approval_Date_in_App</fullName>
         <field>Approval_Date__c</field>
         <formula>$User.loan__Current_Branch_s_System_Date__c</formula>
-        <name>Update Approval Date</name>
+        <name>Update Approval Date in App</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>Formula</operation>
         <protected>false</protected>
     </fieldUpdates>
-    <fieldUpdates>
-        <fullName>Update_is_Approved</fullName>
-        <field>Is_Approved__c</field>
-        <literalValue>1</literalValue>
-        <name>Update is Approved</name>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>Literal</operation>
-        <protected>false</protected>
-    </fieldUpdates>
     <rules>
-        <fullName>Is Approved checkbox updated</fullName>
+        <fullName>Aplication status is Recommended</fullName>
         <actions>
-            <name>Update_Approval_Date</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <actions>
-            <name>Update_is_Approved</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <active>true</active>
-        <criteriaItems>
-            <field>genesis__Applications__c.genesis__Status__c</field>
-            <operation>equals</operation>
-            <value>Formally Approved</value>
-            <value>APPROVED</value>
-        </criteriaItems>
-        <description>Whenever loan status is Approved , is Approved checkbox sets to true</description>
-        <triggerType>onCreateOrTriggeringUpdate</triggerType>
-    </rules>
-    <rules>
-        <fullName>Whenever loan status is Recommended%2C Is Approved checkbox sets to false</fullName>
-        <actions>
-            <name>Application_is_un_approved</name>
+            <name>Is_Approved_made_true_when_Recommended</name>
             <type>FieldUpdate</type>
         </actions>
         <active>true</active>
@@ -58,6 +83,51 @@
             <field>genesis__Applications__c.genesis__Status__c</field>
             <operation>equals</operation>
             <value>Recommended</value>
+        </criteriaItems>
+        <description>When application&apos; status is changed to Recommended - locking of data is enabled</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Application status is changed to Formally Approved</fullName>
+        <actions>
+            <name>Application_has_been_Formally_Approved_Email_Alert</name>
+            <type>Alert</type>
+        </actions>
+        <actions>
+            <name>Update_Approval_Date_in_App</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>genesis__Applications__c.genesis__Status__c</field>
+            <operation>equals</operation>
+            <value>Formally Approved</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Application status is updated to Val Received</fullName>
+        <actions>
+            <name>Application_has_been_Rejected_Email_Alert</name>
+            <type>Alert</type>
+        </actions>
+        <actions>
+            <name>Deactivate_Is_Approved_field</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>Delete_BDM_s_email_Address</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>genesis__Applications__c.genesis__Status__c</field>
+            <operation>equals</operation>
+            <value>Val Received</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>genesis__Applications__c.Recommended_By__c</field>
+            <operation>equals</operation>
         </criteriaItems>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
