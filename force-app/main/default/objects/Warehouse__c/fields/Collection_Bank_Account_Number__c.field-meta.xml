@@ -3,8 +3,8 @@
     <fullName>Collection_Bank_Account_Number__c</fullName>
     <externalId>false</externalId>
     <label>Collection Bank Account Number</label>
-    <length>11</length>
-    <required>false</required>
+    <length>9</length>
+    <required>true</required>
     <trackTrending>false</trackTrending>
     <type>Text</type>
     <unique>false</unique>
