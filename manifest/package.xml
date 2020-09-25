@@ -443,6 +443,9 @@
         <!-- Return File Processing made by Pratik -->
         <members>loan__Repayment_Transaction_Adjustment__c.Return_Code__c</members>
         <members>loan__Repayment_Transaction_Adjustment__c.loan__Loan_Payment_Transaction__c</members>
+        <members>Warehouse__c.Collection_Bank_Account_Name__c</members>
+        <members>Warehouse__c.Collection_Bank_Account_Number__c</members>
+        <members>Warehouse__c.Collection_BSB_Number__c</members>
 
         <!-- APS payment mode changes made by Rameswari-->
         <members>genesis__Applications__c.Proposed_repayment_method_list__c</members>
@@ -525,6 +528,8 @@
         <members>genesis__Applications__c.Recommended_By__c</members>
         <members>genesis__Applications__c.Secondary_Approval_By__c</members>
         <members>genesis__Applications__c.Secondary_Approval_Date__c</members>
+        <members>genesis__Applications__c.Age_of_Individual_Applicant</members>
+        <members>genesis__Applications__c.Approval_Level</members>
         <name>CustomField</name>
     </types>
     <types>
