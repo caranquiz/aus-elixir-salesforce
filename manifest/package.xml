@@ -531,6 +531,20 @@
         <members>genesis__Applications__c.Secondary_Approval_By__c</members>
         <members>genesis__Applications__c.Secondary_Approval_Date__c</members>
         <members>genesis__Applications__c.Age_of_Individual_Applicant</members>
+
+        <!-- Requirement changes by Souvik -->
+        <members>genesis__Applications__c.Loan_Assesment_Commentary_Loan_Details__c</members>
+        <members>genesis__Applications__c.Loan_Assesment_Commentary_Settlement__c</members>
+        <members>genesis__Applications__c.Loan_Assesment_Commentary_Pricing__c</members>
+        <members>genesis__Applications__c.Loan_Assesment_Commentary_Serviceability__c</members>
+        <members>clcommon__Party__c.Loan_Assesment_Commentary_Asts_Liablts__c</members>
+        <members>clcommon__Party__c.Loan_Assesment_Commentary_Contact_Detail__c</members>
+        <members>clcommon__Party__c.Loan_Assesment_Commentary_Credit_History__c</members>
+        <members>clcommon__Party__c.Loan_Assesment_Commentary_Emp_Income_D__c</members>
+        <members>clcommon__Party__c.Loan_Assesment_Commentary_Identification__c</members>
+        <members>clcommon__Party__c.Loan_Assesment_Commentary_Income__c</members>
+        <members>clcommon__Party__c.Loan_Assesment_Commentary_Living_Expense__c</members>
+        
         <name>CustomField</name>
     </types>
     <types>
