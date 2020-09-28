@@ -97,6 +97,36 @@ public with sharing class ChecklistDetailsAPI {
                 }
                 return (matchingOperand1 != matchingOperand2);
             }
+            when 'IN' {
+                if(matchingOperand2.equalsIgnoreCase('NULL') && String.isBlank(matchingOperand1)){
+                    return true;
+                } 
+                if(matchingOperand1 == NULL || matchingOperand1 == ''){
+                    return false;
+                }
+                List<String> values = matchingOperand2.split(',');
+                for(String each : values){
+                    if(matchingOperand1.equals(each)){
+                        return true;
+                    }
+                }
+                return false;
+            }
+            when 'NOT IN' {
+                if(matchingOperand2.equalsIgnoreCase('NULL') && String.isBlank(matchingOperand1)){
+                    return false;
+                } 
+                if(matchingOperand1 == NULL || matchingOperand1 == ''){
+                    return false;
+                }
+                List<String> values = matchingOperand2.split(',');
+                for(String each : values){
+                    if(matchingOperand1.equals(each)){
+                        return false;
+                    }
+                }
+                return true;
+            }
             when else {      
                 return true;
             }

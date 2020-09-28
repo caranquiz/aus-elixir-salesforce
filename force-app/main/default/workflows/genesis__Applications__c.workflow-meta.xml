@@ -54,6 +54,15 @@
         <protected>false</protected>
     </fieldUpdates>
     <fieldUpdates>
+        <fullName>Interest_Only_Period_Update</fullName>
+        <field>genesis__Interest_Only_Period__c</field>
+        <formula>(genesis__Term__c - 1)</formula>
+        <name>Interest Only Period Update</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
         <fullName>Is_Approved_made_true_when_Recommended</fullName>
         <field>Is_Approved__c</field>
         <literalValue>1</literalValue>
@@ -186,5 +195,19 @@
             <value>Recommended</value>
         </criteriaItems>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Interest Only Period AutoFill</fullName>
+        <actions>
+            <name>Interest_Only_Period_Update</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>genesis__Applications__c.Repayment_Type__c</field>
+            <operation>equals</operation>
+            <value>Interest Only</value>
+        </criteriaItems>
+        <triggerType>onAllChanges</triggerType>
     </rules>
 </Workflow>
