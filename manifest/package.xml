@@ -615,6 +615,7 @@
         <members>loan__Bank_Account__c.Length_of_BSB_Number</members>
         <members>loan__Bank_Account__c.Bank_Account_Name_Length</members>
         <members>Account.Bank_Account_Name_Length</members>
+        <members>genesis__Applications__c.Status_change_control</members>
         <name>ValidationRule</name>
     </types>
     <types>
@@ -639,9 +640,12 @@
     <types>
         <members>clcommon__Address__c.Autocapitalise Country</members>
         <!-- Approval mechanism changes by Rameswari -->
+        <members>genesis__Applications__c.Aplication is declined or cancelled</members>
         <members>genesis__Applications__c.Aplication status is Recommended</members>
         <members>genesis__Applications__c.Application status is changed to Formally Approved</members>
         <members>genesis__Applications__c.Application status is updated to Val Received</members>
+        <members>genesis__Applications__c.Is Approved checkbox updated</members>
+        <members>genesis__Applications__c.Whenever loan status is Recommended%2C Is Approved checkbox sets to false</members>
         <name>WorkflowRule</name>
     </types>
     <types>
@@ -651,6 +655,7 @@
         <members>genesis__Applications__c.Delete_BDM_s_email_Address</members>
         <members>genesis__Applications__c.Is_Approved_made_true_when_Recommended</members>
         <members>genesis__Applications__c.Update_Approval_Date_in_App</members>
+        <members>genesis__Applications__c.Unlock_data</members>
         <name>WorkflowFieldUpdate</name>
     </types>
     <types>
