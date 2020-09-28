@@ -87,6 +87,7 @@
         <name>ApexClass</name>
     </types>
     <types>
+        <members>genesis__Income__c.Unemployed_Income_Type__c</members>
         <!-- Rendering Changes made by Souvik -->
         <members>Contact.Exit_Strategy_Commentary__c</members>
         <members>Contact.Exit_Strategy_Provided__c</members>
@@ -504,6 +505,7 @@
         <members>genesis__Applications__c.Fixed_Rate_Lock_In_Date_Warning_Check__c</members>
         <members>genesis__Applications__c.Interest_Only_Reason_Render_Check__c</members>
         <members>genesis__Applications__c.Matrix_Rate_Exception_Check__c</members>
+        <members>genesis__Checklist__c.Applicant__c</members>
         <members>genesis__Checklist__c.Exception_Approver__c</members>
         <members>genesis__Checklist__c.Exception_Commentary__c</members>
         <members>genesis__Checklist__c.Exception_Recommender__c</members>

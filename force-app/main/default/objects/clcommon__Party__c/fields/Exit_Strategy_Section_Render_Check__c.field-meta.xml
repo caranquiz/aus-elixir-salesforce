@@ -2,8 +2,7 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Exit_Strategy_Section_Render_Check__c</fullName>
     <externalId>false</externalId>
-    <formula>((genesis__Application__r.CL_Date__c -  clcommon__Contact__r.Birthdate)/365) &gt; 45</formula>
-    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <formula>IF( Legal_Entity_Type__c == &apos;Individual&apos;, ((genesis__Application__r.CL_Date__c - clcommon__Contact__r.Birthdate)/365) &gt; 45, FALSE)</formula>
     <label>Exit Strategy Section Render Check</label>
     <trackHistory>false</trackHistory>
     <trackTrending>false</trackTrending>
