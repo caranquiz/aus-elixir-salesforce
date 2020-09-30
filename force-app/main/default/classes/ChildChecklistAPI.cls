@@ -20,7 +20,7 @@ public with sharing class ChildChecklistAPI {
         List <genesis__Rule__c> ruleList = new List<genesis__Rule__c>();
         Map <Id,genesis__Rule__c> ruleMap = new Map <Id,genesis__Rule__c>();
         Map <Id,List<genesis__RuleCriteria__c>> criteriaRuleMap = new Map <Id,List<genesis__RuleCriteria__c>>();
-        if(!(listOfCheckList != NULL && listOfCheckList.size() > 0)){
+        if(!(listOfCheckList != null && listOfCheckList.size() > 0)){
             throw new CustomException(ConstantValues.EMPTY_CHECKLIST);
         }
         for (genesis__Checklist__c eachChecklist : listOfCheckList) {
@@ -31,22 +31,22 @@ public with sharing class ChildChecklistAPI {
         if(!(ruleIds != NULL && ruleIds.size() > 0)){
             throw new CustomException(ConstantValues.NO_RULE_FOUND);
         }
-        ruleList = [Select Id,
-                            genesis__Message_failure__c,
-                            Name,
-                            genesis__Evaluation_Expression__c
-                            from genesis__Rule__c where Id =: ruleIds];
-        
-        criteriaList = [select Id, 
-                                Name, genesis__Criteria_Sequence__c,
-                                genesis__Related_Object__c,
-                                genesis__Field_API_Name__c,
-                                genesis__Matching_Type__c,
-                                genesis__Matching_Value__c,
-                                genesis__Field_Type__c,
-                                genesis__Rule__c
-                                from genesis__RuleCriteria__c
-                                where genesis__Rule__c=:ruleIds order by genesis__Criteria_Sequence__c];
+        ruleList = [SELECT Id,
+                    genesis__Message_failure__c,
+                    Name,
+                    genesis__Evaluation_Expression__c
+                    FROM genesis__Rule__c WHERE Id =: ruleIds];
+
+        criteriaList = [SELECT Id, 
+                        Name, genesis__Criteria_Sequence__c,
+                        genesis__Related_Object__c,
+                        genesis__Field_API_Name__c,
+                        genesis__Matching_Type__c,
+                        genesis__Matching_Value__c,
+                        genesis__Field_Type__c,
+                        genesis__Rule__c
+                        FROM genesis__RuleCriteria__c
+                        WHERE genesis__Rule__c=:ruleIds ORDER BY genesis__Criteria_Sequence__c];
                                 
         if(!(criteriaList != NULL && criteriaList.size() > 0)){
             throw new CustomException(ConstantValues.RULE_CRITERIA_NOT_FOUND);
@@ -78,7 +78,7 @@ public with sharing class ChildChecklistAPI {
             criteriaRuleMap.put(eachRule.Id,intermediateList);
             intermediateList = new List<genesis__RuleCriteria__c>();
         }
-        List<clcommon__Party__c> partyList = [select id,
+        List<clcommon__Party__c> partyList = [SELECT Id,
                                                 clcommon__Contact__c,
                                                 clcommon__Contact__r.Temporary_Visa_Suitability__c,
                                                 clcommon__Contact__r.Temporary_Visa_Suitability_Rule_Check__c,
@@ -153,87 +153,97 @@ public with sharing class ChildChecklistAPI {
                                                 Gift_Stat_Dec_Received_Condition_Check__c,
                                                 Rental_Income_Verified_Warning_Check__c,
                                                 Previous_cond_ref_comp_Warning_Check__c,
-                                                Previous_cond_exp_received_Warning_Check__c
-                                                from clcommon__Party__c where genesis__Application__c =:appId];
-    List<genesis__Income__c> incomeList = [select id,
-                                                Party__c,
-                                                Employment_Information__c,
-                                                Employment_Information__r.Party__c,
-                                                Accountant_Call_Suitable__c,
-                                                Accountant_Call_Suitable_Render__c,
-                                                Confirm_letter_prepared_by_accountant__c,
-                                                Confirm_stated_annual_income__c,
-                                                Is_the_accountant_aware_of_any_circumsta__c,
-                                                Income_Consistent_with_Declaration__c,
-                                                Satisfactory_Explanation_Provided__c,
-                                                Self_Employment_Rule_Check__c,
-                                                Income_Consistant_Rule_Check__c,
-                                                Satisfactory_Explanation_Provided_Render__c,
-                                                Employment_Call_Suitable__c,
-                                                Employment_Call_Suitable_Rule_Check__c,
-                                                BAS__c,
-                                                BAS_Render_Check__c,
-                                                Accountant_ABN_Status_Warning_Check__c,
-                                                Accountant_Ph_Num_Verified_Warning_Check__c,
-                                                Accountant_Call_Warning_Check__c,
-                                                Accntnt_ABN_Search_Condctd_Warning_Check__c,
-                                                Income_Verification_Sighted__c,
-                                                PAYG_Income__c,
-                                                Employer_Call_Verified__c,
-                                                Party__r.Legal_Entity_Type__c,
-                                                Unemployed_Income__c,
-                                                Unemployed_Income_Type__c,
-                                                genesis__Amount__c,
-                                                Type_of_Documents_Sighted_Warning_Check__c
-                                                from genesis__Income__c
-                                                where genesis__Application__c =:appId];
-        List<genesis__Application_Collateral__c> collateralList = [select id,
-                                                                    genesis__Collateral__r.Check_Val_Value_Rule_Check__c,
-                                                                    genesis__Collateral__r.Check_Val_Value_Render__c,
-                                                                    genesis__Collateral__r.Distressed_Asset_Rule_Check__c,
-                                                                    genesis__Collateral__r.Distressed_Asset_Render__c,
-                                                                    genesis__Collateral__r.Licenced_Builder__c,
-                                                                    genesis__Collateral__r.Valuation_Received__c,
-                                                                    genesis__Collateral__r.Valuation_Required__c,
-                                                                    genesis__Collateral__r.Arms_Length_Transaction__c,
-                                                                    genesis__Collateral__r.X110_check__c,
-                                                                    genesis__Collateral__r.Contract_Of_Sale_Warning_Check__c,
-                                                                    Valued_Date_Warning_Check__c,
-                                                                    genesis__Collateral__r.Licenced_REA_Contract_Warning_Check__c,
-                                                                    genesis__Collateral__r.Comparable_Sales_Evident_Warning_Check__c,
-                                                                    genesis__Collateral__r.Valuer_Risk_Gradings_Com_Warning_Check__c,
-                                                                    genesis__Collateral__r.Land_Area_Warning_Check__c,
-                                                                    genesis__Collateral__r.Floor_Area__c,
-                                                                    Estimated_Completion_Date_Warning_Check__c,
-                                                                    genesis__Collateral__r.Arms_Length_Valuer_Com_Warning_Check__c,
-                                                                    genesis__Collateral__r.Licenced_Builder_Warning_Check__c,
-                                                                    genesis__Collateral__r.Is_Purchaser_the_Mortgagor_Warning_Check__c,
-                                                                    genesis__Collateral__r.Replacement_Type__c,
-                                                                    genesis__Collateral__r.Home_Insurance_Certificate_Provided__c,
-                                                                    genesis__Collateral__r.Construction__c,
-                                                                    genesis__Collateral__r.Signed_Contract__c,
-                                                                    genesis__Collateral__r.Fixed_Price_Contract__c,
-                                                                    genesis__Collateral__r.Copy_Builders_Licence_Held__c,
-                                                                    genesis__Collateral__r.Copy_Home_Owners_Warranty_Certificate_He__c,
-                                                                    genesis__Collateral__r.Council_Approval_Held__c,
-                                                                    genesis__Collateral__r.Detailed_Costings_Held__c,
-                                                                    genesis__Collateral__r.QBE_Location__c
-                                                                    from genesis__Application_Collateral__c where genesis__Application__c =:appId];
-        List<genesis__Employment_Information__c> empInfoList = [select id,
-                                                                    Party__c,
-                                                                    Party__r.Id,
-                                                                    Party__r.Risk_Grade__c,
-                                                                    GST_Effective_from_Rule_Check__c,
-                                                                    GST_Suitable__c,
-                                                                    Employer_Phone_Independently_Verified__c,
-                                                                    Previous_Employment__c,
-                                                                    Party__r.Legal_Entity_Type__c,
-                                                                    Employment_Duration__c,
-                                                                    ABN_Effective_From_Warning_Check__c,
-                                                                    RecordType.Name,
-                                                                    GST_Effective_From_Warning_Check__c
-                                                                    from genesis__Employment_Information__c
-                                                                    where genesis__Application__c =:appId];
+                                                Previous_cond_exp_received_Warning_Check__c,
+                                                Director__c,
+                                                Upfront_Payment_Warning_Check__c,
+                                                Trail_Payment_Warning_Check__c
+                                                FROM clcommon__Party__c WHERE genesis__Application__c =:appId];
+    List<genesis__Income__c> incomeList = [SELECT Id,
+                                            Party__c,
+                                            Employment_Information__c,
+                                            Employment_Information__r.Party__c,
+                                            Accountant_Call_Suitable__c,
+                                            Accountant_Call_Suitable_Render__c,
+                                            Confirm_letter_prepared_by_accountant__c,
+                                            Confirm_stated_annual_income__c,
+                                            Is_the_accountant_aware_of_any_circumsta__c,
+                                            Income_Consistent_with_Declaration__c,
+                                            Satisfactory_Explanation_Provided__c,
+                                            Self_Employment_Rule_Check__c,
+                                            Income_Consistant_Rule_Check__c,
+                                            Satisfactory_Explanation_Provided_Render__c,
+                                            Employment_Call_Suitable__c,
+                                            Employment_Call_Suitable_Rule_Check__c,
+                                            BAS__c,
+                                            BAS_Render_Check__c,
+                                            Accountant_ABN_Status_Warning_Check__c,
+                                            Accountant_Ph_Num_Verified_Warning_Check__c,
+                                            Accountant_Call_Warning_Check__c,
+                                            Accntnt_ABN_Search_Condctd_Warning_Check__c,
+                                            Income_Verification_Sighted__c,
+                                            PAYG_Income__c,
+                                            Employer_Call_Verified__c,
+                                            Party__r.Legal_Entity_Type__c,
+                                            Unemployed_Income__c,
+                                            Unemployed_Income_Type__c,
+                                            genesis__Amount__c,
+                                            Type_of_Documents_Sighted_Warning_Check__c,
+                                            Employment_Call_Made__c,
+                                            Document_Type__c,
+                                            Accountant_ABN_Status__c
+                                            FROM genesis__Income__c
+                                            WHERE genesis__Application__c =:appId];
+    List<genesis__Application_Collateral__c> collateralList = [SELECT Id,
+                                                                genesis__Collateral__r.Check_Val_Value_Rule_Check__c,
+                                                                genesis__Collateral__r.Check_Val_Value_Render__c,
+                                                                genesis__Collateral__r.Distressed_Asset_Rule_Check__c,
+                                                                genesis__Collateral__r.Distressed_Asset_Render__c,
+                                                                genesis__Collateral__r.Licenced_Builder__c,
+                                                                genesis__Collateral__r.Valuation_Received__c,
+                                                                genesis__Collateral__r.Valuation_Required__c,
+                                                                genesis__Collateral__r.Arms_Length_Transaction__c,
+                                                                genesis__Collateral__r.X110_check__c,
+                                                                genesis__Collateral__r.Contract_Of_Sale_Warning_Check__c,
+                                                                Valued_Date_Warning_Check__c,
+                                                                genesis__Collateral__r.Licenced_REA_Contract_Warning_Check__c,
+                                                                genesis__Collateral__r.Comparable_Sales_Evident_Warning_Check__c,
+                                                                genesis__Collateral__r.Valuer_Risk_Gradings_Com_Warning_Check__c,
+                                                                genesis__Collateral__r.Land_Area_Warning_Check__c,
+                                                                genesis__Collateral__r.Floor_Area__c,
+                                                                Estimated_Completion_Date_Warning_Check__c,
+                                                                genesis__Collateral__r.Arms_Length_Valuer_Com_Warning_Check__c,
+                                                                genesis__Collateral__r.Licenced_Builder_Warning_Check__c,
+                                                                genesis__Collateral__r.Is_Purchaser_the_Mortgagor_Warning_Check__c,
+                                                                genesis__Collateral__r.Replacement_Type__c,
+                                                                genesis__Collateral__r.Home_Insurance_Certificate_Provided__c,
+                                                                genesis__Collateral__r.Construction__c,
+                                                                genesis__Collateral__r.Signed_Contract__c,
+                                                                genesis__Collateral__r.Fixed_Price_Contract__c,
+                                                                genesis__Collateral__r.Copy_Builders_Licence_Held__c,
+                                                                genesis__Collateral__r.Copy_Home_Owners_Warranty_Certificate_He__c,
+                                                                genesis__Collateral__r.Council_Approval_Held__c,
+                                                                genesis__Collateral__r.Detailed_Costings_Held__c,
+                                                                genesis__Collateral__r.QBE_Location__c
+                                                                FROM genesis__Application_Collateral__c WHERE genesis__Application__c =:appId];
+    List<genesis__Employment_Information__c> empInfoList = [SELECT id,
+                                                            Party__c,
+                                                            Party__r.Id,
+                                                            Party__r.Risk_Grade__c,
+                                                            GST_Effective_from_Rule_Check__c,
+                                                            GST_Suitable__c,
+                                                            Employer_Phone_Independently_Verified__c,
+                                                            Previous_Employment__c,
+                                                            Party__r.Legal_Entity_Type__c,
+                                                            Employment_Duration__c,
+                                                            ABN_Effective_From_Warning_Check__c,
+                                                            RecordType.Name,
+                                                            GST_Effective_From_Warning_Check__c,
+                                                            Document_Type__c,
+                                                            Override__c,
+                                                            ABN_Status__c,
+                                                            RecordType.DeveloperName
+                                                            FROM genesis__Employment_Information__c
+                                                            WHERE genesis__Application__c =:appId];
         for (genesis__Checklist__c checklist : listOfCheckList) {
             type = checklistMap.get(checklist.Id);
             switch on type {

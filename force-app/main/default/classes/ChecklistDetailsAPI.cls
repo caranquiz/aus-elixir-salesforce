@@ -7,8 +7,7 @@ Last Modified Date : 21/08/2020
 Description : This class query all the Rules and check the Rule Criteria for the Parties/Securities/Income/employment Information.
 ***********************************************************************************************************************************************************/
 public with sharing class ChecklistDetailsAPI {
-    public ChecklistDetailsAPI() {
-    }
+    public ChecklistDetailsAPI() {}
 
 //Started Bulkification
 
