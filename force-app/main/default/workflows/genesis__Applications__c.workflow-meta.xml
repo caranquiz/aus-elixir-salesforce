@@ -164,6 +164,20 @@
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
     <rules>
+        <fullName>Interest Only Period AutoFill</fullName>
+        <actions>
+            <name>Interest_Only_Period_Update</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>genesis__Applications__c.Repayment_Type__c</field>
+            <operation>equals</operation>
+            <value>Interest Only</value>
+        </criteriaItems>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
         <fullName>Is Approved checkbox updated</fullName>
         <actions>
             <name>Update_Approval_Date</name>
@@ -195,19 +209,5 @@
             <value>Recommended</value>
         </criteriaItems>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
-    </rules>
-    <rules>
-        <fullName>Interest Only Period AutoFill</fullName>
-        <actions>
-            <name>Interest_Only_Period_Update</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <active>true</active>
-        <criteriaItems>
-            <field>genesis__Applications__c.Repayment_Type__c</field>
-            <operation>equals</operation>
-            <value>Interest Only</value>
-        </criteriaItems>
-        <triggerType>onAllChanges</triggerType>
     </rules>
 </Workflow>

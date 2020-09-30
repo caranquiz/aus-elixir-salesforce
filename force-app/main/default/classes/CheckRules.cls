@@ -94,7 +94,9 @@ global with sharing class CheckRules {
                 rulesNameList.add('Valuation Received Exception');
                 rulesNameList.add('Licenced Builder Exception');
                 rulesNameList.add('ABN Status Exception');
+                rulesNameList.add('Override Employment Exception');
                 rulesNameList.add('BAS % Exception');
+                rulesNameList.add('Employment Call Made Exception');
                 rulesNameList.add('Broker Documents Warning');
                 rulesNameList.add('Politically Exposed Person Warning');
                 rulesNameList.add('KYC/AML Verified Warning');
@@ -138,7 +140,7 @@ global with sharing class CheckRules {
                 rulesNameList.add('Education and Childcare Warning');
                 rulesNameList.add('Investment Property Warning Check');
                 rulesNameList.add('Rent/Board (post settlement of this facility) Warning');
-                rulesNameList.add('Is Purchaser the Mortgagor Condition Check');
+                rulesNameList.add('Is Purchaser the Mortgagor Condition');
                 rulesNameList.add('Home Insurance Certificate Provide Condition');
                 rulesNameList.add('Home Insurance Certificate Provide and Body Corporate Condition');
                 rulesNameList.add('Home Insurance Certificate Provide and Standard Condition');
@@ -164,6 +166,9 @@ global with sharing class CheckRules {
                 rulesNameList.add('Rental Income Verified Warning');
                 rulesNameList.add('Previous conduct explanation received Warning');
                 rulesNameList.add('Previous conduct referencing completed Warning');
+                // rulesNameList.add('Trail (%) Exception');
+                // rulesNameList.add('Upfront Payment (%) Exception');
+                rulesNameList.add('ABN Status Employment Exception');
             }
             else if(tabName == 'APP_XCEP'){
                 rulesNameList.add('Matrix Rate Exception');
@@ -179,9 +184,9 @@ global with sharing class CheckRules {
                 rulesNameList.add('Cash Out Purpose Explanation Provided Warning');
                 rulesNameList.add('Application Fee Warning');
                 rulesNameList.add('Application Fee % Warning');
+                rulesNameList.add('Does applicant understand English Condition');
                 loanDetailsRiskGradeWarningCheck(applicationId);
                 loanDetailsPrimaryPurposeWarningCheck(applicationId);
-                rulesNameList.add('Does applicant understand English Condition');
             }
             Map<Id,genesis__Rule__c> mapRules = new Map<Id,genesis__Rule__c>([SELECT Id,
                                                                             Name
@@ -218,22 +223,45 @@ global with sharing class CheckRules {
                                                     Commission_Mandate__c,
                                                     Commission_Mandate_Percentage_Rule_Check__c,
                                                     Cash_Out_Purpose_Suitable__c,
-                                                    Cash_Out_Purpose_Suitable_Rule_Check__c
+                                                    Cash_Out_Purpose_Suitable_Rule_Check__c,
+                                                    Rule_Manual_Data__c
                                                     FROM genesis__Applications__c 
                                                     WHERE id = :applicationRecordId
                                                     LIMIT 1];
+            List<clcommon__Party__c> partyList = [SELECT Id, Name, genesis__Application__c,
+                                                    Rule_Manual_Data__c
+                                                    FROM clcommon__Party__c
+                                                    WHERE genesis__Application__c =:applicationRecordId];
+            List<genesis__Application_Collateral__c> appColList = [SELECT Id, Name, genesis__Application__c,
+                                                                    Rule_Manual_Data__c
+                                                                    FROM genesis__Application_Collateral__c
+                                                                    WHERE genesis__Application__c =:applicationRecordId];
+            if(tabName == 'APP_XCEP') {
+                updateRuleDataOnApplcationFromChecklists(application, rulesNameList);
+            } else if(tabName == ConstantValues.REVIEW){
+                updateRuleDataOnPartiesFromChecklistDetails(partyList, rulesNameList);
+                updateRuleDataOnApplicationCollateralsFromChecklistDetails(appColList, rulesNameList);
+            }
             if(Test.isRunningTest() == false){
-                previousChecklistList = [SELECT Id 
-                                            FROM genesis__Checklist__c 
-                                            WHERE genesis__Application__c  =: applicationRecordId
-                                            AND genesis__Rule__r.Name =: rulesNameList];
+                previousChecklistList = [SELECT Id,
+                                        genesis__Application__c,
+                                        genesis__Assessed_Record_Id__c,
+                                        genesis__Is_Archived__c ,
+                                        genesis__Level__c,
+                                        genesis__Message__c,
+                                        genesis__Rule__c,
+                                        genesis__Rule__r.Name,
+                                        genesis__Type__c
+                                        FROM genesis__Checklist__c 
+                                        WHERE genesis__Application__c  =: applicationRecordId
+                                        AND genesis__Rule__r.Name =: rulesNameList];
                 if(previousChecklistList != NULL && previousChecklistList.size() > 0){
                     Database.delete(previousChecklistList);
                 }
                 checkList = genesis.RulesAPI.evaluateRules(application, mapRules.values(), true, true);
             }
             else{
-                checkList = [Select Id,
+                checkList = [SELECT Id,
                                 genesis__Application__c,
                                 genesis__Assessed_Record_Id__c,
                                 genesis__Is_Archived__c ,
@@ -242,12 +270,17 @@ global with sharing class CheckRules {
                                 genesis__Rule__c,
                                 genesis__Rule__r.Name,
                                 genesis__Type__c
-                                From genesis__Checklist__c];
+                                FROM genesis__Checklist__c];
+            }
+            if(tabName == 'APP_XCEP') {
+                updateChecklistsFromRuleDataOnApplication(application, rulesNameList);
             }
             if(tabName != ConstantValues.LOAN_DETAILS && tabName != ConstantValues.SETTLEMENT && tabName != 'APP_XCEP'){
                 ChildChecklistAPI api = new ChildChecklistAPI();
                 List<Checklist_Detail__c> listOfDetail = api.processListOfChecklist(checkList, applicationRecordId);
                 Database.insert(listOfDetail);
+                updateChecklistDetailsFromRuleDataOnParties(partyList, rulesNameList);
+                updateChecklistDetailsFromRuleDataOnApplicationCollaterals(appColList, rulesNameList);
             }
             returnValue = ConstantValues.Success;
         } 
@@ -260,20 +293,20 @@ global with sharing class CheckRules {
     }
     static Boolean isCheckListAccessValid() {
         if (
-          !(Schema.sObjectType.genesis__Checklist__c.fields.id.isAccessible() &&
-          Schema.sObjectType.genesis__Checklist__c.fields.genesis__Application__c.isAccessible() &&
-          Schema.sObjectType.genesis__Checklist__c.fields.genesis__Assessed_Record_Id__c.isAccessible() && 
-          Schema.sObjectType.genesis__Checklist__c.fields.genesis__Is_Archived__c.isAccessible() &&
-          Schema.sObjectType.genesis__Checklist__c.fields.genesis__Level__c.isAccessible() && 
-          Schema.sObjectType.genesis__Checklist__c.fields.genesis__Message__c.isAccessible() &&
-          Schema.sObjectType.genesis__Checklist__c.fields.genesis__Rule__c.isAccessible() &&
-          Schema.sObjectType.genesis__Checklist__c.fields.genesis__Type__c.isAccessible())
-        ) {
-          return false;
+            !(Schema.sObjectType.genesis__Checklist__c.fields.id.isAccessible() &&
+            Schema.sObjectType.genesis__Checklist__c.fields.genesis__Application__c.isAccessible() &&
+            Schema.sObjectType.genesis__Checklist__c.fields.genesis__Assessed_Record_Id__c.isAccessible() && 
+            Schema.sObjectType.genesis__Checklist__c.fields.genesis__Is_Archived__c.isAccessible() &&
+            Schema.sObjectType.genesis__Checklist__c.fields.genesis__Level__c.isAccessible() && 
+            Schema.sObjectType.genesis__Checklist__c.fields.genesis__Message__c.isAccessible() &&
+            Schema.sObjectType.genesis__Checklist__c.fields.genesis__Rule__c.isAccessible() &&
+            Schema.sObjectType.genesis__Checklist__c.fields.genesis__Type__c.isAccessible())
+        ){
+            return false;
         }
         return true;
-      }
-      static Boolean isApplicationAccessValid() {
+    }
+    static Boolean isApplicationAccessValid() {
         if (
           !(Schema.sObjectType.genesis__Applications__c.fields.id.isAccessible() &&
           Schema.sObjectType.genesis__Applications__c.fields.Lenders_Mortgage_Insurance__c.isAccessible() &&
@@ -295,8 +328,8 @@ global with sharing class CheckRules {
           return false;
         }
         return true;
-      }
-      private static void loanDetailsRiskGradeWarningCheck(Id appId){
+    }
+    private static void loanDetailsRiskGradeWarningCheck(Id appId){
         try{
             genesis__Rule__c riskGradeCompRule;
             for(genesis__Rule__c each : ruleList){
@@ -325,7 +358,13 @@ global with sharing class CheckRules {
                                                                 FROM genesis__Checklist__c
                                                                 WHERE genesis__Rule__c =:riskGradeCompRule.Id
                                                                 AND genesis__Application__c =:appId];
-            Database.delete(previousChecklists, false);
+            Id previousChecklistId;
+            if(previousChecklists.isEmpty()){
+                previousChecklistId = null;
+            } else {
+                previousChecklistId = previousChecklists[0].Id;
+            }
+            // Database.delete(previousChecklists, false);
             List<clcommon__Party__c> parties = [SELECT Id,
                                                 Legal_Entity_Type__c,
                                                 Party_Type_Name__c,
@@ -343,26 +382,26 @@ global with sharing class CheckRules {
                 }
             }
             if(lowestRiskGrade == 5){
-                successCheckList(riskGradeCompRule, appId);
+                successCheckList(riskGradeCompRule, appId, previousChecklistId);
                 return;
             }
             else if(String.isBlank(appObj.Risk_grade_list__c)){
-                errorCheckList(riskGradeCompRule, appId);
+                errorCheckList(riskGradeCompRule, appId, previousChecklistId);
                 return;
             }
             Integer val = riskGradeValued.get(appObj.Risk_grade_list__c);
             if(lowestRiskGrade != val){
-                errorCheckList(riskGradeCompRule, appId);
+                errorCheckList(riskGradeCompRule, appId, previousChecklistId);
             }
             else{
-                successCheckList(riskGradeCompRule, appId);
+                successCheckList(riskGradeCompRule, appId, previousChecklistId);
             }
         }
         catch(Exception ex){
             GenericUtility.insertLog('CheckRules.loanDetailsRiskGradeWarningCheck', ex);
         }
-      }
-      private static void loanDetailsPrimaryPurposeWarningCheck(Id appId){
+    }
+    private static void loanDetailsPrimaryPurposeWarningCheck(Id appId){
         try{
             genesis__Rule__c primPurpCompRule;
             for(genesis__Rule__c each : ruleList){
@@ -381,54 +420,331 @@ global with sharing class CheckRules {
             if(appObj == null){
                 return;
             }
-            List<genesis__Checklist__c> previousChecklists = [SELECT Id
-                                                                FROM genesis__Checklist__c
-                                                                WHERE genesis__Rule__c =:primPurpCompRule.Id
-                                                                AND genesis__Application__c =:appId];
-            Database.delete(previousChecklists, false);
+            List<genesis__Checklist__c> previousChecklist = [SELECT Id, genesis__Rule__c
+                                                        FROM genesis__Checklist__c
+                                                        WHERE genesis__Rule__c =:primPurpCompRule.Id
+                                                        AND genesis__Application__c =:appId];
+            Id previousChecklistId;
+            if(previousChecklist.isEmpty()){
+                previousChecklistId = null;
+            } else {
+                previousChecklistId = previousChecklist[0].Id;
+            }
+            // Database.delete(previousChecklists, false);
             List<genesis__Application_Collateral__c> appCollaterals = [SELECT Id,
                                                                         genesis__Application__c,
                                                                         genesis__Collateral__r.Primary_Purpose__c
                                                                         FROM genesis__Application_Collateral__c
                                                                         WHERE genesis__Application__c =:appId];
+            if(appCollaterals.isEmpty()){
+                return;
+            }
             String prevPrimPurp = appCollaterals[0].genesis__Collateral__r.Primary_Purpose__c;
             for(genesis__Application_Collateral__c each : appCollaterals){
                 if(String.isBlank(each.genesis__Collateral__r.Primary_Purpose__c)){
-                    errorCheckList(primPurpCompRule, appId);
+                    errorCheckList(primPurpCompRule, appId, previousChecklistId);
                     return;
                 }
                 else if(prevPrimPurp != each.genesis__Collateral__r.Primary_Purpose__c){
-                    errorCheckList(primPurpCompRule, appId);
+                    errorCheckList(primPurpCompRule, appId, previousChecklistId);
                     return;
                 }
                 prevPrimPurp = each.genesis__Collateral__r.Primary_Purpose__c;
             }
             if(appObj.Primary_loan_purpose_list__c != prevPrimPurp){
-                errorCheckList(primPurpCompRule, appId);
+                errorCheckList(primPurpCompRule, appId, previousChecklistId);
             }else{
-                successCheckList(primPurpCompRule, appId);
+                successCheckList(primPurpCompRule, appId, previousChecklistId);
             }
         }
         catch(Exception ex){
             GenericUtility.insertLog('CheckRules.loanDetailsPrimaryPurposeWarningCheck', ex);
         }
-      }
-      private static void successCheckList(genesis__Rule__c rule, Id appId){
-        genesis__Checklist__c checklistObj = new genesis__Checklist__c();
+    }
+    private static void successCheckList(genesis__Rule__c rule, Id appId, Id checklistId){
+        genesis__Checklist__c checklistObj;
+        if(String.isBlank(checklistId)){
+            checklistObj = new genesis__Checklist__c();
+        } else {
+            checklistObj = new genesis__Checklist__c(Id = checklistId);
+        }
         checklistObj.genesis__Application__c = appId;
         checklistObj.genesis__Assessed_Record_Id__c = appId;
         checklistObj.genesis__Level__c = 'INFO';
         checklistObj.genesis__Rule__c = rule.Id;
         checklistObj.genesis__Message__c = rule.genesis__Message_success__c;
-        Database.insert(checklistObj);
-      }
-      private static void errorCheckList(genesis__Rule__c rule, Id appId){
-        genesis__Checklist__c checklistObj = new genesis__Checklist__c();
+        Database.upsert(checklistObj);
+    }
+    private static void errorCheckList(genesis__Rule__c rule, Id appId, Id checklistId){
+        genesis__Checklist__c checklistObj;
+        if(String.isBlank(checklistId)){
+            checklistObj = new genesis__Checklist__c();
+        } else {
+            checklistObj = new genesis__Checklist__c(Id = checklistId);
+        }
         checklistObj.genesis__Application__c = appId;
         checklistObj.genesis__Assessed_Record_Id__c = appId;
         checklistObj.genesis__Level__c = 'ERROR';
         checklistObj.genesis__Rule__c = rule.Id;
         checklistObj.genesis__Message__c = rule.genesis__Message_failure__c;
-        Database.insert(checklistObj);
-      }
+        Database.upsert(checklistObj);
+    }
+    
+    public ClassChecklistManualDataMapping[] checklistManualDataMapping;
+	class ClassChecklistManualDataMapping {
+		public String ruleName;	//Matrix Rate Exception
+		public String exceptionRecommender;	//null
+		public String exceptionApprover;	//null
+		public String exceptionCommentary;	//null
+		public String status;	//null
+		public String supportingDocumentVerified;	//null
+		public String waiverReason;	//null
+	}
+    public static void updateRuleDataOnApplcationFromChecklists(genesis__Applications__c appObj, List<String> rulesNameList){
+        // rulesNameList.add('Primary Purpose Warning');
+        // rulesNameList.add('Risk Grade Compare Warning');
+        List<genesis__Checklist__c> checklistList = [SELECT Id, genesis__Rule__r.Name,
+                                                        Exception_Approver__c,
+                                                        Exception_Commentary__c,
+                                                        Exception_Recommender__c,
+                                                        Status__c,
+                                                        Supporting_Documentation__c,
+                                                        Waiver_Reason__c
+                                                        FROM genesis__Checklist__c
+                                                        WHERE genesis__Rule__r.Name IN:rulesNameList
+                                                        AND genesis__Application__c =:appObj.Id];
+        Map<String, genesis__Checklist__c> ruleChecklistMap = new Map<String, genesis__Checklist__c>();
+        String manualData = '{"checklistManualDataMapping":[';
+        Boolean flag = true;
+        for(genesis__Checklist__c each : checklistList){
+            if(flag){
+                flag = false;
+                manualData += '{';
+            }else {
+                manualData += ',{';
+            }
+            manualData += '"ruleName":"' + each.genesis__Rule__r.Name + '",';
+            manualData += '"exceptionRecommender":"' + each.Exception_Recommender__c + '",';
+            manualData += '"exceptionApprover":"' + each.Exception_Approver__c + '",';
+            manualData += '"exceptionCommentary":"' + each.Exception_Commentary__c + '",';
+            manualData += '"status":"' + each.Status__c + '",';
+            manualData += '"supportingDocumentVerified":"' + each.Supporting_Documentation__c + '",';
+            manualData += '"waiverReason":"' + each.Waiver_Reason__c + '"';
+            manualData += '}';
+        }
+        manualData += ']}';
+        appObj.Rule_Manual_Data__c = manualData;
+        Database.update(appObj);
+    }
+    public static void updateChecklistsFromRuleDataOnApplication(genesis__Applications__c appObj, List<String> rulesNameList){
+        String ruleManualData = appObj.Rule_Manual_Data__c;
+        CheckRules checkRulesObj = (CheckRules) System.JSON.deserialize(ruleManualData, CheckRules.class);
+        ClassChecklistManualDataMapping[] checklistManualDataList = checkRulesObj.checklistManualDataMapping;
+        List<genesis__Checklist__c> checklistList = [SELECT Id, genesis__Rule__r.Name
+                                                        FROM genesis__Checklist__c
+                                                        WHERE genesis__Rule__r.Name IN:rulesNameList
+                                                        AND genesis__Application__c =:appObj.Id];
+        Map<String, Id> ruleChecklistMap = new Map<String, Id>();
+        for(genesis__Checklist__c each : checklistList){
+            ruleChecklistMap.put(each.genesis__Rule__r.Name, each.Id);
+        }
+        List<genesis__Checklist__c> updatedChecklists = new List<genesis__Checklist__c>();
+        for(ClassChecklistManualDataMapping each : checklistManualDataList){
+            if(String.isNotBlank(each.ruleName) && ruleChecklistMap.containsKey(each.ruleName)){
+                if(!ruleChecklistMap.containsKey(each.ruleName)){
+                    continue;
+                }
+                genesis__Checklist__c checklistObj = new genesis__Checklist__c(Id = ruleChecklistMap.get(each.ruleName));
+                if(String.isNotBlank(each.exceptionRecommender) && !(each.exceptionRecommender).equalsIgnoreCase('null')){
+                    checklistObj.Exception_Recommender__c = each.exceptionRecommender;
+                } if(String.isNotBlank(each.exceptionApprover) && !(each.exceptionApprover).equalsIgnoreCase('null')){
+                    checklistObj.Exception_Approver__c = each.exceptionApprover;
+                } if(String.isNotBlank(each.exceptionCommentary) && !(each.exceptionCommentary).equalsIgnoreCase('null')){
+                    checklistObj.Exception_Commentary__c = each.exceptionCommentary;
+                } if(String.isNotBlank(each.status) && !(each.status).equalsIgnoreCase('null')){
+                    checklistObj.Status__c = each.status;
+                } if(String.isNotBlank(each.supportingDocumentVerified) && !(each.supportingDocumentVerified).equalsIgnoreCase('null')){
+                    checklistObj.Supporting_Documentation__c = each.supportingDocumentVerified;
+                } if(String.isNotBlank(each.waiverReason) && !(each.waiverReason).equalsIgnoreCase('null')){
+                    checklistObj.Waiver_Reason__c = each.waiverReason;
+                }
+                updatedChecklists.add(checklistObj);
+            }
+        }
+        Database.update(updatedChecklists, false);
+    }
+    public static void updateRuleDataOnPartiesFromChecklistDetails(List<clcommon__Party__c> partyList, List<String> rulesNameList){
+        List<Id> partyIds = new List<Id>();
+        for(clcommon__Party__c each : partyList){
+            partyIds.add(each.Id);
+        }
+        Map<String, List<Checklist_Detail__c>> partyChecklistDetailsMap = new Map<String, List<Checklist_Detail__c>>();
+        List<Checklist_Detail__c> checklistDetailList = [SELECT Id, Party__c, Party__r.Name,
+                                                            Checklist__r.genesis__Rule__r.Name,
+                                                            Exception_Approver__c,
+                                                            Exception_Commentary__c,
+                                                            Exception_Recommender__c,
+                                                            Condition_Status__c,
+                                                            Supporting_Document_Verified__c,
+                                                            Waiver_Reason__c
+                                                            FROM Checklist_Detail__c
+                                                            WHERE Party__c IN:partyIds
+                                                            AND Checklist__r.genesis__Rule__r.Name IN:rulesNameList];
+        for(Checklist_Detail__c each : checklistDetailList){
+            List<Checklist_Detail__c> checklistDetails = partyChecklistDetailsMap.get(each.Party__r.Name);
+            if(checklistDetails == null){
+                checklistDetails = new List<Checklist_Detail__c>();
+            }
+            checklistDetails.add(each);
+            partyChecklistDetailsMap.put(each.Party__r.Name, checklistDetails);
+        }
+        updateRuleDataOnSObjectsFromChecklistDetails(partyList, partyChecklistDetailsMap);
+    }
+    public static void updateRuleDataOnApplicationCollateralsFromChecklistDetails(List<genesis__Application_Collateral__c> appColList, List<String> rulesNameList){
+        List<Id> appColIds = new List<Id>();
+        for(genesis__Application_Collateral__c each : appColList){
+            appColIds.add(each.Id);
+        }
+        Map<String, List<Checklist_Detail__c>> appColChecklistDetailsMap = new Map<String, List<Checklist_Detail__c>>();
+        List<Checklist_Detail__c> checklistDetailList = [SELECT Id, Application_Collateral__c,
+                                                            Application_Collateral__r.Name,
+                                                            Checklist__r.genesis__Rule__r.Name,
+                                                            Exception_Approver__c,
+                                                            Exception_Commentary__c,
+                                                            Exception_Recommender__c,
+                                                            Condition_Status__c,
+                                                            Supporting_Document_Verified__c,
+                                                            Waiver_Reason__c
+                                                            FROM Checklist_Detail__c
+                                                            WHERE Application_Collateral__c IN:appColIds
+                                                            AND Checklist__r.genesis__Rule__r.Name IN:rulesNameList];
+        for(Checklist_Detail__c each : checklistDetailList){
+            List<Checklist_Detail__c> checklistDetails = appColChecklistDetailsMap.get(each.Application_Collateral__r.Name);
+            if(checklistDetails == null){
+                checklistDetails = new List<Checklist_Detail__c>();
+            }
+            checklistDetails.add(each);
+            appColChecklistDetailsMap.put(each.Application_Collateral__r.Name, checklistDetails);
+        }
+        updateRuleDataOnSObjectsFromChecklistDetails(appColList, appColChecklistDetailsMap);
+    }
+    private static void updateRuleDataOnSObjectsFromChecklistDetails(List<SObject> sobjectList, Map<String, List<Checklist_Detail__c>> sobjectChecklistDetailsMap){
+        List<SObject> updatedSObjects = new List<SObject>();
+        for(SObject each : sobjectList){
+            List<Checklist_Detail__c> checklistDetails = sobjectChecklistDetailsMap.get((String) each.get('Name'));
+            String manualData = '{"checklistManualDataMapping":[';
+            Boolean flag = true;
+            for(Checklist_Detail__c each2 : checklistDetails){
+                if(flag){
+                    flag = false;
+                    manualData += '{';
+                }else {
+                    manualData += ',{';
+                }
+                manualData += '"ruleName":"' + each2.Checklist__r.genesis__Rule__r.Name + '",';
+                manualData += '"exceptionRecommender":"' + each2.Exception_Recommender__c + '",';
+                manualData += '"exceptionApprover":"' + each2.Exception_Approver__c + '",';
+                manualData += '"exceptionCommentary":"' + each2.Exception_Commentary__c + '",';
+                manualData += '"status":"' + each2.Condition_Status__c + '",';
+                manualData += '"supportingDocumentVerified":"' + each2.Supporting_Document_Verified__c + '",';
+                manualData += '"waiverReason":"' + each2.Waiver_Reason__c + '"';
+                manualData += '}';
+            }
+            manualData += ']}';
+            each.put('Rule_Manual_Data__c', manualData);
+            updatedSObjects.add(each);
+        }
+        Database.update(updatedSObjects, false);
+    }
+
+    public static void updateChecklistDetailsFromRuleDataOnParties(List<clcommon__Party__c> partyList, List<String> rulesNameList){
+        List<Id> partyIds = new List<Id>();
+        for(clcommon__Party__c each : partyList){
+            partyIds.add(each.Id);
+        }
+        Map<String, List<Checklist_Detail__c>> partyChecklistDetailsMap = new Map<String, List<Checklist_Detail__c>>();
+        List<Checklist_Detail__c> checklistDetailList = [SELECT Id, Party__c, Party__r.Name,
+                                                            Checklist__r.genesis__Rule__r.Name,
+                                                            Exception_Approver__c,
+                                                            Exception_Commentary__c,
+                                                            Exception_Recommender__c,
+                                                            Condition_Status__c,
+                                                            Supporting_Document_Verified__c,
+                                                            Waiver_Reason__c
+                                                            FROM Checklist_Detail__c
+                                                            WHERE Party__c IN:partyIds
+                                                            AND Checklist__r.genesis__Rule__r.Name IN:rulesNameList];
+        updateChecklistDetailsFromRuleDataOnRelatedObjects(partyList, checklistDetailList, 'Party');
+    }
+    public static void updateChecklistDetailsFromRuleDataOnApplicationCollaterals(List<genesis__Application_Collateral__c> appColList, List<String> rulesNameList){
+        List<Id> appColIds = new List<Id>();
+        for(genesis__Application_Collateral__c each : appColList){
+            appColIds.add(each.Id);
+        }
+        Map<String, List<Checklist_Detail__c>> partyChecklistDetailsMap = new Map<String, List<Checklist_Detail__c>>();
+        List<Checklist_Detail__c> checklistDetailList = [SELECT Id, Application_Collateral__c,
+                                                            Application_Collateral__r.Name,
+                                                            Checklist__r.genesis__Rule__r.Name,
+                                                            Exception_Approver__c,
+                                                            Exception_Commentary__c,
+                                                            Exception_Recommender__c,
+                                                            Condition_Status__c,
+                                                            Supporting_Document_Verified__c,
+                                                            Waiver_Reason__c
+                                                            FROM Checklist_Detail__c
+                                                            WHERE Application_Collateral__c IN:appColIds
+                                                            AND Checklist__r.genesis__Rule__r.Name IN:rulesNameList];
+        updateChecklistDetailsFromRuleDataOnRelatedObjects(appColList, checklistDetailList, 'Application_Collateral');
+    }
+    private static void updateChecklistDetailsFromRuleDataOnRelatedObjects(List<SObject> objectList, List<Checklist_Detail__c> checklistDetailList, String sObjectType){
+        Map<String, Map<String, Id>> partyRuleChecklistDetailsMapMap = new Map<String, Map<String, Id>>();
+        for(Checklist_Detail__c each : checklistDetailList){
+            Map<String, Id> ruleChecklistDetailsMap;
+            if(sObjectType == 'Party'){
+                ruleChecklistDetailsMap = partyRuleChecklistDetailsMapMap.get(each.Party__r.Name);
+            } else if (sObjectType == 'Application_Collateral'){
+                ruleChecklistDetailsMap = partyRuleChecklistDetailsMapMap.get(each.Application_Collateral__r.Name);
+            } else {
+                continue;
+            }
+            if(ruleChecklistDetailsMap == null){
+                ruleChecklistDetailsMap = new Map<String, Id>();
+            }
+            ruleChecklistDetailsMap.put(each.Checklist__r.genesis__Rule__r.Name, each.Id);
+            if(sObjectType == 'Party'){
+                ruleChecklistDetailsMap = partyRuleChecklistDetailsMapMap.put(each.Party__r.Name, ruleChecklistDetailsMap);
+            } else if (sObjectType == 'Application_Collateral'){
+                ruleChecklistDetailsMap = partyRuleChecklistDetailsMapMap.put(each.Application_Collateral__r.Name, ruleChecklistDetailsMap);
+            } else {
+                continue;
+            }
+        }
+        List<Checklist_Detail__c> updatedChecklists = new List<Checklist_Detail__c>();
+        for(SObject each : objectList){
+            String ruleManualData = (String) each.get('Rule_Manual_Data__c');
+            CheckRules checkRulesObj = (CheckRules) System.JSON.deserialize(ruleManualData, CheckRules.class);
+            ClassChecklistManualDataMapping[] checklistManualDataList = checkRulesObj.checklistManualDataMapping;
+            Map<String, Id> ruleChecklistMap = partyRuleChecklistDetailsMapMap.get((String) each.get('Name'));
+            for(ClassChecklistManualDataMapping each2 : checklistManualDataList){
+                if(String.isNotBlank(each2.ruleName) && ruleChecklistMap.containsKey(each2.ruleName)){
+                    Checklist_Detail__c checklistObj = new Checklist_Detail__c(Id = ruleChecklistMap.get(each2.ruleName));
+                    if(String.isNotBlank(each2.exceptionRecommender) && !(each2.exceptionRecommender).equalsIgnoreCase('null')){
+                        checklistObj.Exception_Recommender__c = each2.exceptionRecommender;
+                    } if(String.isNotBlank(each2.exceptionApprover) && !(each2.exceptionApprover).equalsIgnoreCase('null')){
+                        checklistObj.Exception_Approver__c = each2.exceptionApprover;
+                    } if(String.isNotBlank(each2.exceptionCommentary) && !(each2.exceptionCommentary).equalsIgnoreCase('null')){
+                        checklistObj.Exception_Commentary__c = each2.exceptionCommentary;
+                    } if(String.isNotBlank(each2.status) && !(each2.status).equalsIgnoreCase('null')){
+                        checklistObj.Condition_Status__c = each2.status;
+                    } if(String.isNotBlank(each2.supportingDocumentVerified) && !(each2.supportingDocumentVerified).equalsIgnoreCase('null')){
+                        checklistObj.Supporting_Document_Verified__c = each2.supportingDocumentVerified;
+                    } if(String.isNotBlank(each2.waiverReason) && !(each2.waiverReason).equalsIgnoreCase('null')){
+                        checklistObj.Waiver_Reason__c = each2.waiverReason;
+                    }
+                    updatedChecklists.add(checklistObj);
+                }
+            }
+        }
+        Database.update(updatedChecklists, false);
+    }
 }
