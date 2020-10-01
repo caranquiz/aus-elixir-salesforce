@@ -543,6 +543,8 @@
         <members>genesis__Applications__c.Secondary_Approval_By__c</members>
         <members>genesis__Applications__c.Secondary_Approval_Date__c</members>
         <members>genesis__Applications__c.Age_of_Individual_Applicant</members>
+        <members>clcommon__Reviewer__c.Minimum_Individual_Limit__c</members>
+        <members>clcommon__Reviewer__c.Maximum_Individual_Limit__c</members>
 
         <!-- Requirement changes by Souvik -->
         <members>genesis__Applications__c.Loan_Assesment_Commentary_Loan_Details__c</members>

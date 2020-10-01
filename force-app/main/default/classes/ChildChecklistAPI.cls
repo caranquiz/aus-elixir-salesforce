@@ -82,6 +82,7 @@ public with sharing class ChildChecklistAPI {
                                                 clcommon__Contact__c,
                                                 clcommon__Contact__r.Temporary_Visa_Suitability__c,
                                                 clcommon__Contact__r.Temporary_Visa_Suitability_Rule_Check__c,
+                                                clcommon__Contact__r.Age_of_Applicant__c,
                                                 Company_ABN_Status__c,
                                                 ABN_Status_Explanation_Suitable__c,
                                                 ABN_Status_Explanation_Suitable_Rule__c,
