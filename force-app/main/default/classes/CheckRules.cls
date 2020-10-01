@@ -16,6 +16,11 @@ global with sharing class CheckRules {
                                                         WHERE genesis__Enabled__c = true
                                                         AND (Name = 'Risk Grade Compare Warning'
                                                         OR Name = 'Primary Purpose Warning')];
+    private static String applicationManualData;
+    private static Map<String, String> sObjectNameManualDataMap = new Map<String, String>();
+
+    private static String testing = '';
+
     webService static String callCheckRulesWS(String applicationId, String tabName) {
         String returnValue = '';
         String applicationRecordId;
@@ -88,6 +93,8 @@ global with sharing class CheckRules {
                 rulesNameList.add(ConstantValues.PREVIOUS_CONDUCT_SUITABLE);
             }
             else if(tabName == ConstantValues.REVIEW){
+                // rulesNameList.add('Trail (%) Exception');
+                // rulesNameList.add('Upfront Payment (%) Exception');
                 rulesNameList.add('Arms Length Valuer Commentary Exception');
                 rulesNameList.add('110% Check Exception');
                 rulesNameList.add('Valuation Required Exception');
@@ -133,7 +140,7 @@ global with sharing class CheckRules {
                 rulesNameList.add('Employer Phone Independently Verified Warning');
                 rulesNameList.add('Income Verification Sighted Warning');
                 rulesNameList.add('Employment Duration (Months) Warning');
-                rulesNameList.add('Employer Verfied Warning');
+                // rulesNameList.add('Employer Verfied Warning');
                 rulesNameList.add('Is Director a Beneficiary / Member Warning');
                 rulesNameList.add('Is Trustee a Beneficiary / Member Warning');
                 rulesNameList.add('Is General Security Agreement Being Taken over this Applicant Warning Check');
@@ -166,8 +173,6 @@ global with sharing class CheckRules {
                 rulesNameList.add('Rental Income Verified Warning');
                 rulesNameList.add('Previous conduct explanation received Warning');
                 rulesNameList.add('Previous conduct referencing completed Warning');
-                // rulesNameList.add('Trail (%) Exception');
-                // rulesNameList.add('Upfront Payment (%) Exception');
                 rulesNameList.add('ABN Status Employment Exception');
             }
             else if(tabName == 'APP_XCEP'){
@@ -187,6 +192,9 @@ global with sharing class CheckRules {
                 rulesNameList.add('Does applicant understand English Condition');
                 loanDetailsRiskGradeWarningCheck(applicationId);
                 loanDetailsPrimaryPurposeWarningCheck(applicationId);
+            }
+            else{
+                return ConstantValues.Success;
             }
             Map<Id,genesis__Rule__c> mapRules = new Map<Id,genesis__Rule__c>([SELECT Id,
                                                                             Name
@@ -279,8 +287,14 @@ global with sharing class CheckRules {
                 ChildChecklistAPI api = new ChildChecklistAPI();
                 List<Checklist_Detail__c> listOfDetail = api.processListOfChecklist(checkList, applicationRecordId);
                 Database.insert(listOfDetail);
-                updateChecklistDetailsFromRuleDataOnParties(partyList, rulesNameList);
-                updateChecklistDetailsFromRuleDataOnApplicationCollaterals(appColList, rulesNameList);
+                List<Checklist_Detail__c> updatedChecklistDetails = new List<Checklist_Detail__c>();
+                updatedChecklistDetails.addAll(updateChecklistDetailsFromRuleDataOnParties(partyList, rulesNameList));
+                updatedChecklistDetails.addAll(updateChecklistDetailsFromRuleDataOnApplicationCollaterals(appColList, rulesNameList));
+                try{
+                    Database.update(updatedChecklistDetails);
+                } catch(Exception ex){
+                    insert new clcommon__Log__c(Name = 'TEST', clcommon__Message__c = testing);
+                }
             }
             returnValue = ConstantValues.Success;
         } 
@@ -492,17 +506,15 @@ global with sharing class CheckRules {
     
     public ClassChecklistManualDataMapping[] checklistManualDataMapping;
 	class ClassChecklistManualDataMapping {
-		public String ruleName;	//Matrix Rate Exception
-		public String exceptionRecommender;	//null
-		public String exceptionApprover;	//null
-		public String exceptionCommentary;	//null
-		public String status;	//null
-		public String supportingDocumentVerified;	//null
-		public String waiverReason;	//null
+		public String ruleName;
+		public String exceptionRecommender;
+		public String exceptionApprover;
+		public String exceptionCommentary;
+		public String status;
+		public String supportingDocumentVerified;
+		public String waiverReason;
 	}
     public static void updateRuleDataOnApplcationFromChecklists(genesis__Applications__c appObj, List<String> rulesNameList){
-        // rulesNameList.add('Primary Purpose Warning');
-        // rulesNameList.add('Risk Grade Compare Warning');
         List<genesis__Checklist__c> checklistList = [SELECT Id, genesis__Rule__r.Name,
                                                         Exception_Approver__c,
                                                         Exception_Commentary__c,
@@ -533,11 +545,13 @@ global with sharing class CheckRules {
             manualData += '}';
         }
         manualData += ']}';
-        appObj.Rule_Manual_Data__c = manualData;
-        Database.update(appObj);
+        applicationManualData = manualData;
     }
     public static void updateChecklistsFromRuleDataOnApplication(genesis__Applications__c appObj, List<String> rulesNameList){
-        String ruleManualData = appObj.Rule_Manual_Data__c;
+        if(String.isBlank(applicationManualData)){
+            return;
+        }
+        String ruleManualData = applicationManualData;
         CheckRules checkRulesObj = (CheckRules) System.JSON.deserialize(ruleManualData, CheckRules.class);
         ClassChecklistManualDataMapping[] checklistManualDataList = checkRulesObj.checklistManualDataMapping;
         List<genesis__Checklist__c> checklistList = [SELECT Id, genesis__Rule__r.Name
@@ -580,6 +594,9 @@ global with sharing class CheckRules {
         }
         Map<String, List<Checklist_Detail__c>> partyChecklistDetailsMap = new Map<String, List<Checklist_Detail__c>>();
         List<Checklist_Detail__c> checklistDetailList = [SELECT Id, Party__c, Party__r.Name,
+                                                            Application_Collateral__c,
+                                                            Employment_Information__c,
+                                                            Income__c,
                                                             Checklist__r.genesis__Rule__r.Name,
                                                             Exception_Approver__c,
                                                             Exception_Commentary__c,
@@ -606,7 +623,10 @@ global with sharing class CheckRules {
             appColIds.add(each.Id);
         }
         Map<String, List<Checklist_Detail__c>> appColChecklistDetailsMap = new Map<String, List<Checklist_Detail__c>>();
-        List<Checklist_Detail__c> checklistDetailList = [SELECT Id, Application_Collateral__c,
+        List<Checklist_Detail__c> checklistDetailList = [SELECT Id, Party__c, Party__r.Name,
+                                                            Application_Collateral__c,
+                                                            Employment_Information__c,
+                                                            Income__c,
                                                             Application_Collateral__r.Name,
                                                             Checklist__r.genesis__Rule__r.Name,
                                                             Exception_Approver__c,
@@ -632,6 +652,9 @@ global with sharing class CheckRules {
         List<SObject> updatedSObjects = new List<SObject>();
         for(SObject each : sobjectList){
             List<Checklist_Detail__c> checklistDetails = sobjectChecklistDetailsMap.get((String) each.get('Name'));
+            if(checklistDetails == null){
+                checklistDetails = new List<Checklist_Detail__c>();
+            }
             String manualData = '{"checklistManualDataMapping":[';
             Boolean flag = true;
             for(Checklist_Detail__c each2 : checklistDetails){
@@ -641,7 +664,21 @@ global with sharing class CheckRules {
                 }else {
                     manualData += ',{';
                 }
-                manualData += '"ruleName":"' + each2.Checklist__r.genesis__Rule__r.Name + '",';
+                manualData += '"ruleName":"';
+                manualData += each2.Checklist__r.genesis__Rule__r.Name;
+                if(String.isNotBlank(each2.Application_Collateral__c)){
+                    manualData += each2.Application_Collateral__c;
+                }
+                if(String.isNotBlank(each2.Employment_Information__c)){
+                    manualData += each2.Employment_Information__c;
+                }
+                if(String.isNotBlank(each2.Party__c)){
+                    manualData += each2.Party__c;
+                }
+                if(String.isNotBlank(each2.Income__c)){
+                    manualData += each2.Income__c;
+                }
+                manualData += '",';
                 manualData += '"exceptionRecommender":"' + each2.Exception_Recommender__c + '",';
                 manualData += '"exceptionApprover":"' + each2.Exception_Approver__c + '",';
                 manualData += '"exceptionCommentary":"' + each2.Exception_Commentary__c + '",';
@@ -651,19 +688,19 @@ global with sharing class CheckRules {
                 manualData += '}';
             }
             manualData += ']}';
-            each.put('Rule_Manual_Data__c', manualData);
-            updatedSObjects.add(each);
+            sObjectNameManualDataMap.put((String) each.get('Name'), manualData);
         }
-        Database.update(updatedSObjects, false);
     }
 
-    public static void updateChecklistDetailsFromRuleDataOnParties(List<clcommon__Party__c> partyList, List<String> rulesNameList){
+    public static List<Checklist_Detail__c> updateChecklistDetailsFromRuleDataOnParties(List<clcommon__Party__c> partyList, List<String> rulesNameList){
         List<Id> partyIds = new List<Id>();
         for(clcommon__Party__c each : partyList){
             partyIds.add(each.Id);
         }
-        Map<String, List<Checklist_Detail__c>> partyChecklistDetailsMap = new Map<String, List<Checklist_Detail__c>>();
-        List<Checklist_Detail__c> checklistDetailList = [SELECT Id, Party__c, Party__r.Name,
+        List<Checklist_Detail__c> checklistDetailList = [SELECT Id, Name, Party__c, Party__r.Name,
+                                                            Application_Collateral__c,
+                                                            Employment_Information__c,
+                                                            Income__c,
                                                             Checklist__r.genesis__Rule__r.Name,
                                                             Exception_Approver__c,
                                                             Exception_Commentary__c,
@@ -674,16 +711,18 @@ global with sharing class CheckRules {
                                                             FROM Checklist_Detail__c
                                                             WHERE Party__c IN:partyIds
                                                             AND Checklist__r.genesis__Rule__r.Name IN:rulesNameList];
-        updateChecklistDetailsFromRuleDataOnRelatedObjects(partyList, checklistDetailList, 'Party');
+        return updateChecklistDetailsFromRuleDataOnRelatedObjects(partyList, checklistDetailList, 'Party');
     }
-    public static void updateChecklistDetailsFromRuleDataOnApplicationCollaterals(List<genesis__Application_Collateral__c> appColList, List<String> rulesNameList){
+    public static List<Checklist_Detail__c> updateChecklistDetailsFromRuleDataOnApplicationCollaterals(List<genesis__Application_Collateral__c> appColList, List<String> rulesNameList){
         List<Id> appColIds = new List<Id>();
         for(genesis__Application_Collateral__c each : appColList){
             appColIds.add(each.Id);
         }
-        Map<String, List<Checklist_Detail__c>> partyChecklistDetailsMap = new Map<String, List<Checklist_Detail__c>>();
-        List<Checklist_Detail__c> checklistDetailList = [SELECT Id, Application_Collateral__c,
+        List<Checklist_Detail__c> checklistDetailList = [SELECT Id, Name, Application_Collateral__c,
                                                             Application_Collateral__r.Name,
+                                                            Employment_Information__c,
+                                                            Income__c,
+                                                            Party__c,
                                                             Checklist__r.genesis__Rule__r.Name,
                                                             Exception_Approver__c,
                                                             Exception_Commentary__c,
@@ -694,40 +733,56 @@ global with sharing class CheckRules {
                                                             FROM Checklist_Detail__c
                                                             WHERE Application_Collateral__c IN:appColIds
                                                             AND Checklist__r.genesis__Rule__r.Name IN:rulesNameList];
-        updateChecklistDetailsFromRuleDataOnRelatedObjects(appColList, checklistDetailList, 'Application_Collateral');
+        return updateChecklistDetailsFromRuleDataOnRelatedObjects(appColList, checklistDetailList, 'Application_Collateral');
     }
-    private static void updateChecklistDetailsFromRuleDataOnRelatedObjects(List<SObject> objectList, List<Checklist_Detail__c> checklistDetailList, String sObjectType){
-        Map<String, Map<String, Id>> partyRuleChecklistDetailsMapMap = new Map<String, Map<String, Id>>();
+    private static List<Checklist_Detail__c> updateChecklistDetailsFromRuleDataOnRelatedObjects(List<SObject> objectList, List<Checklist_Detail__c> checklistDetailList, String sObjectType){
+        Map<String, Map<String, Id>> objectRuleChecklistDetailsMapMap = new Map<String, Map<String, Id>>();
         for(Checklist_Detail__c each : checklistDetailList){
             Map<String, Id> ruleChecklistDetailsMap;
-            if(sObjectType == 'Party'){
-                ruleChecklistDetailsMap = partyRuleChecklistDetailsMapMap.get(each.Party__r.Name);
-            } else if (sObjectType == 'Application_Collateral'){
-                ruleChecklistDetailsMap = partyRuleChecklistDetailsMapMap.get(each.Application_Collateral__r.Name);
+            if(sObjectType.equals('Party')){
+                ruleChecklistDetailsMap = objectRuleChecklistDetailsMapMap.get(each.Party__r.Name);
+            } else if (sObjectType.equals('Application_Collateral')){
+                ruleChecklistDetailsMap = objectRuleChecklistDetailsMapMap.get(each.Application_Collateral__r.Name);
             } else {
                 continue;
             }
             if(ruleChecklistDetailsMap == null){
                 ruleChecklistDetailsMap = new Map<String, Id>();
             }
-            ruleChecklistDetailsMap.put(each.Checklist__r.genesis__Rule__r.Name, each.Id);
-            if(sObjectType == 'Party'){
-                ruleChecklistDetailsMap = partyRuleChecklistDetailsMapMap.put(each.Party__r.Name, ruleChecklistDetailsMap);
-            } else if (sObjectType == 'Application_Collateral'){
-                ruleChecklistDetailsMap = partyRuleChecklistDetailsMapMap.put(each.Application_Collateral__r.Name, ruleChecklistDetailsMap);
+            String ruleName = each.Checklist__r.genesis__Rule__r.Name;
+            if(String.isNotBlank(each.Application_Collateral__c)){
+                ruleName += each.Application_Collateral__c;
+            }
+            if(String.isNotBlank(each.Employment_Information__c)){
+                ruleName += each.Employment_Information__c;
+            }
+            if(String.isNotBlank(each.Party__c)){
+                ruleName += each.Party__c;
+            }
+            if(String.isNotBlank(each.Income__c)){
+                ruleName += each.Income__c;
+            }
+            ruleChecklistDetailsMap.put(ruleName, each.Id);
+            if(sObjectType.equals('Party')){
+                ruleChecklistDetailsMap = objectRuleChecklistDetailsMapMap.put(each.Party__r.Name, ruleChecklistDetailsMap);
+            } else if (sObjectType.equals('Application_Collateral')){
+                ruleChecklistDetailsMap = objectRuleChecklistDetailsMapMap.put(each.Application_Collateral__r.Name, ruleChecklistDetailsMap);
             } else {
                 continue;
             }
         }
         List<Checklist_Detail__c> updatedChecklists = new List<Checklist_Detail__c>();
         for(SObject each : objectList){
-            String ruleManualData = (String) each.get('Rule_Manual_Data__c');
+            String ruleManualData = sObjectNameManualDataMap.get((String) each.get('Name'));
             CheckRules checkRulesObj = (CheckRules) System.JSON.deserialize(ruleManualData, CheckRules.class);
             ClassChecklistManualDataMapping[] checklistManualDataList = checkRulesObj.checklistManualDataMapping;
-            Map<String, Id> ruleChecklistMap = partyRuleChecklistDetailsMapMap.get((String) each.get('Name'));
+            Map<String, Id> ruleChecklistDetailsMap = objectRuleChecklistDetailsMapMap.get((String) each.get('Name'));
             for(ClassChecklistManualDataMapping each2 : checklistManualDataList){
-                if(String.isNotBlank(each2.ruleName) && ruleChecklistMap.containsKey(each2.ruleName)){
-                    Checklist_Detail__c checklistObj = new Checklist_Detail__c(Id = ruleChecklistMap.get(each2.ruleName));
+                if(String.isNotBlank(each2.ruleName) && ruleChecklistDetailsMap.containsKey(each2.ruleName)){
+                    testing += each2.ruleName + ' : ';
+                    // testing += ruleChecklistMap.get(each2.ruleName) + ' : ';
+                    testing += (String)each.get('Name') + '\n';
+                    Checklist_Detail__c checklistObj = new Checklist_Detail__c(Id = ruleChecklistDetailsMap.get(each2.ruleName));
                     if(String.isNotBlank(each2.exceptionRecommender) && !(each2.exceptionRecommender).equalsIgnoreCase('null')){
                         checklistObj.Exception_Recommender__c = each2.exceptionRecommender;
                     } if(String.isNotBlank(each2.exceptionApprover) && !(each2.exceptionApprover).equalsIgnoreCase('null')){
@@ -745,6 +800,6 @@ global with sharing class CheckRules {
                 }
             }
         }
-        Database.update(updatedChecklists, false);
+        return updatedChecklists;
     }
 }
