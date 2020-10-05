@@ -4,6 +4,7 @@ Description : This class is used to fund a loan through warehouse- by creating L
               the CL Contract to Active
 Developer : Rameswari Barman
 Development Date : 27/09/2019
+Last Modified Date : 05-10-2020
 Implementation Code -    loan__Loan_Account__c loanC = [select id from loan__Loan_Account__c where id = 'XXX'];
           Warehouse__c ware = [select id from Warehouse__c where id = 'XXX'];
           WarehouseFunding.executeFun(loanC.Id,ware.Id);
@@ -70,6 +71,15 @@ static Date currentSystemDate =(Test.isRunningTest()?Date.Today():(new loan.Glob
                     dep.clcommon__Sequence__c=1;
                     dep.clcommon__Priority__c=1;
                     insert dep;
+                    //Code added to facilitate that when the interest rate on loan changes - the deposit rate chnages too
+                    /************************************************************************/
+                    loan__Loan_Parameters__c loanParams = new loan__Loan_Parameters__c();
+                    loanParams.loan__Auto_Change_Deposit_Rate__c = true;
+                    if(loanParams != NULl){
+                        insert loanParams;
+                        loanAcc.loan__Loan_Parameters__c = loanParams.Id;
+                    }
+                    /************************************************************************/
                 }
             }
             else if((app.genesis__CL_Product_Name__c == System.label.Construction_Development || app.genesis__CL_Product_Name__c == System.label.Residential_Construction) && app.First_Drawdown_Complete__c == true){
@@ -92,6 +102,15 @@ static Date currentSystemDate =(Test.isRunningTest()?Date.Today():(new loan.Glob
                 dep.clcommon__Sequence__c=1;
                 dep.clcommon__Priority__c=1;
                 insert dep;
+                //Code added to facilitate that when the interest rate on loan changes - the deposit rate chnages too
+                /************************************************************************/
+                loan__Loan_Parameters__c loanParams = new loan__Loan_Parameters__c();
+                loanParams.loan__Auto_Change_Deposit_Rate__c = true;
+                if(loanParams != NULl){
+                    insert loanParams;
+                    loanAcc.loan__Loan_Parameters__c = loanParams.Id;
+                }
+                /************************************************************************/
                 retCheck = createDisbusals(loanAcc.Id,app.genesis__Loan_Amount__c,loanAcc.Name,app);
             }
             else{
