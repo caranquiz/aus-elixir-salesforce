@@ -569,6 +569,14 @@ public with sharing class GenericUtilityTestHelper {
     return loanPayment;
   }
     
+  //Inserting warehouse
+  public static Warehouse__c returnWarehouse(){
+    Warehouse__c ware = new Warehouse__c(Institution_Name__c = 'Warehouse');
+    ware.BSB_Number__c = '123456';
+    ware.Bank_Account_Number__c = '8890231'; 
+    insert ware;
+    return ware;
+}
     //Inserting Party
     public static clcommon__Party__c returnParty(Id appId, Id account){
     clcommon__Party__c party = new clcommon__Party__c(genesis__Application__c = appId,
@@ -699,4 +707,98 @@ public with sharing class GenericUtilityTestHelper {
     insert apc;
     return apc;
   }
+  //Inserting loan warehouse
+  public static Loan_Warehouse__c returnLoanWarehouse(Id ware,Id app){
+    Loan_Warehouse__c wh = new Loan_Warehouse__c(Warehouse__c = ware, Application__c = app);
+    wh.Active__c = true;
+    insert wh;
+    return wh;
+}
+
+public static genesis__applications__c returnApplication(Id accId){
+    
+    //Inserting application
+    genesis__applications__c app = new genesis__applications__c(genesis__account__c = accId);
+    app.genesis__Interest_Rate__c = 10;
+    app.genesis__Loan_Amount__c = 100000;
+    //************
+    app.genesis__Initial_Advance__c = 90000;
+    app.First_Tranche_Prepaid_Interest__c = 5000;
+    app.Subsequent_Drawdown__c = 90000;
+    app.Drawdown_Prepaid_Interest__c = 1000;
+    app.Construction_Progress_Payment_Fee__c = 3000;
+    //************/
+    app.genesis__Status__c = 'APPROVED';
+    app.genesis__Expected_Start_Date__c= Date.Today();
+    //***********/
+    app.genesis__Payment_Frequency__c = 'Monthly';
+    app.Drawdown_Prepaid_Interest__c = 1000;
+    insert app;
+    return app;
+    }
+
+    public static genesis__Conversion_Mapping_Header__c conversionMapping(){
+      genesis__Conversion_Mapping_Header__c conHead = new genesis__Conversion_Mapping_Header__c();
+      conHead.genesis__Product_Type__c = 'LOAN';
+      insert conHead;
+      return conHead;
+  }
+
+  public static genesis__Conversion_Mapping__c returnConversionMapping(Id conHead,String sourceObject, String sourceField,String DestinationObject,String DestinationField){
+    genesis__Conversion_Mapping__c conMap = new genesis__Conversion_Mapping__c();
+    conMap.genesis__Conversion_Mapping_Header__c = conHead;
+    conMap.genesis__Product_Type__c = 'LOAN';
+    conMap.genesis__Application_Object_Name__c = sourceObject;
+    conMap.genesis__Application_Field_Name__c = sourceField;
+    conMap.genesis__Contract_Object_Name__c = DestinationObject;
+    conMap.genesis__Contract_Field_Name__c = DestinationField;
+    return conMap;
+  }
+
+  public static loan__Payment_Mode__c loanPaymentMode(){
+    loan__Payment_Mode__c pmt = new loan__Payment_Mode__c();
+    pmt.name = 'ACH';
+    insert pmt;
+    return pmt;
+  }
+
+  public static loan__Bank_Account__c returnDepositAccount()
+    {
+        loan__Bank_Account__c bank = new loan__Bank_Account__c();
+        bank.loan__Active__c = True;
+        bank.loan__Bank_Account_Number__c = '123456';
+        bank.loan__Bank_Name__c = 'ABCD';
+        bank.Bank_Account_Name__c = 'ABCDE';
+        insert bank;
+        return bank;
+    }
+
+    public static loan__Fee__c loanFeeInfo(){
+      loan__Fee__c loanFee = new loan__Fee__c();
+      loanFee.name = 'Application Fee';
+      loanFee.loan__Amount__c = 400;
+      loanFee.loan__Time_of_charge__c = 'Pre-Paid Fees';
+      insert loanFee;
+      return loanFee;
+  }
+
+  public static loan__Contract_Pre_Paid_Fee__c contractFee(Id loanID, Id feeAmtID){
+    loan__Contract_Pre_Paid_Fee__c conFee = new loan__Contract_Pre_Paid_Fee__c();
+    conFee.loan__Amount__c = 400;
+    conFee.loan__Contract__c = loanID;
+    conFee.loan__Fee_Type__c = feeAmtID;
+    insert conFee;
+    return conFee;
+}
+
+public static clcommon__Deposit__c depInfo(Id loanID){
+  clcommon__Deposit__c dep = new clcommon__Deposit__c();
+  dep.loan__Loan_Account__c = loanID;
+  dep.clcommon__Current_Deposit_Rate__c =10;
+  dep.clcommon__Deposit_Amount__c = 4000;
+  dep.clcommon__Deposit_Rate__c = 10;
+  insert dep;
+  return dep;
+}
+
 }

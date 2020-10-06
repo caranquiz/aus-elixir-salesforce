@@ -80,6 +80,7 @@
 
         <!-- Deposit field not updated in CL Contract issue fix by Rameswari -->
         <members>DepositUpdateHelper</members>
+        <members>DepositUpdateHelperTest</members>
 
         <!-- Re draw amount cannot be in decimal fix by Rameswari -->
         <members>RedrawController</members>
