@@ -316,6 +316,22 @@
         <value>CL Contract has been funded.</value>
     </labels>
     <labels>
+        <fullName>Highest_Best_Use_Commercial</fullName>
+        <categories>Loan Product</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Highest &amp; Best Use – Commercial</shortDescription>
+        <value>Highest &amp; Best Use – Commercial</value>
+    </labels>
+    <labels>
+        <fullName>Highest_Best_Use_Residential</fullName>
+        <categories>Loan Product</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Highest &amp; Best Use – Residential</shortDescription>
+        <value>Highest &amp; Best Use – Residential</value>
+    </labels>
+    <labels>
         <fullName>InFunding</fullName>
         <categories>status</categories>
         <language>en_US</language>
@@ -488,6 +504,21 @@
         <value>Residential Construction</value>
     </labels>
     <labels>
+        <fullName>Retained_Stock_Commercial</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Retained Stock - Commercial</shortDescription>
+        <value>Retained Stock - Commercial</value>
+    </labels>
+    <labels>
+        <fullName>Retained_Stock_Residential</fullName>
+        <categories>Loan Product</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Retained Stock - Residential</shortDescription>
+        <value>Retained Stock - Residential</value>
+    </labels>
+    <labels>
         <fullName>SMSF_Legal_Entity</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -544,6 +575,13 @@
         <protected>false</protected>
         <shortDescription>UnableToFund</shortDescription>
         <value>Unable to fund!</value>
+    </labels>
+    <labels>
+        <fullName>Vacant_Land_Residential</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Vacant Land - Residential</shortDescription>
+        <value>Vacant Land - Residential</value>
     </labels>
     <labels>
         <fullName>WEEKLY</fullName>
