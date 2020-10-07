@@ -19,33 +19,35 @@ static Date currentSystemDate =(Test.isRunningTest()?Date.Today():(new loan.Glob
         try{
             loan__Loan_Account__c loanAcc = [select id,name,APS_Frequency__c,loan__Due_Day__c,Paid_Prepaid_Interest__c,Application__c,Application__r.genesis__Expected_Start_Date__c,loan__Account__c,loan__Loan_Product_Name__c,APS_Created__c,Application__r.genesis__Expected_First_Payment_Date__c,Application__r.genesis__Payment_Frequency__c,loan__Last_Installment_Date__c,loan__Next_Installment_Date__c,loan__Last_Disbursal_Amount__c,Warehouse__c from loan__Loan_Account__c where id =: iden];
             genesis__applications__c app = [select id,genesis__Expected_Start_Date__c,Utilised_Subsequent_Drawdown_Prepaid_Fee__c,Paid_Subsequent_Drawdown_PrepaidInterest__c,Paid_Subsequent_Drawdown__c,genesis__Maturity_Date__c,Construction_Progress_Payment_Fee__c,genesis__CL_Product_Name__c,genesis__Initial_Advance__c,First_Tranche_Prepaid_Interest__c,First_Drawdown_Complete__c,Subsequent_Drawdown__c,Drawdown_Prepaid_Interest__c,genesis__Interest_Rate__c,genesis__Status__c,CL_Contract__c,genesis__Loan_Amount__c from genesis__applications__c where CL_Contract__c =: iden];
-            List <clcommon__Party__c> broParty = [select id,Upfront_Payment_Percentage__c,Commission_Paid_To__c,clcommon__Account__c,clcommon__Account__r.parentId from clcommon__Party__c where genesis__Application__c =: app.Id and clcommon__Type__r.name =: System.label.Broker];
+            List <clcommon__Party__c> broParty = [select id,Upfront_Payment_Percentage__c,Commission_Paid_To__c,Commission_Paid__c,Commission_Structure__c,clcommon__Account__c,clcommon__Account__r.parentId from clcommon__Party__c where genesis__Application__c =: app.Id and clcommon__Type__r.name =: System.label.Broker];
             if(loanAcc != null && app.First_Drawdown_Complete__c == false){
                 if(broParty != null && broParty.size() > 0){
-                    if(broParty[0].Upfront_Payment_Percentage__c != null){
-                        if(broParty[0].Commission_Paid_To__c == System.label.Broker){
-                            broIden = broParty[0].clcommon__Account__c;
-                        }
-                        else if(broParty[0].Commission_Paid_To__c == System.label.Aggregator){
-                            if(broParty[0].clcommon__Account__c != null && broParty[0].clcommon__Account__r.parentId != null){
-                                broIden = broParty[0].clcommon__Account__r.parentId;
+                    if(broParty[0].Commission_Paid__c == 'Yes' && (broParty[0].Commission_Structure__c	== 'Upfront & Trail' || broParty[0].Commission_Structure__c == 'Upfront')){
+                        if(broParty[0].Upfront_Payment_Percentage__c != null && broParty[0].Upfront_Payment_Percentage__c != 0){
+                            if(broParty[0].Commission_Paid_To__c == System.label.Broker){
+                                broIden = broParty[0].clcommon__Account__c;
+                            }
+                            else if(broParty[0].Commission_Paid_To__c == System.label.Aggregator){
+                                if(broParty[0].clcommon__Account__c != null && broParty[0].clcommon__Account__r.parentId != null){
+                                    broIden = broParty[0].clcommon__Account__r.parentId;
+                                }
+                                else{
+                                    throw new CustomException(System.label.Aggregator_missing_msg);
+                                }
                             }
                             else{
-                                throw new CustomException(System.label.Aggregator_missing_msg);
+                                throw new CustomException(System.label.Commission_Paid_To_Exception);
+                            }
+                            List<loan__Broker__c> broRecs = BrokerCommissionUtility.comUtil(loanAcc.Id,broIden,broParty[0].Upfront_Payment_Percentage__c);
+                            if(broRecs != null && broRecs.size() > 0){
+                                if(!(Test.isRunningTest())){
+                                    insert broRecs;
+                                }
                             }
                         }
                         else{
-                            throw new CustomException(System.label.Commission_Paid_To_Exception);
+                            throw new CustomException(System.label.Commission_Paid_Message_Upfront_Not_present);
                         }
-                        List<loan__Broker__c> broRecs = BrokerCommissionUtility.comUtil(loanAcc.Id,broIden,broParty[0].Upfront_Payment_Percentage__c);
-                        if(broRecs != null && broRecs.size() > 0){
-                            if(!(Test.isRunningTest())){
-                                insert broRecs;
-                            }
-                        }
-                    }
-                    else{
-                        throw new CustomException(System.label.Commission_Paid_Message_Upfront_Not_present);
                     }
                 }
                 else{
