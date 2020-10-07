@@ -3,7 +3,9 @@
     <fullName>EmpCC_Employment_Term__c</fullName>
     <externalId>false</externalId>
     <label>EmpCC  - Employment Term</label>
+    <length>255</length>
     <required>false</required>
     <trackTrending>false</trackTrending>
-    <type>Date</type>
+    <type>Text</type>
+    <unique>false</unique>
 </CustomField>

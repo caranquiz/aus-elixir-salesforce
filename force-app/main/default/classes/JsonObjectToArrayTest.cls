@@ -36,7 +36,7 @@ private class JsonObjectToArrayTest {
   static void testWithNullQueries() {
     String response = '"pKey":{"cKey":"cKeyValue"}';
     JsonObjectToArray obj = new JsonObjectToArray();
-    String newResult = obj.modifyAllByRecur(response, null);
+    String newResult = obj.modifyAllByIter(response, null);
     System.assertEquals(
       newResult,
       response,
@@ -47,7 +47,7 @@ private class JsonObjectToArrayTest {
   static void testWithEmptyQueries() {
     String response = '"pKey":{"cKey":"cKeyValue"}';
     JsonObjectToArray obj = new JsonObjectToArray();
-    String newResult = obj.modifyAllByRecur(response, new List<String>());
+    String newResult = obj.modifyAllByIter(response, new List<String>());
     System.assertEquals(
       newResult,
       response,
@@ -113,7 +113,7 @@ private class JsonObjectToArrayTest {
       data4 +
       ']]';
     JsonObjectToArray obj = new JsonObjectToArray();
-    String newResult = obj.modifyAllByRecur(testData, queries);
+    String newResult = obj.modifyAllByIter(testData, queries);
     System.assertEquals(
       expectedModifiedResponse,
       newResult,
@@ -152,7 +152,7 @@ private class JsonObjectToArrayTest {
       data2 +
       ']';
     JsonObjectToArray obj = new JsonObjectToArray();
-    String newResult = obj.modifyAllByRecur(testData, queries);
+    String newResult = obj.modifyAllByIter(testData, queries);
     System.assertEquals(
       expectedModifiedResponse,
       newResult,

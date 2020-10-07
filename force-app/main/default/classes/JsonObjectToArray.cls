@@ -21,8 +21,10 @@ public without sharing class JsonObjectToArray {
     Boolean flag;
   
     public String root;
+    public String rootResult;
     public JsonObjectToArray() {
       root = '';
+      rootResult = '';
     }
     void processFurther(Integer ind, String query) {
       if (rest.subString(ind, ind + 1) == '[' && flag == true) {
@@ -97,5 +99,112 @@ public without sharing class JsonObjectToArray {
         GenericUtility.insertLog('JsonObject2Array',ex);
       }
       return queryString;
+    }
+    
+    // UNDER CONSTRUCTION
+    private void modify(String queryString, String query){
+      if (String.isBlank(query) || String.isBlank(queryString)) {
+        return;
+      }
+      rest = queryString;
+      rootResult = '';
+      while(rest.length() > 0){
+        Integer ind = rest.indexof(query);
+        if (ind == -1) {
+          root += rest;
+          rootResult += rest;
+          System.debug('ROOT RESULT NF : ' + rootResult);
+          return;
+        }
+        start = rest.subString(0, ind + query.length());
+        System.debug('START : ' + start);
+        rest = rest.subString(ind + query.length());
+        flag = false;
+        thirdBraceCount = 0;
+        secondBraceCount = 0;
+        ref = 0;
+        if (rest == null || rest.length() < 1) {
+          return;
+        }
+        if (rest.subString(0, 1) == '[' && flag == false) {
+          root += start;
+          thirdBraceCount += 1;
+          for(Integer each = 1; each < rest.length(); each += 1){
+            if (rest.subString(each, each + 1) == '[') {
+              thirdBraceCount += 1;
+            } else if (rest.subString(each, each + 1) == ']') {
+              thirdBraceCount -= 1;
+              flag = true;
+            } else if (rest.subString(each, each + 1) == '{') {
+              secondBraceCount += 1;
+            } else if (rest.subString(each, each + 1) == '}') {
+              secondBraceCount -= 1;
+              flag = true;
+            }
+            if(thirdBraceCount == 0 && secondBraceCount == 0){
+              start += rest.subString(0, each + 1);
+              root += start;
+              rest = rest.subString(each + 1, rest.length());
+              break;
+            }
+          }
+          rootResult += start;
+          System.debug('ROOT RESULT [] : ' + rootResult);
+        } else if (rest.subString(0, 1) == '{' && flag == false) {
+          start += '[';
+          flag = false;
+          secondBraceCount += 1;
+          Boolean check = false;
+          for(Integer each = 1; each < rest.length(); each += 1){
+            if (rest.subString(each, each + 1) == '[') {
+              thirdBraceCount += 1;
+            } else if (rest.subString(each, each + 1) == ']') {
+              thirdBraceCount -= 1;
+              flag = true;
+            } else if (rest.subString(each, each + 1) == '{') {
+              secondBraceCount += 1;
+            } else if (rest.subString(each, each + 1) == '}') {
+              secondBraceCount -= 1;
+              flag = true;
+            }
+            if(thirdBraceCount == 0 && secondBraceCount == 0 && flag){
+              check = true;
+              start += rest.subString(0, each + 1) + ']';
+              root += start;
+              rest = rest.subString(each + 1, rest.length());
+              break;
+            }
+          }
+          // root += rest;
+          rootResult += start;
+          System.debug('ROOT RESULT {} : ' + rootResult);
+          if(!check){
+            return;
+          }
+        }
+        System.debug('ROOT RESULT : ' + rootResult);
+      }
+    }
+    public String modifyAllByIter(String queryString, List<String> queries) {
+      String result;
+      try {
+        if (queries == null || queries.isEmpty()) {
+          return queryString;
+        }
+        // queryString = queryString.replaceAll( '\\s+', '');
+        result = queryString;
+        System.debug('MAIN STRING : ' + queryString);
+        for (String each : queries) {
+          modify(result, each);
+          result = rootResult;
+          root = '';
+        }
+        if(result == ''){
+          return queryString;
+        }
+      } catch (Exception ex) {
+        GenericUtility.insertLog('JsonObject2Array',ex);
+      }
+      return result;
     }
   }

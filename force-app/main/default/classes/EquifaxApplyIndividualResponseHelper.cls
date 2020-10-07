@@ -534,7 +534,7 @@ public class EquifaxApplyIndividualResponseHelper{
             queries.add('"message"');
             JsonObjectToArray obj = new JsonObjectToArray();
             json = obj.modifyAllByRecur(json, queries);
-            EquifaxApplyIndividualResponseHelper helperObject = (EquifaxApplyIndividualResponseHelper) System.JSON.deserialize(json, EquifaxApplyIndividualResponseHelper.class);
+            // EquifaxApplyIndividualResponseHelper helperObject = (EquifaxApplyIndividualResponseHelper) System.JSON.deserialize(json, EquifaxApplyIndividualResponseHelper.class);
             return (EquifaxApplyIndividualResponseHelper) System.JSON.deserialize(json, EquifaxApplyIndividualResponseHelper.class);
         }catch(Exception ex){
             GenericUtility.insertLog('EquifaxApplyIndividualResponseHelper', ex);
@@ -822,7 +822,18 @@ public class EquifaxApplyIndividualResponseHelper{
                     }catch(Exception ex){
                     }
                     try{
-                        creditEnquiryObj.Role_in_Enquiry__c = each.relationship.nodeValue;
+                        Integer codeValue = Integer.valueOf(each.relationship.code);
+                        switch on codeValue {
+                            when 1 {
+                                creditEnquiryObj.Role_in_Enquiry__c = 'Principal (sole)';
+                            }
+                            when 2 {
+                                creditEnquiryObj.Role_in_Enquiry__c = 'Principal (joint)';
+                            }
+                            when 3 {
+                                creditEnquiryObj.Role_in_Enquiry__c = 'Guarantor';
+                            }
+                        }
                     }catch(Exception ex){
                     }
                     try{
@@ -866,7 +877,18 @@ public class EquifaxApplyIndividualResponseHelper{
                     }catch(Exception ex){
                     }
                     try{
-                        creditEnquiryObj.Role_in_Enquiry__c = each.relationship.nodeValue;
+                        Integer codeValue = Integer.valueOf(each.relationship.code);
+                        switch on codeValue {
+                            when 1 {
+                                creditEnquiryObj.Role_in_Enquiry__c = 'Principal (sole)';
+                            }
+                            when 2 {
+                                creditEnquiryObj.Role_in_Enquiry__c = 'Principal (joint)';
+                            }
+                            when 3 {
+                                creditEnquiryObj.Role_in_Enquiry__c = 'Guarantor';
+                            }
+                        }
                     }catch(Exception ex){
                     }
                     try{
@@ -1023,6 +1045,7 @@ public class EquifaxApplyIndividualResponseHelper{
                 paymentDefaults.add(paymentDefaultObj);
             }
             Database.insert(paymentDefaults, false);
+            Database.executeBatch(new EquifaxOrgIdSearchBatch(), 1);
             return returnVal;
         }
         catch(Exception ex){
