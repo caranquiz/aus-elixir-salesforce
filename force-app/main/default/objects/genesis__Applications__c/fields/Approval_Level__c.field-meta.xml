@@ -2,7 +2,7 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Approval_Level__c</fullName>
     <externalId>false</externalId>
-    <formula>IF(ISPICKVAL(genesis__Status__c,&apos;Recommended&apos;),IF(Debt_to_Income_Ratio__c &lt; 6.0,(IF(Age_of_Individual_Applicant__c == NULL,&apos;Dual&apos;,(IF(Age_of_Individual_Applicant__c &lt; 70,&apos;Single&apos;,&apos;Dual&apos;) ))),&apos;Dual&apos;) ,&apos;Invalid Approval Level&apos;)</formula>
+    <formula>IF(ISPICKVAL(genesis__Status__c,&apos;Recommended&apos;),IF(Debt_to_Income_Ratio__c &lt; 6.0,IF(Age_of_Individual_Applicant__c == NULL,&apos;Single,Dual&apos;,IF(Age_of_Individual_Applicant__c &lt; 70,&apos;Single,Dual&apos;,&apos;Risk,Dual&apos;)),&apos;Risk,Dual&apos;),&apos;Invalid Approval Level&apos;)</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
     <label>Approval Level</label>
     <required>false</required>
