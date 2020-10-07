@@ -22,7 +22,7 @@ static Date currentSystemDate =(Test.isRunningTest()?Date.Today():(new loan.Glob
             List <clcommon__Party__c> broParty = [select id,Upfront_Payment_Percentage__c,Commission_Paid_To__c,Commission_Paid__c,Commission_Structure__c,clcommon__Account__c,clcommon__Account__r.parentId from clcommon__Party__c where genesis__Application__c =: app.Id and clcommon__Type__r.name =: System.label.Broker];
             if(loanAcc != null && app.First_Drawdown_Complete__c == false){
                 if(broParty != null && broParty.size() > 0){
-                    if(broParty[0].Commission_Paid__c == 'Yes' && (broParty[0].Commission_Structure__c	== 'Upfront & Trail' || broParty[0].Commission_Structure__c == 'Upfront')){
+                    if(broParty[0].Commission_Paid__c == System.label.Yes && (broParty[0].Commission_Structure__c	== System.label.Upfront_Trail || broParty[0].Commission_Structure__c == System.label.Upfront)){
                         if(broParty[0].Upfront_Payment_Percentage__c != null && broParty[0].Upfront_Payment_Percentage__c != 0){
                             if(broParty[0].Commission_Paid_To__c == System.label.Broker){
                                 broIden = broParty[0].clcommon__Account__c;
