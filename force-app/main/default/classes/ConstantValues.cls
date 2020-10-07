@@ -344,7 +344,7 @@ global class ConstantValues{
    public static final String COUNTRY_MISSING ='Country is missing or wrong';
    public static final String GENDER_MISSING ='Gender is missing';
    public static final String DOB_MISSING ='Date of Birth is missing';
-   public static final String PARTY_REF_MISSING ='Party Reference is missing';
+   public static final String APP_REF_MISSING ='Application Reference is missing';
    public static final String APPLY_IND_SUCCESS = 'Individual Enquiry Report has been fetched Successfully';
    public static final String NO_DIRECTORSHIPS = 'No Directorship found';
    public static final String APPLY_IND_PARAM_NULL ='Equifax Apply Individual Party Update null check exception';

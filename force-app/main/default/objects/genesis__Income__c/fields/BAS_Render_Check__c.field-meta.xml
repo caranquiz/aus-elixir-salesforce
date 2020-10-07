@@ -2,8 +2,7 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>BAS_Render_Check__c</fullName>
     <externalId>false</externalId>
-    <formula>INCLUDES(Type_of_Documents_Sighted__c, &apos;BAS&apos;)</formula>
-    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <formula>INCLUDES(Company_Type_of_Documents_Sighted__c, &apos;BAS&apos;)</formula>
     <label>BAS Render Check</label>
     <trackTrending>false</trackTrending>
     <type>Checkbox</type>

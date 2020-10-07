@@ -39,13 +39,13 @@ global class EquifaxApplyIndividualAdapter extends intframework.BaseIntegrationA
             if(!appInfo.containsKey('loanAmount') && String.isBlank((String) appInfo.get('loanAmount'))){
                 throw new CustomException(ConstantValues.LOAN_AMOUNT_MISSING);
             }
+            if(!appInfo.containsKey('appName') && String.isBlank((String) appInfo.get('appName'))){
+                throw new CustomException(ConstantValues.APP_REF_MISSING);
+            }
             refFieldsList = (List<Map<String, Object>>) filledInRequestMap.get(
                 'partyInfo'
             );
             partyInfo = refFieldsList[0];
-            if(!partyInfo.containsKey('reference') && String.isBlank((String) partyInfo.get('reference'))){
-                throw new CustomException(ConstantValues.PARTY_REF_MISSING);
-            }
             refFieldsList = (List<Map<String, Object>>) filledInRequestMap.get(
                 'conInfo'
             );
@@ -97,7 +97,7 @@ global class EquifaxApplyIndividualAdapter extends intframework.BaseIntegrationA
             requestbody = requestbody.replace(ConstantValues.USERNAME_KEY, ConstantValues.NC_USERNAME);
             requestbody = requestbody.replace(ConstantValues.PASSWORD_KEY, ConstantValues.NC_PASSWORD);
 
-            requestbody = requestbody.replaceAll(ConstantValues.CLIENT_REFERENCE, (String) partyInfo.get('reference'));
+            requestbody = requestbody.replaceAll(ConstantValues.CLIENT_REFERENCE, (String) appInfo.get('appName'));
             if(nccpStatusIsRegulated){
                 requestbody = requestbody.replace(ConstantValues.PERMISSION_TYPE_CODE, 'XY');
             } else {

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Refinance_Purpose_Validation</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND(OR(genesis__CL_Product_Name__c == &apos;SMSF Residential&apos;, genesis__CL_Product_Name__c == &apos;SMSF Commercial&apos;, genesis__CL_Product_Name__c == &apos;Construction Development&apos;, genesis__CL_Product_Name__c == &apos;Residential Construction&apos;), OR( INCLUDES(Refinance_purpose_list__c, &apos;Refinance - Business Purposes&apos;), INCLUDES(Refinance_purpose_list__c, &apos;Refinance - Cash Out&apos;)))</errorConditionFormula>
+    <errorMessage>For this Product type Refinance Purpose cannot be Business Purpose or Cash Out</errorMessage>
+</ValidationRule>

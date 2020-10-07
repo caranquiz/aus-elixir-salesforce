@@ -15,7 +15,8 @@ global with sharing class CheckRules {
                                                         FROM genesis__Rule__c
                                                         WHERE genesis__Enabled__c = true
                                                         AND (Name = 'Risk Grade Compare Warning'
-                                                        OR Name = 'Primary Purpose Warning')];
+                                                        OR Name = 'Primary Purpose Warning'
+                                                        OR Name = 'Document Type Compare Warning')];
     private static String applicationManualData;
     private static Map<String, String> sObjectNameManualDataMap = new Map<String, String>();
 
@@ -93,8 +94,8 @@ global with sharing class CheckRules {
                 rulesNameList.add(ConstantValues.PREVIOUS_CONDUCT_SUITABLE);
             }
             else if(tabName == ConstantValues.REVIEW){
-                // rulesNameList.add('Trail (%) Exception');
-                // rulesNameList.add('Upfront Payment (%) Exception');
+                rulesNameList.add('Trail (%) Exception');
+                rulesNameList.add('Upfront Payment (%) Exception');
                 rulesNameList.add('Arms Length Valuer Commentary Exception');
                 rulesNameList.add('110% Check Exception');
                 rulesNameList.add('Valuation Required Exception');
@@ -140,7 +141,7 @@ global with sharing class CheckRules {
                 rulesNameList.add('Employer Phone Independently Verified Warning');
                 rulesNameList.add('Income Verification Sighted Warning');
                 rulesNameList.add('Employment Duration (Months) Warning');
-                // rulesNameList.add('Employer Verfied Warning');
+                rulesNameList.add('Employer Verfied Warning');
                 rulesNameList.add('Is Director a Beneficiary / Member Warning');
                 rulesNameList.add('Is Trustee a Beneficiary / Member Warning');
                 rulesNameList.add('Is General Security Agreement Being Taken over this Applicant Warning Check');
@@ -190,11 +191,10 @@ global with sharing class CheckRules {
                 rulesNameList.add('Application Fee Warning');
                 rulesNameList.add('Application Fee % Warning');
                 rulesNameList.add('Does applicant understand English Condition');
+                rulesNameList.add('Is the Application Form fully completed? Warning');
                 loanDetailsRiskGradeWarningCheck(applicationId);
                 loanDetailsPrimaryPurposeWarningCheck(applicationId);
-            }
-            else{
-                return ConstantValues.Success;
+                loanDetailsDocumentCompareWarningCheck(applicationId);
             }
             Map<Id,genesis__Rule__c> mapRules = new Map<Id,genesis__Rule__c>([SELECT Id,
                                                                             Name
@@ -287,13 +287,13 @@ global with sharing class CheckRules {
                 ChildChecklistAPI api = new ChildChecklistAPI();
                 List<Checklist_Detail__c> listOfDetail = api.processListOfChecklist(checkList, applicationRecordId);
                 Database.insert(listOfDetail);
-                List<Checklist_Detail__c> updatedChecklistDetails = new List<Checklist_Detail__c>();
-                updatedChecklistDetails.addAll(updateChecklistDetailsFromRuleDataOnParties(partyList, rulesNameList));
-                updatedChecklistDetails.addAll(updateChecklistDetailsFromRuleDataOnApplicationCollaterals(appColList, rulesNameList));
                 try{
+                    List<Checklist_Detail__c> updatedChecklistDetails = new List<Checklist_Detail__c>();
+                    updatedChecklistDetails.addAll(updateChecklistDetailsFromRuleDataOnParties(partyList, rulesNameList));
+                    updatedChecklistDetails.addAll(updateChecklistDetailsFromRuleDataOnApplicationCollaterals(appColList, rulesNameList));
                     Database.update(updatedChecklistDetails);
                 } catch(Exception ex){
-                    insert new clcommon__Log__c(Name = 'TEST', clcommon__Message__c = testing);
+                    GenericUtility.insertLog('Checklist Details Updation Error', ex);
                 }
             }
             returnValue = ConstantValues.Success;
@@ -473,6 +473,69 @@ global with sharing class CheckRules {
         }
         catch(Exception ex){
             GenericUtility.insertLog('CheckRules.loanDetailsPrimaryPurposeWarningCheck', ex);
+        }
+    }
+    private static void loanDetailsDocumentCompareWarningCheck(Id appId){
+        try{
+            genesis__Rule__c docTypeCompRule;
+            for(genesis__Rule__c each : ruleList){
+                if((each.Name).equals('Document Type Compare Warning')){
+                    docTypeCompRule = each;
+                }
+            }
+            if(docTypeCompRule == null){
+                return;
+            }
+            genesis__Applications__c appObj = [SELECT Id,
+                                                Document_Type__c
+                                                FROM genesis__Applications__c
+                                                WHERE Id =:appId
+                                                LIMIT 1];
+            if(appObj == null){
+                return;
+            }
+            List<genesis__Checklist__c> previousChecklist = [SELECT Id, genesis__Rule__c
+                                                        FROM genesis__Checklist__c
+                                                        WHERE genesis__Rule__c =:docTypeCompRule.Id
+                                                        AND genesis__Application__c =:appId];
+            Id previousChecklistId;
+            if(previousChecklist.isEmpty()){
+                previousChecklistId = null;
+            } else {
+                previousChecklistId = previousChecklist[0].Id;
+            }
+            // Database.delete(previousChecklists, false);
+            List<clcommon__Party__c> parties = [SELECT Id,
+                                                Document_Type__c,
+                                                Legal_Entity_Type__c
+                                                FROM clcommon__Party__c
+                                                WHERE genesis__Application__c =:appId
+                                                AND Legal_Entity_Type__c != 'Individual'];
+            if(parties.isEmpty()){
+                return;
+            }
+            String prevDocType = parties[0].Document_Type__c;
+            for(clcommon__Party__c each : parties){
+                if(String.isBlank(each.Document_Type__c)){
+                    errorCheckList(docTypeCompRule, appId, previousChecklistId);
+                    return;
+                }
+                else if(prevDocType != each.Document_Type__c){
+                    errorCheckList(docTypeCompRule, appId, previousChecklistId);
+                    return;
+                }
+                prevDocType = each.Document_Type__c;
+            }
+            if((appObj.Document_Type__c).equalsIgnoreCase('Full Doc') && !(prevDocType).equalsIgnoreCase('Full')){
+                errorCheckList(docTypeCompRule, appId, previousChecklistId);
+            } else if((appObj.Document_Type__c).equalsIgnoreCase('Alt Doc') && !(prevDocType).equalsIgnoreCase('Alt')){
+                errorCheckList(docTypeCompRule, appId, previousChecklistId);
+            } else{
+                successCheckList(docTypeCompRule, appId, previousChecklistId);
+            }
+        }
+        catch(Exception ex){
+            GenericUtility.insertLog('CheckRules.loanDetailsDocumentCompareWarningCheck', ex);
         }
     }
     private static void successCheckList(genesis__Rule__c rule, Id appId, Id checklistId){
@@ -774,6 +837,9 @@ global with sharing class CheckRules {
         List<Checklist_Detail__c> updatedChecklists = new List<Checklist_Detail__c>();
         for(SObject each : objectList){
             String ruleManualData = sObjectNameManualDataMap.get((String) each.get('Name'));
+            if(String.isBlank(ruleManualData)){
+                continue;
+            }
             CheckRules checkRulesObj = (CheckRules) System.JSON.deserialize(ruleManualData, CheckRules.class);
             ClassChecklistManualDataMapping[] checklistManualDataList = checkRulesObj.checklistManualDataMapping;
             Map<String, Id> ruleChecklistDetailsMap = objectRuleChecklistDetailsMapMap.get((String) each.get('Name'));

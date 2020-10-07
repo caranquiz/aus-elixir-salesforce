@@ -224,7 +224,9 @@ public with sharing class ChildChecklistAPI {
                                                                 genesis__Collateral__r.Copy_Home_Owners_Warranty_Certificate_He__c,
                                                                 genesis__Collateral__r.Council_Approval_Held__c,
                                                                 genesis__Collateral__r.Detailed_Costings_Held__c,
-                                                                genesis__Collateral__r.QBE_Location__c
+                                                                genesis__Collateral__r.QBE_Location__c,
+                                                                X110_check__c,
+                                                                X110_Render_Check__c
                                                                 FROM genesis__Application_Collateral__c WHERE genesis__Application__c =:appId];
     List<genesis__Employment_Information__c> empInfoList = [SELECT id,
                                                             Party__c,

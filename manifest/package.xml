@@ -51,6 +51,7 @@
         <members>EquifaxApplyIndividualResponseHelper</members>
         <members>EquifaxEnquiryCallout</members> 
         <members>EquifaxPreviousEnquiryAdapter</members>
+        <members>EquifaxOrgIdSearchBatch</members>
 
         <!-- Equifax Director Search Search made by Pratik -->
         <members>EquifaxOrgIdSearchAdapter</members>
@@ -531,6 +532,8 @@
         <members>clcommon__Party__c.Rule_Manual_Data__c</members>
         <members>clcommon__Collateral__c.Rule_Manual_Data__c</members>
         <members>genesis__Checklist__c.Rule_Classification__c</members>
+        <members>genesis__Application_Collateral__c.X110_check__c</members>
+        <members>genesis__Application_Collateral__c.X110_Render_Check__c</members>
 
         <!-- Approval Mechanism changes by Rameswari -->
         <members>genesis__Applications__c.Approval_Level__c</members>
@@ -630,6 +633,7 @@
         <members>loan__Bank_Account__c.Bank_Account_Name_Length</members>
         <members>Account.Bank_Account_Name_Length</members>
         <members>genesis__Applications__c.Status_change_control</members>
+        <members>genesis__Applications__c.Refinance_Purpose_Validation</members>
         <name>ValidationRule</name>
     </types>
     <types>
@@ -653,6 +657,7 @@
     </types>
     <types>
         <members>clcommon__Address__c.Autocapitalise Country</members>
+        <members>clcommon__Collateral__c.Autocapitalise Country Collateral</members>
         <!-- Approval mechanism changes by Rameswari -->
         <members>genesis__Applications__c.Aplication is declined or cancelled</members>
         <members>genesis__Applications__c.Aplication status is Recommended</members>
@@ -665,6 +670,7 @@
     </types>
     <types>
         <members>clcommon__Address__c.Capitalise_Country</members>
+        <members>clcommon__Collateral__c.Capitalise_Country</members>
         <!-- Approval mechanism changes by Rameswari -->
         <members>genesis__Applications__c.Deactivate_Is_Approved_field</members>
         <members>genesis__Applications__c.Delete_BDM_s_email_Address</members>
