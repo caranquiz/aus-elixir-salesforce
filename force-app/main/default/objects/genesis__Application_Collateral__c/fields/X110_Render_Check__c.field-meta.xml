@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>X110_Render_Check__c</fullName>
+    <externalId>false</externalId>
+    <formula>AND(ISPICKVAL(genesis__Collateral__r.Arms_Length_Transaction__c, &apos;No&apos;), ISPICKVAL(genesis__Collateral__r.Favorable_Purchase__c, &apos;Yes&apos;))</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>110% Render Check</label>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>
