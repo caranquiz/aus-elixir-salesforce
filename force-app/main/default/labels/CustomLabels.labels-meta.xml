@@ -577,6 +577,22 @@
         <value>Unable to fund!</value>
     </labels>
     <labels>
+        <fullName>Upfront</fullName>
+        <categories>Broker configs</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Upfront</shortDescription>
+        <value>Upfront</value>
+    </labels>
+    <labels>
+        <fullName>Upfront_Trail</fullName>
+        <categories>Broker configs</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Upfront &amp; Trail</shortDescription>
+        <value>Upfront &amp; Trail</value>
+    </labels>
+    <labels>
         <fullName>Vacant_Land_Residential</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -590,5 +606,13 @@
         <protected>false</protected>
         <shortDescription>WEEKLY</shortDescription>
         <value>WEEKLY</value>
+    </labels>
+    <labels>
+        <fullName>Yes</fullName>
+        <categories>Broker configs</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Yes</shortDescription>
+        <value>Yes</value>
     </labels>
 </CustomLabels>
