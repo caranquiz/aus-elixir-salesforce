@@ -93,7 +93,13 @@ static Date currentSystemDate =(Test.isRunningTest()?Date.Today():(new loan.Glob
                 app.Subsequent_Drawdown__c = 0;
                 app.Drawdown_Prepaid_Interest__c = 0;
             }
-            else if(app.genesis__CL_Product_Name__c == System.label.Residential || app.genesis__CL_Product_Name__c == System.label.Commercial){
+            else if(app.genesis__CL_Product_Name__c == System.label.Residential ||
+                 app.genesis__CL_Product_Name__c == System.label.Commercial ||
+                 app.genesis__CL_Product_Name__c == System.label.Retained_Stock_Residential ||
+                 app.genesis__CL_Product_Name__c == System.label.Retained_Stock_Commercial ||
+                 app.genesis__CL_Product_Name__c == System.label.Highest_Best_Use_Residential ||
+                 app.genesis__CL_Product_Name__c == System.label.Highest_Best_Use_Commercial ||
+                 app.genesis__CL_Product_Name__c == System.label.Vacant_Land_Residential){
                 clcommon__Deposit__c dep = new clcommon__Deposit__c();
                 dep.loan__Loan_Account__c = loanAcc.Id;
                 dep.clcommon__Deposit_Rate__c = app.genesis__Interest_Rate__c;
