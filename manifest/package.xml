@@ -640,6 +640,7 @@
         <members>Account.Bank_Account_Name_Length</members>
         <members>genesis__Applications__c.Status_change_control</members>
         <members>genesis__Applications__c.Refinance_Purpose_Validation</members>
+        <members>genesis__Applications__c.Interest_Only_Loans_Term_check</members>
         <name>ValidationRule</name>
     </types>
     <types>
