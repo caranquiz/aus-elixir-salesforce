@@ -46,8 +46,7 @@ global with sharing class PricingUpdate {
               return ConstantValues.msg;
           }
       }
-      genesis__Applications__c app;
-      app = new genesis__Applications__c(Id = applicationId);
+      genesis__Applications__c app = new genesis__Applications__c(Id = applicationId);
       //Updating the obtained pricing of the loan in custom field named Matrix Rate
       app.Matrix_Rate__c = applicationPricingDetailList[0].genesis__Interest_Rate__c;
       update app;
