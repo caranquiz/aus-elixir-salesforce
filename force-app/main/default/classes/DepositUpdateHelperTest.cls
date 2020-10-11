@@ -9,10 +9,36 @@ public with sharing class DepositUpdateHelperTest {
         //Inserting Account
         Account acc = GenericUtilityTestHelper.returnBorrowerAccount(legEntity.Id);
         System.assertEquals(acc.name,'Dummy Account');
-        
+
+        //Inserting CL Product
+        clcommon__CL_Product__c clProductName = GenericUtilityTestHelper.insertClProduct();
+        System.assertEquals(clProductName.clcommon__Product_Name__c, 'Residential');
+
+        //Inserting CL Product
+        clcommon__CL_Product__c clProductName2 = GenericUtilityTestHelper.insertClProduct2();
+        System.assertEquals(clProductName2.clcommon__Product_Name__c, 'Residential Construction');
+
+        //Inserting Payment mode
+        loan__Payment_Mode__c mode1 = GenericUtilityTestHelper.insertpaymentMode();
+        System.assertEquals(mode1.Name,'Direct Debit');
+
+        //Inserting Fees
+        Elixir_Before_Or_On_Settlement_Fees__c fee = GenericUtilityTestHelper.insertPrePaidFee();
+        System.assertEquals(fee.name,'Application Fee');
+
+        loan__Fee__c loanfeeAmt = GenericUtilityTestHelper.insertLoanFee();
+        System.assertEquals(loanfeeAmt.name,'Application Fee');
+
         //Inserting Application
         genesis__applications__c app = GenericUtilityTestHelper.returnApplication(acc.Id);
+        app.genesis__CL_Product__c = clProductName.Id;
+        app.Application_Fee__c = 100;
+        update app;
         System.assertEquals(app.genesis__account__c,acc.Id);
+
+        //Inserting Broker
+        clcommon__Party__c broker = GenericUtilityTestHelper.insertBroker(app.Id);
+        System.assertEquals(broker.genesis__Application__c,app.Id);
         
         //Inserting Warehouse
         Warehouse__c ware = GenericUtilityTestHelper.returnWarehouse();
@@ -92,6 +118,42 @@ public with sharing class DepositUpdateHelperTest {
         update app;
         WarehouseFunding.executeFun(loanC.Id,ware.Id);
         DepositUpdateHelper.depositUpdate(depList);
+        //Code added by Rameswari to give coverage to Redraw Controller
+        PageReference pageRef = Page.loan__tabbedLoanAccount;
+        pageRef.getParameters().put('LoanId', loanC.id);
+        Test.setCurrentPage(pageRef);
+        RedrawController controller = new RedrawController();
+        controller.acct = loanC;
+        controller.redrawAmount = '200'; 
+        controller.message = 'Sample Message';
+        controller.doRedraw();
+        test.stopTest();
+    }
+    /*@isTest
+    static void caseScenarioForFITLoans(){
+        clcommon__CL_Product__c prod = [Select Id from clcommon__CL_Product__c where clcommon__Product_Name__c = 'Residential Construction'];
+        genesis__applications__c app = [SELECT ID from genesis__applications__c];
+        app.genesis__CL_Product__c = prod.Id;
+        app.genesis__Initial_Advance__c = 100000;
+        app.First_Tranche_Prepaid_Interest__c = 1000;
+        app.Total_Subsequent_Drawdown__c = 2000000;
+        app.Subsequent_Drawdown_Prepaid_Interest_Sum__c = 50000;
+        app.First_Drawdown_Complete__c = false;
+        app.genesis__Status__c = 'Approved';
+        Warehouse__c ware  = [SELECT ID from Warehouse__c];
+        test.startTest();
+        ConvertToContract.executeFun(app.Id);
+        WarehouseFunding.executeFun(loanC.Id,ware.Id);
+        test.stopTest();
+    }*/
+    static void test2(){
+        genesis__applications__c app = [SELECT ID from genesis__applications__c];
+        Warehouse__c ware  = [SELECT ID from Warehouse__c];
+        List <clcommon__Deposit__c> depList = [SELECT id,name,clcommon__Current_Deposit_Amount__c,loan__Loan_Account__c FROM clcommon__Deposit__c WHERE loan__Loan_Account__c = :loanC.Id LIMIT 1];
+        test.startTest();
+        ConvertToContract.executeFun(app.Id);
+        loan__Loan_Account__c loanC = [SELECT ID from loan__Loan_Account__c where Application__c =: app.Id];
+        WarehouseFunding.executeFun(loanC.Id,ware.Id);
         test.stopTest();
     }
 }

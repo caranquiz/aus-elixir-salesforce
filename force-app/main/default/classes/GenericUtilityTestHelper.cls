@@ -574,6 +574,9 @@ public with sharing class GenericUtilityTestHelper {
     Warehouse__c ware = new Warehouse__c(Institution_Name__c = 'Warehouse');
     ware.BSB_Number__c = '123456';
     ware.Bank_Account_Number__c = '8890231'; 
+    ware.Collection_Bank_Account_Name__c = 'Test';
+    ware.Collection_Bank_Account_Number__c = '1234567';
+    ware.Collection_BSB_Number__c = '343655';
     insert ware;
     return ware;
 }
@@ -800,5 +803,53 @@ public static clcommon__Deposit__c depInfo(Id loanID){
   insert dep;
   return dep;
 }
-
+public static clcommon__Party_Type__c insertPartyType(String partTypeName){
+  clcommon__Party_Type__c partyType = new clcommon__Party_Type__c(name = partTypeName);
+  insert partyType;
+  return partyType;
+}
+public static clcommon__Party__c insertBroker(Id appId){
+  Account brokerAccount = createAccount();
+  clcommon__Party_Type__c partyType = insertPartyType('Broker');
+  clcommon__Party__c brokerParty = createParty(brokerAccount);
+  brokerParty.clcommon__Type__c = partyType.Id;
+  brokerParty.genesis__Application__c = appId;
+  brokerParty.Commission_Paid__c = 'Yes';
+  brokerParty.Commission_Structure__c = 'Upfront';
+  brokerParty.Upfront_Payment_Percentage__c = 10;
+  brokerParty.Commission_Paid_To__c = 'Broker';
+  update brokerParty;
+  return brokerParty;
+}
+public static clcommon__CL_Product__c insertClProduct(){
+  //Inserting cl product
+  clcommon__CL_Product__c clProd = new clcommon__CL_Product__c(clcommon__Product_Name__c='Residential');
+  insert clProd;
+  return clProd;
+}
+public static clcommon__CL_Product__c insertClProduct2(){
+  //Inserting cl product
+  clcommon__CL_Product__c clProd = new clcommon__CL_Product__c(clcommon__Product_Name__c='Residential Construction');
+  insert clProd;
+  return clProd;
+}
+  public static Elixir_Before_Or_On_Settlement_Fees__c insertPrePaidFee(){
+    Elixir_Before_Or_On_Settlement_Fees__c fee = new Elixir_Before_Or_On_Settlement_Fees__c();
+    fee.name = 'Application Fee';
+    fee.Distribution_Type__c = 'Pre-Paid Fee';
+    fee.Fee_Field_API_Name__c = 'Application_Fee__c';
+    insert fee;
+    return fee;
+  }
+  public static loan__Payment_Mode__c insertpaymentMode(){
+    loan__Payment_Mode__c mode1 = new loan__Payment_Mode__c(Name = 'Direct Debit');
+    insert mode1;
+    return mode1;
+  }
+  public static loan__Fee__c insertLoanFee(){
+    loan__Fee__c feeAmt = new loan__Fee__c(name = 'Application Fee',
+    loan__Amount__c = 400,loan__Time_of_charge__c='Pre-Paid Fees');
+    insert feeAmt;
+    return feeAmt;
+  }
 }
