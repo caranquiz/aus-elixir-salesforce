@@ -656,6 +656,9 @@
         
         <!-- LDT filegen changes made by Souvik -->
         <members>LDT_file_name</members>
+
+        <!-- Error msgs added by Rameswari -->
+        <members>No_deposit_found_error_msg</members>
         <name>CustomLabel</name>
     </types>
     <types>

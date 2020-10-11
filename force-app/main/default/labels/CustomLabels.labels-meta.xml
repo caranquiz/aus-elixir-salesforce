@@ -434,6 +434,14 @@
         <value>MONTHLY</value>
     </labels>
     <labels>
+        <fullName>No_deposit_found_error_msg</fullName>
+        <categories>Deposit error msgs</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>No deposit found error msg</shortDescription>
+        <value>No deposit is present for processing!</value>
+    </labels>
+    <labels>
         <fullName>Pre_Paid_Fee</fullName>
         <categories>Prepaid Fee</categories>
         <language>en_US</language>
