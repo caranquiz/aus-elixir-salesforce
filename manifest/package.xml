@@ -567,6 +567,12 @@
         <members>Director__c.Resident_Overseas__c</members>
         <members>Director__c.Number_of_shares_issued__c</members>
         <members>Director__c.Class_of_shares__c</members>
+        <members>Director__c.Registration_Number__c</members>
+        <members>Director__c.Start_Date__c</members>
+        <members>Director__c.Migration__c</members>
+        <members>Director__c.Collateral__c</members>
+        <members>Director__c.Pmsi__c</members>
+        <members>Director__c.Secured_Parties__c</members>
 
         <name>CustomField</name>
     </types>
