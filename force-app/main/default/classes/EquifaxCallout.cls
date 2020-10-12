@@ -28,6 +28,7 @@ global with sharing class EquifaxCallout {
         intframework.BaseIntegrationResponse responseObject;
         Map<String, Object> responseMap;
         dom.Document doc;
+        String json;
         intframework.AbstractIntegrationService baseintegrationService = intframework.IntegrationServiceFactory.getBaseIntegrationService();
         responseObject = (intframework.BaseIntegrationResponse) baseintegrationService.runSynchronousIntegrationService(
             ConstantValues.EQUIFAX_FAMILY,
@@ -37,10 +38,10 @@ global with sharing class EquifaxCallout {
         );
         doc = new dom.Document();
         doc.load(responseObject.getBody());
-        Map<String, Object> responseMap = intframework.XmlToJson.parseDocumentToMap(
+        responseMap = intframework.XmlToJson.parseDocumentToMap(
             doc
         );
-        String json = System.JSON.serialize(responseMap);
+        json = System.JSON.serialize(responseMap);
         return GenericUtility.modifyJsonKeysIntoCamelcasing(json);
     }
     webService static String equifaxTitleSearch(Id collateralId, Boolean confirmPrice) {
