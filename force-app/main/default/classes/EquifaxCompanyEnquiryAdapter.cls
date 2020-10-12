@@ -28,7 +28,7 @@ global class EquifaxCompanyEnquiryAdapter extends intframework.BaseIntegrationAd
             loanAmount = (Decimal)applicationMap[0].get(ConstantValues.LOAN_AMOUNT);    
                     
             List<Map<String, Object>> partymap = (List<Map<String, Object>>)filledInRequestMap.get(ConstantValues.PARTY_INFO_MAP);
-            partyName = (String)partymap[0].get(ConstantValues.NAME);
+            partyName = (String)partymap[0].get(ConstantValues.NAME_KEY);
             List<Map<String, Object>> partyTypeMap = (List<Map<String, Object>>)filledInRequestMap.get(ConstantValues.PARTY_RELATED_INFO);
             partyType = (String)partyTypeMap[0].get(ConstantValues.PARTY_TYPE_NAME);
                     

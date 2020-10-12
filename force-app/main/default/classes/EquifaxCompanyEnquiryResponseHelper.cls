@@ -34,6 +34,22 @@ public class EquifaxCompanyEnquiryResponseHelper{
 		} catch (Exception ex) {}
 		return res;
 	}
+
+	public static String securedParty(Map<String, Object> s){
+		String res = '';
+		try {
+			res += (String)((Map<String, Object>)s.get(ConstantValues.ORGANISATION_NAME)).get(ConstantValues.NODE_VALUE) +',';
+		} catch (Exception ex) {}
+
+		try {
+			res += (String)((Map<String, Object>)s.get(ConstantValues.ORGANISATION_NUMBER_TYPE)).get(ConstantValues.NODE_VALUE) +',';
+		} catch(Exception ex) {}
+
+		try {
+			res += (String)((Map<String, Object>)s.get(ConstantValues.ORGANISATION_NUMBER)).get(ConstantValues.NODE_VALUE);
+		} catch (Exception ex) {}
+		return res;
+	}
   
 	public static String processAddress(Map<String, Object> s){
 	String res = '';
@@ -74,7 +90,7 @@ public class EquifaxCompanyEnquiryResponseHelper{
 		try{
 	  		try{
 
-				String errorForUser = (String)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>)response.get(ConstantValues.ENVELOPE_KEY)).get(ConstantValues.BODY_KEY)).get(ConstantValues.FAULT)).get(ConstantValues.DETAIL)).get(ConstantValues.ERROR)).get(ConstantValues.DESCRIPTION)).get(ConstantValues.NODE_VALUE);
+				String errorForUser = (String)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>)response.get(ConstantValues.ENVELOPE_KEY)).get(ConstantValues.BODY_KEY)).get(ConstantValues.FAULT)).get(ConstantValues.DETAIL)).get(ConstantValues.ERRORKEY)).get(ConstantValues.DESCRIPTION)).get(ConstantValues.NODE_VALUE);
 				if(errorForUser != null){
 		  			return errorForUser;
 				}
@@ -101,63 +117,6 @@ public class EquifaxCompanyEnquiryResponseHelper{
 				Integer.valueOf(reportCreateDate.substring(8,10)));	
 	  		} catch (Exception ex) {}
 		
-			//Number of credit enquiries
-			// try {
-			// 	Map<String, Object> tempSummaryEntry = findInSummaryData(((List<Object>)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>)response.get(ConstantValues.ENVELOPE_KEY)).get(ConstantValues.BODY_KEY)).get(ConstantValues.RESPONSE_KEY)).get(ConstantValues.COMPANY_ENQUIRY_REPORT)).get(ConstantValues.COMPANY_RESPONSE)).get(ConstantValues.SUMMARY_DATA)).get(ConstantValues.SUMMARY_ENTRY)), 'Credit_Enquiries');
-			// 	if(tempSummaryEntry == null){
-			// 		throw new CommonException(ConstantValues.NULL_VALUE);
-			// 	}
-			// 	partyObj.Number_Of_Credit_Events__c  = Integer.valueOf((String)((Map<String, Object>)tempSummaryEntry.get(ConstantValues.SUMMARY_VALUE)).get(ConstantValues.NODE_VALUE));
-			// } catch(Exception ex) {
-			// 	GenericUtility.insertLog(ConstantValues.EQUIFAX_COMPANY_ENQUIRY_RESPONSE_HELPER, ex);
-			// 	// return ConstantValues.GENERAL_ERROR;
-			// }
-	  
-	  	 	//Amount of credit enquiries value  
-			try {
-				Map<String, Object> tempSummaryEntry = findInSummaryData(((List<Object>)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>)response.get(ConstantValues.ENVELOPE_KEY)).get(ConstantValues.BODY_KEY)).get(ConstantValues.RESPONSE_KEY)).get(ConstantValues.COMPANY_ENQUIRY_REPORT)).get(ConstantValues.COMPANY_RESPONSE)).get(ConstantValues.SUMMARY_DATA)).get(ConstantValues.SUMMARY_ENTRY)), ConstantValues.CREDIT_ENQUIRIES_VALUE);
-				if(tempSummaryEntry == null){
-					throw new CommonException(ConstantValues.NULL_VALUE);
-				}
-				partyObj.Amount_of_Credit_Enquiry__c = Integer.valueOf((String)((Map<String, Object>)tempSummaryEntry.get(ConstantValues.SUMMARY_VALUE)).get(ConstantValues.NODE_VALUE));
-			} catch(Exception ex) {}
-			
-			//to insert number of credit enquiry for last 12 months
-			try {
-				Map<String, Object> tempSummaryEntry = findInSummaryData(((List<Object>)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>)response.get(ConstantValues.ENVELOPE_KEY)).get(ConstantValues.BODY_KEY)).get(ConstantValues.RESPONSE_KEY)).get(ConstantValues.COMPANY_ENQUIRY_REPORT)).get(ConstantValues.COMPANY_RESPONSE)).get(ConstantValues.SUMMARY_DATA)).get(ConstantValues.SUMMARY_ENTRY)), ConstantValues.CREDIT_ENQUIRIES_LESS_THAN_12_MONTHS);
-				if(tempSummaryEntry == null){
-					throw new CommonException(ConstantValues.NULL_VALUE);
-				}
-				partyObj.Number_of_Credit_Enquiries_in_Last_12_Mo__c = Integer.valueOf((String)((Map<String, Object>)tempSummaryEntry.get(ConstantValues.SUMMARY_VALUE)).get(ConstantValues.NODE_VALUE));
-			} catch (Exception ex) {}
-		
-			//to insert amount of credit enquiry for last 12 months
-			try {
-				Map<String, Object> tempSummaryEntry = findInSummaryData(((List<Object>)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>)response.get(ConstantValues.ENVELOPE_KEY)).get(ConstantValues.BODY_KEY)).get(ConstantValues.RESPONSE_KEY)).get(ConstantValues.COMPANY_ENQUIRY_REPORT)).get(ConstantValues.COMPANY_RESPONSE)).get(ConstantValues.SUMMARY_DATA)).get(ConstantValues.SUMMARY_ENTRY)), ConstantValues.CREDIT_ENQUIRIES_LESS_THAN_12_MONTHS_VALUE);
-				if(tempSummaryEntry == null){
-					throw new CommonException(ConstantValues.NULL_VALUE);
-				}
-				partyObj.Amount_of_Credit_Enquiries_in_last_12_mo__c = Integer.valueOf((String)((Map<String, Object>)tempSummaryEntry.get(ConstantValues.SUMMARY_VALUE)).get(ConstantValues.NODE_VALUE));
-			} catch(Exception ex) {}
-		
-			//to insert number of credit enquiry for more than 12 months
-			try {
-				Map<String, Object> tempSummaryEntry = findInSummaryData(((List<Object>)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>)response.get(ConstantValues.ENVELOPE_KEY)).get(ConstantValues.BODY_KEY)).get(ConstantValues.RESPONSE_KEY)).get(ConstantValues.COMPANY_ENQUIRY_REPORT)).get(ConstantValues.COMPANY_RESPONSE)).get(ConstantValues.SUMMARY_DATA)).get(ConstantValues.SUMMARY_ENTRY)), ConstantValues.CREDIT_ENQUIRIES_MORE_THAN_12_MONTHS);
-				if(tempSummaryEntry == null){
-					throw new CommonException(ConstantValues.NULL_VALUE);
-				}
-				partyObj.No_of_Credit_Enquiries_in_more_than_12_M__c = Integer.valueOf((String)((Map<String, Object>)tempSummaryEntry.get(ConstantValues.SUMMARY_VALUE)).get(ConstantValues.NODE_VALUE));
-	  		} catch(Exception ex) {}
-  
-		    //to insert amount of credit enquiry for more 12 months value
-			try {
-				Map<String, Object> tempSummaryEntry = findInSummaryData(((List<Object>)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>)response.get(ConstantValues.ENVELOPE_KEY)).get(ConstantValues.BODY_KEY)).get(ConstantValues.RESPONSE_KEY)).get(ConstantValues.COMPANY_ENQUIRY_REPORT)).get(ConstantValues.COMPANY_RESPONSE)).get(ConstantValues.SUMMARY_DATA)).get(ConstantValues.SUMMARY_ENTRY)), ConstantValues.CREDIT_ENQUIRIES_MORE_THAN_12_MONTHS_VALUE); 
-				if(tempSummaryEntry == null){
-					throw new CommonException(ConstantValues.NULL_VALUE);
-				}
-				partyObj.Amount_of_Credit_Enquiries_in_more_than__c = Integer.valueOf((String)((Map<String, Object>)tempSummaryEntry.get(ConstantValues.SUMMARY_VALUE)).get(ConstantValues.NODE_VALUE));
-			} catch(Exception ex) {}
-		
 			//to find no of external admin
 			try {
 				Map<String, Object> tempSummaryEntry = findInSummaryData(((List<Object>)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>)response.get(ConstantValues.ENVELOPE_KEY)).get(ConstantValues.BODY_KEY)).get(ConstantValues.RESPONSE_KEY)).get(ConstantValues.COMPANY_ENQUIRY_REPORT)).get(ConstantValues.COMPANY_RESPONSE)).get(ConstantValues.SUMMARY_DATA)).get(ConstantValues.SUMMARY_ENTRY)), ConstantValues.EXTERNAL_ADMIN);  
@@ -167,60 +126,6 @@ public class EquifaxCompanyEnquiryResponseHelper{
 				partyObj.External_Administrators__c = Integer.valueOf((String)((Map<String, Object>)tempSummaryEntry.get(ConstantValues.SUMMARY_VALUE)).get(ConstantValues.NODE_VALUE));
 			}
 			catch (Exception ex) {}
-		
-		 	//payment default count
-			try {
-				Map<String, Object> tempSummaryEntry = findInSummaryData(((List<Object>)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>)response.get(ConstantValues.ENVELOPE_KEY)).get(ConstantValues.BODY_KEY)).get(ConstantValues.RESPONSE_KEY)).get(ConstantValues.COMPANY_ENQUIRY_REPORT)).get(ConstantValues.COMPANY_RESPONSE)).get(ConstantValues.SUMMARY_DATA)).get(ConstantValues.SUMMARY_ENTRY)), ConstantValues.DEFAULTS);
-				if(tempSummaryEntry == null){
-					throw new CommonException(ConstantValues.NULL_VALUE);
-				}
-				partyObj.Payment_Defaults__c = Integer.valueOf((String)((Map<String, Object>)tempSummaryEntry.get(ConstantValues.SUMMARY_VALUE)).get(ConstantValues.NODE_VALUE));
-				} catch(Exception ex) {}
-		
-				//payment default amount
-				try {
-				Map<String, Object> tempSummaryEntry = findInSummaryData(((List<Object>)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>)response.get(ConstantValues.ENVELOPE_KEY)).get(ConstantValues.BODY_KEY)).get(ConstantValues.RESPONSE_KEY)).get(ConstantValues.COMPANY_ENQUIRY_REPORT)).get(ConstantValues.COMPANY_RESPONSE)).get(ConstantValues.SUMMARY_DATA)).get(ConstantValues.SUMMARY_ENTRY)), ConstantValues.DEFAULTS_VALUE);
-				if(tempSummaryEntry == null){
-					throw new CommonException(ConstantValues.NULL_VALUE);
-				}
-				partyObj.Amount_of_Payment_Defaults__c = Integer.valueOf((String)((Map<String, Object>)tempSummaryEntry.get(ConstantValues.SUMMARY_VALUE)).get(ConstantValues.NODE_VALUE));
-				} catch(Exception ex) {}
-		
-				//to insert number of payment defaults for last 12 months
-				try {
-				Map<String, Object> tempSummaryEntry = findInSummaryData(((List<Object>)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>)response.get(ConstantValues.ENVELOPE_KEY)).get(ConstantValues.BODY_KEY)).get(ConstantValues.RESPONSE_KEY)).get(ConstantValues.COMPANY_ENQUIRY_REPORT)).get(ConstantValues.COMPANY_RESPONSE)).get(ConstantValues.SUMMARY_DATA)).get(ConstantValues.SUMMARY_ENTRY)), ConstantValues.DEFAULTS_LESS_THAN_12);
-				if(tempSummaryEntry == null){
-					throw new CommonException(ConstantValues.NULL_VALUE);
-				}
-				partyObj.Number_Payment_Defaults_in_last_12_Month__c = Integer.valueOf((String)((Map<String, Object>)tempSummaryEntry.get(ConstantValues.SUMMARY_VALUE)).get(ConstantValues.NODE_VALUE));
-			} catch(Exception ex) {}
-		
-				//to insert amount of payment defaults for last 12 months
-			try {
-				Map<String, Object> tempSummaryEntry = findInSummaryData(((List<Object>)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>)response.get(ConstantValues.ENVELOPE_KEY)).get(ConstantValues.BODY_KEY)).get(ConstantValues.RESPONSE_KEY)).get(ConstantValues.COMPANY_ENQUIRY_REPORT)).get(ConstantValues.COMPANY_RESPONSE)).get(ConstantValues.SUMMARY_DATA)).get(ConstantValues.SUMMARY_ENTRY)), ConstantValues.DEFAULTS_LESS_THAN_12_VALUE);
-				if(tempSummaryEntry == null){
-					throw new CommonException(ConstantValues.NULL_VALUE);
-				}
-				partyObj.Amount_Payment_Defaults_in_last_12_Month__c = Integer.valueOf((String)((Map<String, Object>)tempSummaryEntry.get(ConstantValues.SUMMARY_VALUE)).get(ConstantValues.NODE_VALUE));
-			} catch(Exception ex) {}
-		
-		  //to insert number of payment defaults for more than 12 months
-			try {
-				Map<String, Object> tempSummaryEntry = findInSummaryData(((List<Object>)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>)response.get(ConstantValues.ENVELOPE_KEY)).get(ConstantValues.BODY_KEY)).get(ConstantValues.RESPONSE_KEY)).get(ConstantValues.COMPANY_ENQUIRY_REPORT)).get(ConstantValues.COMPANY_RESPONSE)).get(ConstantValues.SUMMARY_DATA)).get(ConstantValues.SUMMARY_ENTRY)), ConstantValues.DEFAULTS_MORE_THAN_12);
-				if(tempSummaryEntry == null){
-					throw new CommonException(ConstantValues.NULL_VALUE);
-				}
-				partyObj.Number_Payment_Defaults_in_more_than_12__c = Integer.valueOf((String)((Map<String, Object>)tempSummaryEntry.get(ConstantValues.SUMMARY_VALUE)).get(ConstantValues.NODE_VALUE));
-			} catch(Exception ex) {}
-		
-			//to insert amount of payment defaults for more 12 months value
-			try {
-				Map<String, Object> tempSummaryEntry = findInSummaryData(((List<Object>)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>)response.get(ConstantValues.ENVELOPE_KEY)).get(ConstantValues.BODY_KEY)).get(ConstantValues.RESPONSE_KEY)).get(ConstantValues.COMPANY_ENQUIRY_REPORT)).get(ConstantValues.COMPANY_RESPONSE)).get(ConstantValues.SUMMARY_DATA)).get(ConstantValues.SUMMARY_ENTRY)), ConstantValues.DEFAULTS_MORE_THAN_12_VALUE);
-				if(tempSummaryEntry == null){
-					throw new CommonException(ConstantValues.NULL_VALUE);
-				}
-				partyObj.Amount_Payment_Defaults_in_more_than_12__c = Integer.valueOf((String)((Map<String, Object>)tempSummaryEntry.get(ConstantValues.SUMMARY_VALUE)).get(ConstantValues.NODE_VALUE));
-			} catch(Exception ex) {}
 			
 			//for asic extract date
 			try {
@@ -357,7 +262,7 @@ public class EquifaxCompanyEnquiryResponseHelper{
 				
 						entityList.add(dirObj);
 					}
-				} else {
+				} else if((String.valueOf(((Map<String, Object>)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>)response.get(ConstantValues.ENVELOPE_KEY)).get(ConstantValues.BODY_KEY)).get(ConstantValues.RESPONSE_KEY)).get(ConstantValues.COMPANY_ENQUIRY_REPORT)).get(ConstantValues.COMPANY_RESPONSE)).get(ConstantValues.OWNERSHIP_OFFICERS)).get(ConstantValues.DIRECTORS_LIST)))).contains(ConstantValues.DIRECTORS_OBJECT)) {
 					Object refDirectors = ((Object)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>)response.get(ConstantValues.ENVELOPE_KEY)).get(ConstantValues.BODY_KEY)).get(ConstantValues.RESPONSE_KEY)).get(ConstantValues.COMPANY_ENQUIRY_REPORT)).get(ConstantValues.COMPANY_RESPONSE)).get(ConstantValues.OWNERSHIP_OFFICERS)).get(ConstantValues.DIRECTORS_LIST)).get(ConstantValues.DIRECTORS));
 					Director__c dirObj = new Director__c();
 						dirObj.Party__c = partyObj.Id;
@@ -391,20 +296,18 @@ public class EquifaxCompanyEnquiryResponseHelper{
 						} catch(Exception ex) {}
 			
 						entityList.add(dirObj);
-						
-					
-
+				} else {
+					returnValue += ConstantValues.NO_DIRECTORS_FOUND;
 				}
 				
 			} catch (Exception ex) {
 				GenericUtility.insertLog(ConstantValues.EQUIFAX_COMPANY_ENQUIRY_RESPONSE_HELPER, ex);
-				returnValue += ConstantValues.NO_DIRECTORS_FOUND;
+				
 			}
 					
 			try {
 				if((String.valueOf(((Map<String, Object>)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>)response.get(ConstantValues.ENVELOPE_KEY)).get(ConstantValues.BODY_KEY)).get(ConstantValues.RESPONSE_KEY)).get(ConstantValues.COMPANY_ENQUIRY_REPORT)).get(ConstantValues.COMPANY_RESPONSE)).get(ConstantValues.OWNERSHIP_OFFICERS)).get(ConstantValues.SHARE_HOLDER_LIST)))).contains(ConstantValues.SHARE_HOLDER_ARRAY)){
 				List<Object> refShareholders = ((List<Object>)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>)response.get(ConstantValues.ENVELOPE_KEY)).get(ConstantValues.BODY_KEY)).get(ConstantValues.RESPONSE_KEY)).get(ConstantValues.COMPANY_ENQUIRY_REPORT)).get(ConstantValues.COMPANY_RESPONSE)).get(ConstantValues.OWNERSHIP_OFFICERS)).get(ConstantValues.SHARE_HOLDER_LIST)).get(ConstantValues.SHARE_HOLDER));
-				System.debug(((Map<String, Object>)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>)response.get(ConstantValues.ENVELOPE_KEY)).get(ConstantValues.BODY_KEY)).get(ConstantValues.RESPONSE_KEY)).get(ConstantValues.COMPANY_ENQUIRY_REPORT)).get(ConstantValues.COMPANY_RESPONSE)).get(ConstantValues.OWNERSHIP_OFFICERS)).get(ConstantValues.SHARE_HOLDER_LIST)));
 				for(Object each : refShareholders){
 					Director__c shareholderObj = new Director__c();
 					shareholderObj.Party__c = partyObj.Id;
@@ -439,9 +342,8 @@ public class EquifaxCompanyEnquiryResponseHelper{
 		  			entityList.add(shareholderObj);
 				}
 
-				} else {
+				} else if((String.valueOf(((Map<String, Object>)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>)response.get(ConstantValues.ENVELOPE_KEY)).get(ConstantValues.BODY_KEY)).get(ConstantValues.RESPONSE_KEY)).get(ConstantValues.COMPANY_ENQUIRY_REPORT)).get(ConstantValues.COMPANY_RESPONSE)).get(ConstantValues.OWNERSHIP_OFFICERS)).get(ConstantValues.SHARE_HOLDER_LIST)))).contains(ConstantValues.SHARE_HOLDER_OBJECT)) {
 					Object refShareholders = ((Object)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>)response.get(ConstantValues.ENVELOPE_KEY)).get(ConstantValues.BODY_KEY)).get(ConstantValues.RESPONSE_KEY)).get(ConstantValues.COMPANY_ENQUIRY_REPORT)).get(ConstantValues.COMPANY_RESPONSE)).get(ConstantValues.OWNERSHIP_OFFICERS)).get(ConstantValues.SHARE_HOLDER_LIST)).get(ConstantValues.SHARE_HOLDER));
-					System.debug(((Object)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>)response.get(ConstantValues.ENVELOPE_KEY)).get(ConstantValues.BODY_KEY)).get(ConstantValues.RESPONSE_KEY)).get(ConstantValues.COMPANY_ENQUIRY_REPORT)).get(ConstantValues.COMPANY_RESPONSE)).get(ConstantValues.OWNERSHIP_OFFICERS)).get(ConstantValues.SHARE_HOLDER_LIST)).get(ConstantValues.SHARE_HOLDER)));
 					Director__c shareholderObj = new Director__c();
 					shareholderObj.Party__c = partyObj.Id;
 					shareholderObj.Entity_Type__c = ConstantValues.SHAREHOLDER;
@@ -472,64 +374,109 @@ public class EquifaxCompanyEnquiryResponseHelper{
 						shareholderObj.Number_of_shares_issued__c = Decimal.valueOf((String)((Map<String, Object>)((Map<String, Object>)refShareholders).get(ConstantValues.SHARES_HELD)).get(ConstantValues.NODE_VALUE));
 					} catch (Exception ex) {}
 					entityList.add(shareholderObj);
+				} else {
+					returnValue += ConstantValues.NO_SHAREHOLDERS_FOUND;
 				}
 
 				
 	  		} catch (Exception ex) {
 				GenericUtility.insertLog(ConstantValues.EQUIFAX_COMPANY_ENQUIRY_RESPONSE_HELPER, ex);
-				returnValue += ConstantValues.NO_SHAREHOLDERS_FOUND;  
+				  
 			}
 			
-
 			try {
-				List<Object> refRegistrationList = ((List<Object>)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>)response.get(ConstantValues.ENVELOPE_KEY)).get(ConstantValues.BODY_KEY)).get(ConstantValues.RESPONSE_KEY)).get(ConstantValues.COMPANY_ENQUIRY_REPORT)).get(ConstantValues.COMPANY_RESPONSE)).get(ConstantValues.PPSR_REGISTRATIONS)).get(ConstantValues.REGISTRATION_LIST)).get(ConstantValues.REGISTRATION_DETAIL));
-				System.debug(((Map<String, Object>)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>)response.get(ConstantValues.ENVELOPE_KEY)).get(ConstantValues.BODY_KEY)).get(ConstantValues.RESPONSE_KEY)).get(ConstantValues.COMPANY_ENQUIRY_REPORT)).get(ConstantValues.COMPANY_RESPONSE)).get(ConstantValues.PPSR_REGISTRATIONS)).get(ConstantValues.REGISTRATION_LIST)));
-				for(Object each : refRegistrationList){
-					Director__c registrationListObj = new Director__c();
-					registrationListObj.Party__c = partyObj.Id;
-					registrationListObj.Entity_Type__c = ConstantValues.REGISTRATIONS;
-					try {
-						registrationListObj.Registration_Number__c = (String)((Map<String, Object>)((Map<String, Object>)each).get(ConstantValues.REGISTRATION_NUMBER)).get(ConstantValues.NODE_VALUE);
-					} catch (Exception ex) {
-						GenericUtility.insertLog(ConstantValues.EQUIFAX_COMPANY_ENQUIRY_RESPONSE_HELPER, ex);
-					}
-
-					try {
-						String startDate = (String)((Map<String, Object>)((Map<String, Object>)each).get(ConstantValues.REGISTRATION_START_DATE)).get(ConstantValues.NODE_VALUE);
-						if(startDate == null){
-							throw new CommonException(ConstantValues.NULL_VALUE);
+				if((String.valueOf(((Map<String, Object>)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>)response.get(ConstantValues.ENVELOPE_KEY)).get(ConstantValues.BODY_KEY)).get(ConstantValues.RESPONSE_KEY)).get(ConstantValues.COMPANY_ENQUIRY_REPORT)).get(ConstantValues.COMPANY_RESPONSE)).get(ConstantValues.PPSR_REGISTRATIONS)).get(ConstantValues.REGISTRATION_LIST))))).contains(ConstantValues.REGISTRATION_LIST_ARRAY)){
+					List<Object> refRegistrationList = ((List<Object>)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>)response.get(ConstantValues.ENVELOPE_KEY)).get(ConstantValues.BODY_KEY)).get(ConstantValues.RESPONSE_KEY)).get(ConstantValues.COMPANY_ENQUIRY_REPORT)).get(ConstantValues.COMPANY_RESPONSE)).get(ConstantValues.PPSR_REGISTRATIONS)).get(ConstantValues.REGISTRATION_LIST)).get(ConstantValues.REGISTRATION_DETAIL));
+					for(Object each : refRegistrationList){
+						Director__c registrationListObj = new Director__c();
+						registrationListObj.Party__c = partyObj.Id;
+						registrationListObj.Entity_Type__c = ConstantValues.REGISTRATIONS;
+						try {
+							registrationListObj.Registration_Number__c = (String)((Map<String, Object>)((Map<String, Object>)each).get(ConstantValues.REGISTRATION_NUMBER)).get(ConstantValues.NODE_VALUE);
+						} catch (Exception ex) {
+							GenericUtility.insertLog(ConstantValues.EQUIFAX_COMPANY_ENQUIRY_RESPONSE_HELPER, ex);
 						}
-						registrationListObj.Start_Date__c = Date.newInstance(Integer.valueOf(startDate.substring(0,4)), Integer.valueOf(startDate.substring(5,7)), Integer.valueOf(startDate.substring(8,10)));
-					} catch (Exception ex) {
-						GenericUtility.insertLog(ConstantValues.EQUIFAX_COMPANY_ENQUIRY_RESPONSE_HELPER, ex);
+
+						try {
+							String startDate = (String)((Map<String, Object>)((Map<String, Object>)each).get(ConstantValues.REGISTRATION_START_DATE)).get(ConstantValues.NODE_VALUE);
+							if(startDate == null){
+								throw new CommonException(ConstantValues.NULL_VALUE);
+							}
+							registrationListObj.Start_Date__c = Date.newInstance(Integer.valueOf(startDate.substring(0,4)), Integer.valueOf(startDate.substring(5,7)), Integer.valueOf(startDate.substring(8,10)));
+						} catch (Exception ex) {
+							GenericUtility.insertLog(ConstantValues.EQUIFAX_COMPANY_ENQUIRY_RESPONSE_HELPER, ex);
+						}
+			
+						try {
+							registrationListObj.Migration__c = (String)((Map<String, Object>)((Map<String, Object>)each).get(ConstantValues.MIGRATED_FLAG)).get(ConstantValues.NODE_VALUE);
+						} catch (Exception ex) {}
+			
+						try {
+							registrationListObj.Collateral__c = (String)((Map<String, Object>)((Map<String, Object>)each).get(ConstantValues.COLLATERAL_CLASS)).get(ConstantValues.NODE_VALUE);
+						} catch (Exception ex) {}
+			
+						try {
+							registrationListObj.Pmsi__c = (String)((Map<String, Object>)((Map<String, Object>)each).get(ConstantValues.PMSI_FLAG)).get(ConstantValues.NODE_VALUE);
+						} catch (Exception ex) {
+							GenericUtility.insertLog(ConstantValues.EQUIFAX_COMPANY_ENQUIRY_RESPONSE_HELPER, ex);
+						}
+			
+						try {
+							registrationListObj.Secured_Parties__c = securedParty(((Map<String, Object>)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>)each).get(ConstantValues.SECURED_PARTIES)).get(ConstantValues.SECURED_PARTY)).get(ConstantValues.ORGANISATION)));
+						} catch (Exception ex) {
+							GenericUtility.insertLog(ConstantValues.EQUIFAX_COMPANY_ENQUIRY_RESPONSE_HELPER, ex);
+						}
+						entityList.add(registrationListObj);
 					}
-		
-					try {
-						registrationListObj.Migration__c = (String)((Map<String, Object>)((Map<String, Object>)each).get(ConstantValues.MIGRATED_FLAG)).get(ConstantValues.NODE_VALUE);
-					} catch (Exception ex) {}
-		
-					try {
-						registrationListObj.Collateral__c = (String)((Map<String, Object>)((Map<String, Object>)each).get(ConstantValues.COLLATERAL_CLASS)).get(ConstantValues.NODE_VALUE);
-					} catch (Exception ex) {}
-		
-					try {
-						registrationListObj.Pmsi__c = (String)((Map<String, Object>)((Map<String, Object>)each).get(ConstantValues.PMSI_FLAG)).get(ConstantValues.NODE_VALUE);
-					} catch (Exception ex) {
-						GenericUtility.insertLog(ConstantValues.EQUIFAX_COMPANY_ENQUIRY_RESPONSE_HELPER, ex);
-					}
-		
-					try {
-						registrationListObj.Secured_Parties__c = (String)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>)each).get(ConstantValues.SECURED_PARTIES)).get(ConstantValues.SECURED_PARTY)).get(ConstantValues.ORGANISATION)).get(ConstantValues.ORGANISATION_NAME)).get(ConstantValues.NODE_VALUE) +','
-						+(String)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>)each).get(ConstantValues.SECURED_PARTIES)).get(ConstantValues.SECURED_PARTY)).get(ConstantValues.ORGANISATION)).get(ConstantValues.ORGANISATION_NUMBER_TYPE)).get(ConstantValues.NODE_VALUE) +','
-						+(String)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>)each).get(ConstantValues.SECURED_PARTIES)).get(ConstantValues.SECURED_PARTY)).get(ConstantValues.ORGANISATION)).get(ConstantValues.ORGANISATION_NUMBER)).get(ConstantValues.NODE_VALUE);
-					} catch (Exception ex) {
-						GenericUtility.insertLog(ConstantValues.EQUIFAX_COMPANY_ENQUIRY_RESPONSE_HELPER, ex);
-					}
-					entityList.add(registrationListObj);
+				} else if((String.valueOf(((Map<String, Object>)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>)response.get(ConstantValues.ENVELOPE_KEY)).get(ConstantValues.BODY_KEY)).get(ConstantValues.RESPONSE_KEY)).get(ConstantValues.COMPANY_ENQUIRY_REPORT)).get(ConstantValues.COMPANY_RESPONSE)).get(ConstantValues.PPSR_REGISTRATIONS)).get(ConstantValues.REGISTRATION_LIST))))).contains(ConstantValues.REGISTRATION_LIST_OBJECT)) {
+					Object refRegistrationList = ((Object)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>)response.get(ConstantValues.ENVELOPE_KEY)).get(ConstantValues.BODY_KEY)).get(ConstantValues.RESPONSE_KEY)).get(ConstantValues.COMPANY_ENQUIRY_REPORT)).get(ConstantValues.COMPANY_RESPONSE)).get(ConstantValues.PPSR_REGISTRATIONS)).get(ConstantValues.REGISTRATION_LIST)).get(ConstantValues.REGISTRATION_DETAIL));
+					Director__c registrationListObj = new Director__c();
+						registrationListObj.Party__c = partyObj.Id;
+						registrationListObj.Entity_Type__c = ConstantValues.REGISTRATIONS;
+						try {
+							registrationListObj.Registration_Number__c = (String)((Map<String, Object>)((Map<String, Object>)refRegistrationList).get(ConstantValues.REGISTRATION_NUMBER)).get(ConstantValues.NODE_VALUE);
+						} catch (Exception ex) {
+							GenericUtility.insertLog(ConstantValues.EQUIFAX_COMPANY_ENQUIRY_RESPONSE_HELPER, ex);
+						}
+
+						try {
+							String startDate = (String)((Map<String, Object>)((Map<String, Object>)refRegistrationList).get(ConstantValues.REGISTRATION_START_DATE)).get(ConstantValues.NODE_VALUE);
+							if(startDate == null){
+								throw new CommonException(ConstantValues.NULL_VALUE);
+							}
+							registrationListObj.Start_Date__c = Date.newInstance(Integer.valueOf(startDate.substring(0,4)), Integer.valueOf(startDate.substring(5,7)), Integer.valueOf(startDate.substring(8,10)));
+						} catch (Exception ex) {
+							GenericUtility.insertLog(ConstantValues.EQUIFAX_COMPANY_ENQUIRY_RESPONSE_HELPER, ex);
+						}
+			
+						try {
+							registrationListObj.Migration__c = (String)((Map<String, Object>)((Map<String, Object>)refRegistrationList).get(ConstantValues.MIGRATED_FLAG)).get(ConstantValues.NODE_VALUE);
+						} catch (Exception ex) {}
+			
+						try {
+							registrationListObj.Collateral__c = (String)((Map<String, Object>)((Map<String, Object>)refRegistrationList).get(ConstantValues.COLLATERAL_CLASS)).get(ConstantValues.NODE_VALUE);
+						} catch (Exception ex) {}
+			
+						try {
+							registrationListObj.Pmsi__c = (String)((Map<String, Object>)((Map<String, Object>)refRegistrationList).get(ConstantValues.PMSI_FLAG)).get(ConstantValues.NODE_VALUE);
+						} catch (Exception ex) {
+							GenericUtility.insertLog(ConstantValues.EQUIFAX_COMPANY_ENQUIRY_RESPONSE_HELPER, ex);
+						}
+			
+						try {
+							registrationListObj.Secured_Parties__c = securedParty(((Map<String, Object>)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>)refRegistrationList).get(ConstantValues.SECURED_PARTIES)).get(ConstantValues.SECURED_PARTY)).get(ConstantValues.ORGANISATION)));
+						} catch (Exception ex) {
+							GenericUtility.insertLog(ConstantValues.EQUIFAX_COMPANY_ENQUIRY_RESPONSE_HELPER, ex);
+						}
+						entityList.add(registrationListObj);
+				} else {
+					returnValue += ConstantValues.NO_REGISTRATION_LIST_FOUND;
 				}
+				
+				
 			} catch (Exception ex) {
 				GenericUtility.insertLog(ConstantValues.EQUIFAX_COMPANY_ENQUIRY_RESPONSE_HELPER, ex);
-				returnValue += ConstantValues.NO_REGISTRATION_LIST_FOUND;
+				
 			}
 			
 
@@ -714,7 +661,7 @@ public class EquifaxCompanyEnquiryResponseHelper{
 					} catch (Exception ex) {}
 		  			creditAccountList.add(creditAccountObj);
 				}	
-				} else {
+				} else if(String.valueOf((((Map<String, Object>)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>)response.get(ConstantValues.ENVELOPE_KEY)).get(ConstantValues.BODY_KEY)).get(ConstantValues.RESPONSE_KEY)).get(ConstantValues.COMPANY_ENQUIRY_REPORT)).get(ConstantValues.COMPANY_RESPONSE)).get(ConstantValues.ORGANISATION_CREDIT_HISTORY)).get(ConstantValues.PAYMENT_DEFAULT_LIST)))).contains(ConstantValues.PAYMENT_DEFAULT_OBJECT)) {
 					Object refCreditAccount = ((Object)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>)response.get(ConstantValues.ENVELOPE_KEY)).get(ConstantValues.BODY_KEY)).get(ConstantValues.RESPONSE_KEY)).get(ConstantValues.COMPANY_ENQUIRY_REPORT)).get(ConstantValues.COMPANY_RESPONSE)).get(ConstantValues.ORGANISATION_CREDIT_HISTORY)).get(ConstantValues.PAYMENT_DEFAULT_LIST)).get(ConstantValues.PAYMENT_DEFAULTS));
 					Credit_Account__c creditAccountObj = new Credit_Account__c();
 					creditAccountObj.Party__c = partyObj.id;
@@ -788,9 +735,11 @@ public class EquifaxCompanyEnquiryResponseHelper{
 
 					creditAccountList.add(creditAccountObj);
 					
+				} else {
+					returnValue += ConstantValues.NO_PAYMENT_DEFAULTS_FOUND;
 				}
 			} catch (Exception ex) {
-				returnValue += ConstantValues.NO_PAYMENT_DEFAULTS_FOUND;
+				GenericUtility.insertLog(ConstantValues.EQUIFAX_COMPANY_ENQUIRY_RESPONSE_HELPER, ex);
 	  		}
 	 	 	update partyObj;
 			update ppsrRegistrationData;
