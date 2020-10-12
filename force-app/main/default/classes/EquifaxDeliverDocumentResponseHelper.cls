@@ -58,13 +58,17 @@ public class EquifaxDeliverDocumentResponseHelper{
 
     public static EquifaxCallout.LandTitleDocumentData parse(String json){
         EquifaxCallout.LandTitleDocumentData ltDocumentData = new EquifaxCallout.LandTitleDocumentData();
+        String data;
+        List<String> queries;
+        JsonObjectToArray obj;
+        EquifaxDeliverDocumentResponseHelper helperObject;
         try{
             json = GenericUtility.modifyJsonKeysIntoCamelcasingV2(json);
-            List<String> queries = new List<String>();
+            queries = new List<String>();
             queries.add(ConstantValues.ERROR_KEY);
-            JsonObjectToArray obj = new JsonObjectToArray();
+            obj = new JsonObjectToArray();
             json = obj.modifyAllByRecur(json, queries);
-            EquifaxDeliverDocumentResponseHelper helperObject = (EquifaxDeliverDocumentResponseHelper) System.JSON.deserialize(json, EquifaxDeliverDocumentResponseHelper.class);
+            helperObject = (EquifaxDeliverDocumentResponseHelper) System.JSON.deserialize(json, EquifaxDeliverDocumentResponseHelper.class);
             try{
                 ltDocumentData.documentStatus = helperObject.envelope.body.deliverDocumentResponse.deliverDocumentResponseData.documentStatus.status.nodeValue;
             }catch(Exception ex){}
@@ -72,7 +76,7 @@ public class EquifaxDeliverDocumentResponseHelper{
                 ltDocumentData.paidAmount = helperObject.envelope.body.deliverDocumentResponse.deliverDocumentResponseData.pricePaid.nodeValue;
             }catch(Exception ex){}
             try{
-                String data = helperObject.envelope.body.deliverDocumentResponse.deliverDocumentResponseData.binaryData.nodeValue;
+                data = helperObject.envelope.body.deliverDocumentResponse.deliverDocumentResponseData.binaryData.nodeValue;
                 ltDocumentData.documentAttachment = new Attachment();
                 ltDocumentData.documentAttachment.ContentType = ConstantValues.APP_PDF_CONTENT_TYPE;
                 ltDocumentData.documentAttachment.Body = EncodingUtil.base64Decode(data);

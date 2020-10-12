@@ -12,10 +12,10 @@ if already stored in the back end. This class has some limitations, they are
 /*********************************************************************************************************/
 
 global with sharing class EraseRedundantData {
+    private static String prefix = '$';
     private static Map<String, Map<Integer, Boolean>> fieldCriteriaResultMap = new Map<String, Map<Integer, Boolean>>();
     private static List<Map<String, Map<Integer, Boolean>>> fieldCriteriaResultMapList = new List<Map<String, Map<Integer, Boolean>>>();
     static Boolean isRendered;
-
     /* This method handles if the specified serial number in the evaluation expression does not contains any
     render criteria result */
     private static Boolean returnReultAtIndex(Integer index, Map<Integer, Boolean> indexBooleanMap){
@@ -32,27 +32,29 @@ global with sharing class EraseRedundantData {
         Integer nextSerialNumberIndex;
         Integer nextSerialNumber;
         String operator;
-        Integer refIndex;
+        Integer refIndex = 0;
         Boolean refResult;
         Integer numberCount;
         Integer index;
         try{
-            numberCount = expression.countMatches('$');
+            numberCount = expression.countMatches(prefix);
             // If no serial number specified returns false
             if(numberCount == 0){
                 return true;
             }
             if(numberCount == 1){
-                index = expression.indexOf('$') + 1;
+                index = expression.indexOf(prefix) + 1;
+                if(index == 0){
+                    return true;
+                }
                 return !returnReultAtIndex(Integer.valueOf(expression.subString(index, index+1)), indexBooleanMap);
             }
-            refIndex = 0;
             
             for(index = 0; index < numberCount - 1; index += 1){
                 if(refIndex == 0){
-                    firstSerialNumberIndex = expression.indexOf('$', 0);
+                    firstSerialNumberIndex = expression.indexOf(prefix, 0);
                     firstSerialNumber = Integer.valueOf(expression.subString(firstSerialNumberIndex + 1, firstSerialNumberIndex + 2));
-                    nextSerialNumberIndex = expression.indexOf('$', firstSerialNumberIndex + 1);
+                    nextSerialNumberIndex = expression.indexOf(prefix, firstSerialNumberIndex + 1);
                     nextSerialNumber = Integer.valueOf(expression.subString(nextSerialNumberIndex + 1, nextSerialNumberIndex + 2));
                     operator = expression.subString(firstSerialNumberIndex + 2, nextSerialNumberIndex).trim();
                     switch on operator {
@@ -66,7 +68,7 @@ global with sharing class EraseRedundantData {
                     refIndex = nextSerialNumberIndex + 2;
                 }
                 else{
-                    nextSerialNumberIndex = expression.indexOf('$', refIndex);
+                    nextSerialNumberIndex = expression.indexOf(prefix, refIndex);
                     nextSerialNumber = Integer.valueOf(expression.subString(nextSerialNumberIndex + 1, nextSerialNumberIndex + 2));
                     operator = expression.subString(refIndex, nextSerialNumberIndex).trim();
                     switch on operator {
@@ -87,24 +89,12 @@ global with sharing class EraseRedundantData {
             return true;
         }
     }
-    private static SObject getDataOfTheSObject(String objectName, Id paramId, Set<String> fieldNames){
-        String queryString = 'SELECT Id';
-        for(String each : fieldNames){
-            queryString += ',' + each;
-        }
-        queryString += ' FROM ' + objectName + ' WHERE Id=\'' + paramId + '\'';
-        List<SObject> objectData = Database.query(queryString);
-        if(!objectData.isEmpty()){
-            return objectData[0];
-        }
-        return null;
-    }
     private static List<SObject> getDataOfTheSObject(String objectName, List<String> ids, Set<String> fieldNames){
         String queryString = 'SELECT Id';
         for(String each : fieldNames){
             queryString += ',' + each;
         }
-        queryString += ' FROM ' + objectName + ' WHERE Id=:ids';
+        queryString += ' FROM ' + objectName + ' WHERE Id IN:ids';
         List<SObject> records = Database.query(queryString);
         return records;
     }
@@ -259,6 +249,7 @@ global with sharing class EraseRedundantData {
         List<Id> renderedFieldIds = new List<Id>();
         Set<String> fieldNames = new Set<String>();
         SObject objectData;
+        Boolean shouldClear;
         try{
             fieldMapForChild = Schema.getGlobalDescribe().get(objectName).getDescribe().fields.getMap();
             List<Rendered_Field__c> renderedFields = [
@@ -291,20 +282,31 @@ global with sharing class EraseRedundantData {
             for(Rendering_Criteria__c each : renderCriteriaList){
                 fieldNames.add(each.Related_Field__c);
             }
-            objectData = getDataOfTheSObject(objectName, paramId, fieldNames);
+            List<Id> ids = new List<Id>();
+            ids.add(paramId);
+            List<SObject> objects = getDataOfTheSObject(objectName, ids, fieldNames);
+            if(objects.isEmpty()){
+                return;
+            }
+            objectData = objects[0];
             for(Rendering_Criteria__c each : renderCriteriaList){
                 Map<Integer, Boolean> serialCriteriaResultMap;
                 if(fieldCriteriaResultMap.get(each.Rendered_Field__r.Name) != null){
                     serialCriteriaResultMap = fieldCriteriaResultMap.get(each.Rendered_Field__r.Name);
+                    if(each.Serial_Number__c == null){
+                        continue;
+                    }
                     serialCriteriaResultMap.put(Integer.valueOf(each.Serial_Number__c), checkRenderingCriteria(objectData, each));
                 }
                 else{
                     serialCriteriaResultMap = new Map<Integer, Boolean>();
+                    if(each.Serial_Number__c == null){
+                        continue;
+                    }
                     serialCriteriaResultMap.put(Integer.valueOf(each.Serial_Number__c), checkRenderingCriteria(objectData, each));
                 }
                 fieldCriteriaResultMap.put(each.Rendered_Field__r.Name, serialCriteriaResultMap);
             }
-            Boolean shouldClear;
             for(Rendered_Field__c each : renderedFields){
                 shouldClear = evaluteResultByExpression(each.Evaluation_Expression__c, fieldCriteriaResultMap.get(each.Name));
                 if(shouldClear){
@@ -439,6 +441,7 @@ global with sharing class EraseRedundantData {
         List<Id> renderedFieldIds = new List<Id>();
         Set<String> fieldNames = new Set<String>();
         SObject objectData;
+        Rendered_Field__c renderedField;
         try{
             ids = listOfIds.split(';');
             fieldNameIfFieldDataList = listOffieldNamesIfFieldData.split(';');
@@ -464,7 +467,7 @@ global with sharing class EraseRedundantData {
                     return;
                 }
             }
-            Rendered_Field__c renderedField = [
+            List<Rendered_Field__c> renderedFieldList = [
                 SELECT Id,
                 Name,
                 Rendered_Object__c,
@@ -474,11 +477,11 @@ global with sharing class EraseRedundantData {
                 WHERE Name = :sectionName
                 AND Rendered_Object__c = :objectName
                 AND Related_Object_Name__c = :renderedObjectName
-                LIMIT 1
             ];
-            if(renderedField == null){
+            if(renderedFieldList.isEmpty()){
                 return;
             }
+            renderedField = renderedFieldList[0];
             List<Rendering_Criteria__c> renderCriteriaList = [
                 SELECT Id,
                 Associated_Value__c,
@@ -498,7 +501,13 @@ global with sharing class EraseRedundantData {
             for(Rendering_Criteria__c each : renderCriteriaList){
                 fieldNames.add(each.Related_Field__c);
             }
-            objectData = getDataOfTheSObject(objectName, paramId, fieldNames);
+            List<Id> refIdList = new List<Id>();
+            refIdList.add(paramId);
+            List<SObject> objects = getDataOfTheSObject(objectName, refIdList, fieldNames);
+            if(objects.isEmpty()){
+                return;
+            }
+            objectData = objects[0];
             if(objectData == null){
                 return;
             }

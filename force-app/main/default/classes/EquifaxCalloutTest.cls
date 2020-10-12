@@ -135,6 +135,7 @@ private class EquifaxCalloutTest{
         System.assertEquals(0, logList.size(), 'Exception occurred');
         System.assertNotEquals(ConstantValues.GENERAL_ERROR, responseString, 'Response fetching error');
     }
+    /*
     @isTest
     static void testDeliverDocumentWithMockResponse() {
         List<clcommon__Collateral__c> collateralList = [SELECT Id FROM clcommon__Collateral__c];
@@ -149,7 +150,7 @@ private class EquifaxCalloutTest{
         System.assertEquals(0, logList.size(), 'Exception occurred');
         System.assertNotEquals(ConstantValues.GENERAL_ERROR, responseString, 'Response fetching error');
     }
-
+    */
     /* Mock class returns response from static resource depending on endpoint being called */
     private class Mock implements HttpCalloutMock {
         public HTTPResponse respond(HTTPRequest req) {

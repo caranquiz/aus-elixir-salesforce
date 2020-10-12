@@ -399,7 +399,7 @@ global class ConstantValues{
   public static final String EQUIFAX_API_TYPE = 'Equifax Org Id Search API';
   public static final String EQUIFAX_FAMILY_NAME = 'Equifax Org Id Search';
   public static final String INVALID_REQUEST = 'Invalid Request';
-  public static final String EQUIFAX_ABN_NUMBER = 'abnNumber';
+  public static final String EQUIFAX_ACN_NUMBER = 'abnNumber';
   public static final String EQUIFAX_XML_REQUEST_BODY = 'equifaxXMLRequestBody';
   public static final String EQUIFAX_XML_BODY = 'EquifaxXMLBody';
   public static final String BCA_ERROR = 'BCAerror';
@@ -416,7 +416,7 @@ global class ConstantValues{
   public static final String REQUEST_BODY_PARTY_NAME = 'partyName';
   public static final String USERNAME = 'username';
   public static final String PASSWORD = 'password';
-  public static final String REQUEST_ABN_NUMBER = 'ABNNumber';
+  public static final String REQUEST_ACN_NUMBER = 'ACNNumber';
   public static final String CREDENTIAL_USERNAME = '{!$Credential.UserName}';
   public static final String CREDENTIAL_PASSWORD = '{!$Credential.Password}';
   public static final String EQUIFAX_CRED_EXCEP = 'Equifax Credentials is null or blank';

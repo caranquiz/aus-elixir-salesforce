@@ -46,13 +46,16 @@ public class EquifaxOrderDocumentResponseHelper{
 
     public static EquifaxCallout.OrderDocumentData parse(String json){
         EquifaxCallout.OrderDocumentData orderDocdata = new EquifaxCallout.OrderDocumentData();
+        List<String> queries;
+        JsonObjectToArray obj;
+        EquifaxOrderDocumentResponseHelper helperObject;
         try{
             json = GenericUtility.modifyJsonKeysIntoCamelcasing(json);
-            List<String> queries = new List<String>();
+            queries = new List<String>();
             queries.add(ConstantValues.ERROR_KEY);
-            JsonObjectToArray obj = new JsonObjectToArray();
+            obj = new JsonObjectToArray();
             json = obj.modifyAllByRecur(json, queries);
-            EquifaxOrderDocumentResponseHelper helperObject = (EquifaxOrderDocumentResponseHelper) System.JSON.deserialize(json, EquifaxOrderDocumentResponseHelper.class);
+            helperObject = (EquifaxOrderDocumentResponseHelper) System.JSON.deserialize(json, EquifaxOrderDocumentResponseHelper.class);
             try{
                 orderDocdata.enquiryId = helperObject.envelope.body.orderDocumentResponse.orderDocumentResponseData.orderDetails.enquiryId.nodeValue;
             }catch(Exception ex){}
