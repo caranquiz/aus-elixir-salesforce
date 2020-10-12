@@ -16,7 +16,8 @@ global with sharing class CheckRules {
                                                         WHERE genesis__Enabled__c = true
                                                         AND (Name = 'Risk Grade Compare Warning'
                                                         OR Name = 'Primary Purpose Warning'
-                                                        OR Name = 'Document Type Compare Warning')];
+                                                        OR Name = 'Document Type Compare Warning'
+                                                        OR Name = 'Valuation Paid Warning')];
     private static String applicationManualData;
     private static Map<String, String> sObjectNameManualDataMap = new Map<String, String>();
 
@@ -227,6 +228,7 @@ global with sharing class CheckRules {
                 loanDetailsRiskGradeWarningCheck(applicationId);
                 loanDetailsPrimaryPurposeWarningCheck(applicationId);
                 loanDetailsDocumentCompareWarningCheck(applicationId);
+                loanDetailsValuationPaidWarningCheck(applicationId);
             }
             Map<Id,genesis__Rule__c> mapRules = new Map<Id,genesis__Rule__c>([SELECT Id,
                                                                             Name
@@ -568,6 +570,70 @@ global with sharing class CheckRules {
         }
         catch(Exception ex){
             GenericUtility.insertLog('CheckRules.loanDetailsDocumentCompareWarningCheck', ex);
+        }
+    }
+    public static void loanDetailsValuationPaidWarningCheck(Id appId){
+        try{
+            genesis__Rule__c valPaidRule;
+            for(genesis__Rule__c each : ruleList){
+                if((each.Name).equals('Valuation Paid Warning')){
+                    valPaidRule = each;
+                }
+            }
+            if(valPaidRule == null){
+                return;
+            }
+            genesis__Applications__c appObj = [SELECT Id,
+                                                Valuation_Fee_Collected_at_Settlement__c
+                                                FROM genesis__Applications__c
+                                                WHERE Id =:appId
+                                                LIMIT 1];
+            if(appObj == null){
+                return;
+            }
+            List<genesis__Checklist__c> previousChecklist = [SELECT Id, genesis__Rule__c
+                                                        FROM genesis__Checklist__c
+                                                        WHERE genesis__Rule__c =:valPaidRule.Id
+                                                        AND genesis__Application__c =:appId];
+            Id previousChecklistId;
+            if(previousChecklist.isEmpty()){
+                previousChecklistId = null;
+            } else {
+                previousChecklistId = previousChecklist[0].Id;
+            }
+            // Database.delete(previousChecklists, false);
+            List<genesis__Application_Collateral__c> appCollaterals = [SELECT Id,
+                                                                        genesis__Application__c,
+                                                                        genesis__Collateral__c,
+                                                                        genesis__Collateral__r.Valuation_Paid__c,
+                                                                        genesis__Collateral__r.Valuation_Paid_Render_Check__c
+                                                                        FROM genesis__Application_Collateral__c
+                                                                        WHERE genesis__Application__c =:appId];
+            if(appCollaterals.isEmpty()){
+                return;
+            }
+            if(appObj.Valuation_Fee_Collected_at_Settlement__c != 'No'){
+                successCheckList(valPaidRule, appId, previousChecklistId);
+                return;
+            }
+            for(genesis__Application_Collateral__c each : appCollaterals){
+                System.debug(each);
+                if(each.genesis__Collateral__c == null){
+                    continue;
+                }
+                System.debug(each.genesis__Collateral__r.Valuation_Paid_Render_Check__c);
+                System.debug(each.genesis__Collateral__r.Valuation_Paid__c);
+                if(each.genesis__Collateral__r.Valuation_Paid_Render_Check__c
+                && each.genesis__Collateral__r.Valuation_Paid__c != 'Yes'){
+                    System.debug('CALLED');
+                    errorCheckList(valPaidRule, appId, previousChecklistId);
+                    return;
+                }
+            }
+            successCheckList(valPaidRule, appId, previousChecklistId);
+        }
+        catch(Exception ex){
+            GenericUtility.insertLog('CheckRules.loanDetailsValuationPaidWarningCheck', ex);
         }
     }
     private static void successCheckList(genesis__Rule__c rule, Id appId, Id checklistId){
