@@ -50,6 +50,7 @@ global with sharing class CheckRules {
                 rulesNameList.add(ConstantValues.EXIT_STRATEGY_SUITABLE_RULE_CONTACT);
                 rulesNameList.add(ConstantValues.BORROWER_IS_A_STAFF_MEMBER);
                 rulesNameList.add(ConstantValues.GST_SUITABLE_RULE);
+                rulesNameList.add(ConstantVAlues.ABN_EFFECTIVE_RULE);
                 rulesNameList.add(ConstantValues.EXPLANATION_OF_CREDIT_EVENTS);
                 rulesNameList.add(ConstantValues.EXPLANATION_OF_CREDIT_ENQUIRIES);
                 rulesNameList.add(ConstantValues.EXPLANATION_OF_BANKRUPTCY);
@@ -90,6 +91,7 @@ global with sharing class CheckRules {
             }
             else if(tabName == ConstantValues.NON_INDIVIDUAL_CONTACT_DETAILS){
                 rulesNameList.add(ConstantValues.GST_SUITABLE_RULE);
+                rulesNameList.add(ConstantVAlues.ABN_EFFECTIVE_RULE);
             }
             else if(tabName == ConstantValues.CREDIT_HISTORY){
                 rulesNameList.add(ConstantValues.EXPLANATION_OF_CREDIT_EVENTS);

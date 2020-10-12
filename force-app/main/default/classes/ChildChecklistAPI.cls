@@ -157,7 +157,9 @@ public with sharing class ChildChecklistAPI {
                                                 Previous_cond_exp_received_Warning_Check__c,
                                                 Director__c,
                                                 Upfront_Payment_Warning_Check__c,
-                                                Trail_Payment_Warning_Check__c
+                                                Trail_Payment_Warning_Check__c,
+                                                ABN_Effective_From_Rule_Check__c,
+                                                Business_Applicant__c
                                                 FROM clcommon__Party__c WHERE genesis__Application__c =:appId];
     List<genesis__Income__c> incomeList = [SELECT Id,
                                             Party__c,
