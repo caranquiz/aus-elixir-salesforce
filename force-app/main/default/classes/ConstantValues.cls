@@ -510,6 +510,7 @@ global class ConstantValues{
   public static final String REVIEW = 'Review';
   public static final String PREVIOUS_CONDUCT_SUITABLE = 'Previous Conduct Suitable Rule';
   public static final String GST_EFFECTIVE_FROM_RULE = 'GST Effective from Rule';
+  public static final String ABN_EFFECTIVE_RULE = 'ABN Effective From Rule';
 
   // ABA FileGen Class
   public static final String PAYMENT_MODE_ACH = 'ACH';

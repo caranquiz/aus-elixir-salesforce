@@ -2,7 +2,7 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Self_Employment_Rule_Check__c</fullName>
     <externalId>false</externalId>
-    <formula>IF(ISPICKVAL(Document_Type__c,&apos;Alt&apos;) &amp;&amp; ISPICKVAL(Accountant_Letter_Verified__c,&apos;Yes&apos;) &amp;&amp; ISPICKVAL(Accountant_Call__c,&apos;Yes&apos;),&apos;Render&apos;,&apos;Not Render&apos;)</formula>
+    <formula>IF(((Employment_Information__c != NULL &amp;&amp; ISPICKVAL(Employment_Information__r.Document_Type__c,&apos;Alt&apos;)) || ISPICKVAL(Party__r.Document_Type__c, &apos;Alt&apos;)) &amp;&amp; ISPICKVAL(Accountant_Letter_Verified__c,&apos;Yes&apos;) &amp;&amp; ISPICKVAL(Accountant_Call__c,&apos;Yes&apos;),&apos;Render&apos;,&apos;Not Render&apos;)</formula>
     <label>Self Employment Rule Check</label>
     <required>false</required>
     <trackTrending>false</trackTrending>
