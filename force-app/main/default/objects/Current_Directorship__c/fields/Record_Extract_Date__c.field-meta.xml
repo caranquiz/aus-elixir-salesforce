@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>Valuer_Risk_Gradings_Commentary__c</fullName>
+    <fullName>Record_Extract_Date__c</fullName>
     <externalId>false</externalId>
-    <label>Valuer Risk Gradings Commentary</label>
+    <label>Record Extract Date</label>
     <required>false</required>
     <trackTrending>false</trackTrending>
-    <type>TextArea</type>
+    <type>Date</type>
 </CustomField>

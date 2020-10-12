@@ -532,6 +532,7 @@ public class EquifaxApplyIndividualResponseHelper{
             queries.add('"account"');
             queries.add('"employer"');
             queries.add('"message"');
+            queries.add('"otherIdentity"');
             JsonObjectToArray obj = new JsonObjectToArray();
             json = obj.modifyAllByRecur(json, queries);
             // EquifaxApplyIndividualResponseHelper helperObject = (EquifaxApplyIndividualResponseHelper) System.JSON.deserialize(json, EquifaxApplyIndividualResponseHelper.class);
@@ -779,7 +780,7 @@ public class EquifaxApplyIndividualResponseHelper{
                             additionalData += ' | value : ' + each.additionalDataFields.dataField.value.nodeValue;
                             additionalData += '\n';
                         }catch(Exception ex){}
-                        refDirShip.Additional_data_field__c = additionalData;
+                        // refDirShip.Additional_data_field__c = additionalData;
                     }catch(Exception ex){
                     }
                     if(refDirShip != null){

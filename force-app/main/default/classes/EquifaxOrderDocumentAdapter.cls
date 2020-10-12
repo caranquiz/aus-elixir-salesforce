@@ -18,6 +18,9 @@ global class EquifaxOrderDocumentAdapter extends intframework.BaseIntegrationAda
         String requestbody;
         Boolean orderTitleProceed = true;
         try {
+            if(filledInRequestMap == null){
+              return null;
+            }
             requestbody = ConstantValues.REQ_ENVELOPE_START + ConstantValues.REQ_HEADER + ConstantValues.REQ_OD_ACTION;
             requestbody += ConstantValues.REQ_BODY + '<land:order-document-request>';
             if(filledInRequestMap.containsKey('titleReference') && String.isNotBlank((String) filledInRequestMap.get('titleReference'))){
@@ -54,7 +57,6 @@ global class EquifaxOrderDocumentAdapter extends intframework.BaseIntegrationAda
             requestbody += '<land:order-title-request><land:title-by-reference><land:title-reference>'
             + testTitleReference + '</land:title-reference></land:title-by-reference></land:order-title-request>';
             requestbody += '</land:order-document-request-data></land:order-document-request></soap:Body></soap:Envelope>';
-            System.debug(requestbody);
             return requestbody;
         } catch (Exception ex) {
             GenericUtility.insertLog('EquifaxOrderDocumentAdapter', ex);
@@ -63,20 +65,21 @@ global class EquifaxOrderDocumentAdapter extends intframework.BaseIntegrationAda
     }
 
     global override System.HttpResponse sendRequest(System.HttpRequest httpReq) {
-        try {
-          httpReq.setEndpoint('callout:' + apiConfig.apiNamedCredential + apiConfig.apiEndpoint);
-          if(Test.isRunningTest()){
-            httpReq.setEndpoint(apiConfig.apiEndpoint);
-          }
-          httpReq.setMethod(apiConfig.httpMethod);
-          httpReq.setTimeout(apiConfig.requestTimeout);
-          System.Http http = new System.Http();
-          System.HTTPResponse res;
-          res = http.send(httpReq);
-          return res;
-        } catch (Exception ex) {
-            GenericUtility.insertLog('EquifaxOrderDocumentAdapter', ex);
-          return null;
+      System.HTTPResponse res;
+      System.Http http;
+      try {
+        httpReq.setEndpoint('callout:' + apiConfig.apiNamedCredential + apiConfig.apiEndpoint);
+        if(Test.isRunningTest()){
+          httpReq.setEndpoint(apiConfig.apiEndpoint);
         }
+        httpReq.setMethod(apiConfig.httpMethod);
+        httpReq.setTimeout(apiConfig.requestTimeout);
+        http = new System.Http();
+        res = http.send(httpReq);
+        return res;
+      } catch (Exception ex) {
+          GenericUtility.insertLog('EquifaxOrderDocumentAdapter', ex);
+        return null;
+      }
     }
 }

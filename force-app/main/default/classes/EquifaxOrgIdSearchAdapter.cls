@@ -9,7 +9,7 @@ global without sharing class EquifaxOrgIdSearchAdapter extends intframework.Base
         String security;
         String partyName;
         String xmlRequestBody;
-        String abnNumber;
+        String acnNumber;
     }
     RequestBody reqBody = new RequestBody();
     global override virtual String generateRequestBody(Map<String, Object> filledInRequestMap){
@@ -24,7 +24,7 @@ global without sharing class EquifaxOrgIdSearchAdapter extends intframework.Base
                 reqBody.partyName = (String) partyList[0].get(ConstantValues.PARTY_NAME);
 
                 reqBody.xmlRequestBody = (String)filledInRequestMap.get(ConstantValues.EQUIFAX_XML_REQUEST_BODY);
-                reqBody.abnNumber = (String)filledInRequestMap.get(ConstantValues.EQUIFAX_ABN_NUMBER);
+                reqBody.acnNumber = (String)filledInRequestMap.get(ConstantValues.EQUIFAX_ACN_NUMBER);
                 //Null checking for all paramters from Request Mapping
                 isValid(equifaxCredList,partyList);
 
@@ -33,7 +33,7 @@ global without sharing class EquifaxOrgIdSearchAdapter extends intframework.Base
                 reqBody.xmlRequestBody = reqBody.xmlRequestBody.replace(ConstantValues.REQUEST_BODY_PARTY_NAME,reqBody.partyName);
                 reqBody.xmlRequestBody = reqBody.xmlRequestBody.replace(ConstantValues.USERNAME,ConstantValues.CREDENTIAL_USERNAME);
                 reqBody.xmlRequestBody = reqBody.xmlRequestBody.replace(ConstantValues.PASSWORD,ConstantValues.CREDENTIAL_PASSWORD);
-                reqBody.xmlRequestBody = reqBody.xmlRequestBody.replace(ConstantValues.REQUEST_ABN_NUMBER,reqBody.abnNumber);
+                reqBody.xmlRequestBody = reqBody.xmlRequestBody.replace(ConstantValues.REQUEST_ACN_NUMBER,reqBody.acnNumber);
 
                 return reqBody.xmlRequestBody;
             }

@@ -106,18 +106,16 @@ public without sharing class JsonObjectToArray {
       if (String.isBlank(query) || String.isBlank(queryString)) {
         return;
       }
-      rest = queryString;
       rootResult = '';
+      rest = queryString;
       while(rest.length() > 0){
         Integer ind = rest.indexof(query);
         if (ind == -1) {
           root += rest;
           rootResult += rest;
-          System.debug('ROOT RESULT NF : ' + rootResult);
           return;
         }
         start = rest.subString(0, ind + query.length());
-        System.debug('START : ' + start);
         rest = rest.subString(ind + query.length());
         flag = false;
         thirdBraceCount = 0;
@@ -127,6 +125,9 @@ public without sharing class JsonObjectToArray {
           return;
         }
         if (rest.subString(0, 1) == '[' && flag == false) {
+          if((rest.subString(1, rest.length())).length() < 1){
+            return;
+          }
           root += start;
           thirdBraceCount += 1;
           for(Integer each = 1; each < rest.length(); each += 1){
@@ -148,9 +149,10 @@ public without sharing class JsonObjectToArray {
               break;
             }
           }
-          rootResult += start;
-          System.debug('ROOT RESULT [] : ' + rootResult);
         } else if (rest.subString(0, 1) == '{' && flag == false) {
+          if((rest.subString(1, rest.length())).length() < 1){
+            return;
+          }
           start += '[';
           flag = false;
           secondBraceCount += 1;
@@ -175,14 +177,11 @@ public without sharing class JsonObjectToArray {
               break;
             }
           }
-          // root += rest;
-          rootResult += start;
-          System.debug('ROOT RESULT {} : ' + rootResult);
           if(!check){
             return;
           }
         }
-        System.debug('ROOT RESULT : ' + rootResult);
+        rootResult += start;
       }
     }
     public String modifyAllByIter(String queryString, List<String> queries) {
@@ -193,7 +192,6 @@ public without sharing class JsonObjectToArray {
         }
         // queryString = queryString.replaceAll( '\\s+', '');
         result = queryString;
-        System.debug('MAIN STRING : ' + queryString);
         for (String each : queries) {
           modify(result, each);
           result = rootResult;

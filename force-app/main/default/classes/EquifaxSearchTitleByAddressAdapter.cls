@@ -23,6 +23,12 @@ global with sharing class EquifaxSearchTitleByAddressAdapter  extends intframewo
     String country;
     String stateRef;
     String requestbody;
+    Map<String, Object> collateralFieldsMap;
+    List<Map<String, Object>> collateralFieldsList;
+    Equifax_Referece__c equifaxRefObj;
+    if(filledInRequestMap == null){
+      return null;
+    }
     try {
       requestbody = ConstantValues.REQ_ENVELOPE_START + ConstantValues.REQ_HEADER + ConstantValues.REQ_SLT_ACTION;
       requestbody += ConstantValues.REQ_BODY + '<land:search-land-titles-request>';
@@ -35,15 +41,15 @@ global with sharing class EquifaxSearchTitleByAddressAdapter  extends intframewo
         requestbody += '<land:request-header/>';
       }
       requestbody += '<land:search-land-titles-request-data>';
-      List<Map<String, Object>> collateralFieldsList = (List<Map<String, Object>>) filledInRequestMap.get(
+      collateralFieldsList = (List<Map<String, Object>>) filledInRequestMap.get(
         'collateralInfo'
       );
-      Map<String, Object> collateralFieldsMap = collateralFieldsList[0];
+      collateralFieldsMap = collateralFieldsList[0];
       if(collateralFieldsMap.containsKey('state') && String.isNotBlank((String) collateralFieldsMap.get('state'))){
         requestbody += '<land:state-territory-land-registry>' + (String) collateralFieldsMap.get('state') + '</land:state-territory-land-registry>';
       }
       // Checks if callout happening in test environment
-      Equifax_Referece__c equifaxRefObj = Equifax_Referece__c.getInstance();
+      equifaxRefObj = Equifax_Referece__c.getInstance();
       if(filledInRequestMap.containsKey('confirmPrice') && filledInRequestMap.get('confirmPrice') != null){
         clientReference = '<land:price-confirm-proceed>true</land:price-confirm-proceed>';
       }else{
@@ -73,7 +79,6 @@ global with sharing class EquifaxSearchTitleByAddressAdapter  extends intframewo
       }
       requestbody += '</land:address></land:land-title-search-by-address-request>'
       + '</land:search-land-titles-request-data></land:search-land-titles-request></soap:Body></soap:Envelope>';
-      System.debug(requestbody);
       return requestbody;
     } catch (Exception ex) {
       GenericUtility.insertLog('EquifaxSearchTitleByAddressAdapter', ex);
@@ -82,6 +87,8 @@ global with sharing class EquifaxSearchTitleByAddressAdapter  extends intframewo
   }
 
   global override System.HttpResponse sendRequest(System.HttpRequest httpReq) {
+    System.HTTPResponse res;
+    System.Http http;
     try {
       httpReq.setEndpoint('callout:' + apiConfig.apiNamedCredential + apiConfig.apiEndpoint);
       if(Test.isRunningTest()){
@@ -89,8 +96,7 @@ global with sharing class EquifaxSearchTitleByAddressAdapter  extends intframewo
       }
       httpReq.setMethod(apiConfig.httpMethod);
       httpReq.setTimeout(apiConfig.requestTimeout);
-      System.Http http = new System.Http();
-      System.HTTPResponse res;
+      http = new System.Http();
       res = http.send(httpReq);
       return res;
     } catch (Exception ex) {

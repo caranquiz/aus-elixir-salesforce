@@ -5,10 +5,20 @@
 /********************************************************************************************/
 global with sharing class EquifaxOrgIdSearchCallout {
     private static EquifaxOrgIdSearchParser parserObject = new EquifaxOrgIdSearchParser();
-    webService static String searchByABN(String partyId, String abn) {
-        if(String.isBlank(partyId) || String.isBlank(abn)){
+    webService static String searchByABN(String partyId, String abnOacn) {
+        String acn;
+        if(String.isBlank(partyId)){
             parserObject.errMessage = ConstantValues.PARTY_ID_EMPTY;
             return JSON.serialize(parserObject);
+        }
+        if(String.isBlank(abnOacn)){
+            parserObject.errMessage = 'ABN or ACN not found';
+            return JSON.serialize(parserObject);
+        }
+        if(abnOacn.length() == 11){
+            acn = abnOacn.subString(2, 11);
+        } else {
+            acn = abnOacn;
         }
         Map<String, Object> queryIdMap = new Map<String, Object>();
         Map<String, Object> requestParamMap = new Map<String, Object>();
@@ -18,7 +28,7 @@ global with sharing class EquifaxOrgIdSearchCallout {
             StaticResource staticResource = [SELECT Id,Name,Body FROM StaticResource WHERE Name =: ConstantValues.EQUIFAX_XML_BODY];
             //putting dynamic parameters in map for intframework
             queryIdMap.put(ConstantValues.PARTY_ID, partyId);
-            requestParamMap.put(ConstantValues.EQUIFAX_ABN_NUMBER,abn);
+            requestParamMap.put(ConstantValues.EQUIFAX_ACN_NUMBER, acn);
             requestParamMap.put(ConstantValues.EQUIFAX_XML_REQUEST_BODY,staticResource.Body.toString());
             intframework.AbstractIntegrationService baseintegrationService = intframework.IntegrationServiceFactory.getBaseIntegrationService();
             intframework.BaseIntegrationResponse responseObject;

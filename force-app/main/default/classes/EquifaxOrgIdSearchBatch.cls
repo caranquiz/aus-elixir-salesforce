@@ -21,7 +21,13 @@ public class EquifaxOrgIdSearchBatch implements Database.Batchable<sObject>, Dat
             if(scope == null || scope.isEmpty()){
                 return;
             }
-            String calloutResult = EquifaxOrgIdSearchCallout.searchByABN((String) scope[0].get('Party__c'), (String) scope[0].get('ABN__c'));
+            String abnOacn = (String) scope[0].get('ABN__c');
+            if(String.isBlank(abnOacn)){
+                return;
+            } else if(abnOacn.length() == 11) {
+                abnOacn = abnOacn.subString(2, 11);
+            }
+            String calloutResult = EquifaxOrgIdSearchCallout.searchByABN((String) scope[0].get('Party__c'), abnOacn);
             if(String.isBlank(calloutResult)){
                 GenericUtility.insertLog('EquifaxOrgIdSearchBatch', new CustomException('Response is null or blank'));
                 return;
@@ -31,11 +37,11 @@ public class EquifaxOrgIdSearchBatch implements Database.Batchable<sObject>, Dat
                 GenericUtility.insertLog('EquifaxOrgIdSearchBatch', new CustomException(helperObject.errMessage));
                 return;
             }
-            insert new clcommon__Log__c(Name = 'TEST', clcommon__Message__c = calloutResult);
             scope[0].put('Id_reference__c', helperObject.bcamessage.serviceRequestId);
             scope[0].put('Org_Id_verified_Asic_name__c', helperObject.asicNameData);
             scope[0].put('Org_Id_verified_Asic_status__c', helperObject.asicStatusData);
             scope[0].put('Org_Id_verified__c', true);
+            scope[0].put('Record_Extract_Date__c', (new loan.GlobalLoanUtilFacade()).getCurrentSystemDate());
             update(scope);
         }
         catch(Exception ex){
