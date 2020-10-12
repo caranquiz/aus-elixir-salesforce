@@ -16,14 +16,15 @@
                 <label>Acres</label>
             </value>
             <value>
-                <fullName>Hectares</fullName>
-                <default>false</default>
-                <label>Hectares</label>
-            </value>
-            <value>
                 <fullName>Square Metres</fullName>
                 <default>false</default>
                 <label>Square Metres</label>
+            </value>
+            <value>
+                <fullName>Hectares</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Hectares</label>
             </value>
         </valueSetDefinition>
     </valueSet>

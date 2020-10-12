@@ -92,6 +92,8 @@
     </types>
     <types>
         <members>genesis__Income__c.Unemployed_Income_Type__c</members>
+        <members>clcommon__Collateral__c.Land_Area_Units__c</members>
+        <members>clcommon__Party__c.Customer_Interview_completed__c</members>
         <!-- Rendering Changes made by Souvik -->
         <members>Contact.Exit_Strategy_Commentary__c</members>
         <members>Contact.Exit_Strategy_Provided__c</members>
@@ -543,6 +545,7 @@
         <members>genesis__Checklist__c.Rule_Classification__c</members>
         <members>genesis__Application_Collateral__c.X110_check__c</members>
         <members>genesis__Application_Collateral__c.X110_Render_Check__c</members>
+        <members>clcommon__Collateral__c.Valuation_Paid_Render_Check__c</members>
 
         <!-- Approval Mechanism changes by Rameswari -->
         <members>genesis__Applications__c.Approval_Level__c</members>

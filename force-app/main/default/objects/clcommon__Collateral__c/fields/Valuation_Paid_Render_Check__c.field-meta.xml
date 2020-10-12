@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Valuation_Paid_Render_Check__c</fullName>
+    <externalId>false</externalId>
+    <formula>AND(ISPICKVAL(Valuation_Ordered__c, &apos;Yes&apos;), ISPICKVAL(Valuation_Ordered_by_Lender__c, &apos;Yes&apos;))</formula>
+    <label>Valuation Paid Render Check</label>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>
