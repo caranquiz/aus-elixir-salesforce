@@ -93,6 +93,7 @@
     <types>
         <members>genesis__Income__c.Unemployed_Income_Type__c</members>
         <members>clcommon__Collateral__c.Land_Area_Units__c</members>
+        <members>clcommon__Party__c.Customer_Interview_completed__c</members>
         <!-- Rendering Changes made by Souvik -->
         <members>Contact.Exit_Strategy_Commentary__c</members>
         <members>Contact.Exit_Strategy_Provided__c</members>
