@@ -900,7 +900,7 @@
         <defaultConnectorLabel>default</defaultConnectorLabel>
         <rules>
             <name>myRule_8</name>
-            <conditionLogic>(1 OR (9 AND 10)) AND (2 OR 3 OR 4 OR 5 OR 6 OR 7 OR 8)</conditionLogic>
+            <conditionLogic>(1 OR (9 AND 10)) AND (2 OR 3 OR 4 OR 5 OR 6 OR 7 OR 8) OR 2</conditionLogic>
             <conditions>
                 <processMetadataValues>
                     <name>inputDataType</name>
@@ -1224,7 +1224,7 @@
                 <stringValue>[genesis__Applications__c].genesis__Initial_Advance__c+[genesis__Applications__c].First_Tranche_Prepaid_Interest__c+[genesis__Applications__c].Subsequent_Drawdown_Prepaid_Interest_Sum__c+[genesis__Applications__c].Total_Subsequent_Drawdown__c</stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_6_myRule_1_A1_9474487946</name>
+        <name>formula_6_myRule_1_A1_3171908237</name>
         <dataType>Number</dataType>
         <expression>{!myVariable_current.genesis__Initial_Advance__c}+{!myVariable_current.First_Tranche_Prepaid_Interest__c}+{!myVariable_current.Subsequent_Drawdown_Prepaid_Interest_Sum__c}+{!myVariable_current.Total_Subsequent_Drawdown__c}</expression>
         <scale>18</scale>
@@ -1334,7 +1334,7 @@
             </processMetadataValues>
             <field>genesis__Loan_Amount__c</field>
             <value>
-                <elementReference>formula_6_myRule_1_A1_9474487946</elementReference>
+                <elementReference>formula_6_myRule_1_A1_3171908237</elementReference>
             </value>
         </inputAssignments>
         <object>genesis__Applications__c</object>

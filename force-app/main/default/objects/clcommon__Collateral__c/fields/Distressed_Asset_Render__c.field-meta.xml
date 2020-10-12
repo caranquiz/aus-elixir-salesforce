@@ -3,7 +3,7 @@
     <fullName>Distressed_Asset_Render__c</fullName>
     <description>Distressed Asset Render</description>
     <externalId>false</externalId>
-    <formula>IF(OR(ISPICKVAL(Arms_Length_Transaction__c,&apos;No&apos;),ISPICKVAL(Arms_Length_Transaction__c,&apos;&apos;)),&apos;Not Render&apos;,&apos;Render&apos;)</formula>
+    <formula>IF(OR(ISPICKVAL(Arms_Length_Transaction__c,&apos;Yes&apos;),ISPICKVAL(Arms_Length_Transaction__c,&apos;&apos;)),&apos;Not Render&apos;,&apos;Render&apos;)</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
     <label>Distressed Asset Render</label>
     <required>false</required>

@@ -13,8 +13,8 @@ global class DepositUpdateHelper {
         Savepoint sp = Database.setSavepoint();
         try{
             List<clcommon__Deposit__c> depList = [SELECT id,loan__Loan_Account__c,clcommon__Parent_Deposit__c,clcommon__Current_Deposit_Amount__c FROM clcommon__Deposit__c WHERE id =: newList];
-            if(!(depList != NULL && depList.size() > 0)){
-                throw new CustomException('No deposit is present for processing!');
+            if(!(depList.size() > 0)){
+                throw new CustomException(System.label.No_deposit_found_error_msg);
             }
             for(clcommon__Deposit__c dep : depList){
                 if(dep.loan__Loan_Account__c != NULL && dep.clcommon__Parent_Deposit__c == NULL){
@@ -24,7 +24,7 @@ global class DepositUpdateHelper {
                     contractList.add(loan);
                 }
             }
-            if(contractList != NULL && contractList.size()> 0){
+            if(contractList.size()> 0){
                 update contractList;
             }  
         }  

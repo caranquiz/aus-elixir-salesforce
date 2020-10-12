@@ -3,7 +3,7 @@
     <fullName>Interest_Only_Suitable_Rule_Check__c</fullName>
     <description>Interest Only Suitable Rule Check</description>
     <externalId>false</externalId>
-    <formula>IF(ISPICKVAL(Interest_Only_Suitable__c,&apos;&apos;),False,(IF(ISPICKVAL(Interest_Only_Suitable__c,&apos;No&apos;),False,True)))</formula>
+    <formula>IF(ISPICKVAL(Repayment_Type__c,&apos;Interest Only reverting to Principal and Interest&apos;),TRUE,IF(ISPICKVAL(Repayment_Type__c,&apos;Interest Only&apos;),TRUE,IF(ISPICKVAL(Repayment_Type__c,&apos;&apos;),TRUE,FALSE)))</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
     <label>Interest Only Suitable Rule Check</label>
     <trackHistory>false</trackHistory>

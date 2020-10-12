@@ -4,6 +4,7 @@ Description : This class is used to fund a loan through warehouse- by creating L
               the CL Contract to Active
 Developer : Rameswari Barman
 Development Date : 27/09/2019
+Last Modified Date : 05-10-2020
 Implementation Code -    loan__Loan_Account__c loanC = [select id from loan__Loan_Account__c where id = 'XXX'];
           Warehouse__c ware = [select id from Warehouse__c where id = 'XXX'];
           WarehouseFunding.executeFun(loanC.Id,ware.Id);
@@ -11,40 +12,76 @@ Implementation Code -    loan__Loan_Account__c loanC = [select id from loan__Loa
 
 global class WarehouseFunding{
 static Date currentSystemDate =(Test.isRunningTest()?Date.Today():(new loan.GlobalLoanUtilFacade()).getCurrentSystemDate());
-    Webservice static String executeFun(Id iden, Id investor){
+    Webservice static String executeFun(Id loanId, Id investor){
         String ret = '', retCheck = '',restAPSCheck = '';
         Id broIden;
         Savepoint sp = Database.setSavepoint();
         try{
-            loan__Loan_Account__c loanAcc = [select id,name,APS_Frequency__c,loan__Due_Day__c,Paid_Prepaid_Interest__c,Application__c,Application__r.genesis__Expected_Start_Date__c,loan__Account__c,loan__Loan_Product_Name__c,APS_Created__c,Application__r.genesis__Expected_First_Payment_Date__c,Application__r.genesis__Payment_Frequency__c,loan__Last_Installment_Date__c,loan__Next_Installment_Date__c,loan__Last_Disbursal_Amount__c,Warehouse__c from loan__Loan_Account__c where id =: iden];
-            genesis__applications__c app = [select id,genesis__Expected_Start_Date__c,Utilised_Subsequent_Drawdown_Prepaid_Fee__c,Paid_Subsequent_Drawdown_PrepaidInterest__c,Paid_Subsequent_Drawdown__c,genesis__Maturity_Date__c,Construction_Progress_Payment_Fee__c,genesis__CL_Product_Name__c,genesis__Initial_Advance__c,First_Tranche_Prepaid_Interest__c,First_Drawdown_Complete__c,Subsequent_Drawdown__c,Drawdown_Prepaid_Interest__c,genesis__Interest_Rate__c,genesis__Status__c,CL_Contract__c,genesis__Loan_Amount__c from genesis__applications__c where CL_Contract__c =: iden];
-            List <clcommon__Party__c> broParty = [select id,Upfront_Payment_Percentage__c,Commission_Paid_To__c,clcommon__Account__c,clcommon__Account__r.parentId from clcommon__Party__c where genesis__Application__c =: app.Id and clcommon__Type__r.name =: System.label.Broker];
+            loan__Loan_Account__c loanAcc = [select id,
+                                                    name,
+                                                    APS_Frequency__c,
+                                                    loan__Due_Day__c,
+                                                    Paid_Prepaid_Interest__c,
+                                                    Application__c,
+                                                    Application__r.genesis__Expected_Start_Date__c,
+                                                    loan__Account__c,
+                                                    loan__Loan_Product_Name__c,
+                                                    APS_Created__c,
+                                                    Application__r.genesis__Expected_First_Payment_Date__c,
+                                                    Application__r.genesis__Payment_Frequency__c,
+                                                    loan__Last_Installment_Date__c,
+                                                    loan__Next_Installment_Date__c,
+                                                    loan__Last_Disbursal_Amount__c,
+                                                    Warehouse__c 
+                                                    from loan__Loan_Account__c 
+                                                    where id =: loanId];
+            genesis__applications__c app = [select id,
+                                                    genesis__Expected_Start_Date__c,
+                                                    Utilised_Subsequent_Drawdown_Prepaid_Fee__c,
+                                                    Paid_Subsequent_Drawdown_PrepaidInterest__c,
+                                                    Paid_Subsequent_Drawdown__c,
+                                                    genesis__Maturity_Date__c,
+                                                    Construction_Progress_Payment_Fee__c,
+                                                    genesis__CL_Product_Name__c,
+                                                    genesis__Initial_Advance__c,
+                                                    First_Tranche_Prepaid_Interest__c,
+                                                    First_Drawdown_Complete__c,
+                                                    Subsequent_Drawdown__c,
+                                                    Drawdown_Prepaid_Interest__c,
+                                                    genesis__Interest_Rate__c,
+                                                    genesis__Status__c,CL_Contract__c,
+                                                    genesis__Loan_Amount__c
+                                                    from genesis__applications__c
+                                                    where CL_Contract__c =: loanId];
+            List <clcommon__Party__c> brokerPartyList = [select id,Upfront_Payment_Percentage__c,Commission_Paid_To__c,Commission_Paid__c,Commission_Structure__c,clcommon__Account__c,clcommon__Account__r.parentId from clcommon__Party__c where genesis__Application__c =: app.Id and clcommon__Type__r.name =: System.label.Broker];
             if(loanAcc != null && app.First_Drawdown_Complete__c == false){
-                if(broParty != null && broParty.size() > 0){
-                    if(broParty[0].Upfront_Payment_Percentage__c != null){
-                        if(broParty[0].Commission_Paid_To__c == System.label.Broker){
-                            broIden = broParty[0].clcommon__Account__c;
-                        }
-                        else if(broParty[0].Commission_Paid_To__c == System.label.Aggregator){
-                            if(broParty[0].clcommon__Account__c != null && broParty[0].clcommon__Account__r.parentId != null){
-                                broIden = broParty[0].clcommon__Account__r.parentId;
+                if(brokerPartyList.size() > 0){
+                    if(brokerPartyList[0].Commission_Paid__c == System.label.Yes && (brokerPartyList[0].Commission_Structure__c	== System.label.Upfront_Trail || brokerPartyList[0].Commission_Structure__c == System.label.Upfront)){
+                        if(brokerPartyList[0].Upfront_Payment_Percentage__c != null && brokerPartyList[0].Upfront_Payment_Percentage__c != 0){
+                            if(brokerPartyList[0].Commission_Paid_To__c == System.label.Broker){
+                                broIden = brokerPartyList[0].clcommon__Account__c;
+                            }
+                            else if(brokerPartyList[0].Commission_Paid_To__c == System.label.Aggregator){
+                                if(brokerPartyList[0].clcommon__Account__c != null && brokerPartyList[0].clcommon__Account__r.parentId != null){
+                                    broIden = brokerPartyList[0].clcommon__Account__r.parentId;
+                                }
+                                else{
+                                    throw new CustomException(System.label.Aggregator_missing_msg);
+                                }
                             }
                             else{
-                                throw new CustomException(System.label.Aggregator_missing_msg);
+                                throw new CustomException(System.label.Commission_Paid_To_Exception);
+                            }
+                            List<loan__Broker__c> broRecs = BrokerCommissionUtility.comUtil(loanAcc.Id,broIden,brokerPartyList[0].Upfront_Payment_Percentage__c);
+                            if(broRecs != null && broRecs.size() > 0){
+                                if(!(Test.isRunningTest())){
+                                    insert broRecs;
+                                }
                             }
                         }
                         else{
-                            throw new CustomException(System.label.Commission_Paid_To_Exception);
+                            throw new CustomException(System.label.Commission_Paid_Message_Upfront_Not_present);
                         }
-                        List<loan__Broker__c> broRecs = BrokerCommissionUtility.comUtil(loanAcc.Id,broIden,broParty[0].Upfront_Payment_Percentage__c);
-                        if(broRecs != null && broRecs.size() > 0){
-                            if(!(Test.isRunningTest())){
-                                insert broRecs;
-                            }
-                        }
-                    }
-                    else{
-                        throw new CustomException(System.label.Commission_Paid_Message_Upfront_Not_present);
                     }
                 }
                 else{
@@ -70,6 +107,13 @@ static Date currentSystemDate =(Test.isRunningTest()?Date.Today():(new loan.Glob
                     dep.clcommon__Sequence__c=1;
                     dep.clcommon__Priority__c=1;
                     insert dep;
+                    //Code added to facilitate that when the interest rate on loan changes - the deposit rate chnages too
+                    /************************************************************************/
+                    loan__Loan_Parameters__c loanParams = new loan__Loan_Parameters__c();
+                    loanParams.loan__Auto_Change_Deposit_Rate__c = true;
+                    insert loanParams;
+                    loanAcc.loan__Loan_Parameters__c = loanParams.Id;
+                    /************************************************************************/
                 }
             }
             else if((app.genesis__CL_Product_Name__c == System.label.Construction_Development || app.genesis__CL_Product_Name__c == System.label.Residential_Construction) && app.First_Drawdown_Complete__c == true){
@@ -81,7 +125,13 @@ static Date currentSystemDate =(Test.isRunningTest()?Date.Today():(new loan.Glob
                 app.Subsequent_Drawdown__c = 0;
                 app.Drawdown_Prepaid_Interest__c = 0;
             }
-            else if(app.genesis__CL_Product_Name__c == System.label.Residential || app.genesis__CL_Product_Name__c == System.label.Commercial){
+            else if(app.genesis__CL_Product_Name__c == System.label.Residential ||
+                 app.genesis__CL_Product_Name__c == System.label.Commercial ||
+                 app.genesis__CL_Product_Name__c == System.label.Retained_Stock_Residential ||
+                 app.genesis__CL_Product_Name__c == System.label.Retained_Stock_Commercial ||
+                 app.genesis__CL_Product_Name__c == System.label.Highest_Best_Use_Residential ||
+                 app.genesis__CL_Product_Name__c == System.label.Highest_Best_Use_Commercial ||
+                 app.genesis__CL_Product_Name__c == System.label.Vacant_Land_Residential){
                 clcommon__Deposit__c dep = new clcommon__Deposit__c();
                 dep.loan__Loan_Account__c = loanAcc.Id;
                 dep.clcommon__Deposit_Rate__c = app.genesis__Interest_Rate__c;
@@ -92,6 +142,13 @@ static Date currentSystemDate =(Test.isRunningTest()?Date.Today():(new loan.Glob
                 dep.clcommon__Sequence__c=1;
                 dep.clcommon__Priority__c=1;
                 insert dep;
+                //Code added to facilitate that when the interest rate on loan changes - the deposit rate chnages too
+                /************************************************************************/
+                loan__Loan_Parameters__c loanParams = new loan__Loan_Parameters__c();
+                loanParams.loan__Auto_Change_Deposit_Rate__c = true;
+                insert loanParams;
+                loanAcc.loan__Loan_Parameters__c = loanParams.Id;
+                /************************************************************************/
                 retCheck = createDisbusals(loanAcc.Id,app.genesis__Loan_Amount__c,loanAcc.Name,app);
             }
             else{
@@ -141,7 +198,7 @@ static Date currentSystemDate =(Test.isRunningTest()?Date.Today():(new loan.Glob
             if(groupedResults.size() > 0){
                 feeAmount = Double.valueOf(groupedResults[0].get(ConstantValues.FEE_AMNT)); 
             }           
-            if(totalDisbursal != null && feeAmount != null){
+            if(totalDisbursal != null){
                 ldt.loan__Financed_Amount__c = (feeAmount!=null?totalDisbursal-feeAmount:totalDisbursal);
             }
             else if(totalDisbursal != null && totalDisbursal > 0){

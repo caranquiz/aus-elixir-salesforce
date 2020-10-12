@@ -15,7 +15,7 @@ public class RedrawController {
     }
     public PageReference doRedraw() {
         try{
-            if(Decimal.valueOf(redrawAmount)<=0){
+            if(redrawAmount != NULL && Decimal.valueOf(redrawAmount) <= 0){
                 throw new MyException(System.label.Redraw_Error_Msg);
             }
             clcommon__Deposit__c dep = [select id,clcommon__Parent_Deposit__c,loan__Loan_Account__c from clcommon__Deposit__c where clcommon__Parent_Deposit__c = NULL and loan__Loan_Account__c =: ApexPages.currentPage().getParameters().get('loanId')];

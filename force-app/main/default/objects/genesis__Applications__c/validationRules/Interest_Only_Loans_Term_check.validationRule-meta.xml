@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Interest_Only_Loans_Term_check</fullName>
+    <active>true</active>
+    <errorConditionFormula>IF(ISPICKVAL(Repayment_Type__c,&apos;Interest Only&apos;) &amp;&amp;  genesis__Term__c &gt; 60,TRUE, FALSE)</errorConditionFormula>
+    <errorMessage>Term cannot be greater than 60 when the repayment type is Interest Only</errorMessage>
+</ValidationRule>

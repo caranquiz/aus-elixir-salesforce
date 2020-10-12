@@ -36,7 +36,39 @@ global with sharing class CheckRules {
             // applicationRecordId = applicationId.substring(0,applicationId.length()-3);
             applicationRecordId = applicationId;
             //By the name of specific rules are executed
-            if(tabName == ConstantValues.LOAN_DETAILS){
+            if(tabName == 'Recommended'){
+                rulesNameList.add(ConstantValues.CASHOUT_PURPOSE_RULE);
+                rulesNameList.add(ConstantValues.COMMISSION_MANADATE_PERCENTAGE_RULE);
+                rulesNameList.add(ConstantValues.INTEREST_ONLY_SUITABE_RULE);
+                rulesNameList.add(ConstantValues.EXIT_STRATEGY_SUITABLE_RULE);
+                rulesNameList.add(ConstantValues.LENDERS_MORTAGE_INSURANCE_RULE);
+                rulesNameList.add(ConstantValues.CUSTOMER_INTERVIEW_COMPLETED_RULE);
+                rulesNameList.add(ConstantValues.DISTRESSED_ASSET_RULE);
+                rulesNameList.add(ConstantValues.CHECK_VAL_VALUE_RULE);
+                rulesNameList.add(ConstantValues.TEMPORARY_VISA_SUITABILITY_RULE);
+                //rulesNameList.add(ConstantValues.ABN_STATUS_EXPLANATION_SUITABLE_RULE);
+                rulesNameList.add(ConstantValues.EXIT_STRATEGY_SUITABLE_RULE_CONTACT);
+                rulesNameList.add(ConstantValues.BORROWER_IS_A_STAFF_MEMBER);
+                rulesNameList.add(ConstantValues.GST_SUITABLE_RULE);
+                rulesNameList.add(ConstantValues.EXPLANATION_OF_CREDIT_EVENTS);
+                rulesNameList.add(ConstantValues.EXPLANATION_OF_CREDIT_ENQUIRIES);
+                rulesNameList.add(ConstantValues.EXPLANATION_OF_BANKRUPTCY);
+                rulesNameList.add(ConstantValues.EXPLANATION_OF_AGE_OF_CREDIT_FILE);
+                rulesNameList.add(ConstantValues.CONFIRM_LETTER_PREPARED_BY_ACCOUNTANT);
+                rulesNameList.add(ConstantValues.CONFIRM_STATED_ANNUAL_INCOME);
+                rulesNameList.add(ConstantValues.ACCOUNTANT_AWARE_OF_ANY_CIRCUMSTANCE);
+                rulesNameList.add(ConstantValues.ACCOUNTANT_CALL_SUITABLE_RULE);
+                rulesNameList.add(ConstantValues.EMPLOYMENT_CALL_SUITABLE_RULE);
+                rulesNameList.add(ConstantValues.INCOME_INCONSISTANT_WITH_DECLARATION_RULE);
+                rulesNameList.add(ConstantValues.GST_EFFECTIVE_FROM_RULE);
+                rulesNameList.add(ConstantValues.LIVING_EXPENSE_EXPLANATION_SUITABLE_RULE);
+                rulesNameList.add(ConstantValues.BANK_STATEMENT_REVIEWED_RULE);
+                rulesNameList.add(ConstantValues.SATISFACTORY_EXPLANATION_PROVIDED_RULE);
+                rulesNameList.add(ConstantValues.ACL_VERIFIED_RULE);
+                rulesNameList.add(ConstantValues.COMMISSION_STATUS_RULE);
+                rulesNameList.add(ConstantValues.PREVIOUS_CONDUCT_SUITABLE);
+            }
+            else if(tabName == ConstantValues.LOAN_DETAILS){
                 rulesNameList.add(ConstantValues.CASHOUT_PURPOSE_RULE);
                 rulesNameList.add(ConstantValues.COMMISSION_MANADATE_PERCENTAGE_RULE);
                 rulesNameList.add(ConstantValues.INTEREST_ONLY_SUITABE_RULE);

@@ -178,6 +178,9 @@ public with sharing class ChecklistDetailsAPI {
         String expression = rule.genesis__Evaluation_Expression__c;
         String sequenceNumber;
         String criteriaResult;
+        if(expression == NULL || expression != ''){
+            return false;
+        }
         for(genesis__RuleCriteria__c criteria: criteriaList){
             sequenceNumber = String.valueOf(Integer.valueOf(criteria.genesis__Criteria_Sequence__c));
             criteriaResult = String.valueOf(this.runRuleCriteriaOnChild(child, criteria));

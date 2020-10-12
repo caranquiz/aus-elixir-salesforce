@@ -47,11 +47,11 @@ public class BooleanExpression {
      * Simplify the expression
      * 
      */
-    public static string simplifyExpression(String expression, String LogicType){
-        Map<String, String> Logic = new Map<String, String>(expressionLogic.get(LogicType));
+    public static string simplifyExpression(String expression, String logicType){
+        Map<String, String> logic = new Map<String, String>(expressionLogic.get(logicType));
         
-        for(String key : Logic.keySet()) {
-            expression = expression.replace(key, Logic.get(key));
+        for(String key : logic.keySet()) {
+            expression = expression.replace(key, logic.get(key));
         }
         
         return expression;
@@ -62,31 +62,31 @@ public class BooleanExpression {
     * 
     */
     public static void fillLogic() {
-        Map<String, String> ANDLogic = new Map<String, String>();
-        Map<String, String> ORLogic = new Map<String, String>();
-        Map<String, String> BRACELogic = new Map<String, String>();
+        Map<String, String> andLogic = new Map<String, String>();
+        Map<String, String> orLogic = new Map<String, String>();
+        Map<String, String> braceLogic = new Map<String, String>();
         
         logicTypes.put('AND', 'AND');
         logicTypes.put('OR', 'OR');
         logicTypes.put('(', 'BRACES');
         
         // AND Logic
-        ANDLogic.put('TRUE AND TRUE', 'TRUE');
-        ANDLogic.put('TRUE AND FALSE', 'FALSE');
-        ANDLogic.put('FALSE AND TRUE', 'FALSE');
-        ANDLogic.put('FALSE AND FALSE', 'FALSE');
-        expressionLogic.put('AND', ANDLogic);
+        andLogic.put('TRUE AND TRUE', 'TRUE');
+        andLogic.put('TRUE AND FALSE', 'FALSE');
+        andLogic.put('FALSE AND TRUE', 'FALSE');
+        andLogic.put('FALSE AND FALSE', 'FALSE');
+        expressionLogic.put('AND', andLogic);
         
         // OR Logic
-        ORLogic.put('TRUE OR TRUE', 'TRUE');
-        ORLogic.put('TRUE OR FALSE', 'TRUE');
-        ORLogic.put('FALSE OR TRUE', 'TRUE');
-        ORLogic.put('FALSE OR FALSE', 'FALSE');
-        expressionLogic.put('OR', ORLogic);
+        orLogic.put('TRUE OR TRUE', 'TRUE');
+        orLogic.put('TRUE OR FALSE', 'TRUE');
+        orLogic.put('FALSE OR TRUE', 'TRUE');
+        orLogic.put('FALSE OR FALSE', 'FALSE');
+        expressionLogic.put('OR', orLogic);
         
         // Braces Logic
-        BRACELogic.put('(TRUE)', 'TRUE');
-        BRACELogic.put('(FALSE)', 'FALSE');
-        expressionLogic.put('BRACES', BRACELogic);
+        braceLogic.put('(TRUE)', 'TRUE');
+        braceLogic.put('(FALSE)', 'FALSE');
+        expressionLogic.put('BRACES', braceLogic);
     }
 }
