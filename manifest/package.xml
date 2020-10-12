@@ -251,6 +251,8 @@
         <members>clcommon__Party__c.Company_Director_s_Adverse__c</members>
         <members>clcommon__Party__c.Company_Director_s_Related_Entity_Advers__c</members>
         <members>clcommon__Party__c.Confirm_increased_Commission_Reason__c</members>
+        <members>clcommon__Party__c.Business_Applicant__c</members>
+        <members>clcommon__Party__c.ABN_Effective_From_Rule_Check__c</members>
         <members>genesis__Applications__c.ValuationFee__c</members>
         <members>genesis__Applications__c.BAS__c</members>
         <members>genesis__Applications__c.Cash_Out_Purpose_Explanation_Provided__c</members>
