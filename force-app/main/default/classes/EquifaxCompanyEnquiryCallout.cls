@@ -10,19 +10,19 @@ global class EquifaxCompanyEnquiryCallout{
             FROM genesis__Applications__c
             WHERE ID = :applicationid];
             Map<String, String> queryIDMap = new Map<String, String>();
-            queryIDMap.put('partyId', partyid);
-            queryIDMap.put('partyTypeId', ans.clcommon__Type__c);
-            queryIDMap.put('entityID', ans.clcommon__Account__r.clcommon__Legal_Entity_Type__c);
+            queryIDMap.put(ConstantValues.PARTY_ID, partyid);
+            queryIDMap.put(ConstantValues.PARTY_TYPE_ID, ans.clcommon__Type__c);
+            queryIDMap.put(ConstantValues.ENTITY_ID, ans.clcommon__Account__r.clcommon__Legal_Entity_Type__c);
             
-            queryIDMap.put('applicationID', applicationid);
+            queryIDMap.put(ConstantValues.APPLICATION_ID, applicationid);
             List<clcommon__Party__c> partyList = [SELECT Id, genesis__Application__c, Party_Type_Name__c FROM clcommon__Party__c
-            WHERE genesis__Application__c = :applicationid AND Party_Type_Name__c IN ('Borrower', 'Co-applicant')];
+            WHERE genesis__Application__c = :applicationid AND Party_Type_Name__c IN (:ConstantValues.BORROWER, :ConstantValues.CO_APPLICANT)];
             Map<String, Object> requestParamMap = new Map<String, Object>();
-            requestParamMap.put('enrichmentRequired', enrichment);
+            requestParamMap.put(ConstantValues.ENRICHMENT_REQUIRED, enrichment);
             if(partyList.size() > 1){
-                requestParamMap.put('isJoint', true);
+                requestParamMap.put(ConstantValues.IS_JOINT, true);
             }else{
-                requestParamMap.put('isJoint', false);
+                requestParamMap.put(ConstantValues.IS_JOINT, false);
             }
         
             intframework.AbstractIntegrationService baseintegrationService = intframework.IntegrationServiceFactory.getBaseIntegrationService();
