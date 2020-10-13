@@ -69,6 +69,7 @@ global with sharing class CheckRules {
                 rulesNameList.add(ConstantValues.ACL_VERIFIED_RULE);
                 rulesNameList.add(ConstantValues.COMMISSION_STATUS_RULE);
                 rulesNameList.add(ConstantValues.PREVIOUS_CONDUCT_SUITABLE);
+                rulesNameList.add(ConstantValues.LMI_RULE);
             }
             else if(tabName == ConstantValues.LOAN_DETAILS){
                 rulesNameList.add(ConstantValues.CASHOUT_PURPOSE_RULE);
@@ -76,6 +77,7 @@ global with sharing class CheckRules {
                 rulesNameList.add(ConstantValues.INTEREST_ONLY_SUITABE_RULE);
                 rulesNameList.add(ConstantValues.EXIT_STRATEGY_SUITABLE_RULE);
                 rulesNameList.add(ConstantValues.LENDERS_MORTAGE_INSURANCE_RULE);
+                rulesNameList.add(ConstantValues.LMI_RULE);
             }
             else if(tabName == ConstantValues.SETTLEMENT){
                 rulesNameList.add(ConstantValues.CUSTOMER_INTERVIEW_COMPLETED_RULE);
@@ -86,7 +88,7 @@ global with sharing class CheckRules {
             }
             else if(tabName == ConstantValues.INDIVIDUAL_CONTACT_DETAILS){
                 rulesNameList.add(ConstantValues.TEMPORARY_VISA_SUITABILITY_RULE);
-                rulesNameList.add(ConstantValues.ABN_STATUS_EXPLANATION_SUITABLE_RULE);
+                //rulesNameList.add(ConstantValues.ABN_STATUS_EXPLANATION_SUITABLE_RULE);
                 rulesNameList.add(ConstantValues.EXIT_STRATEGY_SUITABLE_RULE_CONTACT);
                 rulesNameList.add(ConstantValues.BORROWER_IS_A_STAFF_MEMBER);
             }
