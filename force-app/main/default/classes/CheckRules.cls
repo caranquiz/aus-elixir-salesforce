@@ -184,7 +184,7 @@ global with sharing class CheckRules {
                 rulesNameList.add('Investment Property Warning Check');
                 rulesNameList.add('Rent/Board (post settlement of this facility) Warning');
                 rulesNameList.add('Is Purchaser the Mortgagor Condition');
-                rulesNameList.add('Home Insurance Certificate Provide Condition');
+                rulesNameList.add('Home Insurance Certificate Provide Warning');
                 rulesNameList.add('Home Insurance Certificate Provide and Body Corporate Condition');
                 rulesNameList.add('Home Insurance Certificate Provide and Standard Condition');
                 rulesNameList.add('Signed Contract Condition');
@@ -210,6 +210,7 @@ global with sharing class CheckRules {
                 rulesNameList.add('Previous conduct explanation received Warning');
                 rulesNameList.add('Previous conduct referencing completed Warning');
                 rulesNameList.add('ABN Status Employment Exception');
+                rulesNameList.add('Does applicant understand English Condition');
             }
             else if(tabName == 'APP_XCEP'){
                 rulesNameList.add('Matrix Rate Exception');
@@ -225,7 +226,6 @@ global with sharing class CheckRules {
                 rulesNameList.add('Cash Out Purpose Explanation Provided Warning');
                 rulesNameList.add('Application Fee Warning');
                 rulesNameList.add('Application Fee % Warning');
-                rulesNameList.add('Does applicant understand English Condition');
                 rulesNameList.add('Is the Application Form fully completed? Warning');
                 loanDetailsRiskGradeWarningCheck(applicationId);
                 loanDetailsPrimaryPurposeWarningCheck(applicationId);
@@ -547,6 +547,13 @@ global with sharing class CheckRules {
                                                 FROM clcommon__Party__c
                                                 WHERE genesis__Application__c =:appId
                                                 AND Legal_Entity_Type__c != 'Individual'];
+            List<genesis__Employment_Information__c> empInfoList = [SELECT Id,
+                                                                    RecordType.Name,
+                                                                    genesis__Application__c,
+                                                                    Document_Type__c
+                                                                    FROM genesis__Employment_Information__c
+                                                                    WHERE RecordType.Name = 'Self Employed'
+                                                                    AND genesis__Application__c =:appId];
             if(parties.isEmpty()){
                 return;
             }
@@ -561,6 +568,20 @@ global with sharing class CheckRules {
                     return;
                 }
                 prevDocType = each.Document_Type__c;
+            }
+            if(!empInfoList.isEmpty()){
+                prevDocType = empInfoList[0].Document_Type__c;
+                for(genesis__Employment_Information__c each : empInfoList){
+                    if(String.isBlank(each.Document_Type__c)){
+                        errorCheckList(docTypeCompRule, appId, previousChecklistId);
+                        return;
+                    }
+                    else if(prevDocType != each.Document_Type__c){
+                        errorCheckList(docTypeCompRule, appId, previousChecklistId);
+                        return;
+                    }
+                    prevDocType = each.Document_Type__c;
+                }
             }
             if((appObj.Document_Type__c).equalsIgnoreCase('Full Doc') && !(prevDocType).equalsIgnoreCase('Full')){
                 errorCheckList(docTypeCompRule, appId, previousChecklistId);

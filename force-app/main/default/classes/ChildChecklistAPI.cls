@@ -159,7 +159,8 @@ public with sharing class ChildChecklistAPI {
                                                 Upfront_Payment_Warning_Check__c,
                                                 Trail_Payment_Warning_Check__c,
                                                 ABN_Effective_From_Rule_Check__c,
-                                                Business_Applicant__c
+                                                Business_Applicant__c,
+                                                Does_applicant_understand_English__c
                                                 FROM clcommon__Party__c WHERE genesis__Application__c =:appId];
     List<genesis__Income__c> incomeList = [SELECT Id,
                                             Party__c,
