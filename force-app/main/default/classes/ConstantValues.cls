@@ -463,6 +463,7 @@ global class ConstantValues{
   public static final String EXIT_STRATEGY_SUITABLE_RULE = 'Exit Strategy Suitable Rule';
   public static final String LENDERS_MORTAGE_INSURANCE_RULE = 'Lenders Mortgage Insurance Rule';
   public static final String SETTLEMENT = 'Settlement';
+  public static final String CUSTOMER_INTERVIEW = 'Customer Interview';
   public static final String CUSTOMER_INTERVIEW_COMPLETED_RULE = 'Customer Interview completed Rule';
   public static final String SECURITIES = 'Securities';
   public static final String DISTRESSED_ASSET_RULE = 'Distressed Asset Rule';
@@ -512,6 +513,7 @@ global class ConstantValues{
   public static final String GST_EFFECTIVE_FROM_RULE = 'GST Effective from Rule';
   public static final String ABN_EFFECTIVE_RULE = 'ABN Effective From Rule';
   public static final String LMI_RULE = 'LMI and LMI Approved both should be yes rule';
+  
 
   // ABA FileGen Class
   public static final String PAYMENT_MODE_ACH = 'ACH';

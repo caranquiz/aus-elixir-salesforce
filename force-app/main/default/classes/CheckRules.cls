@@ -79,7 +79,7 @@ global with sharing class CheckRules {
                 rulesNameList.add(ConstantValues.LENDERS_MORTAGE_INSURANCE_RULE);
                 rulesNameList.add(ConstantValues.LMI_RULE);
             }
-            else if(tabName == ConstantValues.SETTLEMENT){
+            else if(tabName == ConstantValues.CUSTOMER_INTERVIEW){
                 rulesNameList.add(ConstantValues.CUSTOMER_INTERVIEW_COMPLETED_RULE);
             }
             else if(tabName == ConstantValues.SECURITIES){
