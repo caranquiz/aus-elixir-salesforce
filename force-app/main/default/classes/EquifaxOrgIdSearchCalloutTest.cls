@@ -14,22 +14,22 @@ class EquifaxOrgIdSearchCalloutTest{
         System.assertNotEquals(equifaxOrgIdSearchObj,null,'Custom Setting not inserted successfully');
         //Inserting Account
         Account acc = GenericUtilityTestHelper.createAccount();
-        System.assertNotEquals(acc,null,'Account not inserted successfully');
+        System.assertNotEquals(acc.Id,null,'Account not inserted successfully');
         //Inserting Party
         clcommon__Party__c party = GenericUtilityTestHelper.createParty(acc);
-        System.assertNotEquals(party,null,'Party not inserted successfully');
+        System.assertNotEquals(party.Id,null,'Party not inserted successfully');
         //Inserting Integration Family
         intframework__Integration_Family__c family = GenericUtilityTestHelper.getFamily(ConstantValues.EQUIFAX_FAMILY_NAME);
-        System.assertNotEquals(family,null,'Family not inserted successfully');
+        System.assertNotEquals(family.Id,null,'Family not inserted successfully');
         //Inserting Integration API Type
         intframework__Integration_API_Type__c apiType = GenericUtilityTestHelper.getIntegrationAPIType(family.Id,ConstantValues.EQUIFAX_API_TYPE);
-        System.assertNotEquals(apiType,null,'API Type not inserted successfully');
+        System.assertNotEquals(apiType.Id,null,'API Type not inserted successfully');
         //Inserting Integration Provider
         intframework__Integration_Provider__c provider = GenericUtilityTestHelper.getIntegrationProvider(family.Id,'Equifax Org Id Search');
-        System.assertNotEquals(provider,null,'Provider not inserted successfully');
+        System.assertNotEquals(provider.Id,null,'Provider not inserted successfully');
         //Inserting Integration Configuration
         intframework__Integration_Configuration__c config = GenericUtilityTestHelper.getIntegrationConfiguration(provider.Id,'Equifax Org Id Search config');
-        System.assertNotEquals(config,null,'Configuration not inserted successfully');
+        System.assertNotEquals(config.Id,null,'Configuration not inserted successfully');
         //Inserting API Configuration
         intframework__Integration_API_Configuration__c apiConfig = GenericUtilityTestHelper.getIntegrationAPIConfiguration(family.Id,
         apiType.Id,
@@ -40,7 +40,7 @@ class EquifaxOrgIdSearchCalloutTest{
         'EquifaxOrgIdSearch',
         '',
         ConstantValues.EQUIFAX_REQUEST_MAPPING);
-        System.assertNotEquals(apiConfig,null,'API configuration not inserted succesfully');
+        System.assertNotEquals(apiConfig.Id,null,'API configuration not inserted succesfully');
     }    
     /* Mock class returns response from static resource depending on endpoint being called */
     private class Mock implements HttpCalloutMock {
@@ -59,6 +59,7 @@ class EquifaxOrgIdSearchCalloutTest{
         FROM StaticResource
         WHERE Name = 'EquifaxMockResponse'
         ];
+        System.assertNotEquals(srList.size(), 0, 'Static resource not found');
         String xml = srList[0].Body.toString();
         HttpResponse res = new HttpResponse();
         res.setStatusCode(statusCode);

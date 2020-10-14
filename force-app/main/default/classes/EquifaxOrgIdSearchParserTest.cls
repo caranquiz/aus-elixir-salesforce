@@ -1,8 +1,12 @@
-/****************************************************************************************************/
-/* Description          : This test class mostly covers EquifaxOrgIdSearchParser class. */
-/* Testing Scenario 1   : (testMethod1) This test method will test with a valid response of Org Id from 
-                          the static resource and checks if successfully parsed. */
-/****************************************************************************************************/
+/****************************************************************************************************
+Description          : This test class mostly covers EquifaxOrgIdSearchParser class.
+Testing Scenario 1   : (testMethod1) This test method will test with a valid response of Org Id from 
+                          the static resource and checks if successfully parsed. 
+Company: Cloudkaptan Consultancy Services Pvt. Ltd.
+Author: Pratik Agarwal
+Development Date : 2/09/2020
+Last Modified Date : 14/10/2020    
+****************************************************************************************************/
 
 @isTest
 class EquifaxOrgIdSearchParserTest {
@@ -14,7 +18,7 @@ class EquifaxOrgIdSearchParserTest {
       FROM StaticResource
       WHERE Name = 'EquifaxMockResponse'
     ];
-    System.assertEquals(srList.size(), 1, 'Static Resource not found');
+    System.assertEquals(srList.size(), 0, 'Static Resource not found');
     dom.Document doc = new dom.Document();
     doc.load(srList[0].Body.toString());
     Map<String, Object> responseMap = intframework.XmlToJson.parseDocumentToMap(doc);

@@ -1,8 +1,12 @@
-/****************************************************************************************************/
-/* Description          : This test class mostly covers SMSFSearchByABNNumberHelper class. */
-/* Testing Scenario 1   : (testMethod1) This test method will test with a valid response from the
- static resource and checks if successfully parsed. */
-/****************************************************************************************************/
+/****************************************************************************************************
+ Description          : This test class mostly covers SMSFSearchByABNNumberHelper class.
+ Testing Scenario 1   : (testMethod1) This test method will test with a valid response from the
+ static resource and checks if successfully parsed.
+ Company: Cloudkaptan Consultancy Services Pvt. Ltd.
+ Author: Pratik Agarwal
+ Development Date : 2/09/2020
+ Last Modified Date : 14/10/2020
+****************************************************************************************************/
 
 @isTest
 class SMSFSearchByABNNumberHelperTest {

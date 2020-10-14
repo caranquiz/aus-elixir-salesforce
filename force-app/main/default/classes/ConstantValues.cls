@@ -517,7 +517,7 @@ global class ConstantValues{
   public static final String GST_EFFECTIVE_FROM_RULE = 'GST Effective from Rule';
   public static final String ABN_EFFECTIVE_RULE = 'ABN Effective From Rule';
   public static final String LMI_RULE = 'LMI and LMI Approved both should be yes rule';
-  
+  public static final String ABN_ACN_NO_FOUND = 'ABN or ACN not found';
 
   // ABA FileGen Class
   public static final String PAYMENT_MODE_ACH = 'ACH';

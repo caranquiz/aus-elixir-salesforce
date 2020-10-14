@@ -1,18 +1,25 @@
-/********************************************************************************************/
-/* Description : This class calls for sending request for Org Id Verification of Current 
+/********************************************************************************************
+Description : This class calls for sending request for Org Id Verification of Current 
                  Directorship using Integration Framework, passes the required data and 
                  calls the parser class for parsing the response.
-/********************************************************************************************/
+Company: Cloudkaptan Consultancy Services Pvt. Ltd.
+Author: Pratik Agarwal
+Development Date : 2/09/2020
+Last Modified Date : 14/10/2020         
+********************************************************************************************/
 global with sharing class EquifaxOrgIdSearchCallout {
     private static EquifaxOrgIdSearchParser parserObject = new EquifaxOrgIdSearchParser();
     webService static String searchByABN(String partyId, String abnOacn) {
         String acn;
+        Map<String, Object> queryIdMap = new Map<String, Object>();
+        Map<String, Object> requestParamMap = new Map<String, Object>();
+        dom.Document doc = new dom.Document();
         if(String.isBlank(partyId)){
             parserObject.errMessage = ConstantValues.PARTY_ID_EMPTY;
             return JSON.serialize(parserObject);
         }
         if(String.isBlank(abnOacn)){
-            parserObject.errMessage = 'ABN or ACN not found';
+            parserObject.errMessage = ConstantValues.ABN_ACN_NO_FOUND;
             return JSON.serialize(parserObject);
         }
         if(abnOacn.length() == 11){
@@ -20,9 +27,6 @@ global with sharing class EquifaxOrgIdSearchCallout {
         } else {
             acn = abnOacn;
         }
-        Map<String, Object> queryIdMap = new Map<String, Object>();
-        Map<String, Object> requestParamMap = new Map<String, Object>();
-        dom.Document doc = new dom.Document();
         EquifaxOrgIdSearchParser result = new EquifaxOrgIdSearchParser();
         try {
             StaticResource staticResource = [SELECT Id,Name,Body FROM StaticResource WHERE Name =: ConstantValues.EQUIFAX_XML_BODY];
@@ -90,17 +94,17 @@ global with sharing class EquifaxOrgIdSearchCallout {
                 GenericUtility.insertLog('EquifaxOrgIdSearchCallout', ex);
                 return null;
             }
-            for(EquifaxOrgIdSearchParser.Cls_orgIdResult each: parserObject.bcaMessage.bcaServices.bcaService.bcaServiceData.response.orgIdResult){
-                if(each.asicReport != null){
+            for(EquifaxOrgIdSearchParser.Cls_orgIdResult eachOrgIDResult : parserObject.bcaMessage.bcaServices.bcaService.bcaServiceData.response.orgIdResult){
+                if(eachOrgIDResult.asicReport != null){
                     try{
-                        if(each.asicReport.asicStatus != null){
-                            String asicStat = each.asicReport.asicStatus.nodeValue;
+                        if(eachOrgIDResult.asicReport.asicStatus != null){
+                            String asicStat = eachOrgIDResult.asicReport.asicStatus.nodeValue;
                             asicStat = GenericUtility.convertToDescription(asicStat);
                             parserObject.asicStatusData = asicStat;
                             res = true;
                         }
-                        if(each.asicReport.asicName != null){
-                            parserObject.asicNameData = each.asicReport.asicName.nodeValue;
+                        if(eachOrgIDResult.asicReport.asicName != null){
+                            parserObject.asicNameData = eachOrgIDResult.asicReport.asicName.nodeValue;
                             res = true;
                         }
                         if(res){

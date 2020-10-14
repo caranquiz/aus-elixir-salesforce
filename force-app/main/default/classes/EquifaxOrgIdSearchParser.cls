@@ -1,7 +1,11 @@
-/********************************************************************************************/
-/* Description : This class parses the response for Equifax Org Id Search and converts JSON 
-                 response into Apex POJO Object.
-/********************************************************************************************/
+/********************************************************************************************
+Description : This class parses the response for Equifax Org Id Search and converts JSON 
+				 response into Apex POJO Object.
+Company: Cloudkaptan Consultancy Services Pvt. Ltd.
+Author: Pratik Agarwal
+Development Date : 2/09/2020
+Last Modified Date : 14/10/2020   
+********************************************************************************************/
 public class EquifaxOrgIdSearchParser {
     public String errMessage;
 	public Cls_BCAmessage bcamessage;
