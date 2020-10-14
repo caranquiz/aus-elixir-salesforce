@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Employer_Phone_Independently_Verified_WC__c</fullName>
+    <externalId>false</externalId>
+    <formula>AND(OR(ISPICKVAL(Employer_Phone_Independently_Verified__c, &apos;No&apos;), ISPICKVAL(Employer_Phone_Independently_Verified__c, &apos;&apos;)), Previous_Employment__c == FALSE, Party__r.Legal_Entity_Type__c == &apos;Individual&apos;,  RecordType.Name == &apos;PAYG&apos;)</formula>
+    <label>Employer Phone Independently Verified WC</label>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

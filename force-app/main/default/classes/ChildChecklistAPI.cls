@@ -164,8 +164,7 @@ public with sharing class ChildChecklistAPI {
                                                 genesis__Application__c,
                                                 genesis__Application__r.NCCP_status_list__c,
                                                 genesis__Application__r.genesis__CL_Product_Name__c,
-                                                Customer_Interview_completed__c,
-                                                Business_Applicant__c
+                                                Customer_Interview_completed__c
                                                 FROM clcommon__Party__c WHERE genesis__Application__c =:appId];
     List<genesis__Income__c> incomeList = [SELECT Id,
                                             Party__c,
@@ -192,6 +191,7 @@ public with sharing class ChildChecklistAPI {
                                             Income_Verification_Sighted__c,
                                             PAYG_Income__c,
                                             Employer_Call_Verified__c,
+                                            Employer_Call_Verified_Warning_Check__c,
                                             Party__r.Legal_Entity_Type__c,
                                             Unemployed_Income__c,
                                             Unemployed_Income_Type__c,
@@ -252,7 +252,9 @@ public with sharing class ChildChecklistAPI {
                                                             Document_Type__c,
                                                             Override__c,
                                                             ABN_Status__c,
-                                                            RecordType.DeveloperName
+                                                            RecordType.DeveloperName,
+                                                            Employer_Phone_Independently_Verified_WC__c,
+                                                            Months_Self_Employed__c
                                                             FROM genesis__Employment_Information__c
                                                             WHERE genesis__Application__c =:appId];
         for (genesis__Checklist__c checklist : listOfCheckList) {

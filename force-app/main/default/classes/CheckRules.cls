@@ -167,6 +167,7 @@ global with sharing class CheckRules {
                 rulesNameList.add('Floor Area Warning');
                 rulesNameList.add('ABN Effective From Warning');
                 rulesNameList.add('ABN Effective From Exception');
+                rulesNameList.add('Employer Verified Warning');
                 rulesNameList.add('Estimated Completion Date Warning');
                 rulesNameList.add('HEM Warning');
                 rulesNameList.add('GST Effective From Warning');
@@ -178,7 +179,6 @@ global with sharing class CheckRules {
                 rulesNameList.add('Employer Phone Independently Verified Warning');
                 rulesNameList.add('Income Verification Sighted Warning');
                 rulesNameList.add('Employment Duration (Months) Warning');
-                rulesNameList.add('Employer Verfied Warning');
                 rulesNameList.add('Is Director a Beneficiary / Member Warning');
                 rulesNameList.add('Is Trustee a Beneficiary / Member Warning');
                 rulesNameList.add('Is General Security Agreement Being Taken over this Applicant Warning Check');
@@ -199,6 +199,7 @@ global with sharing class CheckRules {
                 rulesNameList.add('Trust Deed Provided Condition');
                 rulesNameList.add('ABN Effective From Living Expense Warning');
                 rulesNameList.add('GST Effective From Living Expense Warning');
+                rulesNameList.add('Government Benefit Amount Warning');
                 rulesNameList.add('Private Pension Amount Warning');
                 rulesNameList.add('Other Income Amount Warning');
                 rulesNameList.add('Superannuation Amount Warning');
@@ -213,6 +214,7 @@ global with sharing class CheckRules {
                 rulesNameList.add('Previous conduct referencing completed Warning');
                 rulesNameList.add('ABN Status Employment Exception');
                 rulesNameList.add('Does applicant understand English Condition');
+                rulesNameList.add('Months Self Employed Exception');
             }
             else if(tabName == 'APP_XCEP'){
                 rulesNameList.add('Matrix Rate Exception');

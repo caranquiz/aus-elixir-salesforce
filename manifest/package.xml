@@ -88,7 +88,15 @@
         <!-- Re draw amount cannot be in decimal fix by Rameswari -->
         <members>RedrawController</members>
 
+        <!-- ABA File Generation Control Page Controller class -->
+        <members>ABAFileGeneratorController</members>
+
         <name>ApexClass</name>
+    </types>
+    <types>
+        <!-- ABA File Generation Control Page -->
+        <members>ABAFileGenerator</members>
+        <name>ApexPage</name>
     </types>
     <types>
         <members>genesis__Income__c.Unemployed_Income_Type__c</members>
@@ -547,6 +555,7 @@
         <members>genesis__Application_Collateral__c.X110_check__c</members>
         <members>genesis__Application_Collateral__c.X110_Render_Check__c</members>
         <members>clcommon__Collateral__c.Valuation_Paid_Render_Check__c</members>
+        <members>genesis__Income__c.Employer_Call_Verified_Warning_Check__c</members>
 
         <!-- Approval Mechanism changes by Rameswari -->
         <members>genesis__Applications__c.Approval_Level__c</members>

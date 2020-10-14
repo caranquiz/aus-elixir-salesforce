@@ -1,0 +1,11 @@
+<apex:page controller="ABAFileGeneratorController" action="{!nothing}">
+  <apex:form >
+    <apex:pagemessages />
+    <apex:pageBlock >
+      <apex:pageBlockSection >
+        <apex:commandButton value="Run LPT File Generation" action="{!runLPTFileGen}"/>
+        <apex:commandButton value="Run LDT File Generation" action="{!runLDTFileGen}"/>
+      </apex:pageBlockSection>
+    </apex:pageBlock>
+  </apex:form>
+</apex:page>

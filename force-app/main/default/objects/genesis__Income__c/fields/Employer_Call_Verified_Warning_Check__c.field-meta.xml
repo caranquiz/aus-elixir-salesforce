@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Employer_Call_Verified_Warning_Check__c</fullName>
+    <externalId>false</externalId>
+    <formula>AND(OR(ISPICKVAL( Employer_Call_Verified__c, &apos;No&apos;), ISPICKVAL( Employer_Call_Verified__c, &apos;&apos;)), PAYG_Income__c, Party__r.Legal_Entity_Type__c == &apos;Individual&apos;)</formula>
+    <label>Employer Call Verified Warning Check</label>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>
