@@ -210,7 +210,7 @@ global with sharing class CheckRules {
                 rulesNameList.add(ConstantValues.PREVIOUS_CONDUCT_REFERENCING_COMPLETED_WARNING);
                 rulesNameList.add(ConstantValues.ABN_STATUS_EMPLPYMENT_WARNING);
             }
-            else if(tabName == ConstantValues.){
+            else if(tabName == ConstantValues.APP_EXCEP){
                 rulesNameList.add(ConstantValues.MATRIX_RATE_EXCEPTION);
                 rulesNameList.add(ConstantValues.CONFIRM_REPAYMENTS_WARNING);
                 rulesNameList.add(ConstantValues.OVERRIDE_EXCEPTION);
@@ -225,7 +225,7 @@ global with sharing class CheckRules {
                 rulesNameList.add(ConstantValues.APPLICATION_FEE_WARNING);
                 rulesNameList.add(ConstantValues.APPLICATION_FEE_PERCENTAGE_WARNING);
                 rulesNameList.add(ConstantValues.DOES_APPLICANT_UNDERSTAND_ENGLISH_WARNING);
-                rulesNameList.add(ConstantValues.APPLICATION_FORM_COMPETED_WARNING);
+                rulesNameList.add(ConstantValues.APPLICATION_FORM_COMPLETED_WARNING);
                 loanDetailsRiskGradeWarningCheck(applicationId);
                 loanDetailsPrimaryPurposeWarningCheck(applicationId);
                 loanDetailsDocumentCompareWarningCheck(applicationId);
@@ -315,12 +315,12 @@ global with sharing class CheckRules {
                                 genesis__Type__c
                                 FROM genesis__Checklist__c];
             }
-            if(tabName == ConstantValues.APP_XCEP) {
+            if(tabName == ConstantValues.APP_EXCEP) {
                 updateChecklistsFromRuleDataOnApplication(application, rulesNameList);
             }
-            if(tabName != ConstantValues.LOAN_DETAILS && tabName != ConstantValues.SETTLEMENT && tabName != 'APP_XCEP'){
+            if(tabName != ConstantValues.LOAN_DETAILS && tabName != ConstantValues.SETTLEMENT && tabName != ConstantValues.APP_EXCEP){
                 ChildChecklistAPI api = new ChildChecklistAPI();
-                List<Checklist_Detail__c> listOfDetail = api.processListOfChecklist(checkList, applicationRecordId);
+                List<Checklist_Detail__c> listOfDetail = api.processListOfChecklist(checkList, applicationId);
                 Database.insert(listOfDetail);
                 try{
                     List<Checklist_Detail__c> updatedChecklistDetails = new List<Checklist_Detail__c>();
@@ -555,11 +555,11 @@ global with sharing class CheckRules {
                     errorCheckList(docTypeCompRule, appId, previousChecklistId);
                     return;
                 }
-                else if(prevDocType != each.Document_Type__c){
+                else if(prevDocType != eachParty.Document_Type__c){
                     errorCheckList(docTypeCompRule, appId, previousChecklistId);
                     return;
                 }
-                prevDocType = each.Document_Type__c;
+                prevDocType = eachParty.Document_Type__c;
             }
             if((appObj.Document_Type__c).equalsIgnoreCase('Full Doc') && !(prevDocType).equalsIgnoreCase('Full')){
                 errorCheckList(docTypeCompRule, appId, previousChecklistId);
@@ -693,7 +693,7 @@ global with sharing class CheckRules {
             }else {
                 manualData += ',{';
             }
-            manualData += '"ruleName":"' + eachChecklistch.genesis__Rule__r.Name + '",';
+            manualData += '"ruleName":"' + eachChecklist.genesis__Rule__r.Name + '",';
             manualData += '"exceptionRecommender":"' + eachChecklist.Exception_Recommender__c + '",';
             manualData += '"exceptionApprover":"' + eachChecklist.Exception_Approver__c + '",';
             manualData += '"exceptionCommentary":"' + eachChecklist.Exception_Commentary__c + '",';
@@ -766,7 +766,7 @@ global with sharing class CheckRules {
                                                             WHERE Party__c IN:partyIds
                                                             AND Checklist__r.genesis__Rule__r.Name IN:rulesNameList];
         for(Checklist_Detail__c eachChecklistDetail : checklistDetailList){
-            List<Checklist_Detail__c> checklistDetails = partyChecklistDetailsMap.get(eeachChecklistDetailach.Party__r.Name);
+            List<Checklist_Detail__c> checklistDetails = partyChecklistDetailsMap.get(eachChecklistDetail.Party__r.Name);
             if(checklistDetails == null){
                 checklistDetails = new List<Checklist_Detail__c>();
             }
@@ -830,7 +830,7 @@ global with sharing class CheckRules {
                 if(String.isNotBlank(eachChecklistDetail.Employment_Information__c)){
                     manualData += eachChecklistDetail.Employment_Information__c;
                 }
-                if(String.isNotBlank(eaceachChecklistDetailh2.Party__c)){
+                if(String.isNotBlank(eachChecklistDetail.Party__c)){
                     manualData += eachChecklistDetail.Party__c;
                 }
                 if(String.isNotBlank(eachChecklistDetail.Income__c)){
@@ -846,7 +846,7 @@ global with sharing class CheckRules {
                 manualData += '}';
             }
             manualData += ']}';
-            sObjectNameManualDataMap.put((String) each.get('Name'), manualData);
+            sObjectNameManualDataMap.put((String)eachSobject.get('Name'), manualData);
         }
     }
 
@@ -911,16 +911,16 @@ global with sharing class CheckRules {
             if(String.isNotBlank(eachChecklist.Application_Collateral__c)){
                 ruleName += eachChecklist.Application_Collateral__c;
             }
-            if(String.isNotBlank(each.Employment_Information__c)){
+            if(String.isNotBlank(eachChecklist.Employment_Information__c)){
                 ruleName += eachChecklist.Employment_Information__c;
             }
-            if(String.isNotBlank(each.Party__c)){
+            if(String.isNotBlank(eachChecklist.Party__c)){
                 ruleName += eachChecklist.Party__c;
             }
             if(String.isNotBlank(eachChecklist.Income__c)){
                 ruleName += eachChecklist.Income__c;
             }
-            ruleChecklistDetailsMap.put(ruleName, each.Id);
+            ruleChecklistDetailsMap.put(ruleName, eachChecklist.Id);
             if(sObjectType.equals(ConstantValues.PARTY_TAG)){
                 ruleChecklistDetailsMap = objectRuleChecklistDetailsMapMap.put(eachChecklist.Party__r.Name, ruleChecklistDetailsMap);
             } else if (sObjectType.equals(ConstantValues.APPLICATION_COLLATERAL)){
@@ -931,31 +931,31 @@ global with sharing class CheckRules {
         }
         List<Checklist_Detail__c> updatedChecklists = new List<Checklist_Detail__c>();
         for(SObject eachChecklistDetail : objectList){
-            String ruleManualData = sObjectNameManualDataMap.get((String) each.get('Name'));
+            String ruleManualData = sObjectNameManualDataMap.get((String) eachChecklistDetail.get('Name'));
             if(String.isBlank(ruleManualData)){
                 continue;
             }
             CheckRules checkRulesObj = (CheckRules) System.JSON.deserialize(ruleManualData, CheckRules.class);
             ClassChecklistManualDataMapping[] checklistManualDataList = checkRulesObj.checklistManualDataMapping;
-            Map<String, Id> ruleChecklistDetailsMap = objectRuleChecklistDetailsMapMap.get((String) each.get('Name'));
-            for(ClassChecklistManualDataMapping each2 : checklistManualDataList){
-                if(String.isNotBlank(each2.ruleName) && ruleChecklistDetailsMap.containsKey(each2.ruleName)){
-                    testing += each2.ruleName + ' : ';
-                    // testing += ruleChecklistMap.get(each2.ruleName) + ' : ';
-                    testing += (String)each.get('Name') + '\n';
-                    Checklist_Detail__c checklistObj = new Checklist_Detail__c(Id = ruleChecklistDetailsMap.get(each2.ruleName));
-                    if(String.isNotBlank(each2.exceptionRecommender) && !(each2.exceptionRecommender).equalsIgnoreCase('null')){
-                        checklistObj.Exception_Recommender__c = each2.exceptionRecommender;
-                    } if(String.isNotBlank(each2.exceptionApprover) && !(each2.exceptionApprover).equalsIgnoreCase('null')){
-                        checklistObj.Exception_Approver__c = each2.exceptionApprover;
-                    } if(String.isNotBlank(each2.exceptionCommentary) && !(each2.exceptionCommentary).equalsIgnoreCase('null')){
-                        checklistObj.Exception_Commentary__c = each2.exceptionCommentary;
-                    } if(String.isNotBlank(each2.status) && !(each2.status).equalsIgnoreCase('null')){
-                        checklistObj.Condition_Status__c = each2.status;
-                    } if(String.isNotBlank(each2.supportingDocumentVerified) && !(each2.supportingDocumentVerified).equalsIgnoreCase('null')){
-                        checklistObj.Supporting_Document_Verified__c = each2.supportingDocumentVerified;
-                    } if(String.isNotBlank(each2.waiverReason) && !(each2.waiverReason).equalsIgnoreCase('null')){
-                        checklistObj.Waiver_Reason__c = each2.waiverReason;
+            Map<String, Id> ruleChecklistDetailsMap = objectRuleChecklistDetailsMapMap.get((String) eachChecklistDetail.get('Name'));
+            for(ClassChecklistManualDataMapping eachChecklistManualData : checklistManualDataList){
+                if(String.isNotBlank(eachChecklistManualData.ruleName) && ruleChecklistDetailsMap.containsKey(eachChecklistManualData.ruleName)){
+                    testing += eachChecklistManualData.ruleName + ' : ';
+                    // testing += ruleChecklistMap.get(eachChecklistManualData.ruleName) + ' : ';
+                    testing += (String)eachChecklistDetail.get('Name') + '\n';
+                    Checklist_Detail__c checklistObj = new Checklist_Detail__c(Id = ruleChecklistDetailsMap.get(eachChecklistManualData.ruleName));
+                    if(String.isNotBlank(eachChecklistManualData.exceptionRecommender) && !(eachChecklistManualData.exceptionRecommender).equalsIgnoreCase('null')){
+                        checklistObj.Exception_Recommender__c = eachChecklistManualData.exceptionRecommender;
+                    } if(String.isNotBlank(eachChecklistManualData.exceptionApprover) && !(eachChecklistManualData.exceptionApprover).equalsIgnoreCase('null')){
+                        checklistObj.Exception_Approver__c = eachChecklistManualData.exceptionApprover;
+                    } if(String.isNotBlank(eachChecklistManualData.exceptionCommentary) && !(eachChecklistManualData.exceptionCommentary).equalsIgnoreCase('null')){
+                        checklistObj.Exception_Commentary__c = eachChecklistManualData.exceptionCommentary;
+                    } if(String.isNotBlank(eachChecklistManualData.status) && !(eachChecklistManualData.status).equalsIgnoreCase('null')){
+                        checklistObj.Condition_Status__c = eachChecklistManualData.status;
+                    } if(String.isNotBlank(eachChecklistManualData.supportingDocumentVerified) && !(eachChecklistManualData.supportingDocumentVerified).equalsIgnoreCase('null')){
+                        checklistObj.Supporting_Document_Verified__c = eachChecklistManualData.supportingDocumentVerified;
+                    } if(String.isNotBlank(eachChecklistManualData.waiverReason) && !(eachChecklistManualData.waiverReason).equalsIgnoreCase('null')){
+                        checklistObj.Waiver_Reason__c = eachChecklistManualData.waiverReason;
                     }
                     updatedChecklists.add(checklistObj);
                 }
