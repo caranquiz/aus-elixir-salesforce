@@ -1,7 +1,11 @@
-/****************************************************************************************************/
-/* Description : This class is used to convert response from SuperFundLookup for SMSF ABN Number Search
-                 json format into POJO object */
-/****************************************************************************************************/
+/****************************************************************************************************
+Company: Cloudkaptan Consultancy Services Pvt. Ltd.
+Author: Pratik Agarwal
+Description : This class is used to convert response from SuperFundLookup for SMSF ABN Number Search
+                 json format into POJO object
+Development Date : 2/09/2020
+Last Modified Date : 14/10/2020
+****************************************************************************************************/
 
 public class SMSFSearchByABNNumberHelper {
     public String errMessage;

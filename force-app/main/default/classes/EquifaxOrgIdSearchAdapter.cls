@@ -1,7 +1,11 @@
-/********************************************************************************************/
-/* Description : This class is the Adapter class for generating request body under Integration
+/********************************************************************************************
+ Description : This class is the Adapter class for generating request body under Integration
                  framework for Org Id Verification of Current Directorship.
-/********************************************************************************************/
+Company: Cloudkaptan Consultancy Services Pvt. Ltd.
+Author: Pratik Agarwal
+Development Date : 2/09/2020
+Last Modified Date : 14/10/2020                 
+********************************************************************************************/
 global without sharing class EquifaxOrgIdSearchAdapter extends intframework.BaseIntegrationAdapter {
     //Wrapper class for dynamic data for generating request body
     private class RequestBody{
@@ -17,10 +21,12 @@ global without sharing class EquifaxOrgIdSearchAdapter extends intframework.Base
             if(filledInRequestMap != null) {
                 //Fetching Details from Request Mapping in API Configuration
                 List<Map<String, Object>> equifaxCredList = (List<Map<String,Object>>)filledInRequestMap.get(ConstantValues.EQUIFAX_CREDS);
+                GenericUtility.isListValid(equifaxCredList,ConstantValues.EQUIFAX_CRED_EXCEP);
                 reqBody.subscriberIdentifier = (String) equifaxCredList[0].get(ConstantValues.SUBSCRIBER_IDENTIFIER);
                 reqBody.security = (String) equifaxCredList[0].get(ConstantValues.SECURITY);
 
                 List<Map<String, Object>> partyList = (List<Map<String,Object>>)filledInRequestMap.get(ConstantValues.PARTY_INFO);
+                GenericUtility.isListValid(partyList,ConstantValues.PARTY_NAME_EXCEP);
                 reqBody.partyName = (String) partyList[0].get(ConstantValues.PARTY_NAME);
 
                 reqBody.xmlRequestBody = (String)filledInRequestMap.get(ConstantValues.EQUIFAX_XML_REQUEST_BODY);

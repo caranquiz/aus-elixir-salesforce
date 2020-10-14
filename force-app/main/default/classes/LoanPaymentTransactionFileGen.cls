@@ -1,8 +1,12 @@
-/****************************************************************************************************/
-/* Description          : This class creates an ABA file for the list of Loan Payments Transaction
+/****************************************************************************************************
+Description          : This class creates an ABA file for the list of Loan Payments Transaction
 Generated on a particular date. The file is generated branch wise using single APC setup wise
-using single APC setup for Direct debit payments by extending product class loan.FileGenerator*/
-/****************************************************************************************************/
+using single APC setup for Direct debit payments by extending product class loan.FileGenerator
+Company: Cloudkaptan Consultancy Services Pvt. Ltd.
+Author: Pratik Agarwal
+Development Date : 4/09/2020
+Last Modified Date : 14/10/2020  
+****************************************************************************************************/
 
 global with sharing class LoanPaymentTransactionFileGen extends loan.FileGenerator {
     Long sumOfAmt = 0;
@@ -39,14 +43,14 @@ global with sharing class LoanPaymentTransactionFileGen extends loan.FileGenerat
       List<SObject> scope
     ) {
       List<loan__Loan_Payment_Transaction__c> lptTxns;
-      Set<Id> ids = new Set<Id>();
+      Set<Id> lptTxnIds = new Set<Id>();
       try {
         if(scope == null || scope.isEmpty()){
           throw new CustomException(ConstantValues.ENTRY_SCOPE_EMPTY);
         }
         // Creating a set of Ids of the given scope
         for (SObject s : scope) {
-          ids.add(s.Id);
+          lptTxnIds.add(s.Id);
         }
         lptTxns = new List<loan__Loan_Payment_Transaction__c>(
           [
@@ -71,16 +75,16 @@ global with sharing class LoanPaymentTransactionFileGen extends loan.FileGenerat
               loan__Loan_Account__r.Warehouse__r.Collection_Bank_Account_Name__c
             FROM loan__Loan_Payment_Transaction__c
             WHERE
-              Id IN :ids
+              Id IN :lptTxnIds
               AND loan__Reversed__c = false
               AND loan__Rejected__c = false
           ]
         );
         //Making list of Bank Account Ids in LPTs
         List<Id> refBankAccountIdList = new List<Id>();
-        for(loan__Loan_Payment_Transaction__c each : lptTxns){
-          if(String.isNotBlank(each.loan__Loan_Account__r.loan__Borrower_ACH__c)){
-            refBankAccountIdList.add(each.loan__Loan_Account__r.loan__Borrower_ACH__c);
+        for(loan__Loan_Payment_Transaction__c eachLPT : lptTxns){
+          if(String.isNotBlank(eachLPT.loan__Loan_Account__r.loan__Borrower_ACH__c)){
+            refBankAccountIdList.add(eachLPT.loan__Loan_Account__r.loan__Borrower_ACH__c);
           }
         }
         bankAccts = new Map<Id, loan__Bank_Account__c>(
@@ -118,7 +122,10 @@ global with sharing class LoanPaymentTransactionFileGen extends loan.FileGenerat
         lptObj.loan__Loan_Account__r.loan__Borrower_ACH__c
       );
       Integer transCode = ConstantValues.TXN_CODE_DEBIT;
-      Decimal tempAmt = lptObj.loan__Transaction_Amount__c.setScale(2) * 100;
+      Decimal tempAmt = 0;
+      if(lptObj.loan__Transaction_Amount__c != NULL){
+        tempAmt = lptObj.loan__Transaction_Amount__c.setScale(2) * 100;
+      }
       Long transAmt = tempAmt.round();
   
       if (bank == null) {
@@ -173,9 +180,13 @@ global with sharing class LoanPaymentTransactionFileGen extends loan.FileGenerat
         //Sending LPTs and corresponding beneficiary detail object for processing
         BenfDetails benfObj = new BenfDetails();
         benfObj.amtWithholdingTax = 0;
-        for (loan__Loan_Payment_Transaction__c each : lptTxns) {
+        for (loan__Loan_Payment_Transaction__c eachLpttxns : lptTxns) {
+          if(eachLpttxns.loan__Loan_Account__r.Warehouse__c == NULL){
+            GenericUtility.insertLog(ConstantValues.WAREHOUSE_MISSING,
+            new CustomException(ConstantValues.WAREHOUSE_MISSING));
+          }
           if (
-            String.isBlank(each.loan__Loan_Account__r.Warehouse__r.Collection_Bank_Account_Name__c)
+            String.isBlank(eachLpttxns.loan__Loan_Account__r.Warehouse__r.Collection_Bank_Account_Name__c)
           ) {
             GenericUtility.insertLog(
               ConstantValues.LPT_FILE_GEN,
@@ -184,7 +195,7 @@ global with sharing class LoanPaymentTransactionFileGen extends loan.FileGenerat
             return totalRecords;
           }
           if (
-            String.isBlank(each.loan__Loan_Account__r.Warehouse__r.Collection_Bank_Account_Number__c)
+            String.isBlank(eachLpttxns.loan__Loan_Account__r.Warehouse__r.Collection_Bank_Account_Number__c)
           ) {
             GenericUtility.insertLog(
               ConstantValues.LPT_FILE_GEN,
@@ -192,31 +203,31 @@ global with sharing class LoanPaymentTransactionFileGen extends loan.FileGenerat
             );
             return totalRecords;
           }
-          if (String.isBlank(each.loan__Loan_Account__r.Warehouse__r.Collection_BSB_Number__c)) {
+          if (String.isBlank(eachLpttxns.loan__Loan_Account__r.Warehouse__r.Collection_BSB_Number__c)) {
             GenericUtility.insertLog(
               ConstantValues.LPT_FILE_GEN,
               new CustomException(ConstantValues.COMPANY_BANK_DETAILS_MISSING)
             );
             return totalRecords;
           }
-          if (String.valueOf(each.loan__Loan_Account__r.Warehouse__r.Collection_BSB_Number__c).length() != ConstantValues.STANDARD_BSB_LENGTH) {
+          if (String.valueOf(eachLpttxns.loan__Loan_Account__r.Warehouse__r.Collection_BSB_Number__c).length() != ConstantValues.STANDARD_BSB_LENGTH) {
             GenericUtility.insertLog(
               ConstantValues.LPT_FILE_GEN,
               new CustomException(ConstantValues.WRONG_BSB_PAYEE)
             );
             return totalRecords;
           }
-          if (String.valueOf(each.loan__Loan_Account__r.Warehouse__r.Collection_Bank_Account_Number__c).length() > ConstantValues.STANDARD_ACCOUNT_NUMBER_LENGTH) {
+          if (String.valueOf(eachLpttxns.loan__Loan_Account__r.Warehouse__r.Collection_Bank_Account_Number__c).length() > ConstantValues.STANDARD_ACCOUNT_NUMBER_LENGTH) {
             GenericUtility.insertLog(
               ConstantValues.LPT_FILE_GEN,
               new CustomException(ConstantValues.WRONG_ACOUNT_NUMBER_PAYEE)
             );
             return totalRecords;
           }
-          benfObj.remitterName = each.loan__Loan_Account__r.Warehouse__r.Collection_Bank_Account_Name__c;
-          benfObj.benfBSBNumber = String.valueOf(each.loan__Loan_Account__r.Warehouse__r.Collection_BSB_Number__c);
-          benfObj.benfAccNumber = String.valueOf(each.loan__Loan_Account__r.Warehouse__r.Collection_Bank_Account_Number__c);
-          String entryVal = processScope(each, benfObj);
+          benfObj.remitterName = eachLpttxns.loan__Loan_Account__r.Warehouse__r.Collection_Bank_Account_Name__c;
+          benfObj.benfBSBNumber = String.valueOf(eachLpttxns.loan__Loan_Account__r.Warehouse__r.Collection_BSB_Number__c);
+          benfObj.benfAccNumber = String.valueOf(eachLpttxns.loan__Loan_Account__r.Warehouse__r.Collection_Bank_Account_Number__c);
+          String entryVal = processScope(eachLpttxns, benfObj);
           if (entryVal != null) {
             totalRecords.add(entryVal);
           }

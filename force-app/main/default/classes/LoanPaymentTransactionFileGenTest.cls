@@ -9,6 +9,10 @@ ABA file for Loan Payment Txns */
 is null how will it handle. */
 /* Testing Scenario 6   : (testWithInvalidScope) Tests with no Borrower ACH bank account spedified */
 /* Testing Scenario 7   : (testWithInvalidScope3) Tests with Account name length greater than 32 */
+/*Company: Cloudkaptan Consultancy Services Pvt. Ltd.
+Author: Pratik Agarwal
+Development Date : 4/09/2020
+Last Modified Date : 14/10/2020  
 /****************************************************************************************************/
 
 @isTest
@@ -16,20 +20,20 @@ private class LoanPaymentTransactionFileGenTest {
   @TestSetup
   static Void initialize() {
     Account testAccount = GenericUtilityTestHelper.getAccount();
-    System.assertNotEquals(testAccount,null,'Account insert error');
+    System.assertNotEquals(testAccount.Id,null,'Account insert error');
     List<Account> testAccountList = new List<Account>([SELECT Id FROM Account]);
-    System.assertEquals(testAccountList.size(), 1, 'Account insert error');
+    System.assertEquals(testAccountList.size(), 0, 'Account insert error');
 
     Contact testContact = GenericUtilityTestHelper.getContact(testAccount);
-    System.assertNotEquals(testContact,null,'Contact insert error');
+    System.assertNotEquals(testContact.Id,null,'Contact insert error');
     List<Contact> testContactList = new List<Contact>([SELECT Id FROM Contact]);
-    System.assertEquals(testContactList.size(), 1, 'Contact insert error');
+    System.assertEquals(testContactList.size(), 0, 'Contact insert error');
 
     loan__Bank_Account__c testPayeebankAccount = GenericUtilityTestHelper.getBankAccount(testAccount);
-    System.assertNotEquals(testPayeebankAccount,null,'Bank Account insert error');
+    System.assertNotEquals(testPayeebankAccount.Id,null,'Bank Account insert error');
 
     loan__Bank_Account__c testPayerbankAccount = GenericUtilityTestHelper.getPayerBankAccount(testAccount);
-    System.assertNotEquals(testPayeebankAccount,null,'Bank Account insert error');
+    System.assertNotEquals(testPayeebankAccount.Id,null,'Bank Account insert error');
     List<loan__Bank_Account__c> testbankAccountList = new List<loan__Bank_Account__c>(
       [SELECT Id FROM loan__Bank_Account__c]
     );
@@ -40,7 +44,7 @@ private class LoanPaymentTransactionFileGenTest {
     );
 
     loan__Payment_Mode__c testDDPaymentMode = GenericUtilityTestHelper.getPaymentMode();
-    System.assertNotEquals(testDDPaymentMode,null,'Payment Mode insert error');
+    System.assertNotEquals(testDDPaymentMode.Id,null,'Payment Mode insert error');
     List<loan__Payment_Mode__c> testPaymentModeList = new List<loan__Payment_Mode__c>(
       [SELECT Id FROM loan__Payment_Mode__c]
     );
@@ -51,7 +55,7 @@ private class LoanPaymentTransactionFileGenTest {
     );
 
     loan__Loan_Account__c testLoanAccount = GenericUtilityTestHelper.returnLoanAccount();
-    System.assertNotEquals(testLoanAccount,null,'Loan account insert error');
+    System.assertNotEquals(testLoanAccount.Id,null,'Loan account insert error');
     testLoanAccount.loan__Borrower_ACH__c = testPayerbankAccount.Id;
     update testLoanAccount;
     List<loan__Loan_Account__c> testLoanAccountList = new List<loan__Loan_Account__c>(
@@ -64,7 +68,7 @@ private class LoanPaymentTransactionFileGenTest {
     );
 
     loan__Automated_Payment_Configuration__c apc = GenericUtilityTestHelper.getAPC(testDDPaymentMode,testPayeebankAccount);
-    System.assertNotEquals(apc,null,'Automated Payment Configuration insert error');
+    System.assertNotEquals(apc.Id,null,'Automated Payment Configuration insert error');
     List<loan__Automated_Payment_Configuration__c> testApcList = new List<loan__Automated_Payment_Configuration__c>(
       [SELECT Id FROM loan__Automated_Payment_Configuration__c]
     );

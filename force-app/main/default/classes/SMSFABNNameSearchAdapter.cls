@@ -1,6 +1,10 @@
-/****************************************************************************************************/
-/* Description : This class fetches the ABN search result response from ABNSearchSMSFAPI config by using SMSF Name. */
-/****************************************************************************************************/
+/****************************************************************************************************
+Company: Cloudkaptan Consultancy Services Pvt. Ltd.
+Author: Pratik Agarwal
+Description : This class fetches the ABN search result response from ABNSearchSMSFAPI config by using SMSF Name.
+Development Date : 2/09/2020
+Last Modified Date : 14/10/2020
+****************************************************************************************************/
 
 global with sharing class SMSFABNNameSearchAdapter extends intframework.BaseIntegrationAdapter {
   //Wrapper class to store different parts of request URL
@@ -18,7 +22,9 @@ global with sharing class SMSFABNNameSearchAdapter extends intframework.BaseInte
         String abn = (String) filledInRequestMap.get(ConstantValues.ABN_DATA);
 
         List<Map<String, Object>> guidList = (List<Map<String, Object>>) filledInRequestMap.get(ConstantValues.GUID_INFO);
-
+        if(!(guidList.size() > 0)){
+          throw new CustomException(System.label.GUID_not_found);
+        }
         //GUID
         reqURL.guid = (String) guidList[0].get(ConstantValues.GUID);
         reqURL.guid = (String) EncodingUtil.urlEncode(reqURL.guid,'UTF-8');
@@ -33,6 +39,9 @@ global with sharing class SMSFABNNameSearchAdapter extends intframework.BaseInte
         
         //Name of trust to be searched
         List<Map<String, Object>> nameList = (List<Map<String, Object>>) filledInRequestMap.get(ConstantValues.PARTY_INFO);
+        if(!(nameList.size() > 0)){
+          throw new CustomException(System.label.Data_not_found_for_callout);
+        }
         reqURL.name = (String) nameList[0].get(ConstantValues.ABN_TRUST_NAME);
         reqURL.name = (String) EncodingUtil.urlEncode(reqURL.name,'UTF-8');
         

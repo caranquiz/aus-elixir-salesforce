@@ -217,6 +217,14 @@
         <value>APPROVED - CONVERTED TO CONTRACT</value>
     </labels>
     <labels>
+        <fullName>Data_not_found_for_callout</fullName>
+        <categories>Error messages</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Data not found for callout</shortDescription>
+        <value>Data not found for callout</value>
+    </labels>
+    <labels>
         <fullName>Deposit_Withdrawal_Message</fullName>
         <categories>Message</categories>
         <language>en_US</language>
@@ -314,6 +322,14 @@
         <protected>false</protected>
         <shortDescription>FundingMsg</shortDescription>
         <value>CL Contract has been funded.</value>
+    </labels>
+    <labels>
+        <fullName>GUID_not_found</fullName>
+        <categories>Error messages</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>GUID not found</shortDescription>
+        <value>GUID not found!</value>
     </labels>
     <labels>
         <fullName>Highest_Best_Use_Commercial</fullName>

@@ -8,6 +8,10 @@
   Account name in Party data.
   Testing Scenario 4  : (testMethod4) This method tests SMSFABNNameSearchAdapter class's createRequest method with no
   guid data.
+  Company: Cloudkaptan Consultancy Services Pvt. Ltd.
+  Author: Pratik Agarwal
+  Development Date : 2/09/2020
+  Last Modified Date : 14/10/2020
 *******************************************************************************************************************/
 
 @isTest
@@ -17,11 +21,11 @@ public class SMSFABNNameSearchAdapterTest {
         ABN_Search_SMSF__c guidInfo = GenericUtilityTestHelper.createCustomSettingGUID(ConstantValues.GUID_VALUE,
         ConstantValues.ACTIVE_FUNDS_ONLY_VALUE,
         ConstantValues.MAX_SEARCH_RESULTS_VALUE);
-        System.assertNotEquals(guidInfo,null,'Custom Setting not inserted successfully');
+        System.assertNotEquals(guidInfo.Id,null,'Custom Setting not inserted successfully');
         Account acc = GenericUtilityTestHelper.createAccount();
-        System.assertNotEquals(acc,null,'Account not inserted successfully');
+        System.assertNotEquals(acc.Id,null,'Account not inserted successfully');
         clcommon__Party__c party = GenericUtilityTestHelper.createParty(acc);
-        System.assertNotEquals(party,null,'Party not inserted');
+        System.assertNotEquals(party.Id,null,'Party not inserted');
     }
 
     @isTest

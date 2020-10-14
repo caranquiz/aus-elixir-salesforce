@@ -1,26 +1,29 @@
-/****************************************************************************************************/
-/* Description          : This is the callout for SMSFABNNameSearchAdapter class. 
-                          This class fetches the trust response using SMSF Name and calls SMSFABNNameSearchHelper
-                          class to parse the response */
-/****************************************************************************************************/
+/****************************************************************************************************
+Company: Cloudkaptan Consultancy Services Pvt. Ltd.
+Author: Pratik Agarwal
+Description : This is the callout for SMSFABNNameSearchAdapter class. 
+              This class fetches the trust response using SMSF Name and calls SMSFABNNameSearchHelper
+              class to parse the response
+Development Date : 2/09/2020
+Last Modified Date : 14/10/2020
+****************************************************************************************************/
 
 global with sharing class SMSFABNNameSearchCallout {
   private static SMSFABNNameSearchHelper parserObject = new SMSFABNNameSearchHelper();
   webService static String searchBySMSFName(String partyId) {
+    Map<String, Object> queryIdMap = new Map<String, Object>();
+    Map<String, Object> requestParamMap = new Map<String, Object>();
+    dom.Document doc = new dom.Document();
+    SMSFABNNameSearchHelper result = new SMSFABNNameSearchHelper();
+    intframework.AbstractIntegrationService baseintegrationService = intframework.IntegrationServiceFactory.getBaseIntegrationService();
+    intframework.BaseIntegrationResponse responseObject;
+    String apiType = ConstantValues.NAME_API_TYPE;
     if(String.isBlank(partyId)){
       parserObject.errMessage = ConstantValues.PARTY_ID_EMPTY;
       return JSON.serialize(parserObject);
     }
-    Map<String, Object> queryIdMap = new Map<String, Object>();
     queryIdMap.put(ConstantValues.PARTY_ID, partyId);
-    Map<String, Object> requestParamMap = new Map<String, Object>();
-    dom.Document doc = new dom.Document();
-    SMSFABNNameSearchHelper result = new SMSFABNNameSearchHelper();
-
     try {
-      intframework.AbstractIntegrationService baseintegrationService = intframework.IntegrationServiceFactory.getBaseIntegrationService();
-      intframework.BaseIntegrationResponse responseObject;
-      String apiType = ConstantValues.NAME_API_TYPE;
       // Calling the adapter class, by specifying integraiton family and api type in the base integration service
       responseObject = (intframework.BaseIntegrationResponse) baseintegrationService.runSynchronousIntegrationService(
         ConstantValues.FAMILY_NAME,

@@ -1,8 +1,12 @@
-/****************************************************************************************************/
-/* Description          : This is the callout for SMSFSearchByABNNumberAdapter class. 
+/****************************************************************************************************
+Company: Cloudkaptan Consultancy Services Pvt. Ltd.
+Author: Pratik Agarwal
+Description          : This is the callout for SMSFSearchByABNNumberAdapter class. 
                           This class fetches the trust response using ABN Number and calls SMSFSearchByABNNumberHelper
-                          class to parse the response*/
-/****************************************************************************************************/
+                          class to parse the response
+Development Date : 2/09/2020
+Last Modified Date : 14/10/2020
+****************************************************************************************************/
 
 global with sharing class SMSFSearchByABNNumberCallout {
     private static SMSFSearchByABNNumberHelper parserObject = new SMSFSearchByABNNumberHelper();
@@ -44,8 +48,10 @@ global with sharing class SMSFSearchByABNNumberCallout {
         Converting the SearchByABNNumberHelper class response object into JSON string format
         to be able to process it in skuid javascript snippet.
         */
-        partyList.get(0).Flag_Party__c = true;
-        Update partyList;
+        if(partyList.size() > 0){
+          partyList.get(0).Flag_Party__c = true;
+          Update partyList;
+        }
         return System.JSON.serialize(result);
       } 
       catch (Exception ex) {
