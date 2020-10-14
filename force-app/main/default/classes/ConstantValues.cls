@@ -881,6 +881,8 @@ global class ConstantValues{
   public static final String PRIMARY_PURPOSE_WARNING = 'Primary Purpose Warning';
   public static final String DOCUMENT_TYPE_WARNING = 'Document Type Compare Warning';
   public static final String VALUATION_PAID_WARNING = 'Valuation Paid Warning';
+  public static final String MONTHS_SELF_EMPLOYED_EXCEPTION = 'Months Self Employed Exception';
+  public static final String GOVERNMENT_BENEFIT_AMT_WARNING = 'Government Benefit Amount Warning';
   public static final String PRIME = 'Prime';
   public static final String NEAR_PRIME = 'Near Prime';
   public static final String NEAR_PRIME_PLUS = 'Near Prime +';
