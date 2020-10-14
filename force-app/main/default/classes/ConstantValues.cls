@@ -353,6 +353,10 @@ global class ConstantValues{
    //SMSF ABN Integration
    public static final String GUID_VALUE = 'c4726ad0-af04-4d8d-987b-d15966cd1cfd';
    public static final String GUID = 'guid';
+   public static final String GUID_STRUCTURE = '&guid=';
+   public static final String ABN_STRUCTURE = '?abn=';
+   public static final String SMSFSEARCHCLASS = 'SMSFSearchByABNNumberAdapter';
+   public static final String CALLOUT_STRUCTURE = 'callout:';
    public static final String ACTIVE_FUNDS_ONLY = 'activeFundsOnly';
    public static final String ACTIVE_FUNDS_ONLY_VALUE = 'Y';
    public static final String MAX_SEARCH_RESULTS = 'maxSearchResults';
