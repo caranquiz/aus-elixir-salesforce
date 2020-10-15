@@ -3,7 +3,7 @@ Company : CloudKaptan Consultancy Services Pvt. Ltd.
 Developer : Khalid Fazlullah
 Development Date : 07/08/2020
 Last Modified By : Rameswari Barman
-Last Modified Date : 21/08/2020
+Last Modified Date : 15/10/2020
 Description : This class query all the Rules and check the Rule Criteria for the Parties/Securities/Income/employment Information.
 ***********************************************************************************************************************************************************/
 public with sharing class ChildChecklistAPI {
@@ -20,7 +20,7 @@ public with sharing class ChildChecklistAPI {
         List <genesis__Rule__c> ruleList = new List<genesis__Rule__c>();
         Map <Id,genesis__Rule__c> ruleMap = new Map <Id,genesis__Rule__c>();
         Map <Id,List<genesis__RuleCriteria__c>> criteriaRuleMap = new Map <Id,List<genesis__RuleCriteria__c>>();
-        if(!(listOfCheckList != null && listOfCheckList.size() > 0)){
+        if(!(listOfCheckList != NULL && listOfCheckList.size() > 0)){
             throw new CustomException(ConstantValues.EMPTY_CHECKLIST);
         }
         for (genesis__Checklist__c eachChecklist : listOfCheckList) {
@@ -28,7 +28,7 @@ public with sharing class ChildChecklistAPI {
                 ruleIds.add(eachChecklist.genesis__Rule__c);
             }
         }
-        if(!(ruleIds != NULL && ruleIds.size() > 0)){
+        if(!(ruleIds.size() > 0)){
             throw new CustomException(ConstantValues.NO_RULE_FOUND);
         }
         ruleList = [SELECT Id,
@@ -48,7 +48,7 @@ public with sharing class ChildChecklistAPI {
                         FROM genesis__RuleCriteria__c
                         WHERE genesis__Rule__c=:ruleIds ORDER BY genesis__Criteria_Sequence__c];
                                 
-        if(!(criteriaList != NULL && criteriaList.size() > 0)){
+        if(!(criteriaList.size() > 0)){
             throw new CustomException(ConstantValues.RULE_CRITERIA_NOT_FOUND);
         }
         for(genesis__Checklist__c eachChecklist : listOfCheckList){
@@ -263,7 +263,7 @@ public with sharing class ChildChecklistAPI {
             type = checklistMap.get(checklist.Id);
             switch on type {
                 when 'clcommon__party__c' {
-                    if(partyList != NULL && partyList.size() > 0){
+                    if(partyList.size() > 0){
                         checklistDetailList.addAll(this.processParties(checklist.genesis__Application__c,checklist,partyList,ruleMap.get(checklist.Id),criteriaRuleMap.get(ruleMap.get(checklist.Id).Id)));
                     }
                     else{
@@ -271,7 +271,7 @@ public with sharing class ChildChecklistAPI {
                     }
                 }   
                 when 'genesis__income__c' {
-                    if(incomeList != NULL && incomeList.size() > 0){
+                    if(incomeList.size() > 0){
                         checklistDetailList.addAll(this.processIncome(checklist.genesis__Application__c,checklist,incomeList,ruleMap.get(checklist.Id),criteriaRuleMap.get(ruleMap.get(checklist.Id).Id)));
                     }
                     else{
@@ -279,7 +279,7 @@ public with sharing class ChildChecklistAPI {
                     }
                 }
                 when 'genesis__application_collateral__c' { 
-                    if(collateralList != NULL && collateralList.size() > 0){
+                    if(collateralList.size() > 0){
                         checklistDetailList.addAll(this.processCollateral(checklist.genesis__Application__c,checklist,collateralList,ruleMap.get(checklist.Id),criteriaRuleMap.get(ruleMap.get(checklist.Id).Id)));
                     }
                     else{
