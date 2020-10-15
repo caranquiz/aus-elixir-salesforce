@@ -672,6 +672,7 @@ public with sharing class GenericUtilityTestHelper {
     loan__Bank_Account__c testPayeebankAccount = new loan__Bank_Account__c();
     testPayeebankAccount.loan__Bank_Name__c = 'PayeeBank';
     testPayeebankAccount.BSB_Number__c = '324089';
+    testPayeebankAccount.Bank_Account_Name__c = 'Test';
     testPayeebankAccount.loan__Bank_Account_Number__c = '234567700';
     testPayeebankAccount.loan__Account__c = testAccount.Id;
     testPayeebankAccount.loan__Active__c = true;
@@ -683,6 +684,7 @@ public with sharing class GenericUtilityTestHelper {
     testPayerbankAccount.loan__Bank_Name__c = 'PayerBank';
     testPayerbankAccount.BSB_Number__c = '453009';
     testPayerbankAccount.loan__Bank_Account_Number__c = '770065432';
+    testPayerbankAccount.Bank_Account_Name__c = 'Test';
     testPayerbankAccount.loan__Account__c = testAccount.Id;
     testPayerbankAccount.loan__Active__c = true;
     insert testPayerbankAccount;
