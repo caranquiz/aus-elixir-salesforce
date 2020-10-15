@@ -67,6 +67,7 @@ global with sharing class CheckRules {
                 rulesNameList.add(ConstantValues.COMMISSION_STATUS_RULE);
                 rulesNameList.add(ConstantValues.PREVIOUS_CONDUCT_SUITABLE);
                 rulesNameList.add(ConstantValues.LMI_RULE);
+                rulesNameList.add(ConstantValues.SELF_EMPLOYMENT_ABN_EFFECTIVE_FROM_RULE);	
             }
             else if(tabName == ConstantValues.LOAN_DETAILS){
                 rulesNameList.add(ConstantValues.CASHOUT_PURPOSE_RULE);
@@ -107,6 +108,7 @@ global with sharing class CheckRules {
                 rulesNameList.add(ConstantValues.EMPLOYMENT_CALL_SUITABLE_RULE);
                 rulesNameList.add(ConstantValues.INCOME_INCONSISTANT_WITH_DECLARATION_RULE);
                 rulesNameList.add(ConstantValues.GST_EFFECTIVE_FROM_RULE);
+                rulesNameList.add(ConstantValues.SELF_EMPLOYMENT_ABN_EFFECTIVE_FROM_RULE);	
             }
             else if(tabName == ConstantValues.LIVING_EXPENSE){
                 rulesNameList.add(ConstantValues.LIVING_EXPENSE_EXPLANATION_SUITABLE_RULE);
@@ -396,9 +398,6 @@ global with sharing class CheckRules {
                                                 FROM genesis__Applications__c
                                                 WHERE Id =:appId
                                                 LIMIT 1];
-            if(appObj == null){
-                return;
-            }
             Map<String, Integer> riskGradeValued = new Map<String, Integer>();
             riskGradeValued.put(ConstantValues.PRIME, 0);
             riskGradeValued.put(ConstantValues.NEAR_PRIME, 1);
@@ -466,9 +465,6 @@ global with sharing class CheckRules {
                                                 FROM genesis__Applications__c
                                                 WHERE Id =:appId
                                                 LIMIT 1];
-            if(appObj == null){
-                return;
-            }
             List<genesis__Checklist__c> previousChecklist = [SELECT Id, genesis__Rule__c
                                                         FROM genesis__Checklist__c
                                                         WHERE genesis__Rule__c =:primPurpCompRule.Id
@@ -490,13 +486,15 @@ global with sharing class CheckRules {
             }
             String prevPrimPurp = appCollaterals[0].genesis__Collateral__r.Primary_Purpose__c;
             for(genesis__Application_Collateral__c eachAppCollateral : appCollaterals){
-                if(String.isBlank(eachAppCollateral.genesis__Collateral__r.Primary_Purpose__c)){
-                    errorCheckList(primPurpCompRule, appId, previousChecklistId);
-                    return;
-                }
-                else if(prevPrimPurp != eachAppCollateral.genesis__Collateral__r.Primary_Purpose__c){
-                    errorCheckList(primPurpCompRule, appId, previousChecklistId);
-                    return;
+                if(eachAppCollateral.genesis__Collateral__c != NULL){
+                    if(String.isBlank(eachAppCollateral.genesis__Collateral__r.Primary_Purpose__c)){
+                        errorCheckList(primPurpCompRule, appId, previousChecklistId);
+                        return;
+                    }
+                    else if(prevPrimPurp != eachAppCollateral.genesis__Collateral__r.Primary_Purpose__c){
+                        errorCheckList(primPurpCompRule, appId, previousChecklistId);
+                        return;
+                    }
                 }
                 prevPrimPurp = eachAppCollateral.genesis__Collateral__r.Primary_Purpose__c;
             }
@@ -526,9 +524,6 @@ global with sharing class CheckRules {
                                                 FROM genesis__Applications__c
                                                 WHERE Id =:appId
                                                 LIMIT 1];
-            if(appObj == null){
-                return;
-            }
             List<genesis__Checklist__c> previousChecklist = [SELECT Id, genesis__Rule__c
                                                         FROM genesis__Checklist__c
                                                         WHERE genesis__Rule__c =:docTypeCompRule.Id
@@ -545,7 +540,14 @@ global with sharing class CheckRules {
                                                 Legal_Entity_Type__c
                                                 FROM clcommon__Party__c
                                                 WHERE genesis__Application__c =:appId
-                                                AND Legal_Entity_Type__c != 'Individual'];
+                                                AND Legal_Entity_Type__c != ConstantValues.indType];
+        List<genesis__Employment_Information__c> empInfoList = [SELECT Id,	
+                                                                        RecordType.Name,	
+                                                                        genesis__Application__c,	
+                                                                        Document_Type__c	
+                                                                        FROM genesis__Employment_Information__c	
+                                                                        WHERE RecordType.Name =: ConstantValues.SELF_EMPLOYED	
+                                                                        AND genesis__Application__c =:appId];
             if(parties.isEmpty()){
                 return;
             }
@@ -561,14 +563,28 @@ global with sharing class CheckRules {
                 }
                 prevDocType = eachParty.Document_Type__c;
             }
-            if((appObj.Document_Type__c).equalsIgnoreCase('Full Doc') && !(prevDocType).equalsIgnoreCase('Full')){
+            if(!empInfoList.isEmpty()){	
+                prevDocType = empInfoList[0].Document_Type__c;	
+                for(genesis__Employment_Information__c each : empInfoList){	
+                    if(String.isBlank(each.Document_Type__c)){	
+                        errorCheckList(docTypeCompRule, appId, previousChecklistId);	
+                        return;	
+                    }	
+                    else if(prevDocType != each.Document_Type__c){	
+                        errorCheckList(docTypeCompRule, appId, previousChecklistId);	
+                        return;	
+                    }	
+                    prevDocType = each.Document_Type__c;	
+                }	
+            }
+            if((appObj.Document_Type__c).equalsIgnoreCase(ConstantValues.FULL_DOC) && !(prevDocType).equalsIgnoreCase(ConstantValues.FULL)){
                 errorCheckList(docTypeCompRule, appId, previousChecklistId);
-            } else if((appObj.Document_Type__c).equalsIgnoreCase('Alt Doc') && !(prevDocType).equalsIgnoreCase('Alt')){
+            } else if((appObj.Document_Type__c).equalsIgnoreCase(ConstantValues.ALT_DOC) && !(prevDocType).equalsIgnoreCase(ConstantValues.ALT)){
                 errorCheckList(docTypeCompRule, appId, previousChecklistId);
             } else{
                 successCheckList(docTypeCompRule, appId, previousChecklistId);
             }
-        }
+        
         catch(Exception ex){
             GenericUtility.insertLog('CheckRules.loanDetailsDocumentCompareWarningCheck', ex);
         }
@@ -613,7 +629,7 @@ global with sharing class CheckRules {
             if(appCollaterals.isEmpty()){
                 return;
             }
-            if(appObj.Valuation_Fee_Collected_at_Settlement__c != 'No'){
+            if(appObj.Valuation_Fee_Collected_at_Settlement__c != ConstantValues.NO_TAG){
                 successCheckList(valPaidRule, appId, previousChecklistId);
                 return;
             }
