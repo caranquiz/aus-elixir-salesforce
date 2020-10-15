@@ -496,7 +496,7 @@ global class ConstantValues{
   public static final String INCOME_INCONSISTANT_WITH_DECLARATION_RULE = 'Income Consistent with Declaration Rule';
   public static final String LIVING_EXPENSE = 'Living Expense';
   public static final String LIVING_EXPENSE_EXPLANATION_SUITABLE_RULE = 'Living Expense Explanation Suitable Rule';
-  public static final String SEL_EMPLOYMENT_ABN_EFFECTIVE_FROM_RULE = 'Self Employment ABN Effective From Rule';
+  public static final String SELF_EMPLOYMENT_ABN_EFFECTIVE_FROM_RULE = 'Self Employment ABN Effective From Rule';
   public static final String BANK_STATEMENT_REVIEWED_RULE = 'Bank Statements Reviewed Rule';
   public static final String COMPANY_INCOME = 'Company Income';
   public static final String SATISFACTORY_EXPLANATION_PROVIDED_RULE = 'Satisfactory Explanation Provided Rule';
