@@ -211,6 +211,10 @@ global with sharing class CheckRules {
                 rulesNameList.add(ConstantValues.PREVIOUS_CONDUCT_EXLANATION_WARNING);
                 rulesNameList.add(ConstantValues.PREVIOUS_CONDUCT_REFERENCING_COMPLETED_WARNING);
                 rulesNameList.add(ConstantValues.ABN_STATUS_EMPLPYMENT_WARNING);
+                rulesNameList.add(ConstantValues.DOES_APPLICANT_UNDERSTAND_ENGLISH_WARNING);
+                rulesNameList.add(ConstantValues.MONTHS_SELF_EMPLOYED_EXCEPTION);
+                rulesNameList.add(ConstantValues.GOVERNMENT_BENEFIT_AMT_WARNING);
+                rulesNameList.add(ConstantValues.CUSTOMER_ACCT_CONDITION);
             }
             else if(tabName == ConstantValues.APP_EXCEP){
                 rulesNameList.add(ConstantValues.MATRIX_RATE_EXCEPTION);
@@ -226,7 +230,6 @@ global with sharing class CheckRules {
                 rulesNameList.add(ConstantValues.CASH_OUT_PURPOSE_WARNING);
                 rulesNameList.add(ConstantValues.APPLICATION_FEE_WARNING);
                 rulesNameList.add(ConstantValues.APPLICATION_FEE_PERCENTAGE_WARNING);
-                rulesNameList.add(ConstantValues.DOES_APPLICANT_UNDERSTAND_ENGLISH_WARNING);
                 rulesNameList.add(ConstantValues.APPLICATION_FORM_COMPLETED_WARNING);
                 loanDetailsRiskGradeWarningCheck(applicationId);
                 loanDetailsPrimaryPurposeWarningCheck(applicationId);
@@ -319,6 +322,7 @@ global with sharing class CheckRules {
             }
             if(tabName == ConstantValues.APP_EXCEP) {
                 updateChecklistsFromRuleDataOnApplication(application, rulesNameList);
+                manupulateConditionText(applicationId);
             }
             if(tabName != ConstantValues.LOAN_DETAILS && tabName != ConstantValues.SETTLEMENT && tabName != ConstantValues.APP_EXCEP){
                 ChildChecklistAPI api = new ChildChecklistAPI();
@@ -537,17 +541,20 @@ global with sharing class CheckRules {
             // Database.delete(previousChecklists, false);
             List<clcommon__Party__c> parties = [SELECT Id,
                                                 Document_Type__c,
-                                                Legal_Entity_Type__c
+                                                Legal_Entity_Type__c,
+                                                Party_Type_Name__c
                                                 FROM clcommon__Party__c
                                                 WHERE genesis__Application__c =:appId
-                                                AND Legal_Entity_Type__c != ConstantValues.indType];
-        List<genesis__Employment_Information__c> empInfoList = [SELECT Id,	
-                                                                        RecordType.Name,	
-                                                                        genesis__Application__c,	
-                                                                        Document_Type__c	
-                                                                        FROM genesis__Employment_Information__c	
-                                                                        WHERE RecordType.Name =: ConstantValues.SELF_EMPLOYED	
-                                                                        AND genesis__Application__c =:appId];
+                                                AND Legal_Entity_Type__c !=:ConstantValues.indType
+                                                AND Party_Type_Name__c NOT IN ('Broker',
+                                                'Aggregator','Solicitor','Valuer')];
+            List<genesis__Employment_Information__c> empInfoList = [SELECT Id,
+                                                                    RecordType.Name,
+                                                                    genesis__Application__c,
+                                                                    Document_Type__c
+                                                                    FROM genesis__Employment_Information__c
+                                                                    WHERE RecordType.Name =:ConstantValues.SELF_EMPLOYED
+                                                                    AND genesis__Application__c =:appId];
             if(parties.isEmpty()){
                 return;
             }
@@ -584,7 +591,7 @@ global with sharing class CheckRules {
             } else{
                 successCheckList(docTypeCompRule, appId, previousChecklistId);
             }
-        
+        }
         catch(Exception ex){
             GenericUtility.insertLog('CheckRules.loanDetailsDocumentCompareWarningCheck', ex);
         }
@@ -862,7 +869,7 @@ global with sharing class CheckRules {
                 manualData += '}';
             }
             manualData += ']}';
-            sObjectNameManualDataMap.put((String)eachSobject.get('Name'), manualData);
+            sObjectNameManualDataMap.put((String) eachSobject.get('Name'), manualData);
         }
     }
 
@@ -978,5 +985,52 @@ global with sharing class CheckRules {
             }
         }
         return updatedChecklists;
+    }
+    private static void manupulateConditionText(Id applicationId){
+        String message;
+        String gurantorNames = '';
+        Boolean flag = false;
+        try{
+            List<Checklist_Detail__c> checklistDetails = [SELECT Id,
+                                                            Manual_Message__c,
+                                                            Status__c,
+                                                            Checklist__r.genesis__Rule__r.Name,
+                                                            Checklist__r.genesis__Rule__r.genesis__Message_failure__c,
+                                                            Party__c,
+                                                            Party__r.clcommon__Account__r.Name,
+                                                            Checklist__r.genesis__Application__c
+                                                            FROM Checklist_Detail__c
+                                                            WHERE Rule_Classification__c =:ConstantValues.CONDITION_CLASSIFICATION
+                                                            AND Status__c !=:ConstantValues.SUCCESS_STATUS
+                                                            AND Checklist__r.genesis__Application__c =:applicationId];
+            List<clcommon__Party__c> gurantorParties = [SELECT Id,
+                                                        clcommon__Account__r.Name,
+                                                        Party_Type_Name__c,
+                                                        genesis__Application__c
+                                                        FROM clcommon__Party__c
+                                                        WHERE Party_Type_Name__c =:ConstantValues.GUARANTOR
+                                                        AND genesis__Application__c =:applicationId];
+            for(clcommon__Party__c eachGurantor : gurantorParties){
+                if(flag){
+                    gurantorNames += ', ';
+                } else {
+                    flag = true;
+                }
+                gurantorNames += eachGurantor.clcommon__Account__r.Name;
+            }
+            for(Checklist_Detail__c eachChecklistDetails : checklistDetails){
+                message = eachChecklistDetails.Checklist__r.genesis__Rule__r.genesis__Message_failure__c;
+                if(eachChecklistDetails.Checklist__r.genesis__Rule__r.Name == ConstantValues.CUSTOMER_ACCT_CONDITION){
+                    message = message.replace(ConstantValues.GURANTORS_NAME_KEY, gurantorNames);
+                } else if(eachChecklistDetails.Checklist__r.genesis__Rule__r.Name == ConstantValues.DOES_APPLICANT_UNDERSTAND_ENGLISH_WARNING){
+                    message = message.replace(ConstantValues.DOES_APPLICANT_UNDERSTAND_ENG_COND_TXT_KEY, ConstantValues.DOES_APPLICANT_UNDERSTAND_ENG_COND_TXT);
+                    message = message.replace(ConstantValues.IND_APPLICANT_KEY, eachChecklistDetails.Party__r.clcommon__Account__r.Name);
+                }
+                eachChecklistDetails.Manual_Message__c = message;
+            }
+            Database.update(checklistDetails, false);
+        } catch (Exception ex){
+            GenericUtility.insertLog('CheckRules.manupulateConditionText', ex);
+        }
     }
 }

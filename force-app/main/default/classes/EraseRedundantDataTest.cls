@@ -1,13 +1,16 @@
-/****************************************************************************************************/
+/*********************************************************************************************************/
 /* Company              : Cloudkaptan Consultancy Services Pvt. Ltd. */
 /* Class Name           : EraseRedundantDataTest */
 /* Created Date         : 10/07/2020 */
 /* Developed By         : Souvik Dey */
 /* Description          : This test class mostly covers EraseRedundantData apex class. */
-/* Testing Scenario 1   : (testMethod1) */
+/* Testing Scenario 1   : (testFieldDataErased) This method checks if unrendered field data is erased */
+/* Testing Scenario 2   : (testChildRecordsDeleted) This method checks if unrendered objects are erased */
+/* Testing Scenario 3   : (testExpressionEvaluation) This method tests with every evaluation expressions
+checks if intended data is returned */
 /* Last Modified Date   : 10/07/2020 */
 /* Last Modified By     : Souvik Dey */
-/****************************************************************************************************/
+/*********************************************************************************************************/
 
 @isTest
 private class EraseRedundantDataTest{
@@ -63,6 +66,13 @@ private class EraseRedundantDataTest{
         }
         acct = [SELECT Id, clcommon__Email__c FROM Account];
         System.assertEquals(null, acct[0].clcommon__Email__c, 'Email field not cleared');
+        
+        Test.startTest();
+        EraseRedundantData.eraseHiddenFieldsDataOfMultipleRecords(
+            'Account',
+            acct[0].Id
+        );
+        Test.stopTest();
     }
     @isTest
     static void testChildRecordsDeleted(){
@@ -70,6 +80,7 @@ private class EraseRedundantDataTest{
         System.assertEquals(1, acct.size(), 'Account record not Inserted');
         List<Contact> conList = [SELECT Id FROM Contact];
         System.assertEquals(1, conList.size(), 'Contact record not Inserted');
+        Test.startTest();
         EraseRedundantData.eraseHiddenObjectData(
             'Account',
             'Contact List',
@@ -79,11 +90,13 @@ private class EraseRedundantDataTest{
             (Boolean) null,
             (String) null
         );
+        Test.stopTest();
         conList = [SELECT Id FROM Contact];
         System.assertEquals(0, conList.size(), 'Contact record not Deleted');
     }
     @isTest
     static void testExpressionEvaluation(){
+        Test.startTest();
         System.assert(true == EraseRedundantData.checkIfDataMatched((String) null, (String) null, (String) null), 'Data not matched');
         System.assert(true == EraseRedundantData.checkIfDataMatched((String) null, (String) null, '=='), 'Data not matched');
         System.assert(true == EraseRedundantData.checkIfDataMatched('010.1', '10.1', '=='), 'Data not matched');
@@ -107,6 +120,6 @@ private class EraseRedundantDataTest{
         System.assert(false == EraseRedundantData.checkIfDataMatched('null', 'null\n12\n19', 'NOT IN'), 'Data not matched');
         System.assert(false == EraseRedundantData.checkIfDataMatched((String) null, 'null\n12', 'NOT IN'), 'Data not matched');
         System.assert(false == EraseRedundantData.checkIfDataMatched((String) null, (String) null, 'NOT IN'), 'Data not matched');
-        // Check If Data Matched for Multivalued Actual Data with Single Expected Data
+        Test.stopTest();
     }
 }

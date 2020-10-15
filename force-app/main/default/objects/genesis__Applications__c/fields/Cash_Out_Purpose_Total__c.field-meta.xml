@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Cash_Out_Purpose_Total__c</fullName>
+    <externalId>false</externalId>
+    <formula>Divorce_Settlement_Amount__c + Holiday_Travel_Amount__c + Home_Imaprovements_Amount__c + Cash_Out_Other_Amount__c + Personal_Investments_Amount__c + Property_Purchase_Amount__c + Purchase_Goods_Amount__c</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Cash Out Purpose Total</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Currency</type>
+</CustomField>

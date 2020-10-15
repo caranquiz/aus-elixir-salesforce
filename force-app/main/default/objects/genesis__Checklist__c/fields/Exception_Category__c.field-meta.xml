@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>Title_Search_Status__c</fullName>
-    <defaultValue>&apos;Search Required&apos;</defaultValue>
+    <fullName>Exception_Category__c</fullName>
     <externalId>false</externalId>
-    <label>Title Search Status</label>
+    <label>Exception Category</label>
     <required>false</required>
     <trackTrending>false</trackTrending>
     <type>Picklist</type>
@@ -12,19 +11,14 @@
         <valueSetDefinition>
             <sorted>false</sorted>
             <value>
-                <fullName>Search Required</fullName>
+                <fullName>Credit</fullName>
                 <default>false</default>
-                <label>Search Required</label>
+                <label>Credit</label>
             </value>
             <value>
-                <fullName>Title Ordered</fullName>
+                <fullName>Pricing</fullName>
                 <default>false</default>
-                <label>Title Ordered</label>
-            </value>
-            <value>
-                <fullName>Title Received</fullName>
-                <default>false</default>
-                <label>Title Received</label>
+                <label>Pricing</label>
             </value>
         </valueSetDefinition>
     </valueSet>

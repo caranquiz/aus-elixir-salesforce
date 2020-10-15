@@ -1,22 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>Applicant__c</fullName>
+    <fullName>Application_Collateral__c</fullName>
     <deleteConstraint>SetNull</deleteConstraint>
     <externalId>false</externalId>
-    <label>Applicant Name</label>
+    <label>Application Collateral</label>
     <lookupFilter>
         <active>true</active>
         <filterItems>
-            <field>clcommon__Party__c.genesis__Application__c</field>
+            <field>genesis__Application_Collateral__c.genesis__Application__c</field>
             <operation>equals</operation>
             <valueField>$Source.genesis__Application__c</valueField>
         </filterItems>
         <isOptional>false</isOptional>
     </lookupFilter>
-    <referenceTo>clcommon__Party__c</referenceTo>
-    <relationshipLabel>Checklist</relationshipLabel>
-    <relationshipName>Checklist</relationshipName>
+    <referenceTo>genesis__Application_Collateral__c</referenceTo>
+    <relationshipLabel>Policy Conditions</relationshipLabel>
+    <relationshipName>Policy_Conditions</relationshipName>
     <required>false</required>
+    <trackHistory>false</trackHistory>
     <trackTrending>false</trackTrending>
     <type>Lookup</type>
 </CustomField>

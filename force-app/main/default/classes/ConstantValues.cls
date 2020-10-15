@@ -899,8 +899,12 @@ global class ConstantValues{
   public static final String ALT = 'Alt';
   public static final String NO_TAG = 'No';
   public static final String CUSTOMER_ACCT_CONDITION = 'Customer Account Condition';
-  public static final String CONDITION_CLASSIFICATION = 'Condition';	
+  public static final String CONDITION_CLASSIFICATION = 'Condition';
   public static final String RULE_CLASSIFICATION = 'Rule';	
   public static final String EXCEPTION_CLASSIFICATION = 'Exception';	
   public static final String WARNING_CLASSIFICATION = 'Warning';
+  public static final String GURANTORS_NAME_KEY = '[guarantors names]';
+  public static final String DOES_APPLICANT_UNDERSTAND_ENG_COND_TXT_KEY = '[Does applicant understand English Condition Text]';
+  public static final String DOES_APPLICANT_UNDERSTAND_ENG_COND_TXT = 'Receipt of certificate from registered translator or bilingual solicitor acting for [individual applicant] confirming they have read and understood the transaction documents and Guarantors/Borrowers to obtain independent legal advice regarding this transaction';
+  public static final String IND_APPLICANT_KEY = '[individual applicant]';
 }

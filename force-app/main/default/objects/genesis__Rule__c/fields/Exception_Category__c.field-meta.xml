@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>Proposed_repayment_method_list__c</fullName>
-    <defaultValue>(&quot;Direct Debit&quot;)</defaultValue>
+    <fullName>Exception_Category__c</fullName>
     <externalId>false</externalId>
-    <label>Proposed repayment method list</label>
+    <label>Exception Category</label>
     <required>false</required>
-    <trackFeedHistory>false</trackFeedHistory>
     <trackHistory>false</trackHistory>
     <trackTrending>false</trackTrending>
     <type>Picklist</type>
@@ -13,19 +11,14 @@
         <valueSetDefinition>
             <sorted>false</sorted>
             <value>
-                <fullName>Bpay</fullName>
+                <fullName>Credit</fullName>
                 <default>false</default>
-                <label>Bpay</label>
+                <label>Credit</label>
             </value>
             <value>
-                <fullName>Credit Card</fullName>
+                <fullName>Pricing</fullName>
                 <default>false</default>
-                <label>Credit Card</label>
-            </value>
-            <value>
-                <fullName>Direct Debit</fullName>
-                <default>false</default>
-                <label>Direct Debit</label>
+                <label>Pricing</label>
             </value>
         </valueSetDefinition>
     </valueSet>

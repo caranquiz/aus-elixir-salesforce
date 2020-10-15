@@ -32,7 +32,7 @@ class SMSFABNNameSearchCalloutTest{
         System.assertNotEquals(apiType.Id,null,'API Type not inserted successfully');
         //Inserting Integration Provider
         intframework__Integration_Provider__c provider = GenericUtilityTestHelper.getIntegrationProvider(family.Id,ConstantValues.NAME_PROVIDER);
-        System.assertNotEquals(provider>Id,null,'Provider not inserted successfully');
+        System.assertNotEquals(provider.Id,null,'Provider not inserted successfully');
         //Inserting Integration Configuration
         intframework__Integration_Configuration__c config = GenericUtilityTestHelper.getIntegrationConfiguration(provider.Id,ConstantValues.NAME_CONFIGURATION);
         System.assertNotEquals(config.Id,null,'Configuration not inserted successfully');

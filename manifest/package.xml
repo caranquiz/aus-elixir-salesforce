@@ -88,12 +88,21 @@
         <!-- Re draw amount cannot be in decimal fix by Rameswari -->
         <members>RedrawController</members>
 
+        <!-- ABA File Generation Control Page Controller class -->
+        <members>ABAFileGeneratorController</members>
+
         <name>ApexClass</name>
+    </types>
+    <types>
+        <!-- ABA File Generation Control Page -->
+        <members>ABAFileGenerator</members>
+        <name>ApexPage</name>
     </types>
     <types>
         <members>genesis__Income__c.Unemployed_Income_Type__c</members>
         <members>clcommon__Collateral__c.Land_Area_Units__c</members>
         <members>clcommon__Party__c.Customer_Interview_completed__c</members>
+        <members>clcommon__Party__c.Does_applicant_understand_English__c</members>
         <!-- Rendering Changes made by Souvik -->
         <members>Contact.Exit_Strategy_Commentary__c</members>
         <members>Contact.Exit_Strategy_Provided__c</members>
@@ -519,6 +528,7 @@
         <members>genesis__Applications__c.Interest_Only_Reason_Render_Check__c</members>
         <members>genesis__Applications__c.Matrix_Rate_Exception_Check__c</members>
         <members>genesis__Checklist__c.Applicant__c</members>
+        <members>genesis__Checklist__c.Collateral_Name__c</members>
         <members>genesis__Checklist__c.Exception_Approver__c</members>
         <members>genesis__Checklist__c.Exception_Commentary__c</members>
         <members>genesis__Checklist__c.Exception_Recommender__c</members>
@@ -547,6 +557,7 @@
         <members>genesis__Application_Collateral__c.X110_check__c</members>
         <members>genesis__Application_Collateral__c.X110_Render_Check__c</members>
         <members>clcommon__Collateral__c.Valuation_Paid_Render_Check__c</members>
+        <members>genesis__Income__c.Employer_Call_Verified_Warning_Check__c</members>
 
         <!-- Approval Mechanism changes by Rameswari -->
         <members>genesis__Applications__c.Approval_Level__c</members>
@@ -585,6 +596,16 @@
         <members>Director__c.Collateral__c</members>
         <members>Director__c.Pmsi__c</members>
         <members>Director__c.Secured_Parties__c</members>
+
+        <!-- New Field Request new fields by Souvik -->
+        <members>genesis__Applications__c.Refinance_Debt_Consolidation_Total__c</members>
+        <members>genesis__Applications__c.Refinance_Debt_Consolidation__c</members>
+        <members>genesis__Applications__c.Business_Purpose_Total__c</members>
+        <members>genesis__Applications__c.Business_Purpose_Percent__c</members>
+        <members>genesis__Applications__c.Cash_Out_Purpose_Total__c</members>
+        <members>genesis__Applications__c.Cash_Out_Purpose_Percent__c</members>
+        <members>genesis__Applications__c.Refinance_Equity_Release_Total__c</members>
+        <members>genesis__Applications__c.Refinance_Equity_Release_Percent__c</members>
 
         <name>CustomField</name>
     </types>
