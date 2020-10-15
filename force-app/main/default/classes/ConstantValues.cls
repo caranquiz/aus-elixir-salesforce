@@ -907,4 +907,7 @@ global class ConstantValues{
   public static final String DOES_APPLICANT_UNDERSTAND_ENG_COND_TXT_KEY = '[Does applicant understand English Condition Text]';
   public static final String DOES_APPLICANT_UNDERSTAND_ENG_COND_TXT = 'Receipt of certificate from registered translator or bilingual solicitor acting for [individual applicant] confirming they have read and understood the transaction documents and Guarantors/Borrowers to obtain independent legal advice regarding this transaction';
   public static final String IND_APPLICANT_KEY = '[individual applicant]';
+  public static final String BROKER_PARTY_TYPE = 'Broker';
+  public static final String AGGRERATOR_PARTY_TYPE = 'Aggregator';
+  public static final String VALUER_PARTY_TYPE = 'Valuer';
 }
