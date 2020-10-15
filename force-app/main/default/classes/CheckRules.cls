@@ -546,8 +546,10 @@ global with sharing class CheckRules {
                                                 FROM clcommon__Party__c
                                                 WHERE genesis__Application__c =:appId
                                                 AND Legal_Entity_Type__c !=:ConstantValues.indType
-                                                AND Party_Type_Name__c NOT IN ('Broker',
-                                                'Aggregator','Solicitor','Valuer')];
+                                                AND Party_Type_Name__c NOT IN(:ConstantValues.BROKER_PARTY_TYPE,
+                                                :ConstantValues.AGGRERATOR_PARTY_TYPE,
+                                                :ConstantValues.SOLICITOR_PARTY_TYPE,
+                                                :ConstantValues.VALUER_PARTY_TYPE)];
             List<genesis__Employment_Information__c> empInfoList = [SELECT Id,
                                                                     RecordType.Name,
                                                                     genesis__Application__c,
