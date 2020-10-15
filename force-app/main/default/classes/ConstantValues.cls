@@ -910,4 +910,5 @@ global class ConstantValues{
   public static final String BROKER_PARTY_TYPE = 'Broker';
   public static final String AGGRERATOR_PARTY_TYPE = 'Aggregator';
   public static final String VALUER_PARTY_TYPE = 'Valuer';
+  public static final String SUCCESS_STATUS = 'SUCCESS';
 }
