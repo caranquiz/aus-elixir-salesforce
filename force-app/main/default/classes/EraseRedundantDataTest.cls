@@ -66,13 +66,6 @@ private class EraseRedundantDataTest{
         }
         acct = [SELECT Id, clcommon__Email__c FROM Account];
         System.assertEquals(null, acct[0].clcommon__Email__c, 'Email field not cleared');
-        
-        Test.startTest();
-        EraseRedundantData.eraseHiddenFieldsDataOfMultipleRecords(
-            'Account',
-            acct[0].Id
-        );
-        Test.stopTest();
     }
     @isTest
     static void testChildRecordsDeleted(){
