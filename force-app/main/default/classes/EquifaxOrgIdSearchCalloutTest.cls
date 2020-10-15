@@ -86,6 +86,40 @@ class EquifaxOrgIdSearchCalloutTest{
         Test.stopTest();
     }
     @isTest
+    static void testsearchByErrorParty() {
+        Test.setMock(HttpCalloutMock.class, new Mock());
+        Test.startTest();
+        String responseString = EquifaxOrgIdSearchCallout.searchByABN('', ConstantValues.ABN_SEARCH_NUMBER);
+        System.assert(responseString != null, 'ABN Response fetch error');
+        Test.stopTest();
+    }
+    @isTest
+    static void testsearchByWrongACN() {
+        Test.setMock(HttpCalloutMock.class, new Mock());
+        Test.startTest();
+        clcommon__Party__c party = [SELECT Id FROM clcommon__Party__c WHERE clcommon__Account__r.Name = 'Llloyds'];
+        String responseString = EquifaxOrgIdSearchCallout.searchByABN(party.Id, '1234');
+        System.assert(responseString != null, 'ABN Response fetch error');
+        Test.stopTest();
+    }
+    @isTest
+    static void testsearchByErrorACN() {
+        Test.setMock(HttpCalloutMock.class, new Mock());
+        Test.startTest();
+        clcommon__Party__c party = [SELECT Id FROM clcommon__Party__c WHERE clcommon__Account__r.Name = 'Llloyds'];
+        String responseString = EquifaxOrgIdSearchCallout.searchByABN(party.Id, '');
+        System.assert(responseString != null, 'ABN Response fetch error');
+        Test.stopTest();
+    }
+    @isTest
+    static void wrongResponse() {
+        Test.startTest();
+        clcommon__Party__c party = [SELECT Id FROM clcommon__Party__c WHERE clcommon__Account__r.Name = 'Llloyds'];
+        String responseString = EquifaxOrgIdSearchCallout.searchByABN(party.Id, ConstantValues.ABN_SEARCH_NUMBER);
+        System.assert(responseString != null, 'ABN Response fetch error');
+        Test.stopTest();
+    }
+    @isTest
     static void testsearchByABNWithError() {
         List<intframework__Integration_API_Configuration__c> intApiConfig = [
         SELECT Id, intframework__Adapter_Class_Name__c
