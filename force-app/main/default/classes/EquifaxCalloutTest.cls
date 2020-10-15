@@ -92,10 +92,14 @@ private class EquifaxCalloutTest{
         clcommon__Collateral__c col = GenericUtilityTestHelper.getCollateral('', '342', 'Hammond','Rd', 'DANDENONG', 'VIC','3175');
         col.Document_Enquiry_Id__c = '140805-MFNYX-0000O';
         update col;
+        List<clcommon__Collateral__c> collaterals = [SELECT Id FROM clcommon__Collateral__c];
+        System.assertEquals(collaterals.size(), 1, 'Collateral record is not inserted');
         clcommon__Document_Category__c docCat = new clcommon__Document_Category__c();
         docCat.clcommon__Category_Name__c = ConstantValues.TITLE_SEARCH_DOCUMENT_CATEGORY_NAME;
         docCat.clcommon__Collateral__c = col.Id;
         insert docCat;
+        List<clcommon__Document_Category__c> docCats = [SELECT Id FROM clcommon__Document_Category__c];
+        System.assertEquals(docCats.size(), 1, 'Document Category record is not inserted');
         List<intframework__Integration_Family__c> intFamilies = [SELECT Id FROM intframework__Integration_Family__c];
         System.assertEquals(intFamilies.size(), 1, 'Integration Family record is not inserted');
         List<intframework__Integration_API_Type__c> intApiTypes = [SELECT Id FROM intframework__Integration_API_Type__c];
@@ -109,30 +113,20 @@ private class EquifaxCalloutTest{
     }
     @isTest
     static void testTitleSearchWithMockResponse() {
-        List<clcommon__Collateral__c> collateralList = [SELECT Id FROM clcommon__Collateral__c];
+        List<clcommon__Collateral__c> collateralList = [SELECT Id FROM clcommon__Collateral__c LIMIT 1];
         Test.setMock(HttpCalloutMock.class, new Mock());
         Test.startTest();
         String responseString = EquifaxCallout.equifaxTitleSearch(collateralList[0].Id, true);
         Test.stopTest();
-        List<clcommon__Log__c> logList = [SELECT Id, clcommon__Message__c FROM clcommon__Log__c];
-        for(clcommon__Log__c each : logList){
-            System.debug(each.clcommon__Message__c);
-        }
-        System.assertEquals(0, logList.size(), 'Exception occurred');
         System.assertNotEquals(ConstantValues.GENERAL_ERROR, responseString, 'Response fetching error');
     }
     @isTest
     static void testOrderDocumentWithMockResponse() {
-        List<clcommon__Collateral__c> collateralList = [SELECT Id FROM clcommon__Collateral__c];
+        List<clcommon__Collateral__c> collateralList = [SELECT Id FROM clcommon__Collateral__c LIMIT 1];
         Test.setMock(HttpCalloutMock.class, new Mock());
         Test.startTest();
         String responseString = EquifaxCallout.equifaxOrderDocument('1234','VIC',collateralList[0].Id, true);
         Test.stopTest();
-        List<clcommon__Log__c> logList = [SELECT Id, clcommon__Message__c FROM clcommon__Log__c];
-        for(clcommon__Log__c each : logList){
-            System.debug(each.clcommon__Message__c);
-        }
-        System.assertEquals(0, logList.size(), 'Exception occurred');
         System.assertNotEquals(ConstantValues.GENERAL_ERROR, responseString, 'Response fetching error');
     }
     /*
@@ -175,22 +169,22 @@ private class EquifaxCalloutTest{
         List<StaticResource> srList = [
             SELECT Id, Name, Body
             FROM StaticResource
-            WHERE Name = 'Sample_Title_Search_Response'
-            OR Name = 'Sample_Order_Document_Response'
-            OR Name = 'Sample_Deliver_Document_Success_Response'
+            WHERE Name =:ConstantValues.SAMPLE_TITLE_SEARCH_RES
+            OR Name =:ConstantValues.SAMPLE_ORDER_DOCUMENT_RES
+            OR Name =:ConstantValues.SAMPLE_DELIVER_DOCUMENT_SUCCESS_RES
         ];
         for(StaticResource each : srList){
             responseMap.put(each.Name, each.Body.toString());
         }
         System.debug(endpoint);
         if(endpoint.contains('titleSearchByAddress')){
-            res.setBody(responseMap.get('Sample_Title_Search_Response'));
+            res.setBody(responseMap.get(ConstantValues.SAMPLE_TITLE_SEARCH_RES));
         }
         else if(endpoint.contains('OrderDocument')){
-            res.setBody(responseMap.get('Sample_Order_Document_Response'));
+            res.setBody(responseMap.get(ConstantValues.SAMPLE_ORDER_DOCUMENT_RES));
         }
         else if(endpoint.contains('DeliverDocument')){
-            res.setBody(responseMap.get('Sample_Deliver_Document_Success_Response'));
+            res.setBody(responseMap.get(ConstantValues.SAMPLE_DELIVER_DOCUMENT_SUCCESS_RES));
         }
         else{
             res.setBody('');

@@ -595,6 +595,16 @@
         <members>Director__c.Pmsi__c</members>
         <members>Director__c.Secured_Parties__c</members>
 
+        <!-- New Field Request new fields by Souvik -->
+        <members>genesis__Applications__c.Refinance_Debt_Consolidation_Total__c</members>
+        <members>genesis__Applications__c.Refinance_Debt_Consolidation__c</members>
+        <members>genesis__Applications__c.Business_Purpose_Total__c</members>
+        <members>genesis__Applications__c.Business_Purpose_Percent__c</members>
+        <members>genesis__Applications__c.Cash_Out_Purpose_Total__c</members>
+        <members>genesis__Applications__c.Cash_Out_Purpose_Percent__c</members>
+        <members>genesis__Applications__c.Refinance_Equity_Release_Total__c</members>
+        <members>genesis__Applications__c.Refinance_Equity_Release_Percent__c</members>
+
         <name>CustomField</name>
     </types>
     <types>

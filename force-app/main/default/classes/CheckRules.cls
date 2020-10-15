@@ -544,10 +544,13 @@ global with sharing class CheckRules {
             // Database.delete(previousChecklists, false);
             List<clcommon__Party__c> parties = [SELECT Id,
                                                 Document_Type__c,
-                                                Legal_Entity_Type__c
+                                                Legal_Entity_Type__c,
+                                                Party_Type_Name__c
                                                 FROM clcommon__Party__c
                                                 WHERE genesis__Application__c =:appId
-                                                AND Legal_Entity_Type__c != 'Individual'];
+                                                AND Legal_Entity_Type__c != 'Individual'
+                                                AND Party_Type_Name__c NOT IN ('Broker',
+                                                'Aggregator','Solicitor','Valuer')];
             List<genesis__Employment_Information__c> empInfoList = [SELECT Id,
                                                                     RecordType.Name,
                                                                     genesis__Application__c,
@@ -789,7 +792,7 @@ global with sharing class CheckRules {
                                                             WHERE Party__c IN:partyIds
                                                             AND Checklist__r.genesis__Rule__r.Name IN:rulesNameList];
         for(Checklist_Detail__c eachChecklistDetail : checklistDetailList){
-            List<Checklist_Detail__c> checklistDetails = partyChecklistDetailsMap.get(eeachChecklistDetailach.Party__r.Name);
+            List<Checklist_Detail__c> checklistDetails = partyChecklistDetailsMap.get(eachChecklistDetail.Party__r.Name);
             if(checklistDetails == null){
                 checklistDetails = new List<Checklist_Detail__c>();
             }
@@ -954,18 +957,18 @@ global with sharing class CheckRules {
         }
         List<Checklist_Detail__c> updatedChecklists = new List<Checklist_Detail__c>();
         for(SObject eachChecklistDetail : objectList){
-            String ruleManualData = sObjectNameManualDataMap.get((String) each.get('Name'));
+            String ruleManualData = sObjectNameManualDataMap.get((String) eachChecklistDetail.get('Name'));
             if(String.isBlank(ruleManualData)){
                 continue;
             }
             CheckRules checkRulesObj = (CheckRules) System.JSON.deserialize(ruleManualData, CheckRules.class);
             ClassChecklistManualDataMapping[] checklistManualDataList = checkRulesObj.checklistManualDataMapping;
-            Map<String, Id> ruleChecklistDetailsMap = objectRuleChecklistDetailsMapMap.get((String) each.get('Name'));
+            Map<String, Id> ruleChecklistDetailsMap = objectRuleChecklistDetailsMapMap.get((String) eachChecklistDetail.get('Name'));
             for(ClassChecklistManualDataMapping each2 : checklistManualDataList){
                 if(String.isNotBlank(each2.ruleName) && ruleChecklistDetailsMap.containsKey(each2.ruleName)){
                     testing += each2.ruleName + ' : ';
                     // testing += ruleChecklistMap.get(each2.ruleName) + ' : ';
-                    testing += (String)each.get('Name') + '\n';
+                    testing += (String)eachChecklistDetail.get('Name') + '\n';
                     Checklist_Detail__c checklistObj = new Checklist_Detail__c(Id = ruleChecklistDetailsMap.get(each2.ruleName));
                     if(String.isNotBlank(each2.exceptionRecommender) && !(each2.exceptionRecommender).equalsIgnoreCase('null')){
                         checklistObj.Exception_Recommender__c = each2.exceptionRecommender;

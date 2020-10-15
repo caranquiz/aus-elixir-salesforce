@@ -217,6 +217,9 @@ global class ConstantValues{
    public static final String DELIVER_DOCUMENT_API_TYPE = 'Deliver Document';
    public static final String APPLY_INDIVIDUAL_API_TYPE = 'Apply Individual';
    public static final String PREVIOUS_ENQUIRY_API_TYPE = 'Previous Enquiry';
+   public static final String SAMPLE_TITLE_SEARCH_RES = 'Sample_Title_Search_Response';
+   public static final String SAMPLE_ORDER_DOCUMENT_RES = 'Sample_Order_Document_Response';
+   public static final String SAMPLE_DELIVER_DOCUMENT_SUCCESS_RES = 'Sample_Deliver_Document_Success_Response';
    public static final String COLLATERAL_ID = 'collateralId';
    public static final String HS_LANDTITLE = '-landTitle';
    public static final String US_LANDTITLE = 'LandTitle';

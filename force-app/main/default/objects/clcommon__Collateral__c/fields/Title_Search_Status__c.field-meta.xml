@@ -22,9 +22,9 @@
                 <label>Title Ordered</label>
             </value>
             <value>
-                <fullName>Title Recieved</fullName>
+                <fullName>Title Received</fullName>
                 <default>false</default>
-                <label>Title Recieved</label>
+                <label>Title Received</label>
             </value>
         </valueSetDefinition>
     </valueSet>

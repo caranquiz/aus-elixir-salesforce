@@ -1,18 +1,28 @@
+/****************************************************************************************************/
+/* Company              : Cloudkaptan Consultancy Services Pvt. Ltd. */
+/* Class Name           : LoanDisbursalFilegenTest */
+/* Created Date         : 10/07/2020 */
+/* Developed By         : Souvik Dey */
+/* Description          : This test class mostly covers LoanDisbursalFilegen apex class. */
+/* Testing Scenario 1   : (testWithValidScope) This method tests with valid data and checks if
+intended data is returned */
+/* Last Modified Date   : 10/07/2020 */
+/* Last Modified By     : Souvik Dey */
+/****************************************************************************************************/
 
 @isTest
 private class LoanDisbursalFilegenTest{
     @TestSetup
     static Void initialize() {
-        loan__Org_Parameters__c checkTrigger = new loan__Org_Parameters__c();
-        checkTrigger.loan__Disable_Triggers__c = true;
-        insert checkTrigger;
-        checkTrigger = loan__Org_Parameters__c.getInstance();
-        System.assertEquals(
-          checkTrigger.loan__Disable_Triggers__c,
-          true,
-          'Org Parameter config error'
-        );
-        
+      loan__Org_Parameters__c checkTrigger = new loan__Org_Parameters__c();
+      checkTrigger.loan__Disable_Triggers__c = true;
+      insert checkTrigger;
+      checkTrigger = loan__Org_Parameters__c.getInstance();
+      System.assertEquals(
+        checkTrigger.loan__Disable_Triggers__c,
+        true,
+        'Org Parameter config error'
+      );
       Account solicitorAccount = GenericUtilityTestHelper.insertDummyAccount();
       solicitorAccount.Bank_Account_Name__c = 'XYZ WWS';
       solicitorAccount.Bank_Account_Number__c = '123456789';
@@ -22,10 +32,16 @@ private class LoanDisbursalFilegenTest{
       System.assertEquals(testAccountList.size(), 1, 'Account insert error');
 
       Warehouse__c testWarehouse = new Warehouse__c();
-      testWarehouse.Institution_Name__c = 'TEST FIN INSTITUTION';
+      testWarehouse.Institution_Name__c = 'TEST FIN INST';
       testWarehouse.Bank_Account_Number__c = '2213412';
       testWarehouse.BSB_Number__c = '562122';
+      testWarehouse.Collection_Bank_Account_Name__c = 'TEST BANK NAME';
+      testWarehouse.Collection_BSB_Number__c = '123456';
+      testWarehouse.Collection_Bank_Account_Number__c = '123456221';
+      testWarehouse.Institution_Name__c = 'COLL BANK NAME';
       insert testWarehouse;
+      List<Warehouse__c> warehouseList = [SELECT Id FROM Warehouse__c];
+      System.assertEquals(warehouseList.size(), 1, 'Warehouse insertion error');
 
       loan__Loan_Account__c testLoanAccount = GenericUtilityTestHelper.returnLoanAccount();
       testLoanAccount.Warehouse__c = testWarehouse.Id;
@@ -44,6 +60,8 @@ private class LoanDisbursalFilegenTest{
       contractParty.loan__Loan__c = testLoanAccount.Id;
       contractParty.loan__Party_Type__c = 'Solicitor';
       insert contractParty;
+      List<loan__Coborrower__c> coborrowerList = [SELECT Id FROM loan__Coborrower__c];
+      System.assertEquals(coborrowerList.size(), 1, 'Co-Borrower insertion error');
 
       loan__Payment_Mode__c testPaymentMode = [SELECT Id, Name FROM loan__Payment_Mode__c WHERE Name = 'ACH'];
       System.debug(testPaymentMode);
@@ -57,7 +75,10 @@ private class LoanDisbursalFilegenTest{
       testBankAccount.loan__Active__c = true;
       testBankAccount.loan__Bank_Account_Number__c = '1234567';
       testBankAccount.loan__Bank_Name__c = 'TEST BANK';
+      testBankAccount.Bank_Account_Name__c = 'XYZ WWS';
       insert testBankAccount;
+      List<loan__Bank_Account__c> baList = [SELECT Id FROM loan__Bank_Account__c];
+      System.assertEquals(baList.size(), 1, 'Bank Account insertion error');
 
       loan__Automated_Payment_Configuration__c apc = new loan__Automated_Payment_Configuration__c();
       apc.loan__Folder_Name__c = 'ACH Documents';
@@ -84,12 +105,16 @@ private class LoanDisbursalFilegenTest{
       ldtObj.loan__Loan_Account__c = testLoanAccount.Id;
       ldtObj.loan__Financed_Amount__c = 122000;
       insert ldtObj;
+      List<loan__Loan_Disbursal_Transaction__c> ldtList = [SELECT Id FROM loan__Loan_Disbursal_Transaction__c];
+      System.assertEquals(ldtList.size(), 1, 'Loan Disbursal Transaction insertion error');
 
       loan__Disbursal_Txn_Distribution__c ldtDist = new loan__Disbursal_Txn_Distribution__c();
       ldtDist.loan__Name_of_Entity__c = 'Application Fee';
       ldtDist.loan__Distribution_Amount__c = 23;
       ldtDist.loan__Loan_Disbursal_Transaction__c = ldtObj.Id;
       insert ldtDist;
+      List<loan__Disbursal_Txn_Distribution__c> dtdist = [SELECT Id FROM loan__Disbursal_Txn_Distribution__c];
+      System.assertEquals(dtdist.size(), 1, 'Disbursal Txn Distribution insertion error');
     }
     static testMethod void testWithValidScope() {
         loan__Automated_Payment_Configuration__c apc = [
