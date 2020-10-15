@@ -217,6 +217,9 @@ global class ConstantValues{
    public static final String DELIVER_DOCUMENT_API_TYPE = 'Deliver Document';
    public static final String APPLY_INDIVIDUAL_API_TYPE = 'Apply Individual';
    public static final String PREVIOUS_ENQUIRY_API_TYPE = 'Previous Enquiry';
+   public static final String SAMPLE_TITLE_SEARCH_RES = 'Sample_Title_Search_Response';
+   public static final String SAMPLE_ORDER_DOCUMENT_RES = 'Sample_Order_Document_Response';
+   public static final String SAMPLE_DELIVER_DOCUMENT_SUCCESS_RES = 'Sample_Deliver_Document_Success_Response';
    public static final String COLLATERAL_ID = 'collateralId';
    public static final String HS_LANDTITLE = '-landTitle';
    public static final String US_LANDTITLE = 'LandTitle';
@@ -493,6 +496,7 @@ global class ConstantValues{
   public static final String INCOME_INCONSISTANT_WITH_DECLARATION_RULE = 'Income Consistent with Declaration Rule';
   public static final String LIVING_EXPENSE = 'Living Expense';
   public static final String LIVING_EXPENSE_EXPLANATION_SUITABLE_RULE = 'Living Expense Explanation Suitable Rule';
+  public static final String SEL_EMPLOYMENT_ABN_EFFECTIVE_FROM_RULE = 'Self Employment ABN Effective From Rule';
   public static final String BANK_STATEMENT_REVIEWED_RULE = 'Bank Statements Reviewed Rule';
   public static final String COMPANY_INCOME = 'Company Income';
   public static final String SATISFACTORY_EXPLANATION_PROVIDED_RULE = 'Satisfactory Explanation Provided Rule';
@@ -821,7 +825,7 @@ global class ConstantValues{
   public static final String EMPLOYER_PHONE_VERIFIED_WARNING = 'Employer Phone Independently Verified Warning';
   public static final String INCOME_VERIFICATEOION_SIGHTED = 'Income Verification Sighted Warning';
   public static final String EMPLOYMENT_DURATION_WARNING = 'Employment Duration (Months) Warning';
-  public static final String EMPLOYER_VERIFIED_WARNING = 'Employer Verfied Warning';
+  public static final String EMPLOYER_VERIFIED_WARNING = 'Employer Verified Warning';
   public static final String IS_DIRECTOR_A_BENEFICIARY_WARNING = 'Is Director a Beneficiary / Member Warning';
   public static final String IS_TRUSTEE_A_BENEFICIARY_WARNING = 'Is Trustee a Beneficiary / Member Warning';
   public static final String GSA_WARNING = 'Is General Security Agreement Being Taken over this Applicant Warning Check';
@@ -881,6 +885,8 @@ global class ConstantValues{
   public static final String PRIMARY_PURPOSE_WARNING = 'Primary Purpose Warning';
   public static final String DOCUMENT_TYPE_WARNING = 'Document Type Compare Warning';
   public static final String VALUATION_PAID_WARNING = 'Valuation Paid Warning';
+  public static final String MONTHS_SELF_EMPLOYED_EXCEPTION = 'Months Self Employed Exception';
+  public static final String GOVERNMENT_BENEFIT_AMT_WARNING = 'Government Benefit Amount Warning';
   public static final String PRIME = 'Prime';
   public static final String NEAR_PRIME = 'Near Prime';
   public static final String NEAR_PRIME_PLUS = 'Near Prime +';
