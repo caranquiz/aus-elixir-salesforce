@@ -30,7 +30,13 @@ public with sharing class ChecklistDetailsAPI {
         return hasRulePassed;
     }
     public Boolean evaluateBasedOnDoubleMatchingType(Double matchingOperand1, String matchingOperator, String matchingOperand2){
-        Double matchingOperandFinal2 = double.valueOf(matchingOperand2);
+        Double matchingOperandFinal2;
+        if(matchingOperand2 != NULL){
+            matchingOperandFinal2 = double.valueOf(matchingOperand2);
+        }
+        else{
+            return false;
+        }
         switch on matchingOperator {
             when '==' {     
                 if(matchingOperand1 == NULL){
@@ -104,8 +110,8 @@ public with sharing class ChecklistDetailsAPI {
                     return false;
                 }
                 List<String> values = matchingOperand2.split(',');
-                for(String each : values){
-                    if(matchingOperand1.equals(each)){
+                for(String eachValue : values){
+                    if(matchingOperand1.equals(eachValue)){
                         return true;
                     }
                 }
@@ -119,8 +125,8 @@ public with sharing class ChecklistDetailsAPI {
                     return false;
                 }
                 List<String> values = matchingOperand2.split(',');
-                for(String each : values){
-                    if(matchingOperand1.equals(each)){
+                for(String eachValue : values){
+                    if(matchingOperand1.equals(eachValue)){
                         return false;
                     }
                 }
