@@ -320,6 +320,7 @@
         <members>genesis__Employment_Information__c.Months_Self_Employed_Commentary__c</members>
         <members>genesis__Employment_Information__c.Months_Self_Employed_Suitable__c</members>
         <members>genesis__Employment_Information__c.GST_Effective_from_Rule_Check__c</members>
+        <members>genesis__Employment_Information__c.ABN_Effective_from_Rule_Check__c</members>
         <members>genesis__Income__c.Accountant_Call_Commentary__c</members>
         <members>genesis__Income__c.Accountant_Call_Suitable__c</members>
         <members>genesis__Income__c.BAS__c</members>

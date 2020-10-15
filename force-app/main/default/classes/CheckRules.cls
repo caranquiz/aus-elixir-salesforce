@@ -67,6 +67,7 @@ global with sharing class CheckRules {
                 rulesNameList.add(ConstantValues.COMMISSION_STATUS_RULE);
                 rulesNameList.add(ConstantValues.PREVIOUS_CONDUCT_SUITABLE);
                 rulesNameList.add(ConstantValues.LMI_RULE);
+                rulesNameList.add(ConstantValues.SELF_EMPLOYMENT_ABN_EFFECTIVE_FROM_RULE);	
             }
             else if(tabName == ConstantValues.LOAN_DETAILS){
                 rulesNameList.add(ConstantValues.CASHOUT_PURPOSE_RULE);
@@ -107,6 +108,7 @@ global with sharing class CheckRules {
                 rulesNameList.add(ConstantValues.EMPLOYMENT_CALL_SUITABLE_RULE);
                 rulesNameList.add(ConstantValues.INCOME_INCONSISTANT_WITH_DECLARATION_RULE);
                 rulesNameList.add(ConstantValues.GST_EFFECTIVE_FROM_RULE);
+                rulesNameList.add(ConstantValues.SELF_EMPLOYMENT_ABN_EFFECTIVE_FROM_RULE);	
             }
             else if(tabName == ConstantValues.LIVING_EXPENSE){
                 rulesNameList.add(ConstantValues.LIVING_EXPENSE_EXPLANATION_SUITABLE_RULE);
@@ -320,7 +322,7 @@ global with sharing class CheckRules {
             if(tabName == ConstantValues.APP_EXCEP) {
                 updateChecklistsFromRuleDataOnApplication(application, rulesNameList);
             }
-            if(tabName != ConstantValues.LOAN_DETAILS && tabName != ConstantValues.SETTLEMENT && tabName != 'APP_XCEP'){
+            if(tabName != ConstantValues.LOAN_DETAILS && tabName != ConstantValues.SETTLEMENT && tabName != ConstantValues.APP_EXCEP){
                 ChildChecklistAPI api = new ChildChecklistAPI();
                 List<Checklist_Detail__c> listOfDetail = api.processListOfChecklist(checkList, applicationId);
                 Database.insert(listOfDetail);
@@ -398,9 +400,6 @@ global with sharing class CheckRules {
                                                 FROM genesis__Applications__c
                                                 WHERE Id =:appId
                                                 LIMIT 1];
-            if(appObj == null){
-                return;
-            }
             Map<String, Integer> riskGradeValued = new Map<String, Integer>();
             riskGradeValued.put(ConstantValues.PRIME, 0);
             riskGradeValued.put(ConstantValues.NEAR_PRIME, 1);
@@ -468,9 +467,6 @@ global with sharing class CheckRules {
                                                 FROM genesis__Applications__c
                                                 WHERE Id =:appId
                                                 LIMIT 1];
-            if(appObj == null){
-                return;
-            }
             List<genesis__Checklist__c> previousChecklist = [SELECT Id, genesis__Rule__c
                                                         FROM genesis__Checklist__c
                                                         WHERE genesis__Rule__c =:primPurpCompRule.Id
@@ -492,13 +488,15 @@ global with sharing class CheckRules {
             }
             String prevPrimPurp = appCollaterals[0].genesis__Collateral__r.Primary_Purpose__c;
             for(genesis__Application_Collateral__c eachAppCollateral : appCollaterals){
-                if(String.isBlank(eachAppCollateral.genesis__Collateral__r.Primary_Purpose__c)){
-                    errorCheckList(primPurpCompRule, appId, previousChecklistId);
-                    return;
-                }
-                else if(prevPrimPurp != eachAppCollateral.genesis__Collateral__r.Primary_Purpose__c){
-                    errorCheckList(primPurpCompRule, appId, previousChecklistId);
-                    return;
+                if(eachAppCollateral.genesis__Collateral__c != NULL){
+                    if(String.isBlank(eachAppCollateral.genesis__Collateral__r.Primary_Purpose__c)){
+                        errorCheckList(primPurpCompRule, appId, previousChecklistId);
+                        return;
+                    }
+                    else if(prevPrimPurp != eachAppCollateral.genesis__Collateral__r.Primary_Purpose__c){
+                        errorCheckList(primPurpCompRule, appId, previousChecklistId);
+                        return;
+                    }
                 }
                 prevPrimPurp = eachAppCollateral.genesis__Collateral__r.Primary_Purpose__c;
             }
@@ -528,9 +526,6 @@ global with sharing class CheckRules {
                                                 FROM genesis__Applications__c
                                                 WHERE Id =:appId
                                                 LIMIT 1];
-            if(appObj == null){
-                return;
-            }
             List<genesis__Checklist__c> previousChecklist = [SELECT Id, genesis__Rule__c
                                                         FROM genesis__Checklist__c
                                                         WHERE genesis__Rule__c =:docTypeCompRule.Id
@@ -548,7 +543,7 @@ global with sharing class CheckRules {
                                                 Party_Type_Name__c
                                                 FROM clcommon__Party__c
                                                 WHERE genesis__Application__c =:appId
-                                                AND Legal_Entity_Type__c != 'Individual'
+                                                AND Legal_Entity_Type__c !=:ConstantValues.indType
                                                 AND Party_Type_Name__c NOT IN ('Broker',
                                                 'Aggregator','Solicitor','Valuer')];
             List<genesis__Employment_Information__c> empInfoList = [SELECT Id,
@@ -556,7 +551,7 @@ global with sharing class CheckRules {
                                                                     genesis__Application__c,
                                                                     Document_Type__c
                                                                     FROM genesis__Employment_Information__c
-                                                                    WHERE RecordType.Name = 'Self Employed'
+                                                                    WHERE RecordType.Name = ConstantValues.SELF_EMPLOYED
                                                                     AND genesis__Application__c =:appId];
             if(parties.isEmpty()){
                 return;
@@ -573,28 +568,28 @@ global with sharing class CheckRules {
                 }
                 prevDocType = eachParty.Document_Type__c;
             }
-            if(!empInfoList.isEmpty()){
-                prevDocType = empInfoList[0].Document_Type__c;
-                for(genesis__Employment_Information__c each : empInfoList){
-                    if(String.isBlank(each.Document_Type__c)){
-                        errorCheckList(docTypeCompRule, appId, previousChecklistId);
-                        return;
-                    }
-                    else if(prevDocType != each.Document_Type__c){
-                        errorCheckList(docTypeCompRule, appId, previousChecklistId);
-                        return;
-                    }
-                    prevDocType = each.Document_Type__c;
-                }
+            if(!empInfoList.isEmpty()){	
+                prevDocType = empInfoList[0].Document_Type__c;	
+                for(genesis__Employment_Information__c each : empInfoList){	
+                    if(String.isBlank(each.Document_Type__c)){	
+                        errorCheckList(docTypeCompRule, appId, previousChecklistId);	
+                        return;	
+                    }	
+                    else if(prevDocType != each.Document_Type__c){	
+                        errorCheckList(docTypeCompRule, appId, previousChecklistId);	
+                        return;	
+                    }	
+                    prevDocType = each.Document_Type__c;	
+                }	
             }
-            if((appObj.Document_Type__c).equalsIgnoreCase('Full Doc') && !(prevDocType).equalsIgnoreCase('Full')){
+            if((appObj.Document_Type__c).equalsIgnoreCase(ConstantValues.FULL_DOC) && !(prevDocType).equalsIgnoreCase(ConstantValues.FULL)){
                 errorCheckList(docTypeCompRule, appId, previousChecklistId);
-            } else if((appObj.Document_Type__c).equalsIgnoreCase('Alt Doc') && !(prevDocType).equalsIgnoreCase('Alt')){
+            } else if((appObj.Document_Type__c).equalsIgnoreCase(ConstantValues.ALT_DOC) && !(prevDocType).equalsIgnoreCase(ConstantValues.ALT)){
                 errorCheckList(docTypeCompRule, appId, previousChecklistId);
             } else{
                 successCheckList(docTypeCompRule, appId, previousChecklistId);
             }
-        }
+        
         catch(Exception ex){
             GenericUtility.insertLog('CheckRules.loanDetailsDocumentCompareWarningCheck', ex);
         }
@@ -639,7 +634,7 @@ global with sharing class CheckRules {
             if(appCollaterals.isEmpty()){
                 return;
             }
-            if(appObj.Valuation_Fee_Collected_at_Settlement__c != 'No'){
+            if(appObj.Valuation_Fee_Collected_at_Settlement__c != ConstantValues.NO_TAG){
                 successCheckList(valPaidRule, appId, previousChecklistId);
                 return;
             }
@@ -964,24 +959,24 @@ global with sharing class CheckRules {
             CheckRules checkRulesObj = (CheckRules) System.JSON.deserialize(ruleManualData, CheckRules.class);
             ClassChecklistManualDataMapping[] checklistManualDataList = checkRulesObj.checklistManualDataMapping;
             Map<String, Id> ruleChecklistDetailsMap = objectRuleChecklistDetailsMapMap.get((String) eachChecklistDetail.get('Name'));
-            for(ClassChecklistManualDataMapping each2 : checklistManualDataList){
-                if(String.isNotBlank(each2.ruleName) && ruleChecklistDetailsMap.containsKey(each2.ruleName)){
-                    testing += each2.ruleName + ' : ';
-                    // testing += ruleChecklistMap.get(each2.ruleName) + ' : ';
+            for(ClassChecklistManualDataMapping eachChecklistManualData : checklistManualDataList){
+                if(String.isNotBlank(eachChecklistManualData.ruleName) && ruleChecklistDetailsMap.containsKey(eachChecklistManualData.ruleName)){
+                    testing += eachChecklistManualData.ruleName + ' : ';
+                    // testing += ruleChecklistMap.get(eachChecklistManualData.ruleName) + ' : ';
                     testing += (String)eachChecklistDetail.get('Name') + '\n';
-                    Checklist_Detail__c checklistObj = new Checklist_Detail__c(Id = ruleChecklistDetailsMap.get(each2.ruleName));
-                    if(String.isNotBlank(each2.exceptionRecommender) && !(each2.exceptionRecommender).equalsIgnoreCase('null')){
-                        checklistObj.Exception_Recommender__c = each2.exceptionRecommender;
-                    } if(String.isNotBlank(each2.exceptionApprover) && !(each2.exceptionApprover).equalsIgnoreCase('null')){
-                        checklistObj.Exception_Approver__c = each2.exceptionApprover;
-                    } if(String.isNotBlank(each2.exceptionCommentary) && !(each2.exceptionCommentary).equalsIgnoreCase('null')){
-                        checklistObj.Exception_Commentary__c = each2.exceptionCommentary;
-                    } if(String.isNotBlank(each2.status) && !(each2.status).equalsIgnoreCase('null')){
-                        checklistObj.Condition_Status__c = each2.status;
-                    } if(String.isNotBlank(each2.supportingDocumentVerified) && !(each2.supportingDocumentVerified).equalsIgnoreCase('null')){
-                        checklistObj.Supporting_Document_Verified__c = each2.supportingDocumentVerified;
-                    } if(String.isNotBlank(each2.waiverReason) && !(each2.waiverReason).equalsIgnoreCase('null')){
-                        checklistObj.Waiver_Reason__c = each2.waiverReason;
+                    Checklist_Detail__c checklistObj = new Checklist_Detail__c(Id = ruleChecklistDetailsMap.get(eachChecklistManualData.ruleName));
+                    if(String.isNotBlank(eachChecklistManualData.exceptionRecommender) && !(eachChecklistManualData.exceptionRecommender).equalsIgnoreCase('null')){
+                        checklistObj.Exception_Recommender__c = eachChecklistManualData.exceptionRecommender;
+                    } if(String.isNotBlank(eachChecklistManualData.exceptionApprover) && !(eachChecklistManualData.exceptionApprover).equalsIgnoreCase('null')){
+                        checklistObj.Exception_Approver__c = eachChecklistManualData.exceptionApprover;
+                    } if(String.isNotBlank(eachChecklistManualData.exceptionCommentary) && !(eachChecklistManualData.exceptionCommentary).equalsIgnoreCase('null')){
+                        checklistObj.Exception_Commentary__c = eachChecklistManualData.exceptionCommentary;
+                    } if(String.isNotBlank(eachChecklistManualData.status) && !(eachChecklistManualData.status).equalsIgnoreCase('null')){
+                        checklistObj.Condition_Status__c = eachChecklistManualData.status;
+                    } if(String.isNotBlank(eachChecklistManualData.supportingDocumentVerified) && !(eachChecklistManualData.supportingDocumentVerified).equalsIgnoreCase('null')){
+                        checklistObj.Supporting_Document_Verified__c = eachChecklistManualData.supportingDocumentVerified;
+                    } if(String.isNotBlank(eachChecklistManualData.waiverReason) && !(eachChecklistManualData.waiverReason).equalsIgnoreCase('null')){
+                        checklistObj.Waiver_Reason__c = eachChecklistManualData.waiverReason;
                     }
                     updatedChecklists.add(checklistObj);
                 }
