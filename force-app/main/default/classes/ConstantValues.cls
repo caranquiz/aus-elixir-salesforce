@@ -892,4 +892,15 @@ global class ConstantValues{
   public static final String NEAR_PRIME_PLUS = 'Near Prime +';
   public static final String SPECIALIST = 'Specialist';
   public static final String SPECIALIST_PLUS = 'Specialist +';
+  public static final String SELF_EMPLOYED = 'Self Employed';
+  public static final String FULL_DOC = 'Full Doc';
+  public static final String FULL = 'Full';
+  public static final String ALT_DOC = 'Alt Doc';
+  public static final String ALT = 'Alt';
+  public static final String NO_TAG = 'No';
+  public static final String CUSTOMER_ACCT_CONDITION = 'Customer Account Condition';
+  public static final String CONDITION_CLASSIFICATION = 'Condition';	
+  public static final String RULE_CLASSIFICATION = 'Rule';	
+  public static final String EXCEPTION_CLASSIFICATION = 'Exception';	
+  public static final String WARNING_CLASSIFICATION = 'Warning';
 }
