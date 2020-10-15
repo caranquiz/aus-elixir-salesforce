@@ -528,6 +528,7 @@
         <members>genesis__Applications__c.Interest_Only_Reason_Render_Check__c</members>
         <members>genesis__Applications__c.Matrix_Rate_Exception_Check__c</members>
         <members>genesis__Checklist__c.Applicant__c</members>
+        <members>genesis__Checklist__c.Collateral_Name__c</members>
         <members>genesis__Checklist__c.Exception_Approver__c</members>
         <members>genesis__Checklist__c.Exception_Commentary__c</members>
         <members>genesis__Checklist__c.Exception_Recommender__c</members>
