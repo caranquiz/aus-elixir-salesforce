@@ -3,9 +3,9 @@
     <apex:pagemessages />
     <apex:pageBlock >
       <apex:pageBlockSection >
-        <apex:commandButton value="Run LPT File Generation" action="{!runLPTFileGen}"/>
-        <apex:commandButton value="Run LDT File Generation" action="{!runLDTFileGen}"/>
-      </apex:pageBlockSection>
+        <apex:commandButton value="Run LPT File Generation" onclick="return confirm('Do you want to proceed?');" action="{!runLPTFileGen}"/>
+        <apex:commandButton value="Run LDT File Generation" onclick="return confirm('Do you want to proceed?');" action="{!runLDTFileGen}"/>
+      </apex:pageBlockSection >
     </apex:pageBlock>
   </apex:form>
 </apex:page>
