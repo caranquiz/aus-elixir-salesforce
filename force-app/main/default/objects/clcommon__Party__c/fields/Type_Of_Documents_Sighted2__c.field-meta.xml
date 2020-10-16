@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>Type_Of_Documents_Sighted__c</fullName>
+    <fullName>Type_Of_Documents_Sighted2__c</fullName>
     <externalId>false</externalId>
     <label>Type Of Documents Sighted</label>
     <required>false</required>
-    <trackFeedHistory>false</trackFeedHistory>
     <trackHistory>false</trackHistory>
     <trackTrending>false</trackTrending>
     <type>MultiselectPicklist</type>
@@ -13,55 +12,38 @@
         <valueSetDefinition>
             <sorted>false</sorted>
             <value>
-                <fullName>Tax Returns</fullName>
-                <default>false</default>
-                <label>Tax Returns</label>
-            </value>
-            <value>
-                <fullName>Signed Financial Statements</fullName>
-                <default>false</default>
-                <label>Signed Financial Statements</label>
-            </value>
-            <value>
                 <fullName>Employer Letter</fullName>
                 <default>false</default>
-                <isActive>false</isActive>
                 <label>Employer Letter</label>
             </value>
             <value>
                 <fullName>Employment Contract Letter</fullName>
                 <default>false</default>
-                <isActive>false</isActive>
                 <label>Employment Contract Letter</label>
             </value>
             <value>
                 <fullName>Notice of Assessments</fullName>
                 <default>false</default>
-                <isActive>false</isActive>
                 <label>Notice of Assessments</label>
             </value>
             <value>
                 <fullName>PAYG Summary</fullName>
                 <default>false</default>
-                <isActive>false</isActive>
                 <label>PAYG Summary</label>
             </value>
             <value>
                 <fullName>Pay slips</fullName>
                 <default>false</default>
-                <isActive>false</isActive>
                 <label>Pay slips</label>
             </value>
             <value>
                 <fullName>Salary Credits</fullName>
                 <default>false</default>
-                <isActive>false</isActive>
                 <label>Salary Credits</label>
             </value>
             <value>
                 <fullName>Signed</fullName>
                 <default>false</default>
-                <isActive>false</isActive>
                 <label>Signed</label>
             </value>
         </valueSetDefinition>

@@ -137,7 +137,6 @@
         <members>clcommon__Collateral__c.Replacement_Value__c</members>
         <members>clcommon__Collateral__c.Valuer_Risk_Gradings_3_or_more__c</members>
         <members>clcommon__Collateral__c.Valuer_Risk_Gradings_Commentary__c</members>
-        <members>clcommon__Collateral__c.X110_check__c</members>
         <members>clcommon__Collateral__c.Cover_Type__c</members>
         <members>clcommon__Collateral__c.Interested_Party__c</members>
         <members>clcommon__Collateral__c.Cover_Type__c</members>
@@ -198,13 +197,6 @@
         <members>clcommon__Party__c.GST_Suitable_Rule_Check__c</members>
         <members>clcommon__Party__c.ASIC_Extract_Date__c</members>
         <members>clcommon__Party__c.Adverse_on_file__c</members>
-        <members>clcommon__Party__c.Amount_Payment_Defaults_in_last_12_Month__c</members>
-        <members>clcommon__Party__c.Amount_Payment_Defaults_in_more_than_12__c</members>
-        <members>clcommon__Party__c.Amount_of_Credit_Enquiries_in_last_12_mo__c</members>
-        <members>clcommon__Party__c.Amount_of_Credit_Enquiries_in_more_than__c</members>
-        <members>clcommon__Party__c.Amount_of_Payment_Defaults__c</members>
-        <members>clcommon__Party__c.Amt_com_enq_in_60m__c</members>
-        <members>clcommon__Party__c.Amt_con_enq_in_60m__c</members>
         <members>clcommon__Party__c.Company_Director_s_Adverse__c</members>
         <members>clcommon__Party__c.Company_Director_s_Related_Entity_Advers__c</members>
         <members>clcommon__Party__c.Consumer_Adverse_on_file__c</members>
@@ -213,9 +205,6 @@
         <members>clcommon__Party__c.Court_Writ_Amount__c</members>
         <members>clcommon__Party__c.Court_Writs__c</members>
         <members>clcommon__Party__c.Credit_Enquiry_Amount__c</members>
-        <members>clcommon__Party__c.Credit_Score_2__c</members>
-        <members>clcommon__Party__c.Current_Directorships__c</members>
-        <members>clcommon__Party__c.Disqualified_Directorships__c</members>
         <members>clcommon__Party__c.Employer__c</members>
         <members>clcommon__Party__c.External_Administrators__c</members>
         <members>clcommon__Party__c.File_Number__c</members>
@@ -223,28 +212,9 @@
         <members>clcommon__Party__c.Incorporation_Date__c</members>
         <members>clcommon__Party__c.Individual_Address__c</members>
         <members>clcommon__Party__c.Insolvencies_Actions__c</members>
-        <members>clcommon__Party__c.NX7556_df_sts_pd_60_84m__c</members>
-        <members>clcommon__Party__c.NX7560_df_sts_stld_60_84m__c</members>
-        <members>clcommon__Party__c.NX7561_df_sts_na_60_84m__c</members>
-        <members>clcommon__Party__c.NX7568_df_sts_unpd_60_84m__c</members>
-        <members>clcommon__Party__c.NY7516_df_60_84m__c</members>
-        <members>clcommon__Party__c.NY7520_df_tcut_60_84m__c</members>
-        <members>clcommon__Party__c.NY7524_df_RM_60_84m__c</members>
-        <members>clcommon__Party__c.NY7568_df_sts_unpd_60_84m__c</members>
-        <members>clcommon__Party__c.No_com_enq_in_60m__c</members>
-        <members>clcommon__Party__c.No_con_defaults_SCI_in_the_last_60_84m__c</members>
-        <members>clcommon__Party__c.No_con_enq_in_60m__c</members>
-        <members>clcommon__Party__c.No_con_mort_deflt_SCI_60_84m__c</members>
-        <members>clcommon__Party__c.No_con_telco_util_defaults_SCI_in_60_84m__c</members>
-        <members>clcommon__Party__c.No_of_Credit_Enquiries_in_more_than_12_M__c</members>
-        <members>clcommon__Party__c.Number_Payment_Defaults_in_last_12_Month__c</members>
-        <members>clcommon__Party__c.Number_Payment_Defaults_in_more_than_12__c</members>
-        <members>clcommon__Party__c.Number_of_Discharged_Insolvencies__c</members>
         <members>clcommon__Party__c.Number_of_bankrupt_on_file__c</members>
         <members>clcommon__Party__c.Number_of_bankrupt_on_file_in_last_84m__c</members>
-        <members>clcommon__Party__c.Number_of_insolvencies_on_file__c</members>
         <members>clcommon__Party__c.Organization_Status__c</members>
-        <members>clcommon__Party__c.Payment_Defaults__c</members>
         <members>clcommon__Party__c.Permission_Type__c</members>
         <members>clcommon__Party__c.Petitions__c</members>
         <members>clcommon__Party__c.Possibly_Matched_data__c</members>
@@ -252,14 +222,12 @@
         <members>clcommon__Party__c.Report_Created_Date__c</members>
         <members>clcommon__Party__c.Report_for__c</members>
         <members>clcommon__Party__c.Request_Id__c</members>
-        <members>clcommon__Party__c.General_Messages__c</members>
         <members>clcommon__Party__c.Legal_Entity_Type__c</members>
         <members>clcommon__Party__c.Explanation_of_Previous_Conduct_Suitable__c</members>
         <members>clcommon__Party__c.Explanation_of_Previous_Conduct_Commenta__c</members>
         <members>clcommon__Party__c.Previous_conduct_explanation_received__c</members>
         <members>clcommon__Party__c.Previous_conduct_issues_identified__c</members>
         <members>clcommon__Party__c.Previous_conduct_referencing_completed__c</members>
-        <members>clcommon__Party__c.Amount_of_Credit_Enquiry__c</members>
         <members>clcommon__Party__c.Previous_Conduct_Commentary_Rule_Check__c</members>
         <members>clcommon__Party__c.GST_Effective_from_Rule_Check__c</members>
         <members>clcommon__Party__c.Company_Director_s_Adverse__c</members>
@@ -291,10 +259,8 @@
         <members>genesis__Applications__c.Risk_grade_list__c</members>
         <members>genesis__Applications__c.Satisfactory_Explanation_Provided__c</members>
         <members>genesis__Applications__c.Supporting_Documentation_Sighted__c</members>
-        <members>genesis__Applications__c.Total_Current_Income_Period__c</members>
         <members>genesis__Applications__c.Total_fees_amount__c</members>
         <members>genesis__Applications__c.Valuation_Fee_Collected_at_Settlement__c</members>
-        <members>genesis__Applications__c.Verification_Sighted__c</members>
         <members>genesis__Applications__c.Does_applicant_understand_English__c</members>
         <members>genesis__Applications__c.Interest_Only_Commentary__c</members>
         <members>genesis__Applications__c.Monthly_Living_Expenses_Used__c</members>
@@ -389,26 +355,19 @@
         <members>Credit_Enquiry__c.Role_in_Enquiry__c</members>
         <members>Current_Directorship__c.ABN__c</members>
         <members>Current_Directorship__c.ACN__c</members>
-        <members>Current_Directorship__c.Additional_data_field__c</members>
         <members>Current_Directorship__c.Appointment_Date__c</members>
         <members>Current_Directorship__c.Company_Status__c</members>
         <members>Current_Directorship__c.Date_Disqualified__c</members>
         <members>Current_Directorship__c.Date_disqualified_until__c</members>
         <members>Current_Directorship__c.Directorship_Type__c</members>
         <members>Current_Directorship__c.Id_reference__c</members>
-        <members>Current_Directorship__c.Org_Id_verified_Asic_name__c</members>
         <members>Current_Directorship__c.Org_Id_verified_Asic_status__c</members>
         <members>Current_Directorship__c.Org_Id_verified__c</members>
         <members>Current_Directorship__c.Org_Name__c</members>
         <members>Current_Directorship__c.Party__c</members>
         <members>Current_Directorship__c.Record_Extract_Date__c</members>
-        <members>PPSR_Registration__c.Organisation_number__c</members>
         <members>PPSR_Registration__c.Search_Date__c</members>
         <members>PPSR_Registration__c.Search_Number__c</members>
-        <members>PPSR_Registration__c.Search_Type__c</members>
-        <members>PPSR_Registration__c.Total_PMSI_Registrations__c</members>
-        <members>PPSR_Registration__c.Total_Registrations_Designated_Secured_P__c</members>
-        <members>PPSR_Registration__c.Total_Registrations_Other_Financier_Secu__c</members>
         <members>PPSR_Registration__c.Total_Registrations__c</members>
         <members>PPSR_Registration__c.Party__c</members>
         <members>Payment_Default__c.Credit_Account__c</members>
@@ -609,6 +568,15 @@
         <members>genesis__Applications__c.Cash_Out_Purpose_Percent__c</members>
         <members>genesis__Applications__c.Refinance_Equity_Release_Total__c</members>
         <members>genesis__Applications__c.Refinance_Equity_Release_Percent__c</members>
+        <members>clcommon__Party__c.Total_Current_Income_Period__c</members>
+        <members>clcommon__Party__c.Total_Previous_Income_Period__c</members>
+        <members>clcommon__Party__c.Income_greater_than_previous_year__c</members>
+        <members>clcommon__Party__c.Income_for_servicing_purposes__c</members>
+        <members>clcommon__Party__c.Override__c</members>
+        <members>clcommon__Party__c.Override_Amount__c</members>
+        <members>clcommon__Party__c.Number_of_Documents_Sighted__c</members>
+        <members>clcommon__Party__c.Verification_Sighted__c</members>
+        <members>clcommon__Party__c.Type_Of_Documents_Sighted2__c</members>
 
         <name>CustomField</name>
     </types>

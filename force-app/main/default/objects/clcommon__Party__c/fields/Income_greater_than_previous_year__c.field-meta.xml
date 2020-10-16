@@ -2,13 +2,7 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Income_greater_than_previous_year__c</fullName>
     <externalId>false</externalId>
-    <formula>IF(
-OR(
- Total_Current_Income_Period__c  &gt;  Total_Previous_Income_Period__c 
-  ),
-&quot;Yes&quot;,
-&quot;No&quot;
-)</formula>
+    <formula>IF(OR(Total_Current_Income_Period__c &gt; Total_Previous_Income_Period__c), &quot;Yes&quot;, &quot;No&quot;)</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
     <label>Income greater than previous year</label>
     <required>false</required>
