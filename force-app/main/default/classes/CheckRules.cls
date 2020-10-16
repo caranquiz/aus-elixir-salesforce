@@ -1027,6 +1027,8 @@ global with sharing class CheckRules {
                 } else if(eachChecklistDetails.Checklist__r.genesis__Rule__r.Name == ConstantValues.DOES_APPLICANT_UNDERSTAND_ENGLISH_WARNING){
                     message = message.replace(ConstantValues.DOES_APPLICANT_UNDERSTAND_ENG_COND_TXT_KEY, ConstantValues.DOES_APPLICANT_UNDERSTAND_ENG_COND_TXT);
                     message = message.replace(ConstantValues.IND_APPLICANT_KEY, eachChecklistDetails.Party__r.clcommon__Account__r.Name);
+                } else if(eachChecklistDetails.Checklist__r.genesis__Rule__r.Name == ConstantValues.GIFT_STAT_DEC_RECEIVED_CONDITION){
+                    
                 }
                 eachChecklistDetails.Manual_Message__c = message;
             }

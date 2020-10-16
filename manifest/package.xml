@@ -609,6 +609,15 @@
         <members>genesis__Applications__c.Cash_Out_Purpose_Percent__c</members>
         <members>genesis__Applications__c.Refinance_Equity_Release_Total__c</members>
         <members>genesis__Applications__c.Refinance_Equity_Release_Percent__c</members>
+        <members>clcommon__Party__c.Total_Current_Income_Period__c</members>
+        <members>clcommon__Party__c.Total_Previous_Income_Period__c</members>
+        <members>clcommon__Party__c.Income_greater_than_previous_year__c</members>
+        <members>clcommon__Party__c.Income_for_servicing_purposes__c</members>
+        <members>clcommon__Party__c.Override__c</members>
+        <members>clcommon__Party__c.Override_Amount__c</members>
+        <members>clcommon__Party__c.Number_of_Documents_Sighted__c</members>
+        <members>clcommon__Party__c.Verification_Sighted__c</members>
+        <members>clcommon__Party__c.Type_Of_Documents_Sighted__c</members>
 
         <name>CustomField</name>
     </types>
