@@ -576,7 +576,6 @@ public class EquifaxApplyIndividualResponseHelper{
     }
     public static String updatePartyWithApplyIndividualResponse(clcommon__Party__c partyObj, EquifaxApplyIndividualResponseHelper helperObject){
         String returnVal = ConstantValues.APPLY_IND_SUCCESS;
-        Boolean generalMessageReturned = true;
         Cls_characteristic[] summaryDataList;
         Cls_characteristic charData;
         Cls_creditEnquiry[] creditEnquiryList;
@@ -609,16 +608,6 @@ public class EquifaxApplyIndividualResponseHelper{
                 String faultString = helperObject.envelope.body.response.errors.error.detail.nodeValue;
                 return faultString;
             }catch(Exception ex){}
-            // Checks if any general message exists
-            try{
-                String generalMessages = '';
-                for(Cls_message each : helperObject.envelope.body.response.generalMessages.message){
-                    generalMessages += each.nodeValue + '\n';
-                }
-                partyObj.General_Messages__c = generalMessages;
-            }catch(Exception ex){
-                generalMessageReturned = false;
-            }
             try{
                 summaryDataList = helperObject.envelope.body.response.productData.summaryData.dataBlock.characteristic;
             }catch(Exception ex){}
@@ -629,9 +618,6 @@ public class EquifaxApplyIndividualResponseHelper{
                 Integer.valueOf(dateTimeGenString.subString(8,10)));
                 partyObj.Report_Created_Date__c = dateGen;
                 partyObj.Permission_Type__c = helperObject.envelope.body.response.productHeader.permissionType.nodeValue;
-                if(generalMessageReturned){
-                    return ConstantValues.GENERAL_ERROR + '\nNote : please check general messages for details';
-                }
             }catch(Exception ex){
                 return ConstantValues.GENERAL_ERROR;
             }
@@ -657,8 +643,6 @@ public class EquifaxApplyIndividualResponseHelper{
                 }else if(charData.value.nodeValue.equalsIgnoreCase('N')){
                     partyObj.Consumer_Adverse_on_file__c = 'No';
                 }
-                charData = findInSummaryData(summaryDataList, 'NP8503_dr_disq_60m');
-                partyObj.Disqualified_Directorships__c = Integer.valueOf(charData.value.nodeValue);
                 charData = findInSummaryData(summaryDataList, 'NP8500_dr_cur');
                 partyObj.Current_Directorships__c = Integer.valueOf(charData.value.nodeValue);
                 charData = findInSummaryData(summaryDataList, 'NP8506_dr_adv_disq_60m_ever');
@@ -672,37 +656,6 @@ public class EquifaxApplyIndividualResponseHelper{
                 charData = findInSummaryData(summaryDataList, 'NP8510_inslv');
                 partyObj.Number_of_insolvencies_on_file__c = Integer.valueOf(charData.value.nodeValue);
                 charData = findInSummaryData(summaryDataList, 'NY8006_enq_60m');
-                partyObj.No_com_enq_in_60m__c = Integer.valueOf(charData.value.nodeValue);
-                charData = findInSummaryData(summaryDataList, 'NY8063_enq_amt_60m');
-                partyObj.Amt_com_enq_in_60m__c = Integer.valueOf(charData.value.nodeValue);
-                charData = findInSummaryData(summaryDataList, 'NX8006_enq_60m');
-                partyObj.No_con_enq_in_60m__c = Integer.valueOf(charData.value.nodeValue);
-                charData = findInSummaryData(summaryDataList, 'NX8063_enq_amt_60m');
-                partyObj.Amt_con_enq_in_60m__c = Integer.valueOf(charData.value.nodeValue);
-                // Commercial Defaults
-                charData = findInSummaryData(summaryDataList, 'NY7516_df_60_84m');
-                partyObj.NY7516_df_60_84m__c = Integer.valueOf(charData.value.nodeValue);
-                charData = findInSummaryData(summaryDataList, 'NY7520_df_tcut_60_84m');
-                partyObj.NY7520_df_tcut_60_84m__c = Integer.valueOf(charData.value.nodeValue);
-                charData = findInSummaryData(summaryDataList, 'NY7524_df_RM_60_84m');
-                partyObj.NY7524_df_RM_60_84m__c = Integer.valueOf(charData.value.nodeValue);
-                charData = findInSummaryData(summaryDataList, 'NY7568_df_sts_unpd_60_84m');
-                partyObj.NY7568_df_sts_unpd_60_84m__c = Integer.valueOf(charData.value.nodeValue);
-                // Consumer Defaults
-                charData = findInSummaryData(summaryDataList, 'NX7516_df_60_84m');
-                partyObj.No_con_defaults_SCI_in_the_last_60_84m__c = Integer.valueOf(charData.value.nodeValue);
-                charData = findInSummaryData(summaryDataList, 'NX7520_df_tcut_60_84m');
-                partyObj.No_con_telco_util_defaults_SCI_in_60_84m__c = Integer.valueOf(charData.value.nodeValue);
-                charData = findInSummaryData(summaryDataList, 'NX7524_df_rm_60_84m');
-                partyObj.No_con_mort_deflt_SCI_60_84m__c = Integer.valueOf(charData.value.nodeValue);
-                charData = findInSummaryData(summaryDataList, 'NX7556_df_sts_pd_60_84m');
-                partyObj.NX7556_df_sts_pd_60_84m__c = Integer.valueOf(charData.value.nodeValue);
-                charData = findInSummaryData(summaryDataList, 'NX7560_df_sts_stld_60_84m');
-                partyObj.NX7560_df_sts_stld_60_84m__c = Integer.valueOf(charData.value.nodeValue);
-                charData = findInSummaryData(summaryDataList, 'NX7561_df_sts_na_60_84m');
-                partyObj.NX7561_df_sts_na_60_84m__c = Integer.valueOf(charData.value.nodeValue);
-                charData = findInSummaryData(summaryDataList, 'NX7568_df_sts_unpd_60_84m');
-                partyObj.NX7568_df_sts_unpd_60_84m__c = Integer.valueOf(charData.value.nodeValue);
             }catch(Exception ex){}
             try{
                 scoreList = helperObject.envelope.body.response.productData.scoreData.score;
@@ -714,9 +667,6 @@ public class EquifaxApplyIndividualResponseHelper{
                         String scoreCardIdVal = each.scorecard.id;
                         if(scoreCardIdVal.equalsIgnoreCase('VSA_2.0_XY_NR') || scoreCardIdVal.equalsIgnoreCase('CCAI_2.0_YX_NR')){
                             partyObj.Credit_Score__c = Decimal.valueOf(each.scoreMasterscale.nodeValue);
-                        }
-                        else if(scoreCardIdVal.equalsIgnoreCase('VS_1.1_XY_NR') || scoreCardIdVal.equalsIgnoreCase('VS_1.1_YX_NR')){
-                            partyObj.Credit_Score_2__c = Decimal.valueOf(each.scoreMasterscale.nodeValue);
                         }
                     }catch(Exception ex){
                     }
@@ -771,16 +721,6 @@ public class EquifaxApplyIndividualResponseHelper{
                         Integer.valueOf(dateDisqUntilStr.subString(5,7)),
                         Integer.valueOf(dateDisqUntilStr.subString(8,10)));
                         refDirShip.Date_disqualified_until__c = dateDisqUntil;
-                    }catch(Exception ex){
-                    }
-                    try{
-                        String additionalData = '';
-                        try {
-                            additionalData += 'key : ' + each.additionalDataFields.dataField.key.nodeValue;
-                            additionalData += ' | value : ' + each.additionalDataFields.dataField.value.nodeValue;
-                            additionalData += '\n';
-                        }catch(Exception ex){}
-                        // refDirShip.Additional_data_field__c = additionalData;
                     }catch(Exception ex){
                     }
                     if(refDirShip != null){
@@ -1056,7 +996,6 @@ public class EquifaxApplyIndividualResponseHelper{
     }
     private static void clearPartyObjectData(clcommon__Party__c partyObj){
         partyObj.Request_Id__c = null;
-        partyObj.General_Messages__c = null;
         partyObj.Report_Created_Date__c = null;
         partyObj.Permission_Type__c = null;
         partyObj.Possibly_matched_data__c = null;
@@ -1064,28 +1003,12 @@ public class EquifaxApplyIndividualResponseHelper{
         partyObj.Age_of_Credit_File__c = null;
         partyObj.Adverse_on_file__c = null;
         partyObj.Consumer_Adverse_on_file__c = null;
-        partyObj.Disqualified_Directorships__c = null;
         partyObj.Current_Directorships__c = null;
         partyObj.External_Administrators__c = null;
         partyObj.Number_of_bankrupt_on_file__c = null;
         partyObj.Number_of_bankrupt_on_file_in_last_84m__c = null;
         partyObj.Number_of_Discharged_Insolvencies__c = null;
         partyObj.Number_of_insolvencies_on_file__c = null;
-        partyObj.No_com_enq_in_60m__c = null;
-        partyObj.Amt_com_enq_in_60m__c = null;
-        partyObj.No_con_enq_in_60m__c = null;
-        partyObj.Amt_con_enq_in_60m__c = null;
-        partyObj.NY7516_df_60_84m__c = null;
-        partyObj.NY7520_df_tcut_60_84m__c = null;
-        partyObj.NY7524_df_RM_60_84m__c = null;
-        partyObj.NY7568_df_sts_unpd_60_84m__c = null;
-        partyObj.No_con_defaults_SCI_in_the_last_60_84m__c = null;
-        partyObj.No_con_telco_util_defaults_SCI_in_60_84m__c = null;
-        partyObj.No_con_mort_deflt_SCI_60_84m__c = null;
-        partyObj.NX7556_df_sts_pd_60_84m__c = null;
-        partyObj.NX7560_df_sts_stld_60_84m__c = null;
-        partyObj.NX7561_df_sts_na_60_84m__c = null;
-        partyObj.NX7568_df_sts_unpd_60_84m__c = null;
         update partyObj;
     }
 }
