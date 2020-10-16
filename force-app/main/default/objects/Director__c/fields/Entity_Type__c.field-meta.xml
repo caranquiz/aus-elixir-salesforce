@@ -20,6 +20,11 @@
                 <default>false</default>
                 <label>Director</label>
             </value>
+            <value>
+                <fullName>Registrations</fullName>
+                <default>false</default>
+                <label>Registrations</label>
+            </value>
         </valueSetDefinition>
     </valueSet>
 </CustomField>

@@ -15,7 +15,7 @@
             <name>Capitalise_Country</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>false</active>
+        <active>true</active>
         <criteriaItems>
             <field>clcommon__Collateral__c.Country__c</field>
             <operation>notEqual</operation>
