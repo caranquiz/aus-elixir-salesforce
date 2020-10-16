@@ -1,11 +1,19 @@
-<apex:page controller="ABAFileGeneratorController" action="{!nothing}">
-  <apex:form >
+<apex:page controller="ABAFileGeneratorController" action="{!nothing}" lightningStylesheets="true" docType="html-5.0">
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/latest/jquery.js"></script>
+  <style>
+    .apexp .bPageBlock.apexDefaultPageBlock .pbBody .pbSubheader .searchOutputPanel {
+        color:Black;
+        background-color:white;
+    }
+    </style> 
+  <apex:form style="border-style:solid;border-width:0px; border-2px;background-color:navyblue">
+    <apex:sectionHeader title="ORDE Financial Bank File Generations" />
     <apex:pagemessages />
     <apex:pageBlock >
       <apex:pageBlockSection >
-        <apex:commandButton value="Run LPT File Generation" onclick="return confirm('Do you want to proceed?');" action="{!runLPTFileGen}"/>
-        <apex:commandButton value="Run LDT File Generation" onclick="return confirm('Do you want to proceed?');" action="{!runLDTFileGen}"/>
-      </apex:pageBlockSection >
+        <apex:commandButton value="Generate Payment Files" onclick="return confirm('Do you want to proceed?');" action="{!runLPTFileGen}"/>
+        <apex:commandButton value="Generate Disbursal Files" onclick="return confirm('Do you want to proceed?');" action="{!runLDTFileGen}"/>
+      </apex:pageBlockSection>
     </apex:pageBlock>
   </apex:form>
 </apex:page>
