@@ -91,6 +91,9 @@
         <!-- ABA File Generation Control Page Controller class -->
         <members>ABAFileGeneratorController</members>
 
+        <members>InvokeOnPartyUpdate</members>
+        <members>InvokeOnPartyUpdateTest</members>
+
         <name>ApexClass</name>
     </types>
     <types>
