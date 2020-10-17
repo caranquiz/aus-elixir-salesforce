@@ -21,9 +21,19 @@
                 <label>Consumer</label>
             </value>
             <value>
-                <fullName>Court Action</fullName>
+                <fullName>Other Court Action</fullName>
                 <default>false</default>
-                <label>Court Action</label>
+                <label>Other Court Action</label>
+            </value>
+            <value>
+                <fullName>Default Judgements</fullName>
+                <default>false</default>
+                <label>Default Judgements</label>
+            </value>
+            <value>
+                <fullName>Personal Insolvencies</fullName>
+                <default>false</default>
+                <label>Personal Insolvencies</label>
             </value>
         </valueSetDefinition>
     </valueSet>

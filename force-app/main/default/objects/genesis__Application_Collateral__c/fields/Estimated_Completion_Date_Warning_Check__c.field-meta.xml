@@ -2,7 +2,7 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Estimated_Completion_Date_Warning_Check__c</fullName>
     <externalId>false</externalId>
-    <formula>AND((genesis__Collateral__r.Estimated_Completion_Date__c - genesis__Application__r.CL_Date__c)/365 &gt; 1,  ISBLANK(genesis__Collateral__r.Longer_than_12Month_Completion_Explanati__c))</formula>
+    <formula>(genesis__Collateral__r.Estimated_Completion_Date__c - genesis__Application__r.CL_Date__c)/365 &gt; 1</formula>
     <label>Estimated Completion Date Warning Check</label>
     <trackTrending>false</trackTrending>
     <type>Checkbox</type>

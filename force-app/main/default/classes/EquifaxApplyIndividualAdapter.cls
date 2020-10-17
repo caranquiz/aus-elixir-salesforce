@@ -155,7 +155,6 @@ global class EquifaxApplyIndividualAdapter extends intframework.BaseIntegrationA
             requestbody = requestbody.replace(ConstantValues.ENQ_AMT,
             String.valueOf(((Decimal) appInfo.get('loanAmount')).round(System.RoundingMode.HALF_DOWN)));
             requestbody = requestbody.replace(ConstantValues.RELATIONSHIP_CODE, relationshipCode);
-            System.debug(requestbody);
         } catch (Exception ex) {
           GenericUtility.insertLog('EquifaxApplyIndividualAdapter', ex);
         }

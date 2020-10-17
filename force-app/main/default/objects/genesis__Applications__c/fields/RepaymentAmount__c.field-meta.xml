@@ -2,7 +2,7 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>RepaymentAmount__c</fullName>
     <externalId>false</externalId>
-    <formula>genesis__Loan_Amount__c  /  ((((1+genesis__Interest_Rate__c / 100/12) ^  genesis__Term__c ) - 1 ) / ( genesis__Interest_Rate__c  / 100 / 12 *  (( 1 + genesis__Interest_Rate__c  / 12 / 100 ) ^  genesis__Term__c  )))</formula>
+    <formula>genesis__Loan_Amount__c /(((1+Current_Reverting_Variable_Rate__c /12) ^  genesis__Term__c ) - 1 ) * ( Current_Reverting_Variable_Rate__c / 12 * (( 1 + Current_Reverting_Variable_Rate__c  / 12 ) ^  genesis__Term__c  ))</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
     <label>RepaymentAmount</label>
     <precision>18</precision>

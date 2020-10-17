@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>Explanation_of_Previous_Conduct_Commenta__c</fullName>
+    <fullName>Total_PMSI_Registrations__c</fullName>
     <externalId>false</externalId>
-    <label>Explanation of Previous Conduct Commenta</label>
+    <label>Total PMSI Registrations</label>
+    <precision>3</precision>
     <required>false</required>
-    <trackHistory>false</trackHistory>
+    <scale>0</scale>
     <trackTrending>false</trackTrending>
-    <type>TextArea</type>
+    <type>Number</type>
+    <unique>false</unique>
 </CustomField>

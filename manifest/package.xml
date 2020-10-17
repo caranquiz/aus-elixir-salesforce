@@ -720,6 +720,7 @@
 
         <!-- Approval Mechanism changes by Rameswari -->
         <members>Update_prepaid_interest_plus_drawdown_for_loan_amount</members>
+        <members>Populate_Broker_Details</members>
         <name>Flow</name>
     </types>
     <types>
