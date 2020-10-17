@@ -12,7 +12,7 @@
     <soap:Body xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
         <ved:request>
             <ved:enquiry-header>
-                <ved:client-reference>__partyReference</ved:client-reference>
+                <ved:client-reference>__clientReference</ved:client-reference>
                 <ved:permission-type-code>__permissionTypeCode</ved:permission-type-code>
                 <ved:product-data-level-code>__productDataLevelCode</ved:product-data-level-code>
                 <ved:requested-scores>
@@ -52,7 +52,7 @@
                     <ved:account-type-code>__accountTypeCode</ved:account-type-code>
                     <ved:enquiry-amount currency-code="__currencyCode">__enquiryAmount</ved:enquiry-amount>
                     <ved:relationship-code>__relationshipCode</ved:relationship-code>
-                    <ved:enquiry-client-reference>__partyReference</ved:enquiry-client-reference>
+                    <ved:enquiry-client-reference>__enquiryClientReference</ved:enquiry-client-reference>
                 </ved:enquiry>
             </ved:enquiry-data>
         </ved:request>

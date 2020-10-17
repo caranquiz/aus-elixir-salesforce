@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>Credit_Account_Type__c</fullName>
+    <fullName>Credit_Event__c</fullName>
     <externalId>false</externalId>
-    <label>Credit Account Type</label>
+    <label>Credit Event</label>
     <required>false</required>
     <trackTrending>false</trackTrending>
     <type>Picklist</type>
@@ -11,29 +11,34 @@
         <valueSetDefinition>
             <sorted>false</sorted>
             <value>
-                <fullName>Commercial</fullName>
+                <fullName>N/A</fullName>
                 <default>false</default>
-                <label>Commercial</label>
+                <label>N/A</label>
             </value>
             <value>
-                <fullName>Consumer</fullName>
+                <fullName>1</fullName>
                 <default>false</default>
-                <label>Consumer</label>
+                <label>1</label>
             </value>
             <value>
-                <fullName>Other Court Action</fullName>
+                <fullName>2</fullName>
                 <default>false</default>
-                <label>Other Court Action</label>
+                <label>2</label>
             </value>
             <value>
-                <fullName>Default Judgements</fullName>
+                <fullName>3</fullName>
                 <default>false</default>
-                <label>Default Judgements</label>
+                <label>3</label>
             </value>
             <value>
-                <fullName>Personal Insolvencies</fullName>
+                <fullName>4</fullName>
                 <default>false</default>
-                <label>Personal Insolvencies</label>
+                <label>4</label>
+            </value>
+            <value>
+                <fullName>5</fullName>
+                <default>false</default>
+                <label>5</label>
             </value>
         </valueSetDefinition>
     </valueSet>
