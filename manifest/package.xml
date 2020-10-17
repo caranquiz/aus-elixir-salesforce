@@ -345,6 +345,9 @@
         <members>Credit_Account__c.Role__c</members>
         <members>Credit_Account__c.Status_Date__c</members>
         <members>Credit_Account__c.Status__c</members>
+        <members>Credit_Account__c.Ignore__c</members>
+        <members>Credit_Account__c.Credit_Event__c</members>
+        <members>Credit_Account__c.Explanation_Provided__c</members>
         <members>Credit_Enquiry__c.Account_Type__c</members>
         <members>Credit_Enquiry__c.Credit_Enquirer__c</members>
         <members>Credit_Enquiry__c.Credit_Enquiry_Type__c</members>
@@ -377,6 +380,7 @@
         <members>Payment_Default__c.Status__c</members>
         <members>Payment_Default__c.Ignore__c</members>
         <members>Payment_Default__c.Credit_Event__c</members>
+        <members>Payment_Default__c.Explanation_Provided__c</members>
         <members>EquifaxOrdIdSearch__c.Subscriber_Identifier__c</members>
         <members>EquifaxOrdIdSearch__c.Security__c</members>
         <members>Checklist_Detail__c.Application_Collateral__c</members>

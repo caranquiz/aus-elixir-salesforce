@@ -316,7 +316,9 @@ public class EquifaxApplyIndividualResponseHelper{
     }
 	class Cls_publicRecordOrConsumerCreditInformation {
 		public Cls_directorships directorships;
-		public Cls_disqualifiedDirectorships disqualifiedDirectorships ;
+        public Cls_disqualifiedDirectorships disqualifiedDirectorships;
+        public Cls_courtActions courtActions;
+        public Cls_personalInsolvencies personalInsolvencies;
     }
 	class Cls_disqualifiedDirectorships {
 		public String nodeValue;
@@ -456,6 +458,56 @@ public class EquifaxApplyIndividualResponseHelper{
     class Cls_faultstring {
         String nodeValue;
     }
+    class Cls_courtActions {
+        Cls_courtAction[] courtAction;
+    }
+    class Cls_courtAction {
+        public String type;
+        public Cls_creditor creditor;
+        public Cls_courtActionStatus courtActionStatus;
+        public Cls_actionDate actionDate;
+        public Cls_courtActionAmount courtActionAmount;
+        public Cls_plaintNumber plaintNumber;
+    }
+    class Cls_creditor {
+        public String nodeValue;
+    }
+    class Cls_courtActionStatus {
+        public String pDate;
+        public String nodeValue;
+    }
+    class Cls_actionDate {
+        public String nodeValue;
+    }
+    class Cls_courtActionAmount {
+        public String nodeValue;
+    }
+    class Cls_plaintNumber {
+        public String nodeValue;
+    }
+    class Cls_personalInsolvencies {
+        public Cls_personalInsolvency[] personalInsolvency;
+    }
+    class Cls_personalInsolvency {
+        public Cls_type type;
+        public Cls_text text;
+        public Cls_status status;
+        public Cls_statusDate statusDate;
+        public Cls_dateDeclared dateDeclared;
+        public Cls_administrationId administrationId;
+    }
+    class Cls_text {
+        public String nodeValue;
+    }
+    class Cls_dateDeclared {
+        public String nodeValue;
+    }
+    class Cls_administrationId {
+        public Cls_pNumber pNumber;
+    }
+    class Cls_pNumber {
+        public String nodeValue;
+    }
 
     static Cls_characteristic findInSummaryData(Cls_characteristic[] all, String val){
         if (all == null) {
@@ -521,6 +573,8 @@ public class EquifaxApplyIndividualResponseHelper{
 	public static EquifaxApplyIndividualResponseHelper parse(String json, Id partyId){
         try{
             json = json.replaceAll('default', 'pDefault');
+            json = json.replaceAll('"date"', '"pDate"');
+            json = json.replaceAll('"number"', '"pNumber"');
             json = GenericUtility.modifyJsonKeysIntoCamelcasingV2(json);
             List<String> queries = new List<String>();
             queries.add('"directorship"');
@@ -533,9 +587,10 @@ public class EquifaxApplyIndividualResponseHelper{
             queries.add('"employer"');
             queries.add('"message"');
             queries.add('"otherIdentity"');
+            queries.add('"courtAction"');
+            queries.add('"personalInsolvency"');
             JsonObjectToArray obj = new JsonObjectToArray();
             json = obj.modifyAllByRecur(json, queries);
-            // EquifaxApplyIndividualResponseHelper helperObject = (EquifaxApplyIndividualResponseHelper) System.JSON.deserialize(json, EquifaxApplyIndividualResponseHelper.class);
             return (EquifaxApplyIndividualResponseHelper) System.JSON.deserialize(json, EquifaxApplyIndividualResponseHelper.class);
         }catch(Exception ex){
             GenericUtility.insertLog('EquifaxApplyIndividualResponseHelper', ex);
@@ -582,12 +637,20 @@ public class EquifaxApplyIndividualResponseHelper{
         Cls_account[] accountList;
         Cls_pDefault[] defaultList;
         Cls_score[] scoreList;
+        Cls_courtAction[] courtActionList;
+        Cls_personalInsolvency[] personalInsolvencyList;
+        Cls_address[] addressList;
+        Cls_directorship[] directorshipList;
+        Cls_disqualifiedDirectorship[] disqDirectorshipList;
         List<Current_Directorship__c> currentDirectorships = new List<Current_Directorship__c>();
         List<Credit_Enquiry__c> creditEnquiries = new List<Credit_Enquiry__c>();
         List<Credit_Account__c> creditAccounts = new List<Credit_Account__c>();
         List<Payment_Default__c> paymentDefaults = new List<Payment_Default__c>();
         Map<String, Payment_Default__c> accountIdDefaultMap = new Map<String, Payment_Default__c>();
         Map<String, Id> accountIdIdMap = new Map<String, Id>();
+        String faultString;
+        Cls_possibleMatch possibleMatchData;
+        Id partyId;
         try{
             if(partyObj == null || helperObject == null){
                 throw new CustomException(ConstantValues.APPLY_IND_PARAM_NULL);
@@ -601,11 +664,11 @@ public class EquifaxApplyIndividualResponseHelper{
             update partyObj;
             // Checks if any fault exists
             try{
-                String faultString = helperObject.envelope.body.fault.faultstring.nodeValue;
+                faultString = helperObject.envelope.body.fault.faultstring.nodeValue;
                 return faultString;
             }catch(Exception ex){}
             try{
-                String faultString = helperObject.envelope.body.response.errors.error.detail.nodeValue;
+                faultString = helperObject.envelope.body.response.errors.error.detail.nodeValue;
                 return faultString;
             }catch(Exception ex){}
             try{
@@ -622,7 +685,7 @@ public class EquifaxApplyIndividualResponseHelper{
                 return ConstantValues.GENERAL_ERROR;
             }
             try{
-                Cls_possibleMatch possibleMatchData = helperObject.envelope.body.response.productData.possibleMatches.possibleMatch;
+                possibleMatchData = helperObject.envelope.body.response.productData.possibleMatches.possibleMatch;
                 partyObj.Possibly_matched_data__c = processPossiblyMatchedData(possibleMatchData);
             }catch(Exception ex){}
             try{
@@ -673,7 +736,7 @@ public class EquifaxApplyIndividualResponseHelper{
                 }
             }
             try{
-                Cls_address[] addressList = helperObject.envelope.body.response.productData.enquiryReport.addresses.address;
+                addressList = helperObject.envelope.body.response.productData.enquiryReport.addresses.address;
                 for(Cls_address each : addressList){
                     if(String.isNotBlank(each.type) && each.type.equals('C')){
                         partyObj.Individual_Address__c = processAddress(each);
@@ -689,7 +752,6 @@ public class EquifaxApplyIndividualResponseHelper{
             // Update Directorships from the Response
             List<Current_Directorship__c> eraseDirectorships = [SELECT Id, Party__c FROM Current_Directorship__c WHERE Party__c =:partyObj.Id];
             Database.delete(eraseDirectorships, false);
-            Cls_directorship[] directorshipList;
             try {
                 directorshipList = helperObject.envelope.body.response.productData.enquiryReport.publicRecordOrConsumerCreditInformation.directorships.directorship;
             }catch(Exception ex){
@@ -699,7 +761,6 @@ public class EquifaxApplyIndividualResponseHelper{
             if(currentDirectorshipsRef != null){
                 currentDirectorships.addAll(currentDirectorshipsRef);
             }
-            Cls_disqualifiedDirectorship[] disqDirectorshipList;
             try {
                 disqDirectorshipList = helperObject.envelope.body.response.productData.enquiryReport.publicRecordOrConsumerCreditInformation.disqualifiedDirectorships.disqualifiedDirectorship;
                 for(Cls_disqualifiedDirectorship each : disqDirectorshipList){
@@ -986,6 +1047,101 @@ public class EquifaxApplyIndividualResponseHelper{
                 paymentDefaults.add(paymentDefaultObj);
             }
             Database.insert(paymentDefaults, false);
+            creditAccounts = new List<Credit_Account__c>();
+            // Update Personal Insolvencies from the Response
+            try{
+                personalInsolvencyList = helperObject.envelope.body.response.productData.enquiryReport.publicRecordOrConsumerCreditInformation.personalInsolvencies.personalInsolvency;
+                for(Cls_personalInsolvency each : personalInsolvencyList){
+                    Credit_Account__c creditAccountObj;
+                    creditAccountObj = new Credit_Account__c();
+                    creditAccountObj.Party__c = partyObj.Id;
+                    creditAccountObj.Credit_Account_Type__c = 'Personal Insolvencies';
+                    try{
+                        creditAccountObj.Account_Type__c = each.type.nodeValue;
+                    }catch(Exception ex){}
+                    try{
+                        creditAccountObj.Relationship__c = each.text.nodeValue;
+                    }catch(Exception ex){}
+                    try{
+                        creditAccountObj.Status__c = each.status.nodeValue;
+                    }catch(Exception ex){}
+                    try{
+                        String dateString = each.statusDate.nodeValue;
+                        Date statusDate = Date.newInstance(Integer.valueOf(dateString.subString(0,4)),
+                        Integer.valueOf(dateString.subString(5,7)),
+                        Integer.valueOf(dateString.subString(8,10)));
+                        creditAccountObj.Status_Date__c = statusDate;
+                    }catch(Exception ex){}
+                    try{
+                        String dateString = each.dateDeclared.nodeValue;
+                        Date statusDate = Date.newInstance(Integer.valueOf(dateString.subString(0,4)),
+                        Integer.valueOf(dateString.subString(5,7)),
+                        Integer.valueOf(dateString.subString(8,10)));
+                        creditAccountObj.Default_Date__c = statusDate;
+                    }catch(Exception ex){}
+                    try{
+                        creditAccountObj.Account_Id__c = each.administrationId.pNumber.nodeValue;
+                    }catch(Exception ex){}
+                    if(creditAccountObj != null){
+                        creditAccounts.add(creditAccountObj);
+                    }
+                }
+            }catch(Exception ex){
+                returnVal += '\n' + 'No Personal Insolvencies found';
+            }
+            // Update Default Judgements from the Response
+            try{
+                courtActionList = helperObject.envelope.body.response.productData.enquiryReport.publicRecordOrConsumerCreditInformation.courtActions.courtAction;
+                for(Cls_courtAction each : courtActionList){
+                    Credit_Account__c creditAccountObj;
+                    String courtActionType;
+                    if(String.isBlank(each.type)){
+                        continue;
+                    }else if(each.type == 'pDefaultJudgement'){
+                        courtActionType = 'Default Judgements';
+                    } else {
+                        courtActionType = 'Other Court Action';
+                    }
+                    creditAccountObj = new Credit_Account__c();
+                    creditAccountObj.Party__c = partyObj.Id;
+                    creditAccountObj.Credit_Account_Type__c = courtActionType;
+                    try{
+                        creditAccountObj.Relationship__c = each.creditor.nodeValue;
+                    }catch(Exception ex){}
+                    try{
+                        creditAccountObj.Status__c = each.courtActionStatus.nodeValue;
+                    }catch(Exception ex){}
+                    try{
+                        String dateString = each.courtActionStatus.pDate;
+                        Date statusDate = Date.newInstance(Integer.valueOf(dateString.subString(0,4)),
+                        Integer.valueOf(dateString.subString(5,7)),
+                        Integer.valueOf(dateString.subString(8,10)));
+                        creditAccountObj.Status_Date__c = statusDate;
+                    }catch(Exception ex){}
+                    try{
+                        String dateString = each.actionDate.nodeValue;
+                        Date statusDate = Date.newInstance(Integer.valueOf(dateString.subString(0,4)),
+                        Integer.valueOf(dateString.subString(5,7)),
+                        Integer.valueOf(dateString.subString(8,10)));
+                        creditAccountObj.Default_Date__c = statusDate;
+                    }catch(Exception ex){}
+                    try{
+                        creditAccountObj.Current_Default_Amount__c = Decimal.valueOf(each.courtActionAmount.nodeValue);
+                    }catch(Exception ex){}
+                    try{
+                        creditAccountObj.Account_Id__c = each.plaintNumber.nodeValue;
+                    }catch(Exception ex){}
+                    if(creditAccountObj != null){
+                        creditAccounts.add(creditAccountObj);
+                    }
+                }
+            }catch(Exception ex){
+                returnVal += '\n' + 'No Default Judgements or Court Actions found';
+            }
+            Database.insert(creditAccounts, false);
+            partyId = partyObj.Id;
+            partyObj.Number_of_Credit_Enquiries_in_Last_12_Mo__c = Database.countQuery('SELECT count() FROM Credit_Enquiry__c WHERE Difference_In_Months__c <= 12 AND Party__c =:partyId');
+            Database.update(partyObj);
             Database.executeBatch(new EquifaxOrgIdSearchBatch(), 1);
             return returnVal;
         }

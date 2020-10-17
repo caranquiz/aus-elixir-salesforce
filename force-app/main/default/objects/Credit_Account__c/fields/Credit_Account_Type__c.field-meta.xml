@@ -20,6 +20,11 @@
                 <default>false</default>
                 <label>Consumer</label>
             </value>
+            <value>
+                <fullName>Court Action</fullName>
+                <default>false</default>
+                <label>Court Action</label>
+            </value>
         </valueSetDefinition>
     </valueSet>
 </CustomField>

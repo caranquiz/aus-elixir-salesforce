@@ -13,7 +13,7 @@ public class EquifaxOrgIdSearchBatch implements Database.Batchable<sObject>, Dat
     public Database.QueryLocator start(Database.BatchableContext bc)
     {
         String query = 'SELECT Id, Org_Id_verified__c, Party__c, ABN__c, ACN__c '
-        + 'FROM Current_Directorship__c WHERE Org_Id_verified__c = false AND ABN__c != null AND Party__c != null';
+        + 'FROM Current_Directorship__c WHERE Org_Id_verified__c = false AND (ABN__c != null OR ACN__c != null) AND Party__c != null';
         return Database.getQueryLocator(query);
     }
     public void execute(Database.BatchableContext bc, List<SObject> scope) {
@@ -22,10 +22,13 @@ public class EquifaxOrgIdSearchBatch implements Database.Batchable<sObject>, Dat
                 return;
             }
             String abnOacn = (String) scope[0].get('ABN__c');
+            if(String.isBlank(abnOacn)) {
+                abnOacn = (String) scope[0].get('ACN__c');
+            } else {
+                abnOacn = abnOacn.subString(2, 11);
+            }
             if(String.isBlank(abnOacn)){
                 return;
-            } else if(abnOacn.length() == 11) {
-                abnOacn = abnOacn.subString(2, 11);
             }
             String calloutResult = EquifaxOrgIdSearchCallout.searchByABN((String) scope[0].get('Party__c'), abnOacn);
             if(String.isBlank(calloutResult)){
@@ -38,7 +41,6 @@ public class EquifaxOrgIdSearchBatch implements Database.Batchable<sObject>, Dat
                 return;
             }
             scope[0].put('Id_reference__c', helperObject.bcamessage.serviceRequestId);
-            scope[0].put('Org_Id_verified_Asic_name__c', helperObject.asicNameData);
             scope[0].put('Org_Id_verified_Asic_status__c', helperObject.asicStatusData);
             scope[0].put('Org_Id_verified__c', true);
             scope[0].put('Record_Extract_Date__c', (new loan.GlobalLoanUtilFacade()).getCurrentSystemDate());
