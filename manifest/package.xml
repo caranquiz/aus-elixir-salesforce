@@ -445,6 +445,8 @@
 
         <!-- Condition, Exception, Warning changes made by Souvik -->
         <members>genesis__Rule__c.Rule_Classification__c</members>
+        <members>genesis__Rule__c.Exception_Category__c</members>
+        <members>genesis__Rule__c.Exception_Sub_Category__c</members>
         <members>Account.Bank_Account_Name__c</members>
         <members>Checklist_Detail__c.Exception_Approver__c</members>
         <members>Checklist_Detail__c.Exception_Commentary__c</members>
@@ -603,6 +605,7 @@
         <!-- Equifax Director Search Search made by Pratik -->
         <members>Director__c</members>
         
+        <members>genesis__Rule__c</members>
         <name>CustomObject</name>
     </types>
     <types>
