@@ -3,7 +3,7 @@
     <fullName>Check_Val_Value_Rule_Check__c</fullName>
     <description>Check Val Value Rule Check</description>
     <externalId>false</externalId>
-    <formula>IF(Check_Val_Value__c != NULL &amp;&amp; (Check_Val_Value__c&lt;(clcommon__Value__c*(90/100))),&apos;Yes&apos;,&apos;No&apos;)</formula>
+    <formula>IF(ISNULL(Check_Val_Value__c) == false &amp;&amp;(Check_Val_Value__c &lt; (clcommon__Value__c*(90/100))),&apos;Yes&apos;,&apos;No&apos;)</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
     <label>Check Val Value Rule Check</label>
     <required>false</required>
