@@ -280,7 +280,8 @@ global class ConstantValues{
    public static final String NC_PASSWORD = '{!$Credential.Password}';
    public static final String USERNAME_KEY = '__Username';
    public static final String PASSWORD_KEY = '__Password';
-   public static final String CLIENT_REFERENCE = '__partyReference';
+   public static final String CLIENT_REFERENCE = '__clientReference';
+   public static final String ENQ_CLIENT_REFERENCE = '__enquiryClientReference';
    public static final String PERMISSION_TYPE_CODE = '__permissionTypeCode';
    public static final String PRODUCT_DATA_LEVEL_CODE = '__productDataLevelCode';
    public static final String SCORECARD_ID1 = '__scorecardId1';

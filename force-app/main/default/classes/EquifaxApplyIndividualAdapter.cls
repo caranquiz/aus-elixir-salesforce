@@ -97,7 +97,8 @@ global class EquifaxApplyIndividualAdapter extends intframework.BaseIntegrationA
             requestbody = requestbody.replace(ConstantValues.USERNAME_KEY, ConstantValues.NC_USERNAME);
             requestbody = requestbody.replace(ConstantValues.PASSWORD_KEY, ConstantValues.NC_PASSWORD);
 
-            requestbody = requestbody.replaceAll(ConstantValues.CLIENT_REFERENCE, (String) appInfo.get('appName'));
+            requestbody = requestbody.replaceAll(ConstantValues.CLIENT_REFERENCE, (String) UserInfo.getUserId());
+            requestbody = requestbody.replaceAll(ConstantValues.ENQ_CLIENT_REFERENCE, (String) appInfo.get('appName'));
             if(nccpStatusIsRegulated){
                 requestbody = requestbody.replace(ConstantValues.PERMISSION_TYPE_CODE, 'XY');
             } else {
