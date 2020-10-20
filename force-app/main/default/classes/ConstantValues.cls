@@ -381,11 +381,11 @@ global class ConstantValues{
    public static final String NUMBER_PROVIDER = 'SearchByABNNumber';
    public static final String NUMBER_CONFIGURATION = 'SearchByABNNumber config';
    public static final String NUMBER_ADAPTER_CLASS = 'SMSFSearchByABNNumberAdapter';
-   public static final String NUMBER_REQUEST_MAPPING = '{"thirdPartySystem":{"name":"abnRequest","dynamicDataParameters":[{"externalField":"abnnumber"}],"filters":[{"objectAPI":"ABN_Search_SMSF__c","objectAlias":"guidinfo","fields":[{"externalField":"guid","fieldAPI":"GUID__c"}],"whereClause":""}]}}';
+   public static final String NUMBER_REQUEST_MAPPING = '{"thirdPartySystem":{"name":"abnRequest","dynamicDataParameters":[{"externalField":"abnnumber"}],"filters":[{"objectAPI":"ABN_Search_SMSF__c","objectAlias":"guidInfo","fields":[{"externalField":"guid","fieldAPI":"GUID__c"}],"whereClause":""}]}}';
    public static final String NAME_PROVIDER = 'ABNSearchSMSF';
    public static final String NAME_CONFIGURATION = 'ABNSearchSMSF config';
    public static final String NAME_ADAPTER_CLASS = 'SMSFABNNameSearchAdapter';
-   public static final String NAME_REQUEST_MAPPING = '{"thirdPartySystem":{"name":"ABNSearchSMSF","dynamicDataParameters":[{"externalField":"abndata"}],"filters":[{"objectAPI":"clcommon__Party__c","objectAlias":"partyinfo","fields":[{"externalField":"name","fieldAPI":"clcommon__Account__r.Name"}],"whereClause":"Id = :partyId"},{"objectAPI":"ABN_Search_SMSF__c","objectAlias":"guidInfo","fields":[{"externalField":"guid","fieldAPI":"GUID__c"},{"externalField":"activeFundsOnly","fieldAPI":"Active_Funds_Only__c"},{"externalField":"maxSearchResults","fieldAPI":"Maximum_Search_Results__c"}],"whereClause":""}]}}';
+   public static final String NAME_REQUEST_MAPPING = '{"thirdPartySystem":{"name":"ABNSearchSMSF","dynamicDataParameters":[{"externalField":"abndata"}],"filters":[{"objectAPI":"clcommon__Party__c","objectAlias":"partyInfo","fields":[{"externalField":"name","fieldAPI":"ABN_Company_Name__c"}],"whereClause":"Id = :partyId"},{"objectAPI":"ABN_Search_SMSF__c","objectAlias":"guidInfo","fields":[{"externalField":"guid","fieldAPI":"GUID__c"},{"externalField":"activeFundsOnly","fieldAPI":"Active_Funds_Only__c"},{"externalField":"maxSearchResults","fieldAPI":"Maximum_Search_Results__c"}],"whereClause":""}]}}';
   
    //SMSF ABN Integration Exceptions
    public static final String GUID_EXCEPTION = ': GUID is null or blank';

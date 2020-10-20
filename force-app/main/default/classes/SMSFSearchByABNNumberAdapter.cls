@@ -33,10 +33,6 @@ global with sharing class SMSFSearchByABNNumberAdapter extends intframework.Base
       }
     }
     //Methods below are for test classes to get mock response
-    global override virtual String generateRequestBody(Map<String, Object> filledInRequestMap) {
-      return '';
-    }
-
     global override System.HttpResponse sendRequest(System.HttpRequest httpReq) {
         try {
             httpReq.setMethod(apiConfig.httpMethod);

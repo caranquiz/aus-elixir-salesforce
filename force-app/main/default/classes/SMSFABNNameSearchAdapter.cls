@@ -50,6 +50,9 @@ global with sharing class SMSFABNNameSearchAdapter extends intframework.BaseInte
 
         //forming url for requesting response
         reqURL.endPoint = 'callout:' + apiConfig.apiNamedCredential;
+        if(Test.isRunningTest()){
+            reqURL.endPoint += apiConfig.apiEndpoint;
+        }
         String url = getURL();
         httpReq.setEndpoint(url);
         return httpReq;
@@ -85,10 +88,6 @@ global with sharing class SMSFABNNameSearchAdapter extends intframework.BaseInte
       GenericUtility.isValid(namedCredential,ConstantValues.NAMED_CREDENTIAL_EXCEPTION);
     }
     //Methods below are for test classes to get mock response
-    global override virtual String generateRequestBody(Map<String, Object> filledInRequestMap) {
-      return '';
-    }
-
     global override System.HttpResponse sendRequest(System.HttpRequest httpReq) {
       try {
         httpReq.setMethod(apiConfig.httpMethod);

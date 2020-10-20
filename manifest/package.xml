@@ -41,11 +41,7 @@
 	    <members>SMSFSearchByABNNumberCallout</members>
         <members>SMSFSearchByABNNumberHelper</members>
 	    <members>SMSFABNNameSearchCalloutTest</members>
-        <members>SMSFABNNameSearchAdapterTest</members>
-	    <members>SMSFABNNameSearchHelperTest</members>
-        <members>SMSFSearchByABNNumberAdapterTest</members>
 	    <members>SMSFSearchByABNNumberCalloutTest</members>
-        <members>SMSFSearchByABNNumberHelperTest</members>
 
         <!-- Equifax Individual Credit Report changes made by Souvik -->
         <members>EquifaxApplyIndividualAdapter</members>
