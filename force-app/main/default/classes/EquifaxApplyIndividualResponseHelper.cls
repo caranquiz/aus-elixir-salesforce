@@ -943,7 +943,7 @@ public class EquifaxApplyIndividualResponseHelper{
                             }catch(Exception ex){
                             }
                             try {
-                                String dateString = eachDefault.statusDate.nodeValue;
+                                String dateString = eachDefault.originalpDefault.dateRecorded.nodeValue;
                                 Date statusDate = Date.newInstance(Integer.valueOf(dateString.subString(0,4)),
                                 Integer.valueOf(dateString.subString(5,7)),
                                 Integer.valueOf(dateString.subString(8,10)));
@@ -1008,7 +1008,7 @@ public class EquifaxApplyIndividualResponseHelper{
                             }catch(Exception ex){
                             }
                             try {
-                                String dateString = eachDefault.statusDate.nodeValue;
+                                String dateString = eachDefault.originalpDefault.dateRecorded.nodeValue;
                                 Date statusDate = Date.newInstance(Integer.valueOf(dateString.subString(0,4)),
                                 Integer.valueOf(dateString.subString(5,7)),
                                 Integer.valueOf(dateString.subString(8,10)));
@@ -1142,7 +1142,9 @@ public class EquifaxApplyIndividualResponseHelper{
             partyId = partyObj.Id;
             partyObj.Number_of_Credit_Enquiries_in_Last_12_Mo__c = Database.countQuery('SELECT count() FROM Credit_Enquiry__c WHERE Difference_In_Months__c <= 12 AND Party__c =:partyId');
             Database.update(partyObj);
-            Database.executeBatch(new EquifaxOrgIdSearchBatch(), 1);
+            if(!Test.isRunningTest()){
+                Database.executeBatch(new EquifaxOrgIdSearchBatch(), 1);
+            }
             return returnVal;
         }
         catch(Exception ex){

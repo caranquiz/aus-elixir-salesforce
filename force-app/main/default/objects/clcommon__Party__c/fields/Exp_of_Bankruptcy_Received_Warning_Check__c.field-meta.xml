@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Exp_of_Bankruptcy_Received_Warning_Check__c</fullName>
+    <externalId>false</externalId>
+    <formula>AND(ISPICKVAL(Applicant_ever_declared_banckrupt__c, &apos;Yes&apos;), ISPICKVAL(bankrupt_discharged__c, &apos;Yes&apos;), OR(ISPICKVAL(Explanation_of_Bankruptcy_Received__c, &apos;No&apos;), ISPICKVAL(Explanation_of_Bankruptcy_Received__c, &apos;&apos;)))</formula>
+    <label>Exp of Bankruptcy Received Warning Check</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

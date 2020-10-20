@@ -88,6 +88,18 @@ private class EraseRedundantDataTest{
         System.assertEquals(0, conList.size(), 'Contact record not Deleted');
     }
     @isTest
+    static void testEraseHiddenFieldsDataOfMultipleRecords(){
+        List<Account> acct = [SELECT Id, clcommon__Email__c FROM Account];
+        System.assertEquals(1, acct.size(), 'Account record not Inserted');
+        Test.startTest();
+        EraseRedundantData.eraseHiddenFieldsDataOfMultipleRecords(
+            'Account',
+            acct[0].Id
+        );
+        Test.stopTest();
+        System.assert(acct[0].clcommon__Email__c != null, 'Account email field data is not erased');
+    }
+    @isTest
     static void testExpressionEvaluation(){
         Test.startTest();
         System.assert(true == EraseRedundantData.checkIfDataMatched((String) null, (String) null, (String) null), 'Data not matched');

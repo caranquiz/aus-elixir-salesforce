@@ -24,6 +24,15 @@ public with sharing class GenericUtility {
       )
     );
   }
+  public static void insertLog(String name, String message) {
+    Database.insert(
+        new clcommon__Log__c(
+          Name = name,
+          clcommon__Message__c = message,
+          clcommon__Time__c = System.Now()
+        )
+      );
+  }
   public static void insertCustomExceptionLog(String name, String customMessage) {
     Database.insert(
       new clcommon__Log__c(

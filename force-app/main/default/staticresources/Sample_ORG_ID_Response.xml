@@ -1,0 +1,65 @@
+<?xml version="1.0"?>
+<BCAmessage service-request-id="01589105298" type="RESPONSE">
+    <BCAservices>
+        <BCAservice>
+            <BCAservice-code>BCA020</BCAservice-code>
+            <BCAservice-code-version>V00</BCAservice-code-version>
+            <BCAservice-client-ref>PAR-00000000</BCAservice-client-ref>
+            <BCAservice-data>
+                <response version="1-36-1">
+                    <org-id-result>
+                        <match-name>UNITED SUPER PTY LTD</match-name>
+                        <organisation-number>006261623</organisation-number>
+                        <organisation-type>P/L</organisation-type>
+                        <australian-business-number>46006261623</australian-business-number>
+                        <organisation-number-heading>ACN</organisation-number-heading>
+                        <state>VIC</state>
+                        <asic-report>
+                            <asic-name>UNITED SUPER PTY LTD</asic-name>
+                            <asic-organisation-number>006261623</asic-organisation-number>
+                            <asic-a-b-n>46006261623</asic-a-b-n>
+                            <asic-organisation-number-heading>ACN</asic-organisation-number-heading>
+                            <asic-type>APTY</asic-type>
+                            <asic-status>REGD</asic-status>
+                            <asic-state>VIC</asic-state>
+                            <asic-jurisdiction>ASIC</asic-jurisdiction>
+                            <asic-locality>MELBOURNE</asic-locality>
+                            <asic-address-state>VIC</asic-address-state>
+                            <asic-postcode>3000</asic-postcode>
+                        </asic-report>
+                        <australian-business-register-report>
+                            <ASICNumber>006261623</ASICNumber>
+                            <ASICNumberType>undetermined</ASICNumberType>
+                            <ABN>46006261623</ABN>
+                            <ABNStatus>ACT</ABNStatus>
+                            <ABNStatusFromDate>1999-11-01</ABNStatusFromDate>
+                            <EntityTypeInd>PRV</EntityTypeInd>
+                            <EntityTypeText>Australian Private Company</EntityTypeText>
+                            <Non-IndividualName>UNITED SUPER PTY LTD</Non-IndividualName>
+                            <BusinessAddressState>VIC</BusinessAddressState>
+                            <BusinessAddressPostcode>3000</BusinessAddressPostcode>
+                            <GSTStatus>ACT</GSTStatus>
+                            <GSTStatusFromDate>2000-07-01</GSTStatusFromDate>
+                            <TradingName>UNITED SUPER</TradingName>
+                        </australian-business-register-report>
+                        <bureau-report>
+                            <address first-reported="2007-04-21" type="trading-address">
+                                <street-number>2</street-number>
+                                <property>28 CASSELDEN PLACE</property>
+                                <street-name>LONSDALE</street-name>
+                                <street-type code="ST"/>
+                                <suburb>MELBOURNE</suburb>
+                                <state>VIC</state>
+                                <postcode>3000</postcode>
+                            </address>
+                            <last-search-date>2017-08-12</last-search-date>
+                            <bureau-reference>168779060</bureau-reference>
+                            <bca-company-type>P/L</bca-company-type>
+                            <bca-name>UNITED SUPER</bca-name>
+                        </bureau-report>
+                    </org-id-result>
+                </response>
+            </BCAservice-data>
+        </BCAservice>
+    </BCAservices>
+</BCAmessage>

@@ -16,6 +16,7 @@ public with sharing class InvokeOnPartyUpdate {
     )
     public static void updateLivingExpense(List<Id> appIdList){
         Decimal sumOfAllLivingExpenses = 0;
+        Decimal sumOfAllHem = 0;
         Id appId;
         List<clcommon__Party__c> parties;
         genesis__Applications__c appObj;
@@ -25,7 +26,7 @@ public with sharing class InvokeOnPartyUpdate {
                 return;
             }
             appId = appIdList[0];
-            parties = [SELECT Id,
+            parties = [SELECT Id, HEM__c,
                         Total_HEM_Monthly_Living_Expenses__c,
                         Total_Non_HEM_Living_Expenses__c
                         FROM clcommon__Party__c
@@ -33,9 +34,13 @@ public with sharing class InvokeOnPartyUpdate {
             for(clcommon__Party__c eachParty : parties) {
                 sumOfAllLivingExpenses += eachParty.Total_HEM_Monthly_Living_Expenses__c;
                 sumOfAllLivingExpenses += eachParty.Total_Non_HEM_Living_Expenses__c;
+                if(eachParty.HEM__c != null){
+                    sumOfAllHem += eachParty.HEM__c;
+                }
             }
             appObj = new genesis__Applications__c(Id = appId);
             appObj.Total_Monthly_Living_Expenses_Declared__c = sumOfAllLivingExpenses;
+            appObj.Total_HEM_Living_Expenses__c = sumOfAllHem;
             Database.update(appObj);
         }
         catch(Exception ex){

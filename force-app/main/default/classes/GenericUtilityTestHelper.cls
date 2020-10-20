@@ -218,6 +218,7 @@ public with sharing class GenericUtilityTestHelper {
  apiConfig.intframework__Integration_API_Type__c = apiTypeId;
  apiConfig.intframework__Integration_Provider__c = providerId;
  apiConfig.intframework__Integration_Configuration__c = configId;
+ apiConfig.intframework__Execution_Priority__c = 1;
  insert apiConfig;
  return apiConfig;
  }

@@ -834,7 +834,7 @@ global class ConstantValues{
   public static final String INVETSMENT_PROPERTY_WARNING = 'Investment Property Warning Check';
   public static final String RENT_BOARD_WARNING = 'Rent/Board (post settlement of this facility) Warning';
   public static final String IS_PURCHASOR_MORTGAGOR_CONDITION = 'Is Purchaser the Mortgagor Condition';
-  public static final String HOME_INSURANCE_CERTIFICATE_PROVIDED_CONDITION = 'Home Insurance Certificate Provide Condition';
+  public static final String HOME_INSURANCE_CERTIFICATE_PROVIDED_CONDITION = 'Home Insurance Certificate Provide Warning';
   public static final String HMI_BODY_CORPORATE_CONDITION = 'Home Insurance Certificate Provide and Body Corporate Condition';
   public static final String HMI_STANDARD_CONDITION= 'Home Insurance Certificate Provide and Standard Condition';
   public static final String SIGNED_CONTRACT_CONDITION = 'Signed Contract Condition';
@@ -875,6 +875,8 @@ global class ConstantValues{
   public static final String APPLICATION_FEE_PERCENTAGE_WARNING = 'Application Fee % Warning';
   public static final String DOES_APPLICANT_UNDERSTAND_ENGLISH_WARNING = 'Does applicant understand English Condition';
   public static final String APPLICATION_FORM_COMPLETED_WARNING = 'Is the Application Form fully completed? Warning';
+  public static final String BANKRUPT_DISCHARGE_DATE_WARNING = 'Bankrupt Discharged Date Warning';
+  public static final String EXPLANATION_OF_BAKRUPTCY_RECEIVED_WARNING = 'Explanation of Bankruptcy Received Warning';
   public static final String APP_EXCEP = 'APP_XCEP';
   public static final String ERROR_TAG = 'ERROR';
   public static final String RECOMMENDED = 'Recommended';
@@ -910,6 +912,8 @@ global class ConstantValues{
   public static final String IND_APPLICANT_KEY = '[individual applicant]';
   public static final String GIFT_GIVER_NAME_KEY = '[add gift giver name]';
   public static final String GIFT_AMOUNT_KEY = '[add dollar amount]';
+  public static final String LENDER_DETAILS_KEY = '[Lender Details]';
+  public static final String REPLACEMENT_VALUE_KEY = '[Replacement Value Amount]';
   public static final String BROKER_PARTY_TYPE = 'Broker';
   public static final String AGGRERATOR_PARTY_TYPE = 'Aggregator';
   public static final String VALUER_PARTY_TYPE = 'Valuer';
