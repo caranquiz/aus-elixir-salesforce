@@ -206,15 +206,17 @@ global with sharing class CheckRules {
                 rulesNameList.add(ConstantValues.TYPE_OF_DOCUMENTS_WARNING);
                 rulesNameList.add(ConstantValues.TYPE_OF_DOCUMENTS_WARNING2);
                 rulesNameList.add(ConstantValues.TO_BE_REFINANCED_WARNING);
-                rulesNameList.add(ConstantValues.GIFT_STAT_DEC_RECEIVED_CONDITION);
+                rulesNameList.add(ConstantValues.DOES_APPLICANT_UNDERSTAND_ENGLISH_WARNING);
                 rulesNameList.add(ConstantValues.RENTAL_INCOME_VERIFIED_WARNING);
                 rulesNameList.add(ConstantValues.PREVIOUS_CONDUCT_EXLANATION_WARNING);
                 rulesNameList.add(ConstantValues.PREVIOUS_CONDUCT_REFERENCING_COMPLETED_WARNING);
                 rulesNameList.add(ConstantValues.ABN_STATUS_EMPLPYMENT_WARNING);
-                rulesNameList.add(ConstantValues.DOES_APPLICANT_UNDERSTAND_ENGLISH_WARNING);
                 rulesNameList.add(ConstantValues.MONTHS_SELF_EMPLOYED_EXCEPTION);
                 rulesNameList.add(ConstantValues.GOVERNMENT_BENEFIT_AMT_WARNING);
                 rulesNameList.add(ConstantValues.CUSTOMER_ACCT_CONDITION);
+                rulesNameList.add(ConstantValues.GIFT_STAT_DEC_RECEIVED_CONDITION);
+                rulesNameList.add(ConstantValues.BANKRUPT_DISCHARGE_DATE_WARNING);
+                rulesNameList.add(ConstantValues.EXPLANATION_OF_BAKRUPTCY_RECEIVED_WARNING);
             }
             else if(tabName == ConstantValues.APP_EXCEP){
                 rulesNameList.add(ConstantValues.MATRIX_RATE_EXCEPTION);
@@ -294,7 +296,7 @@ global with sharing class CheckRules {
                 previousChecklistList = [SELECT Id,
                                         genesis__Application__c,
                                         genesis__Assessed_Record_Id__c,
-                                        genesis__Is_Archived__c ,
+                                        genesis__Is_Archived__c,
                                         genesis__Level__c,
                                         genesis__Message__c,
                                         genesis__Rule__c,
@@ -780,6 +782,8 @@ global with sharing class CheckRules {
                                                             Application_Collateral__c,
                                                             Employment_Information__c,
                                                             Income__c,
+                                                            Asset_Information__c,
+                                                            Liability__c,
                                                             Checklist__r.genesis__Rule__r.Name,
                                                             Exception_Approver__c,
                                                             Exception_Commentary__c,
@@ -809,6 +813,8 @@ global with sharing class CheckRules {
         List<Checklist_Detail__c> checklistDetailList = [SELECT Id, Party__c, Party__r.Name,
                                                             Application_Collateral__c,
                                                             Employment_Information__c,
+                                                            Asset_Information__c,
+                                                            Liability__c,
                                                             Income__c,
                                                             Application_Collateral__r.Name,
                                                             Checklist__r.genesis__Rule__r.Name,
@@ -861,6 +867,12 @@ global with sharing class CheckRules {
                 if(String.isNotBlank(eachChecklistDetail.Income__c)){
                     manualData += eachChecklistDetail.Income__c;
                 }
+                if(String.isNotBlank(eachChecklistDetail.Asset_Information__c)){
+                    manualData += eachChecklistDetail.Asset_Information__c;
+                }
+                if(String.isNotBlank(eachChecklistDetail.Liability__c)){
+                    manualData += eachChecklistDetail.Liability__c;
+                }
                 manualData += '",';
                 manualData += '"exceptionRecommender":"' + eachChecklistDetail.Exception_Recommender__c + '",';
                 manualData += '"exceptionApprover":"' + eachChecklistDetail.Exception_Approver__c + '",';
@@ -883,6 +895,8 @@ global with sharing class CheckRules {
         List<Checklist_Detail__c> checklistDetailList = [SELECT Id, Name, Party__c, Party__r.Name,
                                                             Application_Collateral__c,
                                                             Employment_Information__c,
+                                                            Asset_Information__c,
+                                                            Liability__c,
                                                             Income__c,
                                                             Checklist__r.genesis__Rule__r.Name,
                                                             Exception_Approver__c,
@@ -904,6 +918,8 @@ global with sharing class CheckRules {
         List<Checklist_Detail__c> checklistDetailList = [SELECT Id, Name, Application_Collateral__c,
                                                             Application_Collateral__r.Name,
                                                             Employment_Information__c,
+                                                            Asset_Information__c,
+                                                            Liability__c,
                                                             Income__c,
                                                             Party__c,
                                                             Checklist__r.genesis__Rule__r.Name,
@@ -944,6 +960,12 @@ global with sharing class CheckRules {
             }
             if(String.isNotBlank(eachChecklist.Income__c)){
                 ruleName += eachChecklist.Income__c;
+            }
+            if(String.isNotBlank(eachChecklist.Asset_Information__c)){
+                ruleName += eachChecklist.Asset_Information__c;
+            }
+            if(String.isNotBlank(eachChecklist.Liability__c)){
+                ruleName += eachChecklist.Liability__c;
             }
             ruleChecklistDetailsMap.put(ruleName, eachChecklist.Id);
             if(sObjectType.equals(ConstantValues.PARTY_TAG)){
@@ -992,19 +1014,28 @@ global with sharing class CheckRules {
         String message;
         String gurantorNames = '';
         Boolean flag = false;
+        // genesis__Asset_Information__c assetObj;
+        // genesis__Liability__c liabilityObj;
         try{
-            List<Checklist_Detail__c> checklistDetails = [SELECT Id,
-                                                            Manual_Message__c,
-                                                            Status__c,
-                                                            Checklist__r.genesis__Rule__r.Name,
-                                                            Checklist__r.genesis__Rule__r.genesis__Message_failure__c,
-                                                            Party__c,
-                                                            Party__r.clcommon__Account__r.Name,
-                                                            Checklist__r.genesis__Application__c
-                                                            FROM Checklist_Detail__c
-                                                            WHERE Rule_Classification__c =:ConstantValues.CONDITION_CLASSIFICATION
-                                                            AND Status__c !=:ConstantValues.SUCCESS_STATUS
-                                                            AND Checklist__r.genesis__Application__c =:applicationId];
+            List<Checklist_Detail__c> checklistDetails = [SELECT Id, Manual_Message__c,
+                                                          Status__c,
+                                                          Checklist__r.genesis__Rule__r.Name,
+                                                          Checklist__r.genesis__Rule__r.genesis__Message_failure__c,
+                                                          Party__c,
+                                                          Party__r.clcommon__Account__r.Name,
+                                                          Checklist__r.genesis__Application__c,
+                                                          Asset_Information__c,
+                                                          Asset_Information__r.Address__c,
+                                                          Asset_Information__r.genesis__Market_Value__c,
+                                                          Application_Collateral__c,
+                                                          Application_Collateral__r.genesis__Collateral__c,
+                                                          Application_Collateral__r.genesis__Collateral__r.Replacement_Value__c,
+                                                          Liability__c,
+                                                          Liability__r.genesis__Name_of_Creditor__c
+                                                          FROM Checklist_Detail__c
+                                                          WHERE Rule_Classification__c =:ConstantValues.CONDITION_CLASSIFICATION
+                                                          AND Status__c !=:ConstantValues.SUCCESS_STATUS
+                                                          AND Checklist__r.genesis__Application__c =:applicationId];
             List<clcommon__Party__c> gurantorParties = [SELECT Id,
                                                         clcommon__Account__r.Name,
                                                         Party_Type_Name__c,
@@ -1020,6 +1051,20 @@ global with sharing class CheckRules {
                 }
                 gurantorNames += eachGurantor.clcommon__Account__r.Name;
             }
+            /*Map<Id,genesis__Asset_Information__c> assetMap = new Map<Id,genesis__Asset_Information__c>(
+                [SELECT Id, Party__c,
+                 genesis__Asset_Type__c,
+                 Address__c,
+                 genesis__Market_Value__c
+                 FROM genesis__Asset_Information__c
+                 WHERE genesis__Application__c =:applicationId]
+            );
+            Map<Id,genesis__Liability__c> liabilityMap = new Map<Id,genesis__Liability__c>(
+                [SELECT Id, Party__c,
+                 genesis__Name_of_Creditor__c
+                 FROM genesis__Liability__c
+                 WHERE genesis__Application__c =:applicationId]
+            );*/
             for(Checklist_Detail__c eachChecklistDetails : checklistDetails){
                 message = eachChecklistDetails.Checklist__r.genesis__Rule__r.genesis__Message_failure__c;
                 if(eachChecklistDetails.Checklist__r.genesis__Rule__r.Name == ConstantValues.CUSTOMER_ACCT_CONDITION){
@@ -1028,7 +1073,26 @@ global with sharing class CheckRules {
                     message = message.replace(ConstantValues.DOES_APPLICANT_UNDERSTAND_ENG_COND_TXT_KEY, ConstantValues.DOES_APPLICANT_UNDERSTAND_ENG_COND_TXT);
                     message = message.replace(ConstantValues.IND_APPLICANT_KEY, eachChecklistDetails.Party__r.clcommon__Account__r.Name);
                 } else if(eachChecklistDetails.Checklist__r.genesis__Rule__r.Name == ConstantValues.GIFT_STAT_DEC_RECEIVED_CONDITION){
-                    
+                    if(eachChecklistDetails.Asset_Information__c != null){
+                        if(String.isNotBlank(eachChecklistDetails.Asset_Information__r.Address__c)){
+                            message = message.replace(ConstantValues.GIFT_GIVER_NAME_KEY, eachChecklistDetails.Asset_Information__r.Address__c);
+                        }
+                        if(eachChecklistDetails.Asset_Information__r.genesis__Market_Value__c != null){
+                            message = message.replace(ConstantValues.GIFT_AMOUNT_KEY, String.valueOf(eachChecklistDetails.Asset_Information__r.genesis__Market_Value__c));
+                        }
+                    }
+                } else if(eachChecklistDetails.Checklist__r.genesis__Rule__r.Name == ConstantValues.TO_BE_REFINANCED_WARNING){
+                    if(eachChecklistDetails.Liability__c != null){
+                        if(String.isNotBlank(eachChecklistDetails.Liability__r.genesis__Name_of_Creditor__c)){
+                            message = message.replace(ConstantValues.LENDER_DETAILS_KEY, eachChecklistDetails.Liability__r.genesis__Name_of_Creditor__c);
+                        }
+                    }
+                } else if(eachChecklistDetails.Checklist__r.genesis__Rule__r.Name == ConstantValues.HMI_STANDARD_CONDITION){
+                    if(eachChecklistDetails.Application_Collateral__c != null
+                    && eachChecklistDetails.Application_Collateral__r.genesis__Collateral__r != null
+                    && eachChecklistDetails.Application_Collateral__r.genesis__Collateral__r.Replacement_Value__c != null){
+                        message = message.replace(ConstantValues.REPLACEMENT_VALUE_KEY, String.valueOf(eachChecklistDetails.Application_Collateral__r.genesis__Collateral__r.Replacement_Value__c));
+                    }
                 }
                 eachChecklistDetails.Manual_Message__c = message;
             }

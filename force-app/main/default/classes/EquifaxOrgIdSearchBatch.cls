@@ -27,23 +27,22 @@ public class EquifaxOrgIdSearchBatch implements Database.Batchable<sObject>, Dat
             } else {
                 abnOacn = abnOacn.subString(2, 11);
             }
-            if(String.isBlank(abnOacn)){
-                return;
-            }
             String calloutResult = EquifaxOrgIdSearchCallout.searchByABN((String) scope[0].get('Party__c'), abnOacn);
             if(String.isBlank(calloutResult)){
-                GenericUtility.insertLog('EquifaxOrgIdSearchBatch', new CustomException('Response is null or blank'));
-                return;
+                throw new CustomException('Response is null or blank');
             }
             EquifaxOrgIdSearchParser helperObject = (EquifaxOrgIdSearchParser) System.JSON.deserialize((String) calloutResult, EquifaxOrgIdSearchParser.class);
             if(String.isNotBlank(helperObject.errMessage)){
-                GenericUtility.insertLog('EquifaxOrgIdSearchBatch', new CustomException(helperObject.errMessage));
-                return;
+                throw new CustomException(helperObject.errMessage);
             }
             scope[0].put('Id_reference__c', helperObject.bcamessage.serviceRequestId);
             scope[0].put('Org_Id_verified_Asic_status__c', helperObject.asicStatusData);
             scope[0].put('Org_Id_verified__c', true);
-            scope[0].put('Record_Extract_Date__c', (new loan.GlobalLoanUtilFacade()).getCurrentSystemDate());
+            if(Test.isRunningTest()){
+                scope[0].put('Record_Extract_Date__c', Date.Today());
+            } else {
+                scope[0].put('Record_Extract_Date__c', (new loan.GlobalLoanUtilFacade()).getCurrentSystemDate());
+            }
             update(scope);
         }
         catch(Exception ex){
