@@ -2,6 +2,7 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Number_of_Shareholders__c</fullName>
     <externalId>false</externalId>
+    <inlineHelpText>Shareholder guarantees are also required where appropriate (e.g. where shareholders hold 25% or more of the share capital). [6.3]</inlineHelpText>
     <label>Number of Shareholders</label>
     <precision>18</precision>
     <required>false</required>

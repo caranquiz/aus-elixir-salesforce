@@ -2,6 +2,7 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Risk_grade_list__c</fullName>
     <externalId>false</externalId>
+    <inlineHelpText>The Risk Based Product Matrix enables the findings from the thorough review of applicable credit reports and previous conduct referencing to be applied to an appropriate product based on defined risk criteria. [21.3]</inlineHelpText>
     <label>Risk grade list</label>
     <required>false</required>
     <trackFeedHistory>false</trackFeedHistory>
