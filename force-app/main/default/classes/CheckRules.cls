@@ -145,7 +145,6 @@ global with sharing class CheckRules {
                 rulesNameList.add(ConstantValues.POLITICALLY_EXPOSED_WARNING);
                 rulesNameList.add(ConstantValues.KYC_AML_WARNING);
                 rulesNameList.add(ConstantValues.RISK_WARNING);
-                rulesNameList.add(ConstantValues.CREDIT_EVENTS_WARNING);
                 rulesNameList.add(ConstantValues.EXPLANATION_PROVIDED_WARNING);
                 rulesNameList.add(ConstantValues.EXIT_STRATEGY_WARNING);
                 rulesNameList.add(ConstantValues.ABN_STATUS_WARNING);
@@ -217,6 +216,7 @@ global with sharing class CheckRules {
                 rulesNameList.add(ConstantValues.GIFT_STAT_DEC_RECEIVED_CONDITION);
                 rulesNameList.add(ConstantValues.BANKRUPT_DISCHARGE_DATE_WARNING);
                 rulesNameList.add(ConstantValues.EXPLANATION_OF_BAKRUPTCY_RECEIVED_WARNING);
+                rulesNameList.add(ConstantValues.DATE_OF_CREDIT_REPORT_WARNING);
             }
             else if(tabName == ConstantValues.APP_EXCEP){
                 rulesNameList.add(ConstantValues.MATRIX_RATE_EXCEPTION);

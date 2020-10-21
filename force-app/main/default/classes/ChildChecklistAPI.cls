@@ -119,8 +119,6 @@ public with sharing class ChildChecklistAPI {
                                                 Politically_Exposed_Person__c,
                                                 KYC_AML_verified__c,
                                                 Risk_Grade__c,
-                                                Explanation_of_Credit_Events__c,
-                                                Explanation_of_Credit_Event_Render_Check__c,
                                                 Explanation_Provided__c,
                                                 Explanation_Provided_Render_Check__c,
                                                 Exit_Strategy_Section_Render_Check__c,
@@ -167,7 +165,8 @@ public with sharing class ChildChecklistAPI {
                                                 genesis__Application__r.genesis__CL_Product_Name__c,
                                                 Customer_Interview_completed__c,
                                                 Bankrupt_Discharged_Date_Warning_Check__c,
-                                                Exp_of_Bankruptcy_Received_Warning_Check__c
+                                                Exp_of_Bankruptcy_Received_Warning_Check__c,
+                                                Date_of_Credit_Report_Warning_Check__c
                                                 FROM clcommon__Party__c WHERE genesis__Application__c =:appId];
         List<genesis__Income__c> incomeList = [SELECT Id,
                                                 Party__c,

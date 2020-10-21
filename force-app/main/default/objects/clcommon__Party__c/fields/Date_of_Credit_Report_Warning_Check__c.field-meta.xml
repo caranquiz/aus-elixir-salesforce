@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>Explanation_of_Credit_Event_Render_Check__c</fullName>
+    <fullName>Date_of_Credit_Report_Warning_Check__c</fullName>
     <externalId>false</externalId>
-    <formula>Number_Of_Credit_Events__c &gt; 0</formula>
-    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-    <label>Explanation of Credit Event Render Check</label>
+    <formula>IF((genesis__Application__r.CL_Date__c - Report_Created_Date__c)/30 &gt; 2, TRUE, FALSE)</formula>
+    <label>Date of Credit Report Warning Check</label>
     <trackHistory>false</trackHistory>
     <trackTrending>false</trackTrending>
     <type>Checkbox</type>
