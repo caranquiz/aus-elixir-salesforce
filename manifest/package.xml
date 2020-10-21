@@ -560,6 +560,9 @@
         <members>Director__c.Collateral__c</members>
         <members>Director__c.Pmsi__c</members>
         <members>Director__c.Secured_Parties__c</members>
+        <members>clcommon__Party__c.Ignore__c</members>
+        <members>clcommon__Party__c.Credit_Event__c</members>
+        <members>clcommon__Party__c.Explanation_Provided__c</members>
 
         <!-- New Field Request new fields by Souvik -->
         <members>genesis__Applications__c.Refinance_Debt_Consolidation_Total__c</members>
