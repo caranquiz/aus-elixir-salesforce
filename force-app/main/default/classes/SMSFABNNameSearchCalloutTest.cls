@@ -17,7 +17,7 @@ class SMSFABNNameSearchCalloutTest{
         ABN_Search_SMSF__c guidInfo = GenericUtilityTestHelper.createCustomSettingGUID(ConstantValues.GUID_VALUE,
         ConstantValues.ACTIVE_FUNDS_ONLY_VALUE,
         ConstantValues.MAX_SEARCH_RESULTS_VALUE);
-        System.assertNotEquals(guidInfo.Id,null,'Custom Setting not inserted successfully');
+        System.assertNotEquals(guidInfo.Id, null, 'Custom Setting not inserted successfully');
         //Inserting Account
         Account acc = GenericUtilityTestHelper.createAccount();
         System.assertNotEquals(acc.Id,null,'Account not inserted successfully');
@@ -45,13 +45,13 @@ class SMSFABNNameSearchCalloutTest{
         ConstantValues.HTTP_METHOD,
         'ABNSearchSMSF',
         '',
-        ConstantValues.NUMBER_REQUEST_MAPPING);
+        ConstantValues.NAME_REQUEST_MAPPING);
         System.assertNotEquals(apiConfig.Id,null,'API configuration not inserted succesfully');
     }    
     /* Mock class returns response from static resource depending on endpoint being called */
     private class Mock implements HttpCalloutMock {
         public HTTPResponse respond(HTTPRequest req) {
-        return getMockResponse(req.getEndpoint(), 200);
+            return getMockResponse(req.getEndpoint(), 200);
         }
     }
 
@@ -73,7 +73,7 @@ class SMSFABNNameSearchCalloutTest{
         res.setStatus('SUCCESS');
         if (endpoint.contains('nothing')) {
         res.setBody(
-            '<?xml version="1.0" encoding="utf-8"?><ABRPayloadSearchResults xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://superfundlookup.gov.au"><request><identifierSearchRequest><authenticationGUID>e0dd27d6-4b6e-4e06-b94e-65ac6887d4e3</authenticationGUID><identifierType>ABN</identifierType><identifierValue>46006261611</identifierValue><history>N</history></identifierSearchRequest></request><response><dateRegisterLastUpdated>0001-01-01</dateRegisterLastUpdated><dateTimeRetrieved>2020-06-25T17:59:22.3002957+10:00</dateTimeRetrieved><exception><exceptionDescription>Search text is not a valid ABN or ACN</exceptionDescription><exceptionCode>WEBSERVICES</exceptionCode></exception></response></ABRPayloadSearchResults>'
+            '<?xml version="1.0" encoding="utf-8"?><SuperFundNamesPayload xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://superfundlookup.gov.au"><Request><Guid>c4726ad0-af04-4d8d-987b-d15966cd1cfd</Guid><Name>^</Name><ActiveFundsOnly>Y</ActiveFundsOnly></Request><Response><DateTimeRetrieved>2020-10-21T04:57:03.8000062+11:00</DateTimeRetrieved><Exception><Code>Search</Code><Description>No records found</Description></Exception></Response></SuperFundNamesPayload>'
         );
         } else {
         res.setBody(
@@ -90,13 +90,17 @@ class SMSFABNNameSearchCalloutTest{
         String responseString = SMSFABNNameSearchCallout.searchBySMSFName(party.Id);
         System.assert(responseString != null, 'ABN Response fetch error');
         Test.stopTest();
+        List<clcommon__Log__c> logList = [SELECT Id, clcommon__Message__c FROM clcommon__Log__c];
+        for(clcommon__Log__c each : logList){
+            System.debug(each.clcommon__Message__c);
+        }
     }
     @isTest
     static void testSearchBySMSFNameWithError() {
         List<intframework__Integration_API_Configuration__c> intApiConfig = [
         SELECT Id, intframework__Adapter_Class_Name__c
         FROM intframework__Integration_API_Configuration__c
-        WHERE intframework__Adapter_Class_Name__c = 'SMSFABNNameSearchAdapter'
+        WHERE intframework__Adapter_Class_Name__c =:ConstantValues.NAME_ADAPTER_CLASS
         ];
         System.assertEquals(
         intApiConfig.size(),
@@ -111,5 +115,29 @@ class SMSFABNNameSearchCalloutTest{
         String responseString = SMSFABNNameSearchCallout.searchBySMSFName(party.Id);
         System.assert(responseString != null, 'ABN Response fetch error');
         Test.stopTest();
-    }   
+    }
+    @isTest
+    static void testSearchBySMSFNameWithBlankPartyId() {
+        Test.startTest();
+        String responseString = SMSFABNNameSearchCallout.searchBySMSFName('');
+        Test.stopTest();
+        System.assert(responseString.contains(ConstantValues.PARTY_ID_EMPTY), 'ABN Response error');
+    }
+    @isTest
+    static void testSearchBySMSFNameNullResponse() {
+        Test.startTest();
+        clcommon__Party__c party = [SELECT Id FROM clcommon__Party__c WHERE clcommon__Account__r.Name = 'Llloyds'];
+        String responseString = SMSFABNNameSearchCallout.searchBySMSFName(party.Id);
+        Test.stopTest();
+        System.assert(responseString.contains(ConstantValues.GENERAL_EXCEPTION), 'ABN Response error');
+    }
+    @isTest
+    static void SMSFSearchByABNNameHelperParseWithError(){
+        Test.startTest();
+        SMSFABNNameSearchHelper parsedResponse = SMSFABNNameSearchHelper.parse('<>');
+        Test.stopTest();
+        System.assert(parsedResponse == null, 'Response parsing error');
+        List<clcommon__Log__c> logList = [SELECT Id FROM clcommon__Log__c];
+        System.assert(logList.size() == 1, 'Log insetion error');
+    }
 }

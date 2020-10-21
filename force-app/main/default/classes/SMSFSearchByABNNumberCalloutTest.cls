@@ -86,23 +86,30 @@ class SMSFSearchByABNNumberCalloutTest{
     }
     @isTest
     static void testSearchByABNNumberWithError() {
-        List<intframework__Integration_API_Configuration__c> intApiConfig = [
-        SELECT Id, intframework__Adapter_Class_Name__c
-        FROM intframework__Integration_API_Configuration__c
-        WHERE intframework__Adapter_Class_Name__c = 'SMSFSearchByABNNumberAdapter'
-        ];
-        System.assertEquals(
-        intApiConfig.size(),
-        1,
-        'Integration API Configuration for Search By ABN insertion error'
-        );
-        intApiConfig[0].intframework__API_Endpoint__c = 'nothing';
-        update intApiConfig;
+        ABN_Search_SMSF__c abnSearchSMSFObj = [SELECT Id FROM ABN_Search_SMSF__c];
+        update new ABN_Search_SMSF__c(Id = abnSearchSMSFObj.Id, GUID__c = '');
         clcommon__Party__c party = [SELECT Id FROM clcommon__Party__c WHERE clcommon__Account__r.Name = 'Llloyds'];
         Test.setMock(HttpCalloutMock.class, new Mock());
         Test.startTest();
         String responseString = SMSFSearchByABNNumberCallout.searchByABNNumber('58560158971', party.Id);
         System.assert(responseString != null, 'ABN Response fetch error');
         Test.stopTest();
-    }   
+    }
+    @isTest
+    static void testSearchByABNNumberWithNoABN(){
+        clcommon__Party__c party = [SELECT Id FROM clcommon__Party__c WHERE clcommon__Account__r.Name = 'Llloyds'];
+        Test.startTest();
+        String responseString = SMSFSearchByABNNumberCallout.searchByABNNumber('', party.Id);
+        Test.stopTest();
+        System.assert(responseString.contains(ConstantValues.ABN_NUMBER_EMPTY), 'ABN Response fetch error');
+    }
+    @isTest
+    static void SMSFSearchByABNNumberHelperParseWithError(){
+        Test.startTest();
+        SMSFSearchByABNNumberHelper parsedResponse = SMSFSearchByABNNumberHelper.parse('<>');
+        Test.stopTest();
+        System.assert(parsedResponse == null, 'Response parsing error');
+        List<clcommon__Log__c> logList = [SELECT Id FROM clcommon__Log__c];
+        System.assert(logList.size() == 1, 'Log insetion error');
+    }
 }
