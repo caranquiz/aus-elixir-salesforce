@@ -106,7 +106,6 @@
         <members>Contact.Exit_Strategy_Commentary__c</members>
         <members>Contact.Exit_Strategy_Provided__c</members>
         <members>Contact.Exit_Strategy_Suitable__c</members>
-        <members>Contact.Age_of_Applicant__c</members>
         <members>Contact.Temporary_Visa_Suitability_Commentary__c</members>
         <members>Contact.Temporary_Visa_Suitability__c</members>
         <members>Contact.Exit_Strategy_Suitable_Rule_Check__c</members>
