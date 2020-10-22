@@ -518,6 +518,11 @@ global class ConstantValues{
   public static final String BROKER_CONTACT_DETAILS = 'Broker Contact Details';
   public static final String ASSET_LIABILITY = 'AssetLiabilties';
   public static final String REVIEW = 'Review';
+  public static final String WARNING = 'Warning';
+  public static final String WARNING2 = 'Warning2';
+  public static final String XCEPTION = 'Exception';
+  public static final String CONDITION = 'Condition';
+
   public static final String PREVIOUS_CONDUCT_SUITABLE = 'Previous Conduct Suitable Rule';
   public static final String GST_EFFECTIVE_FROM_RULE = 'GST Effective from Rule';
   public static final String ABN_EFFECTIVE_RULE = 'ABN Effective From Rule';

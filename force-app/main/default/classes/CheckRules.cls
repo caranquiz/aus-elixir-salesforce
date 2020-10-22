@@ -22,7 +22,6 @@ global with sharing class CheckRules {
     private static Map<String, String> sObjectNameManualDataMap = new Map<String, String>();
 
     private static String testing = '';
-
     webService static String callCheckRulesWS(String applicationId, String tabName) {
         String returnValue = '';
         List <String> rulesNameList = new List<String>();
@@ -129,7 +128,7 @@ global with sharing class CheckRules {
             else if(tabName == ConstantValues.ASSET_LIABILITY){
                 rulesNameList.add(ConstantValues.PREVIOUS_CONDUCT_SUITABLE);
             }
-            else if(tabName == ConstantValues.REVIEW){
+            else if(tabName == ConstantValues.XCEPTION){
                 rulesNameList.add(ConstantValues.TRAIL_EXCEPTION);
                 rulesNameList.add(ConstantValues.UPFRONT_EXCEPTION);
                 rulesNameList.add(ConstantValues.ARMS_LENGTH_EXCEPTION);
@@ -141,6 +140,9 @@ global with sharing class CheckRules {
                 rulesNameList.add(ConstantValues.OVERRIDE_EMPLOYMENT_EXCEPTION);
                 rulesNameList.add(ConstantValues.BAS_EXCEPTION);
                 rulesNameList.add(ConstantValues.EMPLOYMENT_CALL_MADE_EXCEPTION);
+                rulesNameList.add(ConstantValues.MONTHS_SELF_EMPLOYED_EXCEPTION);
+            }
+            else if(tabName == ConstantValues.WARNING){
                 rulesNameList.add(ConstantValues.BROKER_DOCS_WARNING);
                 rulesNameList.add(ConstantValues.POLITICALLY_EXPOSED_WARNING);
                 rulesNameList.add(ConstantValues.KYC_AML_WARNING);
@@ -164,13 +166,13 @@ global with sharing class CheckRules {
                 rulesNameList.add(ConstantValues.LAND_AREA_WARNING);
                 rulesNameList.add(ConstantValues.FLOOR_AREA_WARING);
                 rulesNameList.add(ConstantValues.ABN_EFFECTIVE_FROM_WARNING);
-                rulesNameList.add(ConstantValues.ABN_EFFECTIVE_FROM_ECEPTION);
-                rulesNameList.add(ConstantValues.ESTIMATED_COMPLETION_DATE);
                 rulesNameList.add(ConstantValues.HEM_WARNING);
                 rulesNameList.add(ConstantValues.GST_EFFECTIVE_FROM_WARNING);
                 rulesNameList.add(ConstantValues.ACCOUNTANT_ABN_STATUS_WARNING);
                 rulesNameList.add(ConstantValues.ACCOUNTANT_PHONE_NUMBER_WARNING);
                 rulesNameList.add(ConstantValues.ACCOUNTANT_CALL_WARNING);
+            }
+            else if(tabName == ConstantValues.WARNING2){
                 rulesNameList.add(ConstantValues.ACCOUNTANT_ABN_SEARCH_CONDUCTED_WARNING);
                 rulesNameList.add(ConstantValues.PRIMARY_RESIDENCE_PROPERTY_COST_WARNING);
                 rulesNameList.add(ConstantValues.EMPLOYER_PHONE_VERIFIED_WARNING);
@@ -183,18 +185,6 @@ global with sharing class CheckRules {
                 rulesNameList.add(ConstantValues.EDUCATION_WARNING);
                 rulesNameList.add(ConstantValues.INVETSMENT_PROPERTY_WARNING);
                 rulesNameList.add(ConstantValues.RENT_BOARD_WARNING);
-                rulesNameList.add(ConstantValues.IS_PURCHASOR_MORTGAGOR_CONDITION);
-                rulesNameList.add(ConstantValues.HOME_INSURANCE_CERTIFICATE_PROVIDED_CONDITION);
-                rulesNameList.add(ConstantValues.HMI_BODY_CORPORATE_CONDITION);
-                rulesNameList.add(ConstantValues.HMI_STANDARD_CONDITION);
-                rulesNameList.add(ConstantValues.SIGNED_CONTRACT_CONDITION);
-                rulesNameList.add(ConstantValues.FIXED_PRICE_CONTRACT_CONDITION);
-                rulesNameList.add(ConstantValues.DETAILED_COSTINGS_HELD_DEFINITION);
-                rulesNameList.add(ConstantValues.COPY_BUILDERS_LICENSE_HELD_CONDITION);
-                rulesNameList.add(ConstantValues.COPY_HOME_OWNERS_WARRANTY_CONDITION);
-                rulesNameList.add(ConstantValues.COUNCIL_APPROVAL_CONDITON);
-                rulesNameList.add(ConstantValues.SMSF_STATUS_CONDITION);
-                rulesNameList.add(ConstantValues.TRUST_DEED_PROVIDED_CONDITION);
                 rulesNameList.add(ConstantValues.ABN_EFFECTIVE_FROM_LIVING_EXPENSE_WARING);
                 rulesNameList.add(ConstantValues.GST_EFFECTIVE_FROM_LIVING_ESPENSE_WARNING);
                 rulesNameList.add(ConstantValues.PRVATE_PENSION_AMT_WARNING);
@@ -210,13 +200,28 @@ global with sharing class CheckRules {
                 rulesNameList.add(ConstantValues.PREVIOUS_CONDUCT_EXLANATION_WARNING);
                 rulesNameList.add(ConstantValues.PREVIOUS_CONDUCT_REFERENCING_COMPLETED_WARNING);
                 rulesNameList.add(ConstantValues.ABN_STATUS_EMPLPYMENT_WARNING);
-                rulesNameList.add(ConstantValues.MONTHS_SELF_EMPLOYED_EXCEPTION);
                 rulesNameList.add(ConstantValues.GOVERNMENT_BENEFIT_AMT_WARNING);
-                rulesNameList.add(ConstantValues.CUSTOMER_ACCT_CONDITION);
-                rulesNameList.add(ConstantValues.GIFT_STAT_DEC_RECEIVED_CONDITION);
                 rulesNameList.add(ConstantValues.BANKRUPT_DISCHARGE_DATE_WARNING);
                 rulesNameList.add(ConstantValues.EXPLANATION_OF_BAKRUPTCY_RECEIVED_WARNING);
                 rulesNameList.add(ConstantValues.DATE_OF_CREDIT_REPORT_WARNING);
+            }
+            else if(tabName == ConstantValues.CONDITION){
+                rulesNameList.add(ConstantValues.ABN_EFFECTIVE_FROM_ECEPTION);
+                rulesNameList.add(ConstantValues.ESTIMATED_COMPLETION_DATE);
+                rulesNameList.add(ConstantValues.IS_PURCHASOR_MORTGAGOR_CONDITION);
+                rulesNameList.add(ConstantValues.HOME_INSURANCE_CERTIFICATE_PROVIDED_CONDITION);
+                rulesNameList.add(ConstantValues.HMI_BODY_CORPORATE_CONDITION);
+                rulesNameList.add(ConstantValues.HMI_STANDARD_CONDITION);
+                rulesNameList.add(ConstantValues.SIGNED_CONTRACT_CONDITION);
+                rulesNameList.add(ConstantValues.FIXED_PRICE_CONTRACT_CONDITION);
+                rulesNameList.add(ConstantValues.DETAILED_COSTINGS_HELD_DEFINITION);
+                rulesNameList.add(ConstantValues.COPY_BUILDERS_LICENSE_HELD_CONDITION);
+                rulesNameList.add(ConstantValues.COPY_HOME_OWNERS_WARRANTY_CONDITION);
+                rulesNameList.add(ConstantValues.COUNCIL_APPROVAL_CONDITON);
+                rulesNameList.add(ConstantValues.SMSF_STATUS_CONDITION);
+                rulesNameList.add(ConstantValues.TRUST_DEED_PROVIDED_CONDITION);
+                rulesNameList.add(ConstantValues.CUSTOMER_ACCT_CONDITION);
+                rulesNameList.add(ConstantValues.GIFT_STAT_DEC_RECEIVED_CONDITION);
             }
             else if(tabName == ConstantValues.APP_EXCEP){
                 rulesNameList.add(ConstantValues.MATRIX_RATE_EXCEPTION);
@@ -288,7 +293,10 @@ global with sharing class CheckRules {
                                                                     WHERE genesis__Application__c =:applicationId];
             if(tabName == ConstantValues.APP_EXCEP) {
                 updateRuleDataOnApplcationFromChecklists(application, rulesNameList);
-            } else if(tabName == ConstantValues.REVIEW){
+            } else if(tabName == ConstantValues.WARNING
+            || tabName == ConstantValues.WARNING2
+            || tabName == ConstantValues.XCEPTION
+            || tabName == ConstantValues.CONDITION){
                 updateRuleDataOnPartiesFromChecklistDetails(partyList, rulesNameList);
                 updateRuleDataOnApplicationCollateralsFromChecklistDetails(appColList, rulesNameList);
             }
@@ -1014,8 +1022,6 @@ global with sharing class CheckRules {
         String message;
         String gurantorNames = '';
         Boolean flag = false;
-        // genesis__Asset_Information__c assetObj;
-        // genesis__Liability__c liabilityObj;
         try{
             List<Checklist_Detail__c> checklistDetails = [SELECT Id, Manual_Message__c,
                                                           Status__c,
@@ -1051,20 +1057,6 @@ global with sharing class CheckRules {
                 }
                 gurantorNames += eachGurantor.clcommon__Account__r.Name;
             }
-            /*Map<Id,genesis__Asset_Information__c> assetMap = new Map<Id,genesis__Asset_Information__c>(
-                [SELECT Id, Party__c,
-                 genesis__Asset_Type__c,
-                 Address__c,
-                 genesis__Market_Value__c
-                 FROM genesis__Asset_Information__c
-                 WHERE genesis__Application__c =:applicationId]
-            );
-            Map<Id,genesis__Liability__c> liabilityMap = new Map<Id,genesis__Liability__c>(
-                [SELECT Id, Party__c,
-                 genesis__Name_of_Creditor__c
-                 FROM genesis__Liability__c
-                 WHERE genesis__Application__c =:applicationId]
-            );*/
             for(Checklist_Detail__c eachChecklistDetails : checklistDetails){
                 message = eachChecklistDetails.Checklist__r.genesis__Rule__r.genesis__Message_failure__c;
                 if(eachChecklistDetails.Checklist__r.genesis__Rule__r.Name == ConstantValues.CUSTOMER_ACCT_CONDITION){
