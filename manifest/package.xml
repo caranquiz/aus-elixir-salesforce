@@ -232,6 +232,7 @@
         <members>clcommon__Party__c.ABN_Effective_From_Rule_Check__c</members>
         <members>genesis__Applications__c.ValuationFee__c</members>
         <members>genesis__Applications__c.BAS__c</members>
+        <members>genesis__Applications__c.Fixed_Rate_Completion_Balance__c</members>
         <members>genesis__Applications__c.Cash_Out_Purpose_Explanation_Provided__c</members>
         <members>genesis__Applications__c.Cash_Out_Purpose_Suitable_Commentary__c</members>
         <members>genesis__Applications__c.Cash_Out_Purpose_Suitable__c</members>
