@@ -1167,6 +1167,7 @@ public class EquifaxApplyIndividualResponseHelper{
         partyObj.Number_of_bankrupt_on_file_in_last_84m__c = null;
         partyObj.Number_of_Discharged_Insolvencies__c = null;
         partyObj.Number_of_insolvencies_on_file__c = null;
+        partyObj.Credit_Score__c = null;
         update partyObj;
     }
 }

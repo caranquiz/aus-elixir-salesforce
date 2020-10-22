@@ -518,6 +518,11 @@ global class ConstantValues{
   public static final String BROKER_CONTACT_DETAILS = 'Broker Contact Details';
   public static final String ASSET_LIABILITY = 'AssetLiabilties';
   public static final String REVIEW = 'Review';
+  public static final String WARNING = 'Warning';
+  public static final String WARNING2 = 'Warning2';
+  public static final String XCEPTION = 'Exception';
+  public static final String CONDITION = 'Condition';
+
   public static final String PREVIOUS_CONDUCT_SUITABLE = 'Previous Conduct Suitable Rule';
   public static final String GST_EFFECTIVE_FROM_RULE = 'GST Effective from Rule';
   public static final String ABN_EFFECTIVE_RULE = 'ABN Effective From Rule';
@@ -687,7 +692,7 @@ global class ConstantValues{
   public static final String ASIC_EXTRACT_DATE = 'asic-extract-date';
   public static final String INCORPORATION = 'incorporation';
   public static final String INCORPORATION_DATE = 'incorporation-date';
-  public static final String ORGANISATION_STATUS = 'oraganisation-status';
+  public static final String ORGANISATION_STATUS = 'organisation-status';
   public static final String TYPE = 'type';
   public static final String ACCOUNT_TYPE = 'account-type';
   public static final String ADDRESS_LINES = 'address-lines';
@@ -708,6 +713,7 @@ global class ConstantValues{
   public static final String DIRECTORS_ARRAY = 'directors=(';
   public static final String DIRECTORS_OBJECT = 'directors={';
   public static final String FAMILY_NAME_DIRECTOR = 'family-name';
+  public static final String OTHER_GIVEN_NAME = 'other-given-name';
   public static final String FAMILY_NAME_SHAREHOLDER = 'family-name';
   public static final String ADDRESS = 'address';
   public static final String DATE_OF_BIRTH = 'date-of-birth';
@@ -776,6 +782,10 @@ global class ConstantValues{
   public static final String ORGANISATION_NUMBER_TYPE = 'organisation-number-type';
   public static final String REGISTRATIONS = 'Registrations';
   public static final String NO_REGISTRATION_LIST_FOUND = '\nNo Registration List Found';
+  public static final String LEGAL_ENTITY_TYPE_NOT_SUPPORTED = 'legal entity type not supported';
+  public static final String PROBLEM_IN_REQUEST_MAPPING = 'Problem in RequestMapping';
+  public static final String NO_PARTY_INFO_FOUND = 'No party Info found';
+  public static final String SECURED_PARTY_LIST = 'secured-party=(';
   public static final String COMPANY_ENQUIRY_API_TYPE = 'Company Enquiry';
 
   //Warning, Exceptions and Condition names
@@ -794,7 +804,6 @@ global class ConstantValues{
   public static final String POLITICALLY_EXPOSED_WARNING = 'Politically Exposed Person Warning';
   public static final String KYC_AML_WARNING = 'KYC/AML Verified Warning';
   public static final String RISK_WARNING = 'Risk Grade Warning';
-  public static final String CREDIT_EVENTS_WARNING = 'Explanation of Credit Events Warning';
   public static final String EXPLANATION_PROVIDED_WARNING = 'Explanation Provided Warning';
   public static final String EXIT_STRATEGY_WARNING = 'Exit Strategy Provided Applicant Warning';
   public static final String ABN_STATUS_WARNING = 'ABN Status Explanation Provided Warning';
@@ -877,6 +886,7 @@ global class ConstantValues{
   public static final String APPLICATION_FORM_COMPLETED_WARNING = 'Is the Application Form fully completed? Warning';
   public static final String BANKRUPT_DISCHARGE_DATE_WARNING = 'Bankrupt Discharged Date Warning';
   public static final String EXPLANATION_OF_BAKRUPTCY_RECEIVED_WARNING = 'Explanation of Bankruptcy Received Warning';
+  public static final String DATE_OF_CREDIT_REPORT_WARNING = 'Date of Credit Report Warning';
   public static final String APP_EXCEP = 'APP_XCEP';
   public static final String ERROR_TAG = 'ERROR';
   public static final String RECOMMENDED = 'Recommended';
@@ -903,8 +913,8 @@ global class ConstantValues{
   public static final String NO_TAG = 'No';
   public static final String CUSTOMER_ACCT_CONDITION = 'Customer Account Condition';
   public static final String CONDITION_CLASSIFICATION = 'Condition';
-  public static final String RULE_CLASSIFICATION = 'Rule';	
-  public static final String EXCEPTION_CLASSIFICATION = 'Exception';	
+  public static final String RULE_CLASSIFICATION = 'Rule'; 
+  public static final String EXCEPTION_CLASSIFICATION = 'Exception'; 
   public static final String WARNING_CLASSIFICATION = 'Warning';
   public static final String GURANTORS_NAME_KEY = '[guarantors names]';
   public static final String DOES_APPLICANT_UNDERSTAND_ENG_COND_TXT_KEY = '[Does applicant understand English Condition Text]';

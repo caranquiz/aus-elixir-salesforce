@@ -471,7 +471,6 @@
         <members>clcommon__Party__c.ABN_Status_Exp_Provided_Warning_Check__c</members>
         <members>clcommon__Party__c.Exit_Strategy_Section_Render_Check__c</members>
         <members>clcommon__Party__c.Explanation_Provided_Render_Check__c</members>
-        <members>clcommon__Party__c.Explanation_of_Credit_Event_Render_Check__c</members>
         <members>clcommon__Party__c.GST_Effective_From_Warning_Check__c</members>
         <members>clcommon__Party__c.Investment_Property_Warning_Check__c</members>
         <members>clcommon__Party__c.Is_Director_a_Ben_Mem_Warning_Check__c</members>
@@ -523,6 +522,7 @@
         <members>genesis__Application_Collateral__c.X110_Render_Check__c</members>
         <members>clcommon__Collateral__c.Valuation_Paid_Render_Check__c</members>
         <members>genesis__Income__c.Employer_Call_Verified_Warning_Check__c</members>
+        <members>clcommon__Party__c.Date_of_Credit_Report_Warning_Check__c</members>
 
         <!-- Approval Mechanism changes by Rameswari -->
         <members>genesis__Applications__c.Approval_Level__c</members>
@@ -585,6 +585,11 @@
         <members>clcommon__Party__c.Type_Of_Documents_Sighted2__c</members>
         <members>clcommon__Party__c.Bankrupt_Discharged_Date_Warning_Check__c</members>
         <members>clcommon__Party__c.Exp_of_Bankruptcy_Received_Warning_Check__c</members>
+        <members>clcommon__Party__c.Credit_Score__c</members>
+        <members>clcommon__Party__c.Age_of_Credit_File__c</members>
+        <members>clcommon__Party__c.Current_Directorships__c</members>
+        <members>clcommon__Party__c.Number_of_Discharged_Insolvencies__c</members>
+        <members>clcommon__Party__c.Number_of_insolvencies_on_file__c</members>
 
         <name>CustomField</name>
     </types>
