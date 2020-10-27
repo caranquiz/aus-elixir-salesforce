@@ -278,17 +278,14 @@ global with sharing class CheckRules {
                                                     Commission_Mandate__c,
                                                     Commission_Mandate_Percentage_Rule_Check__c,
                                                     Cash_Out_Purpose_Suitable__c,
-                                                    Cash_Out_Purpose_Suitable_Rule_Check__c,
-                                                    Rule_Manual_Data__c
+                                                    Cash_Out_Purpose_Suitable_Rule_Check__c
                                                     FROM genesis__Applications__c 
                                                     WHERE id = :applicationId
                                                     LIMIT 1];
-            List<clcommon__Party__c> partyList = [SELECT Id, Name, genesis__Application__c,
-                                                    Rule_Manual_Data__c
+            List<clcommon__Party__c> partyList = [SELECT Id, Name, genesis__Application__c
                                                     FROM clcommon__Party__c
                                                     WHERE genesis__Application__c =:applicationId];
-            List<genesis__Application_Collateral__c> appColList = [SELECT Id, Name, genesis__Application__c,
-                                                                    Rule_Manual_Data__c
+            List<genesis__Application_Collateral__c> appColList = [SELECT Id, Name, genesis__Application__c
                                                                     FROM genesis__Application_Collateral__c
                                                                     WHERE genesis__Application__c =:applicationId];
             if(tabName == ConstantValues.APP_EXCEP) {
