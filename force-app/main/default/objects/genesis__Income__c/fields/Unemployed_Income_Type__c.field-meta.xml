@@ -16,11 +16,6 @@
                 <label>Government Benefit</label>
             </value>
             <value>
-                <fullName>Newstart Allowance</fullName>
-                <default>false</default>
-                <label>Newstart Allowance</label>
-            </value>
-            <value>
                 <fullName>Private Pension</fullName>
                 <default>false</default>
                 <label>Private Pension</label>
@@ -34,6 +29,12 @@
                 <fullName>Other Income</fullName>
                 <default>false</default>
                 <label>Other Income</label>
+            </value>
+            <value>
+                <fullName>Newstart Allowance</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Newstart Allowance</label>
             </value>
         </valueSetDefinition>
     </valueSet>
