@@ -171,6 +171,7 @@
         <members>clcommon__Party__c.Number_of_Directors__c</members>
         <members>clcommon__Party__c.Number_of_Shareholders__c</members>
         <members>clcommon__Party__c.Previously_Bankrupt_Discharge_Date__c</members>
+        <members>clcommon__Party__c.bankrupt_discharged__c</members>
         <members>clcommon__Party__c.Previously_Bankrupt_Discharged__c</members>
         <members>clcommon__Party__c.Rental_Income_Verfication_Source__c</members>
         <members>clcommon__Party__c.Rental_Income_Verified__c</members>
@@ -519,6 +520,7 @@
         <members>clcommon__Collateral__c.Valuation_Paid_Render_Check__c</members>
         <members>genesis__Income__c.Employer_Call_Verified_Warning_Check__c</members>
         <members>clcommon__Party__c.Date_of_Credit_Report_Warning_Check__c</members>
+        <members>clcommon__Party__c.Broker_updated__c</members>
 
         <!-- Approval Mechanism changes by Rameswari -->
         <members>genesis__Applications__c.Approval_Level__c</members>
