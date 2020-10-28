@@ -58,6 +58,7 @@ public with sharing class GenericUtilityTestHelper {
  app.Risk_grade_list__c = 'Near Prime +';
  app.Document_Type__c = 'Full Doc';
  app.Interest_type__c = 'Variable';
+ app.genesis__Status__c = 'LOO Accepted';
  insert app;
  return app;
  }
