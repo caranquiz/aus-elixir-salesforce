@@ -309,7 +309,6 @@
         <members>genesis__Income__c.Income_Consistant_Rule_Check__c</members>
         <members>genesis__Income__c.Satisfactory_Explanation_Provided_Render__c</members>
         <members>genesis__Income__c.Self_Employment_Rule_Check__c</members>
-        <members>genesis__Income__c.Employment_Call_Suitable__c</members>
         <members>genesis__Income__c.Employment_Call_Suitable_Rule_Check__c</members>
         <members>genesis__Income__c.EmpCC_Employment_Basis__c</members>
         <members>genesis__Income__c.EmpCC_Employment_Term__c</members>
@@ -319,8 +318,6 @@
         <members>genesis__Income__c.Employment_Call_Commentary__c</members>
         <members>genesis__Income__c.Employment_Call_Made__c</members>
         <members>genesis__Income__c.Employment_Call_Suitable__c</members>
-        <members>genesis__Income__c.Employment_Call_Suitable_Rule_Check__c</members>
-        <members>genesis__Income__c.Accountant_Call_Suitable_Render__c</members>
         <members>genesis__Income__c.Satisfactory_Explanation_Provided_Render__c</members>
         <members>genesis__Income__c.Income_Consistent_with_Declaration_Rende__c</members>
         <members>Credit_Account__c.Account_Id__c</members>
@@ -517,6 +514,8 @@
         <members>genesis__Checklist__c.Rule_Classification__c</members>
         <members>genesis__Application_Collateral__c.X110_check__c</members>
         <members>genesis__Application_Collateral__c.X110_Render_Check__c</members>
+        <members>clcommon__Collateral__c.Loan_Assesment_Commentary__c</members>
+        <members>clcommon__Collateral__c.Rental_Income_Verified__c</members>
         <members>clcommon__Collateral__c.Valuation_Paid_Render_Check__c</members>
         <members>genesis__Income__c.Employer_Call_Verified_Warning_Check__c</members>
         <members>clcommon__Party__c.Date_of_Credit_Report_Warning_Check__c</members>
