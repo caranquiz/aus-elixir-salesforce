@@ -754,5 +754,10 @@
         <members>peer__Bank_Recon_Exception__c</members>
         <name>CustomTab</name>
     </types>
+    <types>
+        <members>ACH_Documents</members>
+        <members>Direct_Debit_LPT_Documents</members>
+        <name>Document</name>
+    </types>
     <version>45.0</version>
 </Package>
