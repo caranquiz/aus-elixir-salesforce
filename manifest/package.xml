@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
-     <types>
+    <types>
         <!-- Rendering Changes made by Souvik -->
         <members>EraseRedundantData</members>
         <members>EraseRedundantDataTest</members>
@@ -736,6 +736,23 @@
         <members>unfiled$public/Application_is_Approved_Email_Template</members>
         <members>unfiled$public/Application_is_Rejected_Email_Template</members>
         <name>EmailTemplate</name>
+    </types>
+    <types>
+        <members>ABN_Information__c</members>
+        <members>Documents</members>
+        <members>Upload_ACH_Return</members>
+        <members>clcommon__Approval_Definition__c</members>
+        <members>clcommon__Collateral__c</members>
+        <members>genesis__Policy_Exception__c</members>
+        <members>intframework__Integration_API_Configuration__c</members>
+        <members>intframework__Integration_API_Type__c</members>
+        <members>intframework__Integration_Configuration__c</members>
+        <members>intframework__Integration_Family__c</members>
+        <members>intframework__Integration_Log__c</members>
+        <members>intframework__Integration_Provider__c</members>
+        <members>loan__Batch_Process_Log__c</members>
+        <members>peer__Bank_Recon_Exception__c</members>
+        <name>CustomTab</name>
     </types>
     <version>45.0</version>
 </Package>
