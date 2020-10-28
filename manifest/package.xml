@@ -752,6 +752,7 @@
         <members>intframework__Integration_Provider__c</members>
         <members>loan__Batch_Process_Log__c</members>
         <members>peer__Bank_Recon_Exception__c</members>
+        <members>ABA_File_Generation</members>
         <name>CustomTab</name>
     </types>
     <types>
