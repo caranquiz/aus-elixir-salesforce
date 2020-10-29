@@ -1080,7 +1080,11 @@ global with sharing class CheckRules {
                     if(eachChecklistDetails.Application_Collateral__c != null
                     && eachChecklistDetails.Application_Collateral__r.genesis__Collateral__r != null
                     && eachChecklistDetails.Application_Collateral__r.genesis__Collateral__r.Replacement_Value__c != null){
-                        message = message.replace(ConstantValues.REPLACEMENT_VALUE_KEY, String.valueOf(eachChecklistDetails.Application_Collateral__r.genesis__Collateral__r.Replacement_Value__c));
+                        Decimal replacementVal = eachChecklistDetails.Application_Collateral__r.genesis__Collateral__r.Replacement_Value__c;
+                        List<String> args = new String[]{'0','number','###,###,##0.00'};
+                        String stringVal = String.format(replacementVal.format(), args);
+                        stringVal = (stringVal.contains('.')?stringVal:(stringVal +'.00'));
+                        message = message.replace(ConstantValues.REPLACEMENT_VALUE_KEY, stringVal);
                     }
                 }
                 eachChecklistDetails.Manual_Message__c = message;
