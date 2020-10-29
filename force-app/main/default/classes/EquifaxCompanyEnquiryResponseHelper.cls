@@ -66,6 +66,9 @@ public class EquifaxCompanyEnquiryResponseHelper{
         if(((Map<String, Object>)address.get(ConstantValues.POSTCODE)) != null){
             fullAddress += (String)((Map<String, Object>)address.get(ConstantValues.POSTCODE)).get(ConstantValues.NODE_VALUE) + ' ';
         }
+        if(((Map<String, Object>)address.get(ConstantValues.COUNTRY)) != null){
+            fullAddress += (String)((Map<String, Object>)address.get(ConstantValues.COUNTRY)).get(ConstantValues.NODE_VALUE) + ' ';
+        }
         return fullAddress;
     }
 
