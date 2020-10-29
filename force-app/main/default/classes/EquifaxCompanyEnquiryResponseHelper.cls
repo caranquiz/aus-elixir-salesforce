@@ -49,16 +49,16 @@ public class EquifaxCompanyEnquiryResponseHelper{
     public static string processAddressLines(Map<String, Object> address){
         String fullAddress = '';
         if(((Map<String, Object>)address.get(ConstantValues.ADDRESS_PREFIX)) != null){
-            fullAddress += (String)((Map<String, Object>)address.get(ConstantValues.ADDRESS_PREFIX)).get(ConstantValues.NODE_VALUE) + ',';
+            fullAddress += (String)((Map<String, Object>)address.get(ConstantValues.ADDRESS_PREFIX)).get(ConstantValues.NODE_VALUE) + ' ';
         }
         if(((Map<String, Object>)address.get(ConstantValues.STREET_DETAILS)) != null){
-            fullAddress += (String)((Map<String, Object>)address.get(ConstantValues.STREET_DETAILS)).get(ConstantValues.NODE_VALUE) + ',';
+            fullAddress += (String)((Map<String, Object>)address.get(ConstantValues.STREET_DETAILS)).get(ConstantValues.NODE_VALUE) + ' ';
         }
         if(((Map<String, Object>)address.get(ConstantValues.LOCALITY_DETAILS)) != null){
-            fullAddress += (String)((Map<String, Object>)address.get(ConstantValues.LOCALITY_DETAILS)).get(ConstantValues.NODE_VALUE) + ',';
+            fullAddress += (String)((Map<String, Object>)address.get(ConstantValues.LOCALITY_DETAILS)).get(ConstantValues.NODE_VALUE) + ' ';
         }
         if(((Map<String, Object>)address.get(ConstantValues.STATE)) != null){
-            fullAddress += (String)((Map<String, Object>)address.get(ConstantValues.STATE)).get(ConstantValues.NODE_VALUE) + ',';
+            fullAddress += (String)((Map<String, Object>)address.get(ConstantValues.STATE)).get(ConstantValues.NODE_VALUE) + ' ';
         }
         if(((Map<String, Object>)address.get(ConstantValues.POSTCODE)) != null){
             fullAddress += (String)((Map<String, Object>)address.get(ConstantValues.POSTCODE)).get(ConstantValues.NODE_VALUE) + ' ';
@@ -69,10 +69,10 @@ public class EquifaxCompanyEnquiryResponseHelper{
     public static String securedParty(Map<String, Object> orgAddress){
         String fullAddress = '';
         if(((Map<String, Object>)orgAddress.get(ConstantValues.ORGANISATION_NAME)) != null){
-            fullAddress += (String)((Map<String, Object>)orgAddress.get(ConstantValues.ORGANISATION_NAME)).get(ConstantValues.NODE_VALUE) +',';
+            fullAddress += (String)((Map<String, Object>)orgAddress.get(ConstantValues.ORGANISATION_NAME)).get(ConstantValues.NODE_VALUE) +' ';
         }
         if(((Map<String, Object>)orgAddress.get(ConstantValues.ORGANISATION_NUMBER_TYPE)) != null){
-            fullAddress += (String)((Map<String, Object>)orgAddress.get(ConstantValues.ORGANISATION_NUMBER_TYPE)).get(ConstantValues.NODE_VALUE) +',';
+            fullAddress += (String)((Map<String, Object>)orgAddress.get(ConstantValues.ORGANISATION_NUMBER_TYPE)).get(ConstantValues.NODE_VALUE) +' ';
         }
         if(((Map<String, Object>)orgAddress.get(ConstantValues.ORGANISATION_NUMBER)) != null){
             fullAddress += (String)((Map<String, Object>)orgAddress.get(ConstantValues.ORGANISATION_NUMBER)).get(ConstantValues.NODE_VALUE);
@@ -83,22 +83,22 @@ public class EquifaxCompanyEnquiryResponseHelper{
     public static String processAddress(Map<String, Object> address){
     String fullAddress = '';
     if(((Map<String, Object>)address.get(ConstantValues.UNIT_NUMBER)) != null) {
-        fullAddress += (String)((Map<String, Object>)address.get(ConstantValues.UNIT_NUMBER)).get(ConstantValues.NODE_VALUE) + ',';
+        fullAddress += (String)((Map<String, Object>)address.get(ConstantValues.UNIT_NUMBER)).get(ConstantValues.NODE_VALUE) + ' ';
     }
     if(((Map<String, Object>)address.get(ConstantValues.STREET_NUMBER)) != null) {
-        fullAddress += (String)((Map<String, Object>)address.get(ConstantValues.STREET_NUMBER)).get(ConstantValues.NODE_VALUE) + ',';
+        fullAddress += (String)((Map<String, Object>)address.get(ConstantValues.STREET_NUMBER)).get(ConstantValues.NODE_VALUE) + ' ';
     }
     if(((Map<String, Object>)address.get(ConstantValues.STREET_NAME)) != null) {
-        fullAddress += (String)((Map<String, Object>)address.get(ConstantValues.STREET_NAME)).get(ConstantValues.NODE_VALUE) + ',';
+        fullAddress += (String)((Map<String, Object>)address.get(ConstantValues.STREET_NAME)).get(ConstantValues.NODE_VALUE) + ' ';
     }
     if(((Map<String, Object>)address.get(ConstantValues.STREET_TYPE)) != null) {
-        fullAddress += (String)((Map<String, Object>)address.get(ConstantValues.STREET_TYPE)).get(ConstantValues.NODE_VALUE) + ',';
+        fullAddress += (String)((Map<String, Object>)address.get(ConstantValues.STREET_TYPE)).get(ConstantValues.NODE_VALUE) + ' ';
     }
     if(((Map<String, Object>)address.get(ConstantValues.SUBURB)) != null) {
-        fullAddress += (String)((Map<String, Object>)address.get(ConstantValues.SUBURB)).get(ConstantValues.NODE_VALUE) + ',';
+        fullAddress += (String)((Map<String, Object>)address.get(ConstantValues.SUBURB)).get(ConstantValues.NODE_VALUE) + ' ';
     }
     if(((Map<String, Object>)address.get(ConstantValues.STATE)) != null) {
-        fullAddress += (String)((Map<String, Object>)address.get(ConstantValues.STATE)).get(ConstantValues.NODE_VALUE) + ',';
+        fullAddress += (String)((Map<String, Object>)address.get(ConstantValues.STATE)).get(ConstantValues.NODE_VALUE) + ' ';
     }
     if(((Map<String, Object>)address.get(ConstantValues.POSTCODE)) != null) {
         fullAddress += (String)((Map<String, Object>)address.get(ConstantValues.POSTCODE)).get(ConstantValues.NODE_VALUE) + '';
