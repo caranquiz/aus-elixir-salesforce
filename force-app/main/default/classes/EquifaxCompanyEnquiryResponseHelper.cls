@@ -48,6 +48,9 @@ public class EquifaxCompanyEnquiryResponseHelper{
   
     public static string processAddressLines(Map<String, Object> address){
         String fullAddress = '';
+        if(((Map<String, Object>)address.get(ConstantValues.CARE_OF)) != null){
+            fullAddress += (String)((Map<String, Object>)address.get(ConstantValues.CARE_OF)).get(ConstantValues.NODE_VALUE) + ' ';
+        }
         if(((Map<String, Object>)address.get(ConstantValues.ADDRESS_PREFIX)) != null){
             fullAddress += (String)((Map<String, Object>)address.get(ConstantValues.ADDRESS_PREFIX)).get(ConstantValues.NODE_VALUE) + ' ';
         }
