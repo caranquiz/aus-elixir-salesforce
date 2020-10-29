@@ -788,6 +788,7 @@ global class ConstantValues{
   public static final String SECURED_PARTY_LIST = 'secured-party=(';
   public static final String COMPANY_ENQUIRY_API_TYPE = 'Company Enquiry';
   public static final String CARE_OF = 'careof';
+  public static final String COUNTRY = 'country';
 
   //Warning, Exceptions and Condition names
   public static final String TRAIL_EXCEPTION = 'Trail (%) Exception';
