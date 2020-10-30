@@ -506,6 +506,7 @@
         <members>genesis__Checklist__c.Waiver_Reason__c</members>
         <members>genesis__Checklist__c.Status__c</members>
         <members>genesis__Checklist__c.Supporting_Documentation__c</members>
+        <members>genesis__Checklist__c.Rule_Classification2__c</members>
         <members>Checklist_Detail__c.Waiver_Reason__c</members>
         <members>Checklist_Detail__c.Condition_Status__c</members>
         <members>Checklist_Detail__c.Supporting_Document_Verified__c</members>
