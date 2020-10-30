@@ -8,6 +8,17 @@
         <notifyAssignee>false</notifyAssignee>
         <operation>Formula</operation>
         <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Security_Suburb</fullName>
+        <field>clcommon__City__c</field>
+        <formula>UPPER(clcommon__City__c)</formula>
+        <name>Update Security Suburb</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
     </fieldUpdates>
     <rules>
         <fullName>Autocapitalise Country Collateral</fullName>
@@ -21,5 +32,27 @@
             <operation>notEqual</operation>
         </criteriaItems>
         <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Autocapitalise Suburb of Security</fullName>
+        <actions>
+            <name>Update_Security_Suburb</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>clcommon__Collateral__c.clcommon__City__c</field>
+            <operation>notEqual</operation>
+        </criteriaItems>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>QBE_PostCode Rule</fullName>
+        <active>false</active>
+        <criteriaItems>
+            <field>clcommon__Collateral__c.clcommon__Postal_Code__c</field>
+            <operation>notEqual</operation>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
 </Workflow>
