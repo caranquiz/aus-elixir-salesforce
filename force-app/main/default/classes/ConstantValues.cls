@@ -789,6 +789,7 @@ global class ConstantValues{
   public static final String COMPANY_ENQUIRY_API_TYPE = 'Company Enquiry';
   public static final String CARE_OF = 'careof';
   public static final String COUNTRY = 'country';
+  public static final String COMPANY_KEY = 'Company';
 
   //Warning, Exceptions and Condition names
   public static final String TRAIL_EXCEPTION = 'Trail (%) Exception';
@@ -930,4 +931,15 @@ global class ConstantValues{
   public static final String AGGRERATOR_PARTY_TYPE = 'Aggregator';
   public static final String VALUER_PARTY_TYPE = 'Valuer';
   public static final String SUCCESS_STATUS = 'SUCCESS';
+  public static final String AUS_COUNTRY = 'Australia';
+  public static final String AUS_COUNTRY_CODE = 'AUS';
+  public static final String NZL_COUNTRY = 'New Zealand';
+  public static final String NZL_COUNTRY_CODE = 'NZL';
+  public static final String GENDER_MALE = 'Male';
+  public static final String ACCOUNT_TYPE_APPLY_IND_REQ = 'RM';
+  public static final String AUD_CURRENCY_CODE = 'AUD';
+  public static final String MALE_GENDER_CODE = 'M';
+  public static final String FEMALE_GENDER_CODE = 'F';
+  public static final String UNKNOWN_GENDER_CODE = 'U';
+  public static final String DOCUMENT_CATEGORY_NOT_FOUND = 'Document Category not found';
 }
