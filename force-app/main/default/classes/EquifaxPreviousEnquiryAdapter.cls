@@ -1,3 +1,13 @@
+/**********************************************************************************************************/
+/* Company              : Cloudkaptan Consultancy Services Pvt. Ltd. */
+/* Class Name           : EquifaxPreviousEnquiryAdapter */
+/* Created Date         : 11/08/2020 */
+/* Developed By         : Souvik */
+/* Description          : This is the adapter class for Previous Enquiry API of Equifax */
+/* Last Modified Date   : 2/11/2020 */
+/* Last Modified By     : Souvik */
+/*********************************************************************************************************/
+
 global class EquifaxPreviousEnquiryAdapter extends intframework.BaseIntegrationAdapter {
     global override virtual String generateRequestBody(
       Map<String, Object> filledInRequestMap

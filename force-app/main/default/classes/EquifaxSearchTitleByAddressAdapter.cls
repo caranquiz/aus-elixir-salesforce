@@ -44,6 +44,9 @@ global with sharing class EquifaxSearchTitleByAddressAdapter  extends intframewo
       collateralFieldsList = (List<Map<String, Object>>) filledInRequestMap.get(
         'collateralInfo'
       );
+      if(collateralFieldsList.isEmpty()){
+        return null;
+      }
       collateralFieldsMap = collateralFieldsList[0];
       if(collateralFieldsMap.containsKey('state') && String.isNotBlank((String) collateralFieldsMap.get('state'))){
         requestbody += '<land:state-territory-land-registry>' + (String) collateralFieldsMap.get('state') + '</land:state-territory-land-registry>';

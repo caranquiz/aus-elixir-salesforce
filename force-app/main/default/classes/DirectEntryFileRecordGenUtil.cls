@@ -88,6 +88,9 @@ public class DirectEntryFileRecordGenUtil{
         String entryVal = '';
         //  (01) Record Type |M|
         entryVal += ConstantValues.FILEGEN_ENTRY_RECORD_TYPE;
+        if(detailRecordDataObject.payerBSBNumber.length() < 6){
+            throw new CustomException('DirectEntryFileRecordGenUtil:' + ConstantValues.RET_CAUSE_1);
+        }
         //  (07) BSB Number |M|
         String payerBSBNumber =
             detailRecordDataObject.payerBSBNumber.substring(0, 3) +

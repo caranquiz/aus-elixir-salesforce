@@ -19,7 +19,8 @@ global class LandTitleDocumentStatus {
         String clientReference;
         RestRequest req = RestContext.request;
         RestResponse res = RestContext.response;
-        if(req == null){
+        if(req == null
+        && req.requestBody == null){
             return;
         }
         try {

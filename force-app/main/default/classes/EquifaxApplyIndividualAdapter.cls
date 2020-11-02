@@ -24,8 +24,11 @@ global class EquifaxApplyIndividualAdapter extends intframework.BaseIntegrationA
             List<Map<String, Object>> refFieldsList = (List<Map<String, Object>>) filledInRequestMap.get(
                 'appInfo'
             );
+            if(refFieldsList.isEmpty()){
+                return null;
+            }
             appInfo = refFieldsList[0];
-            if(!appInfo.containsKey('nccpStatus') && String.isBlank((String) appInfo.get('nccpStatus'))){
+            if(!appInfo.containsKey('nccpStatus') || String.isBlank((String) appInfo.get('nccpStatus'))){
                 throw new CustomException(ConstantValues.NCCP_STATUS_NOT_FOUND);
             }
             String nccpStatus = (String) appInfo.get('nccpStatus');
@@ -36,55 +39,64 @@ global class EquifaxApplyIndividualAdapter extends intframework.BaseIntegrationA
             } else{
                 throw new CustomException(ConstantValues.NCCP_STATUS_NOT_FOUND);
             }
-            if(!appInfo.containsKey('loanAmount') && String.isBlank((String) appInfo.get('loanAmount'))){
+            if(!appInfo.containsKey('loanAmount') || appInfo.get('loanAmount') == null){
                 throw new CustomException(ConstantValues.LOAN_AMOUNT_MISSING);
             }
-            if(!appInfo.containsKey('appName') && String.isBlank((String) appInfo.get('appName'))){
+            if(!appInfo.containsKey('appName') || String.isBlank((String) appInfo.get('appName'))){
                 throw new CustomException(ConstantValues.APP_REF_MISSING);
             }
             refFieldsList = (List<Map<String, Object>>) filledInRequestMap.get(
                 'partyInfo'
             );
+            if(refFieldsList.isEmpty()){
+                return null;
+            }
             partyInfo = refFieldsList[0];
             refFieldsList = (List<Map<String, Object>>) filledInRequestMap.get(
                 'conInfo'
             );
+            if(refFieldsList.isEmpty()){
+                return null;
+            }
             conInfo = refFieldsList[0];
-            if(!conInfo.containsKey('firstName') && String.isBlank((String) conInfo.get('firstName'))){
+            if(!conInfo.containsKey('firstName') || String.isBlank((String) conInfo.get('firstName'))){
                 throw new CustomException(ConstantValues.FIRST_NAME_MISSING);
             }
-            if(!conInfo.containsKey('lastName') && String.isBlank((String) conInfo.get('lastName'))){
+            if(!conInfo.containsKey('lastName') || String.isBlank((String) conInfo.get('lastName'))){
                 throw new CustomException(ConstantValues.LAST_NAME_MISSING);
             }
-            if(!conInfo.containsKey('gender') && String.isBlank((String) conInfo.get('gender'))){
+            if(!conInfo.containsKey('gender') || String.isBlank((String) conInfo.get('gender'))){
                 throw new CustomException(ConstantValues.GENDER_MISSING);
             }
-            if(!conInfo.containsKey('dob') && conInfo.get('dob') != null){
+            if(!conInfo.containsKey('dob') || conInfo.get('dob') == null){
                 throw new CustomException(ConstantValues.DOB_MISSING);
             }
             refFieldsList = (List<Map<String, Object>>) filledInRequestMap.get(
                 'addressInfo'
             );
+            if(refFieldsList.isEmpty()){
+                return null;
+            }
             addressInfo = refFieldsList[0];
-            if(!addressInfo.containsKey('streetNo') && String.isBlank((String) conInfo.get('streetNo'))){
+            if(!addressInfo.containsKey('streetNo') || String.isBlank((String) addressInfo.get('streetNo'))){
                 throw new CustomException(ConstantValues.STREET_NUMBER_MISSING);
             }
-            if(!addressInfo.containsKey('streetName') && String.isBlank((String) conInfo.get('streetName'))){
+            if(!addressInfo.containsKey('streetName') || String.isBlank((String) addressInfo.get('streetName'))){
                 throw new CustomException(ConstantValues.STREET_NAME_MISSING);
             }
-            if(!addressInfo.containsKey('streetType') && String.isBlank((String) conInfo.get('streetType'))){
+            if(!addressInfo.containsKey('streetType') || String.isBlank((String) addressInfo.get('streetType'))){
                 throw new CustomException(ConstantValues.STREET_TYPE_MISSING);
             }
-            if(!addressInfo.containsKey('suburb') && String.isBlank((String) conInfo.get('suburb'))){
+            if(!addressInfo.containsKey('suburb') || String.isBlank((String) addressInfo.get('suburb'))){
                 throw new CustomException(ConstantValues.SUBURB_MISSING);
             }
-            if(!addressInfo.containsKey('state') && String.isBlank((String) conInfo.get('state'))){
+            if(!addressInfo.containsKey('state') || String.isBlank((String) addressInfo.get('state'))){
                 throw new CustomException(ConstantValues.STATE_MISSING);
             }
-            if(!addressInfo.containsKey('postCode') && String.isBlank((String) conInfo.get('postCode'))){
+            if(!addressInfo.containsKey('postCode') || String.isBlank((String) addressInfo.get('postCode'))){
                 throw new CustomException(ConstantValues.POST_CODE_MISSING);
             }
-            if(!addressInfo.containsKey('country') && String.isBlank((String) conInfo.get('country'))){
+            if(!addressInfo.containsKey('country') || String.isBlank((String) addressInfo.get('country'))){
                 throw new CustomException(ConstantValues.COUNTRY_MISSING);
             }
             // Dynamic Data Parameters
@@ -116,7 +128,7 @@ global class EquifaxApplyIndividualAdapter extends intframework.BaseIntegrationA
             requestbody = requestbody.replace(ConstantValues.CUSTOM_IP_PARAM_VALUE, String.valueOf(true));
             requestbody = requestbody.replace(ConstantValues.IND_LASTNAME, (String) conInfo.get('lastName'));
             requestbody = requestbody.replace(ConstantValues.IND_FIRSTNAME, (String) conInfo.get('firstName'));
-            if(conInfo.containsKey('middleName') && String.isNotBlank((String) conInfo.get('middleName'))){
+            if(conInfo.containsKey('middleName') || String.isNotBlank((String) conInfo.get('middleName'))){
                 requestbody = requestbody.replace(ConstantValues.IND_MIDNAME_WKEY,
                 '<ved:other-given-name>' + (String) conInfo.get('middleName') + '</ved:other-given-name>');
             } else{
@@ -135,23 +147,23 @@ global class EquifaxApplyIndividualAdapter extends intframework.BaseIntegrationA
             requestbody = requestbody.replace(ConstantValues.ADDR_SUBURB, (String) addressInfo.get('suburb'));
             requestbody = requestbody.replace(ConstantValues.ADDR_STATE, (String) addressInfo.get('state'));
             requestbody = requestbody.replace(ConstantValues.ADDR_POSTCODE, (String) addressInfo.get('postCode'));
-            if(((String) addressInfo.get('country')).equalsIgnoreCase('Australia')){
-                requestbody = requestbody.replace(ConstantValues.ADDR_COUNTRYCODE, 'AUS');
-            } else if(((String) addressInfo.get('country')).equalsIgnoreCase('New Zealand')){
-                requestbody = requestbody.replace(ConstantValues.ADDR_COUNTRYCODE, 'NZL');
+            if(((String) addressInfo.get('country')).equalsIgnoreCase(ConstantValues.AUS_COUNTRY)){
+                requestbody = requestbody.replace(ConstantValues.ADDR_COUNTRYCODE, ConstantValues.AUS_COUNTRY_CODE);
+            } else if(((String) addressInfo.get('country')).equalsIgnoreCase(ConstantValues.NZL_COUNTRY)){
+                requestbody = requestbody.replace(ConstantValues.ADDR_COUNTRYCODE, ConstantValues.NZL_COUNTRY_CODE);
             }
-            if(((String) conInfo.get('gender')).equalsIgnoreCase('Male')){
-                requestbody = requestbody.replace(ConstantValues.IND_GENDERCODE, 'M');
+            if(((String) conInfo.get('gender')).equalsIgnoreCase(ConstantValues.GENDER_MALE)){
+                requestbody = requestbody.replace(ConstantValues.IND_GENDERCODE, ConstantValues.MALE_GENDER_CODE);
             } else if(((String) conInfo.get('gender')).equalsIgnoreCase('Female')){
-                requestbody = requestbody.replace(ConstantValues.IND_GENDERCODE, 'F');
+                requestbody = requestbody.replace(ConstantValues.IND_GENDERCODE, ConstantValues.FEMALE_GENDER_CODE);
             } else{
-                requestbody = requestbody.replace(ConstantValues.IND_GENDERCODE, 'U');
+                requestbody = requestbody.replace(ConstantValues.IND_GENDERCODE, ConstantValues.UNKNOWN_GENDER_CODE);
             }
             Date dob = (Date) conInfo.get('dob');
             requestbody = requestbody.replace(ConstantValues.IND_DOB, String.valueOf(dob.year())
             + '-' + String.valueOf(dob.month()).leftPad(2, '0') + '-' + String.valueOf(dob.day()).leftPad(2, '0'));
-            requestbody = requestbody.replace(ConstantValues.ACCOUNT_TYPE_CODE, 'RM');
-            requestbody = requestbody.replace(ConstantValues.CURRENCY_CODE, 'AUD');
+            requestbody = requestbody.replace(ConstantValues.ACCOUNT_TYPE_CODE, ConstantValues.ACCOUNT_TYPE_APPLY_IND_REQ);
+            requestbody = requestbody.replace(ConstantValues.CURRENCY_CODE, ConstantValues.AUD_CURRENCY_CODE);
             requestbody = requestbody.replace(ConstantValues.ENQ_AMT,
             String.valueOf(((Decimal) appInfo.get('loanAmount')).round(System.RoundingMode.HALF_DOWN)));
             requestbody = requestbody.replace(ConstantValues.RELATIONSHIP_CODE, relationshipCode);

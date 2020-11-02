@@ -46,29 +46,38 @@ public class EquifaxOrderDocumentResponseHelper{
 
     public static EquifaxCallout.OrderDocumentData parse(String json){
         EquifaxCallout.OrderDocumentData orderDocdata = new EquifaxCallout.OrderDocumentData();
-        List<String> queries;
-        JsonObjectToArray obj;
+        List<String> queries = new List<String>();
+        JsonObjectToArray obj = new JsonObjectToArray();
         EquifaxOrderDocumentResponseHelper helperObject;
         try{
             json = GenericUtility.modifyJsonKeysIntoCamelcasing(json);
-            queries = new List<String>();
             queries.add(ConstantValues.ERROR_KEY);
-            obj = new JsonObjectToArray();
             json = obj.modifyAllByRecur(json, queries);
             helperObject = (EquifaxOrderDocumentResponseHelper) System.JSON.deserialize(json, EquifaxOrderDocumentResponseHelper.class);
-            try{
-                orderDocdata.enquiryId = helperObject.envelope.body.orderDocumentResponse.orderDocumentResponseData.orderDetails.enquiryId.nodeValue;
-            }catch(Exception ex){}
-            try{
-                orderDocdata.exceptionData = helperObject.envelope.body.orderDocumentResponse.errors.error[0].errorDetail.nodeValue;
-                if(String.isNotBlank(orderDocdata.exceptionData)){
+            if(helperObject != null
+            && helperObject.envelope != null
+            && helperObject.envelope.body != null
+            && helperObject.envelope.body.orderDocumentResponse != null){
+                if(helperObject.envelope.body.orderDocumentResponse.orderDocumentResponseData != null
+                && helperObject.envelope.body.orderDocumentResponse.orderDocumentResponseData.priceValue != null
+                && helperObject.envelope.body.orderDocumentResponse.orderDocumentResponseData.priceValue.nodeValue != null){
+                    orderDocdata.priceValue = helperObject.envelope.body.orderDocumentResponse.orderDocumentResponseData.priceValue.nodeValue;
+                }
+                if(helperObject.envelope.body.orderDocumentResponse.orderDocumentResponseData != null
+                && helperObject.envelope.body.orderDocumentResponse.orderDocumentResponseData.orderDetails != null
+                && helperObject.envelope.body.orderDocumentResponse.orderDocumentResponseData.orderDetails.enquiryId != null
+                && helperObject.envelope.body.orderDocumentResponse.orderDocumentResponseData.orderDetails.enquiryId.nodeValue != null){
+                    orderDocdata.enquiryId = helperObject.envelope.body.orderDocumentResponse.orderDocumentResponseData.orderDetails.enquiryId.nodeValue;
+                }
+                if(helperObject.envelope.body.orderDocumentResponse.errors != null
+                && helperObject.envelope.body.orderDocumentResponse.errors.error[0] != null
+                && helperObject.envelope.body.orderDocumentResponse.errors.error[0].errorDetail != null
+                && helperObject.envelope.body.orderDocumentResponse.errors.error[0].errorDetail.nodeValue != null){
+                    orderDocdata.exceptionData = helperObject.envelope.body.orderDocumentResponse.errors.error[0].errorDetail.nodeValue;
                     GenericUtility.insertLog('Equifax/orderDocument', new CustomException(orderDocdata.exceptionData));
                     orderDocdata.exceptionData = ConstantValues.GENERAL_EXCEPTION;
                 }
-            }catch(Exception ex){}
-            try{
-                orderDocdata.priceValue = helperObject.envelope.body.orderDocumentResponse.orderDocumentResponseData.priceValue.nodeValue;
-            }catch(Exception ex){}
+            }
             return orderDocdata;
         }
         catch(Exception ex){

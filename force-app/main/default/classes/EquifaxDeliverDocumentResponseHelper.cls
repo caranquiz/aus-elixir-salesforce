@@ -59,35 +59,46 @@ public class EquifaxDeliverDocumentResponseHelper{
     public static EquifaxCallout.LandTitleDocumentData parse(String json){
         EquifaxCallout.LandTitleDocumentData ltDocumentData = new EquifaxCallout.LandTitleDocumentData();
         String data;
-        List<String> queries;
-        JsonObjectToArray obj;
+        List<String> queries = new List<String>();
+        JsonObjectToArray obj = new JsonObjectToArray();
         EquifaxDeliverDocumentResponseHelper helperObject;
         try{
             json = GenericUtility.modifyJsonKeysIntoCamelcasingV2(json);
-            queries = new List<String>();
             queries.add(ConstantValues.ERROR_KEY);
-            obj = new JsonObjectToArray();
             json = obj.modifyAllByRecur(json, queries);
             helperObject = (EquifaxDeliverDocumentResponseHelper) System.JSON.deserialize(json, EquifaxDeliverDocumentResponseHelper.class);
-            try{
-                ltDocumentData.documentStatus = helperObject.envelope.body.deliverDocumentResponse.deliverDocumentResponseData.documentStatus.status.nodeValue;
-            }catch(Exception ex){}
-            try{
-                ltDocumentData.paidAmount = helperObject.envelope.body.deliverDocumentResponse.deliverDocumentResponseData.pricePaid.nodeValue;
-            }catch(Exception ex){}
-            try{
-                data = helperObject.envelope.body.deliverDocumentResponse.deliverDocumentResponseData.binaryData.nodeValue;
-                ltDocumentData.documentAttachment = new Attachment();
-                ltDocumentData.documentAttachment.ContentType = ConstantValues.APP_PDF_CONTENT_TYPE;
-                ltDocumentData.documentAttachment.Body = EncodingUtil.base64Decode(data);
-            }catch(Exception ex){}
-            try {
-                ltDocumentData.exceptionData = helperObject.envelope.body.deliverDocumentResponse.errors.error[0].errorDetail.nodeValue;
-                if(String.isNotBlank(ltDocumentData.exceptionData)){
+            if(helperObject != null
+            && helperObject.envelope != null
+            && helperObject.envelope.body != null
+            && helperObject.envelope.body.deliverDocumentResponse != null){
+                if(helperObject.envelope.body.deliverDocumentResponse.deliverDocumentResponseData != null
+                && helperObject.envelope.body.deliverDocumentResponse.deliverDocumentResponseData.documentStatus != null
+                && helperObject.envelope.body.deliverDocumentResponse.deliverDocumentResponseData.documentStatus.status != null
+                && helperObject.envelope.body.deliverDocumentResponse.deliverDocumentResponseData.documentStatus.status.nodeValue != null){
+                    ltDocumentData.documentStatus = helperObject.envelope.body.deliverDocumentResponse.deliverDocumentResponseData.documentStatus.status.nodeValue;
+                }
+                if(helperObject.envelope.body.deliverDocumentResponse.deliverDocumentResponseData != null
+                && helperObject.envelope.body.deliverDocumentResponse.deliverDocumentResponseData.pricePaid != null
+                && helperObject.envelope.body.deliverDocumentResponse.deliverDocumentResponseData.pricePaid.nodeValue != null){
+                    ltDocumentData.paidAmount = helperObject.envelope.body.deliverDocumentResponse.deliverDocumentResponseData.pricePaid.nodeValue;
+                }
+                if(helperObject.envelope.body.deliverDocumentResponse.deliverDocumentResponseData != null
+                && helperObject.envelope.body.deliverDocumentResponse.deliverDocumentResponseData.binaryData != null
+                && helperObject.envelope.body.deliverDocumentResponse.deliverDocumentResponseData.binaryData.nodeValue != null){
+                    data = helperObject.envelope.body.deliverDocumentResponse.deliverDocumentResponseData.binaryData.nodeValue;
+                    ltDocumentData.documentAttachment = new Attachment();
+                    ltDocumentData.documentAttachment.ContentType = ConstantValues.APP_PDF_CONTENT_TYPE;
+                    ltDocumentData.documentAttachment.Body = EncodingUtil.base64Decode(data);
+                }
+                if(helperObject.envelope.body.deliverDocumentResponse.errors != null
+                && helperObject.envelope.body.deliverDocumentResponse.errors.error[0] != null
+                && helperObject.envelope.body.deliverDocumentResponse.errors.error[0].errorDetail != null
+                && helperObject.envelope.body.deliverDocumentResponse.errors.error[0].errorDetail.nodeValue != null){
+                    ltDocumentData.exceptionData = helperObject.envelope.body.deliverDocumentResponse.errors.error[0].errorDetail.nodeValue;
                     GenericUtility.insertLog('EquifaxDeliverDocumentResponseHelper', new CustomException(ltDocumentData.exceptionData));
                     ltDocumentData.exceptionData = ConstantValues.GENERAL_EXCEPTION;
                 }
-            } catch (Exception ex) {}
+            }
         }
         catch(Exception ex){
             GenericUtility.insertLog('EquifaxDeliverDocumentResponseHelper', ex);

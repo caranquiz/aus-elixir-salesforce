@@ -1,3 +1,13 @@
+/**********************************************************************************************************/
+/* Company              : Cloudkaptan Consultancy Services Pvt. Ltd. */
+/* Class Name           : EquifaxEnquiryCallout */
+/* Created Date         : 11/08/2020 */
+/* Developed By         : Souvik */
+/* Description          : This is the callout class for Equifax Apply Individual and Previous Enquiry. */
+/* Last Modified Date   : 12/08/2020 */
+/* Last Modified By     : Souvik */
+/*********************************************************************************************************/
+
 global with sharing class LoanDisbursalFilegen extends loan.FileGenerator {
   Long sumOfAmt = 0;
   Decimal tempAmt;
@@ -74,35 +84,35 @@ global with sharing class LoanDisbursalFilegen extends loan.FileGenerator {
             AND loan__Rejected__c = false
         ]
       );
-      for(loan__Loan_Disbursal_Transaction__c each : ldtTxns){
+      for(loan__Loan_Disbursal_Transaction__c eachLDT : ldtTxns){
         obj = new DirectEntryFileRecordGenUtil.DetailRecordData();
-        obj.lodgementRef = each.Name;
-        obj.transAmt = (each.ORDE_Financial_Fees_Total_Amount__c * 100).round();
-        obj.benfBSBNumber = each.loan__Loan_Account__r.Warehouse__r.BSB_Number__c;
-        obj.benfAccNumber = each.loan__Loan_Account__r.Warehouse__r.Bank_Account_Number__c;
-        obj.remitterName = each.loan__Loan_Account__r.Warehouse__r.Institution_Name__c;
-        detailRecordDataLDTMap.put(each.Id, obj);
-        System.debug(each.loan__Loan_Account__c);
-        clContractIds.add(each.loan__Loan_Account__c);
-        List<Id> ldtIds = loanAccountLDTIdMap.get(each.loan__Loan_Account__c);
+        obj.lodgementRef = eachLDT.Name;
+        obj.transAmt = (eachLDT.ORDE_Financial_Fees_Total_Amount__c * 100).round();
+        obj.benfBSBNumber = eachLDT.loan__Loan_Account__r.Warehouse__r.BSB_Number__c;
+        obj.benfAccNumber = eachLDT.loan__Loan_Account__r.Warehouse__r.Bank_Account_Number__c;
+        obj.remitterName = eachLDT.loan__Loan_Account__r.Warehouse__r.Institution_Name__c;
+        detailRecordDataLDTMap.put(eachLDT.Id, obj);
+        clContractIds.add(eachLDT.loan__Loan_Account__c);
+        List<Id> ldtIds = loanAccountLDTIdMap.get(eachLDT.loan__Loan_Account__c);
         if(ldtIds == null){
             ldtIds = new List<Id>();
         }
-        ldtIds.add(each.Id);
-        loanAccountLDTIdMap.put(each.loan__Loan_Account__c, ldtIds);
+        ldtIds.add(eachLDT.Id);
+        loanAccountLDTIdMap.put(eachLDT.loan__Loan_Account__c, ldtIds);
       }
       List<loan__Coborrower__c> contractPartyList = [SELECT Id, loan__Loan__c, loan__Account__c, loan__Party_Type__c,
       loan__Account__r.Bank_Account_Name__c, loan__Account__r.Bank_Account_Number__c, loan__Account__r.BSB__c
       FROM loan__Coborrower__c WHERE loan__Loan__c IN:clContractIds AND loan__Party_Type__c =:ConstantValues.SOLICITOR_PARTY_TYPE];
-      System.debug(contractPartyList);
-      for(loan__Coborrower__c each : contractPartyList){
-        System.debug(each);
-        List<Id> ldtIds = loanAccountLDTIdMap.get(each.loan__Loan__c);
+      for(loan__Coborrower__c eachContractParty : contractPartyList){
+        List<Id> ldtIds = loanAccountLDTIdMap.get(eachContractParty.loan__Loan__c);
         for(Id eachId : ldtIds){
             obj = detailRecordDataLDTMap.get(eachId);
-            obj.payerBSBNumber = each.loan__Account__r.BSB__c;
-            obj.payerAcctNumber = each.loan__Account__r.Bank_Account_Number__c;
-            obj.payerAcctName = each.loan__Account__r.Bank_Account_Name__c;
+            if(eachContractParty.loan__Account__c == null){
+                continue;
+            }
+            obj.payerBSBNumber = eachContractParty.loan__Account__r.BSB__c;
+            obj.payerAcctNumber = eachContractParty.loan__Account__r.Bank_Account_Number__c;
+            obj.payerAcctName = eachContractParty.loan__Account__r.Bank_Account_Name__c;
             detailRecordDataLDTMap.put(eachId, obj);
         }
       }
@@ -158,7 +168,6 @@ global with sharing class LoanDisbursalFilegen extends loan.FileGenerator {
     List<String> totalRecords = new List<String>();
     try {
       for (Id eachKey : detailRecordDataLDTMap.keySet()) {
-        System.debug(detailRecordDataLDTMap.get(eachKey));
         String entryVal = processScope(eachKey, detailRecordDataLDTMap.get(eachKey));
         if (String.isNotBlank(entryVal)) {
           totalRecords.add(entryVal);

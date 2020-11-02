@@ -64,7 +64,6 @@ private class LoanDisbursalFilegenTest{
       System.assertEquals(coborrowerList.size(), 1, 'Co-Borrower insertion error');
 
       loan__Payment_Mode__c testPaymentMode = [SELECT Id, Name FROM loan__Payment_Mode__c WHERE Name = 'ACH'];
-      System.debug(testPaymentMode);
       System.assert(
         testPaymentMode != null,
         'Payment Mode insert error'
