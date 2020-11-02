@@ -63,6 +63,7 @@
         <members>EquifaxCompanyEnquiryAdapter</members>
         <members>EquifaxCompanyEnquiryCallout</members>
         <members>EquifaxCompanyEnquiryResponseHelper</members>
+        <memners>EquifaxCompanyEnquiryCalloutTest</members>
 
         <!-- ABA Filegen classes -->
         <members>LoanDisbursalFilegen</members>
