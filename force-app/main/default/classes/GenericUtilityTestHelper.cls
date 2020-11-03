@@ -856,4 +856,11 @@ public static clcommon__CL_Product__c insertClProduct2(){
     insert feeAmt;
     return feeAmt;
   }
+  public static clcommon__Legal_Entity__c returnCompanyLegalEntity() {
+    clcommon__Legal_Entity__c legEntity = new clcommon__Legal_Entity__c(
+    Name = 'Company'
+    );
+    insert legEntity;
+    return legEntity;
+ }
 }
