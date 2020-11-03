@@ -14,6 +14,13 @@ public with sharing class GenericUtilityTestHelper {
  insert legEntity;
  return legEntity;
  }
+ public static clcommon__Legal_Entity__c returnCompanyLegalEntity() {
+    clcommon__Legal_Entity__c legEntity = new clcommon__Legal_Entity__c(
+    Name = 'Company'
+    );
+    insert legEntity;
+    return legEntity;
+ }
  public static account insertDummyAccount() {
  account dummyClient2 = new account();
  dummyClient2.Name = 'Elixir';
@@ -264,246 +271,381 @@ public with sharing class GenericUtilityTestHelper {
   insert equifaxOrgIdSearchObj;
   return equifaxOrgIdSearchObj;
  }
-  //Inserting Rules, Checklist and Criteria of Rules
-  public static List<genesis__Rule__c> returnRule(Id appId){
-    genesis__Rule__c ruleOne = new genesis__Rule__c(genesis__Object_Type__c = 'Application',Name = 'Cash Out Purpose Suitable Rule',genesis__Enabled__c = true,genesis__Evaluation_Expression__c = '1',genesis__Message_failure__c = 'FAILURE', genesis__Message_success__c = 'SUCCESS');
-    genesis__Rule__c ruleTwo = new genesis__Rule__c(genesis__Object_Type__c = 'Application',Name = 'Customer Interview completed Rule',genesis__Enabled__c = true,genesis__Evaluation_Expression__c = '1', genesis__Message_failure__c = 'FAILURE', genesis__Message_success__c = 'SUCCESS');
-    genesis__Rule__c ruleThree = new genesis__Rule__c(genesis__Object_Type__c = 'Application',Name = 'Temporary Visa Suitability Rule',genesis__Enabled__c = true,genesis__Evaluation_Expression__c = '1', genesis__Message_failure__c = 'FAILURE', genesis__Message_success__c = 'SUCCESS');
-    genesis__Rule__c ruleFour = new genesis__Rule__c(genesis__Object_Type__c = 'Application',Name = 'GST Suitable Rule',genesis__Enabled__c = true,genesis__Evaluation_Expression__c = '1', genesis__Message_failure__c = 'FAILURE', genesis__Message_success__c = 'SUCCESS');
-    genesis__Rule__c ruleFive = new genesis__Rule__c(genesis__Object_Type__c = 'Application',Name = 'Explanation of Credit Events Suitable Rule',genesis__Enabled__c = true,genesis__Evaluation_Expression__c = '1 OR 2', genesis__Message_failure__c = 'FAILURE', genesis__Message_success__c = 'SUCCESS');
-    genesis__Rule__c ruleSix = new genesis__Rule__c(genesis__Object_Type__c = 'Application',Name = 'Confirm letter prepared by accountant Rule',genesis__Enabled__c = true,genesis__Evaluation_Expression__c = '1', genesis__Message_failure__c = 'FAILURE', genesis__Message_success__c = 'SUCCESS');
-    genesis__Rule__c ruleSeven = new genesis__Rule__c(genesis__Object_Type__c = 'Application',Name = 'Living Expense Explanation Suitable Rule',genesis__Enabled__c = true, genesis__Evaluation_Expression__c = '1',genesis__Message_failure__c = 'FAILURE', genesis__Message_success__c = 'SUCCESS');
-    genesis__Rule__c ruleEight = new genesis__Rule__c(genesis__Object_Type__c = 'Application',Name = 'Income Consistent with Declaration Rule',genesis__Enabled__c = true, genesis__Evaluation_Expression__c = '1', genesis__Message_failure__c = 'FAILURE', genesis__Message_success__c = 'SUCCESS');
-    genesis__Rule__c ruleNine = new genesis__Rule__c(genesis__Object_Type__c = 'Application',Name = 'Distressed Asset Rule',genesis__Enabled__c = true, genesis__Evaluation_Expression__c = '1',genesis__Message_failure__c = 'FAILURE', genesis__Message_success__c = 'SUCCESS');
-    genesis__Rule__c ruleTen = new genesis__Rule__c(genesis__Object_Type__c = 'Application',Name = 'Employment Call Suitable Rule',genesis__Enabled__c = true, genesis__Evaluation_Expression__c = '1',genesis__Message_failure__c = 'FAILURE', genesis__Message_success__c = 'SUCCESS');
-    genesis__Rule__c ruleEl = new genesis__Rule__c(genesis__Object_Type__c = 'Application',Name = 'Explanation of Credit Enquiries Suitable Rule',genesis__Enabled__c = true, genesis__Evaluation_Expression__c = '1 OR 2 OR 3',genesis__Message_failure__c = 'FAILURE', genesis__Message_success__c = 'SUCCESS');
+    //Inserting Rules, Checklist and Criteria of Rules
+    public static List<genesis__Rule__c> returnRule(Id appId){
+        genesis__Rule__c ruleOne = new genesis__Rule__c(genesis__Object_Type__c = 'Application',Name = 'Cash Out Purpose Suitable Rule',genesis__Enabled__c = true,genesis__Evaluation_Expression__c = '1',genesis__Message_failure__c = 'FAILURE', genesis__Message_success__c = 'SUCCESS');
+        genesis__Rule__c ruleTwo = new genesis__Rule__c(genesis__Object_Type__c = 'Application',Name = 'Customer Interview completed Rule',genesis__Enabled__c = true,genesis__Evaluation_Expression__c = '1', genesis__Message_failure__c = 'FAILURE', genesis__Message_success__c = 'SUCCESS');
+        genesis__Rule__c ruleThree = new genesis__Rule__c(genesis__Object_Type__c = 'Application',Name = 'Temporary Visa Suitability Rule',genesis__Enabled__c = true,genesis__Evaluation_Expression__c = '1', genesis__Message_failure__c = 'FAILURE', genesis__Message_success__c = 'SUCCESS');
+        genesis__Rule__c ruleFour = new genesis__Rule__c(genesis__Object_Type__c = 'Application',Name = 'GST Suitable Rule',genesis__Enabled__c = true,genesis__Evaluation_Expression__c = '1', genesis__Message_failure__c = 'FAILURE', genesis__Message_success__c = 'SUCCESS');
+        genesis__Rule__c ruleFive = new genesis__Rule__c(genesis__Object_Type__c = 'Application',Name = 'Explanation of Credit Events Suitable Rule',genesis__Enabled__c = true,genesis__Evaluation_Expression__c = '1 OR 2', genesis__Message_failure__c = 'FAILURE', genesis__Message_success__c = 'SUCCESS');
+        genesis__Rule__c ruleSix = new genesis__Rule__c(genesis__Object_Type__c = 'Application',Name = 'Confirm letter prepared by accountant Rule',genesis__Enabled__c = true,genesis__Evaluation_Expression__c = '1', genesis__Message_failure__c = 'FAILURE', genesis__Message_success__c = 'SUCCESS');
+        genesis__Rule__c ruleSeven = new genesis__Rule__c(genesis__Object_Type__c = 'Application',Name = 'Living Expense Explanation Suitable Rule',genesis__Enabled__c = true, genesis__Evaluation_Expression__c = '1',genesis__Message_failure__c = 'FAILURE', genesis__Message_success__c = 'SUCCESS');
+        genesis__Rule__c ruleEight = new genesis__Rule__c(genesis__Object_Type__c = 'Application',Name = 'Income Consistent with Declaration Rule',genesis__Enabled__c = true, genesis__Evaluation_Expression__c = '1', genesis__Message_failure__c = 'FAILURE', genesis__Message_success__c = 'SUCCESS');
+        genesis__Rule__c ruleNine = new genesis__Rule__c(genesis__Object_Type__c = 'Application',Name = 'Distressed Asset Rule',genesis__Enabled__c = true, genesis__Evaluation_Expression__c = '1',genesis__Message_failure__c = 'FAILURE', genesis__Message_success__c = 'SUCCESS');
+        genesis__Rule__c ruleTen = new genesis__Rule__c(genesis__Object_Type__c = 'Application',Name = 'Employment Call Suitable Rule',genesis__Enabled__c = true, genesis__Evaluation_Expression__c = '1',genesis__Message_failure__c = 'FAILURE', genesis__Message_success__c = 'SUCCESS');
+        genesis__Rule__c ruleEl = new genesis__Rule__c(genesis__Object_Type__c = 'Application',Name = 'Explanation of Credit Enquiries Suitable Rule',genesis__Enabled__c = true, genesis__Evaluation_Expression__c = '1 OR 2 OR 3',genesis__Message_failure__c = 'FAILURE', genesis__Message_success__c = 'SUCCESS');
+        genesis__Rule__c ruleTwl = new genesis__Rule__c(genesis__Object_Type__c = 'Application',Name = 'Trail (%) Exception',genesis__Enabled__c = true, genesis__Evaluation_Expression__c = '1 OR 2',genesis__Message_failure__c = 'FAILURE', genesis__Message_success__c = 'SUCCESS');
+        genesis__Rule__c ruleTtn = new genesis__Rule__c(genesis__Object_Type__c = 'Application',Name = ConstantValues.CUSTOMER_ACCT_CONDITION, genesis__Enabled__c = true, genesis__Evaluation_Expression__c = '1', genesis__Message_failure__c = 'FAILURE', genesis__Message_success__c = 'SUCCESS', Rule_Classification__c = ConstantValues.CONDITION_CLASSIFICATION);
+        genesis__Rule__c ruleFrtn = new genesis__Rule__c(genesis__Object_Type__c = 'Application',Name = ConstantValues.DOES_APPLICANT_UNDERSTAND_ENGLISH_WARNING, genesis__Enabled__c = true, genesis__Evaluation_Expression__c = '1', genesis__Message_failure__c = 'FAILURE', genesis__Message_success__c = 'SUCCESS');
+        genesis__Rule__c ruleFftn = new genesis__Rule__c(genesis__Object_Type__c = 'Application',Name = ConstantValues.BROKER_DOCS_WARNING, genesis__Enabled__c = true, genesis__Evaluation_Expression__c = '1', genesis__Message_failure__c = 'FAILURE', genesis__Message_success__c = 'SUCCESS');
+        genesis__Rule__c ruleSxtn = new genesis__Rule__c(genesis__Object_Type__c = 'Application',Name = ConstantValues.MATRIX_RATE_EXCEPTION, genesis__Enabled__c = true, genesis__Evaluation_Expression__c = '1', genesis__Message_failure__c = 'FAILURE', genesis__Message_success__c = 'SUCCESS');
+        genesis__Rule__c ruleSvntn = new genesis__Rule__c(genesis__Object_Type__c = 'Application',Name = ConstantValues.RISK_GRADE_COMPARE_WARNING, genesis__Enabled__c = true, genesis__Message_failure__c = 'FAILURE', genesis__Message_success__c = 'SUCCESS');
+        genesis__Rule__c ruleEitn = new genesis__Rule__c(genesis__Object_Type__c = 'Application',Name = ConstantValues.PRIMARY_PURPOSE_WARNING, genesis__Enabled__c = true, genesis__Message_failure__c = 'FAILURE', genesis__Message_success__c = 'SUCCESS');
+        genesis__Rule__c ruleNntn = new genesis__Rule__c(genesis__Object_Type__c = 'Application',Name = ConstantValues.DOCUMENT_TYPE_WARNING, genesis__Enabled__c = true, genesis__Message_failure__c = 'FAILURE', genesis__Message_success__c = 'SUCCESS');
+        genesis__Rule__c ruleTnty = new genesis__Rule__c(genesis__Object_Type__c = 'Application',Name = ConstantValues.VALUATION_PAID_WARNING, genesis__Enabled__c = true, genesis__Message_failure__c = 'FAILURE', genesis__Message_success__c = 'SUCCESS');
+        
+        List<genesis__Rule__c> ruleLists = new List<genesis__Rule__c>();
+        ruleLists.add(ruleOne);
+        ruleLists.add(ruleTwo);
+        ruleLists.add(ruleThree);
+        ruleLists.add(ruleFour);
+        ruleLists.add(ruleFive);
+        ruleLists.add(ruleSix);
+        ruleLists.add(ruleSeven);
+        ruleLists.add(ruleEight);
+        ruleLists.add(ruleNine);
+        ruleLists.add(ruleTen);
+        ruleLists.add(ruleEl);
+        ruleLists.add(ruleTwl);
+        ruleLists.add(ruleTtn);
+        ruleLists.add(ruleFrtn);
+        ruleLists.add(ruleFftn);
+        ruleLists.add(ruleSxtn);
+        ruleLists.add(ruleSvntn);
+        ruleLists.add(ruleEitn);
+        ruleLists.add(ruleNntn);
+        ruleLists.add(ruleTnty);
+        //Inserting rule
+        insert ruleLists;
+        List <genesis__RuleCriteria__c> criteriaList = new List<genesis__RuleCriteria__c>();
+        genesis__RuleCriteria__c criteriaOne = new genesis__RuleCriteria__c(genesis__Criteria_Sequence__c = 1,
+        genesis__Rule__c = ruleLists[0].Id,
+        genesis__Related_Object__c = 'genesis__Applications__c',
+        genesis__Rule_Object_Reference__c = 'genesis__applications__c',
+        genesis__Stipulation_Type__c = 'FUNDING',
+        genesis__Field_Name__c = 'Cash Out Purpose Suitable',
+        genesis__Field_API_Name__c = 'Cash_Out_Purpose_Suitable__c',
+        genesis__Field_Type__c = 'Picklist',
+        genesis__Matching_Type__c = '==',
+        genesis__Matching_Value__c = 'Yes'
+        );
+        genesis__RuleCriteria__c criteriaTwo = new genesis__RuleCriteria__c(genesis__Criteria_Sequence__c = 1,
+        genesis__Rule__c = ruleLists[1].Id,
+        genesis__Related_Object__c = 'genesis__Applications__c',
+        genesis__Rule_Object_Reference__c = 'genesis__applications__c',
+        genesis__Stipulation_Type__c = 'FUNDING',
+        genesis__Field_Name__c = 'Customer Interview completed',
+        genesis__Field_API_Name__c = 'Customer_Interview_completed__c',
+        genesis__Field_Type__c = 'Picklist',
+        genesis__Matching_Type__c = '==',
+        genesis__Matching_Value__c = 'Yes'
+        );
+        genesis__RuleCriteria__c criteriaThree = new genesis__RuleCriteria__c(genesis__Criteria_Sequence__c = 1,
+        genesis__Rule__c = ruleLists[2].Id,
+        genesis__Related_Object__c = 'clcommon__Party__c',
+        genesis__Rule_Object_Reference__c = 'genesis__applications__r',
+        genesis__Stipulation_Type__c = 'FUNDING',
+        genesis__Field_Name__c = 'Temporary Visa Suitability',
+        genesis__Field_API_Name__c = 'clcommon__Contact__r.Temporary_Visa_Suitability__c',
+        genesis__Field_Type__c = 'Picklist',
+        genesis__Matching_Type__c = '==',
+        genesis__Matching_Value__c = 'Yes'
+        );
+        genesis__RuleCriteria__c criteriaFour = new genesis__RuleCriteria__c(genesis__Criteria_Sequence__c = 1,
+        genesis__Rule__c = ruleLists[4].Id,
+        genesis__Related_Object__c = 'clcommon__Party__c',
+        genesis__Rule_Object_Reference__c = 'genesis__applications__r',
+        genesis__Stipulation_Type__c = 'FUNDING',
+        genesis__Field_Name__c = 'Explanation of Credit Events Suitable',
+        genesis__Field_API_Name__c = 'Explanation_of_Credit_Events_Suitable__c',
+        genesis__Field_Type__c = 'Picklist',
+        genesis__Matching_Type__c = '==',
+        genesis__Matching_Value__c = 'Yes'
+        );
+        genesis__RuleCriteria__c criteriaSeven = new genesis__RuleCriteria__c(genesis__Criteria_Sequence__c = 1,
+        genesis__Rule__c = ruleLists[6].Id,
+        genesis__Related_Object__c = 'genesis__Income__c',
+        genesis__Rule_Object_Reference__c = 'genesis__Application__r',
+        genesis__Stipulation_Type__c = 'FUNDING',
+        genesis__Field_Name__c = 'Income Consistent with Declaration',
+        genesis__Field_API_Name__c = 'Income_Consistent_with_Declaration__c',
+        genesis__Field_Type__c = 'PICKLIST',
+        genesis__Matching_Type__c = '==',
+        genesis__Matching_Value__c = 'Yes'
+        );
+        genesis__RuleCriteria__c criteriaNine = new genesis__RuleCriteria__c(genesis__Criteria_Sequence__c = 1,
+        genesis__Rule__c = ruleLists[8].Id,
+        genesis__Related_Object__c = 'genesis__Application_Collateral__c',
+        genesis__Rule_Object_Reference__c = 'genesis__applications__r',
+        genesis__Stipulation_Type__c = 'FUNDING',
+        genesis__Field_Name__c = 'Distressed Asset Rule Check',
+        genesis__Field_API_Name__c = 'genesis__Collateral__r.Distressed_Asset_Rule_Check__c',
+        genesis__Field_Type__c = 'String',
+        genesis__Matching_Type__c = '==',
+        genesis__Matching_Value__c = 'TRUE'
+        );
+        genesis__RuleCriteria__c criteriaTen = new genesis__RuleCriteria__c(genesis__Criteria_Sequence__c = 1,
+        genesis__Rule__c = ruleLists[9].Id,
+        genesis__Related_Object__c = 'genesis__Employment_Information__c',
+        genesis__Rule_Object_Reference__c = 'genesis__Application__r',
+        genesis__Stipulation_Type__c = 'FUNDING',
+        genesis__Field_Name__c = 'Employment Call Suitable',
+        genesis__Field_API_Name__c = 'Employment_Call_Suitable__c',
+        genesis__Field_Type__c = 'Picklist',
+        genesis__Matching_Type__c = '==',
+        genesis__Matching_Value__c = 'Yes'
+        );
+        genesis__RuleCriteria__c criteriaEl = new genesis__RuleCriteria__c(genesis__Criteria_Sequence__c = 1,
+        genesis__Rule__c = ruleLists[10].Id,
+        genesis__Related_Object__c = 'clcommon__Party__c',
+        genesis__Rule_Object_Reference__c = 'genesis__Application__r',
+        genesis__Stipulation_Type__c = 'FUNDING',
+        genesis__Field_Name__c = 'Number of Credit Enquiries in Last 12 Mo',
+        genesis__Field_API_Name__c = 'Number_of_Credit_Enquiries_in_Last_12_Mo__c',
+        genesis__Field_Type__c = 'Double',
+        genesis__Matching_Type__c = '>=',
+        genesis__Matching_Value__c = '1'
+        );
+        genesis__RuleCriteria__c criteriaFive = new genesis__RuleCriteria__c(genesis__Criteria_Sequence__c = 2,
+        genesis__Rule__c = ruleLists[10].Id,
+        genesis__Related_Object__c = 'clcommon__Party__c',
+        genesis__Rule_Object_Reference__c = 'genesis__Application__r',
+        genesis__Stipulation_Type__c = 'FUNDING',
+        genesis__Field_Name__c = 'Number of Credit Enquiries in Last 12 Mo',
+        genesis__Field_API_Name__c = 'Number_of_Credit_Enquiries_in_Last_12_Mo__c',
+        genesis__Field_Type__c = 'Double',
+        genesis__Matching_Type__c = '==',
+        genesis__Matching_Value__c = '1'
+        );
+        genesis__RuleCriteria__c criteriaEight = new genesis__RuleCriteria__c(genesis__Criteria_Sequence__c = 3,
+        genesis__Rule__c = ruleLists[10].Id,
+        genesis__Related_Object__c = 'clcommon__Party__c',
+        genesis__Rule_Object_Reference__c = 'genesis__Application__r',
+        genesis__Stipulation_Type__c = 'FUNDING',
+        genesis__Field_Name__c = 'Number of Credit Enquiries in Last 12 Mo',
+        genesis__Field_API_Name__c = 'Number_of_Credit_Enquiries_in_Last_12_Mo__c',
+        genesis__Field_Type__c = 'Double',
+        genesis__Matching_Type__c = '<=',
+        genesis__Matching_Value__c = '1'
+        );
+        genesis__RuleCriteria__c criteriaSix = new genesis__RuleCriteria__c(genesis__Criteria_Sequence__c = 2,
+        genesis__Rule__c = ruleLists[4].Id,
+        genesis__Related_Object__c = 'clcommon__Party__c',
+        genesis__Rule_Object_Reference__c = 'genesis__Application__r',
+        genesis__Stipulation_Type__c = 'FUNDING',
+        genesis__Field_Name__c = 'Number Of Dependents',
+        genesis__Field_API_Name__c = 'clcommon__Contact__r.Number_Of_Dependents__c',
+        genesis__Field_Type__c = 'Double',
+        genesis__Matching_Type__c = '<=',
+        genesis__Matching_Value__c = '10'
+        );
+        genesis__RuleCriteria__c criteriaTwl = new genesis__RuleCriteria__c(genesis__Criteria_Sequence__c = 1,
+        genesis__Rule__c = ruleLists[11].Id,
+        genesis__Related_Object__c = 'clcommon__Party__c',
+        genesis__Rule_Object_Reference__c = 'genesis__Application__r',
+        genesis__Stipulation_Type__c = 'FUNDING',
+        genesis__Field_Name__c = 'Party Type Name',
+        genesis__Field_API_Name__c = 'Party_Type_Name__c',
+        genesis__Field_Type__c = 'String',
+        genesis__Matching_Type__c = '!=',
+        genesis__Matching_Value__c = 'Broker'
+        );
+        genesis__RuleCriteria__c criteriaTtn = new genesis__RuleCriteria__c(genesis__Criteria_Sequence__c = 2,
+        genesis__Rule__c = ruleLists[11].Id,
+        genesis__Related_Object__c = 'clcommon__Party__c',
+        genesis__Rule_Object_Reference__c = 'genesis__Application__r',
+        genesis__Stipulation_Type__c = 'FUNDING',
+        genesis__Field_Name__c = 'Trail Payment Warning Check',
+        genesis__Field_API_Name__c = 'Trail_Payment_Warning_Check__c',
+        genesis__Field_Type__c = 'BOOLEAN',
+        genesis__Matching_Type__c = '==',
+        genesis__Matching_Value__c = 'FALSE'
+        );
+        genesis__RuleCriteria__c criteriaFrtn = new genesis__RuleCriteria__c(genesis__Criteria_Sequence__c = 1,
+        genesis__Rule__c = ruleLists[12].Id,
+        genesis__Related_Object__c = 'clcommon__Party__c',
+        genesis__Rule_Object_Reference__c = 'genesis__Application__r',
+        genesis__Stipulation_Type__c = 'FUNDING',
+        genesis__Field_Name__c = 'Legal Entity Type',
+        genesis__Field_API_Name__c = 'Legal_Entity_Type__c',
+        genesis__Field_Type__c = 'STRING',
+        genesis__Matching_Type__c = '!=',
+        genesis__Matching_Value__c = 'Company'
+        );
+        genesis__RuleCriteria__c criteriaFftn = new genesis__RuleCriteria__c(genesis__Criteria_Sequence__c = 1,
+        genesis__Rule__c = ruleLists[13].Id,
+        genesis__Related_Object__c = 'clcommon__Party__c',
+        genesis__Rule_Object_Reference__c = 'genesis__Application__r',
+        genesis__Stipulation_Type__c = 'FUNDING',
+        genesis__Field_Name__c = 'Does applicant understand English',
+        genesis__Field_API_Name__c = 'Does_applicant_understand_English__c',
+        genesis__Field_Type__c = 'PICKLIST',
+        genesis__Matching_Type__c = '!=',
+        genesis__Matching_Value__c = 'No'
+        );
+        genesis__RuleCriteria__c criteriaSxtn = new genesis__RuleCriteria__c(genesis__Criteria_Sequence__c = 1,
+        genesis__Rule__c = ruleLists[14].Id,
+        genesis__Related_Object__c = 'clcommon__Party__c',
+        genesis__Rule_Object_Reference__c = 'genesis__Application__r',
+        genesis__Stipulation_Type__c = 'FUNDING',
+        genesis__Field_Name__c = 'Has Broker provided a fully completed Cu',
+        genesis__Field_API_Name__c = 'Has_Broker_provided_a_fully_completed_Cu__c',
+        genesis__Field_Type__c = 'PICKLIST',
+        genesis__Matching_Type__c = '==',
+        genesis__Matching_Value__c = 'Yes'
+        );
+        genesis__RuleCriteria__c criteriaSvntn = new genesis__RuleCriteria__c(genesis__Criteria_Sequence__c = 1,
+        genesis__Rule__c = ruleLists[15].Id,
+        genesis__Related_Object__c = 'clcommon__Party__c',
+        genesis__Rule_Object_Reference__c = 'genesis__Application__r',
+        genesis__Stipulation_Type__c = 'FUNDING',
+        genesis__Field_Name__c = 'Matrix Rate Exception Check',
+        genesis__Field_API_Name__c = 'Matrix_Rate_Exception_Check__c',
+        genesis__Field_Type__c = 'STRING',
+        genesis__Matching_Type__c = '!=',
+        genesis__Matching_Value__c = 'G'
+        );
+        List <genesis__Checklist__c> checkList = new List<genesis__Checklist__c>();
     
-    List<genesis__Rule__c> ruleLists = new List<genesis__Rule__c>();
-    ruleLists.add(ruleOne);
-    ruleLists.add(ruleTwo);
-    ruleLists.add(ruleThree);
-    ruleLists.add(ruleFour);
-    ruleLists.add(ruleFive);
-    ruleLists.add(ruleSix);
-    ruleLists.add(ruleSeven);
-    ruleLists.add(ruleEight);
-    ruleLists.add(ruleNine);
-    ruleLists.add(ruleTen);
-    ruleLists.add(ruleEl);
-    //Inserting rule
-    insert ruleLists;
-    List <genesis__RuleCriteria__c> criteriaList = new List<genesis__RuleCriteria__c>();
-    genesis__RuleCriteria__c criteriaOne = new genesis__RuleCriteria__c(genesis__Criteria_Sequence__c = 1,
-    genesis__Rule__c = ruleLists[0].Id,
-    genesis__Related_Object__c = 'genesis__Applications__c',
-    genesis__Rule_Object_Reference__c = 'genesis__applications__c',
-    genesis__Stipulation_Type__c = 'FUNDING',
-    genesis__Field_Name__c = 'Cash Out Purpose Suitable',
-    genesis__Field_API_Name__c = 'Cash_Out_Purpose_Suitable__c',
-    genesis__Field_Type__c = 'Picklist',
-    genesis__Matching_Type__c = '==',
-    genesis__Matching_Value__c = 'Yes'
-    );
-    genesis__RuleCriteria__c criteriaTwo = new genesis__RuleCriteria__c(genesis__Criteria_Sequence__c = 1,
-    genesis__Rule__c = ruleLists[1].Id,
-    genesis__Related_Object__c = 'genesis__Applications__c',
-    genesis__Rule_Object_Reference__c = 'genesis__applications__c',
-    genesis__Stipulation_Type__c = 'FUNDING',
-    genesis__Field_Name__c = 'Customer Interview completed',
-    genesis__Field_API_Name__c = 'Customer_Interview_completed__c',
-    genesis__Field_Type__c = 'Picklist',
-    genesis__Matching_Type__c = '==',
-    genesis__Matching_Value__c = 'Yes'
-    );
-    genesis__RuleCriteria__c criteriaThree = new genesis__RuleCriteria__c(genesis__Criteria_Sequence__c = 1,
-    genesis__Rule__c = ruleLists[2].Id,
-    genesis__Related_Object__c = 'clcommon__Party__c',
-    genesis__Rule_Object_Reference__c = 'genesis__applications__r',
-    genesis__Stipulation_Type__c = 'FUNDING',
-    genesis__Field_Name__c = 'Temporary Visa Suitability',
-    genesis__Field_API_Name__c = 'clcommon__Contact__r.Temporary_Visa_Suitability__c',
-    genesis__Field_Type__c = 'Picklist',
-    genesis__Matching_Type__c = '==',
-    genesis__Matching_Value__c = 'Yes'
-    );
-    genesis__RuleCriteria__c criteriaFour = new genesis__RuleCriteria__c(genesis__Criteria_Sequence__c = 1,
-    genesis__Rule__c = ruleLists[4].Id,
-    genesis__Related_Object__c = 'clcommon__Party__c',
-    genesis__Rule_Object_Reference__c = 'genesis__applications__r',
-    genesis__Stipulation_Type__c = 'FUNDING',
-    genesis__Field_Name__c = 'Explanation of Credit Events Suitable',
-    genesis__Field_API_Name__c = 'Explanation_of_Credit_Events_Suitable__c',
-    genesis__Field_Type__c = 'Picklist',
-    genesis__Matching_Type__c = '==',
-    genesis__Matching_Value__c = 'Yes'
-    );
-    genesis__RuleCriteria__c criteriaSeven = new genesis__RuleCriteria__c(genesis__Criteria_Sequence__c = 1,
-    genesis__Rule__c = ruleLists[6].Id,
-    genesis__Related_Object__c = 'genesis__Income__c',
-    genesis__Rule_Object_Reference__c = 'genesis__Application__r',
-    genesis__Stipulation_Type__c = 'FUNDING',
-    genesis__Field_Name__c = 'Income Consistent with Declaration',
-    genesis__Field_API_Name__c = 'Income_Consistent_with_Declaration__c',
-    genesis__Field_Type__c = 'PICKLIST',
-    genesis__Matching_Type__c = '==',
-    genesis__Matching_Value__c = 'Yes'
-    );
-    genesis__RuleCriteria__c criteriaNine = new genesis__RuleCriteria__c(genesis__Criteria_Sequence__c = 1,
-    genesis__Rule__c = ruleLists[8].Id,
-    genesis__Related_Object__c = 'genesis__Application_Collateral__c',
-    genesis__Rule_Object_Reference__c = 'genesis__applications__r',
-    genesis__Stipulation_Type__c = 'FUNDING',
-    genesis__Field_Name__c = 'Distressed Asset Rule Check',
-    genesis__Field_API_Name__c = 'genesis__Collateral__r.Distressed_Asset_Rule_Check__c',
-    genesis__Field_Type__c = 'String',
-    genesis__Matching_Type__c = '==',
-    genesis__Matching_Value__c = 'TRUE'
-    );
-    genesis__RuleCriteria__c criteriaTen = new genesis__RuleCriteria__c(genesis__Criteria_Sequence__c = 1,
-    genesis__Rule__c = ruleLists[9].Id,
-    genesis__Related_Object__c = 'genesis__Employment_Information__c',
-    genesis__Rule_Object_Reference__c = 'genesis__Application__r',
-    genesis__Stipulation_Type__c = 'FUNDING',
-    genesis__Field_Name__c = 'Employment Call Suitable',
-    genesis__Field_API_Name__c = 'Employment_Call_Suitable__c',
-    genesis__Field_Type__c = 'Picklist',
-    genesis__Matching_Type__c = '==',
-    genesis__Matching_Value__c = 'Yes'
-    );
-    genesis__RuleCriteria__c criteriaEl = new genesis__RuleCriteria__c(genesis__Criteria_Sequence__c = 1,
-    genesis__Rule__c = ruleLists[10].Id,
-    genesis__Related_Object__c = 'clcommon__Party__c',
-    genesis__Rule_Object_Reference__c = 'genesis__Application__r',
-    genesis__Stipulation_Type__c = 'FUNDING',
-    genesis__Field_Name__c = 'Number of Credit Enquiries in Last 12 Mo',
-    genesis__Field_API_Name__c = 'Number_of_Credit_Enquiries_in_Last_12_Mo__c',
-    genesis__Field_Type__c = 'Double',
-    genesis__Matching_Type__c = '>=',
-    genesis__Matching_Value__c = '1'
-    );
-    genesis__RuleCriteria__c criteriaFive = new genesis__RuleCriteria__c(genesis__Criteria_Sequence__c = 2,
-    genesis__Rule__c = ruleLists[10].Id,
-    genesis__Related_Object__c = 'clcommon__Party__c',
-    genesis__Rule_Object_Reference__c = 'genesis__Application__r',
-    genesis__Stipulation_Type__c = 'FUNDING',
-    genesis__Field_Name__c = 'Number of Credit Enquiries in Last 12 Mo',
-    genesis__Field_API_Name__c = 'Number_of_Credit_Enquiries_in_Last_12_Mo__c',
-    genesis__Field_Type__c = 'Double',
-    genesis__Matching_Type__c = '==',
-    genesis__Matching_Value__c = '1'
-    );
-    genesis__RuleCriteria__c criteriaEight = new genesis__RuleCriteria__c(genesis__Criteria_Sequence__c = 3,
-    genesis__Rule__c = ruleLists[10].Id,
-    genesis__Related_Object__c = 'clcommon__Party__c',
-    genesis__Rule_Object_Reference__c = 'genesis__Application__r',
-    genesis__Stipulation_Type__c = 'FUNDING',
-    genesis__Field_Name__c = 'Number of Credit Enquiries in Last 12 Mo',
-    genesis__Field_API_Name__c = 'Number_of_Credit_Enquiries_in_Last_12_Mo__c',
-    genesis__Field_Type__c = 'Double',
-    genesis__Matching_Type__c = '<=',
-    genesis__Matching_Value__c = '1'
-    );
-    genesis__RuleCriteria__c criteriaSix = new genesis__RuleCriteria__c(genesis__Criteria_Sequence__c = 2,
-    genesis__Rule__c = ruleLists[4].Id,
-    genesis__Related_Object__c = 'clcommon__Party__c',
-    genesis__Rule_Object_Reference__c = 'genesis__Application__r',
-    genesis__Stipulation_Type__c = 'FUNDING',
-    genesis__Field_Name__c = 'Number Of Dependents',
-    genesis__Field_API_Name__c = 'clcommon__Contact__r.Number_Of_Dependents__c',
-    genesis__Field_Type__c = 'Double',
-    genesis__Matching_Type__c = '<=',
-    genesis__Matching_Value__c = '10'
-    );
-    List <genesis__Checklist__c> checkList = new List<genesis__Checklist__c>();
-   
-    genesis__Checklist__c eachCheckList1 = new genesis__Checklist__c(
-                    genesis__Application__c = appId,
-                    genesis__Assessed_Record_Id__c = appId,
-                    genesis__Is_Archived__c = False,
-                    genesis__Level__c = 'ERROR',
-                    genesis__Message__c = 'FAIL',
-                    genesis__Rule__c = ruleOne.Id,
-                    genesis__Type__c = 'Business Rule');
-    genesis__Checklist__c eachCheckList2 = new genesis__Checklist__c(
-                    genesis__Application__c = appId,
-                    genesis__Assessed_Record_Id__c = appId,
-                    genesis__Is_Archived__c = False,
-                    genesis__Level__c = 'ERROR',
-                    genesis__Message__c = 'FAIL',
-                    genesis__Rule__c = ruleTwo.Id,
-                    genesis__Type__c = 'Business Rule');
-    genesis__Checklist__c eachCheckList3 = new genesis__Checklist__c(
-                    genesis__Application__c = appId,
-                    genesis__Assessed_Record_Id__c = appId,
-                    genesis__Is_Archived__c = False,
-                    genesis__Level__c = 'ERROR',
-                    genesis__Message__c = 'FAIL',
-                    genesis__Rule__c = ruleThree.Id,
-                    genesis__Type__c = 'Business Rule');
-    genesis__Checklist__c eachCheckList4 = new genesis__Checklist__c(
-                    genesis__Application__c = appId,
-                    genesis__Assessed_Record_Id__c = appId,
-                    genesis__Is_Archived__c = False,
-                    genesis__Level__c = 'ERROR',
-                    genesis__Message__c = 'FAIL',
-                    genesis__Rule__c = ruleFive.Id,
-                    genesis__Type__c = 'Business Rule');
-    genesis__Checklist__c eachCheckList5 = new genesis__Checklist__c(
-                    genesis__Application__c = appId,
-                    genesis__Assessed_Record_Id__c = appId,
-                    genesis__Is_Archived__c = False,
-                    genesis__Level__c = 'ERROR',
-                    genesis__Message__c = 'FAIL',
-                    genesis__Rule__c = ruleSeven.Id,
-                    genesis__Type__c = 'Business Rule');
-     genesis__Checklist__c eachCheckList6 = new genesis__Checklist__c(
-                    genesis__Application__c = appId,
-                    genesis__Assessed_Record_Id__c = appId,
-                    genesis__Is_Archived__c = False,
-                    genesis__Level__c = 'ERROR',
-                    genesis__Message__c = 'FAIL',
-                    genesis__Rule__c = ruleNine.Id,
-                    genesis__Type__c = 'Business Rule');
-    genesis__Checklist__c eachCheckList7 = new genesis__Checklist__c(
-                    genesis__Application__c = appId,
-                    genesis__Assessed_Record_Id__c = appId,
-                    genesis__Is_Archived__c = False,
-                    genesis__Level__c = 'ERROR',
-                    genesis__Message__c = 'FAIL',
-                    genesis__Rule__c = ruleTen.Id,
-                    genesis__Type__c = 'Business Rule'); 
-    genesis__Checklist__c eachCheckList8 = new genesis__Checklist__c(
-                    genesis__Application__c = appId,
-                    genesis__Assessed_Record_Id__c = appId,
-                    genesis__Is_Archived__c = False,
-                    genesis__Level__c = 'ERROR',
-                    genesis__Message__c = 'FAIL',
-                    genesis__Rule__c = ruleEl.Id,
-                    genesis__Type__c = 'Business Rule');
-                       
-    //checkList.add(eachCheckList1);
-    //checkList.add(eachCheckList2);
-    checkList.add(eachCheckList3);
-    checkList.add(eachCheckList4);
-    checkList.add(eachCheckList5);
-    checkList.add(eachCheckList6);
-    checkList.add(eachCheckList7);
-    checkList.add(eachCheckList8);
-    //criteriaList.add(criteriaOne);
-    //criteriaList.add(criteriaTwo);
-    criteriaList.add(criteriaThree);
-    criteriaList.add(criteriaFour);
-    criteriaList.add(criteriaFive);
-    criteriaList.add(criteriaSix);
-    criteriaList.add(criteriaSeven);
-    criteriaList.add(criteriaEight);
-    criteriaList.add(criteriaNine);
-    criteriaList.add(criteriaTen);
-    criteriaList.add(criteriaEl);
-    insert checkList;
-    insert criteriaList;
-    return ruleLists;
-  }
+        genesis__Checklist__c eachCheckList1 = new genesis__Checklist__c(
+                        genesis__Application__c = appId,
+                        genesis__Assessed_Record_Id__c = appId,
+                        genesis__Is_Archived__c = False,
+                        genesis__Level__c = 'ERROR',
+                        genesis__Message__c = 'FAIL',
+                        genesis__Rule__c = ruleOne.Id,
+                        genesis__Type__c = 'Business Rule');
+        genesis__Checklist__c eachCheckList2 = new genesis__Checklist__c(
+                        genesis__Application__c = appId,
+                        genesis__Assessed_Record_Id__c = appId,
+                        genesis__Is_Archived__c = False,
+                        genesis__Level__c = 'ERROR',
+                        genesis__Message__c = 'FAIL',
+                        genesis__Rule__c = ruleTwo.Id,
+                        genesis__Type__c = 'Business Rule');
+        genesis__Checklist__c eachCheckList3 = new genesis__Checklist__c(
+                        genesis__Application__c = appId,
+                        genesis__Assessed_Record_Id__c = appId,
+                        genesis__Is_Archived__c = False,
+                        genesis__Level__c = 'ERROR',
+                        genesis__Message__c = 'FAIL',
+                        genesis__Rule__c = ruleThree.Id,
+                        genesis__Type__c = 'Business Rule');
+        genesis__Checklist__c eachCheckList4 = new genesis__Checklist__c(
+                        genesis__Application__c = appId,
+                        genesis__Assessed_Record_Id__c = appId,
+                        genesis__Is_Archived__c = False,
+                        genesis__Level__c = 'ERROR',
+                        genesis__Message__c = 'FAIL',
+                        genesis__Rule__c = ruleFive.Id,
+                        genesis__Type__c = 'Business Rule');
+        genesis__Checklist__c eachCheckList5 = new genesis__Checklist__c(
+                        genesis__Application__c = appId,
+                        genesis__Assessed_Record_Id__c = appId,
+                        genesis__Is_Archived__c = False,
+                        genesis__Level__c = 'ERROR',
+                        genesis__Message__c = 'FAIL',
+                        genesis__Rule__c = ruleSeven.Id,
+                        genesis__Type__c = 'Business Rule');
+        genesis__Checklist__c eachCheckList6 = new genesis__Checklist__c(
+                        genesis__Application__c = appId,
+                        genesis__Assessed_Record_Id__c = appId,
+                        genesis__Is_Archived__c = False,
+                        genesis__Level__c = 'ERROR',
+                        genesis__Message__c = 'FAIL',
+                        genesis__Rule__c = ruleNine.Id,
+                        genesis__Type__c = 'Business Rule');
+        genesis__Checklist__c eachCheckList7 = new genesis__Checklist__c(
+                        genesis__Application__c = appId,
+                        genesis__Assessed_Record_Id__c = appId,
+                        genesis__Is_Archived__c = False,
+                        genesis__Level__c = 'ERROR',
+                        genesis__Message__c = 'FAIL',
+                        genesis__Rule__c = ruleTen.Id,
+                        genesis__Type__c = 'Business Rule'); 
+        genesis__Checklist__c eachCheckList8 = new genesis__Checklist__c(
+                        genesis__Application__c = appId,
+                        genesis__Assessed_Record_Id__c = appId,
+                        genesis__Is_Archived__c = False,
+                        genesis__Level__c = 'ERROR',
+                        genesis__Message__c = 'FAIL',
+                        genesis__Rule__c = ruleEl.Id,
+                        genesis__Type__c = 'Business Rule');
+        genesis__Checklist__c eachCheckList9 = new genesis__Checklist__c(
+                        genesis__Application__c = appId,
+                        genesis__Assessed_Record_Id__c = appId,
+                        genesis__Is_Archived__c = False,
+                        genesis__Level__c = 'ERROR',
+                        genesis__Message__c = 'FAIL',
+                        genesis__Rule__c = ruleTwl.Id,
+                        genesis__Type__c = 'Business Rule');
+        genesis__Checklist__c eachCheckList10 = new genesis__Checklist__c(
+                        genesis__Application__c = appId,
+                        genesis__Assessed_Record_Id__c = appId,
+                        genesis__Is_Archived__c = False,
+                        genesis__Level__c = 'ERROR',
+                        genesis__Message__c = 'FAIL',
+                        genesis__Rule__c = ruleTtn.Id,
+                        genesis__Type__c = 'Business Rule');
+        genesis__Checklist__c eachCheckList11 = new genesis__Checklist__c(
+                        genesis__Application__c = appId,
+                        genesis__Assessed_Record_Id__c = appId,
+                        genesis__Is_Archived__c = False,
+                        genesis__Level__c = 'ERROR',
+                        genesis__Message__c = 'FAIL',
+                        genesis__Rule__c = ruleFrtn.Id,
+                        genesis__Type__c = 'Business Rule');
+        genesis__Checklist__c eachCheckList12 = new genesis__Checklist__c(
+                        genesis__Application__c = appId,
+                        genesis__Assessed_Record_Id__c = appId,
+                        genesis__Is_Archived__c = False,
+                        genesis__Level__c = 'ERROR',
+                        genesis__Message__c = 'FAIL',
+                        genesis__Rule__c = ruleFftn.Id,
+                        genesis__Type__c = 'Business Rule');
+        genesis__Checklist__c eachCheckList13 = new genesis__Checklist__c(
+                        genesis__Application__c = appId,
+                        genesis__Assessed_Record_Id__c = appId,
+                        genesis__Is_Archived__c = False,
+                        genesis__Level__c = 'ERROR',
+                        genesis__Message__c = 'FAIL',
+                        genesis__Rule__c = ruleSxtn.Id,
+                        genesis__Type__c = 'Business Rule');
+                        
+        //checkList.add(eachCheckList1);
+        //checkList.add(eachCheckList2);
+        checkList.add(eachCheckList3);
+        checkList.add(eachCheckList4);
+        checkList.add(eachCheckList5);
+        checkList.add(eachCheckList6);
+        checkList.add(eachCheckList7);
+        checkList.add(eachCheckList8);
+        checkList.add(eachCheckList9);
+        checkList.add(eachCheckList10);
+        checkList.add(eachCheckList11);
+        checkList.add(eachCheckList12);
+        checkList.add(eachCheckList13);
+        //criteriaList.add(criteriaOne);
+        //criteriaList.add(criteriaTwo);
+        criteriaList.add(criteriaThree);
+        criteriaList.add(criteriaFour);
+        criteriaList.add(criteriaFive);
+        criteriaList.add(criteriaSix);
+        criteriaList.add(criteriaSeven);
+        criteriaList.add(criteriaEight);
+        criteriaList.add(criteriaNine);
+        criteriaList.add(criteriaTen);
+        criteriaList.add(criteriaEl);
+        criteriaList.add(criteriaTwl);
+        criteriaList.add(criteriaTtn);
+        criteriaList.add(criteriaFrtn);
+        criteriaList.add(criteriaFftn);
+        criteriaList.add(criteriaSxtn);
+        criteriaList.add(criteriaSvntn);
+        insert checkList;
+        insert criteriaList;
+        return ruleLists;
+    }
     //Inserting Employment and Income
     public static genesis__Employment_Information__c returnEmploymentInformation(Id appId){
         genesis__Employment_Information__c employmentInfo = new genesis__Employment_Information__c(genesis__Application__c = appId
@@ -856,11 +998,4 @@ public static clcommon__CL_Product__c insertClProduct2(){
     insert feeAmt;
     return feeAmt;
   }
-  public static clcommon__Legal_Entity__c returnCompanyLegalEntity() {
-    clcommon__Legal_Entity__c legEntity = new clcommon__Legal_Entity__c(
-    Name = 'Company'
-    );
-    insert legEntity;
-    return legEntity;
- }
 }

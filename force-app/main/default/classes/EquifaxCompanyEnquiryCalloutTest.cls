@@ -5,8 +5,7 @@ private class EquifaxCompanyEnquiryCalloutTest {
         clcommon__Party_Type__c partyType = new clcommon__Party_Type__c();
         partyType.Name = 'Borrower';
         insert partyType;
-
-
+        
         intframework__Integration_Family__c family = GenericUtilityTestHelper.getFamily(
             ConstantValues.EQUIFAX_FAMILY
         );
@@ -34,23 +33,17 @@ private class EquifaxCompanyEnquiryCalloutTest {
             '/companyEnquiry1',
             '{"thirdPartySystem":{"name":"Equifax","dynamicDataParameters":[{"externalField":"enrichmentRequired"},{"externalField":"isJoint"}],"filters":[{"objectAPI":"clcommon__Party__c","objectAlias":"partyinfo","fields":[{"externalField":"companyACN","fieldAPI":"Company_ACN__c"},{"externalField":"trusteeACN","fieldAPI":"Trustee_ACN__c"},{"externalField":"name","fieldAPI":"Name"}],"whereClause":"Id = :partyId"},{"objectAPI":"clcommon__Party_Type__c","objectAlias":"partyRelatedInfo","fields":[{"externalField":"partyTypeName","fieldAPI":"Name"}],"whereClause":"Id = :partyTypeId"},{"objectAPI":"clcommon__Legal_Entity__c","objectAlias":"entityRelatedInfo","fields":[{"externalField":"entityName","fieldAPI":"Name"}],"whereClause":"Id = :entityID"},{"objectAPI":"genesis__Applications__c","objectAlias":"applicationInfo","fields":[{"externalField":"applicationName","fieldAPI":"Name"},{"externalField":"loanAmount","fieldAPI":"genesis__Loan_Amount__c"}],"whereClause":"Id = :applicationID"}]}}'
         );
-
-
+        
         Account acc = GenericUtilityTestHelper.createAccount();
         clcommon__CL_Product__c prod = GenericUtilityTestHelper.returnClProduct();
         genesis__applications__c application = GenericUtilityTestHelper.insertApplication(acc.Id, prod.Id);
         clcommon__Party__c party = GenericUtilityTestHelper.createParty(acc);
         party.clcommon__Type__c = partyType.Id;
         update party;
-        clcommon__Legal_Entity__c entity = GenericUtilityTestHelper.returnLegalEntity();
+        clcommon__Legal_Entity__c entity = GenericUtilityTestHelper.returnCompanyLegalEntity();
         acc.clcommon__Legal_Entity_Type__c = entity.Id;
         update acc;
-        
-        
-
     }
-
-
     @isTest 
     static void testcompanyEnquiryRequest(){
         clcommon__Party__c party = [SELECT ID from clcommon__Party__c];
@@ -66,7 +59,6 @@ private class EquifaxCompanyEnquiryCalloutTest {
         Test.stopTest();
         System.assertNotEquals(ConstantValues.GENERAL_ERROR, testEnquiry, 'Response fetching error');
     }
-
     @isTest 
     static void testcompanyEnquiryRequest2(){
         clcommon__Party__c party = [SELECT ID from clcommon__Party__c];
@@ -85,7 +77,6 @@ private class EquifaxCompanyEnquiryCalloutTest {
         Test.stopTest();
         System.assertNotEquals(ConstantValues.GENERAL_ERROR, testEnquiry, 'Response fetching error');
     }
-
     @isTest 
     static void testcompanyEnquiryRequest3(){
         clcommon__Party__c party = [SELECT ID from clcommon__Party__c];
@@ -104,7 +95,6 @@ private class EquifaxCompanyEnquiryCalloutTest {
         Test.stopTest();
         System.assertNotEquals(ConstantValues.GENERAL_ERROR, testEnquiry, 'Response fetching error');
     }
-
     @isTest 
     static void testcompanyEnquiryRequest4(){
         clcommon__Party__c party = [SELECT ID from clcommon__Party__c];
@@ -156,7 +146,6 @@ private class EquifaxCompanyEnquiryCalloutTest {
         ob.generateRequestBody(request);
         Test.stopTest();
     }
-
     private class Mock implements HttpCalloutMock {
         public HTTPResponse respond(HTTPRequest req) {
             System.debug(
@@ -166,7 +155,6 @@ private class EquifaxCompanyEnquiryCalloutTest {
             return getMockResponse(req.getEndpoint(), 200);
         }
     }
-
     /* method to get mock response from static resource */
     private static HttpResponse getMockResponse(
         String endpoint,
@@ -209,7 +197,5 @@ private class EquifaxCompanyEnquiryCalloutTest {
             res.setBody('');
         }
         return res;
-    }
-    
-    
+    }    
 }
