@@ -12,6 +12,7 @@
                <enquiry-id>141105-MFDVM-00000</enquiry-id>
                <mode>Online</mode>
             </order-details>
+            <price-value>12.00</price-value>
          </order-document-response-data>
       </order-document-response>
    </soap:Body>

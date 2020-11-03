@@ -620,6 +620,7 @@
         <!-- Title Search Changes added by Souvik -->
         <members>Sample_Deliver_Document_Success_Response</members>
         <members>Sample_Order_Document_Response</members>
+        <members>Sample_Order_Document_Error_Response</members>
         <members>Sample_Title_Search_Response</members>
         <members>Sample_APPLY_INDIVIDUAL_Response</members>
         <members>Sample_PREVIOUS_ENQUIRY_Response</members>
