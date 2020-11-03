@@ -4,7 +4,7 @@
 /* Created Date         : 14/08/2020 */
 /* Developed By         : Souvik */
 /* Description          : This class is used to Parse and Store Apply Individual Response of Equifax */
-/* Last Modified Date   : 15/08/2020 */
+/* Last Modified Date   : 2/11/2020 */
 /* Last Modified By     : Souvik */
 /*********************************************************************************************************/
 
@@ -513,12 +513,12 @@ public class EquifaxApplyIndividualResponseHelper{
         if (all == null) {
             return new Cls_characteristic();
         }
-        for (Cls_characteristic each : all) {
-            if(each == null || each.variableName == null){
+        for (Cls_characteristic eachChar : all) {
+            if(eachChar == null || eachChar.variableName == null){
                 continue;
             }
-            if (each.variableName.nodeValue == val) {
-                return each;
+            if (eachChar.variableName.nodeValue == val) {
+                return eachChar;
             }
         }
         return new Cls_characteristic();
@@ -550,24 +550,34 @@ public class EquifaxApplyIndividualResponseHelper{
     }
     static String processPossiblyMatchedData(Cls_possibleMatch possibleMatchData){
         String data = '';
-        try{
-            data += possibleMatchData.identity.individualName.firstGivenName.nodeValue + ' ';
-        }catch(Exception ex){}
-        try{
-            data += possibleMatchData.identity.individualName.otherGivenName.nodeValue + ' ';
-        }catch(Exception ex){}
-        try{
-            data += possibleMatchData.identity.individualName.familyName.nodeValue + ' ';
-        }catch(Exception ex){}
-        try{
-            data += '\nD.O.B : ' + possibleMatchData.identity.dateOfBirth.nodeValue;
-        }catch(Exception ex){}
-        try{
-            data += '\nAddresses : ';
-            for(Cls_address each : possibleMatchData.addresses.address){
-                data += processAddress(each) + '\n';
+        if(possibleMatchData != null
+        && possibleMatchData.identity != null
+        && possibleMatchData.identity.individualName != null){
+            if(possibleMatchData.identity.individualName.firstGivenName != null
+            && possibleMatchData.identity.individualName.firstGivenName.nodeValue != null){
+                data += possibleMatchData.identity.individualName.firstGivenName.nodeValue + ' ';
             }
-        }catch(Exception ex){}
+            if(possibleMatchData.identity.individualName.otherGivenName != null
+            && possibleMatchData.identity.individualName.otherGivenName.nodeValue != null){
+                data += possibleMatchData.identity.individualName.otherGivenName.nodeValue + ' ';
+            }
+            if(possibleMatchData.identity.individualName.familyName != null
+            && possibleMatchData.identity.individualName.familyName.nodeValue != null){
+                data += possibleMatchData.identity.individualName.familyName.nodeValue + ' ';
+            }
+            if(possibleMatchData.identity.dateOfBirth != null
+            && possibleMatchData.identity.dateOfBirth.nodeValue != null){
+                data += '\nD.O.B : ' + possibleMatchData.identity.dateOfBirth.nodeValue;
+            }
+        }
+        if(possibleMatchData != null
+        && possibleMatchData.addresses != null
+        && possibleMatchData.addresses.address != null){
+            data += '\nAddresses : ';
+            for(Cls_address eachAddress : possibleMatchData.addresses.address){
+                data += processAddress(eachAddress) + '\n';
+            }
+        }
         return data;
     }
 	public static EquifaxApplyIndividualResponseHelper parse(String json, Id partyId){
@@ -599,29 +609,38 @@ public class EquifaxApplyIndividualResponseHelper{
     }
     private static List<Current_Directorship__c> updateCurrentDirectorships(Cls_directorship[] directorshipList, clcommon__Party__c partyObj){
         List<Current_Directorship__c> currentDirectorships = new List<Current_Directorship__c>();
+        Current_Directorship__c refDirShip;
         if(directorshipList == null){
             return null;
         }
-        for(Cls_directorship each : directorshipList){
-            if(String.isNotBlank(each.type) && each.type.equals('C')){
-                Current_Directorship__c refDirShip;
-                try{
-                    refDirShip = new Current_Directorship__c();
-                    refDirShip.Directorship_Type__c = 'Current';
-                    refDirShip.Party__c = partyObj.Id;
-                }catch(Exception ex){}
-                try{
-                    refDirShip.Org_Name__c = each.organisation.name.nodeValue + ' ' + each.organisation.type.nodeValue;
-                }catch(Exception ex){}
-                try{
-                    refDirShip.Company_Status__c = each.organisation.status.nodeValue;
-                }catch(Exception ex){}
-                try{
-                    refDirShip.ABN__c = each.organisation.abn.nodeValue;
-                }catch(Exception ex){}
-                try{
-                    refDirShip.ACN__c = each.organisation.organisationNumber.nodeValue;
-                }catch(Exception ex){}
+        for(Cls_directorship eachDirectorship : directorshipList){
+            if(String.isNotBlank(eachDirectorship.type) && eachDirectorship.type.equals('C')){
+                refDirShip = new Current_Directorship__c();
+                refDirShip.Directorship_Type__c = 'Current';
+                refDirShip.Party__c = partyObj.Id;
+                if(eachDirectorship != null
+                && eachDirectorship.organisation != null){
+                    if(eachDirectorship.organisation.name != null
+                    && eachDirectorship.organisation.name.nodeValue != null){
+                        refDirShip.Org_Name__c = eachDirectorship.organisation.name.nodeValue;
+                    }
+                    if(eachDirectorship.organisation.type != null
+                    && eachDirectorship.organisation.type.nodeValue != null){
+                        refDirShip.Org_Name__c += ' ' + eachDirectorship.organisation.type.nodeValue;
+                    }
+                    if(eachDirectorship.organisation.status != null
+                    && eachDirectorship.organisation.status.nodeValue != null){
+                        refDirShip.Company_Status__c = eachDirectorship.organisation.status.nodeValue;
+                    }
+                    if(eachDirectorship.organisation.abn != null
+                    && eachDirectorship.organisation.abn.nodeValue != null){
+                        refDirShip.ABN__c = eachDirectorship.organisation.abn.nodeValue;
+                    }
+                    if(eachDirectorship.organisation.organisationNumber != null
+                    && eachDirectorship.organisation.organisationNumber.nodeValue != null){
+                        refDirShip.ACN__c = eachDirectorship.organisation.organisationNumber.nodeValue;
+                    }
+                }
                 if(refDirShip != null){
                     currentDirectorships.add(refDirShip);
                 }
@@ -663,17 +682,32 @@ public class EquifaxApplyIndividualResponseHelper{
             }
             update partyObj;
             // Checks if any fault exists
-            try{
+            if(helperObject.envelope == null
+            || helperObject.envelope.body == null){
+                return ConstantValues.GENERAL_ERROR;
+            }
+            if(helperObject.envelope.body.fault != null
+            && helperObject.envelope.body.fault.faultstring != null
+            && helperObject.envelope.body.fault.faultstring.nodeValue != null){
                 faultString = helperObject.envelope.body.fault.faultstring.nodeValue;
                 return faultString;
-            }catch(Exception ex){}
-            try{
+            }
+            if(helperObject.envelope.body.response == null){
+                return ConstantValues.GENERAL_ERROR;
+            }
+            if(helperObject.envelope.body.response.errors != null
+            && helperObject.envelope.body.response.errors.error != null
+            && helperObject.envelope.body.response.errors.error.detail != null
+            && helperObject.envelope.body.response.errors.error.detail.nodeValue != null){
                 faultString = helperObject.envelope.body.response.errors.error.detail.nodeValue;
                 return faultString;
-            }catch(Exception ex){}
-            try{
+            }
+            if(helperObject.envelope.body.response.productData != null
+            && helperObject.envelope.body.response.productData.summaryData != null
+            && helperObject.envelope.body.response.productData.summaryData.dataBlock != null
+            && helperObject.envelope.body.response.productData.summaryData.dataBlock.characteristic != null){
                 summaryDataList = helperObject.envelope.body.response.productData.summaryData.dataBlock.characteristic;
-            }catch(Exception ex){}
+            }
             try{
                 String dateTimeGenString = helperObject.envelope.body.response.productHeader.datetimeGenerated.nodeValue;
                 Date dateGen = Date.newInstance(Integer.valueOf(dateTimeGenString.subString(0,4)),
@@ -684,69 +718,90 @@ public class EquifaxApplyIndividualResponseHelper{
             }catch(Exception ex){
                 return ConstantValues.GENERAL_ERROR;
             }
-            try{
+            if(helperObject.envelope.body.response.productData != null
+            && helperObject.envelope.body.response.productData.possibleMatches != null
+            && helperObject.envelope.body.response.productData.possibleMatches.possibleMatch != null){
                 possibleMatchData = helperObject.envelope.body.response.productData.possibleMatches.possibleMatch;
                 partyObj.Possibly_matched_data__c = processPossiblyMatchedData(possibleMatchData);
-            }catch(Exception ex){}
-            try{
+            }
+            if(helperObject.envelope.body.response.productData != null
+            && helperObject.envelope.body.response.productData.enquiryReport != null
+            && helperObject.envelope.body.response.productData.enquiryReport.primaryMatch != null
+            && helperObject.envelope.body.response.productData.enquiryReport.primaryMatch.bureauReference != null
+            && helperObject.envelope.body.response.productData.enquiryReport.primaryMatch.bureauReference.nodeValue != null){
                 partyObj.File_Number__c = helperObject.envelope.body.response.productData.enquiryReport.primaryMatch.bureauReference.nodeValue;
-            }catch(Exception ex){}
-            try{
-                charData = findInSummaryData(summaryDataList, 'NA8904_age_fle');
-                partyObj.Age_of_Credit_File__c = Decimal.valueOf(charData.value.nodeValue).round(System.RoundingMode.HALF_DOWN);
-                charData = findInSummaryData(summaryDataList, 'NY7601_adv_48_84m');
-                if(charData.value.nodeValue.equalsIgnoreCase('Y')){
-                    partyObj.Adverse_on_file__c = 'Yes';
-                }else if(charData.value.nodeValue.equalsIgnoreCase('N')){
-                    partyObj.Adverse_on_file__c = 'No';
-                }
-                charData = findInSummaryData(summaryDataList, 'NX7601_adv_48_84m');
-                if(charData.value.nodeValue.equalsIgnoreCase('Y')){
-                    partyObj.Consumer_Adverse_on_file__c = 'Yes';
-                }else if(charData.value.nodeValue.equalsIgnoreCase('N')){
-                    partyObj.Consumer_Adverse_on_file__c = 'No';
-                }
-                charData = findInSummaryData(summaryDataList, 'NP8500_dr_cur');
-                partyObj.Current_Directorships__c = Integer.valueOf(charData.value.nodeValue);
-                charData = findInSummaryData(summaryDataList, 'NP8506_dr_adv_disq_60m_ever');
-                partyObj.External_Administrators__c = Integer.valueOf(charData.value.nodeValue);
-                charData = findInSummaryData(summaryDataList, 'NP8512_inslv_bkrpt');
-                partyObj.Number_of_bankrupt_on_file__c = Integer.valueOf(charData.value.nodeValue);
-                charData = findInSummaryData(summaryDataList, 'NP7502_inslv_bkrpt_84m');
-                partyObj.Number_of_bankrupt_on_file_in_last_84m__c = Integer.valueOf(charData.value.nodeValue);
-                charData = findInSummaryData(summaryDataList, 'NP8511_inslv_dis');
-                partyObj.Number_of_Discharged_Insolvencies__c = Integer.valueOf(charData.value.nodeValue);
-                charData = findInSummaryData(summaryDataList, 'NP8510_inslv');
-                partyObj.Number_of_insolvencies_on_file__c = Integer.valueOf(charData.value.nodeValue);
-                charData = findInSummaryData(summaryDataList, 'NY8006_enq_60m');
-            }catch(Exception ex){}
-            try{
+            }
+            charData = findInSummaryData(summaryDataList, 'NA8904_age_fle');
+            partyObj.Age_of_Credit_File__c = Decimal.valueOf(charData.value.nodeValue).round(System.RoundingMode.HALF_DOWN);
+            charData = findInSummaryData(summaryDataList, 'NY7601_adv_48_84m');
+            if(charData.value.nodeValue.equalsIgnoreCase('Y')){
+                partyObj.Adverse_on_file__c = 'Yes';
+            }else if(charData.value.nodeValue.equalsIgnoreCase('N')){
+                partyObj.Adverse_on_file__c = 'No';
+            }
+            charData = findInSummaryData(summaryDataList, 'NX7601_adv_48_84m');
+            if(charData.value.nodeValue.equalsIgnoreCase('Y')){
+                partyObj.Consumer_Adverse_on_file__c = 'Yes';
+            }else if(charData.value.nodeValue.equalsIgnoreCase('N')){
+                partyObj.Consumer_Adverse_on_file__c = 'No';
+            }
+            charData = findInSummaryData(summaryDataList, 'NP8500_dr_cur');
+            partyObj.Current_Directorships__c = Integer.valueOf(charData.value.nodeValue);
+            charData = findInSummaryData(summaryDataList, 'NP8506_dr_adv_disq_60m_ever');
+            partyObj.External_Administrators__c = Integer.valueOf(charData.value.nodeValue);
+            charData = findInSummaryData(summaryDataList, 'NP8512_inslv_bkrpt');
+            partyObj.Number_of_bankrupt_on_file__c = Integer.valueOf(charData.value.nodeValue);
+            charData = findInSummaryData(summaryDataList, 'NP7502_inslv_bkrpt_84m');
+            partyObj.Number_of_bankrupt_on_file_in_last_84m__c = Integer.valueOf(charData.value.nodeValue);
+            charData = findInSummaryData(summaryDataList, 'NP8511_inslv_dis');
+            partyObj.Number_of_Discharged_Insolvencies__c = Integer.valueOf(charData.value.nodeValue);
+            charData = findInSummaryData(summaryDataList, 'NP8510_inslv');
+            partyObj.Number_of_insolvencies_on_file__c = Integer.valueOf(charData.value.nodeValue);
+            charData = findInSummaryData(summaryDataList, 'NY8006_enq_60m');
+            if(helperObject.envelope.body.response.productData != null
+            && helperObject.envelope.body.response.productData.scoreData != null
+            && helperObject.envelope.body.response.productData.scoreData.score != null){
                 scoreList = helperObject.envelope.body.response.productData.scoreData.score;
-            }catch(Exception ex){
             }
             if(scoreList != null){
-                for(Cls_score each : scoreList){
-                    try {
-                        String scoreCardIdVal = each.scorecard.id;
-                        if(scoreCardIdVal.equalsIgnoreCase('VSA_2.0_XY_NR') || scoreCardIdVal.equalsIgnoreCase('CCAI_2.0_YX_NR')){
-                            partyObj.Credit_Score__c = Decimal.valueOf(each.scoreMasterscale.nodeValue);
+                for(Cls_score eachScore : scoreList){
+                    if(eachScore == null
+                    || eachScore.scorecard == null
+                    || eachScore.scorecard.id == null){
+                        continue;
+                    }
+                    String scoreCardIdVal = eachScore.scorecard.id;
+                    if(scoreCardIdVal.equalsIgnoreCase('VSA_2.0_XY_NR')
+                    || scoreCardIdVal.equalsIgnoreCase('CCAI_2.0_YX_NR')){
+                        if(eachScore == null
+                        || eachScore.scoreMasterscale == null
+                        || eachScore.scoreMasterscale.nodeValue == null){
+                            continue;
                         }
-                    }catch(Exception ex){
+                        partyObj.Credit_Score__c = Decimal.valueOf(eachScore.scoreMasterscale.nodeValue);
                     }
                 }
             }
-            try{
+            if(helperObject.envelope.body.response.productData != null
+            && helperObject.envelope.body.response.productData.enquiryReport != null
+            && helperObject.envelope.body.response.productData.enquiryReport.addresses != null
+            && helperObject.envelope.body.response.productData.enquiryReport.addresses.address != null){
                 addressList = helperObject.envelope.body.response.productData.enquiryReport.addresses.address;
-                for(Cls_address each : addressList){
-                    if(String.isNotBlank(each.type) && each.type.equals('C')){
-                        partyObj.Individual_Address__c = processAddress(each);
+                for(Cls_address eachAddress : addressList){
+                    if(String.isNotBlank(eachAddress.type) && eachAddress.type.equals('C')){
+                        partyObj.Individual_Address__c = processAddress(eachAddress);
                         break;
                     }
                 }
-            }catch(Exception ex){}
-            try{
+            }
+            if(helperObject.envelope.body.response.productData != null
+            && helperObject.envelope.body.response.productData.enquiryReport != null
+            && helperObject.envelope.body.response.productData.enquiryReport.employment != null
+            && !helperObject.envelope.body.response.productData.enquiryReport.employment.employer.isEmpty()
+            && helperObject.envelope.body.response.productData.enquiryReport.employment.employer[0] != null
+            && helperObject.envelope.body.response.productData.enquiryReport.employment.employer[0].name != null
+            && helperObject.envelope.body.response.productData.enquiryReport.employment.employer[0].name.nodeValue != null){
                 partyObj.Employer__c = helperObject.envelope.body.response.productData.enquiryReport.employment.employer[0].name.nodeValue;
-            }catch(Exception ex){
             }
             Database.update(partyObj);
             // Update Directorships from the Response
@@ -763,26 +818,27 @@ public class EquifaxApplyIndividualResponseHelper{
             }
             try {
                 disqDirectorshipList = helperObject.envelope.body.response.productData.enquiryReport.publicRecordOrConsumerCreditInformation.disqualifiedDirectorships.disqualifiedDirectorship;
-                for(Cls_disqualifiedDirectorship each : disqDirectorshipList){
-                    Current_Directorship__c refDirShip;
-                    refDirShip = new Current_Directorship__c();
+                for(Cls_disqualifiedDirectorship eachDisqualifiedDirectorship : disqDirectorshipList){
+                    Current_Directorship__c refDirShip = new Current_Directorship__c();
                     refDirShip.Directorship_Type__c = 'Disqualified';
                     refDirShip.Party__c = partyObj.Id;
-                    try{
-                        String dateDisqStr = each.dateDisqualified.nodeValue;
+                    if(eachDisqualifiedDirectorship != null
+                    && eachDisqualifiedDirectorship.dateDisqualified != null
+                    && eachDisqualifiedDirectorship.dateDisqualified.nodeValue != null){
+                        String dateDisqStr = eachDisqualifiedDirectorship.dateDisqualified.nodeValue;
                         Date dateDisq = Date.newInstance(Integer.valueOf(dateDisqStr.subString(0,4)),
                         Integer.valueOf(dateDisqStr.subString(5,7)),
                         Integer.valueOf(dateDisqStr.subString(8,10)));
                         refDirShip.Date_Disqualified__c = dateDisq;
-                    }catch(Exception ex){
                     }
-                    try{
-                        String dateDisqUntilStr = each.dateDisqualifiedUntil.nodeValue;
+                    if(eachDisqualifiedDirectorship != null
+                    && eachDisqualifiedDirectorship.dateDisqualifiedUntil != null
+                    && eachDisqualifiedDirectorship.dateDisqualifiedUntil.nodeValue != null){
+                        String dateDisqUntilStr = eachDisqualifiedDirectorship.dateDisqualifiedUntil.nodeValue;
                         Date dateDisqUntil = Date.newInstance(Integer.valueOf(dateDisqUntilStr.subString(0,4)),
                         Integer.valueOf(dateDisqUntilStr.subString(5,7)),
                         Integer.valueOf(dateDisqUntilStr.subString(8,10)));
                         refDirShip.Date_disqualified_until__c = dateDisqUntil;
-                    }catch(Exception ex){
                     }
                     if(refDirShip != null){
                         currentDirectorships.add(refDirShip);
@@ -797,34 +853,34 @@ public class EquifaxApplyIndividualResponseHelper{
             // Update Consumer Credit Enquiries from the Response
             try {
                 creditEnquiryList = helperObject.envelope.body.response.productData.enquiryReport.consumerCreditFile.creditEnquiries.creditEnquiry;
-                for(Cls_creditEnquiry each : creditEnquiryList){
+                for(Cls_creditEnquiry eachCreditEnquiry : creditEnquiryList){
                     Credit_Enquiry__c creditEnquiryObj;
-                    try{
-                        creditEnquiryObj = new Credit_Enquiry__c();
-                        creditEnquiryObj.Party__c = partyObj.Id;
-                        creditEnquiryObj.Credit_Enquiry_Type__c = 'Consumer';
-
-                        String dateString = each.enquiryDate;
+                    creditEnquiryObj = new Credit_Enquiry__c();
+                    creditEnquiryObj.Party__c = partyObj.Id;
+                    creditEnquiryObj.Credit_Enquiry_Type__c = 'Consumer';
+                    if(eachCreditEnquiry.enquiryDate != null){
+                        String dateString = eachCreditEnquiry.enquiryDate;
                         Date enqDate = Date.newInstance(Integer.valueOf(dateString.subString(0,4)),
                         Integer.valueOf(dateString.subString(5,7)),
                         Integer.valueOf(dateString.subString(8,10)));
                         creditEnquiryObj.Enquiry_Date__c = enqDate;
-                    }catch(Exception ex){
                     }
-                    try{
-                        creditEnquiryObj.Credit_Enquirer__c = each.creditEnquirer.name.nodeValue;
-                    }catch(Exception ex){
+                    if(eachCreditEnquiry.creditEnquirer != null
+                    && eachCreditEnquiry.creditEnquirer.name != null
+                    && eachCreditEnquiry.creditEnquirer.name.nodeValue != null){
+                        creditEnquiryObj.Credit_Enquirer__c = eachCreditEnquiry.creditEnquirer.name.nodeValue;
                     }
-                    try{
-                        creditEnquiryObj.Account_Type__c = each.accountType.nodeValue;
-                    }catch(Exception ex){
+                    if(eachCreditEnquiry.accountType != null
+                    && eachCreditEnquiry.accountType.nodeValue != null){
+                        creditEnquiryObj.Account_Type__c = eachCreditEnquiry.accountType.nodeValue;
                     }
-                    try{
-                        creditEnquiryObj.Enquiry_amount__c = Decimal.valueOf(each.enquiryAmount.nodeValue);
-                    }catch(Exception ex){
+                    if(eachCreditEnquiry.enquiryAmount != null
+                    && eachCreditEnquiry.enquiryAmount.nodeValue != null){
+                        creditEnquiryObj.Enquiry_amount__c = Decimal.valueOf(eachCreditEnquiry.enquiryAmount.nodeValue);
                     }
-                    try{
-                        Integer codeValue = Integer.valueOf(each.relationship.code);
+                    if(eachCreditEnquiry.relationship != null
+                    && eachCreditEnquiry.relationship.code != null){
+                        Integer codeValue = Integer.valueOf(eachCreditEnquiry.relationship.code);
                         switch on codeValue {
                             when 1 {
                                 creditEnquiryObj.Role_in_Enquiry__c = 'Principal (sole)';
@@ -836,11 +892,10 @@ public class EquifaxApplyIndividualResponseHelper{
                                 creditEnquiryObj.Role_in_Enquiry__c = 'Guarantor';
                             }
                         }
-                    }catch(Exception ex){
                     }
-                    try{
-                        creditEnquiryObj.Reference_No__c = each.enquiryClientReference.nodeValue;
-                    }catch(Exception ex){
+                    if(eachCreditEnquiry.enquiryClientReference != null
+                    && eachCreditEnquiry.enquiryClientReference.nodeValue != null){
+                        creditEnquiryObj.Reference_No__c = eachCreditEnquiry.enquiryClientReference.nodeValue;
                     }
                     if(creditEnquiryObj != null){
                         creditEnquiries.add(creditEnquiryObj);
@@ -852,34 +907,34 @@ public class EquifaxApplyIndividualResponseHelper{
             // Update Commercial Credit Enquiries from the Response
             try {
                 creditEnquiryList = helperObject.envelope.body.response.productData.enquiryReport.commercialCreditFile.creditEnquiries.creditEnquiry;
-                for(Cls_creditEnquiry each : creditEnquiryList){
+                for(Cls_creditEnquiry eachCreditEnquiry : creditEnquiryList){
                     Credit_Enquiry__c creditEnquiryObj;
-                    try{
-                        creditEnquiryObj = new Credit_Enquiry__c();
-                        creditEnquiryObj.Party__c = partyObj.Id;
-                        creditEnquiryObj.Credit_Enquiry_Type__c = 'Commercial';
-
-                        String dateString = each.enquiryDate;
+                    creditEnquiryObj = new Credit_Enquiry__c();
+                    creditEnquiryObj.Party__c = partyObj.Id;
+                    creditEnquiryObj.Credit_Enquiry_Type__c = 'Commercial';
+                    if(eachCreditEnquiry.enquiryDate != null){
+                        String dateString = eachCreditEnquiry.enquiryDate;
                         Date enqDate = Date.newInstance(Integer.valueOf(dateString.subString(0,4)),
                         Integer.valueOf(dateString.subString(5,7)),
                         Integer.valueOf(dateString.subString(8,10)));
                         creditEnquiryObj.Enquiry_Date__c = enqDate;
-                    }catch(Exception ex){
                     }
-                    try{
-                        creditEnquiryObj.Credit_Enquirer__c = each.creditEnquirer.name.nodeValue;
-                    }catch(Exception ex){
+                    if(eachCreditEnquiry.creditEnquirer != null
+                    && eachCreditEnquiry.creditEnquirer.name != null
+                    && eachCreditEnquiry.creditEnquirer.name.nodeValue != null){
+                        creditEnquiryObj.Credit_Enquirer__c = eachCreditEnquiry.creditEnquirer.name.nodeValue;
                     }
-                    try{
-                        creditEnquiryObj.Account_Type__c = each.accountType.nodeValue;
-                    }catch(Exception ex){
+                    if(eachCreditEnquiry.accountType != null
+                    && eachCreditEnquiry.accountType.nodeValue != null){
+                        creditEnquiryObj.Account_Type__c = eachCreditEnquiry.accountType.nodeValue;
                     }
-                    try{
-                        creditEnquiryObj.Enquiry_amount__c = Decimal.valueOf(each.enquiryAmount.nodeValue);
-                    }catch(Exception ex){
+                    if(eachCreditEnquiry.enquiryAmount != null
+                    && eachCreditEnquiry.enquiryAmount.nodeValue != null){
+                        creditEnquiryObj.Enquiry_amount__c = Decimal.valueOf(eachCreditEnquiry.enquiryAmount.nodeValue);
                     }
-                    try{
-                        Integer codeValue = Integer.valueOf(each.relationship.code);
+                    if(eachCreditEnquiry.relationship != null
+                    && eachCreditEnquiry.relationship.code != null){
+                        Integer codeValue = Integer.valueOf(eachCreditEnquiry.relationship.code);
                         switch on codeValue {
                             when 1 {
                                 creditEnquiryObj.Role_in_Enquiry__c = 'Principal (sole)';
@@ -891,11 +946,10 @@ public class EquifaxApplyIndividualResponseHelper{
                                 creditEnquiryObj.Role_in_Enquiry__c = 'Guarantor';
                             }
                         }
-                    }catch(Exception ex){
                     }
-                    try{
-                        creditEnquiryObj.Reference_No__c = each.enquiryClientReference.nodeValue;
-                    }catch(Exception ex){
+                    if(eachCreditEnquiry.enquiryClientReference != null
+                    && eachCreditEnquiry.enquiryClientReference.nodeValue != null){
+                        creditEnquiryObj.Reference_No__c = eachCreditEnquiry.enquiryClientReference.nodeValue;
                     }
                     if(creditEnquiryObj != null){
                         creditEnquiries.add(creditEnquiryObj);
@@ -910,53 +964,64 @@ public class EquifaxApplyIndividualResponseHelper{
             // Update Commercial Credit Accounts from the Response
             try{
                 accountList = helperObject.envelope.body.response.productData.enquiryReport.commercialCreditFile.accounts.account;
-                for(Cls_account each : accountList){
+                for(Cls_account eachAccount : accountList){
                     Credit_Account__c creditAccountObj;
                     creditAccountObj = new Credit_Account__c();
                     creditAccountObj.Party__c = partyObj.Id;
                     creditAccountObj.Credit_Account_Type__c = 'Commercial';
-                    try{
-                        creditAccountObj.Account_Id__c = each.accountId.nodeValue;
-                    }catch(Exception ex){}
-                    try{
-                        creditAccountObj.Account_Type__c = each.accountType.nodeValue;
-                    }catch(Exception ex){}
-                    try{
-                        creditAccountObj.Original_Credit_Provider__c = each.originalCreditProvider.name.nodeValue;
-                    }catch(Exception ex){}
-                    try{
-                        creditAccountObj.Latest_Credit_Provider__c = each.latestCreditProvider.name.nodeValue;
-                    }catch(Exception ex){}
-                    try{
-                        creditAccountObj.Relationship__c = each.relationship.nodeValue;
-                    }catch(Exception ex){}
+                    if(eachAccount.accountId != null
+                    && eachAccount.accountId.nodeValue != null){
+                        creditAccountObj.Account_Id__c = eachAccount.accountId.nodeValue;
+                    }
+                    if(eachAccount.accountType != null
+                    && eachAccount.accountType.nodeValue != null){
+                        creditAccountObj.Account_Type__c = eachAccount.accountType.nodeValue;
+                    }
+                    if(eachAccount.originalCreditProvider != null
+                    && eachAccount.originalCreditProvider.name != null
+                    && eachAccount.originalCreditProvider.name.nodeValue != null){
+                        creditAccountObj.Original_Credit_Provider__c = eachAccount.originalCreditProvider.name.nodeValue;
+                    }
+                    if(eachAccount.latestCreditProvider != null
+                    && eachAccount.latestCreditProvider.name != null
+                    && eachAccount.latestCreditProvider.name.nodeValue != null){
+                        creditAccountObj.Latest_Credit_Provider__c = eachAccount.latestCreditProvider.name.nodeValue;
+                    }
+                    if(eachAccount.relationship != null
+                    && eachAccount.relationship.nodeValue != null){
+                        creditAccountObj.Relationship__c = eachAccount.relationship.nodeValue;
+                    }
                     if(creditAccountObj != null){
                         creditAccounts.add(creditAccountObj);
                     }
-                    try {
-                        defaultList = each.pDefaults.pDefault;
+                    if(eachAccount.pDefaults != null
+                    && eachAccount.pDefaults.pDefault != null) {
+                        defaultList = eachAccount.pDefaults.pDefault;
                         for(Cls_pDefault eachDefault : defaultList){
                             Payment_Default__c paymentDefaultObj;
                             paymentDefaultObj = new Payment_Default__c();
-                            try {
+                            if(eachDefault.status != null
+                            && eachDefault.status.nodeValue != null){
                                 paymentDefaultObj.Status__c = eachDefault.status.nodeValue;
-                            }catch(Exception ex){
                             }
-                            try {
+                            if(eachDefault.originalpDefault != null
+                            && eachDefault.originalpDefault.dateRecorded != null
+                            && eachDefault.originalpDefault.dateRecorded.nodeValue != null){
                                 String dateString = eachDefault.originalpDefault.dateRecorded.nodeValue;
                                 Date statusDate = Date.newInstance(Integer.valueOf(dateString.subString(0,4)),
                                 Integer.valueOf(dateString.subString(5,7)),
                                 Integer.valueOf(dateString.subString(8,10)));
                                 paymentDefaultObj.Status_Date__c = statusDate;
-                            }catch(Exception ex){
                             }
-                            try {
+                            if(eachDefault.currentpDefault != null
+                            && eachDefault.currentpDefault.pDefaultAmount != null
+                            && eachDefault.currentpDefault.pDefaultAmount.nodeValue != null){
                                 paymentDefaultObj.Current_Default_Amount__c = Decimal.valueOf(eachDefault.currentpDefault.pDefaultAmount.nodeValue);
-                            }catch(Exception ex){
                             }
-                            try {
+                            if(eachDefault.originalpDefault != null
+                            && eachDefault.originalpDefault.pDefaultAmount != null
+                            && eachDefault.originalpDefault.pDefaultAmount.nodeValue != null){
                                 paymentDefaultObj.Original_Default_Amount__c = Decimal.valueOf(eachDefault.originalpDefault.pDefaultAmount.nodeValue);
-                            }catch(Exception ex){
                             }
                             if(paymentDefaultObj != null){
                                 if(String.isNotBlank(creditAccountObj.Account_Id__c)){
@@ -965,7 +1030,7 @@ public class EquifaxApplyIndividualResponseHelper{
                                 }
                             }
                         }
-                    }catch(Exception ex){}
+                    }
                 }
             }catch(Exception ex){
                 returnVal += '\n' + 'No Commercial Credit Accounts found';
@@ -973,54 +1038,67 @@ public class EquifaxApplyIndividualResponseHelper{
             // Update Consumer Credit Accounts from the Response
             try{
                 accountList = helperObject.envelope.body.response.productData.enquiryReport.consumerCreditFile.accounts.account;
-                for(Cls_account each : accountList){
+                for(Cls_account eachAccount : accountList){
                     Credit_Account__c creditAccountObj;
                     creditAccountObj = new Credit_Account__c();
                     creditAccountObj.Party__c = partyObj.Id;
                     creditAccountObj.Credit_Account_Type__c = 'Consumer';
-                    try{
-                        creditAccountObj.Account_Id__c = each.accountId.nodeValue;
-                    }catch(Exception ex){}
-                    try{
-                        creditAccountObj.Account_Type__c = each.accountType.nodeValue;
-                    }catch(Exception ex){}
-                    try{
-                        creditAccountObj.Original_Credit_Provider__c = each.originalCreditProvider.name.nodeValue;
-                    }catch(Exception ex){}
-                    try{
-                        creditAccountObj.Latest_Credit_Provider__c = each.latestCreditProvider.name.nodeValue;
-                    }catch(Exception ex){}
-                    try{
-                        creditAccountObj.Relationship__c = each.relationship.nodeValue;
-                    }catch(Exception ex){}
+                    if(eachAccount.accountId != null
+                    && eachAccount.accountId.nodeValue != null){
+                        creditAccountObj.Account_Id__c = eachAccount.accountId.nodeValue;
+                    }
+                    if(eachAccount.accountType != null
+                    && eachAccount.accountType.nodeValue != null){
+                        creditAccountObj.Account_Type__c = eachAccount.accountType.nodeValue;
+                    }
+                    if(eachAccount.originalCreditProvider != null
+                    && eachAccount.originalCreditProvider.name != null
+                    && eachAccount.originalCreditProvider.name.nodeValue != null){
+                        creditAccountObj.Original_Credit_Provider__c = eachAccount.originalCreditProvider.name.nodeValue;
+                    }
+                    if(eachAccount.latestCreditProvider != null
+                    && eachAccount.latestCreditProvider.name != null
+                    && eachAccount.latestCreditProvider.name.nodeValue != null){
+                        creditAccountObj.Latest_Credit_Provider__c = eachAccount.latestCreditProvider.name.nodeValue;
+                    }
+                    if(eachAccount.relationship != null
+                    && eachAccount.relationship.nodeValue != null){
+                        creditAccountObj.Relationship__c = eachAccount.relationship.nodeValue;
+                    }
                     if(creditAccountObj != null){
                         creditAccounts.add(creditAccountObj);
                     }
-                    try {
-                        defaultList = each.pDefaults.pDefault;
+                    if(eachAccount.pDefaults != null
+                    && eachAccount.pDefaults.pDefault != null){
+                        defaultList = eachAccount.pDefaults.pDefault;
                         for(Cls_pDefault eachDefault : defaultList){
                             Payment_Default__c paymentDefaultObj;
-                            try{
-                                paymentDefaultObj = new Payment_Default__c();
-                            }catch(Exception ex){}
-                            try {
+                            paymentDefaultObj = new Payment_Default__c();
+                            if(eachDefault != null
+                            && eachDefault.status != null
+                            && eachDefault.status.nodeValue != null){
                                 paymentDefaultObj.Status__c = eachDefault.status.nodeValue;
-                            }catch(Exception ex){
                             }
-                            try {
+                            if(eachDefault != null
+                            && eachDefault.originalpDefault != null
+                            && eachDefault.originalpDefault.dateRecorded != null
+                            && eachDefault.originalpDefault.dateRecorded.nodeValue != null){
                                 String dateString = eachDefault.originalpDefault.dateRecorded.nodeValue;
                                 Date statusDate = Date.newInstance(Integer.valueOf(dateString.subString(0,4)),
                                 Integer.valueOf(dateString.subString(5,7)),
                                 Integer.valueOf(dateString.subString(8,10)));
                                 paymentDefaultObj.Status_Date__c = statusDate;
-                            }catch(Exception ex){
                             }
-                            try {
+                            if(eachDefault.currentpDefault != null
+                            && eachDefault.currentpDefault.pDefaultAmount != null
+                            && eachDefault.currentpDefault.pDefaultAmount.nodeValue != null){
                                 paymentDefaultObj.Current_Default_Amount__c = Decimal.valueOf(eachDefault.currentpDefault.pDefaultAmount.nodeValue);
-                            }catch(Exception ex){}
-                            try {
+                            }
+                            if(eachDefault.originalpDefault != null
+                            && eachDefault.originalpDefault.pDefaultAmount != null
+                            && eachDefault.originalpDefault.pDefaultAmount.nodeValue != null){
                                 paymentDefaultObj.Original_Default_Amount__c = Decimal.valueOf(eachDefault.originalpDefault.pDefaultAmount.nodeValue);
-                            }catch(Exception ex){}
+                            }
                             if(paymentDefaultObj != null){
                                 if(String.isNotBlank(creditAccountObj.Account_Id__c)){
                                     accountIdDefaultMap.put('Consumer'
@@ -1028,17 +1106,17 @@ public class EquifaxApplyIndividualResponseHelper{
                                 }
                             }
                         }
-                    }catch(Exception ex){}
+                    }
                 }
             }catch(Exception ex){
                 returnVal += '\n' + 'No Consumer Credit Accounts found';
             }
             Database.insert(creditAccounts, false);
             creditAccounts = [SELECT Id, Party__c, Credit_Account_Type__c, Account_Id__c FROM Credit_Account__c WHERE Party__c =:partyObj.Id];
-            for(Credit_Account__c each : creditAccounts){
-                if(String.isNotBlank(each.Account_Id__c)){
-                    accountIdIdMap.put(each.Credit_Account_Type__c
-                    + each.Account_Id__c, each.Id);
+            for(Credit_Account__c eachCreditAccount : creditAccounts){
+                if(String.isNotBlank(eachCreditAccount.Account_Id__c)){
+                    accountIdIdMap.put(eachCreditAccount.Credit_Account_Type__c
+                    + eachCreditAccount.Account_Id__c, eachCreditAccount.Id);
                 }
             }
             for(String key : accountIdDefaultMap.keySet()){
@@ -1051,37 +1129,44 @@ public class EquifaxApplyIndividualResponseHelper{
             // Update Personal Insolvencies from the Response
             try{
                 personalInsolvencyList = helperObject.envelope.body.response.productData.enquiryReport.publicRecordOrConsumerCreditInformation.personalInsolvencies.personalInsolvency;
-                for(Cls_personalInsolvency each : personalInsolvencyList){
+                for(Cls_personalInsolvency eachPersonalInsolvency : personalInsolvencyList){
                     Credit_Account__c creditAccountObj;
                     creditAccountObj = new Credit_Account__c();
                     creditAccountObj.Party__c = partyObj.Id;
                     creditAccountObj.Credit_Account_Type__c = 'Personal Insolvencies';
-                    try{
-                        creditAccountObj.Account_Type__c = each.type.nodeValue;
-                    }catch(Exception ex){}
-                    try{
-                        creditAccountObj.Relationship__c = each.text.nodeValue;
-                    }catch(Exception ex){}
-                    try{
-                        creditAccountObj.Status__c = each.status.nodeValue;
-                    }catch(Exception ex){}
-                    try{
-                        String dateString = each.statusDate.nodeValue;
+                    if(eachPersonalInsolvency.type != null
+                    && eachPersonalInsolvency.type.nodeValue != null){
+                        creditAccountObj.Account_Type__c = eachPersonalInsolvency.type.nodeValue;
+                    }
+                    if(eachPersonalInsolvency.text != null
+                    && eachPersonalInsolvency.text.nodeValue != null){
+                        creditAccountObj.Relationship__c = eachPersonalInsolvency.text.nodeValue;
+                    }
+                    if(eachPersonalInsolvency.status != null
+                    && eachPersonalInsolvency.status.nodeValue != null){
+                        creditAccountObj.Status__c = eachPersonalInsolvency.status.nodeValue;
+                    }
+                    if(eachPersonalInsolvency.statusDate != null
+                    && eachPersonalInsolvency.statusDate.nodeValue != null){
+                        String dateString = eachPersonalInsolvency.statusDate.nodeValue;
                         Date statusDate = Date.newInstance(Integer.valueOf(dateString.subString(0,4)),
                         Integer.valueOf(dateString.subString(5,7)),
                         Integer.valueOf(dateString.subString(8,10)));
                         creditAccountObj.Status_Date__c = statusDate;
-                    }catch(Exception ex){}
-                    try{
-                        String dateString = each.dateDeclared.nodeValue;
+                    }
+                    if(eachPersonalInsolvency.dateDeclared != null
+                    && eachPersonalInsolvency.dateDeclared.nodeValue != null){
+                        String dateString = eachPersonalInsolvency.dateDeclared.nodeValue;
                         Date statusDate = Date.newInstance(Integer.valueOf(dateString.subString(0,4)),
                         Integer.valueOf(dateString.subString(5,7)),
                         Integer.valueOf(dateString.subString(8,10)));
                         creditAccountObj.Default_Date__c = statusDate;
-                    }catch(Exception ex){}
-                    try{
-                        creditAccountObj.Account_Id__c = each.administrationId.pNumber.nodeValue;
-                    }catch(Exception ex){}
+                    }
+                    if(eachPersonalInsolvency.administrationId != null
+                    && eachPersonalInsolvency.administrationId.pNumber != null
+                    && eachPersonalInsolvency.administrationId.pNumber.nodeValue != null){
+                        creditAccountObj.Account_Id__c = eachPersonalInsolvency.administrationId.pNumber.nodeValue;
+                    }
                     if(creditAccountObj != null){
                         creditAccounts.add(creditAccountObj);
                     }
@@ -1092,12 +1177,12 @@ public class EquifaxApplyIndividualResponseHelper{
             // Update Default Judgements from the Response
             try{
                 courtActionList = helperObject.envelope.body.response.productData.enquiryReport.publicRecordOrConsumerCreditInformation.courtActions.courtAction;
-                for(Cls_courtAction each : courtActionList){
+                for(Cls_courtAction eachCourtAction : courtActionList){
                     Credit_Account__c creditAccountObj;
                     String courtActionType;
-                    if(String.isBlank(each.type)){
+                    if(String.isBlank(eachCourtAction.type)){
                         continue;
-                    }else if(each.type == 'pDefaultJudgement'){
+                    }else if(eachCourtAction.type == 'pDefaultJudgement'){
                         courtActionType = 'Default Judgements';
                     } else {
                         courtActionType = 'Other Court Action';
@@ -1105,32 +1190,38 @@ public class EquifaxApplyIndividualResponseHelper{
                     creditAccountObj = new Credit_Account__c();
                     creditAccountObj.Party__c = partyObj.Id;
                     creditAccountObj.Credit_Account_Type__c = courtActionType;
-                    try{
-                        creditAccountObj.Relationship__c = each.creditor.nodeValue;
-                    }catch(Exception ex){}
-                    try{
-                        creditAccountObj.Status__c = each.courtActionStatus.nodeValue;
-                    }catch(Exception ex){}
-                    try{
-                        String dateString = each.courtActionStatus.pDate;
+                    if(eachCourtAction.creditor != null
+                    && eachCourtAction.creditor.nodeValue != null){
+                        creditAccountObj.Relationship__c = eachCourtAction.creditor.nodeValue;
+                    }
+                    if(eachCourtAction.courtActionStatus != null
+                    && eachCourtAction.courtActionStatus.nodeValue != null){
+                        creditAccountObj.Status__c = eachCourtAction.courtActionStatus.nodeValue;
+                    }
+                    if(eachCourtAction.courtActionStatus != null
+                    && eachCourtAction.courtActionStatus.pDate != null){
+                        String dateString = eachCourtAction.courtActionStatus.pDate;
                         Date statusDate = Date.newInstance(Integer.valueOf(dateString.subString(0,4)),
                         Integer.valueOf(dateString.subString(5,7)),
                         Integer.valueOf(dateString.subString(8,10)));
                         creditAccountObj.Status_Date__c = statusDate;
-                    }catch(Exception ex){}
-                    try{
-                        String dateString = each.actionDate.nodeValue;
+                    }
+                    if(eachCourtAction.actionDate != null
+                    && eachCourtAction.actionDate.nodeValue != null){
+                        String dateString = eachCourtAction.actionDate.nodeValue;
                         Date statusDate = Date.newInstance(Integer.valueOf(dateString.subString(0,4)),
                         Integer.valueOf(dateString.subString(5,7)),
                         Integer.valueOf(dateString.subString(8,10)));
                         creditAccountObj.Default_Date__c = statusDate;
-                    }catch(Exception ex){}
-                    try{
-                        creditAccountObj.Current_Default_Amount__c = Decimal.valueOf(each.courtActionAmount.nodeValue);
-                    }catch(Exception ex){}
-                    try{
-                        creditAccountObj.Account_Id__c = each.plaintNumber.nodeValue;
-                    }catch(Exception ex){}
+                    }
+                    if(eachCourtAction.courtActionAmount != null
+                    && eachCourtAction.courtActionAmount.nodeValue != null){
+                        creditAccountObj.Current_Default_Amount__c = Decimal.valueOf(eachCourtAction.courtActionAmount.nodeValue);
+                    }
+                    if(eachCourtAction.plaintNumber != null
+                    && eachCourtAction.plaintNumber.nodeValue != null){
+                        creditAccountObj.Account_Id__c = eachCourtAction.plaintNumber.nodeValue;
+                    }
                     if(creditAccountObj != null){
                         creditAccounts.add(creditAccountObj);
                     }

@@ -131,7 +131,7 @@ private class EquifaxCalloutTest{
     }
     @isTest
     static void testDeliverDocumentWithMockResponse() {
-        List<clcommon__Collateral__c> collateralList = [SELECT Id FROM clcommon__Collateral__c];
+        List<clcommon__Collateral__c> collateralList = [SELECT Id FROM clcommon__Collateral__c LIMIT 1];
         Test.setMock(HttpCalloutMock.class, new Mock());
         Test.startTest();
         String responseString = EquifaxCallout.equifaxDeliverDocument(collateralList[0].Id, 'WAJGH623');

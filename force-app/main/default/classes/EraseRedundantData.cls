@@ -91,8 +91,8 @@ global with sharing class EraseRedundantData {
     }
     private static List<SObject> getDataOfTheSObject(String objectName, List<String> ids, Set<String> fieldNames){
         String queryString = 'SELECT Id';
-        for(String each : fieldNames){
-            queryString += ',' + each;
+        for(String eachField : fieldNames){
+            queryString += ',' + eachField;
         }
         queryString += ' FROM ' + objectName + ' WHERE Id IN:ids';
         List<SObject> records = Database.query(queryString);
@@ -113,16 +113,16 @@ global with sharing class EraseRedundantData {
     private static Boolean checkIfDataMatchedForMultivaluedActualData(String actualData, String expectedData, String matchingType){
         List<String> singleValueList = actualData.split(';');
         if(matchingType.equalsIgnoreCase('==') || matchingType.equalsIgnoreCase('IN')){
-            for(String each : singleValueList){
-                if(each.trim().equalsIgnoreCase(expectedData.trim())){
+            for(String eachValue : singleValueList){
+                if(eachValue.trim().equalsIgnoreCase(expectedData.trim())){
                     return true;
                 }
             }
             return false;
         }
         if(matchingType.equalsIgnoreCase('!=') || matchingType.equalsIgnoreCase('NOT IN')){
-            for(String each : singleValueList){
-                if(each.trim().equalsIgnoreCase(expectedData.trim())){
+            for(String eachValue : singleValueList){
+                if(eachValue.trim().equalsIgnoreCase(expectedData.trim())){
                     return false;
                 }
             }
@@ -203,10 +203,10 @@ global with sharing class EraseRedundantData {
                         return true;
                     }
                     valueList = expectedData.split('\n');
-                    for(String each : valueList){
-                        if((each == null || each.trim().equalsIgnoreCase('null')) && actualData == null){
+                    for(String eachValue : valueList){
+                        if((eachValue == null || eachValue.trim().equalsIgnoreCase('null')) && actualData == null){
                             return true;
-                        }else if(actualData != null && actualData.equalsIgnoreCase(each.trim())){
+                        }else if(actualData != null && actualData.equalsIgnoreCase(eachValue.trim())){
                             return true;
                         }
                     }
@@ -217,11 +217,11 @@ global with sharing class EraseRedundantData {
                         return false;
                     }
                     valueList = expectedData.split('\n');
-                    for(String each : valueList){
-                        if((each == null || each.trim().equalsIgnoreCase('null')) && actualData == null){
+                    for(String eachValue : valueList){
+                        if((eachValue == null || eachValue.trim().equalsIgnoreCase('null')) && actualData == null){
                             return false;
                         }
-                        else if(actualData.equalsIgnoreCase(each.trim())){
+                        else if(actualData.equalsIgnoreCase(eachValue.trim())){
                             return false;
                         }
                     }
@@ -262,10 +262,10 @@ global with sharing class EraseRedundantData {
                 WHERE Rendered_Object__c = :objectName
                 AND Related_Object_Name__c = null
             ];
-            for(Rendered_Field__c each : renderedFields){
-                renderedFieldIds.add(each.Id);
-                if(fieldMapForChild.get(each.Name) != null){
-                    fieldNames.add(each.Name);
+            for(Rendered_Field__c eachField : renderedFields){
+                renderedFieldIds.add(eachField.Id);
+                if(fieldMapForChild.get(eachField.Name) != null){
+                    fieldNames.add(eachField.Name);
                 }
             }
             List<Rendering_Criteria__c> renderCriteriaList = [
@@ -279,8 +279,8 @@ global with sharing class EraseRedundantData {
                 FROM Rendering_Criteria__c
                 WHERE Rendered_Field__c IN :renderedFieldIds
             ];
-            for(Rendering_Criteria__c each : renderCriteriaList){
-                fieldNames.add(each.Related_Field__c);
+            for(Rendering_Criteria__c eachCriteria : renderCriteriaList){
+                fieldNames.add(eachCriteria.Related_Field__c);
             }
             List<Id> ids = new List<Id>();
             ids.add(paramId);
@@ -289,29 +289,26 @@ global with sharing class EraseRedundantData {
                 return;
             }
             objectData = objects[0];
-            for(Rendering_Criteria__c each : renderCriteriaList){
+            for(Rendering_Criteria__c eachRenderCriteria : renderCriteriaList){
                 Map<Integer, Boolean> serialCriteriaResultMap;
-                if(fieldCriteriaResultMap.get(each.Rendered_Field__r.Name) != null){
-                    serialCriteriaResultMap = fieldCriteriaResultMap.get(each.Rendered_Field__r.Name);
-                    if(each.Serial_Number__c == null){
-                        continue;
-                    }
-                    serialCriteriaResultMap.put(Integer.valueOf(each.Serial_Number__c), checkRenderingCriteria(objectData, each));
+                if(eachRenderCriteria.Serial_Number__c == null){
+                    continue;
+                }
+                if(fieldCriteriaResultMap.get(eachRenderCriteria.Rendered_Field__r.Name) != null){
+                    serialCriteriaResultMap = fieldCriteriaResultMap.get(eachRenderCriteria.Rendered_Field__r.Name);
+                    serialCriteriaResultMap.put(Integer.valueOf(eachRenderCriteria.Serial_Number__c), checkRenderingCriteria(objectData, eachRenderCriteria));
                 }
                 else{
                     serialCriteriaResultMap = new Map<Integer, Boolean>();
-                    if(each.Serial_Number__c == null){
-                        continue;
-                    }
-                    serialCriteriaResultMap.put(Integer.valueOf(each.Serial_Number__c), checkRenderingCriteria(objectData, each));
+                    serialCriteriaResultMap.put(Integer.valueOf(eachRenderCriteria.Serial_Number__c), checkRenderingCriteria(objectData, eachRenderCriteria));
                 }
-                fieldCriteriaResultMap.put(each.Rendered_Field__r.Name, serialCriteriaResultMap);
+                fieldCriteriaResultMap.put(eachRenderCriteria.Rendered_Field__r.Name, serialCriteriaResultMap);
             }
-            for(Rendered_Field__c each : renderedFields){
-                shouldClear = evaluteResultByExpression(each.Evaluation_Expression__c, fieldCriteriaResultMap.get(each.Name));
+            for(Rendered_Field__c eachRenderedField : renderedFields){
+                shouldClear = evaluteResultByExpression(eachRenderedField.Evaluation_Expression__c, fieldCriteriaResultMap.get(eachRenderedField.Name));
                 if(shouldClear){
-                    if(fieldMapForChild.get(each.Name) != null){
-                        objectData.put(each.Name, null);
+                    if(fieldMapForChild.get(eachRenderedField.Name) != null){
+                        objectData.put(eachRenderedField.Name, null);
                     }
                 }
             }
@@ -378,14 +375,14 @@ global with sharing class EraseRedundantData {
                 }
             }else{
                 String query = 'SELECT Id';
-                for(String each : fieldNameIfFieldDataList){
-                    query += ',' + each;
+                for(String eachFieldName : fieldNameIfFieldDataList){
+                    query += ',' + eachFieldName;
                 }
                 query += ' FROM ' + renderedObjectName + ' WHERE Id IN: Ids';
                 relatedObjectRecords = Database.query(query);
                 if(shouldClearField != null && shouldClearField){
-                    for(String each : fieldNameIfFieldDataList){
-                        relatedObjectRecords[0].put(each, null);
+                    for(String eachFieldName : fieldNameIfFieldDataList){
+                        relatedObjectRecords[0].put(eachFieldName, null);
                     }
                     Database.update(relatedObjectRecords, false);
                     return;
@@ -422,8 +419,8 @@ global with sharing class EraseRedundantData {
             if(renderCriteriaList.isEmpty()){
                 return;
             }
-            for(Rendering_Criteria__c each : renderCriteriaList){
-                fieldNames.add(each.Related_Field__c);
+            for(Rendering_Criteria__c eachRenderCriteria : renderCriteriaList){
+                fieldNames.add(eachRenderCriteria.Related_Field__c);
             }
             List<Id> refIdList = new List<Id>();
             refIdList.add(paramId);
@@ -435,23 +432,26 @@ global with sharing class EraseRedundantData {
             if(objectData == null){
                 return;
             }
-            for(Rendering_Criteria__c each : renderCriteriaList){
-                if(fieldCriteriaResultMap.get(each.Rendered_Field__r.Name) != null){
-                    serialCriteriaResultMap = fieldCriteriaResultMap.get(each.Rendered_Field__r.Name);
-                    serialCriteriaResultMap.put(Integer.valueOf(each.Serial_Number__c), checkRenderingCriteria(objectData, each));
+            for(Rendering_Criteria__c eachRenderCriteria : renderCriteriaList){
+                if(eachRenderCriteria.Serial_Number__c == null){
+                    continue;
+                }
+                if(fieldCriteriaResultMap.get(eachRenderCriteria.Rendered_Field__r.Name) != null){
+                    serialCriteriaResultMap = fieldCriteriaResultMap.get(eachRenderCriteria.Rendered_Field__r.Name);
+                    serialCriteriaResultMap.put(Integer.valueOf(eachRenderCriteria.Serial_Number__c), checkRenderingCriteria(objectData, eachRenderCriteria));
                 }
                 else{
                     serialCriteriaResultMap = new Map<Integer, Boolean>();
-                    serialCriteriaResultMap.put(Integer.valueOf(each.Serial_Number__c), checkRenderingCriteria(objectData, each));
+                    serialCriteriaResultMap.put(Integer.valueOf(eachRenderCriteria.Serial_Number__c), checkRenderingCriteria(objectData, eachRenderCriteria));
                 }
-                fieldCriteriaResultMap.put(each.Rendered_Field__r.Name, serialCriteriaResultMap);
+                fieldCriteriaResultMap.put(eachRenderCriteria.Rendered_Field__r.Name, serialCriteriaResultMap);
             }
             Boolean shouldClear = evaluteResultByExpression(renderedField.Evaluation_Expression__c, fieldCriteriaResultMap.get(renderedField.Name));
             if(shouldClear && !isFieldData){
                 Database.delete(relatedObjectRecords, false);
             }else if(shouldClear && isFieldData){
-                for(String each : fieldNameIfFieldDataList){
-                    relatedObjectRecords[0].put(each, null);
+                for(String eachFieldName : fieldNameIfFieldDataList){
+                    relatedObjectRecords[0].put(eachFieldName, null);
                 }
                 Database.update(relatedObjectRecords, false);
             }
@@ -483,10 +483,10 @@ global with sharing class EraseRedundantData {
                 WHERE Rendered_Object__c = :objectName
                 AND Related_Object_Name__c = null
             ];
-            for(Rendered_Field__c each : renderedFields){
-                renderedFieldIds.add(each.Id);
-                if(fieldMapForChild.get(each.Name) != null){
-                    fieldNames.add(each.Name);
+            for(Rendered_Field__c eachRenderedField : renderedFields){
+                renderedFieldIds.add(eachRenderedField.Id);
+                if(fieldMapForChild.get(eachRenderedField.Name) != null){
+                    fieldNames.add(eachRenderedField.Name);
                 }
             }
             List<Rendering_Criteria__c> renderCriteriaList = [
@@ -500,31 +500,34 @@ global with sharing class EraseRedundantData {
                 FROM Rendering_Criteria__c
                 WHERE Rendered_Field__c IN :renderedFieldIds
             ];
-            for(Rendering_Criteria__c each : renderCriteriaList){
-                fieldNames.add(each.Related_Field__c);
+            for(Rendering_Criteria__c eachRenderingCriteria : renderCriteriaList){
+                fieldNames.add(eachRenderingCriteria.Related_Field__c);
             }
             objectDataList = getDataOfTheSObject(objectName, ids, fieldNames);
             for(SObject objectData : objectDataList){
-                for(Rendering_Criteria__c each : renderCriteriaList){
-                    if(fieldCriteriaResultMap.get(each.Rendered_Field__r.Name) != null){
-                        serialCriteriaResultMap = fieldCriteriaResultMap.get(each.Rendered_Field__r.Name);
-                        serialCriteriaResultMap.put(Integer.valueOf(each.Serial_Number__c), checkRenderingCriteria(objectData, each));
+                for(Rendering_Criteria__c eachRenderingCriteria : renderCriteriaList){
+                    if(eachRenderingCriteria.Serial_Number__c == null){
+                        continue;
+                    }
+                    if(fieldCriteriaResultMap.get(eachRenderingCriteria.Rendered_Field__r.Name) != null){
+                        serialCriteriaResultMap = fieldCriteriaResultMap.get(eachRenderingCriteria.Rendered_Field__r.Name);
+                        serialCriteriaResultMap.put(Integer.valueOf(eachRenderingCriteria.Serial_Number__c), checkRenderingCriteria(objectData, eachRenderingCriteria));
                     }
                     else{
                         serialCriteriaResultMap = new Map<Integer, Boolean>();
-                        serialCriteriaResultMap.put(Integer.valueOf(each.Serial_Number__c), checkRenderingCriteria(objectData, each));
+                        serialCriteriaResultMap.put(Integer.valueOf(eachRenderingCriteria.Serial_Number__c), checkRenderingCriteria(objectData, eachRenderingCriteria));
                     }
-                    fieldCriteriaResultMap.put(each.Rendered_Field__r.Name, serialCriteriaResultMap);
+                    fieldCriteriaResultMap.put(eachRenderingCriteria.Rendered_Field__r.Name, serialCriteriaResultMap);
                 }
                 fieldCriteriaResultMapList.add(fieldCriteriaResultMap);
             }
             
             for(Map<String,Map<Integer,Boolean>> fieldCriteriaResultMap : fieldCriteriaResultMapList){
-                for(Rendered_Field__c each : renderedFields){
-                    shouldClear = evaluteResultByExpression(each.Evaluation_Expression__c, fieldCriteriaResultMap.get(each.Name));
+                for(Rendered_Field__c eachRenderedField : renderedFields){
+                    shouldClear = evaluteResultByExpression(eachRenderedField.Evaluation_Expression__c, fieldCriteriaResultMap.get(eachRenderedField.Name));
                     if(shouldClear){
-                        if(fieldMapForChild.get(each.Name) != null){
-                            objectDataList[index].put(each.Name, null);
+                        if(fieldMapForChild.get(eachRenderedField.Name) != null){
+                            objectDataList[index].put(eachRenderedField.Name, null);
                         }
                     }
                 }
