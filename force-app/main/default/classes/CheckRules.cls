@@ -863,7 +863,9 @@ global with sharing class CheckRules {
                     manualData += ',{';
                 }
                 manualData += '"ruleName":"';
-                manualData += eachChecklistDetail.Checklist__r.genesis__Rule__r.Name;
+                if(String.isNotBlank(eachChecklistDetail.Checklist__c) && String.isNotBlank(eachChecklistDetail.Checklist__r.genesis__Rule__c) && String.isNotBlank(eachChecklistDetail.Checklist__r.genesis__Rule__r.Name)){
+                    manualData += eachChecklistDetail.Checklist__r.genesis__Rule__r.Name;
+                }
                 if(String.isNotBlank(eachChecklistDetail.Application_Collateral__c)){
                     manualData += eachChecklistDetail.Application_Collateral__c;
                 }
@@ -949,7 +951,7 @@ global with sharing class CheckRules {
             Map<String, Id> ruleChecklistDetailsMap;
             if(sObjectType.equals(ConstantValues.PARTY_TAG)){
                 ruleChecklistDetailsMap = objectRuleChecklistDetailsMapMap.get(eachChecklist.Party__r.Name);
-            } else if (sObjectType.equals(ConstantValues.APPLICATION_COLLATERAL)){
+            } else if (sObjectType.equals(ConstantValues.APPLICATION_COLLATERAL) && String.isNotBlank(eachChecklist.Application_Collateral__c) && String.isNotBlank(eachChecklist.Application_Collateral__r.Name)){
                 ruleChecklistDetailsMap = objectRuleChecklistDetailsMapMap.get(eachChecklist.Application_Collateral__r.Name);
             } else {
                 continue;
@@ -1056,7 +1058,9 @@ global with sharing class CheckRules {
                 } else {
                     flag = true;
                 }
-                gurantorNames += eachGurantor.clcommon__Account__r.Name;
+                if(String.isNotBlank(eachGurantor.clcommon__Account__c) && String.isNotBlank(eachGurantor.clcommon__Account__r.Name)){
+                    gurantorNames += eachGurantor.clcommon__Account__r.Name;
+                }
             }
             for(Checklist_Detail__c eachChecklistDetails : checklistDetails){
                 message = eachChecklistDetails.Checklist__r.genesis__Rule__r.genesis__Message_failure__c;
