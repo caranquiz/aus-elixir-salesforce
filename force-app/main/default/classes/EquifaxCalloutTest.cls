@@ -6,6 +6,8 @@
   Testing Scenario 2  : (testOrderDocumentWithMockResponse) This method tests order document API callout by Equifax.
   Testing Scenario 3  : (testDeliverDocumentWithMockResponse) This method tests deliver document API callout by
   Equifax.
+  Testing Scenario 4  : (testOrderDocumentWithExceptionMockResponse) This method tests order document API callout
+  with response with exception.
   Last Modified Date  : 28/07/2020
   Last Modified By  : Souvik
 ********************************************************************************************************************/
@@ -143,6 +145,19 @@ private class EquifaxCalloutTest{
         System.assertEquals(0, logList.size(), 'Exception occurred');
         System.assertNotEquals(ConstantValues.GENERAL_ERROR, responseString, 'Response fetching error');
     }
+    @isTest
+    static void testOrderDocumentWithExceptionMockResponse() {
+        List<clcommon__Collateral__c> collateralList = [SELECT Id FROM clcommon__Collateral__c LIMIT 1];
+        Test.setMock(HttpCalloutMock.class, new Mock());
+        intframework__Integration_API_Configuration__c apiConfig = [SELECT Id FROM intframework__Integration_API_Configuration__c
+        WHERE intframework__Adapter_Class_Name__c = 'EquifaxOrderDocumentAdapter'];
+        apiConfig.intframework__API_Endpoint__c = 'ODException';
+        update apiConfig;
+        Test.startTest();
+        String responseString = EquifaxCallout.equifaxOrderDocument('1234','VIC',collateralList[0].Id, true);
+        Test.stopTest();
+        System.assertEquals(ConstantValues.GENERAL_ERROR, responseString, 'Response fetching error');
+    }
     /* Mock class returns response from static resource depending on endpoint being called */
     private class Mock implements HttpCalloutMock {
         public HTTPResponse respond(HTTPRequest req) {
@@ -170,6 +185,7 @@ private class EquifaxCalloutTest{
             WHERE Name =:ConstantValues.SAMPLE_TITLE_SEARCH_RES
             OR Name =:ConstantValues.SAMPLE_ORDER_DOCUMENT_RES
             OR Name =:ConstantValues.SAMPLE_DELIVER_DOCUMENT_SUCCESS_RES
+            OR Name = 'Sample_Order_Document_Error_Response'
         ];
         for(StaticResource each : srList){
             responseMap.put(each.Name, each.Body.toString());
@@ -183,6 +199,9 @@ private class EquifaxCalloutTest{
         }
         else if(endpoint.contains('DeliverDocument')){
             res.setBody(responseMap.get(ConstantValues.SAMPLE_DELIVER_DOCUMENT_SUCCESS_RES));
+        }
+        else if(endpoint.contains('ODException')){
+            res.setBody(responseMap.get('Sample_Order_Document_Error_Response'));
         }
         else{
             res.setBody('');

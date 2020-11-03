@@ -6,6 +6,8 @@
   Testing Scenario 2  : (testEquifaxPreviousEnquiry) This method tests Previous Enquiry API callout by Equifax.
   Testing Scenario 3  : (testOrgIdSearchBatchACN) This method tests OrgId Search Batch by ACN API callout by Equifax.
   Testing Scenario 4  : (testOrgIdSearchBatchABN) This method tests OrgId Search Batch by ABN API callout by Equifax.
+  Testing Scenario 4  : (testEquifaxApplyIndividualAdapterWithNCCPStatusNonRegulated) This method tests the adapter
+                        class with Exception.
   Last Modified Date  : 17/10/2020
   Last Modified By  : Souvik
 ********************************************************************************************************************/
@@ -197,10 +199,20 @@ public class EquifaxEnquiryCalloutTest {
         System.assertEquals(0, logList.size(), 'Exception occurred');
     }
     @isTest
-    static void testEquifaxApplyIndividualAdapterWithNull() {
+    static void testEquifaxApplyIndividualAdapterWithException() {
+        List<genesis__Applications__c> appList = [SELECT Id FROM genesis__Applications__c];
+        Map<String, Object> appData = new Map<String, Object>();
+        appData.put('nccpStatus', ConstantValues.NCCP_NON_REGULATED);
+        List<Map<String, Object>> appInfo = new List<Map<String, Object>>();
+        appInfo.add(appData);
         Map<String, Object> filledInRequestMap = new Map<String, Object>();
+        filledInRequestMap.put('appInfo', appInfo);
         EquifaxApplyIndividualAdapter instance = new EquifaxApplyIndividualAdapter();
+        Test.startTest();
         instance.generateRequestBody(filledInRequestMap);
+        Test.stopTest();
+        List<clcommon__Log__c> logList = [SELECT Id FROM clcommon__Log__c];
+        System.assertEquals(1, logList.size(), 'Exception log not inserted');
     }
 
     /* Mock class returns response from static resource depending on endpoint being called */
