@@ -293,6 +293,7 @@ public with sharing class GenericUtilityTestHelper {
         genesis__Rule__c ruleEitn = new genesis__Rule__c(genesis__Object_Type__c = 'Application',Name = ConstantValues.PRIMARY_PURPOSE_WARNING, genesis__Enabled__c = true, genesis__Message_failure__c = 'FAILURE', genesis__Message_success__c = 'SUCCESS');
         genesis__Rule__c ruleNntn = new genesis__Rule__c(genesis__Object_Type__c = 'Application',Name = ConstantValues.DOCUMENT_TYPE_WARNING, genesis__Enabled__c = true, genesis__Message_failure__c = 'FAILURE', genesis__Message_success__c = 'SUCCESS');
         genesis__Rule__c ruleTnty = new genesis__Rule__c(genesis__Object_Type__c = 'Application',Name = ConstantValues.VALUATION_PAID_WARNING, genesis__Enabled__c = true, genesis__Message_failure__c = 'FAILURE', genesis__Message_success__c = 'SUCCESS');
+        genesis__Rule__c ruleTnty1 = new genesis__Rule__c(genesis__Object_Type__c = 'Application',Name = ConstantValues.CASHOUT_PURPOSE_RULE, genesis__Enabled__c = true, genesis__Message_failure__c = 'FAILURE', genesis__Message_success__c = 'SUCCESS');
         
         List<genesis__Rule__c> ruleLists = new List<genesis__Rule__c>();
         ruleLists.add(ruleOne);
@@ -315,6 +316,7 @@ public with sharing class GenericUtilityTestHelper {
         ruleLists.add(ruleEitn);
         ruleLists.add(ruleNntn);
         ruleLists.add(ruleTnty);
+        ruleLists.add(ruleTnty1);
         //Inserting rule
         insert ruleLists;
         List <genesis__RuleCriteria__c> criteriaList = new List<genesis__RuleCriteria__c>();
@@ -505,6 +507,17 @@ public with sharing class GenericUtilityTestHelper {
         genesis__Matching_Type__c = '!=',
         genesis__Matching_Value__c = 'G'
         );
+        genesis__RuleCriteria__c criteriaEittn = new genesis__RuleCriteria__c(genesis__Criteria_Sequence__c = 1,
+        genesis__Rule__c = ruleLists[20].Id,
+        genesis__Related_Object__c = 'genesis__Applications__c',
+        genesis__Rule_Object_Reference__c = 'genesis__Application__r',
+        genesis__Stipulation_Type__c = 'FUNDING',
+        genesis__Field_Name__c = 'Cash Out Purpose Suitable Rule Check',
+        genesis__Field_API_Name__c = 'Cash_Out_Purpose_Suitable_Rule_Check__c',
+        genesis__Field_Type__c = 'BOOLEAN',
+        genesis__Matching_Type__c = '==',
+        genesis__Matching_Value__c = 'FALSE'
+        );
         List <genesis__Checklist__c> checkList = new List<genesis__Checklist__c>();
     
         genesis__Checklist__c eachCheckList1 = new genesis__Checklist__c(
@@ -611,6 +624,14 @@ public with sharing class GenericUtilityTestHelper {
                         genesis__Message__c = 'FAIL',
                         genesis__Rule__c = ruleSxtn.Id,
                         genesis__Type__c = 'Business Rule');
+        genesis__Checklist__c eachCheckList14 = new genesis__Checklist__c(
+                        genesis__Application__c = appId,
+                        genesis__Assessed_Record_Id__c = appId,
+                        genesis__Is_Archived__c = False,
+                        genesis__Level__c = 'ERROR',
+                        genesis__Message__c = 'FAIL',
+                        genesis__Rule__c = ruleTnty1.Id,
+                        genesis__Type__c = 'Business Rule');
                         
         //checkList.add(eachCheckList1);
         //checkList.add(eachCheckList2);
@@ -625,6 +646,7 @@ public with sharing class GenericUtilityTestHelper {
         checkList.add(eachCheckList11);
         checkList.add(eachCheckList12);
         checkList.add(eachCheckList13);
+        checkList.add(eachCheckList14);
         //criteriaList.add(criteriaOne);
         //criteriaList.add(criteriaTwo);
         criteriaList.add(criteriaThree);
@@ -642,6 +664,7 @@ public with sharing class GenericUtilityTestHelper {
         criteriaList.add(criteriaFftn);
         criteriaList.add(criteriaSxtn);
         criteriaList.add(criteriaSvntn);
+        criteriaList.add(criteriaEittn);
         insert checkList;
         insert criteriaList;
         return ruleLists;

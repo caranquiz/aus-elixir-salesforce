@@ -614,7 +614,13 @@
         <members>Director__c</members>
         
         <members>genesis__Rule__c</members>
+
+        <members>Street_Type_Code__mdt</members>
         <name>CustomObject</name>
+    </types>
+    <types>
+        <members>*</members>
+        <name>CustomMetadata</name>
     </types>
     <types>
         <!-- Title Search Changes added by Souvik -->

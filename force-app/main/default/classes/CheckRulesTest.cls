@@ -255,4 +255,16 @@ private class CheckRulesTest {
         Test.stopTest();
         System.assertEquals(ConstantValues.Success,returnValue,'Success');
     }
+    @isTest
+    //This method acts as unit testing when the application id is not equal to null and Review tab rules are executed 
+    static void testMethod15() {
+        List<genesis__Applications__c> applicationDetailsList = [SELECT Id, genesis__Loan_Amount__c FROM genesis__Applications__c LIMIT 1];
+        Test.startTest();
+        String returnValue = CheckRules.callCheckRulesWS(
+        applicationDetailsList[0].Id,
+        ConstantValues.RECOMMENDED
+        );
+        Test.stopTest();
+        System.assertEquals(ConstantValues.Success,returnValue,'Success');
+    }
 }
