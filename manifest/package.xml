@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
-     <types>
+    <types>
         <!-- Rendering Changes made by Souvik -->
         <members>EraseRedundantData</members>
         <members>EraseRedundantDataTest</members>
@@ -23,7 +23,6 @@
         <!--<members>DocumentDeliveryCheckBatch</members>-->
         <members>EquifaxCallout</members>
         <members>EquifaxCalloutTest</members>
-        <!--<members>EquifaxCalloutTest</members> -->
         <members>EquifaxDeliverDocumentAdapter</members>
         <members>EquifaxDeliverDocumentResponseHelper</members>
         <members>EquifaxOrderDocumentResponseHelper</members>
@@ -54,9 +53,7 @@
 
         <!-- Equifax Director Search Search made by Pratik -->
         <members>EquifaxOrgIdSearchAdapter</members>
-        <members>EquifaxOrgIdSearchAdapterTest</members>
         <members>EquifaxOrgIdSearchParser</members>
-        <members>EquifaxOrgIdSearchParserTest</members>
         <members>EquifaxOrgIdSearchCallout</members>
         <members>EquifaxOrgIdSearchCalloutTest</members>
 
@@ -64,6 +61,7 @@
         <members>EquifaxCompanyEnquiryAdapter</members>
         <members>EquifaxCompanyEnquiryCallout</members>
         <members>EquifaxCompanyEnquiryResponseHelper</members>
+        <members>EquifaxCompanyEnquiryCalloutTest</members>
 
         <!-- ABA Filegen classes -->
         <members>LoanDisbursalFilegen</members>
@@ -172,6 +170,7 @@
         <members>clcommon__Party__c.Number_of_Directors__c</members>
         <members>clcommon__Party__c.Number_of_Shareholders__c</members>
         <members>clcommon__Party__c.Previously_Bankrupt_Discharge_Date__c</members>
+        <members>clcommon__Party__c.bankrupt_discharged__c</members>
         <members>clcommon__Party__c.Previously_Bankrupt_Discharged__c</members>
         <members>clcommon__Party__c.Rental_Income_Verfication_Source__c</members>
         <members>clcommon__Party__c.Rental_Income_Verified__c</members>
@@ -225,7 +224,6 @@
         <members>clcommon__Party__c.Previous_conduct_issues_identified__c</members>
         <members>clcommon__Party__c.Previous_conduct_referencing_completed__c</members>
         <members>clcommon__Party__c.Previous_Conduct_Commentary_Rule_Check__c</members>
-        <members>clcommon__Party__c.GST_Effective_from_Rule_Check__c</members>
         <members>clcommon__Party__c.Company_Director_s_Adverse__c</members>
         <members>clcommon__Party__c.Company_Director_s_Related_Entity_Advers__c</members>
         <members>clcommon__Party__c.Confirm_increased_Commission_Reason__c</members>
@@ -233,6 +231,7 @@
         <members>clcommon__Party__c.ABN_Effective_From_Rule_Check__c</members>
         <members>genesis__Applications__c.ValuationFee__c</members>
         <members>genesis__Applications__c.BAS__c</members>
+        <members>genesis__Applications__c.Fixed_Rate_Completion_Balance__c</members>
         <members>genesis__Applications__c.Cash_Out_Purpose_Explanation_Provided__c</members>
         <members>genesis__Applications__c.Cash_Out_Purpose_Suitable_Commentary__c</members>
         <members>genesis__Applications__c.Cash_Out_Purpose_Suitable__c</members>
@@ -309,7 +308,6 @@
         <members>genesis__Income__c.Income_Consistant_Rule_Check__c</members>
         <members>genesis__Income__c.Satisfactory_Explanation_Provided_Render__c</members>
         <members>genesis__Income__c.Self_Employment_Rule_Check__c</members>
-        <members>genesis__Income__c.Employment_Call_Suitable__c</members>
         <members>genesis__Income__c.Employment_Call_Suitable_Rule_Check__c</members>
         <members>genesis__Income__c.EmpCC_Employment_Basis__c</members>
         <members>genesis__Income__c.EmpCC_Employment_Term__c</members>
@@ -319,8 +317,6 @@
         <members>genesis__Income__c.Employment_Call_Commentary__c</members>
         <members>genesis__Income__c.Employment_Call_Made__c</members>
         <members>genesis__Income__c.Employment_Call_Suitable__c</members>
-        <members>genesis__Income__c.Employment_Call_Suitable_Rule_Check__c</members>
-        <members>genesis__Income__c.Accountant_Call_Suitable_Render__c</members>
         <members>genesis__Income__c.Satisfactory_Explanation_Provided_Render__c</members>
         <members>genesis__Income__c.Income_Consistent_with_Declaration_Rende__c</members>
         <members>Credit_Account__c.Account_Id__c</members>
@@ -447,6 +443,8 @@
 
         <!-- Condition, Exception, Warning changes made by Souvik -->
         <members>genesis__Rule__c.Rule_Classification__c</members>
+        <members>genesis__Rule__c.Exception_Category__c</members>
+        <members>genesis__Rule__c.Exception_Sub_Category__c</members>
         <members>Account.Bank_Account_Name__c</members>
         <members>Checklist_Detail__c.Exception_Approver__c</members>
         <members>Checklist_Detail__c.Exception_Commentary__c</members>
@@ -507,20 +505,21 @@
         <members>genesis__Checklist__c.Waiver_Reason__c</members>
         <members>genesis__Checklist__c.Status__c</members>
         <members>genesis__Checklist__c.Supporting_Documentation__c</members>
+        <members>genesis__Checklist__c.Rule_Classification2__c</members>
         <members>Checklist_Detail__c.Waiver_Reason__c</members>
         <members>Checklist_Detail__c.Condition_Status__c</members>
         <members>Checklist_Detail__c.Supporting_Document_Verified__c</members>
         <members>clcommon__Party__c.Upfront_Payment_Warning_Check__c</members>
         <members>clcommon__Party__c.Trail_Payment_Warning_Check__c</members>
-        <members>genesis__Application_Collateral__c.Rule_Manual_Data__c</members>
-        <members>clcommon__Party__c.Rule_Manual_Data__c</members>
-        <members>clcommon__Collateral__c.Rule_Manual_Data__c</members>
         <members>genesis__Checklist__c.Rule_Classification__c</members>
         <members>genesis__Application_Collateral__c.X110_check__c</members>
         <members>genesis__Application_Collateral__c.X110_Render_Check__c</members>
+        <members>clcommon__Collateral__c.Loan_Assesment_Commentary__c</members>
+        <members>clcommon__Collateral__c.Rental_Income_Verified__c</members>
         <members>clcommon__Collateral__c.Valuation_Paid_Render_Check__c</members>
         <members>genesis__Income__c.Employer_Call_Verified_Warning_Check__c</members>
         <members>clcommon__Party__c.Date_of_Credit_Report_Warning_Check__c</members>
+        <members>clcommon__Party__c.Broker_updated__c</members>
 
         <!-- Approval Mechanism changes by Rameswari -->
         <members>genesis__Applications__c.Approval_Level__c</members>
@@ -532,7 +531,7 @@
         <members>genesis__Applications__c.Recommended_By__c</members>
         <members>genesis__Applications__c.Secondary_Approval_By__c</members>
         <members>genesis__Applications__c.Secondary_Approval_Date__c</members>
-        <members>genesis__Applications__c.Age_of_Individual_Applicant</members>
+        <members>genesis__Applications__c.Age_of_Individual_Applicant__c</members>
         <members>clcommon__Reviewer__c.Minimum_Individual_Limit__c</members>
         <members>clcommon__Reviewer__c.Maximum_Individual_Limit__c</members>
 
@@ -559,6 +558,9 @@
         <members>Director__c.Collateral__c</members>
         <members>Director__c.Pmsi__c</members>
         <members>Director__c.Secured_Parties__c</members>
+        <members>clcommon__Party__c.Ignore__c</members>
+        <members>clcommon__Party__c.Credit_Event__c</members>
+        <members>clcommon__Party__c.Explanation_Provided__c</members>
 
         <!-- New Field Request new fields by Souvik -->
         <members>genesis__Applications__c.Refinance_Debt_Consolidation_Total__c</members>
@@ -611,6 +613,7 @@
         <!-- Equifax Director Search Search made by Pratik -->
         <members>Director__c</members>
         
+        <members>genesis__Rule__c</members>
         <name>CustomObject</name>
     </types>
     <types>
@@ -636,6 +639,10 @@
 
         <!-- Return File Processing made by Pratik -->
         <members>deReturnSampleReport</members>
+        <members>CompanyEnquiryMockResponse</members>
+        <members>CompanyEnquiryMockResponse2</members>
+        <members>MultipleDefaultsResponse</members>
+        <members>MultipleShareholder</members>
         <name>StaticResource</name>
     </types>
 
@@ -734,6 +741,29 @@
         <members>unfiled$public/Application_is_Approved_Email_Template</members>
         <members>unfiled$public/Application_is_Rejected_Email_Template</members>
         <name>EmailTemplate</name>
+    </types>
+    <types>
+        <members>ABN_Information__c</members>
+        <members>Documents</members>
+        <members>Upload_ACH_Return</members>
+        <members>clcommon__Approval_Definition__c</members>
+        <members>clcommon__Collateral__c</members>
+        <members>genesis__Policy_Exception__c</members>
+        <members>intframework__Integration_API_Configuration__c</members>
+        <members>intframework__Integration_API_Type__c</members>
+        <members>intframework__Integration_Configuration__c</members>
+        <members>intframework__Integration_Family__c</members>
+        <members>intframework__Integration_Log__c</members>
+        <members>intframework__Integration_Provider__c</members>
+        <members>loan__Batch_Process_Log__c</members>
+        <members>peer__Bank_Recon_Exception__c</members>
+        <members>ABA_File_Generation</members>
+        <name>CustomTab</name>
+    </types>
+    <types>
+        <members>ACH_Documents</members>
+        <members>Direct_Debit_LPT_Documents</members>
+        <name>Document</name>
     </types>
     <version>45.0</version>
 </Package>

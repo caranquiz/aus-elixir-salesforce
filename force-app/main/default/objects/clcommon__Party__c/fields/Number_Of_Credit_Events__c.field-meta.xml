@@ -2,6 +2,7 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Number_Of_Credit_Events__c</fullName>
     <externalId>false</externalId>
+    <inlineHelpText>A detailed understanding of the event must be obtained from the borrower and this must match the timing and understanding as outlined by the credit report. [21.3.1]</inlineHelpText>
     <label>Number Of Credit Events</label>
     <precision>18</precision>
     <required>false</required>

@@ -139,7 +139,7 @@
                 <leftValueReference>myVariable_current.loan__Name_of_Entity__c</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
-                    <stringValue>Regulated Product Lender&apos;s Legals</stringValue>
+                    <stringValue>Lender&apos;s Legals</stringValue>
                 </rightValue>
             </conditions>
             <conditions>
@@ -233,37 +233,6 @@
                 <operator>EqualTo</operator>
                 <rightValue>
                     <stringValue>Mortgage Registration Fee</stringValue>
-                </rightValue>
-            </conditions>
-            <conditions>
-                <processMetadataValues>
-                    <name>inputDataType</name>
-                    <value>
-                        <stringValue>String</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
-                    <name>leftHandSideType</name>
-                    <value>
-                        <stringValue>String</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
-                    <name>operatorDataType</name>
-                    <value>
-                        <stringValue>String</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
-                    <name>rightHandSideType</name>
-                    <value>
-                        <stringValue>String</stringValue>
-                    </value>
-                </processMetadataValues>
-                <leftValueReference>myVariable_current.loan__Name_of_Entity__c</leftValueReference>
-                <operator>EqualTo</operator>
-                <rightValue>
-                    <stringValue>NonRegulated Product Lender&apos;s Legals</stringValue>
                 </rightValue>
             </conditions>
             <conditions>
@@ -572,7 +541,7 @@
             <label>Elixir Disbursements</label>
         </rules>
     </decisions>
-    <interviewLabel>Update_where_the_distribution_amount_is_going-6_InterviewLabel</interviewLabel>
+    <interviewLabel>Update_where_the_distribution_amount_is_going-7_InterviewLabel</interviewLabel>
     <label>Update where the distribution amount is going</label>
     <processMetadataValues>
         <name>ObjectType</name>

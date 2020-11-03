@@ -327,6 +327,14 @@ global with sharing class CheckRules {
                                 genesis__Type__c
                                 FROM genesis__Checklist__c];
             }
+            if(tabName == ConstantValues.APP_EXCEP
+            || tabName == ConstantValues.WARNING
+            || tabName == ConstantValues.WARNING2
+            || tabName == ConstantValues.XCEPTION
+            || tabName == ConstantValues.CONDITION) {
+                updateChecklistsFromRuleDataOnApplication(application, rulesNameList);
+                manupulateConditionText(applicationId);
+            }
             if(tabName != ConstantValues.LOAN_DETAILS && tabName != ConstantValues.SETTLEMENT && tabName != ConstantValues.APP_EXCEP){
                 ChildChecklistAPI api = new ChildChecklistAPI();
                 List<Checklist_Detail__c> listOfDetail = api.processListOfChecklist(checkList, applicationId);
@@ -341,14 +349,6 @@ global with sharing class CheckRules {
                 }
             }
             returnValue = ConstantValues.Success;
-            if(tabName == ConstantValues.APP_EXCEP
-            || tabName == ConstantValues.WARNING
-            || tabName == ConstantValues.WARNING2
-            || tabName == ConstantValues.XCEPTION
-            || tabName == ConstantValues.CONDITION) {
-                updateChecklistsFromRuleDataOnApplication(application, rulesNameList);
-                manupulateConditionText(applicationId);
-            }
         } 
         catch (Exception e) {
             Database.rollback(sp);

@@ -14,6 +14,13 @@ public with sharing class GenericUtilityTestHelper {
  insert legEntity;
  return legEntity;
  }
+ public static clcommon__Legal_Entity__c returnCompanyLegalEntity() {
+    clcommon__Legal_Entity__c legEntity = new clcommon__Legal_Entity__c(
+    Name = 'Company'
+    );
+    insert legEntity;
+    return legEntity;
+ }
  public static account insertDummyAccount() {
  account dummyClient2 = new account();
  dummyClient2.Name = 'Elixir';

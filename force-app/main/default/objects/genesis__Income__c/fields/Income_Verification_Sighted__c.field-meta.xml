@@ -2,6 +2,7 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Income_Verification_Sighted__c</fullName>
     <externalId>false</externalId>
+    <inlineHelpText>Company applicants must provide their current financial statements, tax returns and ATO assessment notices. Interim or draft financials are unacceptable. The most recent tax returns should be no more than 18 months old. [18.2.2]</inlineHelpText>
     <label>Income Verification Sighted</label>
     <required>false</required>
     <trackTrending>false</trackTrending>

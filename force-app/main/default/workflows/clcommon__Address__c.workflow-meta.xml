@@ -8,6 +8,17 @@
         <notifyAssignee>false</notifyAssignee>
         <operation>Formula</operation>
         <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Capitalise_Suburb</fullName>
+        <field>clcommon__City__c</field>
+        <formula>UPPER(clcommon__City__c)</formula>
+        <name>Capitalise Suburb</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
     </fieldUpdates>
     <rules>
         <fullName>Autocapitalise Country</fullName>
@@ -20,6 +31,19 @@
             <field>clcommon__Address__c.clcommon__Country__c</field>
             <operation>notEqual</operation>
             <value>null</value>
+        </criteriaItems>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Autocapitalise Suburb</fullName>
+        <actions>
+            <name>Capitalise_Suburb</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>clcommon__Address__c.clcommon__City__c</field>
+            <operation>notEqual</operation>
         </criteriaItems>
         <triggerType>onAllChanges</triggerType>
     </rules>

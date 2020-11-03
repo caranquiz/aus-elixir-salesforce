@@ -2,7 +2,8 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Explanation_of_Age_of_Credit_File_Rule_C__c</fullName>
     <externalId>false</externalId>
-    <formula>IF(Age_of_Credit_File__c &gt; 0 &amp;&amp; Age_of_Credit_File__c &lt;= 6, &apos;Render&apos;, &apos;Not Render&apos;)</formula>
+    <formula>IF(clcommon__Account__r.clcommon__Legal_Entity_Type__r.Name == &apos;Individual&apos;,(IF(Age_of_Credit_File__c &gt; 0 &amp;&amp; Age_of_Credit_File__c &lt;= 6, &apos;Render&apos;, &apos;Not Render&apos;)),(IF(clcommon__Account__r.clcommon__Legal_Entity_Type__r.Name == &apos;Company&apos; || ISPICKVAL( Trustee_Type__c , &apos;Corporate&apos;),(IF(((VALUE(TEXT((YEAR(genesis__Application__r.CL_Date__c)*12+MONTH(genesis__Application__r.CL_Date__c))-(YEAR(File_create_date__c)*12+MONTH(File_create_date__c))))) &lt;= 6.0) &amp;&amp; ISNULL(File_create_date__c) == false,
+ IF((VALUE(TEXT((YEAR(genesis__Application__r.CL_Date__c)*12+MONTH(genesis__Application__r.CL_Date__c))-(YEAR(File_create_date__c)*12+MONTH(File_create_date__c))))) == 6.0 &amp;&amp; (DAY(genesis__Application__r.CL_Date__c) &gt; DAY(File_create_date__c)), &apos;Not Render&apos;, &apos;Render&apos;) , &apos;Not Render&apos;)),&apos;Not Render&apos;)))</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
     <label>Explanation of Age of Credit File Rule C</label>
     <required>false</required>

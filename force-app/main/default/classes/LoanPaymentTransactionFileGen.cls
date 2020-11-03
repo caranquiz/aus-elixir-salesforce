@@ -290,4 +290,3 @@ global with sharing class LoanPaymentTransactionFileGen extends loan.FileGenerat
       return trailerVal;
     }
   }
-  

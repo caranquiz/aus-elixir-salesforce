@@ -2,6 +2,10 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Document_Type__c</fullName>
     <externalId>false</externalId>
+    <inlineHelpText>FULL DOC - PAYG: 2 most recent pay slips for the applicant.
+S/E: 2 yrs tax returns &amp; Fin. Statements for all parties on the loan.  
+ALT DOC - Self-employed and unable to provide full doc verification.
+LEASE DOC - Current lease with term &gt;3 years [18.2]</inlineHelpText>
     <label>Document Type</label>
     <required>false</required>
     <trackFeedHistory>false</trackFeedHistory>

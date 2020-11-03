@@ -37,6 +37,16 @@
         <template>unfiled$public/Application_is_Rejected_Email_Template</template>
     </alerts>
     <fieldUpdates>
+        <fullName>Application_is_un_approved</fullName>
+        <field>Is_Approved__c</field>
+        <literalValue>0</literalValue>
+        <name>Application is un approved</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
         <fullName>Deactivate_Is_Approved_field</fullName>
         <field>Is_Approved__c</field>
         <literalValue>0</literalValue>
@@ -44,6 +54,7 @@
         <notifyAssignee>false</notifyAssignee>
         <operation>Literal</operation>
         <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
     </fieldUpdates>
     <fieldUpdates>
         <fullName>Delete_BDM_s_email_Address</fullName>
@@ -52,6 +63,7 @@
         <notifyAssignee>false</notifyAssignee>
         <operation>Null</operation>
         <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
     </fieldUpdates>
     <fieldUpdates>
         <fullName>Interest_Only_Period_Update</fullName>
@@ -61,6 +73,7 @@
         <notifyAssignee>false</notifyAssignee>
         <operation>Formula</operation>
         <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
     </fieldUpdates>
     <fieldUpdates>
         <fullName>Is_Approved_made_true_when_Recommended</fullName>
@@ -80,6 +93,17 @@
         <notifyAssignee>false</notifyAssignee>
         <operation>Literal</operation>
         <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Approval_Date</fullName>
+        <field>Approval_Date__c</field>
+        <formula>$User.loan__Current_Branch_s_System_Date__c</formula>
+        <name>Update Approval Date</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
     </fieldUpdates>
     <fieldUpdates>
         <fullName>Update_Approval_Date_in_App</fullName>
@@ -89,6 +113,17 @@
         <notifyAssignee>false</notifyAssignee>
         <operation>Formula</operation>
         <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_is_Approved</fullName>
+        <field>Is_Approved__c</field>
+        <literalValue>1</literalValue>
+        <name>Update is Approved</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
     </fieldUpdates>
     <rules>
         <fullName>Aplication is declined or cancelled</fullName>

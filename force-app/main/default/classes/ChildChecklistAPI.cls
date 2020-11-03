@@ -213,7 +213,6 @@ public with sharing class ChildChecklistAPI {
                                                                     genesis__Collateral__r.Valuation_Received__c,
                                                                     genesis__Collateral__r.Valuation_Required__c,
                                                                     genesis__Collateral__r.Arms_Length_Transaction__c,
-                                                                    genesis__Collateral__r.X110_check__c,
                                                                     genesis__Collateral__r.Contract_Of_Sale_Warning_Check__c,
                                                                     Valued_Date_Warning_Check__c,
                                                                     genesis__Collateral__r.Licenced_REA_Contract_Warning_Check__c,
