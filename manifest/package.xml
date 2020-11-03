@@ -23,7 +23,6 @@
         <!--<members>DocumentDeliveryCheckBatch</members>-->
         <members>EquifaxCallout</members>
         <members>EquifaxCalloutTest</members>
-        <!--<members>EquifaxCalloutTest</members> -->
         <members>EquifaxDeliverDocumentAdapter</members>
         <members>EquifaxDeliverDocumentResponseHelper</members>
         <members>EquifaxOrderDocumentResponseHelper</members>
@@ -53,9 +52,7 @@
 
         <!-- Equifax Director Search Search made by Pratik -->
         <members>EquifaxOrgIdSearchAdapter</members>
-        <members>EquifaxOrgIdSearchAdapterTest</members>
         <members>EquifaxOrgIdSearchParser</members>
-        <members>EquifaxOrgIdSearchParserTest</members>
         <members>EquifaxOrgIdSearchCallout</members>
         <members>EquifaxOrgIdSearchCalloutTest</members>
 
@@ -640,6 +637,10 @@
 
         <!-- Return File Processing made by Pratik -->
         <members>deReturnSampleReport</members>
+        <members>CompanyEnquiryMockResponse</members>
+        <members>CompanyEnquiryMockResponse2</members>
+        <members>MultipleDefaultsResponse</members>
+        <members>MultipleShareholder</members>
         <name>StaticResource</name>
     </types>
 
