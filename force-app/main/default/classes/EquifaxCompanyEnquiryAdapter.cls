@@ -53,7 +53,7 @@ global class EquifaxCompanyEnquiryAdapter extends intframework.BaseIntegrationAd
             if(!entityList.isEmpty()){
                 legalEntity = String.valueOf(entityList[0].get(ConstantValues.ENTITY_NAME));
             }
-            if(legalEntity != null && legalEntity.equals(ConstantValues.COMPANY)){
+            if(legalEntity != null && legalEntity.equals(ConstantValues.COMPANY_KEY)){
                 companyACN = String.valueOf(partyList[0].get(ConstantValues.COMPANY_ACN));
             } else if(legalEntity != null & legalEntity.equals(ConstantValues.FAMILY_TRUST) || legalEntity.equals(ConstantValues.ENQUIRY_SMSF) || legalEntity.equals(ConstantValues.Trust)) {
                 companyACN = String.valueOf(partyList[0].get(ConstantValues.TRUSTEE_ACN));

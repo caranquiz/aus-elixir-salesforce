@@ -942,4 +942,5 @@ global class ConstantValues{
   public static final String FEMALE_GENDER_CODE = 'F';
   public static final String UNKNOWN_GENDER_CODE = 'U';
   public static final String DOCUMENT_CATEGORY_NOT_FOUND = 'Document Category not found';
+  public static final String TXN_REV_ERR = 'The transaction cannot be reversed as it is not the last transaction of the Loan Contract : ';
 }

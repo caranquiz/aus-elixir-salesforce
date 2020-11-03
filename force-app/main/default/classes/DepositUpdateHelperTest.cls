@@ -33,6 +33,13 @@ public with sharing class DepositUpdateHelperTest {
         genesis__applications__c app = GenericUtilityTestHelper.returnApplication(acc.Id);
         app.genesis__CL_Product__c = clProductName.Id;
         app.Application_Fee__c = 100;
+        app.genesis__Status__c = 'LOO Accepted';
+        app.genesis__Initial_Advance__c = 100000;
+        app.First_Tranche_Prepaid_Interest__c = 1000;
+        app.Total_Subsequent_Drawdown__c = 2000000;
+        app.Subsequent_Drawdown_Prepaid_Interest_Sum__c = 50000;
+        app.Application_Fee__c = 100;
+        app.Construction_Progress_Payment_Fee__c = 0;
         update app;
         System.assertEquals(app.genesis__account__c,acc.Id);
 
@@ -89,27 +96,30 @@ public with sharing class DepositUpdateHelperTest {
 
         loan__Payment_Mode__c pmt = GenericUtilityTestHelper.loanPaymentMode();
         System.assertEquals(pmt.name,'ACH');
-
+        
         loan__Bank_Account__c bank = GenericUtilityTestHelper.returnDepositAccount();
         System.assertEquals(bank.loan__Active__c,True);
         System.assertEquals(bank.Bank_Account_Name__c,'ABCDE');
 
-        
         loan__Fee__c feeAmt = GenericUtilityTestHelper.loanFeeInfo();
         feeAmt.name = 'Drawdown Prepaid Interest';
         update feeAmt;
         System.assertEquals(feeAmt.name,'Drawdown Prepaid Interest');
+        
+        loan__Fee__c feeAmt1 = GenericUtilityTestHelper.loanFeeInfo();
+        System.assertEquals(feeAmt1.name,'Application Fee');
 
-        loan__Contract_Pre_Paid_Fee__c conFee = GenericUtilityTestHelper.contractFee(loanC.Id, feeAmt.Id);
+        loan__Contract_Pre_Paid_Fee__c conFee = GenericUtilityTestHelper.contractFee(loanC.Id, feeAmt1.Id);
         System.assertEquals(conFee.loan__Amount__c,400);
     
-        clcommon__Deposit__c dep = GenericUtilityTestHelper.depInfo(loanC.Id);
-        System.assertEquals(dep.clcommon__Current_Deposit_Rate__c,10);
     }
     @isTest
     static void test(){
+
         genesis__applications__c app = [SELECT ID from genesis__applications__c];
         loan__Loan_Account__c loanC = [SELECT ID from loan__Loan_Account__c];
+        clcommon__Deposit__c dep = GenericUtilityTestHelper.depInfo(loanC.Id);
+        System.assertEquals(dep.clcommon__Current_Deposit_Rate__c,10);
         Warehouse__c ware  = [SELECT ID from Warehouse__c];
         List <clcommon__Deposit__c> depList = [SELECT id,name,clcommon__Current_Deposit_Amount__c,loan__Loan_Account__c FROM clcommon__Deposit__c WHERE loan__Loan_Account__c = :loanC.Id LIMIT 1];
         test.startTest();
@@ -118,6 +128,17 @@ public with sharing class DepositUpdateHelperTest {
         update app;
         WarehouseFunding.executeFun(loanC.Id,ware.Id);
         DepositUpdateHelper.depositUpdate(depList);
+    }
+    @isTest
+    static void redrawControllerTest(){
+        genesis__applications__c app = [SELECT ID from genesis__applications__c];
+        loan__Loan_Account__c loanC = [SELECT ID from loan__Loan_Account__c];
+        Warehouse__c ware  = [SELECT ID from Warehouse__c];
+        test.startTest();
+        ConvertToContract.executeFun(app.Id);
+        app.CL_Contract__c = loanC.Id;
+        update app;
+        WarehouseFunding.executeFun(loanC.Id,ware.Id);
         //Code added by Rameswari to give coverage to Redraw Controller
         PageReference pageRef = Page.loan__tabbedLoanAccount;
         pageRef.getParameters().put('LoanId', loanC.id);
@@ -127,32 +148,42 @@ public with sharing class DepositUpdateHelperTest {
         controller.redrawAmount = '200'; 
         controller.message = 'Sample Message';
         controller.doRedraw();
+        controller.cancel();
         test.stopTest();
     }
-    /*@isTest
-    static void caseScenarioForFITLoans(){
-        clcommon__CL_Product__c prod = [Select Id from clcommon__CL_Product__c where clcommon__Product_Name__c = 'Residential Construction'];
+    @isTest
+    static void caseScenarioFornonFITLoans(){
+        clcommon__CL_Product__c prod = [Select Id from clcommon__CL_Product__c where clcommon__Product_Name__c = 'Residential'];
         genesis__applications__c app = [SELECT ID from genesis__applications__c];
         app.genesis__CL_Product__c = prod.Id;
-        app.genesis__Initial_Advance__c = 100000;
-        app.First_Tranche_Prepaid_Interest__c = 1000;
-        app.Total_Subsequent_Drawdown__c = 2000000;
-        app.Subsequent_Drawdown_Prepaid_Interest_Sum__c = 50000;
-        app.First_Drawdown_Complete__c = false;
         app.genesis__Status__c = 'Approved';
+        loan__Loan_Account__c loanC = [SELECT ID from loan__Loan_Account__c];
         Warehouse__c ware  = [SELECT ID from Warehouse__c];
         test.startTest();
         ConvertToContract.executeFun(app.Id);
+        app.CL_Contract__c = loanC.Id;
+        update app;
         WarehouseFunding.executeFun(loanC.Id,ware.Id);
         test.stopTest();
-    }*/
-    static void test2(){
-        genesis__applications__c app = [SELECT ID from genesis__applications__c];
+    }
+    @isTest
+    static void caseScenarioForFITLoans(){
+        clcommon__CL_Product__c prod = [Select Id from clcommon__CL_Product__c where clcommon__Product_Name__c = 'Residential Construction'];
+        genesis__applications__c app = [SELECT Id from genesis__applications__c];
+        app.genesis__CL_Product__c = prod.Id;
+        update app;
+        loan__Loan_Account__c loanC = [SELECT ID from loan__Loan_Account__c];
         Warehouse__c ware  = [SELECT ID from Warehouse__c];
-        List <clcommon__Deposit__c> depList = [SELECT id,name,clcommon__Current_Deposit_Amount__c,loan__Loan_Account__c FROM clcommon__Deposit__c WHERE loan__Loan_Account__c = :loanC.Id LIMIT 1];
         test.startTest();
         ConvertToContract.executeFun(app.Id);
-        loan__Loan_Account__c loanC = [SELECT ID from loan__Loan_Account__c where Application__c =: app.Id];
+        app.CL_Contract__c = loanC.Id;
+        update app;
+        ConvertToContract.attachValues(app.Id);
+        WarehouseFunding.executeFun(loanC.Id,ware.Id);
+        app.Drawdown_Prepaid_Interest__c = 1000;
+        app.Subsequent_Drawdown__c = 5000;
+        app.First_Drawdown_Complete__c = true;
+        update app;
         WarehouseFunding.executeFun(loanC.Id,ware.Id);
         test.stopTest();
     }
