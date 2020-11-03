@@ -31,6 +31,7 @@
         <members>JsonObjectToArray</members>
         <members>JsonObjectToArrayTest</members>
         <members>LandTitleDocumentStatus</members>
+        <members>LandTitleDocumentStatusTest</members>
         
         <!-- SMSF ABN changes made by Pratik -->
         <members>SMSFABNNameSearchCallout</members>
@@ -623,6 +624,7 @@
         <members>Sample_APPLY_INDIVIDUAL_Response</members>
         <members>Sample_PREVIOUS_ENQUIRY_Response</members>
         <members>Sample_ORG_ID_Response</members>
+        <members>Land_Title_Document_Status</members>
 
         <!-- SMSF ABN changes made by Pratik -->
         <members>ABNNameSearchDummyXML</members>

@@ -29,6 +29,9 @@ private class CheckRulesTest {
         System.assert(clProductList[0].clcommon__Product_Name__c == 'Residential','CL Product was not inserted.');
 
         genesis__Applications__c applicationDetails = GenericUtilityTestHelper.insertApplication(accountDetails.Id,clProduct.Id);
+        applicationDetails.Risk_grade_list__c = 'Near Prime';
+        applicationDetails.Document_Type__c = 'Full Doc';
+        update applicationDetails;
         List<genesis__Applications__c> applicationDetailsList = [SELECT Id, genesis__Loan_Amount__c FROM genesis__Applications__c WHERE genesis__Loan_Amount__c = 150000 LIMIT 1];
         System.assert(applicationDetailsList[0].genesis__Loan_Amount__c == 150000,'Application was not inserted.');
         
@@ -44,6 +47,9 @@ private class CheckRulesTest {
         System.AssertNotEquals(appCollateral.Id,NULL,'Collateral inserted successfully!');
         
         clcommon__Party__c returnParty = GenericUtilityTestHelper.returnParty(applicationDetailsList[0].Id,accountDetails.Id);
+        returnParty.Risk_Grade__c = 'Near Prime';
+        returnParty.Document_Type__c = 'Full';
+        update returnParty;
     }
     
     //This method acts as unit testing when the application id is not equal to null and Loan Details tab rules are executed
@@ -86,7 +92,7 @@ private class CheckRulesTest {
         //System.assertEquals(ConstantValues.Success,returnValue,'Success');
     }
     @isTest
-    //This method acts as unit testing when the application id is not equal to null and Settlement tab rules are executed 
+    //This method acts as unit testing when the application id is not equal to null and Review tab rules are executed 
     static void testMethod4() {
         List<genesis__Applications__c> applicationDetailsList = [SELECT Id, genesis__Loan_Amount__c FROM genesis__Applications__c LIMIT 1];
         System.assert(applicationDetailsList[0].genesis__Loan_Amount__c == 150000,'Application was not inserted.');
@@ -94,7 +100,7 @@ private class CheckRulesTest {
         Test.startTest();
         String returnValue = CheckRules.callCheckRulesWS(
         applicationDetailsList[0].Id,
-        'Settlement'
+        ConstantValues.XCEPTION
         );
         Test.stopTest();
         System.assertEquals(ConstantValues.Success,returnValue,'Success');
@@ -179,6 +185,72 @@ private class CheckRulesTest {
         String returnValue = CheckRules.callCheckRulesWS(
         applicationDetailsList[0].Id,
         'Company Income'
+        );
+        Test.stopTest();
+        System.assertEquals(ConstantValues.Success,returnValue,'Success');
+    }
+    @isTest
+    //This method acts as unit testing when the application id is not equal to null and Review tab rules are executed 
+    static void testMethod11() {
+        List<genesis__Applications__c> applicationDetailsList = [SELECT Id, genesis__Loan_Amount__c FROM genesis__Applications__c LIMIT 1];
+        System.assert(applicationDetailsList[0].genesis__Loan_Amount__c == 150000,'Application was not inserted.');
+
+        Test.startTest();
+        String returnValue = CheckRules.callCheckRulesWS(
+        applicationDetailsList[0].Id,
+        ConstantValues.WARNING
+        );
+        Test.stopTest();
+        System.assertEquals(ConstantValues.Success,returnValue,'Success');
+    }
+    @isTest
+    //This method acts as unit testing when the application id is not equal to null and Review tab rules are executed 
+    static void testMethod12() {
+        List<genesis__Applications__c> applicationDetailsList = [SELECT Id, genesis__Loan_Amount__c FROM genesis__Applications__c LIMIT 1];
+        System.assert(applicationDetailsList[0].genesis__Loan_Amount__c == 150000,'Application was not inserted.');
+
+        Test.startTest();
+        String returnValue = CheckRules.callCheckRulesWS(
+        applicationDetailsList[0].Id,
+        ConstantValues.WARNING2
+        );
+        Test.stopTest();
+        System.assertEquals(ConstantValues.Success,returnValue,'Success');
+    }
+    @isTest
+    //This method acts as unit testing when the application id is not equal to null and Review tab rules are executed 
+    static void testMethod13() {
+        List<genesis__Applications__c> applicationDetailsList = [SELECT Id, genesis__Loan_Amount__c FROM genesis__Applications__c LIMIT 1];
+        System.assert(applicationDetailsList[0].genesis__Loan_Amount__c == 150000,'Application was not inserted.');
+        List<clcommon__Legal_Entity__c> legalEntityList = [SELECT Id FROM clcommon__Legal_Entity__c LIMIT 1];
+        legalEntityList[0].Name = 'Company';
+        update legalEntityList;
+        List<clcommon__Party__c> partyList = [SELECT Id, Legal_Entity_Type__c FROM clcommon__Party__c LIMIT 1];
+        partyList[0].clcommon__Type__c = GenericUtilityTestHelper.insertPartyType(ConstantValues.GUARANTOR).Id;
+        update partyList;
+        Test.startTest();
+        String returnValue = CheckRules.callCheckRulesWS(
+        applicationDetailsList[0].Id,
+        ConstantValues.CONDITION
+        );
+        Test.stopTest();
+        System.assertEquals(ConstantValues.Success,returnValue,'Success');
+    }
+    @isTest
+    //This method acts as unit testing when the application id is not equal to null and Review tab rules are executed 
+    static void testMethod14() {
+        List<genesis__Applications__c> applicationDetailsList = [SELECT Id, genesis__Loan_Amount__c FROM genesis__Applications__c LIMIT 1];
+        System.assert(applicationDetailsList[0].genesis__Loan_Amount__c == 150000,'Application was not inserted.');
+        List<clcommon__Legal_Entity__c> legalEntityList = [SELECT Id FROM clcommon__Legal_Entity__c LIMIT 1];
+        legalEntityList[0].Name = 'Company';
+        update legalEntityList;
+        List<clcommon__Party__c> partyList = [SELECT Id FROM clcommon__Party__c LIMIT 1];
+        partyList[0].clcommon__Type__c = GenericUtilityTestHelper.insertPartyType(ConstantValues.CO_APPLICANT).Id;
+        update partyList;
+        Test.startTest();
+        String returnValue = CheckRules.callCheckRulesWS(
+            applicationDetailsList[0].Id,
+            ConstantValues.APP_EXCEP
         );
         Test.stopTest();
         System.assertEquals(ConstantValues.Success,returnValue,'Success');

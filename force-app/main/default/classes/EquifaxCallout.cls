@@ -25,49 +25,42 @@ global with sharing class EquifaxCallout {
         return collateralList[0];
     }
     private static String processCallout(String apiType, Map<String, String> queryIdMap, Map<String, Object> requestParamMap) {
+        intframework.AbstractIntegrationService baseintegrationService = intframework.IntegrationServiceFactory.getBaseIntegrationService();
         intframework.BaseIntegrationResponse responseObject;
         Map<String, Object> responseMap;
-        dom.Document doc;
+        dom.Document doc = new dom.Document();
         String json;
-        intframework.AbstractIntegrationService baseintegrationService = intframework.IntegrationServiceFactory.getBaseIntegrationService();
         responseObject = (intframework.BaseIntegrationResponse) baseintegrationService.runSynchronousIntegrationService(
             ConstantValues.EQUIFAX_FAMILY,
             apiType,
             queryIdMap,
             requestParamMap
         );
-        doc = new dom.Document();
         doc.load(responseObject.getBody());
-        responseMap = intframework.XmlToJson.parseDocumentToMap(
-            doc
-        );
+        responseMap = intframework.XmlToJson.parseDocumentToMap(doc);
         json = System.JSON.serialize(responseMap);
         return GenericUtility.modifyJsonKeysIntoCamelcasing(json);
     }
     webService static String equifaxTitleSearch(Id collateralId, Boolean confirmPrice) {
         clcommon__Collateral__c collateralObj;
-        Map<String, String> queryIdMap;
-        Map<String, Object> requestParamMap;
+        Map<String, String> queryIdMap = new Map<String, String>();
+        Map<String, Object> requestParamMap = new Map<String, Object>();
         String json;
-        List<String> queries;
-        JsonObjectToArray obj;
+        List<String> queries = new List<String>();
+        JsonObjectToArray obj = new JsonObjectToArray();
         try {
             collateralObj = checkCollateralId(collateralId);
             if(collateralObj == null){
                 return ConstantValues.NO_COLLATERAL;
             }
-            queryIdMap = new Map<String, String>();
             queryIdMap.put(ConstantValues.COLLATERAL_ID, (String) collateralObj.id);
-            requestParamMap = new Map<String, Object>();
             requestParamMap.put('clientReference', collateralObj.Name);
             if(confirmPrice != null && confirmPrice == true){
                 requestParamMap.put('confirmPrice', true);
             }
             json = processCallout(ConstantValues.TITLE_SEARCH_API_TYPE, queryIdMap, requestParamMap);
-            queries = new List<String>();
             queries.add(ConstantValues.LANDTITLE_KEY);
             queries.add(ConstantValues.ERROR_KEY);
-            obj = new JsonObjectToArray();
             json = obj.modifyAllByRecur(json, queries);
             return json;
         } catch (Exception ex) {
@@ -82,7 +75,7 @@ global with sharing class EquifaxCallout {
     }
     webService static String equifaxOrderDocument(String testTitleReference, String testStateRef, Id collateralId, Boolean confirmPrice) {
         clcommon__Collateral__c collateralObj;
-        Map<String, Object> requestParamMap;
+        Map<String, Object> requestParamMap = new Map<String, Object>();
         String json;
         OrderDocumentData orderDocdata;
         try {
@@ -90,7 +83,6 @@ global with sharing class EquifaxCallout {
             if(collateralObj == null){
                 return ConstantValues.NO_COLLATERAL;
             }
-            requestParamMap = new Map<String, Object>();
             requestParamMap.put('titleReference', testTitleReference);
             requestParamMap.put('testStateRef', testStateRef);
             requestParamMap.put('clientRef', collateralObj.Name);
@@ -126,16 +118,15 @@ global with sharing class EquifaxCallout {
     webService static String equifaxDeliverDocument(Id collateralId, String enquiryId) {
         LandTitleDocumentData documentData = new LandTitleDocumentData();
         clcommon__Collateral__c collateralObj;
-        Map<String, Object> requestParamMap;
+        Map<String, Object> requestParamMap = new Map<String, Object>();
         String json;
         clcommon__Document_Category__c docCat;
-        clcommon__Category_Attachment_Association__c attachDoc;
+        clcommon__Category_Attachment_Association__c attachDoc = new clcommon__Category_Attachment_Association__c();
         try{
             collateralObj = checkCollateralId(collateralId);
             if(collateralObj == null){
                 return ConstantValues.NO_COLLATERAL;
             }
-            requestParamMap = new Map<String, Object>();
             if(String.isNotBlank(collateralObj.Document_Enquiry_Id__c)){
                 requestParamMap.put('enquiryId', collateralObj.Document_Enquiry_Id__c);
             }
@@ -168,7 +159,6 @@ global with sharing class EquifaxCallout {
             //Attaching the retrieved document with the collateral
             if(!docCatList.isEmpty() && documentData.documentAttachment != null){
                 docCat = docCatList[0];
-                attachDoc = new clcommon__Category_Attachment_Association__c();
                 attachDoc.Name = documentData.documentAttachment.Name;
                 attachDoc.clcommon__Attachment_Id__c = documentData.documentAttachment.Id;
                 attachDoc.clcommon__Document_Category__c = docCat.Id;

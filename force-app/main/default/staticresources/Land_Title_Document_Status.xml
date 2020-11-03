@@ -1,0 +1,14 @@
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:land="http://veda-services/event-notify-v1-0.xsd" xmlns:vh="http://vedaxml.com/soap/header/v-header-v1-10.xsd" xmlns:wsa="http://www.w3.org/2005/08/addressing">
+    <soap:Body xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+        <land:notify-event-request>
+            <land:request-header>
+                <land:client-reference>Collateral_Ref</land:client-reference>
+            </land:request-header>
+            <land:notify-event-data>
+                <land:enquiry-id>140805-MFDUX-0000Q</land:enquiry-id>
+                <land:status>READY</land:status>
+                <land:date-time>2016-06-06T11:29:10.171+10:00</land:date-time>
+            </land:notify-event-data>
+        </land:notify-event-request>
+    </soap:Body>
+</soap:Envelope>

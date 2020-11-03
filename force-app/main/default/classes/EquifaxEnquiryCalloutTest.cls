@@ -196,6 +196,12 @@ public class EquifaxEnquiryCalloutTest {
         List<clcommon__Log__c> logList = [SELECT Id, clcommon__Message__c FROM clcommon__Log__c];
         System.assertEquals(0, logList.size(), 'Exception occurred');
     }
+    @isTest
+    static void testEquifaxApplyIndividualAdapterWithNull() {
+        Map<String, Object> filledInRequestMap = new Map<String, Object>();
+        EquifaxApplyIndividualAdapter instance = new EquifaxApplyIndividualAdapter();
+        instance.generateRequestBody(filledInRequestMap);
+    }
 
     /* Mock class returns response from static resource depending on endpoint being called */
     private class Mock implements HttpCalloutMock {
