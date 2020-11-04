@@ -6,4 +6,8 @@
         <field>Type_Code__c</field>
         <value xsi:type="xsd:string">HWY</value>
     </values>
+    <values>
+        <field>Type__c</field>
+        <value xsi:type="xsd:string">ToStreetTypeCode</value>
+    </values>
 </CustomMetadata>

@@ -16,13 +16,14 @@ global class LoanPaymentReturnFileProcessor extends loan.ACHReturnPaymentProcess
             if(fileContent != null){
                 List<String> bodyLines = fileContent.split('\n');
                 achReturns.clear();
-                String typeOfTask;  
+                String typeOfTask;
                 Map<String,String> lptMap = new Map<String,String>();
                 Map<String,Decimal> lptAmountMap = new Map<String,Decimal>();
                 Integer i=1;
                 while (i<bodyLines.size()-1){
                     String typeOfService = bodyLines[i].substring(0,1); 
-                    if(typeOfService.equals('2') && bodyLines.size() >= 80){
+                    if(typeOfService.equals('2') && bodyLines[i].length() >= 80){
+                        System.debug(Decimal.valueOf(bodyLines[i].substring(20,30).trim()));
                         //Process Reversed Transaction
                         lptMap.put(bodyLines[i].substring(bodyLines[i].lastIndexOf(ConstantValues.LPT_PREFIX),80).trim(),bodyLines[i].substring(17,18).trim());
                         lptAmountMap.put(bodyLines[i].substring(bodyLines[i].lastIndexOf(ConstantValues.LPT_PREFIX),80).trim(),Decimal.valueOf(bodyLines[i].substring(20,30).trim()));
@@ -41,6 +42,7 @@ global class LoanPaymentReturnFileProcessor extends loan.ACHReturnPaymentProcess
                                 WHERE Name IN:lptMap.keySet()];
                     //Adding LPTs with reason code to be reversed
                     for(loan__Loan_Payment_Transaction__c lPTobj : payments){
+                        System.debug(lptAmountMap.get(String.valueOf(lPTobj.get(ConstantValues.NAME))));
                         if((lPTobj.loan__Transaction_Amount__c * 100) != (lptAmountMap.get(String.valueOf(lPTobj.get(ConstantValues.NAME))))){
                             excepLPTAmount.add(String.valueOf(lPTobj.get(ConstantValues.NAME)));
                             continue;
@@ -80,7 +82,7 @@ global class LoanPaymentReturnFileProcessor extends loan.ACHReturnPaymentProcess
                         }
                         achReturns.add(achRet);
                     }
-                    if(payments.size() < (lptMap.keySet()).size()) {
+                    if(payments.size() <= (lptMap.keySet()).size()) {
                         for(String eachLpt : lptMap.keySet()){
                             if(!lptNameList.contains(eachLpt)){
                                 excepLPT.add(eachLpt);

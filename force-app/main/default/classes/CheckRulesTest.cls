@@ -267,4 +267,16 @@ private class CheckRulesTest {
         Test.stopTest();
         System.assertEquals(ConstantValues.Success,returnValue,'Success');
     }
+    @isTest
+    static void testChecklistDetailsAPIMethods() {
+        Test.startTest();
+        ChecklistDetailsAPI obj = new ChecklistDetailsAPI();
+        obj.evaluateBasedOnDoubleMatchingType((Double)12.3, '!=', '10.1');
+        obj.evaluateBasedOnDoubleMatchingType((Double)12.3, '<', '10.1');
+        obj.evaluateBasedOnDoubleMatchingType((Double)12.3, '>', '10.1');
+        obj.evaluateBasedOnMatchingType('ABC', '==', 'XYZ');
+        obj.evaluateBasedOnMatchingType('ABC', 'IN', 'XYZ,ABC');
+        obj.evaluateBasedOnMatchingType('LIO', 'NOT IN', 'XYZ,ABC');
+        Test.stopTest();
+    }
 }
