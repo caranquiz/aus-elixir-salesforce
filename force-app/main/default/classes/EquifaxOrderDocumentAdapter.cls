@@ -55,7 +55,7 @@ global class EquifaxOrderDocumentAdapter extends intframework.BaseIntegrationAda
                 requestbody += '<land:order-title-proceed>' + String.valueOf(orderTitleProceed) + '</land:order-title-proceed>';
             }
             requestbody += '<land:order-title-request><land:title-by-reference><land:title-reference>'
-                + testTitleReference + '</land:title-reference></land:title-by-reference></land:order-title-request>';
+            + testTitleReference + '</land:title-reference></land:title-by-reference></land:order-title-request>';
             requestbody += '</land:order-document-request-data></land:order-document-request></soap:Body></soap:Envelope>';
             return requestbody;
         } catch (Exception ex) {

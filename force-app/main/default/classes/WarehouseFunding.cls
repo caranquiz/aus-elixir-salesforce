@@ -56,7 +56,7 @@ static Date currentSystemDate =(Test.isRunningTest()?Date.Today():(new loan.Glob
             List <clcommon__Party__c> brokerPartyList = [select id,Upfront_Payment_Percentage__c,Commission_Paid_To__c,Commission_Paid__c,Commission_Structure__c,clcommon__Account__c,clcommon__Account__r.parentId from clcommon__Party__c where genesis__Application__c =: app.Id and clcommon__Type__r.name =: System.label.Broker];
             if(loanAcc != null && app.First_Drawdown_Complete__c == false){
                 if(brokerPartyList.size() > 0){
-                    if(brokerPartyList[0].Commission_Paid__c == System.label.Yes && (brokerPartyList[0].Commission_Structure__c	== System.label.Upfront_Trail || brokerPartyList[0].Commission_Structure__c == System.label.Upfront)){
+                    if(brokerPartyList[0].Commission_Paid__c == System.label.Yes && (brokerPartyList[0].Commission_Structure__c == System.label.Upfront_Trail || brokerPartyList[0].Commission_Structure__c == System.label.Upfront)){
                         if(brokerPartyList[0].Upfront_Payment_Percentage__c != null && brokerPartyList[0].Upfront_Payment_Percentage__c != 0){
                             if(brokerPartyList[0].Commission_Paid_To__c == System.label.Broker){
                                 broIden = brokerPartyList[0].clcommon__Account__c;
@@ -331,7 +331,7 @@ static Date currentSystemDate =(Test.isRunningTest()?Date.Today():(new loan.Glob
                 pmtSetup.loan__Debit_Date__c = loanRec.loan__Next_Installment_Date__c;
                 pmtSetup.loan__Recurring_ACH_End_Date__c = loanRec.loan__Last_Installment_Date__c;
                 startDate = loanRec.loan__Next_Installment_Date__c;
-                pmtSetup.loan__Amount_Type__c = System.label.LastBilledAmt;
+                pmtSetup.loan__Amount_Type__c = System.label.APS_Payment_Amount;
                 pmtSetup.loan__Frequency__c = System.label.APS_Frequency;
             }
             else{
