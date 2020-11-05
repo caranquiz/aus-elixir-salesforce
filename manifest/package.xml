@@ -75,7 +75,7 @@
         <members>LoanPaymentTransactionFileGen</members>
         <members>LoanPaymentTransactionFileGenTest</members>
         <members>LoanPaymentReturnFileProcessor</members>
-        <members>LoanPaymentReturnFileProcessorTest</members>
+        <members>LoanPaymentReturnFileHandlerTest</members>
 
         <!-- Deposit field not updated in CL Contract issue fix by Rameswari -->
         <members>DepositUpdateHelper</members>
