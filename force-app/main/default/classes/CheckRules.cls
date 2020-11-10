@@ -706,7 +706,8 @@ global with sharing class CheckRules {
 		public String exceptionCommentary;
 		public String status;
 		public String supportingDocumentVerified;
-		public String waiverReason;
+        public String waiverReason;
+        public String shownOnIndicativeLetter;
 	}
     public static void updateRuleDataOnApplcationFromChecklists(genesis__Applications__c appObj, List<String> rulesNameList){
         List<genesis__Checklist__c> checklistList = [SELECT Id, genesis__Rule__r.Name,
@@ -799,7 +800,8 @@ global with sharing class CheckRules {
                                                             Exception_Recommender__c,
                                                             Condition_Status__c,
                                                             Supporting_Document_Verified__c,
-                                                            Waiver_Reason__c
+                                                            Waiver_Reason__c,
+                                                            Show_on_Indicative_Approval_Letter__c
                                                             FROM Checklist_Detail__c
                                                             WHERE Party__c IN:partyIds
                                                             AND Checklist__r.genesis__Rule__r.Name IN:rulesNameList];
@@ -832,7 +834,8 @@ global with sharing class CheckRules {
                                                             Exception_Recommender__c,
                                                             Condition_Status__c,
                                                             Supporting_Document_Verified__c,
-                                                            Waiver_Reason__c
+                                                            Waiver_Reason__c,
+                                                            Show_on_Indicative_Approval_Letter__c
                                                             FROM Checklist_Detail__c
                                                             WHERE Application_Collateral__c IN:appColIds
                                                             AND Checklist__r.genesis__Rule__r.Name IN:rulesNameList];
@@ -890,7 +893,8 @@ global with sharing class CheckRules {
                 manualData += '"exceptionCommentary":"' + eachChecklistDetail.Exception_Commentary__c + '",';
                 manualData += '"status":"' + eachChecklistDetail.Condition_Status__c + '",';
                 manualData += '"supportingDocumentVerified":"' + eachChecklistDetail.Supporting_Document_Verified__c + '",';
-                manualData += '"waiverReason":"' + eachChecklistDetail.Waiver_Reason__c + '"';
+                manualData += '"waiverReason":"' + eachChecklistDetail.Waiver_Reason__c + '",';
+                manualData += '"shownOnIndicativeLetter":"' + eachChecklistDetail.Show_on_Indicative_Approval_Letter__c + '"';
                 manualData += '}';
             }
             manualData += ']}';
@@ -915,7 +919,8 @@ global with sharing class CheckRules {
                                                             Exception_Recommender__c,
                                                             Condition_Status__c,
                                                             Supporting_Document_Verified__c,
-                                                            Waiver_Reason__c
+                                                            Waiver_Reason__c,
+                                                            Show_on_Indicative_Approval_Letter__c
                                                             FROM Checklist_Detail__c
                                                             WHERE Party__c IN:partyIds
                                                             AND Checklist__r.genesis__Rule__r.Name IN:rulesNameList];
@@ -939,7 +944,8 @@ global with sharing class CheckRules {
                                                             Exception_Recommender__c,
                                                             Condition_Status__c,
                                                             Supporting_Document_Verified__c,
-                                                            Waiver_Reason__c
+                                                            Waiver_Reason__c,
+                                                            Show_on_Indicative_Approval_Letter__c
                                                             FROM Checklist_Detail__c
                                                             WHERE Application_Collateral__c IN:appColIds
                                                             AND Checklist__r.genesis__Rule__r.Name IN:rulesNameList];
@@ -1014,6 +1020,8 @@ global with sharing class CheckRules {
                         checklistObj.Supporting_Document_Verified__c = eachChecklistManualData.supportingDocumentVerified;
                     } if(String.isNotBlank(eachChecklistManualData.waiverReason) && !(eachChecklistManualData.waiverReason).equalsIgnoreCase('null')){
                         checklistObj.Waiver_Reason__c = eachChecklistManualData.waiverReason;
+                    } if(String.isNotBlank(eachChecklistManualData.shownOnIndicativeLetter) && !(eachChecklistManualData.shownOnIndicativeLetter).equalsIgnoreCase('null')){
+                        checklistObj.Show_on_Indicative_Approval_Letter__c = eachChecklistManualData.shownOnIndicativeLetter;
                     }
                     updatedChecklists.add(checklistObj);
                 }
