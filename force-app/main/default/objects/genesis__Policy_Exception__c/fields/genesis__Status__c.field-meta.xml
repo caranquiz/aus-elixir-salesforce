@@ -19,7 +19,7 @@
             </value>
             <value>
                 <fullName>Open</fullName>
-                <default>false</default>
+                <default>true</default>
                 <label>Open</label>
             </value>
             <value>
