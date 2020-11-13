@@ -1,3 +1,11 @@
+/**********************************************************************************************************************************************************
+Company : CloudKaptan Consultancy Services Pvt. Ltd.
+Developer : Hamza Yousuf
+Development Date : 22/07/2020
+Last Modified By : Hamza Yousuf
+Last Modified Date : 13/11/2020
+Description : This is the adapter class for Equifax Company Enquiry.
+***********************************************************************************************************************************************************/
 global class EquifaxCompanyEnquiryAdapter extends intframework.BaseIntegrationAdapter {
     global override virtual String generateRequestBody(Map<String, Object> filledInRequestMap)
     {

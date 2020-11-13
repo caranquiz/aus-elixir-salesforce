@@ -1,3 +1,11 @@
+/**********************************************************************************************************************************************************
+Company : CloudKaptan Consultancy Services Pvt. Ltd.
+Developer : Hamza Yousuf
+Development Date : 18/08/2020
+Last Modified By : Hamza Yousuf
+Last Modified Date : 13/11/2020
+Description : This test class covers Deposit Update Helper class.
+***********************************************************************************************************************************************************/
 @isTest
 public with sharing class DepositUpdateHelperTest {
     @TestSetup

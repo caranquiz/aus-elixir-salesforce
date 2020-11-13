@@ -1,3 +1,12 @@
+/**********************************************************************************************************************************************************
+Company : CloudKaptan Consultancy Services Pvt. Ltd.
+Developer : Hamza Yousuf
+Development Date : 20/07/2020
+Last Modified By : Hamza Yousuf
+Last Modified Date : 13/11/2020
+Description : This is the callout class for Equifax Company Enquiry.
+***********************************************************************************************************************************************************/
+
 global class EquifaxCompanyEnquiryCallout{
     WebService static String companyEnquiryRequest(ID partyid, ID applicationid,Boolean enrichment){
         try{
