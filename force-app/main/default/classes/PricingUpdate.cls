@@ -31,15 +31,16 @@ global with sharing class PricingUpdate {
         FROM genesis__Application_Pricing_Detail__c
         WHERE genesis__Application__c = :applicationId
       ];
+      Boolean pricingNotFound = false;
       if (applicationPricingDetailList.isEmpty()) {
-        throw new CustomException(ConstantValues.NO_PRICING_RECORDS_FOUND);
+        pricingNotFound = true;
       }
       if(checkPricing == true){
           genesis__Applications__c app = [SELECT Id,
                                                   Matrix_Rate__c
                                          FROM genesis__Applications__c
                                          WHERE Id =: applicationId];
-          if(app.Matrix_Rate__c != applicationPricingDetailList[0].genesis__Interest_Rate__c){
+          if(pricingNotFound == false && app.Matrix_Rate__c != applicationPricingDetailList[0].genesis__Interest_Rate__c){
               return ConstantValues.PRICING_RATE_DOES_MATCH;
           }
           else{
@@ -47,8 +48,13 @@ global with sharing class PricingUpdate {
           }
       }
       genesis__Applications__c app = new genesis__Applications__c(Id = applicationId);
-      //Updating the obtained pricing of the loan in custom field named Matrix Rate
-      app.Matrix_Rate__c = applicationPricingDetailList[0].genesis__Interest_Rate__c;
+      if(pricingNotFound == true){
+        app.Matrix_Rate__c = 99.99;
+      }
+      else{
+        //Updating the obtained pricing of the loan in custom field named Matrix Rate
+        app.Matrix_Rate__c = applicationPricingDetailList[0].genesis__Interest_Rate__c;
+      }
       update app;
       if(Test.isRunningTest()){
           Integer a = 10/0;
