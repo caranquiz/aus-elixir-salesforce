@@ -499,7 +499,10 @@ global with sharing class CheckRules {
             if(appCollaterals.isEmpty()){
                 return;
             }
-            String prevPrimPurp = appCollaterals[0].genesis__Collateral__r.Primary_Purpose__c;
+            String prevPrimPurp = '';
+            if(appCollaterals[0].genesis__Collateral__c != NULL){
+                prevPrimPurp = appCollaterals[0].genesis__Collateral__r.Primary_Purpose__c;
+            }
             for(genesis__Application_Collateral__c eachAppCollateral : appCollaterals){
                 if(eachAppCollateral.genesis__Collateral__c != NULL){
                     if(String.isBlank(eachAppCollateral.genesis__Collateral__r.Primary_Purpose__c)){
@@ -510,8 +513,8 @@ global with sharing class CheckRules {
                         errorCheckList(primPurpCompRule, appId, previousChecklistId);
                         return;
                     }
+                    prevPrimPurp = eachAppCollateral.genesis__Collateral__r.Primary_Purpose__c;
                 }
-                prevPrimPurp = eachAppCollateral.genesis__Collateral__r.Primary_Purpose__c;
             }
             if(appObj.Primary_loan_purpose_list__c != prevPrimPurp){
                 errorCheckList(primPurpCompRule, appId, previousChecklistId);

@@ -10,43 +10,34 @@
 
 global with sharing class EquifaxEnquiryCallout {
     webService static String equifaxApplyIndividual(Id appId, Id partyId, Id conId, Id addressId){
-        List<genesis__Applications__c> appList;
-        List<clcommon__Party__c> partyList;
-        List<Contact> contactList;
-        List<clcommon__Address__c> addressList;
-        genesis__Applications__c appObj;
-        clcommon__Party__c partyObj;
-        Contact conObj;
-        clcommon__Address__c addressObj;
         Map<String, String> queryIdMap = new Map<String, String>();
         Map<String, Object> requestParamMap = new Map<String, Object>();
         intframework.AbstractIntegrationService baseintegrationService = intframework.IntegrationServiceFactory.getBaseIntegrationService();
-        intframework.BaseIntegrationResponse responseObject;
         dom.Document doc = new dom.Document();
         Map<String, Object> responseMap;
         String json;
         EquifaxApplyIndividualResponseHelper helperObject;
         try{
-            appList = [SELECT Id FROM genesis__Applications__c WHERE Id = :appId];
+            List<genesis__Applications__c> appList = [SELECT Id FROM genesis__Applications__c WHERE Id = :appId];
             if(appList.isEmpty()){
                 return ConstantValues.NO_APPLICATION;
             }
-            appObj = appList[0];
-            partyList = [SELECT Id, Party_Type_Name__c FROM clcommon__Party__c WHERE Id = :partyId];
+            genesis__Applications__c appObj = appList[0];
+            List<clcommon__Party__c> partyList = [SELECT Id, Party_Type_Name__c FROM clcommon__Party__c WHERE Id = :partyId];
             if(partyList.isEmpty()){
                 return ConstantValues.NO_PARTY;
             }
-            partyObj = partyList[0];
-            contactList = [SELECT Id FROM Contact WHERE Id = :conId];
+            clcommon__Party__c partyObj = partyList[0];
+            List<Contact> contactList = [SELECT Id FROM Contact WHERE Id = :conId];
             if(contactList.isEmpty()){
                 return ConstantValues.NO_CONTACT;
             }
-            conObj = contactList[0];
-            addressList = [SELECT Id FROM clcommon__Address__c WHERE Id = :addressId];
+            Contact conObj = contactList[0];
+            List<clcommon__Address__c> addressList = [SELECT Id FROM clcommon__Address__c WHERE Id = :addressId];
             if(addressList.isEmpty()){
                 return ConstantValues.NO_ADDRESS;
             }
-            addressObj = addressList[0];
+            clcommon__Address__c addressObj = addressList[0];
             queryIdMap.put('appId', appObj.Id);
             queryIdMap.put('partyId', partyObj.Id);
             queryIdMap.put('conId', conObj.Id);
@@ -62,7 +53,7 @@ global with sharing class EquifaxEnquiryCallout {
             }else{
                 requestParamMap.put('relationshipCode', '1');
             }
-            responseObject = (intframework.BaseIntegrationResponse) baseintegrationService.runSynchronousIntegrationService(
+            intframework.BaseIntegrationResponse responseObject = (intframework.BaseIntegrationResponse) baseintegrationService.runSynchronousIntegrationService(
                 ConstantValues.EQUIFAX_FAMILY,
                 ConstantValues.APPLY_INDIVIDUAL_API_TYPE,
                 queryIdMap,

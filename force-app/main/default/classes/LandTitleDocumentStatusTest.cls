@@ -21,9 +21,10 @@ private with sharing class LandTitleDocumentStatusTest {
         RestResponse res = new RestResponse();
         req.addHeader('httpMethod', 'POST');
         req.requestUri = '/services/apexrest/DocumentStatus/';
-        StaticResource sr = [SELECT Id, Name, Body
+        List <StaticResource> srList = [SELECT Id, Name, Body
             FROM StaticResource WHERE Name = 'Land_Title_Document_Status'];
-        String postData = sr.Body.toString();
+        System.assertEquals(srList.size() > 0, true, 'Static Resource is present!');
+        String postData = srList[0].Body.toString();
         postData = postData.replace('Collateral_Ref', collList[0].Name);
         req.requestBody = Blob.valueof(postData);
         RestContext.request = req;

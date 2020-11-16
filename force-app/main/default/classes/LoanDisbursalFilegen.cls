@@ -88,9 +88,11 @@ global with sharing class LoanDisbursalFilegen extends loan.FileGenerator {
         obj = new DirectEntryFileRecordGenUtil.DetailRecordData();
         obj.lodgementRef = eachLDT.Name;
         obj.transAmt = (eachLDT.ORDE_Financial_Fees_Total_Amount__c * 100).round();
-        obj.benfBSBNumber = eachLDT.loan__Loan_Account__r.Warehouse__r.BSB_Number__c;
-        obj.benfAccNumber = eachLDT.loan__Loan_Account__r.Warehouse__r.Bank_Account_Number__c;
-        obj.remitterName = eachLDT.loan__Loan_Account__r.Warehouse__r.Institution_Name__c;
+        if(eachLDT.loan__Loan_Account__r.Warehouse__c != NULL){
+          obj.benfBSBNumber = eachLDT.loan__Loan_Account__r.Warehouse__r.BSB_Number__c;
+          obj.benfAccNumber = eachLDT.loan__Loan_Account__r.Warehouse__r.Bank_Account_Number__c;
+          obj.remitterName = eachLDT.loan__Loan_Account__r.Warehouse__r.Institution_Name__c;
+        }
         detailRecordDataLDTMap.put(eachLDT.Id, obj);
         clContractIds.add(eachLDT.loan__Loan_Account__c);
         List<Id> ldtIds = loanAccountLDTIdMap.get(eachLDT.loan__Loan_Account__c);

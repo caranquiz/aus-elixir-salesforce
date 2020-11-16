@@ -57,14 +57,14 @@ private class PricingUpdateTest {
     @isTest
     static void scenario1() 
     {
-        genesis__Applications__c app=[select id from genesis__Applications__c limit 1];
-        System.assertNotEquals(app.Id,NULL,'Application is present.');
+        List <genesis__Applications__c> appList = [select id from genesis__Applications__c limit 1];
+        System.assertEquals(appList.size(),1,'Application is present.');
         Test.startTest();
-        String checkReturn1 = PricingUpdate.updatePricing(app.Id,false);
+        String checkReturn1 = PricingUpdate.updatePricing(appList[0].Id,false);
         System.assertEquals(checkReturn1,'Unable to update the pricing',true);
-        String checkReturn2 = PricingUpdate.updatePricing(app.Id,true);
+        String checkReturn2 = PricingUpdate.updatePricing(appList[0].Id,true);
         System.assertEquals(checkReturn2,
-            'The current matrix rate is not in accordance with the interest obtained from Pricing table. Please click on the Generate Pricing button on Loan Details tab to proceed.',
+            ConstantValues.PRICING_RATE_DOES_MATCH,
             true);
         Test.stopTest();
     }

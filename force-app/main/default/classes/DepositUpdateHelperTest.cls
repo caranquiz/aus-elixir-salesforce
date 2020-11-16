@@ -86,7 +86,8 @@ public with sharing class DepositUpdateHelperTest {
         conMapList.add(conMap3);
         conMapList.add(conMap4);
         insert conMapList;
-        
+        System.assertNotEquals(conMapList.size(), 0, 'Conversion Mapping inserted successfully!');
+
         loan__Loan_Account__c loanC = ElixirTestHelper.returnLoanAccount();
         loanC.loan__Account__c = acc.Id;
         loanC.loan__Loan_Amount__c = 1000;
@@ -100,7 +101,7 @@ public with sharing class DepositUpdateHelperTest {
         loanC.loan__Principal_Remaining__c = 100;
         loanC.loan__Loan_Status__c = 'Approved';
         update loanC;
-        System.assertEquals(loanC.loan__Next_Installment_Date__c,Date.today());
+        System.assertEquals(loanC.Loan__Principal_Remaining__c,100);
 
         loan__Payment_Mode__c pmt = GenericUtilityTestHelper.loanPaymentMode();
         System.assertEquals(pmt.name,'ACH');
