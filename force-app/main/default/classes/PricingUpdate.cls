@@ -43,6 +43,10 @@ global with sharing class PricingUpdate {
           if(pricingNotFound == false && app.Matrix_Rate__c != applicationPricingDetailList[0].genesis__Interest_Rate__c){
               return ConstantValues.PRICING_RATE_DOES_MATCH;
           }
+          else if(pricingNotFound == true){
+            app.Matrix_Rate__c = 99.99;
+            update app;
+          }
           else{
               return ConstantValues.msg;
           }
