@@ -550,20 +550,20 @@ public class EquifaxApplyIndividualResponseHelper{
     }
     static String processPossiblyMatchedData(Cls_possibleMatch possibleMatchData){
         String data = '';
-        if(possibleMatchData != null
-        && possibleMatchData.identity != null
-        && possibleMatchData.identity.individualName != null){
-            if(possibleMatchData.identity.individualName.firstGivenName != null
-            && possibleMatchData.identity.individualName.firstGivenName.nodeValue != null){
-                data += possibleMatchData.identity.individualName.firstGivenName.nodeValue + ' ';
-            }
-            if(possibleMatchData.identity.individualName.otherGivenName != null
-            && possibleMatchData.identity.individualName.otherGivenName.nodeValue != null){
-                data += possibleMatchData.identity.individualName.otherGivenName.nodeValue + ' ';
-            }
-            if(possibleMatchData.identity.individualName.familyName != null
-            && possibleMatchData.identity.individualName.familyName.nodeValue != null){
-                data += possibleMatchData.identity.individualName.familyName.nodeValue + ' ';
+        if(possibleMatchData != null && possibleMatchData.identity != null){
+            if(possibleMatchData.identity.individualName != null){
+                if(possibleMatchData.identity.individualName.firstGivenName != null
+                && possibleMatchData.identity.individualName.firstGivenName.nodeValue != null){
+                    data += possibleMatchData.identity.individualName.firstGivenName.nodeValue + ' ';
+                }
+                if(possibleMatchData.identity.individualName.otherGivenName != null
+                && possibleMatchData.identity.individualName.otherGivenName.nodeValue != null){
+                    data += possibleMatchData.identity.individualName.otherGivenName.nodeValue + ' ';
+                }
+                if(possibleMatchData.identity.individualName.familyName != null
+                && possibleMatchData.identity.individualName.familyName.nodeValue != null){
+                    data += possibleMatchData.identity.individualName.familyName.nodeValue + ' ';
+                }
             }
             if(possibleMatchData.identity.dateOfBirth != null
             && possibleMatchData.identity.dateOfBirth.nodeValue != null){
