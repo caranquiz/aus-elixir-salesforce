@@ -1,5 +1,5 @@
 /****************************************************************************************************/
-/* Description          : This test class mostly covers the LoanPaymentTransactionFileGen class. */
+/* Description          : This test class mostly covers the LoanPaymentTransactionFileGen class and callABAFilegenerationPage. */
 /* Testing Scenario 1   : (checkInitialiedData) Tests if the inserted records in setup method exist */
 /* Testing Scenario 2   : (testWithValidScope) Tests with all the valid data required to generate a
 ABA file for Loan Payment Txns */
@@ -9,6 +9,7 @@ ABA file for Loan Payment Txns */
 is null how will it handle. */
 /* Testing Scenario 6   : (testWithInvalidScope) Tests with no Borrower ACH bank account spedified */
 /* Testing Scenario 7   : (testWithInvalidScope3) Tests with Account name length greater than 32 */
+/* Testing Scenario 8   : (callABAFilegenerationPage) calls callABAFilegenerationPage controller and gives coverage*/
 /*Company: Cloudkaptan Consultancy Services Pvt. Ltd.
 Author: Pratik Agarwal
 Development Date : 4/09/2020
@@ -227,6 +228,14 @@ private class LoanPaymentTransactionFileGenTest {
     List<String> ret = obj.getEntries(state, testLptList);
     string header = obj.getHeader(state, testLptList);
     string trailor = obj.getTrailer(state, testLptList);
+    test.stopTest();
+  }
+  static testMethod void callABAFilegenerationPage() {
+    test.startTest();
+    ABAFileGeneratorController abaControl = new ABAFileGeneratorController();
+    abaControl.nothing();
+    abaControl.runLPTFileGen();
+    abaControl.runLDTFileGen();
     test.stopTest();
   }
 }
