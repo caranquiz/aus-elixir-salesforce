@@ -506,7 +506,7 @@ global class WarehouseFunding {
         pmtSetup.loan__Debit_Date__c = loanRec.loan__Next_Installment_Date__c;
         pmtSetup.loan__Recurring_ACH_End_Date__c = loanRec.loan__Last_Installment_Date__c;
         startDate = loanRec.loan__Next_Installment_Date__c;
-        pmtSetup.loan__Amount_Type__c = System.label.APS_Payment_Amount;
+        pmtSetup.loan__Amount_Type__c = System.label.LastBilledAmt;
         pmtSetup.loan__Frequency__c = System.label.APS_Frequency;
       } else {
       }
