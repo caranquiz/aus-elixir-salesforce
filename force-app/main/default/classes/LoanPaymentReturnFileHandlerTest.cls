@@ -125,16 +125,24 @@ public class LoanPaymentReturnFileHandlerTest {
       ]
     );
     System.assertEquals(lptList.size(), 2, 'Non reversed LPT not inserted');
-    records.add('0                 01NAB       ORDE Financial            609710Payments    010520');
-    records.add('2756-2341234567897130000500000xxxxxx                          '
-        + 'LPT-000000999' +
-      '     123-456123456789AJAX CRACKERS   00000000');
-    records.add('2756-2341234567897130000500000xxxxxx                          '
-        + lptList[0].Name +
-      '     123-456123456789AJAX CRACKERS   00000000');
-    records.add('2756-2341234567898130000500000xxxxxx                          '
-        + lptList[1].Name +
-      '     123-456123456789AJAX CRACKERS   00000000');
+    records.add(
+      '0                 01NAB       ORDE Financial            609710Payments    010520'
+    );
+    records.add(
+      '2756-2341234567897130000500000xxxxxx                          ' +
+      'LPT-000000999' +
+      '     123-456123456789AJAX CRACKERS   00000000'
+    );
+    records.add(
+      '2756-2341234567897130000500000xxxxxx                          ' +
+      lptList[0].Name +
+      '     123-456123456789AJAX CRACKERS   00000000'
+    );
+    records.add(
+      '2756-2341234567898130000500000xxxxxx                          ' +
+      lptList[1].Name +
+      '     123-456123456789AJAX CRACKERS   00000000'
+    );
     lptList = new List<loan__Loan_Payment_Transaction__c>(
       [
         SELECT Id, Name
@@ -143,20 +151,27 @@ public class LoanPaymentReturnFileHandlerTest {
       ]
     );
     System.assertEquals(lptList.size(), 1, 'Reversed LPT not inserted');
-    records.add('2756-2341234567899130000500100xxxxxx                          '
-      + lptList[0].Name +
-      '     123-456123456789AJAX CRACKERS   00000000');
-    records.add('7999-999            000000000000017158630001715863                        000003');
+    records.add(
+      '2756-2341234567899130000500100xxxxxx                          ' +
+      lptList[0].Name +
+      '     123-456123456789AJAX CRACKERS   00000000'
+    );
+    records.add(
+      '7999-999            000000000000017158630001715863                        000003'
+    );
     String val = String.join(records, '\n');
     Test.startTest();
     LoanPaymentReturnFileProcessor fileHandlerObj = new LoanPaymentReturnFileProcessor();
-    List<loan.ACHReturn> achReturns = fileHandlerObj.parseFile(val, 'loan__Loan_Payment_Transaction__c');
+    List<loan.ACHReturn> achReturns = fileHandlerObj.parseFile(
+      val,
+      'loan__Loan_Payment_Transaction__c'
+    );
     Test.stopTest();
     System.debug(achReturns.size());
     System.assertEquals(
-        achReturns.size(),
-        2, 
-        'LPT reversal record not inserted'
+      achReturns.size(),
+      2,
+      'LPT reversal record not inserted'
     );
   }
   @isTest

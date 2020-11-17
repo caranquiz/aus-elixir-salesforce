@@ -9,15 +9,24 @@
 /******************************************************************************************************************/
 
 public with sharing class ABAFileGeneratorController {
-    public void nothing(){}
-    public void runLPTFileGen() {
-        Database.executeBatch(new loan.LoanPaymentFilegenJob(), 200);
-        ApexPages.addMessage(new ApexPages.Message(ApexPages.severity.CONFIRM,
-        'Loan Payment ABA File Generation has been started successfully'));
-    }
-    public void runLDTFileGen() {
-        Database.executeBatch(new loan.LoanDisbursalFilegenJob(), 200);
-        ApexPages.addMessage(new ApexPages.Message(ApexPages.severity.CONFIRM,
-        'Loan Disbursal ABA File Generation has been started successfully'));
-    }
+  public void nothing() {
+  }
+  public void runLPTFileGen() {
+    Database.executeBatch(new loan.LoanPaymentFilegenJob(), 200);
+    ApexPages.addMessage(
+      new ApexPages.Message(
+        ApexPages.severity.CONFIRM,
+        'Loan Payment ABA File Generation has been started successfully'
+      )
+    );
+  }
+  public void runLDTFileGen() {
+    Database.executeBatch(new loan.LoanDisbursalFilegenJob(), 200);
+    ApexPages.addMessage(
+      new ApexPages.Message(
+        ApexPages.severity.CONFIRM,
+        'Loan Disbursal ABA File Generation has been started successfully'
+      )
+    );
+  }
 }

@@ -6,7 +6,10 @@ Development Date: 20/7/2020
 Last Modified Date - 30/07/2020
 */
 global with sharing class PricingUpdate {
-  webService static String updatePricing(String applicationId, Boolean checkPricing) {
+  webService static String updatePricing(
+    String applicationId,
+    Boolean checkPricing
+  ) {
     Savepoint sp = Database.setSavepoint();
     if (String.isBlank(applicationId)) {
       throw new CustomException(ConstantValues.APPLICATION_ID_NULL);
@@ -35,33 +38,38 @@ global with sharing class PricingUpdate {
       if (applicationPricingDetailList.isEmpty()) {
         pricingNotFound = true;
       }
-      if(checkPricing == true){
-          genesis__Applications__c app = [SELECT Id,
-                                                  Matrix_Rate__c
-                                         FROM genesis__Applications__c
-                                         WHERE Id =: applicationId];
-          if(pricingNotFound == false && app.Matrix_Rate__c != applicationPricingDetailList[0].genesis__Interest_Rate__c){
-              return ConstantValues.PRICING_RATE_DOES_MATCH;
-          }
-          else if(pricingNotFound == true){
-            app.Matrix_Rate__c = 99.99;
-            update app;
-          }
-          else{
-              return ConstantValues.msg;
-          }
+      if (checkPricing == true) {
+        genesis__Applications__c app = [
+          SELECT Id, Matrix_Rate__c
+          FROM genesis__Applications__c
+          WHERE Id = :applicationId
+        ];
+        if (
+          pricingNotFound == false &&
+          app.Matrix_Rate__c !=
+          applicationPricingDetailList[0].genesis__Interest_Rate__c
+        ) {
+          return ConstantValues.PRICING_RATE_DOES_MATCH;
+        } else if (pricingNotFound == true) {
+          app.Matrix_Rate__c = 99.99;
+          update app;
+        } else {
+          return ConstantValues.msg;
+        }
       }
-      genesis__Applications__c app = new genesis__Applications__c(Id = applicationId);
-      if(pricingNotFound == true){
+      genesis__Applications__c app = new genesis__Applications__c(
+        Id = applicationId
+      );
+      if (pricingNotFound == true) {
         app.Matrix_Rate__c = 99.99;
-      }
-      else{
+      } else {
         //Updating the obtained pricing of the loan in custom field named Matrix Rate
-        app.Matrix_Rate__c = applicationPricingDetailList[0].genesis__Interest_Rate__c;
+        app.Matrix_Rate__c = applicationPricingDetailList[0]
+          .genesis__Interest_Rate__c;
       }
       update app;
-      if(Test.isRunningTest()){
-          Integer a = 10/0;
+      if (Test.isRunningTest()) {
+        Integer a = 10 / 0;
       }
       return ConstantValues.PRICING_SUCCESSFULLY_UPDATED;
     } catch (Exception e) {

@@ -2,11 +2,11 @@
 /* Description          : This test class mostly covers the LoanPaymentTransactionFileGen class and callABAFilegenerationPage. */
 /* Testing Scenario 1   : (checkInitialiedData) Tests if the inserted records in setup method exist */
 /* Testing Scenario 2   : (testWithValidScope) Tests with all the valid data required to generate a
-ABA file for Loan Payment Txns */
+ ABA file for Loan Payment Txns */
 /* Testing Scenario 3   : (testWithException) Tests without the Remitter Name in the APC. */
 /* Testing Scenario 4   : (testWithException2) Tests with Bank Account set to null in the APC. */
 /* Testing Scenario 5   : (testWithException5) Tests while generating ABA file if APC isn't found or
-is null how will it handle. */
+ is null how will it handle. */
 /* Testing Scenario 6   : (testWithInvalidScope) Tests with no Borrower ACH bank account spedified */
 /* Testing Scenario 7   : (testWithInvalidScope3) Tests with Account name length greater than 32 */
 /* Testing Scenario 8   : (callABAFilegenerationPage) calls callABAFilegenerationPage controller and gives coverage*/
@@ -21,20 +21,32 @@ private class LoanPaymentTransactionFileGenTest {
   @TestSetup
   static Void initialize() {
     Account testAccount = GenericUtilityTestHelper.getAccount();
-    System.assertNotEquals(testAccount.Id,null,'Account insert error');
+    System.assertNotEquals(testAccount.Id, null, 'Account insert error');
     List<Account> testAccountList = new List<Account>([SELECT Id FROM Account]);
     System.assertEquals(testAccountList.size(), 1, 'Account insert error');
 
     Contact testContact = GenericUtilityTestHelper.getContact(testAccount);
-    System.assertNotEquals(testContact.Id,null,'Contact insert error');
+    System.assertNotEquals(testContact.Id, null, 'Contact insert error');
     List<Contact> testContactList = new List<Contact>([SELECT Id FROM Contact]);
     System.assertEquals(testContactList.size(), 1, 'Contact insert error');
 
-    loan__Bank_Account__c testPayeebankAccount = GenericUtilityTestHelper.getBankAccount(testAccount);
-    System.assertNotEquals(testPayeebankAccount.Id,null,'Bank Account insert error');
+    loan__Bank_Account__c testPayeebankAccount = GenericUtilityTestHelper.getBankAccount(
+      testAccount
+    );
+    System.assertNotEquals(
+      testPayeebankAccount.Id,
+      null,
+      'Bank Account insert error'
+    );
 
-    loan__Bank_Account__c testPayerbankAccount = GenericUtilityTestHelper.getPayerBankAccount(testAccount);
-    System.assertNotEquals(testPayeebankAccount.Id,null,'Bank Account insert error');
+    loan__Bank_Account__c testPayerbankAccount = GenericUtilityTestHelper.getPayerBankAccount(
+      testAccount
+    );
+    System.assertNotEquals(
+      testPayeebankAccount.Id,
+      null,
+      'Bank Account insert error'
+    );
     List<loan__Bank_Account__c> testbankAccountList = new List<loan__Bank_Account__c>(
       [SELECT Id FROM loan__Bank_Account__c]
     );
@@ -45,7 +57,11 @@ private class LoanPaymentTransactionFileGenTest {
     );
 
     loan__Payment_Mode__c testDDPaymentMode = GenericUtilityTestHelper.getPaymentMode();
-    System.assertNotEquals(testDDPaymentMode.Id,null,'Payment Mode insert error');
+    System.assertNotEquals(
+      testDDPaymentMode.Id,
+      null,
+      'Payment Mode insert error'
+    );
     List<loan__Payment_Mode__c> testPaymentModeList = new List<loan__Payment_Mode__c>(
       [SELECT Id FROM loan__Payment_Mode__c]
     );
@@ -56,10 +72,14 @@ private class LoanPaymentTransactionFileGenTest {
     );
 
     loan__Loan_Account__c testLoanAccount = GenericUtilityTestHelper.returnLoanAccount();
-    System.assertNotEquals(testLoanAccount.Id,null,'Loan account insert error');
+    System.assertNotEquals(
+      testLoanAccount.Id,
+      null,
+      'Loan account insert error'
+    );
     testLoanAccount.loan__Borrower_ACH__c = testPayerbankAccount.Id;
     Warehouse__c warehouse = GenericUtilityTestHelper.returnWarehouse();
-    System.assertNotEquals(warehouse.Id,null,'Warehouse insert error');
+    System.assertNotEquals(warehouse.Id, null, 'Warehouse insert error');
     testLoanAccount.Warehouse__c = warehouse.id;
     update testLoanAccount;
     List<loan__Loan_Account__c> testLoanAccountList = new List<loan__Loan_Account__c>(
@@ -71,8 +91,15 @@ private class LoanPaymentTransactionFileGenTest {
       'CL Contract insert error'
     );
 
-    loan__Automated_Payment_Configuration__c apc = GenericUtilityTestHelper.getAPC(testDDPaymentMode,testPayeebankAccount);
-    System.assertNotEquals(apc.Id,null,'Automated Payment Configuration insert error');
+    loan__Automated_Payment_Configuration__c apc = GenericUtilityTestHelper.getAPC(
+      testDDPaymentMode,
+      testPayeebankAccount
+    );
+    System.assertNotEquals(
+      apc.Id,
+      null,
+      'Automated Payment Configuration insert error'
+    );
     List<loan__Automated_Payment_Configuration__c> testApcList = new List<loan__Automated_Payment_Configuration__c>(
       [SELECT Id FROM loan__Automated_Payment_Configuration__c]
     );
@@ -132,12 +159,19 @@ private class LoanPaymentTransactionFileGenTest {
     string header = obj.getHeader(state, testLptList);
     string trailor = obj.getTrailer(state, testLptList);
     test.stopTest();
-    List<clcommon__Log__c> logList = [SELECT Id, clcommon__Message__c FROM clcommon__Log__c];
+    List<clcommon__Log__c> logList = [
+      SELECT Id, clcommon__Message__c
+      FROM clcommon__Log__c
+    ];
     System.assertEquals(0, logList.size(), 'Log insertion error');
   }
   static testMethod void testWithException2() {
     loan__Automated_Payment_Configuration__c apc = [
-      SELECT Id, Remitter_Name__c, loan__Bank_Account__c, loan__Bank_Account__r.loan__Bank_Account_Number__c
+      SELECT
+        Id,
+        Remitter_Name__c,
+        loan__Bank_Account__c,
+        loan__Bank_Account__r.loan__Bank_Account_Number__c
       FROM loan__Automated_Payment_Configuration__c
     ];
     List<loan__Loan_Payment_Transaction__c> testLptList = new List<loan__Loan_Payment_Transaction__c>(
@@ -155,7 +189,10 @@ private class LoanPaymentTransactionFileGenTest {
     string header = obj.getHeader(state, testLptList);
     string trailor = obj.getTrailer(state, testLptList);
     test.stopTest();
-    List<clcommon__Log__c> logList = [SELECT Id, clcommon__Message__c FROM clcommon__Log__c];
+    List<clcommon__Log__c> logList = [
+      SELECT Id, clcommon__Message__c
+      FROM clcommon__Log__c
+    ];
     System.assertEquals(0, logList.size(), 'Log insertion error');
   }
   static testMethod void testWithException5() {
@@ -171,7 +208,10 @@ private class LoanPaymentTransactionFileGenTest {
     string header = obj.getHeader(state, testLptList);
     string trailor = obj.getTrailer(state, testLptList);
     test.stopTest();
-    List<clcommon__Log__c> logList = [SELECT Id, clcommon__Message__c FROM clcommon__Log__c];
+    List<clcommon__Log__c> logList = [
+      SELECT Id, clcommon__Message__c
+      FROM clcommon__Log__c
+    ];
     System.assertEquals(logList.size(), 1, 'Log insertion error');
   }
   static testMethod void testWithInvalidScope() {
