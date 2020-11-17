@@ -589,7 +589,7 @@
         <members>clcommon__Party__c.Current_Directorships__c</members>
         <members>clcommon__Party__c.Number_of_Discharged_Insolvencies__c</members>
         <members>clcommon__Party__c.Number_of_insolvencies_on_file__c</members>
-        <members>genesis__Policy_Exception__c.clcommon__Party__c.genesis__Status__c</members>
+        <members>genesis__Policy_Exception__c.genesis__Status__c</members>
         <members>Checklist_Detail__c.Show_on_Indicative_Approval_Letter__c</members>
         <members>genesis__Policy_Exception__c.Show_on_Indicative_Approval_Letter__c</members>
         <name>CustomField</name>
