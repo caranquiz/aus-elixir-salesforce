@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>CUST_NAME</field>
+    </columns>
+    <columns>
+        <field>loan__Loan_Account__c.loan__Account__c</field>
+    </columns>
+    <columns>
+        <field>loan__Loan_Account__c.loan__Last_Installment_Date__c</field>
+    </columns>
+    <description>Loans due to expire within 90 days or have already expired.</description>
+    <filter>
+        <booleanFilter>(1 OR 2) AND 3</booleanFilter>
+        <criteriaItems>
+            <column>loan__Loan_Account__c.loan__Last_Installment_Date__c</column>
+            <isUnlocked>true</isUnlocked>
+            <operator>lessThan</operator>
+            <value>TODAY</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>loan__Loan_Account__c.loan__Last_Installment_Date__c</column>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>NEXT_90_DAYS</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>loan__Loan_Account__c.loan__Loan_Status__c</column>
+            <isUnlocked>true</isUnlocked>
+            <operator>notEqual</operator>
+            <value>Canceled,Closed - Obligations met,Closed - Premature,Closed - Refinanced,Closed- Written Off,Invalid</value>
+        </criteriaItems>
+    </filter>
+    <format>Tabular</format>
+    <name>Expired &amp; Expiring Loans - Next 90 Days</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>CustomEntity$loan__Loan_Account__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>loan__Loan_Account__c.loan__Accrual_Start_Date__c</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

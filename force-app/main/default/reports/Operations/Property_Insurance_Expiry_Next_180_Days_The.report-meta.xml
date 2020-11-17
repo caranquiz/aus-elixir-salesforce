@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>genesis__Applications__c$genesis__Account__c</field>
+    </columns>
+    <columns>
+        <field>genesis__Applications__c.genesis__Application_Collaterals__r$genesis__Collateral__c.Full_Address__c</field>
+    </columns>
+    <columns>
+        <field>genesis__Applications__c.genesis__Application_Collaterals__r$genesis__Collateral__c.Home_Insurance_Certificate_Expiry_Date__c</field>
+    </columns>
+    <columns>
+        <field>genesis__Applications__c.genesis__Application_Collaterals__r$genesis__Collateral__c.Insurer_Name__c</field>
+    </columns>
+    <columns>
+        <field>genesis__Applications__c.genesis__Application_Collaterals__r$genesis__Collateral__c.clcommon__Policy_Number__c</field>
+    </columns>
+    <description>Provides property insurance policies expiring in the next 180 days for each security property attached to a loan contract.</description>
+    <filter>
+        <booleanFilter>1 AND (2 OR 3)</booleanFilter>
+        <criteriaItems>
+            <column>genesis__Applications__c$genesis__Status__c</column>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>Loan Settled</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>genesis__Applications__c.genesis__Application_Collaterals__r$genesis__Collateral__c.Home_Insurance_Certificate_Expiry_Date__c</column>
+            <isUnlocked>true</isUnlocked>
+            <operator>lessOrEqual</operator>
+            <value>TODAY</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>genesis__Applications__c.genesis__Application_Collaterals__r$genesis__Collateral__c.Home_Insurance_Certificate_Expiry_Date__c</column>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>NEXT_N_DAYS:180</value>
+        </criteriaItems>
+    </filter>
+    <format>Summary</format>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>genesis__Applications__c$CL_Contract__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>Property Insurance Expiry - Next180 Days</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>Custom_Applications_with_App_Coll_with_Collaterals__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>false</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>genesis__Applications__c$Approval_Date__c</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

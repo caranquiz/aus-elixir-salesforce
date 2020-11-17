@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <aggregateTypes>Sum</aggregateTypes>
+        <field>genesis__Applications__c$genesis__Loan_Amount__c</field>
+    </columns>
+    <columns>
+        <field>genesis__Applications__c.genesis__Application_Collaterals__r$genesis__Collateral__c.Primary_Security__c</field>
+    </columns>
+    <columns>
+        <field>genesis__Applications__c.genesis__Application_Collaterals__r$genesis__Collateral__c.Full_Address__c</field>
+    </columns>
+    <filter>
+        <criteriaItems>
+            <column>genesis__Applications__c$Application_Declined_Cancelled_Reason__c</column>
+            <isUnlocked>true</isUnlocked>
+            <operator>notEqual</operator>
+            <value>Opened in Error</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>genesis__Applications__c.genesis__Application_Collaterals__r$genesis__Collateral__c.Primary_Security__c</column>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>Yes</value>
+        </criteriaItems>
+    </filter>
+    <format>Summary</format>
+    <groupingsDown>
+        <dateGranularity>Month</dateGranularity>
+        <field>genesis__Applications__c$CreatedDate</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>genesis__Applications__c.genesis__Application_Collaterals__r$genesis__Collateral__c.clcommon__State__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>genesis__Applications__c$Name</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>App Growth by State</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>Custom_Applications_with_App_Coll_with_Collaterals__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>false</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>genesis__Applications__c$Approval_Date__c</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

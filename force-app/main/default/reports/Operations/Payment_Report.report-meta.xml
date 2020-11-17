@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>loan__Bank_Account__c.loan__Lending__r$loan__Account__c</field>
+    </columns>
+    <columns>
+        <field>loan__Bank_Account__c.loan__Lending__r.loan__Loan_Payment_Transactions__r$loan__Transaction_Date__c</field>
+    </columns>
+    <columns>
+        <field>loan__Bank_Account__c.loan__Lending__r.loan__Loan_Payment_Transactions__r$loan__Payment_Mode__c</field>
+    </columns>
+    <columns>
+        <field>loan__Bank_Account__c.loan__Lending__r.loan__Loan_Payment_Transactions__r$loan__Transaction_Amount__c</field>
+    </columns>
+    <columns>
+        <field>loan__Bank_Account__c$Bank_Account_Name__c</field>
+    </columns>
+    <columns>
+        <field>loan__Bank_Account__c$BSB_Number__c</field>
+    </columns>
+    <columns>
+        <field>loan__Bank_Account__c$loan__Bank_Account_Number__c</field>
+    </columns>
+    <description>Daily Direct Debits for Processing</description>
+    <filter>
+        <criteriaItems>
+            <column>loan__Bank_Account__c.loan__Lending__r.loan__Loan_Payment_Transactions__r$loan__Payment_Mode__c</column>
+            <isUnlocked>true</isUnlocked>
+            <operator>contains</operator>
+            <value>Direct Debit,ACH</value>
+        </criteriaItems>
+    </filter>
+    <format>Summary</format>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>loan__Bank_Account__c.loan__Lending__r$Name</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>Daily Direct Debits</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>Custom_Bank_Account_with_CL_Contract_with_LPTs__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>false</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>loan__Bank_Account__c.loan__Lending__r.loan__Loan_Payment_Transactions__r$loan__Transaction_Date__c</dateColumn>
+        <interval>INTERVAL_TODAY</interval>
+    </timeFrameFilter>
+</Report>

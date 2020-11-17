@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>genesis__Applications__c$Name</field>
+    </columns>
+    <columns>
+        <field>genesis__Applications__c$genesis__Account__c</field>
+    </columns>
+    <columns>
+        <aggregateTypes>Sum</aggregateTypes>
+        <field>genesis__Applications__c$genesis__Loan_Amount__c</field>
+    </columns>
+    <columns>
+        <field>genesis__Applications__c$Owner</field>
+    </columns>
+    <columns>
+        <field>genesis__Applications__c$genesis__Status__c</field>
+    </columns>
+    <columns>
+        <field>genesis__Applications__c.genesis__Parties__r$clcommon__Account__c</field>
+    </columns>
+    <columns>
+        <field>genesis__Applications__c.genesis__Parties__r$clcommon__Account__c.Brokers_BDM__c</field>
+    </columns>
+    <filter>
+        <criteriaItems>
+            <column>genesis__Applications__c$genesis__Status__c</column>
+            <isUnlocked>true</isUnlocked>
+            <operator>notEqual</operator>
+            <value>Loan Settled,Cancelled,Declined</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>genesis__Applications__c.genesis__Parties__r$clcommon__Type__c</column>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>broker</value>
+        </criteriaItems>
+    </filter>
+    <format>Tabular</format>
+    <name>App Tracking BDM</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>Custom_Applications_with_Parties__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>genesis__Applications__c$Approval_Date__c</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

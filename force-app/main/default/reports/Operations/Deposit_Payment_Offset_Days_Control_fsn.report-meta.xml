@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>CUST_NAME</field>
+    </columns>
+    <columns>
+        <field>loan__Loan_Account__c.loan__Account__c</field>
+    </columns>
+    <columns>
+        <field>loan__Loan_Account__c.loan__Loan_Product_Name__c</field>
+    </columns>
+    <columns>
+        <aggregateTypes>Sum</aggregateTypes>
+        <field>loan__Loan_Account__c.loan__Deposit_Payment_Offset_Days__c</field>
+    </columns>
+    <description>Shows Deposit Product Loans (Residential &amp; Commercial) where Deposit Payment Offset Days is not set to the required value of &quot;1&quot;</description>
+    <filter>
+        <criteriaItems>
+            <column>loan__Loan_Account__c.loan__Loan_Product_Name__c</column>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>Residential,Commercial</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>loan__Loan_Account__c.loan__Deposit_Payment_Offset_Days__c</column>
+            <isUnlocked>true</isUnlocked>
+            <operator>notEqual</operator>
+            <value>1</value>
+        </criteriaItems>
+    </filter>
+    <format>Tabular</format>
+    <name>Deposit Payment Offset Days Control</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>CustomEntity$loan__Loan_Account__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>CUST_CREATED_DATE</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

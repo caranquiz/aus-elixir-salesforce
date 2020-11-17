@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <aggregates>
+        <calculatedFormula>loan__Loan_Account__c.loan__Loan_Balance__c:SUM/PARENTGROUPVAL(loan__Loan_Account__c.loan__Loan_Balance__c:SUM, GRAND_SUMMARY)</calculatedFormula>
+        <datatype>percent</datatype>
+        <developerName>FORMULA1</developerName>
+        <downGroupingContext>BucketField_61344701</downGroupingContext>
+        <isActive>true</isActive>
+        <isCrossBlock>false</isCrossBlock>
+        <masterLabel>%</masterLabel>
+        <scale>2</scale>
+    </aggregates>
+    <buckets>
+        <bucketType>number</bucketType>
+        <developerName>BucketField_61344701</developerName>
+        <masterLabel>Delinquency Status</masterLabel>
+        <nullTreatment>z</nullTreatment>
+        <sourceColumnName>loan__Loan_Account__c.loan__Number_of_Days_Overdue__c</sourceColumnName>
+        <useOther>false</useOther>
+        <values>
+            <sourceValues>
+                <to>30</to>
+            </sourceValues>
+            <value>Performing</value>
+        </values>
+        <values>
+            <sourceValues>
+                <from>30</from>
+                <to>60</to>
+            </sourceValues>
+            <value>&gt;30 Days Arrears</value>
+        </values>
+        <values>
+            <sourceValues>
+                <from>60</from>
+                <to>90</to>
+            </sourceValues>
+            <value>&gt;60 Days Arrears</value>
+        </values>
+        <values>
+            <sourceValues>
+                <from>90</from>
+            </sourceValues>
+            <value>&gt;90 Days Arrears</value>
+        </values>
+    </buckets>
+    <columns>
+        <field>CUST_NAME</field>
+    </columns>
+    <columns>
+        <field>loan__Loan_Account__c.loan__Number_of_Days_Overdue__c</field>
+    </columns>
+    <columns>
+        <aggregateTypes>Sum</aggregateTypes>
+        <field>loan__Loan_Account__c.loan__Loan_Balance__c</field>
+    </columns>
+    <description>Current Portfolio Performance</description>
+    <format>Summary</format>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>loan__Loan_Account__c.Warehouse__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>BucketField_61344701</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>Portfolio Performance Statistics</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>CustomEntity$loan__Loan_Account__c</reportType>
+    <scope>organization</scope>
+    <showDetails>false</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>loan__Loan_Account__c.loan__Accrual_Start_Date__c</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>genesis__Applications__c$Name</field>
+    </columns>
+    <columns>
+        <field>genesis__Applications__c$genesis__Account__c</field>
+    </columns>
+    <columns>
+        <aggregateTypes>Sum</aggregateTypes>
+        <field>genesis__Applications__c$genesis__Loan_Amount__c</field>
+    </columns>
+    <columns>
+        <field>genesis__Applications__c.genesis__Application_Collaterals__r$genesis__Collateral__c.Primary_Security__c</field>
+    </columns>
+    <columns>
+        <field>genesis__Applications__c.genesis__Application_Collaterals__r$genesis__Collateral__c.Full_Address__c</field>
+    </columns>
+    <columns>
+        <field>genesis__Applications__c.genesis__Application_Collaterals__r$genesis__Collateral__c.QBE_Location__c</field>
+    </columns>
+    <description>Required for Application Pipeline Dashboard</description>
+    <filter>
+        <criteriaItems>
+            <column>genesis__Applications__c.genesis__Application_Collaterals__r$genesis__Collateral__c.Primary_Security__c</column>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>,Yes</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>genesis__Applications__c$genesis__Status__c</column>
+            <isUnlocked>true</isUnlocked>
+            <operator>notEqual</operator>
+            <value>,Loan Settled,Cancelled,Declined</value>
+        </criteriaItems>
+    </filter>
+    <format>Summary</format>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>genesis__Applications__c$genesis__Status__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>genesis__Applications__c.genesis__Application_Collaterals__r$genesis__Collateral__c.clcommon__State__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>genesis__Applications__c$genesis__CL_Product_Name__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>Application Pipeline With State</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>Customs_Apps_with_Collateral__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>genesis__Applications__c$CreatedDate</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

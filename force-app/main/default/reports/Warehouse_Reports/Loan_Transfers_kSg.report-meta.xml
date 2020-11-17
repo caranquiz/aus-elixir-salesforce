@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>loan__Loan_Account__c$Name</field>
+    </columns>
+    <columns>
+        <field>loan__Loan_Account__c.Loan_Warehouse__r$Changed_Time__c</field>
+    </columns>
+    <columns>
+        <aggregateTypes>Sum</aggregateTypes>
+        <field>loan__Loan_Account__c.Loan_Warehouse__r$Balance_Outstanding__c</field>
+    </columns>
+    <filter>
+        <criteriaItems>
+            <column>loan__Loan_Account__c.Loan_Warehouse__r$Previous_Warehouse__c</column>
+            <isUnlocked>false</isUnlocked>
+            <operator>equals</operator>
+            <value>&quot; &quot;</value>
+        </criteriaItems>
+    </filter>
+    <format>Summary</format>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>loan__Loan_Account__c.Loan_Warehouse__r$Previous_Warehouse__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>loan__Loan_Account__c.Loan_Warehouse__r$Warehouse__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>Loan Transfers</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>Custom_Contract_with_Warehouse_with_Loan_Warehouse__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>loan__Loan_Account__c.Loan_Warehouse__r$Changed_Time__c</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>
