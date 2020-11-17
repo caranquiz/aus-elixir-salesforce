@@ -9,154 +9,194 @@
 /*********************************************************************************************************/
 
 global with sharing class EquifaxEnquiryCallout {
-    webService static String equifaxApplyIndividual(Id appId, Id partyId, Id conId, Id addressId){
-        Map<String, String> queryIdMap = new Map<String, String>();
-        Map<String, Object> requestParamMap = new Map<String, Object>();
-        intframework.AbstractIntegrationService baseintegrationService = intframework.IntegrationServiceFactory.getBaseIntegrationService();
-        dom.Document doc = new dom.Document();
-        Map<String, Object> responseMap;
-        String json;
-        EquifaxApplyIndividualResponseHelper helperObject;
-        try{
-            List<genesis__Applications__c> appList = [SELECT Id FROM genesis__Applications__c WHERE Id = :appId];
-            if(appList.isEmpty()){
-                return ConstantValues.NO_APPLICATION;
-            }
-            genesis__Applications__c appObj = appList[0];
-            List<clcommon__Party__c> partyList = [SELECT Id, Party_Type_Name__c FROM clcommon__Party__c WHERE Id = :partyId];
-            if(partyList.isEmpty()){
-                return ConstantValues.NO_PARTY;
-            }
-            clcommon__Party__c partyObj = partyList[0];
-            List<Contact> contactList = [SELECT Id FROM Contact WHERE Id = :conId];
-            if(contactList.isEmpty()){
-                return ConstantValues.NO_CONTACT;
-            }
-            Contact conObj = contactList[0];
-            List<clcommon__Address__c> addressList = [SELECT Id FROM clcommon__Address__c WHERE Id = :addressId];
-            if(addressList.isEmpty()){
-                return ConstantValues.NO_ADDRESS;
-            }
-            clcommon__Address__c addressObj = addressList[0];
-            queryIdMap.put('appId', appObj.Id);
-            queryIdMap.put('partyId', partyObj.Id);
-            queryIdMap.put('conId', conObj.Id);
-            queryIdMap.put('addressId', addressObj.Id);
-            requestParamMap.put('addressType', 'C');
-            partyList = [SELECT Id FROM clcommon__Party__c
-            WHERE genesis__Application__c = :appId AND Party_Type_Name__c IN (:ConstantValues.BORROWER, :ConstantValues.CO_APPLICANT)];
-            if(String.isNotBlank(partyObj.Party_Type_Name__c) && (partyObj.Party_Type_Name__c).equalsIgnoreCase(ConstantValues.GUARANTOR)){
-                requestParamMap.put('relationshipCode', '3');
-            }
-            else if(partyList.size() > 1){
-                requestParamMap.put('relationshipCode', '2');
-            }else{
-                requestParamMap.put('relationshipCode', '1');
-            }
-            intframework.BaseIntegrationResponse responseObject = (intframework.BaseIntegrationResponse) baseintegrationService.runSynchronousIntegrationService(
-                ConstantValues.EQUIFAX_FAMILY,
-                ConstantValues.APPLY_INDIVIDUAL_API_TYPE,
-                queryIdMap,
-                requestParamMap
-            );
-            doc.load(responseObject.getBody());
-            responseMap = intframework.XmlToJson.parseDocumentToMap(
-                doc
-            );
-            json = System.JSON.serialize(responseMap);
-            helperObject = EquifaxApplyIndividualResponseHelper.parse(json, partyObj.Id);
-            if(helperObject == null){
-                return ConstantValues.GENERAL_ERROR;
-            }
-            return EquifaxApplyIndividualResponseHelper.updatePartyWithApplyIndividualResponse(partyObj, helperObject);
-        }
-        catch(Exception ex){
-            GenericUtility.insertLog('EquifaxEnquiryCallout', ex);
-            return ConstantValues.GENERAL_ERROR;
-        }
+  webService static String equifaxApplyIndividual(
+    Id appId,
+    Id partyId,
+    Id conId,
+    Id addressId
+  ) {
+    Map<String, String> queryIdMap = new Map<String, String>();
+    Map<String, Object> requestParamMap = new Map<String, Object>();
+    intframework.AbstractIntegrationService baseintegrationService = intframework.IntegrationServiceFactory.getBaseIntegrationService();
+    dom.Document doc = new dom.Document();
+    Map<String, Object> responseMap;
+    String json;
+    EquifaxApplyIndividualResponseHelper helperObject;
+    try {
+      List<genesis__Applications__c> appList = [
+        SELECT Id
+        FROM genesis__Applications__c
+        WHERE Id = :appId
+      ];
+      if (appList.isEmpty()) {
+        return ConstantValues.NO_APPLICATION;
+      }
+      genesis__Applications__c appObj = appList[0];
+      List<clcommon__Party__c> partyList = [
+        SELECT Id, Party_Type_Name__c
+        FROM clcommon__Party__c
+        WHERE Id = :partyId
+      ];
+      if (partyList.isEmpty()) {
+        return ConstantValues.NO_PARTY;
+      }
+      clcommon__Party__c partyObj = partyList[0];
+      List<Contact> contactList = [SELECT Id FROM Contact WHERE Id = :conId];
+      if (contactList.isEmpty()) {
+        return ConstantValues.NO_CONTACT;
+      }
+      Contact conObj = contactList[0];
+      List<clcommon__Address__c> addressList = [
+        SELECT Id
+        FROM clcommon__Address__c
+        WHERE Id = :addressId
+      ];
+      if (addressList.isEmpty()) {
+        return ConstantValues.NO_ADDRESS;
+      }
+      clcommon__Address__c addressObj = addressList[0];
+      queryIdMap.put('appId', appObj.Id);
+      queryIdMap.put('partyId', partyObj.Id);
+      queryIdMap.put('conId', conObj.Id);
+      queryIdMap.put('addressId', addressObj.Id);
+      requestParamMap.put('addressType', 'C');
+      partyList = [
+        SELECT Id
+        FROM clcommon__Party__c
+        WHERE
+          genesis__Application__c = :appId
+          AND Party_Type_Name__c IN (
+            :ConstantValues.BORROWER,
+            :ConstantValues.CO_APPLICANT
+          )
+      ];
+      if (
+        String.isNotBlank(partyObj.Party_Type_Name__c) &&
+        (partyObj.Party_Type_Name__c).equalsIgnoreCase(ConstantValues.GUARANTOR)
+      ) {
+        requestParamMap.put('relationshipCode', '3');
+      } else if (partyList.size() > 1) {
+        requestParamMap.put('relationshipCode', '2');
+      } else {
+        requestParamMap.put('relationshipCode', '1');
+      }
+      intframework.BaseIntegrationResponse responseObject = (intframework.BaseIntegrationResponse) baseintegrationService.runSynchronousIntegrationService(
+        ConstantValues.EQUIFAX_FAMILY,
+        ConstantValues.APPLY_INDIVIDUAL_API_TYPE,
+        queryIdMap,
+        requestParamMap
+      );
+      doc.load(responseObject.getBody());
+      responseMap = intframework.XmlToJson.parseDocumentToMap(doc);
+      json = System.JSON.serialize(responseMap);
+      helperObject = EquifaxApplyIndividualResponseHelper.parse(
+        json,
+        partyObj.Id
+      );
+      if (helperObject == null) {
+        return ConstantValues.GENERAL_ERROR;
+      }
+      return EquifaxApplyIndividualResponseHelper.updatePartyWithApplyIndividualResponse(
+        partyObj,
+        helperObject
+      );
+    } catch (Exception ex) {
+      GenericUtility.insertLog('EquifaxEnquiryCallout', ex);
+      return ConstantValues.GENERAL_ERROR;
     }
-    webService static String equifaxPreviousEnquiry(String enquiryId, Id partyId){
-        String pdfData;
-        clcommon__Party__c partyObj;
-        Map<String, Object> requestParamMap = new Map<String, Object>();
-        StaticResource sr;
-        String requestBody;
-        intframework.AbstractIntegrationService baseintegrationService = intframework.IntegrationServiceFactory.getBaseIntegrationService();
-        intframework.BaseIntegrationResponse responseObject;
-        dom.Document doc = new dom.Document();
-        Map<String, Object> responseMap;
-        Attachment documentAttachment = new Attachment();
-        List<clcommon__Document_Category__c> docCatList;
-        clcommon__Document_Category__c docCat;
-        clcommon__Category_Attachment_Association__c attachDoc = new clcommon__Category_Attachment_Association__c();
-        try{
-            partyObj = [SELECT Id, clcommon__Account__c, clcommon__Contact__r.FirstName, clcommon__Contact__r.lastName, genesis__Application__c
-            FROM clcommon__Party__c WHERE Id = :partyId];
-            sr = [SELECT Id, Name, Body FROM StaticResource WHERE Name =:ConstantValues.PREV_ENQ_STATIC_RES];
-            if(sr == null){
-                throw new CustomException(ConstantValues.PREV_ENQ_REQ_BODY_SRNAME);
-            }
-            requestBody = sr.Body.toString();
-            requestParamMap.put('requestBody', requestBody);
-            if(String.isBlank(enquiryId)){
-                return ConstantValues.NO_ENQ_ID;
-            }
-            requestParamMap.put('enquiryId', enquiryId);
-            requestParamMap.put('contentType', ConstantValues.APP_PDF_CONTENT_TYPE);
-            responseObject = (intframework.BaseIntegrationResponse) baseintegrationService.runSynchronousIntegrationService(
-                ConstantValues.EQUIFAX_FAMILY,
-                ConstantValues.PREVIOUS_ENQUIRY_API_TYPE,
-                new Map<String, String>(),
-                requestParamMap
-            );
-            doc.load(responseObject.getBody());
-            responseMap = intframework.XmlToJson.parseDocumentToMap(
-                doc
-            );
-            // This inner try catch block terminates the code if any exception occurs during fetching the document
-            try{
-                pdfData = (String)
-                ((Map<String, Object>)
-                ((Map<String, Object>)
-                ((Map<String, Object>)
-                ((Map<String, Object>) responseMap
-                .get(ConstantValues.ENVELOPE_KEY))
+  }
+  webService static String equifaxPreviousEnquiry(
+    String enquiryId,
+    Id partyId
+  ) {
+    String pdfData;
+    clcommon__Party__c partyObj;
+    Map<String, Object> requestParamMap = new Map<String, Object>();
+    StaticResource sr;
+    String requestBody;
+    intframework.AbstractIntegrationService baseintegrationService = intframework.IntegrationServiceFactory.getBaseIntegrationService();
+    intframework.BaseIntegrationResponse responseObject;
+    dom.Document doc = new dom.Document();
+    Map<String, Object> responseMap;
+    Attachment documentAttachment = new Attachment();
+    List<clcommon__Document_Category__c> docCatList;
+    clcommon__Document_Category__c docCat;
+    clcommon__Category_Attachment_Association__c attachDoc = new clcommon__Category_Attachment_Association__c();
+    try {
+      partyObj = [
+        SELECT
+          Id,
+          clcommon__Account__c,
+          clcommon__Contact__r.FirstName,
+          clcommon__Contact__r.lastName,
+          genesis__Application__c
+        FROM clcommon__Party__c
+        WHERE Id = :partyId
+      ];
+      sr = [
+        SELECT Id, Name, Body
+        FROM StaticResource
+        WHERE Name = :ConstantValues.PREV_ENQ_STATIC_RES
+      ];
+      if (sr == null) {
+        throw new CustomException(ConstantValues.PREV_ENQ_REQ_BODY_SRNAME);
+      }
+      requestBody = sr.Body.toString();
+      requestParamMap.put('requestBody', requestBody);
+      if (String.isBlank(enquiryId)) {
+        return ConstantValues.NO_ENQ_ID;
+      }
+      requestParamMap.put('enquiryId', enquiryId);
+      requestParamMap.put('contentType', ConstantValues.APP_PDF_CONTENT_TYPE);
+      responseObject = (intframework.BaseIntegrationResponse) baseintegrationService.runSynchronousIntegrationService(
+        ConstantValues.EQUIFAX_FAMILY,
+        ConstantValues.PREVIOUS_ENQUIRY_API_TYPE,
+        new Map<String, String>(),
+        requestParamMap
+      );
+      doc.load(responseObject.getBody());
+      responseMap = intframework.XmlToJson.parseDocumentToMap(doc);
+      // This inner try catch block terminates the code if any exception occurs during fetching the document
+      try {
+        pdfData = (String) ((Map<String, Object>) ((Map<String, Object>) ((Map<String, Object>) ((Map<String, Object>) responseMap
+                  .get(ConstantValues.ENVELOPE_KEY))
                 .get(ConstantValues.BODY_KEY))
-                .get(ConstantValues.RESPONSE_KEY))
-                .get(ConstantValues.BINARYDATA_KEY))
-                .get(ConstantValues.NODEVALUE_KEY);
-                documentAttachment.ContentType = ConstantValues.APP_PDF_CONTENT_TYPE;
-                documentAttachment.Body = EncodingUtil.base64Decode(pdfData);
-                documentAttachment.Name = ConstantValues.PREV_ENQ_PDF_NAME_PREF
-                + partyObj.clcommon__Contact__r.FirstName + ' '
-                + partyObj.clcommon__Contact__r.LastName + ' (OBSOLETE).pdf';
-                documentAttachment.parentId = partyObj.Id;
-                Database.insert(documentAttachment);
-                docCatList =
-                [
-                    SELECT Id, clcommon__Category_Name__c
-                    FROM clcommon__Document_Category__c
-                    WHERE clcommon__Category_Name__c =:ConstantValues.PREV_ENQ_DOC_CAT
-                    AND genesis__Application__c =:partyObj.genesis__Application__c
-                ];
-                if(docCatList.isEmpty()){
-                    throw new CustomException(ConstantValues.DOCUMENT_CATEGORY_NOT_FOUND);
-                }
-                //Attaching the retrieved document with the collateral
-                docCat = docCatList[0];
-                attachDoc.Name = documentAttachment.Name;
-                attachDoc.clcommon__Attachment_Id__c = documentAttachment.Id;
-                attachDoc.clcommon__Document_Category__c = docCat.Id;
-                Database.insert(attachDoc);
-                return ConstantValues.PDF_REPORT_DOWNLOADED;
-            }
-            catch(Exception ex){
-                throw new CustomException(ConstantValues.RESPONSE_PARSE_ERR);
-            }
+              .get(ConstantValues.RESPONSE_KEY))
+            .get(ConstantValues.BINARYDATA_KEY))
+          .get(ConstantValues.NODEVALUE_KEY);
+        documentAttachment.ContentType = ConstantValues.APP_PDF_CONTENT_TYPE;
+        documentAttachment.Body = EncodingUtil.base64Decode(pdfData);
+        documentAttachment.Name =
+          ConstantValues.PREV_ENQ_PDF_NAME_PREF +
+          partyObj.clcommon__Contact__r.FirstName +
+          ' ' +
+          partyObj.clcommon__Contact__r.LastName +
+          ' (OBSOLETE).pdf';
+        documentAttachment.parentId = partyObj.Id;
+        Database.insert(documentAttachment);
+        docCatList = [
+          SELECT Id, clcommon__Category_Name__c
+          FROM clcommon__Document_Category__c
+          WHERE
+            clcommon__Category_Name__c = :ConstantValues.PREV_ENQ_DOC_CAT
+            AND genesis__Application__c = :partyObj.genesis__Application__c
+        ];
+        if (docCatList.isEmpty()) {
+          throw new CustomException(ConstantValues.DOCUMENT_CATEGORY_NOT_FOUND);
         }
-        catch(Exception ex){
-            GenericUtility.insertLog('EquifaxEnquiryCallout', ex);
-            return ConstantValues.GENERAL_ERROR;
-        }
+        //Attaching the retrieved document with the collateral
+        docCat = docCatList[0];
+        attachDoc.Name = documentAttachment.Name;
+        attachDoc.clcommon__Attachment_Id__c = documentAttachment.Id;
+        attachDoc.clcommon__Document_Category__c = docCat.Id;
+        Database.insert(attachDoc);
+        return ConstantValues.PDF_REPORT_DOWNLOADED;
+      } catch (Exception ex) {
+        throw new CustomException(ConstantValues.RESPONSE_PARSE_ERR);
+      }
+    } catch (Exception ex) {
+      GenericUtility.insertLog('EquifaxEnquiryCallout', ex);
+      return ConstantValues.GENERAL_ERROR;
     }
+  }
 }

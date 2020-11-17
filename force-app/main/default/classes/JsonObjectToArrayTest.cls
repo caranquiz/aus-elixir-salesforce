@@ -4,18 +4,18 @@
 /* Description : This is the Test class for JsonObjectToArray */
 /* Testing Scenario 1   : (testWithNullQuery) tests with single null query provided in the parameter */
 /* Testing Scenario 2   : (testWithNullQueries) tests with multiple null queries provided in the
-parameter */
+ parameter */
 /* Testing Scenario 3   : (testWithEmptyQueries) tests with empty query list of strings */
 /* Testing Scenario 4   : (testWithOneData) tests with a single key (provided in the parameter) is
-present in the response */
+ present in the response */
 /* Testing Scenario 5   : (testWithOneRepeatData) tests with repeated key (provided in the parameter)
-are present in the response */
+ are present in the response */
 /* Testing Scenario 6   : (testWithMultipleData) tests with multiple queries provided in the parameter */
 /* Testing Scenario 7   : (testWithMultipleRepeatData) tests with multiple queries provided in the
-parameter and repeated key present in the response */
+ parameter and repeated key present in the response */
 /* Testing Scenario 8   : (testWithIrrelevantData) tests with irrelevant key and response string */
 /* Testing Scenario 9   : (testWithMultipleIrrelevantData) tests with multiple irrelevant keys and
-response string */
+ response string */
 /****************************************************************************************************/
 
 @isTest

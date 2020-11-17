@@ -26,19 +26,21 @@ public with sharing class GenericUtility {
   }
   public static void insertLog(String name, String message) {
     Database.insert(
-        new clcommon__Log__c(
-          Name = name,
-          clcommon__Message__c = message,
-          clcommon__Time__c = System.Now()
-        )
-      );
+      new clcommon__Log__c(
+        Name = name,
+        clcommon__Message__c = message,
+        clcommon__Time__c = System.Now()
+      )
+    );
   }
-  public static void insertCustomExceptionLog(String name, String customMessage) {
+  public static void insertCustomExceptionLog(
+    String name,
+    String customMessage
+  ) {
     Database.insert(
       new clcommon__Log__c(
         Name = name,
-        clcommon__Message__c = '|::Exception message ::' +
-          customMessage,
+        clcommon__Message__c = '|::Exception message ::' + customMessage,
         clcommon__Time__c = System.Now()
       )
     );
@@ -60,16 +62,38 @@ public with sharing class GenericUtility {
     );
   }
   // This method is used to insert Integration Logs
-  public static void insertRestResourceIntegrationLog(String name, String requestLog, String responseLog){
-    insertRestResourceIntegrationLog(name, false, requestLog, responseLog, (Exception) null);
+  public static void insertRestResourceIntegrationLog(
+    String name,
+    String requestLog,
+    String responseLog
+  ) {
+    insertRestResourceIntegrationLog(
+      name,
+      false,
+      requestLog,
+      responseLog,
+      (Exception) null
+    );
   }
-  public static void insertRestResourceIntegrationLog(String name, Boolean isFailed, String requestLog, String responseLog, Exception ex) {
+  public static void insertRestResourceIntegrationLog(
+    String name,
+    Boolean isFailed,
+    String requestLog,
+    String responseLog,
+    Exception ex
+  ) {
     String status;
     String errorMessage;
-    if(isFailed) {
+    if (isFailed) {
       status = 'FAILED';
-      errorMessage = name + '|::Exception Occured in::' + ex.getStackTraceString() + '|::Error::' + ex.getMessage() +
-      ' at Line Number::' + ex.getLineNumber();
+      errorMessage =
+        name +
+        '|::Exception Occured in::' +
+        ex.getStackTraceString() +
+        '|::Error::' +
+        ex.getMessage() +
+        ' at Line Number::' +
+        ex.getLineNumber();
     } else {
       status = 'SUCCESS';
       errorMessage = name + '|::No Exception Occured';
@@ -77,149 +101,71 @@ public with sharing class GenericUtility {
     Database.insert(
       new intframework__Integration_Log__c(
         intframework__Error_Message__c = errorMessage,
-          intframework__Request_Log__c = requestLog,
-          intframework__Response_Log__c = responseLog,
-          intframework__Processing_Status__c = status
+        intframework__Request_Log__c = requestLog,
+        intframework__Response_Log__c = responseLog,
+        intframework__Processing_Status__c = status
       )
     );
   }
-  public static String modifyJsonKeysIntoCamelcasing(String json){
+  public static String modifyJsonKeysIntoCamelcasing(String json) {
+    json = json.replaceAll('NodeValue', 'nodeValue');
+    json = json.replaceAll('Envelope', 'envelope');
+    json = json.replaceAll('Body', 'body');
     json = json.replaceAll(
-    'NodeValue',
-    'nodeValue'
+      ConstantValues.HS_LANDTITLE,
+      ConstantValues.US_LANDTITLE
+    );
+    json = json.replaceAll(ConstantValues.HS_TITLE, ConstantValues.US_TITLE);
+    json = json.replaceAll(ConstantValues.HS_HEADER, ConstantValues.US_HEADER);
+    json = json.replaceAll(
+      ConstantValues.HS_RESPONSE,
+      ConstantValues.US_RESPONSE
+    );
+    json = json.replaceAll(ConstantValues.HS_DATA, ConstantValues.US_DATA);
+    json = json.replaceAll(ConstantValues.HS_PAID, ConstantValues.US_PAID);
+    json = json.replaceAll(
+      ConstantValues.HS_TERRITORY,
+      ConstantValues.US_TERRITORY
+    );
+    json = json.replaceAll(ConstantValues.HS_LAND, ConstantValues.US_LAND);
+    json = json.replaceAll(
+      ConstantValues.HS_REGISTRY,
+      ConstantValues.US_REGISTRY
     );
     json = json.replaceAll(
-    'Envelope',
-    'envelope'
+      ConstantValues.HS_REFERENCE,
+      ConstantValues.US_REFERENCE
     );
     json = json.replaceAll(
-    'Body',
-    'body'
+      ConstantValues.HS_DESCRIPTION,
+      ConstantValues.US_DESCRIPTION
     );
+    json = json.replaceAll(ConstantValues.HS_PRICE, ConstantValues.US_PRICE);
+    json = json.replaceAll(ConstantValues.HS_VALUE, ConstantValues.US_VALUE);
+    json = json.replaceAll(ConstantValues.HS_DETAIL, ConstantValues.US_DETAIL);
     json = json.replaceAll(
-    ConstantValues.HS_LANDTITLE,
-    ConstantValues.US_LANDTITLE
+      ConstantValues.HS_DOCUMENT,
+      ConstantValues.US_DOCUMENT
     );
-    json = json.replaceAll(
-    ConstantValues.HS_TITLE,
-    ConstantValues.US_TITLE
-    );
-    json = json.replaceAll(
-    ConstantValues.HS_HEADER,
-    ConstantValues.US_HEADER
-    );
-    json = json.replaceAll(
-    ConstantValues.HS_RESPONSE,
-    ConstantValues.US_RESPONSE
-    );
-    json = json.replaceAll(
-    ConstantValues.HS_DATA,
-    ConstantValues.US_DATA
-    );
-    json = json.replaceAll(
-    ConstantValues.HS_PAID,
-    ConstantValues.US_PAID
-    );
-    json = json.replaceAll(
-    ConstantValues.HS_TERRITORY,
-    ConstantValues.US_TERRITORY
-    );
-    json = json.replaceAll(
-    ConstantValues.HS_LAND,
-    ConstantValues.US_LAND
-    );
-    json = json.replaceAll(
-    ConstantValues.HS_REGISTRY,
-    ConstantValues.US_REGISTRY
-    );
-    json = json.replaceAll(
-    ConstantValues.HS_REFERENCE,
-    ConstantValues.US_REFERENCE
-    );
-    json = json.replaceAll(
-    ConstantValues.HS_DESCRIPTION,
-    ConstantValues.US_DESCRIPTION
-    );
-    json = json.replaceAll(
-    ConstantValues.HS_PRICE,
-    ConstantValues.US_PRICE
-    );
-    json = json.replaceAll(
-    ConstantValues.HS_VALUE,
-    ConstantValues.US_VALUE
-    );
-    json = json.replaceAll(
-    ConstantValues.HS_DETAIL,
-    ConstantValues.US_DETAIL
-    );
-    json = json.replaceAll(
-    ConstantValues.HS_DOCUMENT,
-    ConstantValues.US_DOCUMENT
-    );
-    json = json.replaceAll(
-    ConstantValues.HS_DATA,
-    ConstantValues.US_DATA
-    );
-    json = json.replaceAll(
-    ConstantValues.HS_ID,
-    ConstantValues.US_ID
-    );
-    json = json.replaceAll(
-    ConstantValues.HS_STATUS,
-    ConstantValues.US_STATUS
-    );
-    json = json.replaceAll(
-    ConstantValues.HS_TIME,
-    ConstantValues.US_TIME
-    );
-    json = json.replaceAll(
-    ConstantValues.HS_CODE,
-    ConstantValues.US_CODE
-    );
-    json = json.replaceAll(
-    ConstantValues.HS_RECORD,
-    ConstantValues.US_RECORD
-    );
-    json = json.replaceAll(
-    '-or',
-    'Or'
-    );
-    json = json.replaceAll(
-    '-to',
-    'To'
-    );
-    json = json.replaceAll(
-    '-consumer',
-    'Consumer'
-    );
-    json = json.replaceAll(
-    '-credit',
-    'Credit'
-    );
-    json = json.replaceAll(
-    '-report',
-    'Report'
-    );
-    json = json.replaceAll(
-    '-enquir',
-    'Enquir'
-    );
-    json = json.replaceAll(
-    '-file',
-    'File'
-    );
-    json = json.replaceAll(
-    '-information',
-    'Information'
-    );
-    json = json.replaceAll(
-    '-match',
-    'Match'
-    );
+    json = json.replaceAll(ConstantValues.HS_DATA, ConstantValues.US_DATA);
+    json = json.replaceAll(ConstantValues.HS_ID, ConstantValues.US_ID);
+    json = json.replaceAll(ConstantValues.HS_STATUS, ConstantValues.US_STATUS);
+    json = json.replaceAll(ConstantValues.HS_TIME, ConstantValues.US_TIME);
+    json = json.replaceAll(ConstantValues.HS_CODE, ConstantValues.US_CODE);
+    json = json.replaceAll(ConstantValues.HS_RECORD, ConstantValues.US_RECORD);
+    json = json.replaceAll('-or', 'Or');
+    json = json.replaceAll('-to', 'To');
+    json = json.replaceAll('-consumer', 'Consumer');
+    json = json.replaceAll('-credit', 'Credit');
+    json = json.replaceAll('-report', 'Report');
+    json = json.replaceAll('-enquir', 'Enquir');
+    json = json.replaceAll('-file', 'File');
+    json = json.replaceAll('-information', 'Information');
+    json = json.replaceAll('-match', 'Match');
     return json;
   }
   // !NOTE : If the response is too large please try to not use the following method
-  public static String modifyJsonKeysIntoCamelcasingV2(String json){
+  public static String modifyJsonKeysIntoCamelcasingV2(String json) {
     json = json.replaceAll('-a', 'A');
     json = json.replaceAll('-b', 'B');
     json = json.replaceAll('-c', 'C');
@@ -252,41 +198,47 @@ public with sharing class GenericUtility {
     String res = '';
     String code;
     streetType = streetType.trim().toUppercase();
-    List<Street_Type_Code__mdt> streetTypeCodeList = [SELECT MasterLabel, Type_Code__c, Type__c
-        FROM Street_Type_Code__mdt WHERE Type__c = 'ToStreetTypeCode'];
+    List<Street_Type_Code__mdt> streetTypeCodeList = [
+      SELECT MasterLabel, Type_Code__c, Type__c
+      FROM Street_Type_Code__mdt
+      WHERE Type__c = 'ToStreetTypeCode'
+    ];
     Map<String, String> streetTypeCodeMap2 = new Map<String, String>();
-    for(Street_Type_Code__mdt each : streetTypeCodeList){
-        streetTypeCodeMap2.put(each.MasterLabel, each.Type_Code__c);
+    for (Street_Type_Code__mdt each : streetTypeCodeList) {
+      streetTypeCodeMap2.put(each.MasterLabel, each.Type_Code__c);
     }
-    if(streetTypeCodeMap2.get(streetType) != null){
+    if (streetTypeCodeMap2.get(streetType) != null) {
       return streetTypeCodeMap2.get(streetType);
     }
     return streetType;
   }
-  public static void isValid(String value,String msg){
-    if(String.isBlank(value)){
+  public static void isValid(String value, String msg) {
+    if (String.isBlank(value)) {
       throw new CustomException(msg);
     }
   }
-  public static void isListValid(List<Map<String, Object>> value, String msg){
-    if(value.isEmpty()){
+  public static void isListValid(List<Map<String, Object>> value, String msg) {
+    if (value.isEmpty()) {
       throw new CustomException(msg);
     }
   }
-    public static String convertToDescription(String asicStatus) {
-        asicStatus = asicStatus.trim().toUppercase();
-        List<Street_Type_Code__mdt> streetTypeCodeList = [SELECT MasterLabel, Type_Code__c, Type__c
-        FROM Street_Type_Code__mdt WHERE Type__c = 'ToDescription'];
-        Map<String, String> asicStatusCodeMap = new Map<String, String>();
-        for(Street_Type_Code__mdt each : streetTypeCodeList){
-            asicStatusCodeMap.put(each.MasterLabel, each.Type_Code__c);
-        }
-        if(asicStatusCodeMap.get(asicStatus) != null){
-            return asicStatusCodeMap.get(asicStatus);
-        }
-        if(asicStatusCodeMap.get(asicStatus) != null){
-            return asicStatusCodeMap.get(asicStatus);
-        }
-        return asicStatus;
+  public static String convertToDescription(String asicStatus) {
+    asicStatus = asicStatus.trim().toUppercase();
+    List<Street_Type_Code__mdt> streetTypeCodeList = [
+      SELECT MasterLabel, Type_Code__c, Type__c
+      FROM Street_Type_Code__mdt
+      WHERE Type__c = 'ToDescription'
+    ];
+    Map<String, String> asicStatusCodeMap = new Map<String, String>();
+    for (Street_Type_Code__mdt each : streetTypeCodeList) {
+      asicStatusCodeMap.put(each.MasterLabel, each.Type_Code__c);
     }
+    if (asicStatusCodeMap.get(asicStatus) != null) {
+      return asicStatusCodeMap.get(asicStatus);
+    }
+    if (asicStatusCodeMap.get(asicStatus) != null) {
+      return asicStatusCodeMap.get(asicStatus);
+    }
+    return asicStatus;
+  }
 }

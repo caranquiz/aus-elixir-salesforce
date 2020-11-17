@@ -25,7 +25,8 @@ global with sharing class LoanDisbursalFilegen extends loan.FileGenerator {
         User_Id__c,
         Name_of_User__c,
         Description_of_funds__c
-      FROM loan__Automated_Payment_Configuration__c LIMIT 200
+      FROM loan__Automated_Payment_Configuration__c
+      LIMIT 200
     ]
   );
   Map<Id, loan__Bank_Account__c> bankAccts = new Map<Id, loan__Bank_Account__c>();
@@ -53,7 +54,7 @@ global with sharing class LoanDisbursalFilegen extends loan.FileGenerator {
     List<Id> clContractIds = new List<Id>();
     Set<Id> ids = new Set<Id>();
     try {
-      if(scope == null || scope.isEmpty()){
+      if (scope == null || scope.isEmpty()) {
         throw new CustomException(ConstantValues.ENTRY_SCOPE_EMPTY);
       }
       // Creating a set of Ids of the given scope
@@ -62,7 +63,9 @@ global with sharing class LoanDisbursalFilegen extends loan.FileGenerator {
       }
       ldtTxns = new List<loan__Loan_Disbursal_Transaction__c>(
         [
-          SELECT Id, Name,
+          SELECT
+            Id,
+            Name,
             loan__ACH_Filename__c,
             loan__Cleared__c,
             loan__Mode_of_Payment__c,
@@ -84,38 +87,54 @@ global with sharing class LoanDisbursalFilegen extends loan.FileGenerator {
             AND loan__Rejected__c = false
         ]
       );
-      for(loan__Loan_Disbursal_Transaction__c eachLDT : ldtTxns){
+      for (loan__Loan_Disbursal_Transaction__c eachLDT : ldtTxns) {
         obj = new DirectEntryFileRecordGenUtil.DetailRecordData();
         obj.lodgementRef = eachLDT.Name;
-        obj.transAmt = (eachLDT.ORDE_Financial_Fees_Total_Amount__c * 100).round();
-        if(eachLDT.loan__Loan_Account__r.Warehouse__c != NULL){
+        obj.transAmt = (eachLDT.ORDE_Financial_Fees_Total_Amount__c * 100)
+          .round();
+        if (eachLDT.loan__Loan_Account__r.Warehouse__c != null) {
           obj.benfBSBNumber = eachLDT.loan__Loan_Account__r.Warehouse__r.BSB_Number__c;
           obj.benfAccNumber = eachLDT.loan__Loan_Account__r.Warehouse__r.Bank_Account_Number__c;
           obj.remitterName = eachLDT.loan__Loan_Account__r.Warehouse__r.Institution_Name__c;
         }
         detailRecordDataLDTMap.put(eachLDT.Id, obj);
         clContractIds.add(eachLDT.loan__Loan_Account__c);
-        List<Id> ldtIds = loanAccountLDTIdMap.get(eachLDT.loan__Loan_Account__c);
-        if(ldtIds == null){
-            ldtIds = new List<Id>();
+        List<Id> ldtIds = loanAccountLDTIdMap.get(
+          eachLDT.loan__Loan_Account__c
+        );
+        if (ldtIds == null) {
+          ldtIds = new List<Id>();
         }
         ldtIds.add(eachLDT.Id);
         loanAccountLDTIdMap.put(eachLDT.loan__Loan_Account__c, ldtIds);
       }
-      List<loan__Coborrower__c> contractPartyList = [SELECT Id, loan__Loan__c, loan__Account__c, loan__Party_Type__c,
-      loan__Account__r.Bank_Account_Name__c, loan__Account__r.Bank_Account_Number__c, loan__Account__r.BSB__c
-      FROM loan__Coborrower__c WHERE loan__Loan__c IN:clContractIds AND loan__Party_Type__c =:ConstantValues.SOLICITOR_PARTY_TYPE];
-      for(loan__Coborrower__c eachContractParty : contractPartyList){
-        List<Id> ldtIds = loanAccountLDTIdMap.get(eachContractParty.loan__Loan__c);
-        for(Id eachId : ldtIds){
-            obj = detailRecordDataLDTMap.get(eachId);
-            if(eachContractParty.loan__Account__c == null){
-                continue;
-            }
-            obj.payerBSBNumber = eachContractParty.loan__Account__r.BSB__c;
-            obj.payerAcctNumber = eachContractParty.loan__Account__r.Bank_Account_Number__c;
-            obj.payerAcctName = eachContractParty.loan__Account__r.Bank_Account_Name__c;
-            detailRecordDataLDTMap.put(eachId, obj);
+      List<loan__Coborrower__c> contractPartyList = [
+        SELECT
+          Id,
+          loan__Loan__c,
+          loan__Account__c,
+          loan__Party_Type__c,
+          loan__Account__r.Bank_Account_Name__c,
+          loan__Account__r.Bank_Account_Number__c,
+          loan__Account__r.BSB__c
+        FROM loan__Coborrower__c
+        WHERE
+          loan__Loan__c IN :clContractIds
+          AND loan__Party_Type__c = :ConstantValues.SOLICITOR_PARTY_TYPE
+      ];
+      for (loan__Coborrower__c eachContractParty : contractPartyList) {
+        List<Id> ldtIds = loanAccountLDTIdMap.get(
+          eachContractParty.loan__Loan__c
+        );
+        for (Id eachId : ldtIds) {
+          obj = detailRecordDataLDTMap.get(eachId);
+          if (eachContractParty.loan__Account__c == null) {
+            continue;
+          }
+          obj.payerBSBNumber = eachContractParty.loan__Account__r.BSB__c;
+          obj.payerAcctNumber = eachContractParty.loan__Account__r.Bank_Account_Number__c;
+          obj.payerAcctName = eachContractParty.loan__Account__r.Bank_Account_Name__c;
+          detailRecordDataLDTMap.put(eachId, obj);
         }
       }
     } catch (Exception ex) {
@@ -132,32 +151,34 @@ global with sharing class LoanDisbursalFilegen extends loan.FileGenerator {
     DirectEntryFileRecordGenUtil.DetailRecordData recOneDataObj
   ) {
     String entryVal;
-    loan__Loan_Disbursal_Transaction__c ldtObj = new loan__Loan_Disbursal_Transaction__c(Id = ldtId);
-    if(String.isBlank(recOneDataObj.payerBSBNumber)){
-        addToInvalidScope(ldtObj, ConstantValues.WRONG_BSB_PAYER);
-    } else if(String.isBlank(recOneDataObj.payerAcctNumber)){
-        addToInvalidScope(ldtObj, ConstantValues.WRONG_ACOUNT_NUMBER_PAYER);
-    } else if(recOneDataObj.transAmt == null){
-        addToInvalidScope(ldtObj, ConstantValues.TRANSACTION_AMT_NOT_FOUND);
-    } else if(recOneDataObj.payerAcctName == null){
-        addToInvalidScope(ldtObj, ConstantValues.PAYER_ACCOUNT_NAME_MISSING);
-    } else if(recOneDataObj.lodgementRef == null){
-        addToInvalidScope(ldtObj, ConstantValues.LODGMENT_REFERENCE_MISSING);
-    } else if(recOneDataObj.benfBSBNumber == null){
-        addToInvalidScope(ldtObj, ConstantValues.WRONG_BSB_PAYEE);
-    } else if(recOneDataObj.benfAccNumber == null){
-        addToInvalidScope(ldtObj, ConstantValues.WRONG_ACOUNT_NUMBER_PAYEE);
-    } else if(recOneDataObj.remitterName == null){
-        addToInvalidScope(ldtObj, ConstantValues.WAREHOUSE_INST_MISSING);
-    } else{
-        recOneDataObj.indicator = ConstantValues.INDICATOR;
-        recOneDataObj.transCode = ConstantValues.TXN_CODE_CREDIT;
-        recOneDataObj.amtWithholdingTax = 0;
-        sumOfAmt += recOneDataObj.transAmt;
-        entryCount += 1;
-        addToValidScope(ldtObj);
-        entryVal = DirectEntryFileRecordGenUtil.getRecordOne(recOneDataObj);
-        addEntry(entryVal);
+    loan__Loan_Disbursal_Transaction__c ldtObj = new loan__Loan_Disbursal_Transaction__c(
+      Id = ldtId
+    );
+    if (String.isBlank(recOneDataObj.payerBSBNumber)) {
+      addToInvalidScope(ldtObj, ConstantValues.WRONG_BSB_PAYER);
+    } else if (String.isBlank(recOneDataObj.payerAcctNumber)) {
+      addToInvalidScope(ldtObj, ConstantValues.WRONG_ACOUNT_NUMBER_PAYER);
+    } else if (recOneDataObj.transAmt == null) {
+      addToInvalidScope(ldtObj, ConstantValues.TRANSACTION_AMT_NOT_FOUND);
+    } else if (recOneDataObj.payerAcctName == null) {
+      addToInvalidScope(ldtObj, ConstantValues.PAYER_ACCOUNT_NAME_MISSING);
+    } else if (recOneDataObj.lodgementRef == null) {
+      addToInvalidScope(ldtObj, ConstantValues.LODGMENT_REFERENCE_MISSING);
+    } else if (recOneDataObj.benfBSBNumber == null) {
+      addToInvalidScope(ldtObj, ConstantValues.WRONG_BSB_PAYEE);
+    } else if (recOneDataObj.benfAccNumber == null) {
+      addToInvalidScope(ldtObj, ConstantValues.WRONG_ACOUNT_NUMBER_PAYEE);
+    } else if (recOneDataObj.remitterName == null) {
+      addToInvalidScope(ldtObj, ConstantValues.WAREHOUSE_INST_MISSING);
+    } else {
+      recOneDataObj.indicator = ConstantValues.INDICATOR;
+      recOneDataObj.transCode = ConstantValues.TXN_CODE_CREDIT;
+      recOneDataObj.amtWithholdingTax = 0;
+      sumOfAmt += recOneDataObj.transAmt;
+      entryCount += 1;
+      addToValidScope(ldtObj);
+      entryVal = DirectEntryFileRecordGenUtil.getRecordOne(recOneDataObj);
+      addEntry(entryVal);
     }
     return entryVal;
   }
@@ -166,24 +187,26 @@ global with sharing class LoanDisbursalFilegen extends loan.FileGenerator {
     loan.TransactionSweepToACHState state,
     List<SObject> scope
   ) {
-    Map<Id, DirectEntryFileRecordGenUtil.DetailRecordData> detailRecordDataLDTMap = requeryScope(scope);
+    Map<Id, DirectEntryFileRecordGenUtil.DetailRecordData> detailRecordDataLDTMap = requeryScope(
+      scope
+    );
     List<String> totalRecords = new List<String>();
     try {
       for (Id eachKey : detailRecordDataLDTMap.keySet()) {
-        String entryVal = processScope(eachKey, detailRecordDataLDTMap.get(eachKey));
+        String entryVal = processScope(
+          eachKey,
+          detailRecordDataLDTMap.get(eachKey)
+        );
         if (String.isNotBlank(entryVal)) {
           totalRecords.add(entryVal);
         }
       }
     } catch (Exception ex) {
-      GenericUtility.insertLog(
-        'LoanDisbursalFilegen',
-        ex
-      );
+      GenericUtility.insertLog('LoanDisbursalFilegen', ex);
     }
     return totalRecords;
   }
-  
+
   global override String getHeader(
     loan.TransactionSweepToACHState state,
     List<SObject> scope
@@ -207,7 +230,9 @@ global with sharing class LoanDisbursalFilegen extends loan.FileGenerator {
       recZeroDataObj.username = apc.Name_of_User__c;
       recZeroDataObj.userId = apc.User_Id__c;
       recZeroDataObj.description = apc.Description_of_funds__c;
-      headerVal = DirectEntryFileRecordGenUtil.getDescriptiveRecord(recZeroDataObj);
+      headerVal = DirectEntryFileRecordGenUtil.getDescriptiveRecord(
+        recZeroDataObj
+      );
     } catch (Exception ex) {
       GenericUtility.insertLog('LoanDisbursalFilegen', ex);
     }

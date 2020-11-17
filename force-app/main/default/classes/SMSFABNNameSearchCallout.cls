@@ -18,7 +18,7 @@ global with sharing class SMSFABNNameSearchCallout {
     intframework.AbstractIntegrationService baseintegrationService = intframework.IntegrationServiceFactory.getBaseIntegrationService();
     intframework.BaseIntegrationResponse responseObject;
     String apiType = ConstantValues.NAME_API_TYPE;
-    if(String.isBlank(partyId)){
+    if (String.isBlank(partyId)) {
       parserObject.errMessage = ConstantValues.PARTY_ID_EMPTY;
       return JSON.serialize(parserObject);
     }
@@ -36,17 +36,22 @@ global with sharing class SMSFABNNameSearchCallout {
         parserObject.errMessage = ConstantValues.GENERAL_EXCEPTION;
         return JSON.serialize(parserObject);
       }
-      if(responseObject.getBody().contains('<Exception>')){
-          String excep = responseObject.getBody().substringBetween('<Exception>','</Exception>');
-          String excepCode = responseObject.getBody().substringBetween('<Code>','</Code>');
-          String excepDescription = responseObject.getBody().substringBetween('<Description>','</Description>');
-          if(excepCode == 'WEBSERVICES'){
-              throw new CustomException(excepDescription);
-          }
+      if (responseObject.getBody().contains('<Exception>')) {
+        String excep = responseObject.getBody()
+          .substringBetween('<Exception>', '</Exception>');
+        String excepCode = responseObject.getBody()
+          .substringBetween('<Code>', '</Code>');
+        String excepDescription = responseObject.getBody()
+          .substringBetween('<Description>', '</Description>');
+        if (excepCode == 'WEBSERVICES') {
+          throw new CustomException(excepDescription);
+        }
       }
       doc.load(responseObject.getBody());
       // Changing the response format from String to Map
-      Map<String, Object> responseMap = intframework.XmlToJson.parseDocumentToMap(doc);
+      Map<String, Object> responseMap = intframework.XmlToJson.parseDocumentToMap(
+        doc
+      );
 
       String json = System.JSON.serialize(responseMap);
       result = parse(json);
@@ -61,19 +66,24 @@ global with sharing class SMSFABNNameSearchCallout {
     }
   }
   //Method to parse the response
-  public static SMSFABNNameSearchHelper parse(String json){
-    if(String.isNotBlank(json)){
+  public static SMSFABNNameSearchHelper parse(String json) {
+    if (String.isNotBlank(json)) {
       // Changing the response format from Map to SMSFABNNameSearchHelper class object
-      SMSFABNNameSearchHelper parserObject = SMSFABNNameSearchHelper.parse(json);
-      if(parserObject == null){
+      SMSFABNNameSearchHelper parserObject = SMSFABNNameSearchHelper.parse(
+        json
+      );
+      if (parserObject == null) {
         parserObject = new SMSFABNNameSearchHelper();
         parserObject.errMessage = ConstantValues.GENERAL_EXCEPTION;
         return parserObject;
       }
       /* The following try-catch block handles if any exception happens while fetching
-      matchingFundNames201908 null check */
+       matchingFundNames201908 null check */
       try {
-        if (parserObject.superFundNamesPayload.response.matchingFundNames201908 == null) {
+        if (
+          parserObject.superFundNamesPayload.response.matchingFundNames201908 ==
+          null
+        ) {
           parserObject.errMessage = ConstantValues.INVALID_SMSF_NAME;
         }
       } catch (Exception ex) {
@@ -82,5 +92,5 @@ global with sharing class SMSFABNNameSearchCallout {
       return parserObject;
     }
     return null;
-  } 
+  }
 }
