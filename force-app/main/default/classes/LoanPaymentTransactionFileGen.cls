@@ -201,43 +201,44 @@ global with sharing class LoanPaymentTransactionFileGen extends loan.FileGenerat
         if (eachLpttxns.loan__Loan_Account__r.Warehouse__c == null) {
           GenericUtility.insertLog(
             ConstantValues.WAREHOUSE_MISSING,
-            new CustomException(ConstantValues.WAREHOUSE_MISSING)
+            new CustomException(ConstantValues.WAREHOUSE_MISSING + eachLpttxns.Name)
           );
+          continue;
         }
-        if (
+        else if (
           String.isBlank(
             eachLpttxns.loan__Loan_Account__r.Warehouse__r.Collection_Bank_Account_Name__c
           )
         ) {
           GenericUtility.insertLog(
             ConstantValues.LPT_FILE_GEN,
-            new CustomException(ConstantValues.REMITTER_NOT_FOUND)
+            new CustomException(ConstantValues.REMITTER_NOT_FOUND + eachLpttxns.Name)
           );
-          return totalRecords;
+          continue;
         }
-        if (
+        else if (
           String.isBlank(
             eachLpttxns.loan__Loan_Account__r.Warehouse__r.Collection_Bank_Account_Number__c
           )
         ) {
           GenericUtility.insertLog(
             ConstantValues.LPT_FILE_GEN,
-            new CustomException(ConstantValues.COMPANY_BANK_DETAILS_MISSING)
+            new CustomException(ConstantValues.COMPANY_BANK_DETAILS_MISSING + eachLpttxns.Name)
           );
-          return totalRecords;
+          continue;
         }
-        if (
+        else if (
           String.isBlank(
             eachLpttxns.loan__Loan_Account__r.Warehouse__r.Collection_BSB_Number__c
           )
         ) {
           GenericUtility.insertLog(
             ConstantValues.LPT_FILE_GEN,
-            new CustomException(ConstantValues.COMPANY_BANK_DETAILS_MISSING)
+            new CustomException(ConstantValues.COMPANY_BANK_DETAILS_MISSING + eachLpttxns.Name)
           );
-          return totalRecords;
+          continue;
         }
-        if (
+        else if (
           String.valueOf(
               eachLpttxns.loan__Loan_Account__r.Warehouse__r.Collection_BSB_Number__c
             )
@@ -245,11 +246,11 @@ global with sharing class LoanPaymentTransactionFileGen extends loan.FileGenerat
         ) {
           GenericUtility.insertLog(
             ConstantValues.LPT_FILE_GEN,
-            new CustomException(ConstantValues.WRONG_BSB_PAYEE)
+            new CustomException(ConstantValues.WRONG_BSB_PAYEE + eachLpttxns.Name)
           );
-          return totalRecords;
+          continue;
         }
-        if (
+        else if (
           String.valueOf(
               eachLpttxns.loan__Loan_Account__r.Warehouse__r.Collection_Bank_Account_Number__c
             )
@@ -257,9 +258,9 @@ global with sharing class LoanPaymentTransactionFileGen extends loan.FileGenerat
         ) {
           GenericUtility.insertLog(
             ConstantValues.LPT_FILE_GEN,
-            new CustomException(ConstantValues.WRONG_ACOUNT_NUMBER_PAYEE)
+            new CustomException(ConstantValues.WRONG_ACOUNT_NUMBER_PAYEE + eachLpttxns.Name)
           );
-          return totalRecords;
+          continue;
         }
         benfObj.remitterName = eachLpttxns.loan__Loan_Account__r.Warehouse__r.Collection_Bank_Account_Name__c;
         benfObj.benfBSBNumber = String.valueOf(
