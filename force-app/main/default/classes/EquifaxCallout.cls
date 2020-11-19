@@ -9,7 +9,7 @@
 /* Last Modified By     : Souvik */
 /*********************************************************************************************************/
 
-global with sharing class EquifaxCallout {
+global without sharing class EquifaxCallout {
   // Checks if Collateral exists associated with the provided Id
   private static clcommon__Collateral__c checkCollateralId(Id collateralId) {
     List<clcommon__Collateral__c> collateralList = new List<clcommon__Collateral__c>(

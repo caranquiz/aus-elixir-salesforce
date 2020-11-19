@@ -301,9 +301,9 @@ global class ConstantValues {
   public static final String CONTENT_TYPE_CODE = '__contentType';
   public static final String REQ_ENVELOPE_START = '<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:land="http://vedaxml.com/vxml2/land-titles-v1-0.xsd" xmlns:vh="http://vedaxml.com/soap/header/v-header-v1-10.xsd" xmlns:wsa="http://www.w3.org/2005/08/addressing">';
   public static final String RES_HEADER =
-    '<soapenv:Envelope xmlns:soapenv="http://www.w3.org/2003/05/soap-envelope" xmlns:wsa="http://www.w3.org/2005/08/addressing" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">' +
-    '<SOAP-ENV:Body xmlns:SOAP-ENV="http://www.w3.org/2003/05/soap-envelope"><notify-event-response xmlns="http://veda-services/event-notify-v1-0.xsd" xmlns:xmime="http://www.w3.org/2005/05/xmlmime"><notify-event-data>';
-  public static final String RES_FOOTER = '</notify-event-data></notify-event-response></SOAP-ENV:Body></soapenv:Envelope>';
+    '<?xml version="1.0" encoding="UTF-8"?><soapenv:Envelope xmlns:evnt="http://veda-services/event-notify-v1-0.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">' +
+    '<soap:Header/><soap:Body><evnt:notify-event-response><evnt:notify-event-data>';
+  public static final String RES_FOOTER = '</evnt:notify-event-data></evnt:notify-event-response></soap:Body></soap:Envelope>';
   // Exceptions
   public static final String REQ_SLT_ACTION = '<wsa:Action>http://vedaxml.com/land-titles/searchLandTitlesRequest</wsa:Action></soap:Header>';
   public static final String REQ_OD_ACTION = '<wsa:Action>http://vedaxml.com/land-titles/orderDocumentRequest</wsa:Action></soap:Header>';
