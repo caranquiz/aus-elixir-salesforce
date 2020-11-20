@@ -60,6 +60,7 @@ private class CheckRulesTest {
     );
     applicationDetails.Risk_grade_list__c = 'Near Prime';
     applicationDetails.Document_Type__c = 'Full Doc';
+    applicationDetails.Valuation_Fee_Collected_at_Settlement__c = 'No';
     update applicationDetails;
     List<genesis__Applications__c> applicationDetailsList = [
       SELECT Id, genesis__Loan_Amount__c
@@ -94,6 +95,18 @@ private class CheckRulesTest {
       'Employment Information has been inserted'
     );
 
+    genesis__Liability__c liability = GenericUtilityTestHelper.returnLiability(
+      applicationDetailsList[0].Id
+    );
+    liability.To_Be_Refinanced__c = TRUE;
+    liability.genesis__Name_of_Creditor__c = 'SOME NAME';
+    update liability;
+    System.assertNotEquals(
+      liability.Id,
+      null,
+      'Liability has been inserted'
+    );
+
     genesis__Income__c income = GenericUtilityTestHelper.returnEmploymentInformation(
       applicationDetailsList[0].Id,
       employmentInfo.Id
@@ -115,6 +128,29 @@ private class CheckRulesTest {
     returnParty.Risk_Grade__c = 'Near Prime';
     returnParty.Document_Type__c = 'Full';
     update returnParty;
+
+    genesis__Asset_Information__c assetInfo = GenericUtilityTestHelper.returnAssetInformation(
+        applicationDetailsList[0].Id
+    );
+    assetInfo.genesis__Asset_Type__c = 'Gifts';
+    assetInfo.Address__c = 'XYZ';
+    assetInfo.genesis__Market_Value__c = 123000;
+    update assetInfo;
+    System.AssertNotEquals(
+      assetInfo.Id,
+      null,
+      'Asset Information inserted successfully!'
+    );
+
+    List<clcommon__Collateral__c> colList = [
+        SELECT Id FROM clcommon__Collateral__c
+    ];
+    System.assertEquals(colList.size(), 1, 'Collateral not inserted');
+    update new clcommon__Collateral__c(
+        Id = colList[0].Id,
+        Replacement_Type__c = 'Standard',
+        Replacement_Value__c = 100000
+    );
   }
 
   //This method acts as unit testing when the application id is not equal to null and Loan Details tab rules are executed
@@ -136,6 +172,11 @@ private class CheckRulesTest {
       'Loan Details'
     );
     Test.stopTest();
+    List<Checklist_Detail__c> logList = [SELECT Id, Status__c, Checklist__r.genesis__Rule__r.Name FROM Checklist_Detail__c WHERE Status__c = 'SUCCESS'];
+    for(Checklist_Detail__c each : logList) {
+        System.debug(each);
+System.debug(each.Checklist__r.genesis__Rule__r.Name);
+    }
   }
 
   //This method acts as unit testing when the application id is equal to null
@@ -165,6 +206,11 @@ private class CheckRulesTest {
     );
     Test.stopTest();
     //System.assertEquals(ConstantValues.Success,returnValue,'Success');
+    List<Checklist_Detail__c> logList = [SELECT Id, Status__c, Checklist__r.genesis__Rule__r.Name FROM Checklist_Detail__c WHERE Status__c = 'SUCCESS'];
+    for(Checklist_Detail__c each : logList) {
+        System.debug(each);
+System.debug(each.Checklist__r.genesis__Rule__r.Name);
+    }
   }
   @isTest
   //This method acts as unit testing when the application id is not equal to null and Review tab rules are executed
@@ -186,6 +232,11 @@ private class CheckRulesTest {
     );
     Test.stopTest();
     System.assertEquals(ConstantValues.Success, returnValue, 'Success');
+    List<Checklist_Detail__c> logList = [SELECT Id, Status__c, Checklist__r.genesis__Rule__r.Name FROM Checklist_Detail__c WHERE Status__c = 'SUCCESS'];
+    for(Checklist_Detail__c each : logList) {
+        System.debug(each);
+System.debug(each.Checklist__r.genesis__Rule__r.Name);
+    }
   }
   @isTest
   //This method acts as unit testing when the application id is not equal to null and Securities tab rules are executed
@@ -207,6 +258,11 @@ private class CheckRulesTest {
     );
     Test.stopTest();
     System.assertEquals(ConstantValues.Success, returnValue, 'Success');
+    List<Checklist_Detail__c> logList = [SELECT Id, Status__c, Checklist__r.genesis__Rule__r.Name FROM Checklist_Detail__c WHERE Status__c = 'SUCCESS'];
+    for(Checklist_Detail__c each : logList) {
+        System.debug(each);
+System.debug(each.Checklist__r.genesis__Rule__r.Name);
+    }
   }
   @isTest
   //This method acts as unit testing when the application id is not equal to null and Individual Contact Details tab rules are executed
@@ -228,6 +284,11 @@ private class CheckRulesTest {
     );
     Test.stopTest();
     System.assertEquals(ConstantValues.Success, returnValue, 'Success');
+    List<Checklist_Detail__c> logList = [SELECT Id, Status__c, Checklist__r.genesis__Rule__r.Name FROM Checklist_Detail__c WHERE Status__c = 'SUCCESS'];
+    for(Checklist_Detail__c each : logList) {
+        System.debug(each);
+System.debug(each.Checklist__r.genesis__Rule__r.Name);
+    }
   }
   @isTest
   //This method acts as unit testing when the application id is not equal to null and Non Individual Contact Details tab rules are executed
@@ -249,6 +310,11 @@ private class CheckRulesTest {
     );
     Test.stopTest();
     System.assertEquals(ConstantValues.Success, returnValue, 'Success');
+    List<Checklist_Detail__c> logList = [SELECT Id, Status__c, Checklist__r.genesis__Rule__r.Name FROM Checklist_Detail__c WHERE Status__c = 'SUCCESS'];
+    for(Checklist_Detail__c each : logList) {
+        System.debug(each);
+System.debug(each.Checklist__r.genesis__Rule__r.Name);
+    }
   }
   @isTest
   //This method acts as unit testing when the application id is not equal to null and Individual Employment Information tab rules are executed
@@ -270,6 +336,11 @@ private class CheckRulesTest {
     );
     Test.stopTest();
     System.assertEquals(ConstantValues.Success, returnValue, 'Success');
+    List<Checklist_Detail__c> logList = [SELECT Id, Status__c, Checklist__r.genesis__Rule__r.Name FROM Checklist_Detail__c WHERE Status__c = 'SUCCESS'];
+    for(Checklist_Detail__c each : logList) {
+        System.debug(each);
+System.debug(each.Checklist__r.genesis__Rule__r.Name);
+    }
   }
   @isTest
   //This method acts as unit testing when the application id is not equal to null and Living Expense tab rules are executed
@@ -291,6 +362,11 @@ private class CheckRulesTest {
     );
     Test.stopTest();
     System.assertEquals(ConstantValues.Success, returnValue, 'Success');
+    List<Checklist_Detail__c> logList = [SELECT Id, Status__c, Checklist__r.genesis__Rule__r.Name FROM Checklist_Detail__c WHERE Status__c = 'SUCCESS'];
+    for(Checklist_Detail__c each : logList) {
+        System.debug(each);
+System.debug(each.Checklist__r.genesis__Rule__r.Name);
+    }
   }
   @isTest
   //This method acts as unit testing when the application id is not equal to null and Company Income tab rules are executed
@@ -312,6 +388,11 @@ private class CheckRulesTest {
     );
     Test.stopTest();
     System.assertEquals(ConstantValues.Success, returnValue, 'Success');
+    List<Checklist_Detail__c> logList = [SELECT Id, Status__c, Checklist__r.genesis__Rule__r.Name FROM Checklist_Detail__c WHERE Status__c = 'SUCCESS'];
+    for(Checklist_Detail__c each : logList) {
+        System.debug(each);
+System.debug(each.Checklist__r.genesis__Rule__r.Name);
+    }
   }
   @isTest
   //This method acts as unit testing when the application id is not equal to null and Review tab rules are executed
@@ -333,6 +414,11 @@ private class CheckRulesTest {
     );
     Test.stopTest();
     System.assertEquals(ConstantValues.Success, returnValue, 'Success');
+    List<Checklist_Detail__c> logList = [SELECT Id, Status__c, Checklist__r.genesis__Rule__r.Name FROM Checklist_Detail__c WHERE Status__c = 'SUCCESS'];
+    for(Checklist_Detail__c each : logList) {
+        System.debug(each);
+System.debug(each.Checklist__r.genesis__Rule__r.Name);
+    }
   }
   @isTest
   //This method acts as unit testing when the application id is not equal to null and Review tab rules are executed
@@ -354,6 +440,11 @@ private class CheckRulesTest {
     );
     Test.stopTest();
     System.assertEquals(ConstantValues.Success, returnValue, 'Success');
+    List<Checklist_Detail__c> logList = [SELECT Id, Status__c, Checklist__r.genesis__Rule__r.Name FROM Checklist_Detail__c WHERE Status__c = 'SUCCESS'];
+    for(Checklist_Detail__c each : logList) {
+        System.debug(each);
+System.debug(each.Checklist__r.genesis__Rule__r.Name);
+    }
   }
   @isTest
   //This method acts as unit testing when the application id is not equal to null and Review tab rules are executed
@@ -391,6 +482,11 @@ private class CheckRulesTest {
     );
     Test.stopTest();
     System.assertEquals(ConstantValues.Success, returnValue, 'Success');
+    List<Checklist_Detail__c> logList = [SELECT Id, Status__c, Checklist__r.genesis__Rule__r.Name FROM Checklist_Detail__c WHERE Status__c = 'SUCCESS'];
+    for(Checklist_Detail__c each : logList) {
+        System.debug(each);
+System.debug(each.Checklist__r.genesis__Rule__r.Name);
+    }
   }
   @isTest
   //This method acts as unit testing when the application id is not equal to null and Review tab rules are executed
@@ -428,6 +524,11 @@ private class CheckRulesTest {
     );
     Test.stopTest();
     System.assertEquals(ConstantValues.Success, returnValue, 'Success');
+    List<Checklist_Detail__c> logList = [SELECT Id, Status__c, Checklist__r.genesis__Rule__r.Name FROM Checklist_Detail__c WHERE Status__c = 'SUCCESS'];
+    for(Checklist_Detail__c each : logList) {
+        System.debug(each);
+System.debug(each.Checklist__r.genesis__Rule__r.Name);
+    }
   }
   @isTest
   //This method acts as unit testing when the application id is not equal to null and Review tab rules are executed
@@ -444,6 +545,11 @@ private class CheckRulesTest {
     );
     Test.stopTest();
     System.assertEquals(ConstantValues.Success, returnValue, 'Success');
+    List<Checklist_Detail__c> logList = [SELECT Id, Status__c, Checklist__r.genesis__Rule__r.Name FROM Checklist_Detail__c WHERE Status__c = 'SUCCESS'];
+    for(Checklist_Detail__c each : logList) {
+        System.debug(each);
+System.debug(each.Checklist__r.genesis__Rule__r.Name);
+    }
   }
   @isTest
   static void testChecklistDetailsAPIMethods() {
