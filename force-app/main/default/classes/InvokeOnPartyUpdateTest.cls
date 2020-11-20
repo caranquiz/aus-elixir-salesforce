@@ -50,10 +50,16 @@ private class InvokeOnPartyUpdateTest {
       FROM genesis__Applications__c
     ];
     System.assert(!appList.isEmpty(), 'Application not inserted');
-    System.debug(appList[0].Total_Monthly_Living_Expenses_Declared__c);
     System.assert(
       appList[0].Total_Monthly_Living_Expenses_Declared__c == 1000,
       'Value is not updated on Application'
     );
+  }
+  @isTest
+  static void testEmptyApplicationList() {
+    List<Id> appIdList = new List<Id>();
+    Test.startTest();
+    InvokeOnPartyUpdate.updateLivingExpense(appIdList);
+    Test.stopTest();
   }
 }
