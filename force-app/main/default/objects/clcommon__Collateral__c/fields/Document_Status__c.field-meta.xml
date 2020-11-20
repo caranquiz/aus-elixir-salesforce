@@ -7,7 +7,6 @@
     <trackTrending>false</trackTrending>
     <type>Picklist</type>
     <valueSet>
-        <restricted>true</restricted>
         <valueSetDefinition>
             <sorted>false</sorted>
             <value>
@@ -29,6 +28,11 @@
                 <fullName>FAILURE</fullName>
                 <default>false</default>
                 <label>FAILURE</label>
+            </value>
+            <value>
+                <fullName>ERROR</fullName>
+                <default>false</default>
+                <label>ERROR</label>
             </value>
         </valueSetDefinition>
     </valueSet>

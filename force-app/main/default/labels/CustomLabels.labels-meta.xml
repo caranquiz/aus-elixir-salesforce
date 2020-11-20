@@ -639,4 +639,11 @@
         <shortDescription>Yes</shortDescription>
         <value>Yes</value>
     </labels>
+    <labels>
+        <fullName>notify_event_retry_count</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>notify event retry count</shortDescription>
+        <value>5</value>
+    </labels>
 </CustomLabels>

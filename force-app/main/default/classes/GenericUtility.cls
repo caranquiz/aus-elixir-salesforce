@@ -65,13 +65,15 @@ public with sharing class GenericUtility {
   public static void insertRestResourceIntegrationLog(
     String name,
     String requestLog,
-    String responseLog
+    String responseLog,
+    String enquiryId
   ) {
     insertRestResourceIntegrationLog(
       name,
       false,
       requestLog,
       responseLog,
+      enquiryId,
       (Exception) null
     );
   }
@@ -80,6 +82,7 @@ public with sharing class GenericUtility {
     Boolean isFailed,
     String requestLog,
     String responseLog,
+    String enquiryId,
     Exception ex
   ) {
     String status;
@@ -103,7 +106,8 @@ public with sharing class GenericUtility {
         intframework__Error_Message__c = errorMessage,
         intframework__Request_Log__c = requestLog,
         intframework__Response_Log__c = responseLog,
-        intframework__Processing_Status__c = status
+        intframework__Processing_Status__c = status,
+        notify_event_enquiry_id__c = enquiryId
       )
     );
   }

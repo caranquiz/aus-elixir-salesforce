@@ -592,6 +592,7 @@
         <members>genesis__Policy_Exception__c.genesis__Status__c</members>
         <members>Checklist_Detail__c.Show_on_Indicative_Approval_Letter__c</members>
         <members>genesis__Policy_Exception__c.Show_on_Indicative_Approval_Letter__c</members>
+        <members>intframework__Integration_Log__c.notify_event_enquiry_id__c</members>
         <name>CustomField</name>
     </types>
     <types>
@@ -694,6 +695,7 @@
         
         <!-- LDT filegen changes made by Souvik -->
         <members>LDT_file_name</members>
+        <members>notify_event_retry_count</members>
 
         <!-- Error msgs added by Rameswari -->
         <members>No_deposit_found_error_msg</members>
