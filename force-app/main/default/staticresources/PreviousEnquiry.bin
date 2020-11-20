@@ -1,0 +1,21 @@
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ved="http://vedaxml.com/vxml2/previous-enquiry-v1-0.xsd">
+   <soap:Header xmlns:wsa="http://www.w3.org/2005/08/addressing">
+      <wsse:Security xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd">
+         <wsse:UsernameToken>
+            <wsse:Username>__Username</wsse:Username>
+            <wsse:Password>__Password</wsse:Password>
+         </wsse:UsernameToken>
+      </wsse:Security>
+      <wsa:Action>http://vedaxml.com/previousEnquiry/ServiceRequest</wsa:Action>
+        <wsa:ReplyTo>
+            <wsa:Address>http://www.w3.org/2005/08/addressing/none</wsa:Address>
+        </wsa:ReplyTo>
+        <wsa:To>http://vedaxml.com/previousEnquiry/ServiceRequest</wsa:To>
+   </soap:Header>
+   <soap:Body xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+      <ved:request>
+        <ved:enquiryId>__enquiryId</ved:enquiryId>
+        <ved:contentType>__contentType</ved:contentType>
+      </ved:request>
+   </soap:Body>
+</soap:Envelope>
