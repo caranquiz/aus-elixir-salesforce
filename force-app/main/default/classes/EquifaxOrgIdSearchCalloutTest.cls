@@ -103,7 +103,7 @@ class EquifaxOrgIdSearchCalloutTest {
     res.setStatus('SUCCESS');
     if (endpoint.contains('nothing')) {
       res.setBody(
-        '<?xml version="1.0" encoding="UTF-8"?><soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"><soapenv:Body><soapenv:Fault><faultcode>soapenv:Server</faultcode><faultstring>Policy Falsified</faultstring><faultactor>https://ctaau.vedaxml.com/cta/sys1nothing</faultactor><detail><l7:policyResult xmlns:l7="http://www.layer7tech.com/ws/policy/fault" status="Service Not Found.  The request may have been sent to an invalid URL, or intended for an unsupported operation."/></detail></soapenv:Fault></soapenv:Body></soapenv:Envelope>'
+        '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"><soapenv:Body><BCAerror><faultcode>soapenv:Server</faultcode><BCAerror-description>Policy Falsified</BCAerror-description><faultactor>https://ctaau.vedaxml.com/cta/sys1nothing</faultactor><detail><l7:policyResult xmlns:l7="http://www.layer7tech.com/ws/policy/fault" status="Service Not Found.  The request may have been sent to an invalid URL, or intended for an unsupported operation."/></detail></BCAerror></soapenv:Body></soapenv:Envelope>'
       );
     } else {
       res.setBody(xml);
@@ -193,7 +193,7 @@ class EquifaxOrgIdSearchCalloutTest {
       1,
       'Integration API Configuration for Search By ABN insertion error'
     );
-    intApiConfig[0].intframework__API_Endpoint__c = 'nothing';
+    intApiConfig[0].intframework__API_Named_Credential__c = 'nothing';
     update intApiConfig;
     Test.setMock(HttpCalloutMock.class, new Mock());
     Test.startTest();
@@ -206,7 +206,7 @@ class EquifaxOrgIdSearchCalloutTest {
       party.Id,
       ConstantValues.ABN_SEARCH_NUMBER
     );
-    System.assert(responseString != null, 'ABN Response fetch error');
+    System.assert(responseString == null, 'ABN Response fetch error');
     Test.stopTest();
   }
 }
