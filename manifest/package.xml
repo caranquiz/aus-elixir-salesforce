@@ -644,6 +644,7 @@
 
         <!-- Equifax Individual Credit Report changes made by Souvik -->
         <members>ApplyIndividualRequest</members>
+        <members>PreviousEnquiry</members>
 
         <!-- Equifax Director Search Search made by Pratik -->
         <members>EquifaxMockResponse</members>
