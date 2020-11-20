@@ -316,7 +316,8 @@ public with sharing class GenericUtilityTestHelper {
       genesis__Enabled__c = true,
       genesis__Evaluation_Expression__c = '1',
       genesis__Message_failure__c = 'FAILURE',
-      genesis__Message_success__c = 'SUCCESS'
+      genesis__Message_success__c = 'SUCCESS',
+      Rule_Classification__c = ConstantValues.RULE_CLASSIFICATION
     );
     genesis__Rule__c ruleTwo = new genesis__Rule__c(
       genesis__Object_Type__c = 'Application',
@@ -324,7 +325,8 @@ public with sharing class GenericUtilityTestHelper {
       genesis__Enabled__c = true,
       genesis__Evaluation_Expression__c = '1',
       genesis__Message_failure__c = 'FAILURE',
-      genesis__Message_success__c = 'SUCCESS'
+      genesis__Message_success__c = 'SUCCESS',
+      Rule_Classification__c = ConstantValues.RULE_CLASSIFICATION
     );
     genesis__Rule__c ruleThree = new genesis__Rule__c(
       genesis__Object_Type__c = 'Application',
@@ -332,7 +334,8 @@ public with sharing class GenericUtilityTestHelper {
       genesis__Enabled__c = true,
       genesis__Evaluation_Expression__c = '1',
       genesis__Message_failure__c = 'FAILURE',
-      genesis__Message_success__c = 'SUCCESS'
+      genesis__Message_success__c = 'SUCCESS',
+      Rule_Classification__c = ConstantValues.RULE_CLASSIFICATION
     );
     genesis__Rule__c ruleFour = new genesis__Rule__c(
       genesis__Object_Type__c = 'Application',
@@ -340,7 +343,8 @@ public with sharing class GenericUtilityTestHelper {
       genesis__Enabled__c = true,
       genesis__Evaluation_Expression__c = '1',
       genesis__Message_failure__c = 'FAILURE',
-      genesis__Message_success__c = 'SUCCESS'
+      genesis__Message_success__c = 'SUCCESS',
+      Rule_Classification__c = ConstantValues.RULE_CLASSIFICATION
     );
     genesis__Rule__c ruleFive = new genesis__Rule__c(
       genesis__Object_Type__c = 'Application',
@@ -348,7 +352,8 @@ public with sharing class GenericUtilityTestHelper {
       genesis__Enabled__c = true,
       genesis__Evaluation_Expression__c = '1 OR 2',
       genesis__Message_failure__c = 'FAILURE',
-      genesis__Message_success__c = 'SUCCESS'
+      genesis__Message_success__c = 'SUCCESS',
+      Rule_Classification__c = ConstantValues.RULE_CLASSIFICATION
     );
     genesis__Rule__c ruleSix = new genesis__Rule__c(
       genesis__Object_Type__c = 'Application',
@@ -356,7 +361,8 @@ public with sharing class GenericUtilityTestHelper {
       genesis__Enabled__c = true,
       genesis__Evaluation_Expression__c = '1',
       genesis__Message_failure__c = 'FAILURE',
-      genesis__Message_success__c = 'SUCCESS'
+      genesis__Message_success__c = 'SUCCESS',
+      Rule_Classification__c = ConstantValues.RULE_CLASSIFICATION
     );
     genesis__Rule__c ruleSeven = new genesis__Rule__c(
       genesis__Object_Type__c = 'Application',
@@ -364,7 +370,8 @@ public with sharing class GenericUtilityTestHelper {
       genesis__Enabled__c = true,
       genesis__Evaluation_Expression__c = '1',
       genesis__Message_failure__c = 'FAILURE',
-      genesis__Message_success__c = 'SUCCESS'
+      genesis__Message_success__c = 'SUCCESS',
+      Rule_Classification__c = ConstantValues.RULE_CLASSIFICATION
     );
     genesis__Rule__c ruleEight = new genesis__Rule__c(
       genesis__Object_Type__c = 'Application',
@@ -372,7 +379,8 @@ public with sharing class GenericUtilityTestHelper {
       genesis__Enabled__c = true,
       genesis__Evaluation_Expression__c = '1',
       genesis__Message_failure__c = 'FAILURE',
-      genesis__Message_success__c = 'SUCCESS'
+      genesis__Message_success__c = 'SUCCESS',
+      Rule_Classification__c = ConstantValues.RULE_CLASSIFICATION
     );
     genesis__Rule__c ruleNine = new genesis__Rule__c(
       genesis__Object_Type__c = 'Application',
@@ -380,7 +388,8 @@ public with sharing class GenericUtilityTestHelper {
       genesis__Enabled__c = true,
       genesis__Evaluation_Expression__c = '1',
       genesis__Message_failure__c = 'FAILURE',
-      genesis__Message_success__c = 'SUCCESS'
+      genesis__Message_success__c = 'SUCCESS',
+      Rule_Classification__c = ConstantValues.RULE_CLASSIFICATION
     );
     genesis__Rule__c ruleTen = new genesis__Rule__c(
       genesis__Object_Type__c = 'Application',
@@ -388,7 +397,8 @@ public with sharing class GenericUtilityTestHelper {
       genesis__Enabled__c = true,
       genesis__Evaluation_Expression__c = '1',
       genesis__Message_failure__c = 'FAILURE',
-      genesis__Message_success__c = 'SUCCESS'
+      genesis__Message_success__c = 'SUCCESS',
+      Rule_Classification__c = ConstantValues.RULE_CLASSIFICATION
     );
     genesis__Rule__c ruleEl = new genesis__Rule__c(
       genesis__Object_Type__c = 'Application',
@@ -396,15 +406,17 @@ public with sharing class GenericUtilityTestHelper {
       genesis__Enabled__c = true,
       genesis__Evaluation_Expression__c = '1 OR 2 OR 3',
       genesis__Message_failure__c = 'FAILURE',
-      genesis__Message_success__c = 'SUCCESS'
+      genesis__Message_success__c = 'SUCCESS',
+      Rule_Classification__c = ConstantValues.RULE_CLASSIFICATION
     );
     genesis__Rule__c ruleTwl = new genesis__Rule__c(
       genesis__Object_Type__c = 'Application',
       Name = 'Trail (%) Exception',
       genesis__Enabled__c = true,
-      genesis__Evaluation_Expression__c = '1 OR 2',
+      genesis__Evaluation_Expression__c = '1',
       genesis__Message_failure__c = 'FAILURE',
-      genesis__Message_success__c = 'SUCCESS'
+      genesis__Message_success__c = 'SUCCESS',
+      Rule_Classification__c = ConstantValues.EXCEPTION_CLASSIFICATION
     );
     genesis__Rule__c ruleTtn = new genesis__Rule__c(
       genesis__Object_Type__c = 'Application',
@@ -421,7 +433,8 @@ public with sharing class GenericUtilityTestHelper {
       genesis__Enabled__c = true,
       genesis__Evaluation_Expression__c = '1',
       genesis__Message_failure__c = 'FAILURE',
-      genesis__Message_success__c = 'SUCCESS'
+      genesis__Message_success__c = 'SUCCESS',
+      Rule_Classification__c = ConstantValues.CONDITION_CLASSIFICATION
     );
     genesis__Rule__c ruleFftn = new genesis__Rule__c(
       genesis__Object_Type__c = 'Application',
@@ -429,7 +442,8 @@ public with sharing class GenericUtilityTestHelper {
       genesis__Enabled__c = true,
       genesis__Evaluation_Expression__c = '1',
       genesis__Message_failure__c = 'FAILURE',
-      genesis__Message_success__c = 'SUCCESS'
+      genesis__Message_success__c = 'SUCCESS',
+      Rule_Classification__c = ConstantValues.WARNING_CLASSIFICATION
     );
     genesis__Rule__c ruleSxtn = new genesis__Rule__c(
       genesis__Object_Type__c = 'Application',
@@ -437,42 +451,75 @@ public with sharing class GenericUtilityTestHelper {
       genesis__Enabled__c = true,
       genesis__Evaluation_Expression__c = '1',
       genesis__Message_failure__c = 'FAILURE',
-      genesis__Message_success__c = 'SUCCESS'
+      genesis__Message_success__c = 'SUCCESS',
+      Rule_Classification__c = ConstantValues.EXCEPTION_CLASSIFICATION
     );
     genesis__Rule__c ruleSvntn = new genesis__Rule__c(
       genesis__Object_Type__c = 'Application',
       Name = ConstantValues.RISK_GRADE_COMPARE_WARNING,
       genesis__Enabled__c = true,
       genesis__Message_failure__c = 'FAILURE',
-      genesis__Message_success__c = 'SUCCESS'
+      genesis__Message_success__c = 'SUCCESS',
+      Rule_Classification__c = ConstantValues.WARNING_CLASSIFICATION
     );
     genesis__Rule__c ruleEitn = new genesis__Rule__c(
       genesis__Object_Type__c = 'Application',
       Name = ConstantValues.PRIMARY_PURPOSE_WARNING,
       genesis__Enabled__c = true,
       genesis__Message_failure__c = 'FAILURE',
-      genesis__Message_success__c = 'SUCCESS'
+      genesis__Message_success__c = 'SUCCESS',
+      Rule_Classification__c = ConstantValues.WARNING_CLASSIFICATION
     );
     genesis__Rule__c ruleNntn = new genesis__Rule__c(
       genesis__Object_Type__c = 'Application',
       Name = ConstantValues.DOCUMENT_TYPE_WARNING,
       genesis__Enabled__c = true,
       genesis__Message_failure__c = 'FAILURE',
-      genesis__Message_success__c = 'SUCCESS'
+      genesis__Message_success__c = 'SUCCESS',
+      Rule_Classification__c = ConstantValues.WARNING_CLASSIFICATION
     );
     genesis__Rule__c ruleTnty = new genesis__Rule__c(
       genesis__Object_Type__c = 'Application',
       Name = ConstantValues.VALUATION_PAID_WARNING,
       genesis__Enabled__c = true,
       genesis__Message_failure__c = 'FAILURE',
-      genesis__Message_success__c = 'SUCCESS'
+      genesis__Message_success__c = 'SUCCESS',
+      Rule_Classification__c = ConstantValues.WARNING_CLASSIFICATION
     );
     genesis__Rule__c ruleTnty1 = new genesis__Rule__c(
       genesis__Object_Type__c = 'Application',
       Name = ConstantValues.CASHOUT_PURPOSE_RULE,
       genesis__Enabled__c = true,
       genesis__Message_failure__c = 'FAILURE',
-      genesis__Message_success__c = 'SUCCESS'
+      genesis__Message_success__c = 'SUCCESS',
+      Rule_Classification__c = ConstantValues.EXCEPTION_CLASSIFICATION
+    );
+    genesis__Rule__c ruleTnty2 = new genesis__Rule__c(
+      genesis__Object_Type__c = 'Application',
+      Name = ConstantValues.GIFT_STAT_DEC_RECEIVED_CONDITION,
+      genesis__Evaluation_Expression__c = '1',
+      genesis__Enabled__c = true,
+      genesis__Message_failure__c = 'FAILURE',
+      genesis__Message_success__c = 'SUCCESS',
+      Rule_Classification__c = ConstantValues.CONDITION_CLASSIFICATION
+    );
+    genesis__Rule__c ruleTnty3 = new genesis__Rule__c(
+      genesis__Object_Type__c = 'Application',
+      Name = ConstantValues.TO_BE_REFINANCED_WARNING,
+      genesis__Evaluation_Expression__c = '1',
+      genesis__Enabled__c = true,
+      genesis__Message_failure__c = 'FAILURE',
+      genesis__Message_success__c = 'SUCCESS',
+      Rule_Classification__c = ConstantValues.CONDITION_CLASSIFICATION
+    );
+    genesis__Rule__c ruleTnty4 = new genesis__Rule__c(
+      genesis__Object_Type__c = 'Application',
+      Name = ConstantValues.HMI_STANDARD_CONDITION,
+      genesis__Evaluation_Expression__c = '1',
+      genesis__Enabled__c = true,
+      genesis__Message_failure__c = 'FAILURE',
+      genesis__Message_success__c = 'SUCCESS',
+      Rule_Classification__c = ConstantValues.CONDITION_CLASSIFICATION
     );
 
     List<genesis__Rule__c> ruleLists = new List<genesis__Rule__c>();
@@ -497,6 +544,9 @@ public with sharing class GenericUtilityTestHelper {
     ruleLists.add(ruleNntn);
     ruleLists.add(ruleTnty);
     ruleLists.add(ruleTnty1);
+    ruleLists.add(ruleTnty2);
+    ruleLists.add(ruleTnty3);
+    ruleLists.add(ruleTnty4);
     //Inserting rule
     insert ruleLists;
     List<genesis__RuleCriteria__c> criteriaList = new List<genesis__RuleCriteria__c>();
@@ -632,29 +682,29 @@ public with sharing class GenericUtilityTestHelper {
       genesis__Matching_Type__c = '<=',
       genesis__Matching_Value__c = '10'
     );
-    genesis__RuleCriteria__c criteriaTwl = new genesis__RuleCriteria__c(
+    // genesis__RuleCriteria__c criteriaTwl = new genesis__RuleCriteria__c(
+    //   genesis__Criteria_Sequence__c = 2,
+    //   genesis__Rule__c = ruleLists[11].Id,
+    //   genesis__Related_Object__c = 'clcommon__Party__c',
+    //   genesis__Rule_Object_Reference__c = 'genesis__Application__r',
+    //   genesis__Stipulation_Type__c = 'FUNDING',
+    //   genesis__Field_Name__c = 'Party Type Name',
+    //   genesis__Field_API_Name__c = 'Party_Type_Name__c',
+    //   genesis__Field_Type__c = 'String',
+    //   genesis__Matching_Type__c = '!=',
+    //   genesis__Matching_Value__c = 'Broker'
+    // );
+    genesis__RuleCriteria__c criteriaTtn = new genesis__RuleCriteria__c(
       genesis__Criteria_Sequence__c = 1,
       genesis__Rule__c = ruleLists[11].Id,
       genesis__Related_Object__c = 'clcommon__Party__c',
       genesis__Rule_Object_Reference__c = 'genesis__Application__r',
       genesis__Stipulation_Type__c = 'FUNDING',
-      genesis__Field_Name__c = 'Party Type Name',
-      genesis__Field_API_Name__c = 'Party_Type_Name__c',
-      genesis__Field_Type__c = 'String',
+      genesis__Field_Name__c = 'Document Type',
+      genesis__Field_API_Name__c = 'Document_Type__c',
+      genesis__Field_Type__c = 'PICKLIST',
       genesis__Matching_Type__c = '!=',
-      genesis__Matching_Value__c = 'Broker'
-    );
-    genesis__RuleCriteria__c criteriaTtn = new genesis__RuleCriteria__c(
-      genesis__Criteria_Sequence__c = 2,
-      genesis__Rule__c = ruleLists[11].Id,
-      genesis__Related_Object__c = 'clcommon__Party__c',
-      genesis__Rule_Object_Reference__c = 'genesis__Application__r',
-      genesis__Stipulation_Type__c = 'FUNDING',
-      genesis__Field_Name__c = 'Trail Payment Warning Check',
-      genesis__Field_API_Name__c = 'Trail_Payment_Warning_Check__c',
-      genesis__Field_Type__c = 'BOOLEAN',
-      genesis__Matching_Type__c = '==',
-      genesis__Matching_Value__c = 'FALSE'
+      genesis__Matching_Value__c = 'Full'
     );
     genesis__RuleCriteria__c criteriaFrtn = new genesis__RuleCriteria__c(
       genesis__Criteria_Sequence__c = 1,
@@ -662,11 +712,11 @@ public with sharing class GenericUtilityTestHelper {
       genesis__Related_Object__c = 'clcommon__Party__c',
       genesis__Rule_Object_Reference__c = 'genesis__Application__r',
       genesis__Stipulation_Type__c = 'FUNDING',
-      genesis__Field_Name__c = 'Legal Entity Type',
-      genesis__Field_API_Name__c = 'Legal_Entity_Type__c',
+      genesis__Field_Name__c = 'Document Type',
+      genesis__Field_API_Name__c = 'Document_Type__c',
       genesis__Field_Type__c = 'STRING',
       genesis__Matching_Type__c = '!=',
-      genesis__Matching_Value__c = 'Company'
+      genesis__Matching_Value__c = 'Full'
     );
     genesis__RuleCriteria__c criteriaFftn = new genesis__RuleCriteria__c(
       genesis__Criteria_Sequence__c = 1,
@@ -715,6 +765,42 @@ public with sharing class GenericUtilityTestHelper {
       genesis__Field_Type__c = 'BOOLEAN',
       genesis__Matching_Type__c = '==',
       genesis__Matching_Value__c = 'FALSE'
+    );
+    genesis__RuleCriteria__c criteriaNntn = new genesis__RuleCriteria__c(
+      genesis__Criteria_Sequence__c = 1,
+      genesis__Rule__c = ruleLists[21].Id,
+      genesis__Related_Object__c = 'genesis__Asset_Information__c',
+      genesis__Rule_Object_Reference__c = 'genesis__Application__r',
+      genesis__Stipulation_Type__c = 'FUNDING',
+      genesis__Field_Name__c = 'Asset Type',
+      genesis__Field_API_Name__c = 'genesis__Asset_Type__c',
+      genesis__Field_Type__c = 'PICKLIST',
+      genesis__Matching_Type__c = '!=',
+      genesis__Matching_Value__c = 'Gifts'
+    );
+    genesis__RuleCriteria__c criteriaTnty = new genesis__RuleCriteria__c(
+      genesis__Criteria_Sequence__c = 1,
+      genesis__Rule__c = ruleLists[22].Id,
+      genesis__Related_Object__c = 'genesis__Liability__c',
+      genesis__Rule_Object_Reference__c = 'genesis__Application__r',
+      genesis__Stipulation_Type__c = 'FUNDING',
+      genesis__Field_Name__c = 'To Be Refinanced',
+      genesis__Field_API_Name__c = 'To_Be_Refinanced__c',
+      genesis__Field_Type__c = 'BOOLEAN',
+      genesis__Matching_Type__c = '==',
+      genesis__Matching_Value__c = 'FALSE'
+    );
+    genesis__RuleCriteria__c criteriaThrty = new genesis__RuleCriteria__c(
+      genesis__Criteria_Sequence__c = 1,
+      genesis__Rule__c = ruleLists[23].Id,
+      genesis__Related_Object__c = 'genesis__Application_Collateral__c',
+      genesis__Rule_Object_Reference__c = 'genesis__Application__r',
+      genesis__Stipulation_Type__c = 'FUNDING',
+      genesis__Field_Name__c = 'Replacement Type',
+      genesis__Field_API_Name__c = 'genesis__Collateral__r.Replacement_Type__c',
+      genesis__Field_Type__c = 'PICKLIST',
+      genesis__Matching_Type__c = '!=',
+      genesis__Matching_Value__c = 'Standard'
     );
     List<genesis__Checklist__c> checkList = new List<genesis__Checklist__c>();
 
@@ -844,6 +930,33 @@ public with sharing class GenericUtilityTestHelper {
       genesis__Rule__c = ruleTnty1.Id,
       genesis__Type__c = 'Business Rule'
     );
+    genesis__Checklist__c eachCheckList15 = new genesis__Checklist__c(
+      genesis__Application__c = appId,
+      genesis__Assessed_Record_Id__c = appId,
+      genesis__Is_Archived__c = false,
+      genesis__Level__c = 'ERROR',
+      genesis__Message__c = 'FAIL',
+      genesis__Rule__c = ruleTnty2.Id,
+      genesis__Type__c = 'Business Rule'
+    );
+    genesis__Checklist__c eachCheckList16 = new genesis__Checklist__c(
+      genesis__Application__c = appId,
+      genesis__Assessed_Record_Id__c = appId,
+      genesis__Is_Archived__c = false,
+      genesis__Level__c = 'ERROR',
+      genesis__Message__c = 'FAIL',
+      genesis__Rule__c = ruleTnty3.Id,
+      genesis__Type__c = 'Business Rule'
+    );
+    genesis__Checklist__c eachCheckList17 = new genesis__Checklist__c(
+      genesis__Application__c = appId,
+      genesis__Assessed_Record_Id__c = appId,
+      genesis__Is_Archived__c = false,
+      genesis__Level__c = 'ERROR',
+      genesis__Message__c = 'FAIL',
+      genesis__Rule__c = ruleTnty4.Id,
+      genesis__Type__c = 'Business Rule'
+    );
 
     //checkList.add(eachCheckList1);
     //checkList.add(eachCheckList2);
@@ -859,6 +972,9 @@ public with sharing class GenericUtilityTestHelper {
     checkList.add(eachCheckList12);
     checkList.add(eachCheckList13);
     checkList.add(eachCheckList14);
+    checkList.add(eachCheckList15);
+    checkList.add(eachCheckList16);
+    checkList.add(eachCheckList17);
     //criteriaList.add(criteriaOne);
     //criteriaList.add(criteriaTwo);
     criteriaList.add(criteriaThree);
@@ -870,13 +986,16 @@ public with sharing class GenericUtilityTestHelper {
     criteriaList.add(criteriaNine);
     criteriaList.add(criteriaTen);
     criteriaList.add(criteriaEl);
-    criteriaList.add(criteriaTwl);
+    // criteriaList.add(criteriaTwl);
     criteriaList.add(criteriaTtn);
     criteriaList.add(criteriaFrtn);
     criteriaList.add(criteriaFftn);
     criteriaList.add(criteriaSxtn);
     criteriaList.add(criteriaSvntn);
     criteriaList.add(criteriaEittn);
+    criteriaList.add(criteriaNntn);
+    criteriaList.add(criteriaTnty);
+    criteriaList.add(criteriaThrty);
     insert checkList;
     insert criteriaList;
     return ruleLists;
@@ -890,6 +1009,26 @@ public with sharing class GenericUtilityTestHelper {
     );
     insert employmentInfo;
     return employmentInfo;
+  }
+  //Inserting Asset Information
+  public static genesis__Asset_Information__c returnAssetInformation(
+    Id appId
+  ) {
+    genesis__Asset_Information__c assetInfo = new genesis__Asset_Information__c(
+      genesis__Application__c = appId
+    );
+    insert assetInfo;
+    return assetInfo;
+  }
+  //Inserting Liability
+  public static genesis__Liability__c returnLiability(
+    Id appId
+  ) {
+    genesis__Liability__c liability = new genesis__Liability__c(
+      genesis__Application__c = appId
+    );
+    insert liability;
+    return liability;
   }
   //Inserting Income
   public static genesis__Income__c returnEmploymentInformation(
