@@ -13,6 +13,8 @@
 global class LandTitleDocumentStatus {
   @HttpPost
   global static void createRecord() {
+    clcommon__Collateral__c collateralObj;
+    Integer exceptionCount;
     String enquiryId;
     String status;
     DateTime currentDateTime = DateTime.Now();
@@ -108,7 +110,23 @@ global class LandTitleDocumentStatus {
           }
         }
       }
-      clcommon__Collateral__c collateralObj = [
+      if(status == 'ERROR'){
+        exceptionCount = [
+            SELECT count()
+            FROM intframework__Integration_Log__c
+            WHERE notify_event_enquiry_id__c =:enquiryId
+        ];
+        if(String.isNotBlank(enquiryId)
+        && exceptionCount != null
+        && exceptionCount < Integer.valueOf(System.label.notify_event_retry_count)){
+            res.statusCode = 200;
+        } else {
+            res.statusCode = 500;
+        }
+      } else {
+        res.statusCode = 500;
+      }
+      collateralObj = [
         SELECT Id, Name, Document_Enquiry_Id__c
         FROM clcommon__Collateral__c
         WHERE Name = :clientReference
@@ -119,17 +137,27 @@ global class LandTitleDocumentStatus {
       Equifaxcallout.equifaxDeliverDocument(collateralObj.Id, enquiryId);
       Database.update(collateralObj);
       // Responding to Equifax's notify-event request
-      res.statusCode = 500;
-      res.responseBody = Blob.valueOf('');
+      res.responseBody = Blob.valueOf(
+        ConstantValues.RES_HEADER +
+        '<evnt:enquiry-id>' +
+        enquiryId +
+        '</evnt:enquiry-id>\n' +
+        '<evnt:status>ACK</evnt:status>\n' +
+        '<evnt:date-time>' +
+        dateTimeValue +
+        '</evnt:date-time>\n' +
+        ConstantValues.RES_FOOTER
+      );
       // Inserting Integration Log on SUCCESS status
       GenericUtility.insertRestResourceIntegrationLog(
         '@RestResource|:LandTitleDocumentStatus',
         (req.requestBody).toString(),
-        (res.responseBody).toString()
+        (res.responseBody).toString(),
+        enquiryId
       );
     } catch (Exception ex) {
       // Responding to Equifax's notify-event request
-      res.statusCode = 200;
+      res.statusCode = 500;
       res.addHeader('Content-Type', 'application/soap+xml');
       res.responseBody = Blob.valueOf(
         ConstantValues.RES_HEADER +
@@ -148,6 +176,7 @@ global class LandTitleDocumentStatus {
         true,
         (req.requestBody).toString(),
         (res.responseBody).toString(),
+        enquiryId,
         ex
       );
     }
