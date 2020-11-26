@@ -67,7 +67,7 @@ public with sharing class ChildChecklistAPI {
     }
     for (genesis__Checklist__c eachChecklist : listOfCheckList) {
       for (genesis__RuleCriteria__c criteria : criteriaList) {
-        if (counter == 0) {
+        if (counter == 0 && eachChecklist.genesis__Rule__c == criteria.genesis__Rule__c) {
           checklistMap.put(
             eachChecklist.Id,
             (criteria.genesis__Related_Object__c).toLowerCase()
