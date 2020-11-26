@@ -658,7 +658,8 @@ global with sharing class CheckRules {
             :ConstantValues.BROKER_PARTY_TYPE,
             :ConstantValues.AGGRERATOR_PARTY_TYPE,
             :ConstantValues.SOLICITOR_PARTY_TYPE,
-            :ConstantValues.VALUER_PARTY_TYPE
+            :ConstantValues.VALUER_PARTY_TYPE,
+            :ConstantValues.HOUSEHOLD_PARTY_TYPE
           )
       ];
       List<genesis__Employment_Information__c> empInfoList = [
