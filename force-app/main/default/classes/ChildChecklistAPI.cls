@@ -245,6 +245,7 @@ public with sharing class ChildChecklistAPI {
         genesis__Collateral__r.Licenced_REA_Contract_Warning_Check__c,
         genesis__Collateral__r.Comparable_Sales_Evident_Warning_Check__c,
         genesis__Collateral__r.Valuer_Risk_Gradings_Com_Warning_Check__c,
+        genesis__Collateral__r.Valuer_Risk_Gradings_Commentary_Present__c,
         genesis__Collateral__r.Land_Area_Warning_Check__c,
         genesis__Collateral__r.Floor_Area__c,
         Estimated_Completion_Date_Warning_Check__c,

@@ -32,7 +32,7 @@ private class LoanDisbursalFilegenTest {
     System.assertEquals(testAccountList.size(), 1, 'Account insert error');
 
     Warehouse__c testWarehouse = new Warehouse__c();
-    testWarehouse.Institution_Name__c = 'TEST FIN INST';
+    testWarehouse.Bank_Account_Name__c = 'TEST FIN INST';
     testWarehouse.Bank_Account_Number__c = '2213412';
     testWarehouse.BSB_Number__c = '562122';
     testWarehouse.Collection_Bank_Account_Name__c = 'TEST BANK NAME';
