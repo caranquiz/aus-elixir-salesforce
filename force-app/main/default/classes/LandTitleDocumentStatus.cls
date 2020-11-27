@@ -129,11 +129,10 @@ global class LandTitleDocumentStatus {
       collateralObj = [
         SELECT Id, Name, Document_Enquiry_Id__c
         FROM clcommon__Collateral__c
-        WHERE Name = :clientReference
+        WHERE Document_Enquiry_Id__c = :enquiryId
         LIMIT 1
       ];
       collateralObj.Document_Status__c = status;
-      collateralObj.Document_Enquiry_Id__c = enquiryId;
       Equifaxcallout.equifaxDeliverDocument(collateralObj.Id, enquiryId);
       Database.update(collateralObj);
       // Responding to Equifax's notify-event request

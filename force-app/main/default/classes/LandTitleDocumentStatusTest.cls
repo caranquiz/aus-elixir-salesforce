@@ -23,6 +23,8 @@ private with sharing class LandTitleDocumentStatusTest {
       FROM clcommon__Collateral__c
     ];
     System.assertEquals(collList.size(), 1, 'Collateral not inserted');
+    collList[0].Document_Enquiry_Id__c = '140805-MFDUX-0000Q';
+    update collList;
   }
   @isTest
   static void testRest() {
@@ -56,11 +58,6 @@ private with sharing class LandTitleDocumentStatusTest {
       collList[0].Document_Status__c,
       'READY',
       'Collateral status is not as Expected'
-    );
-    System.assertEquals(
-      collList[0].Document_Enquiry_Id__c,
-      '140805-MFDUX-0000Q',
-      'Document Enquiry Id is not as Expected'
     );
   }
 }
