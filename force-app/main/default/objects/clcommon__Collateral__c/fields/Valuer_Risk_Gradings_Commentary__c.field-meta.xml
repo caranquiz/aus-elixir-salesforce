@@ -3,7 +3,8 @@
     <fullName>Valuer_Risk_Gradings_Commentary__c</fullName>
     <externalId>false</externalId>
     <label>Valuer Risk Gradings Commentary</label>
-    <required>false</required>
+    <length>32768</length>
     <trackTrending>false</trackTrending>
-    <type>TextArea</type>
+    <type>LongTextArea</type>
+    <visibleLines>3</visibleLines>
 </CustomField>

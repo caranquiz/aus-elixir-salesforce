@@ -1,56 +1,46 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
     <fieldUpdates>
-        <fullName>Capitalise_Country</fullName>
-        <field>Country__c</field>
-        <formula>UPPER(Country__c)</formula>
-        <name>Capitalise Country</name>
+        <fullName>Valuer_Risk_Gradings_Commentary_NPresent</fullName>
+        <field>Valuer_Risk_Gradings_Commentary_Present__c</field>
+        <literalValue>0</literalValue>
+        <name>Valuer Risk Gradings Commentary NPresent</name>
         <notifyAssignee>false</notifyAssignee>
-        <operation>Formula</operation>
+        <operation>Literal</operation>
         <protected>false</protected>
-        <reevaluateOnChange>false</reevaluateOnChange>
     </fieldUpdates>
     <fieldUpdates>
-        <fullName>Update_Security_Suburb</fullName>
-        <field>clcommon__City__c</field>
-        <formula>UPPER(clcommon__City__c)</formula>
-        <name>Update Security Suburb</name>
+        <fullName>Valuer_Risk_Gradings_Commentary_Present</fullName>
+        <field>Valuer_Risk_Gradings_Commentary_Present__c</field>
+        <literalValue>1</literalValue>
+        <name>Valuer Risk Gradings Commentary Present</name>
         <notifyAssignee>false</notifyAssignee>
-        <operation>Formula</operation>
+        <operation>Literal</operation>
         <protected>false</protected>
-        <reevaluateOnChange>false</reevaluateOnChange>
+        <reevaluateOnChange>true</reevaluateOnChange>
     </fieldUpdates>
     <rules>
-        <fullName>Autocapitalise Country Collateral</fullName>
+        <fullName>Update Valuer Risk Grade Commentary Value not present</fullName>
         <actions>
-            <name>Capitalise_Country</name>
+            <name>Valuer_Risk_Gradings_Commentary_NPresent</name>
             <type>FieldUpdate</type>
         </actions>
         <active>true</active>
         <criteriaItems>
-            <field>clcommon__Collateral__c.Country__c</field>
-            <operation>notEqual</operation>
+            <field>clcommon__Collateral__c.Valuer_Risk_Gradings_Commentary__c</field>
+            <operation>equals</operation>
         </criteriaItems>
-        <triggerType>onAllChanges</triggerType>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
     <rules>
-        <fullName>Autocapitalise Suburb of Security</fullName>
+        <fullName>Update Valuer Risk Grade Commentary Value present</fullName>
         <actions>
-            <name>Update_Security_Suburb</name>
+            <name>Valuer_Risk_Gradings_Commentary_Present</name>
             <type>FieldUpdate</type>
         </actions>
         <active>true</active>
         <criteriaItems>
-            <field>clcommon__Collateral__c.clcommon__City__c</field>
-            <operation>notEqual</operation>
-        </criteriaItems>
-        <triggerType>onAllChanges</triggerType>
-    </rules>
-    <rules>
-        <fullName>QBE_PostCode Rule</fullName>
-        <active>false</active>
-        <criteriaItems>
-            <field>clcommon__Collateral__c.clcommon__Postal_Code__c</field>
+            <field>clcommon__Collateral__c.Valuer_Risk_Gradings_Commentary__c</field>
             <operation>notEqual</operation>
         </criteriaItems>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
