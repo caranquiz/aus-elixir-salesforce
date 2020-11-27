@@ -7,8 +7,31 @@
         <members>LandTitleDocumentStatus</members>
         <members>EquifaxCalloutTest</members>
         <members>LandTitleDocumentStatusTest</members>
+        <members>ChildChecklistAPI</members>
+        <members>CheckRulesTest</members>
+        <members>LoanDisbursalFilegenTest</members>
+        <members>LoanDisbursalFilegen</members>
         <name>ApexClass</name>
     </types>
-
+    <types>
+        <members>clcommon__Collateral__c.Valuer_Risk_Gradings_Com_Warning_Check__c</members>
+        <members>clcommon__Collateral__c.Valuer_Risk_Gradings_Commentary_Present__c</members>
+        <members>clcommon__Collateral__c.Valuer_Risk_Gradings_Commentary__c</members>
+        <name>CustomField</name>
+    </types>
+    <types>
+        <members>Warehouse__c.WarehouseDisbursalCollectionBankChecks</members>
+        <name>ValidationRule</name>
+    </types>
+    <types>
+        <members>clcommon__Collateral__c.Valuer_Risk_Gradings_Commentary_NPresent</members>
+        <members>clcommon__Collateral__c.Valuer_Risk_Gradings_Commentary_Present</members>
+        <name>WorkflowFieldUpdate</name>
+    </types>
+    <types>
+        <members>clcommon__Collateral__c.Update Valuer Risk Grade Commentary Value not present</members>
+        <members>clcommon__Collateral__c.Update Valuer Risk Grade Commentary Value present</members>
+        <name>WorkflowRule</name>
+    </types>
     <version>45.0</version>
 </Package>
