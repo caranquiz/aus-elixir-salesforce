@@ -75,7 +75,7 @@ global with sharing class LoanDisbursalFilegen extends loan.FileGenerator {
             loan__Financed_Amount__c,
             loan__Loan_Account__c,
             loan__Loan_Account__r.Warehouse__c,
-            loan__Loan_Account__r.Warehouse__r.Institution_Name__c,
+            loan__Loan_Account__r.Warehouse__r.Bank_Account_Name__c,
             loan__Loan_Account__r.Warehouse__r.Bank_Account_Number__c,
             loan__Loan_Account__r.Warehouse__r.BSB_Number__c,
             ORDE_Financial_Fees_Total_Amount__c
@@ -95,7 +95,7 @@ global with sharing class LoanDisbursalFilegen extends loan.FileGenerator {
         if (eachLDT.loan__Loan_Account__r.Warehouse__c != null) {
           obj.benfBSBNumber = eachLDT.loan__Loan_Account__r.Warehouse__r.BSB_Number__c;
           obj.benfAccNumber = eachLDT.loan__Loan_Account__r.Warehouse__r.Bank_Account_Number__c;
-          obj.remitterName = eachLDT.loan__Loan_Account__r.Warehouse__r.Institution_Name__c;
+          obj.remitterName = eachLDT.loan__Loan_Account__r.Warehouse__r.Bank_Account_Name__c;
         }
         detailRecordDataLDTMap.put(eachLDT.Id, obj);
         clContractIds.add(eachLDT.loan__Loan_Account__c);
