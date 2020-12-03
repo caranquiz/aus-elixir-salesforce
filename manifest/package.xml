@@ -11,12 +11,14 @@
         <members>CheckRulesTest</members>
         <members>LoanDisbursalFilegenTest</members>
         <members>LoanDisbursalFilegen</members>
+        <members>GenericUtilityTestHelper</members>
         <name>ApexClass</name>
     </types>
     <types>
         <members>clcommon__Collateral__c.Valuer_Risk_Gradings_Com_Warning_Check__c</members>
         <members>clcommon__Collateral__c.Valuer_Risk_Gradings_Commentary_Present__c</members>
         <members>clcommon__Collateral__c.Valuer_Risk_Gradings_Commentary__c</members>
+        <members>genesis__Policy_Exception__c.Description1__c</members>
         <name>CustomField</name>
     </types>
     <types>
