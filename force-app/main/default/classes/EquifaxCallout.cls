@@ -110,7 +110,16 @@ global without sharing class EquifaxCallout {
       }
       requestParamMap.put('titleReference', testTitleReference);
       requestParamMap.put('testStateRef', testStateRef);
-      requestParamMap.put('clientRef', collateralObj.Name);
+      List <genesis__Applications__c> applicationList = [select id,
+                                                          Name 
+                                                          from genesis__Applications__c
+                                                          where Id in (Select genesis__Application__c 
+                                                          from  genesis__Application_Collateral__c 
+                                                          where genesis__Collateral__c =: collateralObj.id) limit 1];
+      if(applicationList.isEmpty() == null){
+        return ConstantValues.NO_APPLICATION;
+      }
+      requestParamMap.put('clientRef', applicationList[0].Name);
       if (confirmPrice != null && confirmPrice == true) {
         requestParamMap.put('confirmPrice', true);
       }
@@ -165,7 +174,16 @@ global without sharing class EquifaxCallout {
       if (String.isNotBlank(enquiryId)) {
         requestParamMap.put('enquiryId', enquiryId);
       }
-      requestParamMap.put('clientReference', collateralObj.Name);
+      List <genesis__Applications__c> applicationList = [select id,
+                                                          Name 
+                                                          from genesis__Applications__c
+                                                          where Id in (Select genesis__Application__c 
+                                                          from  genesis__Application_Collateral__c 
+                                                          where genesis__Collateral__c =: collateralObj.id) limit 1];
+      if(applicationList.isEmpty() == null){
+        return ConstantValues.NO_APPLICATION;
+      }
+      requestParamMap.put('clientReference', applicationList[0].Name);
       json = processCallout(
         ConstantValues.DELIVER_DOCUMENT_API_TYPE,
         new Map<String, String>(),
