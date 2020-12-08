@@ -12,6 +12,7 @@ global class EquifaxDeliverDocumentAdapter extends intframework.BaseIntegrationA
   global override virtual String generateRequestBody(
     Map<String, Object> filledInRequestMap
   ) {
+    String clientReference;
     String enquiryId;
     String requestbody;
     try {
@@ -24,10 +25,20 @@ global class EquifaxDeliverDocumentAdapter extends intframework.BaseIntegrationA
         ConstantValues.REQ_DD_ACTION;
       requestbody +=
         ConstantValues.REQ_BODY + '<land:deliver-document-request>';
-      requestbody +=
+      if (
+        filledInRequestMap.containsKey('clientReference') &&
+        String.isNotBlank((String) filledInRequestMap.get('clientReference'))
+      ) {
+        clientReference = (String) filledInRequestMap.get('clientReference');
+      }
+      if (String.isNotBlank(clientReference)) {
+        requestbody +=
           '<land:request-header><land:client-reference>' +
-          (String) UserInfo.getUserId() +
+          clientReference +
           '</land:client-reference></land:request-header>';
+      } else {
+        requestbody += '<land:request-header/>';
+      }
       if (
         filledInRequestMap.containsKey('enquiryId') &&
         String.isNotBlank((String) filledInRequestMap.get('enquiryId'))

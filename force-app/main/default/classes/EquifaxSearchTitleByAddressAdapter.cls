@@ -12,6 +12,7 @@ global with sharing class EquifaxSearchTitleByAddressAdapter extends intframewor
   global override virtual String generateRequestBody(
     Map<String, Object> filledInRequestMap
   ) {
+    String clientReference;
     String unitNo;
     String streetNo;
     String streetName;
@@ -35,10 +36,20 @@ global with sharing class EquifaxSearchTitleByAddressAdapter extends intframewor
         ConstantValues.REQ_SLT_ACTION;
       requestbody +=
         ConstantValues.REQ_BODY + '<land:search-land-titles-request>';
-      requestbody +=
-        '<land:request-header><land:client-reference>' +
-        (String) UserInfo.getUserId() +
-        '</land:client-reference></land:request-header>';
+      if (
+        filledInRequestMap.containsKey('clientReference') &&
+        String.isNotBlank((String) filledInRequestMap.get('clientReference'))
+      ) {
+        clientReference = (String) filledInRequestMap.get('clientReference');
+      }
+      if (String.isNotBlank(clientReference)) {
+        requestbody +=
+          '<land:request-header><land:client-reference>' +
+          clientReference +
+          '</land:client-reference></land:request-header>';
+      } else {
+        requestbody += '<land:request-header/>';
+      }
       requestbody += '<land:search-land-titles-request-data>';
       collateralFieldsList = (List<Map<String, Object>>) filledInRequestMap.get(
         'collateralInfo'

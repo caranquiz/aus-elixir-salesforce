@@ -12,6 +12,7 @@ global class EquifaxOrderDocumentAdapter extends intframework.BaseIntegrationAda
   global override virtual String generateRequestBody(
     Map<String, Object> filledInRequestMap
   ) {
+    String clientReference;
     String testStateRef;
     String testTitleReference;
     String requestbody;
@@ -37,10 +38,20 @@ global class EquifaxOrderDocumentAdapter extends intframework.BaseIntegrationAda
       ) {
         testStateRef = (String) filledInRequestMap.get('testStateRef');
       }
-      requestbody +=
+      if (
+        filledInRequestMap.containsKey('clientRef') &&
+        String.isNotBlank((String) filledInRequestMap.get('clientRef'))
+      ) {
+        clientReference = (String) filledInRequestMap.get('clientRef');
+      }
+      if (String.isNotBlank(clientReference)) {
+        requestbody +=
           '<land:request-header><land:client-reference>' +
-          (String) UserInfo.getUserId() +
+          clientReference +
           '</land:client-reference></land:request-header>';
+      } else {
+        requestbody += '<land:request-header/>';
+      }
       requestbody += '<land:order-document-request-data>';
       requestbody +=
         '<land:state-territory-land-registry>' +

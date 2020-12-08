@@ -57,11 +57,20 @@ global without sharing class EquifaxCallout {
     JsonObjectToArray obj = new JsonObjectToArray();
     try {
       collateralObj = checkCollateralId(collateralId);
-      if (collateralObj == null) {
+      if (collateralObj == null || collateralObj.id == null) {
         return ConstantValues.NO_COLLATERAL;
       }
       queryIdMap.put(ConstantValues.COLLATERAL_ID, (String) collateralObj.id);
-      requestParamMap.put('clientReference', collateralObj.Name);
+      List <genesis__Applications__c> applicationList = [select id,
+                                                          Name 
+                                                          from genesis__Applications__c
+                                                          where Id in (Select genesis__Application__c 
+                                                          from  genesis__Application_Collateral__c 
+                                                          where genesis__Collateral__c =: collateralObj.id) limit 1];
+      if(applicationList.isEmpty() == null){
+        return ConstantValues.NO_APPLICATION;
+      }
+      requestParamMap.put('clientReference', applicationList[0].Name);
       if (confirmPrice != null && confirmPrice == true) {
         requestParamMap.put('confirmPrice', true);
       }
