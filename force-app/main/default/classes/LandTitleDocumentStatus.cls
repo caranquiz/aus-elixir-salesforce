@@ -110,19 +110,15 @@ global class LandTitleDocumentStatus {
           }
         }
       }
-      if(status == 'ERROR'){
-        exceptionCount = [
-            SELECT count()
-            FROM intframework__Integration_Log__c
-            WHERE notify_event_enquiry_id__c =:enquiryId
-        ];
-        if(String.isNotBlank(enquiryId)
-        && exceptionCount != null
-        && exceptionCount < Integer.valueOf(System.label.notify_event_retry_count)){
-            res.statusCode = 200;
-        } else {
-            res.statusCode = 500;
-        }
+      exceptionCount = [
+        SELECT count()
+        FROM intframework__Integration_Log__c
+        WHERE notify_event_enquiry_id__c =:enquiryId
+      ];
+      if(String.isNotBlank(enquiryId)
+      && exceptionCount != null
+      && exceptionCount < Integer.valueOf(System.label.notify_event_retry_count)){
+        res.statusCode = 200;
       } else {
         res.statusCode = 500;
       }
@@ -133,7 +129,20 @@ global class LandTitleDocumentStatus {
         LIMIT 1
       ];
       collateralObj.Document_Status__c = status;
-      Equifaxcallout.equifaxDeliverDocument(collateralObj.Id, enquiryId);
+      List<clcommon__Category_Attachment_Association__c> catAttach = [
+        SELECT Id, clcommon__Document_Category__c, clcommon__Reason__c,
+        clcommon__Document_Category__r.clcommon__Category_Name__c,
+        clcommon__Document_Category__r.clcommon__Collateral__c,
+        clcommon__Document_Category__r.clcommon__Collateral__r.Document_Enquiry_Id__c
+        FROM clcommon__Category_Attachment_Association__c
+        WHERE clcommon__Document_Category__r.clcommon__Category_Name__c = :ConstantValues.TITLE_SEARCH_DOCUMENT_CATEGORY_NAME
+        AND clcommon__Document_Category__r.clcommon__Collateral__c = :collateralObj.Id
+        ORDER BY LastModifiedDate DESC
+      ];
+      if(catAttach.isEmpty()
+      || catAttach[0].clcommon__Reason__c != enquiryId) {
+        Equifaxcallout.equifaxDeliverDocument(collateralObj.Id, enquiryId);
+      }
       Database.update(collateralObj);
       // Responding to Equifax's notify-event request
       res.responseBody = Blob.valueOf(

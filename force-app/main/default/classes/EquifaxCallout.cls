@@ -192,6 +192,7 @@ global without sharing class EquifaxCallout {
         attachDoc.Name = documentData.documentAttachment.Name;
         attachDoc.clcommon__Attachment_Id__c = documentData.documentAttachment.Id;
         attachDoc.clcommon__Document_Category__c = docCat.Id;
+        attachDoc.clcommon__Reason__c = enquiryId;
         Database.insert(attachDoc);
       }
     } catch (Exception ex) {
