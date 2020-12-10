@@ -130,14 +130,16 @@ global class LandTitleDocumentStatus {
       ];
       collateralObj.Document_Status__c = status;
       List<clcommon__Category_Attachment_Association__c> catAttach = [
-        SELECT Id, clcommon__Document_Category__c, clcommon__Reason__c,
-        clcommon__Document_Category__r.clcommon__Category_Name__c,
-        clcommon__Document_Category__r.clcommon__Collateral__c,
-        clcommon__Document_Category__r.clcommon__Collateral__r.Document_Enquiry_Id__c
-        FROM clcommon__Category_Attachment_Association__c
-        WHERE clcommon__Document_Category__r.clcommon__Category_Name__c = :ConstantValues.TITLE_SEARCH_DOCUMENT_CATEGORY_NAME
-        AND clcommon__Document_Category__r.clcommon__Collateral__c = :collateralObj.Id
-        ORDER BY LastModifiedDate DESC
+        SELECT Id,
+            clcommon__Document_Category__c,
+            clcommon__Reason__c,
+            clcommon__Document_Category__r.clcommon__Category_Name__c,
+            clcommon__Document_Category__r.clcommon__Collateral__c,
+            clcommon__Document_Category__r.clcommon__Collateral__r.Document_Enquiry_Id__c
+            FROM clcommon__Category_Attachment_Association__c
+            WHERE clcommon__Document_Category__r.clcommon__Category_Name__c = :ConstantValues.TITLE_SEARCH_DOCUMENT_CATEGORY_NAME
+            AND clcommon__Document_Category__r.clcommon__Collateral__c = :collateralObj.Id
+            ORDER BY LastModifiedDate DESC
       ];
       if(catAttach.isEmpty()
       || catAttach[0].clcommon__Reason__c != enquiryId) {
