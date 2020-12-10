@@ -111,6 +111,26 @@ private class EquifaxCalloutTest {
       1,
       'Collateral record is not inserted'
     );
+    //Inserting Legal Entity
+    clcommon__Legal_Entity__c legEntity = GenericUtilityTestHelper.returnLegalEntity();
+    System.assertEquals(legEntity.Name, 'Individual');
+
+    //Inserting Account
+    Account acc = GenericUtilityTestHelper.returnBorrowerAccount(legEntity.Id);
+    System.assertEquals(acc.name, 'Dummy Account');
+
+    //Inserting Application 
+    genesis__applications__c app = GenericUtilityTestHelper.returnApplication(
+      acc.Id
+    );
+    System.assertNotEquals(app.Id,null,'Application is inserted');
+
+    //Inserting Application Collateral
+    genesis__Application_Collateral__c appCollateral = GenericUtilityTestHelper.insertApplicationCollateral(
+      app.Id,collaterals[0].Id
+    );
+    System.assertNotEquals(appCollateral.Id,null,'Application Collateral is inserted');
+
     clcommon__Document_Category__c docCat = new clcommon__Document_Category__c();
     docCat.clcommon__Category_Name__c = ConstantValues.TITLE_SEARCH_DOCUMENT_CATEGORY_NAME;
     docCat.clcommon__Collateral__c = col.Id;

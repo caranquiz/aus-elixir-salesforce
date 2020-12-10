@@ -1410,4 +1410,12 @@ public with sharing class GenericUtilityTestHelper {
     insert feeAmt;
     return feeAmt;
   }
+  public static genesis__Application_Collateral__c insertApplicationCollateral(Id appId, Id collateralId){
+    genesis__Application_Collateral__c appCollateral = new genesis__Application_Collateral__c(
+      genesis__Application__c = appId,
+      genesis__Collateral__c = collateralId
+    );
+    insert appCollateral;
+    return appCollateral;
+  }
 }
