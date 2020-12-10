@@ -1,23 +1,18 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
     <types>
-        <members>EquifaxDeliverDocumentAdapter</members>
-        <members>EquifaxOrderDocumentAdapter</members>
         <members>EquifaxSearchTitleByAddressAdapter</members>
         <members>LandTitleDocumentStatus</members>
-        <members>EquifaxCalloutTest</members>
-        <members>LandTitleDocumentStatusTest</members>
         <members>ChildChecklistAPI</members>
-        <members>CheckRulesTest</members>
-        <members>LoanDisbursalFilegenTest</members>
         <members>LoanDisbursalFilegen</members>
-        <members>GenericUtilityTestHelper</members>
+        <members>EquifaxCallout</members>
+        <members>EquifaxCalloutTest</members>
         <name>ApexClass</name>
-    </types>
     <types>
         <members>clcommon__Collateral__c.Valuer_Risk_Gradings_Com_Warning_Check__c</members>
         <members>clcommon__Collateral__c.Valuer_Risk_Gradings_Commentary_Present__c</members>
         <members>clcommon__Collateral__c.Valuer_Risk_Gradings_Commentary__c</members>
+        <members>Warehouse__c.Bank_Account_Name__c</members>
         <members>genesis__Policy_Exception__c.Description1__c</members>
         <name>CustomField</name>
     </types>
