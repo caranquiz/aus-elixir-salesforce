@@ -25,6 +25,9 @@ private with sharing class LandTitleDocumentStatusTest {
     System.assertEquals(collList.size(), 1, 'Collateral not inserted');
     collList[0].Document_Enquiry_Id__c = '140805-MFDUX-0000Q';
     update collList;
+    System.assertEquals(collList[0].Document_Enquiry_Id__c, 
+      '140805-MFDUX-0000Q',
+     'Collateral succesfully updated');
   }
   @isTest
   static void testRest() {
