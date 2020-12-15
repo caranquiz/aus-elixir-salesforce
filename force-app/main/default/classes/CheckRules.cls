@@ -150,6 +150,8 @@ global with sharing class CheckRules {
         rulesNameList.add(ConstantValues.BAS_EXCEPTION);
         rulesNameList.add(ConstantValues.EMPLOYMENT_CALL_MADE_EXCEPTION);
         rulesNameList.add(ConstantValues.MONTHS_SELF_EMPLOYED_EXCEPTION);
+        rulesNameList.add(ConstantValues.OVERRIDE_EXCEPTION);
+        rulesNameList.add(ConstantValues.ABN_EFFECTIVE_SELF_EMPLOYEMENT_EXCEPTION);
       } else if (tabName == ConstantValues.WARNING) {
         rulesNameList.add(ConstantValues.BROKER_DOCS_WARNING);
         rulesNameList.add(ConstantValues.POLITICALLY_EXPOSED_WARNING);
@@ -247,7 +249,6 @@ global with sharing class CheckRules {
       } else if (tabName == ConstantValues.APP_EXCEP) {
         rulesNameList.add(ConstantValues.MATRIX_RATE_EXCEPTION);
         rulesNameList.add(ConstantValues.CONFIRM_REPAYMENTS_WARNING);
-        rulesNameList.add(ConstantValues.OVERRIDE_EXCEPTION);
         rulesNameList.add(ConstantValues.IO_WARNING);
         rulesNameList.add(ConstantValues.EXIT_STRATEGY_PROVIEDED_WARNING);
         rulesNameList.add(ConstantValues.FIXED_RATE_WARNING);

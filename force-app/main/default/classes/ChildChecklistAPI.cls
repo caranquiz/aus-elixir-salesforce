@@ -186,7 +186,9 @@ public with sharing class ChildChecklistAPI {
         Customer_Interview_completed__c,
         Bankrupt_Discharged_Date_Warning_Check__c,
         Exp_of_Bankruptcy_Received_Warning_Check__c,
-        Date_of_Credit_Report_Warning_Check__c
+        Date_of_Credit_Report_Warning_Check__c,
+        Override__c,
+        Document_Type__c
       FROM clcommon__Party__c
       WHERE genesis__Application__c = :appId
     ];
@@ -290,7 +292,8 @@ public with sharing class ChildChecklistAPI {
         Employer_Phone_Independently_Verified_WC__c,
         Months_Self_Employed__c,
         ABN_Effective_from_Rule_Check__c,
-        Party__r.Business_Applicant__c
+        Party__r.Business_Applicant__c,
+        ABN_Effective_From_Exception_Check__c
       FROM genesis__Employment_Information__c
       WHERE genesis__Application__c = :appId
     ];

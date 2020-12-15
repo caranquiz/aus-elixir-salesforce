@@ -797,6 +797,7 @@ global class ConstantValues {
   public static final String OVERRIDE_EMPLOYMENT_EXCEPTION = 'Override Employment Exception';
   public static final String BAS_EXCEPTION = 'BAS % Exception';
   public static final String EMPLOYMENT_CALL_MADE_EXCEPTION = 'Employment Call Made Exception';
+  public static final String ABN_EFFECTIVE_SELF_EMPLOYEMENT_EXCEPTION = 'ABN Effective from Exception Self Employment';
   public static final String BROKER_DOCS_WARNING = 'Broker Documents Warning';
   public static final String POLITICALLY_EXPOSED_WARNING = 'Politically Exposed Person Warning';
   public static final String KYC_AML_WARNING = 'KYC/AML Verified Warning';
