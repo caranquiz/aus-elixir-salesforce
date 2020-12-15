@@ -15,7 +15,21 @@
   ISPICKVAL(Accountant_ABN_Search_Conducted__c, &apos;No&apos;),
   ISPICKVAL(Accountant_ABN_Search_Conducted__c, &apos;&apos;)
  ),
+ (IF(
+ OR(
+  ISPICKVAL(Employment_Information__r.Party__r.Document_Type__c, &apos;Alt&apos;),
+   AND(
+    Employment_Information__c != NULL,
+    Employment_Information__r.Party__r.Legal_Entity_Type__c == &apos;Individual&apos;,
+    ISPICKVAL(Document_Type__c, &apos;Alt&apos;)
+   )
+  ),
+ OR(
+  ISPICKVAL(Accountant_ABN_Search_Conducted__c, &apos;No&apos;),
+  ISPICKVAL(Accountant_ABN_Search_Conducted__c, &apos;&apos;)
+ ),
  FALSE
+))
 )</formula>
     <label>Accntnt ABN Search Condctd Warning Check</label>
     <trackTrending>false</trackTrending>

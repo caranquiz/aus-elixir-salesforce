@@ -2,7 +2,7 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>BAS_Render_Check__c</fullName>
     <externalId>false</externalId>
-    <formula>AND(INCLUDES(Company_Type_of_Documents_Sighted__c, &apos;BAS&apos;),  OR(Party__r.Party_Type_Name__c == &apos;Broker&apos;, Party__r.Party_Type_Name__c == &apos;Solicitor&apos;, Party__r.Party_Type_Name__c == &apos;Valuer&apos;, Party__r.Party_Type_Name__c == &apos;Aggregator&apos;, Party__r.Party_Type_Name__c == &apos;Household&apos;))</formula>
+    <formula>AND(INCLUDES(Company_Type_of_Documents_Sighted__c, &apos;BAS&apos;),  AND(Party__r.Party_Type_Name__c != &apos;Broker&apos;, Party__r.Party_Type_Name__c != &apos;Solicitor&apos;, Party__r.Party_Type_Name__c != &apos;Valuer&apos;, Party__r.Party_Type_Name__c != &apos;Aggregator&apos;, Party__r.Party_Type_Name__c != &apos;Household&apos;))</formula>
     <label>BAS Render Check</label>
     <trackTrending>false</trackTrending>
     <type>Checkbox</type>

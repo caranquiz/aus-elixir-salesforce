@@ -1,34 +1,22 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
     <types>
-        <members>EquifaxSearchTitleByAddressAdapter</members>
-        <members>LandTitleDocumentStatus</members>
+        <members>CheckRules</members>
+        <members>CheckRulesTest</members>
         <members>ChildChecklistAPI</members>
-        <members>LoanDisbursalFilegen</members>
-        <members>EquifaxCallout</members>
+        <members>ConstantValues</members>
         <name>ApexClass</name>
     </types>
     <types>
-        <members>clcommon__Collateral__c.Valuer_Risk_Gradings_Com_Warning_Check__c</members>
-        <members>clcommon__Collateral__c.Valuer_Risk_Gradings_Commentary_Present__c</members>
-        <members>clcommon__Collateral__c.Valuer_Risk_Gradings_Commentary__c</members>
-        <members>Warehouse__c.Bank_Account_Name__c</members>
-        <members>genesis__Policy_Exception__c.Description1__c</members>
+        <members>genesis__Employment_Information__c.ABN_Effective_From_Exception_Check__c</members>
+        <members>genesis__Income__c.Accntnt_ABN_Search_Condctd_Warning_Check__c</members>
+        <members>genesis__Income__c.Accountant_ABN_Status_Warning_Check__c</members>
+        <members>genesis__Income__c.Accountant_Call_Warning_Check__c</members>
+        <members>genesis__Income__c.Accountant_Ph_Num_Verified_Warning_Check__c</members>
+        <members>genesis__Income__c.BAS_Render_Check__c</members>
+        <members>genesis__Income__c.Employment_Call_Suitable_Rule_Check__c</members>
+        <members>genesis__Income__c.Income_Consistant_Rule_Check__c</members>
         <name>CustomField</name>
-    </types>
-    <types>
-        <members>Warehouse__c.WarehouseDisbursalCollectionBankChecks</members>
-        <name>ValidationRule</name>
-    </types>
-    <types>
-        <members>clcommon__Collateral__c.Valuer_Risk_Gradings_Commentary_NPresent</members>
-        <members>clcommon__Collateral__c.Valuer_Risk_Gradings_Commentary_Present</members>
-        <name>WorkflowFieldUpdate</name>
-    </types>
-    <types>
-        <members>clcommon__Collateral__c.Update Valuer Risk Grade Commentary Value not present</members>
-        <members>clcommon__Collateral__c.Update Valuer Risk Grade Commentary Value present</members>
-        <name>WorkflowRule</name>
     </types>
     <version>45.0</version>
 </Package>
