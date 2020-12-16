@@ -3,7 +3,7 @@
     <fullName>Upfront_Payment_Warning_Check__c</fullName>
     <externalId>false</externalId>
     <formula>IF(ISPICKVAL(Commission_Paid__c, &apos;Yes&apos;),
-IF(OR(ISPICKVAL(Commission_Structure__c, &apos;Upfront&apos;),ISPICKVAL(Commission_Structure__c, &apos;Upfront &amp; Trail&apos;)),  Upfront_Payment_Percentage__c &gt; 0.01, FALSE),
+IF(OR(ISPICKVAL(Commission_Structure__c, &apos;Upfront&apos;),ISPICKVAL(Commission_Structure__c, &apos;Upfront &amp; Trail&apos;)),  Upfront_Payment_Percentage__c &gt; 0.015, FALSE),
 FALSE)</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
     <label>Upfront Payment Warning Check</label>
