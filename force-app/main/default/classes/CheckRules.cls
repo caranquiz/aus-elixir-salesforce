@@ -38,7 +38,6 @@ global with sharing class CheckRules {
       //By the name of specific rules are executed
       if (tabName == ConstantValues.RECOMMENDED) {
         rulesNameList.add(ConstantValues.CASHOUT_PURPOSE_RULE);
-        rulesNameList.add(ConstantValues.COMMISSION_MANADATE_PERCENTAGE_RULE);
         rulesNameList.add(ConstantValues.INTEREST_ONLY_SUITABE_RULE);
         rulesNameList.add(ConstantValues.EXIT_STRATEGY_SUITABLE_RULE);
         rulesNameList.add(ConstantValues.LENDERS_MORTAGE_INSURANCE_RULE);
@@ -80,7 +79,6 @@ global with sharing class CheckRules {
         );
       } else if (tabName == ConstantValues.LOAN_DETAILS) {
         rulesNameList.add(ConstantValues.CASHOUT_PURPOSE_RULE);
-        rulesNameList.add(ConstantValues.COMMISSION_MANADATE_PERCENTAGE_RULE);
         rulesNameList.add(ConstantValues.INTEREST_ONLY_SUITABE_RULE);
         rulesNameList.add(ConstantValues.EXIT_STRATEGY_SUITABLE_RULE);
         rulesNameList.add(ConstantValues.LENDERS_MORTAGE_INSURANCE_RULE);
@@ -181,6 +179,7 @@ global with sharing class CheckRules {
         rulesNameList.add(ConstantValues.ACCOUNTANT_ABN_STATUS_WARNING);
         rulesNameList.add(ConstantValues.ACCOUNTANT_PHONE_NUMBER_WARNING);
         rulesNameList.add(ConstantValues.ACCOUNTANT_CALL_WARNING);
+        rulesNameList.add(ConstantValues.COMMISSION_MANADATE_PERCENTAGE_WARNING);
       } else if (tabName == ConstantValues.WARNING2) {
         rulesNameList.add(
           ConstantValues.ACCOUNTANT_ABN_SEARCH_CONDUCTED_WARNING

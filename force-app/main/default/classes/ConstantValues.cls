@@ -460,7 +460,7 @@ global class ConstantValues {
   //Credit Rule Constant Values
   public static final String LOAN_DETAILS = 'Loan Details';
   public static final String CASHOUT_PURPOSE_RULE = 'Cash Out Purpose Suitable Rule';
-  public static final String COMMISSION_MANADATE_PERCENTAGE_RULE = 'Commission Mandate Percentage Rule';
+  public static final String COMMISSION_MANADATE_PERCENTAGE_WARNING = 'Commission Mandate Percentage Warning';
   public static final String INTEREST_ONLY_SUITABE_RULE = 'Interest Only Suitable Rule';
   public static final String EXIT_STRATEGY_SUITABLE_RULE = 'Exit Strategy Suitable Rule';
   public static final String LENDERS_MORTAGE_INSURANCE_RULE = 'Lenders Mortgage Insurance Rule';
