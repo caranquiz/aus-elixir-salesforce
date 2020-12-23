@@ -245,4 +245,14 @@ public with sharing class GenericUtility {
     }
     return asicStatus;
   }
+  public static void createAttachment(String name, String body, String sfId){
+    if(String.isNotBlank(name) && String.isNotBlank(body) && String.isNotBlank(sfId)){
+      Attachment attachmentInstance = new Attachment();
+      attachmentInstance.Body = Blob.valueOf(body);
+      attachmentInstance.Name = name; 
+      attachmentInstance.ParentID = sfId;
+      attachmentInstance.ContentType = 'text/xml';
+      INSERT attachmentInstance;
+    }
+  }   
 }

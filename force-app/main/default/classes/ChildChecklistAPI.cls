@@ -188,7 +188,9 @@ public with sharing class ChildChecklistAPI {
         Exp_of_Bankruptcy_Received_Warning_Check__c,
         Date_of_Credit_Report_Warning_Check__c,
         Override__c,
-        Document_Type__c
+        Document_Type__c,
+        Trail_Exceeded_Standard_Trail__c,
+        Upfront_Exceeded_Standard_Trail__c
       FROM clcommon__Party__c
       WHERE genesis__Application__c = :appId
     ];

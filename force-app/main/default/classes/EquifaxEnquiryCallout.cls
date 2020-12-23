@@ -86,6 +86,16 @@ global with sharing class EquifaxEnquiryCallout {
         queryIdMap,
         requestParamMap
       );
+      //Storing Reponse as Attachment
+      Request_And_Response_Storage__c responseSettings = Request_And_Response_Storage__c.getOrgDefaults();
+      
+      if(responseSettings.Store_Individual_Prv_Enq_RequestResponse__c == true){
+        //Storing raw response in Attachments
+        GenericUtility.createAttachment('EquifaxApplyIndividualResponse_'+String.valueOf(DateTime.now())+'.xml',
+          responseObject.getBody(),
+          partyId
+        );
+      }
       doc.load(responseObject.getBody());
       responseMap = intframework.XmlToJson.parseDocumentToMap(doc);
       json = System.JSON.serialize(responseMap);
@@ -148,12 +158,23 @@ global with sharing class EquifaxEnquiryCallout {
       }
       requestParamMap.put('enquiryId', enquiryId);
       requestParamMap.put('contentType', ConstantValues.APP_PDF_CONTENT_TYPE);
+      requestParamMap.put('partyId',partyId);
       responseObject = (intframework.BaseIntegrationResponse) baseintegrationService.runSynchronousIntegrationService(
         ConstantValues.EQUIFAX_FAMILY,
         ConstantValues.PREVIOUS_ENQUIRY_API_TYPE,
         new Map<String, String>(),
         requestParamMap
       );
+      //Storing Reponse as Attachment
+      Request_And_Response_Storage__c responseSettings = Request_And_Response_Storage__c.getOrgDefaults();
+      
+      if(responseSettings.Store_Individual_Prv_Enq_RequestResponse__c == true){
+        //Storing raw response in Attachments
+        GenericUtility.createAttachment('EquifaxPreviouslResponse_'+String.valueOf(DateTime.now())+'.xml',
+          responseObject.getBody(),
+          partyId
+        );
+      }
       doc.load(responseObject.getBody());
       responseMap = intframework.XmlToJson.parseDocumentToMap(doc);
       // This inner try catch block terminates the code if any exception occurs during fetching the document

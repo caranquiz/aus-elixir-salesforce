@@ -27,7 +27,9 @@ global without sharing class EquifaxCallout {
   private static String processCallout(
     String apiType,
     Map<String, String> queryIdMap,
-    Map<String, Object> requestParamMap
+    Map<String, Object> requestParamMap,
+    Id collateralId,
+    String documentName
   ) {
     intframework.AbstractIntegrationService baseintegrationService = intframework.IntegrationServiceFactory.getBaseIntegrationService();
     intframework.BaseIntegrationResponse responseObject;
@@ -40,6 +42,17 @@ global without sharing class EquifaxCallout {
       queryIdMap,
       requestParamMap
     );
+    
+    //Storing Reponse as Attachment
+    Request_And_Response_Storage__c responseSettings = Request_And_Response_Storage__c.getOrgDefaults();
+      
+    if(responseSettings.Store_Land_Title_Store_Request_Response__c == true){
+      //Storing raw response in Attachments
+      GenericUtility.createAttachment(documentName+String.valueOf(DateTime.now())+'.xml',
+        responseObject.getBody(),
+        collateralId
+      );
+    }
     doc.load(responseObject.getBody());
     responseMap = intframework.XmlToJson.parseDocumentToMap(doc);
     json = System.JSON.serialize(responseMap);
@@ -77,7 +90,9 @@ global without sharing class EquifaxCallout {
       json = processCallout(
         ConstantValues.TITLE_SEARCH_API_TYPE,
         queryIdMap,
-        requestParamMap
+        requestParamMap,
+        collateralId,
+        ConstantValues.TITLE_SEARCH_DOC
       );
       queries.add(ConstantValues.LANDTITLE_KEY);
       queries.add(ConstantValues.ERROR_KEY);
@@ -126,7 +141,9 @@ global without sharing class EquifaxCallout {
       json = processCallout(
         ConstantValues.ORDER_DOCUMENT_API_TYPE,
         new Map<String, String>(),
-        requestParamMap
+        requestParamMap,
+        collateralId,
+        ConstantValues.ORDER_DOC
       );
       orderDocdata = EquifaxOrderDocumentResponseHelper.parse(json);
       if (confirmPrice != null && confirmPrice == true) {
@@ -187,7 +204,9 @@ global without sharing class EquifaxCallout {
       json = processCallout(
         ConstantValues.DELIVER_DOCUMENT_API_TYPE,
         new Map<String, String>(),
-        requestParamMap
+        requestParamMap,
+        collateralId,
+        ConstantValues.DELIVER_DOC
       );
       documentData = EquifaxDeliverDocumentResponseHelper.parse(json);
       if (String.isNotBlank(documentData.documentStatus)) {

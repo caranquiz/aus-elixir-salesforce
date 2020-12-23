@@ -40,6 +40,15 @@ global with sharing class SMSFSearchByABNNumberCallout {
         parserObject.errMessage = ConstantValues.GENERAL_EXCEPTION;
         return JSON.serialize(parserObject);
       }
+      //Storing Reponse as Attachment
+      Request_And_Response_Storage__c responseSettings = Request_And_Response_Storage__c.getOrgDefaults();
+      if(responseSettings.Store_SMSF_ABN_Search_Response__c == true){
+        //Storing raw response in Attachments
+        GenericUtility.createAttachment('SMSFSearchByABNNumberResponse_'+String.valueOf(DateTime.now())+'.xml',
+          responseObject.getBody(),
+          partyId
+        );
+      }
       doc.load(responseObject.getBody());
       // Changing the response format from String to Map
       Map<String, Object> responseMap = intframework.XmlToJson.parseDocumentToMap(

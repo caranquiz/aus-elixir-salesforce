@@ -7,6 +7,8 @@ Last Modified Date : 13/11/2020
 Description : This is the adapter class for Equifax Company Enquiry.
 ***********************************************************************************************************************************************************/
 global class EquifaxCompanyEnquiryAdapter extends intframework.BaseIntegrationAdapter {
+  global String attachmentPartyId;
+  global String attachmentRequestBody;
   global override virtual String generateRequestBody(
     Map<String, Object> filledInRequestMap
   ) {
@@ -130,7 +132,13 @@ global class EquifaxCompanyEnquiryAdapter extends intframework.BaseIntegrationAd
         '</ns2:client-reference></ns2:enquiry><ns2:collateral-information xmlns:ns2="http://vedaxml.com/vxml2/company-enquiry-v3-2.xsd"><ns2:credit-type>COMMERCIAL</ns2:credit-type><ns2:scoring-required>no</ns2:scoring-required><ns2:enrichment-required>' +
         enrichment +
         '</ns2:enrichment-required><ns2:ppsr-required>yes</ns2:ppsr-required></ns2:collateral-information></cenq:request></soapenv:Body></soapenv:Envelope>';
-      return requestBody;
+        attachmentRequestBody = requestBody;
+        if(partyList[0].get('partyId') != NULL
+          && String.valueOf(partyList[0].get('partyId')) != NULL
+          && String.valueOf(partyList[0].get('partyId')) != ''){
+          attachmentPartyId = String.valueOf(partyList[0].get('partyId'));
+        }
+        return requestBody;
     } catch (Exception ex) {
       GenericUtility.insertLog(
         EquifaxCompanyEnquiryAdapter.class.getName(),
@@ -139,7 +147,17 @@ global class EquifaxCompanyEnquiryAdapter extends intframework.BaseIntegrationAd
       return null;
     }
   }
-
+  global override intframework.BaseIntegrationResponse preProcessResponse(intframework.BaseIntegrationResponse response){
+    //Storing Request as Attachment
+    Request_And_Response_Storage__c responseSettings = Request_And_Response_Storage__c.getOrgDefaults(); 
+    if(responseSettings.Store_Company_Enquiry_Request_Response__c == true){
+        GenericUtility.createAttachment('EquifaxCompanyEnquiryRequest_'+String.valueOf(DateTime.now())+'.xml',
+        attachmentRequestBody,
+        attachmentPartyId
+      );
+    }
+    return response;
+  }
   global override System.HttpResponse sendRequest(System.HttpRequest httpReq) {
     try {
       httpReq.setEndpoint(

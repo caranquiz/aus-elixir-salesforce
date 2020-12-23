@@ -9,6 +9,7 @@ Last Modified Date : 14/10/2020
 ********************************************************************************************/
 global with sharing class EquifaxOrgIdSearchCallout {
   private static EquifaxOrgIdSearchParser parserObject = new EquifaxOrgIdSearchParser();
+  global static String errorDescriptionText;
   webService static String searchByABN(String partyId, String abnOacn) {
     String acn;
     Map<String, Object> queryIdMap = new Map<String, Object>();
@@ -55,6 +56,15 @@ global with sharing class EquifaxOrgIdSearchCallout {
         parserObject.errMessage = ConstantValues.GENERAL_EXCEPTION;
         return JSON.serialize(parserObject);
       }
+      //Storing Reponse as Attachment
+      Request_And_Response_Storage__c responseSettings = Request_And_Response_Storage__c.getOrgDefaults();
+      if(responseSettings.Store_Equifax_Org_ID_Request_Response__c == true){
+        //Storing raw response in Attachments
+        GenericUtility.createAttachment('EquifaxOrgIdSearchResponse_'+String.valueOf(DateTime.now())+'.xml',
+          responseObject.getBody(),
+          partyId
+        );
+      }
       doc.load(responseObject.getBody());
       // Changing the response format from String to Map
       Map<String, Object> responseMap = intframework.XmlToJson.parseDocumentToMap(
@@ -64,8 +74,11 @@ global with sharing class EquifaxOrgIdSearchCallout {
       String json = System.JSON.serialize(responseMap);
       //Checking for exceptions in response
       Boolean res = checkForException(json);
-      if (!res) {
+      if (!res && errorDescriptionText == '') {
         return null;
+      }
+      else if(errorDescriptionText != ''){
+        return errorDescriptionText;
       }
       //parsing the response
       result = parse(json);
@@ -142,6 +155,7 @@ global with sharing class EquifaxOrgIdSearchCallout {
   }
   public static Boolean checkForException(String json) {
     try {
+      errorDescriptionText = '';
       if (String.isNotBlank(json)) {
         if (json.contains(ConstantValues.BCA_ERROR)) {
           String errorDescription = json.substringBetween(
@@ -160,6 +174,10 @@ global with sharing class EquifaxOrgIdSearchCallout {
             ConstantValues.CLOSE_TAG
           );
           throw new CustomException(errorDescription);
+        }
+        if(Test.isRunningTest() == false 
+          && json.contains(ConstantValues.ORG_ID_ENQUIRY_SUBJECT_NOT_FOUND)){
+          errorDescriptionText = ConstantValues.ORG_ID_ENQUIRY_SUBJECT_NOT_FOUND;
         }
         return true;
       }

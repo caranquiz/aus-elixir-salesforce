@@ -9,6 +9,8 @@
 /*********************************************************************************************************/
 
 global with sharing class EquifaxSearchTitleByAddressAdapter extends intframework.BaseIntegrationAdapter {
+  global String attachmentSecurityId;
+  global String attachmentRequestBody;
   global override virtual String generateRequestBody(
     Map<String, Object> filledInRequestMap
   ) {
@@ -146,13 +148,29 @@ global with sharing class EquifaxSearchTitleByAddressAdapter extends intframewor
       requestbody +=
         '</land:address></land:land-title-search-by-address-request>' +
         '</land:search-land-titles-request-data></land:search-land-titles-request></soap:Body></soap:Envelope>';
+      attachmentRequestBody = requestBody;
+      if(collateralFieldsMap.containsKey('securityId')
+        && String.valueOf(collateralFieldsMap.get('securityId')) != NULL
+        && String.valueOf(collateralFieldsMap.get('securityId')) != ''){
+        attachmentSecurityId = String.valueOf(collateralFieldsMap.get('securityId'));
+      }
       return requestbody;
     } catch (Exception ex) {
       GenericUtility.insertLog('EquifaxSearchTitleByAddressAdapter', ex);
       return null;
     }
   }
-
+  global override intframework.BaseIntegrationResponse preProcessResponse(intframework.BaseIntegrationResponse response){
+    //Storing Request as Attachment
+    Request_And_Response_Storage__c responseSettings = Request_And_Response_Storage__c.getOrgDefaults(); 
+    if(responseSettings.Store_Land_Title_Store_Request_Response__c == true){
+        GenericUtility.createAttachment('EquifaxSearchTitleByAddressRequest_'+String.valueOf(DateTime.now())+'.xml',
+        attachmentRequestBody,
+        attachmentSecurityId
+      );
+    }
+    return response;
+  }
   global override System.HttpResponse sendRequest(System.HttpRequest httpReq) {
     System.HTTPResponse res;
     System.Http http;

@@ -9,6 +9,8 @@
 /*********************************************************************************************************/
 
 global class EquifaxApplyIndividualAdapter extends intframework.BaseIntegrationAdapter {
+  global String attachmentPartyId;
+  global String attachmentRequestBody;
   global override virtual String generateRequestBody(
     Map<String, Object> filledInRequestMap
   ) {
@@ -348,9 +350,26 @@ global class EquifaxApplyIndividualAdapter extends intframework.BaseIntegrationA
     } catch (Exception ex) {
       GenericUtility.insertLog('EquifaxApplyIndividualAdapter', ex);
     }
+    attachmentRequestBody = requestBody;
+    if(partyInfo != NULL &&
+      partyInfo.containsKey('partyId') &&
+      String.valueOf(partyInfo.get('partyId')) != NULL
+      && String.valueOf(partyInfo.get('partyId')) != ''){
+      attachmentPartyId = String.valueOf(partyInfo.get('partyId'));
+    }
     return requestbody;
   }
-
+  global override intframework.BaseIntegrationResponse preProcessResponse(intframework.BaseIntegrationResponse response){
+    //Storing Request as Attachment
+    Request_And_Response_Storage__c responseSettings = Request_And_Response_Storage__c.getOrgDefaults(); 
+    if(responseSettings.Store_Individual_Prv_Enq_RequestResponse__c == true){
+        GenericUtility.createAttachment('EquifaxApplyIndividualRequest_'+String.valueOf(DateTime.now())+'.xml',
+        attachmentRequestBody,
+        attachmentPartyId
+      );
+    }
+    return response;
+  }
   global override System.HttpResponse sendRequest(System.HttpRequest httpReq) {
     System.HTTPResponse res;
     try {

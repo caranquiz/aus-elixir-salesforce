@@ -74,6 +74,16 @@ global class EquifaxCompanyEnquiryCallout {
         queryIDMap,
         requestParamMap
       );
+      //Storing Reponse as Attachment
+      Request_And_Response_Storage__c responseSettings = Request_And_Response_Storage__c.getOrgDefaults();
+      
+      if(responseSettings.Store_Company_Enquiry_Request_Response__c == true){
+        //Storing raw response in Attachments
+        GenericUtility.createAttachment('EquifaxCompanyEnquiryResponse_'+String.valueOf(DateTime.now())+'.xml',
+          responseObject.getBody(),
+          partyid
+        );
+      }
       dom.Document doc = new dom.Document();
       doc.load(responseObject.getBody());
       try {

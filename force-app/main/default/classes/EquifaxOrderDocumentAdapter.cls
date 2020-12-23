@@ -9,6 +9,8 @@
 /*********************************************************************************************************/
 
 global class EquifaxOrderDocumentAdapter extends intframework.BaseIntegrationAdapter {
+  global String attachmentSecurityId;
+  global String attachmentRequestBody;
   global override virtual String generateRequestBody(
     Map<String, Object> filledInRequestMap
   ) {
@@ -92,13 +94,29 @@ global class EquifaxOrderDocumentAdapter extends intframework.BaseIntegrationAda
         testTitleReference +
         '</land:title-reference></land:title-by-reference></land:order-title-request>';
       requestbody += '</land:order-document-request-data></land:order-document-request></soap:Body></soap:Envelope>';
+      attachmentRequestBody = requestBody;
+      if(filledInRequestMap.containsKey('securityId') &&
+        String.valueOf(filledInRequestMap.get('securityId')) != NULL
+        && String.valueOf(filledInRequestMap.get('securityId')) != ''){
+        attachmentSecurityId = String.valueOf(filledInRequestMap.get('securityId'));
+      }
       return requestbody;
     } catch (Exception ex) {
       GenericUtility.insertLog('EquifaxOrderDocumentAdapter', ex);
       return null;
     }
   }
-
+  global override intframework.BaseIntegrationResponse preProcessResponse(intframework.BaseIntegrationResponse response){
+    //Storing Request as Attachment
+    Request_And_Response_Storage__c responseSettings = Request_And_Response_Storage__c.getOrgDefaults(); 
+    if(responseSettings.Store_Land_Title_Store_Request_Response__c == true){
+        GenericUtility.createAttachment('EquifaxSearchOrderDocumentRequest_'+String.valueOf(DateTime.now())+'.xml',
+        attachmentRequestBody,
+        attachmentSecurityId
+      );
+    }
+    return response;
+  }
   global override System.HttpResponse sendRequest(System.HttpRequest httpReq) {
     System.HTTPResponse res;
     System.Http http;

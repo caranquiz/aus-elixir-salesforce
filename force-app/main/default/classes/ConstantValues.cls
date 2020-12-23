@@ -939,4 +939,10 @@ global class ConstantValues {
   public static final String UNKNOWN_GENDER_CODE = 'U';
   public static final String DOCUMENT_CATEGORY_NOT_FOUND = 'Document Category not found';
   public static final String TXN_REV_ERR = 'The transaction cannot be reversed as it is not the last transaction of the Loan Contract : ';
+  public static final String TITLE_SEARCH_DOC = 'EquifaxLandTitleSearchResponse';
+  public static final String ORDER_DOC = 'EquifaxLandTitleOrderDocumentResponse';
+  public static final String DELIVER_DOC = 'EquifaxLandTitleDeliverDocumentResponse';
+  public static final String UPFRONT_EXCEEDS_STANDARD_PERCENTAGE = 'Broker Upfront Exceeds Standard Upfront Warning';
+  public static final String TRAIL_EXCEEDS_STANDARD_PERCENTAGE = 'Broker Trail Exceeds Standard Trail Warning';
+  public static final String ORG_ID_ENQUIRY_SUBJECT_NOT_FOUND = 'Subject of your enquiry was not found.';
 }

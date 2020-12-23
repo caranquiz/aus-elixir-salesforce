@@ -36,6 +36,15 @@ global with sharing class SMSFABNNameSearchCallout {
         parserObject.errMessage = ConstantValues.GENERAL_EXCEPTION;
         return JSON.serialize(parserObject);
       }
+      //Storing Reponse as Attachment
+      Request_And_Response_Storage__c responseSettings = Request_And_Response_Storage__c.getOrgDefaults();
+      if(responseSettings.Store_SMSF_ABN_Search_Response__c == true){
+        //Storing raw response in Attachments
+        GenericUtility.createAttachment('SMSFSearchByABNNameResponse_'+String.valueOf(DateTime.now())+'.xml',
+          responseObject.getBody(),
+          partyId
+        );
+      }
       if (responseObject.getBody().contains('<Exception>')) {
         String excep = responseObject.getBody()
           .substringBetween('<Exception>', '</Exception>');

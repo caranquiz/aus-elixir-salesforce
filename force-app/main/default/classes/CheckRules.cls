@@ -180,6 +180,8 @@ global with sharing class CheckRules {
         rulesNameList.add(ConstantValues.ACCOUNTANT_PHONE_NUMBER_WARNING);
         rulesNameList.add(ConstantValues.ACCOUNTANT_CALL_WARNING);
         rulesNameList.add(ConstantValues.COMMISSION_MANADATE_PERCENTAGE_WARNING);
+        rulesNameList.add(ConstantValues.UPFRONT_EXCEEDS_STANDARD_PERCENTAGE);
+        rulesNameList.add(ConstantValues.TRAIL_EXCEEDS_STANDARD_PERCENTAGE);
       } else if (tabName == ConstantValues.WARNING2) {
         rulesNameList.add(
           ConstantValues.ACCOUNTANT_ABN_SEARCH_CONDUCTED_WARNING

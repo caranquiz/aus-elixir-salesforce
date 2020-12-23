@@ -15,6 +15,8 @@ global without sharing class EquifaxOrgIdSearchAdapter extends intframework.Base
     String xmlRequestBody;
     String acnNumber;
   }
+  global String attachmentPartyId;
+  global String attachmentRequestBody;
   RequestBody reqBody = new RequestBody();
   global override virtual String generateRequestBody(
     Map<String, Object> filledInRequestMap
@@ -74,7 +76,11 @@ global without sharing class EquifaxOrgIdSearchAdapter extends intframework.Base
           ConstantValues.REQUEST_ACN_NUMBER,
           reqBody.acnNumber
         );
-
+        attachmentRequestBody = reqBody.xmlRequestBody;
+        if(String.valueOf(partyList[0].get('partyId')) != NULL
+          && String.valueOf(partyList[0].get('partyId')) != ''){
+          attachmentPartyId = String.valueOf(partyList[0].get('partyId'));
+        }
         return reqBody.xmlRequestBody;
       } else {
         throw new intframework.IntegrationException(
@@ -85,6 +91,17 @@ global without sharing class EquifaxOrgIdSearchAdapter extends intframework.Base
       GenericUtility.insertLog('EquifaxOrgIdSearchAdapter', ex);
       return null;
     }
+  }
+  global override intframework.BaseIntegrationResponse preProcessResponse(intframework.BaseIntegrationResponse response){
+    //Storing Request as Attachment
+    Request_And_Response_Storage__c responseSettings = Request_And_Response_Storage__c.getOrgDefaults(); 
+    if(responseSettings.Store_Equifax_Org_ID_Request_Response__c == true){
+        GenericUtility.createAttachment('EquifaxOrgIdEnquiryRequest_'+String.valueOf(DateTime.now())+'.xml',
+        attachmentRequestBody,
+        attachmentPartyId
+      );
+    }
+    return response;
   }
   global override System.HttpResponse sendRequest(System.HttpRequest httpReq) {
     try {
