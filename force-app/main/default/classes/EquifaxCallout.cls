@@ -125,6 +125,7 @@ global without sharing class EquifaxCallout {
       }
       requestParamMap.put('titleReference', testTitleReference);
       requestParamMap.put('testStateRef', testStateRef);
+      requestParamMap.put('securityId',collateralId);
       List <genesis__Applications__c> applicationList = [select id,
                                                           Name 
                                                           from genesis__Applications__c
@@ -191,6 +192,7 @@ global without sharing class EquifaxCallout {
       if (String.isNotBlank(enquiryId)) {
         requestParamMap.put('enquiryId', enquiryId);
       }
+      requestParamMap.put('securityId', collateralId);
       List <genesis__Applications__c> applicationList = [select id,
                                                           Name 
                                                           from genesis__Applications__c

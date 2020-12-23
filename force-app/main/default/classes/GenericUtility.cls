@@ -7,7 +7,7 @@
 /* Last Modified Date   : 20/07/2020 */
 /* Last Modified By     : Rameswari Barman */
 /****************************************************************************************************/
-public with sharing class GenericUtility {
+public without sharing class GenericUtility {
   /*** This method is used to insert logs, for debug purpose ***/
   public static void insertLog(String name, Exception ex) {
     Database.insert(
