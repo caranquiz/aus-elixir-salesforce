@@ -543,6 +543,10 @@ System.debug(each.Checklist__r.genesis__Rule__r.Name);
       applicationDetailsList[0].Id,
       ConstantValues.RECOMMENDED
     );
+    GenericUtility.createAttachment('ABC','requestBody',applicationDetailsList[0].Id);
+    GenericUtility.insertRestResourceIntegrationLog('ABC','requestog','responselog','1234');
+    GenericUtility.insertCustomExceptionLog('ABC','Message');
+    GenericUtility.insertLog('ABC','Message');
     Test.stopTest();
     System.assertEquals(ConstantValues.Success, returnValue, 'Success');
     List<Checklist_Detail__c> logList = [SELECT Id, Status__c, Checklist__r.genesis__Rule__r.Name FROM Checklist_Detail__c WHERE Status__c = 'SUCCESS'];
