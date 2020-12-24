@@ -39,7 +39,10 @@ public with sharing class GenericUtilityTestHelper {
     //Inserting account
     Account acc = new Account(
       name = 'Dummy Account',
-      clcommon__Legal_Entity_Type__c = legEntityId
+      clcommon__Legal_Entity_Type__c = legEntityId,
+      Bank_Account_Name__c = 'Test',
+      BSB__c = '123456',
+      Bank_Account_Number__c = '12345678'
     );
     insert acc;
     return acc;
@@ -1100,6 +1103,7 @@ public with sharing class GenericUtilityTestHelper {
   //Inserting warehouse
   public static Warehouse__c returnWarehouse() {
     Warehouse__c ware = new Warehouse__c(Institution_Name__c = 'Warehouse');
+    ware.Bank_Account_Name__c = 'Test';
     ware.BSB_Number__c = '123456';
     ware.Bank_Account_Number__c = '8890231';
     ware.Collection_Bank_Account_Name__c = 'Test';
@@ -1417,5 +1421,13 @@ public with sharing class GenericUtilityTestHelper {
     );
     insert appCollateral;
     return appCollateral;
+  }
+  public static loan__Loan_Purpose__c insertLoanPurpose(){
+    loan__Loan_Purpose__c dummyLoanPurpose = new loan__Loan_Purpose__c();
+    dummyLoanPurpose.loan__Loan_Purpose_Code__c = 'Investment';
+    dummyLoanPurpose.name = 'Investment';
+    dummyLoanPurpose.loan__Description__c	= 'Investment';
+    insert dummyLoanPurpose;
+    return dummyLoanPurpose;
   }
 }

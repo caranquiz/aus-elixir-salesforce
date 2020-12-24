@@ -42,9 +42,23 @@ global with sharing class ConvertToContract{
         loan__Bank_Account__c banAcc;
         Savepoint sp=Database.setSavepoint();
         try{
-            genesis__Applications__c app = [select id,Primary_loan_purpose_list__c,Proposed_repayment_method_list__c,CL_Contract__c,genesis__Account__c,genesis__Account__r.Bank_Account_Name__c,genesis__Account__r.BSB__c,genesis__Account__r.Bank_Account_Number__c from genesis__Applications__c where Id =: appId];
+            genesis__Applications__c app = [select id,
+                                                Primary_loan_purpose_list__c,
+                                                Proposed_repayment_method_list__c,
+                                                CL_Contract__c,genesis__Account__c,
+                                                genesis__Account__r.Bank_Account_Name__c,
+                                                genesis__Account__r.BSB__c,
+                                                genesis__Account__r.Bank_Account_Number__c,
+                                                CreatedDate,
+                                                Primary_Approval_Date__c
+                                            from genesis__Applications__c where Id =: appId];
             if(app.CL_Contract__c != null){
-                loan__Loan_Account__c contr = [select id,loan__Payment_Mode__c,loan__Loan_Purpose__c from loan__Loan_Account__c where id =: app.CL_Contract__c];
+                loan__Loan_Account__c contr = [select id,
+                                                    loan__Payment_Mode__c,
+                                                    loan__Loan_Purpose__c,
+                                                    loan__Approval_Date__c
+                                                from loan__Loan_Account__c 
+                                                where id =: app.CL_Contract__c];
                 //Checking if proposed repayment method list is provided in application or not
                 if(app.Proposed_repayment_method_list__c != null){
                     loan__Payment_Mode__c paymentModeId = [select id from loan__Payment_Mode__c where name =: app.Proposed_repayment_method_list__c];
@@ -70,7 +84,21 @@ global with sharing class ConvertToContract{
                         contr.loan__Borrower_ACH__c = banAcc.Id;
                     }
                 }
-                if(contr != null && (app.Proposed_repayment_method_list__c != null || app.Primary_loan_purpose_list__c != null || banAcc!=null)){
+                //Change made by Rameswari on 24/12/2020
+                //Attaching Application Date and Approval Date
+                if(String.isBlank(app.Primary_Approval_Date__c) == false){
+                    System.debug(app.Primary_Approval_Date__c);
+                    contr.loan__Approval_Date__c = date.parse(app.Primary_Approval_Date__c);
+                }
+                DateTime appCreationDate = app.CreatedDate;
+                contr.loan__Application_Date__c = date.newInstance(appCreationDate.year() ,appCreationDate.month(), appCreationDate.day());
+                
+                if(contr != null 
+                    && (app.Proposed_repayment_method_list__c != null
+                    || app.Primary_loan_purpose_list__c != null 
+                    || banAcc!=null 
+                    || String.isBlank(app.Primary_Approval_Date__c) == false
+                    || appCreationDate != null)){
                     update contr;
                 }
             }

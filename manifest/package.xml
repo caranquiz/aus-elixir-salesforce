@@ -1,37 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
     <types>
-        <members>Request_And_Response_Storage__c.Store_Company_Enquiry_Request_Response__c</members>
-        <members>Request_And_Response_Storage__c.Store_Equifax_Org_ID_Request_Response__c</members>
-        <members>Request_And_Response_Storage__c.Store_Individual_Prv_Enq_RequestResponse__c</members>
-        <members>Request_And_Response_Storage__c.Store_Land_Title_Store_Request_Response__c</members>
-        <members>Request_And_Response_Storage__c.Store_SMSF_ABN_Search_Response__c</members>
-        <members>clcommon__Party__c.Upfront_Exceeded_Standard_Trail__c</members>
-        <members>clcommon__Party__c.Trail_Exceeded_Standard_Trail__c</members>
-        <name>CustomField</name>
-    </types>
-    <types>
-        <members>Request_And_Response_Storage__c</members>
-        <name>CustomObject</name>
-    </types>
-    <types>
-        <members>CheckRules</members>
-        <members>ChildChecklistAPI</members>
-        <members>ConstantValues</members>
-        <members>EquifaxApplyIndividualAdapter</members>
-        <members>EquifaxCallout</members>
-        <members>EquifaxCompanyEnquiryAdapter</members>
-        <members>EquifaxCompanyEnquiryCallout</members>
-        <members>EquifaxDeliverDocumentAdapter</members>
-        <members>EquifaxEnquiryCallout</members>
-        <members>EquifaxOrderDocumentAdapter</members>
-        <members>EquifaxOrgIdSearchAdapter</members>
-        <members>EquifaxOrgIdSearchCallout</members>
-        <members>EquifaxPreviousEnquiryAdapter</members>
-        <members>EquifaxSearchTitleByAddressAdapter</members>
-        <members>GenericUtility</members>
-        <members>SMSFABNNameSearchCallout</members>
-        <members>SMSFSearchByABNNumberCallout</members>
+        <members>ConvertToContract</members>
+        <members>DepositUpdateHelperTest</members>
+        <members>GenericUtilityTestHelper</members>
         <name>ApexClass</name>
     </types>
     <version>45.0</version>

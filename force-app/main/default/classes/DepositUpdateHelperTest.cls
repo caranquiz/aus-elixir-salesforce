@@ -53,8 +53,14 @@ public with sharing class DepositUpdateHelperTest {
     app.Subsequent_Drawdown_Prepaid_Interest_Sum__c = 50000;
     app.Application_Fee__c = 100;
     app.Construction_Progress_Payment_Fee__c = 0;
+    app.Primary_loan_purpose_list__c = 'Investment';
+    app.Primary_Approval_Date__c = '12/12/2020';
     update app;
     System.assertEquals(app.genesis__account__c, acc.Id);
+
+    //Inserting Loan Purpose
+    loan__Loan_Purpose__c loanPurpose = GenericUtilityTestHelper.insertLoanPurpose();
+    System.assertNotEquals(loanPurpose.Id, Null,'Loan Purpose is not inserted');
 
     //Inserting Broker
     clcommon__Party__c broker = GenericUtilityTestHelper.insertBroker(app.Id);
