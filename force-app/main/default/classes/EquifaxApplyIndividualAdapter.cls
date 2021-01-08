@@ -228,7 +228,7 @@ global class EquifaxApplyIndividualAdapter extends intframework.BaseIntegrationA
         (String) conInfo.get('firstName')
       );
       if (
-        conInfo.containsKey('middleName') ||
+        conInfo.containsKey('middleName') && 
         String.isNotBlank((String) conInfo.get('middleName'))
       ) {
         requestbody = requestbody.replace(

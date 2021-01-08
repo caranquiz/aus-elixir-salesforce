@@ -68,6 +68,7 @@ public with sharing class GenericUtilityTestHelper {
     app.Document_Type__c = 'Full Doc';
     app.Interest_type__c = 'Variable';
     app.genesis__Status__c = 'LOO Accepted';
+    app.genesis__Expected_Start_Date__c = System.today();
     insert app;
     return app;
   }
@@ -1069,6 +1070,7 @@ public with sharing class GenericUtilityTestHelper {
       clcommon__Ownership__c = 0,
       clcommon__Account__c = borrowerId
     );
+    insert collateralOwner;
     return appCollateral;
   }
   public static clcommon__Address__c returnAddress() {
@@ -1429,5 +1431,37 @@ public with sharing class GenericUtilityTestHelper {
     dummyLoanPurpose.loan__Description__c	= 'Investment';
     insert dummyLoanPurpose;
     return dummyLoanPurpose;
+  }
+  public static QBEpostCode__c insertQBEPostCode(){
+    QBEpostCode__c qbePostCode = new QBEpostCode__c(
+      Location__c = 'Metro',
+      PostCode_High_RangeNumber__c = 22222,
+      PostCode_Low_RangeNumber__c = 2000,
+      Name = '1'
+    );
+    insert qbePostCode;
+    return qbePostCode;
+  }
+  public static S_P_Postcode__c insertSAndPPostCode(){
+    S_P_Postcode__c sAndPPostCode = new S_P_Postcode__c(
+      Location__c = 'Metro',
+      Name = '1',
+      PostCode_High_RangeNumber__c = 22222,
+      PostCode_Low_RangeNumber__c = 2000
+    );
+    insert sAndPPostCode;
+    return sAndPPostCode;
+  }
+  public static clcommon__Party__c createBorowerParty(
+    Account acc,
+    Id partyTypeId,
+    Id appId
+  ) {
+    clcommon__Party__c party = new clcommon__Party__c();
+    party.clcommon__Account__c = acc.Id;
+    party.clcommon__Type__c = partyTypeId;
+    party.genesis__Application__c = appId;
+    insert party;
+    return party;
   }
 }

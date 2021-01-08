@@ -9,7 +9,7 @@
          <BCAservice-code>BCA020</BCAservice-code>
          <BCAservice-code-version>V00</BCAservice-code-version>
          <BCAservice-data>
-             <request version="2.0" mode="test" transaction-reference="String">
+             <request version="2.0" mode="modeOfEnvironment" transaction-reference="String">
                  <subscriber-details>
                      <subscriber-identifier>CSsubscriberIdentifier</subscriber-identifier>
                      <security>CSsecurity</security>

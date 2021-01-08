@@ -76,6 +76,23 @@ global without sharing class EquifaxOrgIdSearchAdapter extends intframework.Base
           ConstantValues.REQUEST_ACN_NUMBER,
           reqBody.acnNumber
         );
+        // Checks if callout happening in test environment
+        Equifax_Referece__c equifaxRefObj = Equifax_Referece__c.getInstance();
+        if (
+          equifaxRefObj == null ||
+          (equifaxRefObj != null && !equifaxRefObj.Test_Environment__c)
+        ) {
+          reqBody.xmlRequestBody = reqBody.xmlRequestBody.replace(
+            ConstantValues.MODE_OF_ENVIRONMENT,
+            ConstantValues.PRODUCTION_ENVIRONMENT
+          );
+        }
+        else{
+          reqBody.xmlRequestBody = reqBody.xmlRequestBody.replace(
+            ConstantValues.MODE_OF_ENVIRONMENT,
+            ConstantValues.TEST_ENVIRONMENT
+          );
+        }
         attachmentRequestBody = reqBody.xmlRequestBody;
         if(String.valueOf(partyList[0].get('partyId')) != NULL
           && String.valueOf(partyList[0].get('partyId')) != ''){

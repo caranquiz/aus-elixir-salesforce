@@ -4,6 +4,14 @@
         <members>ConvertToContract</members>
         <members>DepositUpdateHelperTest</members>
         <members>GenericUtilityTestHelper</members>
+        <members>SkuidValuesUpdateHelper</members>
+        <members>SkuidValuesUpdateHelperTest</members>
+        <members>EquifaxOrgIDSearchAdapter/<members>
+        <members>EquifaxOrgIdSearchCalloutTest</members>
+        <members>GenericUtilityTestHelper</members>
+        <members>ConstantValues</members>
+        <members>EquifaxApplyIndividualAdapter</members>
+        <members>EquifaxEnquiryCalloutTest</members>
         <name>ApexClass</name>
     </types>
     <version>45.0</version>
