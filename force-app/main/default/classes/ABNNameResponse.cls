@@ -52,7 +52,16 @@ public without sharing class ABNNameResponse{
                 }else{
                     //DESERIALIZING RESPONSE INTO POJO CLASS
                     ABNNameResponseParser responsePojo = new ABNNameResponseParser();
-                    responsePojo = (ABNNameResponseParser)JSON.deserialize(responseObject.body, ABNNameResponseParser.class);   
+                    
+                    //Lines Added by Rameswari on 11/01/2020 to facilitate proper parsing of response when single result is returned
+                    String responseBody = responseObject.body;
+                    if(responseBody.contains('"searchResultsRecord":{"mainBusinessPhysicalAddress')){
+                        responseBody = responseBody.replace('"searchResultsRecord":{"mainBusinessPhysicalAddress','"searchResultsRecord":[{"mainBusinessPhysicalAddress');
+                        if(responseBody.contains('}},"exceedsMaximum"')){
+                            responseBody = responseBody.replace('}},"exceedsMaximum"','}}],"exceedsMaximum"');
+                        }
+                    }
+                    responsePojo = (ABNNameResponseParser)JSON.deserialize(responseBody, ABNNameResponseParser.class);   
                     
                     //CHECK IF ROOT IS EMPTY OR NOT            
                     if(responsePojo.response == NULL){
