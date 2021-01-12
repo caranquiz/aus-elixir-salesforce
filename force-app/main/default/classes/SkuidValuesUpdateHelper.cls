@@ -4,7 +4,7 @@
 /* Created Date         : 29/12/2020 */
 /* Developed By         : Rameswari Barman */
 /* Description          : This class is used to update values when called from skuid*/
-/* Last Modified Date   : 07/01/2021 */
+/* Last Modified Date   : 12/01/2021 */
 /* Last Modified By     : Rameswari Barman */
 /****************************************************************************************************/
 
@@ -43,7 +43,7 @@ global with sharing class SkuidValuesUpdateHelper {
             }
             for(clcommon__Collateral__c collateral : collateralList){
                 if(qbeList.size() > 0){
-                    collateral.QBE_Location__c = '';
+                    collateral.QBE_Location__c = ConstantValues.CATEGORY_3_OR_4;
                     for(QBEpostCode__c qbe : qbeList){
                         //looping to find the correct match from QBE custom setting values
                         if(qbe.PostCode_High_RangeNumber__c >= Decimal.ValueOf(collateral.clcommon__Postal_Code__c)

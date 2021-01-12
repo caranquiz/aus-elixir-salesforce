@@ -950,4 +950,5 @@ global class ConstantValues {
   public static final String PRODUCTION_ENVIRONMENT = 'production';
   public static final String SUCCESSFULLY_DONE = 'Successfully done';
   public static final String START_DATE_MISSING = 'Please provide the expected start Date';
+  public static final String CATEGORY_3_OR_4 = 'Cat 3/Cat 4';
 }
