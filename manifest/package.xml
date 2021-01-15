@@ -1,18 +1,25 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
     <types>
-        <members>ConvertToContract</members>
-        <members>DepositUpdateHelperTest</members>
-        <members>GenericUtilityTestHelper</members>
-        <members>SkuidValuesUpdateHelper</members>
-        <members>SkuidValuesUpdateHelperTest</members>
-        <members>EquifaxOrgIDSearchAdapter/<members>
-        <members>EquifaxOrgIdSearchCalloutTest</members>
-        <members>GenericUtilityTestHelper</members>
         <members>ConstantValues</members>
+        <members>GenericUtilityTestHelper</members>
         <members>EquifaxApplyIndividualAdapter</members>
         <members>EquifaxEnquiryCalloutTest</members>
+        <members>SkuidValuesUpdateHelper</members>
+        <members>SkuidValuesUpdateHelperTest</members>
+        <members>ABNNameResponse</members>
+        <members>ABNNameCalloutTest</members>
+        <members>EquifaxOrgIdSearchAdapter</members>
+        <members>EquifaxOrgIdSearchCalloutTest</members>
         <name>ApexClass</name>
+    </types>
+    <types>
+        <members>clcommon__Collateral__c.Valuer__c</members>
+        <name>CustomField</name>
+    </types>
+    <types>
+        <members>EquifaxXMLBody</members>
+        <name>StaticResource</name>
     </types>
     <version>45.0</version>
 </Package>
