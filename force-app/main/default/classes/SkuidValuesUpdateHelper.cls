@@ -31,39 +31,37 @@ global with sharing class SkuidValuesUpdateHelper {
                                                 PostCode_Low_RangeNumber__c,
                                                 Location__c
                                                 From QBEpostCode__c
+                                                LIMIT 1000
                                             ];
             List <S_P_Postcode__c> sAndPList = [Select Id,
                                                 PostCode_High_RangeNumber__c,
                                                 PostCode_Low_RangeNumber__c,
                                                 Location__c
                                                 From S_P_Postcode__c
+                                                LIMIT 1000
                                             ];
             if(collateralList.size() > 0 == false){
                 return null;
             }
             for(clcommon__Collateral__c collateral : collateralList){
                 if(collateral.clcommon__Postal_Code__c != NULL && collateral.clcommon__Postal_Code__c != ''){
-                    if(qbeList.size() > 0){
-                        collateral.QBE_Location__c = ConstantValues.CATEGORY_3_OR_4;
-                        for(QBEpostCode__c qbe : qbeList){
-                            //looping to find the correct match from QBE custom setting values
-                            //NULL check is not done on Location__c,PostCode_High_RangeNumber__c and QBE_Location__c as the values are already updated in custom settings and are hardly changed
-                            if(qbe.PostCode_High_RangeNumber__c >= Decimal.ValueOf(collateral.clcommon__Postal_Code__c)
-                                    && qbe.PostCode_Low_RangeNumber__c <= Decimal.ValueOf(collateral.clcommon__Postal_Code__c)){
-                                collateral.QBE_Location__c = qbe.Location__c;
-                                break;//as correct match is found it will break from the loop
-                            }
+                    collateral.QBE_Location__c = ConstantValues.CATEGORY_3_OR_4;
+                    for(QBEpostCode__c qbe : qbeList){
+                        //looping to find the correct match from QBE custom setting values
+                        //NULL check is not done on Location__c,PostCode_High_RangeNumber__c and QBE_Location__c as the values are already updated in custom settings and are hardly changed
+                        if(qbe.PostCode_High_RangeNumber__c >= Decimal.ValueOf(collateral.clcommon__Postal_Code__c)
+                                && qbe.PostCode_Low_RangeNumber__c <= Decimal.ValueOf(collateral.clcommon__Postal_Code__c)){
+                            collateral.QBE_Location__c = qbe.Location__c;
+                            break;//as correct match is found it will break from the loop
                         }
                     }
-                    if(sAndPList.size() > 0){
-                        collateral.S_P_Location__c = '';
-                        for(S_P_Postcode__c sp : sAndPList){
-                            //NULL check is not done on Location__c,PostCode_High_RangeNumber__c and QBE_Location__c as the values are already updated in custom settings and are hardly changed
-                            if(sp.PostCode_High_RangeNumber__c >= Decimal.ValueOf(collateral.clcommon__Postal_Code__c)
-                                    && sp.PostCode_Low_RangeNumber__c <= Decimal.ValueOf(collateral.clcommon__Postal_Code__c)){
-                                collateral.S_P_Location__c = sp.Location__c;
-                                break;//as correct match is found it will break from the loop
-                            }
+                    collateral.S_P_Location__c = '';
+                    for(S_P_Postcode__c sp : sAndPList){
+                        //NULL check is not done on Location__c,PostCode_High_RangeNumber__c and QBE_Location__c as the values are already updated in custom settings and are hardly changed
+                        if(sp.PostCode_High_RangeNumber__c >= Decimal.ValueOf(collateral.clcommon__Postal_Code__c)
+                                && sp.PostCode_Low_RangeNumber__c <= Decimal.ValueOf(collateral.clcommon__Postal_Code__c)){
+                            collateral.S_P_Location__c = sp.Location__c;
+                            break;//as correct match is found it will break from the loop
                         }
                     }
                 }
@@ -72,6 +70,7 @@ global with sharing class SkuidValuesUpdateHelper {
         }
         catch (Exception ex) {
             GenericUtility.insertLog('SkuidValuesUpdateHelper.updateLocationValues', ex);
+            return ConstantValues.GENERAL_ERROR;
         }
         return ConstantValues.SUCCESS;
     }
@@ -151,6 +150,7 @@ global with sharing class SkuidValuesUpdateHelper {
         }
         catch (Exception ex) {
             GenericUtility.insertLog('SkuidValuesUpdateHelper.updateMortgagorName', ex);
+            return ConstantValues.GENERAL_ERROR;
         }
         return ConstantValues.SUCCESS;
     }
@@ -202,7 +202,7 @@ global with sharing class SkuidValuesUpdateHelper {
         catch (Exception ex) {
             Database.rollback(sp);
             GenericUtility.insertLog('SkuidValuesUpdateHelper.updateFirstPaymrentDate', ex);
+            return ConstantValues.GENERAL_ERROR;
         }
-        return '';
     }
 }
