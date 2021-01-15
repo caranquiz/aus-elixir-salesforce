@@ -122,6 +122,28 @@ private class SkuidValuesUpdateHelperTest {
     Test.stopTest();
   }
   @isTest
+  static void mortgageValuesTest2() {
+    List<genesis__Applications__c> appList = [
+      SELECT id
+      FROM genesis__Applications__c
+      LIMIT 1
+    ];
+    System.assertEquals(appList.size(), 1, 'Application is present.');
+    List <clcommon__Party__c> partyList = [
+      SELECT Id,
+        genesis__Application__c,
+        Trust_Structure__c
+      FROM clcommon__Party__c
+      WHERE genesis__Application__c =: appList[0].Id
+      AND Party_Type_Name__c = 'Borrower'];
+    System.assertEquals(appList.size(), 1, 'Borrower Party is present.');  
+    partyList[0].Trust_Structure__c = 'SMSF';
+    update partyList;
+    Test.startTest();
+    SkuidValuesUpdateHelper.updateMortgagorName(appList[0].Id);
+    Test.stopTest();
+  }
+  @isTest
   static void firstPAymentDateTest() {
     List<genesis__Applications__c> appList = [
       SELECT id
