@@ -67,6 +67,11 @@ private class SkuidValuesUpdateHelperTest {
       partyType.Id,
       app.Id
     );
+    System.AssertNotEquals(
+      party.Id,
+      null,
+      'Collateral inserted successfully!'
+    );
     //Insert Application Collaterals
     genesis__Application_Collateral__c appCollateral = GenericUtilityTestHelper.returnAppCollateral(
       app.Id,
