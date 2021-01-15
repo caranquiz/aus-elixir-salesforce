@@ -42,24 +42,28 @@ global with sharing class SkuidValuesUpdateHelper {
                 return null;
             }
             for(clcommon__Collateral__c collateral : collateralList){
-                if(qbeList.size() > 0){
-                    collateral.QBE_Location__c = ConstantValues.CATEGORY_3_OR_4;
-                    for(QBEpostCode__c qbe : qbeList){
-                        //looping to find the correct match from QBE custom setting values
-                        if(qbe.PostCode_High_RangeNumber__c >= Decimal.ValueOf(collateral.clcommon__Postal_Code__c)
-                                && qbe.PostCode_Low_RangeNumber__c <= Decimal.ValueOf(collateral.clcommon__Postal_Code__c)){
-                            collateral.QBE_Location__c = qbe.Location__c;
-                            break;//as coorect match is found it will break from the loop
+                if(collateral.clcommon__Postal_Code__c != NULL && collateral.clcommon__Postal_Code__c != ''){
+                    if(qbeList.size() > 0){
+                        collateral.QBE_Location__c = ConstantValues.CATEGORY_3_OR_4;
+                        for(QBEpostCode__c qbe : qbeList){
+                            //looping to find the correct match from QBE custom setting values
+                            //NULL check is not done on Location__c,PostCode_High_RangeNumber__c and QBE_Location__c as the values are already updated in custom settings and are hardly changed
+                            if(qbe.PostCode_High_RangeNumber__c >= Decimal.ValueOf(collateral.clcommon__Postal_Code__c)
+                                    && qbe.PostCode_Low_RangeNumber__c <= Decimal.ValueOf(collateral.clcommon__Postal_Code__c)){
+                                collateral.QBE_Location__c = qbe.Location__c;
+                                break;//as correct match is found it will break from the loop
+                            }
                         }
                     }
-                }
-                if(sAndPList.size() > 0){
-                    collateral.S_P_Location__c = '';
-                    for(S_P_Postcode__c sp : sAndPList){
-                        if(sp.PostCode_High_RangeNumber__c >= Decimal.ValueOf(collateral.clcommon__Postal_Code__c)
-                                && sp.PostCode_Low_RangeNumber__c <= Decimal.ValueOf(collateral.clcommon__Postal_Code__c)){
-                            collateral.S_P_Location__c = sp.Location__c;
-                            break;//as coorect match is found it will break from the loop
+                    if(sAndPList.size() > 0){
+                        collateral.S_P_Location__c = '';
+                        for(S_P_Postcode__c sp : sAndPList){
+                            //NULL check is not done on Location__c,PostCode_High_RangeNumber__c and QBE_Location__c as the values are already updated in custom settings and are hardly changed
+                            if(sp.PostCode_High_RangeNumber__c >= Decimal.ValueOf(collateral.clcommon__Postal_Code__c)
+                                    && sp.PostCode_Low_RangeNumber__c <= Decimal.ValueOf(collateral.clcommon__Postal_Code__c)){
+                                collateral.S_P_Location__c = sp.Location__c;
+                                break;//as correct match is found it will break from the loop
+                            }
                         }
                     }
                 }
@@ -174,9 +178,15 @@ global with sharing class SkuidValuesUpdateHelper {
                                                                             FROM genesis__Amortization_Schedule__c 
                                                                             WHERE genesis__Application__c =: appId
                                                                             ORDER BY genesis__Due_Date__c ASC LIMIT 1 ];
-                    appList[0].genesis__Expected_First_Payment_Date__c = scheduleList[0].genesis__Due_Date__c;
-                    update appList;//updating the first payment date from Schedule
-                    return ConstantValues.SUCCESS_STATUS;
+                    if(scheduleList.size() > 0 && scheduleList[0].genesis__Due_Date__c != NULL){
+                        appList[0].genesis__Expected_First_Payment_Date__c = scheduleList[0].genesis__Due_Date__c;
+                        update appList;//updating the first payment date from Schedule
+                        return ConstantValues.SUCCESS_STATUS;
+                    }
+                    else{
+                        return ConstantValues.GENERAL_EXCEPTION;
+                    }
+                    
                 }
                 else{
                     return scheduleResult;
