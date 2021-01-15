@@ -156,6 +156,7 @@ global with sharing class SkuidValuesUpdateHelper {
     }
     //Method to update first payment date and due date
     Webservice static String updateFirstPaymentDate(Id appId){
+        Savepoint sp = Database.setSavepoint();
         try{
             List <genesis__Applications__c> appList = [SELECT Id,
                                                         genesis__Expected_Start_Date__c,
@@ -184,11 +185,13 @@ global with sharing class SkuidValuesUpdateHelper {
                         return ConstantValues.SUCCESS_STATUS;
                     }
                     else{
+                        Database.rollback(sp);
                         return ConstantValues.GENERAL_EXCEPTION;
                     }
                     
                 }
                 else{
+                    Database.rollback(sp);
                     return scheduleResult;
                 }
             }
@@ -197,6 +200,7 @@ global with sharing class SkuidValuesUpdateHelper {
             }                       
         }
         catch (Exception ex) {
+            Database.rollback(sp);
             GenericUtility.insertLog('SkuidValuesUpdateHelper.updateFirstPaymrentDate', ex);
         }
         return '';
