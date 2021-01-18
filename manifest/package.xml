@@ -14,6 +14,9 @@
     </types>
     <types>
         <members>loan__Loan_Account__c.Remaining_Loan_Term__c</members>
+        <members>loan__Loan_Account__c.Current_Loan_Balance_Excluding_Deposit__c</members>
+        <members>loan__Loan_Account__c.Current_LVR__c</members>
+        <members>loan__Loan_Account__c.Actual_Security_Value__c</members>
         <name>CustomField</name>
     </types>
     <types>
