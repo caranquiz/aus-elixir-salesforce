@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Remaining_Loan_Term__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF(loan__Maturity_Date_Current__c-$User.loan__Current_Branch_s_System_Date__c &lt;= 0, 0,((loan__Maturity_Date_Current__c-$User.loan__Current_Branch_s_System_Date__c)/365*12))</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Remaining Loan Term</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

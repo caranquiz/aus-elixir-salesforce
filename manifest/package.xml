@@ -2,23 +2,22 @@
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
     <types>
         <members>ConstantValues</members>
+        <members>ConvertToContract</members>
+        <members>DepositUpdateHelperTest</members>
         <members>GenericUtilityTestHelper</members>
-        <members>EquifaxApplyIndividualAdapter</members>
-        <members>EquifaxEnquiryCalloutTest</members>
         <members>SkuidValuesUpdateHelper</members>
         <members>SkuidValuesUpdateHelperTest</members>
-        <members>ABNNameResponse</members>
-        <members>ABNNameCalloutTest</members>
-        <members>EquifaxOrgIdSearchAdapter</members>
-        <members>EquifaxOrgIdSearchCalloutTest</members>
+        <members>ChangeBorrower</members>
+        <members>ChangeBorrowerTest</members>
+        <members>EquifaxApplyIndividualAdapter</members>
         <name>ApexClass</name>
     </types>
     <types>
-        <members>clcommon__Collateral__c.Valuer__c</members>
+        <members>loan__Loan_Account__c.Remaining_Loan_Term__c</members>
         <name>CustomField</name>
     </types>
     <types>
-        <members>EquifaxXMLBody</members>
+        <members>ApplyIndividualRequest</members>
         <name>StaticResource</name>
     </types>
     <version>45.0</version>
