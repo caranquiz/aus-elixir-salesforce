@@ -45,6 +45,7 @@
                             <ved:country-code>__countryCode</ved:country-code>
                         </ved:address>
                     </ved:addresses>
+                    __drivers__licence__wkey
                     <ved:gender-code>__genderCode</ved:gender-code>
                     <ved:date-of-birth>__dateOfBirth</ved:date-of-birth>
                 </ved:individual>

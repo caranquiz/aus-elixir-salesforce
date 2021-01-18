@@ -240,6 +240,17 @@ global class EquifaxApplyIndividualAdapter extends intframework.BaseIntegrationA
       } else {
         requestbody = requestbody.replace(ConstantValues.IND_MIDNAME_WKEY, '');
       }
+      if (
+        conInfo.containsKey('driversLicense') && 
+        String.isNotBlank((String) conInfo.get('driversLicense'))
+      ) {
+        requestbody = requestbody.replace(
+          ConstantValues.DRIVERS_LICENSE_KEY,
+          '<ved:drivers-licence><ved:number>'+(String) conInfo.get('driversLicense')+'</ved:number></ved:drivers-licence>'
+        );
+      } else {
+        requestbody = requestbody.replace(ConstantValues.DRIVERS_LICENSE_KEY, '');
+      }
       requestbody = requestbody.replace(ConstantValues.ADDR_TYPE, addressType);
       if (
         addressInfo.containsKey('unitNo') &&
