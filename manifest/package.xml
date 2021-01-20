@@ -10,6 +10,9 @@
         <members>ChangeBorrower</members>
         <members>ChangeBorrowerTest</members>
         <members>EquifaxApplyIndividualAdapter</members>
+        <members>EquifaxEnquiryCalloutTest</members>
+        <members>EquifaxOrgIdSearchCallout</members>
+        <members>EquifaxOrgIdSearchCalloutTest</members>
         <name>ApexClass</name>
     </types>
     <types>

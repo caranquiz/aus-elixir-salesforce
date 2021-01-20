@@ -944,7 +944,6 @@ global class ConstantValues {
   public static final String DELIVER_DOC = 'EquifaxLandTitleDeliverDocumentResponse';
   public static final String UPFRONT_EXCEEDS_STANDARD_PERCENTAGE = 'Broker Upfront Exceeds Standard Upfront Warning';
   public static final String TRAIL_EXCEEDS_STANDARD_PERCENTAGE = 'Broker Trail Exceeds Standard Trail Warning';
-  public static final String ORG_ID_ENQUIRY_SUBJECT_NOT_FOUND = 'Subject of your enquiry was not found.';
   public static final String MODE_OF_ENVIRONMENT = 'modeOfEnvironment';
   public static final String TEST_ENVIRONMENT = 'test';
   public static final String PRODUCTION_ENVIRONMENT = 'production';
