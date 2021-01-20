@@ -26,5 +26,9 @@
         <members>ApplyIndividualRequest</members>
         <name>StaticResource</name>
     </types>
+    <types>
+        <members>clcommon__Party__c.Bankrupt_Discharged</members>
+        <name>ValidationRule</name>
+    </types>
     <version>45.0</version>
 </Package>
