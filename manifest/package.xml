@@ -1,18 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<Package xmlns="http://soap.sforce.com/2006/04/metadata">
+    <Package xmlns="http://soap.sforce.com/2006/04/metadata">
     <types>
         <members>ConstantValues</members>
         <members>ConvertToContract</members>
         <members>DepositUpdateHelperTest</members>
         <members>GenericUtilityTestHelper</members>
-        <members>SkuidValuesUpdateHelper</members>
-        <members>SkuidValuesUpdateHelperTest</members>
         <members>ChangeBorrower</members>
         <members>ChangeBorrowerTest</members>
         <members>EquifaxApplyIndividualAdapter</members>
         <members>EquifaxEnquiryCalloutTest</members>
-        <members>EquifaxOrgIdSearchCallout</members>
-        <members>EquifaxOrgIdSearchCalloutTest</members>
         <name>ApexClass</name>
     </types>
     <types>
