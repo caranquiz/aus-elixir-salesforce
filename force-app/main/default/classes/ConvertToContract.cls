@@ -87,7 +87,6 @@ global with sharing class ConvertToContract{
                 //Change made by Rameswari on 24/12/2020
                 //Attaching Application Date and Approval Date
                 if(String.isBlank(app.Primary_Approval_Date__c) == false){
-                    System.debug(app.Primary_Approval_Date__c);
                     contr.loan__Approval_Date__c = date.parse(app.Primary_Approval_Date__c);
                 }
                 DateTime appCreationDate = app.CreatedDate;
