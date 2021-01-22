@@ -32,7 +32,10 @@ global with sharing class ChangeBorrower {
         LIMIT 1
         ]
       );
-      //Qurring the list of parties attached with the application
+      if (application.size() > 0 == false) {
+        return (ConstantValues.NO_APPLICATION);
+      }
+      //Querying the list of parties attached with the application
       List<clcommon__Party__c> partyList = new List<clcommon__Party__c>(
         [
           SELECT
@@ -62,13 +65,13 @@ global with sharing class ChangeBorrower {
         LIMIT 1
         ]
       );
-      if (guarantorParty[0] != null && borrowerParty[0] != null) {
+      if (guarantorParty.size() > 0 && borrowerParty.size() > 0) {
         for (clcommon__Party__c eachParty : partyList) {
           if (eachParty.clcommon__Type__r.name == ConstantValues.BORROWER) {
             ++check; //adds 1 if borower is changed to guarantor
             eachParty.clcommon__Type__c = guarantorParty[0].Id;
           }
-          if (eachParty.clcommon__Account__c == accountId) {
+          if (String.isBlank(eachParty.clcommon__Account__c) == false && eachParty.clcommon__Account__c == accountId) {
             eachParty.clcommon__Type__c = borrowerParty[0].Id;
             newLegalEntity = eachParty.clcommon__Account__r.clcommon__Legal_Entity_Type__c;
             ++check; //adds 1 if guarantor is changed to borrower
