@@ -80,11 +80,21 @@ private class ChangeBorrowerTest {
       partyType.Id,
       app.Id
     );
+    System.assertNotEquals(
+      guarantorParty.Id,
+      null,
+      'Guarantor party insertion is successful'
+    );
     //Inserting Borrower Party
     clcommon__Party__c party = GenericUtilityTestHelper.createBorowerParty(
       borrowerAccount,
       guarantorPartyType.Id,
       app.Id
+    );
+    System.assertNotEquals(
+      party.Id,
+      null,
+      'Borrower party insertion is successful'
     );
   }
   @isTest
@@ -100,7 +110,7 @@ private class ChangeBorrowerTest {
       LIMIT 1
     ];
     System.assertEquals(appList.size(), 1, 'Application is present.');
-    System.assertEquals(appList.size(), 1, 'Account is present.');
+    System.assertEquals(accList.size(), 1, 'Account is present.');
     Test.startTest();
     ChangeBorrower.applicationPartyDetailsWS(null,null);
     ChangeBorrower.applicationPartyDetailsWS(appList[0].Id,null);
