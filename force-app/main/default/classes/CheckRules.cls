@@ -464,7 +464,7 @@ global with sharing class CheckRules {
   private static void loanDetailsRiskGradeWarningCheck(Id appId) {
     try {
       Id previousChecklistId;
-      Integer lowestRiskGrade = 5;
+      Integer lowestRiskGrade = 0;
       genesis__Rule__c riskGradeCompRule;
       for (genesis__Rule__c eachRule : ruleList) {
         if ((eachRule.Name).equals(ConstantValues.RISK_GRADE_COMPARE_WARNING)) {
@@ -513,13 +513,13 @@ global with sharing class CheckRules {
         if (String.IsNotBlank(eachParty.Risk_Grade__c)) {
           if (
             riskGradeValued.containsKey(eachParty.Risk_Grade__c) &&
-            riskGradeValued.get(eachParty.Risk_Grade__c) < lowestRiskGrade
+            riskGradeValued.get(eachParty.Risk_Grade__c) > lowestRiskGrade
           ) {
             lowestRiskGrade = riskGradeValued.get(eachParty.Risk_Grade__c);
           }
         }
       }
-      if (lowestRiskGrade == 5) {
+      if (lowestRiskGrade == 0) {
         successCheckList(riskGradeCompRule, appId, previousChecklistId);
         return;
       } else if (String.isBlank(appObj.Risk_grade_list__c)) {
