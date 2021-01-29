@@ -9,6 +9,7 @@
         <members>ChangeBorrowerTest</members>
         <members>EquifaxApplyIndividualAdapter</members>
         <members>EquifaxEnquiryCalloutTest</members>
+        <members>ChildChecklistAPI</members>
         <name>ApexClass</name>
     </types>
     <types>
