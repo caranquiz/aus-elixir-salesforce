@@ -1,31 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     <Package xmlns="http://soap.sforce.com/2006/04/metadata">
     <types>
-        <members>ConstantValues</members>
-        <members>ConvertToContract</members>
-        <members>DepositUpdateHelperTest</members>
-        <members>GenericUtilityTestHelper</members>
-        <members>ChangeBorrower</members>
-        <members>ChangeBorrowerTest</members>
-        <members>EquifaxApplyIndividualAdapter</members>
-        <members>EquifaxEnquiryCalloutTest</members>
-        <members>ChildChecklistAPI</members>
-        <name>ApexClass</name>
-    </types>
-    <types>
-        <members>loan__Loan_Account__c.Remaining_Loan_Term__c</members>
-        <members>loan__Loan_Account__c.Current_Loan_Balance_Excluding_Deposit__c</members>
-        <members>loan__Loan_Account__c.Current_LVR__c</members>
-        <members>loan__Loan_Account__c.Actual_Security_Value__c</members>
+        <members>clcommon__Collateral__c.Property_Inspection_Date_Time__c</members>
         <name>CustomField</name>
-    </types>
-    <types>
-        <members>ApplyIndividualRequest</members>
-        <name>StaticResource</name>
-    </types>
-    <types>
-        <members>clcommon__Party__c.Bankrupt_Discharged</members>
-        <name>ValidationRule</name>
     </types>
     <version>45.0</version>
 </Package>
