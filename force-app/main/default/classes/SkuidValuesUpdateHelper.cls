@@ -201,7 +201,125 @@ global with sharing class SkuidValuesUpdateHelper {
         }
         catch (Exception ex) {
             Database.rollback(sp);
-            GenericUtility.insertLog('SkuidValuesUpdateHelper.updateFirstPaymrentDate', ex);
+            GenericUtility.insertLog('SkuidValuesUpdateHelper.updateFirstPaymentDate', ex);
+            return ConstantValues.GENERAL_ERROR;
+        }
+    }
+    //Method to update Employment Tyep and Months Self Employed in applivation
+    Webservice static String updateEmploymentTypeMonthsSelfEmployed(Id appId){
+        Savepoint sp = Database.setSavepoint();
+        Decimal monthsSelfEmployed = 1000000000;
+        Boolean selfEmployed = false;
+        try{
+            if(String.isBlank(appId)){
+                return null;
+            }
+            List <genesis__Applications__c> appList = [SELECT Id,
+                                                            Employment_Type__c,
+                                                            Months_Self_Employed__c,
+                                                            Legal_Entity__c,
+                                                            Legal_Entity__r.Name,
+                                                            genesis__Account__c
+                                                        FROM genesis__Applications__c 
+                                                        WHERE Id =: appId];
+            if(appList.size() > 0 
+                && appList[0].Legal_Entity__c != NULL
+                && String.isBlank(appList[0].Legal_Entity__r.Name) == false
+                && appList[0].genesis__Account__c != NULL
+            ){  
+                appList[0].Employment_Type__c = null;
+                appList[0].Months_Self_Employed__c = null;
+                if(appList[0].Legal_Entity__r.Name == ConstantValues.indType){
+                    List<genesis__Employment_Information__c> employmentList = [SELECT Id,
+                                                                                RecordTypeId,
+                                                                                Months_Self_Employed__c
+                                                                                FROM genesis__Employment_Information__c
+                                                                                WHERE Primary_Employment__c = true
+                                                                                AND Party__r.clcommon__Account__c =: appList[0].genesis__Account__c
+                                                                                AND RecordTypeId != NULL
+                                                                                limit 1];
+                    if(employmentList.size() > 0 ){
+                        List<RecordType> recordTypeList = [SELECT Id,
+                                                                Name
+                                                            FROM RecordType
+                                                            WHERE Id =: employmentList[0].RecordTypeId
+                                                            LIMIT 1];
+                        if(recordTypeList.size() > 0){
+                            appList[0].Employment_Type__c = recordTypeList[0].Name;
+                        }
+                        appList[0].Months_Self_Employed__c = employmentList[0].Months_Self_Employed__c;
+                    }
+                }
+                else{
+                    List<genesis__Employment_Information__c> employmentList = [SELECT Id,
+                                                                                    RecordTypeId,
+                                                                                    Months_Self_Employed__c
+                                                                                FROM genesis__Employment_Information__c
+                                                                                WHERE Party__c != NULL
+                                                                                AND Party__r.Party_Type_Name__c =: ConstantValues.GUARANTOR
+                                                                                AND Party__r.Legal_Entity_Type__c =: ConstantValues.indType
+                                                                                AND Party__r.genesis__Application__c =: appId
+                                                                                AND RecordTypeId != NULL];
+                    if(employmentList.size() > 0 ){
+                        Set<Id> recordIdList = new Set<Id>();
+                        for(genesis__Employment_Information__c eachEmployment : employmentList){
+                            recordIdList.add(eachEmployment.RecordTypeId);
+                        }
+                        List<RecordType> recordTypeList = [SELECT Id,
+                                                            Name
+                                                            FROM RecordType
+                                                            WHERE ID =: recordIdList];
+                        Map<Id,String> recordTypeMap = new Map<Id,String>();
+                        for(RecordType eachRecordType : recordTypeList){
+                            if(String.isBlank(eachRecordType.Name) == false && eachRecordType.Name == ConstantValues.SELF_EMPLOYED){
+                                selfEmployed = true;
+                            }
+                            recordTypeMap.put(eachRecordType.Id,eachRecordType.Name);
+                        }
+                        for(genesis__Employment_Information__c eachEmployment : employmentList){
+                            if(recordTypeMap.containsKey(eachEmployment.RecordTypeId)
+                                && recordTypeMap.get(eachEmployment.RecordTypeId) == ConstantValues.SELF_EMPLOYED){
+                                    if(eachEmployment.Months_Self_Employed__c < monthsSelfEmployed){
+                                        monthsSelfEmployed = eachEmployment.Months_Self_Employed__c;
+                                    }
+                                    appList[0].Employment_Type__c = ConstantValues.SELF_EMPLOYED;
+                            }
+                        }
+                        if(monthsSelfEmployed < 1000000000){
+                            appList[0].Months_Self_Employed__c = monthsSelfEmployed;
+                        }
+                        else{
+                            appList[0].Months_Self_Employed__c = null;
+                        }
+                        if(employmentList.size() > 0 && selfEmployed == false
+                            && recordTypeMap.containsKey(employmentList[0].RecordTypeId)){
+                            appList[0].Employment_Type__c = recordTypeMap.get(employmentList[0].RecordTypeId);
+                        }
+                    }
+                    else{
+                        List <clcommon__Party__c> guarantorPartyList = [SELECT Id,
+                                                                            Employment_Type__c
+                                                                        FROM clcommon__Party__c
+                                                                        WHERE genesis__Application__c =: appId
+                                                                        AND Party_Type_Name__c =: ConstantValues.GUARANTOR
+                                                                        AND Legal_Entity_Type__c =: ConstantValues.indType
+                                                                        AND Employment_Type__c != NULL
+                                                                        ORDER BY CreatedDate];
+                        if(guarantorPartyList.size() > 0){
+                            appList[0].Employment_Type__c = guarantorPartyList[0].Employment_Type__c;
+                        }
+                    }
+                } 
+                update appList;
+                return ConstantValues.SUCCESS_STATUS;           
+            } 
+            else {
+                return null;
+            }                                       
+        }
+        catch (Exception ex) {
+            Database.rollback(sp);
+            GenericUtility.insertLog('SkuidValuesUpdateHelper.updateEmploymentTypeMonthsSelfEmployed', ex);
             return ConstantValues.GENERAL_ERROR;
         }
     }
