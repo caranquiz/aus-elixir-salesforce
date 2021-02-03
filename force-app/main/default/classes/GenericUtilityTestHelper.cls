@@ -3,6 +3,8 @@ Company: Cloudkaptan Consultancy Services Pvt. Ltd.
 Author: Rameswari Barman
 Description: This class provides coverage to PricingUpdateCtrl.
 Development Date: 20/7/2020
+Last Modified By : Rameswari Barman
+Last Modified Date : 03/02/2021
 */
 @isTest
 public with sharing class GenericUtilityTestHelper {
@@ -69,6 +71,7 @@ public with sharing class GenericUtilityTestHelper {
     app.Interest_type__c = 'Variable';
     app.genesis__Status__c = 'LOO Accepted';
     app.genesis__Expected_Start_Date__c = System.today();
+    app.genesis__Account__c = accountId;
     insert app;
     return app;
   }
@@ -1463,5 +1466,15 @@ public with sharing class GenericUtilityTestHelper {
     party.genesis__Application__c = appId;
     insert party;
     return party;
+  }
+  public static genesis__Employment_Information__c createEmploymentInformation(Id recordId,Id partyId){
+    genesis__Employment_Information__c employmentEntry = new genesis__Employment_Information__c(
+      Primary_Employment__c = true,
+      RecordTypeId = recordId,
+      Months_Self_Employed__c = 10,
+      Party__c = partyId
+    );
+    insert employmentEntry;
+    return employmentEntry;
   }
 }

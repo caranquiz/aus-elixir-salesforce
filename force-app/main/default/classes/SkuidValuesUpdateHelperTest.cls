@@ -4,7 +4,7 @@
 /* Created Date         : 07/01/2021 */
 /* Developed By         : Rameswari Barman */
 /* Description          : This test class gives coverage to SkuidValuesUpdateHelper apex class. */
-/* Last Modified Date   : 07/01/2021 */
+/* Last Modified Date   : 03/02/2021 */
 /* Last Modified By     : Rameswari Barman*/
 /*********************************************************************************************************/
 
@@ -16,7 +16,13 @@ private class SkuidValuesUpdateHelperTest {
     System.AssertNotEquals(
       legalEntity.Id,
       null,
-      'Legal Entity inserted successfully.'
+      'Individual Legal Entity inserted successfully.'
+    );
+    clcommon__Legal_Entity__c companyLegalEntity = GenericUtilityTestHelper.returnCompanyLegalEntity();
+    System.AssertNotEquals(
+      companyLegalEntity.Id,
+      null,
+      'Company Legal Entity inserted successfully.'
     );
     //Insert Dummy Account
     account dummyClientAccount = GenericUtilityTestHelper.insertDummyAccount();
@@ -61,6 +67,15 @@ private class SkuidValuesUpdateHelperTest {
       null,
       'Party type insertion is successful'
     );
+    //Insert Guarantor Party Type
+    clcommon__Party_Type__c partyType2 = GenericUtilityTestHelper.insertPartyType(
+      'Guarantor'
+    );
+    System.assertNotEquals(
+      partyType2.Id,
+      null,
+      'Party type insertion is successful'
+    );
     //Inserting Borrower Party
     clcommon__Party__c party = GenericUtilityTestHelper.createBorowerParty(
       borrowerAccount,
@@ -70,7 +85,18 @@ private class SkuidValuesUpdateHelperTest {
     System.AssertNotEquals(
       party.Id,
       null,
-      'Collateral inserted successfully!'
+      'Party inserted successfully!'
+    );
+    //Inserting Guarantor Party
+    clcommon__Party__c guarantorParty = GenericUtilityTestHelper.createBorowerParty(
+      borrowerAccount,
+      partyType2.Id,
+      app.Id
+    );
+    System.AssertNotEquals(
+      guarantorParty.Id,
+      null,
+      'Party inserted successfully!'
     );
     //Insert Application Collaterals
     genesis__Application_Collateral__c appCollateral = GenericUtilityTestHelper.returnAppCollateral(
@@ -94,6 +120,30 @@ private class SkuidValuesUpdateHelperTest {
       null,
       'S&P postcode inserted successfully!'
     );
+    List <RecordType> recordTypeList = [SELECT id,
+                                          name,
+                                          sobjectType,
+                                          DeveloperName 
+                                        FROM RecordType 
+                                        WHERE sobjectType = 'genesis__Employment_Information__c' 
+                                        AND DeveloperName='Self_Employed'];
+    System.assertEquals(recordTypeList.size(),1,'Record Type inserted successfully!');                                    
+    genesis__Employment_Information__c employment = GenericUtilityTestHelper.createEmploymentInformation(
+      recordTypeList[0].Id,
+      party.Id
+    );  
+    System.assertEquals(employment.Id != null,
+      true,
+      'Employment for Borrower inserted successfully!'
+    );         
+    genesis__Employment_Information__c employment2 = GenericUtilityTestHelper.createEmploymentInformation(
+      recordTypeList[0].Id,
+      guarantorParty.Id
+    ); 
+    System.assertEquals(employment2.Id != null,
+      true,
+      'Employment for Borrower inserted successfully!'
+    );     
   }
   @isTest
   static void locationValuesTest() {
@@ -154,6 +204,46 @@ private class SkuidValuesUpdateHelperTest {
     Test.startTest();
     SkuidValuesUpdateHelper.updateFirstPaymentDate(null);
     SkuidValuesUpdateHelper.updateFirstPaymentDate(appList[0].Id);
+    Test.stopTest();
+  }
+  @isTest
+  static void updateEmploymentDetailsTest() {
+    List<genesis__Applications__c> appList = [
+      SELECT id
+      FROM genesis__Applications__c
+      LIMIT 1
+    ];
+    System.assertEquals(appList.size(), 1, 'Application is present.');
+    List<clcommon__Legal_Entity__c> legalEntityList = [
+      SELECT Id
+      FROM clcommon__Legal_Entity__c
+      WHERE Name = 'Individual'];
+    System.assertEquals(legalEntityList.size(), 1, 'Legal Entity is present.');
+    appList[0].Legal_Entity__c = legalEntityList[0].Id;
+    update appList;
+    Test.startTest();
+    SkuidValuesUpdateHelper.updateEmploymentTypeMonthsSelfEmployed(null);
+    SkuidValuesUpdateHelper.updateEmploymentTypeMonthsSelfEmployed(appList[0].Id);
+    Test.stopTest();
+  }
+  @isTest
+  static void updateEmploymentDetailsTest2() {
+    List<genesis__Applications__c> appList = [
+      SELECT id
+      FROM genesis__Applications__c
+      LIMIT 1
+    ];
+    System.assertEquals(appList.size(), 1, 'Application is present.');
+    List<clcommon__Legal_Entity__c> legalEntityList = [
+      SELECT Id
+      FROM clcommon__Legal_Entity__c
+      WHERE Name = 'Company'];
+    System.assertEquals(legalEntityList.size(), 1, 'Legal Entity is present.');
+    appList[0].Legal_Entity__c = legalEntityList[0].Id;
+    update appList;
+    Test.startTest();
+    SkuidValuesUpdateHelper.updateEmploymentTypeMonthsSelfEmployed(null);
+    SkuidValuesUpdateHelper.updateEmploymentTypeMonthsSelfEmployed(appList[0].Id);
     Test.stopTest();
   }
 }
