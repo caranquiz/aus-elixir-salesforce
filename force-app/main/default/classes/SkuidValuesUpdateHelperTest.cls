@@ -136,11 +136,11 @@ private class SkuidValuesUpdateHelperTest {
       true,
       'Employment for Borrower inserted successfully!'
     );         
-    genesis__Employment_Information__c employment2 = GenericUtilityTestHelper.createEmploymentInformation(
+    genesis__Employment_Information__c employmentInformation = GenericUtilityTestHelper.createEmploymentInformation(
       recordTypeList[0].Id,
       guarantorParty.Id
     ); 
-    System.assertEquals(employment2.Id != null,
+    System.assertEquals(employmentInformation.Id != null,
       true,
       'Employment for Borrower inserted successfully!'
     );     
@@ -207,7 +207,7 @@ private class SkuidValuesUpdateHelperTest {
     Test.stopTest();
   }
   @isTest
-  static void updateEmploymentDetailsTest() {
+  static void updateEmploymentDetailsIndividualTest() {
     List<genesis__Applications__c> appList = [
       SELECT id
       FROM genesis__Applications__c
@@ -227,7 +227,7 @@ private class SkuidValuesUpdateHelperTest {
     Test.stopTest();
   }
   @isTest
-  static void updateEmploymentDetailsTest2() {
+  static void updateEmploymentDetailsCompanyTest() {
     List<genesis__Applications__c> appList = [
       SELECT id
       FROM genesis__Applications__c

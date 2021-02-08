@@ -61,19 +61,19 @@ public with sharing class GenericUtilityTestHelper {
     Id accountId,
     Id clProdId
   ) {
-    genesis__Applications__c app = new genesis__Applications__c();
-    app.genesis__CL_Product__c = clProdId;
-    app.genesis__Loan_Amount__c = 150000;
-    app.Repayment_Type__c = 'Principal and Interest';
-    app.Expected_security_value__c = 180000;
-    app.Risk_grade_list__c = 'Near Prime +';
-    app.Document_Type__c = 'Full Doc';
-    app.Interest_type__c = 'Variable';
-    app.genesis__Status__c = 'LOO Accepted';
-    app.genesis__Expected_Start_Date__c = System.today();
-    app.genesis__Account__c = accountId;
-    insert app;
-    return app;
+    genesis__Applications__c objApplication = new genesis__Applications__c();
+    objApplication.genesis__CL_Product__c = clProdId;
+    objApplication.genesis__Loan_Amount__c = 150000;
+    objApplication.Repayment_Type__c = 'Principal and Interest';
+    objApplication.Expected_security_value__c = 180000;
+    objApplication.Risk_grade_list__c = 'Near Prime +';
+    objApplication.Document_Type__c = 'Full Doc';
+    objApplication.Interest_type__c = 'Variable';
+    objApplication.genesis__Status__c = 'LOO Accepted';
+    objApplication.genesis__Expected_Start_Date__c = System.today();
+    objApplication.genesis__Account__c = accountId;
+    insert objApplication;
+    return objApplication;
   }
   public static genesis__Rate_Card_Setup_Header__c insertRateHeader() {
     genesis__Rate_Card_Setup_Header__c ratecardHeader = new genesis__Rate_Card_Setup_Header__c();
