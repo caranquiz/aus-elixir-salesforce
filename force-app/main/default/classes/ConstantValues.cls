@@ -719,6 +719,8 @@ global class ConstantValues {
   public static final String SHARE_HOLDER_ARRAY = 'share-holder=(';
   public static final String SHARE_HOLDER_OBJECT = 'share-holder={';
   public static final String INDIVIDUAL_SHARE_HOLDER = 'individual-share-holder';
+  public static final String INDIVIDUAL_SHARE_HOLDER_ARRAY = 'individual-share-holder=(';
+  public static final String INDIVIDUAL_SHARE_HOLDER_OBJECT = 'individual-share-holder={';
   public static final String ORGANISATION_SHARE_HOLDER = 'organisation-share-holder';
   public static final String ORGANISATION_NAME = 'organisation-name';
   public static final String BENEFICIAL_OWNERSHIP = 'beneficial-ownership';

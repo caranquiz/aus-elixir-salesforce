@@ -1010,24 +1010,98 @@ public class EquifaxCompanyEnquiryResponseHelper {
               ConstantValues.SHARE_HOLDER_LIST
             ))
             .get(ConstantValues.SHARE_HOLDER));
+            Integer check;
           for (Object each : refShareholders) {
+            check = 0;
+            Map<String,Object> reMap = (Map<String,Object>)each;
             Director__c shareholderObj = new Director__c();
             shareholderObj.Party__c = partyObj.Id;
             shareholderObj.Entity_Type__c = ConstantValues.SHAREHOLDER;
-
-            if (
-              ((Map<String, Object>) each) != null &&
-              ((Map<String, Object>) ((Map<String, Object>) each)
-                .get(ConstantValues.INDIVIDUAL_SHARE_HOLDER)) != null &&
-              ((Map<String, Object>) ((Map<String, Object>) ((Map<String, Object>) each)
-                  .get(ConstantValues.INDIVIDUAL_SHARE_HOLDER))
-                .get(ConstantValues.INDIVIDUAL_NAME)) != null
-            ) {
-              shareholderObj.Entity_Name__c = indSharefullName(
-                ((Map<String, Object>) ((Map<String, Object>) ((Map<String, Object>) each)
-                    .get(ConstantValues.INDIVIDUAL_SHARE_HOLDER))
-                  .get(ConstantValues.INDIVIDUAL_NAME))
-              );
+            if(reMap != null && reMap.get(ConstantValues.INDIVIDUAL_SHARE_HOLDER) != null){
+              if(String.valueOf(reMap).contains(ConstantValues.SHARE_HOLDER_ARRAY)){
+                List<Object> individualShareholderList = (List<Object>)reMap.get(ConstantValues.INDIVIDUAL_SHARE_HOLDER);
+                if(individualShareholderList.size() > 0){
+                  check ++;
+                  for(Object eachindividualShareholder : individualShareholderList){
+                    shareholderObj = new Director__c();
+                    shareholderObj.Party__c = partyObj.Id;
+                    shareholderObj.Entity_Type__c = ConstantValues.SHAREHOLDER;
+                    if (eachindividualShareholder != NULL && ((Map<String,Object>)eachindividualShareholder).get(ConstantValues.INDIVIDUAL_NAME) != null) {
+                      shareholderObj.Entity_Name__c = indSharefullName((Map<String,Object>)((Map<String,Object>)eachindividualShareholder).get(ConstantValues.INDIVIDUAL_NAME)
+                      );
+                    }
+                    if (eachindividualShareholder != NULL && ((Map<String, Object>)eachindividualShareholder).get(ConstantValues.ADDRESS_LINES) != null) {
+                      shareholderObj.Address__c = processAddressLines((Map<String, Object>)((Map<String, Object>)eachindividualShareholder).get(ConstantValues.ADDRESS_LINES));
+                    }
+                    if (
+                      ((Map<String, Object>) each) != null &&
+                      ((Map<String, Object>) ((Map<String, Object>) each)
+                        .get(ConstantValues.BENEFICIAL_OWNERSHIP)) != null
+                    ) {
+                      shareholderObj.Beneficially_Held__c = (String) ((Map<String, Object>) ((Map<String, Object>) each)
+                          .get(ConstantValues.BENEFICIAL_OWNERSHIP))
+                        .get(ConstantValues.NODE_VALUE);
+                    }
+                    if (
+                      ((Map<String, Object>) each) != null &&
+                      ((Map<String, Object>) ((Map<String, Object>) each)
+                        .get(ConstantValues.SHARE_CLASS_CODE)) != null
+                    ) {
+                      shareholderObj.Class_of_shares__c = (String) ((Map<String, Object>) ((Map<String, Object>) each)
+                          .get(ConstantValues.SHARE_CLASS_CODE))
+                        .get(ConstantValues.NODE_VALUE);
+                    }
+                    if (
+                      ((Map<String, Object>) each) != null &&
+                      ((Map<String, Object>) ((Map<String, Object>) each)
+                        .get(ConstantValues.SHARES_HELD)) != null &&
+                      (String) ((Map<String, Object>) ((Map<String, Object>) each)
+                          .get(ConstantValues.SHARES_HELD))
+                        .get(ConstantValues.NODE_VALUE) != null
+                    ) {
+                      String shareIssued = (String) ((Map<String, Object>) ((Map<String, Object>) each)
+                          .get(ConstantValues.SHARES_HELD))
+                        .get(ConstantValues.NODE_VALUE);
+                      if (shareIssued != null) {
+                        shareholderObj.Number_of_shares_issued__c = Decimal.valueOf(
+                          shareIssued
+                        );
+                      }
+                    }
+                    entityList.add(shareholderObj);
+                  }
+                }
+              }
+              else{
+                  if (
+                    ((Map<String, Object>) each) != null &&
+                    ((Map<String, Object>) ((Map<String, Object>) each)
+                      .get(ConstantValues.INDIVIDUAL_SHARE_HOLDER)) != null &&
+                    ((Map<String, Object>) ((Map<String, Object>) ((Map<String, Object>) each)
+                        .get(ConstantValues.INDIVIDUAL_SHARE_HOLDER))
+                      .get(ConstantValues.INDIVIDUAL_NAME)) != null
+                    ) { 
+                      shareholderObj.Entity_Name__c = indSharefullName(
+                        ((Map<String, Object>) ((Map<String, Object>) ((Map<String, Object>) each)
+                            .get(ConstantValues.INDIVIDUAL_SHARE_HOLDER))
+                          .get(ConstantValues.INDIVIDUAL_NAME))
+                      );
+                    }
+                    if (
+                      ((Map<String, Object>) each) != null &&
+                      ((Map<String, Object>) ((Map<String, Object>) each)
+                        .get(ConstantValues.INDIVIDUAL_SHARE_HOLDER)) != null &&
+                      ((Map<String, Object>) ((Map<String, Object>) ((Map<String, Object>) each)
+                          .get(ConstantValues.INDIVIDUAL_SHARE_HOLDER))
+                        .get(ConstantValues.ADDRESS_LINES)) != null
+                    ) {
+                      shareholderObj.Address__c = processAddressLines(
+                        ((Map<String, Object>) ((Map<String, Object>) ((Map<String, Object>) each)
+                            .get(ConstantValues.INDIVIDUAL_SHARE_HOLDER))
+                          .get(ConstantValues.ADDRESS_LINES))
+                      );
+                    }
+              }
             }
             if (
               ((Map<String, Object>) each) != null &&
@@ -1041,20 +1115,6 @@ public class EquifaxCompanyEnquiryResponseHelper {
                     .get(ConstantValues.ORGANISATION_SHARE_HOLDER))
                   .get(ConstantValues.ORGANISATION_NAME))
                 .get(ConstantValues.NODE_VALUE);
-            }
-            if (
-              ((Map<String, Object>) each) != null &&
-              ((Map<String, Object>) ((Map<String, Object>) each)
-                .get(ConstantValues.INDIVIDUAL_SHARE_HOLDER)) != null &&
-              ((Map<String, Object>) ((Map<String, Object>) ((Map<String, Object>) each)
-                  .get(ConstantValues.INDIVIDUAL_SHARE_HOLDER))
-                .get(ConstantValues.ADDRESS_LINES)) != null
-            ) {
-              shareholderObj.Address__c = processAddressLines(
-                ((Map<String, Object>) ((Map<String, Object>) ((Map<String, Object>) each)
-                    .get(ConstantValues.INDIVIDUAL_SHARE_HOLDER))
-                  .get(ConstantValues.ADDRESS_LINES))
-              );
             }
             if (
               ((Map<String, Object>) each) != null &&
@@ -1105,7 +1165,9 @@ public class EquifaxCompanyEnquiryResponseHelper {
                 );
               }
             }
-            entityList.add(shareholderObj);
+            if(check == 0){
+              entityList.add(shareholderObj);
+            }
           }
         } else if (
           ((Map<String, Object>) commonOwnOff.get(
