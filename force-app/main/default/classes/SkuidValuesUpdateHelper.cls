@@ -207,7 +207,6 @@ global with sharing class SkuidValuesUpdateHelper {
     }
     //Method to update Employment Tyep and Months Self Employed in applivation
     Webservice static String updateEmploymentTypeMonthsSelfEmployed(Id appId){
-        Savepoint sp = Database.setSavepoint();
         Decimal monthsSelfEmployed = 1000000000;
         Boolean selfEmployed = false;
         try{
@@ -318,7 +317,6 @@ global with sharing class SkuidValuesUpdateHelper {
             }                                       
         }
         catch (Exception ex) {
-            Database.rollback(sp);
             GenericUtility.insertLog('SkuidValuesUpdateHelper.updateEmploymentTypeMonthsSelfEmployed', ex);
             return ConstantValues.GENERAL_ERROR;
         }
