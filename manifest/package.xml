@@ -2,6 +2,8 @@
     <Package xmlns="http://soap.sforce.com/2006/04/metadata">
     <types>
         <members>genesis__Applications__c.Loan_Status_Commentary__c</members>
+        <members>loan__Loan_Account__c.Remaining_IO_Period__c</members>
+        <members>loan__Loan_Account__c.Remaining_Fixed_Period__c</members>
         <name>CustomField</name>
     </types>
     <types>

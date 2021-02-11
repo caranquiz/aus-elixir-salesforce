@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Remaining_Fixed_Period__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF(ISPICKVAL(loan__Loan_Status__c,&apos;Active - Good Standing&apos;) || ISPICKVAL(loan__Loan_Status__c,&apos;Active - Bad Standing&apos;) || ISPICKVAL(loan__Loan_Status__c,&apos;Active - Matured&apos;),(IF(ISPICKVAL(Application__r.Interest_type__c, &apos;Variable&apos;),0,(IF(ISPICKVAL(Application__r.Interest_type__c, &apos;Fixed Rate&apos;),IF(Fixed_Rate_Term__c &gt; 0 &amp;&amp; ((Fixed_Rate_Term__c - Total_no_of_generated_bills__c)&gt;0),(Fixed_Rate_Term__c - Total_no_of_generated_bills__c), 0), 0) ))), 0)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Remaining Fixed Period</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>
