@@ -20,7 +20,8 @@ global class EquifaxCompanyEnquiryCallout {
         SELECT
           ID,
           clcommon__Account__r.clcommon__Legal_Entity_Type__c,
-          clcommon__Type__c
+          clcommon__Type__c,
+          Credit_Report_Enquiry_Callout_Made__c
         FROM clcommon__Party__c
         WHERE ID = :partyid
       ];
@@ -74,6 +75,8 @@ global class EquifaxCompanyEnquiryCallout {
         queryIDMap,
         requestParamMap
       );
+      partyInfoList[0].Credit_Report_Enquiry_Callout_Made__c = true;
+      update partyInfoList;
       //Storing Reponse as Attachment
       Request_And_Response_Storage__c responseSettings = Request_And_Response_Storage__c.getOrgDefaults();
       

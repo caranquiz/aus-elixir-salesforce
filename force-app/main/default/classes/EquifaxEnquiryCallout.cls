@@ -33,7 +33,7 @@ global with sharing class EquifaxEnquiryCallout {
       }
       genesis__Applications__c appObj = appList[0];
       List<clcommon__Party__c> partyList = [
-        SELECT Id, Party_Type_Name__c
+        SELECT Id, Party_Type_Name__c,Credit_Report_Enquiry_Callout_Made__c
         FROM clcommon__Party__c
         WHERE Id = :partyId
       ];
@@ -86,6 +86,8 @@ global with sharing class EquifaxEnquiryCallout {
         queryIdMap,
         requestParamMap
       );
+      partyObj.Credit_Report_Enquiry_Callout_Made__c = true;
+      update partyObj;
       //Storing Reponse as Attachment
       Request_And_Response_Storage__c responseSettings = Request_And_Response_Storage__c.getOrgDefaults();
       
