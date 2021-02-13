@@ -717,13 +717,16 @@ global class ConstantValues {
   public static final String SHARE_HOLDER_LIST = 'share-holder-list';
   public static final String SHARE_HOLDER = 'share-holder';
   public static final String SHARE_HOLDER_ARRAY = 'share-holder=(';
+  public static final String SHARE_HOLDER_ARRAY_LIST = 'share-holder=({';
   public static final String SHARE_HOLDER_OBJECT = 'share-holder={';
+  public static final String SINGLE_SHARE_HOLDER_OBJECT = '{NodeValue=, share-holder={NodeValue=';
   public static final String INDIVIDUAL_SHARE_HOLDER = 'individual-share-holder';
   public static final String INDIVIDUAL_SHARE_HOLDER_ARRAY = 'individual-share-holder=(';
   public static final String INDIVIDUAL_SHARE_HOLDER_OBJECT = 'individual-share-holder={';
   public static final String ORGANISATION_SHARE_HOLDER = 'organisation-share-holder';
   public static final String ORGANISATION_NAME = 'organisation-name';
   public static final String BENEFICIAL_OWNERSHIP = 'beneficial-ownership';
+  public static final String JOINTLY_HELD = 'joint-holding';
   public static final String SHARE_CLASS_CODE = 'share-class-code';
   public static final String SHARES_HELD = 'shares-held';
   public static final String ORGANISATION_CREDIT_HISTORY = 'organisation-credit-history';
