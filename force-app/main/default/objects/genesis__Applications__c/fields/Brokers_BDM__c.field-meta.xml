@@ -4,9 +4,8 @@
     <deleteConstraint>SetNull</deleteConstraint>
     <externalId>false</externalId>
     <label>Brokers BDM</label>
-    <referenceTo>Account</referenceTo>
-    <relationshipLabel>Applications (Brokers BDM)</relationshipLabel>
-    <relationshipName>Applications3</relationshipName>
+    <referenceTo>User</referenceTo>
+    <relationshipName>Applications</relationshipName>
     <required>false</required>
     <trackFeedHistory>false</trackFeedHistory>
     <trackHistory>false</trackHistory>
