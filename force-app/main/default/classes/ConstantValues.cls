@@ -957,4 +957,6 @@ global class ConstantValues {
   public static final String START_DATE_MISSING = 'Please provide the expected start Date';
   public static final String CATEGORY_3_OR_4 = 'Cat 3/Cat 4';
   public static final String DRIVERS_LICENSE_KEY = '__drivers__licence__wkey';
+  public static final String MOBILE_TAG = 'Mobile';
+  public static final String OWNER_OCCUPIED = 'Owner Occupied';
 }

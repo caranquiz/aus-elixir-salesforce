@@ -4,7 +4,7 @@
 /* Created Date         : 29/12/2020 */
 /* Developed By         : Rameswari Barman */
 /* Description          : This class is used to update values when called from skuid*/
-/* Last Modified Date   : 03/02/2021 */
+/* Last Modified Date   : 24/02/2021 */
 /* Last Modified By     : Rameswari Barman */
 /****************************************************************************************************/
 
@@ -320,5 +320,108 @@ global with sharing class SkuidValuesUpdateHelper {
             GenericUtility.insertLog('SkuidValuesUpdateHelper.updateEmploymentTypeMonthsSelfEmployed', ex);
             return ConstantValues.GENERAL_ERROR;
         }
+    }
+    //This method updates individual loan party type values in Solicitors Instructions Document
+    Webservice static String updateLoanPartyDetails(Id appId){
+        try{
+            Integer countSecurity=0,countIndividualApplicants = 0;
+            if(String.isBlank(appId)){
+                return null;
+            }
+            //Querying the Borrower Party
+            List <clcommon__Party__c> borrowerPartyList = [Select Id,
+                                                            Post_Settlement_Address__c,
+                                                            Pre_Settlement_Address__c,
+                                                            genesis__Application__c,
+                                                            genesis__Application__r.Primary_loan_purpose_list__c,
+                                                            Solictors_Document_Utility_Phone__c,
+                                                            Legal_Entity_Type__c,
+                                                            clcommon__Contact__c,
+                                                            Party_Type_Name__c
+                                                            From clcommon__Party__c
+                                                            where genesis__Application__c =: appId
+                                                            and clcommon__Contact__c != null
+                                                            and Legal_Entity_Type__c =: ConstantValues.indType
+                                                        ];
+            if(borrowerPartyList.size() > 0 == false){
+                return null;
+            }
+            List <clcommon__Collateral__c> collateralList = [select Id,
+                                                                Full_Address__c,
+                                                                Primary_Purpose__c
+                                                                from clcommon__Collateral__c
+                                                                where Id in (Select genesis__Collateral__c 
+                                                                                from genesis__Application_Collateral__c 
+                                                                                where genesis__Application__c =: appId
+                                                                            )
+                                                                and Full_Address__c != NULL];
+            List <Id> contactIdList = new List<Id>();
+            for(clcommon__Party__c party : borrowerPartyList){
+                if(party.Legal_Entity_Type__c == ConstantValues.indType){
+                    contactIdList.add(party.clcommon__Contact__c);
+                }
+            }
+            List <clcommon__Address__c> individualAddressList = [SELECT Id,
+                                                                    Full_Address__c,
+                                                                    clcommon__Contact__c
+                                                                    FROM clcommon__Address__c
+                                                                    WHERE ((Other_At__c = TRUE 
+                                                                        AND clcommon__Contact__r.Is_this_the_Postal_Address__c =: ConstantValues.NO_TAG)
+                                                                    OR (Mail_At__c = TRUE 
+                                                                    AND clcommon__Contact__r.Is_this_the_Postal_Address__c =: ConstantValues.YES_TAG))
+                                                                    AND (clcommon__Contact__c IN (SELECT clcommon__Contact__c FROM clcommon__Party__c
+                                                                    WHERE genesis__Application__c =: appId))
+                                                                ];
+            List <Telephone_Contact_Number__c> telephoneList = [Select Id,
+                                                                    Phone_Number__c ,
+                                                                    Contact__c
+                                                                    from Telephone_Contact_Number__c 
+                                                                    where Phone_Type__c =: ConstantValues.MOBILE_TAG
+                                                                    and Contact__c =: contactIdList 
+                                                                    order by CreatedDate DESC];
+            for(clcommon__Party__c party : borrowerPartyList){
+                countSecurity=0;
+                if(party.Party_Type_Name__c == ConstantValues.BORROWER || party.Party_Type_Name__c == ConstantValues.CO_APPLICANT || party.Party_Type_Name__c == ConstantValues.GUARANTOR || party.Party_Type_Name__c == ConstantValues.DIRECTOR){
+                    countIndividualApplicants++;
+                    if(party.Legal_Entity_Type__c == ConstantValues.indType){
+                        party.Solictors_Document_Utility_Phone__c = null;
+                        party.Post_Settlement_Address__c = null;
+                        party.Pre_Settlement_Address__c = null;
+                        for(Telephone_Contact_Number__c mobile : telephoneList){
+                            if(mobile.Contact__c == party.clcommon__Contact__c){
+                                party.Solictors_Document_Utility_Phone__c = mobile.Phone_Number__c;
+                            }
+                        }
+                        for(clcommon__Collateral__c collateral : collateralList){
+                            countSecurity++;
+                            if(party.genesis__Application__r.Primary_loan_purpose_list__c == ConstantValues.OWNER_OCCUPIED && party.Party_Type_Name__c != ConstantValues.GUARANTOR){
+                                if(countSecurity > 1){
+                                    party.Post_Settlement_Address__c = party.Post_Settlement_Address__c + ' and '+collateral.Full_Address__c;
+                                    }
+                                else{
+                                    party.Post_Settlement_Address__c = collateral.Full_Address__c;
+                                    }
+                            }
+                        }
+                        for(clcommon__Address__c address : individualAddressList){
+                            if(address.clcommon__Contact__c == party.clcommon__Contact__c){
+                                party.Pre_Settlement_Address__c = address.Full_Address__c;
+                                if(party.genesis__Application__r.Primary_loan_purpose_list__c != ConstantValues.OWNER_OCCUPIED || party.Party_Type_Name__c == ConstantValues.GUARANTOR){
+                                    party.Post_Settlement_Address__c = address.Full_Address__c;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            if(countIndividualApplicants > 0){
+                update borrowerPartyList;
+            }
+        }
+        catch (Exception ex) {
+            GenericUtility.insertLog('SkuidValuesUpdateHelper.updateMortgagorName', ex);
+            return ConstantValues.GENERAL_ERROR;
+        }
+        return ConstantValues.SUCCESS;
     }
 }
