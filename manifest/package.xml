@@ -4,12 +4,17 @@
         <members>clcommon__Party__c.Post_Settlement_Address__c</members>
         <members>clcommon__Party__c.Pre_Settlement_Address__c</members>
         <members>clcommon__Party__c.Solictors_Document_Utility_Phone__c</members>
+        <members>clcommon__Party__c.Applicant_Name_with_Salutation__c</members>
         <name>CustomField</name>
     </types>
     <types>
         <members>ConstantValues</members>
         <members>SkuidValuesUpdateHelper</members>
         <name>ApexClass</name>
+    </types>
+    <types>
+        <members>genesis__Applications__c.Status_change_control</members>
+        <name>ValidationRule</name>
     </types>
     <version>45.0</version>
 </Package>
