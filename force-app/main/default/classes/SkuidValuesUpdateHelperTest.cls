@@ -31,7 +31,6 @@ private class SkuidValuesUpdateHelperTest {
       null,
       'Account inserted successfully.'
     );
-
     //Inserting Account
     Account borrowerAccount = GenericUtilityTestHelper.returnBorrowerAccount(
       legalEntity.Id
@@ -40,6 +39,15 @@ private class SkuidValuesUpdateHelperTest {
       borrowerAccount.Id,
       null,
       'Borrower Account inserted successfully.'
+    );
+    //Inserting Dummy Contact
+    Contact borrowerContact = GenericUtilityTestHelper.insertDummyContact(
+      borrowerAccount
+    );
+    System.AssertNotEquals(
+      borrowerContact.Id,
+      null,
+      'Borrower Contact inserted successfully.'
     );
     //Inserting CLProduct
     clcommon__CL_Product__c clProd = GenericUtilityTestHelper.returnClProduct();
@@ -244,6 +252,35 @@ private class SkuidValuesUpdateHelperTest {
     Test.startTest();
     SkuidValuesUpdateHelper.updateEmploymentTypeMonthsSelfEmployed(null);
     SkuidValuesUpdateHelper.updateEmploymentTypeMonthsSelfEmployed(appList[0].Id);
+    Test.stopTest();
+  }
+  @isTest
+  static void updateLoanPartyDetailsTest() {
+    List<genesis__Applications__c> appList = [
+      SELECT id
+      FROM genesis__Applications__c
+      LIMIT 1
+    ];
+    System.assertEquals(appList.size(), 1, 'Application is present.');
+    List <clcommon__Party__c> partyList = [
+      SELECT Id,
+        genesis__Application__c,
+        clcommon__Contact__c
+      FROM clcommon__Party__c
+      WHERE genesis__Application__c =: appList[0].Id
+      AND Party_Type_Name__c = 'Borrower'];
+    System.assertEquals(appList.size(), 1, 'Borrower Party is present.');  
+    List<Contact> contactList = [
+      SELECT id
+      FROM Contact
+      LIMIT 1
+    ];
+    System.assertEquals(contactList.size(), 1, 'Contact is present.');
+    partyList[0].clcommon__Contact__c = contactList[0].Id;
+    update partyList;
+    Test.startTest();
+    SkuidValuesUpdateHelper.updateLoanPartyDetails(null);
+    SkuidValuesUpdateHelper.updateLoanPartyDetails(appList[0].Id);
     Test.stopTest();
   }
 }

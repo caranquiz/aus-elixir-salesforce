@@ -10,6 +10,7 @@
     <types>
         <members>ConstantValues</members>
         <members>SkuidValuesUpdateHelper</members>
+        <members>SkuidValuesUpdateHelperTest</members>
         <name>ApexClass</name>
     </types>
     <types>
