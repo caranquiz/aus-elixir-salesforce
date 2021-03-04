@@ -53,6 +53,11 @@
                 <label>Formally Approved</label>
             </value>
             <value>
+                <fullName>Solicitor Instructed</fullName>
+                <default>false</default>
+                <label>Solicitor Instructed</label>
+            </value>
+            <value>
                 <fullName>LOO Issued</fullName>
                 <default>false</default>
                 <label>LOO Issued</label>
