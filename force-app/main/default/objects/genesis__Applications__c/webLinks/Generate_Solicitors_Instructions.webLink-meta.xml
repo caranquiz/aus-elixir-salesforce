@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Generate_Solicitors_Instructions</fullName>
+    <availability>online</availability>
+    <displayType>button</displayType>
+    <encodingKey>UTF-8</encodingKey>
+    <hasMenubar>false</hasMenubar>
+    <hasScrollbars>true</hasScrollbars>
+    <hasToolbar>false</hasToolbar>
+    <height>600</height>
+    <isResizable>true</isResizable>
+    <linkType>url</linkType>
+    <masterLabel>Generate Solicitors Instructions</masterLabel>
+    <openType>newWindow</openType>
+    <position>none</position>
+    <protected>false</protected>
+    <showsLocation>false</showsLocation>
+    <showsStatus>false</showsStatus>
+    <url>/apex/APXTConga4__Conga_Composer?SolMgr=1&amp;serverUrl={!API.Partner_Server_URL_370}&amp;QueryId=[BrokerUnderwriter]aCK2N0000001u8eWAA%3Fpv0%3D{!genesis__Applications__c.Id},[SecurityQuery]aCK2N0000001O7PWAU%3Fpv0%3D{!genesis__Applications__c.Id},[IndBor]aCK2N0000001uljWAA%3Fpv0%3D{!genesis__Applications__c.Id},[IndDir]aCK2N0000001uleWAA%3Fpv0%3D{!genesis__Applications__c.Id},[ComBor]aCK2N0000001ulZWAQ%3Fpv0%3D{!genesis__Applications__c.Id},[TrustBor]aCK2N0000001ulUWAQ%3Fpv0%3D{!genesis__Applications__c.Id}&amp;Id={!genesis__Applications__c.Id}&amp;TemplateId=aCS2N00000000zbWAA&amp;SC0=1&amp;SC1=Attachments&amp;OFN=Solicitors+Instructions+Document+{!genesis__Applications__c.Name}&amp;AttachmentParentID={!genesis__Applications__c.Id}&amp;DefaultPDF=1</url>
+</WebLink>

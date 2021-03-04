@@ -15,5 +15,9 @@
         <members>EquifaxCompanyEnquiryCalloutTest</members>
         <name>ApexClass</name>
     </types>
+    <types>
+        <members>genesis__Applications__c.Generate_Solicitors_Instructions</members>
+        <name>WebLink</name>
+    </types>
     <version>45.0</version>
 </Package>
