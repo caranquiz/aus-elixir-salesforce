@@ -1007,13 +1007,7 @@ public class EquifaxCompanyEnquiryResponseHelper {
         ) {
           List<Object> refShareholders = new List<Object>();
           Map<String, Object> shareHolderMap = ((Map<String, Object>) commonOwnOff.get(ConstantValues.SHARE_HOLDER_LIST));
-          if(shareHolderMap != NULL && String.valueOf(shareHolderMap).contains(ConstantValues.SHARE_HOLDER_ARRAY_LIST) && String.valueOf(shareHolderMap).contains(ConstantValues.SHARE_HOLDER_OBJECT) == false){
-            refShareholders = ((List<Object>) ((Map<String, Object>) commonOwnOff.get(
-              ConstantValues.SHARE_HOLDER_LIST
-            ))
-            .get(ConstantValues.SHARE_HOLDER));
-          }
-          else if(shareHolderMap != NULL && String.valueOf(shareHolderMap).contains(ConstantValues.SHARE_HOLDER_ARRAY_LIST) && String.valueOf(shareHolderMap).contains(ConstantValues.SINGLE_SHARE_HOLDER_OBJECT) == false){
+          if(shareHolderMap != NULL && String.valueOf(shareHolderMap).contains(ConstantValues.SHARE_HOLDER_ARRAY_LIST) && (String.valueOf(shareHolderMap).contains(ConstantValues.SHARE_HOLDER_OBJECT) == false || String.valueOf(shareHolderMap).contains(ConstantValues.SINGLE_SHARE_HOLDER_OBJECT) == false)){
             refShareholders = ((List<Object>) ((Map<String, Object>) commonOwnOff.get(
               ConstantValues.SHARE_HOLDER_LIST
             ))
