@@ -4,7 +4,7 @@
 /* Created Date         : 07/01/2021 */
 /* Developed By         : Rameswari Barman */
 /* Description          : This test class gives coverage to SkuidValuesUpdateHelper apex class. */
-/* Last Modified Date   : 03/02/2021 */
+/* Last Modified Date   : 11/03/2021 */
 /* Last Modified By     : Rameswari Barman*/
 /*********************************************************************************************************/
 
@@ -94,6 +94,27 @@ private class SkuidValuesUpdateHelperTest {
       party.Id,
       null,
       'Party inserted successfully!'
+    );
+    //Inserting Attachment
+    Attachment attach =  GenericUtilityTestHelper.createAttachment(
+      party.Id,'Sample'
+    );
+    System.AssertNotEquals(
+      attach.Id,
+      null,
+      'Attachment inserted successfully!'
+    );
+    //Inserting Document Category
+    clcommon__Document_Category__c docCategory = GenericUtilityTestHelper.createDocumentCategory(
+      app.Id,
+      'Identity Documents',
+      borrowerAccount.Id
+
+    );
+    System.AssertNotEquals(
+      docCategory.Id,
+      null,
+      'Document Category inserted successfully!'
     );
     //Inserting Guarantor Party
     clcommon__Party__c guarantorParty = GenericUtilityTestHelper.createBorowerParty(
@@ -281,6 +302,51 @@ private class SkuidValuesUpdateHelperTest {
     Test.startTest();
     SkuidValuesUpdateHelper.updateLoanPartyDetails(null);
     SkuidValuesUpdateHelper.updateLoanPartyDetails(appList[0].Id);
+    Test.stopTest();
+  }
+  @isTest
+  static void categoryAttachmentCheckAndCreationTest() {
+    List<Attachment> attList = [
+      SELECT Id
+      FROM Attachment
+      LIMIT 1
+    ];
+    System.assertEquals(attList.size(), 1, 'Attachment is present.');
+    List <Id> attachmentIdList = new List<Id>();
+    for(Attachment att : attList){
+      attachmentIdList.add(att.Id);
+    }
+    System.assertEquals(attachmentIdList.size(), 1, 'Attachment Id verified.');
+    List <clcommon__Document_Category__c> docCategoryList = [
+      SELECT Id from clcommon__Document_Category__c limit 1
+    ];
+    System.assertEquals(docCategoryList.size(), 1, 'Document Category is present.');
+    Test.startTest();
+    CategoryAttachmentUtility.categoryAttachmentCheckAndCreation(docCategoryList[0].Id,attachmentIdList);
+    CategoryAttachmentUtility.deleteAttachment(attachmentIdList[0]);
+    Test.stopTest();
+  }
+  @isTest
+  static void categoryAttachmentCheckAndCreationBlankTest() {
+    List<Attachment> attList = [
+      SELECT Id
+      FROM Attachment
+      LIMIT 1
+    ];
+    System.assertEquals(attList.size(), 1, 'Attachment is present.');
+    List <Id> attachmentIdList = new List<Id>();
+    for(Attachment att : attList){
+      attachmentIdList.add(att.Id);
+    }
+    System.assertEquals(attachmentIdList.size(), 1, 'Attachment Id verified.');
+    List <clcommon__Document_Category__c> docCategoryList = [
+      SELECT Id from clcommon__Document_Category__c limit 1
+    ];
+    System.assertEquals(docCategoryList.size(), 1, 'Document Category is present.');
+    Test.startTest();
+    CategoryAttachmentUtility.categoryAttachmentCheckAndCreation(null,attachmentIdList);
+    CategoryAttachmentUtility.categoryAttachmentCheckAndCreation(docCategoryList[0].Id,null);
+    CategoryAttachmentUtility.deleteAttachment(null);
     Test.stopTest();
   }
 }

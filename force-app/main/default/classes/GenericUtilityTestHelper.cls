@@ -1477,4 +1477,23 @@ public with sharing class GenericUtilityTestHelper {
     insert employmentEntry;
     return employmentEntry;
   }
+  public static Attachment createAttachment(Id parentId,String name){
+      Blob bodyBlob=Blob.valueOf('Unit Test Attachment Body');
+      Attachment attach = new Attachment(
+      ParentId = parentId,
+      Name = name,
+    	body=bodyBlob
+    );
+    insert attach;
+    return attach;
+  }
+  public static clcommon__Document_Category__c createDocumentCategory(Id parentId,String name,Id accountId){
+    clcommon__Document_Category__c docCate = new clcommon__Document_Category__c(
+      genesis__Application__c = parentId,
+      clcommon__Category_Name__c = name,
+      clcommon__Account__c = accountId
+    );
+  insert docCate;
+  return docCate;
+}
 }

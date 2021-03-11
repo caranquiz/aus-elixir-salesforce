@@ -959,4 +959,6 @@ global class ConstantValues {
   public static final String DRIVERS_LICENSE_KEY = '__drivers__licence__wkey';
   public static final String MOBILE_TAG = 'Mobile';
   public static final String OWNER_OCCUPIED = 'Owner Occupied';
+  public static final String ATT_DELETION_MESSAGE = 'Attachment has been deleted successfully!';
+  public static final String SUBMITTED =  'Submitted';
 }
