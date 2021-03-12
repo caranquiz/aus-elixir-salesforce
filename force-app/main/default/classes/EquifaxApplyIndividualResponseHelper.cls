@@ -4,8 +4,8 @@
 /* Created Date         : 14/08/2020 */
 /* Developed By         : Souvik */
 /* Description          : This class is used to Parse and Store Apply Individual Response of Equifax */
-/* Last Modified Date   : 2/11/2020 */
-/* Last Modified By     : Souvik */
+/* Last Modified Date   : 12/03/2021 */
+/* Last Modified By     : Rameswari Barman */
 /*********************************************************************************************************/
 
 public class EquifaxApplyIndividualResponseHelper {
@@ -534,6 +534,11 @@ public class EquifaxApplyIndividualResponseHelper {
     if (addr.streetNumber != null) {
       res += ' ' + (String) addr.streetNumber.nodeValue;
     }
+    /****Changes made by Rameswari to include Street Name in individual adress stored in party******/
+    if (addr.streetName != null) {
+      res += ' ' + (String) addr.streetName.nodeValue;
+    }
+    /***********************************************************************************************/
     if (addr.streetType != null) {
       res += ' ' + (String) addr.streetType.nodeValue + ',';
     }
