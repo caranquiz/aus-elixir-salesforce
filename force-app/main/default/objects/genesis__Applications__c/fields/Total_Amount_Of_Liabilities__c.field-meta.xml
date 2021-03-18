@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Total_Amount_Of_Liabilities__c</fullName>
+    <externalId>false</externalId>
+    <label>Total Amount Of Liabilities</label>
+    <summarizedField>genesis__Liability__c.genesis__Payment_Amount__c</summarizedField>
+    <summaryForeignKey>genesis__Liability__c.genesis__Application__c</summaryForeignKey>
+    <summaryOperation>sum</summaryOperation>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Summary</type>
+</CustomField>
