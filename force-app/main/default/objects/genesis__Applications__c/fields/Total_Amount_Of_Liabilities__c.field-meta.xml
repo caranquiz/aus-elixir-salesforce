@@ -3,7 +3,7 @@
     <fullName>Total_Amount_Of_Liabilities__c</fullName>
     <externalId>false</externalId>
     <label>Total Amount Of Liabilities</label>
-    <summarizedField>genesis__Liability__c.genesis__Payment_Amount__c</summarizedField>
+    <summarizedField>genesis__Liability__c.genesis__Original_Amount__c</summarizedField>
     <summaryForeignKey>genesis__Liability__c.genesis__Application__c</summaryForeignKey>
     <summaryOperation>sum</summaryOperation>
     <trackHistory>false</trackHistory>
