@@ -3,7 +3,7 @@
 /* Class Name           : LASDocumentHelper */
 /* Created Date         : 15/03/2021 */
 /* Developed By         : Rameswari Barman */
-/* Description          : */
+/* Description          : This class helps in populating values in records which facilitates in generation of LAS Document*/
 /* Last Modified Date   : 25/03/2021 */
 /* Last Modified By     : Rameswari Barman */
 /****************************************************************************************************/

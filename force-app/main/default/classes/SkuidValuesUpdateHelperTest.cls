@@ -3,8 +3,8 @@
 /* Class Name           : SkuidValuesUpdateHelperTest */
 /* Created Date         : 07/01/2021 */
 /* Developed By         : Rameswari Barman */
-/* Description          : This test class gives coverage to SkuidValuesUpdateHelper apex class. */
-/* Last Modified Date   : 11/03/2021 */
+/* Description          : This test class gives coverage to SkuidValuesUpdateHelper,LASDocumentHelperTest and CategoryAttachmentUtility apex class. */
+/* Last Modified Date   : 25/03/2021 */
 /* Last Modified By     : Rameswari Barman*/
 /*********************************************************************************************************/
 
@@ -172,8 +172,35 @@ private class SkuidValuesUpdateHelperTest {
     System.assertEquals(employmentInformation.Id != null,
       true,
       'Employment for Borrower inserted successfully!'
-    );     
+    ); 
+    genesis__Employment_Information__c employmentInformationOverride = GenericUtilityTestHelper.createEmploymentInformation(
+      recordTypeList[0].Id,
+      guarantorParty.Id
+    ); 
+    System.assertEquals(employmentInformationOverride.Id != null,
+      true,
+      'Employment for Borrower inserted successfully!'
+    );
+    employmentInformationOverride.Override__c = 'Yes';
+    employmentInformationOverride.Company_Name__c = 'ORDE';
+    employmentInformationOverride.Override_Amount__c = '0';
+    employmentInformationOverride.Document_Type__c = 'Full';
+    update employmentInformationOverride;
+
+    genesis__Employment_Information__c employmentInformationIncome = GenericUtilityTestHelper.createEmploymentInformation(
+      recordTypeList[0].Id,
+      guarantorParty.Id
+    ); 
+    System.assertEquals(employmentInformationIncome.Id != null,
+      true,
+      'Employment for Borrower inserted successfully!'
+    );
+    employmentInformationIncome.Previous_Employment__c = false;
+    employmentInformationIncome.genesis__Application__c = app.Id;
+    employmentInformationIncome.Company_Name__c = 'ORDE';
+    update employmentInformationIncome;
   }
+
   @isTest
   static void locationValuesTest() {
     List<genesis__Applications__c> appList = [
@@ -347,6 +374,24 @@ private class SkuidValuesUpdateHelperTest {
     CategoryAttachmentUtility.categoryAttachmentCheckAndCreation(null,attachmentIdList);
     CategoryAttachmentUtility.categoryAttachmentCheckAndCreation(docCategoryList[0].Id,null);
     CategoryAttachmentUtility.deleteAttachment(null);
+    Test.stopTest();
+  }
+  
+  @isTest
+  static void LASDocumentHelperTest() {
+    List<genesis__Applications__c> appList = [
+      SELECT id
+      FROM genesis__Applications__c
+      LIMIT 1
+    ];
+    System.assertEquals(appList.size(), 1, 'Application is present.');
+    Test.startTest();
+    LASDocumentHelper.updateValues(null);
+    LASDocumentHelper.updateValues(appList[0].Id);
+    LASDocumentHelper.updateOverrideValues(null);
+    LASDocumentHelper.updateOverrideValues(appList[0].Id);
+    LASDocumentHelper.updateEmploymentValues(null);
+    LASDocumentHelper.updateEmploymentValues(appList[0].Id);
     Test.stopTest();
   }
 }
