@@ -961,4 +961,6 @@ global class ConstantValues {
   public static final String OWNER_OCCUPIED = 'Owner Occupied';
   public static final String ATT_DELETION_MESSAGE = 'Attachment has been deleted successfully!';
   public static final String SUBMITTED =  'Submitted';
+  public static final String NEW_TAG = 'New';
+  public static final String EXISTING_TAG = 'Existing';
 }
