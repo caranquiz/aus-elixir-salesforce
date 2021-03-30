@@ -1,22 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     <Package xmlns="http://soap.sforce.com/2006/04/metadata">
     <types>
-        <members>LASDocumentHelper</members>
-        <members>EquifaxApplyIndividualReponseHelper</members>
-        <members>EquifaxEnquiryCalloutTest</members>
         <members>ConstantValues</members>
+        <members>SkuidValuesUpdateHelperTest</members>
+        <members>UpdateApplicationValues</members>
+        <members>CategoryAttachmentUtility</members>
+        <members>GenericUtilityTestHelper</members>
         <name>ApexClass</name>
     </types>
      <types>
-        <members>clcommon__Party__c.Applicant_Name_with_Salutation__c</members>
-        <members>clcommon__Party__c.NewExisting__c</members>
-        <members>clcommon__Party__c.Number_of_Disqualified_Directorships__c</members>
-        <members>clcommon__Party__c.Total_Payment_Defaults__c</members>
-        <members>genesis__Applications__c.Total_Amount_Of_Liabilities__c</members>
-        <members>genesis__Employment_Information__c.LAS_Utility_Override_Amt__c</members>
-        <members>genesis__Employment_Information__c.LAS_Utility_Override_Amt_Rendered</members>
-        <members>clcommon__Party__c.LAS_Utility_Show_in_Capacity_Section__c</members>
-        <members>genesis__Employment_Information__c.LAS_Utility_Override_Amt_Rendered__c</members>
+        <members>genesis__Applications__c.Total_Number_of_Securities__c</members>
+        <members>genesis__Applications__c.Pending_Broker__c</members>
         <name>CustomField</name>
     </types>
     <version>45.0</version>
