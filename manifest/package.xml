@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     <Package xmlns="http://soap.sforce.com/2006/04/metadata">
     <types>
+        <members>ABNNameResponseParserTest</members>
+        <members>ABNNameCalloutTest</members>
+        <members>ABNNameResponseParser</members>
+        <members>ABNNameResponse</members>
         <members>ConstantValues</members>
         <members>SkuidValuesUpdateHelperTest</members>
         <members>UpdateApplicationValues</members>
@@ -11,6 +15,9 @@
      <types>
         <members>genesis__Applications__c.Total_Number_of_Securities__c</members>
         <members>genesis__Applications__c.Pending_Broker__c</members>
+        <members>genesis__Applications__c.Recommend_Comments__c</members>
+        <members>genesis__Checklist__c.True_Exception__c</members>
+        <members>Checklist_Detail__c.True_Exception__c</members>
         <name>CustomField</name>
     </types>
     <version>45.0</version>
