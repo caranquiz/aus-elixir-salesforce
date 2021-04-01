@@ -34,6 +34,7 @@ public class ABNNameResponseParser {
         public MainName mainName;
         public ABN ABN;
         public MainName mainTradingName;
+        public MainName dgrFundName;
         public MainName businessName;
         public MainName otherTradingName;
         public String ASICNumber;

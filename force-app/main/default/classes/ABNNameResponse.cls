@@ -62,7 +62,6 @@ public without sharing class ABNNameResponse{
                         }
                     }
                     responsePojo = (ABNNameResponseParser)JSON.deserialize(responseBody, ABNNameResponseParser.class);   
-                    
                     //CHECK IF ROOT IS EMPTY OR NOT            
                     if(responsePojo.response == NULL){
                         //THROW EXCEPTION AS ROOT CONTAINS NO INFORMATION
@@ -179,6 +178,38 @@ public without sharing class ABNNameResponse{
                                         
                                         if(String.isNotBlank(String.valueOf(eachElement.mainTradingName.organisationName))){
                                             tradingOrgNameList.add(String.valueOf(eachElement.mainTradingName.organisationName));
+                                            organizationNameList.add(UNIQUE_BLANK_INDICATOR);
+                                            businessOrgNameList.add(UNIQUE_BLANK_INDICATOR);
+                                            otherTradingNameList.add(UNIQUE_BLANK_INDICATOR);
+                                            legalNameList.add(UNIQUE_BLANK_INDICATOR);
+                                        }else{
+                                           tradingOrgNameList.add(UNIQUE_BLANK_INDICATOR);
+                                        }  
+                                    }
+                                    //CHECKING INSIDE DGR FUND NAME NODE
+                                    if(eachElement.dgrFundName != NULL){
+                                        if(String.isNotBlank(String.valueOf(eachElement.dgrFundName.isCurrentIndicator))){
+                                            tradingNameIndicatorList.add(String.valueOf(eachElement.dgrFundName.isCurrentIndicator)); 
+                                            mainNameCurrentIndi.add(UNIQUE_BLANK_INDICATOR);    
+                                            businessNameIndicatorList.add(UNIQUE_BLANK_INDICATOR);  
+                                            otherTradingIndicatorList.add(UNIQUE_BLANK_INDICATOR); 
+                                            legalCurrentIndicator.add(UNIQUE_BLANK_INDICATOR);  
+                                        }else{
+                                           tradingNameIndicatorList.add(UNIQUE_BLANK_INDICATOR); 
+                                        } 
+                                        
+                                        if(String.isNotBlank(String.valueOf(eachElement.dgrFundName.score))){
+                                            tradingNameScoreList.add(String.valueOf(eachElement.dgrFundName.score)); 
+                                            businessScoreList.add(UNIQUE_BLANK_INDICATOR);
+                                            scoreList.add(UNIQUE_BLANK_INDICATOR) ; 
+                                            otherTradingScoreList.add(UNIQUE_BLANK_INDICATOR);  
+                                            legalScoreList.add(UNIQUE_BLANK_INDICATOR); 
+                                        }else{
+                                           tradingNameScoreList.add(UNIQUE_BLANK_INDICATOR);    
+                                        } 
+                                        
+                                        if(String.isNotBlank(String.valueOf(eachElement.dgrFundName.organisationName))){
+                                            tradingOrgNameList.add(String.valueOf(eachElement.dgrFundName.organisationName));
                                             organizationNameList.add(UNIQUE_BLANK_INDICATOR);
                                             businessOrgNameList.add(UNIQUE_BLANK_INDICATOR);
                                             otherTradingNameList.add(UNIQUE_BLANK_INDICATOR);
@@ -396,49 +427,49 @@ public without sharing class ABNNameResponse{
                         for(Integer i = 0 ; i < sizeOfList; i++){
                             ABN_Company_List__c companyObj = new ABN_Company_List__c();
                             //ASSIGNING ABN INFORMATION INSIDE RECORD
-                            companyObj.ABN_Identifier_Status__c = abnIdentifierStatList.size() > 0 ?  (abnIdentifierStatList.get(i).equalsIgnoreCase(UNIQUE_BLANK_INDICATOR) == false ? abnIdentifierStatList.get(i) : '') : '';
-                            companyObj.ABN_Identifier_Value__c = abnIdentifierValList.size() > 0 ?  (abnIdentifierValList.get(i).equalsIgnoreCase(UNIQUE_BLANK_INDICATOR) == false ? abnIdentifierValList.get(i) : '') : ''; 
+                            companyObj.ABN_Identifier_Status__c = abnIdentifierStatList.size() > i ?  (abnIdentifierStatList.get(i) != NULL && abnIdentifierStatList.get(i).equalsIgnoreCase(UNIQUE_BLANK_INDICATOR) == false ? abnIdentifierStatList.get(i) : '') : '';
+                            companyObj.ABN_Identifier_Value__c = abnIdentifierValList.size() > i ?  (abnIdentifierValList.get(i) != NULL && abnIdentifierValList.get(i).equalsIgnoreCase(UNIQUE_BLANK_INDICATOR) == false ? abnIdentifierValList.get(i) : '') : ''; 
                             
                             //ASSIGNING BUSINESS INFORMATION INSIDE RECORD
-                            companyObj.Business_Current_Indicator__c = businessNameIndicatorList.size() > 0 ?  (businessNameIndicatorList.get(i).equalsIgnoreCase(UNIQUE_BLANK_INDICATOR) == false ? businessNameIndicatorList.get(i) : '') : '';
-                            companyObj.Business_Organization_Name__c = businessOrgNameList.size() > 0 ?  (businessOrgNameList.get(i).equalsIgnoreCase(UNIQUE_BLANK_INDICATOR) == false ? businessOrgNameList.get(i) : '') : ''; 
-                            companyObj.Business_Organization_Score__c = businessScoreList.size() > 0 ?  (businessScoreList.get(i).equalsIgnoreCase(UNIQUE_BLANK_INDICATOR) == false ? Integer.valueOf(businessScoreList.get(i)) : NULL) : NULL;
+                            companyObj.Business_Current_Indicator__c = businessNameIndicatorList.size() > i ?  (businessNameIndicatorList.get(i) != NULL && businessNameIndicatorList.get(i).equalsIgnoreCase(UNIQUE_BLANK_INDICATOR) == false ? businessNameIndicatorList.get(i) : '') : '';
+                            companyObj.Business_Organization_Name__c = businessOrgNameList.size() > i ?  (businessOrgNameList.get(i) != NULL && businessOrgNameList.get(i).equalsIgnoreCase(UNIQUE_BLANK_INDICATOR) == false ? businessOrgNameList.get(i) : '') : ''; 
+                            companyObj.Business_Organization_Score__c = businessScoreList.size() > i ?  (businessScoreList.get(i) != NULL && businessScoreList.get(i).equalsIgnoreCase(UNIQUE_BLANK_INDICATOR) == false ? Integer.valueOf(businessScoreList.get(i)) : NULL) : NULL;
                             
                             //ASSIGNING TRADING INFORMATION INSIDE RECORD
-                            companyObj.Trading_Current_Indicator__c = tradingNameIndicatorList.size() > 0 ?  (tradingNameIndicatorList.get(i).equalsIgnoreCase(UNIQUE_BLANK_INDICATOR) == false ? tradingNameIndicatorList.get(i) : '') : '';
-                            companyObj.Trading_Name_Score__c = tradingNameScoreList.size() > 0 ?  (tradingNameScoreList.get(i).equalsIgnoreCase(UNIQUE_BLANK_INDICATOR) == false ? Integer.valueOf(tradingNameScoreList.get(i)) : NULL) : NULL; 
-                            companyObj.Trading_Organization_Name__c = tradingOrgNameList.size() > 0 ?  (tradingOrgNameList.get(i).equalsIgnoreCase(UNIQUE_BLANK_INDICATOR) == false ? tradingOrgNameList.get(i) : '') : '';
+                            companyObj.Trading_Current_Indicator__c = tradingNameIndicatorList.size() > i ?  (tradingNameIndicatorList.get(i) != NULL && tradingNameIndicatorList.get(i).equalsIgnoreCase(UNIQUE_BLANK_INDICATOR) == false ? tradingNameIndicatorList.get(i) : '') : '';
+                            companyObj.Trading_Name_Score__c = tradingNameScoreList.size() > i ?  (tradingNameScoreList.get(i) != NULL && tradingNameScoreList.get(i).equalsIgnoreCase(UNIQUE_BLANK_INDICATOR) == false ? Integer.valueOf(tradingNameScoreList.get(i)) : NULL) : NULL; 
+                            companyObj.Trading_Organization_Name__c = tradingOrgNameList.size() > i ?  (tradingOrgNameList.get(i) != NULL && tradingOrgNameList.get(i).equalsIgnoreCase(UNIQUE_BLANK_INDICATOR) == false ? tradingOrgNameList.get(i) : '') : '';
                             
                             //ASSIGNING MAIN ORGANIZATION INFORMATION INSIDE RECORD
-                            companyObj.Main_Current_Indicator__c = mainNameCurrentIndi.size() > 0 ?  (mainNameCurrentIndi.get(i).equalsIgnoreCase(UNIQUE_BLANK_INDICATOR) == false ? mainNameCurrentIndi.get(i) : '') : '';
-                            companyObj.Main_Organization_Name__c = organizationNameList.size() > 0 ?  (organizationNameList.get(i).equalsIgnoreCase(UNIQUE_BLANK_INDICATOR) == false ? organizationNameList.get(i) : '') : '';
-                            companyObj.Main_Organization_Name_Score__c = scoreList.size() > 0 ?  (scoreList.get(i).equalsIgnoreCase(UNIQUE_BLANK_INDICATOR) == false ? Integer.valueOf(scoreList.get(i)) : NULL) : NULL;
+                            companyObj.Main_Current_Indicator__c = mainNameCurrentIndi.size() > i ?  (mainNameCurrentIndi.get(i) != NULL && mainNameCurrentIndi.get(i).equalsIgnoreCase(UNIQUE_BLANK_INDICATOR) == false ? mainNameCurrentIndi.get(i) : '') : '';
+                            companyObj.Main_Organization_Name__c = organizationNameList.size() > i ?  (organizationNameList.get(i) != NULL && organizationNameList.get(i).equalsIgnoreCase(UNIQUE_BLANK_INDICATOR) == false ? organizationNameList.get(i) : '') : '';
+                            companyObj.Main_Organization_Name_Score__c = scoreList.size() > i ?  (scoreList.get(i) != NULL && scoreList.get(i).equalsIgnoreCase(UNIQUE_BLANK_INDICATOR) == false ? Integer.valueOf(scoreList.get(i)) : NULL) : NULL;
                             
                             //ASSIGNING OTHER TRADING ORGANIZATION INFORMATION INSIDE RECORD
-                            companyObj.Other_Trading_Name_Current_Indicator__c = otherTradingIndicatorList.size() > 0 ?  (otherTradingIndicatorList.get(i).equalsIgnoreCase(UNIQUE_BLANK_INDICATOR) == false ? otherTradingIndicatorList.get(i) : '') : '';
-                            companyObj.Other_Trading_Organization_Name__c = otherTradingNameList.size() > 0 ?  (otherTradingNameList.get(i).equalsIgnoreCase(UNIQUE_BLANK_INDICATOR) == false ? otherTradingNameList.get(i) : '') : '';
-                            companyObj.Other_Trading_Name_Score__c = otherTradingScoreList.size() > 0 ?  (otherTradingScoreList.get(i).equalsIgnoreCase(UNIQUE_BLANK_INDICATOR) == false ? Integer.valueOf(otherTradingScoreList.get(i)) : NULL) : NULL;
+                            companyObj.Other_Trading_Name_Current_Indicator__c = otherTradingIndicatorList.size() > i ?  (otherTradingIndicatorList.get(i) != NULL && otherTradingIndicatorList.get(i).equalsIgnoreCase(UNIQUE_BLANK_INDICATOR) == false ? otherTradingIndicatorList.get(i) : '') : '';
+                            companyObj.Other_Trading_Organization_Name__c = otherTradingNameList.size() > i ?  (otherTradingNameList.get(i) != NULL && otherTradingNameList.get(i).equalsIgnoreCase(UNIQUE_BLANK_INDICATOR) == false ? otherTradingNameList.get(i) : '') : '';
+                            companyObj.Other_Trading_Name_Score__c = otherTradingScoreList.size() > i ?  (otherTradingScoreList.get(i) != NULL && otherTradingScoreList.get(i).equalsIgnoreCase(UNIQUE_BLANK_INDICATOR) == false ? Integer.valueOf(otherTradingScoreList.get(i)) : NULL) : NULL;
                             
                             //ASSIGNING LEGAL NAME INSIDE RECORD
-                            companyObj.LegalName_Current_Indicator__c = legalCurrentIndicator.size() > 0 ?  (legalCurrentIndicator.get(i).equalsIgnoreCase(UNIQUE_BLANK_INDICATOR) == false ? legalCurrentIndicator.get(i) : '') : '';
-                            companyObj.Legal_FullName__c = legalNameList.size() > 0 ?  (legalNameList.get(i).equalsIgnoreCase(UNIQUE_BLANK_INDICATOR) == false ? legalNameList.get(i) : '') : '';
-                            companyObj.LegalName_Score__c = legalScoreList.size() > 0 ?  (legalScoreList.get(i).equalsIgnoreCase(UNIQUE_BLANK_INDICATOR) == false ? Integer.valueOf(legalScoreList.get(i)) : NULL) : NULL;
+                            companyObj.LegalName_Current_Indicator__c = legalCurrentIndicator.size() > i ?  (legalCurrentIndicator.get(i) != NULL && legalCurrentIndicator.get(i).equalsIgnoreCase(UNIQUE_BLANK_INDICATOR) == false ? legalCurrentIndicator.get(i) : '') : '';
+                            companyObj.Legal_FullName__c = legalNameList.size() > i ?  (legalNameList.get(i) != NULL && legalNameList.get(i).equalsIgnoreCase(UNIQUE_BLANK_INDICATOR) == false ? legalNameList.get(i) : '') : '';
+                            companyObj.LegalName_Score__c = legalScoreList.size() > i ?  (legalScoreList.get(i) != NULL && legalScoreList.get(i).equalsIgnoreCase(UNIQUE_BLANK_INDICATOR) == false ? Integer.valueOf(legalScoreList.get(i)) : NULL) : NULL;
     
                             
                             //ASSIGNING ADDRESS DETAIL INSIDE RECORD
-                            companyObj.Post_Code__c = postCodeList.size() > 0 ?  (postCodeList.get(i).equalsIgnoreCase(UNIQUE_BLANK_INDICATOR) == false ? postCodeList.get(i) : '') : '';
-                            companyObj.State_Code__c = stateCodeList.size() > 0 ?  (stateCodeList.get(i).equalsIgnoreCase(UNIQUE_BLANK_INDICATOR) == false ? stateCodeList.get(i) : '') : '';
+                            companyObj.Post_Code__c = postCodeList.size() > i ?  (postCodeList.get(i) != NULL && postCodeList.get(i).equalsIgnoreCase(UNIQUE_BLANK_INDICATOR) == false ? postCodeList.get(i) : '') : '';
+                            companyObj.State_Code__c = stateCodeList.size() > i ?  (stateCodeList.get(i) != NULL && stateCodeList.get(i).equalsIgnoreCase(UNIQUE_BLANK_INDICATOR) == false ? stateCodeList.get(i) : '') : '';
                             
                             //ASSIGNING ASIC NUMBER
-                            companyObj.ASIC_Number__c = asicList.size() > 0 ?  (asicList.get(i).equalsIgnoreCase(UNIQUE_BLANK_INDICATOR) == false ? asicList.get(i) : '') : '';
+                            companyObj.ASIC_Number__c = asicList.size() > i ?  (asicList.get(i) != NULL && asicList.get(i).equalsIgnoreCase(UNIQUE_BLANK_INDICATOR) == false ? asicList.get(i) : '') : '';
                             
                             //ASSIGNING ENTITY DETAILS
-                            companyObj.Entity_Description__c = entityDescList.size() > 0 ?  (entityDescList.get(i).equalsIgnoreCase(UNIQUE_BLANK_INDICATOR) == false ? entityDescList.get(i) : '') : '';
-                            companyObj.Entity_Effective_From__c = entityEffectiveFromList.size() > 0 ?  (entityEffectiveFromList.get(i).equalsIgnoreCase(UNIQUE_BLANK_INDICATOR) == false ? entityEffectiveFromList.get(i) : '') : '';
-                            companyObj.Entity_Status_Code__c = entityStatusCodeList.size() > 0 ?  (entityStatusCodeList.get(i).equalsIgnoreCase(UNIQUE_BLANK_INDICATOR) == false ? entityStatusCodeList.get(i) : '') : '';
+                            companyObj.Entity_Description__c = entityDescList.size() > i ?  (entityDescList.get(i) != NULL && entityDescList.get(i).equalsIgnoreCase(UNIQUE_BLANK_INDICATOR) == false ? entityDescList.get(i) : '') : '';
+                            companyObj.Entity_Effective_From__c = entityEffectiveFromList.size() > i ?  (entityEffectiveFromList.get(i) != NULL && entityEffectiveFromList.get(i).equalsIgnoreCase(UNIQUE_BLANK_INDICATOR) == false ? entityEffectiveFromList.get(i) : '') : '';
+                            companyObj.Entity_Status_Code__c = entityStatusCodeList.size() > i ?  (entityStatusCodeList.get(i) != NULL && entityStatusCodeList.get(i).equalsIgnoreCase(UNIQUE_BLANK_INDICATOR) == false ? entityStatusCodeList.get(i) : '') : '';
                             
                             //ASSIGNING GST DETAILS
-                            companyObj.GST_Effective_From__c = gstEffectiveFromList.size() > 0 ?  (gstEffectiveFromList.get(i).equalsIgnoreCase(UNIQUE_BLANK_INDICATOR) == false ? gstEffectiveFromList.get(i) : '') : '';
+                            companyObj.GST_Effective_From__c = gstEffectiveFromList.size() > i ?  (gstEffectiveFromList != NULL && gstEffectiveFromList.get(i).equalsIgnoreCase(UNIQUE_BLANK_INDICATOR) == false ? gstEffectiveFromList.get(i) : '') : '';
                             
                             //ASSIGNING PARENT ID TO EACH CHILD RECORD
                             companyObj.ABN_Company_Information__c = abnInfo.id;
@@ -452,12 +483,10 @@ public without sharing class ABNNameResponse{
                         if(companyList.isEmpty() == false){
                             sp = Database.setSavepoint();
                             INSERT companyList; 
-                            System.debug('Entered here of ABNResponse 1');
                             ret = ConstantValues.msg;
                         }
                     }
                     else {
-                        System.debug('Entered here of ABNResponse 2');
                         ret = (System.label.ABN_Search_results_error_message);
                     }
                 }
