@@ -1,6 +1,8 @@
 /******
 Description : Acts as a parser class for ABNNameReponse
 Developer : Soumik Sarkar
+Last Modified By : Rameswari Barman
+Last Modified Date : 01/04/2021
 *******/
 public class ABNNameResponseParser {
 
@@ -34,7 +36,9 @@ public class ABNNameResponseParser {
         public MainName mainName;
         public ABN ABN;
         public MainName mainTradingName;
+        /*Added by Rameswari on 01/04/2021 to facilitate the inclusion of parsing of DGR Fund Name node*/
         public MainName dgrFundName;
+        /**************************************************************************/
         public MainName businessName;
         public MainName otherTradingName;
         public String ASICNumber;

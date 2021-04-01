@@ -2,6 +2,8 @@
 Description:    This class is used to take the response POJO and creates records accordingly
 Developer:      Deepro De
 Created Date:   05/10/2018
+Last Modified By : Rameswari Barman
+Last Modified Date : 01/04/2021
 *********************************************************************************/
 
 public without sharing class ABNNameResponse{
@@ -186,6 +188,7 @@ public without sharing class ABNNameResponse{
                                            tradingOrgNameList.add(UNIQUE_BLANK_INDICATOR);
                                         }  
                                     }
+                                    /*Added by Rameswari on 01/04/2021 to facilitate the inclusion of parsing of DGR Fund Name node*/
                                     //CHECKING INSIDE DGR FUND NAME NODE
                                     if(eachElement.dgrFundName != NULL){
                                         if(String.isNotBlank(String.valueOf(eachElement.dgrFundName.isCurrentIndicator))){
@@ -218,7 +221,7 @@ public without sharing class ABNNameResponse{
                                            tradingOrgNameList.add(UNIQUE_BLANK_INDICATOR);
                                         }  
                                     }
-                                    
+                                    /*****************************************/
                                     //CHECKING INSIDE BUSINESS NAME NODE
                                     if(eachElement.businessName != NULL){
                                         if(String.isNotBlank(String.valueOf(eachElement.businessName.isCurrentIndicator))){
@@ -426,6 +429,8 @@ public without sharing class ABNNameResponse{
                     if(sizeOfList < 200){
                         for(Integer i = 0 ; i < sizeOfList; i++){
                             ABN_Company_List__c companyObj = new ABN_Company_List__c();
+                            //Changes made by Rameswari on 01/04/2021
+                            //The size of the list is checked with the iteration variable i and null check is added on get function is added
                             //ASSIGNING ABN INFORMATION INSIDE RECORD
                             companyObj.ABN_Identifier_Status__c = abnIdentifierStatList.size() > i ?  (abnIdentifierStatList.get(i) != NULL && abnIdentifierStatList.get(i).equalsIgnoreCase(UNIQUE_BLANK_INDICATOR) == false ? abnIdentifierStatList.get(i) : '') : '';
                             companyObj.ABN_Identifier_Value__c = abnIdentifierValList.size() > i ?  (abnIdentifierValList.get(i) != NULL && abnIdentifierValList.get(i).equalsIgnoreCase(UNIQUE_BLANK_INDICATOR) == false ? abnIdentifierValList.get(i) : '') : ''; 
