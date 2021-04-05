@@ -48,7 +48,8 @@ global with sharing class UpdateApplicationValues {
             
             List <clcommon__Party__c> partyList = [SELECT Id,
                                                         Bankrupt_Date__c,
-                                                        Applicant_ever_declared_banckrupt__c
+                                                        Applicant_ever_declared_banckrupt__c,
+                                                        genesis__Application__c
                                                         FROM clcommon__Party__c
                                                         WHERE genesis__Application__c IN : appIdList
                                                         AND Applicant_ever_declared_banckrupt__c != NULL
@@ -58,7 +59,7 @@ global with sharing class UpdateApplicationValues {
                     eachApp.Previously_Bankrupt__c = ConstantValues.NO_TAG;
                     eachApp.Bankrupt_Date__c = NULL;
                     for(clcommon__Party__c eachParty : partyList){
-                        if(eachParty.Applicant_ever_declared_banckrupt__c == ConstantValues.YES_TAG){
+                        if(eachParty.genesis__Application__c == eachApp.id && eachParty.Applicant_ever_declared_banckrupt__c == ConstantValues.YES_TAG){
                             eachApp.Previously_Bankrupt__c = ConstantValues.YES_TAG;
                             if(eachParty.Bankrupt_Date__c != NULL){
                                 eachApp.Bankrupt_Date__c = eachParty.Bankrupt_Date__c;
@@ -66,7 +67,7 @@ global with sharing class UpdateApplicationValues {
                         }
                     }
                 }
-                update appList;
+                Database.update(appList,false);
             }
         }
         catch (Exception e) {
