@@ -16,9 +16,15 @@
         <members>genesis__Applications__c.Total_Number_of_Securities__c</members>
         <members>genesis__Applications__c.Pending_Broker__c</members>
         <members>genesis__Applications__c.Recommend_Comments__c</members>
+        <members>genesis__Applications__c.Bankrupt_Date__c</members>
+        <members>genesis__Applications__c.Previously_Bankrupt__c</members>
         <members>genesis__Checklist__c.True_Exception__c</members>
         <members>Checklist_Detail__c.True_Exception__c</members>
         <name>CustomField</name>
+    </types>
+    <types>
+        <members>Populate_Broker_Details</members>
+        <name>Flow</name>
     </types>
     <version>45.0</version>
 </Package>

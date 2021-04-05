@@ -394,4 +394,32 @@ private class SkuidValuesUpdateHelperTest {
     LASDocumentHelper.updateEmploymentValues(appList[0].Id);
     Test.stopTest();
   }
+  
+  @isTest
+  static void updateApplicationValuesTest() {
+    List<genesis__Applications__c> appList = [
+      SELECT id
+      FROM genesis__Applications__c
+      LIMIT 1
+    ];
+    System.assertEquals(appList.size(), 1, 'Application is present.');
+    List <Id> appIdList = new List<Id>();
+    List <clcommon__Party__c> partyList = [
+                                            SELECT Id,
+                                              genesis__Application__c,
+                                              Applicant_ever_declared_banckrupt__c
+                                            FROM clcommon__Party__c
+                                            WHERE genesis__Application__c =: appList[0].Id
+                                            AND Party_Type_Name__c = 'Borrower'];
+    System.assertEquals(appList.size(), 1, 'Borrower Party is present.');  
+    partyList[0].Applicant_ever_declared_banckrupt__c = 'Yes';
+    update partyList;
+    appIdList.add(appList[0].Id);
+    Test.startTest();
+    UpdateApplicationValues.updateNoOfSecurities(null);
+    UpdateApplicationValues.updateNoOfSecurities(appList[0].Id);
+    UpdateApplicationValues.updateBankruptInfo(null);
+    UpdateApplicationValues.updateBankruptInfo(appIdList);
+    Test.stopTest();
+  }
 }
