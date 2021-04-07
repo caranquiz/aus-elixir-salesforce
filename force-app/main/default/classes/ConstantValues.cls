@@ -963,4 +963,6 @@ global class ConstantValues {
   public static final String SUBMITTED =  'Submitted';
   public static final String NEW_TAG = 'New';
   public static final String EXISTING_TAG = 'Existing';
+  public static final String CREDIT_ENQUIRY_OBJECT = 'credit-enquiry={';
+  public static final String CREDIT_ENQUIRY_LIST_BRACES = 'credit-enquiry=({';
 }

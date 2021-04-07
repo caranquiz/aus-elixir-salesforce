@@ -1617,25 +1617,58 @@ public class EquifaxCompanyEnquiryResponseHelper {
       }
       try {
         finalCreditEnquiryList = new List<Credit_Enquiry__c>();
-        if (
-          ((Map<String, Object>) commonOrgCred.get(
+        /*********************************************************/
+        //Changes made by Rameswari on 07/04/2021 to facilitate the storing of single credit enquiry
+        List <Object> creditEnquirylist = new List <Object>();
+        Integer counter = 0;
+        if(((Map<String, Object>) commonOrgCred.get(
+          ConstantValues.ALL_CREDIT_ENQUIRY_LIST
+        )) != null){
+          if(((Map<String, Object>) ((Map<String, Object>) commonOrgCred.get(
             ConstantValues.ALL_CREDIT_ENQUIRY_LIST
-          )) != null &&
-          ((Map<String, Object>) ((Map<String, Object>) commonOrgCred.get(
+          ))
+          .get(ConstantValues.CREDIT_ENQUIRY_LIST)) != null){
+            if(String.ValueOf(((Map<String, Object>) ((Map<String, Object>) commonOrgCred.get(
               ConstantValues.ALL_CREDIT_ENQUIRY_LIST
             ))
-            .get(ConstantValues.CREDIT_ENQUIRY_LIST)) != null &&
-          ((List<Object>) ((Map<String, Object>) ((Map<String, Object>) commonOrgCred.get(
-                ConstantValues.ALL_CREDIT_ENQUIRY_LIST
+            .get(ConstantValues.CREDIT_ENQUIRY_LIST))).contains(ConstantValues.CREDIT_ENQUIRY_OBJECT) && ((Object) ((Map<String, Object>) ((Map<String, Object>) commonOrgCred.get(
+              ConstantValues.ALL_CREDIT_ENQUIRY_LIST
               ))
               .get(ConstantValues.CREDIT_ENQUIRY_LIST))
-            .get(ConstantValues.CREDIT_ENQUIRY)) != null
-        ) {
-          List<Object> refCreditEnquiry = ((List<Object>) ((Map<String, Object>) ((Map<String, Object>) commonOrgCred.get(
+            .get(ConstantValues.CREDIT_ENQUIRY)) != null){
+              creditEnquirylist.add(((Object) ((Map<String, Object>) ((Map<String, Object>) commonOrgCred.get(
+                ConstantValues.ALL_CREDIT_ENQUIRY_LIST
+                ))
+                .get(ConstantValues.CREDIT_ENQUIRY_LIST))
+              .get(ConstantValues.CREDIT_ENQUIRY)));
+            }
+            else if(String.ValueOf(((Map<String, Object>) ((Map<String, Object>) commonOrgCred.get(
+              ConstantValues.ALL_CREDIT_ENQUIRY_LIST
+            ))
+            .get(ConstantValues.CREDIT_ENQUIRY_LIST))).contains(ConstantValues.CREDIT_ENQUIRY_LIST_BRACES) &&
+            ((List<Object>) ((Map<String, Object>) ((Map<String, Object>) commonOrgCred.get(
+              ConstantValues.ALL_CREDIT_ENQUIRY_LIST
+              ))
+              .get(ConstantValues.CREDIT_ENQUIRY_LIST))
+            .get(ConstantValues.CREDIT_ENQUIRY)) != null){
+              counter++;
+            }
+          }
+        }
+        if (creditEnquirylist.size() > 0 || counter == 1) {
+          List<Object> refCreditEnquiry = new List<Object>();
+          if(creditEnquirylist.size() == 1 && counter == 0){
+            refCreditEnquiry = creditEnquirylist;
+          }
+          else if(counter == 1){
+            //Changes made by Rameswari on 07/04/2021 to facilitate the storing of single credit enquiry
+            /*********************************************************/
+            refCreditEnquiry = ((List<Object>) ((Map<String, Object>) ((Map<String, Object>) commonOrgCred.get(
                 ConstantValues.ALL_CREDIT_ENQUIRY_LIST
               ))
               .get(ConstantValues.CREDIT_ENQUIRY_LIST))
             .get(ConstantValues.CREDIT_ENQUIRY));
+          }
           for (Object each : refCreditEnquiry) {
             Credit_Enquiry__c creditEnquiryObj = new Credit_Enquiry__c();
             creditEnquiryObj.Party__c = partyObj.Id;
