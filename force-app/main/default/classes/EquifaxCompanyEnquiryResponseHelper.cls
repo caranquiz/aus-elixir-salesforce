@@ -3,7 +3,8 @@ Company : CloudKaptan Consultancy Services Pvt. Ltd.
 Developer : Hamza Yousuf
 Development Date : 21/07/2020
 Last Modified By : Hamza Yousuf
-Last Modified Date : 13/11/2020
+Last Modified Date : 07/04/2021
+Last Modified By : Rameswari Barman
 Description : This class is used to Parse and Store Company Enquiry of Equifax
 ***********************************************************************************************************************************************************/
 public class EquifaxCompanyEnquiryResponseHelper {
