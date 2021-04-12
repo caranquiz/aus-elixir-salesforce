@@ -1,11 +1,12 @@
 /*
 Company: Cloudkaptan Consultancy Services Pvt. Ltd.
 Author: Rameswari Barman
-Description: 
+Description: This class is used to update the total no of available securities,Previously Bankrupt and Bankrupt Discharged Date in application
 Development Date: 30/03/2021
 Last Modified Date - 05/04/2021
 */
 global with sharing class UpdateApplicationValues {
+    //This method is used to update total no of securities in application
     webService static String updateNoOfSecurities(Id applicationId){
         try{
             
@@ -31,15 +32,14 @@ global with sharing class UpdateApplicationValues {
         }
         return ConstantValues.GENERAL_ERROR;
     }
+    //This method is used to update Previously Bankrupt and Bankrupt Discharged Date in application
+    //according to the mechanism/rule defined by customer
     @InvocableMethod(
         label='Update Bankrupt Values'
         description='Updates Previously Bankrupt and Bankrupt discharged date value on Application'
     )
     public static void updateBankruptInfo(List<Id> appIdList){
         try{
-            if (appIdList.size() > 0 == false) {
-                throw new CustomException(ConstantValues.NO_APPLICATION);
-            }
             List <genesis__Applications__c> appList = [SELECT Id,
                                                             Previously_Bankrupt__c,
                                                             Bankrupt_Date__c

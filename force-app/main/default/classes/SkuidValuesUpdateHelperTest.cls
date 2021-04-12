@@ -95,7 +95,7 @@ private class SkuidValuesUpdateHelperTest {
       null,
       'Party inserted successfully!'
     );
-    //Inserting Attachment
+    /*//Inserting Attachment
     Attachment attach =  GenericUtilityTestHelper.createAttachment(
       party.Id,'Sample'
     );
@@ -115,7 +115,7 @@ private class SkuidValuesUpdateHelperTest {
       docCategory.Id,
       null,
       'Document Category inserted successfully!'
-    );
+    );*/
     //Inserting Guarantor Party
     clcommon__Party__c guarantorParty = GenericUtilityTestHelper.createBorowerParty(
       borrowerAccount,
@@ -330,7 +330,7 @@ private class SkuidValuesUpdateHelperTest {
     SkuidValuesUpdateHelper.updateLoanPartyDetails(null);
     SkuidValuesUpdateHelper.updateLoanPartyDetails(appList[0].Id);
     Test.stopTest();
-  }
+  }/*
   @isTest
   static void categoryAttachmentCheckAndCreationTest() {
     List<Attachment> attList = [
@@ -376,7 +376,7 @@ private class SkuidValuesUpdateHelperTest {
     CategoryAttachmentUtility.deleteAttachment(null);
     Test.stopTest();
   }
-  
+  */
   @isTest
   static void LASDocumentHelperTest() {
     List<genesis__Applications__c> appList = [
@@ -394,7 +394,6 @@ private class SkuidValuesUpdateHelperTest {
     LASDocumentHelper.updateEmploymentValues(appList[0].Id);
     Test.stopTest();
   }
-  
   @isTest
   static void updateApplicationValuesTest() {
     List<genesis__Applications__c> appList = [
@@ -411,9 +410,16 @@ private class SkuidValuesUpdateHelperTest {
                                             FROM clcommon__Party__c
                                             WHERE genesis__Application__c =: appList[0].Id
                                             AND Party_Type_Name__c = 'Borrower'];
-    System.assertEquals(appList.size(), 1, 'Borrower Party is present.');  
     partyList[0].Applicant_ever_declared_banckrupt__c = 'Yes';
     update partyList;
+    partyList = [SELECT Id,
+                    genesis__Application__c,
+                    Applicant_ever_declared_banckrupt__c
+                  FROM clcommon__Party__c
+                  WHERE genesis__Application__c =: appList[0].Id
+                  AND Party_Type_Name__c = 'Borrower'
+                  AND Applicant_ever_declared_banckrupt__c = 'Yes'];
+    System.assertEquals(partyList.size() > 0, true, 'Borrower Party is present.'); 
     appIdList.add(appList[0].Id);
     Test.startTest();
     UpdateApplicationValues.updateNoOfSecurities(null);
