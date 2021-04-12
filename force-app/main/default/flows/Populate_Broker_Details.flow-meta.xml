@@ -13,7 +13,6 @@
         <locationY>200</locationY>
         <actionName>InvokeOnPartyUpdate</actionName>
         <actionType>apex</actionType>
-        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
         <inputParameters>
             <processMetadataValues>
                 <name>dataType</name>
@@ -70,7 +69,6 @@
         <locationY>200</locationY>
         <actionName>UpdateApplicationValues</actionName>
         <actionType>apex</actionType>
-        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
         <inputParameters>
             <processMetadataValues>
                 <name>dataType</name>
@@ -114,7 +112,6 @@
             </value>
         </inputParameters>
     </actionCalls>
-    <apiVersion>49.0</apiVersion>
     <decisions>
         <name>isChangedDecision6_myRule_5_Applicant_ever_declared_banckrupt_c</name>
         <label>isChangedDecision6_myRule_5_Applicant_ever_declared_banckrupt_c</label>
@@ -388,7 +385,6 @@ ISCHANGED({!myVariable_current.HEM__c})</expression>
         <connector>
             <targetReference>myRule_1_A2</targetReference>
         </connector>
-        <filterLogic>and</filterLogic>
         <filters>
             <processMetadataValues>
                 <name>implicit</name>
@@ -577,7 +573,6 @@ ISCHANGED({!myVariable_current.HEM__c})</expression>
         <label>Update Broker&apos;s BDM</label>
         <locationX>100</locationX>
         <locationY>300</locationY>
-        <filterLogic>and</filterLogic>
         <filters>
             <processMetadataValues>
                 <name>implicit</name>
