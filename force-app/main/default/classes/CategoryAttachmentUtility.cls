@@ -62,7 +62,8 @@ global with sharing class CategoryAttachmentUtility {
     Webservice static String deleteAttachment(Id attachId){
         Savepoint sp;
         try{
-            //Access level of party object is checked since the attachments are related to party and access level of party should thus flow to the access level of the specific attachment
+            //Access level of party object is checked since the attachments are related to party and
+            //access level of party should thus flow to the access level of the specific attachment
             if(!(clcommon__Category_Attachment_Association__c.sObjectType.getDescribe().isDeletable() == true && 
                 clcommon__Party__c.sObjectType.getDescribe().isDeletable() == true &&
                 clcommon__Category_Attachment_Association__c.sObjectType.getDescribe().isAccessible() == true && 
