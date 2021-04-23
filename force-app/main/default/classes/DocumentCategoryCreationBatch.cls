@@ -10,7 +10,7 @@ global class DocumentCategoryCreationBatch implements Database.Batchable<sObject
               SELECT Id
               FROM genesis__Applications__c
               WHERE CreatedDate <= 2021-04-23T00:00:00Z
-              AND genesis__Applications__c NOT IN (:'Declined',:'Cancelled')
+              AND genesis__Status__c NOT IN (:'Declined',:'Cancelled')
             ]
           );
     }
