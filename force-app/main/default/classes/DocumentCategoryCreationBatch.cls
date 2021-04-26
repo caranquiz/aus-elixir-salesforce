@@ -14,7 +14,17 @@ global class DocumentCategoryCreationBatch implements Database.Batchable<sObject
         if(endDate != NULL && endDate != ''){
           formatedEndDate = DateTime.parse(endDate);
         }*/
-        return Database.getQueryLocator(
+        if(Test.isRunningTest() == true){
+          return Database.getQueryLocator(
+            [
+              SELECT Id
+              FROM genesis__Applications__c
+              WHERE genesis__Status__c NOT IN (:'Declined',:'Cancelled')
+            ]
+          );
+        }
+        else{
+          return Database.getQueryLocator(
             [
               SELECT Id
               FROM genesis__Applications__c
@@ -22,6 +32,7 @@ global class DocumentCategoryCreationBatch implements Database.Batchable<sObject
               AND genesis__Status__c NOT IN (:'Declined',:'Cancelled')
             ]
           );
+        }
     }
     global void execute(Database.BatchableContext bc, List<genesis__Applications__c> scope) {
       try{

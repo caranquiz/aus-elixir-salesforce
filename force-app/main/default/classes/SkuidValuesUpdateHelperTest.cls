@@ -199,6 +199,112 @@ private class SkuidValuesUpdateHelperTest {
     employmentInformationIncome.genesis__Application__c = app.Id;
     employmentInformationIncome.Company_Name__c = 'ORDE';
     update employmentInformationIncome;
+
+    clcommon__Document_Definition__c identityDoc = GenericUtilityTestHelper.createDocumentDefinition('Identity Documents');
+    System.assertEquals(identityDoc.Id != null,
+      true,
+      'Document Definition inserted successfully!'
+    ); 
+    clcommon__Document_Definition__c serviceabilityDoc = GenericUtilityTestHelper.createDocumentDefinition('Serviceability');
+    System.assertEquals(serviceabilityDoc.Id != null,
+      true,
+      'Document Definition inserted successfully!'
+    ); 
+    clcommon__Document_Definition__c loanDetailsDoc = GenericUtilityTestHelper.createDocumentDefinition('Loan Details');
+    System.assertEquals(loanDetailsDoc.Id != null,
+      true,
+      'Document Definition inserted successfully!'
+    ); 
+    clcommon__Document_Definition__c reviewDoc = GenericUtilityTestHelper.createDocumentDefinition('Review Documents');
+    System.assertEquals(reviewDoc.Id != null,
+      true,
+      'Document Definition inserted successfully!'
+    ); 
+    clcommon__Document_Definition__c conditionDoc = GenericUtilityTestHelper.createDocumentDefinition('Condition Documents');
+    System.assertEquals(conditionDoc.Id != null,
+      true,
+      'Document Definition inserted successfully!'
+    ); 
+    clcommon__Document_Definition__c exceptionDoc = GenericUtilityTestHelper.createDocumentDefinition('Exception Documents');
+    System.assertEquals(exceptionDoc.Id != null,
+      true,
+      'Document Definition inserted successfully!'
+    ); 
+    clcommon__Document_Definition__c warningDoc = GenericUtilityTestHelper.createDocumentDefinition('Warning Documents');
+    System.assertEquals(warningDoc.Id != null,
+      true,
+      'Document Definition inserted successfully!'
+    ); 
+    clcommon__Document_Definition__c securityDoc = GenericUtilityTestHelper.createDocumentDefinition('Security Documents');
+    System.assertEquals(securityDoc.Id != null,
+      true,
+      'Document Definition inserted successfully!'
+    ); 
+    clcommon__Document_Definition__c contactDoc = GenericUtilityTestHelper.createDocumentDefinition('Contact Details');
+    System.assertEquals(contactDoc.Id != null,
+      true,
+      'Document Definition inserted successfully!'
+    ); 
+    clcommon__Document_Definition__c assetDoc = GenericUtilityTestHelper.createDocumentDefinition('Asset And Liabilities');
+    System.assertEquals(assetDoc.Id != null,
+      true,
+      'Document Definition inserted successfully!'
+    ); 
+    clcommon__Document_Definition__c creditDoc = GenericUtilityTestHelper.createDocumentDefinition('Credit History');
+    System.assertEquals(creditDoc.Id != null,
+      true,
+      'Document Definition inserted successfully!'
+    ); 
+    clcommon__Document_Definition__c incomeDoc = GenericUtilityTestHelper.createDocumentDefinition('Income Document');
+    System.assertEquals(incomeDoc.Id != null,
+      true,
+      'Document Definition inserted successfully!'
+    ); 
+    clcommon__Document_Definition__c employmentDoc = GenericUtilityTestHelper.createDocumentDefinition('Employment And Income Details');
+    System.assertEquals(employmentDoc.Id != null,
+      true,
+      'Document Definition inserted successfully!'
+    ); 
+    clcommon__Document_Definition__c pAYGDoc = GenericUtilityTestHelper.createDocumentDefinition('PAYG Documents');
+    System.assertEquals(pAYGDoc.Id != null,
+      true,
+      'Document Definition inserted successfully!'
+    ); 
+    clcommon__Document_Definition__c selfEmpDoc = GenericUtilityTestHelper.createDocumentDefinition('Self Employment Documents');
+    System.assertEquals(selfEmpDoc.Id != null,
+      true,
+      'Document Definition inserted successfully!'
+    ); 
+    clcommon__Document_Definition__c otherDoc = GenericUtilityTestHelper.createDocumentDefinition('Other Employment Documents');
+    System.assertEquals(otherDoc.Id != null,
+      true,
+      'Document Definition inserted successfully!'
+    ); 
+    clcommon__Document_Definition__c diffDoc = GenericUtilityTestHelper.createDocumentDefinition('Unemployment/Student/Home Duties/Retirement Documents');
+    System.assertEquals(diffDoc.Id != null,
+      true,
+      'Document Definition inserted successfully!'
+    ); 
+    //Inserting Document Category
+    clcommon__Document_Category__c docCategory1 = GenericUtilityTestHelper.createParentDocumentCategory(
+      app.Id,
+      'Application Documents'
+
+    );
+    System.AssertNotEquals(
+      docCategory1.Id,
+      null,
+      'Document Category inserted successfully!'
+    );
+    clcommon__Document_Category__c docCategory2 = GenericUtilityTestHelper.createParentDocumentCategory(
+      app.Id,
+      'Review Documents'
+    );
+    System.AssertNotEquals(
+      docCategory2.Id,
+      null,
+      'Document Category inserted successfully!'
+    );
   }
 
   @isTest
@@ -428,6 +534,20 @@ private class SkuidValuesUpdateHelperTest {
     UpdateApplicationValues.updateNoOfSecurities(appList[0].Id);
     UpdateApplicationValues.updateBankruptInfo(null);
     UpdateApplicationValues.updateBankruptInfo(appIdList);
+    Test.stopTest();
+  }
+  @isTest
+  static void docCreationTest() {
+    List<genesis__Applications__c> appList = [
+      SELECT id,
+      genesis__Status__c
+      FROM genesis__Applications__c
+      LIMIT 1
+    ];
+
+    System.assertEquals(appList.size(), 1, 'Application is present.');
+    Test.startTest();
+    Database.executeBatch(new DocumentCategoryCreationBatch(), 10);
     Test.stopTest();
   }
 }

@@ -3,6 +3,8 @@
     <types>
         <members>CreateDocumentCategories</members>
         <members>DocumentCategoryCreationBatch</members>
+        <members>GenericUtilityTestHelper</members>
+        <members>SkuidValuesUpdateHelperTest</members>
         <name>ApexClass</name>
     </types>
     <types>
