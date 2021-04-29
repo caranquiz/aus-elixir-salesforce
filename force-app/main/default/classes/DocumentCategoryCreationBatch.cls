@@ -9,11 +9,6 @@ by assigning applications in small chunks so that governer limits are not met
 ***************************************************************************/
 global class DocumentCategoryCreationBatch implements Database.Batchable<sObject> {
     global Database.QueryLocator start(Database.BatchableContext bc) {
-        String endDate = System.label.DocumentCreationLastDate;
-        /*Datetime formatedEndDate=null;
-        if(endDate != NULL && endDate != ''){
-          formatedEndDate = DateTime.parse(endDate);
-        }*/
         if(Test.isRunningTest() == true){
           return Database.getQueryLocator(
             [
