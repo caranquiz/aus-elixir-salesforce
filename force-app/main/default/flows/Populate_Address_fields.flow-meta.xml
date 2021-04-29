@@ -317,12 +317,14 @@
         <processMetadataValues>
             <name>originalFormula</name>
             <value>
-                <stringValue>IF(ISPICKVAL([clcommon__Address__c].State__c ,&#39;NSW&#39;) ,&#39;NSW&#39;, IF(ISPICKVAL([clcommon__Address__c].State__c ,&#39;NT&#39;) ,&#39;NT&#39;, IF(ISPICKVAL([clcommon__Address__c].State__c ,&#39;QLD&#39;) ,&#39;QLD&#39;, IF(ISPICKVAL([clcommon__Address__c].State__c ,&#39;SA&#39;) ,&#39;SA&#39;, IF(ISPICKVAL([clcommon__Address__c].State__c ,&#39;TAS&#39;) ,&#39;TAS&#39;, IF(ISPICKVAL([clcommon__Address__c].State__c ,&#39;VIC&#39;) ,&#39;VIC&#39;, IF(ISPICKVAL([clcommon__Address__c].State__c ,&#39;WA&#39;) ,&#39;WA&#39;, &#39;&#39;)))))))</stringValue>
+                <stringValue>IF(ISPICKVAL([clcommon__Address__c].State__c ,&apos;NSW&apos;) ,&apos;NSW&apos;, IF(ISPICKVAL([clcommon__Address__c].State__c ,&apos;NT&apos;) ,&apos;NT&apos;, IF(ISPICKVAL([clcommon__Address__c].State__c ,&apos;QLD&apos;) ,&apos;QLD&apos;, IF(ISPICKVAL([clcommon__Address__c].State__c ,&apos;SA&apos;) ,&apos;SA&apos;, IF(ISPICKVAL([clcommon__Address__c].State__c ,&apos;TAS&apos;) ,&apos;TAS&apos;, IF(ISPICKVAL([clcommon__Address__c].State__c ,&apos;VIC&apos;) ,&apos;VIC&apos;, 
+IF(ISPICKVAL([clcommon__Address__c].State__c ,&apos;ACT&apos;) ,&apos;ACT&apos;, IF(ISPICKVAL([clcommon__Address__c].State__c ,&apos;WA&apos;) ,&apos;WA&apos;, &apos;&apos;))))))))</stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_2_myRule_1_A1_9245558602</name>
+        <name>formula_2_myRule_1_A1_5024479105</name>
         <dataType>String</dataType>
-        <expression>IF(ISPICKVAL({!myVariable_current.State__c} ,&#39;NSW&#39;) ,&#39;NSW&#39;, IF(ISPICKVAL({!myVariable_current.State__c} ,&#39;NT&#39;) ,&#39;NT&#39;, IF(ISPICKVAL({!myVariable_current.State__c} ,&#39;QLD&#39;) ,&#39;QLD&#39;, IF(ISPICKVAL({!myVariable_current.State__c} ,&#39;SA&#39;) ,&#39;SA&#39;, IF(ISPICKVAL({!myVariable_current.State__c} ,&#39;TAS&#39;) ,&#39;TAS&#39;, IF(ISPICKVAL({!myVariable_current.State__c} ,&#39;VIC&#39;) ,&#39;VIC&#39;, IF(ISPICKVAL({!myVariable_current.State__c} ,&#39;WA&#39;) ,&#39;WA&#39;, &#39;&#39;)))))))</expression>
+        <expression>IF(ISPICKVAL({!myVariable_current.State__c} ,&apos;NSW&apos;) ,&apos;NSW&apos;, IF(ISPICKVAL({!myVariable_current.State__c} ,&apos;NT&apos;) ,&apos;NT&apos;, IF(ISPICKVAL({!myVariable_current.State__c} ,&apos;QLD&apos;) ,&apos;QLD&apos;, IF(ISPICKVAL({!myVariable_current.State__c} ,&apos;SA&apos;) ,&apos;SA&apos;, IF(ISPICKVAL({!myVariable_current.State__c} ,&apos;TAS&apos;) ,&apos;TAS&apos;, IF(ISPICKVAL({!myVariable_current.State__c} ,&apos;VIC&apos;) ,&apos;VIC&apos;, 
+IF(ISPICKVAL({!myVariable_current.State__c} ,&apos;ACT&apos;) ,&apos;ACT&apos;, IF(ISPICKVAL({!myVariable_current.State__c} ,&apos;WA&apos;) ,&apos;WA&apos;, &apos;&apos;))))))))</expression>
     </formulas>
     <formulas>
         <processMetadataValues>
@@ -331,11 +333,11 @@
                 <stringValue>[clcommon__Address__c].Street_Type__c</stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_3_myRule_1_A1_8184357562</name>
+        <name>formula_3_myRule_1_A1_0092426226</name>
         <dataType>String</dataType>
         <expression>{!myVariable_current.Street_Type__c}</expression>
     </formulas>
-    <interviewLabel>Populate_Address_fields-4_InterviewLabel</interviewLabel>
+    <interviewLabel>Populate_Address_fields-3_InterviewLabel</interviewLabel>
     <label>Populate Address fields</label>
     <processMetadataValues>
         <name>ObjectType</name>
@@ -426,7 +428,7 @@
             <processMetadataValues>
                 <name>leftHandSideReferenceTo</name>
                 <value>
-                    <stringValue/>
+                    <stringValue></stringValue>
                 </value>
             </processMetadataValues>
             <processMetadataValues>
@@ -437,7 +439,7 @@
             </processMetadataValues>
             <field>Duplicate_State_Name__c</field>
             <value>
-                <elementReference>formula_2_myRule_1_A1_9245558602</elementReference>
+                <elementReference>formula_2_myRule_1_A1_5024479105</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
@@ -462,7 +464,7 @@
             <processMetadataValues>
                 <name>leftHandSideReferenceTo</name>
                 <value>
-                    <stringValue/>
+                    <stringValue></stringValue>
                 </value>
             </processMetadataValues>
             <processMetadataValues>
@@ -473,7 +475,7 @@
             </processMetadataValues>
             <field>Duplicate_Street_Type__c</field>
             <value>
-                <elementReference>formula_3_myRule_1_A1_8184357562</elementReference>
+                <elementReference>formula_3_myRule_1_A1_0092426226</elementReference>
             </value>
         </inputAssignments>
         <object>clcommon__Address__c</object>

@@ -1431,7 +1431,7 @@ public with sharing class GenericUtilityTestHelper {
     loan__Loan_Purpose__c dummyLoanPurpose = new loan__Loan_Purpose__c();
     dummyLoanPurpose.loan__Loan_Purpose_Code__c = 'Investment';
     dummyLoanPurpose.name = 'Investment';
-    dummyLoanPurpose.loan__Description__c	= 'Investment';
+    dummyLoanPurpose.loan__Description__c   = 'Investment';
     insert dummyLoanPurpose;
     return dummyLoanPurpose;
   }
@@ -1482,7 +1482,7 @@ public with sharing class GenericUtilityTestHelper {
       Attachment attach = new Attachment(
       ParentId = parentId,
       Name = name,
-    	body=bodyBlob
+        body=bodyBlob
     );
     insert attach;
     return attach;
@@ -1495,5 +1495,21 @@ public with sharing class GenericUtilityTestHelper {
     );
   insert docCate;
   return docCate;
-}
+  } 
+  public static clcommon__Document_Definition__c createDocumentDefinition(String documentDefinitionName){
+    clcommon__Document_Definition__c docDefinition = new clcommon__Document_Definition__c(
+      Name = documentDefinitionName
+    );
+  insert docDefinition;
+  return docDefinition;
+  }
+  public static clcommon__Document_Category__c createParentDocumentCategory(Id parentId,String name){
+    clcommon__Document_Category__c docCategory = new clcommon__Document_Category__c(
+      genesis__Application__c = parentId,
+      clcommon__Category_Name__c = name,
+      clcommon__Active__c = true
+    );
+  insert docCategory;
+  return docCategory;
+  }
 }
