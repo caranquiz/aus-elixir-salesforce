@@ -49,8 +49,7 @@ global with sharing class ConvertToContract{
                                                 genesis__Account__r.Bank_Account_Name__c,
                                                 genesis__Account__r.BSB__c,
                                                 genesis__Account__r.Bank_Account_Number__c,
-                                                CreatedDate,
-                                                Primary_Approval_Date__c
+                                                CreatedDate
                                             from genesis__Applications__c where Id =: appId];
             if(app.CL_Contract__c != null){
                 loan__Loan_Account__c contr = [select id,
@@ -86,9 +85,6 @@ global with sharing class ConvertToContract{
                 }
                 //Change made by Rameswari on 24/12/2020
                 //Attaching Application Date and Approval Date
-                if(String.isBlank(app.Primary_Approval_Date__c) == false){
-                    contr.loan__Approval_Date__c = date.parse(app.Primary_Approval_Date__c);
-                }
                 DateTime appCreationDate = app.CreatedDate;
                 contr.loan__Application_Date__c = date.newInstance(appCreationDate.year() ,appCreationDate.month(), appCreationDate.day());
                 
@@ -96,7 +92,6 @@ global with sharing class ConvertToContract{
                     && (app.Proposed_repayment_method_list__c != null
                     || app.Primary_loan_purpose_list__c != null 
                     || banAcc!=null 
-                    || String.isBlank(app.Primary_Approval_Date__c) == false
                     || appCreationDate != null)){
                     update contr;
                 }

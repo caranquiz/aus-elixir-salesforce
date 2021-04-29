@@ -191,7 +191,8 @@ public with sharing class ChildChecklistAPI {
         Document_Type__c,
         Trail_Exceeded_Standard_Trail__c,
         Upfront_Exceeded_Standard_Trail__c,
-        Living_Expense_Explanation_Received__c
+        Living_Expense_Explanation_Received__c,
+        Trust_Structure__c
       FROM clcommon__Party__c
       WHERE genesis__Application__c = :appId
     ];
