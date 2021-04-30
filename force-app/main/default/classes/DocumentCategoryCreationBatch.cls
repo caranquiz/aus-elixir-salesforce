@@ -40,6 +40,7 @@ global class DocumentCategoryCreationBatch implements Database.Batchable<sObject
           CreateDocumentCategories.createIndentityDocFolders(scope);
           CreateDocumentCategories.createIndividualEmploymentSubFolders(scope);
           CreateDocumentCategories.createNonIndividualEmpIncomeDocFolders(scope);
+          CreateDocumentCategories.createHouseholdPartyDocFolders(scope);
         }
       }
       catch(Exception ex){

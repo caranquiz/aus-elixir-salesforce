@@ -698,4 +698,94 @@ public with sharing class CreateDocumentCategories {
             GenericUtility.insertLog('CreateDocumentCategories.createNonIndividualEmpIncomeDocFolders', ex);
         }
     }
+    public static void createHouseholdPartyDocFolders(List<genesis__Applications__c> appList) {
+        List<Id> appIds = new List<Id>();
+        try{
+            if(appList.isEmpty() == false){
+                for(genesis__Applications__c eachApp: appList){
+                    appIds.add(eachApp.Id);
+                }
+            }
+            List <clcommon__Document_Category__c> docCategoryList = new List<clcommon__Document_Category__c>();
+            Map<Id,Id> appParentDocCategoryMap = new Map<Id,Id>();
+            Map<String,Id> docDefinitionMap = new Map<String,Id>();
+            List <clcommon__Party__c>  partyList = [SELECT Id,
+                                                            genesis__Application__c,
+                                                        clcommon__Account__c
+                                                        FROM clcommon__Party__c
+                                                        WHERE genesis__Application__c =: appIds
+                                                        AND Party_Type_Name__c IN (:'Household')
+                                                        AND genesis__Application__c != NULL
+                                                        AND clcommon__Account__c != NULL];
+            List <clcommon__Document_Definition__c> parentDocDefinitionList  = [SELECT Id,
+                                                                                    Name
+                                                                                FROM clcommon__Document_Definition__c
+                                                                                WHERE Name IN (:'Living Expense',
+                                                                                :'Asset And Liabilities')];
+            List <Id> accountIds = new List<Id>();
+            for(clcommon__Party__c eachParty : partyList){
+                accountIds.add(eachParty.clcommon__Account__c);
+            }
+            List <clcommon__Document_Category__c> parentDocCategoryList = [SELECT Id,
+                                                                            clcommon__Account__c,
+                                                                            clcommon__Collateral__c,
+                                                                            genesis__Application__c
+                                                                            FROM clcommon__Document_Category__c 
+                                                                            WHERE clcommon__Active__c = true AND
+                                                                            genesis__Application__c =: appIds AND
+                                                                            clcommon__Account__c =: accountIds
+                                                                            AND clcommon__Parent_Document_Category__c = NULL
+                                                                        ];
+            for(clcommon__Document_Definition__c eachDocDefinition : parentDocDefinitionList){
+                docDefinitionMap.put(eachDocDefinition.Name,eachDocDefinition.Id);
+            }
+            for(clcommon__Document_Category__c docCategory : parentDocCategoryList){
+                for(clcommon__Party__c eachParty : partyList){
+                    if(eachParty.genesis__Application__c == docCategory.genesis__Application__c 
+                        && eachParty.clcommon__Account__c == docCategory.clcommon__Account__c){
+                            appParentDocCategoryMap.put(eachParty.Id,docCategory.Id);
+                    }
+                }
+            }
+            if(parentDocCategoryList.size() > 0 && appIds.size() > 0 && parentDocDefinitionList.size() > 0){
+                Id parentDocId = null;
+                for(clcommon__Party__c eachParty : partyList){
+                    parentDocId = appParentDocCategoryMap.get(eachParty.Id);
+                    if(parentDocId != NULL){
+                        if(docDefinitionMap.get('Living Expense') != NULL){
+                            clcommon__Document_Category__c docCategoryContactDetails = new clcommon__Document_Category__c();
+                            docCategoryContactDetails.clcommon__Category_Name__c = 'Living Expense';
+                            docCategoryContactDetails.clcommon__Active__c = true;
+                            docCategoryContactDetails.genesis__Application__c = eachParty.genesis__Application__c;
+                            docCategoryContactDetails.clcommon__Account__c = eachParty.clcommon__Account__c;
+                            docCategoryContactDetails.clcommon__Priority__c = 'Normal';
+                            docCategoryContactDetails.clcommon__Parent_Document_Category__c = parentDocId;
+                            docCategoryContactDetails.clcommon__Document_Definition__c = docDefinitionMap.get('Living Expense');
+                            docCategoryContactDetails.clcommon__Required__c = true;
+                            docCategoryList.add(docCategoryContactDetails);
+                        }
+                        if(docDefinitionMap.get('Asset And Liabilities') != NULL){
+                            clcommon__Document_Category__c docCategoryAssetsAndLia = new clcommon__Document_Category__c();
+                            docCategoryAssetsAndLia.clcommon__Category_Name__c = 'Asset And Liabilities';
+                            docCategoryAssetsAndLia.clcommon__Active__c = true;
+                            docCategoryAssetsAndLia.genesis__Application__c = eachParty.genesis__Application__c;
+                            docCategoryAssetsAndLia.clcommon__Account__c = eachParty.clcommon__Account__c;
+                            docCategoryAssetsAndLia.clcommon__Priority__c = 'Normal';
+                            docCategoryAssetsAndLia.clcommon__Parent_Document_Category__c = parentDocId;
+                            docCategoryAssetsAndLia.clcommon__Document_Definition__c = docDefinitionMap.get('Asset And Liabilities');
+                            docCategoryAssetsAndLia.clcommon__Required__c = true;
+                            docCategoryList.add(docCategoryAssetsAndLia);
+                        }
+                        parentDocId = null;
+                    }
+                }
+            }
+            if(docCategoryList.size() > 0){
+                Database.insert(docCategoryList,false);
+            }
+        }
+        catch(Exception ex){
+            GenericUtility.insertLog('CreateDocumentCategories.createHouseholdPartyDocFolders', ex);
+        }
+    }
 }
