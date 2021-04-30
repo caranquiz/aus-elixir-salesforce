@@ -252,7 +252,14 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>DocumentCreationLastDate</shortDescription>
-        <value>2021-16-04T05:25:31.000+0000</value>
+        <value>30-4-2021</value>
+    </labels>
+    <labels>
+        <fullName>DocumentCreationStatus</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>DocumentCreationStatus</shortDescription>
+        <value>App Received,App Processed,Indicative Issued,Indicative Accepted,Val Ordered,Val Received,Recommended,Formally Approved,Solicitor Instructed,LOO Issued,LOO Accepted,Approved,Approved - Converted to Contract,Loan Settled</value>
     </labels>
     <labels>
         <fullName>Drawdown_Prepaid_Interest</fullName>

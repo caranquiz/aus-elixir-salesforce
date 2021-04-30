@@ -21,5 +21,14 @@
         <members>Populate_Security_Address_fields</members>
         <name>Flow</name>
     </types>
+    <types>
+        <members>DocumentCreationLastDate</members>
+        <members>DocumentCreationStatus</members>
+        <name>CustomLabel</name>
+    </types>
+    <types>
+        <members>CustomLabels</members>
+        <name>CustomLabels</name>
+    </types>
     <version>45.0</version>
 </Package>

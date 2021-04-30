@@ -9,25 +9,27 @@ by assigning applications in small chunks so that governer limits are not met
 ***************************************************************************/
 global class DocumentCategoryCreationBatch implements Database.Batchable<sObject> {
     global Database.QueryLocator start(Database.BatchableContext bc) {
-        if(Test.isRunningTest() == true){
-          return Database.getQueryLocator(
-            [
-              SELECT Id
-              FROM genesis__Applications__c
-              WHERE genesis__Status__c NOT IN (:'Declined',:'Cancelled')
-            ]
-          );
-        }
-        else{
-          return Database.getQueryLocator(
-            [
-              SELECT Id
-              FROM genesis__Applications__c
-              WHERE CreatedDate  <= 2021-04-23T00:00:00Z
-              AND genesis__Status__c NOT IN (:'Declined',:'Cancelled')
-            ]
-          );
-        }
+      DateTime lastDocCreatedDate = Date.newInstance(Integer.valueOf(Label.DocumentCreationLastDate.split('-').get(2)),Integer.valueOf(Label.DocumentCreationLastDate.split('-').get(1)),Integer.valueOf(Label.DocumentCreationLastDate.split('-').get(0)));
+      List <String> validStatusList = System.label.DocumentCreationStatus.split(',');
+      if(Test.isRunningTest() == true){
+        return Database.getQueryLocator(
+          [
+            SELECT Id
+            FROM genesis__Applications__c
+            WHERE genesis__Status__c IN: validStatusList
+          ]
+        );
+      }
+      else{
+        return Database.getQueryLocator(
+          [
+            SELECT Id
+            FROM genesis__Applications__c
+            WHERE CreatedDate  <: lastDocCreatedDate
+            AND genesis__Status__c IN: validStatusList
+          ]
+        );
+      }
     }
     global void execute(Database.BatchableContext bc, List<genesis__Applications__c> scope) {
       try{
