@@ -1,5 +1,6 @@
 {
 	"name": "CustomInvestmentDetails",
+	"apiVersion": "v1",
 	"isMasterPage": false,
 	"maxAutoSaves": 25,
 	"type": "Desktop",

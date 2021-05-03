@@ -1,0 +1,389 @@
+<skuidpage personalizationmode="server" showsidebar="false" showheader="false">
+	<models>
+		<model id="AppForAddingCovenants" limit="1" query="true" createrowifnonefound="false" adapter="salesforce" type="" sobject="genesis__Applications__c">
+			<fields>
+				<field id="genesis__CL_Product__c"/>
+				<field id="genesis__CL_Product__r.Name"/>
+				<field id="Id"/>
+				<field id="genesis__Term__c"/>
+				<field id="genesis__Payment_Frequency__c"/>
+				<field id="genesis__Expected_Close_Date__c"/>
+				<field id="genesis__Expected_First_Payment_Date__c"/>
+				<field id="NoFilters" uionly="true" displaytype="BOOLEAN" label="NoFilters" defaultValue="true"/>
+				<field id="ProductFilter" uionly="true" displaytype="BOOLEAN" label="ProductFilter" defaultValue="false"/>
+			</fields>
+			<conditions>
+				<condition type="param" value="id" field="Id" operator="=" enclosevalueinquotes="true" novaluebehavior="noquery"/>
+			</conditions>
+			<actions/>
+		</model>
+		<model id="ApplicableCovntDefinition" limit="" query="false" createrowifnonefound="false" adapter="salesforce" type="" sobject="clcommon__Covenant_Definition__c" orderby="Name ASC">
+			<fields>
+				<field id="clcommon__Active__c"/>
+				<field id="Name"/>
+				<field id="clcommon__Covenant_Description__c"/>
+				<field id="clcommon__Financial_Indicator__c"/>
+				<field id="clcommon__Financial_Indicator_High_Value__c"/>
+				<field id="clcommon__Financial_Indicator_Low_Value__c"/>
+				<field id="clcommon__Frequency__c"/>
+				<field id="clcommon__Financial_Operator__c"/>
+				<field id="clcommon__Legal_Entity_Type__c"/>
+				<field id="clcommon__Legal_Entity_Type__r.Name"/>
+				<field id="clcommon__Notification_Days__c"/>
+				<field id="clcommon__Product_Name__c"/>
+				<field id="Id"/>
+				<field id="clcommon__Relationship_Type__c"/>
+				<field id="clcommon__Relationship_Type__r.Name"/>
+				<field id="clcommon__Type__c"/>
+			</fields>
+			<conditions>
+				<condition type="fieldvalue" value="" enclosevalueinquotes="true" field="clcommon__Product__c" state="filterableoff" inactive="true" name="clcommon__Product__c" operator="="/>
+				<condition type="fieldvalue" value="true" enclosevalueinquotes="false" field="clcommon__Active__c" operator="="/>
+			</conditions>
+			<actions/>
+		</model>
+		<model id="NewlyCreatedCovenantsForApp" limit="" query="false" createrowifnonefound="false" adapter="salesforce" type="" sobject="clcommon__Covenant__c">
+			<fields>
+				<field id="clcommon__Account__c"/>
+				<field id="clcommon__Account__r.Name"/>
+				<field id="clcommon__Active__c"/>
+				<field id="clcommon__Covenant_Definition__c"/>
+				<field id="clcommon__Covenant_Definition__r.Name"/>
+				<field id="clcommon__Covenant_Description__c"/>
+				<field id="Name"/>
+				<field id="clcommon__Expiration_Date__c"/>
+				<field id="clcommon__Financial_Indicator__c"/>
+				<field id="clcommon__Financial_Indicator_High_Value__c"/>
+				<field id="clcommon__Financial_Indicator_Low_Value__c"/>
+				<field id="clcommon__Financial_Operator__c"/>
+				<field id="clcommon__Frequency__c"/>
+				<field id="clcommon__Next_Evaluation_Date__c"/>
+				<field id="clcommon__Next_Evaluation_Day__c"/>
+				<field id="clcommon__Next_Notification_Date__c"/>
+				<field id="clcommon__Next_Notification_Day__c"/>
+				<field id="clcommon__Notification_Days__c"/>
+			</fields>
+			<conditions/>
+			<actions/>
+		</model>
+	</models>
+	<components>
+		<grid uniqueid="sk-3dM5Qc-322">
+			<divisions>
+				<division behavior="flex" minwidth="100%" ratio="1" verticalalign="top">
+					<components>
+						<progressindicator__progress_indicator id-index="3" future-color="#dddddd" current-color="#1cbdd4" done-color="#2d5074" mode="tabwiz" uniqueid="sk-wj_bC-287" friendId="AddApplicationCovenants">
+							<steps>
+								<step label="Select Filters" data-id="0">
+									<components/>
+								</step>
+								<step label="Select Covenant Definition(s)" data-id="1">
+									<components/>
+								</step>
+								<step label="Confirm" data-id="2">
+									<components/>
+								</step>
+							</steps>
+						</progressindicator__progress_indicator>
+					</components>
+				</division>
+				<division behavior="flex" verticalalign="top" minwidth="100%" ratio="1">
+					<components>
+						<wizard deferstepcontentsrendering="false" buttonslocation="top" uniqueid="AddApplicationCovenants">
+							<steps>
+								<step stepid="step1" steplabel="">
+									<components>
+										<grid uniqueid="sk-wkJH_-350">
+											<divisions>
+												<division behavior="flex" minwidth="60%" ratio="1" verticalalign="top">
+													<components>
+														<pagetitle model="AppForAddingCovenants" uniqueid="sk-wkQ5Y-374">
+															<actions>
+																<action type="multi" label="No Filters" icon="fa-align-justify" uniqueid="NoFilter">
+																	<actions>
+																		<action type="updateRow" fieldmodel="AppForAddingCovenants" field="NoFilters" enclosevalueinquotes="true" value="true"/>
+																		<action type="updateRow" fieldmodel="AppForAddingCovenants" field="ProductFilter" enclosevalueinquotes="true" value="false"/>
+																		<action type="custom" snippet="ChangeFilterBtnColor"/>
+																	</actions>
+																</action>
+																<action type="multi" label="By Product" icon="fa-filter" cssclass="" uniqueid="ProductFilter">
+																	<actions>
+																		<action type="updateRow" fieldmodel="AppForAddingCovenants" field="ProductFilter" enclosevalueinquotes="true" value="true"/>
+																		<action type="updateRow" fieldmodel="AppForAddingCovenants" field="NoFilters" enclosevalueinquotes="true" value="false"/>
+																		<action type="custom" snippet="ChangeFilterBtnColor"/>
+																	</actions>
+																</action>
+															</actions>
+														</pagetitle>
+													</components>
+												</division>
+												<division behavior="flex" verticalalign="top" minwidth="40%" ratio="1">
+													<components/>
+												</division>
+											</divisions>
+											<styles>
+												<styleitem type="background" bgtype="none"/>
+											</styles>
+										</grid>
+									</components>
+									<actions>
+										<action uniqueid="sk-wk01P-294" type="multi" stepid="step2" label="Next" icon="sk-icon-arrow-right" window="self">
+											<hotkeys/>
+											<actions>
+												<action type="custom" snippet="ChangeFilterBtnColor"/>
+												<action type="custom" snippet="queryDefinitions"/>
+											</actions>
+										</action>
+									</actions>
+								</step>
+								<step stepid="step2" steplabel="">
+									<components>
+										<pagetitle model="AppForAddingCovenants" uniqueid="initializeErrorTile">
+											<actions/>
+											<renderconditions logictype="and"/>
+										</pagetitle>
+										<skootable showconditions="true" showsavecancel="false" showerrorsinline="true" searchmethod="server" searchbox="true" showexportbuttons="false" pagesize="10" createrecords="false" model="ApplicableCovntDefinition" buttonposition="" mode="readonly" uniqueid="sk-a8XKV-2255">
+											<fields>
+												<field id="Name" valuehalign="" type="" readonly="false" uniqueid="sk-CrC-239"/>
+												<field id="clcommon__Covenant_Description__c" valuehalign="" type="" readonly="false" uniqueid="sk-CrC-242"/>
+												<field id="clcommon__Type__c" uniqueid="sk-CrC-245"/>
+												<field id="clcommon__Relationship_Type__c" uniqueid="sk-CrC-248"/>
+												<field id="clcommon__Legal_Entity_Type__c" uniqueid="sk-CrC-251"/>
+												<field id="clcommon__Financial_Operator__c" uniqueid="sk-CrC-254"/>
+												<field id="clcommon__Financial_Indicator__c" uniqueid="sk-CrC-257"/>
+												<field id="clcommon__Notification_Days__c" uniqueid="sk-CrC-260"/>
+											</fields>
+											<rowactions/>
+											<massactions usefirstitemasdefault="true">
+												<action type="multi" label="Create Covenant(s)" icon="sk-icon-add">
+													<actions>
+														<action type="custom" snippet="initializeCovenants"/>
+													</actions>
+													<renderconditions logictype="and"/>
+													<hotkeys/>
+												</action>
+											</massactions>
+											<views>
+												<view type="standard"/>
+											</views>
+											<renderconditions logictype="and"/>
+											<actions defaultlabel="Global Actions" defaulticon="sk-icon-magic" usefirstitemasdefault="true"/>
+										</skootable>
+									</components>
+									<actions>
+										<action uniqueid="sk-wk01P-295" type="navigate" stepid="step1" label="Previous" icon="sk-icon-arrow-left" window="self"/>
+									</actions>
+								</step>
+								<step stepid="step3" steplabel="">
+									<components>
+										<pagetitle model="NewlyCreatedCovenantsForApp" uniqueid="saveCovenantErrorTitle">
+											<actions/>
+										</pagetitle>
+										<skootable showconditions="true" showsavecancel="false" showerrorsinline="true" searchmethod="server" searchbox="true" showexportbuttons="false" pagesize="10" createrecords="false" model="NewlyCreatedCovenantsForApp" buttonposition="" mode="edit" uniqueid="sk-wqFC0-385">
+											<fields>
+												<field id="clcommon__Covenant_Definition__c" valuehalign="" type="" readonly="true" uniqueid="sk-CrC-278"/>
+												<field id="clcommon__Active__c" type="" valuehalign="" readonly="true" uniqueid="sk-CrC-281"/>
+												<field id="clcommon__Expiration_Date__c" valuehalign="" type="" readonly="true" uniqueid="sk-CrC-284"/>
+												<field id="clcommon__Frequency__c" valuehalign="" type="" uniqueid="sk-CrC-287"/>
+												<field id="clcommon__Financial_Operator__c" valuehalign="" type="" uniqueid="sk-CrC-290"/>
+												<field id="clcommon__Financial_Indicator__c" decimalplaces="" valuehalign="" type="" uniqueid="sk-CrC-293"/>
+												<field id="clcommon__Notification_Days__c" decimalplaces="" valuehalign="" type="" uniqueid="sk-CrC-296"/>
+											</fields>
+											<rowactions>
+												<action type="delete"/>
+											</rowactions>
+											<massactions usefirstitemasdefault="true"/>
+											<views>
+												<view type="standard"/>
+											</views>
+											<renderconditions logictype="and"/>
+										</skootable>
+									</components>
+									<actions>
+										<action uniqueid="sk-wq2Ih-339" type="navigate" stepid="step2" label="Previous" icon="sk-icon-arrow-left" window="self"/>
+										<action uniqueid="sk-wq2Ih-340" type="multi" label="Save" icon="fa-check" window="self">
+											<actions>
+												<action type="custom" snippet="SaveCovenants"/>
+											</actions>
+										</action>
+									</actions>
+								</step>
+							</steps>
+							<renderconditions logictype="and"/>
+						</wizard>
+					</components>
+				</division>
+			</divisions>
+			<styles>
+				<styleitem type="background" bgtype="none"/>
+			</styles>
+		</grid>
+	</components>
+	<resources>
+		<labels/>
+		<javascript>
+			<jsitem location="staticresource" name="CLSNGUIComponent" cachelocation="false" url="" namespace="genesisExtn" filepath="messageUtils.js">var params = arguments[0],
+	            $ = skuid.$;
+            </jsitem>
+			<jsitem location="inlinesnippet" name="ChangeFilterBtnColor" cachelocation="false">var params = arguments[0],
+	$ = skuid.$;
+var covAppModel = skuid.model.getModel('AppForAddingCovenants');
+var covAppRow = covAppModel.data[0];
+if(covAppRow.NoFilters){
+    $('#NoFilter').addClass('selected-btn');
+}else{
+    $('#NoFilter').removeClass('selected-btn');
+}
+
+if(covAppRow.ProductFilter){
+    $('#ProductFilter').addClass('selected-btn');
+}else{
+    $('#ProductFilter').removeClass('selected-btn');
+}
+</jsitem>
+			<jsitem location="inlinesnippet" name="queryDefinitions" cachelocation="false">var params = arguments[0],
+	$ = skuid.$;
+var appModel = skuid.model.getModel('AppForAddingCovenants');
+var appRow = appModel.data[0];
+
+var covenantDefModel = skuid.model.getModel('ApplicableCovntDefinition');
+covenantDefModel.cancel();
+// fetch condition
+var productTypeCondition = covenantDefModel.getConditionByName('clcommon__Product__c');
+covenantDefModel.deactivateCondition(productTypeCondition);
+if(appRow.ProductFilter){
+    covenantDefModel.setCondition(productTypeCondition, appRow.genesis__CL_Product__c);
+}
+skuid.model.updateData([covenantDefModel],function(){ 
+    var wizard = $('.nx-wizard').data('object'); 
+    var currentStep = wizard.steps[wizard.currentstep];
+    currentStep.navigate('step2');
+});
+</jsitem>
+			<jsitem location="inlinesnippet" name="initializeCovenants" cachelocation="false">var params = arguments[0],
+	$ = skuid.$;
+var appModel = skuid.model.getModel('AppForAddingCovenants');
+var appRow = appModel.data[0];
+var startDate;
+if(appRow.genesis__Expected_First_Payment_Date__c){
+    startDate = new Date(appRow.genesis__Expected_First_Payment_Date__c);
+}else{
+    startDate = new Date(appRow.genesis__Expected_Close_Date__c);
+}
+
+var otherParamsMap = {};
+
+otherParamsMap['startDay'] = startDate.getDate();
+otherParamsMap['startMonth'] = startDate.getMonth()+1;
+otherParamsMap['startYear'] = startDate.getFullYear();
+otherParamsMap['applicationId'] = appRow.Id;
+
+// covert to salesforce object instances
+var resultObjList = [];
+if(params.rows &amp;&amp; params.rows.length &gt; 0){
+     params.rows.forEach(function (skuidObject){
+         var sObj = new sforce.SObject(params.model.objectName);
+         for(var key in skuidObject){
+             if(skuidObject[key]){
+                if(typeof skuidObject[key] !== 'object'){
+                    if(!(key.toUpperCase() === "ID15" || key.toUpperCase() === "ID")){
+                        sObj[key] = skuidObject[key];
+                    } else if(key.toUpperCase() === "ID"  &amp;&amp; skuidObject[key].length &gt;= 15){
+                        sObj[key] = skuidObject[key];
+                    }
+                }
+            }
+         }
+         resultObjList.push(sObj); 
+     });
+}
+
+var res = sforce.apex.execute('genesis.SkuidCovenantCtrl','generateCovenantsFromDefinitions', {
+                                covenantDefinitions : JSON.stringify(resultObjList) ,
+                                otherParams : JSON.stringify(otherParamsMap)
+                            });
+var resObj = JSON.parse(res);
+if(resObj.status == 'SUCCESS'){
+    var newCovenantsModel = skuid.model.getModel('NewlyCreatedCovenantsForApp');
+    newCovenantsModel.data = [];
+    for (i = 0; i &lt; resObj.content.length; i++) { 
+        var newRow = newCovenantsModel.createRow({
+            additionalConditions: [
+                { field: 'clcommon__Account__c', value:resObj.content[i].clcommon__Account__c },
+                { field: 'clcommon__Active__c', value:true },
+                { field: 'clcommon__Covenant_Definition__c', value:resObj.content[i].clcommon__Covenant_Definition__c },
+                { field: 'clcommon__Covenant_Definition__r', value:resObj.content[i].clcommon__Covenant_Definition__r },
+                { field: 'clcommon__Expiration_Date__c', value:resObj.content[i].clcommon__Expiration_Date__c },
+                { field: 'clcommon__Financial_Indicator__c', value:resObj.content[i].clcommon__Financial_Indicator__c },
+                { field: 'clcommon__Financial_Indicator_High_Value__c', value:resObj.content[i].clcommon__Financial_Indicator_High_Value__c },
+                { field: 'clcommon__Financial_Indicator_Low_Value__c', value:resObj.content[i].clcommon__Financial_Indicator_Low_Value__c },
+                { field: 'clcommon__Financial_Operator__c', value:resObj.content[i].clcommon__Financial_Operator__c },
+                { field: 'clcommon__Frequency__c', value:resObj.content[i].clcommon__Frequency__c },
+                { field: 'clcommon__Notification_Days__c', value:resObj.content[i].clcommon__Notification_Days__c },
+            ]
+        });   
+    }
+    // move to next step
+    var wizard = $('.nx-wizard').data('object');
+    var currentStep = wizard.steps[wizard.currentstep];
+    currentStep.navigate('step3');
+}else{
+    var pageTitle = $('#initializeErrorTile');
+    var editor = pageTitle.data('object').editor; 
+    editor.handleMessages(
+        [
+          {
+              message: resObj.errorMessage,
+              severity: 'ERROR'
+          },
+        ]
+    );
+}
+</jsitem>
+			<jsitem location="inlinesnippet" name="SaveCovenants" cachelocation="false">var params = arguments[0],
+	$ = skuid.$;
+var appModel = skuid.model.getModel('AppForAddingCovenants');
+var appRow = appModel.data[0];
+var startDate;
+if(appRow.genesis__Expected_First_Payment_Date__c){
+    startDate = new Date(appRow.genesis__Expected_First_Payment_Date__c);
+}else{
+    startDate = new Date(appRow.genesis__Expected_Close_Date__c);
+}
+
+var otherParamsMap = {};
+otherParamsMap['applicationId'] = appRow.Id;
+otherParamsMap['startDay'] = startDate.getDate();
+otherParamsMap['startMonth'] = startDate.getMonth()+1;
+otherParamsMap['startYear'] = startDate.getFullYear();
+
+var newCovenantsModel = skuid.model.getModel('NewlyCreatedCovenantsForApp');
+var res = sforce.apex.execute('genesis.SkuidCovenantCtrl','saveCovenants', {
+                                covenantsJson : JSON.stringify(buildSObject(newCovenantsModel,true)) ,
+                                otherParams : JSON.stringify(otherParamsMap)
+                            });
+var resObj = JSON.parse(res);
+if(resObj.status == 'SUCCESS'){
+    skuid.$('.ui-dialog-content').last().dialog('close');
+}else{
+    var pageTitle = $('#saveCovenantErrorTitle');
+    var editor = pageTitle.data('object').editor; 
+    editor.handleMessages(
+        [
+          {
+              message: resObj.errorMessage,
+              severity: 'ERROR'
+          },
+        ]
+    );
+}</jsitem>
+			<jsitem location="staticresource" name="CLSNGUIComponent" cachelocation="false" url="" namespace="genesisExtn" content_type="application/zip" filepath="commonUtils.js"/>
+		</javascript>
+		<css>
+			<cssitem location="staticresource" name="CLSStyleSheetPack" cachelocation="false" url="" namespace="genesisExtn" filepath="cls-common.css"/>
+		</css>
+	</resources>
+	<styles>
+		<styleitem type="background" bgtype="none"/>
+	</styles>
+</skuidpage>

@@ -1,0 +1,784 @@
+<skuidpage personalizationmode="server" showsidebar="false" useviewportmeta="false" showheader="false" globalfeedbackenabled="false">
+	<models>
+		<model limit="1" query="true" createrowifnonefound="false" datasource="salesforce" id="LoggedInUserReviewerModel" sobject="clcommon__Reviewer__c">
+			<fields>
+				<field id="Id"/>
+				<field id="clcommon__Review_Comments__c" overridemetadata="false" ogdisplaytype="TEXTAREA" displaytype="TEXTAREA"/>
+				<field id="clcommon__Conditional_Approval_Status__c"/>
+				<field id="clcommon__Status__c"/>
+				<field id="clcommon__Approval_Review_Group__r.clcommon__Approval_Instance__r.genesis__Application__r.genesis__Status__c"/>
+				<field id="clcommon__Approval_Review_Group__r.clcommon__Approval_Instance__r.genesis__Application__r.Id"/>
+				<field id="clcommon__Approval_Review_Group__r.clcommon__Approval_Instance__c"/>
+				<field id="clcommon__Approval_Review_Group__r.clcommon__Approval_Instance__r.Name"/>
+			</fields>
+			<conditions>
+				<condition type="userinfo" value="" field="clcommon__User__c" fieldtargetobjects="User" operator="=" enclosevalueinquotes="true" userinfotype="userid"/>
+				<condition type="param" value="reviewerId" field="Id" operator="=" enclosevalueinquotes="true" novaluebehavior="noquery"/>
+			</conditions>
+			<actions/>
+		</model>
+		<model id="CommonApplicationApprovalsCheck" limit="20" query="true" createrowifnonefound="false" datasource="salesforce" sobject="genesis__Applications__c">
+			<fields>
+				<field id="Id"/>
+				<field id="Document_Type__c"/>
+				<field id="Interest_type__c"/>
+				<field id="Risk_grade_list__c"/>
+				<field id="Primary_loan_purpose_list__c"/>
+				<field id="Repayment_Type__c"/>
+				<field id="genesis__Loan_Amount__c"/>
+				<field id="genesis__Status__c"/>
+				<field id="LMI__c"/>
+				<field id="LMI_Approved__c"/>
+				<field id="CL_Date__c"/>
+				<field id="Primary_Approval_Date__c"/>
+				<field id="Primary_Approval_By__c"/>
+				<field id="Secondary_Approval_By__c"/>
+				<field id="Secondary_Approval_Date__c"/>
+				<field id="Recommended_By__c"/>
+				<field id="Recommended_Date__c"/>
+				<field id="Recommender_s_Email_Address__c"/>
+				<field id="Matrix_Rate__c"/>
+				<field id="genesis__Account__c"/>
+				<field id="genesis__Account__r.Name"/>
+				<field id="Legal_Entity__r.Name"/>
+				<field id="Primary_Loan_Purpose__c"/>
+				<field id="Recommend_Comments__c"/>
+			</fields>
+			<conditions>
+				<condition type="modelmerge" value="" field="Id" operator="=" model="LoggedInUserReviewerModel" enclosevalueinquotes="true" mergefield="clcommon__Approval_Review_Group__r.clcommon__Approval_Instance__r.genesis__Application__r.Id" novaluebehavior="deactivate"/>
+			</conditions>
+			<actions/>
+		</model>
+		<model id="MostRecentApprovalInst" limit="20" query="true" createrowifnonefound="false" datasource="salesforce" sobject="clcommon__Approval_Instance__c">
+			<fields>
+				<field id="Id"/>
+				<field id="clcommon__Name__c"/>
+				<field id="clcommon__Status__c"/>
+				<field id="clcommon__Approval_Review_Group__c"/>
+				<field id="clcommon__Approval_Review_Group__r.Name"/>
+			</fields>
+			<conditions>
+				<condition type="modelmerge" value="" field="genesis__Application__c" fieldtargetobjects="genesis__Applications__c" operator="=" model="CommonApplicationApprovalsCheck" enclosevalueinquotes="true" mergefield="Id" novaluebehavior="deactivate"/>
+				<condition type="modelmerge" value="" field="Id" fieldtargetobjects="clcommon__Approval_Instance__c" operator="=" model="LoggedInUserReviewerModel" enclosevalueinquotes="true" mergefield="clcommon__Approval_Review_Group__r.clcommon__Approval_Instance__c" novaluebehavior="deactivate"/>
+			</conditions>
+			<actions/>
+		</model>
+		<model id="ReviewersWhoApprvd" limit="20" query="true" createrowifnonefound="false" datasource="salesforce" sobject="clcommon__Reviewer__c" orderby="clcommon__Completed_Date__c">
+			<fields>
+				<field id="Id"/>
+				<field id="clcommon__User__c"/>
+				<field id="clcommon__User__r.Name"/>
+				<field id="clcommon__User__r.Email"/>
+			</fields>
+			<conditions>
+				<condition type="modelmerge" value="" field="clcommon__Approval_Review_Group__c" fieldtargetobjects="clcommon__Approval_Review_Group__c" operator="=" model="MostRecentApprovalInst" enclosevalueinquotes="true" mergefield="clcommon__Approval_Review_Group__c" novaluebehavior="deactivate"/>
+				<condition type="fieldvalue" value="Approved" enclosevalueinquotes="true" field="clcommon__Status__c"/>
+			</conditions>
+			<actions/>
+		</model>
+		<model id="ExceptionList" limit="200" query="true" createrowifnonefound="false" datasource="salesforce" sobject="genesis__Checklist__c">
+			<fields>
+				<field id="Exception_Recommender__c"/>
+				<field id="Exception_Approver__c"/>
+			</fields>
+			<conditions>
+				<condition type="modelmerge" value="" field="genesis__Application__c" fieldtargetobjects="genesis__Applications__c" operator="=" model="CommonApplicationApprovalsCheck" enclosevalueinquotes="true" mergefield="Id" novaluebehavior="deactivate"/>
+				<condition type="fieldvalue" value="SUCCESS" enclosevalueinquotes="true" field="genesis__Message__c" operator="!="/>
+				<condition type="fieldvalue" value="Exception" enclosevalueinquotes="true" field="genesis__Rule__r.Rule_Classification__c"/>
+				<condition type="multiple" value="" field="genesis__Rule__r.Name" operator="in" enclosevalueinquotes="true">
+					<values>
+						<value>Matrix Rate Exception</value>
+						<value>Confirm Repayments do not double Exception</value>
+					</values>
+				</condition>
+			</conditions>
+			<actions/>
+		</model>
+		<model id="ExceptionCheckList" limit="200" query="true" createrowifnonefound="false" datasource="salesforce" sobject="Checklist_Detail__c">
+			<fields>
+				<field id="Exception_Recommender__c"/>
+				<field id="Exception_Approver__c"/>
+			</fields>
+			<conditions>
+				<condition type="fieldvalue" value="Exception" enclosevalueinquotes="true" field="Rule_Classification__c"/>
+				<condition type="fieldvalue" value="SUCCESS" enclosevalueinquotes="true" field="Status__c" operator="!="/>
+				<condition type="modelmerge" value="" field="Checklist__r.genesis__Application__c" fieldtargetobjects="genesis__Applications__c" operator="=" model="CommonApplicationApprovalsCheck" enclosevalueinquotes="true" mergefield="Id" novaluebehavior="deactivate"/>
+				<condition type="blank" value="null" field="Checklist__r.genesis__Rule__c" fieldtargetobjects="genesis__Rule__c" operator="!=" enclosevalueinquotes="false"/>
+			</conditions>
+			<actions/>
+		</model>
+		<model id="ManualExceptionChecklist" limit="200" query="true" createrowifnonefound="false" datasource="salesforce" sobject="genesis__Checklist__c">
+			<fields>
+				<field id="Exception_Approver__c"/>
+				<field id="Exception_Recommender__c"/>
+			</fields>
+			<conditions>
+				<condition type="modelmerge" value="" field="genesis__Application__c" fieldtargetobjects="genesis__Applications__c" operator="in" model="CommonApplicationApprovalsCheck" enclosevalueinquotes="true" mergefield="Id" novaluebehavior="deactivate"/>
+				<condition type="fieldvalue" value="true" enclosevalueinquotes="false" field="Manual__c"/>
+				<condition type="fieldvalue" value="Exception" enclosevalueinquotes="true" field="Rule_Classification__c"/>
+				<condition type="modelmerge" value="" field="genesis__Assessed_Record_Id__c" operator="=" model="CommonApplicationApprovalsCheck" enclosevalueinquotes="true" mergefield="Id" novaluebehavior="deactivate"/>
+			</conditions>
+			<actions/>
+		</model>
+		<model id="WarningList" limit="200" query="true" createrowifnonefound="false" datasource="salesforce" sobject="genesis__Checklist__c">
+			<fields>
+				<field id="Exception_Approver__c"/>
+				<field id="Exception_Commentary__c"/>
+				<field id="Exception_Recommender__c"/>
+			</fields>
+			<conditions>
+				<condition type="modelmerge" value="" field="genesis__Application__c" fieldtargetobjects="genesis__Applications__c" operator="=" model="CommonApplicationApprovalsCheck" enclosevalueinquotes="true" mergefield="Id" novaluebehavior="deactivate"/>
+				<condition type="fieldvalue" value="SUCCESS" enclosevalueinquotes="true" field="genesis__Message__c" operator="!="/>
+				<condition type="fieldvalue" value="Warning" field="genesis__Rule__r.Rule_Classification__c" operator="=" mergefield="Id" novaluebehavior="deactivate" enclosevalueinquotes="true"/>
+				<condition type="multiple" value="" field="genesis__Rule__r.Name" operator="in" enclosevalueinquotes="true">
+					<values>
+						<value>Interest Only Reason Warning</value>
+						<value>Exit Strategy Provided Warning</value>
+						<value>Fixed Rate Lock In Date Warning</value>
+						<value>Matrix Rate Warning</value>
+						<value>Actual LVR &gt; 80% Warning</value>
+						<value>Actual LVR &gt; 70% Warning</value>
+						<value>Actual LVR &gt; 75% Warning</value>
+						<value>Cash Out Purpose Explanation Provided Warning</value>
+						<value>Application Fee Warning</value>
+						<value>Application Fee % Warning</value>
+						<value>Risk Grade Compare Warning</value>
+						<value>Primary Purpose Warning</value>
+						<value>Commission Mandate Percentage Warning</value>
+					</values>
+				</condition>
+			</conditions>
+			<actions/>
+		</model>
+		<model id="WarningCheckList" limit="200" query="true" createrowifnonefound="false" datasource="salesforce" sobject="Checklist_Detail__c">
+			<fields>
+				<field id="Exception_Approver__c"/>
+				<field id="Exception_Commentary__c"/>
+				<field id="Exception_Recommender__c"/>
+			</fields>
+			<conditions>
+				<condition type="fieldvalue" value="Warning" enclosevalueinquotes="true" field="Rule_Classification__c"/>
+				<condition type="fieldvalue" value="SUCCESS" field="Status__c" operator="!=" mergefield="Id" novaluebehavior="deactivate" enclosevalueinquotes="true"/>
+				<condition type="modelmerge" value="" field="Checklist__r.genesis__Application__c" fieldtargetobjects="genesis__Applications__c" operator="in" model="LoggedInUserReviewerModel" enclosevalueinquotes="true" mergefield="Id" novaluebehavior="deactivate"/>
+			</conditions>
+			<actions/>
+		</model>
+		<model id="ManualWarningChecklist" limit="200" query="true" createrowifnonefound="false" datasource="salesforce" sobject="genesis__Checklist__c">
+			<fields>
+				<field id="Exception_Recommender__c"/>
+				<field id="Exception_Approver__c"/>
+				<field id="Exception_Commentary__c"/>
+			</fields>
+			<conditions>
+				<condition type="modelmerge" value="" field="genesis__Application__c" fieldtargetobjects="genesis__Applications__c" operator="=" model="CommonApplicationApprovalsCheck" enclosevalueinquotes="true" mergefield="Id" novaluebehavior="deactivate"/>
+				<condition type="fieldvalue" value="true" enclosevalueinquotes="false" field="Manual__c"/>
+				<condition type="fieldvalue" value="Warning" enclosevalueinquotes="true" field="Rule_Classification__c"/>
+				<condition type="modelmerge" value="" field="genesis__Assessed_Record_Id__c" operator="=" model="CommonApplicationApprovalsCheck" enclosevalueinquotes="true" mergefield="Id" novaluebehavior="deactivate"/>
+			</conditions>
+			<actions/>
+		</model>
+		<model id="IndividualContactApp" limit="20" query="true" createrowifnonefound="false" datasource="salesforce" sobject="Contact">
+			<fields>
+				<field id="RecordTypeId"/>
+				<field id="AccountId"/>
+				<field id="Account.Name"/>
+				<field id="Id"/>
+				<field id="Age_of_Applicant__c"/>
+			</fields>
+			<conditions>
+				<condition type="modelmerge" value="" field="AccountId" fieldtargetobjects="Account" operator="=" model="CommonApplicationApprovalsCheck" enclosevalueinquotes="true" mergefield="genesis__Account__c" novaluebehavior="deactivate"/>
+			</conditions>
+			<actions/>
+		</model>
+		<model id="ARApplicationCollaterals" limit="20" query="true" createrowifnonefound="false" datasource="salesforce" sobject="genesis__Application_Collateral__c">
+			<fields>
+				<field id="genesis__Collateral__c"/>
+				<field id="genesis__Collateral__r.Name"/>
+			</fields>
+			<conditions>
+				<condition type="modelmerge" value="" field="genesis__Application__c" fieldtargetobjects="genesis__Applications__c" operator="=" model="CommonApplicationApprovalsCheck" enclosevalueinquotes="true" mergefield="Id" novaluebehavior="deactivate"/>
+			</conditions>
+			<actions/>
+		</model>
+		<model id="ARCollaterals" limit="20" query="true" createrowifnonefound="false" datasource="salesforce" sobject="clcommon__Collateral__c">
+			<fields>
+				<field id="RecordTypeId"/>
+				<field id="Document_Enquiry_Id__c"/>
+				<field id="Title_Search_Status__c"/>
+			</fields>
+			<conditions>
+				<condition type="modelmerge" value="" field="Id" operator="in" model="ARApplicationCollaterals" enclosevalueinquotes="true" mergefield="genesis__Collateral__c" novaluebehavior="deactivate" fieldtargetobjects="clcommon__Collateral__c"/>
+			</conditions>
+			<actions/>
+		</model>
+	</models>
+	<components>
+		<panelset type="custom" uniqueid="sk-3gdj-629">
+			<panels>
+				<panel width="10%">
+					<components/>
+				</panel>
+				<panel width="80%">
+					<components>
+						<pagetitle model="LoggedInUserReviewerModel" uniqueid="sk-3geK-818">
+							<actions>
+								<action type="multi" label="Approve" uniqueid="sk-3geM-838" icon="fa-check-square-o">
+									<renderconditions logictype="and">
+										<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="CommonApplicationApprovalsCheck" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="genesis__Status__c" fieldtargetobjects="genesis__Applications__c" value="Recommended"/>
+									</renderconditions>
+									<enableconditions logictype="and">
+										<condition type="blank" operator="!=" fieldmodel="LoggedInUserReviewerModel" sourcetype="fieldvalue" field="clcommon__Review_Comments__c" fieldtargetobjects="clcommon__Reviewer__c" value="null" enclosevalueinquotes="false"/>
+									</enableconditions>
+									<actions>
+										<action type="custom" snippet="approveValidation"/>
+										<action type="blockUI"/>
+										<action type="updateRow" fieldmodel="LoggedInUserReviewerModel" affectedrows="context" enclosevalueinquotes="true">
+											<updates>
+												<update valuesource="fieldvalue" field="clcommon__Status__c" value="Approved"/>
+											</updates>
+										</action>
+										<action type="save" rollbackonanyerror="true">
+											<models>
+												<model>LoggedInUserReviewerModel</model>
+											</models>
+										</action>
+										<action type="requeryModels" behavior="standard">
+											<models>
+												<model>LoggedInUserReviewerModel</model>
+												<model>CommonApplicationApprovalsCheck</model>
+												<model>MostRecentApprovalInst</model>
+												<model>ReviewersWhoApprvd</model>
+											</models>
+										</action>
+										<action type="custom" snippet="ApprovalChanges"/>
+										<action type="custom" snippet="CloseDialogAndRefresh"/>
+									</actions>
+									<hotkeys/>
+								</action>
+								<action type="multi" label="Recommend" uniqueid="sk-2rMQ-382" icon="fa-check-square-o">
+									<actions>
+										<action type="requeryModels" behavior="standard">
+											<models>
+												<model>ExceptionList</model>
+												<model>ExceptionCheckList</model>
+												<model>ManualExceptionChecklist</model>
+												<model>WarningList</model>
+												<model>WarningCheckList</model>
+												<model>ManualWarningChecklist</model>
+												<model>ARApplicationCollaterals</model>
+												<model>ARCollaterals</model>
+											</models>
+										</action>
+										<action type="custom" snippet="recommendValidation"/>
+										<action type="blockUI"/>
+										<action type="custom" snippet="DataLockingConfirmationPopupLoanDetails"/>
+										<action type="updateRow" fieldmodel="LoggedInUserReviewerModel" affectedrows="context">
+											<updates>
+												<update valuesource="fieldvalue" field="clcommon__Status__c" enclosevalueinquotes="true" value="Approved"/>
+											</updates>
+										</action>
+										<action type="save">
+											<models>
+												<model>LoggedInUserReviewerModel</model>
+												<model>CommonApplicationApprovalsCheck</model>
+											</models>
+										</action>
+										<action type="requeryModels" behavior="standard">
+											<models>
+												<model>LoggedInUserReviewerModel</model>
+												<model>CommonApplicationApprovalsCheck</model>
+												<model>MostRecentApprovalInst</model>
+												<model>ReviewersWhoApprvd</model>
+											</models>
+										</action>
+										<action type="custom" snippet="ApprovalChanges"/>
+										<action type="custom" snippet="CloseDialogAndRefresh"/>
+									</actions>
+									<renderconditions logictype="and">
+										<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="CommonApplicationApprovalsCheck" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="genesis__Status__c" fieldtargetobjects="genesis__Applications__c" value="Val Received"/>
+									</renderconditions>
+									<enableconditions/>
+								</action>
+								<action type="multi" label="Approve With Conditions" uniqueid="sk-3geM-846" icon="fa-minus-square-o">
+									<renderconditions logictype="and">
+										<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="LoggedInUserReviewerModel" sourcetype="fieldvalue" value="CK12345" field="Id" fieldtargetobjects="clcommon__Reviewer__c"/>
+									</renderconditions>
+									<enableconditions logictype="and">
+										<condition type="blank" operator="!=" fieldmodel="LoggedInUserReviewerModel" sourcetype="fieldvalue" field="clcommon__Review_Comments__c" fieldtargetobjects="clcommon__Reviewer__c" value="null" enclosevalueinquotes="false"/>
+									</enableconditions>
+									<actions>
+										<action type="blockUI"/>
+										<action type="updateRow" fieldmodel="LoggedInUserReviewerModel" affectedrows="context" enclosevalueinquotes="true">
+											<updates>
+												<update valuesource="fieldvalue" field="clcommon__Status__c" value="Approved"/>
+											</updates>
+										</action>
+										<action type="save" rollbackonanyerror="true">
+											<models>
+												<model>LoggedInUserReviewerModel</model>
+											</models>
+										</action>
+										<action type="custom" snippet="CloseDialogAndRefresh"/>
+									</actions>
+								</action>
+								<action type="multi" label="Reject" uniqueid="sk-3geM-851" icon="fa-ban">
+									<renderconditions logictype="and">
+										<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="CommonApplicationApprovalsCheck" sourcetype="fieldvalue" field="genesis__Status__c" fieldtargetobjects="genesis__Applications__c" nosourcerowbehavior="deactivate" value="Recommended"/>
+									</renderconditions>
+									<enableconditions logictype="and">
+										<condition type="blank" operator="!=" fieldmodel="LoggedInUserReviewerModel" sourcetype="fieldvalue" field="clcommon__Review_Comments__c" fieldtargetobjects="clcommon__Reviewer__c" value="null" enclosevalueinquotes="false"/>
+									</enableconditions>
+									<actions>
+										<action type="blockUI"/>
+										<action type="updateRow" fieldmodel="LoggedInUserReviewerModel" affectedrows="context" enclosevalueinquotes="true">
+											<updates>
+												<update valuesource="fieldvalue" field="clcommon__Status__c" value="Rejected"/>
+											</updates>
+										</action>
+										<action type="save" rollbackonanyerror="true">
+											<models>
+												<model>LoggedInUserReviewerModel</model>
+											</models>
+										</action>
+										<action type="requeryModels" behavior="standard">
+											<models>
+												<model>LoggedInUserReviewerModel</model>
+												<model>CommonApplicationApprovalsCheck</model>
+												<model>MostRecentApprovalInst</model>
+												<model>ReviewersWhoApprvd</model>
+											</models>
+										</action>
+										<action type="custom" snippet="ApprovalChanges"/>
+										<action type="custom" snippet="CloseDialogAndRefresh"/>
+									</actions>
+								</action>
+								<action type="multi" label="On Hold" uniqueid="sk-3gqq-244" icon="fa-exclamation">
+									<actions>
+										<action type="blockUI" timeout="1000"/>
+										<action type="updateRow" fieldmodel="LoggedInUserReviewerModel" affectedrows="context" enclosevalueinquotes="true">
+											<updates>
+												<update valuesource="fieldvalue" field="clcommon__Status__c" value="On Hold"/>
+											</updates>
+										</action>
+										<action type="save" rollbackonanyerror="true">
+											<models>
+												<model>LoggedInUserReviewerModel</model>
+											</models>
+										</action>
+										<action type="custom" snippet="CloseDialogAndRefresh"/>
+									</actions>
+									<renderconditions logictype="and"/>
+									<enableconditions/>
+								</action>
+							</actions>
+							<renderconditions logictype="and"/>
+						</pagetitle>
+						<basicfieldeditor showheader="true" showsavecancel="false" showerrorsinline="true" model="CommonApplicationApprovalsCheck" uniqueid="sk-2cCH-532" mode="edit" layout="above">
+							<columns layoutmode="fixed">
+								<column width="100%" uniqueid="sk-2cCH-528">
+									<sections>
+										<section title="Review Comments" uniqueid="sk-2cCH-529" collapsible="no">
+											<fields>
+												<field uniqueid="sk-2cCV-640" id="Recommend_Comments__c" displayrows="5">
+													<renderconditions logictype="and" onhidedatabehavior="keep"/>
+													<enableconditions/>
+												</field>
+											</fields>
+											<renderconditions logictype="and"/>
+										</section>
+									</sections>
+									<renderconditions logictype="and"/>
+								</column>
+							</columns>
+							<renderconditions logictype="and">
+								<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="CommonApplicationApprovalsCheck" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="genesis__Status__c" fieldtargetobjects="genesis__Applications__c" value="Val Received"/>
+							</renderconditions>
+						</basicfieldeditor>
+						<basicfieldeditor showheader="true" showsavecancel="false" showerrorsinline="true" model="LoggedInUserReviewerModel" uniqueid="sk-3gdI-447" mode="edit" layout="above">
+							<columns>
+								<column width="100%" uniqueid="sk-3gdI-443">
+									<sections>
+										<section title="Review Comments" uniqueid="sk-3gdI-444" collapsible="no">
+											<fields>
+												<field uniqueid="sk-3gdW-513" id="clcommon__Review_Comments__c" displayrows="7" showlengthcounter="false" required="true">
+													<label>Approval Comments</label>
+													<renderconditions logictype="and" onhidedatabehavior="keep"/>
+													<enableconditions/>
+												</field>
+											</fields>
+											<renderconditions logictype="and"/>
+										</section>
+									</sections>
+									<renderconditions logictype="and"/>
+								</column>
+							</columns>
+							<renderconditions logictype="and">
+								<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="CommonApplicationApprovalsCheck" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="genesis__Status__c" fieldtargetobjects="genesis__Applications__c" value="Recommended"/>
+							</renderconditions>
+						</basicfieldeditor>
+					</components>
+				</panel>
+				<panel width="10%">
+					<components/>
+				</panel>
+			</panels>
+		</panelset>
+	</components>
+	<resources>
+		<labels/>
+		<javascript>
+			<jsitem location="external" name="apexajax" cachelocation="false" url="/soap/ajax/24.0/apex.js">var params = arguments[0],
+	$ = skuid.$;
+</jsitem>
+			<jsitem location="external" name="connectionJS" cachelocation="false" url="/soap/ajax/35.0/connection.js">var params = arguments[0],
+	$ = skuid.$;
+</jsitem>
+			<jsitem location="staticresource" name="CLSNGUIComponent" cachelocation="false" url="" namespace="genesisExtn" filepath="commonUtils.js">var params = arguments[0],
+  $ = skuid.$;
+</jsitem>
+			<jsitem location="staticresource" name="CLSNGUIComponent" cachelocation="false" url="" namespace="genesisExtn" filepath="messageUtils.js">var params = arguments[0],
+  $ = skuid.$;
+</jsitem>
+			<jsitem location="inlinesnippet" name="CloseDialogAndRefresh" cachelocation="false">var params = arguments[0],
+    $ = skuid.$;
+
+closeTopLevelDialogAndRefresh({iframeIds: ['deal-dashboard-iframe,approval-dashboard-iframe', 'approval-dashboard-iframe']});
+</jsitem>
+			<jsitem location="inlinesnippet" name="DataLockingConfirmationPopupLoanDetails" cachelocation="false">var con = false;
+var appModel2 = skuid.model.getModel('CommonApplicationApprovalsCheck');
+var appRowRel = appModel2.data[0];
+if(appRowRel.genesis__Status__c === 'Val Received'){
+    if(appRowRel.Matrix_Rate__c === undefined || appRowRel.Matrix_Rate__c === ''){
+        alert('Please generate the matrix rate to proceed.');
+        $.unblockUI();
+        return false;
+    }
+    if(appRowRel.LMI__c === 'Yes' &amp;&amp; appRowRel.LMI_Approved__c !== 'Yes'){
+        alert('Please approve the LMI to proceed!');
+        return false;
+    }
+    var records = sforce.connection.query("Select id,genesis__Application__c,genesis__Collateral__c,genesis__Collateral__r.Primary_Security__c from genesis__Application_Collateral__c where genesis__Application__c = '"+appRowRel.Id+"' and genesis__Collateral__r.Primary_Security__c = 'Yes'");
+    var arrPrimarySecurity = records.getArray('records');
+    if(arrPrimarySecurity.length === 0){
+        alert('Please ensure 1 security is set to Primary Security');
+        $.unblockUI();
+        return false;
+    }
+    else {
+        if(arrPrimarySecurity.length != 1){
+            alert('More than 1 Security has been set as the Primary Security, Please ensure only 1 security is set as the Primary Security');
+            $.unblockUI();
+            return false;
+        }
+    }
+    var apptyObj = new sforce.SObject("genesis__applications__c");
+    apptyObj.Id = appRowRel.Id;
+    apptyObj.Document_Type__c = appRowRel.Document_Type__c;
+    apptyObj.Interest_type__c = appRowRel.Interest_type__c;
+    apptyObj.Risk_grade_list__c = appRowRel.Risk_grade_list__c;
+    apptyObj.Primary_loan_purpose_list__c = appRowRel.Primary_loan_purpose_list__c;
+    apptyObj.Repayment_Type__c = appRowRel.Repayment_Type__c;
+    apptyObj.genesis__Loan_Amount__c = appRowRel.genesis__Loan_Amount__c;
+    var result = sforce.connection.update([apptyObj]);
+    var pricingResult2 = sforce.apex.execute('genesis.SkuidPricingCtrl','generatePricing',
+        {   
+                applicationId : apptyObj.Id
+        });
+    var pricingResult = sforce.apex.execute('PricingUpdate','updatePricing',
+    {   
+            applicationId : apptyObj.Id,
+            checkPricing : true 
+    });
+    if(pricingResult !== undefined &amp;&amp; pricingResult[0] === 'The current matrix rate is not in accordance with the interest obtained from Pricing table. Please click on the Generate Pricing button on Loan Details tab to proceed.'){
+        alert(pricingResult);
+        $.unblockUI();
+        return false;
+    }
+    var result = sforce.apex.execute('CheckRules','callCheckRulesWS',
+        {   
+            applicationId : appRowRel.Id,
+            tabName : 'Recommended'
+    });
+    var records = sforce.connection.query("SELECT Id,genesis__Message__c FROM genesis__Checklist__c where genesis__Application__c ='"+appRowRel.Id+"' and genesis__Message__c != 'SUCCESS' and Rule_Classification2__c = 'Rule' and genesis__Rule__r.Name in ('Cash Out Purpose Suitable Rule','Interest Only Suitable Rule','Exit Strategy Suitable Rule','Lenders Mortgage Insurance Rule','LMI and LMI Approved both should be yes rule')");
+    var checkListQuery = records.getArray('records');
+    var checkListDetailQuery1 = sforce.connection.query("SELECT Id, Status__c, Checklist__c, Checklist__r.genesis__Application__c FROM Checklist_Detail__c where Checklist__r.genesis__Application__c = '"+appRowRel.Id+"' and Status__c != 'SUCCESS' and Rule_Classification__c = 'Rule'");
+    var checkListDetailQuery = checkListDetailQuery1.getArray('checkListDetailQuery1');
+    if((checkListDetailQuery !== undefined &amp;&amp; checkListDetailQuery.length &gt; 0) || (checkListQuery !== undefined &amp;&amp; checkListQuery.length &gt; 0)){
+        alert('Application cannot be changed to Recommended status as there are failed rules in this application!');
+        $.unblockUI();
+        return false;
+    }
+}</jsitem>
+			<jsitem location="inlinesnippet" cachelocation="false" name="ApprovalChanges">var today = new Date();
+var date = today.getDate()+'/'+(today.getMonth()+1)+'/'+today.getFullYear();
+var appModel2 = skuid.model.getModel('CommonApplicationApprovalsCheck');
+appModel2.updateData();
+var appRowRel = appModel2.data[0];
+var appInstance = skuid.model.getModel('MostRecentApprovalInst');
+appInstance.updateData();
+var instanceRow = appInstance.data[0];
+var reviewGroupModel = skuid.model.getModel('ReviewersWhoApprvd');
+reviewGroupModel.updateData();
+var reviewGroup = reviewGroupModel.data[0];
+var contactModel = skuid.model.getModel('IndividualContactApp');
+contactModel.updateData();
+var conRow = contactModel.data[0];
+var primaryApproverUser = '';
+var secondaryApproverUser = '';
+var k=0;
+var records = sforce.connection.query("Select Id,genesis__Application__c,clcommon__Account__c,clcommon__Account__r.Brokers_BDM__c,clcommon__Account__r.Brokers_BDM__r.Email from clcommon__Party__c where genesis__Application__c = '"+appRowRel.Id+"' and Party_Type_Name__c = 'Broker'");
+var appRecord = (records.getArray('records'))[0];
+if(appRowRel.genesis__Status__c ==  'Val Received' &amp;&amp; instanceRow.clcommon__Name__c == 'Recommend Levels Approval' &amp;&amp; instanceRow.clcommon__Status__c === 'Approved'){
+    var apptyObj = new sforce.SObject("genesis__applications__c");
+    apptyObj.Id = appRowRel.Id;
+    apptyObj.genesis__Status__c = 'Recommended';
+    apptyObj.Recommended_Date__c = date+'';
+    apptyObj.Recommended_By__c = reviewGroup.clcommon__User__r.Name;
+    apptyObj.Recommender_s_Email_Address__c = reviewGroup.clcommon__User__r.Email;
+    if(appRowRel.Legal_Entity__r.Name === 'Individual'){
+        if(conRow.Age_of_Applicant__c !== undefined){
+            apptyObj.Age_of_Individual_Applicant__c = conRow.Age_of_Applicant__c;
+        }
+    }
+    if(appRecord !== undefined &amp;&amp; appRecord.clcommon__Account__c !== undefined &amp;&amp; appRecord.clcommon__Account__r.Brokers_BDM__r.Email !== undefined){
+        apptyObj.BDM_s_Email_Address__c = appRecord.clcommon__Account__r.Brokers_BDM__r.Email;
+    }
+    var result = sforce.connection.update([apptyObj]);
+    closeTopLevelDialogAndRefresh({window : true});
+}
+else if(appRowRel.genesis__Status__c ==  'Recommended' &amp;&amp; instanceRow.clcommon__Name__c == 'Dual Level Approval' &amp;&amp; instanceRow.clcommon__Status__c === 'Submitted' &amp;&amp; reviewGroupModel.data.length &gt; 0){
+    var apptyObj = new sforce.SObject("genesis__applications__c");
+    apptyObj.Id = appRowRel.Id;
+    apptyObj.Primary_Approval_By__c = reviewGroup.clcommon__User__r.Name;
+    apptyObj.Primary_Approval_Date__c = date+'';
+    var result = sforce.connection.update([apptyObj]);
+    
+}
+else if(appRowRel.genesis__Status__c ==  'Recommended' &amp;&amp; (instanceRow.clcommon__Name__c == 'Single Level Approval (Risk Loans)' || instanceRow.clcommon__Name__c == 'Dual Level Approval' || instanceRow.clcommon__Name__c == 'Single Level Approval') &amp;&amp; instanceRow.clcommon__Status__c === 'Approved'){
+    $.each(reviewGroupModel.data,function(i,row){
+        if(k === 0){
+            primaryApproverUser = row.clcommon__User__r.Name;
+            k=k+1;
+        }
+        else{
+            secondaryApprover = row.clcommon__User__r.Name;
+        }
+    });
+    var apptyObj = new sforce.SObject("genesis__applications__c");
+    apptyObj.Id = appRowRel.Id;
+    if(instanceRow.clcommon__Name__c == 'Single Level Approval' || instanceRow.clcommon__Name__c == 'Single Level Approval (Risk Loans)'){
+        apptyObj.Primary_Approval_By__c = primaryApproverUser;
+        apptyObj.Primary_Approval_Date__c = date+'';
+    }
+    else if(instanceRow.clcommon__Name__c == 'Dual Level Approval'){
+        apptyObj.Secondary_Approval_By__c = secondaryApprover;
+        apptyObj.Secondary_Approval_Date__c = date;
+    }
+    apptyObj.genesis__Status__c = 'Formally Approved';
+    //Changing the location of collaterals on application getting approved
+    var resCheck = sforce.apex.execute('SkuidValuesUpdateHelper','updateLocationValues',
+                    {   appId : appRowRel.Id, 
+                    });
+    var resCheck = sforce.apex.execute('SkuidValuesUpdateHelper','updateEmploymentTypeMonthsSelfEmployed',
+                    {   appId : appRowRel.Id, 
+                    });
+    var result = sforce.connection.update([apptyObj]);
+    closeTopLevelDialogAndRefresh({window : true});
+}
+else if(appRowRel.genesis__Status__c ==  'Recommended' &amp;&amp; (instanceRow.clcommon__Name__c == 'Dual Level Approval' || instanceRow.clcommon__Name__c == 'Single Level Approval') &amp;&amp; instanceRow.clcommon__Status__c === 'Rejected'){
+    var instanceRecords = sforce.connection.query("Select id from clcommon__Approval_Instance__c where genesis__Application__c = '"+appRowRel.Id+"'");
+    var check = sforce.connection.deleteIds((records.getArray('instanceRecords')));
+    var apptyObj = new sforce.SObject("genesis__applications__c");
+    apptyObj.Id = appRowRel.Id;
+    apptyObj.genesis__Status__c = 'Val Received';
+    apptyObj.Primary_Approval_By__c = null;
+    apptyObj.Primary_Approval_Date__c = null;
+    apptyObj.Secondary_Approval_By__c = null;
+    apptyObj.Secondary_Approval_Date__c = null;
+    var result = sforce.connection.update([apptyObj]);
+    closeTopLevelDialogAndRefresh({window : true});
+}</jsitem>
+			<jsitem location="inlinesnippet" name="recommendValidation" cachelocation="false">var params = arguments[0],
+	$ = skuid.$;
+var appModel2 = skuid.model.getModel('CommonApplicationApprovalsCheck');
+//appModel2.updateData();
+var appRowRel = appModel2.data[0];
+var exceptionModel = skuid.model.getModel('ExceptionList');
+var exception2Model = skuid.model.getModel('ExceptionCheckList');
+var exception3Model = skuid.model.getModel('ManualExceptionChecklist');
+var warningModel = skuid.model.getModel('WarningList');
+var warning2Model = skuid.model.getModel('WarningCheckList');
+var warning3Model = skuid.model.getModel('ManualWarningChecklist');
+var collModel = skuid.model.getModel('ARCollaterals');
+var flag = true;
+if(appRowRel.Legal_Entity__r.Name === 'Individual'){
+    var contactModel = skuid.model.getModel('IndividualContactApp');
+    contactModel.updateData();
+    var conRow = contactModel.data[0];
+    if(conRow.Age_of_Applicant__c === undefined){
+        alert('Please provide age of borrower in Contact details tab to proceed!');
+        return false;
+    }
+}
+if(appRowRel.Debt_to_Income_Ratio__c !== undefined &amp;&amp; appRowRel.Debt_to_Income_Ratio__c !== 0.00){
+    alert('Please provide value in Debt to Income ratio in Serviceability tab to Recommend this loan!');
+    return false;
+}
+$.each(warningModel.data,function(i,row){
+    if(row.Exception_Commentary__c === undefined || row.Exception_Commentary__c === ''){
+        alert('All warning must have commentary added before a loan can move to recommended status, or any other status later down the workflow');
+        flag = false;
+        return false;
+    }
+});
+if(flag === false){ return false; }
+$.each(warning2Model.data,function(i,row){
+    if(row.Exception_Commentary__c === undefined || row.Exception_Commentary__c === ''){
+        alert('All warning must have commentary added before a loan can move to recommended status, or any other status later down the workflow');
+        flag = false;
+        return false;
+    }
+});
+if(flag === false){ return false; }
+$.each(warning3Model.data,function(i,row){
+    if(row.Exception_Commentary__c === undefined || row.Exception_Commentary__c === ''){
+        alert('All warning must have commentary added before a loan can move to recommended status, or any other status later down the workflow');
+        flag = false;
+        return false;
+    }
+});
+if(flag === false){ return false; }
+
+$.each(exceptionModel.data,function(i,row){
+    if(row.Exception_Approver__c === undefined || row.Exception_Approver__c === ''){
+        alert('Loan cannot be Recommended unless all Exceptions have been Recommended and Approved');
+        flag = false;
+        return false;
+    }
+});
+if(flag === false){ return false; }
+$.each(exception2Model.data,function(i,row){
+    if(row.Exception_Approver__c === undefined || row.Exception_Approver__c === ''){
+        alert('Loan cannot be Recommended unless all Exceptions have been Recommended and Approved');
+        flag = false;
+        return false;
+    }
+});
+if(flag === false){ return false; }
+$.each(exception3Model.data,function(i,row){
+    if(row.Exception_Approver__c === undefined || row.Exception_Approver__c === ''){
+        alert('Loan cannot be Recommended unless all Exceptions have been Recommended and Approved');
+        flag = false;
+        return false;
+    }
+});
+if(flag === false){ return false; }
+flag = true;
+if(appRowRel !== undefined &amp;&amp; appRowRel.Primary_Loan_Purpose__c !== undefined &amp;&amp; (appRowRel.Primary_Loan_Purpose__c).includes('Refinance')){
+    $.each(collModel.data,function(i,row){
+        console.log(row.Title_Search_Status__c);
+        if(row.Title_Search_Status__c === undefined || row.Title_Search_Status__c !== 'Title Received'){
+            alert('Title Search needs to be done for all the securities before recommending the loan');
+            flag = false;
+            return false;
+        }
+    });
+}
+if(flag === false){ return false; }</jsitem>
+			<jsitem location="inlinesnippet" name="approveValidation" cachelocation="false">var params = arguments[0],
+	$ = skuid.$;
+var appModel = skuid.model.getModel('CommonApplicationApprovalsCheck');
+var appRow = appModel.data[0];
+var exceptionModel = skuid.model.getModel('ExceptionList');
+var exception2Model = skuid.model.getModel('ExceptionCheckList');
+var exception3Model = skuid.model.getModel('ManualExceptionChecklist');
+var warningModel = skuid.model.getModel('WarningList');
+var warning2Model = skuid.model.getModel('WarningCheckList');
+var warning3Model = skuid.model.getModel('ManualWarningChecklist');
+var flag = true;
+
+$.each(warningModel.data,function(i,row){
+    if(row.Exception_Commentary__c === undefined || row.Exception_Commentary__c === ''){
+        alert('All warning must have commentary added before a loan can move to recommended status, or any other status later down the workflow');
+        flag = false;
+        return false;
+    }
+});
+if(flag === false){ return false; }
+$.each(warning2Model.data,function(i,row){
+    if(row.Exception_Commentary__c === undefined || row.Exception_Commentary__c === ''){
+        alert('All warning must have commentary added before a loan can move to recommended status, or any other status later down the workflow');
+        flag = false;
+        return false;
+    }
+});
+if(flag === false){ return false; }
+$.each(warning3Model.data,function(i,row){
+    if(row.Exception_Commentary__c === undefined || row.Exception_Commentary__c === ''){
+        alert('All warning must have commentary added before a loan can move to recommended status, or any other status later down the workflow');
+        flag = false;
+        return false;
+    }
+});
+if(flag === false){ return false; }
+/*$.each(exceptionModel.data,function(i,row){
+    if(row.Exception_Recommender__c === undefined || row.Exception_Recommender__c === ''
+    || row.Exception_Approver__c === undefined || row.Exception_Approver__c === ''){
+        alert('Loan cannot be Formally Approved (or moved to any status’s after) unless all the Exceptions have been Recommended or Approved');
+        flag = false;
+        return false;
+    }
+});
+if(flag === false){ return false; }
+$.each(exception2Model.data,function(i,row){
+    if(row.Exception_Recommender__c === undefined || row.Exception_Recommender__c === ''
+    || row.Exception_Approver__c === undefined || row.Exception_Approver__c === ''){
+        alert('Loan cannot be Formally Approved (or moved to any status’s after) unless all the Exceptions have been Recommended or Approved');
+        flag = false;
+        return false;
+    }
+});
+if(flag === false){ return false; }
+$.each(exception3Model.data,function(i,row){
+    if(row.Exception_Recommender__c === undefined || row.Exception_Recommender__c === ''
+    || row.Exception_Approver__c === undefined || row.Exception_Approver__c === ''){
+        alert('Loan cannot be Formally Approved (or moved to any status’s after) unless all the Exceptions have been Recommended or Approved');
+        flag = false;
+        return false;
+    }
+});*/
+if(flag === false){ return false; }</jsitem>
+		</javascript>
+		<css>
+			<cssitem location="staticresource" name="CLSStyleSheetPack" cachelocation="false" url="" namespace="genesisExtn" filepath="cls-common.css"/>
+			<cssitem location="staticresource" name="CLSStyleSheetPack" cachelocation="false" url="" namespace="genesisExtn" filepath="cls-dashboard.css"/>
+			<cssitem location="staticresource" name="CLSStyleSheetPack" cachelocation="false" url="" namespace="genesisExtn" filepath="customcss.css"/>
+		</css>
+		<actionsequences uniqueid="sk-3gd3-380">
+			<actionsequence id="9a7d6d0b-8f88-43d9-898d-4f788d9b5604" label="Page Load" type="event-triggered" event-scope="component" event-name="page.rendered" uniqueid="sk-2wfh-475">
+				<description/>
+				<actions>
+					<action type="requeryModels" behavior="standard">
+						<models>
+							<model>LoggedInUserReviewerModel</model>
+							<model>CommonApplicationApprovalsCheck</model>
+							<model>MostRecentApprovalInst</model>
+							<model>ReviewersWhoApprvd</model>
+							<model>ExceptionList</model>
+							<model>ExceptionCheckList</model>
+							<model>ManualExceptionChecklist</model>
+							<model>WarningList</model>
+							<model>WarningCheckList</model>
+							<model>ManualWarningChecklist</model>
+							<model>IndividualContactApp</model>
+						</models>
+					</action>
+				</actions>
+			</actionsequence>
+		</actionsequences>
+	</resources>
+	<styles>
+		<styleitem type="background" bgtype="none"/>
+	</styles>
+	<interactions/>
+</skuidpage>

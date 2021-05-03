@@ -1,0 +1,194 @@
+<skuidpage unsavedchangeswarning="" personalizationmode="server" showsidebar="false" useviewportmeta="true" showheader="false">
+	<models>
+		<model id="AccountRiskAssement" limit="" query="true" createrowifnonefound="false" datasource="salesforce" type="" sobject="genesis__Account_Scorecard_Result__c">
+			<fields>
+				<field id="genesis__Account__c"/>
+				<field id="genesis__Account__r.Name"/>
+				<field id="Name"/>
+				<field id="genesis__Actual_Value__c"/>
+				<field id="genesis__Criteria_Match__c"/>
+				<field id="IsDeleted"/>
+				<field id="genesis__Field_API_Name__c"/>
+				<field id="genesis__Field_Name__c"/>
+				<field id="genesis__Field_Type__c"/>
+				<field id="genesis__Input_Value__c"/>
+				<field id="genesis__Matching_Type__c"/>
+				<field id="genesis__Matching_Value__c"/>
+				<field id="genesis__Maximum_Value__c"/>
+				<field id="genesis__Minimum_Value__c"/>
+				<field id="Id"/>
+				<field id="genesis__Related_Object__c"/>
+				<field id="genesis__Score__c"/>
+				<field id="genesis__Scorecard__c"/>
+				<field id="genesis__Scorecard__r.Name"/>
+				<field id="genesis__Scorecard_Criteria__c"/>
+				<field id="genesis__Scorecard_Criteria__r.Name"/>
+				<field id="genesis__Weight__c"/>
+				<field id="genesis__Weighted_Score__c"/>
+			</fields>
+			<conditions>
+				<condition type="param" value="id" field="genesis__Account__c" fieldtargetobjects="Account" operator="=" enclosevalueinquotes="true" novaluebehavior=""/>
+			</conditions>
+			<actions/>
+		</model>
+		<model id="MostRecentAccountRiskAssement" limit="1" query="true" createrowifnonefound="false" datasource="salesforce" type="" sobject="genesis__Account_Scorecard_Result__c" orderby="CreatedDate DESC" doclone="">
+			<fields>
+				<field id="genesis__Account__c"/>
+				<field id="genesis__Account__r.Name"/>
+				<field id="Name"/>
+				<field id="genesis__Actual_Value__c"/>
+				<field id="genesis__Criteria_Match__c"/>
+				<field id="IsDeleted"/>
+				<field id="genesis__Field_API_Name__c"/>
+				<field id="genesis__Field_Name__c"/>
+				<field id="genesis__Field_Type__c"/>
+				<field id="genesis__Input_Value__c"/>
+				<field id="genesis__Matching_Type__c"/>
+				<field id="genesis__Matching_Value__c"/>
+				<field id="genesis__Maximum_Value__c"/>
+				<field id="genesis__Minimum_Value__c"/>
+				<field id="Id"/>
+				<field id="genesis__Related_Object__c"/>
+				<field id="genesis__Score__c"/>
+				<field id="genesis__Scorecard__c"/>
+				<field id="genesis__Scorecard__r.Name"/>
+				<field id="genesis__Scorecard_Criteria__c"/>
+				<field id="genesis__Scorecard_Criteria__r.Name"/>
+				<field id="genesis__Weight__c"/>
+				<field id="genesis__Weighted_Score__c"/>
+			</fields>
+			<conditions>
+				<condition type="param" value="id" field="genesis__Account__c" fieldtargetobjects="Account" operator="=" enclosevalueinquotes="true" novaluebehavior=""/>
+			</conditions>
+			<actions/>
+		</model>
+	</models>
+	<components>
+		<pagetitle uniqueid="sk-12UqRB-150" model="AccountRiskAssement">
+			<actions>
+				<action type="multi" label="Risk assessment history" uniqueid="sk-12Ur4N-155" cssclass="iconic-button iconic-button-history">
+					<actions>
+						<action type="showPopup">
+							<popup title="Risk assessment  history" width="90%">
+								<components>
+									<skootable showconditions="true" showsavecancel="false" showerrorsinline="true" searchmethod="server" searchbox="false" showexportbuttons="false" pagesize="10" alwaysresetpagination="false" createrecords="false" model="AccountRiskAssement" buttonposition="" mode="readonly" allowcolumnreordering="false" responsive="true" uniqueid="sk-12Qy0m-173" instantfilters="false" emptysearchbehavior="query">
+										<fields>
+											<field id="Name" hideable="false" uniqueid="fi-12R8L2-195" valuehalign="" type=""/>
+											<field id="genesis__Criteria_Match__c" hideable="false" uniqueid="fi-12R8L3-198" type="" valuehalign=""/>
+											<field id="genesis__Actual_Value__c" hideable="false" uniqueid="fi-12R8L3-196" valuehalign="" type=""/>
+											<field id="genesis__Scorecard_Criteria__c" hideable="false" uniqueid="fi-12R8L7-211" valuehalign="" type=""/>
+											<field id="genesis__Related_Object__c" hideable="false" uniqueid="fi-12R8L6-208" valuehalign="" type=""/>
+											<field id="genesis__Field_Name__c" hideable="false" uniqueid="fi-12R8L4-200"/>
+											<field id="genesis__Field_Type__c" hideable="false" uniqueid="fi-12R8L4-201"/>
+											<field id="genesis__Matching_Type__c" hideable="false" uniqueid="fi-12R8L5-203"/>
+											<field id="genesis__Matching_Value__c" hideable="false" uniqueid="fi-12R8L5-204"/>
+											<field id="genesis__Maximum_Value__c" hideable="false" uniqueid="fi-12R8L5-205"/>
+											<field id="genesis__Minimum_Value__c" hideable="false" uniqueid="fi-12R8L5-206" valuehalign="" type=""/>
+											<field id="genesis__Weight__c" hideable="false" uniqueid="fi-12R8L7-212" decimalplaces="" valuehalign="" type=""/>
+											<field id="genesis__Score__c" hideable="false" uniqueid="fi-12R8L6-209" decimalplaces="" valuehalign="" type=""/>
+											<field id="genesis__Weighted_Score__c" hideable="false" uniqueid="fi-12R8L7-213"/>
+										</fields>
+										<rowactions/>
+										<massactions usefirstitemasdefault="true"/>
+										<views>
+											<view type="standard"/>
+										</views>
+										<searchfields/>
+									</skootable>7
+                
+                
+                
+                
+                
+                
+								</components>
+							</popup>
+						</action>
+					</actions>
+					<hotkeys/>
+					<renderconditions logictype="and">
+						<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="AccountRiskAssement" sourcetype="param" sourceparam="id" value="NO_SHOW"/>
+					</renderconditions>
+					<enableconditions logictype="and"/>
+				</action>
+			</actions>
+		</pagetitle>
+		<skootable showconditions="true" showsavecancel="false" showerrorsinline="true" searchmethod="server" searchbox="false" showexportbuttons="false" pagesize="10" alwaysresetpagination="false" createrecords="false" model="AccountRiskAssement" buttonposition="" mode="readonly" allowcolumnreordering="false" responsive="true" uniqueid="sk-12Qy0m-173" instantfilters="false" emptysearchbehavior="query">
+			<fields>
+				<field type="COMBO" hideable="false" uniqueid="fi-34cLr5-274" valuehalign="" allowhtml="false" showbydefault="true">
+					<label>Scorecard Name</label>
+					<template>&lt;a href="/{{{Id}}}" target="_blank"&gt;{{{Name}}}&lt;/a&gt;</template>
+				</field>
+				<field id="genesis__Criteria_Match__c" hideable="false" uniqueid="fi-12R8L3-198" type="" valuehalign=""/>
+				<field id="genesis__Actual_Value__c" hideable="false" uniqueid="fi-12R8L3-196" valuehalign="" type=""/>
+				<field type="COMBO" hideable="false" uniqueid="fi-34bR05-271" valuehalign="" allowhtml="true" showbydefault="true">
+					<label>Scorecard Criteria</label>
+					<template>&lt;a href="/{{{genesis__Scorecard_Criteria__c}}}" target="_blank"&gt;{{{genesis__Scorecard_Criteria__c}}}&lt;/a&gt;</template>
+				</field>
+				<field id="genesis__Related_Object__c" hideable="false" uniqueid="fi-12R8L6-208" valuehalign="" type=""/>
+				<field id="genesis__Field_Name__c" hideable="false" uniqueid="fi-12R8L4-200"/>
+				<field id="genesis__Field_Type__c" hideable="false" uniqueid="fi-12R8L4-201"/>
+				<field id="genesis__Matching_Type__c" hideable="false" uniqueid="fi-12R8L5-203"/>
+				<field id="genesis__Matching_Value__c" hideable="false" uniqueid="fi-12R8L5-204" valuehalign="" type=""/>
+				<field id="genesis__Weight__c" hideable="false" uniqueid="fi-12R8L7-212" decimalplaces="" valuehalign="" type=""/>
+				<field id="genesis__Score__c" hideable="false" uniqueid="fi-12R8L6-209" decimalplaces="" valuehalign="" type=""/>
+				<field id="genesis__Weighted_Score__c" hideable="false" uniqueid="fi-12R8L7-213"/>
+			</fields>
+			<rowactions/>
+			<massactions usefirstitemasdefault="true"/>
+			<views>
+				<view type="standard"/>
+			</views>
+			<searchfields/>
+		</skootable>7
+    
+    
+    
+    
+    
+    
+		<basicfieldeditor showheader="true" showsavecancel="false" showerrorsinline="true" model="MostRecentAccountRiskAssement" buttonposition="" uniqueid="sk-12q6GP-134" mode="readonly">
+			<columns>
+				<column width="100%">
+					<sections>
+						<section title="" collapsible="no" showheader="false">
+							<fields>
+								<field uniqueid="sk-12qJAb-154" id="Name" valuehalign="" type=""/>
+								<field uniqueid="sk-12qJAc-155" id="genesis__Criteria_Match__c"/>
+								<field uniqueid="sk-12qJAc-156" id="genesis__Actual_Value__c"/>
+								<field uniqueid="sk-12qJAd-157" id="genesis__Field_API_Name__c"/>
+								<field uniqueid="sk-12qJAd-158" id="genesis__Field_Name__c"/>
+								<field uniqueid="sk-12qJAd-159" id="genesis__Field_Type__c"/>
+								<field uniqueid="sk-12qJAe-160" id="genesis__Input_Value__c"/>
+								<field uniqueid="sk-12qJAe-161" id="genesis__Matching_Type__c"/>
+								<field uniqueid="sk-12qJAe-162" id="genesis__Matching_Value__c"/>
+								<field uniqueid="sk-12qJAf-163" id="genesis__Maximum_Value__c"/>
+								<field uniqueid="sk-12qJAf-164" id="genesis__Minimum_Value__c"/>
+								<field uniqueid="sk-12qJAf-165" id="genesis__Related_Object__c"/>
+								<field uniqueid="sk-12qJAg-166" id="genesis__Score__c"/>
+								<field uniqueid="sk-12qJAg-167" id="genesis__Scorecard_Criteria__c"/>
+								<field uniqueid="sk-12qJAg-168" id="genesis__Weight__c"/>
+								<field uniqueid="sk-12qJAg-169" id="genesis__Weighted_Score__c"/>
+							</fields>
+						</section>
+					</sections>
+				</column>
+			</columns>
+			<renderconditions logictype="and">
+				<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="AccountRiskAssement" sourcetype="param" nosourcerowbehavior="deactivate" sourceparam="few" value="fds"/>
+			</renderconditions>
+		</basicfieldeditor>
+	</components>
+	<resources>
+		<labels/>
+		<javascript/>
+		<css>
+			<cssitem location="staticresource" name="CLSStyleSheetPack" cachelocation="false" url="" namespace="genesisExtn" filepath="cls-common.css"/>
+			<cssitem location="staticresource" name="CLSStyleSheetPack" cachelocation="false" url="" namespace="genesisExtn" filepath="customcss.css"/>
+			<cssitem location="staticresource" name="newcss" cachelocation="false"/>
+		</css>
+	</resources>
+	<styles>
+		<styleitem type="background" bgtype="none"/>
+	</styles>
+</skuidpage>

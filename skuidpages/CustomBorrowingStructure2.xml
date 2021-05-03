@@ -1,0 +1,2196 @@
+<skuidpage unsavedchangeswarning="yes" personalizationmode="server" showsidebar="false" showheader="false">
+	<models>
+		<model id="NewPartyModel" limit="1" query="true" createrowifnonefound="false" sobject="clcommon__Party__c" datasource="salesforce">
+			<fields>
+				<field id="clcommon__Account__c"/>
+				<field id="clcommon__Account__r.Name"/>
+				<field id="genesis__Application__c"/>
+				<field id="genesis__Application__r.Name"/>
+				<field id="clcommon__Contact__c"/>
+				<field id="clcommon__Contact__r.Name"/>
+				<field id="genesis__Is_Internal_User__c"/>
+				<field id="genesis__Party_Name__c"/>
+				<field id="Name"/>
+				<field id="clcommon__Type__c"/>
+				<field id="clcommon__Type__r.Name"/>
+				<field id="NewRelationship" uionly="true" displaytype="BOOLEAN" label="New Relationship"/>
+				<field id="ExistingRelationship" uionly="true" displaytype="BOOLEAN" label="Existing Relationship"/>
+				<field id="BusinessRelationship" uionly="true" displaytype="BOOLEAN" label="Business Relationship" defaultValue="false"/>
+				<field id="IndividualRelationship" uionly="true" displaytype="BOOLEAN" defaultValue="false" label="Individual Relationship"/>
+				<field id="clcommon__Signing_on_Behalf_of__c"/>
+				<field id="clcommon__Signing_on_Behalf_of__r.Name"/>
+				<field id="clcommon__Signer_Capacity__c"/>
+				<field id="Id"/>
+				<field id="clcommon__Account__r.clcommon__Legal_Entity_Type__r.Name"/>
+				<field id="clcommon__Account__r.clcommon__Legal_Entity_Type__c"/>
+				<field id="clcommon__Contact__r.clcommon__Legal_Entity_Type__c"/>
+				<field id="clcommon__Contact__r.clcommon__Legal_Entity_Type__r.Name"/>
+				<field id="clcommon__Account__r.Id"/>
+				<field id="clcommon__Electronic_Consent__c"/>
+				<field id="clcommon__Joint_Consent__c"/>
+				<field id="SaveParty" uionly="true" displaytype="BOOLEAN" ogdisplaytype="TEXT" defaultvaluetype="fieldvalue" defaultValue="true"/>
+			</fields>
+			<conditions>
+				<condition type="blank" value="null" field="Id" operator="=" novaluebehavior="noquery" enclosevalueinquotes="false"/>
+				<condition type="param" value="id" field="genesis__Application__c" operator="=" userinfotype="userid" enclosevalueinquotes="true"/>
+			</conditions>
+			<actions>
+				<action>
+					<actions>
+						<action type="updateRow" fieldmodel="NewPartyModel" affectedrows="context" field="clcommon__Type__r.Name" enclosevalueinquotes="true" value="INDIVIDUAL"/>
+					</actions>
+					<events>
+						<event>models.saved</event>
+						<event>models.loaded</event>
+						<event>row.created</event>s
+                        
+            
+            
+            
+            
+            
+						<event>row.updated</event>
+						<event>condition.valueChanged</event>
+						<event>condition.activated</event>
+					</events>
+					<fields>
+						<field>IndividualRelationship</field>
+					</fields>
+				</action>
+			</actions>
+		</model>
+		<model id="NewAccountModel" limit="" query="false" createrowifnonefound="false" sobject="Account" datasource="salesforce">
+			<fields>
+				<field id="Description"/>
+				<field id="Name"/>
+				<field id="Phone"/>
+				<field id="Id"/>
+				<field id="Fax"/>
+				<field id="BillingAddress"/>
+				<field id="BillingCity"/>
+				<field id="BillingCountry"/>
+				<field id="BillingState"/>
+				<field id="BillingStreet"/>
+				<field id="BillingPostalCode"/>
+				<field id="genesis__Business_Information__c"/>
+				<field id="genesis__Business_Information__r.Name"/>
+				<field id="genesis__Business_Information__r.genesis__Business_Category__c"/>
+				<field id="genesis__Business_Information__r.genesis__Business_Description__c"/>
+				<field id="genesis__Business_Information__r.genesis__Business_City__c"/>
+				<field id="genesis__Business_Information__r.genesis__Business_Legal_Name__c"/>
+				<field id="genesis__Business_Information__r.genesis__Business_State__c"/>
+				<field id="clcommon__Legal_Entity_Type__c"/>
+				<field id="clcommon__Legal_Entity_Type__r.Name"/>
+				<field id="ShippingCity"/>
+				<field id="ShippingCountry"/>
+				<field id="ShippingState"/>
+				<field id="ShippingStreet"/>
+				<field id="ShippingPostalCode"/>
+			</fields>
+			<conditions>
+				<condition type="modelmerge" value="" field="Id" operator="=" state="filterableoff" inactive="true" name="Id" mergefield="clcommon__Account__c" novaluebehavior="deactivate" model="NewPartyModel" enclosevalueinquotes="true"/>
+			</conditions>
+			<actions>
+				<action>
+					<actions>
+						<action type="requeryModels" model="NewBusinessInfoModel" behavior="standard">
+							<models>
+								<model>NewBusinessInfoModel</model>
+								<model>CollateralOwner</model>
+							</models>
+						</action>
+					</actions>
+					<events>
+						<event>models.loaded</event>
+					</events>
+				</action>
+			</actions>
+		</model>
+		<model id="NewContactModel" limit="1" query="true" createrowifnonefound="true" sobject="Contact" datasource="salesforce">
+			<fields>
+				<field id="FirstName"/>
+				<field id="LastName"/>
+				<field id="genesis__SSN__c"/>
+				<field id="clcommon__Legal_Entity_Type__c"/>
+				<field id="clcommon__Legal_Entity_Type__r.Name"/>
+				<field id="Birthdate"/>
+				<field id="ints__Social_Security_Number__c"/>
+				<field id="MailingCity"/>
+				<field id="MailingCountry"/>
+				<field id="MailingState"/>
+				<field id="MailingStreet"/>
+				<field id="MailingPostalCode"/>
+				<field id="Email"/>
+				<field id="MobilePhone"/>
+				<field id="OtherPhone"/>
+				<field id="HomePhone"/>
+				<field id="MailingAddress"/>
+				<field id="OtherCity"/>
+				<field id="OtherCountry"/>
+				<field id="OtherGeocodeAccuracy"/>
+				<field id="OtherState"/>
+				<field id="OtherStreet"/>
+				<field id="OtherPostalCode"/>
+				<field id="clcommon__Employee__c"/>
+				<field id="clcommon__Insider_Relationship__c"/>
+				<field id="clcommon__Country_of_Citizenship__c"/>
+				<field id="clcommon__Country_of_Residence__c"/>
+				<field id="clcommon__Current_City__c"/>
+				<field id="clcommon__Current_Country__c"/>
+				<field id="clcommon__Current_State__c"/>
+				<field id="clcommon__Current_Street__c"/>
+				<field id="clcommon__Current_Zip_Code__c"/>
+				<field id="clcommon__Is_Permanent_Resident__c"/>
+				<field id="clcommon__Monthly_Residential_Payment_Amount__c"/>
+				<field id="clcommon__Months_at_current_address__c"/>
+				<field id="clcommon__Residential_Status__c"/>
+				<field id="clcommon__Mailing_Address_Same_as_Current_Address__c"/>
+				<field id="clcommon__Years_At_Current_Address__c"/>
+				<field id="clcommon__Marital_Status__c"/>
+				<field id="Id"/>
+			</fields>
+			<conditions logic="1 OR 2">
+				<condition type="blank" value="null" field="Id" operator="=" enclosevalueinquotes="false"/>
+				<condition type="modelmerge" value="" field="AccountId" operator="=" model="NewPartyModel" enclosevalueinquotes="true" mergefield="clcommon__Account__r.Id" novaluebehavior="noquery" state="filterableoff" inactive="true" name="AccountId"/>
+			</conditions>
+			<actions>
+				<action>
+					<actions>
+						<action type="branch" whenfinished="stop" model="NewContactModel" label="If Mailing address same as current address">
+							<formula>{{clcommon__Mailing_Address_Same_as_Current_Address__c}}</formula>
+							<iftrueactions>
+								<action type="updateRow" fieldmodel="NewContactModel" affectedrows="context" field="MailingStreet" enclosevalueinquotes="true" value="{{clcommon__Current_Street__c}}"/>
+								<action type="updateRow" fieldmodel="NewContactModel" affectedrows="context" field="MailingCity" enclosevalueinquotes="true" value="{{clcommon__Current_City__c}}"/>
+								<action type="updateRow" fieldmodel="NewContactModel" affectedrows="context" field="MailingState" enclosevalueinquotes="true" value="{{clcommon__Current_State__c}}"/>
+								<action type="updateRow" fieldmodel="NewContactModel" affectedrows="context" field="MailingPostalCode" enclosevalueinquotes="true" value="{{clcommon__Current_Zip_Code__c}}"/>
+								<action type="updateRow" fieldmodel="NewContactModel" affectedrows="context" field="MailingCountry" enclosevalueinquotes="true" value="{{clcommon__Current_Country__c}}"/>
+							</iftrueactions>
+						</action>
+					</actions>
+					<events>
+						<event>row.updated</event>
+					</events>
+					<fields>
+						<field>clcommon__Mailing_Address_Same_as_Current_Address__c</field>
+					</fields>
+				</action>
+			</actions>
+		</model>
+		<model id="NewBusinessInfoModel" limit="1" query="false" createrowifnonefound="false" sobject="genesis__Business_Information__c" datasource="salesforce">
+			<fields>
+				<field id="genesis__Business_Category__c"/>
+				<field id="genesis__Business_City__c"/>
+				<field id="genesis__Business_Description__c"/>
+				<field id="Name"/>
+				<field id="genesis__Business_Legal_Name__c"/>
+				<field id="genesis__Business_State__c"/>
+				<field id="genesis__Business_Street__c"/>
+				<field id="genesis__Business_Zipcode__c"/>
+				<field id="genesis__Date_Business_Established__c"/>
+				<field id="genesis__DBA_Name__c"/>
+				<field id="genesis__Email__c"/>
+				<field id="genesis__State_of_Incorporation__c"/>
+				<field id="genesis__Mailing_City__c"/>
+				<field id="genesis__Mailing_State__c"/>
+				<field id="genesis__Mailing_Street__c"/>
+				<field id="genesis__Mailing_Zipcode__c"/>
+				<field id="genesis__Telephone__c"/>
+				<field id="genesis__Organization_ID_Number__c"/>
+				<field id="genesis__Non_Profit_Organization__c"/>
+				<field id="genesis__Tax_ID__c"/>
+				<field id="genesis__NAICS_Code__c"/>
+				<field id="genesis__NAICS_Description__c"/>
+			</fields>
+			<conditions>
+				<condition type="modelmerge" value="" field="Id" operator="=" model="NewAccountModel" enclosevalueinquotes="true" mergefield="Id" novaluebehavior="deactivate" state="filterableoff" inactive="true" name="Id"/>
+			</conditions>
+			<actions/>
+		</model>
+		<model id="CollateralOwnerModel" limit="" query="false" createrowifnonefound="false" sobject="clcommon__Collateral_Owner__c" doclone="" datasource="salesforce">
+			<fields>
+				<field id="clcommon__Collateral__c"/>
+				<field id="clcommon__Collateral__r.Name"/>
+				<field id="clcommon__Account__c"/>
+				<field id="clcommon__Account__r.Name"/>
+				<field id="clcommon__Ownership__c"/>
+				<field id="clcommon__Collateral__r.clcommon__Collateral_Type__r.Name"/>
+				<field id="clcommon__Collateral__r.clcommon__Collateral_Category__r.Name"/>
+				<field id="clcommon__Collateral__r.clcommon__Collateral_Category__c"/>
+				<field id="clcommon__Collateral__r.clcommon__Description__c"/>
+				<field id="clcommon__Collateral__r.clcommon__Collateral_Type__c"/>
+			</fields>
+			<conditions>
+				<condition type="modelmerge" value="" field="clcommon__Account__c" operator="=" model="NewAccountModel" enclosevalueinquotes="true" mergefield="Id" novaluebehavior="deactivate" state="filterableoff" inactive="true" name="clcommon__Account__c"/>
+			</conditions>
+			<actions/>
+		</model>
+		<model id="NewPartyModelClone" limit="1" query="false" createrowifnonefound="false" sobject="clcommon__Party__c" datasource="salesforce">
+			<fields>
+				<field id="clcommon__Account__c"/>
+				<field id="clcommon__Account__r.Name"/>
+				<field id="genesis__Application__c"/>
+				<field id="genesis__Application__r.Name"/>
+				<field id="clcommon__Contact__c"/>
+				<field id="clcommon__Contact__r.Name"/>
+				<field id="genesis__Is_Internal_User__c"/>
+				<field id="genesis__Party_Name__c"/>
+				<field id="Name"/>
+				<field id="clcommon__Type__c"/>
+				<field id="clcommon__Type__r.Name"/>
+				<field id="clcommon__Signing_on_Behalf_of__c"/>
+				<field id="clcommon__Signing_on_Behalf_of__r.Name"/>
+				<field id="clcommon__Signer_Capacity__c"/>
+			</fields>
+			<conditions logic="">
+				<condition type="param" value="id" field="genesis__Application__c" operator="=" userinfotype="userid" enclosevalueinquotes="true" novaluebehavior=""/>
+				<condition type="modelmerge" value="" field="clcommon__Account__c" operator="=" model="NewPartyModel" enclosevalueinquotes="true" mergefield="clcommon__Account__c" novaluebehavior="deactivate" state="filterableoff" inactive="true" name="clcommon__Account__c"/>
+			</conditions>
+			<actions/>
+		</model>
+		<model id="NewContactModelForExistingRel" limit="1" query="true" createrowifnonefound="true" sobject="Contact" datasource="salesforce">
+			<fields>
+				<field id="FirstName"/>
+				<field id="LastName"/>
+				<field id="genesis__SSN__c"/>
+				<field id="clcommon__Legal_Entity_Type__c"/>
+				<field id="clcommon__Legal_Entity_Type__r.Name"/>
+				<field id="Birthdate"/>
+				<field id="ints__Social_Security_Number__c"/>
+				<field id="MailingCity"/>
+				<field id="MailingCountry"/>
+				<field id="MailingState"/>
+				<field id="MailingStreet"/>
+				<field id="MailingPostalCode"/>
+				<field id="Email"/>
+				<field id="MobilePhone"/>
+				<field id="OtherPhone"/>
+				<field id="HomePhone"/>
+				<field id="MailingAddress"/>
+				<field id="OtherCity"/>
+				<field id="OtherCountry"/>
+				<field id="OtherGeocodeAccuracy"/>
+				<field id="OtherState"/>
+				<field id="OtherStreet"/>
+				<field id="OtherPostalCode"/>
+			</fields>
+			<conditions>
+				<condition type="modelmerge" value="" field="AccountId" operator="=" model="NewPartyModel" enclosevalueinquotes="true" mergefield="clcommon__Account__c" novaluebehavior="noquery" state="filterableoff" inactive="true" name="Id"/>
+			</conditions>
+			<actions/>
+		</model>
+		<model id="ApplicationModel" query="true" createrowifnonefound="false" datasource="salesforce" sobject="genesis__Applications__c">
+			<fields>
+				<field id="RecordTypeId"/>
+				<field id="genesis__CL_Product__r.clcommon__Asset_Class__r.Name"/>
+				<field id="RecordType.Name"/>
+				<field id="genesis__Asset_Class__c"/>
+			</fields>
+			<conditions>
+				<condition type="param" value="id" field="Id" operator="=" enclosevalueinquotes="true"/>
+			</conditions>
+			<actions/>
+		</model>
+		<model id="EmploymentInformationModel" limit="10" query="false" createrowifnonefound="false" datasource="salesforce" sobject="genesis__Employment_Information__c" processonclient="true" doclone="no">
+			<fields>
+				<field id="genesis__Application__c"/>
+				<field id="genesis__Application__r.Name"/>
+				<field id="genesis__Average_Monthly_Income__c"/>
+				<field id="genesis__Contact__c"/>
+				<field id="genesis__Contact__r.Name"/>
+				<field id="CreatedById"/>
+				<field id="CreatedBy.Name"/>
+				<field id="IsDeleted"/>
+				<field id="genesis__Employer_City__c"/>
+				<field id="genesis__Employer_Country__c"/>
+				<field id="genesis__Employer_State__c"/>
+				<field id="genesis__Employer_Street__c"/>
+				<field id="genesis__Employer_Zipcode__c"/>
+				<field id="genesis__Name_of_employer__c"/>
+				<field id="genesis__Is_Current_Employer__c"/>
+				<field id="genesis__End_Date__c"/>
+				<field id="Name"/>
+				<field id="genesis__Number_of_years_on_job__c"/>
+				<field id="genesis__Occupation__c"/>
+				<field id="OwnerId"/>
+				<field id="Owner.Name"/>
+				<field id="genesis__Phone__c"/>
+				<field id="genesis__Position__c"/>
+				<field id="genesis__Start_Date__c"/>
+				<field id="genesis__Type_of_business__c"/>
+				<field id="genesis__Self_Employed__c"/>
+			</fields>
+			<conditions>
+				<condition type="modelmerge" value="" field="genesis__Contact__c" fieldtargetobjects="Contact" operator="=" model="NewContactModel" enclosevalueinquotes="true" mergefield="Id" novaluebehavior="noquery" inactive="false"/>
+				<condition type="fieldvalue" value="true" enclosevalueinquotes="false" field="genesis__Is_Current_Employer__c"/>
+				<condition type="param" value="id" field="genesis__Application__c" fieldtargetobjects="genesis__Applications__c" operator="=" mergefield="Id" inactive="false" enclosevalueinquotes="true"/>
+			</conditions>
+			<actions>
+				<action>
+					<actions>
+						<action type="updateRow" fieldmodel="EmploymentInformationModel" affectedrows="context" field="genesis__Is_Current_Employer__c" enclosevalueinquotes="false" value="true"/>
+					</actions>
+					<events>
+						<event>row.created</event>
+					</events>
+				</action>
+			</actions>
+		</model>
+		<model id="PreviousEmploymentInfoModel" limit="10" query="false" createrowifnonefound="false" datasource="salesforce" sobject="genesis__Employment_Information__c" doclone="no" processonclient="true">
+			<fields>
+				<field id="genesis__Application__c"/>
+				<field id="genesis__Application__r.Name"/>
+				<field id="genesis__Average_Monthly_Income__c"/>
+				<field id="genesis__Contact__c"/>
+				<field id="genesis__Contact__r.Name"/>
+				<field id="CreatedById"/>
+				<field id="CreatedBy.Name"/>
+				<field id="CreatedDate"/>
+				<field id="IsDeleted"/>
+				<field id="genesis__Employer_City__c"/>
+				<field id="genesis__Employer_Country__c"/>
+				<field id="genesis__Employer_State__c"/>
+				<field id="genesis__Employer_Street__c"/>
+				<field id="genesis__Employer_Zipcode__c"/>
+				<field id="Name"/>
+				<field id="genesis__End_Date__c"/>
+				<field id="genesis__Is_Current_Employer__c"/>
+				<field id="genesis__Name_of_employer__c"/>
+				<field id="genesis__Number_of_years_on_job__c"/>
+				<field id="genesis__Occupation__c"/>
+				<field id="OwnerId"/>
+				<field id="Owner.Name"/>
+				<field id="genesis__Phone__c"/>
+				<field id="genesis__Position__c"/>
+				<field id="genesis__Self_Employed__c"/>
+				<field id="genesis__Start_Date__c"/>
+				<field id="genesis__Type_of_business__c"/>
+			</fields>
+			<conditions>
+				<condition type="modelmerge" value="" field="genesis__Contact__c" fieldtargetobjects="Contact" operator="=" model="NewContactModel" enclosevalueinquotes="true" mergefield="Id" novaluebehavior="noquery" inactive="false"/>
+				<condition type="fieldvalue" value="false" enclosevalueinquotes="false" operator="=" field="genesis__Is_Current_Employer__c"/>
+				<condition type="param" value="id" field="genesis__Application__c" fieldtargetobjects="genesis__Applications__c" operator="=" mergefield="Id" inactive="false" enclosevalueinquotes="true" novaluebehavior="noquery"/>
+			</conditions>
+			<actions>
+				<action>
+					<actions>
+						<action type="updateRow" fieldmodel="PreviousEmploymentInfoModel" affectedrows="context" field="genesis__Is_Current_Employer__c" enclosevalueinquotes="false"/>
+					</actions>
+					<events>
+						<event>row.created</event>
+					</events>
+				</action>
+			</actions>
+		</model>
+		<model id="OtherIncomeModel" limit="5" query="false" createrowifnonefound="false" datasource="salesforce" sobject="genesis__Income__c" doclone="no" processonclient="true">
+			<fields>
+				<field id="genesis__Amount__c"/>
+				<field id="genesis__Contact__c"/>
+				<field id="genesis__Contact__r.Name"/>
+				<field id="CreatedById"/>
+				<field id="CreatedBy.Name"/>
+				<field id="genesis__Frequency__c"/>
+				<field id="Name"/>
+				<field id="genesis__Income_Type__c"/>
+				<field id="genesis__Taxable__c"/>
+			</fields>
+			<conditions>
+				<condition type="modelmerge" value="" field="genesis__Contact__c" fieldtargetobjects="Contact" operator="=" model="NewContactModel" enclosevalueinquotes="true" mergefield="Id" novaluebehavior="noquery" inactive="false"/>
+				<condition type="param" value="id" field="genesis__Application__c" fieldtargetobjects="genesis__Applications__c" operator="=" mergefield="Id" inactive="false" enclosevalueinquotes="true" novaluebehavior="noquery"/>
+			</conditions>
+			<actions/>
+		</model>
+		<model id="AssetInformationModel" limit="10" query="false" createrowifnonefound="false" datasource="salesforce" sobject="genesis__Asset_Information__c" doclone="no">
+			<fields>
+				<field id="genesis__Account_Number__c"/>
+				<field id="Name"/>
+				<field id="genesis__Asset_Type__c"/>
+				<field id="genesis__Comments__c"/>
+				<field id="genesis__Contact__c"/>
+				<field id="genesis__Contact__r.Name"/>
+				<field id="CreatedById"/>
+				<field id="CreatedBy.Name"/>
+				<field id="genesis__Date_of_Acquisition__c"/>
+				<field id="genesis__Market_Value__c"/>
+				<field id="genesis__Original_Amount__c"/>
+				<field id="genesis__Market_Value_Date__c"/>
+				<field id="genesis__Institution_Name__c"/>
+			</fields>
+			<conditions>
+				<condition type="modelmerge" value="" field="genesis__Contact__c" fieldtargetobjects="Contact" operator="=" model="NewContactModel" enclosevalueinquotes="true" mergefield="Id" novaluebehavior="noquery" inactive="false"/>
+				<condition type="param" value="id" field="genesis__Application__c" fieldtargetobjects="genesis__Applications__c" operator="=" mergefield="Id" inactive="false" enclosevalueinquotes="true" novaluebehavior="noquery"/>
+			</conditions>
+			<actions/>
+			<groupby method="simple"/>
+		</model>
+		<model id="LiabilityInformationModel" limit="10" query="false" createrowifnonefound="false" datasource="salesforce" sobject="genesis__Liability__c" doclone="no">
+			<fields>
+				<field id="genesis__Account_Number__c"/>
+				<field id="genesis__Amount_Owing__c"/>
+				<field id="genesis__Contact__c"/>
+				<field id="genesis__Contact__r.Name"/>
+				<field id="genesis__Debt_Consolidation__c"/>
+				<field id="IsDeleted"/>
+				<field id="genesis__Include_for_DTI__c"/>
+				<field id="genesis__Interest_Rate__c"/>
+				<field id="Name"/>
+				<field id="genesis__Liability_Type__c"/>
+				<field id="genesis__Name_of_Creditor__c"/>
+				<field id="genesis__Original_Amount__c"/>
+				<field id="genesis__Payment_Amount__c"/>
+				<field id="genesis__Payment_Frequency__c"/>
+				<field id="genesis__Secured_by_Lien__c"/>
+				<field id="genesis__Comments__c"/>
+				<field id="genesis__Ownership__c"/>
+			</fields>
+			<conditions>
+				<condition type="modelmerge" value="" field="genesis__Contact__c" fieldtargetobjects="Contact" operator="=" model="NewContactModel" enclosevalueinquotes="true" mergefield="Id" novaluebehavior="noquery" inactive="false"/>
+				<condition type="param" value="id" field="genesis__Application__c" fieldtargetobjects="genesis__Applications__c" operator="=" mergefield="Id" inactive="false" enclosevalueinquotes="true" novaluebehavior="noquery"/>
+			</conditions>
+			<actions/>
+			<groupby method="simple"/>
+		</model>
+	</models>
+	<components>
+		<grid uniqueid="sk-89TkS-139">
+			<divisions>
+				<division behavior="flex" minwidth="100%" ratio="1" verticalalign="top">
+					<components>
+						<wizard deferstepcontentsrendering="false" uniqueid="partywizard" buttonslocation="top">
+							<steps>
+								<step stepid="step1" steplabel="">
+									<components>
+										<grid uniqueid="sk-8Jm2d-557">
+											<divisions>
+												<division behavior="flex" minwidth="65%" ratio="1" verticalalign="top">
+													<components>
+														<pagetitle model="NewPartyModel" uniqueid="title1" cssclass="">
+															<actions>
+																<action type="custom" label="New Relationship" icon="fa-star" cssclass="skuid-button" snippet="NewRelationship" uniqueid="newRelation">
+																	<actions/>
+																	<hotkeys/>
+																	<renderconditions logictype="and"/>
+																	<enableconditions/>
+																</action>
+																<action type="custom" label="Existing Relationship" icon="fa-search" snippet="ExistingRelationship" uniqueid="existingRelation" cssclass="skuid-button">
+																	<hotkeys/>
+																	<renderconditions logictype="and"/>
+																	<enableconditions/>
+																</action>
+															</actions>
+															<renderconditions logictype="and"/>
+															<subtitle>Is the relationship new or existing?</subtitle>
+														</pagetitle>
+													</components>
+												</division>
+												<division behavior="flex" verticalalign="top" minwidth="35%" ratio="1">
+													<components/>
+												</division>
+											</divisions>
+											<styles>
+												<styleitem type="background" bgtype="none"/>
+											</styles>
+										</grid>
+									</components>
+									<actions>
+										<action type="multi" label="Next" stepid="step2" window="self" icon="fa-arrow-right" uniqueid="sk-6UD-232">
+											<hotkeys/>
+											<actions>
+												<action type="custom" snippet="moveToStep2"/>
+												<action type="navigateToStep" stepid="step2"/>
+											</actions>
+										</action>
+									</actions>
+								</step>
+								<step stepid="step2" steplabel="">
+									<components>
+										<pagetitle model="NewPartyModel" uniqueid="errorTitle2">
+											<actions/>
+										</pagetitle>
+										<grid uniqueid="sk-8KgBw-575">
+											<divisions>
+												<division behavior="flex" minwidth="65%" ratio="1" verticalalign="top">
+													<components>
+														<pagetitle model="NewPartyModel" uniqueid="title2">
+															<actions>
+																<action type="custom" label="Business Relationship" icon="fa-building" snippet="selectBusinessRelation" uniqueid="businessRelation">
+																	<actions/>
+																	<hotkeys/>
+																	<renderconditions logictype="and"/>
+																	<enableconditions/>
+																</action>
+																<action type="custom" label="Individual Relationship" icon="fa-user" snippet="selectIndividualRelation" uniqueid="indiividualRelation">
+																	<actions/>
+																</action>
+															</actions>
+															<renderconditions logictype="and"/>
+															<subtitle>What type of relationship would you like to create?</subtitle>
+														</pagetitle>
+														<basicfieldeditor showheader="true" showsavecancel="false" showerrorsinline="true" model="NewPartyModel" buttonposition="" uniqueid="sk-453TM-1358" mode="edit">
+															<columns>
+																<column width="50%">
+																	<sections>
+																		<section title="Section A" collapsible="no" showheader="false">
+																			<fields/>
+																		</section>
+																	</sections>
+																</column>
+																<column width="50%">
+																	<sections>
+																		<section title="Section B" collapsible="no" showheader="false">
+																			<fields>
+																				<field id="clcommon__Account__c" valuehalign="" type="" uniqueid="sk-6UD-262">
+																					<filters>
+																						<filter type="multiple" operator="in" field="clcommon__Legal_Entity_Type__r.Name" value="" enclosevalueinquotes="true">
+																							<values>
+																								<value>Sole Proprietorship</value>
+																								<value>Individual</value>
+																							</values>
+																						</filter>
+																					</filters>
+																				</field>
+																			</fields>
+																		</section>
+																	</sections>
+																</column>
+															</columns>
+															<renderconditions logictype="and">
+																<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="false" fieldmodel="NewPartyModel" sourcetype="fieldvalue" nosourcerowbehavior="skipandnorender" field="IndividualRelationship" value="true"/>
+																<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="false" fieldmodel="NewPartyModel" sourcetype="fieldvalue" nosourcerowbehavior="skipandnorender" field="ExistingRelationship" value="true"/>
+															</renderconditions>
+														</basicfieldeditor>
+														<basicfieldeditor showheader="true" showsavecancel="false" showerrorsinline="true" model="NewPartyModel" buttonposition="" uniqueid="sk-8bknK-172" mode="edit" layout="">
+															<columns>
+																<column width="50%">
+																	<sections>
+																		<section title="" collapsible="no" showheader="false">
+																			<fields/>
+																		</section>
+																	</sections>
+																</column>
+																<column width="50%">
+																	<sections>
+																		<section title="" collapsible="no" showheader="false">
+																			<fields>
+																				<field id="clcommon__Account__c" valuehalign="" type="" required="true" optionsource="" pagesize="5" uniqueid="sk-6UD-274">
+																					<searchfields/>
+																					<filters>
+																						<filter type="multiple" operator="not in" field="clcommon__Legal_Entity_Type__r.Name" value="" enclosevalueinquotes="true">
+																							<values>
+																								<value>Individual</value>
+																								<value>Sole Proprietorship</value>
+																							</values>
+																						</filter>
+																						<filter type="blank" operator="!=" field="clcommon__Legal_Entity_Type__r.Name" value="null" enclosevalueinquotes="false"/>
+																					</filters>
+																					<renderconditions logictype="and" onhidedatabehavior="keep"/>
+																					<enableconditions/>
+																				</field>
+																			</fields>
+																		</section>
+																	</sections>
+																</column>
+															</columns>
+															<renderconditions logictype="and">
+																<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="false" fieldmodel="NewPartyModel" sourcetype="fieldvalue" nosourcerowbehavior="skipandnorender" field="BusinessRelationship" value="true"/>
+																<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="false" fieldmodel="NewPartyModel" sourcetype="fieldvalue" nosourcerowbehavior="skipandnorender" field="ExistingRelationship" value="true"/>
+															</renderconditions>
+														</basicfieldeditor>
+													</components>
+												</division>
+												<division behavior="flex" verticalalign="top" minwidth="35%" ratio="1">
+													<components/>
+												</division>
+												<division behavior="flex" verticalalign="top" minwidth="100px" ratio="1">
+													<components/>
+												</division>
+											</divisions>
+											<styles>
+												<styleitem type="background" bgtype="none"/>
+											</styles>
+										</grid>
+									</components>
+									<actions>
+										<action uniqueid="sk-8AJPG-203" type="navigate" stepid="step1" label="Previous" icon="fa-arrow-left" window="self">
+											<renderconditions logictype="and"/>
+											<enableconditions/>
+										</action>
+										<action type="multi" label="Next" stepid="step3" window="self" icon="fa-arrow-right" snippet="queryAccount" uniqueid="sk-6UD-290">
+											<renderconditions logictype="and"/>
+											<enableconditions/>
+											<actions>
+												<action type="custom" snippet="queryAccount"/>
+												<action type="branch" whenfinished="continue" model="NewPartyModel">
+													<formula>{{ExistingRelationship}}</formula>
+													<iftrueactions>
+														<action type="requeryModels" behavior="standard">
+															<models>
+																<model>EmploymentInformationModel</model>
+																<model>PreviousEmploymentInfoModel</model>
+																<model>OtherIncomeModel</model>
+																<model>AssetInformationModel</model>
+																<model>LiabilityInformationModel</model>
+															</models>
+														</action>
+													</iftrueactions>
+												</action>
+												<action type="navigateToStep" stepid="step3"/>
+											</actions>
+										</action>
+									</actions>
+								</step>
+								<step stepid="step3" steplabel="">
+									<components>
+										<pagetitle model="NewPartyModel" uniqueid="errorTitle3">
+											<actions/>
+										</pagetitle>
+										<grid uniqueid="sk-47Tan-1642">
+											<divisions>
+												<division behavior="flex" minwidth="100px" ratio="1" verticalalign="top">
+													<components>
+														<basicfieldeditor showheader="true" showsavecancel="false" showerrorsinline="true" model="NewAccountModel" uniqueid="sk-94oLU-742" mode="edit">
+															<columns>
+																<column width="50%">
+																	<sections>
+																		<section title="" collapsible="no" showheader="false">
+																			<fields>
+																				<field id="Name" cssclass="clorequired" uniqueid="sk-6UD-310">
+																					<label>Name</label>
+																				</field>
+																				<field id="Description" displayrows="3" uniqueid="sk-6UD-313"/>
+																				<field id="Phone" valuehalign="" type="" uniqueid="sk-6UD-316">
+																					<label>Phone</label>
+																				</field>
+																			</fields>
+																		</section>
+																	</sections>
+																</column>
+																<column width="50%">
+																	<sections>
+																		<section title="" collapsible="no" showheader="false">
+																			<fields>
+																				<field id="clcommon__Legal_Entity_Type__c" optionsource="" required="true" readonly="true" uniqueid="sk-6UD-322">
+																					<searchfields/>
+																					<filters/>
+																					<renderconditions logictype="and" onhidedatabehavior="keep"/>
+																					<enableconditions/>
+																				</field>
+																				<field id="Fax" valuehalign="" type="" uniqueid="sk-6UD-325">
+																					<label>Fax</label>
+																				</field>
+																			</fields>
+																		</section>
+																	</sections>
+																</column>
+																<column width="100%">
+																	<sections>
+																		<section title="New Section" collapsible="no" showheader="false">
+																			<fields>
+																				<columns layoutmode="fixed" uniqueid="sk-6UD-373">
+																					<column width="50%">
+																						<sections>
+																							<section title="New Section" collapsible="no" showheader="false">
+																								<fields>
+																									<field id="BillingStreet" uniqueid="sk-6UD-341" displayrows="3"/>
+																									<field id="BillingCity" uniqueid="sk-6UD-344"/>
+																									<field id="BillingState" uniqueid="sk-6UD-347"/>
+																									<field id="BillingPostalCode" uniqueid="sk-6UD-350"/>
+																									<field id="BillingCountry" uniqueid="sk-6UD-353"/>
+																								</fields>
+																							</section>
+																						</sections>
+																						<renderconditions logictype="and"/>
+																					</column>
+																					<column width="50%">
+																						<sections>
+																							<section title="New Section" collapsible="no" showheader="false">
+																								<fields>
+																									<field id="ShippingStreet" uniqueid="sk-6UD-359" displayrows="3"/>
+																									<field id="ShippingCity" uniqueid="sk-6UD-362"/>
+																									<field id="ShippingState" uniqueid="sk-6UD-365"/>
+																									<field id="ShippingPostalCode" uniqueid="sk-6UD-368"/>
+																									<field id="ShippingCountry" uniqueid="sk-6UD-371"/>
+																								</fields>
+																							</section>
+																						</sections>
+																						<renderconditions logictype="and"/>
+																					</column>
+																				</columns>
+																			</fields>
+																		</section>
+																	</sections>
+																</column>
+															</columns>
+															<renderconditions logictype="and">
+																<rendercondition fieldmodel="NewContactModel" sourcetype="rowproperty" nosourcerowbehavior="deactivate" sourceproperty="isNew" enclosevalueinquotes="false"/>
+															</renderconditions>
+														</basicfieldeditor>
+														<basicfieldeditor showheader="true" showsavecancel="false" showerrorsinline="true" model="NewContactModel" uniqueid="sk-Rk-9T-580" mode="edit">
+															<columns>
+																<column width="50%">
+																	<sections>
+																		<section title="Section A" collapsible="no" showheader="false">
+																			<fields>
+																				<field id="LastName" uniqueid="sk-6UD-382"/>
+																				<field id="FirstName" uniqueid="sk-6UD-385"/>
+																				<field id="Birthdate" uniqueid="sk-6UD-388"/>
+																				<field id="ints__Social_Security_Number__c" valuehalign="" type="" uniqueid="sk-6UD-391"/>
+																				<field uniqueid="sk-iJf-2608" id="clcommon__Marital_Status__c" required="true"/>
+																			</fields>
+																		</section>
+																	</sections>
+																</column>
+																<column width="50%">
+																	<sections>
+																		<section title="Section B" collapsible="no" showheader="false">
+																			<fields>
+																				<field id="Email" uniqueid="sk-6UD-397"/>
+																				<field id="MobilePhone" uniqueid="sk-6UD-400"/>
+																				<field id="OtherPhone" uniqueid="sk-6UD-403"/>
+																				<field id="clcommon__Legal_Entity_Type__c" readonly="true" uniqueid="sk-6UD-406" pagesize="5" redirecttype="datasourcedefault">
+																					<searchfields/>
+																					<filters/>
+																					<renderconditions logictype="and" onhidedatabehavior="keep"/>
+																					<enableconditions/>
+																				</field>
+																				<field uniqueid="sk-iJh-2618" id="clcommon__Country_of_Citizenship__c"/>
+																				<field uniqueid="sk-iJl-2634" id="clcommon__Is_Permanent_Resident__c">
+																					<label>Permanent Resident</label>
+																				</field>
+																				<field uniqueid="sk-iJj-2626" id="clcommon__Country_of_Residence__c">
+																					<renderconditions logictype="and" onhidedatabehavior="keep">
+																						<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="false" fieldmodel="NewContactModel" sourcetype="fieldvalue" field="clcommon__Is_Permanent_Resident__c" fieldtargetobjects="Contact" value="false"/>
+																					</renderconditions>
+																					<enableconditions/>
+																				</field>
+																			</fields>
+																		</section>
+																	</sections>
+																</column>
+																<column width="100%">
+																	<sections>
+																		<section title="New Section" collapsible="no" showheader="false">
+																			<fields>
+																				<columns uniqueid="sk-3ijr-922" layoutmode="fixed">
+																					<column width="50%" uniqueid="sk-3ijr-911">
+																						<sections>
+																							<section title="New Section" collapsible="no" uniqueid="sk-3ijr-912" showheader="false">
+																								<fields>
+																									<columns uniqueid="sk-Bjy-4335" layoutmode="fixed">
+																										<column width="100%" uniqueid="sk-Bjy-4322">
+																											<sections>
+																												<section title="Current Address" collapsible="no" uniqueid="sk-BkA-4396">
+																													<fields>
+																														<field uniqueid="sk-iJz-2685" id="clcommon__Current_Street__c" displayrows="3"/>
+																														<field uniqueid="sk-iJz-2686" id="clcommon__Current_City__c"/>
+																														<field uniqueid="sk-iJz-2687" id="clcommon__Current_State__c"/>
+																														<field uniqueid="sk-iJz-2688" id="clcommon__Current_Zip_Code__c"/>
+																														<field uniqueid="sk-iJz-2689" id="clcommon__Current_Country__c"/>
+																													</fields>
+																												</section>
+																											</sections>
+																										</column>
+																									</columns>
+																								</fields>
+																							</section>
+																							<section title="Current Address" collapsible="no" uniqueid="sk-3ik3-963" showheader="false">
+																								<fields>
+																									<columns uniqueid="sk-3il3-1279" layoutmode="fixed">
+																										<column width="100%" uniqueid="sk-Bkk-4483">
+																											<sections>
+																												<section title="New Section" collapsible="no" uniqueid="sk-Bkk-4484" showheader="false">
+																													<fields>
+																														<columns uniqueid="sk-Bkt-4562" layoutmode="fixed">
+																															<column width="40%" uniqueid="sk-Bkt-4549">
+																																<sections>
+																																	<section title="Time at current address" collapsible="no" uniqueid="sk-Bk_-4591">
+																																		<fields/>
+																																	</section>
+																																</sections>
+																															</column>
+																															<column width="30%" uniqueid="sk-Bkt-4565">
+																																<sections>
+																																	<section title="New Section" collapsible="no" uniqueid="sk-Bkt-4566" showheader="false">
+																																		<fields>
+																																			<field uniqueid="sk-iK6-2714" id="clcommon__Years_At_Current_Address__c"/>
+																																		</fields>
+																																	</section>
+																																</sections>
+																															</column>
+																															<column width="30%" uniqueid="sk-Bkt-4572">
+																																<sections>
+																																	<section title="New Section" collapsible="no" uniqueid="sk-Bkt-4573" showheader="false">
+																																		<fields>
+																																			<field uniqueid="sk-iKA-2723" id="clcommon__Months_at_current_address__c">
+																																				<renderconditions logictype="and" onhidedatabehavior="keep"/>
+																																				<enableconditions/>
+																																			</field>
+																																		</fields>
+																																	</section>
+																																</sections>
+																															</column>
+																														</columns>
+																														<field uniqueid="sk-iKC-2730" id="clcommon__Residential_Status__c" required="false" addnoneoption="false" nonelabel="                     "/>
+																														<field uniqueid="sk-iKD-2737" id="clcommon__Monthly_Residential_Payment_Amount__c"/>
+																													</fields>
+																												</section>
+																											</sections>
+																										</column>
+																									</columns>
+																								</fields>
+																							</section>
+																						</sections>
+																					</column>
+																					<column width="50%" uniqueid="sk-3ijs-925">
+																						<sections>
+																							<section title="New Section" collapsible="no" uniqueid="sk-3ijs-926" showheader="false">
+																								<fields>
+																									<columns uniqueid="sk-BaE-1005" layoutmode="fixed">
+																										<column width="40%" uniqueid="sk-BaE-993">
+																											<sections>
+																												<section title="Mailing Address" collapsible="no" uniqueid="sk-BaO-1032">
+																													<fields/>
+																												</section>
+																											</sections>
+																										</column>
+																										<column width="60%" uniqueid="sk-BaH-1015" cssclass="removePadding">
+																											<sections>
+																												<section title="New Section" collapsible="no" uniqueid="sk-BaH-1016" showheader="false">
+																													<fields>
+																														<field uniqueid="sk-iK2-2704" id="clcommon__Mailing_Address_Same_as_Current_Address__c"/>
+																													</fields>
+																												</section>
+																											</sections>
+																										</column>
+																									</columns>
+																								</fields>
+																							</section>
+																							<section title="Mailing Address" collapsible="no" uniqueid="sk-3ikc-1139" showheader="false">
+																								<fields>
+																									<field uniqueid="sk-3ikl-1186" id="MailingStreet" displayrows="3"/>
+																									<field uniqueid="sk-3ikl-1183" id="MailingCity"/>
+																									<field uniqueid="sk-3ikl-1185" id="MailingState"/>
+																									<field uniqueid="sk-3ikl-1187" id="MailingPostalCode"/>
+																									<field uniqueid="sk-3ikl-1184" id="MailingCountry"/>
+																								</fields>
+																							</section>
+																							<section collapsible="no" uniqueid="sk-3ilY-1445" title="Previous Address">
+																								<fields>
+																									<field uniqueid="sk-3ilf-1493" id="OtherStreet" displayrows="3">
+																										<label>Previous Street</label>
+																									</field>
+																									<field uniqueid="sk-3ilf-1490" id="OtherCity">
+																										<label>Previous City</label>
+																									</field>
+																									<field uniqueid="sk-3ilf-1492" id="OtherState">
+																										<label>Previous State/Province</label>
+																									</field>
+																									<field uniqueid="sk-3ilf-1494" id="OtherPostalCode">
+																										<label>Previous Zip/Postal Code</label>
+																									</field>
+																									<field uniqueid="sk-3ilf-1491" id="OtherCountry">
+																										<label>Previous Country</label>
+																										<renderconditions logictype="and" onhidedatabehavior="keep"/>
+																										<enableconditions logictype="and"/>
+																									</field>
+																								</fields>
+																								<renderconditions logictype="custom" logic="1 OR (2 AND 3)">
+																									<rendercondition type="fieldvalue" operator="lt" enclosevalueinquotes="false" fieldmodel="NewContactModel" sourcetype="fieldvalue" field="clcommon__Years_At_Current_Address__c" fieldtargetobjects="Contact" value="1"/>
+																									<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="false" fieldmodel="NewContactModel" sourcetype="fieldvalue" field="clcommon__Years_At_Current_Address__c" fieldtargetobjects="Contact" value="1"/>
+																									<rendercondition type="fieldvalue" operator="lte" enclosevalueinquotes="false" fieldmodel="NewContactModel" sourcetype="fieldvalue" field="clcommon__Months_at_current_address__c" fieldtargetobjects="Contact" value="0"/>
+																								</renderconditions>
+																							</section>
+																						</sections>
+																					</column>
+																				</columns>
+																			</fields>
+																		</section>
+																	</sections>
+																</column>
+															</columns>
+															<renderconditions logictype="and">
+																<rendercondition fieldmodel="NewContactModel" sourcetype="rowproperty" nosourcerowbehavior="deactivate" sourceproperty="isSaved" enclosevalueinquotes="false"/>
+															</renderconditions>
+														</basicfieldeditor>
+													</components>
+												</division>
+											</divisions>
+											<styles>
+												<styleitem type="background" bgtype="none"/>
+											</styles>
+											<renderconditions logictype="and">
+												<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="false" fieldmodel="NewPartyModel" sourcetype="fieldvalue" nosourcerowbehavior="skipandnorender" field="ExistingRelationship" value="true"/>
+											</renderconditions>
+										</grid>
+										<grid uniqueid="sk-yYUtO-483">
+											<divisions>
+												<division behavior="flex" minwidth="100px" ratio="1" verticalalign="top">
+													<components>
+														<basicfieldeditor showheader="true" showsavecancel="false" showerrorsinline="true" model="NewAccountModel" uniqueid="sk-94oLU-742" mode="edit">
+															<columns>
+																<column width="50%">
+																	<sections>
+																		<section title="" collapsible="no" showheader="false">
+																			<fields>
+																				<field id="Name" uniqueid="sk-6UD-465"/>
+																				<field id="Description" displayrows="3" uniqueid="sk-6UD-468">
+																					<renderconditions logictype="and" onhidedatabehavior="keep"/>
+																					<enableconditions/>
+																				</field>
+																				<field id="Phone" valuehalign="" type="" uniqueid="sk-6UD-471"/>
+																				<field id="Fax" valuehalign="" type="" uniqueid="sk-6UD-474"/>
+																			</fields>
+																		</section>
+																	</sections>
+																	<renderconditions logictype="and"/>
+																</column>
+																<column width="50%">
+																	<sections>
+																		<section title="" collapsible="no" showheader="false">
+																			<fields>
+																				<field id="clcommon__Legal_Entity_Type__c" required="true" uniqueid="sk-6UD-480" pagesize="5" redirecttype="datasourcedefault">
+																					<filters>
+																						<filter type="multiple" operator="not in" field="Name" value="" enclosevalueinquotes="true">
+																							<values>
+																								<value>Individual</value>
+																								<value>Sole Proprietorship</value>
+																							</values>
+																						</filter>
+																					</filters>
+																					<searchfields/>
+																				</field>
+																			</fields>
+																		</section>
+																	</sections>
+																</column>
+															</columns>
+															<renderconditions logictype="and">
+																<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="false" fieldmodel="NewPartyModel" sourcetype="fieldvalue" nosourcerowbehavior="skipandnorender" field="IndividualRelationship" value="false"/>
+															</renderconditions>
+														</basicfieldeditor>
+														<basicfieldeditor showheader="true" showsavecancel="false" showerrorsinline="true" model="NewAccountModel" uniqueid="sk-3_K0sN-423" mode="edit">
+															<columns>
+																<column width="50%">
+																	<sections>
+																		<section title="Section A" collapsible="no" showheader="false">
+																			<fields>
+																				<field id="ShippingStreet" uniqueid="sk-6UD-495" displayrows="3"/>
+																				<field id="ShippingCity" uniqueid="sk-6UD-498"/>
+																				<field id="ShippingState" valuehalign="" type="" uniqueid="sk-6UD-501"/>
+																				<field id="ShippingPostalCode" valuehalign="" type="" uniqueid="sk-6UD-504"/>
+																				<field id="ShippingCountry" valuehalign="" type="" uniqueid="sk-6UD-507"/>
+																			</fields>
+																		</section>
+																	</sections>
+																	<renderconditions logictype="and"/>
+																</column>
+																<column width="50%">
+																	<sections>
+																		<section title="Section B" collapsible="no" showheader="false">
+																			<fields>
+																				<field id="BillingStreet" uniqueid="sk-6UD-513" displayrows="3"/>
+																				<field id="BillingCity" valuehalign="" type="" uniqueid="sk-6UD-516"/>
+																				<field id="BillingState" uniqueid="sk-6UD-519"/>
+																				<field id="BillingPostalCode" uniqueid="sk-6UD-522"/>
+																				<field id="BillingCountry" uniqueid="sk-6UD-525"/>
+																			</fields>
+																		</section>
+																	</sections>
+																	<renderconditions logictype="and"/>
+																</column>
+															</columns>
+															<renderconditions logictype="and">
+																<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="false" fieldmodel="NewPartyModel" sourcetype="fieldvalue" nosourcerowbehavior="skipandnorender" field="IndividualRelationship" value="false"/>
+															</renderconditions>
+														</basicfieldeditor>
+														<basicfieldeditor showheader="true" showsavecancel="false" showerrorsinline="true" model="NewContactModel" uniqueid="sk-3isQ-3726" mode="edit">
+															<columns>
+																<column width="50%">
+																	<sections>
+																		<section title="Section A" collapsible="no" showheader="false">
+																			<fields>
+																				<field id="LastName" uniqueid="sk-3isQ-3727"/>
+																				<field id="FirstName" uniqueid="sk-3isQ-3728"/>
+																				<field id="Birthdate" uniqueid="sk-3isQ-3729"/>
+																				<field id="ints__Social_Security_Number__c" valuehalign="" type="" uniqueid="sk-3isQ-3730"/>
+																				<field uniqueid="sk-iIW-2420" id="clcommon__Marital_Status__c" required="true"/>
+																			</fields>
+																		</section>
+																	</sections>
+																</column>
+																<column width="50%">
+																	<sections>
+																		<section title="Section B" collapsible="no" showheader="false">
+																			<fields>
+																				<field id="Email" uniqueid="sk-3isQ-3731"/>
+																				<field id="MobilePhone" uniqueid="sk-3isQ-3732"/>
+																				<field id="OtherPhone" uniqueid="sk-3isQ-3733"/>
+																				<field id="clcommon__Legal_Entity_Type__c" readonly="false" uniqueid="sk-3isQ-3734" required="true" pagesize="5" redirecttype="datasourcedefault">
+																					<filters>
+																						<filter type="multiple" operator="in" field="Name" fieldtargetobjects="clcommon__Legal_Entity__c" value="" enclosevalueinquotes="true">
+																							<values>
+																								<value>Sole Proprietorship</value>
+																								<value>Individual</value>
+																							</values>
+																						</filter>
+																					</filters>
+																					<searchfields/>
+																					<renderconditions logictype="and" onhidedatabehavior="keep"/>
+																					<enableconditions logictype="and"/>
+																				</field>
+																				<field uniqueid="sk-iIb-2436" id="clcommon__Country_of_Citizenship__c"/>
+																				<field uniqueid="sk-iIe-2455" id="clcommon__Is_Permanent_Resident__c">
+																					<label>Permanent Resident</label>
+																				</field>
+																				<field uniqueid="sk-iIc-2446" id="clcommon__Country_of_Residence__c">
+																					<renderconditions logictype="and" onhidedatabehavior="keep">
+																						<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="false" fieldmodel="NewContactModel" sourcetype="fieldvalue" field="clcommon__Is_Permanent_Resident__c" fieldtargetobjects="Contact" value="false"/>
+																					</renderconditions>
+																					<enableconditions/>
+																				</field>
+																			</fields>
+																		</section>
+																	</sections>
+																</column>
+																<column width="100%">
+																	<sections>
+																		<section title="New Section" collapsible="no" showheader="false">
+																			<fields>
+																				<columns uniqueid="sk-3isQ-3735" layoutmode="fixed">
+																					<column width="50%" uniqueid="sk-3isQ-3736">
+																						<sections>
+																							<section title="New Section" collapsible="no" uniqueid="sk-3isQ-3737" showheader="false">
+																								<fields>
+																									<columns uniqueid="sk-Bep-3821" layoutmode="fixed">
+																										<column width="100%" uniqueid="sk-Bep-3808">
+																											<sections>
+																												<section title="Current Address" collapsible="no" uniqueid="sk-Bet-3855">
+																													<fields>
+																														<field uniqueid="sk-iJ3-2532" id="clcommon__Current_Street__c" displayrows="3"/>
+																														<field uniqueid="sk-iJ3-2531" id="clcommon__Current_City__c"/>
+																														<field uniqueid="sk-iJ3-2533" id="clcommon__Current_State__c"/>
+																														<field uniqueid="sk-iJ3-2534" id="clcommon__Current_Zip_Code__c"/>
+																														<field uniqueid="sk-iJ3-2535" id="clcommon__Current_Country__c"/>
+																													</fields>
+																												</section>
+																											</sections>
+																										</column>
+																									</columns>
+																								</fields>
+																							</section>
+																							<section title="Current Address" collapsible="no" uniqueid="sk-3isQ-3739" showheader="false">
+																								<fields>
+																									<columns uniqueid="sk-3isQ-3745" layoutmode="fixed">
+																										<column width="100%" uniqueid="sk-BiE-4106">
+																											<sections>
+																												<section title="New Section" collapsible="no" uniqueid="sk-BiE-4107" showheader="false">
+																													<fields>
+																														<columns uniqueid="sk-BiF-4125" layoutmode="fixed">
+																															<column width="40%" uniqueid="sk-BiF-4114">
+																																<sections>
+																																	<section title="Time at current address" collapsible="no" uniqueid="sk-BiK-4146">
+																																		<fields/>
+																																	</section>
+																																</sections>
+																															</column>
+																															<column width="30%" uniqueid="sk-BiJ-4130">
+																																<sections>
+																																	<section title="New Section" collapsible="no" uniqueid="sk-BiJ-4131" showheader="false">
+																																		<fields>
+																																			<field uniqueid="sk-iJH-2568" id="clcommon__Years_At_Current_Address__c"/>
+																																		</fields>
+																																	</section>
+																																</sections>
+																															</column>
+																															<column uniqueid="sk-BiJ-4137" width="30%">
+																																<sections>
+																																	<section title="New Section" collapsible="no" uniqueid="sk-BiJ-4138" showheader="false">
+																																		<fields>
+																																			<field uniqueid="sk-iJK-2575" id="clcommon__Months_at_current_address__c"/>
+																																		</fields>
+																																	</section>
+																																</sections>
+																															</column>
+																														</columns>
+																														<field uniqueid="sk-iJS-2584" id="clcommon__Residential_Status__c" required="false" addnoneoption="false"/>
+																														<field uniqueid="sk-iJU-2598" id="clcommon__Monthly_Residential_Payment_Amount__c"/>
+																													</fields>
+																												</section>
+																											</sections>
+																										</column>
+																									</columns>
+																								</fields>
+																							</section>
+																						</sections>
+																					</column>
+																					<column width="50%" uniqueid="sk-3isQ-3757">
+																						<sections>
+																							<section title="New Section" collapsible="no" uniqueid="sk-3isQ-3758" showheader="false">
+																								<fields>
+																									<columns uniqueid="sk-BbZ-1149" layoutmode="fixed" columngutter="4px" rowgutter="4px">
+																										<column uniqueid="sk-BbZ-1137" width="40%">
+																											<sections>
+																												<section title="Mailing Address" collapsible="no" uniqueid="sk-Bbi-1181">
+																													<fields/>
+																												</section>
+																											</sections>
+																										</column>
+																										<column uniqueid="sk-Bbh-1168" width="60%">
+																											<sections>
+																												<section title="New Section" collapsible="no" uniqueid="sk-Bbh-1169" showheader="false">
+																													<fields>
+																														<field uniqueid="sk-iJB-2557" id="clcommon__Mailing_Address_Same_as_Current_Address__c"/>
+																													</fields>
+																												</section>
+																											</sections>
+																										</column>
+																									</columns>
+																								</fields>
+																							</section>
+																							<section title="Mailing Address" collapsible="no" uniqueid="sk-3isQ-3760" showheader="false">
+																								<fields>
+																									<field uniqueid="sk-3isQ-3761" id="MailingStreet" displayrows="3"/>
+																									<field uniqueid="sk-3isQ-3762" id="MailingCity"/>
+																									<field uniqueid="sk-3isQ-3763" id="MailingState"/>
+																									<field uniqueid="sk-3isQ-3764" id="MailingPostalCode"/>
+																									<field uniqueid="sk-3isQ-3765" id="MailingCountry"/>
+																								</fields>
+																							</section>
+																							<section collapsible="no" uniqueid="sk-3isQ-3766" title="Previous Address">
+																								<fields>
+																									<field uniqueid="sk-3isQ-3767" id="OtherStreet" displayrows="3">
+																										<label>Previous Street</label>
+																									</field>
+																									<field uniqueid="sk-3isQ-3768" id="OtherCity">
+																										<label>Previous City</label>
+																									</field>
+																									<field uniqueid="sk-3isQ-3769" id="OtherState">
+																										<label>Previous State/Province</label>
+																									</field>
+																									<field uniqueid="sk-3isQ-3770" id="OtherPostalCode">
+																										<label>Previous Zip/Postal Code</label>
+																									</field>
+																									<field uniqueid="sk-3isQ-3771" id="OtherCountry">
+																										<label>Previous Country</label>
+																									</field>
+																								</fields>
+																								<renderconditions logictype="custom" logic="1 OR (2 AND 3)">
+																									<rendercondition type="fieldvalue" operator="lt" enclosevalueinquotes="false" fieldmodel="NewContactModel" sourcetype="fieldvalue" field="clcommon__Years_At_Current_Address__c" fieldtargetobjects="Contact" value="1"/>
+																									<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="false" fieldmodel="NewContactModel" sourcetype="fieldvalue" field="clcommon__Years_At_Current_Address__c" fieldtargetobjects="Contact" value="1"/>
+																									<rendercondition type="fieldvalue" operator="lte" enclosevalueinquotes="false" fieldmodel="NewContactModel" sourcetype="fieldvalue" field="clcommon__Months_at_current_address__c" fieldtargetobjects="Contact" value="0"/>
+																								</renderconditions>
+																							</section>
+																						</sections>
+																					</column>
+																				</columns>
+																			</fields>
+																		</section>
+																	</sections>
+																</column>
+															</columns>
+															<renderconditions logictype="and">
+																<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="false" fieldmodel="NewPartyModel" sourcetype="fieldvalue" nosourcerowbehavior="skipandnorender" field="IndividualRelationship" value="true"/>
+															</renderconditions>
+														</basicfieldeditor>
+													</components>
+												</division>
+											</divisions>
+											<styles>
+												<styleitem type="background" bgtype="none"/>
+											</styles>
+											<renderconditions logictype="and">
+												<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="false" fieldmodel="NewPartyModel" sourcetype="fieldvalue" nosourcerowbehavior="skipandnorender" field="NewRelationship" value="true"/>
+											</renderconditions>
+										</grid>
+										<basicfieldeditor showheader="true" showsavecancel="false" showerrorsinline="true" model="NewBusinessInfoModel" uniqueid="sk-1heDNc-2159" mode="edit">
+											<columns>
+												<column width="100%">
+													<sections>
+														<section title="" collapsible="no" showheader="false">
+															<fields>
+																<columns layoutmode="fixed" uniqueid="sk-6UD-646">
+																	<column width="50%">
+																		<sections>
+																			<section title="New Section" collapsible="no" showheader="false">
+																				<fields>
+																					<field id="genesis__Business_Legal_Name__c" valuehalign="" type="" uniqueid="sk-6UD-611"/>
+																					<field id="genesis__DBA_Name__c" valuehalign="" type="" uniqueid="sk-6UD-614"/>
+																					<field id="genesis__Business_Description__c" uniqueid="sk-6UD-617" displayrows="3"/>
+																					<field id="genesis__Date_Business_Established__c" valuehalign="" type="" uniqueid="sk-6UD-620"/>
+																					<field id="genesis__Email__c" valuehalign="" type="" uniqueid="sk-6UD-623"/>
+																				</fields>
+																			</section>
+																		</sections>
+																	</column>
+																	<column width="50%">
+																		<sections>
+																			<section title="New Section" collapsible="no" showheader="false">
+																				<fields>
+																					<field id="genesis__Tax_ID__c" uniqueid="sk-6UD-629"/>
+																					<field id="genesis__NAICS_Code__c" valuehalign="" type="" uniqueid="sk-6UD-632"/>
+																					<field id="genesis__NAICS_Description__c" valuehalign="" type="" uniqueid="sk-6UD-635"/>
+																					<field id="genesis__State_of_Incorporation__c" valuehalign="" type="" uniqueid="sk-6UD-638"/>
+																					<field id="genesis__Organization_ID_Number__c" valuehalign="" type="" uniqueid="sk-6UD-641"/>
+																					<field id="genesis__Non_Profit_Organization__c" valuehalign="" type="" uniqueid="sk-6UD-644"/>
+																				</fields>
+																			</section>
+																		</sections>
+																	</column>
+																</columns>
+															</fields>
+														</section>
+													</sections>
+													<renderconditions logictype="and"/>
+												</column>
+											</columns>
+											<renderconditions logictype="custom" logic="(1 AND 4) OR (2 AND 3) ">
+												<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="false" fieldmodel="NewPartyModel" sourcetype="fieldvalue" nosourcerowbehavior="skipandnorender" field="ExistingRelationship" value="true"/>
+												<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="false" fieldmodel="NewPartyModel" sourcetype="fieldvalue" nosourcerowbehavior="skipandnorender" field="IndividualRelationship" value="false"/>
+												<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="false" fieldmodel="NewPartyModel" sourcetype="fieldvalue" nosourcerowbehavior="skipandnorender" field="NewRelationship" value="true"/>
+												<rendercondition type="fieldvalue" enclosevalueinquotes="true" fieldmodel="NewContactModel" sourcetype="rowproperty" nosourcerowbehavior="deactivate" sourceproperty="isNew"/>
+											</renderconditions>
+										</basicfieldeditor>
+										<basicfieldeditor showheader="true" showsavecancel="false" showerrorsinline="true" model="NewContactModel" uniqueid="sk-2cl--950" mode="edit">
+											<columns>
+												<column width="100%">
+													<sections>
+														<section title="" collapsible="no" showheader="false">
+															<fields>
+																<columns layoutmode="fixed" uniqueid="sk-2cl--951">
+																	<column width="100%">
+																		<sections>
+																			<section title="New Section" collapsible="no" showheader="false">
+																				<fields>
+																					<field uniqueid="sk-2cmJ-1069" id="clcommon__Employee__c" showhelp="true">
+																						<renderconditions logictype="and" onhidedatabehavior="keep"/>
+																						<enableconditions/>
+																					</field>
+																					<field uniqueid="sk-2cmJ-1070" id="clcommon__Insider_Relationship__c" showhelp="true">
+																						<renderconditions logictype="and" onhidedatabehavior="keep"/>
+																						<enableconditions/>
+																					</field>
+																				</fields>
+																			</section>
+																		</sections>
+																	</column>
+																</columns>
+															</fields>
+														</section>
+													</sections>
+													<renderconditions logictype="and"/>
+												</column>
+											</columns>
+											<renderconditions logictype="custom" logic="(1 AND 4) OR (2 AND 3) "/>
+										</basicfieldeditor>
+									</components>
+									<actions>
+										<action uniqueid="sk-8ANtf-215" type="navigate" stepid="step2" label="Previous" icon="fa-arrow-left" window="self">
+											<hotkeys/>
+											<renderconditions logictype="and"/>
+											<enableconditions/>
+										</action>
+										<action uniqueid="sk-8ANtf-216" type="multi" label="Next" icon="fa-arrow-right" window="self" stepid="step4">
+											<actions>
+												<action type="custom" snippet="moveToStep4"/>
+												<action type="navigateToStep" stepid="step4"/>
+											</actions>
+											<hotkeys/>
+											<renderconditions logictype="and"/>
+											<enableconditions/>
+										</action>
+									</actions>
+								</step>
+								<step stepid="step4" steplabel="">
+									<components>
+										<basicfieldeditor showheader="true" showsavecancel="false" showerrorsinline="true" model="NewPartyModel" uniqueid="errorStep4" mode="edit">
+											<columns layoutmode="fixed">
+												<column width="100%">
+													<sections>
+														<section title="Role and ownership" collapsible="no">
+															<fields>
+																<field id="clcommon__Type__c" valuehalign="" type="" required="true" cssclass="clorequired" optionsource="" uniqueid="sk-6UD-662">
+																	<renderconditions logictype="and" onhidedatabehavior="keep"/>
+																	<enableconditions logictype="and"/>
+																	<searchfields/>
+																</field>
+															</fields>
+															<renderconditions logictype="and"/>
+														</section>
+													</sections>
+													<renderconditions logictype="and"/>
+												</column>
+											</columns>
+											<renderconditions logictype="and"/>
+										</basicfieldeditor>
+										<basicfieldeditor showheader="true" showsavecancel="false" showerrorsinline="true" model="NewPartyModel" uniqueid="sk-y3Ydi-437" mode="edit">
+											<columns>
+												<column width="100%">
+													<sections>
+														<section title="" collapsible="no" showheader="false">
+															<fields>
+																<field id="clcommon__Signer_Capacity__c" valuehalign="" type="" required="true" readonly="false" uniqueid="sk-6UD-671">
+																	<renderconditions logictype="and" onhidedatabehavior="keep"/>
+																	<enableconditions/>
+																</field>
+																<field id="clcommon__Signing_on_Behalf_of__c" valuehalign="" type="" readonly="false" required="true" uniqueid="sk-6UD-674"/>
+															</fields>
+														</section>
+													</sections>
+												</column>
+											</columns>
+											<renderconditions logictype="and">
+												<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="NewPartyModel" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="clcommon__Type__r.Name" value="SIGNER"/>
+											</renderconditions>
+										</basicfieldeditor>
+										<skootable showconditions="true" showsavecancel="false" showerrorsinline="true" searchmethod="server" searchbox="true" showexportbuttons="false" pagesize="10" createrecords="true" model="CollateralOwnerModel" buttonposition="" mode="edit" uniqueid="sk-1hQNdf-1567">
+											<fields>
+												<field id="clcommon__Collateral__c" valuehalign="" type="" required="false" optionsource="" searchtemplate="{{clcommon__Collateral_Category__c}} - {{clcommon__Collateral_Type__c}}" displaytemplate="" uniqueid="fi-3_Lq4F-577">
+													<searchfields/>
+													<filters/>
+												</field>
+												<field id="clcommon__Ownership__c" decimalplaces="" valuehalign="" type="" required="false" uniqueid="fi-3_Lq4F-578"/>
+											</fields>
+											<rowactions>
+												<action type="delete"/>
+											</rowactions>
+											<massactions usefirstitemasdefault="true"/>
+											<views/>
+											<renderconditions logictype="and">
+												<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="NewPartyModel" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="clcommon__Type__r.Name" value="GRANTOR"/>
+											</renderconditions>
+										</skootable>
+									</components>
+									<actions>
+										<action uniqueid="sk-8AOZg-223" type="navigate" stepid="step3" label="Previous" icon="fa-arrow-left" window="self">
+											<hotkeys/>
+											<renderconditions logictype="and"/>
+											<enableconditions/>
+										</action>
+										<action type="multi" label="Next" stepid="step1" window="self" icon="fa-arrow-right" snippet="saveUpdateParty" uniqueid="sk-rf_-743">
+											<actions>
+												<action type="custom" snippet="saveUpdateParty"/>
+											</actions>
+											<hotkeys/>
+											<renderconditions logictype="and"/>
+											<enableconditions/>
+										</action>
+									</actions>
+								</step>
+							</steps>
+						</wizard>
+					</components>
+				</division>
+			</divisions>
+			<styles>
+				<styleitem type="background" bgtype="none"/>
+			</styles>
+		</grid>
+	</components>
+	<resources>
+		<labels/>
+		<javascript>
+			<jsitem location="staticresource" name="CLSNGUIComponent" cachelocation="false" url="" namespace="genesisExtn" filepath="messageUtils.js">var params = arguments[0],
+  $ = skuid.$;
+</jsitem>
+			<jsitem location="staticresource" name="CLSNGUIComponent" cachelocation="false" url="" namespace="genesisExtn" filepath="commonUtils.js">var params = arguments[0],
+    $ = skuid.$;
+</jsitem>
+			<jsitem location="staticresource" name="CLSNGUIComponent" cachelocation="false" url="" namespace="genesisExtn" filepath="clsRemoteActions.js">var params = arguments[0],
+  $ = skuid.$;
+</jsitem>
+			<jsitem location="inlinesnippet" name="fieldRenderMode" cachelocation="false">var field = arguments[0],
+    value = arguments[1];
+var renderMode = skuid.page.params.mode;
+fieldModeToRender(field,value,renderMode);
+</jsitem>
+			<jsitem location="inlinesnippet" name="NewRelationship" cachelocation="false">var params = arguments[0],
+  $ = skuid.$;
+
+$('#newRelation').addClass('selected-btn');
+$('#existingRelation').removeClass('selected-btn');
+
+var newPartyModel = skuid.model.getModel('NewPartyModel');
+var newPartyRow = newPartyModel.data[0];
+if(!newPartyRow){
+    var newRow = newPartyModel.createRow({
+        additionalConditions: [
+            { field: 'NewRelationship', value:true },
+            { field: 'ExistingRelationship', value: false },
+        ]
+    });
+}else{
+    newPartyModel.updateRow(newPartyRow ,{
+                            NewRelationship : true ,
+                            ExistingRelationship : false,
+                            BusinessRelationship : false ,
+                            IndividualRelationship : false,
+                            clcommon__Account__c : null
+                        }
+    );
+}</jsitem>
+			<jsitem location="inlinesnippet" name="ExistingRelationship" cachelocation="false">var params = arguments[0],
+  $ = skuid.$;
+
+$('#newRelation').removeClass('selected-btn');
+$('#existingRelation').addClass('selected-btn');
+var newPartyModel = skuid.model.getModel('NewPartyModel');
+var newPartyRow = newPartyModel.data[0];
+if(!newPartyRow){
+    var newRow = newPartyModel.createRow({
+        additionalConditions: [
+            { field: 'NewRelationship', value:false },
+            { field: 'ExistingRelationship', value: true },
+        ]
+    });
+}else{
+    var rowUpdates = {};
+    rowUpdates['NewRelationship'] = false;
+    rowUpdates['ExistingRelationship'] = true;
+    rowUpdates['BusinessRelationship'] = false;
+    rowUpdates['IndividualRelationship'] = false;
+    rowUpdates['clcommon__Account__c'] = null;
+    newPartyModel.updateRow( newPartyRow , rowUpdates);
+}</jsitem>
+			<jsitem location="inlinesnippet" name="moveToStep2" cachelocation="false">var params = arguments[0],
+    $ = skuid.$;
+
+var newPartyModel = skuid.model.getModel('NewPartyModel');
+var newPartyRow = newPartyModel.data[0];
+if(!(newPartyRow &amp;&amp; (newPartyRow.NewRelationship || newPartyRow.ExistingRelationship))){
+    $('#newRelation').addClass('selected-btn');
+    $('#existingRelation').removeClass('selected-btn');
+    var newRow = newPartyModel.createRow({
+        additionalConditions: [
+            { field: 'NewRelationship', value:true },
+            { field: 'ExistingRelationship', value: false },
+        ]
+    });
+}
+</jsitem>
+			<jsitem location="inlinesnippet" name="selectBusinessRelation" cachelocation="false">var params = arguments[0],
+  $ = skuid.$;
+
+$('#businessRelation').addClass('selected-btn');
+$('#indiividualRelation').removeClass('selected-btn');
+$('#sk-89WOF-144&gt;div&gt;table&gt;tr&gt;td:nth-child(5)').addClass('hide-stepbar');
+$('#sk-89WOF-144&gt;div&gt;table&gt;tr&gt;td:nth-child(6)').addClass('hide-stepbar');
+var newPartyModel = skuid.model.getModel('NewPartyModel');
+newPartyModel.updateRow(newPartyModel.data[0] ,{
+                            BusinessRelationship : true ,
+                            IndividualRelationship : false,
+                            clcommon__Account__c : null}
+);</jsitem>
+			<jsitem location="inlinesnippet" name="queryAccount" cachelocation="false">var params = arguments[0],
+  step = params.step,
+    stepEditor = step.editor,
+    $ = skuid.$;
+
+var newPartyModel = skuid.model.getModel('NewPartyModel');
+var newPartyRow = newPartyModel.data[0];
+// if nothing is selected and user moves forward
+if(newPartyRow.NewRelationship &amp;&amp; (!(newPartyRow.BusinessRelationship || newPartyRow.IndividualRelationship))){
+    $('#businessRelation').addClass('selected-btn');
+    $('#indiividualRelation').removeClass('selected-btn');
+    newPartyRow.BusinessRelationship = true;
+    newPartyRow.clcommon__Account__c = null;
+}
+
+//fetch model and cancel any changes
+var newAccountModel = skuid.model.getModel('NewAccountModel');
+newAccountModel.cancel();
+
+var newCollateralOwnersModel = skuid.model.getModel('CollateralOwnerModel');
+newCollateralOwnersModel.cancel();
+
+var newBIModel = skuid.model.getModel('NewBusinessInfoModel');
+newBIModel.cancel();
+
+var newPartyModelClone = skuid.model.getModel('NewPartyModelClone');
+newPartyModelClone.cancel();
+
+var newContactModelForExistingRel = skuid.model.getModel('NewContactModelForExistingRel');
+newContactModelForExistingRel.cancel();
+
+var newContactModel = skuid.model.getModel('NewContactModel');
+newContactModel.cancel();
+
+// validate
+if(newPartyRow.ExistingRelationship){
+    if(!newPartyRow.clcommon__Account__c){
+        var pageTitle = $('#errorTitle2');
+        var editor = pageTitle.data('object').editor;
+        editor.clearMessages();
+        editor.handleMessages(
+            [
+              {
+                  message: 'Please select an existing account',
+                  severity: 'ERROR'
+              },
+            ]
+        );
+        return;
+    }
+    if(newPartyRow.IndividualRelationship) {
+        var sql = "select name from contact where AccountId= '"+newPartyRow.clcommon__Account__c+"'";
+        result = sforce.connection.query(sql);
+        if(result.size==0){
+          var pageTitle = $('#errorTitle2');
+          var editor = pageTitle.data('object').editor;
+          editor.handleMessages(
+            [
+              {
+                  message: 'No contact is associated with account, please associate a contact to this account to proceed further.',
+                  severity: 'ERROR'
+              },
+            ]
+          );
+          return;
+     }
+    }
+
+}
+
+//fetch conditions
+var accountIdCondition = newAccountModel.getConditionByName('Id');
+var partyAccountIdCondition = newPartyModelClone.getConditionByName('clcommon__Account__c');
+var coAccountIdCondition = newCollateralOwnersModel.getConditionByName('clcommon__Account__c');
+var biIdCondition = newBIModel.getConditionByName('Id');
+var newContactModelIdCondition = newContactModel.getConditionByName('AccountId');
+
+// set and activate condtions
+if(newPartyRow.clcommon__Account__c){
+    newAccountModel.setCondition(accountIdCondition,newPartyRow.clcommon__Account__c);
+    newPartyModelClone.setCondition(partyAccountIdCondition,newPartyRow.clcommon__Account__c);
+    newCollateralOwnersModel.setCondition(coAccountIdCondition,newPartyRow.clcommon__Account__c);
+    newContactModel.setCondition(newContactModelIdCondition,newPartyRow.clcommon__Account__c);
+}else{
+    newAccountModel.setCondition(accountIdCondition,'');
+    newPartyModelClone.setCondition(partyAccountIdCondition,'');
+    newCollateralOwnersModel.setCondition(coAccountIdCondition,'');
+    newContactModel.setCondition(newContactModelIdCondition,'');
+}
+
+//query models
+skuid.model.updateData([newAccountModel, newCollateralOwnersModel, newPartyModelClone, newContactModelForExistingRel, newContactModel],function(){
+    createNewAccountRow(newAccountModel);
+    createNewCORow(newCollateralOwnersModel);
+    createNewContactRow(newContactModel);
+    if(!newPartyRow.NewRelationship &amp;&amp; newPartyModelClone.data &amp;&amp; newPartyModelClone.data.length == 1){
+
+    }else{
+        newPartyModel.updateRow(newPartyRow,{
+                                    clcommon__Type__c: null,
+                                    clcommon__Signer_Capacity__c : null,
+                                    clcommon__Signing_on_Behalf_of__c : null,
+                                });
+    }
+
+    //query bi for account
+    if(newAccountModel.data &amp;&amp; newAccountModel.data.length &gt; 0 &amp;&amp; newAccountModel.data[0].genesis__Business_Information__c){
+        newBIModel.setCondition(biIdCondition,newAccountModel.data[0].genesis__Business_Information__c);
+    }else{
+        newBIModel.setCondition(biIdCondition,'');
+    }
+
+    skuid.model.updateData([newBIModel],function(){
+        createNewBIRow(newBIModel);
+        moveToNextStepPls();
+    });
+});
+
+function createNewAccountRow(newAccountModel){
+    if(newAccountModel.data &amp;&amp; newAccountModel.data.length &lt; 1){
+        var newRow = newAccountModel.createRow({
+            additionalConditions: [
+                { field: 'BusinessRelationship', value:true },
+                { field: 'IndividualRelationship', value:false },
+                //{ field: 'Name', value:'Set Account Name' },
+            ]
+        });
+    }
+}
+
+function createNewContactRow(newContactModel){
+    if(newContactModel.data &amp;&amp; newContactModel.data.length &lt; 1){
+        var newRow = newContactModel.createRow({
+            additionalConditions: [
+                { field: 'BusinessRelationship', value:false },
+                { field: 'IndividualRelationship', value:true }
+
+            ]
+        });
+    }
+}
+
+function createNewCORow(newCollateralOwnersModel){
+    if(newCollateralOwnersModel.data &amp;&amp; newCollateralOwnersModel.data.length &lt; 1){
+        var newRow = newCollateralOwnersModel.createRow({
+            additionalConditions: [
+                { field: 'clcommon__Ownership__c', value: 100 },
+                { field: 'clcommon__Collateral__c', value: null},
+            ]
+        });
+    }
+}
+
+function createNewBIRow(newBIModel){
+    if(newBIModel.data &amp;&amp; newBIModel.data.length &lt; 1){
+        var newRow = newBIModel.createRow({
+            additionalConditions: [
+                //{ field: 'genesis__Business_Legal_Name__c', value:'Set Business Info' },
+            ]
+        });
+    }
+}
+
+function moveToNextStepPls(){
+    var wizard = $('.nx-wizard').data('object');
+    var currentStep = wizard.steps[wizard.currentstep];
+    currentStep.navigate('step3');
+}</jsitem>
+			<jsitem location="inlinesnippet" name="selectIndividualRelation" cachelocation="false">var params = arguments[0],
+  $ = skuid.$;
+$('#businessRelation').removeClass('selected-btn');
+$('#indiividualRelation').addClass('selected-btn');
+$('#sk-89WOF-144&gt;div&gt;table&gt;tr&gt;td:nth-child(5)').removeClass('hide-stepbar');
+$('#sk-89WOF-144&gt;div&gt;table&gt;tr&gt;td:nth-child(6)').removeClass('hide-stepbar');
+var newPartyModel = skuid.model.getModel('NewPartyModel');
+newPartyModel.updateRow(newPartyModel.data[0] ,{
+                            BusinessRelationship : false ,
+                            IndividualRelationship : true,
+                            clcommon__Account__c : null
+                        }
+    );</jsitem>
+			<jsitem location="inlinesnippet" name="moveToStep4" cachelocation="false">var params = arguments[0],
+  step = params.step,
+    stepEditor = step.editor,
+    $ = skuid.$;
+stepEditor.clearMessages();
+var newPartyModel = skuid.model.getModel('NewPartyModel');
+var newPartyRow = newPartyModel.data[0];
+var models;
+
+var pageTitle = $('#errorTitle3');
+var editor = pageTitle.data('object').editor;
+editor.clearMessages();
+if(newPartyRow.BusinessRelationship){
+    models = [
+        skuid.model.getModel("NewAccountModel"),
+        skuid.model.getModel("NewBusinessInfoModel")
+    ];
+}else{
+    models = [
+        skuid.model.getModel("NewContactModel"),
+        skuid.model.getModel("NewBusinessInfoModel")
+    ];
+}
+var contactMdl = skuid.model.getModel("NewContactModel");
+contactRow = contactMdl.data[0];
+let moveToNextStep = true;
+if(contactRow&amp;&amp;newPartyRow.IndividualRelationship){
+    let birthDate = contactRow.Birthdate;
+    let today = $.datepicker.formatDate('yy-mm-dd', new Date());
+    
+    if (birthDate === '' || birthDate === null || birthDate === undefined || birthDate&gt;today ) {
+        stepEditor.handleMessages( 
+    
+             [{
+                message: 'BirthDate cannot be future date or blank.', 
+                severity: 'ERROR'
+            }]
+        );
+        
+        moveToNextStep = false;
+        return false;
+    }
+    
+    if((contactRow.clcommon__Years_At_Current_Address__c === undefined||contactRow.clcommon__Years_At_Current_Address__c&lt;1)||(contactRow.clcommon__Years_At_Current_Address__c==1&amp;&amp;(contactRow.clcommon__Months_at_current_address__c&lt;=0||contactRow.clcommon__Months_at_current_address__c===undefined )))
+    {
+        if(!(contactRow.OtherStreet&amp;&amp;contactRow.OtherCity&amp;&amp;contactRow.OtherState&amp;&amp;contactRow.OtherPostalCode&amp;&amp;contactRow.OtherCountry))
+        {
+            stepEditor.handleMessages(
+                [
+                  {
+                      message: 'Previous address cannot be blank',
+                      severity: 'ERROR'
+                  },
+                ]
+            );
+            moveToNextStep = false;
+            return false;
+        }
+    }
+    if(!contactRow.Email || contactRow.Email ==="")
+    {
+        stepEditor.handleMessages(
+            [
+               {
+                  message: 'Please capture e-mail ID of the customer',
+                  severity: 'ERROR'
+               },
+            ]
+        );
+        moveToNextStep = false;
+        return false;
+    }
+}
+
+if(!moveToNextStep)
+    return false;
+
+if(contactMdl.data[0]){
+    if(contactMdl.data[0].Email  || skuid.model.getModel("NewBusinessInfoModel").data[0].Email){
+        $("#consentTitle .nx-error").hide();
+    }else{
+        $("#consentTitle .nx-error").show();
+    }
+}
+var vres = validateAllRequiredFields($,editor,models);
+if(!vres){
+    return vres;
+}
+</jsitem>
+			<jsitem location="inlinesnippet" name="saveUpdateParty" cachelocation="false">var params = arguments[0],
+$ = skuid.$;
+
+skuid.$('.nx-wizard-step .ui-button:visible').has('.ui-button-text:contains(Save)').button('disable');
+
+var newPartyModel = skuid.model.getModel('NewPartyModel');
+var newPartyRow = newPartyModel.data[0];
+
+var newAccountModel = skuid.model.getModel('NewAccountModel');
+var newAccountRow = newAccountModel.data[0];
+console.log('newAccountRow ##',newAccountRow);
+
+var newContactModel = skuid.model.getModel('NewContactModel');
+var newContactRow = newContactModel.data[0];
+console.log('newContactRow ## ',newContactRow);
+
+var businessInfoModel = skuid.model.getModel('NewBusinessInfoModel');
+var businessInfoRow = businessInfoModel.data[0];
+
+var collateralOwnerModel = skuid.model.getModel('CollateralOwnerModel');
+var collData = [];
+collateralOwnerModel.data.forEach(function (colDataObj){
+    if(!collateralOwnerModel.isRowMarkedForDeletion(colDataObj) &amp;&amp; colDataObj.clcommon__Collateral__c){
+        collData.push(colDataObj);
+    }
+});
+collateralOwnerModel.data = collData;
+
+var consentPage = $('#consentTitle');
+var editorNew = consentPage.data('object').editor;
+editorNew.clearMessages();
+
+/*if(!newPartyRow.clcommon__Electronic_Consent__c){
+    editorNew.handleMessages(
+        [
+           {
+              message: 'Please sign electronic consent',
+              severity: 'ERROR'
+           },
+        ]
+    );
+    skuid.$('.nx-wizard-step .ui-button:visible').has('.ui-button-text:contains(Save)').button('enable');
+    return false;
+}*/
+
+/*if(newPartyRow.clcommon__Electronic_Consent__c &amp;&amp; (!newContactRow.Email || newContactRow.Email ==="")&amp;&amp;newPartyRow.IndividualRelationship){
+    editorNew.handleMessages(
+        [
+           {
+              message: 'Please capture e-mail ID of the customer',
+              severity: 'ERROR'
+           },
+        ]
+    );
+    skuid.$('.nx-wizard-step .ui-button:visible').has('.ui-button-text:contains(Save)').button('enable');
+    return false;
+}*/
+var partyArgs = {};
+
+if(newPartyRow.NewRelationship) {
+    if(newPartyRow.IndividualRelationship){
+        partyArgs[0] = newContactModel;
+        partyArgs[1] = null;
+    } else {
+        partyArgs[0] = null;
+        partyArgs[1] = newAccountModel;
+    }
+} else {
+    if(newPartyRow.IndividualRelationship){
+        partyArgs[0] = newContactModel;
+        partyArgs[1] = null;
+    } else {
+        partyArgs[0] = null;
+        partyArgs[1] = newAccountModel;
+    }
+}
+// if(newPartyRow.IndividualRelationship){
+//     partyArgs[0] = newContactModel;
+//     partyArgs[1] = null;
+// }
+// if(newPartyRow.BusinessRelationship || newPartyRow.ExistingRelationship){
+//     partyArgs[0] = null;
+//     partyArgs[1] = newAccountModel;
+// }
+
+var bModel = businessInfoModel;
+if (Object.keys(businessInfoModel.data[0]).length &lt;= 2){
+    bModel = null;
+}
+
+var res = saveParty(newPartyModel,partyArgs[0],partyArgs[1],bModel,collateralOwnerModel);
+var resObj = JSON.parse(res);
+
+if(resObj.status == 'SUCCESS'){
+    if(newPartyRow.IndividualRelationship){
+        var contactId = resObj.content[0].clcommon__Contact__r.Id;
+        newContactModel.updateRow(newContactRow, {
+            Id: contactId
+        });
+        
+        newPartyRow.SaveParty = false;
+        $("#PartySaveButton").button('enable');
+    }
+    return true;
+}else{
+    $("#PartySaveButton").button('enable');
+    editorNew.handleMessages(
+        [
+          {
+              message: resObj.errorMessage,
+              severity: 'ERROR'
+          },
+        ]
+    );
+    return false;
+}</jsitem>
+			<jsitem location="inlinesnippet" name="moveToStep5" cachelocation="false">var params = arguments[0],
+step = params.step,
+stepEditor = step.editor,
+$ = skuid.$;
+stepEditor.clearMessages();
+var newPartyModel = skuid.model.getModel('NewPartyModel');
+var newPartyRow = newPartyModel.data[0];
+var models;
+
+var pageTitle = $('#errorStep4');
+var editor = pageTitle.data('object').editor;
+editor.clearMessages();
+
+if(!newPartyRow.clcommon__Type__c){
+    editor.handleMessages(
+        [
+           {
+              message: 'Select Party Type for Party.',
+              severity: 'ERROR'
+           },
+        ]
+    );
+    return false;
+}
+
+return true;</jsitem>
+			<jsitem location="inlinesnippet" name="closeDialogs" cachelocation="false">var params = arguments[0],
+	$ = skuid.$;
+closeTopLevelDialogAndRefresh({iframeIds: ['document-iframe', 'party-iframe', 'deal-dashboard-iframe,document-iframe', 'deal-dashboard-iframe,party-iframe']});
+</jsitem>
+			<jsitem location="inlinesnippet" name="validateEmployementAndIncome" cachelocation="false">var params = arguments[0],
+    step = params.step,
+    stepEditor = step.editor,
+    $ = skuid.$;
+
+stepEditor.clearMessages();
+
+let moveToNextStep = true;
+
+var employmentInformationModel = skuid.model.getModel('EmploymentInformationModel');
+
+$.each(employmentInformationModel.data,function(i,row){
+    
+    let startDate = row.genesis__Start_Date__c;
+    let today = $.datepicker.formatDate('yy-mm-dd', new Date());
+
+    if (startDate === '' || startDate === null || startDate === undefined || startDate&gt;today ) {
+        stepEditor.handleMessages( 
+    
+             [{
+    
+                 message: 'Current employment start date cannot be future date or blank.', 
+                severity: 'ERROR'
+            }]
+        );
+        
+        moveToNextStep = false;
+        return false;
+    }
+
+});
+
+var previousEmploymentInfoModel = skuid.model.getModel('PreviousEmploymentInfoModel');
+
+$.each(previousEmploymentInfoModel.data,function(i,row){
+    
+    let startDate = row.genesis__Start_Date__c;
+    let endDate = row.genesis__End_Date__c;
+    let today = $.datepicker.formatDate('yy-mm-dd', new Date());
+
+    if (startDate === '' || startDate === null || startDate === undefined || startDate&gt;today ) {
+        stepEditor.handleMessages( 
+    
+             [{
+    
+                 message: 'Previous employment start date cannot be future date or blank.', 
+                severity: 'ERROR'
+            }]
+        );
+        moveToNextStep = false;
+        return false;
+    }
+    
+    if (endDate === '' || endDate === null || endDate === undefined || endDate&gt;today ) {
+        stepEditor.handleMessages( 
+    
+             [{
+    
+                 message: 'Previous employment end date cannot be future date or blank.', 
+                severity: 'ERROR'
+            }]
+        );
+        moveToNextStep = false;
+        return false;
+    }
+    
+    if (startDate&gt;endDate ) {
+        stepEditor.handleMessages( 
+    
+             [{
+    
+                 message: 'Previous employment end date needs to be greater than start date.', 
+                severity: 'ERROR'
+            }]
+        );
+        moveToNextStep = false;
+        return false;
+    }
+
+});
+
+var otherIncomeModel = skuid.model.getModel('OtherIncomeModel');
+
+$.each(otherIncomeModel.data,function(i,row){
+    
+    let name = row.Name;
+    if (name === '' || name === null || name === undefined ) {
+        stepEditor.handleMessages( 
+    
+             [{
+    
+                 message: 'Income name can not be blank.', 
+                severity: 'ERROR'
+            }]
+        );
+        
+        moveToNextStep = false;
+        return false;
+    }
+
+});
+
+
+if(moveToNextStep)
+{
+    var wizard = $('.nx-wizard').data('object');
+    var currentStep = wizard.steps[wizard.currentstep];
+    currentStep.navigate('step6');
+}
+
+</jsitem>
+			<jsitem location="inlinesnippet" name="validateAssetsAndLiabilities" cachelocation="false">var params = arguments[0],
+    step = params.step,
+    stepEditor = step.editor,
+    $ = skuid.$;
+
+stepEditor.clearMessages();
+
+let moveToNextStep = true;
+
+var assetInformationModel = skuid.model.getModel('AssetInformationModel');
+
+$.each(assetInformationModel.data,function(i,row){
+    
+    let acquisitionDate = row.genesis__Date_of_Acquisition__c;
+    let marketValueDate = row.genesis__Market_Value_Date__c;
+    let today = $.datepicker.formatDate('yy-mm-dd', new Date());
+
+    if (acquisitionDate === '' || acquisitionDate === null || acquisitionDate === undefined || acquisitionDate&gt;today ) {
+        stepEditor.handleMessages( 
+    
+             [{
+    
+                message: 'Date of Acquisition cannot be future date or blank.', 
+                severity: 'ERROR'
+            }]
+        );
+        
+        moveToNextStep = false;
+        return false;
+    }
+    
+    if (marketValueDate === '' || marketValueDate === null || marketValueDate === undefined || marketValueDate&gt;today ) {
+        stepEditor.handleMessages( 
+    
+             [{
+    
+                message: 'Market Value Date cannot be future date or blank.', 
+                severity: 'ERROR'
+            }]
+        );
+        
+        moveToNextStep = false;
+        return false;
+    }
+    
+    let name = row.Name;
+    if (name === '' || name === null || name === undefined ) {
+        stepEditor.handleMessages( 
+    
+             [{
+    
+                message: 'Asset description can not be blank.', 
+                severity: 'ERROR'
+            }]
+        );
+        
+        moveToNextStep = false;
+        return false;
+    }
+
+});
+
+var liabilityInformationModel = skuid.model.getModel('LiabilityInformationModel');
+
+$.each(liabilityInformationModel.data,function(i,row){
+    let paymentAmount = row.genesis__Payment_Amount__c;
+    let amountOwing = row.genesis__Amount_Owing__c;
+    
+    if (paymentAmount&gt;amountOwing) {
+        stepEditor.handleMessages( 
+    
+             [{
+    
+                message: 'Payment amount cannot be greater than amount owing.', 
+                severity: 'ERROR'
+            }]
+        );
+        
+        moveToNextStep = false;
+        return false;
+    }
+
+});
+
+
+
+if(moveToNextStep)
+{
+    var wizard = $('.nx-wizard').data('object');
+    var currentStep = wizard.steps[wizard.currentstep];
+    currentStep.navigate('step7');
+}</jsitem>
+			<jsitem location="inlinesnippet" cachelocation="false" name="successMessage">var params = arguments[0],
+	$ = skuid.$;
+var consentPage = $('#consentTitle');
+var editorNew = consentPage.data('object').editor;
+editorNew.clearMessages();
+
+editorNew.handleMessages(
+[
+  {
+      message: 'Record saved successfully!',
+      severity: 'INFO'
+  },
+]);</jsitem>
+		</javascript>
+		<css>
+			<cssitem location="inline" name="partyWizardCss" cachelocation="false">.selected-btn {
+    background: #16325C!important; /* Or some other color */
+}
+.clorequired{
+
+}
+.progress-indicator {
+    margin-bottom: 20px;
+}
+.progress-indicator .progress-chunk .progress-text {
+    line-height: 32px;
+    font-size: 12px;
+}
+.progress-indicator div {
+    padding: 0px;
+}
+.progress-text {
+    padding: 0px;
+}
+.text-content {
+    font-size: 12px;
+    line-height: 12px;
+}
+.progress-triangle-outline {
+    /* display: none; */
+    border-left: 25px solid #ffffff;
+}
+.progress-indicator .progress-chunk.current .progress-triangle {
+    border-left: 20px solid #1cbdd4;
+}
+.progress-indicator .progress-chunk.done .progress-triangle {
+    border-left: 20px solid #2d5074;
+}
+.progress-indicator .progress-chunk .progress-triangle {
+    border-left: 20px solid #dddddd;
+}
+.progress-indicator .progress-chunk.current .progress-triangle-outline {
+    border-left: 22px solid #ffffff;
+    transform: translate(100%, -50%);
+}
+.progress-indicator .progress-chunk.done .progress-triangle-outline {
+    border-left: 22px solid #ffffff;
+    transform: translate(100%, -50%);
+}
+.progress-indicator .progress-chunk .progress-triangle-outline {
+    border-left: 22px solid #ffffff;
+    transform: translate(100%, -50%);
+}
+.nx-pagetitle-subtitle {
+    position: fixed;
+    top: 70px;
+    font-size: 12px;
+    color: #121212;
+}
+#partywizard {
+    margin-top: 20px;
+}
+.nx-page {
+    overflow: hidden;
+}
+.ui-dialog-title {
+    font-size: 14px;
+}
+.ui-dialog .ui-widget .ui-widget-content .ui-corner-all .ui-front div {
+    overflow: none;
+}
+.removePadding{
+    padding:0px;
+}
+
+.hide-stepbar{
+    display:none;
+}</cssitem>
+			<cssitem location="staticresource" name="CLSStyleSheetPack" cachelocation="false" url="" namespace="genesisExtn" filepath="cls-picker.css"/>
+		</css>
+		<actionsequences uniqueid="sk-myy-919"/>
+	</resources>
+	<styles>
+		<styleitem type="background" bgtype="none"/>
+	</styles>
+</skuidpage>

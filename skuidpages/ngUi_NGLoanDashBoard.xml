@@ -1,513 +1,990 @@
 <skuidpage personalizationmode="server" showsidebar="false" showheader="false" theme="CustomClassic">
-  <models>
-    <model id="NGLDApplication" limit="1" query="true" createrowifnonefound="false" sobject="genesis__Applications__c" datasource="salesforce">
-      <fields>
-        <field id="Name"/>
-        <field id="genesis__Product_Type__c"/>
-        <field id="genesis__Loan_Number__c"/>
-        <field id="genesis__CL_Product_Name__c"/>
-        <field id="genesis__CL_Product__r.Name"/>
-        <field id="genesis__CL_Product__r.clcommon__Product_Name__c"/>
-        <field id="genesis__Asset_Class__c"/>
-        <field id="RecordType.Name"/>
-        <field id="Id"/>
-        <field id="RecordTypeId"/>
-      </fields>
-      <conditions>
-        <condition type="param" value="id" field="Id" operator="=" userinfotype="userid" enclosevalueinquotes="true" novaluebehavior="noquery"/>
-      </conditions>
-      <actions/>
-    </model>
-    <model id="DashboardParty" limit="" query="true" createrowifnonefound="false" sobject="clcommon__Party__c" orderby="clcommon__Type__r.Name, clcommon__Account__r.Name" datasource="salesforce">
-      <fields>
-        <field id="Name"/>
-        <field id="clcommon__Account__c"/>
-        <field id="clcommon__Account__r.Name"/>
-        <field id="clcommon__Type__c"/>
-        <field id="clcommon__Type__r.Name"/>
-        <field id="clcommon__Contact__r.Name"/>
-      </fields>
-      <conditions>
-        <condition type="param" value="id" field="genesis__Application__c" operator="=" enclosevalueinquotes="true" novaluebehavior="noquery"/>
-      </conditions>
-      <actions/>
-    </model>
-    <model id="PartiesNotIndividual" limit="" query="true" createrowifnonefound="false" sobject="clcommon__Party__c" orderby="clcommon__Type__r.Name, clcommon__Account__r.Name" datasource="salesforce">
-      <fields>
-        <field id="Name"/>
-        <field id="clcommon__Account__c"/>
-        <field id="clcommon__Account__r.Name"/>
-        <field id="clcommon__Type__c"/>
-        <field id="clcommon__Type__r.Name"/>
-      </fields>
-      <conditions>
-        <condition type="param" value="id" field="genesis__Application__c" operator="=" enclosevalueinquotes="true" novaluebehavior="noquery"/>
-        <condition type="fieldvalue" value="Individual" enclosevalueinquotes="true" field="clcommon__Account__r.clcommon__Legal_Entity_Type__r.Name" operator="!="/>
-      </conditions>
-      <actions/>
-    </model>
-    <model id="BorrowerParty" limit="20" query="true" createrowifnonefound="false" datasource="salesforce" sobject="clcommon__Party__c">
-      <fields>
-        <field id="clcommon__Type__r.Name"/>
-      </fields>
-      <conditions>
-        <condition type="modelmerge" value="" field="genesis__Application__c" fieldtargetobjects="genesis__Applications__c" operator="=" model="NGLDApplication" enclosevalueinquotes="true" mergefield="Id" novaluebehavior="deactivate"/>
-        <condition type="fieldvalue" value="BORROWER" enclosevalueinquotes="true" field="clcommon__Type__r.Name"/>
-      </conditions>
-      <actions/>
-    </model>
-    <model id="ApplicationUtil" limit="20" query="true" createrowifnonefound="false" datasource="salesforce" sobject="genesis__Applications__c">
-      <fields>
-        <field id="RecordTypeId"/>
-        <field id="genesis__Status__c"/>
-      </fields>
-      <conditions>
-        <condition type="param" value="id" field="Id" operator="=" enclosevalueinquotes="true"/>
-      </conditions>
-      <actions/>
-    </model>
-    <model id="CommonApplicationModel" limit="20" query="true" createrowifnonefound="false" datasource="salesforce" sobject="genesis__Applications__c">
-      <fields>
-        <field id="RecordTypeId"/>
-      </fields>
-      <conditions>
-        <condition type="param" value="id" operator="=" enclosevalueinquotes="true" field="Id"/>
-      </conditions>
-      <actions/>
-    </model>
-    <model id="ScheduleCheck" limit="20" query="true" createrowifnonefound="false" datasource="salesforce" sobject="genesis__Amortization_Schedule__c">
-      <fields>
-        <field id="genesis__Application__c"/>
-        <field id="genesis__Application__r.Name"/>
-      </fields>
-      <conditions>
-        <condition type="param" value="Id" field="genesis__Application__c" fieldtargetobjects="genesis__Applications__c" operator="=" enclosevalueinquotes="true"/>
-      </conditions>
-      <actions/>
-    </model>
-  </models>
-  <components>
-    <tabset rememberlastusertab="false" defertabrendering="true" uniqueid="cls-originate-page" cssclass="cls-dashboard-tab-content">
-      <tabs>
-        <tab name="Loan">
-          <components>
-            <grid uniqueid="loan-dashboard-grid" columngutter="10px">
-              <divisions>
-                <division behavior="flex" minwidth="100px" ratio="4" verticalalign="top" uniqueid="loan-panel">
-                  <components>
-                    <wrapper uniqueid="sk-3gUJ2l-137" cssclass="cls-dashboard-section">
-                      <components>
-                        <pagetitle uniqueid="sk-1M0O6--114" model="NGLDApplication" cssclass="wrapper-title">
-                          <actions>
-                            <action type="multi" label="Edit" cssclass="iconic-button iconic-button-edit" uniqueid="loan-edit-button">
-                              <actions>
-                                <action type="custom" snippet="LaunchEditLoanDialog"/>
-                              </actions>
-                              <renderconditions logictype="and"/>
-                              <enableconditions/>
-                            </action>
-                          </actions>
-                          <maintitle>{{Name}}</maintitle>
-                          <renderconditions logictype="and"/>
-                        </pagetitle>
-                        <navigation uniqueid="navigationId" type="dropdown" label="" cssclass="">
-                          <navigationitems>
-                            <navigationitem label="History">
-                              <actions>
-                                <action type="custom" window="self" snippet="LaunchLoanHistoryDialog"/>
-                              </actions>
-                            </navigationitem>
-                            <navigationitem label="Policy Condition">
-                              <actions>
-                                <action type="custom" window="self" snippet="LaunchPolicyExceptionDialog"/>
-                              </actions>
-                            </navigationitem>
-                            <navigationitem label="Fee">
-                              <actions>
-                                <action type="custom" window="self" snippet="LaunchFeeDialog"/>
-                              </actions>
-                              <navigationitems/>
-                            </navigationitem>
-                            <navigationitem label="Change Memo">
-                              <actions>
-                                <action type="custom" window="self" snippet="LaunchChangeMemoDialog"/>
-                              </actions>
-                            </navigationitem>
-                            <navigationitem label="Credit Memo">
-                              <actions>
-                                <action type="custom" window="self" snippet="LaunchCreditMemoDialog"/>
-                              </actions>
-                            </navigationitem>
-                            <navigationitem label="Covenants">
-                              <actions>
-                                <action type="custom" window="self" snippet="LaunchCovenantsDialog"/>
-                              </actions>
-                            </navigationitem>
-                            <navigationitem label="Risk Analysis">
-                              <actions>
-                                <action type="custom" snippet="LaunchRiskAnalysis"/>
-                              </actions>
-                              <renderconditions logictype="and"/>
-                            </navigationitem>
-                            <navigationitem uniqueid="sk-HKT-740" label="Adverse Action">
-                              <actions>
-                                <action type="custom" window="self" snippet="LaunchAdverseAction"/>
-                              </actions>
-                            </navigationitem>
-                            <navigationitem label="Payment Schedule" uniqueid="sk-HKT-748">
-                              <actions>
-                                <action type="custom" window="self" snippet="LaunchSchedule"/>
-                              </actions>
-                              <renderconditions logictype="and">
-                                <rendercondition type="multiple" operator="in" fieldmodel="NGLDApplication" sourcetype="fieldvalue" nosourcerowbehavior="skipandnorender" field="genesis__Product_Type__c" value="" enclosevalueinquotes="true" fieldtargetobjects="genesis__Applications__c">
-                                  <values>
-                                    <value>LOAN</value>
-                                    <value>LINE OF CREDIT</value>
-                                  </values>
-                                </rendercondition>
-                              </renderconditions>
-                            </navigationitem>
-                            <navigationitem label="Debt to Income Ratio" uniqueid="sk-2RHB-379">
-                              <actions>
-                                <action type="custom" snippet="LaunchDebtToIncomeRatio"/>
-                              </actions>
-                              <navigationitems/>
-                              <renderconditions logictype="and">
-                                <rendercondition type="fieldvalue" operator="contains" enclosevalueinquotes="true" fieldmodel="NGLDApplication" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="genesis__Asset_Class__c" fieldtargetobjects="genesis__Applications__c" value="Consumer"/>
-                                <rendercondition type="multiple" operator="in" fieldmodel="NGLDApplication" sourcetype="fieldvalue" nosourcerowbehavior="skipandnorender" field="genesis__Product_Type__c" fieldtargetobjects="genesis__Applications__c" value="" enclosevalueinquotes="true">
-                                  <values>
-                                    <value>LOAN</value>
-                                    <value>LINE OF CREDIT</value>
-                                  </values>
-                                </rendercondition>
-                              </renderconditions>
-                            </navigationitem>
-                          </navigationitems>
-                          <styles/>
-                          <renderconditions logictype="and"/>
-                        </navigation>
-                        <template multiple="false" uniqueid="sk-2YZUyl-112" cssclass="wrapper-container">
-                          <contents>&lt;iframe id="loan-details-iframe" src="apex/skuid__ui?page=ApplicationForm&amp;id={{{$Model.NGLDApplication.data.0.Id}}}&amp;mode=read" width="100%" height="100%"/&gt;</contents>
-                          <renderconditions logictype="and"/>
-                        </template>
-                      </components>
-                      <styles>
-                        <styleitem type="background" bgtype="none"/>
-                        <styleitem type="border"/>
-                        <styleitem type="size"/>
-                        <styleitem property="position" value="absolute"/>
-                        <styleitem property="left" value="0"/>
-                        <styleitem property="right" value="0"/>
-                        <styleitem property="top" value="0"/>
-                        <styleitem property="bottom" value="0"/>
-                      </styles>
-                    </wrapper>
-                  </components>
-                </division>
-                <division behavior="flex" verticalalign="top" minwidth="100px" ratio="6" uniqueid="loan-right-panel">
-                  <components>
-                    <template multiple="false" uniqueid="loan-dashboard-document-section" cssclass="cls-dashboard-section cls-dashboard-section-with-margin-bottom">
-                      <contents>&lt;iframe id="document-iframe" src="/apex/genesisExtn__documentTreeView?id={{{$Model.NGLDApplication.data.0.Id}}}" width="100%" height="100%"/&gt;</contents>
-                      <renderconditions logictype="and">
-                        <rendercondition type="fieldvalue" operator="!=" enclosevalueinquotes="true" fieldmodel="NGLDApplication" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="genesis__Product_Type__c" value="PACKAGE"/>
-                      </renderconditions>
-                    </template>
-                    <template multiple="false" uniqueid="loan-dashboard-parties-section" cssclass="cls-dashboard-section">
-                      <contents>&lt;iframe id="party-iframe" src="/apex/genesisExtn__borrowStructureView?id={{{$Model.NGLDApplication.data.0.Id}}}&amp;parentId={{{$Model.NGLDApplication.data.0.IsPackage}}}" width="100%" height="100%"/&gt;</contents>
-                      <renderconditions logictype="and"/>
-                    </template>
-                  </components>
-                </division>
-              </divisions>
-              <styles>
-                <styleitem type="background" bgtype="none"/>
-              </styles>
-              <renderconditions logictype="and"/>
-            </grid>
-          </components>
-          <oninitialshowactions>
-            <action type="custom" snippet="refreshDocument"/>
-          </oninitialshowactions>
-          <onshowactions>
-            <action type="custom" snippet="refreshDocument"/>
-          </onshowactions>
-          <renderconditions logictype="and">
-            <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="NGLDApplication" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="Id" fieldtargetobjects="genesis__Applications__c" value="4345432"/>
-          </renderconditions>
-        </tab>
-        <tab name="Application Details" loadlazypanels="true">
-          <components>
-            <wrapper uniqueid="sk-1hRk-456">
-              <components>
-                <includepanel type="skuid" uniqueid="sk-1hRm-468" pagename="CustomBorrowerDetails" querystring="?id={{$Model.NGLDApplication.data.0.Id}}"/>
-              </components>
-              <styles>
-                <styleitem type="background"/>
-                <styleitem type="border"/>
-                <styleitem type="size"/>
-              </styles>
-              <interactions/>
-              <renderconditions logictype="and"/>
-            </wrapper>
-          </components>
-          <oninitialshowactions/>
-          <onshowactions/>
-          <renderconditions logictype="and">
-            <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="NGLDApplication" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="Name" fieldtargetobjects="genesis__Applications__c" value="876545678"/>
-          </renderconditions>
-        </tab>
-        <tab name="Construction" loadlazypanels="true">
-          <components>
-            <pagetitle uniqueid="construction-title" model="NGLDApplication">
-              <actions>
-                <action type="multi" label="Construction Help" uniqueid="construction-help" cssclass="iconic-button iconic-button-help-circle">
-                  <actions>
-                    <action type="redirect" window="blank" url="/apex/skuid__ui?page=ConstructionHelp"/>
-                  </actions>
-                </action>
-              </actions>
-            </pagetitle>
-            <includepanel type="skuid" uniqueid="construction-tab" pagename="ConstructionDashboard" module="ngUi" querystring="?id={{$Model.NGLDApplication.data.0.Id}}"/>
-          </components>
-          <renderconditions logictype="and">
-            <rendercondition type="multiple" operator="in" fieldmodel="NGLDApplication" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" value="" field="genesis__Asset_Class__c" fieldtargetobjects="genesis__Applications__c" enclosevalueinquotes="true">
-              <values>
-                <value>Commercial Real Estate</value>
-                <value>Consumer Real Estate</value>
-              </values>
-            </rendercondition>
-            <rendercondition type="fieldvalue" operator="!=" enclosevalueinquotes="true" fieldmodel="NGLDApplication" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="RecordType.Name" value="Lease"/>
-            <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="NGLDApplication" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="Id" fieldtargetobjects="genesis__Applications__c" value="54323456543"/>
-          </renderconditions>
-          <oninitialshowactions/>
-          <onshowactions/>
-        </tab>
-        <tab name="Financial Spreads" loadlazypanels="false" uniqueid="fs-statement-tab">
-          <components>
-            <includepanel type="skuid" uniqueid="financial-dashboard-grid" pagename="PartyFinancialStatements" module="ngUi" querystring="?id={{$Model.NGLDApplication.data.0.Id}}" lazyload="false">
-              <renderconditions logictype="or"/>
-            </includepanel>
-          </components>
-          <oninitialshowactions>
-            <action type="custom" snippet="SelectFirstEntryInQueue"/>
-          </oninitialshowactions>
-          <onshowactions>
-            <action type="custom"/>
-          </onshowactions>
-          <renderconditions logictype="and">
-            <rendercondition fieldmodel="PartiesNotIndividual" sourcetype="modelproperty" nosourcerowbehavior="skipandnorender" enclosevalueinquotes="true" sourceproperty="hasRows"/>
-            <rendercondition type="fieldvalue" operator="!=" enclosevalueinquotes="true" fieldmodel="NGLDApplication" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="genesis__Asset_Class__c" fieldtargetobjects="genesis__Applications__c" value="Consumer Unsecured"/>
-            <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="NGLDApplication" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="Id" fieldtargetobjects="genesis__Applications__c" value="4536278"/>
-          </renderconditions>
-        </tab>
-        <tab name="Equipment" loadlazypanels="true">
-          <components>
-            <includepanel type="skuid" uniqueid="eq-tab" querystring="?id={{$Model.NGLDApplication.data.0.Id}}" pagename="showApplicationEq" module="ngUi">
-              <renderconditions logictype="and"/>
-            </includepanel>
-          </components>
-          <renderconditions logictype="and">
-            <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="NGLDApplication" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="RecordType.Name" value="Lease"/>
-            <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="NGLDApplication" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="Id" fieldtargetobjects="genesis__Applications__c" value="4536278"/>
-          </renderconditions>
-        </tab>
-        <tab name="Lease Pricing" loadlazypanels="true">
-          <components>
-            <wrapper uniqueid="lease-pricing-tab">
-              <components>
-                <includepanel type="skuid" uniqueid="sk-1EYo-406" querystring="?id={{$Model.NGLDApplication.data.0.Id}}" pagename="LeaseFinAmtPricingForCol" module="ngUi">
-                  <renderconditions logictype="and"/>
-                </includepanel>
-              </components>
-              <styles>
-                <styleitem type="background" bgtype="none"/>
-                <styleitem type="border" padding="bottom," margin="bottom,">
-                  <styles>
-                    <styleitem property="padding-bottom" value="100px"/>
-                    <styleitem property="margin-bottom" value="0px"/>
-                    <styleitem property="box-sizing" value="border-box"/>
-                  </styles>
-                </styleitem>
-                <styleitem type="size" height="custom">
-                  <styles>
-                    <styleitem property="min-height" value="100px"/>
-                    <styleitem property="max-height" value="600px"/>
-                    <styleitem property="overflow-y" value="auto"/>
-                  </styles>
-                </styleitem>
-              </styles>
-              <interactions/>
-            </wrapper>
-          </components>
-          <oninitialshowactions/>
-          <onshowactions/>
-          <renderconditions logictype="and">
-            <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="NGLDApplication" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="RecordType.Name" value="Lease"/>
-            <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="NGLDApplication" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="Id" fieldtargetobjects="genesis__Applications__c" value="4536728"/>
-          </renderconditions>
-        </tab>
-        <tab name="Applicant" loadlazypanels="true">
-          <components>
-            <includepanel type="skuid" uniqueid="sk-2AC6-1610" pagename="CustomApplicantPage" querystring="?Id={{$Model.NGLDApplication.data.0.Id}}">
-              <renderconditions logictype="and">
-                <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="NGLDApplication" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="Id" fieldtargetobjects="genesis__Applications__c" value="9876546789"/>
-              </renderconditions>
-            </includepanel>
-          </components>
-          <renderconditions logictype="and">
-            <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="NGLDApplication" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="Id" fieldtargetobjects="genesis__Applications__c" value="076546789"/>
-          </renderconditions>
-        </tab>
-        <tab name="Loan Details" loadlazypanels="true">
-          <components>
-            <includepanel type="skuid" uniqueid="sk-2fuF-416" querystring="?id={{$Model.NGLDApplication.data.0.Id}}" pagename="CustomBorrowerDetails">
-              <renderconditions logictype="and">
-                <rendercondition type="fieldvalue" operator="!=" enclosevalueinquotes="true" fieldmodel="NGLDApplication" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="RecordType.Name" value="Loan View"/>
-              </renderconditions>
-            </includepanel>
-          </components>
-          <renderconditions logictype="and"/>
-        </tab>
-        <tab name="Applicants" loadlazypanels="false" uniqueid="party-include-panel">
-          <components>
-            <includepanel type="skuid" uniqueid="relationship-dashboard" pagename="RelationshipDashboard" module="ngUi" querystring="?id={{$Model.NGLDApplication.data.0.Id}}">
-              <renderconditions logictype="and"/>
-            </includepanel>
-          </components>
-          <oninitialshowactions>
-            <action type="custom" snippet="SelectFirstEntryInQueue"/>
-          </oninitialshowactions>
-          <onshowactions>
-            <action type="custom" snippet="AdjustLayoutRelationshipDashboard"/>
-          </onshowactions>
-          <renderconditions logictype="and"/>
-        </tab>
-        <tab name="Securities" loadlazypanels="false">
-          <components>
-            <includepanel type="skuid" uniqueid="collateral-tab" pagename="showCollaterals" module="ngUi" querystring="?id={{$Model.NGLDApplication.data.0.Id}}" lazyload="false"/>
-          </components>
-          <oninitialshowactions>
-            <action type="custom" snippet="AddTooltipCollateralTab"/>
-          </oninitialshowactions>
-          <onshowactions/>
-          <renderconditions logictype="and">
-            <rendercondition type="multiple" operator="not in" fieldmodel="NGLDApplication" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="genesis__Asset_Class__c" fieldtargetobjects="genesis__Applications__c" value="" enclosevalueinquotes="true">
-              <values>
-                <value>Consumer Unsecured</value>
-                <value>Commercial Unsecured</value>
-              </values>
-            </rendercondition>
-            <rendercondition type="fieldvalue" operator="!=" enclosevalueinquotes="true" fieldmodel="NGLDApplication" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="RecordType.Name" value="Lease"/>
-          </renderconditions>
-        </tab>
-        <tab name="Assets And Liabilities" loadlazypanels="true">
-          <components>
-            <includepanel type="skuid" uniqueid="sk-1TDC-574" pagename="CustomConsolidatedAssetsAndLiabilities" querystring="?id={{$Model.NGLDApplication.data.0.Id}}"/>
-          </components>
-        </tab>
-        <tab name="Documents" loadlazypanels="true">
-          <components>
-            <includepanel type="skuid" uniqueid="sk-BgC-664" pagename="Documents"/>
-          </components>
-        </tab>
-        <tab name="Settlement" loadlazypanels="true">
-          <components>
-            <includepanel type="skuid" uniqueid="sk-g2f-530" querystring="?id={{$Model.NGLDApplication.data.0.Id}}" pagename="CustomInvestmentDetails"/>
-          </components>
-          <oninitialshowactions/>
-          <onshowactions>
-            <action type="requeryModels" model="CommonApplicationModel" behavior="standard">
-              <models>
-                <model>CommonApplicationModel</model>
-                <model>ScheduleCheck</model>
-              </models>
-            </action>
-          </onshowactions>
-        </tab>
-        <tab loadlazypanels="true" name="Pricing">
-          <components>
-            <includepanel type="skuid" uniqueid="sk-BSD-1201" querystring="?id={{$Model.NGLDApplication.data.0.Id}}" pagename="CustomPricingDetails">
-              <renderconditions logictype="and"/>
-            </includepanel>
-          </components>
-          <renderconditions logictype="and"/>
-        </tab>
-        <tab name="Credit By Exception (1b)" loadlazypanels="true">
-          <components/>
-          <renderconditions logictype="and">
-            <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="NGLDApplication" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="Id" fieldtargetobjects="genesis__Applications__c" value="8765435678"/>
-          </renderconditions>
-        </tab>
-        <tab name="Conditions" loadlazypanels="true">
-          <components>
-            <includepanel type="skuid" uniqueid="sk-1QYw-495" pagename="PolicyExceptions" module="ngUi" querystring="?Id={{$Model.NGLDApplication.data.0.Id}}"/>
-          </components>
-          <renderconditions logictype="and"/>
-          <oninitialshowactions/>
-          <onshowactions>
-            <action type="requeryModel" model="ApplicationUtil" behavior="standard"/>
-          </onshowactions>
-        </tab>
-        <tab name="Serviceability" loadlazypanels="true">
-          <components>
-            <includepanel type="skuid" uniqueid="sk-20Es-456" querystring="?id={{$Model.NGLDApplication.data.0.Id}}" pagename="CustomServiceabilityPage"/>
-          </components>
-          <renderconditions logictype="and"/>
-        </tab>
-      </tabs>
-      <renderconditions logictype="and"/>
-    </tabset>
-  </components>
-  <resources>
-    <labels/>
-    <javascript>
-      <jsitem location="staticresource" name="JQueryPopoverUIPack" cachelocation="false" url="" namespace="genesisExtn" filepath="jquery.webui-popover.min.js">var params = arguments[0],   $ = skuid.$; </jsitem>
-      <jsitem location="staticresource" name="CLSNGUIComponent" cachelocation="false" url="" namespace="genesisExtn" filepath="messageUtils.js">var params = arguments[0],   $ = skuid.$; </jsitem>
-      <jsitem location="staticresource" name="CLSNGUIComponent" cachelocation="false" url="" namespace="genesisExtn" filepath="documentMessages.js">var params = arguments[0],   $ = skuid.$; </jsitem>
-      <jsitem location="staticresource" name="CLSNGUIComponent" cachelocation="false" url="" namespace="genesisExtn" filepath="commonUtils.js">var params = arguments[0],   $ = skuid.$; </jsitem>
-      <jsitem location="inlinesnippet" name="SelectFirstEntryInQueue" cachelocation="false">var params = arguments[0],   $ = skuid.$;  $(function() {     var pageInclude = skuid.$('#relationship-dashboard').data('object');     pageInclude.load(function() {         clickQueueEntry(true, sessionStorage.selectedPartyId);     }); });  function clickQueueEntry(force, partyId) {     sessionStorage.removeItem('selectedPartyId');     if (partyId) {         var clickIndex = 0;         $.each(skuid.model.getModel('DashboardParty').data, function(index, party) {             if (party.Id === partyId) {                 clickIndex = index;                 return false;             }         });         $($('#relationship-queue .nx-item.nx-queue-item')[clickIndex]).trigger('click');     } else {         if (force) {             $($('#relationship-queue .nx-item.nx-queue-item')[0]).trigger('click');         }     } }</jsitem>
-      <jsitem location="inlinesnippet" name="AdjustLayoutRelationshipDashboard" cachelocation="false">var params = arguments[0],   $ = skuid.$;  if (sessionStorage.refreshParty) {     sessionStorage.removeItem('refreshParty');     var pageInclude = skuid.$('#relationship-dashboard').data('object');     pageInclude.load(function() {         clickQueueEntry(true, sessionStorage.selectedPartyId);     }); } else {     clickQueueEntry(false, sessionStorage.selectedPartyId); }  function clickQueueEntry(force, partyId) {     skuid.model.updateData([skuid.model.getModel('DashboardParty')],function(){         if (partyId) {             var clickIndex = 0;             $.each(skuid.model.getModel('DashboardParty').data, function(index, party) {                 if (party.Id === partyId) {                     clickIndex = index;                     return false;                 }             });             $($('#relationship-queue .nx-item.nx-queue-item')[clickIndex]).trigger('click');         } else {             if (force) {                 $($('#relationship-queue .nx-item.nx-queue-item')[0]).trigger('click');             }         }     }); }</jsitem>
-      <jsitem location="inlinesnippet" name="LaunchEditLoanDialog" cachelocation="false">var params = arguments[0],   $ = skuid.$;  var appRowData = skuid.model.getModel('NGLDApplication').data[0]; var appId = appRowData.Id; var title = 'Edit Opportunity ' + appRowData.Name; var skuidPage = 'ApplicationForm'; var iframeUrl = '/apex/skuid__ui?page=' + skuidPage + '&amp;id=' + appId;  openTopLevelDialog({     title: title,     iframeUrl: iframeUrl });</jsitem>
-      <jsitem location="inlinesnippet" name="LaunchCreditMemoDialog" cachelocation="false">var params = arguments[0],   $ = skuid.$;  var appId = skuid.model.getModel('NGLDApplication').data[0].Id; var title = 'Manage Credit Memo'; var skuidPage = 'CreditMemo'; var iframeUrl = '/apex/skuid__ui?page=' + skuidPage + '&amp;id=' + appId;  openTopLevelDialog({     title: title,     iframeUrl: iframeUrl });</jsitem>
-      <jsitem location="inlinesnippet" name="LaunchChangeMemoDialog" cachelocation="false">var params = arguments[0],   $ = skuid.$;  var title = 'Manage Change Memo';  var appId = skuid.model.getModel('NGLDApplication').data[0].Id; var skuidPage = 'ChangeMemos'; var iframeUrl = '/apex/skuid__ui?page=' + skuidPage + '&amp;id=' + appId;  openTopLevelDialog({   title: title,   iframeUrl: iframeUrl });</jsitem>
-      <jsitem location="inlinesnippet" name="LaunchFeeDialog" cachelocation="false">var params = arguments[0],   $ = skuid.$;  var appId = skuid.model.getModel('NGLDApplication').data[0].Id; var title = 'Manage Fees'; var skuidPage = 'Fees';  // launchSimplePopupDialog(appId, title, skuidPage);  var iframeUrl = '/apex/skuid__ui?page=' + skuidPage + '&amp;id=' + appId;  openTopLevelDialog({     title: title,     iframeUrl: iframeUrl });</jsitem>
-      <jsitem location="inlinesnippet" name="LaunchPolicyExceptionDialog" cachelocation="false">var params = arguments[0],   $ = skuid.$;  var appId = skuid.model.getModel('NGLDApplication').data[0].Id; var title = 'Manage Policy Conditions'; var skuidPage = 'PolicyExceptions';  // launchSimplePopupDialog(appId, title, skuidPage);  var iframeUrl = '/apex/skuid__ui?page=' + skuidPage + '&amp;id=' + appId;  openTopLevelDialog({     title: title,     iframeUrl: iframeUrl });</jsitem>
-      <jsitem location="inlinesnippet" name="AddTooltipCollateralTab" cachelocation="false">var params = arguments[0],   $ = skuid.$;  $(function() {     var pageInclude = skuid.$('#collateral-tab').data('object');     pageInclude.load(function() {         openLinksInNewTab();       showIconicBtnLabelAsTooltip();     }); });</jsitem>
-      <jsitem location="inlinesnippet" name="LaunchLoanHistoryDialog" cachelocation="false">var params = arguments[0],   $ = skuid.$;  var appId = skuid.model.getModel('NGLDApplication').data[0].Id; var title = 'View Renewal History'; var skuidPage = 'RenewalHistory'; var iframeUrl = '/apex/skuid__ui?page=' + skuidPage + '&amp;id=' + appId;  openTopLevelDialog({     title: title,     iframeUrl: iframeUrl });</jsitem>
-      <jsitem location="inlinesnippet" name="LaunchCovenantsDialog" cachelocation="false">var params = arguments[0],   $ = skuid.$; var appId = skuid.model.getModel('NGLDApplication').data[0].Id; var title = 'View Covenants'; var skuidPage = 'ApplicationCovenant'; var iframeUrl = '/apex/skuid__ui?page=' + skuidPage + '&amp;id=' + appId;  openTopLevelDialog({     title: title,     iframeUrl: iframeUrl });</jsitem>
-      <jsitem location="inlinesnippet" name="refreshDocument" cachelocation="false">var params = arguments[0],   $ = skuid.$;  if(sessionStorage.refreshDocument) {     sessionStorage.removeItem('refreshDocument');     $('#document-iframe')[0].contentWindow.postMessage({type: 'action-refresh-tree-details'}, '*'); }</jsitem>
-      <jsitem location="inline" name="OnLoad" cachelocation="false" url="">(function(skuid){   var $ = skuid.$;   $(document.body).one('pageload',function(){       showIconicBtnLabelAsTooltip();        var applicationData = skuid.model.getModel('NGLDApplication').getFirstRow();       if(applicationData &amp;&amp; applicationData.genesis__Product_Type__c &amp;&amp; applicationData.genesis__Product_Type__c == 'PACKAGE'){           $('#loan-dashboard-parties-section').css('top','0');           $('#loan-dashboard-parties-section').css('bottom','0');         }        if(applicationData.genesis__Product_Type__c == 'LEASE') {          $('#ui-id-1').text('Lease');// Fix for tab name change based on conditions       }     }); })(skuid);</jsitem>
-      <jsitem location="inlinesnippet" name="LaunchRiskAnalysis" cachelocation="false">var params = arguments[0], 	$ = skuid.$; var appId = skuid.model.getModel('NGLDApplication').data[0].Id; var title = 'Risk Analysis'; var skuidPage = 'ApplicationRiskAnalysis'; var iframeUrl = '/apex/skuid__ui?page=' + skuidPage + '&amp;id=' + appId;  openTopLevelDialog({     title: title,     iframeUrl: iframeUrl });</jsitem>
-      <jsitem location="inlinesnippet" cachelocation="false" name="LaunchSchedule">var params = arguments[0], 	$ = skuid.$; var appId = skuid.model.getModel('NGLDApplication').data[0].Id; var title = 'Payment Schedule'; var skuidPage = 'paymentSchedule'; var iframeUrl = '/apex/skuid__ui?page=' + skuidPage + '&amp;id=' + appId;  openTopLevelDialog({     title: title,     iframeUrl: iframeUrl }); </jsitem>
-      <jsitem location="inlinesnippet" name="LaunchAdverseAction" cachelocation="false">var params = arguments[0], 	$ = skuid.$; var appId = skuid.model.getModel('NGLDApplication').data[0].Id; var title = 'Adverse Action'; var skuidPage = 'AdverseAction'; var iframeUrl = '/apex/skuid__ui?page=' + skuidPage + '&amp;id=' + appId;  openTopLevelDialog({     title: title,     iframeUrl: iframeUrl }); </jsitem>
-      <jsitem location="inlinesnippet" name="reLoad" cachelocation="false">var params = arguments[0], 	$ = skuid.$; window.location.reload(true);</jsitem>
-      <jsitem location="inlinesnippet" name="LaunchDebtToIncomeRatio" cachelocation="false">var params = arguments[0], 	$ = skuid.$; var appId = skuid.model.getModel('NGLDApplication').data[0].Id; var title = 'Debt to Income Ratio'; var skuidPage = 'DebtToIncomeRatio'; var iframeUrl = '/apex/skuid__ui?page=' + skuidPage + '&amp;id=' + appId;  openTopLevelDialog({     title: title,     iframeUrl: iframeUrl }); </jsitem>
-      <jsitem location="inlinesnippet" name="ApplicationConvert" cachelocation="false">var params = arguments[0],     $ = skuid.$; 	$xml = skuid.utils.makeXMLDoc; 	var context = {};  var appModel = skuid.model.getModel('NGLDApplication'); var appRow = appModel.data[0]; var agree = confirm("Are you sure ?"); if (agree){     $.blockUI({    message: 'Please wait!  Application is listing to marketplace...',    onBlock:function(){     try {         var ret = sforce.apex.execute('LoanApplicationConvert','convertLoanApplicationCtrl',         {                appId : appRow.Id         });         if(ret[0].includes('Application Converted Successfully.')){             alert(ret);             $.unblockUI();             window.location.reload();         }else{             alert(ret);             $.unblockUI();         }     } catch(err) {         alert(err);         $.unblockUI();     }    }     }); } </jsitem>
-      <jsitem location="inline" name="pageIncludeLoadAction" cachelocation="false" url="">(function(skuid){     var $ = skuid.$;     $(document.body).one('pageload',function(){         var assetsAndLiabilitiesTab = $('a[href="#skuid-component-tab-cls-originate-page-11"]');         var documentsTab = $('a[href="#skuid-component-tab-cls-originate-page-14"]');         var conditionsTab = $('a[href="#skuid-component-tab-cls-originate-page-19"]');          assetsAndLiabilitiesTab.click(function() {             //alert("Hi4");             var pageInclude = skuid.$('#sk-1TDC-574').data('object');             pageInclude.unrender();             pageInclude.load();         });         documentsTab.click(function() {             //alert("Hi5");             //var pageInclude = skuid.$('#sk-BgC-664').data('object');             pageInclude.unrender();             pageInclude.load();         });         conditionsTab.click(function() {             //alert("Hi7");             var pageInclude = skuid.$('#sk-1QYw-495').data('object');             pageInclude.unrender();             pageInclude.load();         }); }); })(skuid);</jsitem>
-    </javascript>
-    <css>
-      <cssitem location="staticresource" name="CLSStyleSheetPack" cachelocation="false" url="" namespace="genesisExtn" filepath="cls-common.css"/>
-      <cssitem location="staticresource" name="CLSStyleSheetPack" cachelocation="false" url="" namespace="genesisExtn" filepath="customcss.css"/>
-      <cssitem location="staticresource" name="FontAwesomePack" cachelocation="false" url="" namespace="genesisExtn" filepath="font-awesome-4.6.3/css/font-awesome.css"/>
-      <cssitem location="staticresource" name="JQueryPopoverUIPack" cachelocation="false" url="" namespace="genesisExtn" filepath="jquery.webui-popover.min.css"/>
-      <cssitem location="staticresource" name="CLSStyleSheetPack" cachelocation="false" url="" namespace="genesisExtn" filepath="cls-dashboard.css"/>
-      <cssitem location="staticresource" name="CLSStyleSheetPack" cachelocation="false" url="" namespace="genesisExtn" filepath="cls-dialog.css"/>
-      <cssitem location="staticresource" name="CLSStyleSheetPack" cachelocation="false" url="" namespace="genesisExtn" filepath="navigation-component.css"/>
-      <cssitem location="inline" name="navigationCSS" cachelocation="false">#loan-panel .sk-dropnav, div.sk-navigation.sk-navigation-dropdown {     float:right;     top: 17px;     right: 40px; }  .nx-queue-item-inner {     background-color : LightGrey !important; }</cssitem>
-    </css>
-    <actionsequences uniqueid="sk-1Kmu-359"/>
-  </resources>
-  <styles>
-    <styleitem type="background" bgtype="color">
-      <styles>
-        <styleitem property="background-color" value="#ebeef0"/>
-      </styles>
-    </styleitem>
-    <styleitem property="position" value="absolute"/>
-    <styleitem property="top" value="0"/>
-    <styleitem property="bottom" value="0"/>
-    <styleitem property="left" value="0"/>
-    <styleitem property="right" value="0"/>
-  </styles>
-  <interactions/>
+	<models>
+		<model id="NGLDApplication" limit="1" query="true" createrowifnonefound="false" sobject="genesis__Applications__c" datasource="salesforce">
+			<fields>
+				<field id="Name"/>
+				<field id="genesis__Product_Type__c"/>
+				<field id="genesis__Loan_Number__c"/>
+				<field id="genesis__CL_Product_Name__c"/>
+				<field id="genesis__CL_Product__r.Name"/>
+				<field id="genesis__CL_Product__r.clcommon__Product_Name__c"/>
+				<field id="genesis__Asset_Class__c"/>
+				<field id="RecordType.Name"/>
+				<field id="Id"/>
+				<field id="RecordTypeId"/>
+				<field id="CreatedDate"/>
+			</fields>
+			<conditions>
+				<condition type="param" value="id" field="Id" operator="=" userinfotype="userid" enclosevalueinquotes="true" novaluebehavior="noquery"/>
+			</conditions>
+			<actions/>
+		</model>
+		<model id="DashboardParty" limit="" query="true" createrowifnonefound="false" sobject="clcommon__Party__c" orderby="clcommon__Type__r.Name, clcommon__Account__r.Name" datasource="salesforce">
+			<fields>
+				<field id="Name"/>
+				<field id="clcommon__Account__c"/>
+				<field id="clcommon__Account__r.Name"/>
+				<field id="clcommon__Type__c"/>
+				<field id="clcommon__Type__r.Name"/>
+				<field id="clcommon__Contact__r.Name"/>
+			</fields>
+			<conditions>
+				<condition type="param" value="id" field="genesis__Application__c" operator="=" enclosevalueinquotes="true" novaluebehavior="noquery"/>
+			</conditions>
+			<actions/>
+		</model>
+		<model id="PartiesNotIndividual" limit="" query="true" createrowifnonefound="false" sobject="clcommon__Party__c" orderby="clcommon__Type__r.Name, clcommon__Account__r.Name" datasource="salesforce">
+			<fields>
+				<field id="Name"/>
+				<field id="clcommon__Account__c"/>
+				<field id="clcommon__Account__r.Name"/>
+				<field id="clcommon__Type__c"/>
+				<field id="clcommon__Type__r.Name"/>
+			</fields>
+			<conditions>
+				<condition type="param" value="id" field="genesis__Application__c" operator="=" enclosevalueinquotes="true" novaluebehavior="noquery"/>
+				<condition type="fieldvalue" value="Individual" enclosevalueinquotes="true" field="clcommon__Account__r.clcommon__Legal_Entity_Type__r.Name" operator="!="/>
+			</conditions>
+			<actions/>
+		</model>
+		<model id="BorrowerParty" limit="20" query="true" createrowifnonefound="false" datasource="salesforce" sobject="clcommon__Party__c">
+			<fields>
+				<field id="clcommon__Type__r.Name"/>
+			</fields>
+			<conditions>
+				<condition type="modelmerge" value="" field="genesis__Application__c" fieldtargetobjects="genesis__Applications__c" operator="=" model="NGLDApplication" enclosevalueinquotes="true" mergefield="Id" novaluebehavior="deactivate"/>
+				<condition type="fieldvalue" value="BORROWER" enclosevalueinquotes="true" field="clcommon__Type__r.Name"/>
+			</conditions>
+			<actions/>
+		</model>
+		<model id="ApplicationUtil" limit="20" query="true" createrowifnonefound="false" datasource="salesforce" sobject="genesis__Applications__c">
+			<fields>
+				<field id="RecordTypeId"/>
+				<field id="genesis__Status__c"/>
+			</fields>
+			<conditions>
+				<condition type="param" value="id" field="Id" operator="=" enclosevalueinquotes="true"/>
+			</conditions>
+			<actions/>
+		</model>
+		<model id="CommonApplicationModel" limit="20" query="true" createrowifnonefound="false" datasource="salesforce" sobject="genesis__Applications__c">
+			<fields>
+				<field id="RecordTypeId"/>
+				<field id="NCCP_status_list__c"/>
+			</fields>
+			<conditions>
+				<condition type="param" value="id" operator="=" enclosevalueinquotes="true" field="Id"/>
+			</conditions>
+			<actions/>
+		</model>
+		<model id="ScheduleCheck" limit="20" query="true" createrowifnonefound="false" datasource="salesforce" sobject="genesis__Amortization_Schedule__c">
+			<fields>
+				<field id="genesis__Application__c"/>
+				<field id="genesis__Application__r.Name"/>
+			</fields>
+			<conditions>
+				<condition type="param" value="Id" field="genesis__Application__c" fieldtargetobjects="genesis__Applications__c" operator="=" enclosevalueinquotes="true"/>
+			</conditions>
+			<actions/>
+		</model>
+		<model id="SMSFModel" limit="20" query="true" createrowifnonefound="false" datasource="Ui-Only" processonclient="true">
+			<fields>
+				<field id="ABN" displaytype="TEXT" length="255" label="ABN"/>
+				<field id="Entity_Name" displaytype="TEXT" length="255" label="Entity_Name"/>
+				<field id="Fund_Type" displaytype="TEXT" length="255" label="Fund_Type"/>
+				<field id="Status" displaytype="TEXT" length="255" label="Status"/>
+				<field displaytype="TEXT" length="255" id="Location" label="Location"/>
+			</fields>
+			<conditions/>
+			<actions/>
+		</model>
+		<model id="Application" limit="20" query="true" createrowifnonefound="false" datasource="salesforce" sobject="genesis__Applications__c">
+			<fields>
+				<field id="RecordTypeId"/>
+			</fields>
+			<conditions/>
+			<actions/>
+		</model>
+		<model id="CheckCollateral" limit="20" query="true" createrowifnonefound="false" datasource="salesforce" sobject="clcommon__Collateral__c">
+			<fields>
+				<field id="RecordTypeId"/>
+			</fields>
+			<conditions/>
+			<actions/>
+		</model>
+		<model id="CAAApplication" limit="20" query="true" createrowifnonefound="false" datasource="salesforce" sobject="genesis__Applications__c">
+			<fields>
+				<field id="RecordTypeId"/>
+				<field id="NCCP_status_list__c"/>
+			</fields>
+			<conditions/>
+			<actions/>
+		</model>
+		<model id="CRParty" limit="200" query="true" createrowifnonefound="false" datasource="salesforce" sobject="clcommon__Party__c">
+			<fields/>
+			<conditions/>
+			<actions/>
+		</model>
+		<model id="CRAssets" limit="200" query="true" createrowifnonefound="false" datasource="salesforce" sobject="genesis__Asset_Information__c">
+			<fields/>
+			<conditions/>
+			<actions/>
+		</model>
+		<model id="CRIncomeList" limit="200" query="true" createrowifnonefound="false" datasource="salesforce" sobject="genesis__Income__c">
+			<fields/>
+			<conditions/>
+			<actions/>
+		</model>
+		<model id="CRLiabilities" limit="200" query="true" createrowifnonefound="false" datasource="salesforce" sobject="genesis__Liability__c">
+			<fields/>
+			<conditions/>
+			<actions/>
+		</model>
+		<model id="AllValidApprovals" limit="20" query="true" createrowifnonefound="false" datasource="salesforce" sobject="clcommon__Approval_Instance__c">
+			<fields>
+				<field id="Id"/>
+				<field id="clcommon__Approval_Definition__c"/>
+				<field id="clcommon__Approval_Definition__r.Name"/>
+				<field id="genesis__Application__c"/>
+				<field id="genesis__Application__r.Name"/>
+				<field id="genesis__Application__r.genesis__Status__c"/>
+				<field id="genesis__Application__r.Approval_Level__c"/>
+				<field id="clcommon__Status__c"/>
+			</fields>
+			<conditions logic="1 AND ((2 AND 3) OR (4 AND 5)) AND 6">
+				<condition type="param" value="id" field="genesis__Application__c" fieldtargetobjects="genesis__Applications__c" operator="=" enclosevalueinquotes="true"/>
+				<condition type="fieldvalue" value="Val Received" enclosevalueinquotes="true" field="genesis__Application__r.genesis__Status__c"/>
+				<condition type="fieldvalue" value="Recommend Levels Approval" enclosevalueinquotes="true" field="clcommon__Approval_Definition__r.Name"/>
+				<condition type="fieldvalue" value="Recommended" enclosevalueinquotes="true" field="genesis__Application__r.genesis__Status__c"/>
+				<condition type="multiple" value="" field="clcommon__Approval_Definition__r.Name" operator="in" mergefield="genesis__Application__r.Approval_Level__c" novaluebehavior="deactivate" enclosevalueinquotes="true">
+					<values>
+						<value>Single Level Approval</value>
+						<value>Dual Level Approval</value>
+						<value>Single Level Approval (Risk Loans)</value>
+					</values>
+				</condition>
+				<condition type="fieldvalue" value="Invalid" enclosevalueinquotes="true" field="clcommon__Status__c" operator="!="/>
+			</conditions>
+			<actions/>
+		</model>
+		<model id="AllApprovalDefinitions" limit="20" query="true" createrowifnonefound="false" datasource="salesforce" sobject="clcommon__Approval_Definition__c">
+			<fields>
+				<field id="Id"/>
+				<field id="Name"/>
+			</fields>
+			<conditions>
+				<condition type="modelmerge" value="" field="Id" operator="in" model="AllValidApprovals" enclosevalueinquotes="true" mergefield="clcommon__Approval_Definition__c" novaluebehavior="noquery" fieldtargetobjects="clcommon__Approval_Definition__c"/>
+			</conditions>
+			<actions/>
+		</model>
+		<model id="BorrowerApplication" limit="20" query="true" createrowifnonefound="false" datasource="salesforce" sobject="genesis__Applications__c">
+			<fields>
+				<field id="RecordTypeId"/>
+			</fields>
+			<conditions/>
+			<actions/>
+		</model>
+	</models>
+	<components>
+		<tabset rememberlastusertab="false" defertabrendering="true" uniqueid="cls-originate-page" cssclass="cls-dashboard-tab-content">
+			<tabs>
+				<tab name="Loan">
+					<components>
+						<grid uniqueid="loan-dashboard-grid" columngutter="10px">
+							<divisions>
+								<division behavior="flex" minwidth="100px" ratio="4" verticalalign="top" uniqueid="loan-panel">
+									<components>
+										<wrapper uniqueid="sk-3gUJ2l-137" cssclass="cls-dashboard-section">
+											<components>
+												<pagetitle uniqueid="sk-1M0O6--114" model="NGLDApplication" cssclass="wrapper-title">
+													<actions>
+														<action type="multi" label="Edit" cssclass="iconic-button iconic-button-edit" uniqueid="loan-edit-button">
+															<actions>
+																<action type="custom" snippet="LaunchEditLoanDialog"/>
+															</actions>
+															<renderconditions logictype="and"/>
+															<enableconditions/>
+														</action>
+													</actions>
+													<maintitle>{{Name}}</maintitle>
+													<renderconditions logictype="and"/>
+												</pagetitle>
+												<navigation uniqueid="navigationId" type="dropdown" label="" cssclass="">
+													<navigationitems>
+														<navigationitem label="History">
+															<actions>
+																<action type="custom" window="self" snippet="LaunchLoanHistoryDialog"/>
+															</actions>
+														</navigationitem>
+														<navigationitem label="Policy Condition">
+															<actions>
+																<action type="custom" window="self" snippet="LaunchPolicyExceptionDialog"/>
+															</actions>
+														</navigationitem>
+														<navigationitem label="Fee">
+															<actions>
+																<action type="custom" window="self" snippet="LaunchFeeDialog"/>
+															</actions>
+															<navigationitems/>
+														</navigationitem>
+														<navigationitem label="Change Memo">
+															<actions>
+																<action type="custom" window="self" snippet="LaunchChangeMemoDialog"/>
+															</actions>
+														</navigationitem>
+														<navigationitem label="Credit Memo">
+															<actions>
+																<action type="custom" window="self" snippet="LaunchCreditMemoDialog"/>
+															</actions>
+														</navigationitem>
+														<navigationitem label="Covenants">
+															<actions>
+																<action type="custom" window="self" snippet="LaunchCovenantsDialog"/>
+															</actions>
+														</navigationitem>
+														<navigationitem label="Risk Analysis">
+															<actions>
+																<action type="custom" snippet="LaunchRiskAnalysis"/>
+															</actions>
+															<renderconditions logictype="and"/>
+														</navigationitem>
+														<navigationitem uniqueid="sk-HKT-740" label="Adverse Action">
+															<actions>
+																<action type="custom" window="self" snippet="LaunchAdverseAction"/>
+															</actions>
+														</navigationitem>
+														<navigationitem label="Payment Schedule" uniqueid="sk-HKT-748">
+															<actions>
+																<action type="custom" window="self" snippet="LaunchSchedule"/>
+															</actions>
+															<renderconditions logictype="and">
+																<rendercondition type="multiple" operator="in" fieldmodel="NGLDApplication" sourcetype="fieldvalue" nosourcerowbehavior="skipandnorender" field="genesis__Product_Type__c" value="" enclosevalueinquotes="true" fieldtargetobjects="genesis__Applications__c">
+																	<values>
+																		<value>LOAN</value>
+																		<value>LINE OF CREDIT</value>
+																	</values>
+																</rendercondition>
+															</renderconditions>
+														</navigationitem>
+														<navigationitem label="Debt to Income Ratio" uniqueid="sk-2RHB-379">
+															<actions>
+																<action type="custom" snippet="LaunchDebtToIncomeRatio"/>
+															</actions>
+															<navigationitems/>
+															<renderconditions logictype="and">
+																<rendercondition type="fieldvalue" operator="contains" enclosevalueinquotes="true" fieldmodel="NGLDApplication" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="genesis__Asset_Class__c" fieldtargetobjects="genesis__Applications__c" value="Consumer"/>
+																<rendercondition type="multiple" operator="in" fieldmodel="NGLDApplication" sourcetype="fieldvalue" nosourcerowbehavior="skipandnorender" field="genesis__Product_Type__c" fieldtargetobjects="genesis__Applications__c" value="" enclosevalueinquotes="true">
+																	<values>
+																		<value>LOAN</value>
+																		<value>LINE OF CREDIT</value>
+																	</values>
+																</rendercondition>
+															</renderconditions>
+														</navigationitem>
+													</navigationitems>
+													<styles/>
+													<renderconditions logictype="and"/>
+												</navigation>
+												<template multiple="false" uniqueid="sk-2YZUyl-112" cssclass="wrapper-container">
+													<contents>&lt;iframe id="loan-details-iframe" src="apex/skuid__ui?page=ApplicationForm&amp;id={{{$Model.NGLDApplication.data.0.Id}}}&amp;mode=read" width="100%" height="100%"/&gt;</contents>
+													<renderconditions logictype="and"/>
+												</template>
+											</components>
+											<styles>
+												<styleitem type="background" bgtype="none"/>
+												<styleitem type="border"/>
+												<styleitem type="size"/>
+												<styleitem property="position" value="absolute"/>
+												<styleitem property="left" value="0"/>
+												<styleitem property="right" value="0"/>
+												<styleitem property="top" value="0"/>
+												<styleitem property="bottom" value="0"/>
+											</styles>
+										</wrapper>
+									</components>
+								</division>
+								<division behavior="flex" verticalalign="top" minwidth="100px" ratio="6" uniqueid="loan-right-panel">
+									<components>
+										<template multiple="false" uniqueid="loan-dashboard-document-section" cssclass="cls-dashboard-section cls-dashboard-section-with-margin-bottom">
+											<contents>&lt;iframe id="document-iframe" src="/apex/genesisExtn__documentTreeView?id={{{$Model.NGLDApplication.data.0.Id}}}" width="100%" height="100%"/&gt;</contents>
+											<renderconditions logictype="and">
+												<rendercondition type="fieldvalue" operator="!=" enclosevalueinquotes="true" fieldmodel="NGLDApplication" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="genesis__Product_Type__c" value="PACKAGE"/>
+											</renderconditions>
+										</template>
+										<template multiple="false" uniqueid="loan-dashboard-parties-section" cssclass="cls-dashboard-section">
+											<contents>&lt;iframe id="party-iframe" src="/apex/genesisExtn__borrowStructureView?id={{{$Model.NGLDApplication.data.0.Id}}}&amp;parentId={{{$Model.NGLDApplication.data.0.IsPackage}}}" width="100%" height="100%"/&gt;</contents>
+											<renderconditions logictype="and"/>
+										</template>
+									</components>
+								</division>
+							</divisions>
+							<styles>
+								<styleitem type="background" bgtype="none"/>
+							</styles>
+							<renderconditions logictype="and"/>
+						</grid>
+					</components>
+					<oninitialshowactions>
+						<action type="custom" snippet="refreshDocument"/>
+					</oninitialshowactions>
+					<onshowactions>
+						<action type="custom" snippet="refreshDocument"/>
+					</onshowactions>
+					<renderconditions logictype="and">
+						<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="NGLDApplication" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="Id" fieldtargetobjects="genesis__Applications__c" value="4345432"/>
+					</renderconditions>
+				</tab>
+				<tab name="Application Details" loadlazypanels="true">
+					<components>
+						<wrapper uniqueid="sk-1hRk-456">
+							<components>
+								<includepanel type="skuid" uniqueid="sk-1hRm-468" pagename="CustomBorrowerDetails" querystring="?id={{$Model.NGLDApplication.data.0.Id}}"/>
+							</components>
+							<styles>
+								<styleitem type="background"/>
+								<styleitem type="border"/>
+								<styleitem type="size"/>
+							</styles>
+							<interactions/>
+							<renderconditions logictype="and"/>
+						</wrapper>
+					</components>
+					<oninitialshowactions/>
+					<onshowactions/>
+					<renderconditions logictype="and">
+						<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="NGLDApplication" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="Name" fieldtargetobjects="genesis__Applications__c" value="876545678"/>
+					</renderconditions>
+				</tab>
+				<tab name="Construction" loadlazypanels="true">
+					<components>
+						<pagetitle uniqueid="construction-title" model="NGLDApplication">
+							<actions>
+								<action type="multi" label="Construction Help" uniqueid="construction-help" cssclass="iconic-button iconic-button-help-circle">
+									<actions>
+										<action type="redirect" window="blank" url="/apex/skuid__ui?page=ConstructionHelp"/>
+									</actions>
+								</action>
+							</actions>
+						</pagetitle>
+						<includepanel type="skuid" uniqueid="construction-tab" pagename="ConstructionDashboard" module="ngUi" querystring="?id={{$Model.NGLDApplication.data.0.Id}}"/>
+					</components>
+					<renderconditions logictype="and">
+						<rendercondition type="multiple" operator="in" fieldmodel="NGLDApplication" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" value="" field="genesis__Asset_Class__c" fieldtargetobjects="genesis__Applications__c" enclosevalueinquotes="true">
+							<values>
+								<value>Commercial Real Estate</value>
+								<value>Consumer Real Estate</value>
+							</values>
+						</rendercondition>
+						<rendercondition type="fieldvalue" operator="!=" enclosevalueinquotes="true" fieldmodel="NGLDApplication" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="RecordType.Name" value="Lease"/>
+						<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="NGLDApplication" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="Id" fieldtargetobjects="genesis__Applications__c" value="54323456543"/>
+					</renderconditions>
+					<oninitialshowactions/>
+					<onshowactions/>
+				</tab>
+				<tab name="Financial Spreads" loadlazypanels="false" uniqueid="fs-statement-tab">
+					<components>
+						<includepanel type="skuid" uniqueid="financial-dashboard-grid" pagename="PartyFinancialStatements" module="ngUi" querystring="?id={{$Model.NGLDApplication.data.0.Id}}" lazyload="false">
+							<renderconditions logictype="or"/>
+						</includepanel>
+					</components>
+					<oninitialshowactions>
+						<action type="custom" snippet="SelectFirstEntryInQueue"/>
+					</oninitialshowactions>
+					<onshowactions>
+						<action type="custom"/>
+					</onshowactions>
+					<renderconditions logictype="and">
+						<rendercondition fieldmodel="PartiesNotIndividual" sourcetype="modelproperty" nosourcerowbehavior="skipandnorender" enclosevalueinquotes="true" sourceproperty="hasRows"/>
+						<rendercondition type="fieldvalue" operator="!=" enclosevalueinquotes="true" fieldmodel="NGLDApplication" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="genesis__Asset_Class__c" fieldtargetobjects="genesis__Applications__c" value="Consumer Unsecured"/>
+						<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="NGLDApplication" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="Id" fieldtargetobjects="genesis__Applications__c" value="4536278"/>
+					</renderconditions>
+				</tab>
+				<tab name="Equipment" loadlazypanels="true">
+					<components>
+						<includepanel type="skuid" uniqueid="eq-tab" querystring="?id={{$Model.NGLDApplication.data.0.Id}}" pagename="showApplicationEq" module="ngUi">
+							<renderconditions logictype="and"/>
+						</includepanel>
+					</components>
+					<renderconditions logictype="and">
+						<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="NGLDApplication" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="RecordType.Name" value="Lease"/>
+						<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="NGLDApplication" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="Id" fieldtargetobjects="genesis__Applications__c" value="4536278"/>
+					</renderconditions>
+				</tab>
+				<tab name="Lease Pricing" loadlazypanels="true">
+					<components>
+						<wrapper uniqueid="lease-pricing-tab">
+							<components>
+								<includepanel type="skuid" uniqueid="sk-1EYo-406" querystring="?id={{$Model.NGLDApplication.data.0.Id}}" pagename="LeaseFinAmtPricingForCol" module="ngUi">
+									<renderconditions logictype="and"/>
+								</includepanel>
+							</components>
+							<styles>
+								<styleitem type="background" bgtype="none"/>
+								<styleitem type="border" padding="bottom," margin="bottom,">
+									<styles>
+										<styleitem property="padding-bottom" value="100px"/>
+										<styleitem property="margin-bottom" value="0px"/>
+										<styleitem property="box-sizing" value="border-box"/>
+									</styles>
+								</styleitem>
+								<styleitem type="size" height="custom">
+									<styles>
+										<styleitem property="min-height" value="100px"/>
+										<styleitem property="max-height" value="600px"/>
+										<styleitem property="overflow-y" value="auto"/>
+									</styles>
+								</styleitem>
+							</styles>
+							<interactions/>
+						</wrapper>
+					</components>
+					<oninitialshowactions/>
+					<onshowactions/>
+					<renderconditions logictype="and">
+						<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="NGLDApplication" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="RecordType.Name" value="Lease"/>
+						<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="NGLDApplication" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="Id" fieldtargetobjects="genesis__Applications__c" value="4536728"/>
+					</renderconditions>
+				</tab>
+				<tab name="Applicant" loadlazypanels="true">
+					<components>
+						<includepanel type="skuid" uniqueid="sk-2AC6-1610" pagename="CustomApplicantPage" querystring="?Id={{$Model.NGLDApplication.data.0.Id}}">
+							<renderconditions logictype="and">
+								<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="NGLDApplication" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="Id" fieldtargetobjects="genesis__Applications__c" value="9876546789"/>
+							</renderconditions>
+						</includepanel>
+					</components>
+					<renderconditions logictype="and">
+						<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="NGLDApplication" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="Id" fieldtargetobjects="genesis__Applications__c" value="076546789"/>
+					</renderconditions>
+				</tab>
+				<tab name="Loan Details" loadlazypanels="true">
+					<components>
+						<includepanel type="skuid" uniqueid="sk-2fuF-416" querystring="?id={{$Model.NGLDApplication.data.0.Id}}" pagename="CustomBorrowerDetails">
+							<renderconditions logictype="and">
+								<rendercondition type="fieldvalue" operator="!=" enclosevalueinquotes="true" fieldmodel="NGLDApplication" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="RecordType.Name" value="Loan View"/>
+							</renderconditions>
+						</includepanel>
+					</components>
+					<renderconditions logictype="and"/>
+					<oninitialshowactions/>
+					<onshowactions>
+						<action type="custom" snippet="Update Brokers BDM"/>
+					</onshowactions>
+				</tab>
+				<tab name="Applicants" loadlazypanels="false" uniqueid="party-include-panel">
+					<components>
+						<includepanel type="skuid" uniqueid="relationship-dashboard" pagename="RelationshipDashboard" module="ngUi" querystring="?id={{$Model.NGLDApplication.data.0.Id}}">
+							<renderconditions logictype="and"/>
+						</includepanel>
+					</components>
+					<oninitialshowactions>
+						<action type="custom" snippet="SelectFirstEntryInQueue"/>
+					</oninitialshowactions>
+					<onshowactions>
+						<action type="custom" snippet="AdjustLayoutRelationshipDashboard"/>
+						<action type="requeryModels" behavior="standard">
+							<models>
+								<model>CAAApplication</model>
+							</models>
+						</action>
+					</onshowactions>
+					<renderconditions logictype="and"/>
+				</tab>
+				<tab name="Securities" loadlazypanels="false">
+					<components>
+						<includepanel type="skuid" uniqueid="collateral-tab" pagename="showCollaterals" module="ngUi" querystring="?id={{$Model.NGLDApplication.data.0.Id}}" lazyload="false"/>
+					</components>
+					<oninitialshowactions>
+						<action type="custom" snippet="AddTooltipCollateralTab"/>
+					</oninitialshowactions>
+					<onshowactions>
+						<action type="requeryModels" behavior="standard">
+							<models>
+								<model>Application</model>
+							</models>
+						</action>
+					</onshowactions>
+					<renderconditions logictype="and">
+						<rendercondition type="multiple" operator="not in" fieldmodel="NGLDApplication" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="genesis__Asset_Class__c" fieldtargetobjects="genesis__Applications__c" value="" enclosevalueinquotes="true">
+							<values>
+								<value>Consumer Unsecured</value>
+								<value>Commercial Unsecured</value>
+							</values>
+						</rendercondition>
+						<rendercondition type="fieldvalue" operator="!=" enclosevalueinquotes="true" fieldmodel="NGLDApplication" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="RecordType.Name" value="Lease"/>
+					</renderconditions>
+				</tab>
+				<tab name="Assets And Liabilities" loadlazypanels="true">
+					<components>
+						<includepanel type="skuid" uniqueid="sk-1TDC-574" pagename="CustomConsolidatedAssetsAndLiabilities" querystring="?id={{$Model.NGLDApplication.data.0.Id}}"/>
+					</components>
+				</tab>
+				<tab name="Documents" loadlazypanels="true">
+					<components>
+						<includepanel type="skuid" uniqueid="sk-BgC-664" pagename="Documents"/>
+					</components>
+					<oninitialshowactions/>
+					<onshowactions/>
+					<renderconditions logictype="and"/>
+				</tab>
+				<tab name="Review" loadlazypanels="true">
+					<components>
+						<template multiple="false" uniqueid="sk-151Y-1491">
+							<contents>&lt;iframe id="relationship-iframe" src="/apex/skuid__ui?page=CustomReview&amp;Id={{{$Model.NGLDApplication.data.0.Id}}}" width="100%" height="848px" frameborder="0"/&gt;</contents>
+						</template>
+					</components>
+					<renderconditions logictype="and"/>
+					<oninitialshowactions/>
+					<onshowactions>
+						<action type="requeryModels" behavior="standard">
+							<models>
+								<model>CRParty</model>
+								<model>CRAssets</model>
+								<model>CRIncomeList</model>
+								<model>CRLiabilities</model>
+							</models>
+						</action>
+					</onshowactions>
+				</tab>
+				<tab name="Approvals" loadlazypanels="true">
+					<components>
+						<includepanel type="skuid" uniqueid="sk-3GYc-761" pagename="ApprovalsDashboard" module="CLSbase" querystring="?id={{$Model.NGLDApplication.data.0.Id}}">
+							<renderconditions logictype="and"/>
+						</includepanel>
+					</components>
+					<oninitialshowactions/>
+					<onshowactions>
+						<action type="requeryModels" behavior="standard">
+							<models>
+								<model>AllValidApprovals</model>
+								<model>AllApprovalDefinitions</model>
+							</models>
+						</action>
+					</onshowactions>
+					<renderconditions logictype="and"/>
+				</tab>
+				<tab name="Settlement" loadlazypanels="true">
+					<components>
+						<includepanel type="skuid" uniqueid="sk-g2f-530" querystring="?id={{$Model.NGLDApplication.data.0.Id}}" pagename="CustomInvestmentDetails"/>
+					</components>
+					<oninitialshowactions/>
+					<onshowactions>
+						<action type="requeryModels" model="CommonApplicationModel" behavior="standard">
+							<models>
+								<model>CommonApplicationModel</model>
+								<model>ScheduleCheck</model>
+								<model>CheckCollateral</model>
+							</models>
+						</action>
+					</onshowactions>
+					<renderconditions logictype="and"/>
+				</tab>
+				<tab loadlazypanels="true" name="Pricing">
+					<components>
+						<includepanel type="skuid" uniqueid="sk-BSD-1201" querystring="?id={{$Model.NGLDApplication.data.0.Id}}" pagename="CustomPricingDetails">
+							<renderconditions logictype="and"/>
+						</includepanel>
+					</components>
+					<renderconditions logictype="and"/>
+				</tab>
+				<tab name="Conditions" loadlazypanels="true">
+					<components>
+						<includepanel type="skuid" uniqueid="sk-1QYw-495" pagename="PolicyExceptions" module="ngUi" querystring="?Id={{$Model.NGLDApplication.data.0.Id}}"/>
+					</components>
+					<renderconditions logictype="and">
+						<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="NGLDApplication" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="Id" fieldtargetobjects="genesis__Applications__c" value="CKSC"/>
+					</renderconditions>
+					<oninitialshowactions/>
+					<onshowactions>
+						<action type="requeryModel" model="ApplicationUtil" behavior="standard"/>
+					</onshowactions>
+				</tab>
+				<tab name="Serviceability" loadlazypanels="true">
+					<components>
+						<includepanel type="skuid" uniqueid="sk-20Es-456" querystring="?id={{$Model.NGLDApplication.data.0.Id}}" pagename="CustomServiceabilityPage"/>
+					</components>
+					<renderconditions logictype="and"/>
+					<oninitialshowactions/>
+					<onshowactions>
+						<action type="requeryModels" model="NGLDApplication" behavior="standard">
+							<models>
+								<model>BorrowerApplication</model>
+							</models>
+						</action>
+					</onshowactions>
+				</tab>
+			</tabs>
+			<renderconditions logictype="and"/>
+		</tabset>
+	</components>
+	<resources>
+		<labels/>
+		<javascript>
+			<jsitem location="external" name="apexajax" cachelocation="false" url="/soap/ajax/24.0/apex.js">var params = arguments[0],
+	$ = skuid.$;
+</jsitem>
+			<jsitem location="external" name="connectionJS" cachelocation="false" url="/soap/ajax/35.0/connection.js">var params = arguments[0],
+	$ = skuid.$;
+</jsitem>
+			<jsitem location="staticresource" name="JQueryPopoverUIPack" cachelocation="false" url="" namespace="genesisExtn" filepath="jquery.webui-popover.min.js">var params = arguments[0],
+  $ = skuid.$;
+</jsitem>
+			<jsitem location="staticresource" name="CLSNGUIComponent" cachelocation="false" url="" namespace="genesisExtn" filepath="messageUtils.js">var params = arguments[0],
+  $ = skuid.$;
+</jsitem>
+			<jsitem location="staticresource" name="CLSNGUIComponent" cachelocation="false" url="" namespace="genesisExtn" filepath="documentMessages.js">var params = arguments[0],
+  $ = skuid.$;
+</jsitem>
+			<jsitem location="staticresource" name="CLSNGUIComponent" cachelocation="false" url="" namespace="genesisExtn" filepath="commonUtils.js">var params = arguments[0],
+  $ = skuid.$;
+</jsitem>
+			<jsitem location="inlinesnippet" name="SelectFirstEntryInQueue" cachelocation="false">var params = arguments[0],
+  $ = skuid.$;
+
+$(function() {
+    var pageInclude = skuid.$('#relationship-dashboard').data('object');
+    pageInclude.load(function() {
+        clickQueueEntry(true, sessionStorage.selectedPartyId);
+    });
+});
+
+function clickQueueEntry(force, partyId) {
+    sessionStorage.removeItem('selectedPartyId');
+    if (partyId) {
+        var clickIndex = 0;
+        $.each(skuid.model.getModel('DashboardParty').data, function(index, party) {
+            if (party.Id === partyId) {
+                clickIndex = index;
+                return false;
+            }
+        });
+        $($('#relationship-queue .nx-item.nx-queue-item')[clickIndex]).trigger('click');
+    } else {
+        if (force) {
+            $($('#relationship-queue .nx-item.nx-queue-item')[0]).trigger('click');
+        }
+    }
+}</jsitem>
+			<jsitem location="inlinesnippet" name="AdjustLayoutRelationshipDashboard" cachelocation="false">var params = arguments[0],
+  $ = skuid.$;
+
+if (sessionStorage.refreshParty) {
+    sessionStorage.removeItem('refreshParty');
+    var pageInclude = skuid.$('#relationship-dashboard').data('object');
+    pageInclude.load(function() {
+        clickQueueEntry(true, sessionStorage.selectedPartyId);
+    });
+} else {
+    clickQueueEntry(false, sessionStorage.selectedPartyId);
+}
+
+function clickQueueEntry(force, partyId) {
+    skuid.model.updateData([skuid.model.getModel('DashboardParty')],function(){
+        if (partyId) {
+            var clickIndex = 0;
+            $.each(skuid.model.getModel('DashboardParty').data, function(index, party) {
+                if (party.Id === partyId) {
+                    clickIndex = index;
+                    return false;
+                }
+            });
+            $($('#relationship-queue .nx-item.nx-queue-item')[clickIndex]).trigger('click');
+        } else {
+            if (force) {
+                $($('#relationship-queue .nx-item.nx-queue-item')[0]).trigger('click');
+            }
+        }
+    });
+}</jsitem>
+			<jsitem location="inlinesnippet" name="LaunchEditLoanDialog" cachelocation="false">var params = arguments[0],
+  $ = skuid.$;
+
+var appRowData = skuid.model.getModel('NGLDApplication').data[0];
+var appId = appRowData.Id;
+var title = 'Edit Opportunity ' + appRowData.Name;
+var skuidPage = 'ApplicationForm';
+var iframeUrl = '/apex/skuid__ui?page=' + skuidPage + '&amp;id=' + appId;
+
+openTopLevelDialog({
+    title: title,
+    iframeUrl: iframeUrl
+});</jsitem>
+			<jsitem location="inlinesnippet" name="LaunchCreditMemoDialog" cachelocation="false">var params = arguments[0],
+  $ = skuid.$;
+
+var appId = skuid.model.getModel('NGLDApplication').data[0].Id;
+var title = 'Manage Credit Memo';
+var skuidPage = 'CreditMemo';
+var iframeUrl = '/apex/skuid__ui?page=' + skuidPage + '&amp;id=' + appId;
+
+openTopLevelDialog({
+    title: title,
+    iframeUrl: iframeUrl
+});</jsitem>
+			<jsitem location="inlinesnippet" name="LaunchChangeMemoDialog" cachelocation="false">var params = arguments[0],
+  $ = skuid.$;
+
+var title = 'Manage Change Memo';
+
+var appId = skuid.model.getModel('NGLDApplication').data[0].Id;
+var skuidPage = 'ChangeMemos';
+var iframeUrl = '/apex/skuid__ui?page=' + skuidPage + '&amp;id=' + appId;
+
+openTopLevelDialog({
+  title: title,
+  iframeUrl: iframeUrl
+});</jsitem>
+			<jsitem location="inlinesnippet" name="LaunchFeeDialog" cachelocation="false">var params = arguments[0],
+  $ = skuid.$;
+
+var appId = skuid.model.getModel('NGLDApplication').data[0].Id;
+var title = 'Manage Fees';
+var skuidPage = 'Fees';
+
+// launchSimplePopupDialog(appId, title, skuidPage);
+
+var iframeUrl = '/apex/skuid__ui?page=' + skuidPage + '&amp;id=' + appId;
+
+openTopLevelDialog({
+    title: title,
+    iframeUrl: iframeUrl
+});</jsitem>
+			<jsitem location="inlinesnippet" name="LaunchPolicyExceptionDialog" cachelocation="false">var params = arguments[0],
+  $ = skuid.$;
+
+var appId = skuid.model.getModel('NGLDApplication').data[0].Id;
+var title = 'Manage Policy Conditions';
+var skuidPage = 'PolicyExceptions';
+
+// launchSimplePopupDialog(appId, title, skuidPage);
+
+var iframeUrl = '/apex/skuid__ui?page=' + skuidPage + '&amp;id=' + appId;
+
+openTopLevelDialog({
+    title: title,
+    iframeUrl: iframeUrl
+});</jsitem>
+			<jsitem location="inlinesnippet" name="AddTooltipCollateralTab" cachelocation="false">var params = arguments[0],
+  $ = skuid.$;
+
+$(function() {
+    var pageInclude = skuid.$('#collateral-tab').data('object');
+    pageInclude.load(function() {
+        openLinksInNewTab();
+      showIconicBtnLabelAsTooltip();
+    });
+});</jsitem>
+			<jsitem location="inlinesnippet" name="LaunchLoanHistoryDialog" cachelocation="false">var params = arguments[0],
+  $ = skuid.$;
+
+var appId = skuid.model.getModel('NGLDApplication').data[0].Id;
+var title = 'View Renewal History';
+var skuidPage = 'RenewalHistory';
+var iframeUrl = '/apex/skuid__ui?page=' + skuidPage + '&amp;id=' + appId;
+
+openTopLevelDialog({
+    title: title,
+    iframeUrl: iframeUrl
+});</jsitem>
+			<jsitem location="inlinesnippet" name="LaunchCovenantsDialog" cachelocation="false">var params = arguments[0],
+  $ = skuid.$;
+var appId = skuid.model.getModel('NGLDApplication').data[0].Id;
+var title = 'View Covenants';
+var skuidPage = 'ApplicationCovenant';
+var iframeUrl = '/apex/skuid__ui?page=' + skuidPage + '&amp;id=' + appId;
+
+openTopLevelDialog({
+    title: title,
+    iframeUrl: iframeUrl
+});</jsitem>
+			<jsitem location="inlinesnippet" name="refreshDocument" cachelocation="false">var params = arguments[0],
+  $ = skuid.$;
+
+if(sessionStorage.refreshDocument) {
+    sessionStorage.removeItem('refreshDocument');
+    $('#document-iframe')[0].contentWindow.postMessage({type: 'action-refresh-tree-details'}, '*');
+}</jsitem>
+			<jsitem location="inline" name="OnLoad" cachelocation="false" url="">(function(skuid){
+  var $ = skuid.$;
+  $(document.body).one('pageload',function(){
+      showIconicBtnLabelAsTooltip();
+
+      var applicationData = skuid.model.getModel('NGLDApplication').getFirstRow();
+      if(applicationData &amp;&amp; applicationData.genesis__Product_Type__c &amp;&amp; applicationData.genesis__Product_Type__c == 'PACKAGE'){
+          $('#loan-dashboard-parties-section').css('top','0');
+          $('#loan-dashboard-parties-section').css('bottom','0');
+
+
+      }
+
+      if(applicationData.genesis__Product_Type__c == 'LEASE') {
+         $('#ui-id-1').text('Lease');// Fix for tab name change based on conditions
+      }
+
+
+  });
+})(skuid);</jsitem>
+			<jsitem location="inlinesnippet" name="LaunchRiskAnalysis" cachelocation="false">var params = arguments[0],
+	$ = skuid.$;
+var appId = skuid.model.getModel('NGLDApplication').data[0].Id;
+var title = 'Risk Analysis';
+var skuidPage = 'ApplicationRiskAnalysis';
+var iframeUrl = '/apex/skuid__ui?page=' + skuidPage + '&amp;id=' + appId;
+
+openTopLevelDialog({
+    title: title,
+    iframeUrl: iframeUrl
+});</jsitem>
+			<jsitem location="inlinesnippet" cachelocation="false" name="LaunchSchedule">var params = arguments[0],
+	$ = skuid.$;
+var appId = skuid.model.getModel('NGLDApplication').data[0].Id;
+var title = 'Payment Schedule';
+var skuidPage = 'paymentSchedule';
+var iframeUrl = '/apex/skuid__ui?page=' + skuidPage + '&amp;id=' + appId;
+
+openTopLevelDialog({
+    title: title,
+    iframeUrl: iframeUrl
+});
+</jsitem>
+			<jsitem location="inlinesnippet" name="LaunchAdverseAction" cachelocation="false">var params = arguments[0],
+	$ = skuid.$;
+var appId = skuid.model.getModel('NGLDApplication').data[0].Id;
+var title = 'Adverse Action';
+var skuidPage = 'AdverseAction';
+var iframeUrl = '/apex/skuid__ui?page=' + skuidPage + '&amp;id=' + appId;
+
+openTopLevelDialog({
+    title: title,
+    iframeUrl: iframeUrl
+});
+</jsitem>
+			<jsitem location="inlinesnippet" name="reLoad" cachelocation="false">var params = arguments[0],
+	$ = skuid.$;
+window.location.reload(true);</jsitem>
+			<jsitem location="inlinesnippet" name="LaunchDebtToIncomeRatio" cachelocation="false">var params = arguments[0],
+	$ = skuid.$;
+var appId = skuid.model.getModel('NGLDApplication').data[0].Id;
+var title = 'Debt to Income Ratio';
+var skuidPage = 'DebtToIncomeRatio';
+var iframeUrl = '/apex/skuid__ui?page=' + skuidPage + '&amp;id=' + appId;
+
+openTopLevelDialog({
+    title: title,
+    iframeUrl: iframeUrl
+});
+</jsitem>
+			<jsitem location="inlinesnippet" name="ApplicationConvert" cachelocation="false">var params = arguments[0],
+    $ = skuid.$;
+	$xml = skuid.utils.makeXMLDoc;
+	var context = {};
+
+var appModel = skuid.model.getModel('NGLDApplication');
+var appRow = appModel.data[0];
+var agree = confirm("Are you sure ?");
+if (agree){
+    $.blockUI({
+   message: 'Please wait!  Application is listing to marketplace...',
+   onBlock:function(){
+    try {
+        var ret = sforce.apex.execute('LoanApplicationConvert','convertLoanApplicationCtrl',
+        {   
+            appId : appRow.Id
+        });
+        if(ret[0].includes('Application Converted Successfully.')){
+            alert(ret);
+            $.unblockUI();
+            window.location.reload();
+        }else{
+            alert(ret);
+            $.unblockUI();
+        }
+    } catch(err) {
+        alert(err);
+        $.unblockUI();
+    }
+   }
+    });
+}
+</jsitem>
+			<jsitem location="inline" name="pageIncludeLoadAction" cachelocation="false" url="">(function(skuid){
+    var $ = skuid.$;
+    $(document.body).one('pageload',function(){
+        var assetsAndLiabilitiesTab = $('a[href="#skuid-component-tab-cls-originate-page-11"]');
+        var documentsTab = $('a[href="#skuid-component-tab-cls-originate-page-14"]');
+        var conditionsTab = $('a[href="#skuid-component-tab-cls-originate-page-19"]');
+
+        assetsAndLiabilitiesTab.click(function() {
+            //alert("Hi4");
+            var pageInclude = skuid.$('#sk-1TDC-574').data('object');
+            pageInclude.unrender();
+            pageInclude.load();
+        });
+        documentsTab.click(function() {
+            //alert("Hi5");
+            //var pageInclude = skuid.$('#sk-BgC-664').data('object');
+            //pageInclude.unrender();
+            //pageInclude.load();
+        });
+        conditionsTab.click(function() {
+            //alert("Hi7");
+            var pageInclude = skuid.$('#sk-1QYw-495').data('object');
+            pageInclude.unrender();
+            pageInclude.load();
+        });
+});
+})(skuid);</jsitem>
+			<jsitem location="inlinesnippet" name="Update Brokers BDM" cachelocation="false">var params = arguments[0],
+	$ = skuid.$;
+var appliModel = skuid.model.getModel('NGLDApplication');
+var appliRow = appliModel.data[0];
+var records = sforce.connection.query("SELECT Id,genesis__Application__c, genesis__Application__r.Brokers_BDM__c FROM clcommon__Party__c WHERE genesis__Application__c = '"+appliRow.Id+"' AND Party_Type_Name__c = 'Broker' LIMIT 1");
+var brokerRecords = records.getArray('records');
+if(brokerRecords === undefined || brokerRecords === null || brokerRecords.length &gt; 0 === false){
+    var apptyObj = new sforce.SObject("genesis__applications__c");
+    apptyObj.Id = appliRow.Id;
+    apptyObj.Brokers_BDM__c = null;
+    var result = sforce.connection.update([apptyObj]);
+}</jsitem>
+		</javascript>
+		<css>
+			<cssitem location="staticresource" name="CLSStyleSheetPack" cachelocation="false" url="" namespace="genesisExtn" filepath="cls-common.css"/>
+			<cssitem location="staticresource" name="CLSStyleSheetPack" cachelocation="false" url="" namespace="genesisExtn" filepath="customcss.css"/>
+			<cssitem location="staticresource" name="FontAwesomePack" cachelocation="false" url="" namespace="genesisExtn" filepath="font-awesome-4.6.3/css/font-awesome.css"/>
+			<cssitem location="staticresource" name="JQueryPopoverUIPack" cachelocation="false" url="" namespace="genesisExtn" filepath="jquery.webui-popover.min.css"/>
+			<cssitem location="staticresource" name="CLSStyleSheetPack" cachelocation="false" url="" namespace="genesisExtn" filepath="cls-dashboard.css"/>
+			<cssitem location="staticresource" name="CLSStyleSheetPack" cachelocation="false" url="" namespace="genesisExtn" filepath="cls-dialog.css"/>
+			<cssitem location="staticresource" name="CLSStyleSheetPack" cachelocation="false" url="" namespace="genesisExtn" filepath="navigation-component.css"/>
+			<cssitem location="inline" name="navigationCSS" cachelocation="false">#loan-panel .sk-dropnav, div.sk-navigation.sk-navigation-dropdown {
+    float:right;
+    top: 17px;
+    right: 40px;
+}
+
+.nx-queue-item-inner {
+    background-color : LightGrey !important;
+}
+#custom-review-iframe {
+    
+}
+/*Custom CSS by Rameswari on 19/01/2021 for making the input box as rectangular*/
+.nx-editor textarea, .nx-editor input  {
+    border-radius: 5px !important;
+}</cssitem>
+		</css>
+		<actionsequences uniqueid="sk-1Kmu-359"/>
+	</resources>
+	<styles>
+		<styleitem type="background" bgtype="color">
+			<styles>
+				<styleitem property="background-color" value="#ebeef0"/>
+			</styles>
+		</styleitem>
+		<styleitem property="position" value="absolute"/>
+		<styleitem property="top" value="0"/>
+		<styleitem property="bottom" value="0"/>
+		<styleitem property="left" value="0"/>
+		<styleitem property="right" value="0"/>
+	</styles>
+	<interactions/>
 </skuidpage>

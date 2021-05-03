@@ -1,554 +1,792 @@
 <skuidpage unsavedchangeswarning="yes" personalizationmode="server" showsidebar="false" showheader="false">
-  <models>
-    <model id="PolicyException" limit="" query="true" createrowifnonefound="false" sobject="genesis__Policy_Exception__c" orderby="LastModifiedDate DESC" datasource="salesforce">
-      <fields>
-        <field id="genesis__Application__c"/>
-        <field id="genesis__Application__r.Name"/>
-        <field id="CreatedById"/>
-        <field id="CreatedBy.Name"/>
-        <field id="CreatedDate"/>
-        <field id="IsDeleted"/>
-        <field id="genesis__Description__c"/>
-        <field id="LastModifiedById"/>
-        <field id="LastModifiedBy.Name"/>
-        <field id="LastModifiedDate"/>
-        <field id="LastReferencedDate"/>
-        <field id="LastViewedDate"/>
-        <field id="genesis__Officer_Comments__c"/>
-        <field id="OwnerId"/>
-        <field id="Owner.Name"/>
-        <field id="Name"/>
-        <field id="genesis__Policy_Exception_Definition__c"/>
-        <field id="genesis__Policy_Exception_Definition__r.Name"/>
-        <field id="Id"/>
-        <field id="genesis__Status__c"/>
-        <field id="SystemModstamp"/>
-        <field id="genesis__Policy_Exception_Definition__r.genesis__Description__c"/>
-        <field id="genesis__Policy_Exception_Definition__r.genesis__Requires_Approval__c"/>
-        <field id="genesis__Policy_Exception_Definition__r.genesis__Requires_Officer_Explanation__c"/>
-        <field id="showCreatePolicyException" uionly="true" displaytype="BOOLEAN" label="showCreatePolicyException"/>
-        <field id="showExistingPolicy" uionly="true" displaytype="BOOLEAN" label="showExistingPolicy"/>
-        <field id="genesis__Override__c"/>
-        <field id="genesis__Policy_Exception_Definition__r.genesis__Enable_Override__c"/>
-        <field id="genesis__Condition_Type__c"/>
-        <field id="Party__c"/>
-        <field id="Party__r.Name"/>
-        <field id="Supporting_Document_Verified__c"/>
-        <field id="Description1__c"/>
-        <field id="Waiver_Reason__c"/>
-        <field id="Party__r.clcommon__Account__r.Name"/>
-      </fields>
-      <conditions>
-        <condition type="param" value="id" field="genesis__Application__c" operator="=" enclosevalueinquotes="true" novaluebehavior="" model="ApplicationStatus"/>
-      </conditions>
-      <actions/>
-    </model>
-    <model id="PolicyExceptionTemplate" limit="20" query="true" createrowifnonefound="false" sobject="genesis__Policy_Exception_Definition__c" datasource="salesforce">
-      <fields>
-        <field id="CreatedById"/>
-        <field id="CreatedBy.Name"/>
-        <field id="CreatedDate"/>
-        <field id="IsDeleted"/>
-        <field id="genesis__Description__c"/>
-        <field id="LastModifiedById"/>
-        <field id="LastModifiedBy.Name"/>
-        <field id="LastModifiedDate"/>
-        <field id="LastReferencedDate"/>
-        <field id="LastViewedDate"/>
-        <field id="OwnerId"/>
-        <field id="Owner.Name"/>
-        <field id="Name"/>
-        <field id="Id"/>
-        <field id="genesis__Requires_Approval__c"/>
-        <field id="genesis__Requires_Officer_Explanation__c"/>
-        <field id="SystemModstamp"/>
-        <field id="genesis__Enable_Override__c"/>
-      </fields>
-      <conditions/>
-      <actions/>
-    </model>
-    <model id="PolicyExceptionCreate" limit="20" query="true" createrowifnonefound="true" sobject="genesis__Policy_Exception__c" orderby="LastModifiedDate DESC" datasource="salesforce">
-      <fields>
-        <field id="genesis__Application__c"/>
-        <field id="genesis__Application__r.Name"/>
-        <field id="CreatedById"/>
-        <field id="CreatedBy.Name"/>
-        <field id="CreatedDate"/>
-        <field id="IsDeleted"/>
-        <field id="genesis__Description__c"/>
-        <field id="LastModifiedById"/>
-        <field id="LastModifiedBy.Name"/>
-        <field id="LastModifiedDate"/>
-        <field id="LastReferencedDate"/>
-        <field id="LastViewedDate"/>
-        <field id="genesis__Officer_Comments__c"/>
-        <field id="OwnerId"/>
-        <field id="Owner.Name"/>
-        <field id="Name"/>
-        <field id="genesis__Policy_Exception_Definition__c"/>
-        <field id="genesis__Policy_Exception_Definition__r.Name"/>
-        <field id="Id"/>
-        <field id="genesis__Status__c"/>
-        <field id="SystemModstamp"/>
-        <field id="genesis__Policy_Exception_Definition__r.genesis__Description__c"/>
-        <field id="genesis__Policy_Exception_Definition__r.genesis__Requires_Approval__c"/>
-        <field id="genesis__Policy_Exception_Definition__r.genesis__Requires_Officer_Explanation__c"/>
-        <field id="genesis__Condition_Type__c"/>
-        <field id="Party__c"/>
-        <field id="Party__r.Name"/>
-        <field id="Supporting_Document_Verified__c"/>
-        <field id="Waiver_Reason__c"/>
-        <field id="Description1__c"/>
-      </fields>
-      <conditions>
-        <condition type="blank" value="null" field="Id" operator="=" enclosevalueinquotes="false" model="ConditionHistory"/>
-      </conditions>
-      <actions/>
-    </model>
-    <model query="true" createrowifnonefound="false" datasource="salesforce" id="ApplicationStatus" sobject="genesis__Application_Status_History__c">
-      <fields>
-        <field id="genesis__Application__c"/>
-        <field id="genesis__Application__r.Name"/>
-        <field id="genesis__Application__r.Id"/>
-        <field id="genesis__Application__r.RecordTypeId"/>
-        <field id="genesis__Application__r.RecordType.Name"/>
-        <field id="genesis__Old_value__c"/>
-        <field id="genesis__New_Value__c"/>
-        <field id="genesis__Changed_On__c"/>
-        <field id="CreatedById"/>
-        <field id="CreatedBy.Name"/>
-        <field id="CreatedBy.Username"/>
-        <field id="CreatedDate"/>
-      </fields>
-      <conditions>
-        <condition type="param" value="Id" field="genesis__Application__c" fieldtargetobjects="genesis__Applications__c" operator="=" enclosevalueinquotes="true" model="ConditionHistory"/>
-      </conditions>
-      <actions/>
-    </model>
-    <model id="Party" limit="20" query="true" createrowifnonefound="false" datasource="salesforce" sobject="clcommon__Party__c">
-      <fields>
-        <field id="Id"/>
-        <field id="clcommon__Account__c"/>
-        <field id="clcommon__Account__r.Name"/>
-        <field id="genesis__Application__c"/>
-        <field id="genesis__Application__r.Name"/>
-        <field id="genesis__Application__r.Id"/>
-        <field id="genesis__Application__r.RecordTypeId"/>
-        <field id="genesis__Application__r.RecordType.Name"/>
-      </fields>
-      <conditions>
-        <condition type="param" value="Id" field="genesis__Application__c" fieldtargetobjects="genesis__Applications__c" operator="=" enclosevalueinquotes="true" model="ConditionHistory"/>
-      </conditions>
-      <actions/>
-    </model>
-    <model id="Application" limit="20" query="true" createrowifnonefound="false" datasource="salesforce" sobject="genesis__Applications__c">
-      <fields>
-        <field id="RecordTypeId"/>
-        <field id="Application_Declined_Cancelled_Details__c"/>
-        <field id="Application_Declined_Cancelled_Reason__c"/>
-        <field id="genesis__Status__c"/>
-        <field id="Is_Approved__c"/>
-      </fields>
-      <conditions>
-        <condition type="param" value="Id" field="Id" operator="=" enclosevalueinquotes="true" model="ConditionHistory"/>
-      </conditions>
-      <actions/>
-    </model>
-    <model limit="20" query="true" createrowifnonefound="false" datasource="salesforce" id="ConditionHistory" sobject="genesis__Policy_Exception__History" orderby="createddate">
-      <fields>
-        <field id="Field"/>
-        <field id="OldValue"/>
-        <field id="NewValue"/>
-        <field id="CreatedDate"/>
-        <field id="CreatedById"/>
-        <field id="CreatedBy.Name"/>
-        <field id="Parent.Id"/>
-        <field id="Parent.Name"/>
-      </fields>
-      <conditions>
-        <condition type="param" value="id" field="Parent.genesis__Application__c" fieldtargetobjects="genesis__Applications__c" operator="=" enclosevalueinquotes="true"/>
-      </conditions>
-      <actions/>
-    </model>
-    <model id="ApplicationUtil" limit="20" query="true" createrowifnonefound="false" datasource="salesforce" sobject="genesis__Applications__c">
-      <fields>
-        <field id="RecordTypeId"/>
-        <field id="genesis__Status__c"/>
-        <field id="Is_Approved__c"/>
-      </fields>
-      <conditions>
-        <condition type="param" value="Id" field="Id" operator="=" enclosevalueinquotes="true"/>
-      </conditions>
-      <actions/>
-    </model>
-  </models>
-  <components>
-    <buttonset uniqueid="sk-3vM5-414" model="ConditionHistory">
-      <buttons>
-        <button type="multi" label="Save" uniqueid="sk-3vM6-423" icon="sk-webicon-font-awesome:floppy-o">
-          <renderconditions logictype="and">
-            <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="false" fieldmodel="Application" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="Is_Approved__c" fieldtargetobjects="genesis__Applications__c" value="false"/>
-          </renderconditions>
-          <enableconditions logictype="or">
-            <condition type="fieldvalue" enclosevalueinquotes="false" fieldmodel="PolicyException" sourcetype="modelproperty" nosourcerowbehavior="deactivate" sourceproperty="hasChanged" value="true" operator="=" model="ConditionHistory"/>
-            <condition type="fieldvalue" enclosevalueinquotes="false" fieldmodel="Application" sourcetype="modelproperty" nosourcerowbehavior="deactivate" sourceproperty="hasChanged" value="true" operator="=" model="ConditionHistory"/>
-          </enableconditions>
-          <actions>
-            <action type="blockUI" message="The changes are being recorded!" timeout="2000"/>
-            <action type="save">
-              <models>
-                <model>PolicyException</model>
-                <model>Application</model>
-              </models>
-            </action>
-          </actions>
-          <hotkeys/>
-        </button>
-        <button type="multi" label="Save" uniqueid="sk-u8d-470" icon="sk-webicon-font-awesome:floppy-o">
-          <renderconditions logictype="and">
-            <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="false" fieldmodel="Application" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="Is_Approved__c" fieldtargetobjects="genesis__Applications__c" value="true"/>
-            <rendercondition type="fieldvalue" operator="!=" enclosevalueinquotes="true" fieldmodel="ApplicationUtil" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="genesis__Status__c" fieldtargetobjects="genesis__Applications__c" value="Loan Settled"/>
-          </renderconditions>
-          <enableconditions logictype="and">
-            <condition type="fieldvalue" enclosevalueinquotes="false" fieldmodel="PolicyException" sourcetype="modelproperty" nosourcerowbehavior="deactivate" sourceproperty="hasChanged" value="true" operator="="/>
-          </enableconditions>
-          <actions>
-            <action type="blockUI" message="The changes are being recorded!" timeout="2000"/>
-            <action type="save">
-              <models>
-                <model>PolicyException</model>
-              </models>
-            </action>
-          </actions>
-        </button>
-        <button type="cancel" label="Cancel" uniqueid="sk-2C5G-509" window="self">
-          <renderconditions logictype="and">
-            <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="false" fieldmodel="Application" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="Is_Approved__c" fieldtargetobjects="genesis__Applications__c" value="false"/>
-          </renderconditions>
-          <enableconditions/>
-          <models>
-            <model>PolicyException</model>
-            <model>PolicyExceptionTemplate</model>
-            <model>PolicyExceptionCreate</model>
-            <model>ApplicationStatus</model>
-            <model>Party</model>
-            <model>Application</model>
-            <model>ApplicationUtil</model>
-          </models>
-        </button>
-      </buttons>
-    </buttonset>
-    <skootable showconditions="true" showsavecancel="false" showerrorsinline="true" searchmethod="server" searchbox="false" showexportbuttons="false" hideheader="false" hidefooter="false" pagesize="10" alwaysresetpagination="false" createrecords="false" model="ApplicationStatus" buttonposition="" mode="read" allowcolumnreordering="true" responsive="false" uniqueid="sk-1Qv3-593" emptysearchbehavior="query" heading="Loan Status">
-      <fields>
-        <field id="genesis__Old_value__c" hideable="true" uniqueid="fi-1Qvj-677" readonly="true"/>
-        <field id="genesis__New_Value__c" hideable="true" uniqueid="fi-1Qvm-692" readonly="true"/>
-        <field id="genesis__Changed_On__c" hideable="true" uniqueid="fi-1Qvo-703" readonly="true"/>
-        <field id="CreatedById" hideable="true" uniqueid="fi-1Qvp-713"/>
-      </fields>
-      <rowactions/>
-      <massactions usefirstitemasdefault="true"/>
-      <views>
-        <view type="standard"/>
-      </views>
-      <searchfields/>
-    </skootable>
-    <basicfieldeditor showheader="true" showsavecancel="false" showerrorsinline="true" model="Application" uniqueid="sk-26Ex-1044" mode="edit">
-      <columns>
-        <column width="100%" uniqueid="sk-26Ex-1040">
-          <sections>
-            <section uniqueid="sk-26Ex-1041" collapsible="no" title="Application Declined/Cancelled Details" showheader="false">
-              <fields>
-                <field uniqueid="sk-26E--1074" id="Application_Declined_Cancelled_Reason__c">
-                  <renderconditions logictype="and" onhidedatabehavior="cancel"/>
-                  <enableconditions/>
-                </field>
-                <field uniqueid="sk-26F0-1079" id="Application_Declined_Cancelled_Details__c">
-                  <renderconditions logictype="and" onhidedatabehavior="cancel"/>
-                  <enableconditions/>
-                </field>
-              </fields>
-            </section>
-          </sections>
-        </column>
-      </columns>
-      <renderconditions logictype="and">
-        <rendercondition type="multiple" operator="in" fieldmodel="ApplicationUtil" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="genesis__Status__c" fieldtargetobjects="genesis__Applications__c" value="" enclosevalueinquotes="true">
-          <values>
-            <value>Declined</value>
-            <value>Cancelled</value>
-          </values>
-        </rendercondition>
-      </renderconditions>
-    </basicfieldeditor>
-    <grid uniqueid="sk-1Lc6a--77">
-      <divisions>
-        <division behavior="flex" minwidth="100px" ratio="1" verticalalign="top">
-          <components>
-            <pagetitle model="PolicyException" uniqueid="topPageTitleWithButtons">
-              <actions>
-                <action type="multi" label="Create New Policy Condition" uniqueid="createNewPolicyException" cssclass="rendering">
-                  <actions>
-                    <action type="showPopup">
-                      <popup title="Create Policy Condition" width="90%">
-                        <components>
-                          <pagetitle uniqueid="errorPanelCreate" model="PolicyExceptionCreate">
-                            <actions>
-                              <action type="multi" label="Save" uniqueid="savePolicyExceptionButton" cssclass="rendering" icon="sk-webicon-font-awesome:floppy-o">
-                                <actions>
-                                  <action type="updateRow" fieldmodel="PolicyExceptionCreate" field="genesis__Application__c" enclosevalueinquotes="true" value="{{$Param.id}}" affectedrows="context"/>
-                                  <action type="save">
-                                    <models>
-                                      <model>PolicyExceptionCreate</model>
-                                    </models>
-                                  </action>
-                                  <action type="requeryModel" model="PolicyException" behavior="standard"/>
-                                  <action type="blockUI" message="New Policy Exception Created" timeout="1000"/>
-                                  <action type="closeAllPopups"/>
-                                  <action type="cancel">
-                                    <models>
-                                      <model>PolicyExceptionCreate</model>
-                                    </models>
-                                  </action>
-                                </actions>
-                                <renderconditions logictype="and"/>
-                                <enableconditions logictype="and">
-                                  <condition type="fieldvalue" enclosevalueinquotes="false" fieldmodel="PolicyExceptionCreate" sourcetype="modelproperty" sourceproperty="hasChanged" value="true" operator="=" model="ConditionHistory"/>
-                                </enableconditions>
-                              </action>
-                              <action type="multi" label="Cancel" icon="" uniqueid="cancelCreatePolicyExceptionInPopup" cssclass="rendering" secondary="true">
-                                <actions>
-                                  <action type="closeTopmostPopup"/>
-                                </actions>
-                              </action>
-                            </actions>
-                          </pagetitle>
-                          <basicfieldeditor showheader="true" showsavecancel="false" showerrorsinline="true" model="PolicyExceptionCreate" uniqueid="sk-1xnJHp-384" mode="edit" layout="">
-                            <columns>
-                              <column width="33.3%">
-                                <sections>
-                                  <section title="Section A" collapsible="no" showheader="false">
-                                    <fields/>
-                                  </section>
-                                </sections>
-                              </column>
-                              <column width="33.3%">
-                                <sections>
-                                  <section title="Section B" collapsible="no" showheader="false">
-                                    <fields>
-                                      <field uniqueid="sk-1Qzr-859" id="genesis__Condition_Type__c">
-                                        <label>Condition</label>
-                                      </field>
-                                      <field uniqueid="sk-1kYz-501" id="Description1__c">
-                                        <label>Description</label>
-                                        <renderconditions logictype="and" onhidedatabehavior="cancel"/>
-                                        <enableconditions logictype="and">
-                                          <condition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="PolicyExceptionCreate" sourcetype="fieldvalue" field="genesis__Condition_Type__c" fieldtargetobjects="genesis__Policy_Exception__c" value="Other" model="ConditionHistory"/>
-                                        </enableconditions>
-                                      </field>
-                                      <field uniqueid="sk-1Qzx-893" id="Party__c" pagesize="5" redirecttype="datasourcedefault" optionsource="model" optionmodel="Party" searchtemplate="{{clcommon__Account__c}}" displaytemplate="{{clcommon__Account__c}}">
-                                        <filters>
-                                          <filter type="modelmerge" operator="in" field="Id" fieldtargetobjects="clcommon__Party__c" value="" model="Party" enclosevalueinquotes="true" mergefield="Id" novaluebehavior="deactivate"/>
-                                        </filters>
-                                        <renderconditions logictype="and" onhidedatabehavior="keep"/>
-                                        <enableconditions/>
-                                        <searchfields/>
-                                      </field>
-                                      <field uniqueid="sk-1Qzy-898" id="genesis__Status__c">
-                                        <renderconditions logictype="and" onhidedatabehavior="cancel"/>
-                                        <enableconditions/>
-                                      </field>
-                                      <field uniqueid="sk-1kYt-477" id="Waiver_Reason__c">
-                                        <renderconditions logictype="and" onhidedatabehavior="cancel">
-                                          <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="PolicyExceptionCreate" sourcetype="fieldvalue" field="genesis__Status__c" fieldtargetobjects="genesis__Policy_Exception__c" value="Waived"/>
-                                        </renderconditions>
-                                        <enableconditions/>
-                                      </field>
-                                      <field uniqueid="sk-1Qz_-906" id="Supporting_Document_Verified__c"/>
-                                    </fields>
-                                  </section>
-                                </sections>
-                              </column>
-                              <column width="33.3%">
-                                <sections>
-                                  <section title="New Section" collapsible="no" showheader="false">
-                                    <fields/>
-                                  </section>
-                                </sections>
-                              </column>
-                            </columns>
-                            <renderconditions logictype="and"/>
-                            <conditions/>
-                          </basicfieldeditor>
-                          <basicfieldeditor showheader="true" showsavecancel="false" showerrorsinline="true" model="PolicyExceptionCreate" uniqueid="sk-1xnIjV-374" mode="edit" layout="">
-                            <columns>
-                              <column width="50%">
-                                <sections>
-                                  <section title="Section A" collapsible="no" showheader="false">
-                                    <fields/>
-                                  </section>
-                                </sections>
-                              </column>
-                              <column width="50%">
-                                <sections>
-                                  <section title="New Section" collapsible="no" showheader="false">
-                                    <fields/>
-                                  </section>
-                                </sections>
-                              </column>
-                            </columns>
-                            <renderconditions logictype="and"/>
-                          </basicfieldeditor>
-                        </components>
-                        <afterclose>
-                          <action type="requeryModel" model="PolicyException" behavior="standard"/>
-                        </afterclose>
-                      </popup>
-                    </action>
-                    <action type="custom" snippet="initPolicyExceptionCreate"/>
-                    <action type="requeryModel" model="PolicyExceptionCreate" behavior="standard"/>
-                    <action type="createRow" model="PolicyExceptionCreate" behavior="standard" appendorprepend="prepend" defaultmodefornewitems="edit" affectedrows="context"/>
-                  </actions>
-                  <renderconditions logictype="and">
-                    <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="false" fieldmodel="Application" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="Is_Approved__c" fieldtargetobjects="genesis__Applications__c" value="false"/>
-                  </renderconditions>
-                  <enableconditions logictype="and"/>
-                </action>
-              </actions>
-              <maintitle>Policy Conditions</maintitle>
-            </pagetitle>
-            <skootable showconditions="true" showsavecancel="false" showerrorsinline="true" searchmethod="server" searchbox="false" showexportbuttons="false" pagesize="10" createrecords="false" model="PolicyException" buttonposition="" mode="read" uniqueid="existingPolicyTableId" instantfilters="false" emptysearchbehavior="query">
-              <fields>
-                <field id="Name" hideable="true" uniqueid="fi-1gkA-542">
-                  <label>Condition Reference Number</label>
-                  <renderconditions logictype="and" onhidedatabehavior="keep"/>
-                  <enableconditions/>
-                </field>
-                <field id="genesis__Condition_Type__c" hideable="true" uniqueid="fi-1Q_B-960">
-                  <renderconditions logictype="and" onhidedatabehavior="keep"/>
-                  <enableconditions logictype="and">
-                    <condition type="fieldvalue" operator="=" enclosevalueinquotes="false" fieldmodel="Application" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="Is_Approved__c" fieldtargetobjects="genesis__Applications__c" value="false"/>
-                  </enableconditions>
-                </field>
-                <field id="Description1__c" hideable="true" uniqueid="fi-1kZS-654">
-                  <label>Description</label>
-                  <renderconditions logictype="and" onhidedatabehavior="keep"/>
-                  <enableconditions logictype="and">
-                    <condition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="PolicyException" sourcetype="fieldvalue" field="genesis__Condition_Type__c" fieldtargetobjects="genesis__Policy_Exception__c" value="Other" model="ConditionHistory"/>
-                    <condition type="fieldvalue" operator="=" enclosevalueinquotes="false" fieldmodel="Application" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="Is_Approved__c" fieldtargetobjects="genesis__Applications__c" value="false"/>
-                  </enableconditions>
-                </field>
-                <field id="Party__c" hideable="true" uniqueid="fi-1Q_F-980" pagesize="5" redirecttype="datasourcedefault" displaytemplate="{{clcommon__Account__r.Name}}" searchtemplate="{{clcommon__Account__r.Name}}">
-                  <filters>
-                    <filter type="modelmerge" operator="in" field="Id" fieldtargetobjects="clcommon__Party__c" value="" model="Party" enclosevalueinquotes="true" mergefield="Id" novaluebehavior="deactivate"/>
-                  </filters>
-                  <searchfields/>
-                  <renderconditions logictype="and" onhidedatabehavior="keep"/>
-                  <enableconditions logictype="and">
-                    <condition type="fieldvalue" operator="=" enclosevalueinquotes="false" fieldmodel="Application" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="Is_Approved__c" fieldtargetobjects="genesis__Applications__c" value="false"/>
-                  </enableconditions>
-                </field>
-                <field id="genesis__Status__c" hideable="true" uniqueid="fi-1Q_G-985">
-                  <renderconditions logictype="and" onhidedatabehavior="keep"/>
-                  <enableconditions logictype="and">
-                    <condition type="fieldvalue" operator="!=" enclosevalueinquotes="true" fieldmodel="ApplicationUtil" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="genesis__Status__c" fieldtargetobjects="genesis__Applications__c" value="Loan Settled"/>
-                  </enableconditions>
-                </field>
-                <field id="Waiver_Reason__c" hideable="true" uniqueid="fi-1kZU-662">
-                  <renderconditions logictype="and" onhidedatabehavior="keep"/>
-                  <enableconditions logictype="and">
-                    <condition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="PolicyException" sourcetype="fieldvalue" field="genesis__Status__c" fieldtargetobjects="genesis__Policy_Exception__c" value="Waived" model="ConditionHistory"/>
-                    <condition type="fieldvalue" operator="!=" enclosevalueinquotes="true" fieldmodel="ApplicationUtil" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="genesis__Status__c" fieldtargetobjects="genesis__Applications__c" value="Loan Settled"/>
-                  </enableconditions>
-                </field>
-                <field id="Supporting_Document_Verified__c" hideable="true" uniqueid="fi-1Q_I-993">
-                  <renderconditions logictype="and" onhidedatabehavior="keep"/>
-                  <enableconditions logictype="and">
-                    <condition type="fieldvalue" operator="=" enclosevalueinquotes="false" fieldmodel="Application" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="Is_Approved__c" fieldtargetobjects="genesis__Applications__c" value="false"/>
-                  </enableconditions>
-                </field>
-              </fields>
-              <rowactions>
-                <action type="edit">
-                  <renderconditions logictype="and">
-                    <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="false" fieldmodel="Application" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="Is_Approved__c" fieldtargetobjects="genesis__Applications__c" value="false"/>
-                  </renderconditions>
-                </action>
-              </rowactions>
-              <massactions usefirstitemasdefault="true"/>
-              <views>
-                <view type="standard"/>
-              </views>
-              <searchfields/>
-              <renderconditions logictype="and">
-                <rendercondition type="fieldvalue" enclosevalueinquotes="true" fieldmodel="PolicyException" sourcetype="modelproperty" nosourcerowbehavior="deactivate" sourceproperty="hasRows"/>
-              </renderconditions>
-              <actions defaultlabel="Global Actions" defaulticon="sk-icon-magic" usefirstitemasdefault="true"/>
-            </skootable>
-            <skootable showconditions="true" showsavecancel="false" showerrorsinline="true" searchmethod="server" searchbox="true" showexportbuttons="false" hideheader="false" hidefooter="false" pagesize="10" alwaysresetpagination="false" createrecords="false" model="ConditionHistory" buttonposition="" mode="read" allowcolumnreordering="true" responsive="true" uniqueid="sk-1Ldm-582" heading="Conditions Audit Trail" instantfilters="true" emptysearchbehavior="query" searchplaceholdertext="Search Conditions History">
-              <fields>
-                <field id="Parent.Name" hideable="true" uniqueid="fi-1gjD-484">
-                  <label>Condition Reference Number</label>
-                </field>
-                <field id="Field" hideable="true" uniqueid="fi-1Ld--695"/>
-                <field id="OldValue" hideable="true" uniqueid="fi-1Le2-709"/>
-                <field id="NewValue" hideable="true" uniqueid="fi-1Le4-727"/>
-                <field id="CreatedDate" hideable="true" uniqueid="fi-1Le5-747"/>
-                <field id="CreatedById" hideable="true" uniqueid="fi-1Le7-756"/>
-              </fields>
-              <rowactions/>
-              <massactions usefirstitemasdefault="true"/>
-              <views>
-                <view type="standard"/>
-              </views>
-              <searchfields/>
-            </skootable>
-            <template multiple="false" uniqueid="sk-3jAdCH-193" model="Application">
-              <contents>&lt;div class="no-record-message"&gt;No Policy Condition to Display&lt;/div&gt;</contents>
-              <renderconditions logictype="and">
-                <rendercondition fieldmodel="PolicyException" sourcetype="modelproperty" nosourcerowbehavior="deactivate" sourceproperty="hasNoRows"/>
-              </renderconditions>
-            </template>
-          </components>
-        </division>
-      </divisions>
-      <styles>
-        <styleitem type="background" bgtype="none"/>
-      </styles>
-      <renderconditions logictype="and"/>
-    </grid>
-  </components>
-  <resources>
-    <labels/>
-    <javascript>
-      <jsitem location="inlinesnippet" name="createNewPolicyException" cachelocation="false">/** *  Purpose: Used for setting variables for creating new policy exception *  Where: Create new policy exception button * * @name  createNewPolicyException.js * @author  Ashish Kumar Singh * @version 1.0 * @since   06-18-2016 */   //a DOM element that Skuid will add, in place, into the parent / container component in which you've placed this custom component. //Get a reference to this element var params = arguments[0], $ = skuid.$;    //declares that we are using skuid custom jQuery  $('#createNewPolicyException').addClass('selected-btn'); $('#existingPolicyException').removeClass('selected-btn');  var newPolicyException = skuid.model.getModel('PolicyException'); var newPolicyExceptionRow = newPolicyException.data[0];  if(!newPolicyExceptionRow){     var newPolicyExceptionRow = newPolicyException.createRow({         additionalConditions: [             { field: 'showCreatePolicyException', value:true },             { field: 'showExistingPolicy', value: false },          ]     });  }else{     newPolicyException.updateRow(newPolicyExceptionRow ,                         { showCreatePolicyException : true ,                           showExistingPolicy : false });  } </jsitem>
-      <jsitem location="inlinesnippet" name="showExistingPolicyException" cachelocation="false">/** *  Purpose: Used for setting variables for displaying existing policy exception *  Where: * * @name  showExistingPolicyException.js * @author  Ashish Kumar Singh * @version 1.0 * @since   06-18-2016 */   //a DOM element that Skuid will add, in place, into the parent / container component in which you've placed this custom component. //Get a reference to this element var params = arguments[0], $ = skuid.$;    //declares that we are using skuid custom jQuery  $('#createNewPolicyException').removeClass('selected-btn'); $('#existingPolicyException').addClass('selected-btn');  var newPolicyException = skuid.model.getModel('PolicyException'); var newPolicyExceptionRow = newPolicyException.data[0];  if(!newPolicyExceptionRow){     var newPolicyExceptionRow = newPolicyException.createRow({         additionalConditions: [             { field: 'showCreatePolicyException', value:false },             { field: 'showExistingPolicy', value: true },          ]     });  }else{     newPolicyException.updateRow(newPolicyExceptionRow ,                         { showCreatePolicyException : false ,                           showExistingPolicy : true });  }</jsitem>
-      <jsitem location="inlinesnippet" name="showOfficerComments" cachelocation="false">/** *  Purpose: Used for hiding and showing officer comments text box based on requires approval checkbox is selected or not in the template chosen *  Where: * * @name  showOfficerComments.js * @author  Ashish Kumar Singh * @version 1.0 * @since   06-18-2016 */   //a DOM element that Skuid will add, in place, into the parent / container component in which you've placed this custom component. //Get a reference to this element var params = arguments[0], $ = skuid.$;    //declares that we are using skuid custom jQuery  var newPolicyException = skuid.model.getModel('PolicyException'); var newPolicyExceptionRow = newPolicyException.data[0];  var newPolicyExceptionCreate = skuid.model.getModel('PolicyExceptionCreate'); var newnewPolicyExceptionCreateRow = newPolicyException.data[0];   if(newnewPolicyExceptionCreateRow.genesis__Policy_Exception_Definition__r.genesis__Requires_Approval__c &amp;&amp; newnewPolicyExceptionCreateRow.genesis__Policy_Exception_Definition__r.genesis__Requires_Officer_Explanation__c){      skuid.component.getById('showRequiredEditor').element.show();  }  </jsitem>
-      <jsitem location="inlinesnippet" name="submitAutoStatus" cachelocation="false">/** *  Purpose: Used for setting status to pending or approved on whether it requires approval or not *  Where: save button of modal for creating new policy exception * * @name  submitAutoStatus.js * @author  Ashish Kumar Singh * @version 1.0 * @since   06-18-2016 */   //a DOM element that Skuid will add, in place, into the parent / container component in which you've placed this custom component. //Get a reference to this element var params = arguments[0], $ = skuid.$;    //declares that we are using skuid custom jQuery  var newPolicyExceptionCreate = skuid.model.getModel('PolicyExceptionCreate'); var newnewPolicyExceptionCreateRow = newPolicyExceptionCreate.data[0];  if(!newnewPolicyExceptionCreateRow){      if(newnewPolicyExceptionCreateRow.genesis__Policy_Exception_Definition__r.genesis__Requires_Approval__c){          var newnewPolicyExceptionCreateRow = newPolicyExceptionCreate.createRow({             additionalConditions: [                 { field: 'genesis__Status__c', value:'Pending' },              ]         });     }else{          newPolicyExceptionCreate.updateRow(newnewPolicyExceptionCreateRow ,               { genesis__Status__c : 'Approved' ,           });     }  }else{          if(newnewPolicyExceptionCreateRow.genesis__Policy_Exception_Definition__r.genesis__Requires_Approval__c){             newPolicyExceptionCreate.updateRow(newnewPolicyExceptionCreateRow ,                         { genesis__Status__c : 'Pending' ,                           });         }else{             newPolicyExceptionCreate.updateRow(newnewPolicyExceptionCreateRow ,                         { genesis__Status__c : 'Approved' ,                           });         }  }  skuid.model.save([newPolicyExceptionCreate]);  </jsitem>
-      <jsitem location="inlinesnippet" name="checkRequiredFields" cachelocation="false">/** *  Purpose: Used for validating all the required fields are enterd or not *  Where: Create new policy exception modal save button * * @name  checkRequiredFields.js * @author  Ashish Kumar Singh * @version 1.0 * @since   06-18-2016 */   //a DOM element that Skuid will add, in place, into the parent / container component in which you've placed this custom component. //Get a reference to this element var params = arguments[0], $ = skuid.$;    //declares that we are using skuid custom jQuery  var newPolicyExceptionCreate = skuid.model.getModel('PolicyExceptionCreate'); var newnewPolicyExceptionCreateRow = newPolicyExceptionCreate.data[0];  // Handle error messages var displayMessage = function (message, severity) {     var editor = $('#errorPanelCreate ').data('object').editor;     editor.handleMessages([         {             message: message,             severity: severity.toUpperCase()         }     ]);      return false; };   var isBlankStr = function(str) {     return (str === undefined || str.length === 0 || !str.trim()); }   if(!newnewPolicyExceptionCreateRow){     if(newnewPolicyExceptionCreateRow.genesis__Policy_Exception_Definition__r.genesis__Requires_Officer_Explanation__c &amp;&amp; isBlankStr(newnewPolicyExceptionCreateRow.genesis__Officer_Comments__c)){          return displayMessage('For selected policy condition template " Officer Comments " is mandatory  ', 'ERROR');     }   }else{     if(newnewPolicyExceptionCreateRow.genesis__Policy_Exception_Definition__c){         if(newnewPolicyExceptionCreateRow.genesis__Policy_Exception_Definition__r.genesis__Requires_Officer_Explanation__c &amp;&amp; isBlankStr(newnewPolicyExceptionCreateRow.genesis__Officer_Comments__c)){              return displayMessage('For selected policy condition template " Officer Comments " is mandatory ', 'ERROR');         }     }else{         return displayMessage('Please select a policy condition template ', 'ERROR');     } }</jsitem>
-      <jsitem location="inlinesnippet" name="clickhandler" cachelocation="false">/** *  Purpose: Used for clciking showExisting memos button through code *  Where: * * @name  clickHandler.js * @author  Ashish Kumar Singh * @version 1.0 * @since   06-18-2016 */   //a DOM element that Skuid will add, in place, into the parent / container component in which you've placed this custom component. //Get a reference to this element var params = arguments[0], $ = skuid.$;    //declares that we are using skuid custom jQuery  skuid.component.getById('existingPolicyException').element.click();  window.location.reload(true);</jsitem>
-      <jsitem location="inlinesnippet" name="initPolicyExceptionCreate" cachelocation="false">/** *  Purpose: *  Where: * * @name  initPolicyException.js * @author  Ashish Kumar Singh * @version 1.0 * @since   06-18-2016 */   //a DOM element that Skuid will add, in place, into the parent / container component in which you've placed this custom component. //Get a reference to this element var params = arguments[0], $ = skuid.$;    //declares that we are using skuid custom jQuery  var newPolicyExceptionCreate = skuid.model.getModel('PolicyExceptionCreate'); var newnewPolicyExceptionCreateRow = newPolicyExceptionCreate.data[0];  </jsitem>
-    </javascript>
-    <css>
-      <cssitem location="staticresource" name="CLSStyleSheetPack" cachelocation="false" url="" namespace="genesisExtn" filepath="cls-dashboard.css"/>
-      <cssitem location="staticresource" name="CLSStyleSheetPack" cachelocation="false" url="" namespace="genesisExtn" filepath="cls-dialog.css"/>
-      <cssitem location="staticresource" name="CLSStyleSheetPack" cachelocation="false" url="" namespace="genesisExtn" filepath="cls-picker.css"/>
-    </css>
-    <actionsequences uniqueid="sk-1Qub-543">
-      <actionsequence id="17d94ed6-4132-4ec8-84e3-7216a78785ed" label="Page Load" type="event-triggered" event-scope="component" event-name="page.rendered" uniqueid="sk-2oFF-1085">
-        <description/>
-        <actions>
-          <action type="branch" whenfinished="stop" model="Application">
-            <formula>{{Is_Approved__c}}</formula>
-            <iftrueactions>
-              <action type="runComponentAction" componentid="sk-26Ex-1044" action="changeMode" mode="read"/>
-            </iftrueactions>
-          </action>
-        </actions>
-      </actionsequence>
-    </actionsequences>
-  </resources>
-  <styles>
-    <styleitem type="background" bgtype="none"/>
-  </styles>
-  <interactions/>
+	<models>
+		<model id="PolicyException" limit="" query="true" createrowifnonefound="false" sobject="genesis__Policy_Exception__c" orderby="LastModifiedDate DESC" datasource="salesforce">
+			<fields>
+				<field id="genesis__Application__c"/>
+				<field id="genesis__Application__r.Name"/>
+				<field id="CreatedById"/>
+				<field id="CreatedBy.Name"/>
+				<field id="CreatedDate"/>
+				<field id="IsDeleted"/>
+				<field id="genesis__Description__c"/>
+				<field id="LastModifiedById"/>
+				<field id="LastModifiedBy.Name"/>
+				<field id="LastModifiedDate"/>
+				<field id="LastReferencedDate"/>
+				<field id="LastViewedDate"/>
+				<field id="genesis__Officer_Comments__c"/>
+				<field id="OwnerId"/>
+				<field id="Owner.Name"/>
+				<field id="Name"/>
+				<field id="genesis__Policy_Exception_Definition__c"/>
+				<field id="genesis__Policy_Exception_Definition__r.Name"/>
+				<field id="Id"/>
+				<field id="genesis__Status__c"/>
+				<field id="SystemModstamp"/>
+				<field id="genesis__Policy_Exception_Definition__r.genesis__Description__c"/>
+				<field id="genesis__Policy_Exception_Definition__r.genesis__Requires_Approval__c"/>
+				<field id="genesis__Policy_Exception_Definition__r.genesis__Requires_Officer_Explanation__c"/>
+				<field id="showCreatePolicyException" uionly="true" displaytype="BOOLEAN" label="showCreatePolicyException"/>
+				<field id="showExistingPolicy" uionly="true" displaytype="BOOLEAN" label="showExistingPolicy"/>
+				<field id="genesis__Override__c"/>
+				<field id="genesis__Policy_Exception_Definition__r.genesis__Enable_Override__c"/>
+				<field id="genesis__Condition_Type__c"/>
+				<field id="Party__c"/>
+				<field id="Party__r.Name"/>
+				<field id="Supporting_Document_Verified__c"/>
+				<field id="Description1__c"/>
+				<field id="Waiver_Reason__c"/>
+				<field id="Party__r.clcommon__Account__r.Name"/>
+			</fields>
+			<conditions>
+				<condition type="param" value="id" field="genesis__Application__c" operator="=" enclosevalueinquotes="true" novaluebehavior="" model="ApplicationStatus"/>
+			</conditions>
+			<actions/>
+		</model>
+		<model id="PolicyExceptionTemplate" limit="20" query="true" createrowifnonefound="false" sobject="genesis__Policy_Exception_Definition__c" datasource="salesforce">
+			<fields>
+				<field id="CreatedById"/>
+				<field id="CreatedBy.Name"/>
+				<field id="CreatedDate"/>
+				<field id="IsDeleted"/>
+				<field id="genesis__Description__c"/>
+				<field id="LastModifiedById"/>
+				<field id="LastModifiedBy.Name"/>
+				<field id="LastModifiedDate"/>
+				<field id="LastReferencedDate"/>
+				<field id="LastViewedDate"/>
+				<field id="OwnerId"/>
+				<field id="Owner.Name"/>
+				<field id="Name"/>
+				<field id="Id"/>
+				<field id="genesis__Requires_Approval__c"/>
+				<field id="genesis__Requires_Officer_Explanation__c"/>
+				<field id="SystemModstamp"/>
+				<field id="genesis__Enable_Override__c"/>
+			</fields>
+			<conditions/>
+			<actions/>
+		</model>
+		<model id="PolicyExceptionCreate" limit="20" query="true" createrowifnonefound="true" sobject="genesis__Policy_Exception__c" orderby="LastModifiedDate DESC" datasource="salesforce">
+			<fields>
+				<field id="genesis__Application__c"/>
+				<field id="genesis__Application__r.Name"/>
+				<field id="CreatedById"/>
+				<field id="CreatedBy.Name"/>
+				<field id="CreatedDate"/>
+				<field id="IsDeleted"/>
+				<field id="genesis__Description__c"/>
+				<field id="LastModifiedById"/>
+				<field id="LastModifiedBy.Name"/>
+				<field id="LastModifiedDate"/>
+				<field id="LastReferencedDate"/>
+				<field id="LastViewedDate"/>
+				<field id="genesis__Officer_Comments__c"/>
+				<field id="OwnerId"/>
+				<field id="Owner.Name"/>
+				<field id="Name"/>
+				<field id="genesis__Policy_Exception_Definition__c"/>
+				<field id="genesis__Policy_Exception_Definition__r.Name"/>
+				<field id="Id"/>
+				<field id="genesis__Status__c"/>
+				<field id="SystemModstamp"/>
+				<field id="genesis__Policy_Exception_Definition__r.genesis__Description__c"/>
+				<field id="genesis__Policy_Exception_Definition__r.genesis__Requires_Approval__c"/>
+				<field id="genesis__Policy_Exception_Definition__r.genesis__Requires_Officer_Explanation__c"/>
+				<field id="genesis__Condition_Type__c"/>
+				<field id="Party__c"/>
+				<field id="Party__r.Name"/>
+				<field id="Supporting_Document_Verified__c"/>
+				<field id="Waiver_Reason__c"/>
+				<field id="Description1__c"/>
+			</fields>
+			<conditions>
+				<condition type="blank" value="null" field="Id" operator="=" enclosevalueinquotes="false" model="ConditionHistory"/>
+			</conditions>
+			<actions/>
+		</model>
+		<model query="true" createrowifnonefound="false" datasource="salesforce" id="ApplicationStatus" sobject="genesis__Application_Status_History__c">
+			<fields>
+				<field id="genesis__Application__c"/>
+				<field id="genesis__Application__r.Name"/>
+				<field id="genesis__Application__r.Id"/>
+				<field id="genesis__Application__r.RecordTypeId"/>
+				<field id="genesis__Application__r.RecordType.Name"/>
+				<field id="genesis__Old_value__c"/>
+				<field id="genesis__New_Value__c"/>
+				<field id="genesis__Changed_On__c"/>
+				<field id="CreatedById"/>
+				<field id="CreatedBy.Name"/>
+				<field id="CreatedBy.Username"/>
+				<field id="CreatedDate"/>
+			</fields>
+			<conditions>
+				<condition type="param" value="Id" field="genesis__Application__c" fieldtargetobjects="genesis__Applications__c" operator="=" enclosevalueinquotes="true" model="ConditionHistory"/>
+			</conditions>
+			<actions/>
+		</model>
+		<model id="Party" limit="20" query="true" createrowifnonefound="false" datasource="salesforce" sobject="clcommon__Party__c">
+			<fields>
+				<field id="Id"/>
+				<field id="clcommon__Account__c"/>
+				<field id="clcommon__Account__r.Name"/>
+				<field id="genesis__Application__c"/>
+				<field id="genesis__Application__r.Name"/>
+				<field id="genesis__Application__r.Id"/>
+				<field id="genesis__Application__r.RecordTypeId"/>
+				<field id="genesis__Application__r.RecordType.Name"/>
+			</fields>
+			<conditions>
+				<condition type="param" value="Id" field="genesis__Application__c" fieldtargetobjects="genesis__Applications__c" operator="=" enclosevalueinquotes="true" model="ConditionHistory"/>
+			</conditions>
+			<actions/>
+		</model>
+		<model id="Application" limit="20" query="true" createrowifnonefound="false" datasource="salesforce" sobject="genesis__Applications__c">
+			<fields>
+				<field id="RecordTypeId"/>
+				<field id="Application_Declined_Cancelled_Details__c"/>
+				<field id="Application_Declined_Cancelled_Reason__c"/>
+				<field id="genesis__Status__c"/>
+				<field id="Is_Approved__c"/>
+			</fields>
+			<conditions>
+				<condition type="param" value="Id" field="Id" operator="=" enclosevalueinquotes="true" model="ConditionHistory"/>
+			</conditions>
+			<actions/>
+		</model>
+		<model limit="20" query="true" createrowifnonefound="false" datasource="salesforce" id="ConditionHistory" sobject="genesis__Policy_Exception__History" orderby="createddate">
+			<fields>
+				<field id="Field"/>
+				<field id="OldValue"/>
+				<field id="NewValue"/>
+				<field id="CreatedDate"/>
+				<field id="CreatedById"/>
+				<field id="CreatedBy.Name"/>
+				<field id="Parent.Id"/>
+				<field id="Parent.Name"/>
+			</fields>
+			<conditions>
+				<condition type="param" value="id" field="Parent.genesis__Application__c" fieldtargetobjects="genesis__Applications__c" operator="=" enclosevalueinquotes="true"/>
+			</conditions>
+			<actions/>
+		</model>
+		<model id="ApplicationUtil" limit="20" query="true" createrowifnonefound="false" datasource="salesforce" sobject="genesis__Applications__c">
+			<fields>
+				<field id="RecordTypeId"/>
+				<field id="genesis__Status__c"/>
+				<field id="Is_Approved__c"/>
+			</fields>
+			<conditions>
+				<condition type="param" value="Id" field="Id" operator="=" enclosevalueinquotes="true"/>
+			</conditions>
+			<actions/>
+		</model>
+	</models>
+	<components>
+		<buttonset uniqueid="sk-3vM5-414" model="ConditionHistory">
+			<buttons>
+				<button type="multi" label="Save" uniqueid="sk-3vM6-423" icon="sk-webicon-font-awesome:floppy-o">
+					<renderconditions logictype="and">
+						<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="false" fieldmodel="Application" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="Is_Approved__c" fieldtargetobjects="genesis__Applications__c" value="false"/>
+					</renderconditions>
+					<enableconditions logictype="or">
+						<condition type="fieldvalue" enclosevalueinquotes="false" fieldmodel="PolicyException" sourcetype="modelproperty" nosourcerowbehavior="deactivate" sourceproperty="hasChanged" value="true" operator="=" model="ConditionHistory"/>
+						<condition type="fieldvalue" enclosevalueinquotes="false" fieldmodel="Application" sourcetype="modelproperty" nosourcerowbehavior="deactivate" sourceproperty="hasChanged" value="true" operator="=" model="ConditionHistory"/>
+					</enableconditions>
+					<actions>
+						<action type="blockUI" message="The changes are being recorded!" timeout="2000"/>
+						<action type="save">
+							<models>
+								<model>PolicyException</model>
+								<model>Application</model>
+							</models>
+						</action>
+					</actions>
+					<hotkeys/>
+				</button>
+				<button type="multi" label="Save" uniqueid="sk-u8d-470" icon="sk-webicon-font-awesome:floppy-o">
+					<renderconditions logictype="and">
+						<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="false" fieldmodel="Application" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="Is_Approved__c" fieldtargetobjects="genesis__Applications__c" value="true"/>
+						<rendercondition type="fieldvalue" operator="!=" enclosevalueinquotes="true" fieldmodel="ApplicationUtil" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="genesis__Status__c" fieldtargetobjects="genesis__Applications__c" value="Loan Settled"/>
+					</renderconditions>
+					<enableconditions logictype="and">
+						<condition type="fieldvalue" enclosevalueinquotes="false" fieldmodel="PolicyException" sourcetype="modelproperty" nosourcerowbehavior="deactivate" sourceproperty="hasChanged" value="true" operator="="/>
+					</enableconditions>
+					<actions>
+						<action type="blockUI" message="The changes are being recorded!" timeout="2000"/>
+						<action type="save">
+							<models>
+								<model>PolicyException</model>
+							</models>
+						</action>
+					</actions>
+				</button>
+				<button type="cancel" label="Cancel" uniqueid="sk-2C5G-509" window="self">
+					<renderconditions logictype="and">
+						<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="false" fieldmodel="Application" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="Is_Approved__c" fieldtargetobjects="genesis__Applications__c" value="false"/>
+					</renderconditions>
+					<enableconditions/>
+					<models>
+						<model>PolicyException</model>
+						<model>PolicyExceptionTemplate</model>
+						<model>PolicyExceptionCreate</model>
+						<model>ApplicationStatus</model>
+						<model>Party</model>
+						<model>Application</model>
+						<model>ApplicationUtil</model>
+					</models>
+				</button>
+			</buttons>
+		</buttonset>
+		<skootable showconditions="true" showsavecancel="false" showerrorsinline="true" searchmethod="server" searchbox="false" showexportbuttons="false" hideheader="false" hidefooter="false" pagesize="10" alwaysresetpagination="false" createrecords="false" model="ApplicationStatus" buttonposition="" mode="read" allowcolumnreordering="true" responsive="false" uniqueid="sk-1Qv3-593" emptysearchbehavior="query" heading="Loan Status">
+			<fields>
+				<field id="genesis__Old_value__c" hideable="true" uniqueid="fi-1Qvj-677" readonly="true"/>
+				<field id="genesis__New_Value__c" hideable="true" uniqueid="fi-1Qvm-692" readonly="true"/>
+				<field id="genesis__Changed_On__c" hideable="true" uniqueid="fi-1Qvo-703" readonly="true"/>
+				<field id="CreatedById" hideable="true" uniqueid="fi-1Qvp-713"/>
+			</fields>
+			<rowactions/>
+			<massactions usefirstitemasdefault="true"/>
+			<views>
+				<view type="standard"/>
+			</views>
+			<searchfields/>
+		</skootable>
+		<basicfieldeditor showheader="true" showsavecancel="false" showerrorsinline="true" model="Application" uniqueid="sk-26Ex-1044" mode="edit">
+			<columns>
+				<column width="100%" uniqueid="sk-26Ex-1040">
+					<sections>
+						<section uniqueid="sk-26Ex-1041" collapsible="no" title="Application Declined/Cancelled Details" showheader="false">
+							<fields>
+								<field uniqueid="sk-26E--1074" id="Application_Declined_Cancelled_Reason__c">
+									<renderconditions logictype="and" onhidedatabehavior="cancel"/>
+									<enableconditions/>
+								</field>
+								<field uniqueid="sk-26F0-1079" id="Application_Declined_Cancelled_Details__c">
+									<renderconditions logictype="and" onhidedatabehavior="cancel"/>
+									<enableconditions/>
+								</field>
+							</fields>
+						</section>
+					</sections>
+				</column>
+			</columns>
+			<renderconditions logictype="and">
+				<rendercondition type="multiple" operator="in" fieldmodel="ApplicationUtil" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="genesis__Status__c" fieldtargetobjects="genesis__Applications__c" value="" enclosevalueinquotes="true">
+					<values>
+						<value>Declined</value>
+						<value>Cancelled</value>
+					</values>
+				</rendercondition>
+			</renderconditions>
+		</basicfieldeditor>
+		<grid uniqueid="sk-1Lc6a--77">
+			<divisions>
+				<division behavior="flex" minwidth="100px" ratio="1" verticalalign="top">
+					<components>
+						<pagetitle model="PolicyException" uniqueid="topPageTitleWithButtons">
+							<actions>
+								<action type="multi" label="Create New Policy Condition" uniqueid="createNewPolicyException" cssclass="rendering">
+									<actions>
+										<action type="showPopup">
+											<popup title="Create Policy Condition" width="90%">
+												<components>
+													<pagetitle uniqueid="errorPanelCreate" model="PolicyExceptionCreate">
+														<actions>
+															<action type="multi" label="Save" uniqueid="savePolicyExceptionButton" cssclass="rendering" icon="sk-webicon-font-awesome:floppy-o">
+																<actions>
+																	<action type="updateRow" fieldmodel="PolicyExceptionCreate" field="genesis__Application__c" enclosevalueinquotes="true" value="{{$Param.id}}" affectedrows="context"/>
+																	<action type="save">
+																		<models>
+																			<model>PolicyExceptionCreate</model>
+																		</models>
+																	</action>
+																	<action type="requeryModel" model="PolicyException" behavior="standard"/>
+																	<action type="blockUI" message="New Policy Exception Created" timeout="1000"/>
+																	<action type="closeAllPopups"/>
+																	<action type="cancel">
+																		<models>
+																			<model>PolicyExceptionCreate</model>
+																		</models>
+																	</action>
+																</actions>
+																<renderconditions logictype="and"/>
+																<enableconditions logictype="and">
+																	<condition type="fieldvalue" enclosevalueinquotes="false" fieldmodel="PolicyExceptionCreate" sourcetype="modelproperty" sourceproperty="hasChanged" value="true" operator="=" model="ConditionHistory"/>
+																</enableconditions>
+															</action>
+															<action type="multi" label="Cancel" icon="" uniqueid="cancelCreatePolicyExceptionInPopup" cssclass="rendering" secondary="true">
+																<actions>
+																	<action type="closeTopmostPopup"/>
+																</actions>
+															</action>
+														</actions>
+													</pagetitle>
+													<basicfieldeditor showheader="true" showsavecancel="false" showerrorsinline="true" model="PolicyExceptionCreate" uniqueid="sk-1xnJHp-384" mode="edit" layout="">
+														<columns>
+															<column width="33.3%">
+																<sections>
+																	<section title="Section A" collapsible="no" showheader="false">
+																		<fields/>
+																	</section>
+																</sections>
+															</column>
+															<column width="33.3%">
+																<sections>
+																	<section title="Section B" collapsible="no" showheader="false">
+																		<fields>
+																			<field uniqueid="sk-1kYz-501" id="Description1__c">
+																				<label>Description</label>
+																				<renderconditions logictype="and" onhidedatabehavior="cancel"/>
+																				<enableconditions logictype="and">
+																					<condition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="PolicyExceptionCreate" sourcetype="fieldvalue" field="genesis__Condition_Type__c" fieldtargetobjects="genesis__Policy_Exception__c" value="Other" model="ConditionHistory"/>
+																				</enableconditions>
+																			</field>
+																			<field uniqueid="sk-1Qzx-893" id="Party__c" pagesize="5" redirecttype="datasourcedefault" optionsource="model" optionmodel="Party" searchtemplate="{{clcommon__Account__c}}" displaytemplate="{{clcommon__Account__c}}">
+																				<filters>
+																					<filter type="modelmerge" operator="in" field="Id" fieldtargetobjects="clcommon__Party__c" value="" model="Party" enclosevalueinquotes="true" mergefield="Id" novaluebehavior="deactivate"/>
+																				</filters>
+																				<renderconditions logictype="and" onhidedatabehavior="keep"/>
+																				<enableconditions/>
+																				<searchfields/>
+																			</field>
+																			<field uniqueid="sk-1Qzy-898" id="genesis__Status__c">
+																				<renderconditions logictype="and" onhidedatabehavior="cancel"/>
+																				<enableconditions/>
+																			</field>
+																			<field uniqueid="sk-1kYt-477" id="Waiver_Reason__c">
+																				<renderconditions logictype="and" onhidedatabehavior="cancel">
+																					<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="PolicyExceptionCreate" sourcetype="fieldvalue" field="genesis__Status__c" fieldtargetobjects="genesis__Policy_Exception__c" value="Waived"/>
+																				</renderconditions>
+																				<enableconditions/>
+																			</field>
+																			<field uniqueid="sk-1Qz_-906" id="Supporting_Document_Verified__c"/>
+																		</fields>
+																	</section>
+																</sections>
+															</column>
+															<column width="33.3%">
+																<sections>
+																	<section title="New Section" collapsible="no" showheader="false">
+																		<fields/>
+																	</section>
+																</sections>
+															</column>
+														</columns>
+														<renderconditions logictype="and"/>
+														<conditions/>
+													</basicfieldeditor>
+													<basicfieldeditor showheader="true" showsavecancel="false" showerrorsinline="true" model="PolicyExceptionCreate" uniqueid="sk-1xnIjV-374" mode="edit" layout="">
+														<columns>
+															<column width="50%">
+																<sections>
+																	<section title="Section A" collapsible="no" showheader="false">
+																		<fields/>
+																	</section>
+																</sections>
+															</column>
+															<column width="50%">
+																<sections>
+																	<section title="New Section" collapsible="no" showheader="false">
+																		<fields/>
+																	</section>
+																</sections>
+															</column>
+														</columns>
+														<renderconditions logictype="and"/>
+													</basicfieldeditor>
+												</components>
+												<afterclose>
+													<action type="requeryModel" model="PolicyException" behavior="standard"/>
+												</afterclose>
+											</popup>
+										</action>
+										<action type="custom" snippet="initPolicyExceptionCreate"/>
+										<action type="requeryModel" model="PolicyExceptionCreate" behavior="standard"/>
+										<action type="createRow" model="PolicyExceptionCreate" behavior="standard" appendorprepend="prepend" defaultmodefornewitems="edit" affectedrows="context"/>
+									</actions>
+									<renderconditions logictype="and">
+										<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="false" fieldmodel="Application" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="Is_Approved__c" fieldtargetobjects="genesis__Applications__c" value="false"/>
+									</renderconditions>
+									<enableconditions logictype="and"/>
+								</action>
+							</actions>
+							<maintitle>Policy Conditions</maintitle>
+						</pagetitle>
+						<skootable showconditions="true" showsavecancel="false" showerrorsinline="true" searchmethod="server" searchbox="false" showexportbuttons="false" pagesize="10" createrecords="false" model="PolicyException" buttonposition="" mode="read" uniqueid="existingPolicyTableId" instantfilters="false" emptysearchbehavior="query">
+							<fields>
+								<field id="Name" hideable="true" uniqueid="fi-1gkA-542">
+									<label>Condition Reference Number</label>
+									<renderconditions logictype="and" onhidedatabehavior="keep"/>
+									<enableconditions/>
+								</field>
+								<field id="genesis__Condition_Type__c" hideable="true" uniqueid="fi-1Q_B-960">
+									<renderconditions logictype="and" onhidedatabehavior="keep"/>
+									<enableconditions logictype="and">
+										<condition type="fieldvalue" operator="=" enclosevalueinquotes="false" fieldmodel="Application" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="Is_Approved__c" fieldtargetobjects="genesis__Applications__c" value="false"/>
+									</enableconditions>
+								</field>
+								<field id="Description1__c" hideable="true" uniqueid="fi-1kZS-654">
+									<label>Description</label>
+									<renderconditions logictype="and" onhidedatabehavior="keep"/>
+									<enableconditions logictype="and">
+										<condition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="PolicyException" sourcetype="fieldvalue" field="genesis__Condition_Type__c" fieldtargetobjects="genesis__Policy_Exception__c" value="Other" model="ConditionHistory"/>
+										<condition type="fieldvalue" operator="=" enclosevalueinquotes="false" fieldmodel="Application" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="Is_Approved__c" fieldtargetobjects="genesis__Applications__c" value="false"/>
+									</enableconditions>
+								</field>
+								<field id="Party__c" hideable="true" uniqueid="fi-1Q_F-980" pagesize="5" redirecttype="datasourcedefault" displaytemplate="{{clcommon__Account__r.Name}}" searchtemplate="{{clcommon__Account__r.Name}}">
+									<filters>
+										<filter type="modelmerge" operator="in" field="Id" fieldtargetobjects="clcommon__Party__c" value="" model="Party" enclosevalueinquotes="true" mergefield="Id" novaluebehavior="deactivate"/>
+									</filters>
+									<searchfields/>
+									<renderconditions logictype="and" onhidedatabehavior="keep"/>
+									<enableconditions logictype="and">
+										<condition type="fieldvalue" operator="=" enclosevalueinquotes="false" fieldmodel="Application" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="Is_Approved__c" fieldtargetobjects="genesis__Applications__c" value="false"/>
+									</enableconditions>
+								</field>
+								<field id="genesis__Status__c" hideable="true" uniqueid="fi-1Q_G-985">
+									<renderconditions logictype="and" onhidedatabehavior="keep"/>
+									<enableconditions logictype="and">
+										<condition type="fieldvalue" operator="!=" enclosevalueinquotes="true" fieldmodel="ApplicationUtil" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="genesis__Status__c" fieldtargetobjects="genesis__Applications__c" value="Loan Settled"/>
+									</enableconditions>
+								</field>
+								<field id="Waiver_Reason__c" hideable="true" uniqueid="fi-1kZU-662">
+									<renderconditions logictype="and" onhidedatabehavior="keep"/>
+									<enableconditions logictype="and">
+										<condition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="PolicyException" sourcetype="fieldvalue" field="genesis__Status__c" fieldtargetobjects="genesis__Policy_Exception__c" value="Waived" model="ConditionHistory"/>
+										<condition type="fieldvalue" operator="!=" enclosevalueinquotes="true" fieldmodel="ApplicationUtil" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="genesis__Status__c" fieldtargetobjects="genesis__Applications__c" value="Loan Settled"/>
+									</enableconditions>
+								</field>
+								<field id="Supporting_Document_Verified__c" hideable="true" uniqueid="fi-1Q_I-993">
+									<renderconditions logictype="and" onhidedatabehavior="keep"/>
+									<enableconditions logictype="and">
+										<condition type="fieldvalue" operator="=" enclosevalueinquotes="false" fieldmodel="Application" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="Is_Approved__c" fieldtargetobjects="genesis__Applications__c" value="false"/>
+									</enableconditions>
+								</field>
+							</fields>
+							<rowactions>
+								<action type="edit">
+									<renderconditions logictype="and">
+										<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="false" fieldmodel="Application" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="Is_Approved__c" fieldtargetobjects="genesis__Applications__c" value="false"/>
+									</renderconditions>
+								</action>
+							</rowactions>
+							<massactions usefirstitemasdefault="true"/>
+							<views>
+								<view type="standard"/>
+							</views>
+							<searchfields/>
+							<renderconditions logictype="and">
+								<rendercondition type="fieldvalue" enclosevalueinquotes="true" fieldmodel="PolicyException" sourcetype="modelproperty" nosourcerowbehavior="deactivate" sourceproperty="hasRows"/>
+							</renderconditions>
+							<actions defaultlabel="Global Actions" defaulticon="sk-icon-magic" usefirstitemasdefault="true"/>
+						</skootable>
+						<skootable showconditions="true" showsavecancel="false" showerrorsinline="true" searchmethod="server" searchbox="true" showexportbuttons="false" hideheader="false" hidefooter="false" pagesize="10" alwaysresetpagination="false" createrecords="false" model="ConditionHistory" buttonposition="" mode="read" allowcolumnreordering="true" responsive="true" uniqueid="sk-1Ldm-582" heading="Conditions Audit Trail" instantfilters="true" emptysearchbehavior="query" searchplaceholdertext="Search Conditions History">
+							<fields>
+								<field id="Parent.Name" hideable="true" uniqueid="fi-1gjD-484">
+									<label>Condition Reference Number</label>
+								</field>
+								<field id="Field" hideable="true" uniqueid="fi-1Ld--695"/>
+								<field id="OldValue" hideable="true" uniqueid="fi-1Le2-709"/>
+								<field id="NewValue" hideable="true" uniqueid="fi-1Le4-727"/>
+								<field id="CreatedDate" hideable="true" uniqueid="fi-1Le5-747"/>
+								<field id="CreatedById" hideable="true" uniqueid="fi-1Le7-756"/>
+							</fields>
+							<rowactions/>
+							<massactions usefirstitemasdefault="true"/>
+							<views>
+								<view type="standard"/>
+							</views>
+							<searchfields/>
+						</skootable>
+						<template multiple="false" uniqueid="sk-3jAdCH-193" model="Application">
+							<contents>&lt;div class="no-record-message"&gt;No Policy Condition to Display&lt;/div&gt;</contents>
+							<renderconditions logictype="and">
+								<rendercondition fieldmodel="PolicyException" sourcetype="modelproperty" nosourcerowbehavior="deactivate" sourceproperty="hasNoRows"/>
+							</renderconditions>
+						</template>
+					</components>
+				</division>
+			</divisions>
+			<styles>
+				<styleitem type="background" bgtype="none"/>
+			</styles>
+			<renderconditions logictype="and"/>
+		</grid>
+	</components>
+	<resources>
+		<labels/>
+		<javascript>
+			<jsitem location="inlinesnippet" name="createNewPolicyException" cachelocation="false">/**
+*  Purpose: Used for setting variables for creating new policy exception
+*  Where: Create new policy exception button
+*
+* @name  createNewPolicyException.js
+* @author  Ashish Kumar Singh
+* @version 1.0
+* @since   06-18-2016
+*/
+
+
+//a DOM element that Skuid will add, in place, into the parent / container component in which you've placed this custom component.
+//Get a reference to this element
+var params = arguments[0],
+$ = skuid.$;    //declares that we are using skuid custom jQuery
+
+$('#createNewPolicyException').addClass('selected-btn');
+$('#existingPolicyException').removeClass('selected-btn');
+
+var newPolicyException = skuid.model.getModel('PolicyException');
+var newPolicyExceptionRow = newPolicyException.data[0];
+
+if(!newPolicyExceptionRow){
+    var newPolicyExceptionRow = newPolicyException.createRow({
+        additionalConditions: [
+            { field: 'showCreatePolicyException', value:true },
+            { field: 'showExistingPolicy', value: false },
+
+        ]
+    });
+
+}else{
+    newPolicyException.updateRow(newPolicyExceptionRow ,
+                        { showCreatePolicyException : true ,
+                          showExistingPolicy : false });
+
+}
+</jsitem>
+			<jsitem location="inlinesnippet" name="showExistingPolicyException" cachelocation="false">/**
+*  Purpose: Used for setting variables for displaying existing policy exception
+*  Where:
+*
+* @name  showExistingPolicyException.js
+* @author  Ashish Kumar Singh
+* @version 1.0
+* @since   06-18-2016
+*/
+
+
+//a DOM element that Skuid will add, in place, into the parent / container component in which you've placed this custom component.
+//Get a reference to this element
+var params = arguments[0],
+$ = skuid.$;    //declares that we are using skuid custom jQuery
+
+$('#createNewPolicyException').removeClass('selected-btn');
+$('#existingPolicyException').addClass('selected-btn');
+
+var newPolicyException = skuid.model.getModel('PolicyException');
+var newPolicyExceptionRow = newPolicyException.data[0];
+
+if(!newPolicyExceptionRow){
+    var newPolicyExceptionRow = newPolicyException.createRow({
+        additionalConditions: [
+            { field: 'showCreatePolicyException', value:false },
+            { field: 'showExistingPolicy', value: true },
+
+        ]
+    });
+
+}else{
+    newPolicyException.updateRow(newPolicyExceptionRow ,
+                        { showCreatePolicyException : false ,
+                          showExistingPolicy : true });
+
+}</jsitem>
+			<jsitem location="inlinesnippet" name="showOfficerComments" cachelocation="false">/**
+*  Purpose: Used for hiding and showing officer comments text box based on requires approval checkbox is selected or not in the template chosen
+*  Where:
+*
+* @name  showOfficerComments.js
+* @author  Ashish Kumar Singh
+* @version 1.0
+* @since   06-18-2016
+*/
+
+
+//a DOM element that Skuid will add, in place, into the parent / container component in which you've placed this custom component.
+//Get a reference to this element
+var params = arguments[0],
+$ = skuid.$;    //declares that we are using skuid custom jQuery
+
+var newPolicyException = skuid.model.getModel('PolicyException');
+var newPolicyExceptionRow = newPolicyException.data[0];
+
+var newPolicyExceptionCreate = skuid.model.getModel('PolicyExceptionCreate');
+var newnewPolicyExceptionCreateRow = newPolicyException.data[0];
+
+
+if(newnewPolicyExceptionCreateRow.genesis__Policy_Exception_Definition__r.genesis__Requires_Approval__c &amp;&amp; newnewPolicyExceptionCreateRow.genesis__Policy_Exception_Definition__r.genesis__Requires_Officer_Explanation__c){
+
+    skuid.component.getById('showRequiredEditor').element.show();
+
+}
+
+</jsitem>
+			<jsitem location="inlinesnippet" name="submitAutoStatus" cachelocation="false">/**
+*  Purpose: Used for setting status to pending or approved on whether it requires approval or not
+*  Where: save button of modal for creating new policy exception
+*
+* @name  submitAutoStatus.js
+* @author  Ashish Kumar Singh
+* @version 1.0
+* @since   06-18-2016
+*/
+
+
+//a DOM element that Skuid will add, in place, into the parent / container component in which you've placed this custom component.
+//Get a reference to this element
+var params = arguments[0],
+$ = skuid.$;    //declares that we are using skuid custom jQuery
+
+var newPolicyExceptionCreate = skuid.model.getModel('PolicyExceptionCreate');
+var newnewPolicyExceptionCreateRow = newPolicyExceptionCreate.data[0];
+
+if(!newnewPolicyExceptionCreateRow){
+
+    if(newnewPolicyExceptionCreateRow.genesis__Policy_Exception_Definition__r.genesis__Requires_Approval__c){
+         var newnewPolicyExceptionCreateRow = newPolicyExceptionCreate.createRow({
+            additionalConditions: [
+                { field: 'genesis__Status__c', value:'Pending' },
+
+            ]
+        });
+    }else{
+         newPolicyExceptionCreate.updateRow(newnewPolicyExceptionCreateRow ,
+              { genesis__Status__c : 'Approved' ,
+          });
+    }
+
+}else{
+
+        if(newnewPolicyExceptionCreateRow.genesis__Policy_Exception_Definition__r.genesis__Requires_Approval__c){
+            newPolicyExceptionCreate.updateRow(newnewPolicyExceptionCreateRow ,
+                        { genesis__Status__c : 'Pending' ,
+                          });
+        }else{
+            newPolicyExceptionCreate.updateRow(newnewPolicyExceptionCreateRow ,
+                        { genesis__Status__c : 'Approved' ,
+                          });
+        }
+
+}
+
+skuid.model.save([newPolicyExceptionCreate]);
+
+</jsitem>
+			<jsitem location="inlinesnippet" name="checkRequiredFields" cachelocation="false">/**
+*  Purpose: Used for validating all the required fields are enterd or not
+*  Where: Create new policy exception modal save button
+*
+* @name  checkRequiredFields.js
+* @author  Ashish Kumar Singh
+* @version 1.0
+* @since   06-18-2016
+*/
+
+
+//a DOM element that Skuid will add, in place, into the parent / container component in which you've placed this custom component.
+//Get a reference to this element
+var params = arguments[0],
+$ = skuid.$;    //declares that we are using skuid custom jQuery
+
+var newPolicyExceptionCreate = skuid.model.getModel('PolicyExceptionCreate');
+var newnewPolicyExceptionCreateRow = newPolicyExceptionCreate.data[0];
+
+// Handle error messages
+var displayMessage = function (message, severity) {
+    var editor = $('#errorPanelCreate ').data('object').editor;
+    editor.handleMessages([
+        {
+            message: message,
+            severity: severity.toUpperCase()
+        }
+    ]);
+
+    return false;
+};
+
+
+var isBlankStr = function(str) {
+    return (str === undefined || str.length === 0 || !str.trim());
+}
+
+
+if(!newnewPolicyExceptionCreateRow){
+    if(newnewPolicyExceptionCreateRow.genesis__Policy_Exception_Definition__r.genesis__Requires_Officer_Explanation__c &amp;&amp; isBlankStr(newnewPolicyExceptionCreateRow.genesis__Officer_Comments__c)){
+         return displayMessage('For selected policy condition template " Officer Comments " is mandatory  ', 'ERROR');
+    }
+
+
+}else{
+    if(newnewPolicyExceptionCreateRow.genesis__Policy_Exception_Definition__c){
+        if(newnewPolicyExceptionCreateRow.genesis__Policy_Exception_Definition__r.genesis__Requires_Officer_Explanation__c &amp;&amp; isBlankStr(newnewPolicyExceptionCreateRow.genesis__Officer_Comments__c)){
+             return displayMessage('For selected policy condition template " Officer Comments " is mandatory ', 'ERROR');
+        }
+    }else{
+        return displayMessage('Please select a policy condition template ', 'ERROR');
+    }
+}</jsitem>
+			<jsitem location="inlinesnippet" name="clickhandler" cachelocation="false">/**
+*  Purpose: Used for clciking showExisting memos button through code
+*  Where:
+*
+* @name  clickHandler.js
+* @author  Ashish Kumar Singh
+* @version 1.0
+* @since   06-18-2016
+*/
+
+
+//a DOM element that Skuid will add, in place, into the parent / container component in which you've placed this custom component.
+//Get a reference to this element
+var params = arguments[0],
+$ = skuid.$;    //declares that we are using skuid custom jQuery
+
+skuid.component.getById('existingPolicyException').element.click();
+
+window.location.reload(true);</jsitem>
+			<jsitem location="inlinesnippet" name="initPolicyExceptionCreate" cachelocation="false">/**
+*  Purpose:
+*  Where:
+*
+* @name  initPolicyException.js
+* @author  Ashish Kumar Singh
+* @version 1.0
+* @since   06-18-2016
+*/
+
+
+//a DOM element that Skuid will add, in place, into the parent / container component in which you've placed this custom component.
+//Get a reference to this element
+var params = arguments[0],
+$ = skuid.$;    //declares that we are using skuid custom jQuery
+
+var newPolicyExceptionCreate = skuid.model.getModel('PolicyExceptionCreate');
+var newnewPolicyExceptionCreateRow = newPolicyExceptionCreate.data[0];
+
+</jsitem>
+		</javascript>
+		<css>
+			<cssitem location="staticresource" name="CLSStyleSheetPack" cachelocation="false" url="" namespace="genesisExtn" filepath="cls-dashboard.css"/>
+			<cssitem location="staticresource" name="CLSStyleSheetPack" cachelocation="false" url="" namespace="genesisExtn" filepath="cls-dialog.css"/>
+			<cssitem location="staticresource" name="CLSStyleSheetPack" cachelocation="false" url="" namespace="genesisExtn" filepath="cls-picker.css"/>
+		</css>
+		<actionsequences uniqueid="sk-1Qub-543">
+			<actionsequence id="17d94ed6-4132-4ec8-84e3-7216a78785ed" label="Page Load" type="event-triggered" event-scope="component" event-name="page.rendered" uniqueid="sk-2oFF-1085">
+				<description/>
+				<actions>
+					<action type="branch" whenfinished="stop" model="Application">
+						<formula>{{Is_Approved__c}}</formula>
+						<iftrueactions>
+							<action type="runComponentAction" componentid="sk-26Ex-1044" action="changeMode" mode="read"/>
+						</iftrueactions>
+					</action>
+				</actions>
+			</actionsequence>
+		</actionsequences>
+	</resources>
+	<styles>
+		<styleitem type="background" bgtype="none"/>
+	</styles>
+	<interactions/>
 </skuidpage>

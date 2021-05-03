@@ -1,0 +1,114 @@
+<skuidpage unsavedchangeswarning="yes" personalizationmode="server" showsidebar="false" showheader="false">
+	<models>
+		<model id="OrgParam" limit="1" query="true" createrowifnonefound="false" adapter="salesforce" type="" sobject="genesis__Org_Parameters__c">
+			<fields>
+				<field id="genesis__Use_CL_Product__c"/>
+				<field id="genesis__Use_Common_Document_Management__c"/>
+			</fields>
+			<conditions/>
+			<actions/>
+		</model>
+	</models>
+	<components>
+		<includepanel type="skuid" uniqueid="sk-2HpU_H-193" pagename="NewAttachmentList" module="" querystring="id={{$Param.id}}">
+			<renderconditions logictype="or">
+				<rendercondition fieldmodel="OrgParam" sourcetype="modelproperty" nosourcerowbehavior="deactivate" sourceproperty="hasNoRows"/>
+				<rendercondition type="fieldvalue" operator="!=" enclosevalueinquotes="false" fieldmodel="OrgParam" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="genesis__Use_Common_Document_Management__c" value="true"/>
+			</renderconditions>
+		</includepanel>
+		<includepanel type="skuid" uniqueid="sk-2Hpaf--236" pagename="AddAttachmentsToDocumentCategory" module="ngUi" querystring="id={{$Param.id}}">
+			<renderconditions logictype="and">
+				<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="false" fieldmodel="OrgParam" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="genesis__Use_Common_Document_Management__c" value="true"/>
+			</renderconditions>
+		</includepanel>
+	</components>
+	<resources>
+		<labels/>
+		<javascript>
+			<jsitem location="staticresource" name="CLSNGUIComponent" cachelocation="false" url="" namespace="genesisExtn" filepath="commonUtils.js">var params = arguments[0],
+    $ = skuid.$;
+</jsitem>
+			<jsitem location="inlinesnippet" name="addDocuments" cachelocation="false">var params = arguments[0],
+	$ = skuid.$;
+
+var selectedIds = $.map(params.list.getSelectedItems(), function(item) {
+    return item.row.Id;
+});
+
+var id = getIdfromUrl(window.location.search.substring(1));
+
+var message = {
+    type: 'action-document-add',
+    documentCategoryId: id,
+    documentIds: selectedIds
+};
+
+window.parent.postMessage(message, '*');
+
+function getIdfromUrl(query) {
+    var id;
+	$.each(query.split('&amp;'), function(index, value) {
+		var pair = value.split('=');
+		if (pair[0] === 'id') {
+			id = pair[1];
+		}
+	});
+	return id;
+}</jsitem>
+			<jsitem location="inlinesnippet" name="SelectUploadedFiles" cachelocation="false">var params = arguments[0],
+	$ = skuid.$;
+
+var allAttachments = params.model.data;
+var origAttachments = getCurrentAttachments();
+
+var origIds = $.map(origAttachments, function(attachment, i) {
+    return attachment.Id;
+});
+
+var newAttachments = $.grep(allAttachments, function(attachment, i) {
+    return $.inArray(attachment.Id, origIds) == -1;
+});
+
+var newIds = $.map(newAttachments, function(attachment, i) {
+    return attachment.Id;
+});
+
+var attachmentTable = skuid.$('#attachment-table').data('object');
+
+$.each(newIds, function(index, id) {
+    var checkbox = $(attachmentTable.list.renderedItems[id].element).find('input[type=checkbox]');
+    if (!checkbox.attr('checked')) {
+        checkbox.trigger('click');
+    }
+});</jsitem>
+			<jsitem location="staticresource" name="CLSNGUIComponent" cachelocation="false" url="" namespace="genesisExtn" filepath="attachmentsComponent.js">var params = arguments[0],
+	$ = skuid.$;
+</jsitem>
+			<jsitem location="inlinesnippet" name="RenderFileName" cachelocation="false">var field = arguments[0],
+    value = arguments[1],
+	$ = skuid.$;
+
+field.element.text(value);</jsitem>
+		</javascript>
+		<css>
+			<cssitem location="inline" name="FileUploadLayout" cachelocation="false">.nx-fileupload {
+    height: 30px;
+    margin-bottom: 10px;
+}
+
+.nx-fileupload &gt; .ui-button {
+    float: right;
+}
+
+.nx-fileupload &gt; .nx-fileupload-status {
+    position: absolute;
+    top: 0;
+    right: 90px;
+}</cssitem>
+			<cssitem location="staticresource" name="CLSStyleSheetPack" cachelocation="false" url="" namespace="genesisExtn" filepath="cls-dashboard.css"/>
+		</css>
+	</resources>
+	<styles>
+		<styleitem type="background" bgtype="none"/>
+	</styles>
+</skuidpage>

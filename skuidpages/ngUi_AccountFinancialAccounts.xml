@@ -1,0 +1,172 @@
+<skuidpage unsavedchangeswarning="" personalizationmode="server" showsidebar="false" useviewportmeta="true" showheader="false">
+	<models>
+		<model id="AccountParty" limit="20" query="true" createrowifnonefound="false" datasource="salesforce" type="" sobject="clcommon__Party__c" orderby="CreatedDate DESC">
+			<fields>
+				<field id="clcommon__Account__c"/>
+				<field id="clcommon__Account__r.Name"/>
+				<field id="genesis__Application__c"/>
+				<field id="genesis__Application__r.Name"/>
+				<field id="genesis__Application__r.genesis__Loan_Amount__c"/>
+				<field id="genesis__Application__r.genesis__CL_Product__c"/>
+				<field id="genesis__Application__r.genesis__CL_Product__r.Name"/>
+				<field id="genesis__Application__r.genesis__CL_Product__r.clcommon__Product_Name__c"/>
+				<field id="genesis__Application__r.genesis__Interest_Rate__c"/>
+				<field id="genesis__Application__r.genesis__Term__c"/>
+			</fields>
+			<conditions>
+				<condition type="param" value="id" field="clcommon__Account__c" fieldtargetobjects="Account" operator="=" enclosevalueinquotes="true" novaluebehavior=""/>
+			</conditions>
+			<actions/>
+		</model>
+		<model id="AccountLoans" limit="20" query="true" createrowifnonefound="false" datasource="salesforce" type="" sobject="staging__Interface_Party__c">
+			<fields>
+				<field id="staging__Account__c"/>
+				<field id="staging__Account__r.Name"/>
+				<field id="staging__Interface_Contract__c"/>
+				<field id="staging__Interface_Contract__r.Name"/>
+				<field id="staging__Interface_Contract__r.staging__Original_Amount__c"/>
+				<field id="staging__Interface_Contract__r.staging__Principal_Balance__c"/>
+				<field id="staging__Interface_Contract__r.genesis__CL_Product__r.clcommon__Product_Name__c"/>
+				<field id="staging__Interface_Contract__r.staging__Interest_Rate__c"/>
+				<field id="staging__Interface_Contract__r.staging__Contract_Type__c"/>
+			</fields>
+			<conditions>
+				<condition type="param" value="id" field="staging__Account__c" fieldtargetobjects="Account" operator="=" enclosevalueinquotes="true" novaluebehavior=""/>
+			</conditions>
+			<actions/>
+		</model>
+	</models>
+	<components>
+		<grid uniqueid="sk-cLuua-788">
+			<divisions>
+				<division behavior="flex" minwidth="100px" ratio="1" verticalalign="top">
+					<components>
+						<skootable showconditions="true" showsavecancel="false" showerrorsinline="true" searchmethod="server" searchbox="false" showexportbuttons="false" pagesize="10" createrecords="false" model="AccountLoans" buttonposition="" mode="readonly" allowcolumnreordering="false" uniqueid="interface-contract-table" emptysearchbehavior="query">
+							<fields>
+								<field id="staging__Interface_Contract__r.Name" hideable="true" uniqueid="fi-cAFsr-441" valuehalign="" type="">
+									<label>Account Number</label>
+								</field>
+								<field id="staging__Interface_Contract__r.staging__Principal_Balance__c" hideable="true" uniqueid="fi-c9ubo-316" decimalplaces="" valuehalign="" type="">
+									<label>Balance</label>
+								</field>
+								<field id="staging__Interface_Contract__r.staging__Interest_Rate__c" hideable="true" uniqueid="fi-c9vFA-331" decimalplaces="" valuehalign="" type="">
+									<label>Rate</label>
+								</field>
+							</fields>
+							<rowactions>
+								<action type="multi" label="Renew" icon="fa-refresh">
+									<actions>
+										<action type="custom" sfdcactionname="genesis__AutoCreditPullAction" snippet="Renew"/>
+									</actions>
+								</action>
+								<action type="multi" label="Annual Review" icon="sk-icon-solutions">
+									<actions>
+										<action type="custom" snippet="AnnualReview"/>
+									</actions>
+								</action>
+							</rowactions>
+							<massactions usefirstitemasdefault="true"/>
+							<views>
+								<view type="standard"/>
+							</views>
+							<searchfields/>
+							<renderconditions logictype="and"/>
+						</skootable>
+					</components>
+				</division>
+				<division behavior="specified" verticalalign="top" width="300px">
+					<components>
+						<skuidvis__chartset>
+							<charts>
+								<skuidvis__chart model="AccountLoans" maintitle="&lt;div style=&quot;font-size: 11px; font-weight: 700;&quot;&gt;Financial Account Analysis&lt;/div&gt;" type="pie" uniqueid="sk-cM1tx-816" backgroundcolor="#f5f5f5" height="270px">
+									<dataaxes>
+										<axis id="axis1"/>
+									</dataaxes>
+									<categoryaxes>
+										<axis id="categories" categorytype="field"/>
+									</categoryaxes>
+									<serieslist>
+										<series valuefield="staging__Interface_Contract__r.staging__Principal_Balance__c" splittype="field" modelId="AccountLoans" type="pie" aggfunction="sum" splitfield="staging__Interface_Contract__r.genesis__Loan_Type__c"/>
+										<series valuefield="staging__Current_Balance__c" splittype="field" modelId="AccountDeposit" type="pie" aggfunction="sum" splitfield="staging__Account_Type__c"/>
+									</serieslist>
+									<colors>
+										<value>#1cbdd4</value>
+										<value>#48ce94</value>
+										<value>#ffa21d</value>
+										<value>#2d5074</value>
+										<value>#37444e</value>
+									</colors>
+									<legend layout="off" halign="center" valign="bottom" showlabels="false"/>
+									<renderconditions logictype="and"/>
+								</skuidvis__chart>
+							</charts>
+						</skuidvis__chartset>
+					</components>
+				</division>
+			</divisions>
+			<styles>
+				<styleitem type="background" bgtype="none"/>
+			</styles>
+		</grid>
+    
+    7
+    
+    
+    
+    
+    
+    
+  
+	</components>
+	<resources>
+		<labels/>
+		<javascript>
+			<jsitem location="inlinesnippet" name="Renew" cachelocation="false">var params = arguments[0],    
+contextRow = params.item ? params.item.row : params.row,
+contextModel = params.model,
+$ = skuid.$;
+var contextContractId = contextModel.getFieldValue(contextRow, 'staging__Interface_Contract__c', true);
+var contextContractProdType = contextModel.getFieldValue(contextRow, 'staging__Interface_Contract__r.staging__Contract_Type__c', true);
+var result = sforce.apex.execute('genesis.SkuidRenewalCtrl','renewContract',
+{   
+        contractId : contextContractId,
+        productType : contextContractProdType
+});
+var resObj = JSON.parse(result);
+if(resObj.status == 'SUCCESS'){
+var appName = resObj.content[0].Name;
+alert('Application '+ appName + ' successfully created.');
+}else{
+alert(resObj.errorMessage);
+}
+
+window.location.reload();</jsitem>
+			<jsitem location="inlinesnippet" name="AnnualReview" cachelocation="false">var params = arguments[0],    
+contextRow = params.item ? params.item.row : params.row,
+contextModel = params.model,
+$ = skuid.$;
+var contextContractId = contextModel.getFieldValue(contextRow, 'staging__Interface_Contract__c', true);
+var contextContractProdType = contextModel.getFieldValue(contextRow, 'staging__Interface_Contract__r.staging__Contract_Type__c', true);
+var result = sforce.apex.execute('genesis.SkuidRenewalCtrl','doAnnualReview',
+{   
+        contractId : contextContractId,
+        productType : contextContractProdType
+});
+var resObj = JSON.parse(result);
+if(resObj.status == 'SUCCESS'){
+var appName = resObj.content[0].Name;
+alert('Application '+ appName + ' successfully created.');
+}else{
+alert(resObj.errorMessage);
+}
+window.location.reload();</jsitem>
+		</javascript>
+		<css>
+			<cssitem location="staticresource" name="CLSStyleSheetPack" cachelocation="false" url="" namespace="genesisExtn" filepath="cls-common.css"/>
+			<cssitem location="staticresource" name="CLSStyleSheetPack" cachelocation="false" url="" namespace="genesisExtn" filepath="customcss.css"/>
+		</css>
+	</resources>
+	<styles>
+		<styleitem type="background" bgtype="none"/>
+	</styles>
+</skuidpage>

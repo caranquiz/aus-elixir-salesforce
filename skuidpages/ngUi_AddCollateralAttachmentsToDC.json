@@ -1,0 +1,9 @@
+{
+	"name": "AddCollateralAttachmentsToDC",
+	"apiVersion": "v1",
+	"isMasterPage": false,
+	"maxAutoSaves": 25,
+	"module": "ngUi",
+	"type": "Desktop",
+	"uniqueId": "ngUi_AddCollateralAttachmentsToDC"
+}

@@ -1,0 +1,91 @@
+<skuidpage personalizationmode="server" showsidebar="false" showheader="false">
+	<models>
+		<model id="ViewApplication" limit="1" query="true" createrowifnonefound="false" adapter="salesforce" type="" sobject="genesis__Applications__c">
+			<fields>
+				<field id="Id"/>
+				<field id="RecordType.Name"/>
+			</fields>
+			<conditions>
+				<condition type="param" value="id" field="Id" operator="=" state="" enclosevalueinquotes="true" novaluebehavior="noquery"/>
+			</conditions>
+			<actions/>
+		</model>
+	</models>
+	<components>
+		<includepanel type="skuid" uniqueid="ApplicationHeader" pagename="GenericHeader" module="ngUi" querystring="?id={{$Model.ViewApplication.data.0.Id}}" cssclass="includeHeader">
+			<renderconditions logictype="and"/>
+		</includepanel>
+		<includepanel type="skuid" uniqueid="myPkgView" pagename="PackageView" module="ngUi" querystring="?id={{$Model.ViewApplication.data.0.Id}}" cssclass="myPkgView">
+			<renderconditions logictype="and"/>
+		</includepanel>
+	</components>
+	<resources>
+		<labels/>
+		<javascript>
+			<jsitem location="staticresource" name="CLSNGUIComponent" cachelocation="false" url="" namespace="genesisExtn" filepath="mainPage.js">var params = arguments[0],
+	$ = skuid.$;
+</jsitem>
+			<jsitem location="staticresource" name="CLSNGUIComponent" cachelocation="false" url="" namespace="genesisExtn" filepath="messageUtils.js">var params = arguments[0],
+	$ = skuid.$;
+</jsitem>
+		</javascript>
+		<css>
+			<cssitem location="staticresource" name="CLSStyleSheetPack" cachelocation="false" url="" namespace="genesisExtn" filepath="cls-common.css"/>
+			<cssitem location="inline" name="myStyle" cachelocation="false">html {
+    height: 100%;
+}
+
+body {
+    overflow-x: hidden;
+}
+
+	      
+#ApplicationHeader {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 70px;
+}
+	      
+
+#myPkgView {
+    position: absolute!important;
+    top: 74px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.myPkgView body {
+	background-color: #EBEEF0;
+    font: normal normal 400 12px Lato;
+    padding: 0 !important;
+}
+
+.myPkgView &gt; .nx-page {
+    margin-top: -1px;
+    margin-right: -10px;
+    margin-left: -10px;
+    background-color: #EBEEF0;
+}
+
+div[pagename="ApplicationView"] {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}</cssitem>
+		</css>
+		<actionsequences/>
+	</resources>
+	<styles>
+		<styleitem type="background" bgtype="none"/>
+		<styleitem property="position" value="absolute"/>
+		<styleitem property="top" value="0"/>
+		<styleitem property="bottom" value="60px"/>
+		<styleitem property="left" value="0"/>
+		<styleitem property="right" value="0"/>
+	</styles>
+</skuidpage>

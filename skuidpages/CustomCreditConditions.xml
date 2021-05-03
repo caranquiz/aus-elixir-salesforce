@@ -1,0 +1,248 @@
+<skuidpage unsavedchangeswarning="yes" personalizationmode="server" showsidebar="true" useviewportmeta="true" showheader="true" theme="Ayush">
+	<models>
+		<model id="Party" limit="20" query="true" createrowifnonefound="false" datasource="salesforce" sobject="clcommon__Party__c">
+			<fields>
+				<field id="Applicant_ever_declared_banckrupt__c"/>
+				<field id="Name"/>
+				<field id="genesis__Party_Name__c"/>
+				<field id="clcommon__Contact__c"/>
+				<field id="clcommon__Contact__r.Name"/>
+				<field id="clcommon__Account__r.clcommon__Legal_Entity_Type__r.Name"/>
+				<field id="Independent_Financial_Advice__c"/>
+				<field id="Independent_Legal_Advice__c"/>
+				<field id="Non_English_Speaking_Borrower__c"/>
+				<field id="Independent_Financial_Advice_Sighted__c"/>
+				<field id="Independent_Legal_Advice_Sighted__c"/>
+				<field id="Non_English_Speaking_Borrower_Sighted__c"/>
+				<field id="clcommon__Account__c"/>
+				<field id="clcommon__Account__r.Name"/>
+				<field id="Id"/>
+				<field id="genesis__Application__c"/>
+				<field id="genesis__Application__r.Name"/>
+				<field id="genesis__Application__r.Id"/>
+				<field id="genesis__Application__r.RecordTypeId"/>
+				<field id="genesis__Application__r.RecordType.Name"/>
+			</fields>
+			<conditions>
+				<condition type="param" value="Id" field="Id" operator="=" enclosevalueinquotes="true" novaluebehavior="noquery"/>
+			</conditions>
+			<actions/>
+		</model>
+		<model id="CreditHistory" limit="20" query="true" createrowifnonefound="false" datasource="salesforce" sobject="Credit_History__c">
+			<fields>
+				<field id="Amount__c"/>
+				<field id="Is_Current__c"/>
+				<field id="Details__c"/>
+				<field id="Date__c"/>
+				<field id="Party__c"/>
+				<field id="Party__r.Name"/>
+				<field id="Id"/>
+				<field id="Issue__c"/>
+			</fields>
+			<conditions>
+				<condition type="param" value="Id" field="Party__c" fieldtargetobjects="clcommon__Party__c" operator="=" enclosevalueinquotes="true"/>
+			</conditions>
+			<actions/>
+		</model>
+		<model id="AccountModel" limit="20" query="true" createrowifnonefound="false" datasource="salesforce" sobject="Account">
+			<fields>
+				<field id="Id"/>
+				<field id="clcommon__Legal_Entity_Type__r.Name"/>
+				<field id="clcommon__Legal_Entity_Type__c"/>
+			</fields>
+			<conditions>
+				<condition type="modelmerge" value="" field="Id" operator="=" model="Party" enclosevalueinquotes="true" mergefield="clcommon__Account__c" novaluebehavior="deactivate" fieldtargetobjects="Account"/>
+			</conditions>
+			<actions/>
+		</model>
+		<model id="AppicationStatus" limit="20" query="true" createrowifnonefound="false" datasource="salesforce" sobject="genesis__Application_Status_History__c">
+			<fields>
+				<field id="genesis__Old_value__c"/>
+				<field id="genesis__New_Value__c"/>
+				<field id="genesis__Changed_On__c"/>
+				<field id="CreatedBy.Name"/>
+				<field id="CreatedDate"/>
+				<field id="CreatedById"/>
+				<field id="genesis__Application__c"/>
+				<field id="genesis__Application__r.Name"/>
+				<field id="genesis__Application__r.Id"/>
+				<field id="genesis__Application__r.RecordTypeId"/>
+				<field id="genesis__Application__r.RecordType.Name"/>
+				<field id="Id"/>
+			</fields>
+			<conditions>
+				<condition type="param" value="Id" field="genesis__Application__c" fieldtargetobjects="genesis__Applications__c" operator="=" mergefield="genesis__Application__c" novaluebehavior="deactivate" enclosevalueinquotes="true"/>
+			</conditions>
+			<actions/>
+		</model>
+		<model id="Application" limit="20" query="true" createrowifnonefound="false" datasource="salesforce" sobject="genesis__Applications__c">
+			<fields>
+				<field id="RecordTypeId"/>
+				<field id="genesis__Status__c"/>
+				<field id="Name"/>
+				<field id="Reason__c"/>
+				<field id="Details__c"/>
+			</fields>
+			<conditions>
+				<condition type="param" value="Id" field="Id" operator="=" mergefield="Id" novaluebehavior="deactivate" enclosevalueinquotes="true"/>
+			</conditions>
+			<actions/>
+		</model>
+		<model id="LoanCondition" limit="20" query="true" createrowifnonefound="false" datasource="salesforce" sobject="Loan_Condition__c">
+			<fields>
+				<field id="Application__c"/>
+				<field id="Application__r.Name"/>
+				<field id="Condition__c"/>
+				<field id="Description__c"/>
+				<field id="Party__c"/>
+				<field id="Party__r.Name"/>
+				<field id="Id"/>
+				<field id="Status__c"/>
+				<field id="Supporting_Document_Verified__c"/>
+				<field id="Waiver_Reason__c"/>
+			</fields>
+			<conditions>
+				<condition type="modelmerge" value="" field="Application__c" fieldtargetobjects="genesis__Applications__c" operator="=" model="Application" enclosevalueinquotes="true" mergefield="Id" novaluebehavior="deactivate"/>
+			</conditions>
+			<actions/>
+		</model>
+	</models>
+	<components>
+		<pagetitle model="Party" uniqueid="sk-Ztv-540">
+			<actions>
+				<action type="multi" label="Save" uniqueid="sk-_xu-328" window="self" icon="sk-webicon-font-awesome:floppy-o">
+					<actions>
+						<action type="save">
+							<models>
+								<model>Party</model>
+								<model>CreditHistory</model>
+								<model>AppicationStatus</model>
+								<model>Application</model>
+								<model>LoanCondition</model>
+							</models>
+						</action>
+						<action type="blockUI" message="PartyRelationshipDetails" timeout="1000"/>
+					</actions>
+					<models>
+						<model>CreditHistory</model>
+					</models>
+					<hotkeys/>
+					<renderconditions logictype="and"/>
+					<enableconditions logictype="or">
+						<condition type="fieldvalue" enclosevalueinquotes="false" fieldmodel="Application" sourcetype="modelproperty" sourceproperty="hasChanged" value="true" operator="="/>
+						<condition type="fieldvalue" enclosevalueinquotes="false" fieldmodel="AppicationStatus" sourcetype="modelproperty" sourceproperty="hasChanged" value="true" operator="="/>
+						<condition type="fieldvalue" enclosevalueinquotes="false" fieldmodel="CreditHistory" sourcetype="modelproperty" sourceproperty="hasChanged" value="true" operator="="/>
+						<condition type="fieldvalue" enclosevalueinquotes="false" fieldmodel="Party" sourcetype="modelproperty" sourceproperty="hasChanged" value="true" operator="="/>
+						<condition type="fieldvalue" enclosevalueinquotes="false" fieldmodel="LoanCondition" sourcetype="modelproperty" sourceproperty="hasChanged" value="true" operator="="/>
+					</enableconditions>
+				</action>
+			</actions>
+			<renderconditions logictype="and">
+				<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="Party" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="Id" fieldtargetobjects="clcommon__Party__c" value="123"/>
+			</renderconditions>
+		</pagetitle>
+		<pagetitle model="AppicationStatus" uniqueid="sk-1BNu-928">
+			<maintitle>Loan Status</maintitle>
+			<actions/>
+		</pagetitle>
+		<skootable showconditions="true" showsavecancel="false" showerrorsinline="true" searchmethod="server" searchbox="true" showexportbuttons="false" hideheader="false" hidefooter="false" pagesize="10" alwaysresetpagination="false" createrecords="false" model="AppicationStatus" buttonposition="" mode="read" allowcolumnreordering="true" responsive="true" uniqueid="sk-1Awt-376">
+			<fields>
+				<field id="genesis__Old_value__c" uniqueid="fi-1Awt-377"/>
+				<field id="genesis__New_Value__c" uniqueid="fi-1Awt-378"/>
+				<field id="genesis__Changed_On__c" uniqueid="fi-1Awt-379"/>
+				<field id="CreatedById" uniqueid="fi-1Awt-382"/>
+			</fields>
+			<rowactions/>
+			<massactions usefirstitemasdefault="true"/>
+			<views>
+				<view type="standard"/>
+			</views>
+			<searchfields/>
+		</skootable>
+		<basicfieldeditor showheader="true" showsavecancel="false" showerrorsinline="true" model="Application" uniqueid="sk-1A-g-620" mode="read">
+			<columns>
+				<column width="50%" uniqueid="sk-1A-g-616">
+					<sections>
+						<section title="Section A" uniqueid="sk-1A-g-617" collapsible="no" showheader="false">
+							<fields>
+								<field uniqueid="sk-1B1h-733" id="Reason__c"/>
+								<field uniqueid="sk-1B60-847" id="Details__c"/>
+							</fields>
+						</section>
+					</sections>
+				</column>
+				<column width="50%" uniqueid="sk-1A-g-618">
+					<sections>
+						<section title="Section B" uniqueid="sk-1A-g-619" collapsible="no" showheader="false">
+							<fields/>
+						</section>
+					</sections>
+				</column>
+			</columns>
+			<renderconditions logictype="and">
+				<rendercondition type="multiple" operator="in" fieldmodel="Application" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="genesis__Status__c" fieldtargetobjects="genesis__Applications__c" value="" enclosevalueinquotes="true">
+					<values>
+						<value>Declined</value>
+						<value>Cancelled</value>
+					</values>
+				</rendercondition>
+			</renderconditions>
+		</basicfieldeditor>
+		<pagetitle model="LoanCondition" uniqueid="sk-1BNJ-852">
+			<actions/>
+			<maintitle>Loan Conditions</maintitle>
+			<renderconditions logictype="and"/>
+		</pagetitle>
+		<skootable showconditions="true" showsavecancel="false" showerrorsinline="true" searchmethod="server" searchbox="true" showexportbuttons="false" hideheader="false" hidefooter="false" pagesize="10" alwaysresetpagination="false" createrecords="true" model="LoanCondition" buttonposition="" mode="read" allowcolumnreordering="true" responsive="true" uniqueid="sk-1BCn-401">
+			<fields>
+				<field id="Condition__c" hideable="true" uniqueid="fi-1BCx-440"/>
+				<field id="Description__c" hideable="true" uniqueid="fi-1BOa-1014">
+					<renderconditions logictype="and" onhidedatabehavior="keep"/>
+					<enableconditions logictype="and">
+						<condition type="fieldvalue" operator="contains" enclosevalueinquotes="true" fieldmodel="LoanCondition" sourcetype="fieldvalue" field="Condition__c" fieldtargetobjects="Loan_Condition__c" value="Other"/>
+					</enableconditions>
+				</field>
+				<field id="Party__c" hideable="true" uniqueid="fi-1BD9-483" pagesize="5" redirecttype="datasourcedefault">
+					<searchfields/>
+					<filters>
+						<filter type="modelmerge" operator="=" field="genesis__Application__c" fieldtargetobjects="genesis__Applications__c" value="" model="Application" enclosevalueinquotes="true" mergefield="Id" novaluebehavior="deactivate"/>
+					</filters>
+				</field>
+				<field id="Status__c" hideable="true" uniqueid="fi-1BDD-532"/>
+				<field id="Waiver_Reason__c" hideable="true" uniqueid="fi-1BOv-1088">
+					<renderconditions logictype="and" onhidedatabehavior="keep"/>
+					<enableconditions logictype="and">
+						<condition type="fieldvalue" operator="contains" enclosevalueinquotes="true" fieldmodel="LoanCondition" sourcetype="fieldvalue" field="Status__c" fieldtargetobjects="Loan_Condition__c" value="Waived"/>
+					</enableconditions>
+				</field>
+				<field id="Supporting_Document_Verified__c" hideable="true" uniqueid="fi-1BDG-559"/>
+			</fields>
+			<rowactions>
+				<action type="edit"/>
+				<action type="delete"/>
+			</rowactions>
+			<massactions usefirstitemasdefault="true">
+				<action type="massupdate"/>
+				<action type="massdelete"/>
+			</massactions>
+			<views>
+				<view type="standard"/>
+			</views>
+		</skootable>
+	</components>
+	<resources>
+		<labels/>
+		<javascript>
+			<jsitem location="inlinesnippet" name="FieldRenderer2" cachelocation="false">var field = arguments[0],
+    value = arguments[1];
+var renderMode = skuid.page.params.mode;
+fieldModeToRender(field,value,renderMode);</jsitem>
+		</javascript>
+		<css/>
+		<actionsequences uniqueid="sk-2zfu-304"/>
+	</resources>
+	<styles>
+		<styleitem type="background" bgtype="none"/>
+	</styles>
+	<interactions/>
+</skuidpage>

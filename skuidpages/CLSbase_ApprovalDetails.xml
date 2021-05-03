@@ -1,0 +1,494 @@
+<skuidpage personalizationmode="server" showsidebar="false" useviewportmeta="false" showheader="false" globalfeedbackenabled="false">
+	<models>
+		<model id="MostRecentApprovalInstanceModel" query="true" createrowifnonefound="false" datasource="salesforce" sobject="clcommon__Approval_Instance__c" orderby="Name DESC" limit="1">
+			<fields>
+				<field id="Id"/>
+				<field id="Name"/>
+				<field id="clcommon__Name__c"/>
+				<field id="clcommon__Type__c"/>
+				<field id="clcommon__Cadence__c"/>
+				<field id="clcommon__Approval_Review_Group__c"/>
+				<field id="clcommon__Approval_Review_Group__r.Name"/>
+				<field id="clcommon__Start_Date__c"/>
+				<field id="clcommon__Completed_Date__c"/>
+				<field id="clcommon__Status__c"/>
+				<field id="clcommon__Approval_Review_Group__r.clcommon__Type__c"/>
+				<field id="clcommon__Approval_Review_Group__r.clcommon__Approval_Expression__c"/>
+				<field id="clcommon__Approval_Review_Group__r.clcommon__Number_Of_Approvers__c"/>
+				<field id="genesis__Application__c"/>
+				<field id="genesis__Application__r.Name"/>
+				<field id="clcommon__Account__r.Name"/>
+				<field id="genesis__Application__r.genesis__Loan_Amount__c"/>
+			</fields>
+			<conditions>
+				<condition type="param" value="defId" field="clcommon__Approval_Definition__c" fieldtargetobjects="clcommon__Approval_Definition__c" operator="=" enclosevalueinquotes="true" novaluebehavior="noquery"/>
+				<condition type="param" value="id" field="genesis__Application__c" fieldtargetobjects="genesis__Applications__c" operator="=" enclosevalueinquotes="true" novaluebehavior="noquery"/>
+			</conditions>
+			<actions/>
+		</model>
+		<model id="ApprovalsApplicationModel" limit="1" query="true" createrowifnonefound="false" datasource="salesforce" sobject="genesis__Applications__c">
+			<fields>
+				<field id="Id"/>
+				<field id="RecordTypeId"/>
+				<field id="RecordType.Name"/>
+				<field id="genesis__Status__c"/>
+				<field id="genesis__Loan_Amount__c"/>
+				<field id="Primary_Approval_By__c"/>
+				<field id="Primary_Approval_Date__c"/>
+				<field id="Secondary_Approval_By__c"/>
+				<field id="Secondary_Approval_Date__c"/>
+				<field id="Recommended_By__c"/>
+				<field id="Recommended_Date__c"/>
+				<field id="Recommender_s_Email_Address__c"/>
+				<field id="CL_Date__c"/>
+				<field id="Loan Amount" uionly="true" displaytype="FORMULA" length="255" ogdisplaytype="TEXT" readonly="true" returntype="CURRENCY" precision="16" scale="2">
+					<formula>{{genesis__Loan_Amount__c}}</formula>
+				</field>
+				<field id="Recommend_Comments__c"/>
+				<field id="Is_Approved__c"/>
+			</fields>
+			<conditions>
+				<condition type="param" value="id" field="Id" operator="=" mergefield="genesis__Application__c" novaluebehavior="deactivate" fieldtargetobjects="genesis__Applications__c" enclosevalueinquotes="true"/>
+			</conditions>
+			<actions/>
+		</model>
+		<model id="AssociatedApprovalReviewGroups" query="true" createrowifnonefound="false" datasource="salesforce" sobject="clcommon__Approval_Review_Group__c" orderby="clcommon__Type__c ASC" limit="2">
+			<fields>
+				<field id="Id"/>
+				<field id="Name"/>
+				<field id="clcommon__Type__c"/>
+				<field id="clcommon__Approval_Expression__c"/>
+				<field id="clcommon__Number_Of_Approvers__c"/>
+				<field id="clcommon__Select_Reviewer__c"/>
+			</fields>
+			<conditions>
+				<condition type="modelmerge" value="" field="clcommon__Approval_Instance__c" fieldtargetobjects="clcommon__Approval_Instance__c" operator="=" model="MostRecentApprovalInstanceModel" enclosevalueinquotes="true" mergefield="Id" novaluebehavior="noquery"/>
+			</conditions>
+			<actions/>
+		</model>
+		<model id="ReviewersInApprovalGroup" query="true" createrowifnonefound="false" datasource="salesforce" sobject="clcommon__Reviewer__c" orderby="clcommon__Serial_Number__c ASC" limit="20">
+			<fields>
+				<field id="Id"/>
+				<field id="clcommon__User__c"/>
+				<field id="clcommon__User__r.Name"/>
+				<field id="clcommon__Status__c"/>
+				<field id="clcommon__Start_Date__c"/>
+				<field id="clcommon__Completed_Date__c"/>
+				<field id="clcommon__Serial_Number__c"/>
+				<field id="clcommon__Review_Comments__c"/>
+				<field id="clcommon__Approval_Authority__c"/>
+				<field id="clcommon__Approval_Authority__r.Name"/>
+				<field id="clcommon__Approval_Authority__r.clcommon__Max_Individual_Limit__c"/>
+				<field id="clcommon__Approval_Authority__r.clcommon__Min_Individual_Limit__c"/>
+				<field id="Maximum_Individual_Limit__c"/>
+				<field id="Minimum_Individual_Limit__c"/>
+			</fields>
+			<conditions logic="(1) AND (4 OR 5) AND 2 AND 3">
+				<condition type="modelmerge" value="" field="clcommon__Approval_Review_Group__c" fieldtargetobjects="clcommon__Approval_Review_Group__c" operator="=" model="MostRecentApprovalInstanceModel" enclosevalueinquotes="true" mergefield="clcommon__Approval_Review_Group__c" novaluebehavior="noquery" inactive="false"/>
+				<condition type="modelmerge" value="" field="Maximum_Individual_Limit__c" operator="gte" model="ApprovalsApplicationModel" enclosevalueinquotes="false" mergefield="genesis__Loan_Amount__c" novaluebehavior="deactivate"/>
+				<condition type="modelmerge" value="" field="Minimum_Individual_Limit__c" operator="lt" model="ApprovalsApplicationModel" enclosevalueinquotes="false" mergefield="genesis__Loan_Amount__c" novaluebehavior="deactivate"/>
+				<condition type="modelmerge" value="" field="clcommon__Approval_Authority__r.clcommon__User__r.Name" operator="!=" model="ApprovalsApplicationModel" enclosevalueinquotes="true" mergefield="Recommended_By__c" novaluebehavior="deactivate"/>
+				<condition type="fieldvalue" value="Recommend Levels Approval" enclosevalueinquotes="true" field="clcommon__Approval_Authority__r.clcommon__Approval_Definition__r.Name" operator="="/>
+			</conditions>
+			<actions/>
+		</model>
+	</models>
+	<components>
+		<grid uniqueid="sk-30wg-733">
+			<divisions>
+				<division behavior="flex" minwidth="100%" ratio="1" verticalalign="top">
+					<components>
+						<wrapper uniqueid="relationship-dashboard-details">
+							<components>
+								<panelset type="vertical" uniqueid="sk-3P9n-730">
+									<panels>
+										<panel width="225px">
+											<components>
+												<wrapper uniqueid="approvalsDetailPageId" cssclass="cls-dashboard-section">
+													<components>
+														<pagetitle model="AssociatedApprovalReviewGroups" uniqueid="sk-3WiV-1248">
+															<maintitle>Approval Details</maintitle>
+															<actions>
+																<action type="save" label="Save" uniqueid="sk-2DS6-576" window="self">
+																	<models>
+																		<model>ApprovalsApplicationModel</model>
+																	</models>
+																	<hotkeys/>
+																	<renderconditions logictype="and">
+																		<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="ApprovalsApplicationModel" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="genesis__Status__c" fieldtargetobjects="genesis__Applications__c" value="Val Received"/>
+																	</renderconditions>
+																	<enableconditions logictype="and">
+																		<condition type="fieldvalue" enclosevalueinquotes="false" fieldmodel="ApprovalsApplicationModel" sourcetype="modelproperty" sourceproperty="hasChanged" value="true" operator="="/>
+																	</enableconditions>
+																</action>
+																<action type="multi" label="Cancel" uniqueid="sk-2DS6-581">
+																	<actions>
+																		<action type="cancel">
+																			<models>
+																				<model>MostRecentApprovalInstanceModel</model>
+																				<model>ApprovalsApplicationModel</model>
+																				<model>AssociatedApprovalReviewGroups</model>
+																				<model>ReviewersInApprovalGroup</model>
+																			</models>
+																		</action>
+																	</actions>
+																	<renderconditions logictype="and">
+																		<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="ApprovalsApplicationModel" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="genesis__Status__c" fieldtargetobjects="genesis__Applications__c" value="Val Received"/>
+																	</renderconditions>
+																	<enableconditions logictype="and">
+																		<condition type="fieldvalue" enclosevalueinquotes="false" fieldmodel="ApprovalsApplicationModel" sourcetype="modelproperty" sourceproperty="hasChanged" value="true" operator="="/>
+																	</enableconditions>
+																	<hotkeys/>
+																</action>
+															</actions>
+														</pagetitle>
+														<navigation uniqueid="navigationId" type="dropdown">
+															<navigationitems>
+																<navigationitem label="Select Review Group" uniqueid="sk-3hJR-1206">
+																	<actions>
+																		<action type="custom" window="self" snippet="LaunchSelectReviewGroup"/>
+																	</actions>
+																	<renderconditions logictype="and">
+																		<rendercondition type="fieldvalue" enclosevalueinquotes="false" fieldmodel="AssociatedApprovalReviewGroups" sourcetype="modelproperty" nosourcerowbehavior="deactivate" sourceproperty="data.length" operator="gt" value="1"/>
+																		<rendercondition type="multiple" operator="not in" fieldmodel="MostRecentApprovalInstanceModel" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="clcommon__Status__c" fieldtargetobjects="clcommon__Approval_Instance__c" value="" enclosevalueinquotes="true">
+																			<values>
+																				<value>Approved</value>
+																				<value>Rejected</value>
+																				<value>Invalid</value>
+																			</values>
+																		</rendercondition>
+																	</renderconditions>
+																</navigationitem>
+																<navigationitem label="History" uniqueid="sk-3b1B-374">
+																	<actions>
+																		<action type="custom" window="self" snippet="LaunchApprovalHistory"/>
+																	</actions>
+																</navigationitem>
+															</navigationitems>
+															<renderconditions logictype="and">
+																<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="MostRecentApprovalInstanceModel" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="Id" fieldtargetobjects="clcommon__Approval_Instance__c" value="CK12345"/>
+															</renderconditions>
+														</navigation>
+														<basicfieldeditor showheader="true" showsavecancel="false" showerrorsinline="true" model="MostRecentApprovalInstanceModel" uniqueid="sk-30v--591" mode="readonly">
+															<columns>
+																<column width="100%" uniqueid="sk-30v--587">
+																	<sections>
+																		<section title="Approval Details" uniqueid="sk-30v--588" collapsible="no" showheader="false">
+																			<fields>
+																				<columns uniqueid="sk-311E-456" layoutmode="fixed">
+																					<column width="50%" uniqueid="sk-311E-438">
+																						<sections>
+																							<section title="New Section" collapsible="no" uniqueid="sk-311E-439" showheader="false">
+																								<fields>
+																									<field uniqueid="sk-3P6b-384" id="clcommon__Name__c"/>
+																									<field uniqueid="sk-30wF-716" id="clcommon__Type__c" showhelp="true"/>
+																									<field uniqueid="sk-30wF-717" id="clcommon__Cadence__c" showhelp="true"/>
+																								</fields>
+																							</section>
+																						</sections>
+																					</column>
+																					<column width="50%" uniqueid="sk-311F-459">
+																						<sections>
+																							<section title="New Section" collapsible="no" uniqueid="sk-311F-460" showheader="false">
+																								<fields>
+																									<field uniqueid="sk-3P6L-349" id="clcommon__Status__c"/>
+																									<field uniqueid="sk-3P6H-321" id="clcommon__Start_Date__c" showhelp="true"/>
+																									<field uniqueid="sk-30wF-718" id="clcommon__Completed_Date__c" showhelp="true"/>
+																								</fields>
+																							</section>
+																						</sections>
+																					</column>
+																				</columns>
+																			</fields>
+																			<renderconditions logictype="and"/>
+																		</section>
+																		<section title="Review Group Details" collapsible="no" uniqueid="sk-3Vlu-2420">
+																			<fields>
+																				<columns uniqueid="sk-3WfI-958" layoutmode="fixed" columngutter="4px" rowgutter="4px">
+																					<column uniqueid="sk-3WfI-945" width="50%">
+																						<sections>
+																							<section title="New Section" collapsible="no" uniqueid="sk-3WfI-946" showheader="false">
+																								<fields>
+																									<field uniqueid="sk-3hJ2-1171" id="clcommon__Approval_Review_Group__r.Name"/>
+																									<field uniqueid="sk-3WfH-936" id="clcommon__Approval_Review_Group__r.clcommon__Type__c">
+																										<renderconditions logictype="and" onhidedatabehavior="keep">
+																											<rendercondition type="blank" operator="!=" fieldmodel="MostRecentApprovalInstanceModel" sourcetype="fieldvalue" field="clcommon__Approval_Review_Group__r.clcommon__Type__c" fieldtargetobjects="clcommon__Approval_Review_Group__c" value="null" enclosevalueinquotes="false"/>
+																										</renderconditions>
+																										<enableconditions/>
+																									</field>
+																								</fields>
+																							</section>
+																						</sections>
+																					</column>
+																					<column uniqueid="sk-3WfJ-961" width="50%">
+																						<sections>
+																							<section title="New Section" collapsible="no" uniqueid="sk-3WfJ-962" showheader="false">
+																								<fields>
+																									<field uniqueid="sk-PUV-382" id="clcommon__Approval_Review_Group__r.clcommon__Number_Of_Approvers__c" showhelp="false">
+																										<renderconditions logictype="and" onhidedatabehavior="keep">
+																											<rendercondition type="blank" operator="!=" fieldmodel="MostRecentApprovalInstanceModel" sourcetype="fieldvalue" field="clcommon__Approval_Review_Group__r.clcommon__Number_Of_Approvers__c" value="null" enclosevalueinquotes="false"/>
+																										</renderconditions>
+																										<enableconditions/>
+																									</field>
+																									<field uniqueid="sk-PUV-383" id="clcommon__Approval_Review_Group__r.clcommon__Approval_Expression__c" showhelp="false">
+																										<renderconditions logictype="and" onhidedatabehavior="keep">
+																											<rendercondition type="blank" operator="!=" fieldmodel="MostRecentApprovalInstanceModel" sourcetype="fieldvalue" field="clcommon__Approval_Review_Group__r.clcommon__Approval_Expression__c" value="null" enclosevalueinquotes="false"/>
+																										</renderconditions>
+																										<enableconditions/>
+																									</field>
+																								</fields>
+																							</section>
+																						</sections>
+																					</column>
+																				</columns>
+																			</fields>
+																			<renderconditions logictype="and"/>
+																		</section>
+																	</sections>
+																</column>
+															</columns>
+														</basicfieldeditor>
+														<basicfieldeditor showheader="true" showsavecancel="false" showerrorsinline="true" model="ApprovalsApplicationModel" uniqueid="sk-35Eq-570" mode="edit">
+															<columns>
+																<column width="100%" uniqueid="sk-35Eq-566">
+																	<sections>
+																		<section uniqueid="sk-35Eq-567" collapsible="no" showheader="false">
+																			<fields>
+																				<field uniqueid="sk-35Eu-605" id="Recommend_Comments__c" displayrows="3">
+																					<renderconditions logictype="and" onhidedatabehavior="cancel"/>
+																					<enableconditions/>
+																				</field>
+																			</fields>
+																		</section>
+																	</sections>
+																</column>
+															</columns>
+															<renderconditions logictype="and">
+																<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="ApprovalsApplicationModel" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="genesis__Status__c" fieldtargetobjects="genesis__Applications__c" value="Val Received"/>
+															</renderconditions>
+														</basicfieldeditor>
+													</components>
+													<styles>
+														<styleitem type="background"/>
+														<styleitem type="border"/>
+														<styleitem type="size"/>
+													</styles>
+												</wrapper>
+											</components>
+										</panel>
+										<panel type="left" width="225px">
+											<components>
+												<pagetitle model="ReviewersInApprovalGroup" uniqueid="sk-3VPu-557">
+													<maintitle>Reviewers</maintitle>
+													<actions/>
+													<subtitle/>
+												</pagetitle>
+												<skootable showconditions="true" showsavecancel="false" showerrorsinline="true" searchmethod="server" searchbox="false" showexportbuttons="false" hideheader="false" hidefooter="false" pagesize="all" alwaysresetpagination="false" createrecords="false" model="ReviewersInApprovalGroup" mode="readonly" allowcolumnreordering="false" responsive="false" uniqueid="reviewers-list" emptysearchbehavior="query" instantfilters="false">
+													<fields>
+														<field id="clcommon__Serial_Number__c" hideable="false" uniqueid="fi-3WeY-723" showbydefault="true"/>
+														<field id="clcommon__User__r.Name" hideable="false" uniqueid="fi-3WeW-715" showbydefault="true"/>
+														<field id="clcommon__Status__c" hideable="false" uniqueid="fi-3Wej-746" showbydefault="true"/>
+														<field id="clcommon__Start_Date__c" hideable="false" uniqueid="fi-3Wej-747" showbydefault="true"/>
+														<field id="clcommon__Completed_Date__c" hideable="false" uniqueid="fi-3Wej-748" showbydefault="true"/>
+														<field id="clcommon__Review_Comments__c" hideable="false" uniqueid="fi-3We--880" showbydefault="true" displayrows="3"/>
+													</fields>
+													<rowactions>
+														<action type="multi" label="Start Review" icon="fa-edit">
+															<actions>
+																<action type="blockUI" message="Saving..."/>
+																<action type="updateRow" fieldmodel="ReviewersInApprovalGroup" affectedrows="context" enclosevalueinquotes="true">
+																	<updates>
+																		<update valuesource="fieldvalue" field="clcommon__Status__c" value="Pending"/>
+																	</updates>
+																</action>
+																<action type="save">
+																	<models>
+																		<model>ReviewersInApprovalGroup</model>
+																	</models>
+																</action>
+																<action type="requeryModels" behavior="standard">
+																	<models>
+																		<model>ReviewersInApprovalGroup</model>
+																	</models>
+																</action>
+																<action type="unblockUI"/>
+															</actions>
+															<renderconditions logictype="custom" logic="(1 AND 2 AND 3 AND 4) OR (1 AND 3 AND 5 AND 6) ">
+																<rendercondition type="userinfo" operator="=" fieldmodel="ReviewersInApprovalGroup" sourcetype="fieldvalue" field="clcommon__User__c" fieldtargetobjects="User" value="" enclosevalueinquotes="true" userinfotype="userid"/>
+																<rendercondition type="multiple" operator="in" fieldmodel="ReviewersInApprovalGroup" sourcetype="fieldvalue" field="clcommon__Status__c" fieldtargetobjects="clcommon__Reviewer__c" value="" enclosevalueinquotes="true">
+																	<values>
+																		<value/>
+																		<value>On Hold</value>
+																	</values>
+																</rendercondition>
+																<rendercondition type="multiple" operator="not in" fieldmodel="MostRecentApprovalInstanceModel" sourcetype="fieldvalue" nosourcerowbehavior="skipandnorender" field="clcommon__Status__c" fieldtargetobjects="clcommon__Approval_Instance__c" value="" enclosevalueinquotes="true">
+																	<values>
+																		<value>Invalid</value>
+																		<value>Approved</value>
+																		<value>Rejected</value>
+																	</values>
+																</rendercondition>
+																<rendercondition type="fieldvalue" operator="!=" enclosevalueinquotes="true" fieldmodel="MostRecentApprovalInstanceModel" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="clcommon__Cadence__c" fieldtargetobjects="clcommon__Approval_Instance__c" value="Serial"/>
+																<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="MostRecentApprovalInstanceModel" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="clcommon__Cadence__c" fieldtargetobjects="clcommon__Approval_Instance__c" value="Serial"/>
+																<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="ReviewersInApprovalGroup" sourcetype="fieldvalue" field="clcommon__Status__c" fieldtargetobjects="clcommon__Reviewer__c" value="On Hold"/>
+															</renderconditions>
+														</action>
+														<action type="multi" label="Review" icon="fa-external-link">
+															<actions>
+																<action type="custom" snippet="LaunchReviewDialog"/>
+															</actions>
+															<renderconditions logictype="and">
+																<rendercondition type="userinfo" operator="=" fieldmodel="ReviewersInApprovalGroup" sourcetype="fieldvalue" field="clcommon__User__c" fieldtargetobjects="User" value="" enclosevalueinquotes="true" userinfotype="userid"/>
+																<rendercondition type="multiple" operator="in" fieldmodel="ReviewersInApprovalGroup" sourcetype="fieldvalue" field="clcommon__Status__c" fieldtargetobjects="clcommon__Reviewer__c" value="" enclosevalueinquotes="true">
+																	<values>
+																		<value>Submitted</value>
+																		<value>Pending</value>
+																	</values>
+																</rendercondition>
+																<rendercondition type="multiple" operator="not in" fieldmodel="MostRecentApprovalInstanceModel" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="clcommon__Status__c" fieldtargetobjects="clcommon__Approval_Instance__c" value="" enclosevalueinquotes="true">
+																	<values>
+																		<value>Invalid</value>
+																		<value>Approved</value>
+																		<value>Rejected</value>
+																	</values>
+																</rendercondition>
+															</renderconditions>
+														</action>
+													</rowactions>
+													<massactions usefirstitemasdefault="true"/>
+													<views>
+														<view type="standard"/>
+													</views>
+													<searchfields/>
+												</skootable>
+											</components>
+										</panel>
+									</panels>
+								</panelset>
+							</components>
+							<styles>
+								<styleitem type="background"/>
+								<styleitem type="border"/>
+								<styleitem type="size"/>
+							</styles>
+						</wrapper>
+					</components>
+				</division>
+			</divisions>
+			<styles>
+				<styleitem type="background" bgtype="none"/>
+			</styles>
+		</grid>
+	</components>
+	<resources>
+		<labels/>
+		<javascript>
+			<jsitem location="external" name="apexajax" cachelocation="false" url="/soap/ajax/24.0/apex.js">var params = arguments[0],
+	$ = skuid.$;
+</jsitem>
+			<jsitem location="external" name="connectionJS" cachelocation="false" url="/soap/ajax/35.0/connection.js">var params = arguments[0],
+	$ = skuid.$;
+</jsitem>
+			<jsitem location="staticresource" name="CLSNGUIComponent" cachelocation="false" url="" namespace="genesisExtn" filepath="commonUtils.js">var params = arguments[0],
+                    $ = skuid.$;
+                </jsitem>
+			<jsitem location="staticresource" name="CLSNGUIComponent" cachelocation="false" url="" namespace="genesisExtn" filepath="messageUtils.js">var params = arguments[0],
+                    $ = skuid.$;
+                </jsitem>
+			<jsitem location="staticresource" name="CLSNGUIComponent" cachelocation="false" url="" namespace="genesisExtn" filepath="windowCallbacks.js">var params = arguments[0],
+                    $ = skuid.$;
+                </jsitem>
+			<jsitem location="inlinesnippet" name="LaunchSelectReviewGroup" cachelocation="false">var params = arguments[0],
+	$ = skuid.$;
+	
+var approval = skuid.model.getModel('MostRecentApprovalInstanceModel').data[0];
+var title = 'Select Approval Review Group for ' + approval.clcommon__Name__c;
+var skuidPage = 'ApprovalReviewGroupSelection';
+var iframeUrl = '/apex/skuid__ui?page=' + skuidPage + '&amp;approvalId=' + approval.Id;
+
+openTopLevelDialog({
+    title: title,
+    iframeUrl: iframeUrl
+});</jsitem>
+			<jsitem location="inlinesnippet" name="LaunchApprovalHistory" cachelocation="false">var params = arguments[0],
+  $ = skuid.$;
+var approval = skuid.model.getModel('MostRecentApprovalInstanceModel').data[0];
+var title = 'Approval History for ' + approval.clcommon__Name__c;
+var skuidPage = 'ApprovalInstanceHistory';
+var iframeUrl = '/apex/skuid__ui?page=' + skuidPage + '&amp;approvalId=' + approval.Id;
+
+openTopLevelDialog({
+    title: title,
+    iframeUrl: iframeUrl
+});</jsitem>
+			<jsitem location="inlinesnippet" cachelocation="false" name="LaunchReviewDialog">var params = arguments[0],
+  $ = skuid.$;
+  
+var selectedReviewer = params.row;
+var approval = skuid.model.getModel('MostRecentApprovalInstanceModel').data[0];
+var title = 'Review ' + approval.clcommon__Name__c;
+var skuidPage = 'ApprovalReview';
+var iframeUrl = '/apex/skuid__ui?page=' + skuidPage + '&amp;reviewerId=' + selectedReviewer.Id;
+
+openTopLevelDialog({
+    title: title,
+    iframeUrl: iframeUrl
+});</jsitem>
+		</javascript>
+		<css>
+			<cssitem location="staticresource" name="CLSStyleSheetPack" cachelocation="false" url="" namespace="genesisExtn" filepath="cls-common.css"/>
+			<cssitem location="staticresource" name="CLSStyleSheetPack" cachelocation="false" url="" namespace="genesisExtn" filepath="cls-dashboard.css"/>
+			<cssitem location="staticresource" name="CLSStyleSheetPack" cachelocation="false" url="" namespace="genesisExtn" filepath="customcss.css"/>
+			<cssitem location="staticresource" name="CLSStyleSheetPack" cachelocation="false" url="" namespace="genesisExtn" filepath="navigation-component.css"/>
+			<cssitem location="inline" name="approval-details-css" cachelocation="false">body {
+    background-color: #ffffff;
+}
+
+body &gt; .nx-page {
+    padding: 0;
+    background-color: #ffffff;
+}
+
+div[id='approval-reviewer-groups-table'] &gt; table.nx-skootable-data tbody tr.highlighted-row td {    
+   background-color: green;
+}
+
+div[id='approval-reviewer-groups-table'] &gt; .nx-editor-contents &gt; .nx-list-footer {
+    display: none;
+}
+
+#approvalsDetailPageId .sk-dropnav, div.sk-navigation.sk-navigation-dropdown {
+    float: right;
+    top: -45px;
+    right: 10px;
+}
+
+div[id='reviewers-list'] &gt; .nx-editor-contents &gt; .nx-list-footer {
+    display: none;
+}</cssitem>
+		</css>
+		<actionsequences uniqueid="sk-30ur-261">
+			<actionsequence id="faa554ac-014e-4b27-b98c-fcc548afc806" label="Page Load" type="event-triggered" event-scope="component" event-name="page.rendered" uniqueid="sk-2qgp-648">
+				<description/>
+				<actions>
+					<action type="requeryModels" behavior="standard">
+						<models>
+							<model>MostRecentApprovalInstanceModel</model>
+							<model>ApprovalsApplicationModel</model>
+							<model>AssociatedApprovalReviewGroups</model>
+							<model>ReviewersInApprovalGroup</model>
+						</models>
+					</action>
+				</actions>
+			</actionsequence>
+		</actionsequences>
+	</resources>
+	<styles>
+		<styleitem type="background" bgtype="color">
+			<styles>
+				<styleitem property="background-color" value="white"/>
+			</styles>
+		</styleitem>
+	</styles>
+	<interactions/>
+</skuidpage>

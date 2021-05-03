@@ -1,0 +1,1201 @@
+<skuidpage personalizationmode="server" showsidebar="false" showheader="false" unsavedchangeswarning="yes">
+	<models>
+		<model id="AppCollateralAssociation" limit="" query="true" createrowifnonefound="false" sobject="genesis__Application_Collateral__c" datasource="salesforce" doclone="">
+			<fields>
+				<field id="genesis__Application__c"/>
+				<field id="genesis__Application__r.Name"/>
+				<field id="genesis__Collateral__c"/>
+				<field id="genesis__Collateral__r.Name"/>
+				<field id="genesis__Collateral__r.clcommon__Collateral_Type__c"/>
+				<field id="genesis__Collateral__r.clcommon__Collateral_Type__r.Name"/>
+				<field id="genesis__Collateral__r.Id"/>
+				<field id="genesis__Collateral__r.clcommon__Collateral_Category__c"/>
+				<field id="genesis__Collateral__r.clcommon__Collateral_Category__r.Name"/>
+				<field id="genesis__Pledge_Amount__c"/>
+				<field id="Id"/>
+				<field id="Name"/>
+				<field id="genesis__Application__r.Id"/>
+			</fields>
+			<conditions>
+				<condition type="param" value="id" field="Id" operator="=" enclosevalueinquotes="true" novaluebehavior="noquery"/>
+			</conditions>
+			<actions/>
+		</model>
+		<model id="ApplicationForCollateral" limit="" query="true" createrowifnonefound="true" datasource="salesforce" type="" sobject="genesis__Applications__c" doclone="">
+			<fields>
+				<field id="Id"/>
+				<field id="Name"/>
+			</fields>
+			<conditions>
+				<condition type="modelmerge" value="" field="Id" operator="=" novaluebehavior="noquery" model="AppCollateralAssociation" enclosevalueinquotes="true" mergefield="genesis__Application__c"/>
+			</conditions>
+			<actions/>
+		</model>
+		<model id="AppraisalRequest" limit="" query="true" createrowifnonefound="true" datasource="salesforce" type="" sobject="genesis__Appraisal_Request__c" orderby="CreatedDate DESC" doclone="">
+			<fields>
+				<field id="genesis__Accepted_Bids__c"/>
+				<field id="genesis__Appraisal_Ordered_By__c"/>
+				<field id="genesis__Appraisal_Ordered_By__r.Name"/>
+				<field id="Name"/>
+				<field id="genesis__City__c"/>
+				<field id="genesis__Collateral_Description__c"/>
+				<field id="genesis__Collateral_Valuation__c"/>
+				<field id="genesis__Collateral_Valuation__r.Name"/>
+				<field id="genesis__Pending_Bids__c"/>
+				<field id="genesis__Due_Date__c"/>
+				<field id="genesis__Postal_Code__c"/>
+				<field id="Id"/>
+				<field id="genesis__State__c"/>
+				<field id="genesis__Status__c"/>
+				<field id="genesis__Street_Address__c"/>
+				<field id="genesis__Submitted_Bids__c"/>
+				<field id="genesis__Total_Bids__c"/>
+				<field id="CreatedDate"/>
+				<field id="genesis__Application_Collateral__c"/>
+				<field id="genesis__Application_Collateral__r.Name"/>
+				<field id="genesis__Application_Collateral__r.genesis__Collateral__c"/>
+				<field id="genesis__Application_Collateral__r.genesis__Collateral__r.Name"/>
+				<field id="genesis__Rejected_Bids__c"/>
+				<field id="genesis__Expired_Bids__c"/>
+				<field id="genesis__Collateral_Category__c"/>
+				<field id="genesis__Application_Collateral__r.genesis__Collateral__r.clcommon__Collateral_Category__c"/>
+				<field id="genesis__Application_Collateral__r.genesis__Collateral__r.clcommon__Collateral_Category__r.Name"/>
+				<field id="genesis__Application_Collateral__r.genesis__Collateral__r.Id"/>
+			</fields>
+			<conditions logic="1 AND 2">
+				<condition type="modelmerge" value="" field="genesis__Application_Collateral__r.genesis__Collateral__c" operator="=" model="AppCollateralAssociation" enclosevalueinquotes="true" mergefield="genesis__Collateral__c" novaluebehavior="noquery"/>
+				<condition type="multiple" value="" field="genesis__Status__c" operator="not in" enclosevalueinquotes="true">
+					<values>
+						<value>Expired</value>
+						<value>Closed</value>
+					</values>
+				</condition>
+			</conditions>
+			<actions>
+				<action>
+					<actions>
+						<action type="custom" snippet="CreateAppraisalBids"/>
+					</actions>
+					<events>
+						<event>models.saved</event>
+					</events>
+				</action>
+			</actions>
+		</model>
+		<model id="AppraisalBid" limit="" query="true" createrowifnonefound="false" datasource="salesforce" type="" sobject="genesis__Appraisal_Bid__c">
+			<fields>
+				<field id="Name"/>
+				<field id="genesis__Appraisal_Request__c"/>
+				<field id="genesis__Appraisal_Request__r.Name"/>
+				<field id="genesis__Authorized_Appraiser__c"/>
+				<field id="genesis__Authorized_Appraiser__r.Name"/>
+				<field id="genesis__Bid_Amount__c"/>
+				<field id="genesis__Days_Until_Due__c"/>
+				<field id="genesis__Due_Date__c"/>
+				<field id="Id"/>
+				<field id="genesis__Status__c"/>
+				<field id="genesis__Collateral_Category__c"/>
+			</fields>
+			<conditions/>
+			<actions/>
+		</model>
+		<model id="AppraisalAssociation" limit="20" query="true" createrowifnonefound="false" datasource="salesforce" type="" sobject="genesis__Appraisal_Association__c">
+			<fields>
+				<field id="genesis__Appraiser__c"/>
+				<field id="genesis__Appraiser__r.Name"/>
+				<field id="Name"/>
+				<field id="Id"/>
+				<field id="genesis__Collateral_Category__c"/>
+				<field id="genesis__Collateral_Category__r.Name"/>
+			</fields>
+			<conditions/>
+			<actions>
+				<action>
+					<actions>
+						<action type="createRow" model="AppraisalBid" appendorprepend="prepend" defaultmodefornewitems="edit" affectedrows="context">
+							<defaults>
+								<default type="fieldvalue" field="genesis__Appraisal_Request__c" enclosevalueinquotes="true" value="{{$Model.AppraisalRequest.data.0.Id}}"/>
+							</defaults>
+						</action>
+						<action type="save">
+							<models>
+								<model>AppraisalBid</model>
+							</models>
+						</action>
+					</actions>
+					<events>
+						<event>condition.activated</event>
+					</events>
+				</action>
+			</actions>
+		</model>
+		<model id="CollateralCategory" limit="" query="true" createrowifnonefound="false" datasource="salesforce" type="" sobject="clcommon__Collateral_Category__c">
+			<fields>
+				<field id="Name"/>
+				<field id="genesis__AppraisalAdmin__c"/>
+				<field id="genesis__AppraisalAdmin__r.Name"/>
+			</fields>
+			<conditions/>
+			<actions/>
+		</model>
+		<model id="CollateralDetailView_CollateralValuation" limit="" query="true" createrowifnonefound="false" datasource="salesforce" type="" sobject="clcommon__Collateral_Valuation__c">
+			<fields>
+				<field id="genesis__Appraisal_Bid__c"/>
+				<field id="genesis__Appraisal_Bid__r.Name"/>
+				<field id="clcommon__Appraisal_Date__c"/>
+				<field id="genesis__Appraisal_Document_ID__c"/>
+				<field id="clcommon__Appraisal_Value__c"/>
+				<field id="clcommon__Appraised_Value__c"/>
+				<field id="genesis__Attachment_URL__c"/>
+				<field id="clcommon__Collateral__c"/>
+				<field id="clcommon__Collateral__r.Name"/>
+				<field id="Name"/>
+				<field id="CreatedById"/>
+				<field id="CreatedBy.Name"/>
+				<field id="Id"/>
+				<field id="clcommon__Active__c"/>
+				<field id="RemainingValue" uionly="true" displaytype="CURRENCY" ogdisplaytype="TEXT" precision="9" scale="2" readonly="true" label="Remaining Value"/>
+			</fields>
+			<conditions logic="1 AND 2">
+				<condition type="modelmerge" value="" field="clcommon__Collateral__c" operator="=" model="AppCollateralAssociation" enclosevalueinquotes="true" mergefield="genesis__Collateral__c" novaluebehavior="noquery"/>
+				<condition type="fieldvalue" value="true" enclosevalueinquotes="false" field="clcommon__Active__c"/>
+			</conditions>
+			<actions/>
+		</model>
+		<model id="CollateralDetailView_OrgParams" limit="" query="true" createrowifnonefound="false" datasource="salesforce" type="" sobject="genesis__Org_Parameters__c">
+			<fields>
+				<field id="genesis__Use_Appraisal_Management__c"/>
+			</fields>
+			<conditions/>
+			<actions/>
+		</model>
+		<model id="CollateralDetailView_ApplicationCollateral" limit="" query="true" createrowifnonefound="false" datasource="salesforce" type="" sobject="genesis__Application_Collateral__c">
+			<fields>
+				<field id="genesis__Application__c"/>
+				<field id="genesis__Application__r.Name"/>
+				<field id="genesis__Collateral__c"/>
+				<field id="genesis__Collateral__r.Name"/>
+				<field id="Name"/>
+				<field id="genesis__Pledge_Amount__c"/>
+				<field id="Id"/>
+			</fields>
+			<conditions>
+				<condition type="modelmerge" value="" field="genesis__Collateral__r.Id" operator="=" model="AppCollateralAssociation" enclosevalueinquotes="true" mergefield="genesis__Collateral__r.Id" novaluebehavior="deactivate"/>
+			</conditions>
+			<actions/>
+		</model>
+		<model id="CollateralDetailView_ApplicationCollateralForPreviousPledgeAmount" limit="" query="true" createrowifnonefound="false" datasource="salesforce" type="" sobject="genesis__Application_Collateral__c">
+			<fields>
+				<field id="genesis__Application__c"/>
+				<field id="genesis__Application__r.Name"/>
+				<field id="Name"/>
+				<field id="genesis__Collateral__c"/>
+				<field id="genesis__Collateral__r.Name"/>
+				<field id="Id"/>
+				<field id="genesis__Pledge_Amount__c"/>
+			</fields>
+			<conditions>
+				<condition type="modelmerge" value="" field="genesis__Application__r.Id" operator="=" model="AppCollateralAssociation" enclosevalueinquotes="true" mergefield="genesis__Application__c" novaluebehavior="noquery"/>
+				<condition type="modelmerge" value="" field="genesis__Collateral__r.Id" operator="=" model="AppCollateralAssociation" enclosevalueinquotes="true" mergefield="genesis__Collateral__c" novaluebehavior="deactivate"/>
+			</conditions>
+			<actions/>
+		</model>
+		<model id="Collateral" limit="20" query="true" createrowifnonefound="false" datasource="salesforce" type="" sobject="clcommon__Collateral__c">
+			<fields>
+				<field id="Id"/>
+				<field id="clcommon__Collateral_Type__c"/>
+				<field id="clcommon__Collateral_Type__r.Name"/>
+				<field id="clcommon__Collateral_Name__c"/>
+				<field id="clcommon__Collateral_Code__c"/>
+				<field id="clcommon__Collateral_Category__c"/>
+				<field id="clcommon__Collateral_Category__r.Name"/>
+			</fields>
+			<conditions/>
+			<actions/>
+		</model>
+	</models>
+	<components>
+		<panelset type="custom" uniqueid="sk-10ULo0-104" cssclass="" scroll="fixed" height="800px">
+			<panels>
+				<panel width="100%" cssclass="hide-scroll">
+					<components>
+						<wrapper uniqueid="collateral-section" cssclass="cls-dashboard-section">
+							<components>
+								<pagetitle model="AppCollateralAssociation" uniqueid="collNameTitlePanel">
+									<maintitle>{{genesis__Collateral__r.Occupancy__c}}
+Security Information</maintitle>
+									<actions>
+										<action type="multi" label="Delete" cssclass="iconic-button iconic-button-delete" uniqueid="sk-5pghK-199">
+											<actions>
+												<action type="showPopup">
+													<popup title="Delete application collateral?" width="90%">
+														<components>
+															<pagetitle model="AppCollateralAssociation" uniqueid="sk-2wao0K-544">
+																<actions/>
+																<maintitle>Are you sure you want to delete application collateral {{Name}} ?</maintitle>
+															</pagetitle>
+															<buttonset model="AppCollateralAssociation" uniqueid="app-coll-delete-btn-set" position="">
+																<buttons>
+																	<button type="multi" label="Cancel" secondary="true" uniqueid="sk-3Xz5-434">
+																		<actions>
+																			<action type="closeTopmostPopup"/>
+																		</actions>
+																	</button>
+																	<button type="multi" label="Yes, Continue" uniqueid="sk-3Xz5-437">
+																		<actions>
+																			<action type="custom" snippet="deleteApplicationCollateral"/>
+																			<action type="closeTopmostPopup"/>
+																		</actions>
+																	</button>
+																</buttons>
+															</buttonset>
+														</components>
+														<afterclose/>
+													</popup>
+												</action>
+											</actions>
+										</action>
+										<action type="multi" label="Edit Collateral" cssclass="iconic-button iconic-button-edit" uniqueid="sk-5pghL-202">
+											<actions>
+												<action type="custom" snippet="LaunchEditCollateral"/>
+											</actions>
+											<renderconditions logictype="and">
+												<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="AppCollateralAssociation" sourcetype="fieldvalue" field="Id" fieldtargetobjects="genesis__Application_Collateral__c" value="8765467"/>
+											</renderconditions>
+											<enableconditions/>
+											<hotkeys/>
+										</action>
+									</actions>
+									<renderconditions logictype="and">
+										<rendercondition type="fieldvalue" enclosevalueinquotes="true" fieldmodel="AppCollateralAssociation" sourcetype="modelproperty" nosourcerowbehavior="deactivate" sourceproperty="hasRows"/>
+										<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="AppCollateralAssociation" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="Id" fieldtargetobjects="genesis__Application_Collateral__c" value="87654678"/>
+									</renderconditions>
+								</pagetitle>
+								<navigation uniqueid="navigationId" type="dropdown">
+									<navigationitems>
+										<navigationitem label="Appraisal Management" uniqueid="sk-5pth5-492">
+											<actions>
+												<action type="showPopup">
+													<popup title="Appraisal Management" width="90%">
+														<components>
+															<panelset type="standard" uniqueid="sk-5rZr3-1061" scroll="">
+																<panels>
+																	<panel type="left" width="225px">
+																		<components>
+																			<image source="staticresource" uniqueid="sk-5rgJi-1078" datasource="salesforce" behavior="none" resource="genesisExtn__CLSStyleSheetPack" resourceContentType="application/zip" path="images/House.png" cssclass="image-button House">
+																				<styles>
+																					<styleitem type="itemsize" width="custom" height="custom">
+																						<styles>
+																							<styleitem property="width" value="130px"/>
+																							<styleitem property="height" value="140px"/>
+																						</styles>
+																					</styleitem>
+																					<styleitem type="border"/>
+																				</styles>
+																				<renderconditions logictype="and"/>
+																			</image>
+																		</components>
+																	</panel>
+																	<panel>
+																		<components>
+																			<richtext multiple="false" uniqueid="sk-5r-VZ-1128">
+																				<contents>&lt;p style="text-align: center;"&gt;Define&amp;nbsp;a new&amp;nbsp;user with &amp;#39;Party Type&amp;#39; as &amp;#39;APPRAISAL ADMINISTRATOR&amp;#39; and associate the user with the Collateral Category!&lt;/p&gt;
+</contents>
+																				<renderconditions logictype="and">
+																					<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="AppCollateralAssociation" sourcetype="snippet" nosourcerowbehavior="deactivate" sourcesnippet="NoAppraisalAdmin"/>
+																				</renderconditions>
+																			</richtext>
+																			<pagetitle uniqueid="sk-5sI8f-1158" model="AppCollateralAssociation">
+																				<actions/>
+																				<maintitle>Submit Appraisal Request  for {{genesis__Collateral__r.Name}} ?</maintitle>
+																				<renderconditions logictype="and">
+																					<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="AppCollateralAssociation" sourcetype="snippet" nosourcerowbehavior="deactivate" sourcesnippet="AppraisalAdminExists"/>
+																					<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="AppCollateralAssociation" sourcetype="snippet" nosourcerowbehavior="deactivate" sourcesnippet="NewAppraisalRequest"/>
+																				</renderconditions>
+																				<conditions/>
+																			</pagetitle>
+																			<basicfieldeditor showheader="true" showsavecancel="false" showerrorsinline="true" model="AppraisalRequest" buttonposition="" uniqueid="sk-5sfHM-1205" mode="edit">
+																				<columns>
+																					<column width="100%">
+																						<sections>
+																							<section title="Section A" collapsible="no" showheader="false">
+																								<fields>
+																									<field uniqueid="sk-5t49v-1281" id="genesis__Due_Date__c" valuehalign="" type="" required="true">
+																										<label>Enter Due Date  for the Appraisal Request</label>
+																										<renderconditions logictype="and" onhidedatabehavior="keep"/>
+																										<enableconditions/>
+																									</field>
+																								</fields>
+																							</section>
+																						</sections>
+																					</column>
+																				</columns>
+																				<renderconditions logictype="and">
+																					<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="AppCollateralAssociation" sourcetype="snippet" nosourcerowbehavior="deactivate" sourcesnippet="AppraisalAdminExists"/>
+																					<rendercondition type="fieldvalue" enclosevalueinquotes="true" fieldmodel="AppCollateralAssociation" sourcetype="snippet" nosourcerowbehavior="deactivate" sourceproperty="hasRows" sourcesnippet="NewAppraisalRequest"/>
+																				</renderconditions>
+																				<conditions/>
+																			</basicfieldeditor>
+																			<buttonset uniqueid="sk-5tPPy-1310" model="AppraisalRequest">
+																				<buttons>
+																					<button type="multi" label="Yes, Submit Appraisal" uniqueid="sk-5tqcf-1349">
+																						<renderconditions logictype="and"/>
+																						<enableconditions/>
+																						<hotkeys/>
+																						<actions>
+																							<action type="custom" snippet="updateAppReqRecord"/>
+																							<action type="blockUI" message="Submitting Appraisal Request..." timeout="2000"/>
+																							<action type="closeTopmostPopup"/>
+																						</actions>
+																					</button>
+																					<button type="multi" label="No, Cancel Action" uniqueid="sk-5tqjX-1354">
+																						<renderconditions logictype="and"/>
+																						<enableconditions/>
+																						<hotkeys/>
+																						<actions>
+																							<action type="closeAllPopups"/>
+																						</actions>
+																					</button>
+																				</buttons>
+																				<renderconditions logictype="and">
+																					<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="AppCollateralAssociation" sourcetype="snippet" nosourcerowbehavior="deactivate" sourcesnippet="AppraisalAdminExists"/>
+																					<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="AppCollateralAssociation" sourcetype="snippet" nosourcerowbehavior="deactivate" sourcesnippet="NewAppraisalRequest"/>
+																				</renderconditions>
+																			</buttonset>
+																			<pagetitle uniqueid="sk-5uZ1y-1417" model="AppraisalRequest">
+																				<actions/>
+																				<maintitle>Submitted Appraisal Request Status for {{genesis__Application_Collateral__r.genesis__Collateral__r.Name}}</maintitle>
+																				<renderconditions logictype="and">
+																					<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="AppCollateralAssociation" sourcetype="snippet" nosourcerowbehavior="deactivate" sourcesnippet="ExistingAppraisalRequest"/>
+																				</renderconditions>
+																			</pagetitle>
+																			<basicfieldeditor showheader="true" showsavecancel="false" showerrorsinline="true" model="AppraisalRequest" buttonposition="" uniqueid="sk-5vBKJ-1459" mode="read">
+																				<columns>
+																					<column width="50%">
+																						<sections>
+																							<section title="Section A" collapsible="no" showheader="false">
+																								<fields>
+																									<field uniqueid="sk-5vX-P-1516" id="genesis__Application_Collateral__r.Name" valuehalign="" type=""/>
+																									<field uniqueid="sk-5vfYv-1522" id="genesis__Application_Collateral__r.genesis__Collateral__r.Name" valuehalign="" type=""/>
+																									<field uniqueid="sk-5vjW9-1529" id="genesis__Street_Address__c" valuehalign="" type=""/>
+																									<field uniqueid="sk-5w30P-1572" id="genesis__City__c" valuehalign="" type=""/>
+																									<field uniqueid="sk-5w6wH-1581" id="genesis__State__c" valuehalign="" type=""/>
+																									<field uniqueid="sk-5wAef-1603" id="genesis__Rejected_Bids__c" decimalplaces="" valuehalign="" type=""/>
+																								</fields>
+																							</section>
+																						</sections>
+																					</column>
+																					<column width="50%">
+																						<sections>
+																							<section title="Section B" collapsible="no" showheader="false">
+																								<fields>
+																									<field uniqueid="sk-5wMXX-1621" id="genesis__Due_Date__c" valuehalign="" type="" readonly="true"/>
+																									<field uniqueid="sk-5wMXX-1622" id="genesis__Status__c" valuehalign="" type="" readonly="true"/>
+																									<field uniqueid="sk-5wMXX-1623" id="genesis__Pending_Bids__c" decimalplaces="" valuehalign="" type=""/>
+																									<field uniqueid="sk-5wRWd-1633" id="genesis__Submitted_Bids__c" decimalplaces="" valuehalign="" type=""/>
+																									<field uniqueid="sk-5wRWe-1634" id="genesis__Total_Bids__c" decimalplaces="" valuehalign="" type=""/>
+																									<field uniqueid="sk-5wRWe-1635" id="genesis__Accepted_Bids__c" decimalplaces="" valuehalign="" type=""/>
+																									<field uniqueid="sk-5wRWe-1636" id="genesis__Expired_Bids__c" decimalplaces="" valuehalign="" type=""/>
+																								</fields>
+																							</section>
+																						</sections>
+																					</column>
+																				</columns>
+																				<renderconditions logictype="and">
+																					<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="AppCollateralAssociation" sourcetype="snippet" nosourcerowbehavior="deactivate" sourcesnippet="ExistingAppraisalRequest"/>
+																				</renderconditions>
+																				<conditions/>
+																			</basicfieldeditor>
+																		</components>
+																	</panel>
+																</panels>
+																<renderconditions logictype="and"/>
+															</panelset>
+														</components>
+														<afterclose>
+															<action type="requeryModel" model="AppraisalRequest" behavior="standard"/>
+														</afterclose>
+													</popup>
+												</action>
+											</actions>
+											<renderconditions logictype="and">
+												<rendercondition type="fieldvalue" enclosevalueinquotes="true" fieldmodel="AppCollateralAssociation" sourcetype="modelproperty" nosourcerowbehavior="deactivate" sourceproperty="hasRows"/>
+											</renderconditions>
+										</navigationitem>
+										<navigationitem label="Collateral Analysis" uniqueid="sk-5pyFg-545">
+											<actions>
+												<action type="showPopup">
+													<popup title="Collateral Analysis" width="90%">
+														<components>
+															<pagetitle uniqueid="coll-analysis-pt" model="CollateralDetailView_ApplicationCollateral">
+																<actions/>
+																<maintitle>Collateral Analysis of &lt;b&gt;{{genesis__Collateral__c}}&lt;/b&gt;</maintitle>
+																<renderconditions logictype="and"/>
+																<conditions/>
+															</pagetitle>
+															<grid uniqueid="coll-analysis-grid">
+																<divisions>
+																	<division behavior="flex" minwidth="100px" ratio="1" verticalalign="top">
+																		<components>
+																			<wrapper uniqueid="sk-5_ltI-746">
+																				<components>
+																					<pagetitle uniqueid="app-pledging-pt" model="AppCollateralAssociation">
+																						<maintitle>Application Pledging</maintitle>
+																						<actions/>
+																						<renderconditions logictype="and"/>
+																						<conditions/>
+																					</pagetitle>
+																					<skootable showconditions="true" showsavecancel="false" showerrorsinline="true" searchmethod="server" searchbox="false" showexportbuttons="false" pagesize="10" alwaysresetpagination="false" createrecords="false" model="CollateralDetailView_ApplicationCollateral" buttonposition="" mode="readonly" allowcolumnreordering="false" responsive="false" uniqueid="sk-5-2MZ-777" instantfilters="false" emptysearchbehavior="query">
+																						<fields>
+																							<field id="genesis__Application__c" hideable="true" uniqueid="fi-5-GuP-823" valuehalign="" type="" optionsource="" pagesize="5" redirecttype="datasourcedefault">
+																								<searchfields/>
+																								<filters/>
+																								<renderconditions logictype="and" onhidedatabehavior="keep"/>
+																								<enableconditions/>
+																							</field>
+																							<field id="genesis__Collateral__c" hideable="true" uniqueid="fi-5-GuP-824" valuehalign="" type="" redirecttype="datasourcedefault" optionsource="" pagesize="5">
+																								<renderconditions logictype="and" onhidedatabehavior="keep"/>
+																								<enableconditions/>
+																								<filters/>
+																								<searchfields/>
+																							</field>
+																							<field id="genesis__Pledge_Amount__c" hideable="true" uniqueid="fi-5-GuQ-825" decimalplaces="" valuehalign="" type="">
+																								<renderconditions logictype="and" onhidedatabehavior="keep"/>
+																								<enableconditions/>
+																							</field>
+																						</fields>
+																						<rowactions/>
+																						<massactions usefirstitemasdefault="true"/>
+																						<views>
+																							<view type="standard"/>
+																						</views>
+																						<searchfields/>
+																						<renderconditions logictype="and"/>
+																						<conditions/>
+																					</skootable>
+																				</components>
+																				<styles>
+																					<styleitem type="background"/>
+																					<styleitem type="border"/>
+																					<styleitem type="size"/>
+																				</styles>
+																				<renderconditions logictype="and"/>
+																			</wrapper>
+																		</components>
+																	</division>
+																	<division behavior="flex" verticalalign="top" minwidth="100px" ratio="1" uniqueid="appraisal-remaining-amt-division">
+																		<components>
+																			<wrapper uniqueid="appraisal-remaining-amt-wrapper">
+																				<components>
+																					<pagetitle uniqueid="coll-valuation-pt" model="CollateralDetailView_CollateralValuation">
+																						<actions/>
+																						<maintitle>Collateral Valuation</maintitle>
+																						<renderconditions logictype="and"/>
+																						<conditions/>
+																					</pagetitle>
+																					<skootable showconditions="true" showsavecancel="false" showerrorsinline="true" searchmethod="server" searchbox="false" showexportbuttons="false" pagesize="10" alwaysresetpagination="false" createrecords="false" model="CollateralDetailView_CollateralValuation" buttonposition="" mode="readonly" allowcolumnreordering="true" responsive="false" uniqueid="sk-62gXM-1200" instantfilters="false" emptysearchbehavior="query">
+																						<fields>
+																							<field id="clcommon__Appraised_Value__c" hideable="true" uniqueid="fi-631a--1262" decimalplaces="" valuehalign="" type=""/>
+																							<field id="RemainingValue" hideable="true" uniqueid="fi-631b0-1263" decimalplaces="" valuehalign="" type=""/>
+																						</fields>
+																						<rowactions/>
+																						<massactions usefirstitemasdefault="true"/>
+																						<views>
+																							<view type="standard"/>
+																						</views>
+																						<searchfields/>
+																						<renderconditions logictype="and"/>
+																						<conditions/>
+																					</skootable>
+																				</components>
+																				<styles>
+																					<styleitem type="background"/>
+																					<styleitem type="border"/>
+																					<styleitem type="size"/>
+																				</styles>
+																				<renderconditions logictype="and">
+																					<rendercondition type="fieldvalue" enclosevalueinquotes="true" fieldmodel="CollateralDetailView_CollateralValuation" sourcetype="modelproperty" nosourcerowbehavior="deactivate" sourceproperty="hasRows"/>
+																				</renderconditions>
+																			</wrapper>
+																		</components>
+																	</division>
+																</divisions>
+																<styles>
+																	<styleitem type="background" bgtype="none"/>
+																</styles>
+																<renderconditions logictype="and"/>
+															</grid>
+														</components>
+														<afterclose/>
+													</popup>
+												</action>
+											</actions>
+											<renderconditions logictype="and">
+												<rendercondition type="fieldvalue" enclosevalueinquotes="true" fieldmodel="AppCollateralAssociation" sourcetype="modelproperty" nosourcerowbehavior="deactivate" sourceproperty="hasRows"/>
+												<rendercondition type="fieldvalue" enclosevalueinquotes="true" fieldmodel="CollateralDetailView_CollateralValuation" sourcetype="modelproperty" nosourcerowbehavior="deactivate" sourceproperty="hasRows"/>
+											</renderconditions>
+										</navigationitem>
+										<navigationitem label="Pledge Collateral Value" uniqueid="sk-5qW7w-719">
+											<actions>
+												<action type="requeryModel" model="AppCollateralAssociation" behavior="standard"/>
+												<action type="showPopup">
+													<popup title="Pledge Collateral Value" width="90%">
+														<components>
+															<pagetitle uniqueid="pledge-collateral-title-id" model="AppCollateralAssociation">
+																<actions>
+																	<action type="multi" label="Save" uniqueid="sk-2hcChx-1010" cssclass="iconic-button iconic-button-save">
+																		<actions>
+																			<action type="custom" snippet="validatePledgeAmount"/>
+																			<action type="custom" snippet="savePledgeAmount"/>
+																			<action type="custom" snippet="reloadIframe"/>
+																			<action type="blockUI" message="Pledge Amount Updated" timeout="1500"/>
+																			<action type="closeTopmostPopup"/>
+																		</actions>
+																		<hotkeys/>
+																	</action>
+																	<action type="multi" label="Cancel" uniqueid="sk-2hcCqK-1015" cssclass="iconic-button iconic-button-cancel">
+																		<actions>
+																			<action type="cancel">
+																				<models>
+																					<model>AppCollateralAssociation</model>
+																				</models>
+																			</action>
+																			<action type="closeTopmostPopup"/>
+																		</actions>
+																	</action>
+																</actions>
+																<renderconditions logictype="and"/>
+																<conditions/>
+															</pagetitle>
+															<panelset type="custom" uniqueid="pledge-collateral-panel-id" scroll="">
+																<panels>
+																	<panel width="20%" uniqueid="pledge-amount-input-id">
+																		<components/>
+																	</panel>
+																	<panel width="60%" uniqueid="pledge-amount-graph-id">
+																		<components>
+																			<basicfieldeditor showheader="true" showsavecancel="false" showerrorsinline="true" model="CollateralDetailView_CollateralValuation" buttonposition="" uniqueid="sk-6MSCu-1735" mode="read" layout="">
+																				<columns layoutmode="fixed">
+																					<column width="100%">
+																						<sections>
+																							<section title="Section A" collapsible="no" showheader="false">
+																								<fields>
+																									<field uniqueid="sk-6MfdE-1784" id="clcommon__Appraised_Value__c" decimalplaces="" valuehalign="" type="">
+																										<renderconditions logictype="and" onhidedatabehavior="keep"/>
+																										<enableconditions/>
+																									</field>
+																									<field uniqueid="sk-6MfdF-1785" id="RemainingValue" decimalplaces="" valuehalign="" type=""/>
+																								</fields>
+																							</section>
+																						</sections>
+																					</column>
+																				</columns>
+																				<renderconditions logictype="and"/>
+																				<conditions/>
+																			</basicfieldeditor>
+																			<basicfieldeditor showheader="true" showsavecancel="false" showerrorsinline="true" model="AppCollateralAssociation" buttonposition="" uniqueid="sk-6Mqau-1818" mode="read" layout="">
+																				<columns>
+																					<column width="100%">
+																						<sections>
+																							<section title="Section B" collapsible="no" showheader="false">
+																								<fields>
+																									<field uniqueid="sk-2hcA2C-1004" id="genesis__Pledge_Amount__c"/>
+																								</fields>
+																							</section>
+																						</sections>
+																					</column>
+																				</columns>
+																				<renderconditions logictype="and"/>
+																				<conditions/>
+																			</basicfieldeditor>
+																		</components>
+																	</panel>
+																	<panel width="20%">
+																		<components/>
+																	</panel>
+																</panels>
+																<renderconditions logictype="and"/>
+															</panelset>
+														</components>
+														<afterclose/>
+													</popup>
+												</action>
+											</actions>
+											<renderconditions logictype="and">
+												<rendercondition type="fieldvalue" enclosevalueinquotes="true" fieldmodel="CollateralDetailView_CollateralValuation" sourcetype="modelproperty" nosourcerowbehavior="deactivate" sourceproperty="hasRows"/>
+											</renderconditions>
+										</navigationitem>
+										<navigationitem label="Cash Flow Details" uniqueid="sk-5qxfl-867">
+											<actions>
+												<action type="showPopup">
+													<popup title="Cash Flow Details" width="90%">
+														<components>
+															<wrapper uniqueid="sk-5zT9x-612" cssclass="rent-roll-upload">
+																<components>
+																	<template multiple="false" uniqueid="sk-5zdj5-633" cssclass="rent-roll-upload">
+																		<contents>&lt;iframe src="/apex/genesis__rentRollPreview?id={{{$Model.AppCollateralAssociation.data.0.Id}}}" width="100%" style="height:385px; border:0 !important; "/&gt;</contents>
+																		<renderconditions logictype="and"/>
+																		<conditions/>
+																	</template>
+																</components>
+																<styles>
+																	<styleitem type="background" bgtype="none"/>
+																	<styleitem type="border" borders="none">
+																		<styles>
+																			<styleitem property="box-sizing" value="border-box"/>
+																		</styles>
+																	</styleitem>
+																	<styleitem type="size" height="collapse" width="full"/>
+																</styles>
+																<renderconditions logictype="and"/>
+															</wrapper>
+														</components>
+														<afterclose/>
+													</popup>
+												</action>
+											</actions>
+											<renderconditions logictype="and">
+												<rendercondition type="fieldvalue" enclosevalueinquotes="true" fieldmodel="AppCollateralAssociation" sourcetype="modelproperty" nosourcerowbehavior="deactivate" sourceproperty="hasRows"/>
+											</renderconditions>
+										</navigationitem>
+									</navigationitems>
+									<styles/>
+									<renderconditions logictype="and">
+										<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="AppCollateralAssociation" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="Id" fieldtargetobjects="genesis__Application_Collateral__c" value="8765435678"/>
+									</renderconditions>
+								</navigation>
+								<includepanel type="skuid" uniqueid="collateralDetailPageId" pagename="CollateralDetails" module="ngUi" querystring="?id={{$Model.AppCollateralAssociation.data.0.Id}}&amp;mode=read">
+									<renderconditions logictype="and"/>
+								</includepanel>
+							</components>
+							<styles>
+								<styleitem type="background" bgtype="color">
+									<styles>
+										<styleitem property="background-color" value="white"/>
+									</styles>
+								</styleitem>
+								<styleitem type="border"/>
+								<styleitem type="size"/>
+							</styles>
+						</wrapper>
+					</components>
+				</panel>
+			</panels>
+			<renderconditions logictype="and">
+				<rendercondition type="fieldvalue" enclosevalueinquotes="true" fieldmodel="AppCollateralAssociation" sourcetype="modelproperty" nosourcerowbehavior="deactivate" sourceproperty="hasRows"/>
+			</renderconditions>
+		</panelset>
+	</components>
+	<resources>
+		<labels/>
+		<javascript>
+			<jsitem location="staticresource" name="CLSNGUIComponent" cachelocation="false" url="" namespace="genesisExtn" filepath="commonUtils.js">var params = arguments[0],
+                $ = skuid.$;
+            </jsitem>
+			<jsitem location="staticresource" name="CLSNGUIComponent" cachelocation="false" url="" namespace="genesisExtn" filepath="messageUtils.js">var params = arguments[0],
+                $ = skuid.$;
+            </jsitem>
+			<jsitem location="staticresource" name="CLSNGUIComponent" cachelocation="false" url="" namespace="genesisExtn" filepath="windowCallbacks.js" content_type="application/zip">var params = arguments[0],
+	$ = skuid.$;
+</jsitem>
+			<jsitem location="inlinesnippet" name="deleteApplicationCollateral" cachelocation="false">var params = arguments[0],
+    $ = skuid.$;
+
+var appCollModel = skuid.model.getModel('AppCollateralAssociation');
+var appCollRow = appCollModel.data[0];
+var appCollId = appCollRow.Id;
+var delResult = sforce.connection.deleteIds([appCollId]);
+skuid.$('#collateral-tab').data('object').load();</jsitem>
+			<jsitem location="inlinesnippet" name="LaunchEditCollateral" cachelocation="false">var params = arguments[0],
+    $ = skuid.$;
+var applicationCollateral = skuid.model.getModel('AppCollateralAssociation').getFirstRow();
+var title = 'Edit ' + applicationCollateral.genesis__Collateral__r.Name;
+var skuidPage = 'CollateralDetails';
+var iframeUrl = '/apex/skuid__ui?page=' + skuidPage + '&amp;id=' + applicationCollateral.Id;
+
+openTopLevelDialog({
+    title: title,
+    iframeUrl: iframeUrl
+});</jsitem>
+			<jsitem location="inlinesnippet" name="validatePledgeAmount" cachelocation="false">var params = arguments[0],
+    $ = skuid.$;
+
+// Handle error messages
+var displayMessage = function (message, severity) {
+    var editor = $('#pledge-collateral-title-id ').data('object').editor;
+    editor.handleMessages([
+        {
+            message: message,
+            severity: severity.toUpperCase()
+        }
+    ]);
+
+    return false;
+};
+
+
+var appColRowForPledgeAmt = skuid.model.getModel('AppCollateralAssociation').getFirstRow();
+var appColRowForRemainingVal = skuid.model.getModel('CollateralDetailView_CollateralValuation').getFirstRow();
+var appColRowForPreviousPledgeAmt = skuid.model.getModel('CollateralDetailView_ApplicationCollateralForPreviousPledgeAmount').getFirstRow();
+
+
+
+var pledgeAmt;
+var remainingAmt;
+var previousPledgeAmt;
+
+if(appColRowForPledgeAmt !== undefined) {
+    pledgeAmt = appColRowForPledgeAmt.genesis__Pledge_Amount__c;
+}
+
+
+if(appColRowForPreviousPledgeAmt !== undefined) {
+    previousPledgeAmt = appColRowForPreviousPledgeAmt.genesis__Pledge_Amount__c;
+}
+if(previousPledgeAmt === undefined) {
+    previousPledgeAmt = 0;
+}
+
+if(appColRowForRemainingVal !== undefined) {
+    remainingAmt = appColRowForRemainingVal.RemainingValue;
+    if(isNaN(Number.parseFloat(pledgeAmt))) {
+        return displayMessage('The collateral pledge amount should be a number ', 'ERROR');
+    }else if(pledgeAmt &lt; 0) {
+        return displayMessage('The collateral pledge amount cannot be less than 0 ', 'ERROR');
+    } else if(pledgeAmt - previousPledgeAmt &gt; 0 &amp;&amp; pledgeAmt - previousPledgeAmt &gt; remainingAmt) {
+        /* throw error message; return false */
+        return displayMessage('The collateral pledge amount cannot exceed the available appraised value remaining for the collateral ', 'ERROR');
+    } else {
+        /* return true;*/
+        return true;
+    }
+}
+
+return true;
+</jsitem>
+			<jsitem location="inlinesnippet" name="CreateAppraisalBids" cachelocation="false">var params = arguments[0],
+	$ = skuid.$;
+
+var appBid = skuid.model.getModel('AppraisalBid');
+var appReq = skuid.model.getModel('AppraisalRequest');
+var appCol = skuid.model.getModel('AppCollateralAssociation');
+var appAssocn = skuid.model.getModel('AppraisalAssociation') ;
+
+var req = appReq.getFirstRow();
+var col = appCol.getFirstRow();
+
+
+$.each(appAssocn.getRows(),function(i,row){
+if(row.genesis__Collateral_Category__r.Name == col.genesis__Collateral__r.clcommon__Collateral_Category__r.Name)
+    var bid = appBid.createRow({
+         additionalConditions: [
+        { field: 'genesis__Appraisal_Request__c', value: appReq.getFieldValue(req,'Id') },
+        { field: 'genesis__Status__c', value: 'Pending'},
+        { field: 'genesis__Authorized_Appraiser__c', value: row.genesis__Appraiser__c},
+         ]
+    });
+
+
+});
+
+var dfd = new $.Deferred();
+
+    $.when(appBid.save())
+        .done(function(){
+           dfd.resolve();
+        })
+        .fail(function(){
+           dfd.reject();
+        });
+
+    return dfd.promise();
+
+
+
+</jsitem>
+			<jsitem location="inlinesnippet" name="ExistingAppraisalRequest" cachelocation="false">var params = arguments[0],
+	$ = skuid.$;
+var appReq = skuid.model.getModel('AppraisalRequest');
+var appColAssocn = skuid.model.getModel('AppCollateralAssociation');
+var col = appColAssocn.data[0];
+var existingAppraisal = false;
+
+$.each(appReq.getRows(),function(i,row){
+    if(row.genesis__Application_Collateral__c !== undefined &amp;&amp; row.genesis__Application_Collateral__r.genesis__Collateral__c == col.genesis__Collateral__c){
+        existingAppraisal = true;
+    }
+
+    else if((row.genesis__Status__c == 'Expired') || (row.genesis__Status__c == 'Closed')){
+        existingAppraisal = false;
+    }
+});
+
+return existingAppraisal;</jsitem>
+			<jsitem location="inlinesnippet" name="NewAppraisalRequest" cachelocation="false">var params = arguments[0],
+	$ = skuid.$;
+var appReq = skuid.model.getModel('AppraisalRequest');
+var appColAssocn = skuid.model.getModel('AppCollateralAssociation');
+var col = appColAssocn.data[0];
+var newAppraisal = true;
+
+$.each(appReq.getRows(),function(i,row){
+
+    if(row.genesis__Application_Collateral__c !== undefined &amp;&amp; row.genesis__Application_Collateral__r.genesis__Collateral__c == col.genesis__Collateral__c){
+        newAppraisal = false;
+    } else if((row.genesis__Status__c == 'Expired') || (row.genesis__Status__c == 'Closed')){
+       newAppraisal = true;
+    }
+
+});
+
+return newAppraisal;</jsitem>
+			<jsitem location="inlinesnippet" name="AppraisalAdminExists" cachelocation="false">var params = arguments[0],
+	$ = skuid.$;
+
+// Handle error messages
+var displayMessage = function (message, severity) {
+    var editor = $('#collNameTitlePanel ').data('object').editor;
+    editor.messages.empty();
+    editor.handleMessages([
+        {
+            message: message,
+            severity: severity.toUpperCase()
+        }
+    ]);
+
+    return false;
+};
+
+
+var colType = skuid.model.getModel('CollateralCategory');
+var appColAssocn = skuid.model.getModel('AppCollateralAssociation');
+var col = appColAssocn.getFirstRow();
+var AppraisalAdmin = true;
+
+$.each(colType.getRows(),function(i,row){
+
+    if(col.genesis__Collateral__r.clcommon__Collateral_Category__c === undefined){
+        return displayMessage('No Collateral Category Associated.', 'ERROR');
+    }
+
+    if((row.Name == col.genesis__Collateral__r.clcommon__Collateral_Category__r.Name) &amp;&amp; (row.genesis__AppraisalAdmin__c == null )){
+        AppraisalAdmin = false;
+    }
+});
+
+return AppraisalAdmin;
+</jsitem>
+			<jsitem location="inlinesnippet" name="NoAppraisalAdmin" cachelocation="false">var params = arguments[0],
+	$ = skuid.$;
+
+// Handle error messages
+var displayMessage = function (message, severity) {
+    var editor = $('#collNameTitlePanel ').data('object').editor;
+    editor.messages.empty();
+    editor.handleMessages([
+        {
+            message: message,
+            severity: severity.toUpperCase()
+        }
+    ]);
+
+    return false;
+};
+
+
+var colType = skuid.model.getModel('CollateralCategory');
+var appColAssocn = skuid.model.getModel('AppCollateralAssociation');
+var col = appColAssocn.getFirstRow();
+var AppraisalAdmin = false;
+
+$.each(colType.getRows(),function(i,row){
+    if(col.genesis__Collateral__r.clcommon__Collateral_Category__c === undefined){
+        return displayMessage('No Collateral Category Associated.', 'ERROR');
+    }
+
+    if((row.Name == col.genesis__Collateral__r.clcommon__Collateral_Category__r.Name) &amp;&amp; (row.genesis__AppraisalAdmin__c == null )){
+        AppraisalAdmin = true;
+    }
+});
+
+return AppraisalAdmin;
+</jsitem>
+			<jsitem location="inlinesnippet" name="updateAppReqRecord" cachelocation="false">var params = arguments[0],
+	$ = skuid.$;
+
+var appReq = skuid.model.getModel('AppraisalRequest');
+var appReqRow = appReq.data[0];
+var appColAssocn = skuid.model.getModel('AppCollateralAssociation');
+var appColAssocnRow = appColAssocn.data[0];
+
+if(!appReqRow){
+    var appReqRow = appReq.createRow({
+        additionalConditions: [
+            { field: 'genesis__Status__c', value:'Pending' },
+            { field: 'genesis__Application_Collateral__c', value: appColAssocnRow.Id },
+        ]
+    });
+
+}else{
+    appReq.updateRow(appReqRow ,
+                        { genesis__Status__c : 'Pending' ,
+                          genesis__Application_Collateral__c : appColAssocnRow.Id });
+
+}
+
+var dfd = new $.Deferred();
+
+    $.when(appReq.save())
+        .done(function(){
+           dfd.resolve();
+        })
+        .fail(function(){
+           dfd.reject();
+        });
+
+    return dfd.promise();
+</jsitem>
+			<jsitem location="inlinesnippet" name="updateRemainingValue" cachelocation="false">var params = arguments[0],
+	$ = skuid.$;
+
+
+var collValModel = skuid.model.getModel('CollateralDetailView_CollateralValuation');
+var collValRow = collValModel.getFirstRow();
+
+var allAppForCollateralModel = skuid.model.getModel('CollateralDetailView_ApplicationCollateral');
+var allAppForCollateralList = allAppForCollateralModel.data;
+
+var total_pladge_amt = 0;
+
+if(allAppForCollateralList !== undefined) {
+    /* sum all pledge amount across all application for this collateral */
+    $.each(allAppForCollateralList, function(fieldId,appColRow) {
+        $.each(appColRow,function(fieldName,val) {
+            if ((fieldName != 'attributes') &amp;&amp; (fieldName === 'genesis__Pledge_Amount__c')) {
+                if(val !== undefined &amp;&amp; val !== null) {
+                    total_pladge_amt = total_pladge_amt + val;
+
+
+                }
+
+            }
+        });
+    });
+    if(collValRow !== undefined) {
+        /* update remianing value = Appraisaed_Value -Sum(Pledge_Amount across other loan application) */
+        collValModel.updateRow(collValRow,{
+             RemainingValue: collValRow.clcommon__Appraised_Value__c - total_pladge_amt
+        });
+    }
+}
+
+</jsitem>
+			<jsitem location="inline" name="onLoad" cachelocation="false" url="">(function(skuid){
+	var $ = skuid.$;
+	$(document.body).one('pageload',function(){
+	    showIconicBtnLabelAsTooltip();
+		var getUpdateRemainingAmtSnippet = skuid.snippet.getSnippet('updateRemainingValue');
+        getUpdateRemainingAmtSnippet();
+
+
+	});
+})(skuid);</jsitem>
+			<jsitem location="inlinesnippet" name="savePledgeAmount" cachelocation="false">var params = arguments[0],
+	$ = skuid.$;
+
+var dfd = new $.Deferred();
+var appColRowForPledgeAmt = skuid.model.getModel('AppCollateralAssociation');
+var row = appColRowForPledgeAmt.data[0];
+
+$.when(appColRowForPledgeAmt.save())
+    .done(function(){
+
+        skuid.$('#collateral-tab').data('object').load();
+
+        dfd.resolve();
+    })
+    .fail(function(){
+       dfd.reject();
+    });
+
+return dfd.promise();
+</jsitem>
+			<jsitem location="inlinesnippet" name="reloadIframe" cachelocation="false">var params = arguments[0],
+	$ = skuid.$;
+
+
+closeTopLevelDialogAndRefresh({iframeIds: ['collateral-details-iframe']});</jsitem>
+			<jsitem location="external" name="ApexJs" cachelocation="false" url="/soap/ajax/40.0/apex.js">var params = arguments[0],
+	$ = skuid.$;
+</jsitem>
+			<jsitem location="inlinesnippet" name="createCategoryAttachmentAssn" cachelocation="false">var params = arguments[0],
+	$ = skuid.$;
+
+var attch = skuid.model.getModel('Attachment');
+var attRow = attch.data[0];
+
+var row = params.row;
+
+var attch = catAttchAssocn.createRow({
+         additionalConditions: [
+        { field: 'clcommon__Attachment_Id__c', value: attRow.Id },
+        { field: 'clcommon__Document_Category__c', value: row.Id}
+         ]
+    });
+    
+var dfd = new $.Deferred();
+
+    $.when(attch.save())
+        .done(function(){
+           dfd.resolve();
+        })
+        .fail(function(){
+           dfd.reject();
+        });
+
+return dfd.promise();
+</jsitem>
+		</javascript>
+		<css>
+			<cssitem location="staticresource" name="CLSStyleSheetPack" cachelocation="false" url="" namespace="genesisExtn" filepath="cls-common.css"/>
+			<cssitem location="staticresource" name="CLSStyleSheetPack" cachelocation="false" url="" namespace="genesisExtn" content_type="application/zip" filepath="cls-dashboard.css"/>
+			<cssitem location="staticresource" name="CLSStyleSheetPack" cachelocation="false" url="" namespace="genesisExtn" content_type="application/zip" filepath="customcss.css"/>
+			<cssitem location="staticresource" name="CLSStyleSheetPack" cachelocation="false" url="" namespace="genesisExtn" filepath="navigation-component.css"/>
+			<cssitem location="inline" name="inlinecss" cachelocation="false">
+#collateralDetailPageId &gt; .nx-page {
+    height: 827px;
+    padding: 0 !important;
+}
+
+body {
+    background-color: #ebeef0;
+}
+
+body &gt; .nx-page {
+    padding: 0 !important;
+    margin:0 !important;
+}
+
+
+.image-button.flood:after {
+    content: 'Flood Determination';
+}
+
+.image-button.house:after {
+    content: 'Appraisal';
+}
+
+.image-button.property:after {
+    content: 'Cash Flow Details';
+}
+
+.image-button.cone:after {
+    content: 'Construction Dashboard';
+}
+
+.image-button.Appraisal:after {
+    content: 'Request New Appraisal';
+}
+
+.image-button.dollar:after {
+    content: 'Pledged Amount';
+    margin-top: 14px;
+}
+
+.image-button.coll-house:after {
+    content: 'Collateral Analysis';
+}
+
+#constructionDashI {
+    min-height: 400px;
+}
+
+.rent-roll-upload {
+    overflow-y: hidden;
+    overflow-x: hidden;
+}
+
+.ui-dialog {
+    top:10px !important;
+}
+
+#pledge-amt-wrapper .image-button button &gt; img {
+    height: 37px;
+    width: 58px;
+    padding-top: 29px;
+}
+
+.nx-page {
+    padding:0;
+}
+
+.vf-page {
+    height: 800px;
+}
+
+#sk-10ULo0-104{
+    width : 69.7rem;
+}</cssitem>
+			<cssitem location="inline" name="cyclotronCss" cachelocation="false">
+#app-coll-delete-btn-set {
+    float: right;
+}
+
+#appraisal-remaining-amt-division {
+    margin-left: 30px;
+}
+
+
+#coll-valuation-pt .nx-pagetitle-maintitle, .nx-pagetitle-subtitle {
+    float:none;
+}
+
+#coll-analysis-pt .nx-pagetitle-maintitle, .nx-pagetitle-subtitle {
+    float:none;
+}
+
+#app-pledging-pt .nx-pagetitle-maintitle, .nx-pagetitle-subtitle {
+    float:none;
+}
+
+#coll-analysis-pt {
+    text-align:center;
+}
+
+#app-pledging-pt {
+    text-align:center;
+}
+
+#coll-valuation-pt {
+    text-align:center;
+}
+</cssitem>
+			<cssitem location="inline" name="navigationCSS" cachelocation="false">
+		   
+#collNameTitlePanel .sk-dropnav, div.sk-navigation.sk-navigation-dropdown {
+    float: right;
+    top: -45px;
+    right: 100px;
+}
+
+
+
+
+</cssitem>
+		</css>
+		<actionsequences uniqueid="sk-3Cpe-783"/>
+	</resources>
+	<styles>
+		<styleitem type="background" bgtype="color">
+			<styles>
+				<styleitem property="background-color" value="white"/>
+			</styles>
+		</styleitem>
+		<styleitem property="position" value="absolute"/>
+		<styleitem property="top" value="0"/>
+		<styleitem property="bottom" value="0"/>
+		<styleitem property="left" value="0"/>
+		<styleitem property="right" value="0"/>
+	</styles>
+	<interactions/>
+</skuidpage>

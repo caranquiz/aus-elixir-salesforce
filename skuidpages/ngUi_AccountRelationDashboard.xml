@@ -1,0 +1,548 @@
+<skuidpage personalizationmode="server" showheader="false" showsidebar="false" useviewportmeta="true">
+	<models>
+		<model id="PrimaryAccount" limit="1" query="true" createrowifnonefound="false" datasource="salesforce" type="" sobject="Account">
+			<fields>
+				<field id="Id"/>
+				<field id="Name"/>
+				<field id="genesis__Total_Risk_Score__c"/>
+				<field id="clcommon__Direct_Exposure__c"/>
+				<field id="clcommon__Indirect_Exposure__c"/>
+				<field id="clcommon__Direct_Proposed_Exposure__c"/>
+				<field id="clcommon__Indirect_Proposed_Exposure__c"/>
+				<field id="clcommon__Last_Modified_Date_Exposure__c"/>
+				<field id="clcommon__Direct_Exposure_Relationship__c"/>
+				<field id="clcommon__Indirect_Exposure_Relationship__c"/>
+			</fields>
+			<conditions>
+				<condition type="param" value="id" field="Id" operator="=" enclosevalueinquotes="true" novaluebehavior="noquery"/>
+			</conditions>
+			<actions/>
+		</model>
+		<model id="Applications" limit="20" query="true" createrowifnonefound="false" datasource="salesforce" sobject="genesis__Applications__c" doclone="">
+			<fields>
+				<field id="genesis__CL_Product__c"/>
+				<field id="genesis__CL_Product__r.Name"/>
+				<field id="Name"/>
+				<field id="RecordTypeId"/>
+				<field id="RecordType.Name"/>
+				<field id="genesis__Account__c"/>
+				<field id="genesis__Account__r.Name"/>
+				<field id="Id"/>
+				<field id="genesis__CL_Product__r.clcommon__Product_Name__c"/>
+			</fields>
+			<conditions>
+				<condition type="param" value="id" field="genesis__Account__r.Id" operator="=" enclosevalueinquotes="true" novaluebehavior=""/>
+			</conditions>
+			<actions/>
+		</model>
+		<model id="CLModel" limit="20" query="true" createrowifnonefound="false" datasource="salesforce" sobject="clcommon__CL_Product__c" forview="false" orderby="RecordType.Name">
+			<fields>
+				<field id="Name"/>
+				<field id="clcommon__Product_Name__c"/>
+				<field id="clcommon__Asset_Class__r.Owner.Username"/>
+				<field id="CreatedBy.Account.Id"/>
+				<field id="Id"/>
+				<field id="RecordTypeId"/>
+				<field id="RecordType.Name"/>
+			</fields>
+			<conditions>
+				<condition type="modelmerge" value="" operator="not in" field="clcommon__Product_Name__c" state="" mergefield="genesis__CL_Product__r.clcommon__Product_Name__c" novaluebehavior="deactivate" inactive="false" model="Applications" enclosevalueinquotes="true"/>
+			</conditions>
+			<actions/>
+			<groupby method="simple"/>
+		</model>
+	</models>
+	<components>
+		<grid uniqueid="sk-3sSFAy-119" columngutter="">
+			<divisions>
+				<division behavior="specified" verticalalign="top" width="78%" cssclass="account-dashboard-left-panel">
+					<components>
+						<tabset rememberlastusertab="false" defertabrendering="true" renderas="" uniqueid="sk-32iDkh-87" cssclass="account-dashboard-tabset">
+							<tabs>
+								<tab name="Affiliations" loadlazypanels="true" uniqueid="household-affiliations-panel">
+									<components>
+										<grid uniqueid="sk-1_yj6w-741">
+											<divisions>
+												<division behavior="flex" minwidth="100px" ratio="1" verticalalign="top">
+													<components>
+														<includepanel type="skuid" uniqueid="sk-30JLMf-150" pagename="ManagingHouseholdsAndAffiliations" module="ngUi" querystring="?id={{$Model.PrimaryAccount.data.0.Id}}"/>
+													</components>
+												</division>
+											</divisions>
+											<styles>
+												<styleitem type="background" bgtype="color">
+													<styles>
+														<styleitem property="background-color" value="white"/>
+													</styles>
+												</styleitem>
+												<styleitem property="height" value="100%"/>
+											</styles>
+										</grid>
+									</components>
+									<oninitialshowactions/>
+									<onshowactions/>
+								</tab>
+								<tab name="Relationship Graph" loadlazypanels="true" uniqueid="account-relationship-graph-panel">
+									<components>
+										<includepanel type="skuid" uniqueid="sk-2YcRrq-160" pagename="RelationshipGraph" module="ngUi" querystring="id={{$Model.PrimaryAccount.data.0.Id}}" lazyload="true"/>
+									</components>
+									<oninitialshowactions/>
+									<onshowactions/>
+								</tab>
+								<tab name="Documents" uniqueid="account-dashboard-document-panel">
+									<components>
+										<grid uniqueid="account-dashboard-grid" columngutter="10px">
+											<divisions>
+												<division behavior="flex" minwidth="100px" ratio="6" verticalalign="top">
+													<components>
+														<template multiple="false" id="account-document-container" uniqueid="sk-32iDkS-82" model="PrimaryAccount">
+															<contents>&lt;iframe id="document-iframe" src="/apex/genesisExtn__accountDocumentTreeView?id={{{$Model.PrimaryAccount.data.0.Id}}}" width="100%" height="100%"/&gt;
+                                                            </contents>
+														</template>
+													</components>
+												</division>
+											</divisions>
+											<styles>
+												<styleitem bgtype="none" type="background"/>
+											</styles>
+											<renderconditions logictype="and"/>
+										</grid>
+									</components>
+									<oninitialshowactions/>
+									<onshowactions/>
+									<renderconditions logictype="and"/>
+								</tab>
+								<tab name="Covenants" loadlazypanels="true">
+									<components>
+										<grid uniqueid="sk-37n-z2-131">
+											<divisions>
+												<division behavior="flex" minwidth="100px" ratio="1" verticalalign="top">
+													<components>
+														<includepanel type="skuid" uniqueid="sk-37o21m-137" querystring="?id={{$Model.PrimaryAccount.data.0.Id}}" pagename="AccountBasedCovenantContainer" module="ngUi" lazyload="true"/>
+													</components>
+												</division>
+											</divisions>
+											<styles>
+												<styleitem type="background" bgtype="color">
+													<styles>
+														<styleitem property="background-color" value="white"/>
+													</styles>
+												</styleitem>
+											</styles>
+										</grid>
+									</components>
+								</tab>
+								<tab name="Risk Assessment" loadlazypanels="true">
+									<components>
+										<includepanel type="skuid" uniqueid="sk-12Q42E-139" querystring="?id={{$Model.PrimaryAccount.data.0.Id}}" pagename="AccountRiskAssement" module="" lazyload="true"/>
+									</components>
+									<oninitialshowactions/>
+									<onshowactions/>
+								</tab>
+								<tab name="Financial Accounts" loadlazypanels="true">
+									<components>
+										<includepanel type="skuid" uniqueid="account-financial" pagename="AccountFinancialAccounts" module="" querystring="?id={{$Model.PrimaryAccount.data.0.Id}}"/>
+									</components>
+									<oninitialshowactions/>
+									<onshowactions/>
+									<renderconditions logictype="and"/>
+								</tab>
+								<tab name="Available Products" loadlazypanels="true">
+									<components>
+										<wrapper uniqueid="sk-2EHp3_-355">
+											<components>
+												<queue tagrendertype="template" searchbox="true" tokenizesearch="true" showsearchbydefault="true" hideheader="true" hidefooter="false" uniqueid="AvailableProductLists" model="CLModel" cssclass="productTemplate">
+													<rendertemplate>&lt;div class="availableProducts"&gt;{{clcommon__Product_Name__c}}&lt;/div&gt;</rendertemplate>
+													<interactions>
+														<interaction type="tap">
+															<action type="custom" querystring="id={{Id}}" snippet="applicationRedirect"/>
+														</interaction>
+													</interactions>
+													<searchfields/>
+													<renderconditions logictype="and"/>
+												</queue>
+											</components>
+											<styles>
+												<styleitem type="background" bgtype="color">
+													<styles>
+														<styleitem property="background-color" value="white"/>
+													</styles>
+												</styleitem>
+												<styleitem type="border"/>
+												<styleitem type="size"/>
+											</styles>
+											<renderconditions logictype="and"/>
+											<interactions/>
+										</wrapper>
+									</components>
+									<oninitialshowactions/>
+									<onshowactions/>
+								</tab>
+							</tabs>
+							<renderconditions logictype="and"/>
+						</tabset>
+					</components>
+				</division>
+				<division behavior="specified" verticalalign="top" width="21%" cssclass="account-dashboard-right-panel">
+					<components>
+						<template multiple="false" uniqueid="sk-uvcO5-140" allowhtml="true" model="PrimaryAccount">
+							<contents>&lt;div class="card-list-view"&gt;
+                                &lt;div class="left-sidebar"&gt;
+                                &lt;div class="dot"&gt;&lt;/div&gt;
+                                &lt;div class="dot"&gt;&lt;/div&gt;
+                                &lt;div class="dot"&gt;&lt;/div&gt;
+                                &lt;/div&gt;
+                                &lt;div class="content"&gt;
+                                &lt;div&gt;Total Risk Score&lt;/div&gt;
+                                &lt;div&gt;{{genesis__Total_Risk_Score__c}}&lt;/div&gt;
+                                &lt;/div&gt;
+                                &lt;/div&gt;</contents>
+						</template>
+						<template multiple="false" uniqueid="sk-uvcsq-144" allowhtml="true" model="PrimaryAccount">
+							<contents>&lt;div class="card-list-view"&gt;
+                                &lt;div class="left-sidebar"&gt;
+                                &lt;div class="dot"&gt;&lt;/div&gt;
+                                &lt;div class="dot"&gt;&lt;/div&gt;
+                                &lt;div class="dot"&gt;&lt;/div&gt;
+                                &lt;/div&gt;
+                                &lt;div class="content"&gt;
+                                &lt;div&gt;Direct Exposure&lt;/div&gt;
+                                &lt;div&gt;{{clcommon__Direct_Exposure__c}}&lt;/div&gt;
+                                &lt;/div&gt;
+                                &lt;/div&gt;</contents>
+						</template>
+						<template multiple="false" uniqueid="sk-uvbwj-136" allowhtml="true" model="PrimaryAccount">
+							<contents>&lt;div class="card-list-view"&gt;
+                                &lt;div class="left-sidebar"&gt;
+                                &lt;div class="dot"&gt;&lt;/div&gt;
+                                &lt;div class="dot"&gt;&lt;/div&gt;
+                                &lt;div class="dot"&gt;&lt;/div&gt;
+                                &lt;/div&gt;
+                                &lt;div class="content"&gt;
+                                &lt;div&gt;Indirect Exposure&lt;/div&gt;
+                                &lt;div&gt;{{clcommon__Indirect_Exposure__c}}&lt;/div&gt;
+                                &lt;/div&gt;
+
+                                &lt;/div&gt;</contents>
+						</template>
+						<template multiple="false" uniqueid="sk-13YmQZ-143" allowhtml="true" model="PrimaryAccount">
+							<contents>&lt;div class="card-list-view"&gt;
+                                &lt;div class="left-sidebar"&gt;
+                                &lt;div class="dot"&gt;&lt;/div&gt;
+                                &lt;div class="dot"&gt;&lt;/div&gt;
+                                &lt;div class="dot"&gt;&lt;/div&gt;
+                                &lt;/div&gt;
+                                &lt;div class="content"&gt;
+                                &lt;div&gt;Indirect Proposed Exposure&lt;/div&gt;
+                                &lt;div&gt;{{clcommon__Indirect_Proposed_Exposure__c}}&lt;/div&gt;
+                                &lt;/div&gt;
+                                &lt;/div&gt;</contents>
+						</template>
+						<template multiple="false" uniqueid="sk-18bzsx-196" model="PrimaryAccount" allowhtml="true">
+							<contents>&lt;div class="card-list-view"&gt;
+                                &lt;div class="left-sidebar"&gt;
+                                &lt;div class="dot"&gt;&lt;/div&gt;
+                                &lt;div class="dot"&gt;&lt;/div&gt;
+                                &lt;div class="dot"&gt;&lt;/div&gt;
+                                &lt;/div&gt;
+                                &lt;div class="content"&gt;
+                                &lt;div&gt;Direct Proposed Exposure&lt;/div&gt;
+                                &lt;div&gt;{{clcommon__Direct_Proposed_Exposure__c}}&lt;/div&gt;
+                                &lt;/div&gt;
+                                &lt;/div&gt;</contents>
+						</template>
+						<template multiple="false" uniqueid="sk-1CSAyZ-267" model="PrimaryAccount" allowhtml="true">
+							<contents>&lt;div class="card-list-view"&gt;
+    &lt;div class="left-sidebar"&gt;
+        &lt;div class="dot"&gt;&lt;/div&gt;
+        &lt;div class="dot"&gt;&lt;/div&gt;
+        &lt;div class="dot"&gt;&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="content"&gt;
+        &lt;div&gt;Direct Exposure(Relationship)&lt;/div&gt;
+        &lt;div&gt;{{clcommon__Direct_Exposure_Relationship__c}}&lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</contents>
+						</template>
+						<template multiple="false" uniqueid="sk-1CSidY-480" model="PrimaryAccount" allowhtml="true">
+							<contents>&lt;div class="card-list-view"&gt;
+    &lt;div class="left-sidebar"&gt;
+        &lt;div class="dot"&gt;&lt;/div&gt;
+        &lt;div class="dot"&gt;&lt;/div&gt;
+        &lt;div class="dot"&gt;&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="content"&gt;
+        &lt;div&gt;Indirect Exposure(Relationship)&lt;/div&gt;
+        &lt;div&gt;{{clcommon__Indirect_Exposure_Relationship__c}}&lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</contents>
+						</template>
+						<template multiple="false" uniqueid="sk-18cD10-222" model="PrimaryAccount" allowhtml="true">
+							<contents>&lt;div class="card-list-view"&gt;
+    &lt;div class="left-sidebar"&gt;
+        &lt;div class="dot"&gt;&lt;/div&gt;
+        &lt;div class="dot"&gt;&lt;/div&gt;
+        &lt;div class="dot"&gt;&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="content"&gt;
+        &lt;div&gt;Last Modified Date Exposure&lt;/div&gt;
+        &lt;div&gt;{{clcommon__Last_Modified_Date_Exposure__c}}&lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</contents>
+						</template>
+					</components>
+				</division>
+			</divisions>
+			<styles>
+				<styleitem type="background" bgtype="none"/>
+				<styleitem property="position" value="absolute"/>
+				<styleitem property="height" value="calc(100% - 51px)"/>
+				<styleitem property="top" value="50px"/>
+				<styleitem property="bottom" value="0"/>
+				<styleitem property="left" value="0"/>
+				<styleitem property="right" value="0"/>
+			</styles>
+		</grid>
+		<includepanel type="skuid" uniqueid="ApplicationHeader" pagename="GenericHeader" module="ngUi" querystring="?id={{$Model.PrimaryAccount.data.0.Id}}" cssclass="includeHeader">
+			<renderconditions logictype="and"/>
+		</includepanel>
+	</components>
+	<resources>
+		<labels/>
+		<javascript>
+			<jsitem location="staticresource" name="CLSNGUIComponent" cachelocation="false" url="" namespace="genesisExtn" filepath="messageUtils.js">var params = arguments[0], $ = skuid.$;
+            </jsitem>
+			<jsitem location="staticresource" name="CLSNGUIComponent" cachelocation="false" url="" namespace="genesisExtn" filepath="commonUtils.js">var params = arguments[0], $ = skuid.$;
+            </jsitem>
+			<jsitem location="staticresource" name="CLSNGUIComponent" cachelocation="false" url="" namespace="genesisExtn" filepath="mainPage.js">var params = arguments[0], $ = skuid.$;
+            </jsitem>
+			<jsitem location="staticresource" name="CLSNGUIComponent" cachelocation="false" url="" namespace="genesisExtn" filepath="windowCallbacks.js">var params = arguments[0], $ = skuid.$;
+            </jsitem>
+			<jsitem location="staticresource" name="JQueryPopoverUIPack" cachelocation="false" url="" namespace="genesisExtn" filepath="jquery.webui-popover.min.js">var params = arguments[0],$ = skuid.$;</jsitem>
+			<jsitem location="staticresource" name="CLSNGUIComponent" cachelocation="false" url="" namespace="genesisExtn" filepath="documentMessages.js">var params = arguments[0],$ = skuid.$;</jsitem>
+			<jsitem location="inlinesnippet" name="applicationRedirect" cachelocation="false">var params = arguments[0],
+	$ = skuid.$;
+var url = document.referrer;
+var productId = params.row.__skuid_record__.__id;
+var recordTypeId = params.row.RecordTypeId;
+var accountId = skuid.page.params.id
+if(recordTypeId==undefined || recordTypeId == null ){
+    alert("Record Type is not defined for the selected Product");
+}else{
+    var developerName = sforce.connection.query("select DeveloperName from recordtype where id = '"+recordTypeId+"'");
+    var sql = "select id,Name,sobjectType,DeveloperName from RecordType where sobjecttype='genesis__Applications__c' and developername='"+developerName.records.DeveloperName+"'";
+    var result = sforce.connection.query(sql);
+    if(result.records.Id){
+    var urls = url+"apex/NewApplication?RecordType="+result.records.Id+"&amp;AccountId="+accountId +"&amp;ProductId="+productId;
+    window.open(urls, '_blank')
+    }else{
+        alert("Record Type is not found: "+developerName.records.DeveloperName)
+    }
+}
+</jsitem>
+		</javascript>
+		<css>
+			<cssitem cachelocation="false" filepath="font-awesome-4.6.3/css/font-awesome.css" location="staticresource" name="FontAwesomePack" namespace="genesisExtn" url=""/>
+			<cssitem cachelocation="false" filepath="cls-common.css" location="staticresource" name="CLSStyleSheetPack" namespace="genesisExtn" url=""/>
+			<cssitem cachelocation="false" filepath="customcss.css" location="staticresource" name="CLSStyleSheetPack" namespace="genesisExtn" url=""/>
+			<cssitem cachelocation="false" location="inline" name="appCss">iframe {
+    border: 0px;
+}
+
+html {
+    height: 100%;
+}
+
+body {
+    background-color: #EBEEF0;
+    font: normal normal 400 12px Lato;
+    padding: 0 !important;
+    height: 100%;
+}
+
+body&gt;.nx-page {
+    padding: 0;
+    background-color: #EBEEF0;
+}
+
+.nx-page {
+    padding: 0 0 0 0 !important;
+}
+
+.nx-pagetitle-maintitle {
+    padding: 0 0 0 6px;
+    font-size: 14px;
+}
+
+div[pagename ="AccountRelationDashboard"]{
+    position: absolute;
+    height: 100%;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.account-dashboard-left-panel{
+    margin: 5px;
+}
+
+.account-dashboard-right-panel{
+    overflow-y: auto;
+}
+
+.account-dashboard-tabset{
+    height: 100%;
+}
+
+#document-iframe {
+    border: none;
+    height: calc(100% - 40px); /* 40px is the heights of the tabs panel*/
+    position:absolute;
+    right:0;
+    left:0;
+}
+
+#household-affiliations-panel{
+    height: calc(100% - 40px);
+}
+
+#household-affiliations-panel &gt; .sk-grid &gt; .sk-grid-division &gt; .nx-include-panel{
+    height: 100%;
+}
+#account-relationship-graph-panel{
+    height: calc(100% - 40px);
+    overflow-y: auto;
+}</cssitem>
+			<cssitem location="inline" name="creditExposure" cachelocation="false">.card-list-view {
+    display: flex;
+    flex-direction: row;
+    height: 60px;
+    vertical-align: middle;
+    margin-bottom: 5px; 
+}
+.card-list-view .left-sidebar {
+    width: 15px;
+    background: #d8dadd;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column; 
+}
+.card-list-view .left-sidebar .dot {
+    margin: 2px 0px 2px 0px;
+    border-radius: 50%;
+    width: 5px;
+    height: 5px;
+    background: #a5abb0; 
+}
+.card-list-view .content {
+    display: flex;
+    flex-direction: column;
+    font-size: 14px;
+    height: 50%;
+    padding-left: 20px;
+    flex-grow: 11;
+    align-self: center;
+    justify-content: center; 
+}
+.card-list-view .content div {
+    margin-bottom: 5px; 
+}
+.card-list-view .action {
+    text-align: center;
+    flex-grow: 2;
+    flex-direction: row;
+    align-self: flex-end; 
+}
+.card-list-view .action .button {
+    cursor: pointer; 
+}
+
+</cssitem>
+			<cssitem location="inline" name="label" cachelocation="false">.status-label {
+    font-weight: 400;
+    width: initial !important;
+    color: white;
+    border: 0 none #0070d2;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    padding: 5px 5px 5px 5px;
+    display: flex;
+    justify-content: center;
+    text-align: center; 
+}
+.status-label.accepted {
+    background: #48ce94; 
+}
+.status-label.expired {
+    background: #FF3333; 
+}
+.status-label.clear {
+    background: #e8e8e8;
+    color: black; 
+}
+.status-label.exception {
+    background: #ffa21d; 
+}
+.status-label.pending {
+    background: #e8e8e8;
+    color: black; 
+}
+
+</cssitem>
+			<cssitem location="inline" cachelocation="false" name="customecss">.productTemplate div .nx-template {
+    display: inline-block;
+    width: 106%;
+    font-size: 12px;
+}
+
+.productTemplate div .nx-queue-item {
+    background: gray;
+    text-align: center;
+    margin: 10px;
+    border: 1px solid gray;
+    width: 152px;
+    display: inline-block;
+    color: white;
+    word-wrap: break-word;
+    word-break: break-All;
+    font-size: 13px;
+    padding: 33px;
+    /* line-height: 14px; */
+    text-transform: none;
+    font-weight: 400;
+    padding-right: 0px;
+    padding-left: 0px;
+}
+
+.productTemplate {
+    border-top: 0 !important;
+}
+.productTemplate .nx-template .nx-fieldtext {
+    display: grid !important;
+}
+.Loan{
+     background: #1cbdd4 !important;
+       border: 1px solid #1cbdd4 !important;
+}
+.Lease{
+     background: #48ce94 !important;
+       border: 1px solid #48ce94 !important;
+}
+.Package{
+ background:#2b4f75 !important;
+   border: 1px solid #2b4f75 !important;
+}
+.Line{
+    background:#ffa300 !important;
+      border: 1px solid #ffa300 !important;
+}</cssitem>
+		</css>
+		<actionsequences/>
+	</resources>
+	<styles>
+		<styleitem bgtype="none" type="background"/>
+	</styles>
+</skuidpage>

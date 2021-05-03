@@ -1,0 +1,74 @@
+<skuidpage unsavedchangeswarning="" personalizationmode="server" showsidebar="false" showheader="false">
+	<models>
+		<model id="NewApplicationPS" limit="1" query="true" createrowifnonefound="true" adapter="salesforce" type="" sobject="genesis__Payment_Stream__c">
+			<fields>
+				<field id="genesis__Interest_Rate__c"/>
+				<field id="genesis__Pricing_Basis__c"/>
+				<field id="genesis__Payment_Type__c"/>
+				<field id="genesis__Interest_Rate_Adjustment_Period__c"/>
+				<field id="genesis__Interest_Rate_Adjustment_Frequency__c"/>
+				<field id="Id"/>
+				<field id="genesis__Application__c"/>
+				<field id="genesis__Application__r.Name"/>
+				<field id="Name"/>
+				<field id="genesis__Rate_Type__c"/>
+			</fields>
+			<conditions>
+				<condition type="param" value="appId" field="genesis__Application__c" operator="=" enclosevalueinquotes="true" novaluebehavior=""/>
+				<condition type="param" value="id" field="Id" operator="=" state="" enclosevalueinquotes="true" novaluebehavior=""/>
+			</conditions>
+			<actions/>
+			<groupby method="simple"/>
+		</model>
+	</models>
+	<components>
+		<pagetitle model="NewApplicationPS" uniqueid="sk-sDNSu-238">
+			<actions>
+				<action type="multi" label="Save">
+					<actions>
+						<action type="save" rollbackonanyerror="true">
+							<models>
+								<model>NewApplicationPS</model>
+							</models>
+						</action>
+						<action type="custom" snippet="CloseDialog"/>
+					</actions>
+				</action>
+			</actions>
+		</pagetitle>
+		<basicfieldeditor showheader="true" showsavecancel="false" showerrorsinline="true" model="NewApplicationPS" buttonposition="" uniqueid="sk-sA11K-170" mode="edit">
+			<columns>
+				<column width="100%">
+					<sections>
+						<section title="" collapsible="no" showheader="false">
+							<fields>
+								<field id="genesis__Rate_Type__c"/>
+								<field id="genesis__Pricing_Basis__c"/>
+								<field id="genesis__Payment_Type__c"/>
+								<field id="genesis__Interest_Rate_Adjustment_Period__c"/>
+								<field id="genesis__Interest_Rate_Adjustment_Frequency__c"/>
+							</fields>
+						</section>
+					</sections>
+				</column>
+			</columns>
+		</basicfieldeditor>
+	</components>
+	<resources>
+		<labels/>
+		<javascript>
+			<jsitem location="staticresource" name="CLSNGUIComponent" cachelocation="false" url="" namespace="genesisExtn" filepath="messageUtils.js">var params = arguments[0],
+	            $ = skuid.$;
+            </jsitem>
+			<jsitem location="inlinesnippet" name="CloseDialog" cachelocation="false">var params = arguments[0],
+    $ = skuid.$;
+closeTopLevelDialogAndRefresh({iframeIds: ['deal-dashboard-iframe,loan-details-iframe']});</jsitem>
+		</javascript>
+		<css>
+			<cssitem location="staticresource" name="CLSStyleSheetPack" cachelocation="false" url="" namespace="genesisExtn" filepath="cls-common.css"/>
+		</css>
+	</resources>
+	<styles>
+		<styleitem type="background" bgtype="none"/>
+	</styles>
+</skuidpage>

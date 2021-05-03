@@ -1,0 +1,150 @@
+<skuidpage personalizationmode="server" showsidebar="false" showheader="false">
+	<models>
+		<model id="AppCovPlaceHolder" limit="" query="false" createrowifnonefound="true" adapter="salesforce" type="" sobject="genesis__Applications__c">
+			<fields>
+				<field id="Id"/>
+			</fields>
+			<conditions/>
+			<actions/>
+		</model>
+		<model id="ExisitingAppCovenantAssociations" limit="" query="true" createrowifnonefound="false" adapter="salesforce" type="" sobject="clcommon__Covenant_Association__c">
+			<fields>
+				<field id="Id"/>
+				<field id="genesis__Application__c"/>
+				<field id="clcommon__Covenant__c"/>
+				<field id="clcommon__Covenant__r.Name"/>
+			</fields>
+			<conditions>
+				<condition type="param" value="id" field="genesis__Application__c" operator="=" enclosevalueinquotes="true" novaluebehavior="noquery" state=""/>
+				<condition type="fieldvalue" value="true" enclosevalueinquotes="false" field="clcommon__Covenant__r.clcommon__Active__c" operator="="/>
+				<condition type="blank" value="null" field="clcommon__Covenant__r.clcommon__Account__c" operator="=" enclosevalueinquotes="false" state=""/>
+			</conditions>
+			<actions/>
+		</model>
+		<model id="ExisitingCovenantsForApplication" limit="" query="true" createrowifnonefound="false" adapter="salesforce" type="" sobject="clcommon__Covenant__c" doclone="">
+			<fields>
+				<field id="clcommon__Account__c"/>
+				<field id="clcommon__Account__r.Name"/>
+				<field id="clcommon__Active__c"/>
+				<field id="clcommon__Covenant_Definition__c"/>
+				<field id="clcommon__Covenant_Definition__r.Name"/>
+				<field id="clcommon__Covenant_Description__c"/>
+				<field id="Name"/>
+				<field id="clcommon__Expiration_Date__c"/>
+				<field id="clcommon__Financial_Indicator__c"/>
+				<field id="clcommon__Financial_Indicator_High_Value__c"/>
+				<field id="clcommon__Financial_Indicator_Low_Value__c"/>
+				<field id="clcommon__Financial_Operator__c"/>
+				<field id="clcommon__Frequency__c"/>
+				<field id="clcommon__Next_Evaluation_Date__c"/>
+				<field id="clcommon__Next_Evaluation_Day__c"/>
+				<field id="clcommon__Next_Notification_Date__c"/>
+				<field id="clcommon__Next_Notification_Day__c"/>
+				<field id="clcommon__Notification_Days__c"/>
+				<field id="Id"/>
+				<field id="clcommon__Covenant_Definition__r.clcommon__Covenant_Description__c"/>
+				<field id="clcommon__Covenant_Definition__r.clcommon__Type__c"/>
+			</fields>
+			<conditions>
+				<condition type="modelmerge" value="" field="Id" operator="in" model="ExisitingAppCovenantAssociations" enclosevalueinquotes="true" mergefield="clcommon__Covenant__c" novaluebehavior="noquery"/>
+			</conditions>
+			<actions/>
+		</model>
+	</models>
+	<components>
+		<pagetitle uniqueid="sk-hCFu0-159" model="AppCovPlaceHolder">
+			<actions>
+				<action type="multi" label="Add New Covenants" cssclass="iconic-button iconic-button-add" uniqueid="sk-3BvE-193">
+					<actions>
+						<action type="showPopup">
+							<popup title="Add Covenants" width="90%">
+								<components>
+									<includepanel type="skuid" uniqueid="addApplicationCovenant" pagename="AddApplicationCovenants" module="ngUi" querystring="?id={{{$Param.id}}}"/>
+								</components>
+								<afterclose>
+									<action type="requeryModels" model="AppCovPlaceHolder" behavior="standard">
+										<models>
+											<model>ExisitingAppCovenantAssociations</model>
+											<model>ExisitingCovenantsForApplication</model>
+										</models>
+									</action>
+								</afterclose>
+							</popup>
+						</action>
+					</actions>
+					<renderconditions logictype="and"/>
+					<enableconditions logictype="and"/>
+					<hotkeys/>
+				</action>
+			</actions>
+		</pagetitle>
+		<skootable showconditions="true" showsavecancel="false" showerrorsinline="true" searchmethod="server" searchbox="false" showexportbuttons="false" pagesize="10" createrecords="false" model="ExisitingCovenantsForApplication" buttonposition="" mode="readonly" uniqueid="sk-hGrrO-178" instantfilters="false" emptysearchbehavior="query">
+			<fields>
+				<field id="clcommon__Covenant_Definition__r.Name" valuehalign="" type="" uniqueid="sk-3BvE-199"/>
+				<field id="clcommon__Covenant_Description__c" uniqueid="sk-3BvE-202"/>
+				<field id="clcommon__Covenant_Definition__r.clcommon__Type__c" uniqueid="sk-3BvE-205"/>
+				<field id="clcommon__Frequency__c" valuehalign="" type="" uniqueid="sk-3BvE-208"/>
+				<field id="clcommon__Expiration_Date__c" uniqueid="sk-3BvE-211"/>
+				<field id="clcommon__Financial_Operator__c" uniqueid="sk-3BvE-214"/>
+				<field id="clcommon__Financial_Indicator__c" uniqueid="sk-3BvE-217"/>
+				<field id="clcommon__Notification_Days__c" uniqueid="sk-3BvE-220"/>
+			</fields>
+			<rowactions>
+				<action type="popup" label="View Evaluation History" icon="fa-history" snippet="">
+					<popup width="90%" title="{{clcommon__Covenant_Definition__r.Name}} Details">
+						<components>
+							<includepanel type="skuid" uniqueid="covenantHistory" pagename="CovenantEvaluationHistory" module="ngUi" querystring="?id={{Id}}"/>
+							<includepanel type="skuid" uniqueid="sk-TPltJ-132" pagename="DummyPage" module="ngUi" cssclass="dummyPage"/>
+						</components>
+					</popup>
+				</action>
+				<action type="multi" label="Inactivate Covenant" icon="fa-minus-circle">
+					<actions>
+						<action type="updateRow" fieldmodel="ExisitingCovenantsForApplication" field="clcommon__Active__c" enclosevalueinquotes="false" value="false"/>
+						<action type="save">
+							<models>
+								<model>ExisitingCovenantsForApplication</model>
+							</models>
+						</action>
+						<action type="requeryModels" behavior="standard">
+							<models>
+								<model>ExisitingAppCovenantAssociations</model>
+								<model>ExisitingCovenantsForApplication</model>
+							</models>
+						</action>
+					</actions>
+					<renderconditions logictype="and">
+						<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="false" fieldmodel="ExisitingCovenantsForApplication" sourcetype="fieldvalue" field="clcommon__Active__c" value="true" nosourcerowbehavior="deactivate"/>
+					</renderconditions>
+				</action>
+			</rowactions>
+			<massactions usefirstitemasdefault="true"/>
+			<views>
+				<view type="standard"/>
+			</views>
+			<searchfields/>
+			<filters/>
+			<renderconditions logictype="and"/>
+		</skootable>
+	</components>
+	<resources>
+		<labels/>
+		<javascript/>
+		<css>
+			<cssitem location="staticresource" name="CLSStyleSheetPack" cachelocation="false" url="" namespace="genesisExtn" filepath="cls-common.css"/>
+			<cssitem location="staticresource" name="CLSStyleSheetPack" cachelocation="false" url="" namespace="genesisExtn" filepath="customcss.css"/>
+			<cssitem location="inline" name="myStyle" cachelocation="false">body {
+    background-color: #ffffff;
+}
+
+body &gt; .nx-page {
+    background-color: #ffffff;
+}
+</cssitem>
+		</css>
+		<actionsequences/>
+	</resources>
+	<styles>
+		<styleitem type="background" bgtype="none"/>
+	</styles>
+</skuidpage>

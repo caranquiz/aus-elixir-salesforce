@@ -1,228 +1,297 @@
-<skuidpage unsavedchangeswarning="yes" personalizationmode="server" showsidebar="true" useviewportmeta="true" showheader="true" theme="ElixirThemepPlan">
-  <models>
-    <model id="CommonApplicationModelPricing" limit="20" query="true" createrowifnonefound="false" datasource="salesforce" sobject="genesis__Applications__c">
-      <fields>
-        <field id="RecordTypeId"/>
-        <field id="genesis__Status__c"/>
-        <field id="genesis__Account__c"/>
-        <field id="genesis__Account__r.Name"/>
-        <field id="genesis__CL_Purpose__c"/>
-        <field id="genesis__CL_Purpose__r.Name"/>
-        <field id="genesis__CL_Product_Name__c"/>
-        <field id="CreatedDate"/>
-        <field id="CreatedBy.Name"/>
-        <field id="genesis__Lending_Product__c"/>
-        <field id="genesis__Lending_Product__r.Name"/>
-        <field id="CreatedById"/>
-        <field id="LastModifiedById"/>
-        <field id="LastModifiedBy.Name"/>
-        <field id="genesis__Balloon_Payment__c"/>
-        <field id="genesis__Days_Convention__c"/>
-        <field id="genesis__Loan_Amount__c"/>
-        <field id="genesis__Term__c"/>
-        <field id="genesis__Interest_Compounding_Frequency__c"/>
-        <field id="genesis__Interest_Calculation_Method__c"/>
-        <field id="genesis__Interest_Only_Period__c"/>
-        <field id="genesis__Interest_Rate__c"/>
-        <field id="genesis__Payment_Frequency__c"/>
-        <field id="genesis__Funding_in_Tranches__c"/>
-        <field id="genesis__Expected_Start_Date__c"/>
-        <field id="genesis__Expected_First_Payment_Date__c"/>
-        <field id="genesis__Maturity_Date__c"/>
-        <field id="genesis__Payment_Due_Date__c"/>
-        <field id="genesis__Draw_Period_End_Date__c"/>
-        <field id="genesis__Amortization_Term__c"/>
-        <field id="genesis__Product_Type__c"/>
-        <field id="Name"/>
-        <field id="genesis__Contact__c"/>
-        <field id="genesis__Contact__r.Name"/>
-        <field id="CL_Contract__c"/>
-        <field id="CL_Contract__r.Name"/>
-        <field id="Id"/>
-        <field id="genesis__CL_Purpose__r.loan__Lending_Purpose__c"/>
-        <field id="genesis__CL_Purpose__r.loan__Lending_Purpose__r.Name"/>
-        <field id="genesis__CL_Product__r.loan__Lending_Product__c"/>
-        <field id="genesis__CL_Product__r.loan__Lending_Product__r.Name"/>
-        <field id="genesis__CL_Product__r.loan__Lending_Product__r.Id"/>
-        <field id="Loan_Application__c"/>
-        <field id="Loan_Application__r.Name"/>
-        <field id="Loan_Application__r.peer__Loan__c"/>
-        <field id="Loan_Application__r.peer__Loan__r.Name"/>
-        <field id="Document_Type__c"/>
-        <field id="Details_for_Interest_Only_Period__c"/>
-        <field id="Additional_Requirements__c"/>
-        <field id="Additional_Requirement_Details__c"/>
-        <field id="Purchase__c"/>
-        <field id="Purchase_Type__c"/>
-        <field id="Submission_notes__c"/>
-        <field id="genesis__Disbursement_Date__c"/>
-        <field id="genesis__Due_Day__c"/>
-        <field id="Monthly_Repayments__c"/>
-        <field id="Monthly_Repayments_post_IO_completion__c"/>
-        <field id="Is_Approved__c"/>
-      </fields>
-      <conditions>
-        <condition type="param" value="Id" field="Id" operator="=" enclosevalueinquotes="true"/>
-      </conditions>
-      <actions/>
-    </model>
-    <model id="AmortizationScheduleCheck" query="true" createrowifnonefound="false" datasource="salesforce" sobject="genesis__Amortization_Schedule__c">
-      <fields>
-        <field id="Name"/>
-        <field id="genesis__Due_Date__c"/>
-        <field id="genesis__Due_Interest__c"/>
-        <field id="genesis__Due_Principal__c"/>
-        <field id="genesis__Total_Due_Amount__c"/>
-        <field id="genesis__Opening_Principal_Balance__c"/>
-        <field id="genesis__Closing_Principal_Balance__c"/>
-      </fields>
-      <conditions>
-        <condition type="modelmerge" value="" field="genesis__Application__c" fieldtargetobjects="genesis__Applications__c" operator="=" model="CommonApplicationModelPricing" enclosevalueinquotes="true" mergefield="Id" novaluebehavior="deactivate"/>
-      </conditions>
-      <actions/>
-    </model>
-  </models>
-  <components>
-    <wrapper uniqueid="sk-1hSh-209">
-      <components>
-        <pagetitle uniqueid="sk-1hSj-222" model="CommonApplicationModelPricing">
-          <maintitle>Application :  {{Name}} </maintitle>
-          <actions>
-            <action type="multi" uniqueid="sk-1lbe-355" window="self" label="Save">
-              <models>
-                <model>Loan_Application</model>
-                <model>Cash Out</model>
-              </models>
-              <actions>
-                <action type="blockUI" message="The changes are being recorded!" timeout="3000"/>
-                <action type="save" window="self" rollbackonanyerror="true">
-                  <models>
-                    <model>CommonApplicationModelPricing</model>
-                  </models>
-                </action>
-              </actions>
-              <renderconditions logictype="and">
-                <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="false" fieldmodel="CommonApplicationModelPricing" sourcetype="fieldvalue" field="Is_Approved__c" fieldtargetobjects="genesis__Applications__c" value="false"/>
-              </renderconditions>
-              <enableconditions logictype="and">
-                <condition type="fieldvalue" enclosevalueinquotes="false" fieldmodel="CommonApplicationModelPricing" sourcetype="modelproperty" sourceproperty="hasChanged" value="true" operator="="/>
-              </enableconditions>
-            </action>
-            <action type="cancel" label="Cancel" uniqueid="sk-2D1v-333" window="self">
-              <models>
-                <model>AmortizationScheduleCheck</model>
-              </models>
-              <renderconditions logictype="and">
-                <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="false" fieldmodel="CommonApplicationModelPricing" sourcetype="fieldvalue" field="Is_Approved__c" fieldtargetobjects="genesis__Applications__c" value="false"/>
-              </renderconditions>
-              <enableconditions/>
-            </action>
-            <action type="multi" label="Generate Schedule" uniqueid="sk-BSv-590">
-              <actions>
-                <action type="custom" snippet="generateSchedule"/>
-                <action type="save">
-                  <models>
-                    <model>CommonApplicationModelPricing</model>
-                    <model>AmortizationScheduleCheck</model>
-                  </models>
-                </action>
-              </actions>
-              <renderconditions logictype="and">
-                <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="false" fieldmodel="CommonApplicationModelPricing" sourcetype="fieldvalue" field="Is_Approved__c" fieldtargetobjects="genesis__Applications__c" value="false"/>
-              </renderconditions>
-              <enableconditions/>
-            </action>
-          </actions>
-        </pagetitle>
-        <wrapper uniqueid="sk-1hV2-851">
-          <components>
-            <basicfieldeditor showheader="true" showsavecancel="false" showerrorsinline="true" model="CommonApplicationModelPricing" uniqueid="sk-37u0-372" mode="edit">
-              <columns>
-                <column width="50%" uniqueid="sk-37u0-368">
-                  <sections>
-                    <section title="Section A" uniqueid="sk-37u0-369" collapsible="no" showheader="false">
-                      <fields>
-                        <field uniqueid="sk-37bk-401" id="Monthly_Repayments__c"/>
-                      </fields>
-                    </section>
-                  </sections>
-                </column>
-                <column width="50%" uniqueid="sk-37u0-370">
-                  <sections>
-                    <section title="Section B" uniqueid="sk-37u0-371" collapsible="no" showheader="false">
-                      <fields>
-                        <field uniqueid="sk-37bk-405" id="Monthly_Repayments_post_IO_completion__c"/>
-                      </fields>
-                    </section>
-                  </sections>
-                </column>
-              </columns>
-            </basicfieldeditor>
-            <skootable showconditions="true" showsavecancel="false" showerrorsinline="true" searchmethod="server" searchbox="false" showexportbuttons="false" hideheader="false" hidefooter="false" pagesize="25" alwaysresetpagination="false" createrecords="false" model="AmortizationScheduleCheck" buttonposition="" mode="read" allowcolumnreordering="true" responsive="false" uniqueid="sk-BYT-484" emptysearchbehavior="query" heading="Repayment Schedule">
-              <fields>
-                <field id="genesis__Due_Date__c" hideable="true" uniqueid="fi-Ba5-687" snippet="fieldRenderer4"/>
-                <field id="genesis__Opening_Principal_Balance__c" hideable="true" uniqueid="fi-Ba8-701" snippet="fieldRenderer4"/>
-                <field id="genesis__Total_Due_Amount__c" hideable="true" uniqueid="fi-Ba2-675">
-                  <summaries>
-                    <summary>sum</summary>
-                  </summaries>
-                </field>
-                <field id="genesis__Due_Principal__c" hideable="true" uniqueid="fi-Ba4-683">
-                  <summaries/>
-                </field>
-                <field id="genesis__Due_Interest__c" hideable="true" uniqueid="fi-Ba3-679">
-                  <summaries>
-                    <summary>sum</summary>
-                  </summaries>
-                </field>
-                <field id="genesis__Closing_Principal_Balance__c" hideable="true" uniqueid="fi-Ba9-707"/>
-              </fields>
-              <rowactions/>
-              <massactions usefirstitemasdefault="true"/>
-              <views>
-                <view type="standard"/>
-              </views>
-              <searchfields/>
-              <renderconditions logictype="and"/>
-            </skootable>
-          </components>
-          <styles>
-            <styleitem type="background"/>
-            <styleitem type="border"/>
-            <styleitem type="size"/>
-          </styles>
-          <renderconditions logictype="and"/>
-        </wrapper>
-      </components>
-      <styles>
-        <styleitem type="background"/>
-        <styleitem type="border"/>
-        <styleitem type="size"/>
-      </styles>
-      <renderconditions logictype="and"/>
-    </wrapper>
-  </components>
-  <resources>
-    <labels/>
-    <javascript>
-      <jsitem location="inlinesnippet" name="generateSchedule" cachelocation="false">var params = arguments[0],     $ = skuid.$; 	$xml = skuid.utils.makeXMLDoc; 	var context = {};     var scModels = skuid.model.getModel('CommonApplicationModelPricing');     var scRow = scModels.data[0];      var agree = confirm("Are you sure ?");     if (agree){         $.blockUI({        message: 'Please wait!  Schedule is generating...',        onBlock:function(){         var result = sforce.apex.execute('genesis.SkuidNewApplication','generateSchedule',         {                    applicationId : scRow.Id         });         var appModel2 = skuid.model.getModel('AmortizationScheduleCheck');         appModel2.updateData();         $.unblockUI();         alert(result);        }        });     }</jsitem>
-    </javascript>
-    <css/>
-    <actionsequences uniqueid="sk-1hSz-322">
-      <actionsequence id="95918a90-b2de-4b78-a745-11c6d83ff2bb" label="Page Load" type="event-triggered" event-scope="component" event-name="page.rendered">
-        <description/>
-        <actions>
-          <action type="branch" whenfinished="stop" model="CommonApplicationModelPricing">
-            <iftrueactions>
-              <action type="runComponentAction" componentid="sk-37u0-372" action="changeMode" mode="read"/>
-            </iftrueactions>
-            <formula>{{Is_Approved__c}}</formula>
-          </action>
-        </actions>
-      </actionsequence>
-    </actionsequences>
-  </resources>
-  <styles>
-    <styleitem type="background" bgtype="none"/>
-  </styles>
+<skuidpage unsavedchangeswarning="yes" personalizationmode="server" showsidebar="true" useviewportmeta="true" showheader="true" theme="CustomClassic">
+	<models>
+		<model id="CommonApplicationModelPricing" limit="20" query="true" createrowifnonefound="false" datasource="salesforce" sobject="genesis__Applications__c">
+			<fields>
+				<field id="RecordTypeId"/>
+				<field id="genesis__Status__c"/>
+				<field id="genesis__Account__c"/>
+				<field id="genesis__Account__r.Name"/>
+				<field id="genesis__CL_Purpose__c"/>
+				<field id="genesis__CL_Purpose__r.Name"/>
+				<field id="genesis__CL_Product_Name__c"/>
+				<field id="CreatedDate"/>
+				<field id="CreatedBy.Name"/>
+				<field id="genesis__Lending_Product__c"/>
+				<field id="genesis__Lending_Product__r.Name"/>
+				<field id="CreatedById"/>
+				<field id="LastModifiedById"/>
+				<field id="LastModifiedBy.Name"/>
+				<field id="genesis__Balloon_Payment__c"/>
+				<field id="genesis__Days_Convention__c"/>
+				<field id="genesis__Loan_Amount__c"/>
+				<field id="genesis__Term__c"/>
+				<field id="genesis__Interest_Compounding_Frequency__c"/>
+				<field id="genesis__Interest_Calculation_Method__c"/>
+				<field id="genesis__Interest_Only_Period__c"/>
+				<field id="genesis__Interest_Rate__c"/>
+				<field id="genesis__Payment_Frequency__c"/>
+				<field id="genesis__Funding_in_Tranches__c"/>
+				<field id="genesis__Expected_Start_Date__c"/>
+				<field id="genesis__Expected_First_Payment_Date__c"/>
+				<field id="genesis__Maturity_Date__c"/>
+				<field id="genesis__Payment_Due_Date__c"/>
+				<field id="genesis__Draw_Period_End_Date__c"/>
+				<field id="genesis__Amortization_Term__c"/>
+				<field id="genesis__Product_Type__c"/>
+				<field id="Name"/>
+				<field id="genesis__Contact__c"/>
+				<field id="genesis__Contact__r.Name"/>
+				<field id="CL_Contract__c"/>
+				<field id="CL_Contract__r.Name"/>
+				<field id="Id"/>
+				<field id="genesis__CL_Purpose__r.loan__Lending_Purpose__c"/>
+				<field id="genesis__CL_Purpose__r.loan__Lending_Purpose__r.Name"/>
+				<field id="genesis__CL_Product__r.loan__Lending_Product__c"/>
+				<field id="genesis__CL_Product__r.loan__Lending_Product__r.Name"/>
+				<field id="genesis__CL_Product__r.loan__Lending_Product__r.Id"/>
+				<field id="Loan_Application__c"/>
+				<field id="Loan_Application__r.Name"/>
+				<field id="Loan_Application__r.peer__Loan__c"/>
+				<field id="Loan_Application__r.peer__Loan__r.Name"/>
+				<field id="Document_Type__c"/>
+				<field id="Details_for_Interest_Only_Period__c"/>
+				<field id="Additional_Requirements__c"/>
+				<field id="Additional_Requirement_Details__c"/>
+				<field id="Purchase__c"/>
+				<field id="Purchase_Type__c"/>
+				<field id="Submission_notes__c"/>
+				<field id="genesis__Disbursement_Date__c"/>
+				<field id="genesis__Due_Day__c"/>
+				<field id="Monthly_Repayments__c"/>
+				<field id="Monthly_Repayments_post_IO_completion__c"/>
+				<field id="Is_Approved__c"/>
+				<field id="Loan_Assesment_Commentary_Pricing__c"/>
+				<field id="Fixed_Rate_Term__c"/>
+			</fields>
+			<conditions>
+				<condition type="param" value="Id" field="Id" operator="=" enclosevalueinquotes="true"/>
+			</conditions>
+			<actions/>
+		</model>
+		<model id="AmortizationScheduleCheck" query="true" createrowifnonefound="false" datasource="salesforce" sobject="genesis__Amortization_Schedule__c" limit="20">
+			<fields>
+				<field id="Name"/>
+				<field id="genesis__Due_Date__c"/>
+				<field id="genesis__Due_Interest__c"/>
+				<field id="genesis__Due_Principal__c"/>
+				<field id="genesis__Total_Due_Amount__c"/>
+				<field id="genesis__Opening_Principal_Balance__c"/>
+				<field id="genesis__Closing_Principal_Balance__c"/>
+			</fields>
+			<conditions>
+				<condition type="modelmerge" value="" field="genesis__Application__c" fieldtargetobjects="genesis__Applications__c" operator="=" model="CommonApplicationModelPricing" enclosevalueinquotes="true" mergefield="Id" novaluebehavior="deactivate"/>
+			</conditions>
+			<actions/>
+		</model>
+	</models>
+	<components>
+		<wrapper uniqueid="sk-1hSh-209">
+			<components>
+				<pagetitle uniqueid="sk-1hSj-222" model="CommonApplicationModelPricing">
+					<maintitle>Application :  {{Name}} </maintitle>
+					<actions>
+						<action type="multi" uniqueid="sk-1lbe-355" window="self" label="Save">
+							<models>
+								<model>Loan_Application</model>
+								<model>Cash Out</model>
+							</models>
+							<actions>
+								<action type="blockUI" message="The changes are being recorded!" timeout="3000"/>
+								<action type="save" window="self" rollbackonanyerror="true">
+									<models>
+										<model>CommonApplicationModelPricing</model>
+									</models>
+								</action>
+							</actions>
+							<renderconditions logictype="and">
+								<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="false" fieldmodel="CommonApplicationModelPricing" sourcetype="fieldvalue" field="Is_Approved__c" fieldtargetobjects="genesis__Applications__c" value="false"/>
+							</renderconditions>
+							<enableconditions logictype="and">
+								<condition type="fieldvalue" enclosevalueinquotes="false" fieldmodel="CommonApplicationModelPricing" sourcetype="modelproperty" sourceproperty="hasChanged" value="true" operator="="/>
+							</enableconditions>
+						</action>
+						<action type="cancel" label="Cancel" uniqueid="sk-2D1v-333" window="self">
+							<models>
+								<model>AmortizationScheduleCheck</model>
+							</models>
+							<renderconditions logictype="and">
+								<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="false" fieldmodel="CommonApplicationModelPricing" sourcetype="fieldvalue" field="Is_Approved__c" fieldtargetobjects="genesis__Applications__c" value="false"/>
+							</renderconditions>
+							<enableconditions/>
+						</action>
+						<action type="multi" label="Generate Schedule" uniqueid="sk-BSv-590">
+							<actions>
+								<action type="custom" snippet="generateSchedule"/>
+								<action type="save">
+									<models>
+										<model>CommonApplicationModelPricing</model>
+										<model>AmortizationScheduleCheck</model>
+									</models>
+								</action>
+								<action type="requeryModels" behavior="standard">
+									<models>
+										<model>CommonApplicationModelPricing</model>
+										<model>AmortizationScheduleCheck</model>
+									</models>
+								</action>
+								<action type="custom" snippet="FixedRateCompletionSnippet"/>
+							</actions>
+							<renderconditions logictype="and"/>
+							<enableconditions/>
+						</action>
+					</actions>
+				</pagetitle>
+				<wrapper uniqueid="sk-1hV2-851">
+					<components>
+						<basicfieldeditor showheader="true" showsavecancel="false" showerrorsinline="true" model="CommonApplicationModelPricing" uniqueid="sk-37u0-372" mode="edit">
+							<columns>
+								<column width="50%" uniqueid="sk-37u0-368">
+									<sections>
+										<section title="Section A" uniqueid="sk-37u0-369" collapsible="no" showheader="false">
+											<fields>
+												<field uniqueid="sk-37bk-401" id="Monthly_Repayments__c"/>
+											</fields>
+										</section>
+									</sections>
+								</column>
+								<column width="50%" uniqueid="sk-37u0-370">
+									<sections>
+										<section title="Section B" uniqueid="sk-37u0-371" collapsible="no" showheader="false">
+											<fields>
+												<field uniqueid="sk-37bk-405" id="Monthly_Repayments_post_IO_completion__c"/>
+											</fields>
+										</section>
+									</sections>
+								</column>
+							</columns>
+						</basicfieldeditor>
+						<skootable showconditions="true" showsavecancel="false" showerrorsinline="true" searchmethod="server" searchbox="false" showexportbuttons="false" hideheader="false" hidefooter="false" pagesize="25" alwaysresetpagination="false" createrecords="false" model="AmortizationScheduleCheck" buttonposition="" mode="read" allowcolumnreordering="true" responsive="false" uniqueid="sk-BYT-484" emptysearchbehavior="query" heading="Repayment Schedule">
+							<fields>
+								<field id="genesis__Due_Date__c" hideable="true" uniqueid="fi-Ba5-687" snippet="fieldRenderer4"/>
+								<field id="genesis__Opening_Principal_Balance__c" hideable="true" uniqueid="fi-Ba8-701" snippet="fieldRenderer4"/>
+								<field id="genesis__Total_Due_Amount__c" hideable="true" uniqueid="fi-Ba2-675">
+									<summaries>
+										<summary>sum</summary>
+									</summaries>
+								</field>
+								<field id="genesis__Due_Principal__c" hideable="true" uniqueid="fi-Ba4-683">
+									<summaries/>
+								</field>
+								<field id="genesis__Due_Interest__c" hideable="true" uniqueid="fi-Ba3-679">
+									<summaries>
+										<summary>sum</summary>
+									</summaries>
+								</field>
+								<field id="genesis__Closing_Principal_Balance__c" hideable="true" uniqueid="fi-Ba9-707"/>
+							</fields>
+							<rowactions/>
+							<massactions usefirstitemasdefault="true"/>
+							<views>
+								<view type="standard"/>
+							</views>
+							<searchfields/>
+							<renderconditions logictype="and"/>
+						</skootable>
+						<basicfieldeditor showheader="true" showsavecancel="false" showerrorsinline="true" model="CommonApplicationModelPricing" uniqueid="sk-3KBi-434" mode="edit">
+							<columns>
+								<column width="100%" uniqueid="sk-3KBi-430">
+									<sections>
+										<section title="Section A" uniqueid="sk-3KBi-431" collapsible="no" showheader="false">
+											<fields>
+												<field uniqueid="sk-3KBu-471" id="Loan_Assesment_Commentary_Pricing__c" displayrows="3"/>
+											</fields>
+										</section>
+									</sections>
+								</column>
+							</columns>
+						</basicfieldeditor>
+					</components>
+					<styles>
+						<styleitem type="background"/>
+						<styleitem type="border"/>
+						<styleitem type="size"/>
+					</styles>
+					<renderconditions logictype="and"/>
+				</wrapper>
+			</components>
+			<styles>
+				<styleitem type="background"/>
+				<styleitem type="border"/>
+				<styleitem type="size"/>
+			</styles>
+			<renderconditions logictype="and"/>
+		</wrapper>
+	</components>
+	<resources>
+		<labels/>
+		<javascript>
+			<jsitem location="external" name="ajaxapex" cachelocation="false" url="/soap/ajax/24.0/apex.js">var params = arguments[0],
+	$ = skuid.$;
+</jsitem>
+			<jsitem location="external" name="connectionjs" cachelocation="false" url="/soap/ajax/35.0/connection.js">var params = arguments[0],
+	$ = skuid.$;
+</jsitem>
+			<jsitem location="inlinesnippet" name="generateSchedule" cachelocation="false">var params = arguments[0],
+    $ = skuid.$;
+	$xml = skuid.utils.makeXMLDoc;
+	var context = {};
+    var scModels = skuid.model.getModel('CommonApplicationModelPricing');
+    var scRow = scModels.data[0]; 
+    var agree = confirm("Are you sure ?");
+    if (agree){
+        $.blockUI({
+       message: 'Please wait!  Schedule is generating...',
+       onBlock:function(){
+        var result = sforce.apex.execute('genesis.SkuidNewApplication','generateSchedule',
+        {   
+                applicationId : scRow.Id
+        });
+        var appModel2 = skuid.model.getModel('AmortizationScheduleCheck');
+        appModel2.updateData();
+        alert(result);
+        $.unblockUI();
+       }
+       });
+    }</jsitem>
+			<jsitem location="inlinesnippet" name="FixedRateCompletionSnippet" cachelocation="false">var params = arguments[0],
+	$ = skuid.$;
+var scModels = skuid.model.getModel('CommonApplicationModelPricing');
+var scRow = scModels.data[0]; 
+    if(scRow.Fixed_Rate_Term__c !== undefined &amp;&amp; scRow.Fixed_Rate_Term__c &gt; 0 &amp;&amp; scRow.Fixed_Rate_Term__c &lt;= scRow.genesis__Term__c){
+        var records = sforce.connection.query("SELECT Id,genesis__Payment_Number__c,genesis__Closing_Principal_Balance__c,genesis__Application__c FROM genesis__Amortization_Schedule__c WHERE genesis__Application__c = '"+scRow.Id+"' AND genesis__Payment_Number__c = "+scRow.Fixed_Rate_Term__c+" LIMIT 1");
+        if(records !== undefined){
+            var recArray = records.getArray('records');
+            var appli = new sforce.SObject("genesis__Applications__c");
+            appli.Id = scRow.Id;
+            if(recArray[0] !== undefined &amp;&amp; recArray[0].genesis__Closing_Principal_Balance__c !== undefined &amp;&amp; recArray[0].genesis__Closing_Principal_Balance__c !== null &amp;&amp; recArray[0].genesis__Closing_Principal_Balance__c &gt; 0){
+                appli.Fixed_Rate_Completion_Balance__c = recArray[0].genesis__Closing_Principal_Balance__c;
+                var result1 = sforce.connection.update([appli]);
+            }
+        }
+    }
+    else{
+        var appli = new sforce.SObject("genesis__Applications__c");
+        appli.Id = scRow.Id;
+        appli.Fixed_Rate_Completion_Balance__c = 0;
+        var result1 = sforce.connection.update([appli]);
+    }</jsitem>
+		</javascript>
+		<css/>
+		<actionsequences uniqueid="sk-1hSz-322">
+			<actionsequence id="95918a90-b2de-4b78-a745-11c6d83ff2bb" label="Page Load" type="event-triggered" event-scope="component" event-name="page.rendered" uniqueid="sk-3KBu-469">
+				<description/>
+				<actions>
+					<action type="branch" whenfinished="stop" model="CommonApplicationModelPricing">
+						<iftrueactions>
+							<action type="runComponentAction" componentid="sk-37u0-372" action="changeMode" mode="read"/>
+						</iftrueactions>
+						<formula>{{Is_Approved__c}}</formula>
+					</action>
+				</actions>
+			</actionsequence>
+		</actionsequences>
+	</resources>
+	<styles>
+		<styleitem type="background" bgtype="none"/>
+	</styles>
 </skuidpage>

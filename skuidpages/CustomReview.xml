@@ -1,0 +1,1710 @@
+<skuidpage personalizationmode="server" showsidebar="false" showheader="false" theme="CustomClassic">
+	<models>
+		<model id="CRApplication" limit="200" query="true" createrowifnonefound="false" datasource="salesforce" sobject="genesis__Applications__c">
+			<fields>
+				<field id="RecordTypeId"/>
+				<field id="Is_Approved__c"/>
+				<field id="genesis__Loan_Amount__c"/>
+				<field id="CreatedById"/>
+				<field id="CreatedBy.Name"/>
+			</fields>
+			<conditions>
+				<condition type="param" value="Id" field="Id" operator="=" enclosevalueinquotes="true"/>
+			</conditions>
+			<actions/>
+		</model>
+		<model id="CRExceptionList" limit="200" query="true" createrowifnonefound="false" datasource="salesforce" sobject="genesis__Checklist__c">
+			<fields>
+				<field id="genesis__Message__c"/>
+				<field id="genesis__Type__c"/>
+				<field id="genesis__Description__c"/>
+				<field id="genesis__Rule__c"/>
+				<field id="genesis__Rule__r.Name"/>
+				<field id="genesis__Rule__r.Rule_Classification__c"/>
+				<field id="Exception_Commentary__c"/>
+				<field id="Exception_Approver__c"/>
+				<field id="Exception_Recommender__c"/>
+				<field id="genesis__Rule__r.genesis__Message_failure__c"/>
+				<field id="genesis__Rule__r.Exception_Category__c"/>
+				<field id="genesis__Rule__r.Exception_Sub_Category__c"/>
+				<field id="True_Exception__c"/>
+			</fields>
+			<conditions>
+				<condition type="param" value="Id" field="genesis__Application__c" fieldtargetobjects="genesis__Applications__c" operator="=" enclosevalueinquotes="true"/>
+				<condition type="fieldvalue" value="SUCCESS" enclosevalueinquotes="true" field="genesis__Message__c" operator="!="/>
+				<condition type="fieldvalue" value="Exception" enclosevalueinquotes="true" field="genesis__Rule__r.Rule_Classification__c"/>
+				<condition type="multiple" value="" field="genesis__Rule__r.Name" operator="in" enclosevalueinquotes="true">
+					<values>
+						<value>Matrix Rate Exception</value>
+						<value>Confirm Repayments do not double Exception</value>
+					</values>
+				</condition>
+			</conditions>
+			<actions/>
+		</model>
+		<model id="ConditionList" limit="200" query="true" createrowifnonefound="false" datasource="salesforce" sobject="genesis__Checklist__c">
+			<fields>
+				<field id="genesis__Rule__r.Name"/>
+				<field id="genesis__Rule__r.genesis__Message_failure__c"/>
+				<field id="Waiver_Reason__c"/>
+				<field id="Status__c"/>
+				<field id="Supporting_Documentation__c"/>
+			</fields>
+			<conditions>
+				<condition type="param" value="Id" field="genesis__Application__c" fieldtargetobjects="genesis__Applications__c" operator="=" enclosevalueinquotes="true"/>
+				<condition type="fieldvalue" value="SUCCESS" enclosevalueinquotes="true" field="genesis__Message__c" operator="!="/>
+				<condition type="fieldvalue" value="Condition" enclosevalueinquotes="true" field="genesis__Rule__r.Rule_Classification__c"/>
+				<condition type="fieldvalue" value="Does applicant understand English Condition" enclosevalueinquotes="true" field="genesis__Rule__r.Name"/>
+			</conditions>
+			<actions/>
+		</model>
+		<model id="WarningList" limit="200" query="true" createrowifnonefound="false" datasource="salesforce" sobject="genesis__Checklist__c">
+			<fields>
+				<field id="genesis__Message__c"/>
+				<field id="genesis__Rule__r.Name"/>
+				<field id="genesis__Rule__r.genesis__Message_failure__c"/>
+				<field id="Exception_Commentary__c"/>
+			</fields>
+			<conditions>
+				<condition type="modelmerge" value="" field="genesis__Application__c" fieldtargetobjects="genesis__Applications__c" operator="=" model="CRApplication" enclosevalueinquotes="true" mergefield="Id" novaluebehavior="deactivate"/>
+				<condition type="fieldvalue" value="SUCCESS" enclosevalueinquotes="true" field="genesis__Message__c" operator="!="/>
+				<condition type="fieldvalue" value="Warning" enclosevalueinquotes="true" field="genesis__Rule__r.Rule_Classification__c"/>
+				<condition type="multiple" value="" field="genesis__Rule__r.Name" operator="in" enclosevalueinquotes="true">
+					<values>
+						<value>Interest Only Reason Warning</value>
+						<value>Exit Strategy Provided Warning</value>
+						<value>Fixed Rate Lock In Date Warning</value>
+						<value>Matrix Rate Warning</value>
+						<value>Actual LVR &gt; 80% Warning</value>
+						<value>Actual LVR &gt; 70% Warning</value>
+						<value>Actual LVR &gt; 75% Warning</value>
+						<value>Cash Out Purpose Explanation Provided Warning</value>
+						<value>Application Fee Warning</value>
+						<value>Application Fee % Warning</value>
+						<value>Risk Grade Compare Warning</value>
+						<value>Primary Purpose Warning</value>
+						<value>Is the Application Form fully completed? Warning</value>
+						<value>Document Type Compare Warning</value>
+						<value>Valuation Paid Warning</value>
+						<value>Commission Mandate Percentage Warning</value>
+					</values>
+				</condition>
+			</conditions>
+			<actions/>
+		</model>
+		<model id="ExceptionCheckList" limit="20" query="true" createrowifnonefound="false" datasource="salesforce" sobject="Checklist_Detail__c">
+			<fields>
+				<field id="Checklist__r.genesis__Message__c"/>
+				<field id="Checklist__r.genesis__Rule__r.Name"/>
+				<field id="Checklist__r.genesis__Rule__r.genesis__Message_failure__c"/>
+				<field id="Party__r.genesis__Party_Name__c"/>
+				<field id="Employment_Information__r.Party__r.genesis__Party_Name__c"/>
+				<field id="Application_Collateral__r.genesis__Collateral__r.clcommon__Collateral_Name__c"/>
+				<field id="Income__r.Party__r.genesis__Party_Name__c"/>
+				<field id="Party_Name__c"/>
+				<field id="Exception_Commentary__c"/>
+				<field id="Exception_Approver__c"/>
+				<field id="Exception_Recommender__c"/>
+				<field id="Application_Collateral__r.genesis__Collateral__r.Full_Address__c"/>
+				<field id="Checklist__r.genesis__Rule__r.Exception_Category__c"/>
+				<field id="Checklist__r.genesis__Rule__r.Exception_Sub_Category__c"/>
+				<field id="True_Exception__c"/>
+			</fields>
+			<conditions>
+				<condition type="fieldvalue" value="Exception" enclosevalueinquotes="true" field="Rule_Classification__c"/>
+				<condition type="fieldvalue" value="SUCCESS" enclosevalueinquotes="true" operator="!=" field="Status__c"/>
+				<condition type="modelmerge" value="" field="Checklist__r.genesis__Application__c" fieldtargetobjects="genesis__Applications__c" operator="=" model="CRApplication" enclosevalueinquotes="true" mergefield="Id" novaluebehavior="deactivate"/>
+				<condition type="blank" value="null" field="Checklist__r.genesis__Rule__c" fieldtargetobjects="genesis__Rule__c" operator="!=" enclosevalueinquotes="false"/>
+			</conditions>
+			<actions/>
+		</model>
+		<model id="CollateralException" limit="200" query="true" createrowifnonefound="false" datasource="salesforce" sobject="Checklist_Detail__c">
+			<fields>
+				<field id="Checklist__r.genesis__Rule__r.genesis__Message_failure__c"/>
+				<field id="Checklist__r.genesis__Rule__r.Name"/>
+				<field id="Application_Collateral__r.genesis__Collateral__r.clcommon__Collateral_Name__c"/>
+				<field id="Exception_Commentary__c"/>
+				<field id="Exception_Approver__c"/>
+				<field id="Exception_Recommender__c"/>
+			</fields>
+			<conditions>
+				<condition type="blank" value="null" field="Application_Collateral__c" fieldtargetobjects="genesis__Application_Collateral__c" operator="!=" enclosevalueinquotes="false"/>
+				<condition type="fieldvalue" value="Exception" enclosevalueinquotes="true" field="Rule_Classification__c"/>
+				<condition type="modelmerge" value="" field="Checklist__r.genesis__Application__c" fieldtargetobjects="genesis__Applications__c" operator="=" model="CRApplication" enclosevalueinquotes="true" mergefield="Id" novaluebehavior="deactivate"/>
+				<condition type="fieldvalue" value="SUCCESS" enclosevalueinquotes="true" field="Status__c" operator="!="/>
+			</conditions>
+			<actions/>
+		</model>
+		<model id="WarningCheckList" limit="200" query="true" createrowifnonefound="false" datasource="salesforce" sobject="Checklist_Detail__c">
+			<fields>
+				<field id="Checklist__r.genesis__Rule__r.genesis__Message_failure__c"/>
+				<field id="Checklist__r.genesis__Rule__r.Name"/>
+				<field id="Party__r.genesis__Party_Name__c"/>
+				<field id="Employment_Information__r.Party__r.genesis__Party_Name__c"/>
+				<field id="Income__r.Party__r.genesis__Party_Name__c"/>
+				<field id="Application_Collateral__r.genesis__Collateral__r.clcommon__Collateral_Name__c"/>
+				<field id="Party_Name__c"/>
+				<field id="Exception_Commentary__c"/>
+				<field id="Application_Collateral__r.genesis__Collateral__r.Full_Address__c"/>
+			</fields>
+			<conditions>
+				<condition type="fieldvalue" value="Warning" enclosevalueinquotes="true" field="Rule_Classification__c"/>
+				<condition type="fieldvalue" value="SUCCESS" enclosevalueinquotes="true" field="Status__c" operator="!="/>
+				<condition type="modelmerge" value="" field="Checklist__r.genesis__Application__c" fieldtargetobjects="genesis__Applications__c" operator="=" model="CRApplication" enclosevalueinquotes="true" mergefield="Id" novaluebehavior="deactivate"/>
+				<condition type="blank" value="null" field="Checklist__r.genesis__Rule__c" fieldtargetobjects="genesis__Rule__c" operator="!=" enclosevalueinquotes="false"/>
+			</conditions>
+			<actions/>
+		</model>
+		<model id="ConditionCheckList" limit="200" query="true" createrowifnonefound="false" datasource="salesforce" sobject="Checklist_Detail__c">
+			<fields>
+				<field id="Checklist__r.genesis__Rule__r.Name"/>
+				<field id="Checklist__r.genesis__Rule__r.genesis__Message_failure__c"/>
+				<field id="Application_Collateral__r.genesis__Collateral__r.clcommon__Collateral_Name__c"/>
+				<field id="Party_Name__c"/>
+				<field id="Waiver_Reason__c"/>
+				<field id="Condition_Status__c"/>
+				<field id="Supporting_Document_Verified__c"/>
+				<field id="Application_Collateral__r.genesis__Collateral__r.Full_Address__c"/>
+				<field id="Manual_Message__c"/>
+				<field id="Show_on_Indicative_Approval_Letter__c"/>
+			</fields>
+			<conditions>
+				<condition type="fieldvalue" value="Condition" enclosevalueinquotes="true" field="Rule_Classification__c"/>
+				<condition type="fieldvalue" value="SUCCESS" enclosevalueinquotes="true" field="Status__c" operator="!="/>
+				<condition type="modelmerge" value="" field="Checklist__r.genesis__Application__c" fieldtargetobjects="genesis__Applications__c" operator="=" model="CRApplication" enclosevalueinquotes="true" mergefield="Id" novaluebehavior="deactivate"/>
+				<condition type="blank" value="null" field="Checklist__r.genesis__Rule__c" fieldtargetobjects="genesis__Rule__c" operator="!=" enclosevalueinquotes="false"/>
+			</conditions>
+			<actions/>
+		</model>
+		<model id="CRAssets" limit="200" query="true" createrowifnonefound="false" datasource="salesforce" sobject="genesis__Asset_Information__c">
+			<fields>
+				<field id="Party__c"/>
+				<field id="Party__r.Name"/>
+				<field id="genesis__Asset_Type__c"/>
+				<field id="Party__r.Investment_Property_Costs__c"/>
+				<field id="Party__r.Gift_Stat_Dec_Received__c"/>
+				<field id="Party__r.Rental_Income_Verified__c"/>
+				<field id="Party__r.Living_Expense_Section_Render__c"/>
+				<field id="Party__r.Primary_Residence_Property_Costs__c"/>
+			</fields>
+			<conditions>
+				<condition type="modelmerge" value="" field="genesis__Application__c" fieldtargetobjects="genesis__Applications__c" operator="=" model="CRApplication" enclosevalueinquotes="true" mergefield="Id" novaluebehavior="deactivate"/>
+			</conditions>
+			<actions/>
+		</model>
+		<model id="CRParty" limit="20" query="true" createrowifnonefound="false" datasource="salesforce" sobject="clcommon__Party__c">
+			<fields>
+				<field id="Primary_Residence_Prop_Cost_Warning_Chck__c"/>
+				<field id="Id"/>
+				<field id="Investment_Property_Costs__c"/>
+				<field id="Investment_Property_Warning_Check__c"/>
+				<field id="Name"/>
+				<field id="Applicant_Name__c"/>
+				<field id="Gift_Stat_Dec_Received_Condition_Check__c"/>
+				<field id="Rental_Income_Verified_Warning_Check__c"/>
+				<field id="Previous_conduct_referencing_completed__c"/>
+				<field id="Previous_conduct_explanation_received__c"/>
+				<field id="Previous_cond_ref_comp_Warning_Check__c"/>
+				<field id="Previous_cond_exp_received_Warning_Check__c"/>
+				<field id="clcommon__Account__c"/>
+				<field id="clcommon__Account__r.Name"/>
+				<field id="Living_Expense_Section_Render__c"/>
+			</fields>
+			<conditions>
+				<condition type="modelmerge" value="" field="genesis__Application__c" fieldtargetobjects="genesis__Applications__c" operator="in" model="CRApplication" enclosevalueinquotes="true" mergefield="Id" novaluebehavior="deactivate"/>
+			</conditions>
+			<actions/>
+		</model>
+		<model id="ApplicationCollateral" limit="20" query="true" createrowifnonefound="false" datasource="salesforce" sobject="genesis__Application_Collateral__c">
+			<fields>
+				<field id="genesis__Collateral__c"/>
+				<field id="genesis__Collateral__r.Name"/>
+				<field id="genesis__Collateral__r.Is_Purchaser_the_Mortgagor__c"/>
+				<field id="genesis__Collateral__r.Is_Purchaser_the_Mortgagor_Warning_Check__c"/>
+				<field id="genesis__Collateral__r.clcommon__Postal_Code__c"/>
+			</fields>
+			<conditions>
+				<condition type="modelmerge" value="" field="genesis__Application__c" fieldtargetobjects="genesis__Applications__c" operator="=" model="CRApplication" enclosevalueinquotes="true" mergefield="Id" novaluebehavior="deactivate"/>
+			</conditions>
+			<actions/>
+		</model>
+		<model id="RecommendMostRecentApprovalInstanceModel" limit="1" query="true" createrowifnonefound="false" datasource="salesforce" sobject="clcommon__Approval_Instance__c" orderby="Name DESC">
+			<fields>
+				<field id="clcommon__Approval_Review_Group__c"/>
+				<field id="clcommon__Approval_Review_Group__r.Name"/>
+			</fields>
+			<conditions>
+				<condition type="fieldvalue" value="Exception Recommend Levels" field="clcommon__Approval_Definition__r.Name" fieldtargetobjects="clcommon__Approval_Definition__c" operator="=" mergefield="Id" novaluebehavior="deactivate" enclosevalueinquotes="true"/>
+				<condition type="modelmerge" value="" field="genesis__Application__c" fieldtargetobjects="genesis__Applications__c" operator="=" model="CRApplication" enclosevalueinquotes="true" mergefield="Id" novaluebehavior="deactivate"/>
+			</conditions>
+			<actions/>
+		</model>
+		<model id="RecommendReviewersInApprovalGroup" limit="20" query="true" createrowifnonefound="false" datasource="salesforce" sobject="clcommon__Reviewer__c" orderby="clcommon__Serial_Number__c ASC">
+			<fields>
+				<field id="clcommon__Approval_Review_Group__c"/>
+				<field id="clcommon__Approval_Review_Group__r.Name"/>
+				<field id="clcommon__User__r.Id"/>
+				<field id="clcommon__User__r.FirstName"/>
+				<field id="clcommon__User__r.Name"/>
+				<field id="clcommon__User__r.LastName"/>
+				<field id="clcommon__User__c"/>
+			</fields>
+			<conditions>
+				<condition type="modelmerge" value="" field="clcommon__Approval_Review_Group__c" fieldtargetobjects="clcommon__Approval_Review_Group__c" operator="in" model="RecommendMostRecentApprovalInstanceModel" enclosevalueinquotes="true" mergefield="clcommon__Approval_Review_Group__c" novaluebehavior="deactivate"/>
+				<condition type="modelmerge" value="" field="Maximum_Individual_Limit__c" operator="gte" model="CRApplication" enclosevalueinquotes="false" mergefield="genesis__Loan_Amount__c" novaluebehavior="deactivate"/>
+				<condition type="modelmerge" value="" field="Minimum_Individual_Limit__c" operator="lt" model="CRApplication" enclosevalueinquotes="false" mergefield="genesis__Loan_Amount__c" novaluebehavior="deactivate"/>
+			</conditions>
+			<actions/>
+		</model>
+		<model id="ManualExceptionChecklist" limit="200" query="true" createrowifnonefound="false" datasource="salesforce" sobject="genesis__Checklist__c">
+			<fields>
+				<field id="Rule_Classification__c"/>
+				<field id="genesis__Message__c"/>
+				<field id="genesis__Description__c"/>
+				<field id="Exception_Approver__c"/>
+				<field id="Exception_Commentary__c"/>
+				<field id="Exception_Recommender__c"/>
+				<field id="Applicant__c"/>
+				<field id="genesis__Rule__r.Exception_Category__c"/>
+				<field id="genesis__Rule__r.Exception_Sub_Category__c"/>
+				<field id="Exception_Category__c"/>
+				<field id="Exception_Sub_Category__c"/>
+				<field id="Collateral_Name__r.genesis__Collateral__r.Full_Address__c"/>
+				<field id="Collateral_Name__c"/>
+				<field id="Collateral_Name__r.Name"/>
+				<field id="True_Exception__c"/>
+			</fields>
+			<conditions>
+				<condition type="modelmerge" value="" field="genesis__Application__c" fieldtargetobjects="genesis__Applications__c" operator="=" model="CRApplication" enclosevalueinquotes="true" mergefield="Id" novaluebehavior="deactivate"/>
+				<condition type="fieldvalue" value="true" enclosevalueinquotes="false" field="Manual__c"/>
+				<condition type="fieldvalue" value="Exception" enclosevalueinquotes="true" field="Rule_Classification__c"/>
+				<condition type="modelmerge" value="" field="genesis__Assessed_Record_Id__c" operator="=" model="CRApplication" enclosevalueinquotes="true" mergefield="Id" novaluebehavior="deactivate"/>
+			</conditions>
+			<actions/>
+		</model>
+		<model id="ManualWarningChecklist" limit="200" query="true" createrowifnonefound="false" datasource="salesforce" sobject="genesis__Checklist__c">
+			<fields>
+				<field id="genesis__Message__c"/>
+				<field id="genesis__Description__c"/>
+				<field id="Exception_Commentary__c"/>
+				<field id="Applicant__c"/>
+				<field id="Applicant__r.Name"/>
+				<field id="Collateral_Name__c"/>
+				<field id="Collateral_Name__r.Name"/>
+				<field id="Applicant__r.clcommon__Account__c"/>
+				<field id="Applicant__r.clcommon__Account__r.Name"/>
+				<field id="Collateral_Name__r.genesis__Collateral__r.Full_Address__c"/>
+			</fields>
+			<conditions>
+				<condition type="modelmerge" value="" field="genesis__Application__c" fieldtargetobjects="genesis__Applications__c" operator="=" model="CRApplication" enclosevalueinquotes="true" mergefield="Id" novaluebehavior="deactivate"/>
+				<condition type="fieldvalue" value="true" enclosevalueinquotes="false" field="Manual__c"/>
+				<condition type="fieldvalue" value="Warning" enclosevalueinquotes="true" field="Rule_Classification__c"/>
+				<condition type="modelmerge" value="" field="genesis__Assessed_Record_Id__c" operator="=" model="CRApplication" enclosevalueinquotes="true" mergefield="Id" novaluebehavior="deactivate"/>
+			</conditions>
+			<actions/>
+		</model>
+		<model id="CRIncomeList" limit="20" query="true" createrowifnonefound="false" datasource="salesforce" sobject="genesis__Income__c">
+			<fields>
+				<field id="Type_of_Documents_Sighted_Warning_Check__c"/>
+				<field id="Type_of_Documents_Sighted__c"/>
+				<field id="Party__r.Risk_Grade__c"/>
+				<field id="Company_Type_of_Documents_Sighted__c"/>
+				<field id="Employment_Information__c"/>
+				<field id="Employment_Information__r.Name"/>
+				<field id="Employment_Information__r.Party__r.Risk_Grade__c"/>
+				<field id="Employment_Information__r.Party__r.Id"/>
+			</fields>
+			<conditions logic="(1 AND 6 AND 2) OR (1 AND 5 AND 7 AND 4 AND 3)">
+				<condition type="modelmerge" value="" field="genesis__Application__c" fieldtargetobjects="genesis__Applications__c" operator="=" model="CRApplication" enclosevalueinquotes="true" mergefield="Id" novaluebehavior="deactivate"/>
+				<condition type="fieldvalue" value="Alt" enclosevalueinquotes="true" field="Party__r.Document_Type__c"/>
+				<condition type="fieldvalue" value="Individual" enclosevalueinquotes="true" field="Employment_Information__r.Party__r.Legal_Entity_Type__c"/>
+				<condition type="fieldvalue" value="Alt" enclosevalueinquotes="true" field="Document_Type__c"/>
+				<condition type="blank" value="null" field="Employment_Information__c" fieldtargetobjects="genesis__Employment_Information__c" operator="!=" enclosevalueinquotes="false"/>
+				<condition type="blank" value="null" field="Party__c" fieldtargetobjects="clcommon__Party__c" operator="!=" enclosevalueinquotes="false"/>
+				<condition type="blank" value="null" field="Employment_Information__r.Party__c" fieldtargetobjects="clcommon__Party__c" operator="!=" enclosevalueinquotes="false"/>
+			</conditions>
+			<actions/>
+		</model>
+		<model id="CRLiabilities" limit="20" query="true" createrowifnonefound="false" datasource="salesforce" sobject="genesis__Liability__c">
+			<fields>
+				<field id="To_Be_Refinanced__c"/>
+				<field id="Party__c"/>
+				<field id="Party__r.Name"/>
+				<field id="Party__r.Legal_Entity_Type__c"/>
+				<field id="Party__r.Previous_cond_ref_comp_Warning_Check__c"/>
+				<field id="Party__r.Previous_cond_exp_received_Warning_Check__c"/>
+				<field id="Party__r.Previous_conduct_explanation_received__c"/>
+				<field id="Party__r.Previous_conduct_referencing_completed__c"/>
+				<field id="Party__r.Previous_conduct_issues_identified__c"/>
+			</fields>
+			<conditions>
+				<condition type="modelmerge" value="" field="genesis__Application__c" fieldtargetobjects="genesis__Applications__c" operator="=" model="CRApplication" enclosevalueinquotes="true" mergefield="Id" novaluebehavior="deactivate"/>
+			</conditions>
+			<actions/>
+		</model>
+		<model id="CRPolicyException" limit="200" query="true" createrowifnonefound="false" datasource="salesforce" sobject="genesis__Policy_Exception__c" orderby="LastModifiedDate DESC">
+			<fields>
+				<field id="genesis__Application__c"/>
+				<field id="genesis__Application__r.Name"/>
+				<field id="genesis__Condition_Type__c"/>
+				<field id="CreatedById"/>
+				<field id="CreatedBy.Name"/>
+				<field id="CreatedDate"/>
+				<field id="IsDeleted"/>
+				<field id="genesis__Description__c"/>
+				<field id="Waiver_Reason__c"/>
+				<field id="SystemModstamp"/>
+				<field id="Supporting_Document_Verified__c"/>
+				<field id="genesis__Status__c"/>
+				<field id="Id"/>
+				<field id="Name"/>
+				<field id="genesis__Policy_Exception_Definition__c"/>
+				<field id="Party__c"/>
+				<field id="Party__r.Name"/>
+				<field id="genesis__Policy_Exception_Definition__r.Name"/>
+				<field id="OwnerId"/>
+				<field id="Owner.Name"/>
+				<field id="genesis__Override__c"/>
+				<field id="genesis__Officer_Comments__c"/>
+				<field id="LastViewedDate"/>
+				<field id="LastModifiedById"/>
+				<field id="LastModifiedBy.Name"/>
+				<field id="LastModifiedDate"/>
+				<field id="LastReferencedDate"/>
+				<field id="Description1__c"/>
+				<field id="Party__r.clcommon__Account__r.Name"/>
+				<field id="Application_Collateral__c"/>
+				<field id="Application_Collateral__r.Name"/>
+				<field id="Application_Collateral__r.genesis__Collateral__r.Full_Address__c"/>
+				<field id="Show_on_Indicative_Approval_Letter__c"/>
+			</fields>
+			<conditions>
+				<condition type="modelmerge" value="" field="genesis__Application__c" fieldtargetobjects="genesis__Applications__c" operator="in" model="CRApplication" enclosevalueinquotes="true" mergefield="Id" novaluebehavior="deactivate"/>
+			</conditions>
+			<actions/>
+		</model>
+		<model id="CRPolicyExceptionCreate" limit="20" query="true" createrowifnonefound="true" datasource="salesforce" sobject="genesis__Policy_Exception__c" orderby="LastModifiedDate DESC">
+			<fields>
+				<field id="genesis__Application__c"/>
+				<field id="genesis__Application__r.Name"/>
+				<field id="genesis__Condition_Type__c"/>
+				<field id="CreatedById"/>
+				<field id="CreatedBy.Name"/>
+				<field id="CreatedDate"/>
+				<field id="IsDeleted"/>
+				<field id="genesis__Description__c"/>
+				<field id="Description1__c"/>
+				<field id="LastModifiedById"/>
+				<field id="LastModifiedBy.Name"/>
+				<field id="LastModifiedDate"/>
+				<field id="LastReferencedDate"/>
+				<field id="LastViewedDate"/>
+				<field id="genesis__Officer_Comments__c"/>
+				<field id="genesis__Override__c"/>
+				<field id="OwnerId"/>
+				<field id="Owner.Name"/>
+				<field id="Party__c"/>
+				<field id="Party__r.Name"/>
+				<field id="genesis__Policy_Exception_Definition__c"/>
+				<field id="genesis__Policy_Exception_Definition__r.Name"/>
+				<field id="Name"/>
+				<field id="Id"/>
+				<field id="genesis__Status__c"/>
+				<field id="Supporting_Document_Verified__c"/>
+				<field id="SystemModstamp"/>
+				<field id="Waiver_Reason__c"/>
+				<field id="Application_Collateral__c"/>
+				<field id="Application_Collateral__r.Name"/>
+				<field id="Application_Collateral__r.genesis__Collateral__r.clcommon__Address__c"/>
+				<field id="Application_Collateral__r.genesis__Collateral__r.Full_Address__c"/>
+				<field id="Application_Collateral__r.genesis__Collateral__c"/>
+				<field id="Application_Collateral__r.genesis__Collateral__r.Name"/>
+				<field id="Show_on_Indicative_Approval_Letter__c"/>
+			</fields>
+			<conditions>
+				<condition type="blank" value="null" field="Id" operator="=" enclosevalueinquotes="false"/>
+			</conditions>
+			<actions/>
+		</model>
+		<model id="CRApproveMostRecentApprovalInstanceModel" limit="1" query="true" createrowifnonefound="false" datasource="salesforce" sobject="clcommon__Approval_Instance__c" orderby="Name DESC">
+			<fields>
+				<field id="clcommon__Approval_Review_Group__c"/>
+				<field id="clcommon__Approval_Review_Group__r.Name"/>
+			</fields>
+			<conditions>
+				<condition type="fieldvalue" value="Exception Approval Levels" enclosevalueinquotes="true" field="clcommon__Approval_Definition__r.Name"/>
+				<condition type="modelmerge" value="" field="genesis__Application__c" fieldtargetobjects="genesis__Applications__c" operator="=" model="CRApplication" enclosevalueinquotes="true" mergefield="Id" novaluebehavior="deactivate"/>
+			</conditions>
+			<actions/>
+		</model>
+		<model id="CRApproveReviewersInApprovalGroup" limit="20" query="true" createrowifnonefound="false" datasource="salesforce" sobject="clcommon__Reviewer__c" orderby="clcommon__Serial_Number__c ASC">
+			<fields>
+				<field id="clcommon__Approval_Authority__c"/>
+				<field id="clcommon__Approval_Authority__r.Name"/>
+				<field id="clcommon__Approval_Review_Group__c"/>
+				<field id="clcommon__Approval_Review_Group__r.Name"/>
+				<field id="clcommon__User__c"/>
+				<field id="clcommon__User__r.Name"/>
+				<field id="clcommon__User__r.Id"/>
+				<field id="clcommon__User__r.Username"/>
+			</fields>
+			<conditions logic="1">
+				<condition type="modelmerge" value="" field="clcommon__Approval_Review_Group__c" fieldtargetobjects="clcommon__Approval_Review_Group__c" operator="in" model="CRApproveMostRecentApprovalInstanceModel" enclosevalueinquotes="true" mergefield="clcommon__Approval_Review_Group__c" novaluebehavior="deactivate"/>
+				<condition type="modelmerge" value="" field="Maximum_Individual_Limit__c" operator="gte" model="CRApplication" enclosevalueinquotes="false" mergefield="genesis__Loan_Amount__c" novaluebehavior="deactivate"/>
+				<condition type="modelmerge" value="" field="Minimum_Individual_Limit__c" operator="lt" model="CRApplication" enclosevalueinquotes="false" mergefield="genesis__Loan_Amount__c" novaluebehavior="deactivate"/>
+			</conditions>
+			<actions/>
+		</model>
+		<model id="CRQBE_Postcode" limit="20" query="true" createrowifnonefound="false" datasource="salesforce" sobject="QBEpostCode__c">
+			<fields>
+				<field id="Location__c"/>
+				<field id="PostCode_High_RangeNumber__c"/>
+				<field id="PostCode_Low_RangeNumber__c"/>
+			</fields>
+			<conditions/>
+			<actions/>
+		</model>
+		<model id="CRSelectedCollateral" limit="20" query="true" createrowifnonefound="false" datasource="salesforce" sobject="clcommon__Collateral__c">
+			<fields>
+				<field id="RecordTypeId"/>
+				<field id="clcommon__Postal_Code__c"/>
+				<field id="QBE_Location__c"/>
+			</fields>
+			<conditions>
+				<condition type="modelmerge" value="" field="Id" operator="in" model="ApplicationCollateral" enclosevalueinquotes="true" mergefield="genesis__Collateral__c" novaluebehavior="deactivate" fieldtargetobjects="clcommon__Collateral__c"/>
+			</conditions>
+			<actions/>
+		</model>
+		<model id="ConditionDocumentCategory" limit="20" query="true" createrowifnonefound="false" datasource="salesforce" sobject="clcommon__Document_Category__c">
+			<fields/>
+			<conditions>
+				<condition type="fieldvalue" value="Condition Documents" enclosevalueinquotes="true" field="clcommon__Category_Name__c" operator="="/>
+				<condition type="param" value="Id" field="genesis__Application__c" fieldtargetobjects="genesis__Applications__c" operator="=" enclosevalueinquotes="true"/>
+				<condition type="fieldvalue" value="Review Documents" enclosevalueinquotes="true" field="clcommon__Parent_Document_Category__r.clcommon__Category_Name__c"/>
+			</conditions>
+			<actions/>
+		</model>
+		<model id="ConditionDocumentsAttachments" limit="100" query="true" createrowifnonefound="false" datasource="salesforce" sobject="Attachment">
+			<fields>
+				<field id="CreatedDate"/>
+				<field id="CreatedById"/>
+				<field id="CreatedBy.Name"/>
+				<field id="Name"/>
+			</fields>
+			<conditions>
+				<condition type="param" value="Id" field="ParentId" fieldtargetobjects="ABN_Company_Information__c,ABN_Company_List__c,ABN_Information__c,ACN_Information__c,APXTConga4__Composer_QuickMerge__c,APXTConga4__Conga_Collection_Solution__c,APXTConga4__Conga_Collection__c,APXTConga4__Conga_Email_Staging__c,APXTConga4__Conga_Email_Template__c,APXTConga4__Conga_Merge_Query__c,APXTConga4__Conga_Solution_Email_Template__c,APXTConga4__Conga_Solution_Parameter__c,APXTConga4__Conga_Solution_Query__c,APXTConga4__Conga_Solution_Report__c,APXTConga4__Conga_Solution_Template__c,APXTConga4__Conga_Solution__c,APXTConga4__Conga_Template__c,Account,Adback__c,Asset,Campaign,Case,Checklist_Detail__c,Contact,Contract,Credit_Account__c,Credit_Enquiry__c,Credit_History__c,Current_Directorship__c,Director__c,EmailMessage,EmailTemplate,Employment_Income__c,Energy_Audit__c,Event,Gift_Register__c,Lead,Loan_Condition__c,Loan_Warehouse__c,Location,Opportunity,Order,PPSR_Registration__c,Payment_Default__c,Product2,Proof_Of_Identity_Do__c,Refinance_Loan_Purpose__c,Rendered_Field__c,Rendering_Criteria__c,SocialPost,Solution,Task,Telephone_Contact_Number__c,Training_Register__c,Warehouse__c,clcommon__Accounting_Entry__c,clcommon__Accounting_Rule_Header__c,clcommon__Action_Queue__c,clcommon__Actors__c,clcommon__Address__c,clcommon__Agreement__c,clcommon__Answer_Definition__c,clcommon__Approval_Authority__c,clcommon__Approval_Definition__c,clcommon__Approval_Instance__c,clcommon__Approval_Review_Group__c,clcommon__Asset_Class__c,clcommon__Automated_Payment_Configuration__c,clcommon__Automated_Payment_Setup__c,clcommon__Bank_Account__c,clcommon__Bank__c,clcommon__Batch_Job_Status__c,clcommon__Batch_Logging__c,clcommon__Batch_Process_Log__c,clcommon__Bill_Group__c,clcommon__Billing_Group__c,clcommon__Book_Depreciation_Stream__c,clcommon__Book_Value_Adjustment__c,clcommon__Business_Event__c,clcommon__CL_Product__c,clcommon__CL_Purpose__c,clcommon__CMW_Product_Component_Map__c,clcommon__CMW_Product_and_Provider_Map__c,clcommon__Calculation_Expression__c,clcommon__Calculation_Set__c,clcommon__Cash_Receipt_Application__c,clcommon__Cash_Receipt_Transaction__c,clcommon__Cash_Receipt__c,clcommon__Category_Attachment_Association__c,clcommon__Chart_Of_Account__c,clcommon__CollateralLien__c,clcommon__Collateral_Category_Type_Association__c,clcommon__Collateral_Category__c,clcommon__Collateral_Insurance__c,clcommon__Collateral_Location__c,clcommon__Collateral_Owner__c,clcommon__Collateral_Registration__c,clcommon__Collateral_Type_Documents__c,clcommon__Collateral_Type__c,clcommon__Collateral_Valuation__c,clcommon__Collateral__c,clcommon__Company_Product_Assignment__c,clcommon__Company__c,clcommon__ComponentStructure__c,clcommon__Consolidated_Invoice_History__c,clcommon__Consolidated_Invoice__c,clcommon__Contingency_Status_Code__c,clcommon__Covenant_Association__c,clcommon__Covenant_Definition__c,clcommon__Covenant_Evaluation__c,clcommon__Covenant__c,clcommon__Css_Configuration__c,clcommon__DAG_Logging__c,clcommon__DAG_Schedule__c,clcommon__Data_Archive_Configuration__c,clcommon__Data_Archive_Summary_Field__c,clcommon__Data_Mapping_Configuration__c,clcommon__Data_Mapping_Field_Configuration__c,clcommon__Dealer_Funding_Detail__c,clcommon__Delinquency_Details__c,clcommon__Delivery_Detail__c,clcommon__Deposit__c,clcommon__Depreciation_Line__c,clcommon__Depreciation_Stream__c,clcommon__Disbursement_Plan__c,clcommon__Disbursement_Transaction__c,clcommon__Disclosure_Acknowledgement__c,clcommon__Disclosure_Definition__c,clcommon__Document_Category__c,clcommon__Document_Definition__c,clcommon__Due_Details__c,clcommon__Dynamic_Query_Data__c,clcommon__Dynamic_Query_Parameter__c,clcommon__Dynamic_Query__c,clcommon__Email_Config__c,clcommon__Equipment_Detail__c,clcommon__Equipment_Fees__c,clcommon__Equipment_Sale_Quote_Line__c,clcommon__Equipment_Sale_Quote__c,clcommon__Equipment_Transaction__c,clcommon__Equipment_Values_Adjustment__c,clcommon__Equipment__c,clcommon__Event_Configuration__c,clcommon__Event_Module_Configuration__c,clcommon__Execution_Criteria_Result__c,clcommon__Execution_Criteria__c,clcommon__Expression_Assignment__c,clcommon__External_Batch_Job_Run__c,clcommon__External_Batch_Job__c,clcommon__Factory_Registration__c,clcommon__Fee_Definition__c,clcommon__Fee_Junction__c,clcommon__Fee_Schedule__c,clcommon__Fee_Set__c,clcommon__Fee_Tax_Config__c,clcommon__Fee__c,clcommon__Field_Mapping__c,clcommon__Financial_Statement_Template__c,clcommon__Financial_Statement__c,clcommon__Floating_Rate_Index__c,clcommon__Floating_Rate__c,clcommon__GatewayConfiguration__c,clcommon__Gateway__c,clcommon__Grammar__c,clcommon__Help_Info__c,clcommon__Holiday_Schedule__c,clcommon__Holiday_Treatment_Setup__c,clcommon__Holiday__c,clcommon__Industry_Average__c,clcommon__Industry_Classification_Code__c,clcommon__Insurance_Definition__c,clcommon__Interest_Component__c,clcommon__Invoice_History__c,clcommon__Invoice__c,clcommon__Job_Dependency__c,clcommon__Job_Logging__c,clcommon__Job__c,clcommon__Launchpad_App_Subscription__c,clcommon__Launchpad_App__c,clcommon__Legal_Entity__c,clcommon__Loan_Account_Document_Documents__c,clcommon__Lock_Record_Configuration__c,clcommon__Locked_Record_Configuration_Snapshot__c,clcommon__Log__c,clcommon__MapRequestToSalesforce__c,clcommon__Mapping_Group__c,clcommon__Mapping_Header__c,clcommon__Message__c,clcommon__Meter_Reading__c,clcommon__Month_End_Portfolio_Query_Configuration__c,clcommon__Month_End_Portfolio_Report__c,clcommon__Month_End_Portfolio__c,clcommon__NavigationStructure__c,clcommon__Notification_Log__c,clcommon__Notification__c,clcommon__Party_Type__c,clcommon__Party__c,clcommon__Payment_Mode__c,clcommon__Payment_Spread_Detail__c,clcommon__Payment_Spread__c,clcommon__Payment_Transaction__c,clcommon__Personal_Information__c,clcommon__Points_Setup__c,clcommon__Points__c,clcommon__Portal_External_Id__c,clcommon__Portal_Layout__c,clcommon__Portal_State_Configuration__c,clcommon__Portal_Status__c,clcommon__Process_Enforcement_Action_Results__c,clcommon__Process_Enforcement_Action__c,clcommon__Process_Enforcement_Constraint__c,clcommon__Process_Enforcement_Detail__c,clcommon__Process_Enforcement__c,clcommon__Product_Insurance_Association__c,clcommon__Product_Purpose_Association__c,clcommon__Program_Or_Product_Points_Association__c,clcommon__Program__c,clcommon__Promotion_Setup__c,clcommon__Promotions__c,clcommon__Question_Definition__c,clcommon__Question_Display_Condition__c,clcommon__Question_Response__c,clcommon__Question__c,clcommon__Questionnaire_Definition__c,clcommon__Questionnaire_Instance__c,clcommon__Questionnaire_Section_Definition__c,clcommon__Rate_Schedule__c,clcommon__Reason_Code__c,clcommon__Reciprocal_Role__c,clcommon__Relationship__c,clcommon__Repayment_Plan__c,clcommon__Reports__c,clcommon__Request__c,clcommon__Response__c,clcommon__Reviewer__c,clcommon__Rule_Set__c,clcommon__Rule__c,clcommon__Sample_Contract__c,clcommon__Sell_Equipment__c,clcommon__Sliding_Billing_Range__c,clcommon__Sliding_Billing_Setup__c,clcommon__Statement_Analysis_Detail__c,clcommon__Statement_Analysis__c,clcommon__Statement_Detail__c,clcommon__Static_Content__c,clcommon__StepUp_Schedule__c,clcommon__Tax_Config__c,clcommon__Template_Configuration__c,clcommon__Template_Detail__c,clcommon__Template__c,clcommon__Test_Config_Wizard__c,clcommon__Thread_Logging__c,clcommon__Transaction__c,clcommon__UI_Setting__c,clcommon__Unresolved_Email_Item__c,clcommon__VAT_Rate_Setup__c,clcommon__Variable_Rent_Rate_Card_Details__c,clcommon__Variable_Rent_Rate_Card__c,clcommon__Variable_Rent_Rate__c,clcommon__Vendor_Program_Association__c,clcommon__Warehouse_Depreciation_Setup__c,cnotify__Configuration__c,cnotify__Delivery_Detail__c,cnotify__Notification__c,cnotify__Notify_Record__c,cnotify__Sms_Detail__c,cnotify__Template_Configuration__c,cnotify__Template__c,filegen__Addenda_Record__c,filegen__Batch_Control_Record__c,filegen__Batch_Header_Record__c,filegen__Batch_Process_Log__c,filegen__Entry_Detail_Record__c,filegen__File_Control_Record__c,filegen__File_Header_Record__c,filegen__File_Metadata__c,filegen__Loan_Account__c,genesis__Account_Scorecard_Result__c,genesis__Accounting_Period__c,genesis__Action__c,genesis__Additional_Determining_Factor__c,genesis__Adverse_Action_Application_Junction__c,genesis__Agenda_Item__c,genesis__Amortization_Schedule__c,genesis__AppDocCatAttachmentJunction__c,genesis__Application_Alternate_Product__c,genesis__Application_Business_Information__c,genesis__Application_Collateral__c,genesis__Application_Compliance_Information__c,genesis__Application_Decisions__c,genesis__Application_Department__c,genesis__Application_Document_Category__c,genesis__Application_Equipment__c,genesis__Application_Note__c,genesis__Application_Parties__c,genesis__Application_Pricing_Detail__c,genesis__Application_Rule_Setup__c,genesis__Application_Scorecard__c,genesis__Application_Status_History__c,genesis__Application_Wizard_Config__c,genesis__Application_s_Scorecard__c,genesis__Applications__c,genesis__Appraisal_Association__c,genesis__Appraisal_Bid__c,genesis__Appraisal_Request__c,genesis__Asset_Information__c,genesis__Asset_Liability_Info__c,genesis__Batch_Process_Log__c,genesis__Branch_Location__c,genesis__Budget_Line_Item__c,genesis__Budget_Milestone__c,genesis__Budget__c,genesis__Business_Information__c,genesis__CR_Org_Definition__c,genesis__Cash_Flow_Summary__c,genesis__Change_Memo__c,genesis__Checklist__c,genesis__Collateral_Document_Category_Junction__c,genesis__Collateral_Occupancy__c,genesis__Committee_Member__c,genesis__Company__c,genesis__Conversion_Mapping_Header__c,genesis__Conversion_Mapping__c,genesis__Credit_Memo__c,genesis__Credit_Rating_Matrix__c,genesis__Department__c,genesis__Departments_Members__c,genesis__Disbursement_Schedule_Config__c,genesis__Disbursement_Schedule_Item__c,genesis__Disbursement_Schedule__c,genesis__Document_Category__c,genesis__Document_Config_for_Category__c,genesis__Document_Criterial__c,genesis__Document_Master__c,genesis__Document_Status__c,genesis__Employee_FinAccount_Transaction_Access__c,genesis__Employment_Information__c,genesis__Engineering_Report__c,genesis__Equipment_Fee_Definition__c,genesis__Equipment_Master__c,genesis__Fee_Schedule__c,genesis__Fee_Set__c,genesis__FinancialCalculator__c,genesis__Financial_Account_Applications__c,genesis__Funding_Schedule__c,genesis__Funding_Transaction__c,genesis__Identification_Information__c,genesis__Income__c,genesis__Insurance__c,genesis__LeadRequest__c,genesis__Lending_Calculator__c,genesis__Lending_Product_Setup__c,genesis__Letter_of_Intent__c,genesis__Liability__c,genesis__Loan_Product__c,genesis__Lookup_Codes__c,genesis__Lookups__c,genesis__Meeting_Schedule__c,genesis__Member_Vote__c,genesis__Minute__c,genesis__Monthly_Income_Expense_Info__c,genesis__Moxtra__c,genesis__Mutex__c,genesis__Payment_Stream__c,genesis__Policy_Condition_Product_Association__c,genesis__Policy_Exception_Definition__c,genesis__Policy_Exception__c,genesis__ProductDepartment_Task_Junction__c,genesis__Product_Department_Junction__c,genesis__Product_Document_Category_Junction__c,genesis__Product_Rate_Card_Association__c,genesis__Product_Rule_Association__c,genesis__Product_Scorecard_Junction__c,genesis__Product_Service_Validation_Config__c,genesis__Product_Yield_Definition_Association__c,genesis__Program_Equipment_Master_Association__c,genesis__Program_Vendor_Rate_Card_Association__c,genesis__Property_Expense__c,genesis__Property_Income__c,genesis__Property__c,genesis__Purpose_Document_Category_Junction__c,genesis__Purpose_Rate_Card_Association__c,genesis__Purpose_Rule_Association__c,genesis__Purpose_ScoreCard_Association__c,genesis__Quick_Quote_Equipment__c,genesis__Quick_Quote_Option__c,genesis__Quick_Quote_Pricing_Options__c,genesis__Quick_Quotes__c,genesis__Rate_Card_Setup_Detail__c,genesis__Rate_Card_Setup_Header__c,genesis__Rate_Schedule_Setup__c,genesis__Referral__c,genesis__Renewal_History__c,genesis__Rent_Roll__c,genesis__RuleAction__c,genesis__RuleCriteria__c,genesis__Rule__c,genesis__Scorecard_Criteria__c,genesis__Scorecard__c,genesis__SubLimit__c,genesis__Task_Setup__c,genesis__Tenant__c,genesis__TestingQueue__c,genesis__Transaction_Categorization__c,genesis__Transaction_Room__c,genesis__Treasury_Criteria_Results__c,genesis__Treasury_Criteria__c,genesis__Treasury_Product_Service_Criteria_Config__c,genesis__Treasury_Services__c,genesis__Treasury_Validations__c,genesis__Vehicle_Valuation__c,genesis__Yield_Definition__c,genesis__Yield_Fee_Definition_Association__c,genesis__Yield__c,intframework__Data_Format_Config_Junction__c,intframework__Data_Format_Config_Set__c,intframework__Data_Format_Config__c,intframework__Data_Mapper_Config_Junction__c,intframework__Data_Mapper_Config__c,intframework__Integration_API_Configuration__c,intframework__Integration_API_Type__c,intframework__Integration_Configuration__c,intframework__Integration_Family__c,intframework__Integration_Log__c,intframework__Integration_Provider__c,intframework__Pattern__c,intframework__Supported_API_By_Integration_Provider__c,ints__API_Process_Log__c,ints__Account_Details__c,ints__Add_Deduct_Options__c,ints__Additional_Parameters__c,ints__Blackbook_Result__c,ints__Collateral_Valuation__c,ints__Collateral__c,ints__Credit_Alert_Message__c,ints__Credit_File__c,ints__Credit_Public_Record__c,ints__Credit_Regulatory_Product__c,ints__Credit_Report_Inquiry__c,ints__Credit_Report_Key__c,ints__Credit_Report_Liability_Credit_Comment__c,ints__Credit_Report_Liability_PAR__c,ints__Credit_Report_Liability__c,ints__Credit_Report_Score__c,ints__Credit_Report__c,ints__Credit_Response_Data__c,ints__Credit_Response__c,ints__Credit_Score_Factor__c,ints__Credit_Summary_Data_Set__c,ints__Credit_Summary__c,ints__DAndB_Detailed_Company__c,ints__DAndB_Paydex__c,ints__DAndB_Rating__c,ints__Data_Loader_Detail__c,ints__Data_Loader_Header__c,ints__EfxReport_Address__c,ints__EfxReport_Bank_Account__c,ints__EfxReport_Collection__c,ints__EfxReport_Consumer_Statement__c,ints__EfxReport_Data_Warning_Message__c,ints__EfxReport_Employment__c,ints__EfxReport_Error__c,ints__EfxReport_FW_Message__c,ints__EfxReport_ForeignInquiry__c,ints__EfxReport_FraudWarning__c,ints__EfxReport_Garnishment__c,ints__EfxReport_LegalItem__c,ints__EfxReport_Local_Inquiry__c,ints__EfxReport_Other_Income__c,ints__EfxReport_Score_RejectCode__c,ints__EfxReport_Score__c,ints__EfxReport_SecuredLoan__c,ints__EfxReport_Trade_Narrative__c,ints__EfxReport_Trade__c,ints__EfxReport__c,ints__Emailage__c,ints__Equifax_eId_Verifier_Response__c,ints__EquipmentDetail__c,ints__Equipment__c,ints__Full_Contact_Person_Record__c,ints__GDC_Verify_Data_Source_Record__c,ints__GDC_Verify_Record__c,ints__IDCAamvaBarcode__c,ints__IDCClassificationResult__c,ints__IDCData__c,ints__IDCDocumentExpertReviewResult__c,ints__IDCDocumentValidation__c,ints__IDCDossierFacelinkResult__c,ints__IDCDossierSummary__c,ints__IDCDynamicData__c,ints__IDCFacelinkAutomaticResult__c,ints__IDCFacelinkManualResult__c,ints__IDCFacelinkResult__c,ints__IDCFontValidationResult__c,ints__IDCMachineReadableZone__c,ints__IDCOcrResult__c,ints__IDCPhotoIntegrationValidationResult__c,ints__IDCSecurityFeatures__c,ints__IDCheckerRequest__c,ints__Indicators__c,ints__IntegrationMockResponse__c,ints__Integration_Configuration__c,ints__Key__c,ints__Lenddo_Response__c,ints__Microbilt_Information__c,ints__Mileage_Adjustments__c,ints__MockObject__c,ints__Mocker__c,ints__OAuth_Settings__c,ints__OAuth_Token__c,ints__Property_Links_Images__c,ints__Site_Account__c,ints__TestingQueue__c,ints__TransUnion_Credit_Report__c,ints__Transaction__c,ints__Yodlee_Call__c,ints__Yodlee_Transaction__c,ints__Yodlee_User_Credentials__c,ints__Zw_Property__c,loan__ACH_Return_Action_Config__c,loan__ACH_Return_Transaction_Interface__c,loan__Accounting_Period__c,loan__Accounting_Rule_Header__c,loan__Accounting_Rule_Line__c,loan__Accounting_Segment_Setup__c,loan__Accrual_Entry__c,loan__Accrual_Stream_Config__c,loan__Address__c,loan__Aging_History__c,loan__Amortization_Setup__c,loan__Answer__c,loan__Archive_Run__c,loan__Automated_Payment_Configuration__c,loan__Automated_Payment_Setup__c,loan__Balance__c,loan__Bank_Account__c,loan__Bank__c,loan__Base_Segment_Definition__c,loan__Batch_Process_Log__c,loan__Borrower_Refund_Transaction__c,loan__Branch_Loan_Product__c,loan__Branch_Location__c,loan__Branch_Savings_Product__c,loan__Broker_Transactions__c,loan__Broker__c,loan__Business_Activity__c,loan__Business_Event__c,loan__CR_Metro_2_Data_Format__c,loan__CR_Org_Definition__c,loan__Center__c,loan__Charge_Interface__c,loan__Charge__c,loan__Check__c,loan__Client_History__c,loan__Client_Identification__c,loan__Client_Training__c,loan__Client__c,loan__Coborrower__c,loan__Collateral_Junction__c,loan__Collateral_Valuation__c,loan__Collateral__c,loan__Collection_Fee__c,loan__Commission_Plan__c,loan__Conditions_On_Spread__c,loan__Consolidated_Charge__c,loan__Consolidated_Forecast_Stream__c,loan__Consolidated_Loan_Payment_Interface__c,loan__Consolidated_Loan_Payment_Line__c,loan__Consolidated_Loan_Payment_Reversal__c,loan__Consolidated_Loan_Payment__c,loan__Contract_Condition__c,loan__Contract_Pre_Paid_Fee__c,loan__Countries__c,loan__Currency__c,loan__Custom_Job_Query__c,loan__Daily_Loan_Accrual__c,loan__Data_Migration_Batch__c,loan__Data_Migration_Error__c,loan__Day_Process__c,loan__Default_Commission_Hierarchy__c,loan__Delinquency_Interval__c,loan__Delinquency_Set_Junction__c,loan__Delinquency_Set__c,loan__Disbursal_Adjustment__c,loan__Disbursal_Transaction_Interface__c,loan__Disbursal_Txn_Distribution__c,loan__Disbursement_Schedule__c,loan__Due_Fee__c,loan__Due_Payment__c,loan__Dues_Details_Interface__c,loan__Employment_Business_Detail__c,loan__Family_Detail__c,loan__Family_Details__c,loan__Family_Employment_Details__c,loan__Fee_Junction__c,loan__Fee_Order__c,loan__Fee_Payment__c,loan__Fee_Set__c,loan__Fee__c,loan__FinancialCalculator__c,loan__Financial_Education__c,loan__Fiscal_Year__c,loan__Flexible_Rate_Setup_Interface__c,loan__Floating_Rate_Index__c,loan__Floating_Rate__c,loan__Forecast_Streams__c,loan__Frozen_Fees_Config__c,loan__Funder_Portfolio__c,loan__Funder__c,loan__GL_Balance__c,loan__Group_Position__c,loan__Group__c,loan__Holiday__c,loan__Home_Evaluation__c,loan__Insurance_PRoduct__c,loan__Interest_Component_Payment__c,loan__Interest_On_Overdue_Payment__c,loan__Interest_Posting_Loan_Payment__c,loan__Interest_Posting_Transaction__c,loan__Investment_Order_Product__c,loan__Investment_Product_Investment_Order__c,loan__Investor_Amortization_Schedule__c,loan__Investor_Fund_Transaction__c,loan__Investor_Loan_Account_Txns__c,loan__Investor_Loan__c,loan__Investor_Payments__c,loan__Investor_Tax_Configuration__c,loan__J1_Segment__c,loan__J2_Segment__c,loan__Journal__c,loan__K1_Segment__c,loan__K2_Segment__c,loan__K3_Segment__c,loan__K4_Segment__c,loan__L1_Segment__c,loan__Loan_Account_Conditions__c,loan__Loan_Account_History__c,loan__Loan_Account_Interface__c,loan__Loan_Account__c,loan__Loan_Approval_Prerequisites__c,loan__Loan_Block_Code__c,loan__Loan_Collateral__c,loan__Loan_Disbursal_Transaction__c,loan__Loan_Loss_Provisioning_Setup__c,loan__Loan_Parameters__c,loan__Loan_Payment_Amz_Sched_Junction__c,loan__Loan_Payment_Collection__c,loan__Loan_Payment_Spread__c,loan__Loan_Payment_Transaction_Interface__c,loan__Loan_Payment_Transaction__c,loan__Loan_Product_Accounting_Setup__c,loan__Loan_Product_Cycle__c,loan__Loan_Product_Differentiator__c,loan__Loan_Product__c,loan__Loan_Protect_Split__c,loan__Loan_Purpose__c,loan__Loan_Status_History__c,loan__Loan_Status__c,loan__Loan_Transaction_Summary__c,loan__Loan_Write_Off_Transaction__c,loan__Loan_account_Due_Details__c,loan__Lookup__c,loan__MFError__c,loan__MF_Account_Tag__c,loan__MF_Account_Type__c,loan__MF_Account__c,loan__Meeting_Schedule__c,loan__Misc_Account__c,loan__Misc_Transaction__c,loan__Month_End_Loan_Snapshot__c,loan__Month_Process__c,loan__Multi_Step_Loan_Setup__c,loan__N1_Segment__c,loan__Object_Event_Mapping__c,loan__Office_Name__c,loan__Office_Type__c,loan__Other_Transaction__c,loan__Overdue_Fee__c,loan__PPIChartCountryAndYear__c,loan__PPI_Household_Data__c,loan__PPI_Indicator__c,loan__PPI__c,loan__Paid_Fee__c,loan__Payment_Mode__c,loan__Payment_Schedule_Setup__c,loan__Payoff_Quote__c,loan__Periodic_Fee_Setup__c,loan__Poverty_Likelihood_Chart__c,loan__Product_Amortization_Balance_Setup__c,loan__Product_Category__c,loan__Product_Condition__c,loan__Product_Pre_Paid_Fees__c,loan__Protect_Claim_LPT_Junction__c,loan__Protect_Claim__c,loan__Protect_Fee_Split__c,loan__Question_Junction__c,loan__Question_Set__c,loan__Question__c,loan__Quick_Link__c,loan__Recovery_Order__c,loan__Refinance_Transaction__c,loan__Repayment_Extensions__c,loan__Repayment_Schedule_Summary__c,loan__Repayment_Schedule__c,loan__Repayment_Summary_Interface__c,loan__Repayment_Transaction_Adjustment__c,loan__Sales_Income_Estimate__c,loan__Savings_Account_Interest__c,loan__Savings_Account__c,loan__Savings_Payment_Collection_Record__c,loan__Savings_Payment_Transaction__c,loan__Savings_Product_Accounting_Setup__c,loan__Savings_Product__c,loan__Savings_Withdrawal_Transaction__c,loan__Scheduled_Job__c,loan__Scheduled_Queries__c,loan__Search__c,loan__Staff__c,loan__Start_Here__c,loan__Teller_Cash_Transaction__c,loan__TestingQueue__c,loan__Trailer_Segment_Definition__c,loan__Transaction_Entry__c,loan__Transaction_Source__c,loan__Transaction_Summary__c,loan__Transaction__c,loan__Transfer_Transaction__c,loan__User_Branch_Info__c,loan__Users_Quick_Links__c,loan__Value_Set_Values__c,loan__Value_Sets__c,loan__loan_amortize_balances__c,loan__loan_amortize_txns__c,mfiflexUtil__Log__c,mfiflexUtil__Security_Test__c,mfiflexUtil__votest_account__c,mfiflexUtil__votest_charge__c,mfiflexUtil__votest_fees__c,mfiflexUtil__votest_loan_account__c,peer__Bank_Recon_Exception__c,peer__Booking_Order__c,peer__Borrower_Information__c,peer__Credit_Band_Allocation__c,peer__Credit_Rating_Matrix__c,peer__Credit_Score__c,peer__Disbursement_Schedule__c,peer__FB_Permissions__c,peer__Investment_Booking__c,peer__Investment_Order_Sale_Transaction__c,peer__Investment_Queue__c,peer__Loan_Application__c,peer__Login__c,peer__Moxtra__c,peer__Note_Bundle__c,peer__Note_Type__c,peer__Notification_Category__c,peer__Notification__c,peer__Portfolio_Weights_Table__c,peer__RequiredDocument__c,peer__Required_Document_Map__c,peer__Verification__c,skuid__Auth_Provider_Credential__c,skuid__Feedback_Response__c,skuid__Feedback__c,skuid__Image__c,skuid__Page_Assignment__c,skuid__Page_Interaction__c,skuid__Page_Version__c,skuid__Page__c,skuid__Personalization_Settings__c,staging__Fee__c,staging__Interface_Bank_Account__c,staging__Interface_Charge__c,staging__Interface_Contract_Due_Details__c,staging__Interface_Contract_Status__c,staging__Interface_Contract__c,staging__Interface_Party__c,staging__Interface_Payment_Transaction__c,staging__Interface_Repayment_Schedule__c" operator="=" mergefield="Id" novaluebehavior="deactivate" enclosevalueinquotes="true"/>
+				<condition type="fieldvalue" value="Condition File" enclosevalueinquotes="true" field="Description"/>
+			</conditions>
+			<actions/>
+		</model>
+		<model id="ExceptionDocumentAttachments" limit="100" query="true" createrowifnonefound="false" datasource="salesforce" sobject="Attachment">
+			<fields>
+				<field id="Name"/>
+				<field id="CreatedById"/>
+				<field id="CreatedBy.Name"/>
+				<field id="CreatedDate"/>
+			</fields>
+			<conditions>
+				<condition type="param" value="Id" field="ParentId" fieldtargetobjects="ABN_Company_Information__c,ABN_Company_List__c,ABN_Information__c,ACN_Information__c,APXTConga4__Composer_QuickMerge__c,APXTConga4__Conga_Collection_Solution__c,APXTConga4__Conga_Collection__c,APXTConga4__Conga_Email_Staging__c,APXTConga4__Conga_Email_Template__c,APXTConga4__Conga_Merge_Query__c,APXTConga4__Conga_Solution_Email_Template__c,APXTConga4__Conga_Solution_Parameter__c,APXTConga4__Conga_Solution_Query__c,APXTConga4__Conga_Solution_Report__c,APXTConga4__Conga_Solution_Template__c,APXTConga4__Conga_Solution__c,APXTConga4__Conga_Template__c,Account,Adback__c,Asset,Campaign,Case,Checklist_Detail__c,Contact,Contract,Credit_Account__c,Credit_Enquiry__c,Credit_History__c,Current_Directorship__c,Director__c,EmailMessage,EmailTemplate,Employment_Income__c,Energy_Audit__c,Event,Gift_Register__c,Lead,Loan_Condition__c,Loan_Warehouse__c,Location,Opportunity,Order,PPSR_Registration__c,Payment_Default__c,Product2,Proof_Of_Identity_Do__c,Refinance_Loan_Purpose__c,Rendered_Field__c,Rendering_Criteria__c,SocialPost,Solution,Task,Telephone_Contact_Number__c,Training_Register__c,Warehouse__c,clcommon__Accounting_Entry__c,clcommon__Accounting_Rule_Header__c,clcommon__Action_Queue__c,clcommon__Actors__c,clcommon__Address__c,clcommon__Agreement__c,clcommon__Answer_Definition__c,clcommon__Approval_Authority__c,clcommon__Approval_Definition__c,clcommon__Approval_Instance__c,clcommon__Approval_Review_Group__c,clcommon__Asset_Class__c,clcommon__Automated_Payment_Configuration__c,clcommon__Automated_Payment_Setup__c,clcommon__Bank_Account__c,clcommon__Bank__c,clcommon__Batch_Job_Status__c,clcommon__Batch_Logging__c,clcommon__Batch_Process_Log__c,clcommon__Bill_Group__c,clcommon__Billing_Group__c,clcommon__Book_Depreciation_Stream__c,clcommon__Book_Value_Adjustment__c,clcommon__Business_Event__c,clcommon__CL_Product__c,clcommon__CL_Purpose__c,clcommon__CMW_Product_Component_Map__c,clcommon__CMW_Product_and_Provider_Map__c,clcommon__Calculation_Expression__c,clcommon__Calculation_Set__c,clcommon__Cash_Receipt_Application__c,clcommon__Cash_Receipt_Transaction__c,clcommon__Cash_Receipt__c,clcommon__Category_Attachment_Association__c,clcommon__Chart_Of_Account__c,clcommon__CollateralLien__c,clcommon__Collateral_Category_Type_Association__c,clcommon__Collateral_Category__c,clcommon__Collateral_Insurance__c,clcommon__Collateral_Location__c,clcommon__Collateral_Owner__c,clcommon__Collateral_Registration__c,clcommon__Collateral_Type_Documents__c,clcommon__Collateral_Type__c,clcommon__Collateral_Valuation__c,clcommon__Collateral__c,clcommon__Company_Product_Assignment__c,clcommon__Company__c,clcommon__ComponentStructure__c,clcommon__Consolidated_Invoice_History__c,clcommon__Consolidated_Invoice__c,clcommon__Contingency_Status_Code__c,clcommon__Covenant_Association__c,clcommon__Covenant_Definition__c,clcommon__Covenant_Evaluation__c,clcommon__Covenant__c,clcommon__Css_Configuration__c,clcommon__DAG_Logging__c,clcommon__DAG_Schedule__c,clcommon__Data_Archive_Configuration__c,clcommon__Data_Archive_Summary_Field__c,clcommon__Data_Mapping_Configuration__c,clcommon__Data_Mapping_Field_Configuration__c,clcommon__Dealer_Funding_Detail__c,clcommon__Delinquency_Details__c,clcommon__Delivery_Detail__c,clcommon__Deposit__c,clcommon__Depreciation_Line__c,clcommon__Depreciation_Stream__c,clcommon__Disbursement_Plan__c,clcommon__Disbursement_Transaction__c,clcommon__Disclosure_Acknowledgement__c,clcommon__Disclosure_Definition__c,clcommon__Document_Category__c,clcommon__Document_Definition__c,clcommon__Due_Details__c,clcommon__Dynamic_Query_Data__c,clcommon__Dynamic_Query_Parameter__c,clcommon__Dynamic_Query__c,clcommon__Email_Config__c,clcommon__Equipment_Detail__c,clcommon__Equipment_Fees__c,clcommon__Equipment_Sale_Quote_Line__c,clcommon__Equipment_Sale_Quote__c,clcommon__Equipment_Transaction__c,clcommon__Equipment_Values_Adjustment__c,clcommon__Equipment__c,clcommon__Event_Configuration__c,clcommon__Event_Module_Configuration__c,clcommon__Execution_Criteria_Result__c,clcommon__Execution_Criteria__c,clcommon__Expression_Assignment__c,clcommon__External_Batch_Job_Run__c,clcommon__External_Batch_Job__c,clcommon__Factory_Registration__c,clcommon__Fee_Definition__c,clcommon__Fee_Junction__c,clcommon__Fee_Schedule__c,clcommon__Fee_Set__c,clcommon__Fee_Tax_Config__c,clcommon__Fee__c,clcommon__Field_Mapping__c,clcommon__Financial_Statement_Template__c,clcommon__Financial_Statement__c,clcommon__Floating_Rate_Index__c,clcommon__Floating_Rate__c,clcommon__GatewayConfiguration__c,clcommon__Gateway__c,clcommon__Grammar__c,clcommon__Help_Info__c,clcommon__Holiday_Schedule__c,clcommon__Holiday_Treatment_Setup__c,clcommon__Holiday__c,clcommon__Industry_Average__c,clcommon__Industry_Classification_Code__c,clcommon__Insurance_Definition__c,clcommon__Interest_Component__c,clcommon__Invoice_History__c,clcommon__Invoice__c,clcommon__Job_Dependency__c,clcommon__Job_Logging__c,clcommon__Job__c,clcommon__Launchpad_App_Subscription__c,clcommon__Launchpad_App__c,clcommon__Legal_Entity__c,clcommon__Loan_Account_Document_Documents__c,clcommon__Lock_Record_Configuration__c,clcommon__Locked_Record_Configuration_Snapshot__c,clcommon__Log__c,clcommon__MapRequestToSalesforce__c,clcommon__Mapping_Group__c,clcommon__Mapping_Header__c,clcommon__Message__c,clcommon__Meter_Reading__c,clcommon__Month_End_Portfolio_Query_Configuration__c,clcommon__Month_End_Portfolio_Report__c,clcommon__Month_End_Portfolio__c,clcommon__NavigationStructure__c,clcommon__Notification_Log__c,clcommon__Notification__c,clcommon__Party_Type__c,clcommon__Party__c,clcommon__Payment_Mode__c,clcommon__Payment_Spread_Detail__c,clcommon__Payment_Spread__c,clcommon__Payment_Transaction__c,clcommon__Personal_Information__c,clcommon__Points_Setup__c,clcommon__Points__c,clcommon__Portal_External_Id__c,clcommon__Portal_Layout__c,clcommon__Portal_State_Configuration__c,clcommon__Portal_Status__c,clcommon__Process_Enforcement_Action_Results__c,clcommon__Process_Enforcement_Action__c,clcommon__Process_Enforcement_Constraint__c,clcommon__Process_Enforcement_Detail__c,clcommon__Process_Enforcement__c,clcommon__Product_Insurance_Association__c,clcommon__Product_Purpose_Association__c,clcommon__Program_Or_Product_Points_Association__c,clcommon__Program__c,clcommon__Promotion_Setup__c,clcommon__Promotions__c,clcommon__Question_Definition__c,clcommon__Question_Display_Condition__c,clcommon__Question_Response__c,clcommon__Question__c,clcommon__Questionnaire_Definition__c,clcommon__Questionnaire_Instance__c,clcommon__Questionnaire_Section_Definition__c,clcommon__Rate_Schedule__c,clcommon__Reason_Code__c,clcommon__Reciprocal_Role__c,clcommon__Relationship__c,clcommon__Repayment_Plan__c,clcommon__Reports__c,clcommon__Request__c,clcommon__Response__c,clcommon__Reviewer__c,clcommon__Rule_Set__c,clcommon__Rule__c,clcommon__Sample_Contract__c,clcommon__Sell_Equipment__c,clcommon__Sliding_Billing_Range__c,clcommon__Sliding_Billing_Setup__c,clcommon__Statement_Analysis_Detail__c,clcommon__Statement_Analysis__c,clcommon__Statement_Detail__c,clcommon__Static_Content__c,clcommon__StepUp_Schedule__c,clcommon__Tax_Config__c,clcommon__Template_Configuration__c,clcommon__Template_Detail__c,clcommon__Template__c,clcommon__Test_Config_Wizard__c,clcommon__Thread_Logging__c,clcommon__Transaction__c,clcommon__UI_Setting__c,clcommon__Unresolved_Email_Item__c,clcommon__VAT_Rate_Setup__c,clcommon__Variable_Rent_Rate_Card_Details__c,clcommon__Variable_Rent_Rate_Card__c,clcommon__Variable_Rent_Rate__c,clcommon__Vendor_Program_Association__c,clcommon__Warehouse_Depreciation_Setup__c,cnotify__Configuration__c,cnotify__Delivery_Detail__c,cnotify__Notification__c,cnotify__Notify_Record__c,cnotify__Sms_Detail__c,cnotify__Template_Configuration__c,cnotify__Template__c,filegen__Addenda_Record__c,filegen__Batch_Control_Record__c,filegen__Batch_Header_Record__c,filegen__Batch_Process_Log__c,filegen__Entry_Detail_Record__c,filegen__File_Control_Record__c,filegen__File_Header_Record__c,filegen__File_Metadata__c,filegen__Loan_Account__c,genesis__Account_Scorecard_Result__c,genesis__Accounting_Period__c,genesis__Action__c,genesis__Additional_Determining_Factor__c,genesis__Adverse_Action_Application_Junction__c,genesis__Agenda_Item__c,genesis__Amortization_Schedule__c,genesis__AppDocCatAttachmentJunction__c,genesis__Application_Alternate_Product__c,genesis__Application_Business_Information__c,genesis__Application_Collateral__c,genesis__Application_Compliance_Information__c,genesis__Application_Decisions__c,genesis__Application_Department__c,genesis__Application_Document_Category__c,genesis__Application_Equipment__c,genesis__Application_Note__c,genesis__Application_Parties__c,genesis__Application_Pricing_Detail__c,genesis__Application_Rule_Setup__c,genesis__Application_Scorecard__c,genesis__Application_Status_History__c,genesis__Application_Wizard_Config__c,genesis__Application_s_Scorecard__c,genesis__Applications__c,genesis__Appraisal_Association__c,genesis__Appraisal_Bid__c,genesis__Appraisal_Request__c,genesis__Asset_Information__c,genesis__Asset_Liability_Info__c,genesis__Batch_Process_Log__c,genesis__Branch_Location__c,genesis__Budget_Line_Item__c,genesis__Budget_Milestone__c,genesis__Budget__c,genesis__Business_Information__c,genesis__CR_Org_Definition__c,genesis__Cash_Flow_Summary__c,genesis__Change_Memo__c,genesis__Checklist__c,genesis__Collateral_Document_Category_Junction__c,genesis__Collateral_Occupancy__c,genesis__Committee_Member__c,genesis__Company__c,genesis__Conversion_Mapping_Header__c,genesis__Conversion_Mapping__c,genesis__Credit_Memo__c,genesis__Credit_Rating_Matrix__c,genesis__Department__c,genesis__Departments_Members__c,genesis__Disbursement_Schedule_Config__c,genesis__Disbursement_Schedule_Item__c,genesis__Disbursement_Schedule__c,genesis__Document_Category__c,genesis__Document_Config_for_Category__c,genesis__Document_Criterial__c,genesis__Document_Master__c,genesis__Document_Status__c,genesis__Employee_FinAccount_Transaction_Access__c,genesis__Employment_Information__c,genesis__Engineering_Report__c,genesis__Equipment_Fee_Definition__c,genesis__Equipment_Master__c,genesis__Fee_Schedule__c,genesis__Fee_Set__c,genesis__FinancialCalculator__c,genesis__Financial_Account_Applications__c,genesis__Funding_Schedule__c,genesis__Funding_Transaction__c,genesis__Identification_Information__c,genesis__Income__c,genesis__Insurance__c,genesis__LeadRequest__c,genesis__Lending_Calculator__c,genesis__Lending_Product_Setup__c,genesis__Letter_of_Intent__c,genesis__Liability__c,genesis__Loan_Product__c,genesis__Lookup_Codes__c,genesis__Lookups__c,genesis__Meeting_Schedule__c,genesis__Member_Vote__c,genesis__Minute__c,genesis__Monthly_Income_Expense_Info__c,genesis__Moxtra__c,genesis__Mutex__c,genesis__Payment_Stream__c,genesis__Policy_Condition_Product_Association__c,genesis__Policy_Exception_Definition__c,genesis__Policy_Exception__c,genesis__ProductDepartment_Task_Junction__c,genesis__Product_Department_Junction__c,genesis__Product_Document_Category_Junction__c,genesis__Product_Rate_Card_Association__c,genesis__Product_Rule_Association__c,genesis__Product_Scorecard_Junction__c,genesis__Product_Service_Validation_Config__c,genesis__Product_Yield_Definition_Association__c,genesis__Program_Equipment_Master_Association__c,genesis__Program_Vendor_Rate_Card_Association__c,genesis__Property_Expense__c,genesis__Property_Income__c,genesis__Property__c,genesis__Purpose_Document_Category_Junction__c,genesis__Purpose_Rate_Card_Association__c,genesis__Purpose_Rule_Association__c,genesis__Purpose_ScoreCard_Association__c,genesis__Quick_Quote_Equipment__c,genesis__Quick_Quote_Option__c,genesis__Quick_Quote_Pricing_Options__c,genesis__Quick_Quotes__c,genesis__Rate_Card_Setup_Detail__c,genesis__Rate_Card_Setup_Header__c,genesis__Rate_Schedule_Setup__c,genesis__Referral__c,genesis__Renewal_History__c,genesis__Rent_Roll__c,genesis__RuleAction__c,genesis__RuleCriteria__c,genesis__Rule__c,genesis__Scorecard_Criteria__c,genesis__Scorecard__c,genesis__SubLimit__c,genesis__Task_Setup__c,genesis__Tenant__c,genesis__TestingQueue__c,genesis__Transaction_Categorization__c,genesis__Transaction_Room__c,genesis__Treasury_Criteria_Results__c,genesis__Treasury_Criteria__c,genesis__Treasury_Product_Service_Criteria_Config__c,genesis__Treasury_Services__c,genesis__Treasury_Validations__c,genesis__Vehicle_Valuation__c,genesis__Yield_Definition__c,genesis__Yield_Fee_Definition_Association__c,genesis__Yield__c,intframework__Data_Format_Config_Junction__c,intframework__Data_Format_Config_Set__c,intframework__Data_Format_Config__c,intframework__Data_Mapper_Config_Junction__c,intframework__Data_Mapper_Config__c,intframework__Integration_API_Configuration__c,intframework__Integration_API_Type__c,intframework__Integration_Configuration__c,intframework__Integration_Family__c,intframework__Integration_Log__c,intframework__Integration_Provider__c,intframework__Pattern__c,intframework__Supported_API_By_Integration_Provider__c,ints__API_Process_Log__c,ints__Account_Details__c,ints__Add_Deduct_Options__c,ints__Additional_Parameters__c,ints__Blackbook_Result__c,ints__Collateral_Valuation__c,ints__Collateral__c,ints__Credit_Alert_Message__c,ints__Credit_File__c,ints__Credit_Public_Record__c,ints__Credit_Regulatory_Product__c,ints__Credit_Report_Inquiry__c,ints__Credit_Report_Key__c,ints__Credit_Report_Liability_Credit_Comment__c,ints__Credit_Report_Liability_PAR__c,ints__Credit_Report_Liability__c,ints__Credit_Report_Score__c,ints__Credit_Report__c,ints__Credit_Response_Data__c,ints__Credit_Response__c,ints__Credit_Score_Factor__c,ints__Credit_Summary_Data_Set__c,ints__Credit_Summary__c,ints__DAndB_Detailed_Company__c,ints__DAndB_Paydex__c,ints__DAndB_Rating__c,ints__Data_Loader_Detail__c,ints__Data_Loader_Header__c,ints__EfxReport_Address__c,ints__EfxReport_Bank_Account__c,ints__EfxReport_Collection__c,ints__EfxReport_Consumer_Statement__c,ints__EfxReport_Data_Warning_Message__c,ints__EfxReport_Employment__c,ints__EfxReport_Error__c,ints__EfxReport_FW_Message__c,ints__EfxReport_ForeignInquiry__c,ints__EfxReport_FraudWarning__c,ints__EfxReport_Garnishment__c,ints__EfxReport_LegalItem__c,ints__EfxReport_Local_Inquiry__c,ints__EfxReport_Other_Income__c,ints__EfxReport_Score_RejectCode__c,ints__EfxReport_Score__c,ints__EfxReport_SecuredLoan__c,ints__EfxReport_Trade_Narrative__c,ints__EfxReport_Trade__c,ints__EfxReport__c,ints__Emailage__c,ints__Equifax_eId_Verifier_Response__c,ints__EquipmentDetail__c,ints__Equipment__c,ints__Full_Contact_Person_Record__c,ints__GDC_Verify_Data_Source_Record__c,ints__GDC_Verify_Record__c,ints__IDCAamvaBarcode__c,ints__IDCClassificationResult__c,ints__IDCData__c,ints__IDCDocumentExpertReviewResult__c,ints__IDCDocumentValidation__c,ints__IDCDossierFacelinkResult__c,ints__IDCDossierSummary__c,ints__IDCDynamicData__c,ints__IDCFacelinkAutomaticResult__c,ints__IDCFacelinkManualResult__c,ints__IDCFacelinkResult__c,ints__IDCFontValidationResult__c,ints__IDCMachineReadableZone__c,ints__IDCOcrResult__c,ints__IDCPhotoIntegrationValidationResult__c,ints__IDCSecurityFeatures__c,ints__IDCheckerRequest__c,ints__Indicators__c,ints__IntegrationMockResponse__c,ints__Integration_Configuration__c,ints__Key__c,ints__Lenddo_Response__c,ints__Microbilt_Information__c,ints__Mileage_Adjustments__c,ints__MockObject__c,ints__Mocker__c,ints__OAuth_Settings__c,ints__OAuth_Token__c,ints__Property_Links_Images__c,ints__Site_Account__c,ints__TestingQueue__c,ints__TransUnion_Credit_Report__c,ints__Transaction__c,ints__Yodlee_Call__c,ints__Yodlee_Transaction__c,ints__Yodlee_User_Credentials__c,ints__Zw_Property__c,loan__ACH_Return_Action_Config__c,loan__ACH_Return_Transaction_Interface__c,loan__Accounting_Period__c,loan__Accounting_Rule_Header__c,loan__Accounting_Rule_Line__c,loan__Accounting_Segment_Setup__c,loan__Accrual_Entry__c,loan__Accrual_Stream_Config__c,loan__Address__c,loan__Aging_History__c,loan__Amortization_Setup__c,loan__Answer__c,loan__Archive_Run__c,loan__Automated_Payment_Configuration__c,loan__Automated_Payment_Setup__c,loan__Balance__c,loan__Bank_Account__c,loan__Bank__c,loan__Base_Segment_Definition__c,loan__Batch_Process_Log__c,loan__Borrower_Refund_Transaction__c,loan__Branch_Loan_Product__c,loan__Branch_Location__c,loan__Branch_Savings_Product__c,loan__Broker_Transactions__c,loan__Broker__c,loan__Business_Activity__c,loan__Business_Event__c,loan__CR_Metro_2_Data_Format__c,loan__CR_Org_Definition__c,loan__Center__c,loan__Charge_Interface__c,loan__Charge__c,loan__Check__c,loan__Client_History__c,loan__Client_Identification__c,loan__Client_Training__c,loan__Client__c,loan__Coborrower__c,loan__Collateral_Junction__c,loan__Collateral_Valuation__c,loan__Collateral__c,loan__Collection_Fee__c,loan__Commission_Plan__c,loan__Conditions_On_Spread__c,loan__Consolidated_Charge__c,loan__Consolidated_Forecast_Stream__c,loan__Consolidated_Loan_Payment_Interface__c,loan__Consolidated_Loan_Payment_Line__c,loan__Consolidated_Loan_Payment_Reversal__c,loan__Consolidated_Loan_Payment__c,loan__Contract_Condition__c,loan__Contract_Pre_Paid_Fee__c,loan__Countries__c,loan__Currency__c,loan__Custom_Job_Query__c,loan__Daily_Loan_Accrual__c,loan__Data_Migration_Batch__c,loan__Data_Migration_Error__c,loan__Day_Process__c,loan__Default_Commission_Hierarchy__c,loan__Delinquency_Interval__c,loan__Delinquency_Set_Junction__c,loan__Delinquency_Set__c,loan__Disbursal_Adjustment__c,loan__Disbursal_Transaction_Interface__c,loan__Disbursal_Txn_Distribution__c,loan__Disbursement_Schedule__c,loan__Due_Fee__c,loan__Due_Payment__c,loan__Dues_Details_Interface__c,loan__Employment_Business_Detail__c,loan__Family_Detail__c,loan__Family_Details__c,loan__Family_Employment_Details__c,loan__Fee_Junction__c,loan__Fee_Order__c,loan__Fee_Payment__c,loan__Fee_Set__c,loan__Fee__c,loan__FinancialCalculator__c,loan__Financial_Education__c,loan__Fiscal_Year__c,loan__Flexible_Rate_Setup_Interface__c,loan__Floating_Rate_Index__c,loan__Floating_Rate__c,loan__Forecast_Streams__c,loan__Frozen_Fees_Config__c,loan__Funder_Portfolio__c,loan__Funder__c,loan__GL_Balance__c,loan__Group_Position__c,loan__Group__c,loan__Holiday__c,loan__Home_Evaluation__c,loan__Insurance_PRoduct__c,loan__Interest_Component_Payment__c,loan__Interest_On_Overdue_Payment__c,loan__Interest_Posting_Loan_Payment__c,loan__Interest_Posting_Transaction__c,loan__Investment_Order_Product__c,loan__Investment_Product_Investment_Order__c,loan__Investor_Amortization_Schedule__c,loan__Investor_Fund_Transaction__c,loan__Investor_Loan_Account_Txns__c,loan__Investor_Loan__c,loan__Investor_Payments__c,loan__Investor_Tax_Configuration__c,loan__J1_Segment__c,loan__J2_Segment__c,loan__Journal__c,loan__K1_Segment__c,loan__K2_Segment__c,loan__K3_Segment__c,loan__K4_Segment__c,loan__L1_Segment__c,loan__Loan_Account_Conditions__c,loan__Loan_Account_History__c,loan__Loan_Account_Interface__c,loan__Loan_Account__c,loan__Loan_Approval_Prerequisites__c,loan__Loan_Block_Code__c,loan__Loan_Collateral__c,loan__Loan_Disbursal_Transaction__c,loan__Loan_Loss_Provisioning_Setup__c,loan__Loan_Parameters__c,loan__Loan_Payment_Amz_Sched_Junction__c,loan__Loan_Payment_Collection__c,loan__Loan_Payment_Spread__c,loan__Loan_Payment_Transaction_Interface__c,loan__Loan_Payment_Transaction__c,loan__Loan_Product_Accounting_Setup__c,loan__Loan_Product_Cycle__c,loan__Loan_Product_Differentiator__c,loan__Loan_Product__c,loan__Loan_Protect_Split__c,loan__Loan_Purpose__c,loan__Loan_Status_History__c,loan__Loan_Status__c,loan__Loan_Transaction_Summary__c,loan__Loan_Write_Off_Transaction__c,loan__Loan_account_Due_Details__c,loan__Lookup__c,loan__MFError__c,loan__MF_Account_Tag__c,loan__MF_Account_Type__c,loan__MF_Account__c,loan__Meeting_Schedule__c,loan__Misc_Account__c,loan__Misc_Transaction__c,loan__Month_End_Loan_Snapshot__c,loan__Month_Process__c,loan__Multi_Step_Loan_Setup__c,loan__N1_Segment__c,loan__Object_Event_Mapping__c,loan__Office_Name__c,loan__Office_Type__c,loan__Other_Transaction__c,loan__Overdue_Fee__c,loan__PPIChartCountryAndYear__c,loan__PPI_Household_Data__c,loan__PPI_Indicator__c,loan__PPI__c,loan__Paid_Fee__c,loan__Payment_Mode__c,loan__Payment_Schedule_Setup__c,loan__Payoff_Quote__c,loan__Periodic_Fee_Setup__c,loan__Poverty_Likelihood_Chart__c,loan__Product_Amortization_Balance_Setup__c,loan__Product_Category__c,loan__Product_Condition__c,loan__Product_Pre_Paid_Fees__c,loan__Protect_Claim_LPT_Junction__c,loan__Protect_Claim__c,loan__Protect_Fee_Split__c,loan__Question_Junction__c,loan__Question_Set__c,loan__Question__c,loan__Quick_Link__c,loan__Recovery_Order__c,loan__Refinance_Transaction__c,loan__Repayment_Extensions__c,loan__Repayment_Schedule_Summary__c,loan__Repayment_Schedule__c,loan__Repayment_Summary_Interface__c,loan__Repayment_Transaction_Adjustment__c,loan__Sales_Income_Estimate__c,loan__Savings_Account_Interest__c,loan__Savings_Account__c,loan__Savings_Payment_Collection_Record__c,loan__Savings_Payment_Transaction__c,loan__Savings_Product_Accounting_Setup__c,loan__Savings_Product__c,loan__Savings_Withdrawal_Transaction__c,loan__Scheduled_Job__c,loan__Scheduled_Queries__c,loan__Search__c,loan__Staff__c,loan__Start_Here__c,loan__Teller_Cash_Transaction__c,loan__TestingQueue__c,loan__Trailer_Segment_Definition__c,loan__Transaction_Entry__c,loan__Transaction_Source__c,loan__Transaction_Summary__c,loan__Transaction__c,loan__Transfer_Transaction__c,loan__User_Branch_Info__c,loan__Users_Quick_Links__c,loan__Value_Set_Values__c,loan__Value_Sets__c,loan__loan_amortize_balances__c,loan__loan_amortize_txns__c,mfiflexUtil__Log__c,mfiflexUtil__Security_Test__c,mfiflexUtil__votest_account__c,mfiflexUtil__votest_charge__c,mfiflexUtil__votest_fees__c,mfiflexUtil__votest_loan_account__c,peer__Bank_Recon_Exception__c,peer__Booking_Order__c,peer__Borrower_Information__c,peer__Credit_Band_Allocation__c,peer__Credit_Rating_Matrix__c,peer__Credit_Score__c,peer__Disbursement_Schedule__c,peer__FB_Permissions__c,peer__Investment_Booking__c,peer__Investment_Order_Sale_Transaction__c,peer__Investment_Queue__c,peer__Loan_Application__c,peer__Login__c,peer__Moxtra__c,peer__Note_Bundle__c,peer__Note_Type__c,peer__Notification_Category__c,peer__Notification__c,peer__Portfolio_Weights_Table__c,peer__RequiredDocument__c,peer__Required_Document_Map__c,peer__Verification__c,skuid__Auth_Provider_Credential__c,skuid__Feedback_Response__c,skuid__Feedback__c,skuid__Image__c,skuid__Page_Assignment__c,skuid__Page_Interaction__c,skuid__Page_Version__c,skuid__Page__c,skuid__Personalization_Settings__c,staging__Fee__c,staging__Interface_Bank_Account__c,staging__Interface_Charge__c,staging__Interface_Contract_Due_Details__c,staging__Interface_Contract_Status__c,staging__Interface_Contract__c,staging__Interface_Party__c,staging__Interface_Payment_Transaction__c,staging__Interface_Repayment_Schedule__c" operator="=" enclosevalueinquotes="true"/>
+				<condition type="fieldvalue" value="Exception File" enclosevalueinquotes="true" field="Description"/>
+			</conditions>
+			<actions/>
+		</model>
+		<model id="WarningDocumentAttachment" limit="100" query="true" createrowifnonefound="false" datasource="salesforce" sobject="Attachment">
+			<fields>
+				<field id="CreatedDate"/>
+				<field id="CreatedById"/>
+				<field id="CreatedBy.Name"/>
+				<field id="Name"/>
+			</fields>
+			<conditions>
+				<condition type="param" value="Id" field="ParentId" fieldtargetobjects="ABN_Company_Information__c,ABN_Company_List__c,ABN_Information__c,ACN_Information__c,APXTConga4__Composer_QuickMerge__c,APXTConga4__Conga_Collection_Solution__c,APXTConga4__Conga_Collection__c,APXTConga4__Conga_Email_Staging__c,APXTConga4__Conga_Email_Template__c,APXTConga4__Conga_Merge_Query__c,APXTConga4__Conga_Solution_Email_Template__c,APXTConga4__Conga_Solution_Parameter__c,APXTConga4__Conga_Solution_Query__c,APXTConga4__Conga_Solution_Report__c,APXTConga4__Conga_Solution_Template__c,APXTConga4__Conga_Solution__c,APXTConga4__Conga_Template__c,Account,Adback__c,Asset,Campaign,Case,Checklist_Detail__c,Contact,Contract,Credit_Account__c,Credit_Enquiry__c,Credit_History__c,Current_Directorship__c,Director__c,EmailMessage,EmailTemplate,Employment_Income__c,Energy_Audit__c,Event,Gift_Register__c,Lead,Loan_Condition__c,Loan_Warehouse__c,Location,Opportunity,Order,PPSR_Registration__c,Payment_Default__c,Product2,Proof_Of_Identity_Do__c,Refinance_Loan_Purpose__c,Rendered_Field__c,Rendering_Criteria__c,SocialPost,Solution,Task,Telephone_Contact_Number__c,Training_Register__c,Warehouse__c,clcommon__Accounting_Entry__c,clcommon__Accounting_Rule_Header__c,clcommon__Action_Queue__c,clcommon__Actors__c,clcommon__Address__c,clcommon__Agreement__c,clcommon__Answer_Definition__c,clcommon__Approval_Authority__c,clcommon__Approval_Definition__c,clcommon__Approval_Instance__c,clcommon__Approval_Review_Group__c,clcommon__Asset_Class__c,clcommon__Automated_Payment_Configuration__c,clcommon__Automated_Payment_Setup__c,clcommon__Bank_Account__c,clcommon__Bank__c,clcommon__Batch_Job_Status__c,clcommon__Batch_Logging__c,clcommon__Batch_Process_Log__c,clcommon__Bill_Group__c,clcommon__Billing_Group__c,clcommon__Book_Depreciation_Stream__c,clcommon__Book_Value_Adjustment__c,clcommon__Business_Event__c,clcommon__CL_Product__c,clcommon__CL_Purpose__c,clcommon__CMW_Product_Component_Map__c,clcommon__CMW_Product_and_Provider_Map__c,clcommon__Calculation_Expression__c,clcommon__Calculation_Set__c,clcommon__Cash_Receipt_Application__c,clcommon__Cash_Receipt_Transaction__c,clcommon__Cash_Receipt__c,clcommon__Category_Attachment_Association__c,clcommon__Chart_Of_Account__c,clcommon__CollateralLien__c,clcommon__Collateral_Category_Type_Association__c,clcommon__Collateral_Category__c,clcommon__Collateral_Insurance__c,clcommon__Collateral_Location__c,clcommon__Collateral_Owner__c,clcommon__Collateral_Registration__c,clcommon__Collateral_Type_Documents__c,clcommon__Collateral_Type__c,clcommon__Collateral_Valuation__c,clcommon__Collateral__c,clcommon__Company_Product_Assignment__c,clcommon__Company__c,clcommon__ComponentStructure__c,clcommon__Consolidated_Invoice_History__c,clcommon__Consolidated_Invoice__c,clcommon__Contingency_Status_Code__c,clcommon__Covenant_Association__c,clcommon__Covenant_Definition__c,clcommon__Covenant_Evaluation__c,clcommon__Covenant__c,clcommon__Css_Configuration__c,clcommon__DAG_Logging__c,clcommon__DAG_Schedule__c,clcommon__Data_Archive_Configuration__c,clcommon__Data_Archive_Summary_Field__c,clcommon__Data_Mapping_Configuration__c,clcommon__Data_Mapping_Field_Configuration__c,clcommon__Dealer_Funding_Detail__c,clcommon__Delinquency_Details__c,clcommon__Delivery_Detail__c,clcommon__Deposit__c,clcommon__Depreciation_Line__c,clcommon__Depreciation_Stream__c,clcommon__Disbursement_Plan__c,clcommon__Disbursement_Transaction__c,clcommon__Disclosure_Acknowledgement__c,clcommon__Disclosure_Definition__c,clcommon__Document_Category__c,clcommon__Document_Definition__c,clcommon__Due_Details__c,clcommon__Dynamic_Query_Data__c,clcommon__Dynamic_Query_Parameter__c,clcommon__Dynamic_Query__c,clcommon__Email_Config__c,clcommon__Equipment_Detail__c,clcommon__Equipment_Fees__c,clcommon__Equipment_Sale_Quote_Line__c,clcommon__Equipment_Sale_Quote__c,clcommon__Equipment_Transaction__c,clcommon__Equipment_Values_Adjustment__c,clcommon__Equipment__c,clcommon__Event_Configuration__c,clcommon__Event_Module_Configuration__c,clcommon__Execution_Criteria_Result__c,clcommon__Execution_Criteria__c,clcommon__Expression_Assignment__c,clcommon__External_Batch_Job_Run__c,clcommon__External_Batch_Job__c,clcommon__Factory_Registration__c,clcommon__Fee_Definition__c,clcommon__Fee_Junction__c,clcommon__Fee_Schedule__c,clcommon__Fee_Set__c,clcommon__Fee_Tax_Config__c,clcommon__Fee__c,clcommon__Field_Mapping__c,clcommon__Financial_Statement_Template__c,clcommon__Financial_Statement__c,clcommon__Floating_Rate_Index__c,clcommon__Floating_Rate__c,clcommon__GatewayConfiguration__c,clcommon__Gateway__c,clcommon__Grammar__c,clcommon__Help_Info__c,clcommon__Holiday_Schedule__c,clcommon__Holiday_Treatment_Setup__c,clcommon__Holiday__c,clcommon__Industry_Average__c,clcommon__Industry_Classification_Code__c,clcommon__Insurance_Definition__c,clcommon__Interest_Component__c,clcommon__Invoice_History__c,clcommon__Invoice__c,clcommon__Job_Dependency__c,clcommon__Job_Logging__c,clcommon__Job__c,clcommon__Launchpad_App_Subscription__c,clcommon__Launchpad_App__c,clcommon__Legal_Entity__c,clcommon__Loan_Account_Document_Documents__c,clcommon__Lock_Record_Configuration__c,clcommon__Locked_Record_Configuration_Snapshot__c,clcommon__Log__c,clcommon__MapRequestToSalesforce__c,clcommon__Mapping_Group__c,clcommon__Mapping_Header__c,clcommon__Message__c,clcommon__Meter_Reading__c,clcommon__Month_End_Portfolio_Query_Configuration__c,clcommon__Month_End_Portfolio_Report__c,clcommon__Month_End_Portfolio__c,clcommon__NavigationStructure__c,clcommon__Notification_Log__c,clcommon__Notification__c,clcommon__Party_Type__c,clcommon__Party__c,clcommon__Payment_Mode__c,clcommon__Payment_Spread_Detail__c,clcommon__Payment_Spread__c,clcommon__Payment_Transaction__c,clcommon__Personal_Information__c,clcommon__Points_Setup__c,clcommon__Points__c,clcommon__Portal_External_Id__c,clcommon__Portal_Layout__c,clcommon__Portal_State_Configuration__c,clcommon__Portal_Status__c,clcommon__Process_Enforcement_Action_Results__c,clcommon__Process_Enforcement_Action__c,clcommon__Process_Enforcement_Constraint__c,clcommon__Process_Enforcement_Detail__c,clcommon__Process_Enforcement__c,clcommon__Product_Insurance_Association__c,clcommon__Product_Purpose_Association__c,clcommon__Program_Or_Product_Points_Association__c,clcommon__Program__c,clcommon__Promotion_Setup__c,clcommon__Promotions__c,clcommon__Question_Definition__c,clcommon__Question_Display_Condition__c,clcommon__Question_Response__c,clcommon__Question__c,clcommon__Questionnaire_Definition__c,clcommon__Questionnaire_Instance__c,clcommon__Questionnaire_Section_Definition__c,clcommon__Rate_Schedule__c,clcommon__Reason_Code__c,clcommon__Reciprocal_Role__c,clcommon__Relationship__c,clcommon__Repayment_Plan__c,clcommon__Reports__c,clcommon__Request__c,clcommon__Response__c,clcommon__Reviewer__c,clcommon__Rule_Set__c,clcommon__Rule__c,clcommon__Sample_Contract__c,clcommon__Sell_Equipment__c,clcommon__Sliding_Billing_Range__c,clcommon__Sliding_Billing_Setup__c,clcommon__Statement_Analysis_Detail__c,clcommon__Statement_Analysis__c,clcommon__Statement_Detail__c,clcommon__Static_Content__c,clcommon__StepUp_Schedule__c,clcommon__Tax_Config__c,clcommon__Template_Configuration__c,clcommon__Template_Detail__c,clcommon__Template__c,clcommon__Test_Config_Wizard__c,clcommon__Thread_Logging__c,clcommon__Transaction__c,clcommon__UI_Setting__c,clcommon__Unresolved_Email_Item__c,clcommon__VAT_Rate_Setup__c,clcommon__Variable_Rent_Rate_Card_Details__c,clcommon__Variable_Rent_Rate_Card__c,clcommon__Variable_Rent_Rate__c,clcommon__Vendor_Program_Association__c,clcommon__Warehouse_Depreciation_Setup__c,cnotify__Configuration__c,cnotify__Delivery_Detail__c,cnotify__Notification__c,cnotify__Notify_Record__c,cnotify__Sms_Detail__c,cnotify__Template_Configuration__c,cnotify__Template__c,filegen__Addenda_Record__c,filegen__Batch_Control_Record__c,filegen__Batch_Header_Record__c,filegen__Batch_Process_Log__c,filegen__Entry_Detail_Record__c,filegen__File_Control_Record__c,filegen__File_Header_Record__c,filegen__File_Metadata__c,filegen__Loan_Account__c,genesis__Account_Scorecard_Result__c,genesis__Accounting_Period__c,genesis__Action__c,genesis__Additional_Determining_Factor__c,genesis__Adverse_Action_Application_Junction__c,genesis__Agenda_Item__c,genesis__Amortization_Schedule__c,genesis__AppDocCatAttachmentJunction__c,genesis__Application_Alternate_Product__c,genesis__Application_Business_Information__c,genesis__Application_Collateral__c,genesis__Application_Compliance_Information__c,genesis__Application_Decisions__c,genesis__Application_Department__c,genesis__Application_Document_Category__c,genesis__Application_Equipment__c,genesis__Application_Note__c,genesis__Application_Parties__c,genesis__Application_Pricing_Detail__c,genesis__Application_Rule_Setup__c,genesis__Application_Scorecard__c,genesis__Application_Status_History__c,genesis__Application_Wizard_Config__c,genesis__Application_s_Scorecard__c,genesis__Applications__c,genesis__Appraisal_Association__c,genesis__Appraisal_Bid__c,genesis__Appraisal_Request__c,genesis__Asset_Information__c,genesis__Asset_Liability_Info__c,genesis__Batch_Process_Log__c,genesis__Branch_Location__c,genesis__Budget_Line_Item__c,genesis__Budget_Milestone__c,genesis__Budget__c,genesis__Business_Information__c,genesis__CR_Org_Definition__c,genesis__Cash_Flow_Summary__c,genesis__Change_Memo__c,genesis__Checklist__c,genesis__Collateral_Document_Category_Junction__c,genesis__Collateral_Occupancy__c,genesis__Committee_Member__c,genesis__Company__c,genesis__Conversion_Mapping_Header__c,genesis__Conversion_Mapping__c,genesis__Credit_Memo__c,genesis__Credit_Rating_Matrix__c,genesis__Department__c,genesis__Departments_Members__c,genesis__Disbursement_Schedule_Config__c,genesis__Disbursement_Schedule_Item__c,genesis__Disbursement_Schedule__c,genesis__Document_Category__c,genesis__Document_Config_for_Category__c,genesis__Document_Criterial__c,genesis__Document_Master__c,genesis__Document_Status__c,genesis__Employee_FinAccount_Transaction_Access__c,genesis__Employment_Information__c,genesis__Engineering_Report__c,genesis__Equipment_Fee_Definition__c,genesis__Equipment_Master__c,genesis__Fee_Schedule__c,genesis__Fee_Set__c,genesis__FinancialCalculator__c,genesis__Financial_Account_Applications__c,genesis__Funding_Schedule__c,genesis__Funding_Transaction__c,genesis__Identification_Information__c,genesis__Income__c,genesis__Insurance__c,genesis__LeadRequest__c,genesis__Lending_Calculator__c,genesis__Lending_Product_Setup__c,genesis__Letter_of_Intent__c,genesis__Liability__c,genesis__Loan_Product__c,genesis__Lookup_Codes__c,genesis__Lookups__c,genesis__Meeting_Schedule__c,genesis__Member_Vote__c,genesis__Minute__c,genesis__Monthly_Income_Expense_Info__c,genesis__Moxtra__c,genesis__Mutex__c,genesis__Payment_Stream__c,genesis__Policy_Condition_Product_Association__c,genesis__Policy_Exception_Definition__c,genesis__Policy_Exception__c,genesis__ProductDepartment_Task_Junction__c,genesis__Product_Department_Junction__c,genesis__Product_Document_Category_Junction__c,genesis__Product_Rate_Card_Association__c,genesis__Product_Rule_Association__c,genesis__Product_Scorecard_Junction__c,genesis__Product_Service_Validation_Config__c,genesis__Product_Yield_Definition_Association__c,genesis__Program_Equipment_Master_Association__c,genesis__Program_Vendor_Rate_Card_Association__c,genesis__Property_Expense__c,genesis__Property_Income__c,genesis__Property__c,genesis__Purpose_Document_Category_Junction__c,genesis__Purpose_Rate_Card_Association__c,genesis__Purpose_Rule_Association__c,genesis__Purpose_ScoreCard_Association__c,genesis__Quick_Quote_Equipment__c,genesis__Quick_Quote_Option__c,genesis__Quick_Quote_Pricing_Options__c,genesis__Quick_Quotes__c,genesis__Rate_Card_Setup_Detail__c,genesis__Rate_Card_Setup_Header__c,genesis__Rate_Schedule_Setup__c,genesis__Referral__c,genesis__Renewal_History__c,genesis__Rent_Roll__c,genesis__RuleAction__c,genesis__RuleCriteria__c,genesis__Rule__c,genesis__Scorecard_Criteria__c,genesis__Scorecard__c,genesis__SubLimit__c,genesis__Task_Setup__c,genesis__Tenant__c,genesis__TestingQueue__c,genesis__Transaction_Categorization__c,genesis__Transaction_Room__c,genesis__Treasury_Criteria_Results__c,genesis__Treasury_Criteria__c,genesis__Treasury_Product_Service_Criteria_Config__c,genesis__Treasury_Services__c,genesis__Treasury_Validations__c,genesis__Vehicle_Valuation__c,genesis__Yield_Definition__c,genesis__Yield_Fee_Definition_Association__c,genesis__Yield__c,intframework__Data_Format_Config_Junction__c,intframework__Data_Format_Config_Set__c,intframework__Data_Format_Config__c,intframework__Data_Mapper_Config_Junction__c,intframework__Data_Mapper_Config__c,intframework__Integration_API_Configuration__c,intframework__Integration_API_Type__c,intframework__Integration_Configuration__c,intframework__Integration_Family__c,intframework__Integration_Log__c,intframework__Integration_Provider__c,intframework__Pattern__c,intframework__Supported_API_By_Integration_Provider__c,ints__API_Process_Log__c,ints__Account_Details__c,ints__Add_Deduct_Options__c,ints__Additional_Parameters__c,ints__Blackbook_Result__c,ints__Collateral_Valuation__c,ints__Collateral__c,ints__Credit_Alert_Message__c,ints__Credit_File__c,ints__Credit_Public_Record__c,ints__Credit_Regulatory_Product__c,ints__Credit_Report_Inquiry__c,ints__Credit_Report_Key__c,ints__Credit_Report_Liability_Credit_Comment__c,ints__Credit_Report_Liability_PAR__c,ints__Credit_Report_Liability__c,ints__Credit_Report_Score__c,ints__Credit_Report__c,ints__Credit_Response_Data__c,ints__Credit_Response__c,ints__Credit_Score_Factor__c,ints__Credit_Summary_Data_Set__c,ints__Credit_Summary__c,ints__DAndB_Detailed_Company__c,ints__DAndB_Paydex__c,ints__DAndB_Rating__c,ints__Data_Loader_Detail__c,ints__Data_Loader_Header__c,ints__EfxReport_Address__c,ints__EfxReport_Bank_Account__c,ints__EfxReport_Collection__c,ints__EfxReport_Consumer_Statement__c,ints__EfxReport_Data_Warning_Message__c,ints__EfxReport_Employment__c,ints__EfxReport_Error__c,ints__EfxReport_FW_Message__c,ints__EfxReport_ForeignInquiry__c,ints__EfxReport_FraudWarning__c,ints__EfxReport_Garnishment__c,ints__EfxReport_LegalItem__c,ints__EfxReport_Local_Inquiry__c,ints__EfxReport_Other_Income__c,ints__EfxReport_Score_RejectCode__c,ints__EfxReport_Score__c,ints__EfxReport_SecuredLoan__c,ints__EfxReport_Trade_Narrative__c,ints__EfxReport_Trade__c,ints__EfxReport__c,ints__Emailage__c,ints__Equifax_eId_Verifier_Response__c,ints__EquipmentDetail__c,ints__Equipment__c,ints__Full_Contact_Person_Record__c,ints__GDC_Verify_Data_Source_Record__c,ints__GDC_Verify_Record__c,ints__IDCAamvaBarcode__c,ints__IDCClassificationResult__c,ints__IDCData__c,ints__IDCDocumentExpertReviewResult__c,ints__IDCDocumentValidation__c,ints__IDCDossierFacelinkResult__c,ints__IDCDossierSummary__c,ints__IDCDynamicData__c,ints__IDCFacelinkAutomaticResult__c,ints__IDCFacelinkManualResult__c,ints__IDCFacelinkResult__c,ints__IDCFontValidationResult__c,ints__IDCMachineReadableZone__c,ints__IDCOcrResult__c,ints__IDCPhotoIntegrationValidationResult__c,ints__IDCSecurityFeatures__c,ints__IDCheckerRequest__c,ints__Indicators__c,ints__IntegrationMockResponse__c,ints__Integration_Configuration__c,ints__Key__c,ints__Lenddo_Response__c,ints__Microbilt_Information__c,ints__Mileage_Adjustments__c,ints__MockObject__c,ints__Mocker__c,ints__OAuth_Settings__c,ints__OAuth_Token__c,ints__Property_Links_Images__c,ints__Site_Account__c,ints__TestingQueue__c,ints__TransUnion_Credit_Report__c,ints__Transaction__c,ints__Yodlee_Call__c,ints__Yodlee_Transaction__c,ints__Yodlee_User_Credentials__c,ints__Zw_Property__c,loan__ACH_Return_Action_Config__c,loan__ACH_Return_Transaction_Interface__c,loan__Accounting_Period__c,loan__Accounting_Rule_Header__c,loan__Accounting_Rule_Line__c,loan__Accounting_Segment_Setup__c,loan__Accrual_Entry__c,loan__Accrual_Stream_Config__c,loan__Address__c,loan__Aging_History__c,loan__Amortization_Setup__c,loan__Answer__c,loan__Archive_Run__c,loan__Automated_Payment_Configuration__c,loan__Automated_Payment_Setup__c,loan__Balance__c,loan__Bank_Account__c,loan__Bank__c,loan__Base_Segment_Definition__c,loan__Batch_Process_Log__c,loan__Borrower_Refund_Transaction__c,loan__Branch_Loan_Product__c,loan__Branch_Location__c,loan__Branch_Savings_Product__c,loan__Broker_Transactions__c,loan__Broker__c,loan__Business_Activity__c,loan__Business_Event__c,loan__CR_Metro_2_Data_Format__c,loan__CR_Org_Definition__c,loan__Center__c,loan__Charge_Interface__c,loan__Charge__c,loan__Check__c,loan__Client_History__c,loan__Client_Identification__c,loan__Client_Training__c,loan__Client__c,loan__Coborrower__c,loan__Collateral_Junction__c,loan__Collateral_Valuation__c,loan__Collateral__c,loan__Collection_Fee__c,loan__Commission_Plan__c,loan__Conditions_On_Spread__c,loan__Consolidated_Charge__c,loan__Consolidated_Forecast_Stream__c,loan__Consolidated_Loan_Payment_Interface__c,loan__Consolidated_Loan_Payment_Line__c,loan__Consolidated_Loan_Payment_Reversal__c,loan__Consolidated_Loan_Payment__c,loan__Contract_Condition__c,loan__Contract_Pre_Paid_Fee__c,loan__Countries__c,loan__Currency__c,loan__Custom_Job_Query__c,loan__Daily_Loan_Accrual__c,loan__Data_Migration_Batch__c,loan__Data_Migration_Error__c,loan__Day_Process__c,loan__Default_Commission_Hierarchy__c,loan__Delinquency_Interval__c,loan__Delinquency_Set_Junction__c,loan__Delinquency_Set__c,loan__Disbursal_Adjustment__c,loan__Disbursal_Transaction_Interface__c,loan__Disbursal_Txn_Distribution__c,loan__Disbursement_Schedule__c,loan__Due_Fee__c,loan__Due_Payment__c,loan__Dues_Details_Interface__c,loan__Employment_Business_Detail__c,loan__Family_Detail__c,loan__Family_Details__c,loan__Family_Employment_Details__c,loan__Fee_Junction__c,loan__Fee_Order__c,loan__Fee_Payment__c,loan__Fee_Set__c,loan__Fee__c,loan__FinancialCalculator__c,loan__Financial_Education__c,loan__Fiscal_Year__c,loan__Flexible_Rate_Setup_Interface__c,loan__Floating_Rate_Index__c,loan__Floating_Rate__c,loan__Forecast_Streams__c,loan__Frozen_Fees_Config__c,loan__Funder_Portfolio__c,loan__Funder__c,loan__GL_Balance__c,loan__Group_Position__c,loan__Group__c,loan__Holiday__c,loan__Home_Evaluation__c,loan__Insurance_PRoduct__c,loan__Interest_Component_Payment__c,loan__Interest_On_Overdue_Payment__c,loan__Interest_Posting_Loan_Payment__c,loan__Interest_Posting_Transaction__c,loan__Investment_Order_Product__c,loan__Investment_Product_Investment_Order__c,loan__Investor_Amortization_Schedule__c,loan__Investor_Fund_Transaction__c,loan__Investor_Loan_Account_Txns__c,loan__Investor_Loan__c,loan__Investor_Payments__c,loan__Investor_Tax_Configuration__c,loan__J1_Segment__c,loan__J2_Segment__c,loan__Journal__c,loan__K1_Segment__c,loan__K2_Segment__c,loan__K3_Segment__c,loan__K4_Segment__c,loan__L1_Segment__c,loan__Loan_Account_Conditions__c,loan__Loan_Account_History__c,loan__Loan_Account_Interface__c,loan__Loan_Account__c,loan__Loan_Approval_Prerequisites__c,loan__Loan_Block_Code__c,loan__Loan_Collateral__c,loan__Loan_Disbursal_Transaction__c,loan__Loan_Loss_Provisioning_Setup__c,loan__Loan_Parameters__c,loan__Loan_Payment_Amz_Sched_Junction__c,loan__Loan_Payment_Collection__c,loan__Loan_Payment_Spread__c,loan__Loan_Payment_Transaction_Interface__c,loan__Loan_Payment_Transaction__c,loan__Loan_Product_Accounting_Setup__c,loan__Loan_Product_Cycle__c,loan__Loan_Product_Differentiator__c,loan__Loan_Product__c,loan__Loan_Protect_Split__c,loan__Loan_Purpose__c,loan__Loan_Status_History__c,loan__Loan_Status__c,loan__Loan_Transaction_Summary__c,loan__Loan_Write_Off_Transaction__c,loan__Loan_account_Due_Details__c,loan__Lookup__c,loan__MFError__c,loan__MF_Account_Tag__c,loan__MF_Account_Type__c,loan__MF_Account__c,loan__Meeting_Schedule__c,loan__Misc_Account__c,loan__Misc_Transaction__c,loan__Month_End_Loan_Snapshot__c,loan__Month_Process__c,loan__Multi_Step_Loan_Setup__c,loan__N1_Segment__c,loan__Object_Event_Mapping__c,loan__Office_Name__c,loan__Office_Type__c,loan__Other_Transaction__c,loan__Overdue_Fee__c,loan__PPIChartCountryAndYear__c,loan__PPI_Household_Data__c,loan__PPI_Indicator__c,loan__PPI__c,loan__Paid_Fee__c,loan__Payment_Mode__c,loan__Payment_Schedule_Setup__c,loan__Payoff_Quote__c,loan__Periodic_Fee_Setup__c,loan__Poverty_Likelihood_Chart__c,loan__Product_Amortization_Balance_Setup__c,loan__Product_Category__c,loan__Product_Condition__c,loan__Product_Pre_Paid_Fees__c,loan__Protect_Claim_LPT_Junction__c,loan__Protect_Claim__c,loan__Protect_Fee_Split__c,loan__Question_Junction__c,loan__Question_Set__c,loan__Question__c,loan__Quick_Link__c,loan__Recovery_Order__c,loan__Refinance_Transaction__c,loan__Repayment_Extensions__c,loan__Repayment_Schedule_Summary__c,loan__Repayment_Schedule__c,loan__Repayment_Summary_Interface__c,loan__Repayment_Transaction_Adjustment__c,loan__Sales_Income_Estimate__c,loan__Savings_Account_Interest__c,loan__Savings_Account__c,loan__Savings_Payment_Collection_Record__c,loan__Savings_Payment_Transaction__c,loan__Savings_Product_Accounting_Setup__c,loan__Savings_Product__c,loan__Savings_Withdrawal_Transaction__c,loan__Scheduled_Job__c,loan__Scheduled_Queries__c,loan__Search__c,loan__Staff__c,loan__Start_Here__c,loan__Teller_Cash_Transaction__c,loan__TestingQueue__c,loan__Trailer_Segment_Definition__c,loan__Transaction_Entry__c,loan__Transaction_Source__c,loan__Transaction_Summary__c,loan__Transaction__c,loan__Transfer_Transaction__c,loan__User_Branch_Info__c,loan__Users_Quick_Links__c,loan__Value_Set_Values__c,loan__Value_Sets__c,loan__loan_amortize_balances__c,loan__loan_amortize_txns__c,mfiflexUtil__Log__c,mfiflexUtil__Security_Test__c,mfiflexUtil__votest_account__c,mfiflexUtil__votest_charge__c,mfiflexUtil__votest_fees__c,mfiflexUtil__votest_loan_account__c,peer__Bank_Recon_Exception__c,peer__Booking_Order__c,peer__Borrower_Information__c,peer__Credit_Band_Allocation__c,peer__Credit_Rating_Matrix__c,peer__Credit_Score__c,peer__Disbursement_Schedule__c,peer__FB_Permissions__c,peer__Investment_Booking__c,peer__Investment_Order_Sale_Transaction__c,peer__Investment_Queue__c,peer__Loan_Application__c,peer__Login__c,peer__Moxtra__c,peer__Note_Bundle__c,peer__Note_Type__c,peer__Notification_Category__c,peer__Notification__c,peer__Portfolio_Weights_Table__c,peer__RequiredDocument__c,peer__Required_Document_Map__c,peer__Verification__c,skuid__Auth_Provider_Credential__c,skuid__Feedback_Response__c,skuid__Feedback__c,skuid__Image__c,skuid__Page_Assignment__c,skuid__Page_Interaction__c,skuid__Page_Version__c,skuid__Page__c,skuid__Personalization_Settings__c,staging__Fee__c,staging__Interface_Bank_Account__c,staging__Interface_Charge__c,staging__Interface_Contract_Due_Details__c,staging__Interface_Contract_Status__c,staging__Interface_Contract__c,staging__Interface_Party__c,staging__Interface_Payment_Transaction__c,staging__Interface_Repayment_Schedule__c" operator="=" enclosevalueinquotes="true"/>
+				<condition type="fieldvalue" value="Warning File" enclosevalueinquotes="true" field="Description"/>
+			</conditions>
+			<actions/>
+		</model>
+		<model id="WarningDocumentCategory" limit="20" query="true" createrowifnonefound="false" datasource="salesforce" sobject="clcommon__Document_Category__c">
+			<fields/>
+			<conditions>
+				<condition type="fieldvalue" value="Warning Documents" enclosevalueinquotes="true" field="clcommon__Category_Name__c"/>
+				<condition type="param" value="Id" field="genesis__Application__c" fieldtargetobjects="genesis__Applications__c" operator="=" enclosevalueinquotes="true"/>
+				<condition type="fieldvalue" value="Review Documents" enclosevalueinquotes="true" field="clcommon__Parent_Document_Category__r.clcommon__Category_Name__c"/>
+			</conditions>
+			<actions/>
+		</model>
+		<model id="ExceptionDocumentCategory" limit="20" query="true" createrowifnonefound="false" datasource="salesforce" sobject="clcommon__Document_Category__c">
+			<fields/>
+			<conditions>
+				<condition type="fieldvalue" value="Exception Documents" enclosevalueinquotes="true" field="clcommon__Category_Name__c"/>
+				<condition type="param" value="Id" field="genesis__Application__c" fieldtargetobjects="genesis__Applications__c" operator="=" enclosevalueinquotes="true"/>
+				<condition type="fieldvalue" value="Review Documents" enclosevalueinquotes="true" field="clcommon__Parent_Document_Category__r.clcommon__Category_Name__c"/>
+			</conditions>
+			<actions/>
+		</model>
+	</models>
+	<components>
+		<buttonset uniqueid="sk-2HJq-352">
+			<buttons>
+				<button type="multi" label="Validate Conditions, Exceptions and Warnings" uniqueid="sk-2HJr-358">
+					<actions>
+						<action type="blockUI" message="Conditions, Exceptions and Warnings are getting validated..." timeout="10000"/>
+						<action type="requeryModels" behavior="standard">
+							<models>
+								<model>CRAssets</model>
+								<model>CRParty</model>
+								<model>ApplicationCollateral</model>
+								<model>CRIncomeList</model>
+								<model>CRLiabilities</model>
+							</models>
+						</action>
+						<action type="custom" snippet="customCheck"/>
+						<action type="save">
+							<models>
+								<model>CRAssets</model>
+								<model>CRParty</model>
+								<model>CRIncomeList</model>
+								<model>CRLiabilities</model>
+							</models>
+						</action>
+						<action type="custom" snippet="CheckRules"/>
+						<action type="requeryModels" behavior="standard">
+							<models>
+								<model>CRApplication</model>
+								<model>CRExceptionList</model>
+								<model>ConditionList</model>
+								<model>WarningList</model>
+								<model>ExceptionCheckList</model>
+								<model>CollateralException</model>
+								<model>WarningCheckList</model>
+								<model>ConditionCheckList</model>
+							</models>
+						</action>
+						<action type="custom" snippet="reload"/>
+					</actions>
+				</button>
+				<button type="save" label="Save" uniqueid="sk-2ynq-7490" window="self">
+					<models>
+						<model>CRExceptionList</model>
+						<model>ConditionList</model>
+						<model>WarningList</model>
+						<model>ExceptionCheckList</model>
+						<model>WarningCheckList</model>
+						<model>ConditionCheckList</model>
+						<model>ManualExceptionChecklist</model>
+						<model>ManualWarningChecklist</model>
+						<model>CRPolicyException</model>
+					</models>
+					<hotkeys/>
+					<renderconditions logictype="or">
+						<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="false" fieldmodel="CRApplication" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="Is_Approved__c" fieldtargetobjects="genesis__Applications__c" value="false"/>
+						<rendercondition type="fieldvalue" enclosevalueinquotes="false" fieldmodel="CRPolicyException" sourcetype="modelproperty" nosourcerowbehavior="deactivate" sourceproperty="hasChanged" value="true" operator="="/>
+					</renderconditions>
+					<enableconditions/>
+				</button>
+				<button type="cancel" label="Cancel" uniqueid="sk-2yov-7550" window="self">
+					<models>
+						<model>ExceptionList</model>
+						<model>ConditionList</model>
+						<model>WarningList</model>
+						<model>ExceptionCheckList</model>
+						<model>CollateralException</model>
+						<model>WarningCheckList</model>
+						<model>ConditionCheckList</model>
+						<model>ManualExceptionChecklist</model>
+						<model>ManualWarningChecklist</model>
+					</models>
+					<renderconditions logictype="and">
+						<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="false" fieldmodel="CRApplication" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="Is_Approved__c" fieldtargetobjects="genesis__Applications__c" value="false"/>
+					</renderconditions>
+					<enableconditions/>
+				</button>
+			</buttons>
+			<renderconditions logictype="and"/>
+		</buttonset>
+		<tabset rememberlastusertab="true" defertabrendering="true" uniqueid="sk-2Cd1-779">
+			<tabs>
+				<tab name="Conditions">
+					<components>
+						<skootable showconditions="true" showsavecancel="false" showerrorsinline="true" searchmethod="server" searchbox="true" showexportbuttons="false" hideheader="false" hidefooter="false" pagesize="10" alwaysresetpagination="false" createrecords="false" model="ConditionCheckList" buttonposition="" mode="edit" allowcolumnreordering="true" responsive="true" uniqueid="sk-2r2p-1587" heading="Applicant or Security Conditions" allowscrollbars="true" tablescrollheight="600px" floatheader="true">
+							<fields>
+								<field id="Checklist__r.genesis__Rule__r.Name" hideable="true" uniqueid="fi-2r3K-1908" readonly="true">
+									<label>Condition Name</label>
+									<renderconditions logictype="and" onhidedatabehavior="keep"/>
+									<enableconditions/>
+								</field>
+								<field id="Manual_Message__c" hideable="true" uniqueid="fi-gpE-2308" readonly="true">
+									<label>Condition Description</label>
+									<renderconditions logictype="and" onhidedatabehavior="keep"/>
+									<enableconditions/>
+								</field>
+								<field id="Party_Name__c" hideable="true" uniqueid="fi-31bL-2938">
+									<label>Applicant Name</label>
+								</field>
+								<field id="Application_Collateral__r.genesis__Collateral__r.Full_Address__c" hideable="true" uniqueid="fi-3KvA-1316">
+									<label>Collateral Name</label>
+									<renderconditions logictype="and" onhidedatabehavior="keep"/>
+									<enableconditions/>
+								</field>
+								<field id="Condition_Status__c" hideable="true" uniqueid="fi-3KiX-1123">
+									<label>Status</label>
+									<renderconditions logictype="and" onhidedatabehavior="keep"/>
+									<enableconditions/>
+								</field>
+								<field id="Waiver_Reason__c" hideable="true" uniqueid="fi-3KiZ-1150">
+									<renderconditions logictype="and" onhidedatabehavior="keep"/>
+									<enableconditions/>
+								</field>
+								<field id="Supporting_Document_Verified__c" hideable="true" uniqueid="fi-3KiZ-1160">
+									<renderconditions logictype="and" onhidedatabehavior="keep"/>
+									<enableconditions/>
+								</field>
+								<field id="Show_on_Indicative_Approval_Letter__c" hideable="true" uniqueid="fi-2n7w-924">
+									<renderconditions logictype="and" onhidedatabehavior="keep"/>
+									<enableconditions/>
+									<label>Show On Conditional Approval Letter</label>
+								</field>
+							</fields>
+							<rowactions/>
+							<massactions usefirstitemasdefault="true"/>
+							<views>
+								<view type="standard"/>
+							</views>
+							<searchfields/>
+						</skootable>
+						<pagetitle model="CRPolicyException" uniqueid="sk-31Hc-1617">
+							<actions>
+								<action type="multi" label="Create New Policy Condition" uniqueid="sk-31He-1632">
+									<actions>
+										<action type="showPopup">
+											<popup title="Create Policy Condition" width="90%">
+												<components>
+													<pagetitle model="CRPolicyExceptionCreate" uniqueid="sk-31IC-1743">
+														<actions>
+															<action type="multi" label="Save" uniqueid="sk-31IC-1748" icon="sk-webicon-font-awesome:floppy-o">
+																<actions>
+																	<action type="updateRow" fieldmodel="CRPolicyExceptionCreate" affectedrows="context">
+																		<updates>
+																			<update valuesource="fieldvalue" field="genesis__Application__c" fieldtargetobjects="genesis__Applications__c" enclosevalueinquotes="true" value="{{$Param.Id}}"/>
+																		</updates>
+																	</action>
+																	<action type="save">
+																		<models>
+																			<model>CRPolicyExceptionCreate</model>
+																		</models>
+																	</action>
+																	<action type="requeryModels" behavior="standard">
+																		<models>
+																			<model>CRPolicyException</model>
+																		</models>
+																	</action>
+																	<action type="blockUI" message="New Policy Exception Created" timeout="1000"/>
+																	<action type="closeAllPopups"/>
+																	<action type="cancel">
+																		<models>
+																			<model>CRPolicyExceptionCreate</model>
+																		</models>
+																	</action>
+																</actions>
+															</action>
+															<action type="multi" label="Cancel" uniqueid="sk-31ID-1752">
+																<actions>
+																	<action type="closeTopmostPopup"/>
+																</actions>
+															</action>
+														</actions>
+													</pagetitle>
+													<basicfieldeditor showheader="true" showsavecancel="false" showerrorsinline="true" model="CRPolicyExceptionCreate" uniqueid="sk-31I_-1880" mode="read">
+														<columns>
+															<column width="33.3%" uniqueid="sk-31I_-1876">
+																<sections>
+																	<section title="Section A" uniqueid="sk-31I_-1877" collapsible="no" showheader="false">
+																		<fields/>
+																	</section>
+																</sections>
+															</column>
+															<column width="33.3%" uniqueid="sk-31I_-1878">
+																<sections>
+																	<section title="Section B" uniqueid="sk-31I_-1879" collapsible="no" showheader="false">
+																		<fields>
+																			<field uniqueid="sk-31J9-1916" id="genesis__Condition_Type__c">
+																				<label>Condition</label>
+																			</field>
+																			<field uniqueid="sk-31JC-1948" id="Description1__c">
+																				<label>Description</label>
+																			</field>
+																			<field uniqueid="sk-iTF-3135" id="Party__c" pagesize="5" optionsource="model" optionmodel="CRParty" displaytemplate="{{clcommon__Account__c}}" searchtemplate="{{clcommon__Account__c}}">
+																				<searchfields/>
+																				<filters>
+																					<filter type="modelmerge" operator="in" field="genesis__Application__c" fieldtargetobjects="genesis__Applications__c" value="" model="CRApplication" enclosevalueinquotes="true" mergefield="Id" novaluebehavior="deactivate"/>
+																				</filters>
+																			</field>
+																			<field uniqueid="sk-iPe-2835" id="Application_Collateral__c" pagesize="5" redirecttype="datasourcedefault" tokenizesearch="false" displaytemplate="{{genesis__Collateral__r.Full_Address__c}}" searchtemplate="{{genesis__Collateral__r.Full_Address__c}}">
+																				<searchfields/>
+																				<filters>
+																					<filter type="modelmerge" operator="=" field="genesis__Application__c" fieldtargetobjects="genesis__Applications__c" value="" model="CRApplication" enclosevalueinquotes="true" mergefield="Id" novaluebehavior="deactivate"/>
+																				</filters>
+																				<renderconditions logictype="and" onhidedatabehavior="keep"/>
+																				<enableconditions/>
+																				<label>Security</label>
+																			</field>
+																			<field uniqueid="sk-31JJ-1973" id="genesis__Status__c"/>
+																			<field uniqueid="sk-31JM-1979" id="Waiver_Reason__c"/>
+																			<field uniqueid="sk-31JO-1986" id="Supporting_Document_Verified__c"/>
+																			<field uniqueid="sk-2n8G-1125" id="Show_on_Indicative_Approval_Letter__c"/>
+																		</fields>
+																	</section>
+																</sections>
+															</column>
+															<column width="33.3%" uniqueid="sk-31J2-1906">
+																<sections>
+																	<section title="New Section" collapsible="no" uniqueid="sk-31J2-1907" showheader="false">
+																		<fields/>
+																	</section>
+																</sections>
+															</column>
+														</columns>
+														<conditions/>
+														<renderconditions logictype="and"/>
+													</basicfieldeditor>
+													<basicfieldeditor showheader="true" showsavecancel="false" showerrorsinline="true" model="CRPolicyExceptionCreate" uniqueid="sk-31JQ-1996" mode="read">
+														<columns>
+															<column width="50%" uniqueid="sk-31JQ-1992">
+																<sections>
+																	<section title="Section A" uniqueid="sk-31JQ-1993" collapsible="no" showheader="false">
+																		<fields/>
+																	</section>
+																</sections>
+															</column>
+															<column width="50%" uniqueid="sk-31JQ-1994">
+																<sections>
+																	<section title="Section B" uniqueid="sk-31JQ-1995" collapsible="no" showheader="false">
+																		<fields/>
+																	</section>
+																</sections>
+															</column>
+														</columns>
+														<renderconditions logictype="and"/>
+													</basicfieldeditor>
+												</components>
+											</popup>
+										</action>
+										<action type="custom" snippet="initPolicyExceptionCreate"/>
+										<action type="requeryModel" model="CRPolicyExceptionCreate" behavior="standard"/>
+										<action type="createRow" model="CRPolicyExceptionCreate" appendorprepend="prepend" defaultmodefornewitems="edit" affectedrows="context"/>
+									</actions>
+								</action>
+							</actions>
+						</pagetitle>
+						<skootable showconditions="true" showsavecancel="false" showerrorsinline="true" searchmethod="server" searchbox="true" showexportbuttons="false" hideheader="false" hidefooter="false" pagesize="10" alwaysresetpagination="false" createrecords="false" model="CRPolicyException" buttonposition="" mode="read" allowcolumnreordering="true" responsive="true" uniqueid="sk-31HK-1564" heading="Manual Policy Conditions">
+							<fields>
+								<field id="genesis__Condition_Type__c" hideable="true" uniqueid="fi-i2z-2530">
+									<label>Condition Name</label>
+									<renderconditions logictype="and" onhidedatabehavior="keep"/>
+									<enableconditions/>
+								</field>
+								<field id="Description1__c" hideable="true" uniqueid="fi-31Jj-2050">
+									<label>Condition Description</label>
+									<renderconditions logictype="and" onhidedatabehavior="keep"/>
+									<enableconditions logictype="and">
+										<condition type="fieldvalue" operator="=" enclosevalueinquotes="false" fieldmodel="CRApplication" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="Is_Approved__c" fieldtargetobjects="genesis__Applications__c" value="false"/>
+									</enableconditions>
+								</field>
+								<field id="Party__c" hideable="true" uniqueid="fi-ikw-3755" pagesize="5" optionsource="model" optionmodel="CRParty" displaytemplate="{{clcommon__Account__r.Name}}" searchtemplate="{{clcommon__Account__r.Name}}" redirecttype="datasourcedefault">
+									<searchfields/>
+									<filters>
+										<filter type="modelmerge" operator="in" field="genesis__Application__c" fieldtargetobjects="genesis__Applications__c" value="" model="CRApplication" enclosevalueinquotes="true" mergefield="Id" novaluebehavior="deactivate"/>
+									</filters>
+									<label>Applicant Name</label>
+								</field>
+								<field id="Application_Collateral__c" hideable="true" uniqueid="fi-ikx-3764" pagesize="5" displaytemplate="{{genesis__Collateral__r.Full_Address__c}}" searchtemplate="{{genesis__Collateral__r.Full_Address__c}}">
+									<searchfields/>
+									<filters>
+										<filter type="modelmerge" operator="in" field="genesis__Application__c" fieldtargetobjects="genesis__Applications__c" value="" model="CRApplication" enclosevalueinquotes="true" mergefield="Id" novaluebehavior="deactivate"/>
+									</filters>
+									<label>Collateral Name</label>
+								</field>
+								<field id="genesis__Status__c" hideable="true" uniqueid="fi-31Jo-2081"/>
+								<field id="Waiver_Reason__c" hideable="true" uniqueid="fi-31Jq-2090"/>
+								<field id="Supporting_Document_Verified__c" hideable="true" uniqueid="fi-31Jr-2100"/>
+								<field id="Show_on_Indicative_Approval_Letter__c" hideable="true" uniqueid="fi-2n87-1052">
+									<renderconditions logictype="and" onhidedatabehavior="keep"/>
+									<enableconditions/>
+									<label>Show On Conditional Approval Letter</label>
+								</field>
+							</fields>
+							<rowactions>
+								<action type="edit">
+									<renderconditions logictype="and"/>
+								</action>
+								<action type="delete">
+									<renderconditions logictype="and">
+										<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="false" fieldmodel="CRApplication" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="Is_Approved__c" fieldtargetobjects="genesis__Applications__c" value="false"/>
+									</renderconditions>
+								</action>
+							</rowactions>
+							<massactions usefirstitemasdefault="true"/>
+							<views>
+								<view type="standard"/>
+							</views>
+							<renderconditions logictype="and"/>
+						</skootable>
+						<file storeas="record" displayas="filename" uniqueid="sk-2s1A-894" datasource="salesforce" model="CRApplication" label="Upload Condition Documents" description="Condition File" autorefreshmodels="false">
+							<uploadsuccessactions>
+								<action type="blockUI" message="File is getting uploaded! Please wait..." timeout="1000"/>
+								<action type="requeryModel" model="ConditionDocumentsAttachments" behavior="standard"/>
+								<action type="custom" snippet="CheckAndCreateCategoryAttachmentsRecordsCondition"/>
+							</uploadsuccessactions>
+							<uploadfailureactions>
+								<action type="blockUI" message="Error found while uploading the file. Please check the file name, file size or contact Admin." timeout="3000"/>
+							</uploadfailureactions>
+							<renderconditions logictype="and">
+								<rendercondition type="fieldvalue" enclosevalueinquotes="true" fieldmodel="ConditionDocumentCategory" sourcetype="modelproperty" nosourcerowbehavior="deactivate" sourceproperty="hasRows"/>
+							</renderconditions>
+						</file>
+						<skootable showconditions="true" showsavecancel="false" showerrorsinline="true" searchmethod="server" searchbox="true" showexportbuttons="false" hideheader="false" hidefooter="false" pagesize="10" alwaysresetpagination="false" createrecords="false" model="ConditionDocumentsAttachments" buttonposition="" mode="readonly" allowcolumnreordering="true" responsive="true" uniqueid="sk-2sBW-1464" heading="Review - Condition Documents">
+							<fields>
+								<field id="Name" hideable="true" uniqueid="fi-2sBb-1510"/>
+								<field id="CreatedBy.Name" hideable="true" uniqueid="fi-2sBc-1520">
+									<label>Uploaded By</label>
+								</field>
+								<field id="CreatedDate" hideable="true" uniqueid="fi-2sBd-1553"/>
+							</fields>
+							<rowactions>
+								<action type="redirect" label="View Record Details" icon="sk-icon-popup" window="blank" url="/servlet/servlet.FileDownload?file={{Id}}">
+									<renderconditions logictype="and"/>
+								</action>
+								<action type="multi" label="Delete Attachment File" icon="sk-webicon-material-icons:delete">
+									<actions>
+										<action type="custom" snippet="deleteReviewAttachment"/>
+										<action type="requeryModel" model="ConditionDocumentsAttachments" behavior="standard"/>
+									</actions>
+									<renderconditions logictype="and"/>
+								</action>
+							</rowactions>
+							<massactions usefirstitemasdefault="true"/>
+							<views/>
+							<searchfields/>
+							<renderconditions logictype="and">
+								<rendercondition type="fieldvalue" enclosevalueinquotes="true" fieldmodel="ConditionDocumentCategory" sourcetype="modelproperty" nosourcerowbehavior="deactivate" sourceproperty="hasRows"/>
+							</renderconditions>
+						</skootable>
+					</components>
+				</tab>
+				<tab name="Exception" loadlazypanels="true">
+					<components>
+						<wrapper uniqueid="sk-2CiK-1072">
+							<components>
+								<skootable showconditions="true" showsavecancel="false" showerrorsinline="true" searchmethod="server" searchbox="true" showexportbuttons="false" hideheader="false" hidefooter="false" pagesize="10" alwaysresetpagination="false" createrecords="false" model="CRExceptionList" mode="edit" allowcolumnreordering="true" responsive="true" uniqueid="sk-2CiV-1090" heading="Application Exceptions">
+									<fields>
+										<field id="genesis__Rule__r.Name" hideable="true" uniqueid="fi-2D2Q-1136" readonly="true">
+											<label>Exception Name</label>
+											<renderconditions logictype="and" onhidedatabehavior="keep"/>
+											<enableconditions logictype="and"/>
+										</field>
+										<field id="genesis__Rule__r.Exception_Category__c" hideable="true" uniqueid="fi-3OkN-867">
+											<label>Category</label>
+										</field>
+										<field id="genesis__Rule__r.Exception_Sub_Category__c" hideable="true" uniqueid="fi-3OkO-871">
+											<label>Sub-Category</label>
+										</field>
+										<field id="genesis__Rule__r.genesis__Message_failure__c" hideable="true" uniqueid="fi-31fU-3421">
+											<label>Exception Description</label>
+										</field>
+										<field id="Exception_Commentary__c" hideable="true" uniqueid="fi-2r-X-2765" displayrows="3">
+											<renderconditions logictype="and" onhidedatabehavior="keep"/>
+											<enableconditions logictype="and">
+												<condition type="fieldvalue" operator="=" enclosevalueinquotes="false" fieldmodel="CRApplication" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="Is_Approved__c" fieldtargetobjects="genesis__Applications__c" value="false"/>
+											</enableconditions>
+										</field>
+										<field id="Exception_Recommender__c" hideable="true" uniqueid="fi-2s0r-2796" readonly="true"/>
+										<field id="Exception_Approver__c" hideable="true" uniqueid="fi-2s0s-2800" readonly="true"/>
+										<field id="True_Exception__c" hideable="true" uniqueid="fi-2D78-913"/>
+									</fields>
+									<rowactions>
+										<action type="multi" label="Recommend" icon="sk-icon-feed">
+											<renderconditions logictype="and">
+												<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="CRExceptionList" sourcetype="snippet" datasource="salesforce" sourcedatasourcetypeuserinfo="userid" sourcesnippet="fitToRecommend"/>
+												<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="false" fieldmodel="CRApplication" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="Is_Approved__c" fieldtargetobjects="genesis__Applications__c" value="false"/>
+												<rendercondition type="blank" operator="=" fieldmodel="CRExceptionList" sourcetype="fieldvalue" field="Exception_Recommender__c" fieldtargetobjects="genesis__Checklist__c" value="null" enclosevalueinquotes="false"/>
+											</renderconditions>
+											<actions>
+												<action type="custom" snippet="recommendException"/>
+												<action type="save">
+													<models>
+														<model>ExceptionList</model>
+													</models>
+												</action>
+											</actions>
+										</action>
+										<action type="multi" label="Approve" icon="sk-icon-mark-completed">
+											<renderconditions logictype="and">
+												<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="CRExceptionList" sourcetype="snippet" sourcesnippet="fitToApprove"/>
+												<rendercondition type="blank" operator="!=" fieldmodel="CRExceptionList" sourcetype="fieldvalue" field="Exception_Recommender__c" fieldtargetobjects="genesis__Checklist__c" value="null" enclosevalueinquotes="false"/>
+											</renderconditions>
+											<actions>
+												<action type="custom" snippet="approvedException"/>
+												<action type="save">
+													<models>
+														<model>CRExceptionList</model>
+													</models>
+												</action>
+											</actions>
+										</action>
+									</rowactions>
+									<massactions usefirstitemasdefault="true"/>
+									<views>
+										<view type="standard"/>
+									</views>
+									<renderconditions logictype="and"/>
+								</skootable>
+								<skootable showconditions="true" showsavecancel="false" showerrorsinline="true" searchmethod="server" searchbox="true" showexportbuttons="false" hideheader="false" hidefooter="false" pagesize="10" alwaysresetpagination="false" createrecords="false" model="ExceptionCheckList" buttonposition="" mode="edit" allowcolumnreordering="true" responsive="true" uniqueid="sk-2I35-1065" heading="Applicant or Security Exceptions" allowscrollbars="true" tablescrollheight="700px" floatheader="true">
+									<fields>
+										<field id="Checklist__r.genesis__Rule__r.Name" hideable="true" uniqueid="fi-2I37-1093" readonly="true">
+											<label>Exception Name</label>
+										</field>
+										<field id="Checklist__r.genesis__Rule__r.Exception_Category__c" hideable="true" uniqueid="fi-3Okc-974">
+											<label>Category</label>
+										</field>
+										<field id="Checklist__r.genesis__Rule__r.Exception_Sub_Category__c" hideable="true" uniqueid="fi-3Okd-978">
+											<label>Sub-Category</label>
+										</field>
+										<field id="Checklist__r.genesis__Rule__r.genesis__Message_failure__c" hideable="true" uniqueid="fi-2I3r-1132" readonly="true">
+											<label>Exception Description</label>
+										</field>
+										<field id="Party_Name__c" hideable="true" uniqueid="fi-2JVJ-2295">
+											<label>Applicant Name</label>
+										</field>
+										<field id="Application_Collateral__r.genesis__Collateral__r.Full_Address__c" hideable="true" uniqueid="fi-3KvH-1399">
+											<label>Collateral Name</label>
+										</field>
+										<field id="Exception_Commentary__c" hideable="true" uniqueid="fi-2r-9-2720" displayrows="3">
+											<renderconditions logictype="and" onhidedatabehavior="keep"/>
+											<enableconditions logictype="and">
+												<condition type="fieldvalue" operator="=" enclosevalueinquotes="false" fieldmodel="CRApplication" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="Is_Approved__c" fieldtargetobjects="genesis__Applications__c" value="false"/>
+											</enableconditions>
+										</field>
+										<field id="Exception_Recommender__c" hideable="true" uniqueid="fi-2s0x-2819" readonly="true"/>
+										<field id="Exception_Approver__c" hideable="true" uniqueid="fi-2s0y-2823" readonly="true"/>
+										<field id="True_Exception__c" hideable="true" uniqueid="fi-2D7B-946"/>
+									</fields>
+									<rowactions>
+										<action type="multi" label="Recommend" icon="sk-icon-feed">
+											<renderconditions logictype="and">
+												<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="ExceptionCheckList" sourcetype="snippet" sourcesnippet="fitToRecommend"/>
+												<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="false" fieldmodel="CRApplication" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="Is_Approved__c" fieldtargetobjects="genesis__Applications__c" value="false"/>
+												<rendercondition type="blank" operator="=" fieldmodel="ExceptionCheckList" sourcetype="fieldvalue" field="Exception_Recommender__c" fieldtargetobjects="Checklist_Detail__c" value="null" enclosevalueinquotes="false"/>
+											</renderconditions>
+											<actions>
+												<action type="custom" snippet="recommendException"/>
+												<action type="save">
+													<models>
+														<model>ExceptionCheckList</model>
+													</models>
+												</action>
+											</actions>
+										</action>
+										<action type="multi" label="Approve" icon="sk-icon-mark-completed">
+											<renderconditions logictype="and">
+												<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="ExceptionCheckList" sourcetype="snippet" sourcesnippet="fitToApprove"/>
+												<rendercondition type="blank" fieldmodel="ExceptionCheckList" sourcetype="fieldvalue" sourceproperty="data.length" operator="!=" field="Exception_Recommender__c" fieldtargetobjects="Checklist_Detail__c" value="null" enclosevalueinquotes="false"/>
+											</renderconditions>
+											<actions>
+												<action type="custom" snippet="approvedException"/>
+												<action type="save">
+													<models>
+														<model>ExceptionCheckList</model>
+													</models>
+												</action>
+											</actions>
+										</action>
+									</rowactions>
+									<massactions usefirstitemasdefault="true"/>
+									<views>
+										<view type="standard"/>
+									</views>
+									<renderconditions logictype="and"/>
+								</skootable>
+								<skootable showconditions="true" showsavecancel="false" showerrorsinline="true" searchmethod="server" searchbox="true" showexportbuttons="false" hideheader="false" hidefooter="false" pagesize="10" alwaysresetpagination="false" createrecords="true" model="ManualExceptionChecklist" mode="read" allowcolumnreordering="true" responsive="true" uniqueid="sk-2tvu-1683" heading="Manual Exceptions" emptysearchbehavior="query" allowscrollbars="true" tablescrollheight="200px" floatheader="true">
+									<fields>
+										<field id="genesis__Message__c" hideable="true" uniqueid="fi-2vn0-925">
+											<label>Exception Name</label>
+											<renderconditions logictype="and" onhidedatabehavior="keep"/>
+											<enableconditions logictype="and">
+												<condition type="fieldvalue" operator="=" enclosevalueinquotes="false" fieldmodel="CRApplication" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="Is_Approved__c" fieldtargetobjects="genesis__Applications__c" value="false"/>
+											</enableconditions>
+										</field>
+										<field id="Exception_Category__c" hideable="true" uniqueid="fi-iaR-3544">
+											<label>Category</label>
+										</field>
+										<field id="Exception_Sub_Category__c" hideable="true" uniqueid="fi-iaS-3550">
+											<label>Sub Category</label>
+										</field>
+										<field id="genesis__Description__c" hideable="true" uniqueid="fi-2vn0-937">
+											<label>Exception Description</label>
+											<renderconditions logictype="and" onhidedatabehavior="keep"/>
+											<enableconditions logictype="and">
+												<condition type="fieldvalue" operator="=" enclosevalueinquotes="false" fieldmodel="CRApplication" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="Is_Approved__c" fieldtargetobjects="genesis__Applications__c" value="false"/>
+											</enableconditions>
+										</field>
+										<field id="Applicant__c" hideable="true" uniqueid="fi-j1Z-875" pagesize="5" displaytemplate="{{clcommon__Account__r.Name}}" searchtemplate="{{clcommon__Account__r.Name}}" redirecttype="datasourcedefault">
+											<searchfields/>
+											<filters>
+												<filter type="modelmerge" operator="in" field="genesis__Application__c" fieldtargetobjects="genesis__Applications__c" value="" model="CRApplication" enclosevalueinquotes="true" mergefield="Id" novaluebehavior="deactivate"/>
+											</filters>
+										</field>
+										<field id="Collateral_Name__c" hideable="true" uniqueid="fi-j2s-1087" pagesize="5" displaytemplate="{{genesis__Collateral__r.Full_Address__c}}" searchtemplate="{{genesis__Collateral__r.Full_Address__c}}">
+											<searchfields/>
+											<filters>
+												<filter type="modelmerge" operator="in" field="genesis__Application__c" fieldtargetobjects="genesis__Applications__c" value="" model="CRApplication" enclosevalueinquotes="true" mergefield="Id" novaluebehavior="deactivate"/>
+											</filters>
+										</field>
+										<field id="Exception_Commentary__c" hideable="true" uniqueid="fi-2vn8-988" readonly="false" displayrows="3">
+											<renderconditions logictype="and" onhidedatabehavior="keep"/>
+											<enableconditions logictype="and">
+												<condition type="fieldvalue" operator="=" enclosevalueinquotes="false" fieldmodel="CRApplication" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="Is_Approved__c" fieldtargetobjects="genesis__Applications__c" value="false"/>
+											</enableconditions>
+										</field>
+										<field id="Exception_Recommender__c" hideable="true" uniqueid="fi-2vn9-993" readonly="true"/>
+										<field id="Exception_Approver__c" hideable="true" uniqueid="fi-2vnA-998" readonly="true"/>
+										<field id="True_Exception__c" hideable="true" uniqueid="fi-2D7F-970"/>
+									</fields>
+									<rowactions>
+										<action type="edit">
+											<renderconditions logictype="and">
+												<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="false" fieldmodel="CRApplication" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="Is_Approved__c" fieldtargetobjects="genesis__Applications__c" value="false"/>
+											</renderconditions>
+										</action>
+										<action type="delete">
+											<renderconditions logictype="custom" logic="(1 OR 2) AND 3">
+												<rendercondition type="blank" operator="=" fieldmodel="ManualExceptionChecklist" sourcetype="fieldvalue" field="Exception_Approver__c" fieldtargetobjects="genesis__Checklist__c" value="null" enclosevalueinquotes="false"/>
+												<rendercondition type="userinfo" operator="=" fieldmodel="ManualExceptionChecklist" sourcetype="fieldvalue" field="Exception_Approver__c" fieldtargetobjects="genesis__Checklist__c" value="" enclosevalueinquotes="true" userinfotype="name"/>
+												<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="false" fieldmodel="CRApplication" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="Is_Approved__c" fieldtargetobjects="genesis__Applications__c" value="false"/>
+											</renderconditions>
+										</action>
+										<action type="multi" label="Recommend" icon="sk-icon-feed">
+											<renderconditions logictype="and">
+												<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="ManualExceptionChecklist" sourcetype="snippet" sourcesnippet="fitToRecommend"/>
+												<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="false" fieldmodel="CRApplication" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="Is_Approved__c" fieldtargetobjects="genesis__Applications__c" value="false"/>
+												<rendercondition type="blank" operator="=" fieldmodel="ManualExceptionChecklist" sourcetype="fieldvalue" field="Exception_Recommender__c" fieldtargetobjects="genesis__Checklist__c" value="null" enclosevalueinquotes="false"/>
+											</renderconditions>
+											<actions>
+												<action type="custom" snippet="recommendException"/>
+												<action type="save">
+													<models>
+														<model>ManualExceptionChecklist</model>
+													</models>
+												</action>
+											</actions>
+										</action>
+										<action type="multi" label="Approve" icon="sk-icon-mark-completed">
+											<renderconditions logictype="and">
+												<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="ManualExceptionChecklist" sourcetype="snippet" sourcesnippet="fitToApprove"/>
+												<rendercondition type="blank" operator="!=" fieldmodel="ManualExceptionChecklist" sourcetype="fieldvalue" field="Exception_Recommender__c" fieldtargetobjects="genesis__Checklist__c" value="null" enclosevalueinquotes="false"/>
+											</renderconditions>
+											<actions>
+												<action type="custom" snippet="approvedException"/>
+												<action type="save">
+													<models>
+														<model>ManualExceptionChecklist</model>
+													</models>
+												</action>
+											</actions>
+										</action>
+									</rowactions>
+									<massactions usefirstitemasdefault="true"/>
+									<views>
+										<view type="standard"/>
+									</views>
+									<searchfields/>
+									<renderconditions logictype="and"/>
+								</skootable>
+								<file storeas="record" displayas="filename" uniqueid="sk-2s1C-902" datasource="salesforce" model="CRApplication" autorefreshmodels="false" label="Upload Exception Documents" description="Exception File">
+									<uploadsuccessactions>
+										<action type="blockUI" message="File is getting uploaded! Please wait..." timeout="1000"/>
+										<action type="requeryModel" model="ExceptionDocumentAttachments" behavior="standard"/>
+										<action type="custom" snippet="CheckAndCreateCategoryAttachmentsRecordsException"/>
+									</uploadsuccessactions>
+									<uploadfailureactions>
+										<action type="blockUI" message="Error found while uploading the file. Please check the file name, file size or contact Admin." timeout="3000"/>
+									</uploadfailureactions>
+									<renderconditions logictype="and">
+										<rendercondition type="fieldvalue" enclosevalueinquotes="true" fieldmodel="ExceptionDocumentCategory" sourcetype="modelproperty" nosourcerowbehavior="deactivate" sourceproperty="hasRows"/>
+									</renderconditions>
+								</file>
+								<skootable showconditions="true" showsavecancel="false" showerrorsinline="true" searchmethod="server" searchbox="true" showexportbuttons="false" hideheader="false" hidefooter="false" pagesize="10" alwaysresetpagination="false" createrecords="false" model="ExceptionDocumentAttachments" buttonposition="" mode="readonly" allowcolumnreordering="true" responsive="true" uniqueid="sk-2sDN-2392" heading="Review - Exception Documents">
+									<fields>
+										<field id="Name" hideable="true" uniqueid="fi-2sDl-2497"/>
+										<field id="CreatedBy.Name" hideable="true" uniqueid="fi-2sDm-2518">
+											<label>Uploaded By</label>
+										</field>
+										<field id="CreatedDate" hideable="true" uniqueid="fi-2sDl-2508"/>
+									</fields>
+									<rowactions>
+										<action type="redirect" label="View Record Details" icon="sk-icon-popup" window="blank" url="/servlet/servlet.FileDownload?file={{Id}}"/>
+										<action type="multi" label="Delete Attachment File" icon="sk-webicon-material-icons:delete">
+											<actions>
+												<action type="custom" snippet="deleteReviewAttachment"/>
+												<action type="requeryModel" model="ExceptionDocumentAttachments" behavior="standard"/>
+											</actions>
+										</action>
+									</rowactions>
+									<massactions usefirstitemasdefault="true"/>
+									<views/>
+									<renderconditions logictype="and">
+										<rendercondition type="fieldvalue" enclosevalueinquotes="true" fieldmodel="ExceptionDocumentCategory" sourcetype="modelproperty" nosourcerowbehavior="deactivate" sourceproperty="hasRows"/>
+									</renderconditions>
+								</skootable>
+							</components>
+							<styles>
+								<styleitem type="background"/>
+								<styleitem type="border"/>
+								<styleitem type="size"/>
+							</styles>
+						</wrapper>
+					</components>
+				</tab>
+				<tab name="Warnings" loadlazypanels="true">
+					<components>
+						<wrapper uniqueid="sk-2wNr-3677">
+							<components>
+								<skootable showconditions="true" showsavecancel="false" showerrorsinline="true" searchmethod="server" searchbox="true" showexportbuttons="false" hideheader="false" hidefooter="false" pagesize="10" alwaysresetpagination="false" createrecords="false" model="WarningList" buttonposition="" mode="edit" allowcolumnreordering="true" responsive="true" uniqueid="sk-2MWY-737" heading="Application Warnings">
+									<fields>
+										<field id="genesis__Rule__r.Name" hideable="true" uniqueid="fi-2MWb-767" readonly="true">
+											<label>Warning Name</label>
+										</field>
+										<field id="genesis__Rule__r.genesis__Message_failure__c" hideable="true" uniqueid="fi-2SsO-522" readonly="true">
+											<label>Warning Description</label>
+										</field>
+										<field id="Exception_Commentary__c" hideable="true" uniqueid="fi-2s1g-2882" displayrows="3">
+											<label>Warning Commentary</label>
+										</field>
+									</fields>
+									<rowactions/>
+									<massactions usefirstitemasdefault="true"/>
+									<views>
+										<view type="standard"/>
+									</views>
+								</skootable>
+								<skootable showconditions="true" showsavecancel="false" showerrorsinline="true" searchmethod="server" searchbox="true" showexportbuttons="false" hideheader="false" hidefooter="false" pagesize="10" alwaysresetpagination="false" createrecords="false" model="WarningCheckList" buttonposition="" mode="edit" allowcolumnreordering="true" responsive="true" uniqueid="sk-2JFF-1898" emptysearchbehavior="query" heading="Applicant or Security Warnings" allowscrollbars="true" tablescrollheight="700px" floatheader="true">
+									<fields>
+										<field id="Checklist__r.genesis__Rule__r.Name" hideable="true" uniqueid="fi-2JFJ-1926" readonly="true">
+											<label>Warning Name</label>
+										</field>
+										<field id="Checklist__r.genesis__Rule__r.genesis__Message_failure__c" hideable="true" uniqueid="fi-2JFJ-1936" readonly="true">
+											<label>Warning Description</label>
+										</field>
+										<field id="Party_Name__c" hideable="true" uniqueid="fi-2JVD-2267">
+											<label>Applicant Name</label>
+										</field>
+										<field id="Application_Collateral__r.genesis__Collateral__r.Full_Address__c" hideable="true" uniqueid="fi-3KvQ-1496">
+											<label>Collateral Name</label>
+										</field>
+										<field id="Exception_Commentary__c" hideable="true" uniqueid="fi-2s1k-2902" displayrows="3">
+											<label>Warning Commentary</label>
+										</field>
+									</fields>
+									<rowactions/>
+									<massactions usefirstitemasdefault="true"/>
+									<views>
+										<view type="standard"/>
+									</views>
+									<searchfields/>
+								</skootable>
+								<skootable showconditions="true" showsavecancel="false" showerrorsinline="true" searchmethod="server" searchbox="true" showexportbuttons="false" hideheader="false" hidefooter="false" pagesize="10" alwaysresetpagination="false" createrecords="true" model="ManualWarningChecklist" buttonposition="" mode="read" allowcolumnreordering="true" responsive="true" uniqueid="sk-2voi-1584" heading="Manual Warnings" allowscrollbars="true" tablescrollheight="200px" floatheader="true">
+									<fields>
+										<field id="genesis__Message__c" hideable="true" uniqueid="fi-2vpV-1869">
+											<label>Warning Name</label>
+										</field>
+										<field id="genesis__Description__c" hideable="true" uniqueid="fi-2vpW-1881">
+											<label>Warning Description</label>
+										</field>
+										<field id="Applicant__c" hideable="true" uniqueid="fi-j32-1173" pagesize="5" displaytemplate="{{clcommon__Account__r.Name}}" searchtemplate="{{clcommon__Account__r.Name}}">
+											<searchfields/>
+											<filters>
+												<filter type="modelmerge" operator="in" field="genesis__Application__c" fieldtargetobjects="genesis__Applications__c" value="" model="CRApplication" enclosevalueinquotes="true" mergefield="Id" novaluebehavior="deactivate"/>
+											</filters>
+										</field>
+										<field id="Collateral_Name__c" hideable="true" uniqueid="fi-j37-1198" pagesize="5" displaytemplate="{{genesis__Collateral__r.Full_Address__c}}" searchtemplate="{{genesis__Collateral__r.Full_Address__c}}">
+											<searchfields/>
+											<filters>
+												<filter type="modelmerge" operator="in" field="genesis__Application__c" fieldtargetobjects="genesis__Applications__c" value="" model="CRApplication" enclosevalueinquotes="true" mergefield="Id" novaluebehavior="deactivate"/>
+											</filters>
+										</field>
+										<field id="Exception_Commentary__c" hideable="true" uniqueid="fi-2vpc-1908">
+											<label>Warning Commentary</label>
+										</field>
+									</fields>
+									<rowactions>
+										<action type="edit"/>
+										<action type="delete"/>
+									</rowactions>
+									<massactions usefirstitemasdefault="true"/>
+									<views>
+										<view type="standard"/>
+									</views>
+									<searchfields/>
+								</skootable>
+								<file storeas="record" displayas="filename" uniqueid="sk-2s1C-908" datasource="salesforce" model="CRApplication" label="Upload Warning Documents" autorefreshmodels="false" description="Warning File">
+									<uploadsuccessactions>
+										<action type="blockUI" message="File is getting uploaded! Please wait..." timeout="1000"/>
+										<action type="requeryModel" model="WarningDocumentAttachment" behavior="standard"/>
+										<action type="custom" snippet="CheckAndCreateCategoryAttachmentsRecordsWarning"/>
+									</uploadsuccessactions>
+									<uploadfailureactions>
+										<action type="blockUI" message="Error found while uploading the file. Please check the file name, file size or contact Admin." timeout="3000"/>
+									</uploadfailureactions>
+									<renderconditions logictype="and">
+										<rendercondition type="fieldvalue" enclosevalueinquotes="true" fieldmodel="WarningDocumentCategory" sourcetype="modelproperty" nosourcerowbehavior="deactivate" sourceproperty="hasRows"/>
+									</renderconditions>
+								</file>
+								<skootable showconditions="true" showsavecancel="false" showerrorsinline="true" searchmethod="server" searchbox="true" showexportbuttons="false" hideheader="false" hidefooter="false" pagesize="10" alwaysresetpagination="false" createrecords="false" model="WarningDocumentAttachment" buttonposition="" mode="readonly" allowcolumnreordering="true" responsive="true" uniqueid="sk-2sCt-2176" heading="Review - Warning Documents">
+									<fields>
+										<field id="Name" hideable="true" uniqueid="fi-2sDA-2315"/>
+										<field id="CreatedBy.Name" hideable="true" uniqueid="fi-2sDC-2327">
+											<label>Uploaded By</label>
+										</field>
+										<field id="CreatedDate" hideable="true" uniqueid="fi-2sDF-2380"/>
+									</fields>
+									<rowactions>
+										<action type="redirect" label="View Record Details" icon="sk-icon-popup" window="blank" url="/servlet/servlet.FileDownload?file={{Id}}">
+											<renderconditions logictype="and"/>
+										</action>
+										<action type="multi" label="Delete Attachment File" icon="sk-webicon-material-icons:delete">
+											<actions>
+												<action type="custom" snippet="deleteReviewAttachment"/>
+												<action type="requeryModel" model="WarningDocumentAttachment" behavior="standard"/>
+											</actions>
+											<renderconditions logictype="and"/>
+										</action>
+									</rowactions>
+									<massactions usefirstitemasdefault="true"/>
+									<views/>
+									<renderconditions logictype="and">
+										<rendercondition type="fieldvalue" enclosevalueinquotes="true" fieldmodel="WarningDocumentCategory" sourcetype="modelproperty" nosourcerowbehavior="deactivate" sourceproperty="hasRows"/>
+									</renderconditions>
+								</skootable>
+							</components>
+							<styles>
+								<styleitem type="background"/>
+								<styleitem type="border"/>
+								<styleitem type="size"/>
+							</styles>
+						</wrapper>
+					</components>
+				</tab>
+			</tabs>
+			<renderconditions logictype="and"/>
+		</tabset>
+	</components>
+	<resources>
+		<labels/>
+		<javascript>
+			<jsitem location="inlinesnippet" name="CheckRules" cachelocation="false">var params = arguments[0],
+	$ = skuid.$;
+var applicationModel = skuid.model.getModel('CRApplication');
+var applicationRow = applicationModel.data[0];
+var exceptionModel = skuid.model.getModel('ExceptionCheckList');
+var exception2Model = skuid.model.getModel('CRExceptionList');
+var conditionModel = skuid.model.getModel('ConditionList');
+var warningModel = skuid.model.getModel('WarningList');
+var warning2Model = skuid.model.getModel('WarningCheckList');
+var condition2Model = skuid.model.getModel('ConditionCheckList');
+$.blockUI({
+    onBlock:function(){
+        var result = sforce.apex.execute('CheckRules','callCheckRulesWS',
+        {   
+            applicationId : applicationRow.Id,
+            tabName : 'Warning'
+        });
+        setTimeout(function(){
+        if(exception2Model !== undefined){
+            exception2Model.updateData();
+        }
+        if(warning2Model !== undefined){
+            warning2Model.updateData();
+        }
+        if(condition2Model !== undefined){
+            condition2Model.updateData();
+        }
+        $.unblockUI();
+     }, 500); // 5 Seconds timeout
+    }
+});
+$.blockUI({
+    onBlock:function(){
+        var result = sforce.apex.execute('CheckRules','callCheckRulesWS',
+        {   
+            applicationId : applicationRow.Id,
+            tabName : 'Warning2'
+        });
+        setTimeout(function(){
+        if(exception2Model !== undefined){
+            exception2Model.updateData();
+        }
+        if(warning2Model !== undefined){
+            warning2Model.updateData();
+        }
+        if(condition2Model !== undefined){
+            condition2Model.updateData();
+        }
+        $.unblockUI();
+     }, 500); // 5 Seconds timeout
+    }
+});
+$.blockUI({
+    onBlock:function(){
+        var result = sforce.apex.execute('CheckRules','callCheckRulesWS',
+        {   
+            applicationId : applicationRow.Id,
+            tabName : 'Exception'
+        });
+        setTimeout(function(){
+        if(exception2Model !== undefined){
+            exception2Model.updateData();
+        }
+        if(warning2Model !== undefined){
+            warning2Model.updateData();
+        }
+        if(condition2Model !== undefined){
+            condition2Model.updateData();
+        }
+        $.unblockUI();
+     }, 500); // 5 Seconds timeout
+    }
+});
+$.blockUI({
+    onBlock:function(){
+        var result = sforce.apex.execute('CheckRules','callCheckRulesWS',
+        {   
+            applicationId : applicationRow.Id,
+            tabName : 'Condition'
+        });
+        setTimeout(function(){
+        if(exception2Model !== undefined){
+            exception2Model.updateData();
+        }
+        if(warning2Model !== undefined){
+            warning2Model.updateData();
+        }
+        if(condition2Model !== undefined){
+            condition2Model.updateData();
+        }
+        $.unblockUI();
+     }, 500); // 5 Seconds timeout
+    }
+});
+$.blockUI({
+    onBlock:function(){
+        var result = sforce.apex.execute('CheckRules','callCheckRulesWS',
+        {   
+            applicationId : applicationRow.Id,
+            tabName : 'APP_XCEP'
+        });
+        setTimeout(function(){
+        if(exceptionModel !== undefined){
+            exceptionModel.updateData();
+        }
+        if(warningModel !== undefined){
+            warningModel.updateData();
+        }
+        if(condition2Model !== undefined){
+            conditionModel.updateData();
+        }
+        $.unblockUI();
+     }, 500); // 5 Seconds timeout
+    }
+});</jsitem>
+			<jsitem location="inlinesnippet" name="customCheck" cachelocation="false">var params = arguments[0],
+	$ = skuid.$;
+var assetModel = skuid.model.getModel('CRAssets');
+var liabilityModel = skuid.model.getModel('CRLiabilities');
+var partyModel = skuid.model.getModel('CRParty');
+var incomeModel = skuid.model.getModel('CRIncomeList');
+var postCodeModel = skuid.model.getModel('CRQBE_Postcode');
+var collateralModel = skuid.model.getModel('CRSelectedCollateral');
+var rowsToUpdate = {};
+$.each(partyModel.getRows(),function(i,row){
+    rowsToUpdate[row.Id] = {
+        Primary_Residence_Prop_Cost_Warning_Chck__c: false,
+        Investment_Property_Warning_Check__c: false,
+        // To_be_refinanced_Condition_Check__c: false,
+        // Gift_Stat_Dec_Received_Condition_Check__c: false,
+        Rental_Income_Verified_Warning_Check__c: false,
+        Previous_cond_ref_comp_Warning_Check__c: false,
+        Previous_cond_exp_received_Warning_Check__c: false
+    };
+});
+partyModel.updateRows( rowsToUpdate );
+rowsToUpdate = {};
+$.each(assetModel.getRows(),function(i,row){
+    if(row.genesis__Asset_Type__c !== undefined &amp;&amp; row.genesis__Asset_Type__c === 'Owner Occupied Property' &amp;&amp; row.Party__r.Living_Expense_Section_Render__c === true){
+        if(row.Party__r.Primary_Residence_Property_Costs__c === undefined || row.Party__r.Primary_Residence_Property_Costs__c === 0){
+            rowsToUpdate[row.Party__c] = { Primary_Residence_Prop_Cost_Warning_Chck__c: true };
+        }
+    }
+});
+/*
+partyModel.updateRows( rowsToUpdate );
+rowsToUpdate = {};
+$.each(assetModel.getRows(),function(i,row){
+    if(row.genesis__Asset_Type__c !== undefined &amp;&amp; row.genesis__Asset_Type__c === 'Gifts'){
+        rowsToUpdate[row.Party__c] = { Gift_Stat_Dec_Received_Condition_Check__c: true };
+    }
+});
+*/
+partyModel.updateRows( rowsToUpdate );
+rowsToUpdate = {};
+$.each(assetModel.getRows(),function(i,row){
+    if(row.genesis__Asset_Type__c !== undefined &amp;&amp; row.genesis__Asset_Type__c === 'Investment Property' &amp;&amp; row.Party__r.Living_Expense_Section_Render__c === true){
+        if(row.Party__r.Investment_Property_Costs__c === undefined || row.Party__r.Investment_Property_Costs__c === 0){
+            rowsToUpdate[row.Party__c] = { Investment_Property_Warning_Check__c: true };
+        }
+    }
+});
+partyModel.updateRows( rowsToUpdate );
+rowsToUpdate = {};
+$.each(assetModel.getRows(),function(i,row){
+    if(row.genesis__Asset_Type__c !== undefined &amp;&amp; row.genesis__Asset_Type__c === 'Investment Property'){
+        if(row.Party__r.Rental_Income_Verified__c === undefined || row.Party__r.Rental_Income_Verified__c === 'No'){
+            rowsToUpdate[row.Party__c] = { Rental_Income_Verified_Warning_Check__c: true };
+        }
+    }
+});
+partyModel.updateRows( rowsToUpdate );
+rowsToUpdate = {};
+/*
+$.each(liabilityModel.getRows(),function(i,row){
+    if(row.Party__r.Legal_Entity_Type__c === 'Individual' &amp;&amp; row.To_Be_Refinanced__c === true){
+        rowsToUpdate[row.Party__c] = { To_be_refinanced_Condition_Check__c: true };
+    }
+});
+partyModel.updateRows( rowsToUpdate );
+rowsToUpdate = {};
+*/
+if(liabilityModel !== undefined){
+    $.each(liabilityModel.getRows(),function(i,row){
+        if(row.To_Be_Refinanced__c === true){
+            if(row.Party__r.Previous_conduct_referencing_completed__c === undefined || row.Party__r.Previous_conduct_referencing_completed__c === 'No'){
+                rowsToUpdate[row.Party__c] = { Previous_cond_ref_comp_Warning_Check__c: true };
+            } else if(row.Party__r.Previous_conduct_issues_identified__c === 'Yes'){
+                if(row.Party__r.Previous_conduct_explanation_received__c === undefined || row.Party__r.Previous_conduct_explanation_received__c === 'No'){
+                    rowsToUpdate[row.Party__c] = { Previous_cond_exp_received_Warning_Check__c: true };
+                }
+            }
+        }
+    });
+}
+partyModel.updateRows( rowsToUpdate );
+rowsToUpdate = {};
+var incomeRowsToUpdate = {};
+$.each(incomeModel.getRows(),function(i,row){
+    if(row.Company_Type_of_Documents_Sighted__c === undefined){
+        incomeRowsToUpdate[row.Id] = { Type_of_Documents_Sighted_Warning_Check__c: 'Warning1' };
+    } else {
+        var docCount = (row.Company_Type_of_Documents_Sighted__c.split(";")).length;
+        if(Number(docCount) &lt; 3 &amp;&amp; ((row.Employment_Information__c !== null &amp;&amp; row.Employment_Information__c !== undefined &amp;&amp; row.Employment_Information__r.Party__c !== undefined &amp;&amp; row.Employment_Information__r.Party__c !== null &amp;&amp; row.Employment_Information__r.Party__r.Risk_Grade__c === 'Prime') || (row.Party__c !== null &amp;&amp; row.Party__c !== undefined &amp;&amp; row.Party__r.Risk_Grade__c === 'Prime'))){
+            incomeRowsToUpdate[row.Id] = { Type_of_Documents_Sighted_Warning_Check__c: 'Warning2' };
+        } else if(Number(docCount) &lt; 2){
+            incomeRowsToUpdate[row.Id] = { Type_of_Documents_Sighted_Warning_Check__c: 'Warning1' };
+        } else {
+            incomeRowsToUpdate[row.Id] = { Type_of_Documents_Sighted_Warning_Check__c: undefined };
+        }
+    }
+});
+incomeModel.updateRows( incomeRowsToUpdate );</jsitem>
+			<jsitem location="inlinesnippet" name="fitToRecommend" cachelocation="false">var params = arguments[0],
+	$ = skuid.$;
+var approvalModel = skuid.model.getModel('RecommendReviewersInApprovalGroup');
+var check = false;
+$.each(approvalModel.data,function(i,row){
+    if(row.clcommon__User__r.Id === skuid.utils.userInfo.userId){
+        check = true;
+        return;
+    }
+});
+return check;</jsitem>
+			<jsitem location="inlinesnippet" cachelocation="false" name="recommendException">var params = arguments[0],
+	$ = skuid.$;
+var exceptionModel = skuid.model.getModel('CRExceptionList');
+var exception2Model = skuid.model.getModel('ExceptionCheckList');
+var exception3Model = skuid.model.getModel('CollateralException');
+var exception4Model = skuid.model.getModel('ManualExceptionChecklist');
+var records = arguments[0].item;
+if(exceptionModel !== undefined){
+    exceptionModel.updateRow(records.row,'Exception_Recommender__c',skuid.utils.userInfo.name);
+}
+if(exception2Model !== undefined){
+    exception2Model.updateRow(records.row,'Exception_Recommender__c',skuid.utils.userInfo.name);
+
+}
+if(exception3Model !== undefined){
+    exception3Model.updateRow(records.row,'Exception_Recommender__c',skuid.utils.userInfo.name);
+}
+if(exception4Model !== undefined){
+    exception4Model.updateRow(records.row,'Exception_Recommender__c',skuid.utils.userInfo.name);
+}</jsitem>
+			<jsitem location="inlinesnippet" name="approvedException" cachelocation="false">var params = arguments[0],
+	$ = skuid.$;
+var exceptionModel = skuid.model.getModel('CRExceptionList');
+var exception2Model = skuid.model.getModel('ExceptionCheckList');
+var exception3Model = skuid.model.getModel('CollateralException');
+var exception4Model = skuid.model.getModel('ManualExceptionChecklist');
+var records = arguments[0].item;
+if(records.row.Exception_Recommender__c === undefined || records.row.Exception_Recommender__c === ''){
+    alert('Exception must be recommended before it can be Approved/Declined');
+    return false;
+}
+if(records.row.Exception_Recommender__c === skuid.utils.userInfo.name){
+    alert('The same user cannot Recommend and Approve/Decline the same exception');
+    return false;
+}
+if(exceptionModel !== undefined){
+    exceptionModel.updateRow(records.row,'Exception_Approver__c',skuid.utils.userInfo.name);
+}
+if(exception2Model !== undefined){
+    exception2Model.updateRow(records.row,'Exception_Approver__c',skuid.utils.userInfo.name);
+}
+if(exception3Model !== undefined){
+    exception3Model.updateRow(records.row,'Exception_Approver__c',skuid.utils.userInfo.name);
+}
+if(exception4Model !== undefined){
+    exception4Model.updateRow(records.row,'Exception_Approver__c',skuid.utils.userInfo.name);
+}</jsitem>
+			<jsitem location="inlinesnippet" name="initPolicyExceptionCreate" cachelocation="false">/**
+*  Purpose:
+*  Where:
+*
+* @name  initPolicyException.js
+* @author  Ashish Kumar Singh
+* @version 1.0
+* @since   06-18-2016
+*/
+
+
+//a DOM element that Skuid will add, in place, into the parent / container component in which you've placed this custom component.
+//Get a reference to this element
+var params = arguments[0],
+$ = skuid.$;    //declares that we are using skuid custom jQuery
+
+var newPolicyExceptionCreate = skuid.model.getModel('CRPolicyExceptionCreate');
+var newnewPolicyExceptionCreateRow = newPolicyExceptionCreate.data[0];</jsitem>
+			<jsitem location="inlinesnippet" name="fitToApprove" cachelocation="false">var params = arguments[0],
+	$ = skuid.$;
+var approvalModel = skuid.model.getModel('CRApproveReviewersInApprovalGroup');
+var check = false;
+$.each(approvalModel.data,function(i,row){
+    if(row.clcommon__User__r.Id === skuid.utils.userInfo.userId){
+        check = true;
+        return;
+    }
+});
+return check;</jsitem>
+			<jsitem location="external" name="ajaxToolkit" cachelocation="false" url="/soap/ajax/32.0/apex.js">var params = arguments[0],
+	$ = skuid.$;
+</jsitem>
+			<jsitem location="inlinesnippet" name="reload" cachelocation="false">var params = arguments[0],
+	$ = skuid.$;
+	
+window.location.reload(true);</jsitem>
+			<jsitem location="inlinesnippet" name="deleteReviewAttachment" cachelocation="false">var params = arguments[0],
+	$ = skuid.$;
+var records = arguments[0].item;
+var resCheck = sforce.apex.execute('CategoryAttachmentUtility','deleteAttachment',
+    {
+        attachId : records.row.Id
+    });
+alert(resCheck);</jsitem>
+			<jsitem location="inlinesnippet" name="CheckAndCreateCategoryAttachmentsRecordsCondition" cachelocation="false">var params = arguments[0],
+	$ = skuid.$;
+var appModelIdenCheck = skuid.model.getModel('CRApplication');
+var attModelIdenModel = skuid.model.getModel('ConditionDocumentsAttachments');
+var attIds = [];
+var appModelIdenRowCheck = appModelIdenCheck.data[0];
+var records = sforce.connection.query("Select ID from clcommon__Document_Category__c where clcommon__Category_Name__c = 'Condition Documents' and genesis__Application__c = '"+appModelIdenRowCheck.Id+"' and clcommon__Parent_Document_Category__r.clcommon__Category_Name__c = 'Review Documents' limit 1");
+var documentCategoryRecord = records.getArray('records');
+var resCheck;
+$.each(attModelIdenModel.data,function(i,row){
+    attIds.push(row.Id+"");
+});
+if(documentCategoryRecord[0].Id !== undefined &amp;&amp; attModelIdenModel.data.length &gt; 0){
+    resCheck = sforce.apex.execute('CategoryAttachmentUtility','categoryAttachmentCheckAndCreation',
+        {
+            documentCategoryId : documentCategoryRecord[0].Id, 
+            attachIdList : attIds
+        });
+}
+else{
+    alert('Document Category Not Found or Uploaded Documents could not be recognised.Please contact Admin as category Attachments could not be created');
+}</jsitem>
+			<jsitem location="inlinesnippet" name="CheckAndCreateCategoryAttachmentsRecordsWarning" cachelocation="false">var params = arguments[0],
+	$ = skuid.$;
+var appModelIdenCheck = skuid.model.getModel('CRApplication');
+var attModelIdenModel = skuid.model.getModel('WarningDocumentAttachment');
+var attIds = [];
+var appModelIdenRowCheck = appModelIdenCheck.data[0];
+var records = sforce.connection.query("Select ID from clcommon__Document_Category__c where clcommon__Category_Name__c = 'Warning Documents' and genesis__Application__c = '"+appModelIdenRowCheck.Id+"' and clcommon__Parent_Document_Category__r.clcommon__Category_Name__c = 'Review Documents' limit 1");
+var documentCategoryRecord = records.getArray('records');
+var resCheck;
+$.each(attModelIdenModel.data,function(i,row){
+    attIds.push(row.Id+"");
+});
+if(documentCategoryRecord[0].Id !== undefined &amp;&amp; attModelIdenModel.data.length &gt; 0){
+    resCheck = sforce.apex.execute('CategoryAttachmentUtility','categoryAttachmentCheckAndCreation',
+        {
+            documentCategoryId : documentCategoryRecord[0].Id, 
+            attachIdList : attIds
+        });
+}
+else{
+    alert('Document Category Not Found or Uploaded Documents could not be recognised.Please contact Admin as category Attachments could not be created');
+}</jsitem>
+			<jsitem location="inlinesnippet" name="CheckAndCreateCategoryAttachmentsRecordsException" cachelocation="false">var params = arguments[0],
+	$ = skuid.$;
+var appModelIdenCheck = skuid.model.getModel('CRApplication');
+var attModelIdenModel = skuid.model.getModel('ExceptionDocumentAttachments');
+var attIds = [];
+var appModelIdenRowCheck = appModelIdenCheck.data[0];
+var records = sforce.connection.query("Select ID from clcommon__Document_Category__c where clcommon__Category_Name__c = 'Exception Documents' and genesis__Application__c = '"+appModelIdenRowCheck.Id+"' and clcommon__Parent_Document_Category__r.clcommon__Category_Name__c = 'Review Documents' limit 1");
+var documentCategoryRecord = records.getArray('records');
+var resCheck;
+$.each(attModelIdenModel.data,function(i,row){
+    attIds.push(row.Id+"");
+});
+if(documentCategoryRecord[0].Id !== undefined &amp;&amp; attModelIdenModel.data.length &gt; 0){
+    resCheck = sforce.apex.execute('CategoryAttachmentUtility','categoryAttachmentCheckAndCreation',
+        {
+            documentCategoryId : documentCategoryRecord[0].Id, 
+            attachIdList : attIds
+        });
+}
+else{
+    alert('Document Category Not Found or Uploaded Documents could not be recognised.Please contact Admin as category Attachments could not be created');
+}</jsitem>
+		</javascript>
+		<css>
+			<cssitem location="inline" name="CustomCSS" cachelocation="false">/*Custom CSS by Rameswari on 19/01/2021 for making the input box as rectangular*/
+.nx-editor textarea, .nx-editor input  {
+    border-radius: 5px !important;
+}</cssitem>
+		</css>
+		<actionsequences uniqueid="sk-2CY0-649">
+			<actionsequence id="06f995ee-ae35-4880-bb21-e417051c5c75" label="Page Load" type="event-triggered" event-scope="component" event-name="Skuid Page: Rendered" uniqueid="sk-353X-1344">
+				<description/>
+				<actions>
+					<action type="branch" whenfinished="continue" model="Application">
+						<formula>{{Is_Approved__c}}</formula>
+						<iftrueactions>
+							<action type="runComponentAction" componentid="sk-2CiV-1090" action="changeMode" mode="read"/>
+							<action type="runComponentAction" componentid="sk-2I35-1065" action="changeMode" mode="read"/>
+							<action type="runComponentAction" componentid="sk-2tvu-1683" action="changeMode" mode="read"/>
+						</iftrueactions>
+					</action>
+				</actions>
+			</actionsequence>
+		</actionsequences>
+	</resources>
+	<styles>
+		<styleitem type="background" bgtype="none"/>
+	</styles>
+	<interactions/>
+</skuidpage>

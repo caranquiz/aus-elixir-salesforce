@@ -1,0 +1,319 @@
+<skuidpage personalizationmode="server" showsidebar="false" useviewportmeta="false" showheader="false">
+	<models>
+		<model id="AllValidApprovals" query="true" createrowifnonefound="false" datasource="salesforce" sobject="clcommon__Approval_Instance__c" limit="20">
+			<fields>
+				<field id="Id"/>
+				<field id="clcommon__Approval_Definition__c"/>
+				<field id="clcommon__Approval_Definition__r.Name"/>
+				<field id="genesis__Application__c"/>
+				<field id="genesis__Application__r.Name"/>
+				<field id="genesis__Application__r.genesis__Status__c"/>
+				<field id="genesis__Application__r.Approval_Level__c"/>
+			</fields>
+			<conditions logic="1 AND ((2 AND 3) OR (4 AND (5 OR 7))) AND 6">
+				<condition type="param" value="id" field="genesis__Application__c" fieldtargetobjects="genesis__Applications__c" operator="=" enclosevalueinquotes="true" novaluebehavior="noquery"/>
+				<condition type="fieldvalue" value="Val Received" enclosevalueinquotes="true" field="genesis__Application__r.genesis__Status__c"/>
+				<condition type="fieldvalue" value="Recommend Levels Approval" enclosevalueinquotes="true" field="clcommon__Approval_Definition__r.Name"/>
+				<condition type="fieldvalue" value="Recommended" enclosevalueinquotes="true" field="genesis__Application__r.genesis__Status__c"/>
+				<condition type="multiple" value="" field="clcommon__Approval_Definition__r.Name" operator="in" mergefield="genesis__Application__r.Approval_Level__c" novaluebehavior="deactivate" fieldtargetobjects="genesis__Applications__c" enclosevalueinquotes="true">
+					<values>
+						<value>Dual Level Approval</value>
+						<value>Single Level Approval</value>
+					</values>
+				</condition>
+				<condition type="fieldvalue" value="Invalid" enclosevalueinquotes="true" field="clcommon__Status__c" operator="!="/>
+				<condition type="multiple" value="" field="clcommon__Approval_Definition__r.Name" operator="in" enclosevalueinquotes="true">
+					<values>
+						<value>Single Level Approval (Risk Loans)</value>
+						<value>Dual Level Approval</value>
+					</values>
+				</condition>
+			</conditions>
+			<actions/>
+		</model>
+		<model id="AllApprovalDefinitions" query="true" createrowifnonefound="false" datasource="salesforce" sobject="clcommon__Approval_Definition__c" orderby="Name ASC" limit="20">
+			<fields>
+				<field id="Id"/>
+				<field id="Name"/>
+			</fields>
+			<conditions>
+				<condition type="modelmerge" value="" field="Id" operator="in" model="AllValidApprovals" enclosevalueinquotes="true" mergefield="clcommon__Approval_Definition__c" novaluebehavior="noquery" fieldtargetobjects="clcommon__Approval_Definition__c"/>
+			</conditions>
+			<actions/>
+		</model>
+		<model id="AppApprovalsDashboardModel" limit="20" query="true" createrowifnonefound="false" datasource="salesforce" sobject="genesis__Applications__c">
+			<fields>
+				<field id="RecordTypeId"/>
+				<field id="Id"/>
+				<field id="Name"/>
+				<field id="RecordType.Name"/>
+			</fields>
+			<conditions>
+				<condition type="param" value="id" operator="=" enclosevalueinquotes="true" field="Id"/>
+			</conditions>
+			<actions/>
+		</model>
+	</models>
+	<components>
+		<wrapper uniqueid="all-approvals-queue-view">
+			<components>
+				<panelset type="custom" uniqueid="approvals-panelset" cssclass="noPaddingTop" scroll="fixed" height="800px">
+					<panels>
+						<panel width="50%" uniqueid="ApprovalsQueue">
+							<components>
+								<buttonset uniqueid="sk-1apB-1342" position="left">
+									<buttons>
+										<button type="multi" label="Generate LAS" uniqueid="sk-1apB-1343" icon="sk-icon-popup" snippet="GenerateLASDoc">
+											<actions>
+												<action type="custom" snippet="GenerateLASDoc"/>
+											</actions>
+										</button>
+									</buttons>
+									<renderconditions logictype="and"/>
+								</buttonset>
+								<panelset type="custom" uniqueid="sk-3Jo8-596">
+									<panels>
+										<panel width="100%" uniqueid="approvals-queue-wrapper-panel">
+											<components>
+												<queue model="AllApprovalDefinitions" tagrendertype="template" searchbox="false" tokenizesearch="true" showsearchbydefault="false" hideheader="false" hidefooter="false" uniqueid="approvals-definition-queue" cssclass="simple-queue" itemicon="sk-icon-activities" searchmethod="server" instantfilters="false">
+													<rendertemplate>{{Name}}</rendertemplate>
+													<interactions>
+														<interaction type="tap">
+															<action type="custom" querystring="id={{Id}}" snippet="UpdateIFrameIds"/>
+														</interaction>
+													</interactions>
+													<searchfields/>
+												</queue>
+											</components>
+										</panel>
+									</panels>
+								</panelset>
+							</components>
+						</panel>
+						<panel uniqueid="approvals-dashboard-container" width="50%">
+							<components>
+								<template multiple="false" uniqueid="dashboard-container">
+									<contents>&lt;iframe id="approval-dashboard-iframe" src="/apex/skuid__ui?page=ApprovalDetails&amp;defId={{{$Model.AllApprovalDefinitions.data.0.Id}}}&amp;id={{$Params.id}}" width="100%" height="100%" frameborder="0"/&gt;</contents>
+								</template>
+							</components>
+						</panel>
+					</panels>
+					<renderconditions logictype="and">
+						<rendercondition type="fieldvalue" enclosevalueinquotes="true" fieldmodel="AllValidApprovals" sourcetype="modelproperty" nosourcerowbehavior="deactivate" sourceproperty="hasRows"/>
+					</renderconditions>
+				</panelset>
+				<panelset type="custom" uniqueid="sk-3qBZ-262">
+					<panels>
+						<panel width="20%">
+							<components>
+								<buttonset uniqueid="sk-1ajj-1016" position="left">
+									<buttons>
+										<button type="multi" label="Generate LAS" uniqueid="sk-1ajj-1017" icon="sk-icon-popup" snippet="GenerateLASDoc">
+											<actions>
+												<action type="custom" snippet="GenerateLASDoc"/>
+											</actions>
+										</button>
+									</buttons>
+									<renderconditions logictype="and"/>
+								</buttonset>
+							</components>
+						</panel>
+						<panel width="80%">
+							<components>
+								<template multiple="false" uniqueid="sk-3qBu-498">
+									<contents>&lt;div class="cls-page-title-header"&gt;No Approvals To Display&lt;/div&gt;</contents>
+								</template>
+							</components>
+						</panel>
+					</panels>
+					<renderconditions logictype="and">
+						<rendercondition fieldmodel="AllValidApprovals" sourcetype="modelproperty" nosourcerowbehavior="deactivate" sourceproperty="hasNoRows"/>
+					</renderconditions>
+				</panelset>
+			</components>
+			<styles>
+				<styleitem type="background"/>
+				<styleitem type="border"/>
+				<styleitem type="size"/>
+				<styleitem property="position" value="absolute"/>
+				<styleitem property="top" value="0"/>
+				<styleitem property="bottom" value="0"/>
+				<styleitem property="left" value="0"/>
+				<styleitem property="right" value="0"/>
+			</styles>
+			<interactions/>
+			<renderconditions logictype="and"/>
+		</wrapper>
+	</components>
+	<resources>
+		<labels/>
+		<javascript>
+			<jsitem location="staticresource" name="CLSNGUIComponent" cachelocation="false" url="" namespace="genesisExtn" filepath="commonUtils.js">var params = arguments[0],
+	            $ = skuid.$;
+            </jsitem>
+			<jsitem location="staticresource" name="CLSNGUIComponent" cachelocation="false" url="" namespace="genesisExtn" filepath="messageUtils.js">var params = arguments[0],
+	            $ = skuid.$;
+            </jsitem>
+			<jsitem location="staticresource" name="CLSNGUIComponent" cachelocation="false" url="" namespace="genesisExtn" filepath="mainPage.js">var params = arguments[0],
+	            $ = skuid.$;
+            </jsitem>
+			<jsitem location="staticresource" name="CLSNGUIComponent" cachelocation="false" url="" namespace="genesisExtn" filepath="windowCallbacks.js">var params = arguments[0],
+	            $ = skuid.$;
+            </jsitem>
+			<jsitem location="inline" name="OnLoadScript" cachelocation="false" url="">(function(skuid){
+var $ = skuid.$;
+	$(document.body).one('pageload',function(){
+        var approvalDefinitionRecords = skuid.model.getModel('AllApprovalDefinitions').data;
+        // trigger click of first item in queue
+        $($('#approvals-definition-queue .nx-item.nx-queue-item')[0]).trigger('click');
+        var definitionFirstRow = approvalDefinitionRecords[0];
+	});
+})(skuid);</jsitem>
+			<jsitem location="inlinesnippet" name="UpdateIFrameIds" cachelocation="false" url="">var params = arguments[0],
+	$ = skuid.$;
+
+
+var appIdUrlParamString = '&amp;id=' + skuid.page.params.id;
+var url = $('#approval-dashboard-iframe').attr('src');
+if (url.lastIndexOf('&amp;defId=') &gt;= 0) {
+    url = url.substring(0, url.lastIndexOf('&amp;defId=')) + '&amp;defId=' + params.row.Id + appIdUrlParamString;
+} else {
+    url += '&amp;defId=' + params.row.Id + appIdUrlParamString;
+}
+$('#approval-dashboard-iframe').attr('src', url);
+$('#approval-dashboard-iframe').hide();
+$('#approval-dashboard-iframe').on('load', function() {
+    $("#approval-dashboard-iframe").show();
+});
+</jsitem>
+			<jsitem location="inlinesnippet" name="refresh" cachelocation="false">var params = arguments[0],
+	$ = skuid.$;
+location.reload(true);</jsitem>
+			<jsitem location="inlinesnippet" name="GenerateLASDoc" cachelocation="false">var params = arguments[0],
+	$ = skuid.$;
+var appliModel = skuid.model.getModel('AppApprovalsDashboardModel');
+var appliRow = appliModel.data[0];
+var records = sforce.connection.query("SELECT Id, Name,Url FROM WebLink where Name = 'Generate_LAS' limit 1");
+var solicitorButton = records.getArray('records');
+var mainQuery = '',mainQuery2 = '';
+mainQuery2 = solicitorButton[0].Url;
+var appParam = '{!genesis__Applications__c.Id}';
+mainQuery = mainQuery2.replace(/{!genesis__Applications__c.Id}/g,appliRow.Id);
+finalString = mainQuery.replace(/{!genesis__Applications__c.Name}/g,appliRow.Name);
+//Changing the location of collaterals on application getting approved
+var resCheck = sforce.apex.execute('LASDocumentHelper','updateValues',
+                {   appId : appliRow.Id, 
+                });
+var resCheck1 = sforce.apex.execute('LASDocumentHelper','updateOverrideValues',
+                {   appId : appliRow.Id, 
+                });
+var resCheck2 = sforce.apex.execute('LASDocumentHelper','updateEmploymentValues',
+                {   appId : appliRow.Id, 
+                });
+window.open(finalString);</jsitem>
+		</javascript>
+		<css>
+			<cssitem location="staticresource" name="CLSStyleSheetPack" cachelocation="false" url="" namespace="genesisExtn" filepath="cls-common.css"/>
+			<cssitem location="staticresource" name="CLSStyleSheetPack" cachelocation="false" url="" namespace="genesisExtn" filepath="cls-queue.css"/>
+			<cssitem location="staticresource" name="CLSStyleSheetPack" cachelocation="false" url="" namespace="genesisExtn" filepath="customcss.css"/>
+			<cssitem location="inline" name="myCss" cachelocation="false">body {
+    font: normal normal 400 12px Lato;
+    padding: 0 !important;
+}
+
+body &gt; .nx-page {
+    padding: 0;
+}
+
+.noPaddingTop{
+    padding-top: 0;
+}
+
+#all-approvals-queue-view {
+    background-color: #f5f5f5;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+#approvals-panelset {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+#ApprovalsQueue {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 10px;
+    width: 260px;
+}
+
+#approvals-dashboard-container {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 280px;
+    right: 10px;
+}
+
+#approvals-dashboard-container #dashboard-container,
+#approvals-dashboard-container #dashboard-container div {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+#approvals-dashboard-container #dashboard-container #approval-dashboard-iframe {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+.queue-button-container .nx-header-right {
+    float: none;
+    text-align: center;
+    margin-top: 10px;
+}
+
+div[pagename="ApprovalsDashboard"] {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}</cssitem>
+		</css>
+		<actionsequences uniqueid="sk-1NmS-922">
+			<actionsequence id="ca39d2ee-c592-4722-a578-f633ab0030ad" label="Page Load" type="event-triggered" event-scope="component" event-name="page.rendered" uniqueid="sk-2-39-410">
+				<description/>
+				<actions>
+					<action type="requeryModels" behavior="standard">
+						<models>
+							<model>AllValidApprovals</model>
+							<model>AllApprovalDefinitions</model>
+						</models>
+					</action>
+				</actions>
+				<inputs/>
+			</actionsequence>
+		</actionsequences>
+	</resources>
+	<styles>
+		<styleitem type="background" bgtype="none"/>
+		<styleitem property="position" value="absolute"/>
+		<styleitem property="left" value="0"/>
+		<styleitem property="right" value="0"/>
+		<styleitem property="top" value="0"/>
+		<styleitem property="bottom" value="0"/>
+	</styles>
+	<interactions/>
+</skuidpage>

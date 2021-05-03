@@ -1,0 +1,1143 @@
+<skuidpage personalizationmode="server" showsidebar="false" useviewportmeta="false" showheader="false">
+	<models>
+		<model id="ACStatementForAccount" limit="1" query="true" createrowifnonefound="false" datasource="salesforce" sobject="Account">
+			<fields>
+				<field id="Id"/>
+				<field id="Name"/>
+				<field id="Account Name" uionly="true" displaytype="TEXT" label="{{Name}}" defaultvaluetype="fieldvalue"/>
+				<field id="clcommon__Financial_Statement_Template__c"/>
+				<field id="clcommon__Financial_Statement_Template__r.Name"/>
+				<field id="clcommon__Industry_Classification_Code__c"/>
+				<field id="clcommon__Industry_Classification_Code__r.Name"/>
+				<field id="clcommon__Industry_Classification_Code__r.clcommon__Financial_Statement_Template__c"/>
+				<field id="clcommon__Industry_Classification_Code__r.clcommon__Financial_Statement_Template__r.Name"/>
+			</fields>
+			<conditions>
+				<condition type="param" value="accountId" field="Id" operator="=" enclosevalueinquotes="true" novaluebehavior="noquery" model="TemplateDetails"/>
+			</conditions>
+			<actions/>
+		</model>
+		<model id="AccountTemplateDetails" limit="1" query="true" createrowifnonefound="false" datasource="salesforce" sobject="clcommon__Financial_Statement_Template__c">
+			<fields>
+				<field id="Id"/>
+				<field id="Name"/>
+			</fields>
+			<conditions>
+				<condition type="modelmerge" value="" field="Id" operator="=" novaluebehavior="noquery" model="ACStatementForAccount" enclosevalueinquotes="true" mergefield="clcommon__Financial_Statement_Template__c" fieldtargetobjects="clcommon__Financial_Statement_Template__c"/>
+			</conditions>
+			<actions/>
+		</model>
+		<model id="StatementDetailforSensitivity" limit="20" query="true" createrowifnonefound="false" datasource="salesforce" sobject="clcommon__Statement_Detail__c">
+			<fields>
+				<field id="clcommon__Statement_Type__c"/>
+			</fields>
+			<conditions>
+				<condition type="param" value="accountid" field="clcommon__Statement__r.clcommon__Account__c" fieldtargetobjects="Account" operator="=" enclosevalueinquotes="true" model="StatementType"/>
+				<condition type="fieldvalue" value="SENSITIVITY" field="clcommon__Statement__r.clcommon__Statement_Analysis_Type__c" operator="=" enclosevalueinquotes="true" model="StatementType"/>
+				<condition type="param" value="templateid" field="clcommon__Statement__r.clcommon__Template__c" fieldtargetobjects="clcommon__Financial_Statement_Template__c" operator="=" enclosevalueinquotes="true" model="StatementType"/>
+			</conditions>
+			<actions/>
+		</model>
+		<model id="NewStatementHeader" limit="" query="false" createrowifnonefound="true" datasource="salesforce" sobject="clcommon__Financial_Statement__c" doclone="">
+			<fields>
+				<field id="clcommon__Account__c"/>
+				<field id="clcommon__Account__r.Name"/>
+				<field id="Name"/>
+				<field id="clcommon__Audit_Method__c"/>
+				<field id="clcommon__Previous_Statement__c"/>
+				<field id="clcommon__Previous_Statement__r.Name"/>
+				<field id="clcommon__Statement_Date__c"/>
+				<field id="clcommon__Months_Covered__c"/>
+				<field id="clcommon__Statement_Type__c"/>
+				<field id="clcommon__Template__c"/>
+				<field id="clcommon__Template__r.Name"/>
+				<field id="clcommon__Accounting_Basis__c"/>
+			</fields>
+			<conditions>
+				<condition type="param" value="accountId" field="clcommon__Account__c" fieldtargetobjects="Account" operator="=" userinfotype="userid" enclosevalueinquotes="true" novaluebehavior="" model="TemplateDetails"/>
+				<condition type="modelmerge" value="" field="clcommon__Template__c" fieldtargetobjects="clcommon__Financial_Statement_Template__c" operator="=" model="ACStatementForAccount" enclosevalueinquotes="true" mergefield="clcommon__Financial_Statement_Template__c" novaluebehavior="deactivate"/>
+				<condition type="blank" value="null" field="Id" operator="=" enclosevalueinquotes="false" model="TemplateDetails"/>
+			</conditions>
+			<actions/>
+		</model>
+		<model id="TrendAnalysisRequest" limit="20" query="true" createrowifnonefound="true" datasource="Ui-Only" processonclient="true">
+			<fields>
+				<field displaytype="PICKLIST" id="statementType" label="Statement Type" ogdisplaytype="TEXT" picklistsource="manual" returntype="TEXT" required="true">
+					<picklistentries>
+						<entry value="BALANCESHEET" label="Balance Sheet"/>
+						<entry value="INCOME" label="Income Statement"/>
+						<entry value="CASHFLOW" label="Cash Flow Statement"/>
+						<entry value="RATIO" label="Financial Ratio"/>
+					</picklistentries>
+				</field>
+				<field id="basePeriod" displaytype="PICKLIST" ogdisplaytype="TEXT" picklistsource="snippet" returntype="TEXT" label="Base Period" snippet="BasePeriods" defaultvaluetype="fieldvalue" required="true">
+					<picklistentries/>
+				</field>
+			</fields>
+			<conditions/>
+			<actions>
+				<action>
+					<actions>
+						<action type="custom" snippet="trendAnalysisRequest"/>
+						<action type="closeAllPopups"/>
+						<action type="custom" snippet="refreshTabs"/>
+					</actions>
+					<events>
+						<event>models.saved</event>
+					</events>
+				</action>
+			</actions>
+		</model>
+		<model query="true" createrowifnonefound="false" datasource="salesforce" id="TemplateDetails" sobject="clcommon__Template_Detail__c" processonclient="true">
+			<fields>
+				<field id="Name"/>
+			</fields>
+			<conditions logic="1 AND 2 AND 3">
+				<condition type="modelmerge" value="" field="clcommon__Template__c" fieldtargetobjects="clcommon__Financial_Statement_Template__c" operator="=" model="ACStatementForAccount" enclosevalueinquotes="true" mergefield="clcommon__Financial_Statement_Template__c" novaluebehavior="deactivate"/>
+				<condition type="modelmerge" value="" field="clcommon__Statement_Type__c" operator="in" model="SensitivityAnalysis" enclosevalueinquotes="true" mergefield="StatementType" novaluebehavior="deactivate"/>
+				<condition type="fieldvalue" value="INPUT" enclosevalueinquotes="true" field="clcommon__Type__c" model="StatementType"/>
+			</conditions>
+			<actions/>
+		</model>
+		<model id="StatementParameters" limit="20" query="true" createrowifnonefound="true" datasource="Ui-Only" processonclient="true">
+			<fields>
+				<field id="TemplateDetail" displaytype="PICKLIST" ogdisplaytype="TEXT" datasource="salesforce" rel="TemplateDetail" keyfield="Id" targetobjects="clcommon__Template_Detail__c" label="Template Detail" defaultvaluetype="fieldvalue" picklistsource="rowsinmodel" returntype="TEXT" picklistmodel="TemplateDetails" entryvalue="{{Id}}">
+					<batchfields>
+						<batchfield field="Name"/>
+					</batchfields>
+				</field>
+				<field id="PercentChange" displaytype="DOUBLE" label="Percent Change" ogdisplaytype="TEXT" precision="9" scale="2"/>
+			</fields>
+			<conditions/>
+			<actions/>
+		</model>
+		<model id="ProjectionStatement" limit="20" query="true" createrowifnonefound="true" datasource="Ui-Only" processonclient="true">
+			<fields>
+				<field displaytype="MULTIPICKLIST" id="FinancialStatementsForProjection" label="Financial Statements For Projection" ogdisplaytype="TEXT" picklistsource="rowsinmodel" returntype="TEXT" picklistmodel="FinancialStatements" entryvalue="{{Id}}"/>
+				<field id="MonthsCovered" displaytype="DOUBLE" label="Months Covered" ogdisplaytype="TEXT" precision="9" scale="2"/>
+				<field id="StatementDate" displaytype="DATE" label="Statement Date" ogdisplaytype="TEXT"/>
+				<field id="StatementType" displaytype="PICKLIST" label="Statement Type" ogdisplaytype="TEXT" picklistsource="manual" returntype="TEXT">
+					<picklistentries>
+						<entry value="Annual" label="Annual"/>
+						<entry value="Interim" label="Interim"/>
+					</picklistentries>
+				</field>
+				<field id="Name" displaytype="TEXT" label="Name"/>
+			</fields>
+			<conditions/>
+			<actions/>
+		</model>
+		<model id="FinancialStatements" limit="20" query="true" createrowifnonefound="false" datasource="salesforce" sobject="clcommon__Financial_Statement__c" processonclient="false">
+			<fields>
+				<field id="Name"/>
+			</fields>
+			<conditions>
+				<condition type="param" value="accountId" field="clcommon__Account__c" fieldtargetobjects="Account" operator="=" enclosevalueinquotes="true" novaluebehavior="noquery" model="TemplateDetails"/>
+				<condition type="fieldvalue" value="SENSITIVITY" enclosevalueinquotes="true" field="clcommon__Statement_Analysis_Type__c" operator="!=" model="StatementType"/>
+			</conditions>
+			<actions/>
+		</model>
+		<model id="SensitivityAnalysis" limit="20" query="true" createrowifnonefound="true" datasource="Ui-Only" processonclient="true">
+			<fields>
+				<field id="StatementType" displaytype="PICKLIST" label="Statement Type" ogdisplaytype="TEXT" picklistsource="manual" returntype="TEXT">
+					<picklistentries>
+						<entry value="BALANCESHEET" label="Balance Sheet"/>
+						<entry value="INCOME" label="Income Statement"/>
+					</picklistentries>
+				</field>
+				<field id="FinancialStatements" displaytype="PICKLIST" label="Financial Statements" ogdisplaytype="TEXT" picklistsource="rowsinmodel" returntype="TEXT" picklistmodel="FinancialStatements"/>
+			</fields>
+			<conditions/>
+			<actions/>
+		</model>
+		<model id="StatementParamsForSensitivityAnalysis" limit="20" query="true" createrowifnonefound="true" datasource="Ui-Only" processonclient="true">
+			<fields>
+				<field id="TemplateDetail" displaytype="PICKLIST" ogdisplaytype="TEXT" picklistsource="rowsinmodel" returntype="TEXT" label="Template Detail" picklistmodel="TemplateDetails"/>
+				<field id="Case1" displaytype="DOUBLE" label="Case 1" ogdisplaytype="TEXT" precision="9" scale="2"/>
+				<field id="Case2" displaytype="DOUBLE" label="Case 2" ogdisplaytype="TEXT" precision="9" scale="2"/>
+				<field id="Case3" displaytype="DOUBLE" label="Case 3" ogdisplaytype="TEXT" precision="9" scale="2"/>
+			</fields>
+			<conditions/>
+			<actions/>
+		</model>
+		<model limit="20" query="true" createrowifnonefound="true" datasource="Ui-Only" id="StatementType" processonclient="true">
+			<fields>
+				<field id="Type" displaytype="PICKLIST" label="{{Type}}" defaultvaluetype="fieldvalue" ogdisplaytype="TEXT" picklistsource="manual" returntype="TEXT" defaultValue="BALANCESHEET">
+					<picklistentries>
+						<entry value="INCOME" label="Income Statement"/>
+						<entry label="Balance Sheet" value="BALANCESHEET"/>
+						<entry value="CASHFLOW" label="Cash Flow Statement"/>
+						<entry value="UCACASHFLOW" label="UCA Cash Flow Statement"/>
+						<entry value="RATIO" label="Financial Ratio"/>
+						<entry value="TREND" label="Trend Analysis"/>
+						<entry label="Sensitivity Analysis" value="SENSITIVITY"/>
+					</picklistentries>
+				</field>
+			</fields>
+			<conditions>
+				<condition type="fieldvalue" field="Type" operator="=" inactive="true" enclosevalueinquotes="true" name="__autofilter__Type" state="filterableoff" value=""/>
+			</conditions>
+			<actions/>
+		</model>
+		<model id="AccountStatementParameters" limit="20" query="true" createrowifnonefound="true" datasource="Ui-Only" processonclient="true">
+			<fields>
+				<field id="Type" displaytype="PICKLIST" defaultvaluetype="fieldvalue" label="Type" ogdisplaytype="TEXT" picklistsource="manual" returntype="TEXT" defaultValue="BALANCESHEET">
+					<picklistentries>
+						<entry value="BALANCESHEET" label="Balance Sheet"/>
+						<entry value="INCOME" label="Income Statement"/>
+						<entry value="CASHFLOW" label="Cash Flow Statement"/>
+						<entry value="UCACASHFLOW" label="UCA Cash Flow Statement"/>
+						<entry value="RATIO" label="Financial Ratio"/>
+						<entry value="TREND" label="Trend Analysis"/>
+						<entry value="SENSITIVITY" label="Sensitivity Analysis"/>
+					</picklistentries>
+				</field>
+				<field id="Parties" displaytype="PICKLIST" ogdisplaytype="TEXT" picklistsource="rowsinmodel" returntype="TEXT" label="Parties" picklistmodel="Party" defaultvaluetype="fieldvalue" entrylabel="{{clcommon__Account__r.Name}}" entryvalue="{{clcommon__Account__r.Id}}"/>
+			</fields>
+			<conditions/>
+			<actions/>
+		</model>
+		<model id="FSHeader" query="true" createrowifnonefound="false" datasource="salesforce" sobject="clcommon__Financial_Statement__c" orderby="Name,ID DESC">
+			<fields>
+				<field id="clcommon__Account__r.Name"/>
+				<field id="clcommon__Account__c"/>
+				<field id="clcommon__Audit_Method__c"/>
+				<field id="clcommon__Months_Covered__c"/>
+				<field id="clcommon__Previous_Statement__c"/>
+				<field id="clcommon__Previous_Statement__r.Name"/>
+				<field id="clcommon__Statement_Date__c"/>
+				<field id="clcommon__Statement_Type__c"/>
+				<field id="Name"/>
+				<field id="Id"/>
+				<field id="clcommon__Financial_Statement__r" type="childRelationship" limit="10">
+					<fields>
+						<field id="clcommon__Statement_Type__c"/>
+						<field id="clcommon__Template_Detail__r.clcommon__Statement_Type__c"/>
+					</fields>
+				</field>
+			</fields>
+			<conditions>
+				<condition type="param" value="accountId" field="clcommon__Account__c" fieldtargetobjects="Account" operator="=" enclosevalueinquotes="true"/>
+				<condition type="fieldvalue" value="SENSITIVITY" enclosevalueinquotes="true" field="clcommon__Statement_Analysis_Type__c" operator="!="/>
+			</conditions>
+			<actions/>
+		</model>
+		<model id="LabelsModel" limit="20" query="true" createrowifnonefound="true" datasource="Ui-Only" processonclient="true">
+			<fields>
+				<field id="StatementDate" displaytype="TEXT" label="Statement Date" readonly="true" defaultvaluetype="fieldvalue"/>
+				<field id="MonthsCovered" displaytype="TEXT" label="Months Covered" readonly="true" defaultvaluetype="fieldvalue"/>
+				<field id="AuditMethod" displaytype="TEXT" label="Audit Method" readonly="true"/>
+				<field id="StatementType" displaytype="TEXT" label="Statement Type" readonly="true"/>
+				<field id="PreviousStatement" displaytype="TEXT" label="Previous Statement" readonly="true"/>
+				<field id="Name" displaytype="TEXT" label="Name" readonly="true" defaultvaluetype="fieldvalue"/>
+				<field id="EditMode" displaytype="TEXT" label="Edit Mode" readonly="true" defaultvaluetype="fieldvalue"/>
+				<field id="Account" displaytype="TEXT" label="Account" readonly="false"/>
+			</fields>
+			<conditions/>
+			<actions/>
+		</model>
+		<model id="ACStatementForAccountPrev" limit="1" query="true" createrowifnonefound="false" datasource="salesforce" sobject="Account">
+			<fields>
+				<field id="Id"/>
+				<field id="Name"/>
+				<field id="Account Name" uionly="true" displaytype="TEXT" label="{{Name}}" defaultvaluetype="fieldvalue"/>
+				<field id="clcommon__Financial_Statement_Template__c"/>
+				<field id="clcommon__Financial_Statement_Template__r.Name"/>
+				<field id="clcommon__Industry_Classification_Code__c"/>
+				<field id="clcommon__Industry_Classification_Code__r.Name"/>
+				<field id="clcommon__Industry_Classification_Code__r.clcommon__Financial_Statement_Template__c"/>
+				<field id="clcommon__Industry_Classification_Code__r.clcommon__Financial_Statement_Template__r.Name"/>
+			</fields>
+			<conditions>
+				<condition type="param" value="accountId" field="Id" operator="=" enclosevalueinquotes="true" novaluebehavior="noquery" model="TemplateDetails"/>
+			</conditions>
+			<actions/>
+		</model>
+	</models>
+	<components>
+		<wrapper uniqueid="sk-JO3-380">
+			<components>
+				<navigation uniqueid="navigationId" type="dropdown">
+					<navigationitems>
+						<navigationitem label="Add New Statement" uniqueid="sk-3eeM-351">
+							<actions>
+								<action type="showPopup">
+									<popup width="90%">
+										<components>
+											<wrapper uniqueid="sk-3VAO-663">
+												<components>
+													<wrapper uniqueid="sk-yBM-1739">
+														<components>
+															<progressindicator__progress_indicator id-index="2" future-color="#dddddd" current-color="#1cbdd4" done-color="#2d5074" mode="tabwiz" uniqueid="sk-yBQ-1753">
+																<steps>
+																	<step label="Add Financial Statement Template" data-id="0">
+																		<components/>
+																	</step>
+																	<step label="Add Financial Statement" data-id="1">
+																		<components/>
+																	</step>
+																</steps>
+															</progressindicator__progress_indicator>
+															<wizard deferstepcontentsrendering="false" buttonslocation="top" uniqueid="sk-yBS-1762">
+																<steps>
+																	<step stepid="step3" steplabel="Select Financial Statement Template">
+																		<components>
+																			<basicfieldeditor showheader="true" showsavecancel="false" showerrorsinline="true" model="ACStatementForAccount" uniqueid="sk-yBx-2075" mode="read">
+																				<columns>
+																					<column width="100%" uniqueid="sk-yBx-2071">
+																						<sections>
+																							<section collapsible="no" uniqueid="sk-yB_-2105">
+																								<fields>
+																									<field uniqueid="sk-yC1-2115" id="clcommon__Financial_Statement_Template__c"/>
+																								</fields>
+																							</section>
+																						</sections>
+																					</column>
+																				</columns>
+																				<conditions/>
+																			</basicfieldeditor>
+																		</components>
+																		<actions>
+																			<action uniqueid="sk-yBS-1759" type="multi" stepid="step2" label="Save and Continue" icon="sk-icon-arrow-right" window="self">
+																				<actions>
+																					<action type="save">
+																						<models>
+																							<model>ACStatementForAccount</model>
+																						</models>
+																					</action>
+																					<action type="requeryModels" model="ACStatementForAccount" behavior="standard">
+																						<models>
+																							<model>ACStatementForAccount</model>
+																						</models>
+																					</action>
+																					<action type="custom" fieldmodel="NewStatementHeader" affectedrows="context" datasource="SkuidDataService" snippet="UpdateNewStatementHeaderWithTemplate"/>
+																					<action type="navigateToStep" stepid="step4"/>
+																				</actions>
+																			</action>
+																		</actions>
+																	</step>
+																	<step stepid="step4" steplabel="Add Financial Statement">
+																		<components>
+																			<pagetitle model="NewStatementHeader" uniqueid="sk-yE0-2375">
+																				<subtitle>
+																					<template>{{Model.label}}</template>
+																				</subtitle>
+																				<actions>
+																					<action type="multi" label="Save" uniqueid="sk-yE2-2385">
+																						<actions>
+																							<action type="blockUI" message="Saving"/>
+																							<action type="save">
+																								<models>
+																									<model>NewStatementHeader</model>
+																								</models>
+																							</action>
+																							<action type="custom" snippet="generateStatementForm"/>
+																						</actions>
+																					</action>
+																				</actions>
+																			</pagetitle>
+																			<basicfieldeditor showheader="true" showsavecancel="false" showerrorsinline="true" model="NewStatementHeader" uniqueid="sk-yCL-2204" mode="edit">
+																				<columns>
+																					<column width="100%" uniqueid="sk-yCL-2200">
+																						<sections>
+																							<section uniqueid="sk-yCL-2201" collapsible="no">
+																								<fields>
+																									<field uniqueid="sk-yCc-2242" id="clcommon__Account__c"/>
+																									<field uniqueid="sk-yCc-2244" id="Name"/>
+																									<field uniqueid="sk-yDj-2339" id="clcommon__Template__c"/>
+																									<field uniqueid="sk-yCc-2249" id="clcommon__Accounting_Basis__c" showhelp="true"/>
+																									<field uniqueid="sk-yCc-2247" id="clcommon__Statement_Date__c"/>
+																									<field uniqueid="sk-yCc-2245" id="clcommon__Months_Covered__c"/>
+																									<field uniqueid="sk-yCc-2243" id="clcommon__Audit_Method__c"/>
+																									<field uniqueid="sk-yCc-2248" id="clcommon__Statement_Type__c"/>
+																									<field uniqueid="sk-yCc-2246" id="clcommon__Previous_Statement__c"/>
+																								</fields>
+																							</section>
+																						</sections>
+																					</column>
+																				</columns>
+																				<renderconditions logictype="and"/>
+																			</basicfieldeditor>
+																		</components>
+																		<actions>
+																			<action uniqueid="sk-yBS-1760" type="navigate" stepid="step3" label="Previous Step" icon="sk-icon-arrow-left" secondary="true" window="self"/>
+																		</actions>
+																	</step>
+																</steps>
+															</wizard>
+														</components>
+														<styles>
+															<styleitem type="background"/>
+															<styleitem type="border"/>
+															<styleitem type="size"/>
+														</styles>
+														<renderconditions logictype="and">
+															<rendercondition type="blank" operator="!=" fieldmodel="ACStatementForAccountPrev" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="clcommon__Industry_Classification_Code__c" fieldtargetobjects="clcommon__Industry_Classification_Code__c" value="null" enclosevalueinquotes="false"/>
+															<rendercondition type="blank" operator="=" fieldmodel="ACStatementForAccountPrev" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="clcommon__Financial_Statement_Template__c" fieldtargetobjects="clcommon__Financial_Statement_Template__c" value="null" enclosevalueinquotes="false"/>
+														</renderconditions>
+													</wrapper>
+													<wrapper uniqueid="sk-3VAR-687">
+														<components>
+															<progressindicator__progress_indicator id-index="3" future-color="#dddddd" current-color="#1cbdd4" done-color="#2d5074" mode="tabwiz" uniqueid="sk-3VB6-807">
+																<steps>
+																	<step label="Select NAICS code" data-id="0">
+																		<components/>
+																	</step>
+																	<step label="Add Financial Statement" data-id="2">
+																		<components/>
+																	</step>
+																</steps>
+															</progressindicator__progress_indicator>
+															<wizard deferstepcontentsrendering="false" buttonslocation="top" uniqueid="sk-3VA--788">
+																<steps>
+																	<step stepid="step1" steplabel="Select NAICS code ">
+																		<components>
+																			<basicfieldeditor showheader="true" showsavecancel="false" showerrorsinline="true" model="ACStatementForAccount" uniqueid="sk-3VC5-1123" mode="read">
+																				<columns>
+																					<column width="100%" uniqueid="sk-3VC5-1119">
+																						<sections>
+																							<section title="Section A" uniqueid="sk-3VC5-1120" collapsible="no">
+																								<fields>
+																									<field uniqueid="sk-3VCF-1161" id="clcommon__Industry_Classification_Code__c" showhelp="true">
+																										<label>NAICS code</label>
+																									</field>
+																								</fields>
+																							</section>
+																						</sections>
+																					</column>
+																				</columns>
+																				<renderconditions logictype="and"/>
+																			</basicfieldeditor>
+																		</components>
+																		<actions>
+																			<action uniqueid="sk-3VA--785" type="multi" stepid="step2" label="Save and Continue" icon="sk-icon-arrow-right" window="self">
+																				<actions>
+																					<action type="save">
+																						<models>
+																							<model>ACStatementForAccount</model>
+																						</models>
+																					</action>
+																					<action type="requeryModel" model="ACStatementForAccount" behavior="standard"/>
+																					<action type="custom" fieldmodel="ACStatementForAccount" affectedrows="context" field="clcommon__Financial_Statement_Template__c" fieldtargetobjects="clcommon__Financial_Statement_Template__c" enclosevalueinquotes="true" snippet="FinancialStatementTemplateUpdate"/>
+																					<action type="custom" snippet="UpdateNewStatementHeaderWithTemplate"/>
+																					<action type="navigateToStep" stepid="step2"/>
+																				</actions>
+																			</action>
+																		</actions>
+																	</step>
+																	<step stepid="step2" steplabel="Add Financial Statement">
+																		<components>
+																			<pagetitle uniqueid="sk-Onn-626" model="NewStatementHeader">
+																				<subtitle>
+																					<template>{{Model.label}}</template>
+																				</subtitle>
+																				<actions>
+																					<action type="multi" label="Save" uniqueid="sk-Ons-640">
+																						<actions>
+																							<action type="blockUI" message="Saving"/>
+																							<action type="save">
+																								<models>
+																									<model>NewStatementHeader</model>
+																								</models>
+																							</action>
+																							<action type="custom" snippet="generateStatementForm"/>
+																						</actions>
+																					</action>
+																				</actions>
+																			</pagetitle>
+																			<basicfieldeditor showheader="true" showsavecancel="false" showerrorsinline="true" model="NewStatementHeader" uniqueid="sk-OoF-725" mode="edit">
+																				<columns>
+																					<column width="100%" uniqueid="sk-OoH-749">
+																						<sections>
+																							<section title="New Section" collapsible="no" uniqueid="sk-OoH-750" showheader="false">
+																								<fields>
+																									<field uniqueid="sk-OoT-766" id="clcommon__Account__c"/>
+																									<field uniqueid="sk-OoT-768" id="Name"/>
+																									<field uniqueid="sk-OoT-773" id="clcommon__Template__c"/>
+																									<field uniqueid="sk-yDc-2314" id="clcommon__Accounting_Basis__c" showhelp="true"/>
+																									<field uniqueid="sk-OoT-771" id="clcommon__Statement_Date__c"/>
+																									<field uniqueid="sk-OoT-769" id="clcommon__Months_Covered__c"/>
+																									<field uniqueid="sk-OoT-767" id="clcommon__Audit_Method__c"/>
+																									<field uniqueid="sk-OoT-772" id="clcommon__Statement_Type__c"/>
+																									<field uniqueid="sk-OoT-770" id="clcommon__Previous_Statement__c"/>
+																								</fields>
+																							</section>
+																						</sections>
+																					</column>
+																				</columns>
+																			</basicfieldeditor>
+																		</components>
+																		<actions>
+																			<action uniqueid="sk-Onk-614" type="navigate" stepid="step1" label="Previous Step" icon="sk-icon-arrow-left" secondary="true" window="self"/>
+																		</actions>
+																	</step>
+																</steps>
+															</wizard>
+														</components>
+														<styles>
+															<styleitem type="background"/>
+															<styleitem type="border"/>
+															<styleitem type="size"/>
+														</styles>
+														<renderconditions logictype="and">
+															<rendercondition type="blank" operator="=" fieldmodel="ACStatementForAccountPrev" sourcetype="fieldvalue" field="clcommon__Financial_Statement_Template__c" fieldtargetobjects="clcommon__Financial_Statement_Template__c" value="null" enclosevalueinquotes="false" nosourcerowbehavior="deactivate"/>
+															<rendercondition type="blank" operator="=" fieldmodel="ACStatementForAccountPrev" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="clcommon__Industry_Classification_Code__c" fieldtargetobjects="clcommon__Industry_Classification_Code__c" value="null" enclosevalueinquotes="false"/>
+														</renderconditions>
+													</wrapper>
+													<wrapper uniqueid="sk-3VAP-675">
+														<components>
+															<pagetitle model="NewStatementHeader" uniqueid="sk--wMJj-189">
+																<actions>
+																	<action type="multi" label="Save" uniqueid="sk-2TrE-371">
+																		<actions>
+																			<action type="blockUI" message="Saving"/>
+																			<action type="save">
+																				<models>
+																					<model>NewStatementHeader</model>
+																				</models>
+																				<onerroractions>
+																					<action type="blockUI" message="There was an error" timeout="3000"/>
+																				</onerroractions>
+																			</action>
+																			<action type="custom" snippet="generateStatementForm"/>
+																			<action type="closeAllPopups"/>
+																			<action type="unblockUI"/>
+																			<action type="requeryModels" behavior="standard">
+																				<models>
+																					<model>ACStatementForAccount</model>
+																				</models>
+																			</action>
+																			<action type="custom" snippet="refreshTabs">
+																				<onerroractions/>
+																			</action>
+																			<action type="emptyModelData">
+																				<models>
+																					<model>NewStatementHeader</model>
+																				</models>
+																			</action>
+																			<action type="createRow" model="NewStatementHeader" appendorprepend="prepend" defaultmodefornewitems="edit" affectedrows="context">
+																				<defaults>
+																					<default type="fieldvalue" field="clcommon__Account__c" fieldtargetobjects="Account" enclosevalueinquotes="true" value="{{$Model.ACStatementForAccount.data.0.Id}}"/>
+																					<default type="fieldvalue" field="clcommon__Template__c" fieldtargetobjects="clcommon__Financial_Statement_Template__c" enclosevalueinquotes="true" value="{{$Model.AccountTemplateDetails.data.0.Id}}"/>
+																				</defaults>
+																			</action>
+																			<action type="custom" snippet="refreshTabs"/>
+																		</actions>
+																		<hotkeys/>
+																	</action>
+																</actions>
+																<renderconditions logictype="and"/>
+															</pagetitle>
+															<basicfieldeditor showheader="true" showsavecancel="false" showerrorsinline="true" model="NewStatementHeader" uniqueid="sk--vxCn-127" mode="edit" layout="">
+																<columns>
+																	<column width="100%">
+																		<sections>
+																			<section title="" collapsible="no" showheader="false">
+																				<fields>
+																					<field id="clcommon__Account__c" valuehalign="" type="" readonly="true" uniqueid="sk-2TrE-380"/>
+																					<field id="Name" valuehalign="" type="" readonly="false" required="true" uniqueid="sk-2TrE-383"/>
+																					<field id="clcommon__Template__c" readonly="true" pagesize="5" uniqueid="sk-2TrE-386" redirecttype="datasourcedefault">
+																						<searchfields/>
+																						<filters/>
+																						<renderconditions logictype="and" onhidedatabehavior="keep"/>
+																						<enableconditions/>
+																					</field>
+																					<field uniqueid="sk-yDf-2324" id="clcommon__Accounting_Basis__c" showhelp="true"/>
+																					<field id="clcommon__Statement_Date__c" uniqueid="sk-2TrE-389"/>
+																					<field id="clcommon__Months_Covered__c" uniqueid="sk-2TrE-392"/>
+																					<field id="clcommon__Audit_Method__c" uniqueid="sk-2TrE-395"/>
+																					<field id="clcommon__Statement_Type__c" uniqueid="sk-2TrE-398"/>
+																					<field id="clcommon__Previous_Statement__c" valuehalign="" type="" optionsource="" pagesize="5" uniqueid="sk-2TrE-401">
+																						<searchfields/>
+																						<filters/>
+																					</field>
+																				</fields>
+																			</section>
+																		</sections>
+																	</column>
+																</columns>
+																<renderconditions logictype="and"/>
+															</basicfieldeditor>
+														</components>
+														<styles>
+															<styleitem type="background"/>
+															<styleitem type="border"/>
+															<styleitem type="size"/>
+														</styles>
+														<renderconditions logictype="and">
+															<rendercondition type="blank" operator="!=" fieldmodel="ACStatementForAccountPrev" sourcetype="fieldvalue" field="clcommon__Financial_Statement_Template__c" fieldtargetobjects="clcommon__Financial_Statement_Template__c" value="null" enclosevalueinquotes="false" nosourcerowbehavior="deactivate"/>
+														</renderconditions>
+													</wrapper>
+												</components>
+												<styles>
+													<styleitem type="background"/>
+													<styleitem type="border"/>
+													<styleitem type="size"/>
+												</styles>
+												<renderconditions logictype="and"/>
+											</wrapper>
+										</components>
+										<afterclose/>
+									</popup>
+								</action>
+							</actions>
+							<renderconditions logictype="and"/>
+						</navigationitem>
+						<navigationitem label="Add Projected Statement" uniqueid="sk-3eeM-367">
+							<actions>
+								<action type="showPopup">
+									<popup title="Add New Projected Statement for {{Name}}" width="90%">
+										<components>
+											<pagetitle uniqueid="sk-24ng-536" model="ACStatementForAccount">
+												<actions>
+													<action type="multi" label="Generate Statement" uniqueid="sk-24ni-544">
+														<actions>
+															<action type="custom" snippet="GenerateProjectedStatement"/>
+															<action type="closeAllPopups"/>
+															<action type="requeryModels" behavior="standard">
+																<models>
+																	<model>ACStatementForAccount</model>
+																</models>
+															</action>
+														</actions>
+													</action>
+												</actions>
+											</pagetitle>
+											<basicfieldeditor showheader="true" showsavecancel="true" showerrorsinline="true" model="ProjectionStatement" uniqueid="sk-24nm-564" mode="read">
+												<columns>
+													<column width="100%" uniqueid="sk-24nm-560">
+														<sections>
+															<section uniqueid="sk-24nm-561" collapsible="no">
+																<fields>
+																	<field uniqueid="sk-2Ptb-410" id="Name"/>
+																	<field uniqueid="sk-25WW-2134" id="FinancialStatementsForProjection" selectedlist="3"/>
+																	<field uniqueid="sk-29PM-685" id="StatementDate"/>
+																	<field uniqueid="sk-29PM-678" id="MonthsCovered"/>
+																	<field uniqueid="sk-29PO-692" id="StatementType"/>
+																</fields>
+															</section>
+														</sections>
+													</column>
+												</columns>
+											</basicfieldeditor>
+											<skootable showconditions="true" showsavecancel="false" showerrorsinline="true" searchmethod="client" searchbox="true" showexportbuttons="false" hideheader="false" hidefooter="false" pagesize="10" alwaysresetpagination="false" createrecords="true" model="StatementParameters" mode="read" allowcolumnreordering="false" responsive="false" uniqueid="sk-25VG-1597">
+												<fields>
+													<field id="TemplateDetail" hideable="true" uniqueid="fi-25co-2617" required="true"/>
+													<field id="PercentChange" hideable="true" uniqueid="fi-25VL-1628" required="true"/>
+												</fields>
+												<rowactions>
+													<action type="edit"/>
+													<action type="delete"/>
+												</rowactions>
+												<massactions usefirstitemasdefault="true">
+													<action type="massupdate"/>
+													<action type="massdelete"/>
+												</massactions>
+												<views>
+													<view type="standard"/>
+												</views>
+												<renderconditions logictype="and"/>
+												<conditions/>
+												<searchfields/>
+											</skootable>
+										</components>
+										<afterclose/>
+									</popup>
+								</action>
+							</actions>
+							<renderconditions logictype="and"/>
+						</navigationitem>
+						<navigationitem label="Trend Analysis" uniqueid="sk-3f8T-485">
+							<actions>
+								<action type="showPopup" window="self">
+									<popup title="Trend Analysis" width="90%">
+										<components>
+											<basicfieldeditor showheader="true" showsavecancel="true" showerrorsinline="true" model="TrendAnalysisRequest" uniqueid="sk-2UEi-474" mode="edit">
+												<columns>
+													<column width="100%" uniqueid="sk-2UEi-470">
+														<sections>
+															<section title="Section A" uniqueid="sk-2UEi-471" collapsible="no">
+																<fields>
+																	<field uniqueid="sk-2UEm-494" id="statementType" required="true"/>
+																	<field uniqueid="sk-2USR-1683" id="basePeriod" required="true">
+																		<renderconditions logictype="and" onhidedatabehavior="keep"/>
+																		<enableconditions logictype="and"/>
+																	</field>
+																</fields>
+															</section>
+														</sections>
+													</column>
+												</columns>
+												<renderconditions logictype="and"/>
+												<conditions/>
+											</basicfieldeditor>
+										</components>
+									</popup>
+								</action>
+							</actions>
+							<renderconditions logictype="and"/>
+						</navigationitem>
+						<navigationitem label="Sensitivity Analysis" uniqueid="sk-3f8w-357">
+							<actions>
+								<action type="showPopup" window="self">
+									<popup width="90%" title="Sensitivity Analysis">
+										<components>
+											<pagetitle uniqueid="sk-2ZJr-378" model="ACStatementForAccount">
+												<actions>
+													<action type="multi" label="Perform Sensitivity Analysis" uniqueid="sk-2ZJv-399">
+														<actions>
+															<action type="custom" snippet="SensitivityAnalysisRequest"/>
+															<action type="closeAllPopups"/>
+															<action type="requeryModels" behavior="standard">
+																<models>
+																	<model>ACStatementForAccount</model>
+																	<model>AccountTemplateDetails</model>
+																	<model>StatementDetailforSensitivity</model>
+																	<model>ProjectionStatement</model>
+																	<model>FinancialStatements</model>
+																	<model>SensitivityAnalysis</model>
+																</models>
+															</action>
+															<action type="custom" model="ACStatementForAccount" behavior="standard" snippet="refreshTabs"/>
+														</actions>
+													</action>
+												</actions>
+											</pagetitle>
+											<basicfieldeditor showheader="true" showsavecancel="true" showerrorsinline="true" model="SensitivityAnalysis" uniqueid="sk-2Vfu-1393" mode="read">
+												<columns>
+													<column width="100%" uniqueid="sk-2Vfu-1389">
+														<sections>
+															<section title="Section A" uniqueid="sk-2Vfu-1390" collapsible="no">
+																<fields>
+																	<field uniqueid="sk-2Vg0-1421" id="StatementType" required="true"/>
+																	<field uniqueid="sk-2Vg0-1428" id="FinancialStatements" required="true"/>
+																</fields>
+															</section>
+														</sections>
+													</column>
+												</columns>
+											</basicfieldeditor>
+											<skootable showconditions="true" showsavecancel="false" showerrorsinline="true" searchmethod="client" searchbox="true" showexportbuttons="false" hideheader="false" hidefooter="false" pagesize="all" alwaysresetpagination="false" createrecords="true" model="StatementParamsForSensitivityAnalysis" buttonposition="" mode="read" allowcolumnreordering="false" responsive="false" uniqueid="sk-2Vg5-1435" instantfilters="false">
+												<fields>
+													<field id="TemplateDetail" hideable="true" uniqueid="fi-2VgD-1481" required="true"/>
+													<field id="Case1" hideable="true" uniqueid="fi-2VgE-1490" required="true"/>
+													<field id="Case2" hideable="true" uniqueid="fi-2VgF-1499" required="true"/>
+													<field id="Case3" hideable="true" uniqueid="fi-2VgF-1508" required="true"/>
+												</fields>
+												<rowactions>
+													<action type="edit"/>
+													<action type="delete"/>
+												</rowactions>
+												<massactions usefirstitemasdefault="true">
+													<action type="massupdate"/>
+													<action type="massdelete"/>
+												</massactions>
+												<views>
+													<view type="standard"/>
+												</views>
+												<renderconditions logictype="and">
+													<rendercondition type="fieldvalue" enclosevalueinquotes="true" fieldmodel="SensitivityAnalysis" sourcetype="modelproperty" nosourcerowbehavior="deactivate" sourceproperty="hasRows"/>
+												</renderconditions>
+												<searchfields/>
+											</skootable>
+										</components>
+									</popup>
+								</action>
+							</actions>
+						</navigationitem>
+					</navigationitems>
+					<styles>
+						<styleitem property="float" value="right"/>
+					</styles>
+					<renderconditions logictype="and"/>
+				</navigation>
+				<pagetitle uniqueid="sk-JLc-384" model="LabelsModel" cssclass="edit-statement">
+					<actions>
+						<action type="multi" label="Edit" uniqueid="edit-button">
+							<actions>
+								<action type="custom" snippet="FinancialStatement_EditHandler"/>
+							</actions>
+							<hotkeys/>
+							<renderconditions logictype="and">
+								<rendercondition type="fieldvalue" operator="does not contain" fieldmodel="LabelsModel" sourcetype="param" field="StatementType" sourceparam="type" value="SENSITIVITY" enclosevalueinquotes="true"/>
+							</renderconditions>
+							<enableconditions logictype="and"/>
+						</action>
+					</actions>
+					<renderconditions logictype="and"/>
+				</pagetitle>
+			</components>
+			<styles>
+				<styleitem type="background" bgtype="none"/>
+				<styleitem type="border"/>
+				<styleitem type="size"/>
+			</styles>
+		</wrapper>
+		<template multiple="false" uniqueid="sk-YHa-434" model="AccountStatementParameters" allowhtml="false">
+			<contents>&lt;iframe  src="/apex/genesis__FinancialStatementPage?type={{$Param.type}}&amp;accountid={{{$Model.ACStatementForAccount.data.0.Id}}}&amp;base={{$Param.base}}&amp;valueDiff={{$Param.valueDiff}}" style="width:-webkit-fill-available;height: -webkit-fill-available;"  frameBorder="0"/&gt;</contents>
+			<renderconditions logictype="and"/>
+		</template>
+	</components>
+	<resources>
+		<labels/>
+		<javascript>
+			<jsitem location="external" name="ConnectionJS" cachelocation="false" url="/soap/ajax/40.0/connection.js">var params = arguments[0],
+	$ = skuid.$;
+</jsitem>
+			<jsitem location="external" name="AjaxToolKit" cachelocation="false" url="/soap/ajax/40.0/apex.js">var params = arguments[0],
+	$ = skuid.$;
+</jsitem>
+			<jsitem location="inlinesnippet" name="generateStatementForm" cachelocation="false">var params = arguments[0],
+	$ = skuid.$;
+	
+var statementHeader = skuid.model.getModel('NewStatementHeader').data[0];
+sforce.apex.execute('clcommon.CustomButtonAction', 'generateStatementsForm', {
+                                statementId: statementHeader.Id,
+                            }
+                        ); </jsitem>
+			<jsitem location="inlinesnippet" name="refreshTabs" cachelocation="false">var params = arguments[0],
+	$ = skuid.$;
+	skuid.component.getById('sk-YHa-434').render();</jsitem>
+			<jsitem location="inlinesnippet" name="BasePeriods" cachelocation="false">var params = arguments[0],
+	$ = skuid.$;
+	
+var statements = skuid.model.getModel('FinancialStatements').data;
+console.log(statements);
+var basePeriods = [];
+var i;
+for(i=0; i &lt;statements.length ; i++){
+    basePeriods.push({ label: statements[i].Name, value: statements[i].Id });
+}
+basePeriods.push({ label: 'Previous Period', value: 'Previous Period' });
+console.log(basePeriods);
+var statementModel = skuid.model.getModel('StatementDetailforSensitivity');
+    console.log('here1');
+    console.log(statementModel.data);
+return basePeriods;
+</jsitem>
+			<jsitem location="inlinesnippet" name="trendAnalysisRequest" cachelocation="false">var params = arguments[0],
+	$ = skuid.$;
+	
+var trendAnalysisReq = skuid.model.getModel('TrendAnalysisRequest').data[0];
+var acc = skuid.model.getModel('ACStatementForAccount').data[0];
+sforce.apex.execute('clcommon.CustomButtonAction', 'performTrendAnalysis', {
+                                accId: acc.Id,
+                                statementType: trendAnalysisReq.statementType,
+                                basePeriod: trendAnalysisReq.basePeriod,
+                                deletePreviousAnalysis:true
+                            }
+                        );
+console.log(skuid.model.getModel('StatementParameters').Type);
+skuid.model.getModel('StatementParameters').Type = 'TREND';
+
+skuid.component.getById('sk-YHa-434').render();</jsitem>
+			<jsitem location="inlinesnippet" name="GenerateProjectedStatement" cachelocation="false">var params = arguments[0],
+	$ = skuid.$;
+	
+var statementHeader = skuid.model.getModel('ProjectionStatement').data[0];
+console.log(statementHeader);
+var statementParams = skuid.model.getModel('StatementParameters').data;
+console.log(statementParams);
+var acc = skuid.model.getModel('ACStatementForAccount').data[0];
+
+var parameters = "{";
+var i;
+for(i = 0; i&lt; statementParams.length ; i++){
+    console.log(statementParams[i]);
+    parameters += ("\"" + statementParams[i].TemplateDetail +"\"" + ":" + "\"" + statementParams[i].PercentChange+"\""+",");
+}
+parameters = parameters.slice(0,-1);
+parameters+="}";
+console.log(parameters);
+
+sforce.apex.execute('clcommon.CustomButtonAction', 'generateProjectedStatement', {
+                                statementName : statementHeader.Name,
+                                baseStatementIds : statementHeader.FinancialStatementsForProjection,
+                                accId : acc.Id,
+                                statementType : statementHeader.StatementType,
+                                statementDate : statementHeader.StatementDate,
+                                monthsCovered : statementHeader.MonthsCovered,
+                                params : parameters
+                            }
+                        ); 
+alert('generateProjectedStatement');</jsitem>
+			<jsitem location="inlinesnippet" name="SensitivityAnalysisRequest" cachelocation="false">var params = arguments[0],
+	$ = skuid.$;
+	
+var statementHeader = skuid.model.getModel('SensitivityAnalysis').data[0];
+var statementParams = skuid.model.getModel('StatementParamsForSensitivityAnalysis').data;
+var acc = skuid.model.getModel('ACStatementForAccount').data[0];
+
+var parameters = "{";
+var i;
+var case1Params = "{";
+var case2Params = "{";
+var case3Params = "{";
+for(i = 0; i&lt; statementParams.length ; i++){
+    console.log(statementParams[i]);
+    case1Params += ("\"" + statementParams[i].TemplateDetail +"\""+ ": "+"\""+statementParams[i].Case1+"\""+",");
+    case2Params += ("\"" + statementParams[i].TemplateDetail +"\""+ ": "+"\""+statementParams[i].Case2+"\""+",");
+    case3Params += ("\"" + statementParams[i].TemplateDetail +"\""+ ": "+"\""+statementParams[i].Case3+"\""+",");
+    /*parameters += ("\"" + statementParams[i].TemplateDetail +"\"" + ": {" + "\"" +"Case 1" +"\""+":"+"\""+statementParams[i].Case1+"\""+","+"\""+"Case 2"+"\""+":"+"\""+statementParams[i].Case2+"\""+","+"\""+"Case 3"+"\""+":"+"\""+statementParams[i].Case3+"\""+"}"+",");*/
+}
+
+case1Params = case1Params.slice(0,-1);
+case1Params += "}";
+case2Params = case2Params.slice(0,-1);
+case2Params += "}";
+case3Params = case3Params.slice(0,-1);
+case3Params += "}";
+
+parameters += ("\"" +"Case 1" +"\""+":"+case1Params+","+"\""+"Case 2"+"\""+":"+case2Params+","+"\""+"Case 3"+"\""+":" + case3Params);
+parameters+="}";
+console.log(parameters);
+
+sforce.apex.execute('clcommon.CustomButtonAction', 'performSensitivityAnalysis', {
+                                baseStatement : statementHeader.FinancialStatements,
+                                accId : acc.Id,
+                                statementType : statementHeader.StatementType,
+                                params : parameters,
+                                deletePreviousAnalysis : true
+                            }
+                        );
+skuid.component.getById('sk-YHa-434').render();</jsitem>
+			<jsitem location="inlinesnippet" name="FinancialStatement_EditHandler" cachelocation="false">var params = arguments[0],
+	$ = skuid.$;
+
+var statementModel = skuid.model.getModel('FSHeader');
+var statementHeaders = statementModel.data;
+if (!$('#edit-button + #edit-dropdown').length) {
+    showDropdown();
+} else {
+    closeDropdown();
+}
+
+function showDropdown() {
+    var dropdownList = $('&lt;div/&gt;', {
+        id: 'edit-dropdown',
+        class:'sk-dropnav-dropdown'
+    }).css('position', 'absolute');
+    statementHeaders.forEach(function(element) {
+        var entry = $('&lt;div class="sk-navigation-item"&gt;Statement ' + element.Name + '&lt;/div&gt;').css('margin', '0px').css('display', 'inherit');
+        entry.click(function() {
+            openEditIframe(element.Id)
+        });
+        dropdownList.append(entry);
+    });
+
+    $('#edit-button').after(dropdownList);
+}
+
+function closeDropdown() {
+    $('#edit-button + #edit-dropdown').remove();
+}
+
+function openEditIframe(statementId) {
+    closeDropdown();
+    var overlay = $('&lt;div id="edit-statement-overlay"&gt;&lt;/div&gt;').css({
+        position: 'fixed',
+        top: 0,
+        bottom: 0,
+        left: 0,
+        right: 0,
+    }).css("z-index", 100).css("background-color", "rgba(0, 0, 0, 0.3");
+    var dialog = $('&lt;div id="edit-statement-dialog"&gt;&lt;/div&gt;').css("margin-top", "30px").css("margin-bottom", "30px").css("margin-left", '5%').css("margin-right", "5%").css("height", "calc(100% - 60px)");
+    var closeButton = $('&lt;div&gt;&lt;/div&gt;').addClass('fa fa-times').css({
+        position: 'absolute',
+        top: '25px',
+        left: '94%',
+        height: '15px',
+        width: '15px',
+        color: '#ffffff'
+    }).click(function() {
+        closeEditIframe();
+    });
+    var src = '/apex/skuid__ui?page=StatementDetails&amp;id=' + statementId + '&amp;type=' + skuid.page.params.type + '&amp;editmode=true';
+    var iframe = $('&lt;iframe width="100%" height="100%" frameBorder="0" style="background: #ffffff; padding-top: 20px; padding-right: 10px; padding-left: 10px; padding-bottom: 7px; max-height:450px"/&gt;');
+    iframe.attr('src', src);
+    
+    dialog.append(iframe).append(closeButton);
+    overlay.append(dialog);
+	
+    $(document.body).append(overlay);
+}
+
+function closeEditIframe() {
+    $('#edit-statement-overlay').remove();
+}
+
+window.addEventListener('message', function(evt) {
+    if(evt.data.type == 'requery-statement-headers'){
+        $.when(statementModel.updateData()).then(function(){
+           closeEditIframe();
+           skuid.component.getById('sk-YHa-434').render();
+        });
+    } else if(evt.data.type == 'close-edit-statement-headers'){
+         closeEditIframe();
+    }
+});
+
+
+</jsitem>
+			<jsitem location="inlinesnippet" name="FinancialStatementTemplateUpdate" cachelocation="false">var params = arguments[0],
+	$ = skuid.$;
+
+var accountModel = skuid.model.getModel('ACStatementForAccount');
+var firstAccount = accountModel.getFirstRow();
+accountModel.updateRow(accountModel.getFirstRow(),{clcommon__Financial_Statement_Template__c:firstAccount.clcommon__Industry_Classification_Code__r.clcommon__Financial_Statement_Template__c});
+return accountModel.save({callback: function(result){}});
+</jsitem>
+			<jsitem location="inlinesnippet" name="UpdateNewStatementHeaderWithTemplate" cachelocation="false">var params = arguments[0],
+	$ = skuid.$;
+
+var accountModel = skuid.model.getModel('ACStatementForAccount');
+var statementModel = skuid.model.getModel('NewStatementHeader');
+var firstAccount = accountModel.getFirstRow();
+statementModel.updateRow(statementModel.getFirstRow(),{clcommon__Template__c:firstAccount.clcommon__Financial_Statement_Template__c});
+skuid.component.getById('sk-YHa-434').render();
+alert('UpdateNewStatementHeaderWithTemplate');</jsitem>
+		</javascript>
+		<css>
+			<cssitem location="staticresource" name="CLSStyleSheetPack" cachelocation="false" url="" namespace="genesisExtn" filepath="customcss.css"/>
+			<cssitem location="staticresource" name="CLSStyleSheetPack" cachelocation="false" url="" namespace="genesisExtn" filepath="navigation-component.css"/>
+			<cssitem location="inline" name="AccountStatements_Style" cachelocation="false">html, 
+body,
+div[pagename="AccountStatements"],
+div[pagename="AccountStatements"] &gt; .nx-page-content,
+div[pagename="AccountStatements"] #fs-aggregate,
+div[pagename="AccountStatements"] #fs-balance-sheet,
+div[pagename="AccountStatements"] #fs-balance-sheet-iframe,
+div[pagename="AccountStatements"] #fs-balance-sheet-iframe div,
+div[pagename="AccountStatements"] #fs-balance-sheet-iframe div iframe,
+div[pagename="AccountStatements"] #fs-income-statement,
+div[pagename="AccountStatements"] #fs-income-statement-iframe,
+div[pagename="AccountStatements"] #fs-income-statement-iframe div,
+div[pagename="AccountStatements"] #fs-income-statement-iframe div iframe,
+div[pagename="AccountStatements"] #fs-cashflow,
+div[pagename="AccountStatements"] #fs-cashflow-iframe,
+div[pagename="AccountStatements"] #fs-cashflow-iframe div,
+div[pagename="AccountStatements"] #fs-cashflow-iframe div iframe,
+div[pagename="AccountStatements"] #fs-ratio-analysis,
+div[pagename="AccountStatements"] #fs-ratio-iframe,
+div[pagename="AccountStatements"] #fs-ratio-iframe div,
+div[pagename="AccountStatements"] #fs-ratio-iframe div iframe,
+div[pagename="AccountStatements"] #fs-trend-analysis,
+div[pagename="AccountStatements"] #fs-trend-analysis-iframe,
+div[pagename="AccountStatements"] #fs-trend-analysis-iframe div,
+div[pagename="AccountStatements"] #fs-trend-analysis-iframe div iframe,
+div[pagename="AccountStatements"] #fs-sensitivity-analysis,
+div[pagename="AccountStatements"] #fs-sensitivity-analysis-iframe,
+div[pagename="AccountStatements"] #fs-sensitivity-analysis-iframe div,
+div[pagename="AccountStatements"] #fs-sensitivity-analysis-iframe div iframe{
+    height: 100%;
+}
+
+div[pagename="AccountStatements"] #fs-aggregate {
+    height: calc(100% - 100px);
+}
+
+html {
+    overflow: hidden;
+}
+
+div[pagename="AccountStatements"]{
+    padding-top: 0px;
+    background:none;
+}
+
+.nx-editor-header .nx-header-right .ui-button.iconic-button,
+.nx-editor-header .nx-header-right .ui-button.iconic-button.ui-state-hover,
+.nx-editor-header .nx-header-right .ui-button.iconic-button.ui-state-focus,
+.ui-button.iconic-button {
+    width: 32px;
+    height: 32px;
+    line-height: 32px;
+    border-radius: 50%;
+    outline: none;
+    cursor: pointer;
+    background-color: transparent;   
+}
+
+
+.ui-button.iconic-button.iconic-button-barchart:before,
+.ui-button.iconic-button.iconic-button-barchart.ui-state-hover:before,
+.ui-button.iconic-button.iconic-button-barchart.ui-state-focus:before {
+    font-family: FontAwesome;
+    content: "\f080";
+    font-size: 20px;
+    color: #FFA21D;
+    vertical-align: middle;
+    border: 2px solid #2D5074;
+}
+
+.balancesheet-css{
+    margin-top:30px;
+}
+
+</cssitem>
+			<cssitem location="inline" name="editStatementCSS" cachelocation="false">.edit-statement
+{
+    padding-right: 70px;
+}
+
+#edit-dropdown{
+    background-color: white;
+    border-top: 0;
+    box-shadow: 0 0 3px 2px rgba(0,0,0,0.1);
+
+}
+
+div.sk-dropnav-dropdown .sk-navigation-item:hover {
+    background: #eee;
+}
+
+div.sk-dropnav-dropdown .sk-navigation-item:hover&gt;a,div.sk-navigation-dropdown&gt;.sk-dropnav-dropdown .sk-navigation-item:focus&gt;a,div.sk-navigation-dropdown&gt;.sk-dropnav-dropdown .sk-navigation-item:hover&gt;.sk-navigation-item-label,div.sk-navigation-dropdown&gt;.sk-dropnav-dropdown .sk-navigation-item:focus&gt;.sk-navigation-item-label {
+    background: #eee;
+    color: #000;
+}
+
+.sk-dropnav-dropdown div.sk-navigation-dropdown .sk-navigation-item:hover,.sk-dropnav-dropdown div.sk-navigation-dropdown .sk-navigation-item:focus {
+    background: #fff;
+    color: #000;
+}
+
+div.sk-navigation-dropdown .sk-navigation-item-selected {
+    background: #fff;
+    color: #000;
+}
+
+.sk-dropnav-arrow:after {
+    content: "\f142";
+    float: right;
+    font-family: fontawesome;
+    font-size: 23px;
+}
+
+.sk-dropnav-arrow div {
+    display:none;
+}
+
+div.sk-navigation-dropdown&gt;.sk-dropnav-text {
+    display:none;
+}
+
+.ui-dialog{
+    top:60px!important;
+}</cssitem>
+		</css>
+		<actionsequences uniqueid="sk-1bHn-381">
+			<actionsequence id="69dc7e29-9190-45a7-a7b9-bf00ff9dd2bc" label="New Sequence" uniqueid="sk-1bHn-382" type="reusable">
+				<actions>
+					<action type="updateRow" fieldmodel="TrendAnalysisRequest" affectedrows="context" field="genesis__Account__c" fieldtargetobjects="Account" enclosevalueinquotes="true"/>
+				</actions>
+				<description/>
+				<inputs/>
+			</actionsequence>
+		</actionsequences>
+	</resources>
+	<styles>
+		<styleitem type="background" bgtype="none"/>
+		<styleitem property="overflow" value="hidden"/>
+	</styles>
+	<interactions/>
+</skuidpage>

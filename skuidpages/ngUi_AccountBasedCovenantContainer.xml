@@ -1,0 +1,373 @@
+<skuidpage personalizationmode="server" showsidebar="false" showheader="false">
+	<models>
+		<model id="SelectPartyDetailsForCovenants" limit="1" query="true" createrowifnonefound="true" type="" sobject="clcommon__Party__c" datasource="salesforce">
+			<fields>
+				<field id="Id"/>
+				<field id="clcommon__Account__c"/>
+				<field id="genesis__Application__c"/>
+				<field id="clcommon__Account__r.Name"/>
+				<field id="clcommon__Account__r.clcommon__Legal_Entity_Type__c"/>
+				<field id="clcommon__Account__r.clcommon__Legal_Entity_Type__r.Name"/>
+				<field id="clcommon__Type__c"/>
+				<field id="clcommon__Type__r.Name"/>
+			</fields>
+			<conditions>
+				<condition type="param" value="id" field="clcommon__Account__c" operator="=" enclosevalueinquotes="true" novaluebehavior="" state="" fieldtargetobjects="Account"/>
+			</conditions>
+			<actions/>
+		</model>
+		<model id="ExisitingCovenantsForParty" limit="" query="true" createrowifnonefound="false" type="" sobject="clcommon__Covenant__c" datasource="salesforce">
+			<fields>
+				<field id="clcommon__Account__c"/>
+				<field id="clcommon__Account__r.Name"/>
+				<field id="clcommon__Active__c"/>
+				<field id="clcommon__Covenant_Definition__c"/>
+				<field id="clcommon__Covenant_Definition__r.Name"/>
+				<field id="clcommon__Covenant_Description__c"/>
+				<field id="Name"/>
+				<field id="clcommon__Expiration_Date__c"/>
+				<field id="clcommon__Financial_Indicator__c"/>
+				<field id="clcommon__Financial_Indicator_High_Value__c"/>
+				<field id="clcommon__Financial_Indicator_Low_Value__c"/>
+				<field id="clcommon__Financial_Operator__c"/>
+				<field id="clcommon__Frequency__c"/>
+				<field id="clcommon__Next_Evaluation_Date__c"/>
+				<field id="clcommon__Next_Evaluation_Day__c"/>
+				<field id="clcommon__Next_Notification_Date__c"/>
+				<field id="clcommon__Next_Notification_Day__c"/>
+				<field id="clcommon__Notification_Days__c"/>
+				<field id="Id"/>
+				<field id="clcommon__Covenant_Definition__r.clcommon__Covenant_Description__c"/>
+				<field id="clcommon__Covenant_Definition__r.clcommon__Type__c"/>
+				<field id="clcommon__Covenant_Evaluations__r" type="childRelationship" limit="10">
+					<fields>
+						<field id="clcommon__Status__c"/>
+						<field id="clcommon__Evaluate_By_Date__c"/>
+						<field id="clcommon__Actual_Value__c"/>
+					</fields>
+				</field>
+			</fields>
+			<conditions>
+				<condition type="fieldvalue" value="true" enclosevalueinquotes="false" field="clcommon__Active__c" operator="=" state="" inactive="false"/>
+				<condition type="param" value="id" field="clcommon__Account__c" fieldtargetobjects="Account" operator="=" enclosevalueinquotes="true" novaluebehavior="noquery"/>
+			</conditions>
+			<actions/>
+		</model>
+		<model id="NewCovenantEvaluation" limit="1" query="true" createrowifnonefound="true" datasource="salesforce" type="" sobject="clcommon__Covenant_Evaluation__c">
+			<fields>
+				<field id="clcommon__Covenant__c"/>
+				<field id="clcommon__Covenant__r.Name"/>
+				<field id="Name"/>
+				<field id="clcommon__Actual_Value__c"/>
+				<field id="clcommon__Evaluate_By_Date__c"/>
+				<field id="Id"/>
+				<field id="clcommon__Status__c"/>
+				<field id="clcommon__Notes__c"/>
+			</fields>
+			<conditions/>
+			<actions/>
+		</model>
+		<model id="CovenantEvaluationHistory" limit="" query="true" createrowifnonefound="false" datasource="salesforce" sobject="clcommon__Covenant_Evaluation__c">
+			<fields>
+				<field id="clcommon__Actual_Value__c"/>
+				<field id="clcommon__Covenant__c"/>
+				<field id="clcommon__Covenant__r.Name"/>
+				<field id="Name"/>
+				<field id="clcommon__Created_Date__c"/>
+				<field id="CreatedDate"/>
+				<field id="IsDeleted"/>
+				<field id="clcommon__Evaluate_By_Date__c"/>
+				<field id="clcommon__Notes__c"/>
+				<field id="Id"/>
+				<field id="LastModifiedDate"/>
+				<field id="LastModifiedById"/>
+				<field id="LastModifiedBy.Name"/>
+				<field id="CreatedById"/>
+				<field id="CreatedBy.Name"/>
+			</fields>
+			<conditions/>
+			<actions/>
+		</model>
+		<model id="CovenantEvaluation" limit="" query="true" createrowifnonefound="false" datasource="salesforce" type="" sobject="clcommon__Covenant_Evaluation__c" doclone="">
+			<fields>
+				<field id="clcommon__Actual_Value__c"/>
+				<field id="clcommon__Covenant__c"/>
+				<field id="clcommon__Covenant__r.Name"/>
+				<field id="clcommon__Status__c"/>
+				<field id="clcommon__Notes__c"/>
+				<field id="clcommon__Evaluate_By_Date__c"/>
+			</fields>
+			<conditions>
+				<condition type="param" value="id" field="clcommon__Covenant__r.clcommon__Account__c" fieldtargetobjects="Account" operator="=" enclosevalueinquotes="true" novaluebehavior="noquery"/>
+			</conditions>
+			<actions/>
+		</model>
+		<model id="AccountBasedCovenants" limit="" query="true" createrowifnonefound="false" type="" sobject="clcommon__Covenant__c" datasource="salesforce">
+			<fields>
+				<field id="clcommon__Account__c"/>
+				<field id="clcommon__Account__r.Name"/>
+				<field id="clcommon__Active__c"/>
+				<field id="clcommon__Covenant_Definition__c"/>
+				<field id="clcommon__Covenant_Definition__r.Name"/>
+				<field id="clcommon__Covenant_Description__c"/>
+				<field id="Name"/>
+				<field id="clcommon__Expiration_Date__c"/>
+				<field id="clcommon__Financial_Indicator__c"/>
+				<field id="clcommon__Financial_Indicator_High_Value__c"/>
+				<field id="clcommon__Financial_Indicator_Low_Value__c"/>
+				<field id="clcommon__Financial_Operator__c"/>
+				<field id="clcommon__Frequency__c"/>
+				<field id="clcommon__Next_Evaluation_Date__c"/>
+				<field id="clcommon__Next_Evaluation_Day__c"/>
+				<field id="clcommon__Next_Notification_Date__c"/>
+				<field id="clcommon__Next_Notification_Day__c"/>
+				<field id="clcommon__Notification_Days__c"/>
+				<field id="Id"/>
+				<field id="clcommon__Covenant_Definition__r.clcommon__Covenant_Description__c"/>
+				<field id="clcommon__Covenant_Definition__r.clcommon__Type__c"/>
+				<field id="clcommon__Covenant_Evaluations__r" type="childRelationship" limit="1" orderby="CreatedDate DESC">
+					<fields>
+						<field id="clcommon__Status__c"/>
+						<field id="clcommon__Evaluate_By_Date__c"/>
+						<field id="clcommon__Actual_Value__c"/>
+						<field id="clcommon__Notes__c"/>
+						<field id="CreatedDate"/>
+						<field id="clcommon__Created_Date__c"/>
+						<field id="clcommon__Covenant__c"/>
+						<field id="Name"/>
+					</fields>
+					<conditions/>
+				</field>
+				<field id="Status" uionly="true" displaytype="TEXT" defaultvaluetype="fieldvalue"/>
+				<field id="ChildStatus" uionly="true" displaytype="TEXT" defaultvaluetype="fieldvalue"/>
+				<field id="LastEvaluationDate" uionly="true" displaytype="DATETIME" label="LastEvaluationDate" readonly="true" ogdisplaytype="TEXT"/>
+			</fields>
+			<conditions>
+				<condition type="fieldvalue" value="true" enclosevalueinquotes="false" field="clcommon__Active__c" operator="=" state="" inactive="false"/>
+				<condition type="param" value="id" field="clcommon__Account__c" fieldtargetobjects="Account" operator="=" enclosevalueinquotes="true" novaluebehavior="noquery"/>
+			</conditions>
+			<actions/>
+		</model>
+	</models>
+	<components>
+		<pagetitle uniqueid="sk-hCFu0-159" model="SelectPartyDetailsForCovenants">
+			<actions/>
+			<renderconditions logictype="and"/>
+		</pagetitle>
+		<skootable showconditions="true" showsavecancel="false" showerrorsinline="true" searchmethod="server" searchbox="false" showexportbuttons="false" pagesize="10" alwaysresetpagination="false" createrecords="false" model="AccountBasedCovenants" buttonposition="" mode="readonly" allowcolumnreordering="false" responsive="true" uniqueid="sk-3rKxkV-657" emptysearchbehavior="query" instantfilters="false">
+			<fields>
+				<field id="clcommon__Covenant_Definition__c" hideable="false" uniqueid="fi-3rMXWR-888" valuehalign="" type=""/>
+				<field id="clcommon__Frequency__c" hideable="false" uniqueid="fi-3rL2Ch-685" valuehalign="" type="">
+					<renderconditions logictype="and" onhidedatabehavior="keep"/>
+					<enableconditions/>
+				</field>
+				<field id="clcommon__Financial_Operator__c" hideable="false" uniqueid="fi-3rMXWR-890" valuehalign="" type=""/>
+				<field id="clcommon__Financial_Indicator__c" hideable="false" uniqueid="fi-3rMXWS-891" decimalplaces="" valuehalign="" type=""/>
+				<field id="clcommon__Next_Evaluation_Date__c" hideable="false" uniqueid="fi-3rMXWS-892" valuehalign="" type=""/>
+				<field id="LastEvaluationDate" hideable="false" uniqueid="fi-kn2OR-640" valuehalign="" type="CUSTOM" snippet="lastEvaluationDate"/>
+				<field id="clcommon__Covenant_Evaluations__r" type="CHILDREL" limit="100" hideable="false" uniqueid="fi-3rMrUh-925" valuehalign="" tagrendertype="snippet" rendersnippet="Covenant.Status">
+					<label>Last Evaluation Date</label>
+					<template>{{CreatedDate}}</template>
+					<renderconditions logictype="and" onhidedatabehavior="keep">
+						<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="AccountBasedCovenants" sourcetype="param" value="NO_SHOW"/>
+					</renderconditions>
+					<enableconditions/>
+				</field>
+				<field id="ChildStatus" hideable="false" uniqueid="fi-k1CpP-329" valuehalign="" type="CUSTOM" snippet="covenant-status-label" readonly="true">
+					<label>Status</label>
+				</field>
+				<field id="clcommon__Covenant_Evaluations__r" type="CHILDREL" limit="100" hideable="false" uniqueid="fi-3rLzjq-838" valuehalign="" allowhtml="true">
+					<label>Status</label>
+					<renderconditions logictype="and" onhidedatabehavior="keep">
+						<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="AccountBasedCovenants" sourcetype="fieldvalue"/>
+					</renderconditions>
+					<enableconditions logictype="and"/>
+					<template>&lt;script type="text/javascript"&gt;
+            // var a = "{{{clcommon__Status__c}}}";
+            // var b = "{{clcommon__Status__c}}";
+            // var c = {{Id}};
+            // var d = {{{Id}}};
+            var $ = skuid.$;
+            // skuid.snippet.getSnippet('statusVIewOnChildField')('{{{clcommon__Status__c}}}')("{{{clcommon__Status__c}}}")("{{clcommon__Status__c}}");
+            &lt;/script&gt;
+
+            &lt;div class="ui-button ui-state-default"&gt;&lt;span class="ui-button-text"&gt;{{clcommon__Status__c}} Accepted&lt;/span&gt;&lt;/div&gt;</template>
+				</field>
+			</fields>
+			<rowactions>
+				<action type="multi" label="Evaluate" icon="sk-webicon-font-awesome:calculator">
+					<actions>
+						<action type="custom" snippet="launchEvaluationPopup"/>
+					</actions>
+					<renderconditions logictype="and"/>
+				</action>
+			</rowactions>
+			<massactions usefirstitemasdefault="true"/>
+			<views>
+				<view type="standard"/>
+			</views>
+			<searchfields/>
+		</skootable>
+	</components>
+	<resources>
+		<labels/>
+		<javascript>
+			<jsitem location="staticresource" name="CLSNGUIComponent" cachelocation="false" url="" namespace="genesisExtn" filepath="commonUtils.js">var params = arguments[0],                $ = skuid.$;            </jsitem>
+			<jsitem location="staticresource" name="CLSNGUIComponent" cachelocation="false" url="" namespace="genesisExtn" filepath="messageUtils.js">var params = arguments[0],                $ = skuid.$;            </jsitem>
+			<jsitem location="inlinesnippet" name="statusView" cachelocation="false">var $ = skuid.$,
+        field = arguments[0],
+        value = arguments[1];
+
+        if(value===undefined){
+        return;
+        }
+
+        var cellElem = field.element;
+        var innerIconText =  $('&lt;span&gt;').addClass('ui-button-text').text(value)
+        var iconElem =
+        $( '&lt;div&gt;' ) // create the icon container
+        .addClass('ui-button ui-state-default') // mark the container as a silk icon container
+        .append(
+        innerIconText
+        )
+        .appendTo( cellElem ); // add the container to the cell
+
+        switch( value )
+        {
+        case 'Hot':
+        // apply the red flag icon to the container
+        iconElem.addClass('ui-silk-flag-red');
+        break;
+        case 'Warm':
+        // apply the orange flag icon to the container
+        iconElem.addClass('ui-silk-flag-orange');
+        break;
+        case 'Cold':
+        // apply the blue flag icon to the container
+        iconElem.addClass('ui-silk-flag-blue');
+        break;
+        default:
+        // apply the 8 ball icon to the container
+        // iconElem.addClass('ui-silk-sport-8ball');
+        break;
+        }</jsitem>
+			<jsitem location="inlinesnippet" name="covenant-status-label" cachelocation="false" url="" namespace="">var $ = skuid.$,
+    field = arguments[0],
+    value = arguments[1];
+
+if(field){
+    var row = field.row
+    var cellElem = field.element.addClass('status-label');
+    if (row.clcommon__Covenant_Evaluations__r) { // there's at least one evaluation record
+        var evaluationRecord = row.clcommon__Covenant_Evaluations__r.records[0];
+        var evaluationStatus = evaluationRecord.clcommon__Status__c
+        if(evaluationStatus){
+            wrapperLabel(evaluationStatus, cellElem)
+        }
+    }
+}
+
+function wrapperLabel(evaluationStatus, cellElem){
+
+    var innerIconText =  $('&lt;span&gt;').text(evaluationStatus);
+    var labelElem = innerIconText.appendTo( cellElem ); // add the container to the cell
+    switch (evaluationStatus){
+        case 'Pending':
+            cellElem.addClass('pending');
+            break;
+        case 'Clear':
+            cellElem.addClass('clear');
+            break;
+        case 'Expired':
+            cellElem.addClass('expired');
+            break;
+        case 'Accepted':
+            cellElem.addClass('accepted');
+            break;
+        case 'Exception':
+            cellElem.addClass('exception');
+            break;            
+        default:
+            cellElem.addClass('accepted');
+            break;
+    }
+}</jsitem>
+			<jsitem location="inlinesnippet" name="lastEvaluationDate" cachelocation="false">// formatting the datetime value
+
+        var $ = skuid.$,
+        field = arguments[0],
+        value = arguments[1];
+
+        if(field){
+        var row = field.row
+        if(row.clcommon__Covenant_Evaluations__r){
+        var childRow = row.clcommon__Covenant_Evaluations__r.records[0]
+        var value = new Date(childRow.CreatedDate);
+        value = value.toLocaleDateString("en-US")
+        var cellElem = field.element
+        cellElem.text(value)
+        }
+        }
+      </jsitem>
+			<jsitem location="inlinesnippet" name="launchEvaluationPopup" cachelocation="false">var params = arguments[0],
+    $ = skuid.$;
+
+var title = 'Covenant History';
+var skuidPage = 'AccountBasedCovenantEvaluationHistory';
+var iframeUrl = '/apex/skuid__ui?page=' + skuidPage + '&amp;id=' + params.row.Id;
+openTopLevelDialog({
+    title: title,
+    iframeUrl: iframeUrl
+});</jsitem>
+		</javascript>
+		<css>
+			<cssitem location="staticresource" name="CLSStyleSheetPack" cachelocation="false" url="" namespace="genesisExtn" filepath="customcss.css"/>
+			<cssitem location="staticresource" name="CLSStyleSheetPack" cachelocation="false" url="" namespace="genesisExtn" filepath="cls-common.css"/>
+			<cssitem cachelocation="false" filepath="font-awesome-4.6.3/css/font-awesome.min.css" location="staticresource" name="FontAwesomePack" namespace="genesisExtn" url=""/>
+			<cssitem location="inline" name="myStyle" cachelocation="false">body {    background-color: #ffffff;}body &gt; .nx-page {    background-color: #ffffff;}
+
+
+      </cssitem>
+			<cssitem location="inline" name="status-label" cachelocation="false">.status-label {
+  font-weight: 400;
+  width: initial !important;
+  color: white;
+  border: 0 none #0070d2;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  padding: 5px 5px 5px 5px;
+  display: flex;
+  justify-content: center;
+  text-align: center; }
+  .status-label.accepted {
+    background: #48ce94; }
+  .status-label.expired {
+    background: #FF3333; }
+  .status-label.clear {
+    background: #e8e8e8;
+    color: black; }
+  .status-label.exception {
+    background: #ffa21d; }
+  .status-label.pending {
+    background: #e8e8e8;
+    color: black; }
+
+/*# sourceMappingURL=covenant-status.css.map */
+</cssitem>
+			<cssitem location="inline" name="icons-style" cachelocation="false">.sk-webicon{
+    line-height: 16px;
+    font-size: 16px;
+    color: white;
+    background: #38c987;
+    text-align: center;
+    padding: 5px 5px 5px 6px;
+    border-radius: 50% !important;  
+}</cssitem>
+		</css>
+		<actionsequences/>
+	</resources>
+	<styles>
+		<styleitem type="background" bgtype="none"/>
+	</styles>
+</skuidpage>

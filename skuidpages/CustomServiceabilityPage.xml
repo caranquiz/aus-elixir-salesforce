@@ -1,152 +1,262 @@
-<skuidpage unsavedchangeswarning="yes" personalizationmode="server" showsidebar="true" useviewportmeta="true" showheader="true" theme="ElixirThemepPlan">
-  <models>
-    <model id="BorrowerApplication" limit="20" query="true" createrowifnonefound="false" datasource="salesforce" sobject="genesis__Applications__c">
-      <fields>
-        <field id="Id"/>
-        <field id="RecordTypeId"/>
-        <field id="RecordType.Name"/>
-        <field id="Total_HEM_Living_Expenses__c"/>
-        <field id="Interest_Cover_Ratio__c"/>
-        <field id="Net_Surplus_Income__c"/>
-        <field id="Debt_Service_Ratio__c"/>
-        <field id="Debt_to_Income_Ratio__c"/>
-        <field id="Is_Approved__c"/>
-        <field id="Monthly_Living_Expenses_Used__c" overridemetadata="false" ogdisplaytype="CURRENCY" displaytype="CURRENCY" defaultvaluetype="fieldvalue" defaultValue="0.00"/>
-        <field id="Total_Monthly_Living_Expenses_Declared__c" overridemetadata="false" ogdisplaytype="CURRENCY" displaytype="CURRENCY" defaultvaluetype="fieldvalue" defaultValue="0.00"/>
-      </fields>
-      <conditions>
-        <condition type="param" value="Id" field="Id" operator="=" enclosevalueinquotes="true"/>
-      </conditions>
-      <actions/>
-    </model>
-  </models>
-  <components>
-    <grid uniqueid="sk-1rrL-376">
-      <divisions>
-        <division behavior="flex" minwidth="100px" ratio="1" verticalalign="top">
-          <components>
-            <wrapper uniqueid="sk-1hSh-209">
-              <components>
-                <buttonset model="BorrowerApplication" uniqueid="sk-208A-1240">
-                  <buttons>
-                    <button type="multi" label="Save" uniqueid="sk-208A-1245">
-                      <actions>
-                        <action type="save">
-                          <models>
-                            <model>BorrowerApplication</model>
-                          </models>
-                        </action>
-                      </actions>
-                      <renderconditions logictype="and">
-                        <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="false" fieldmodel="BorrowerApplication" sourcetype="fieldvalue" field="Is_Approved__c" fieldtargetobjects="genesis__Applications__c" value="false"/>
-                      </renderconditions>
-                      <enableconditions logictype="and">
-                        <condition type="fieldvalue" enclosevalueinquotes="false" fieldmodel="BorrowerApplication" sourcetype="modelproperty" sourceproperty="hasChanged" value="true" operator="="/>
-                        <condition type="fieldvalue" operator="=" enclosevalueinquotes="false" fieldmodel="BorrowerApplication" sourcetype="fieldvalue" field="Is_Approved__c" fieldtargetobjects="genesis__Applications__c" value="false"/>
-                      </enableconditions>
-                    </button>
-                    <button type="cancel" uniqueid="sk-2GBx-264" window="self" label="Cancel" icon="sk-icon-cancel">
-                      <actions>
-                        <action type="cancel">
-                          <models>
-                            <model>BorrowerApplication</model>
-                          </models>
-                        </action>
-                      </actions>
-                      <renderconditions logictype="and">
-                        <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="false" fieldmodel="BorrowerApplication" sourcetype="fieldvalue" field="Is_Approved__c" fieldtargetobjects="genesis__Applications__c" value="false"/>
-                      </renderconditions>
-                      <enableconditions/>
-                    </button>
-                  </buttons>
-                </buttonset>
-                <basicfieldeditor showheader="true" showsavecancel="false" showerrorsinline="true" model="BorrowerApplication" uniqueid="sk-208J-1275" mode="edit">
-                  <columns>
-                    <column width="100%" uniqueid="sk-208J-1271">
-                      <sections>
-                        <section collapsible="no" uniqueid="sk-20Db-363" title="Details" showheader="false">
-                          <fields>
-                            <columns uniqueid="sk-20Dc-379" layoutmode="fixed">
-                              <column width="100%" uniqueid="sk-20Dc-369">
-                                <sections>
-                                  <section title="New Section" collapsible="no" uniqueid="sk-20Dc-370" showheader="false">
-                                    <fields>
-                                      <field uniqueid="sk-20CT-296" id="Net_Surplus_Income__c"/>
-                                      <field uniqueid="sk-20CV-312" id="Debt_Service_Ratio__c"/>
-                                      <field uniqueid="sk-20Cc-331" id="Debt_to_Income_Ratio__c"/>
-                                      <field uniqueid="sk-20CO-282" id="Interest_Cover_Ratio__c"/>
-                                      <field uniqueid="sk-20CM-262" id="Total_HEM_Living_Expenses__c">
-                                        <renderconditions logictype="and" onhidedatabehavior="keep"/>
-                                        <enableconditions/>
-                                      </field>
-                                      <field uniqueid="sk-2GDg-386" id="Total_Monthly_Living_Expenses_Declared__c" decimalplaces="2">
-                                        <renderconditions logictype="and" onhidedatabehavior="keep"/>
-                                        <enableconditions/>
-                                      </field>
-                                      <field uniqueid="sk-2GDi-393" id="Monthly_Living_Expenses_Used__c" decimalplaces="2"/>
-                                    </fields>
-                                  </section>
-                                </sections>
-                              </column>
-                            </columns>
-                          </fields>
-                        </section>
-                        <section title="Section A" uniqueid="sk-208J-1272" collapsible="no" showheader="false">
-                          <fields/>
-                        </section>
-                      </sections>
-                      <renderconditions logictype="and"/>
-                    </column>
-                  </columns>
-                  <renderconditions logictype="and"/>
-                </basicfieldeditor>
-              </components>
-              <styles>
-                <styleitem type="background" bgtype="color">
-                  <styles>
-                    <styleitem property="background-color" value="transparent"/>
-                  </styles>
-                </styleitem>
-                <styleitem type="border"/>
-                <styleitem type="size"/>
-              </styles>
-              <interactions/>
-              <renderconditions logictype="and"/>
-            </wrapper>
-          </components>
-        </division>
-      </divisions>
-      <styles>
-        <styleitem type="background" bgtype="color">
-          <styles>
-            <styleitem property="background-color" value="transparent"/>
-          </styles>
-        </styleitem>
-      </styles>
-      <renderconditions logictype="and"/>
-    </grid>
-  </components>
-  <resources>
-    <labels/>
-    <javascript/>
-    <css/>
-    <actionsequences uniqueid="sk-1hSz-322">
-      <actionsequence id="3db39258-3e15-430c-883d-c105b7b4a255" type="event-triggered" label="MakeFieldsViewOnly" event-scope="component" event-name="page.rendered" uniqueid="sk-2UVZ-395">
-        <description/>
-        <actions>
-          <action type="branch" whenfinished="stop" model="BorrowerApplication">
-            <iftrueactions>
-              <action type="runComponentAction" componentid="sk-208J-1275" action="changeMode" mode="read"/>
-            </iftrueactions>
-            <formula>{{Is_Approved__c}}</formula>
-          </action>
-        </actions>
-        <inputs/>
-      </actionsequence>
-    </actionsequences>
-  </resources>
-  <styles>
-    <styleitem type="background" bgtype="none"/>
-  </styles>
-  <interactions/>
+<skuidpage unsavedchangeswarning="yes" personalizationmode="server" showsidebar="true" useviewportmeta="true" showheader="true" theme="CustomClassic">
+	<models>
+		<model id="BorrowerApplication" limit="20" query="true" createrowifnonefound="false" datasource="salesforce" sobject="genesis__Applications__c">
+			<fields>
+				<field id="Id"/>
+				<field id="RecordTypeId"/>
+				<field id="RecordType.Name"/>
+				<field id="Total_HEM_Living_Expenses__c"/>
+				<field id="Interest_Cover_Ratio__c"/>
+				<field id="Net_Surplus_Income__c"/>
+				<field id="Debt_Service_Ratio__c"/>
+				<field id="Debt_to_Income_Ratio__c"/>
+				<field id="Is_Approved__c"/>
+				<field id="Monthly_Living_Expenses_Used__c" overridemetadata="false" ogdisplaytype="CURRENCY" displaytype="CURRENCY" defaultvaluetype="fieldvalue" defaultValue="0.00"/>
+				<field id="Total_Monthly_Living_Expenses_Declared__c" overridemetadata="false" ogdisplaytype="CURRENCY" displaytype="CURRENCY" defaultvaluetype="fieldvalue" defaultValue="0.00"/>
+				<field id="Loan_Assesment_Commentary_Serviceability__c"/>
+				<field id="CreatedById"/>
+				<field id="CreatedBy.Name"/>
+			</fields>
+			<conditions>
+				<condition type="param" value="Id" field="Id" operator="=" enclosevalueinquotes="true"/>
+			</conditions>
+			<actions/>
+		</model>
+		<model id="ServiecabiltyDocumentCategory" limit="20" query="true" createrowifnonefound="false" datasource="salesforce" sobject="clcommon__Document_Category__c">
+			<fields/>
+			<conditions>
+				<condition type="fieldvalue" value="Serviceability" enclosevalueinquotes="true" field="clcommon__Category_Name__c"/>
+				<condition type="param" value="Id" field="genesis__Application__c" fieldtargetobjects="genesis__Applications__c" operator="=" enclosevalueinquotes="true"/>
+				<condition type="blank" value="null" field="clcommon__Parent_Document_Category__c" fieldtargetobjects="clcommon__Document_Category__c" operator="!=" enclosevalueinquotes="false"/>
+			</conditions>
+			<actions/>
+		</model>
+		<model id="ServiceabiltyDocumentAttachments" limit="100" query="true" createrowifnonefound="false" datasource="salesforce" sobject="Attachment">
+			<fields>
+				<field id="Name"/>
+				<field id="CreatedById"/>
+				<field id="CreatedBy.Name"/>
+				<field id="CreatedDate"/>
+			</fields>
+			<conditions>
+				<condition type="param" value="Id" field="ParentId" fieldtargetobjects="ABN_Company_Information__c,ABN_Company_List__c,ABN_Information__c,ACN_Information__c,APXTConga4__Composer_QuickMerge__c,APXTConga4__Conga_Collection_Solution__c,APXTConga4__Conga_Collection__c,APXTConga4__Conga_Email_Staging__c,APXTConga4__Conga_Email_Template__c,APXTConga4__Conga_Merge_Query__c,APXTConga4__Conga_Solution_Email_Template__c,APXTConga4__Conga_Solution_Parameter__c,APXTConga4__Conga_Solution_Query__c,APXTConga4__Conga_Solution_Report__c,APXTConga4__Conga_Solution_Template__c,APXTConga4__Conga_Solution__c,APXTConga4__Conga_Template__c,Account,Adback__c,Asset,Campaign,Case,Checklist_Detail__c,Contact,Contract,Credit_Account__c,Credit_Enquiry__c,Credit_History__c,Current_Directorship__c,Director__c,EmailMessage,EmailTemplate,Employment_Income__c,Energy_Audit__c,Event,Gift_Register__c,Lead,Loan_Condition__c,Loan_Warehouse__c,Location,Opportunity,Order,PPSR_Registration__c,Payment_Default__c,Product2,Proof_Of_Identity_Do__c,Refinance_Loan_Purpose__c,Rendered_Field__c,Rendering_Criteria__c,SocialPost,Solution,Task,Telephone_Contact_Number__c,Training_Register__c,Warehouse__c,clcommon__Accounting_Entry__c,clcommon__Accounting_Rule_Header__c,clcommon__Action_Queue__c,clcommon__Actors__c,clcommon__Address__c,clcommon__Agreement__c,clcommon__Answer_Definition__c,clcommon__Approval_Authority__c,clcommon__Approval_Definition__c,clcommon__Approval_Instance__c,clcommon__Approval_Review_Group__c,clcommon__Asset_Class__c,clcommon__Automated_Payment_Configuration__c,clcommon__Automated_Payment_Setup__c,clcommon__Bank_Account__c,clcommon__Bank__c,clcommon__Batch_Job_Status__c,clcommon__Batch_Logging__c,clcommon__Batch_Process_Log__c,clcommon__Bill_Group__c,clcommon__Billing_Group__c,clcommon__Book_Depreciation_Stream__c,clcommon__Book_Value_Adjustment__c,clcommon__Business_Event__c,clcommon__CL_Product__c,clcommon__CL_Purpose__c,clcommon__CMW_Product_Component_Map__c,clcommon__CMW_Product_and_Provider_Map__c,clcommon__Calculation_Expression__c,clcommon__Calculation_Set__c,clcommon__Cash_Receipt_Application__c,clcommon__Cash_Receipt_Transaction__c,clcommon__Cash_Receipt__c,clcommon__Category_Attachment_Association__c,clcommon__Chart_Of_Account__c,clcommon__CollateralLien__c,clcommon__Collateral_Category_Type_Association__c,clcommon__Collateral_Category__c,clcommon__Collateral_Insurance__c,clcommon__Collateral_Location__c,clcommon__Collateral_Owner__c,clcommon__Collateral_Registration__c,clcommon__Collateral_Type_Documents__c,clcommon__Collateral_Type__c,clcommon__Collateral_Valuation__c,clcommon__Collateral__c,clcommon__Company_Product_Assignment__c,clcommon__Company__c,clcommon__ComponentStructure__c,clcommon__Consolidated_Invoice_History__c,clcommon__Consolidated_Invoice__c,clcommon__Contingency_Status_Code__c,clcommon__Covenant_Association__c,clcommon__Covenant_Definition__c,clcommon__Covenant_Evaluation__c,clcommon__Covenant__c,clcommon__Css_Configuration__c,clcommon__DAG_Logging__c,clcommon__DAG_Schedule__c,clcommon__Data_Archive_Configuration__c,clcommon__Data_Archive_Summary_Field__c,clcommon__Data_Mapping_Configuration__c,clcommon__Data_Mapping_Field_Configuration__c,clcommon__Dealer_Funding_Detail__c,clcommon__Delinquency_Details__c,clcommon__Delivery_Detail__c,clcommon__Deposit__c,clcommon__Depreciation_Line__c,clcommon__Depreciation_Stream__c,clcommon__Disbursement_Plan__c,clcommon__Disbursement_Transaction__c,clcommon__Disclosure_Acknowledgement__c,clcommon__Disclosure_Definition__c,clcommon__Document_Category__c,clcommon__Document_Definition__c,clcommon__Due_Details__c,clcommon__Dynamic_Query_Data__c,clcommon__Dynamic_Query_Parameter__c,clcommon__Dynamic_Query__c,clcommon__Email_Config__c,clcommon__Equipment_Detail__c,clcommon__Equipment_Fees__c,clcommon__Equipment_Sale_Quote_Line__c,clcommon__Equipment_Sale_Quote__c,clcommon__Equipment_Transaction__c,clcommon__Equipment_Values_Adjustment__c,clcommon__Equipment__c,clcommon__Event_Configuration__c,clcommon__Event_Module_Configuration__c,clcommon__Execution_Criteria_Result__c,clcommon__Execution_Criteria__c,clcommon__Expression_Assignment__c,clcommon__External_Batch_Job_Run__c,clcommon__External_Batch_Job__c,clcommon__Factory_Registration__c,clcommon__Fee_Definition__c,clcommon__Fee_Junction__c,clcommon__Fee_Schedule__c,clcommon__Fee_Set__c,clcommon__Fee_Tax_Config__c,clcommon__Fee__c,clcommon__Field_Mapping__c,clcommon__Financial_Statement_Template__c,clcommon__Financial_Statement__c,clcommon__Floating_Rate_Index__c,clcommon__Floating_Rate__c,clcommon__GatewayConfiguration__c,clcommon__Gateway__c,clcommon__Grammar__c,clcommon__Help_Info__c,clcommon__Holiday_Schedule__c,clcommon__Holiday_Treatment_Setup__c,clcommon__Holiday__c,clcommon__Industry_Average__c,clcommon__Industry_Classification_Code__c,clcommon__Insurance_Definition__c,clcommon__Interest_Component__c,clcommon__Invoice_History__c,clcommon__Invoice__c,clcommon__Job_Dependency__c,clcommon__Job_Logging__c,clcommon__Job__c,clcommon__Launchpad_App_Subscription__c,clcommon__Launchpad_App__c,clcommon__Legal_Entity__c,clcommon__Loan_Account_Document_Documents__c,clcommon__Lock_Record_Configuration__c,clcommon__Locked_Record_Configuration_Snapshot__c,clcommon__Log__c,clcommon__MapRequestToSalesforce__c,clcommon__Mapping_Group__c,clcommon__Mapping_Header__c,clcommon__Message__c,clcommon__Meter_Reading__c,clcommon__Month_End_Portfolio_Query_Configuration__c,clcommon__Month_End_Portfolio_Report__c,clcommon__Month_End_Portfolio__c,clcommon__NavigationStructure__c,clcommon__Notification_Log__c,clcommon__Notification__c,clcommon__Party_Type__c,clcommon__Party__c,clcommon__Payment_Mode__c,clcommon__Payment_Spread_Detail__c,clcommon__Payment_Spread__c,clcommon__Payment_Transaction__c,clcommon__Personal_Information__c,clcommon__Points_Setup__c,clcommon__Points__c,clcommon__Portal_External_Id__c,clcommon__Portal_Layout__c,clcommon__Portal_State_Configuration__c,clcommon__Portal_Status__c,clcommon__Process_Enforcement_Action_Results__c,clcommon__Process_Enforcement_Action__c,clcommon__Process_Enforcement_Constraint__c,clcommon__Process_Enforcement_Detail__c,clcommon__Process_Enforcement__c,clcommon__Product_Insurance_Association__c,clcommon__Product_Purpose_Association__c,clcommon__Program_Or_Product_Points_Association__c,clcommon__Program__c,clcommon__Promotion_Setup__c,clcommon__Promotions__c,clcommon__Question_Definition__c,clcommon__Question_Display_Condition__c,clcommon__Question_Response__c,clcommon__Question__c,clcommon__Questionnaire_Definition__c,clcommon__Questionnaire_Instance__c,clcommon__Questionnaire_Section_Definition__c,clcommon__Rate_Schedule__c,clcommon__Reason_Code__c,clcommon__Reciprocal_Role__c,clcommon__Relationship__c,clcommon__Repayment_Plan__c,clcommon__Reports__c,clcommon__Request__c,clcommon__Response__c,clcommon__Reviewer__c,clcommon__Rule_Set__c,clcommon__Rule__c,clcommon__Sample_Contract__c,clcommon__Sell_Equipment__c,clcommon__Sliding_Billing_Range__c,clcommon__Sliding_Billing_Setup__c,clcommon__Statement_Analysis_Detail__c,clcommon__Statement_Analysis__c,clcommon__Statement_Detail__c,clcommon__Static_Content__c,clcommon__StepUp_Schedule__c,clcommon__Tax_Config__c,clcommon__Template_Configuration__c,clcommon__Template_Detail__c,clcommon__Template__c,clcommon__Test_Config_Wizard__c,clcommon__Thread_Logging__c,clcommon__Transaction__c,clcommon__UI_Setting__c,clcommon__Unresolved_Email_Item__c,clcommon__VAT_Rate_Setup__c,clcommon__Variable_Rent_Rate_Card_Details__c,clcommon__Variable_Rent_Rate_Card__c,clcommon__Variable_Rent_Rate__c,clcommon__Vendor_Program_Association__c,clcommon__Warehouse_Depreciation_Setup__c,cnotify__Configuration__c,cnotify__Delivery_Detail__c,cnotify__Notification__c,cnotify__Notify_Record__c,cnotify__Sms_Detail__c,cnotify__Template_Configuration__c,cnotify__Template__c,filegen__Addenda_Record__c,filegen__Batch_Control_Record__c,filegen__Batch_Header_Record__c,filegen__Batch_Process_Log__c,filegen__Entry_Detail_Record__c,filegen__File_Control_Record__c,filegen__File_Header_Record__c,filegen__File_Metadata__c,filegen__Loan_Account__c,genesis__Account_Scorecard_Result__c,genesis__Accounting_Period__c,genesis__Action__c,genesis__Additional_Determining_Factor__c,genesis__Adverse_Action_Application_Junction__c,genesis__Agenda_Item__c,genesis__Amortization_Schedule__c,genesis__AppDocCatAttachmentJunction__c,genesis__Application_Alternate_Product__c,genesis__Application_Business_Information__c,genesis__Application_Collateral__c,genesis__Application_Compliance_Information__c,genesis__Application_Decisions__c,genesis__Application_Department__c,genesis__Application_Document_Category__c,genesis__Application_Equipment__c,genesis__Application_Note__c,genesis__Application_Parties__c,genesis__Application_Pricing_Detail__c,genesis__Application_Rule_Setup__c,genesis__Application_Scorecard__c,genesis__Application_Status_History__c,genesis__Application_Wizard_Config__c,genesis__Application_s_Scorecard__c,genesis__Applications__c,genesis__Appraisal_Association__c,genesis__Appraisal_Bid__c,genesis__Appraisal_Request__c,genesis__Asset_Information__c,genesis__Asset_Liability_Info__c,genesis__Batch_Process_Log__c,genesis__Branch_Location__c,genesis__Budget_Line_Item__c,genesis__Budget_Milestone__c,genesis__Budget__c,genesis__Business_Information__c,genesis__CR_Org_Definition__c,genesis__Cash_Flow_Summary__c,genesis__Change_Memo__c,genesis__Checklist__c,genesis__Collateral_Document_Category_Junction__c,genesis__Collateral_Occupancy__c,genesis__Committee_Member__c,genesis__Company__c,genesis__Conversion_Mapping_Header__c,genesis__Conversion_Mapping__c,genesis__Credit_Memo__c,genesis__Credit_Rating_Matrix__c,genesis__Department__c,genesis__Departments_Members__c,genesis__Disbursement_Schedule_Config__c,genesis__Disbursement_Schedule_Item__c,genesis__Disbursement_Schedule__c,genesis__Document_Category__c,genesis__Document_Config_for_Category__c,genesis__Document_Criterial__c,genesis__Document_Master__c,genesis__Document_Status__c,genesis__Employee_FinAccount_Transaction_Access__c,genesis__Employment_Information__c,genesis__Engineering_Report__c,genesis__Equipment_Fee_Definition__c,genesis__Equipment_Master__c,genesis__Fee_Schedule__c,genesis__Fee_Set__c,genesis__FinancialCalculator__c,genesis__Financial_Account_Applications__c,genesis__Funding_Schedule__c,genesis__Funding_Transaction__c,genesis__Identification_Information__c,genesis__Income__c,genesis__Insurance__c,genesis__LeadRequest__c,genesis__Lending_Calculator__c,genesis__Lending_Product_Setup__c,genesis__Letter_of_Intent__c,genesis__Liability__c,genesis__Loan_Product__c,genesis__Lookup_Codes__c,genesis__Lookups__c,genesis__Meeting_Schedule__c,genesis__Member_Vote__c,genesis__Minute__c,genesis__Monthly_Income_Expense_Info__c,genesis__Moxtra__c,genesis__Mutex__c,genesis__Payment_Stream__c,genesis__Policy_Condition_Product_Association__c,genesis__Policy_Exception_Definition__c,genesis__Policy_Exception__c,genesis__ProductDepartment_Task_Junction__c,genesis__Product_Department_Junction__c,genesis__Product_Document_Category_Junction__c,genesis__Product_Rate_Card_Association__c,genesis__Product_Rule_Association__c,genesis__Product_Scorecard_Junction__c,genesis__Product_Service_Validation_Config__c,genesis__Product_Yield_Definition_Association__c,genesis__Program_Equipment_Master_Association__c,genesis__Program_Vendor_Rate_Card_Association__c,genesis__Property_Expense__c,genesis__Property_Income__c,genesis__Property__c,genesis__Purpose_Document_Category_Junction__c,genesis__Purpose_Rate_Card_Association__c,genesis__Purpose_Rule_Association__c,genesis__Purpose_ScoreCard_Association__c,genesis__Quick_Quote_Equipment__c,genesis__Quick_Quote_Option__c,genesis__Quick_Quote_Pricing_Options__c,genesis__Quick_Quotes__c,genesis__Rate_Card_Setup_Detail__c,genesis__Rate_Card_Setup_Header__c,genesis__Rate_Schedule_Setup__c,genesis__Referral__c,genesis__Renewal_History__c,genesis__Rent_Roll__c,genesis__RuleAction__c,genesis__RuleCriteria__c,genesis__Rule__c,genesis__Scorecard_Criteria__c,genesis__Scorecard__c,genesis__SubLimit__c,genesis__Task_Setup__c,genesis__Tenant__c,genesis__TestingQueue__c,genesis__Transaction_Categorization__c,genesis__Transaction_Room__c,genesis__Treasury_Criteria_Results__c,genesis__Treasury_Criteria__c,genesis__Treasury_Product_Service_Criteria_Config__c,genesis__Treasury_Services__c,genesis__Treasury_Validations__c,genesis__Vehicle_Valuation__c,genesis__Yield_Definition__c,genesis__Yield_Fee_Definition_Association__c,genesis__Yield__c,intframework__Data_Format_Config_Junction__c,intframework__Data_Format_Config_Set__c,intframework__Data_Format_Config__c,intframework__Data_Mapper_Config_Junction__c,intframework__Data_Mapper_Config__c,intframework__Integration_API_Configuration__c,intframework__Integration_API_Type__c,intframework__Integration_Configuration__c,intframework__Integration_Family__c,intframework__Integration_Log__c,intframework__Integration_Provider__c,intframework__Pattern__c,intframework__Supported_API_By_Integration_Provider__c,ints__API_Process_Log__c,ints__Account_Details__c,ints__Add_Deduct_Options__c,ints__Additional_Parameters__c,ints__Blackbook_Result__c,ints__Collateral_Valuation__c,ints__Collateral__c,ints__Credit_Alert_Message__c,ints__Credit_File__c,ints__Credit_Public_Record__c,ints__Credit_Regulatory_Product__c,ints__Credit_Report_Inquiry__c,ints__Credit_Report_Key__c,ints__Credit_Report_Liability_Credit_Comment__c,ints__Credit_Report_Liability_PAR__c,ints__Credit_Report_Liability__c,ints__Credit_Report_Score__c,ints__Credit_Report__c,ints__Credit_Response_Data__c,ints__Credit_Response__c,ints__Credit_Score_Factor__c,ints__Credit_Summary_Data_Set__c,ints__Credit_Summary__c,ints__DAndB_Detailed_Company__c,ints__DAndB_Paydex__c,ints__DAndB_Rating__c,ints__Data_Loader_Detail__c,ints__Data_Loader_Header__c,ints__EfxReport_Address__c,ints__EfxReport_Bank_Account__c,ints__EfxReport_Collection__c,ints__EfxReport_Consumer_Statement__c,ints__EfxReport_Data_Warning_Message__c,ints__EfxReport_Employment__c,ints__EfxReport_Error__c,ints__EfxReport_FW_Message__c,ints__EfxReport_ForeignInquiry__c,ints__EfxReport_FraudWarning__c,ints__EfxReport_Garnishment__c,ints__EfxReport_LegalItem__c,ints__EfxReport_Local_Inquiry__c,ints__EfxReport_Other_Income__c,ints__EfxReport_Score_RejectCode__c,ints__EfxReport_Score__c,ints__EfxReport_SecuredLoan__c,ints__EfxReport_Trade_Narrative__c,ints__EfxReport_Trade__c,ints__EfxReport__c,ints__Emailage__c,ints__Equifax_eId_Verifier_Response__c,ints__EquipmentDetail__c,ints__Equipment__c,ints__Full_Contact_Person_Record__c,ints__GDC_Verify_Data_Source_Record__c,ints__GDC_Verify_Record__c,ints__IDCAamvaBarcode__c,ints__IDCClassificationResult__c,ints__IDCData__c,ints__IDCDocumentExpertReviewResult__c,ints__IDCDocumentValidation__c,ints__IDCDossierFacelinkResult__c,ints__IDCDossierSummary__c,ints__IDCDynamicData__c,ints__IDCFacelinkAutomaticResult__c,ints__IDCFacelinkManualResult__c,ints__IDCFacelinkResult__c,ints__IDCFontValidationResult__c,ints__IDCMachineReadableZone__c,ints__IDCOcrResult__c,ints__IDCPhotoIntegrationValidationResult__c,ints__IDCSecurityFeatures__c,ints__IDCheckerRequest__c,ints__Indicators__c,ints__IntegrationMockResponse__c,ints__Integration_Configuration__c,ints__Key__c,ints__Lenddo_Response__c,ints__Microbilt_Information__c,ints__Mileage_Adjustments__c,ints__MockObject__c,ints__Mocker__c,ints__OAuth_Settings__c,ints__OAuth_Token__c,ints__Property_Links_Images__c,ints__Site_Account__c,ints__TestingQueue__c,ints__TransUnion_Credit_Report__c,ints__Transaction__c,ints__Yodlee_Call__c,ints__Yodlee_Transaction__c,ints__Yodlee_User_Credentials__c,ints__Zw_Property__c,loan__ACH_Return_Action_Config__c,loan__ACH_Return_Transaction_Interface__c,loan__Accounting_Period__c,loan__Accounting_Rule_Header__c,loan__Accounting_Rule_Line__c,loan__Accounting_Segment_Setup__c,loan__Accrual_Entry__c,loan__Accrual_Stream_Config__c,loan__Address__c,loan__Aging_History__c,loan__Amortization_Setup__c,loan__Answer__c,loan__Archive_Run__c,loan__Automated_Payment_Configuration__c,loan__Automated_Payment_Setup__c,loan__Balance__c,loan__Bank_Account__c,loan__Bank__c,loan__Base_Segment_Definition__c,loan__Batch_Process_Log__c,loan__Borrower_Refund_Transaction__c,loan__Branch_Loan_Product__c,loan__Branch_Location__c,loan__Branch_Savings_Product__c,loan__Broker_Transactions__c,loan__Broker__c,loan__Business_Activity__c,loan__Business_Event__c,loan__CR_Metro_2_Data_Format__c,loan__CR_Org_Definition__c,loan__Center__c,loan__Charge_Interface__c,loan__Charge__c,loan__Check__c,loan__Client_History__c,loan__Client_Identification__c,loan__Client_Training__c,loan__Client__c,loan__Coborrower__c,loan__Collateral_Junction__c,loan__Collateral_Valuation__c,loan__Collateral__c,loan__Collection_Fee__c,loan__Commission_Plan__c,loan__Conditions_On_Spread__c,loan__Consolidated_Charge__c,loan__Consolidated_Forecast_Stream__c,loan__Consolidated_Loan_Payment_Interface__c,loan__Consolidated_Loan_Payment_Line__c,loan__Consolidated_Loan_Payment_Reversal__c,loan__Consolidated_Loan_Payment__c,loan__Contract_Condition__c,loan__Contract_Pre_Paid_Fee__c,loan__Countries__c,loan__Currency__c,loan__Custom_Job_Query__c,loan__Daily_Loan_Accrual__c,loan__Data_Migration_Batch__c,loan__Data_Migration_Error__c,loan__Day_Process__c,loan__Default_Commission_Hierarchy__c,loan__Delinquency_Interval__c,loan__Delinquency_Set_Junction__c,loan__Delinquency_Set__c,loan__Disbursal_Adjustment__c,loan__Disbursal_Transaction_Interface__c,loan__Disbursal_Txn_Distribution__c,loan__Disbursement_Schedule__c,loan__Due_Fee__c,loan__Due_Payment__c,loan__Dues_Details_Interface__c,loan__Employment_Business_Detail__c,loan__Family_Detail__c,loan__Family_Details__c,loan__Family_Employment_Details__c,loan__Fee_Junction__c,loan__Fee_Order__c,loan__Fee_Payment__c,loan__Fee_Set__c,loan__Fee__c,loan__FinancialCalculator__c,loan__Financial_Education__c,loan__Fiscal_Year__c,loan__Flexible_Rate_Setup_Interface__c,loan__Floating_Rate_Index__c,loan__Floating_Rate__c,loan__Forecast_Streams__c,loan__Frozen_Fees_Config__c,loan__Funder_Portfolio__c,loan__Funder__c,loan__GL_Balance__c,loan__Group_Position__c,loan__Group__c,loan__Holiday__c,loan__Home_Evaluation__c,loan__Insurance_PRoduct__c,loan__Interest_Component_Payment__c,loan__Interest_On_Overdue_Payment__c,loan__Interest_Posting_Loan_Payment__c,loan__Interest_Posting_Transaction__c,loan__Investment_Order_Product__c,loan__Investment_Product_Investment_Order__c,loan__Investor_Amortization_Schedule__c,loan__Investor_Fund_Transaction__c,loan__Investor_Loan_Account_Txns__c,loan__Investor_Loan__c,loan__Investor_Payments__c,loan__Investor_Tax_Configuration__c,loan__J1_Segment__c,loan__J2_Segment__c,loan__Journal__c,loan__K1_Segment__c,loan__K2_Segment__c,loan__K3_Segment__c,loan__K4_Segment__c,loan__L1_Segment__c,loan__Loan_Account_Conditions__c,loan__Loan_Account_History__c,loan__Loan_Account_Interface__c,loan__Loan_Account__c,loan__Loan_Approval_Prerequisites__c,loan__Loan_Block_Code__c,loan__Loan_Collateral__c,loan__Loan_Disbursal_Transaction__c,loan__Loan_Loss_Provisioning_Setup__c,loan__Loan_Parameters__c,loan__Loan_Payment_Amz_Sched_Junction__c,loan__Loan_Payment_Collection__c,loan__Loan_Payment_Spread__c,loan__Loan_Payment_Transaction_Interface__c,loan__Loan_Payment_Transaction__c,loan__Loan_Product_Accounting_Setup__c,loan__Loan_Product_Cycle__c,loan__Loan_Product_Differentiator__c,loan__Loan_Product__c,loan__Loan_Protect_Split__c,loan__Loan_Purpose__c,loan__Loan_Status_History__c,loan__Loan_Status__c,loan__Loan_Transaction_Summary__c,loan__Loan_Write_Off_Transaction__c,loan__Loan_account_Due_Details__c,loan__Lookup__c,loan__MFError__c,loan__MF_Account_Tag__c,loan__MF_Account_Type__c,loan__MF_Account__c,loan__Meeting_Schedule__c,loan__Misc_Account__c,loan__Misc_Transaction__c,loan__Month_End_Loan_Snapshot__c,loan__Month_Process__c,loan__Multi_Step_Loan_Setup__c,loan__N1_Segment__c,loan__Object_Event_Mapping__c,loan__Office_Name__c,loan__Office_Type__c,loan__Other_Transaction__c,loan__Overdue_Fee__c,loan__PPIChartCountryAndYear__c,loan__PPI_Household_Data__c,loan__PPI_Indicator__c,loan__PPI__c,loan__Paid_Fee__c,loan__Payment_Mode__c,loan__Payment_Schedule_Setup__c,loan__Payoff_Quote__c,loan__Periodic_Fee_Setup__c,loan__Poverty_Likelihood_Chart__c,loan__Product_Amortization_Balance_Setup__c,loan__Product_Category__c,loan__Product_Condition__c,loan__Product_Pre_Paid_Fees__c,loan__Protect_Claim_LPT_Junction__c,loan__Protect_Claim__c,loan__Protect_Fee_Split__c,loan__Question_Junction__c,loan__Question_Set__c,loan__Question__c,loan__Quick_Link__c,loan__Recovery_Order__c,loan__Refinance_Transaction__c,loan__Repayment_Extensions__c,loan__Repayment_Schedule_Summary__c,loan__Repayment_Schedule__c,loan__Repayment_Summary_Interface__c,loan__Repayment_Transaction_Adjustment__c,loan__Sales_Income_Estimate__c,loan__Savings_Account_Interest__c,loan__Savings_Account__c,loan__Savings_Payment_Collection_Record__c,loan__Savings_Payment_Transaction__c,loan__Savings_Product_Accounting_Setup__c,loan__Savings_Product__c,loan__Savings_Withdrawal_Transaction__c,loan__Scheduled_Job__c,loan__Scheduled_Queries__c,loan__Search__c,loan__Staff__c,loan__Start_Here__c,loan__Teller_Cash_Transaction__c,loan__TestingQueue__c,loan__Trailer_Segment_Definition__c,loan__Transaction_Entry__c,loan__Transaction_Source__c,loan__Transaction_Summary__c,loan__Transaction__c,loan__Transfer_Transaction__c,loan__User_Branch_Info__c,loan__Users_Quick_Links__c,loan__Value_Set_Values__c,loan__Value_Sets__c,loan__loan_amortize_balances__c,loan__loan_amortize_txns__c,mfiflexUtil__Log__c,mfiflexUtil__Security_Test__c,mfiflexUtil__votest_account__c,mfiflexUtil__votest_charge__c,mfiflexUtil__votest_fees__c,mfiflexUtil__votest_loan_account__c,peer__Bank_Recon_Exception__c,peer__Booking_Order__c,peer__Borrower_Information__c,peer__Credit_Band_Allocation__c,peer__Credit_Rating_Matrix__c,peer__Credit_Score__c,peer__Disbursement_Schedule__c,peer__FB_Permissions__c,peer__Investment_Booking__c,peer__Investment_Order_Sale_Transaction__c,peer__Investment_Queue__c,peer__Loan_Application__c,peer__Login__c,peer__Moxtra__c,peer__Note_Bundle__c,peer__Note_Type__c,peer__Notification_Category__c,peer__Notification__c,peer__Portfolio_Weights_Table__c,peer__RequiredDocument__c,peer__Required_Document_Map__c,peer__Verification__c,skuid__Auth_Provider_Credential__c,skuid__Feedback_Response__c,skuid__Feedback__c,skuid__Image__c,skuid__Page_Assignment__c,skuid__Page_Interaction__c,skuid__Page_Version__c,skuid__Page__c,skuid__Personalization_Settings__c,staging__Fee__c,staging__Interface_Bank_Account__c,staging__Interface_Charge__c,staging__Interface_Contract_Due_Details__c,staging__Interface_Contract_Status__c,staging__Interface_Contract__c,staging__Interface_Party__c,staging__Interface_Payment_Transaction__c,staging__Interface_Repayment_Schedule__c" operator="=" enclosevalueinquotes="true"/>
+				<condition type="fieldvalue" value="Serviceability File" enclosevalueinquotes="true" field="Description"/>
+			</conditions>
+			<actions/>
+		</model>
+	</models>
+	<components>
+		<grid uniqueid="sk-1rrL-376">
+			<divisions>
+				<division behavior="flex" minwidth="100px" ratio="1" verticalalign="top">
+					<components>
+						<wrapper uniqueid="sk-1hSh-209">
+							<components>
+								<buttonset model="BorrowerApplication" uniqueid="sk-208A-1240">
+									<buttons>
+										<button type="multi" label="Save" uniqueid="sk-208A-1245">
+											<actions>
+												<action type="save">
+													<models>
+														<model>BorrowerApplication</model>
+													</models>
+												</action>
+											</actions>
+											<renderconditions logictype="and">
+												<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="false" fieldmodel="BorrowerApplication" sourcetype="fieldvalue" field="Is_Approved__c" fieldtargetobjects="genesis__Applications__c" value="false"/>
+											</renderconditions>
+											<enableconditions logictype="and">
+												<condition type="fieldvalue" enclosevalueinquotes="false" fieldmodel="BorrowerApplication" sourcetype="modelproperty" sourceproperty="hasChanged" value="true" operator="="/>
+												<condition type="fieldvalue" operator="=" enclosevalueinquotes="false" fieldmodel="BorrowerApplication" sourcetype="fieldvalue" field="Is_Approved__c" fieldtargetobjects="genesis__Applications__c" value="false"/>
+											</enableconditions>
+										</button>
+										<button type="cancel" uniqueid="sk-2GBx-264" window="self" label="Cancel" icon="sk-icon-cancel">
+											<actions>
+												<action type="cancel">
+													<models>
+														<model>BorrowerApplication</model>
+													</models>
+												</action>
+											</actions>
+											<renderconditions logictype="and">
+												<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="false" fieldmodel="BorrowerApplication" sourcetype="fieldvalue" field="Is_Approved__c" fieldtargetobjects="genesis__Applications__c" value="false"/>
+											</renderconditions>
+											<enableconditions/>
+										</button>
+									</buttons>
+								</buttonset>
+								<basicfieldeditor showheader="true" showsavecancel="false" showerrorsinline="true" model="BorrowerApplication" uniqueid="sk-208J-1275" mode="edit">
+									<columns>
+										<column width="100%" uniqueid="sk-208J-1271">
+											<sections>
+												<section collapsible="no" uniqueid="sk-20Db-363" title="Details" showheader="false">
+													<fields>
+														<columns uniqueid="sk-20Dc-379" layoutmode="fixed">
+															<column width="100%" uniqueid="sk-20Dc-369">
+																<sections>
+																	<section title="New Section" collapsible="no" uniqueid="sk-20Dc-370" showheader="false">
+																		<fields>
+																			<field uniqueid="sk-20CT-296" id="Net_Surplus_Income__c"/>
+																			<field uniqueid="sk-20CV-312" id="Debt_Service_Ratio__c"/>
+																			<field uniqueid="sk-20Cc-331" id="Debt_to_Income_Ratio__c"/>
+																			<field uniqueid="sk-20CO-282" id="Interest_Cover_Ratio__c"/>
+																			<field uniqueid="sk-20CM-262" id="Total_HEM_Living_Expenses__c" readonly="true">
+																				<renderconditions logictype="and" onhidedatabehavior="keep"/>
+																				<enableconditions/>
+																			</field>
+																			<field uniqueid="sk-2GDg-386" id="Total_Monthly_Living_Expenses_Declared__c" decimalplaces="2" readonly="true">
+																				<renderconditions logictype="and" onhidedatabehavior="keep"/>
+																				<enableconditions/>
+																			</field>
+																			<field uniqueid="sk-2GDi-393" id="Monthly_Living_Expenses_Used__c" decimalplaces="2"/>
+																		</fields>
+																	</section>
+																</sections>
+															</column>
+														</columns>
+													</fields>
+												</section>
+												<section title="Section A" uniqueid="sk-208J-1272" collapsible="no" showheader="false">
+													<fields/>
+												</section>
+											</sections>
+											<renderconditions logictype="and"/>
+										</column>
+									</columns>
+									<renderconditions logictype="and"/>
+								</basicfieldeditor>
+								<basicfieldeditor showheader="true" showsavecancel="false" showerrorsinline="true" model="BorrowerApplication" uniqueid="sk-3KCV-391" mode="edit">
+									<columns>
+										<column width="100%" uniqueid="sk-3KCV-387">
+											<sections>
+												<section title="Section A" uniqueid="sk-3KCV-388" collapsible="no" showheader="false">
+													<fields>
+														<field uniqueid="sk-3KEy-417" id="Loan_Assesment_Commentary_Serviceability__c" displayrows="3">
+															<label>Loan Assesment Commentary</label>
+														</field>
+													</fields>
+												</section>
+											</sections>
+										</column>
+									</columns>
+								</basicfieldeditor>
+								<file storeas="record" displayas="filename" uniqueid="sk-3uTC-416" datasource="salesforce" model="BorrowerApplication" label="Upload Serviceability Documents" autorefreshmodels="false" description="Serviceability File">
+									<uploadsuccessactions>
+										<action type="blockUI" message="File is getting uploaded! Please wait..." timeout="1000"/>
+										<action type="requeryModel" model="ServiceabiltyDocumentAttachments" behavior="standard"/>
+										<action type="custom" snippet="CheckAndCreateCategoryAttachmentsRecordsServiceability"/>
+									</uploadsuccessactions>
+									<uploadfailureactions>
+										<action type="blockUI" message="Error found while uploading the file. Please check the file name, file size or contact Admin." timeout="3000"/>
+									</uploadfailureactions>
+									<renderconditions logictype="and">
+										<rendercondition type="fieldvalue" enclosevalueinquotes="true" fieldmodel="ServiecabiltyDocumentCategory" sourcetype="modelproperty" nosourcerowbehavior="deactivate" sourceproperty="hasRows"/>
+									</renderconditions>
+								</file>
+								<skootable showconditions="true" showsavecancel="false" showerrorsinline="true" searchmethod="server" searchbox="true" showexportbuttons="false" hideheader="false" hidefooter="false" pagesize="10" alwaysresetpagination="false" createrecords="false" model="ServiceabiltyDocumentAttachments" buttonposition="" mode="readonly" allowcolumnreordering="true" responsive="true" uniqueid="sk-2rc8-931" heading="Serviceability Documents">
+									<fields>
+										<field id="Name" hideable="true" uniqueid="fi-2rcB-951"/>
+										<field id="CreatedBy.Name" hideable="true" uniqueid="fi-2rcC-961">
+											<label>Uploaded By</label>
+										</field>
+										<field id="CreatedDate" hideable="true" uniqueid="fi-2rcD-971"/>
+									</fields>
+									<rowactions>
+										<action type="redirect" label="View record details" icon="sk-icon-popup" window="blank" url="/servlet/servlet.FileDownload?file={{Id}}">
+											<renderconditions logictype="and"/>
+										</action>
+										<action type="multi" label="Delete Attachment file" icon="sk-webicon-material-icons:delete">
+											<actions>
+												<action type="custom" snippet="DeleteServiceabilityAttachment"/>
+												<action type="requeryModel" model="ServiceabiltyDocumentAttachments" behavior="standard"/>
+											</actions>
+											<renderconditions logictype="and"/>
+										</action>
+									</rowactions>
+									<massactions usefirstitemasdefault="true"/>
+									<views/>
+									<renderconditions logictype="and">
+										<rendercondition type="fieldvalue" enclosevalueinquotes="true" fieldmodel="ServiecabiltyDocumentCategory" sourcetype="modelproperty" nosourcerowbehavior="deactivate" sourceproperty="hasRows"/>
+									</renderconditions>
+								</skootable>
+							</components>
+							<styles>
+								<styleitem type="background" bgtype="color">
+									<styles>
+										<styleitem property="background-color" value="transparent"/>
+									</styles>
+								</styleitem>
+								<styleitem type="border"/>
+								<styleitem type="size"/>
+							</styles>
+							<interactions/>
+							<renderconditions logictype="and"/>
+						</wrapper>
+					</components>
+				</division>
+			</divisions>
+			<styles>
+				<styleitem type="background" bgtype="color">
+					<styles>
+						<styleitem property="background-color" value="transparent"/>
+					</styles>
+				</styleitem>
+			</styles>
+			<renderconditions logictype="and"/>
+		</grid>
+	</components>
+	<resources>
+		<labels/>
+		<javascript>
+			<jsitem location="inlinesnippet" name="DeleteServiceabilityAttachment" cachelocation="false">var params = arguments[0],
+	$ = skuid.$;
+var records = arguments[0].item;
+var resCheck = sforce.apex.execute('CategoryAttachmentUtility','deleteAttachment',
+    {
+        attachId : records.row.Id
+    });
+alert(resCheck);</jsitem>
+			<jsitem location="inlinesnippet" name="CheckAndCreateCategoryAttachmentsRecordsServiceability" cachelocation="false">var params = arguments[0],
+	$ = skuid.$;
+var appModelIdenCheck = skuid.model.getModel('BorrowerApplication');
+var attModelIdenModel = skuid.model.getModel('ServiceabiltyDocumentAttachments');
+var attIds = [];
+var appModelIdenRowCheck = appModelIdenCheck.data[0];
+var records = sforce.connection.query("Select ID from clcommon__Document_Category__c where clcommon__Category_Name__c = 'Serviceability' and genesis__Application__c = '"+appModelIdenRowCheck.Id+"' and clcommon__Parent_Document_Category__c != null limit 1");
+var documentCategoryRecord = records.getArray('records');
+var resCheck;
+$.each(attModelIdenModel.data,function(i,row){
+    attIds.push(row.Id+"");
+});
+if(documentCategoryRecord[0].Id !== undefined &amp;&amp; attModelIdenModel.data.length &gt; 0){
+    resCheck = sforce.apex.execute('CategoryAttachmentUtility','categoryAttachmentCheckAndCreation',
+        {
+            documentCategoryId : documentCategoryRecord[0].Id, 
+            attachIdList : attIds
+        });
+}
+else{
+    alert('Document Category Not Found or Uploaded Documents could not be recognised.Please contact Admin as category Attachments could not be created');
+}</jsitem>
+		</javascript>
+		<css/>
+		<actionsequences uniqueid="sk-1hSz-322">
+			<actionsequence id="3db39258-3e15-430c-883d-c105b7b4a255" type="event-triggered" label="MakeFieldsViewOnly" event-scope="component" event-name="page.rendered" uniqueid="sk-2UVZ-395">
+				<description/>
+				<actions>
+					<action type="branch" whenfinished="stop" model="BorrowerApplication">
+						<iftrueactions>
+							<action type="runComponentAction" componentid="sk-208J-1275" action="changeMode" mode="read"/>
+						</iftrueactions>
+						<formula>{{Is_Approved__c}}</formula>
+					</action>
+				</actions>
+				<inputs/>
+			</actionsequence>
+		</actionsequences>
+	</resources>
+	<styles>
+		<styleitem type="background" bgtype="none"/>
+	</styles>
+	<interactions/>
 </skuidpage>

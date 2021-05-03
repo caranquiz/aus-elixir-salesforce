@@ -1,0 +1,62 @@
+<skuidpage unsavedchangeswarning="yes" personalizationmode="server" showsidebar="false" showheader="false">
+	<models>
+		<model id="ApplicationDocCategory" limit="" query="true" createrowifnonefound="false" adapter="salesforce" type="" sobject="Application_Document_Category__c">
+			<fields>
+				<field id="Document_Category__c"/>
+				<field id="Document_Category__r.Name"/>
+				<field id="Application__c"/>
+				<field id="Application__r.Name"/>
+			</fields>
+			<conditions>
+				<condition type="param" value="id" field="Application__c" operator="=" enclosevalueinquotes="true" novaluebehavior="noquery"/>
+			</conditions>
+			<actions/>
+		</model>
+		<model id="DocumentCategory" limit="" query="true" createrowifnonefound="false" adapter="salesforce" type="" sobject="Document_Category__c">
+			<fields>
+				<field id="Id"/>
+				<field id="Category_Name__c"/>
+			</fields>
+			<conditions>
+				<condition type="modelmerge" value="" field="Id" operator="not in" model="ApplicationDocCategory" enclosevalueinquotes="true" mergefield="Document_Category__c" novaluebehavior="deactivate"/>
+			</conditions>
+			<actions/>
+		</model>
+	</models>
+	<components>
+		<skootable showconditions="true" showsavecancel="false" showerrorsinline="true" searchmethod="server" searchbox="true" showexportbuttons="false" pagesize="all" createrecords="false" model="DocumentCategory" buttonposition="" mode="readonly" uniqueid="sk-24Dx7a-252">
+			<fields>
+				<field id="Category_Name__c" valuehalign="" type=""/>
+			</fields>
+			<rowactions/>
+			<massactions usefirstitemasdefault="true">
+				<action type="custom" label="Add Document Categories" icon="sk-icon-add" snippet="addDocumentCategories"/>
+			</massactions>
+			<views>
+				<view type="standard"/>
+			</views>
+		</skootable>
+	</components>
+	<resources>
+		<labels/>
+		<javascript>
+			<jsitem location="inlinesnippet" name="addDocumentCategories" cachelocation="false">var params = arguments[0],
+	$ = skuid.$;
+
+var selectedIds = $.map(params.list.getSelectedItems(), function(item) {
+    return item.row.Id;
+});
+
+var message = {
+    type: 'action-document-category-add',
+    documentCategoryIds: selectedIds
+};
+
+window.parent.postMessage(message, '*');</jsitem>
+		</javascript>
+		<css/>
+	</resources>
+	<styles>
+		<styleitem type="background" bgtype="none"/>
+	</styles>
+</skuidpage>

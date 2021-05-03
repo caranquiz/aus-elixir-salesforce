@@ -1,0 +1,573 @@
+<skuidpage personalizationmode="server" showsidebar="false" showheader="false">
+	<models>
+		<model id="DocumentCategoryDetails" limit="20" query="true" createrowifnonefound="false" sobject="clcommon__Document_Category__c" datasource="salesforce">
+			<fields>
+				<field id="Name"/>
+				<field id="Id"/>
+				<field id="clcommon__Description__c"/>
+				<field id="clcommon__Priority__c"/>
+				<field id="clcommon__Status__c"/>
+				<field id="clcommon__Required__c"/>
+				<field id="clcommon__Account__c"/>
+				<field id="clcommon__Account__r.Name"/>
+				<field id="clcommon__Active__c"/>
+				<field id="genesis__Application__c"/>
+				<field id="genesis__Application__r.Name"/>
+				<field id="clcommon__Category_Name__c"/>
+				<field id="clcommon__Document_Definition__c"/>
+				<field id="clcommon__Document_Definition__r.Name"/>
+				<field id="clcommon__Generation_Status__c"/>
+				<field id="clcommon__Parent_Document_Category__c"/>
+				<field id="clcommon__Parent_Document_Category__r.Name"/>
+				<field id="clcommon__Reuse_Document__c"/>
+				<field id="clcommon__Collateral__c"/>
+				<field id="clcommon__Collateral__r.Name"/>
+				<field id="clcommon__Parent_Document_Category__r.clcommon__Parent_Document_Category__c"/>
+				<field id="clcommon__Parent_Document_Category__r.clcommon__Parent_Document_Category__r.Name"/>
+			</fields>
+			<conditions>
+				<condition type="param" value="id" field="Id" operator="=" enclosevalueinquotes="true" novaluebehavior="deactivate"/>
+			</conditions>
+			<actions/>
+		</model>
+		<model id="CatDocAssociation" limit="1" query="true" createrowifnonefound="false" sobject="clcommon__Category_Attachment_Association__c" datasource="salesforce">
+			<fields>
+				<field id="clcommon__Attachment_Id__c"/>
+				<field id="Name"/>
+				<field id="clcommon__Document_Category__c"/>
+				<field id="clcommon__Document_Category__r.Name"/>
+			</fields>
+			<conditions>
+				<condition type="param" value="id" field="Id" operator="=" state="" enclosevalueinquotes="true" novaluebehavior="noquery"/>
+			</conditions>
+			<actions/>
+		</model>
+		<model id="NewAttachmentModel" limit="" query="true" createrowifnonefound="false" sobject="Attachment" datasource="salesforce">
+			<fields>
+				<field id="Id"/>
+				<field id="BodyLength"/>
+				<field id="ContentType"/>
+				<field id="CreatedBy.Name"/>
+				<field id="Description"/>
+				<field id="LastModifiedDate"/>
+				<field id="CreatedDate"/>
+				<field id="LastModifiedBy.Name"/>
+				<field id="Name"/>
+			</fields>
+			<conditions>
+				<condition type="modelmerge" value="" field="Id" operator="=" novaluebehavior="noquery" model="CatDocAssociation" enclosevalueinquotes="true" mergefield="clcommon__Attachment_Id__c"/>
+			</conditions>
+			<actions/>
+		</model>
+		<model id="ApplicationModel" limit="20" query="true" createrowifnonefound="false" datasource="salesforce" sobject="genesis__Applications__c">
+			<fields>
+				<field id="RecordTypeId"/>
+				<field id="genesis__Account__c"/>
+				<field id="genesis__Account__r.Name"/>
+				<field id="genesis__Contact__c"/>
+				<field id="genesis__Contact__r.Name"/>
+				<field id="Name"/>
+				<field id="Id"/>
+				<field id="Is_Approved__c"/>
+			</fields>
+			<conditions>
+				<condition type="modelmerge" value="" field="Id" operator="=" model="DocumentCategoryDetails" enclosevalueinquotes="true" mergefield="genesis__Application__c" novaluebehavior="noquery" fieldtargetobjects="genesis__Applications__c"/>
+			</conditions>
+			<actions/>
+		</model>
+		<model limit="20" query="true" createrowifnonefound="false" datasource="salesforce" id="BorrowerModel" sobject="clcommon__Party__c">
+			<fields>
+				<field id="clcommon__Account__c"/>
+				<field id="clcommon__Account__r.Name"/>
+				<field id="genesis__Application__c"/>
+				<field id="genesis__Application__r.Name"/>
+				<field id="clcommon__Contact__c"/>
+				<field id="clcommon__Contact__r.Name"/>
+				<field id="genesis__Party_Name__c"/>
+				<field id="Name"/>
+				<field id="clcommon__Type__c"/>
+				<field id="clcommon__Type__r.Name"/>
+				<field id="Id"/>
+			</fields>
+			<conditions>
+				<condition type="modelmerge" value="" field="genesis__Application__c" fieldtargetobjects="genesis__Applications__c" operator="=" model="DocumentCategoryDetails" enclosevalueinquotes="true" mergefield="genesis__Application__c" novaluebehavior="noquery"/>
+				<condition type="fieldvalue" value="BORROWER" enclosevalueinquotes="true" field="clcommon__Type__r.Name"/>
+			</conditions>
+			<actions/>
+		</model>
+		<model limit="20" query="true" createrowifnonefound="false" datasource="salesforce" id="CoBorrowerModel" sobject="clcommon__Party__c">
+			<fields>
+				<field id="clcommon__Account__c"/>
+				<field id="clcommon__Account__r.Name"/>
+				<field id="genesis__Application__c"/>
+				<field id="genesis__Application__r.Name"/>
+				<field id="clcommon__Contact__c"/>
+				<field id="clcommon__Contact__r.Name"/>
+				<field id="genesis__Party_Name__c"/>
+				<field id="Name"/>
+				<field id="clcommon__Type__c"/>
+				<field id="clcommon__Type__r.Name"/>
+				<field id="Id"/>
+			</fields>
+			<conditions>
+				<condition type="modelmerge" value="" field="genesis__Application__c" fieldtargetobjects="genesis__Applications__c" operator="=" model="DocumentCategoryDetails" enclosevalueinquotes="true" mergefield="genesis__Application__c" novaluebehavior="noquery"/>
+				<condition type="fieldvalue" value="CO-BORROWER" enclosevalueinquotes="true" field="clcommon__Type__r.Name"/>
+			</conditions>
+			<actions/>
+		</model>
+	</models>
+	<components>
+		<wrapper uniqueid="sk-3ipA8s-191" cssclass="cls-dashboard-section">
+			<components>
+				<pagetitle uniqueid="document-category-name" model="DocumentCategoryDetails">
+					<actions>
+						<action type="multi" label="Generate Documents" uniqueid="generate-document" cssclass="iconic-button iconic-button-generate">
+							<actions>
+								<action type="custom" snippet="SendDocuments"/>
+							</actions>
+							<hotkeys/>
+							<renderconditions logictype="and">
+								<rendercondition type="multiple" operator="in" fieldmodel="DocumentCategoryDetails" sourcetype="fieldvalue" field="clcommon__Category_Name__c" fieldtargetobjects="clcommon__Document_Category__c" value="" enclosevalueinquotes="true">
+									<values>
+										<value>Adverse Action notice</value>
+										<value>Credit Application</value>
+									</values>
+								</rendercondition>
+							</renderconditions>
+							<enableconditions/>
+						</action>
+						<action type="multi" label="Email" uniqueid="document-Email" cssclass="nx-pagetitle-action iconic-button iconic-button-exception-task ui-button ">
+							<actions>
+								<action type="custom" snippet="DocumentListForNotification"/>
+							</actions>
+							<renderconditions logictype="and">
+								<rendercondition type="blank" operator="=" fieldmodel="DocumentCategoryDetails" sourcetype="fieldvalue" field="clcommon__Parent_Document_Category__c" fieldtargetobjects="clcommon__Document_Category__c" value="null" enclosevalueinquotes="false"/>
+								<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="DocumentCategoryDetails" sourcetype="fieldvalue" field="Id" fieldtargetobjects="clcommon__Document_Category__c" value="1234"/>
+							</renderconditions>
+							<enableconditions/>
+							<hotkeys/>
+						</action>
+						<action type="multi" label="Add" cssclass="iconic-button iconic-button-add" uniqueid="document-add">
+							<hotkeys/>
+							<renderconditions logictype="and"/>
+							<enableconditions/>
+							<actions>
+								<action type="custom" snippet="AddAttachmentsModal"/>
+							</actions>
+						</action>
+						<action type="multi" window="self" cssclass="iconic-button iconic-button-delete" label="Delete" uniqueid="document-category-delete">
+							<actions>
+								<action type="custom" snippet="DeleteDocumentCategory"/>
+							</actions>
+							<renderconditions logictype="and">
+								<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="false" fieldmodel="ApplicationModel" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="Is_Approved__c" fieldtargetobjects="genesis__Applications__c" value="false"/>
+							</renderconditions>
+							<enableconditions/>
+						</action>
+						<action type="save" label="Save" window="self" cssclass="iconic-button iconic-button-save" uniqueid="document-category-save">
+							<hotkeys/>
+							<actions>
+								<action type="custom">
+									<models>
+										<model>DocumentCategory</model>
+									</models>
+								</action>
+							</actions>
+							<renderconditions logictype="and">
+								<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="false" fieldmodel="ApplicationModel" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="Is_Approved__c" fieldtargetobjects="genesis__Applications__c" value="false"/>
+							</renderconditions>
+							<enableconditions/>
+						</action>
+						<action type="cancel" label="Cancel" window="self" cssclass="iconic-button iconic-button-cancel" uniqueid="sk-3c1B-203">
+							<renderconditions logictype="and">
+								<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="false" fieldmodel="ApplicationModel" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="Is_Approved__c" fieldtargetobjects="genesis__Applications__c" value="false"/>
+							</renderconditions>
+							<enableconditions/>
+						</action>
+					</actions>
+					<renderconditions logictype="and">
+						<rendercondition type="blank" operator="!=" fieldmodel="DocumentCategoryDetails" sourcetype="fieldvalue" nosourcerowbehavior="skipandnorender" value="null" enclosevalueinquotes="false" field="Id"/>
+					</renderconditions>
+					<maintitle>{{$Param.displayName}}</maintitle>
+				</pagetitle>
+				<basicfieldeditor showheader="true" showsavecancel="false" showerrorsinline="true" model="DocumentCategoryDetails" uniqueid="sk-1WFTEM-122" mode="read" layout="">
+					<columns>
+						<column width="100%">
+							<sections>
+								<section title="New Section" collapsible="no" showheader="false">
+									<fields>
+										<field id="clcommon__Description__c" uniqueid="sk-3c1B-212"/>
+										<columns layoutmode="fixed" uniqueid="sk-3c1B-242">
+											<column width="50%">
+												<sections>
+													<section title="New Section" collapsible="no" showheader="false">
+														<fields>
+															<field id="clcommon__Account__c" valuehalign="" type="" readonly="true" optionsource="" uniqueid="sk-3c1B-219">
+																<filters/>
+																<renderconditions logictype="and" onhidedatabehavior="keep">
+																	<rendercondition type="blank" operator="=" fieldmodel="DocumentCategoryDetails" sourcetype="fieldvalue" field="clcommon__Collateral__c" value="null" enclosevalueinquotes="false"/>
+																</renderconditions>
+																<enableconditions/>
+																<searchfields/>
+															</field>
+															<field id="clcommon__Collateral__c" valuehalign="" type="" readonly="true" uniqueid="sk-3c1B-222">
+																<renderconditions logictype="and" onhidedatabehavior="keep">
+																	<rendercondition type="blank" operator="!=" fieldmodel="DocumentCategoryDetails" sourcetype="fieldvalue" field="clcommon__Collateral__c" value="null" enclosevalueinquotes="false"/>
+																</renderconditions>
+																<enableconditions/>
+															</field>
+															<field id="clcommon__Priority__c" valuehalign="" type="" uniqueid="sk-3c1B-225"/>
+															<field id="clcommon__Document_Definition__c" readonly="true" uniqueid="sk-3c1B-228">
+																<renderconditions logictype="and" onhidedatabehavior="keep">
+																	<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="DocumentCategoryDetails" sourcetype="fieldvalue" field="Id" fieldtargetobjects="clcommon__Document_Category__c" value="987653478"/>
+																</renderconditions>
+																<enableconditions/>
+															</field>
+														</fields>
+													</section>
+													<section title="New Section" collapsible="no" uniqueid="sk-3c3E-601">
+														<fields>
+															<field uniqueid="sk-3c3H-607" id="clcommon__Parent_Document_Category__c"/>
+														</fields>
+														<renderconditions logictype="and">
+															<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="DocumentCategoryDetails" sourcetype="fieldvalue" field="Id" fieldtargetobjects="clcommon__Document_Category__c" value="987654678"/>
+														</renderconditions>
+													</section>
+												</sections>
+											</column>
+											<column width="50%">
+												<sections>
+													<section title="New Section" collapsible="no" showheader="false">
+														<fields>
+															<field id="clcommon__Status__c" valuehalign="" type="" uniqueid="sk-3c1B-234"/>
+															<field id="clcommon__Required__c" valuehalign="" type="" uniqueid="sk-3c1B-237"/>
+															<field id="clcommon__Reuse_Document__c" uniqueid="sk-3c1B-240"/>
+														</fields>
+													</section>
+												</sections>
+											</column>
+										</columns>
+									</fields>
+								</section>
+							</sections>
+						</column>
+					</columns>
+					<renderconditions logictype="and">
+						<rendercondition type="blank" operator="!=" fieldmodel="DocumentCategoryDetails" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="Id" value="null" enclosevalueinquotes="false"/>
+					</renderconditions>
+				</basicfieldeditor>
+				<pagetitle uniqueid="document-name" model="CatDocAssociation">
+					<actions>
+						<action type="multi" cssclass="iconic-button iconic-button-delete" label="Delete" uniqueid="document-delete">
+							<actions>
+								<action type="custom" snippet="DeleteAttachment"/>
+							</actions>
+							<renderconditions logictype="and">
+								<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="false" fieldmodel="ApplicationModel" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="Is_Approved__c" fieldtargetobjects="genesis__Applications__c" value="false"/>
+							</renderconditions>
+							<enableconditions/>
+						</action>
+						<action type="multi" label="Preview" cssclass="iconic-button iconic-button-preview" uniqueid="document-preview">
+							<actions>
+								<action type="custom" snippet="OpenPreviewDialog"/>
+							</actions>
+							<hotkeys/>
+						</action>
+					</actions>
+					<renderconditions logictype="and">
+						<rendercondition type="blank" operator="!=" fieldmodel="NewAttachmentModel" sourcetype="fieldvalue" nosourcerowbehavior="skipandnorender" field="Id" value="null" enclosevalueinquotes="false"/>
+					</renderconditions>
+					<maintitle>{{Name}}</maintitle>
+				</pagetitle>
+				<basicfieldeditor showheader="true" showsavecancel="false" showerrorsinline="true" model="NewAttachmentModel" buttonposition="" uniqueid="sk-1r6H0s-174" mode="readonly">
+					<columns>
+						<column width="50%">
+							<sections>
+								<section title="Section A" collapsible="no" showheader="false">
+									<fields>
+										<field id="CreatedBy.Name" valuehalign="" type="" uniqueid="sk-3c1B-258">
+											<label>Uploaded By</label>
+										</field>
+										<field id="CreatedDate" valuehalign="" type="" uniqueid="sk-3c1B-261">
+											<label>Uploaded Date</label>
+										</field>
+										<field id="BodyLength" valuehalign="" type="" uniqueid="sk-3c1B-264">
+											<label>Size</label>
+										</field>
+									</fields>
+								</section>
+							</sections>
+						</column>
+						<column width="50%">
+							<sections>
+								<section title="Section B" collapsible="no" showheader="false">
+									<fields>
+										<field id="LastModifiedBy.Name" valuehalign="" type="" uniqueid="sk-3c1B-270">
+											<label>Last Modified By</label>
+										</field>
+										<field id="LastModifiedDate" uniqueid="sk-3c1B-273"/>
+										<field id="ContentType" valuehalign="" type="" uniqueid="sk-3c1B-276"/>
+									</fields>
+								</section>
+							</sections>
+						</column>
+					</columns>
+					<renderconditions logictype="and">
+						<rendercondition type="blank" operator="!=" fieldmodel="NewAttachmentModel" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="Id" value="null" enclosevalueinquotes="false"/>
+					</renderconditions>
+				</basicfieldeditor>
+			</components>
+			<styles>
+				<styleitem type="background"/>
+				<styleitem type="border"/>
+				<styleitem type="size"/>
+			</styles>
+			<renderconditions logictype="and"/>
+		</wrapper>
+	</components>
+	<resources>
+		<labels/>
+		<javascript>
+			<jsitem location="staticresource" name="CLSNGUIComponent" cachelocation="false" url="" namespace="genesisExtn" filepath="commonUtils.js">var params = arguments[0],
+    $ = skuid.$;
+</jsitem>
+			<jsitem location="staticresource" name="CLSNGUIComponent" cachelocation="false" url="" namespace="genesisExtn" filepath="messageUtils.js">var params = arguments[0],
+	$ = skuid.$;
+</jsitem>
+			<jsitem location="inlinesnippet" name="OpenPreviewDialog" cachelocation="false">var params = arguments[0],
+	$ = skuid.$;
+var attachmentRow = skuid.model.getModel('NewAttachmentModel').getFirstRow();
+var title = attachmentRow.Name;
+
+const docAId = skuid.page.params.id
+var iframeUrl = '/apex/genesisExtn__previewDocCategory?id=' + attachmentRow.Id+'&amp;docAId='+docAId + '&amp;isdtp=vw';
+		
+openTopLevelDialog({
+    title: 'Document Viewer-'+ title,
+    iframeUrl: iframeUrl
+});</jsitem>
+			<jsitem location="inlinesnippet" name="AddAttachmentsModal" cachelocation="false">var params = arguments[0],
+	$ = skuid.$;
+var selectDocument = skuid.model.getModel('DocumentCategoryDetails').data[0];
+var title = 'Add Application Documents to ' + selectDocument.clcommon__Category_Name__c; 
+var skuidPage = 'ApplicationAttachmentList';
+var iframeUrl = '/apex/skuid__ui?page=' + skuidPage + '&amp;id=' + selectDocument.Id;
+var prefixHtml = '&lt;div&gt;&lt;p&gt;Select the following application documents that have not been added to any application document category and add them to &lt;strong&gt;' + selectDocument.clcommon__Category_Name__c + '&lt;/strong&gt;.&lt;/p&gt;&lt;/div&gt;';
+openTopLevelDialog({
+	title: title,
+	iframeUrl: iframeUrl,
+	prefixHtml: prefixHtml
+});
+		</jsitem>
+			<jsitem location="inlinesnippet" name="DeleteAttachment" cachelocation="false">var params = arguments[0],
+	$ = skuid.$;
+var catAssociation = skuid.model.getModel('CatDocAssociation').data[0];
+var documentId = catAssociation.clcommon__Attachment_Id__c;
+var parentId = catAssociation.clcommon__Document_Category__c;
+var documentName = catAssociation.Name;
+
+
+var title = 'Delete ' + documentName + '?';
+var message = '&lt;p&gt;Are you sure you want to Delete this Application Document'
+			+ ', &lt;strong&gt;\'' + documentName + '\'&lt;/strong&gt;?&lt;/p&gt;';
+var cancelText = 'No, do not Delete anything.';
+var okText = 'Yes, Delete Application Document'
+			+ ' \'' + documentName + '\'';
+
+var okAction = {
+	func: 'generateDeleteDocumentMessage',
+	parameters: [documentId, parentId]
+};
+
+openTopLevelConfirmation({
+	title: title,
+	message: message,
+	cancelText: cancelText,
+	okText: okText,
+	okAction: okAction
+});</jsitem>
+			<jsitem location="inlinesnippet" name="DeleteDocumentCategory" cachelocation="false">var params = arguments[0],
+	$ = skuid.$;
+var selectDocument = skuid.model.getModel('DocumentCategoryDetails').data[0];
+var documentCategoryId = selectDocument.Id;	
+var documentCategoryName = selectDocument.clcommon__Category_Name__c
+
+var title = 'Delete ' + documentCategoryName + '?';
+var message = '&lt;p&gt;Are you sure you want to Delete this Application Document Category'
+			+ ', &lt;strong&gt;\'' + documentCategoryName + '\'&lt;/strong&gt;?&lt;/p&gt;';
+var cancelText = 'No, do not Delete anything.';
+var okText = 'Yes, Delete Application Document Category'
+			+ ' \'' + documentCategoryName + '\'';
+
+var okAction = {
+	func: 'generateDeleteDocumentCategoryMessage',
+	parameters: [documentCategoryId]
+};
+
+openTopLevelConfirmation({
+	title: title,
+	message: message,
+	cancelText: cancelText,
+	okText: okText,
+	okAction: okAction
+});</jsitem>
+			<jsitem location="inlinesnippet" name="DocumentListForNotification" cachelocation="false">var params = arguments[0],
+	$ = skuid.$;
+var selectDocument = skuid.model.getModel('DocumentCategoryDetails').data[0];
+var title = 'Document Request'; 
+var skuidPage = 'DocumentNotification';
+var rootId = selectDocument.clcommon__Account__c !=null ? selectDocument.clcommon__Account__c : selectDocument.clcommon__Collateral__c;
+if(rootId == '' || rootId == undefined){
+    rootId = selectDocument.genesis__Application__c;
+}
+var iframeUrl = '/apex/skuid__ui?page='+skuidPage + '&amp;id=' + selectDocument.genesis__Application__c +'&amp;rootId=' +rootId  ;
+var prefixHtml = '&lt;div&gt;&lt;p&gt;&lt;strong&gt;Select Documents For Notification &lt;/strong&gt;.&lt;/p&gt;&lt;/div&gt;';
+openTopLevelDialog({
+    title: title,
+	iframeUrl: iframeUrl,
+	prefixHtml: prefixHtml
+});
+
+</jsitem>
+			<jsitem location="inlinesnippet" cachelocation="false" name="SendDocuments">var params = arguments[0],
+	$ = skuid.$;
+var appdata = skuid.model.getModel('ApplicationModel');
+var approw = appdata.data[0];
+
+var partyData = skuid.model.getModel('BorrowerModel');
+var partyRow = partyData.data[0];
+var copartyData = skuid.model.getModel('CoBorrowerModel');
+var copartyRow = copartyData.data[0];
+try{
+    var creditdata = sforce.connection.query("SELECT Id,Name,genesis__Applications__c,genesis__Fico_Score__c FROM ints__Credit_Report__c WHERE genesis__Applications__c ='"+ approw.Id +"' ORDER BY CreatedDate DESC LIMIT 1 ");
+    var creditrow = creditdata.getArray("records");
+    
+    var copartyData = sforce.connection.query("SELECT Id,Name,clcommon__Account__c,genesis__Application__c,clcommon__Contact__c FROM clcommon__Party__c WHERE genesis__Application__c ='"+ approw.Id +"' AND clcommon__Type__r.Name = 'CO-BORROWER' ORDER BY CreatedDate DESC LIMIT 1 ");
+    var copartyRow = copartyData.getArray("records");
+    
+    var partyData = sforce.connection.query("SELECT Id,Name,clcommon__Account__c,genesis__Application__c,clcommon__Contact__c FROM clcommon__Party__c WHERE genesis__Application__c ='"+ approw.Id +"' AND clcommon__Type__r.Name = 'BORROWER' ORDER BY CreatedDate DESC LIMIT 1 ");
+    var partyRow = partyData.getArray("records");
+    
+    var QuerydataResults = sforce.connection.query("SELECT Id,Name,APXTConga4__Name__c FROM APXTConga4__Conga_Merge_Query__c ");
+    Querydata = QuerydataResults.getArray("records");
+    console.log(Querydata);
+    
+    var templatesdataResults = sforce.connection.query("SELECT Id,Name,APXTConga4__Name__c FROM APXTConga4__Conga_Template__c ");
+    Templatedata = templatesdataResults.getArray("records");
+    console.log(Templatedata);
+    
+    var link1= '/apex/APXTConga4__Conga_Composer?&amp;SolMgr=1';
+    var date = new Date();
+    var i,
+    link2= '&amp;Id='+approw.Id+
+               '&amp;QueryId=';
+    var len = Querydata.length;
+    for(i=0;i&lt;len;i++){
+        if(Querydata[i].APXTConga4__Name__c == 'Application Query')
+            link2 += '[AQ]'+Querydata[i].Id+'%3Fpv0%3D'+approw.Id;
+       
+        if(Querydata[i].APXTConga4__Name__c == 'Adverse Action Query')
+            link2 += ',[ADVACTION]'+Querydata[i].Id+'%3Fpv0%3D'+approw.Id;
+        
+        if(creditrow.length&gt;0 &amp;&amp;  Querydata[i].APXTConga4__Name__c == 'Credit Report Query')
+            link2 += ',[CREDITSCORE]'+Querydata[i].Id+'%3Fpv0%3D'+creditrow[0].Id;
+        
+        if(Querydata[i].APXTConga4__Name__c == 'Contact Query'){
+            if(partyRow.length &gt; 0)
+                link2 += ',[CONTACT]'+Querydata[i].Id+'%3Fpv0%3D'+partyRow[0].clcommon__Contact__c;
+            if(copartyRow.length &gt; 0)
+                link2 += ',[COBORROWER]'+Querydata[i].Id+'%3Fpv0%3D'+copartyRow[0].clcommon__Contact__c;
+        }
+        if(Querydata[i].APXTConga4__Name__c == 'Employer Query'){
+            if(partyRow.length &gt; 0)
+                link2 += ',[EMPLOYER]'+Querydata[i].Id+'%3Fpv0%3D'+approw.Id+'%7Epv1%3D'+partyRow[0].clcommon__Contact__c;
+            if(copartyRow.length &gt; 0)    
+                link2 += ',[COEMPLOYER]'+Querydata[i].Id+'%3Fpv0%3D'+approw.Id+'%7Epv1%3D'+copartyRow[0].clcommon__Contact__c;
+        }
+        
+        if(Querydata[i].APXTConga4__Name__c == 'Previous Employer Query'){
+            if(partyRow.length &gt; 0)
+                link2 += ',[PREEMPLOYER]'+Querydata[i].Id+'%3Fpv0%3D'+approw.Id+'%7Epv1%3D'+partyRow.clcommon__Contact__c;
+            if(copartyRow.length &gt; 0)
+                link2 += ',[PRECOEMPLOYER]'+Querydata[i].Id+'%3Fpv0%3D'+approw.Id+'%7Epv1%3D'+copartyRow.clcommon__Contact__c;
+        } 
+        
+        if(Querydata[i].APXTConga4__Name__c == 'Other Source Of Income Query'){
+            if(partyRow.length &gt; 0)
+                link2 += ',[OTHERINCOME]'+Querydata[i].Id+'%3Fpv0%3D'+approw.Id+'%7Epv1%3D'+partyRow.clcommon__Contact__c;
+            if(copartyRow.length &gt; 0)
+                link2 += ',[COOTHERINCOME]'+Querydata[i].Id+'%3Fpv0%3D'+approw.Id+'%7Epv1%3D'+copartyRow.clcommon__Contact__c;
+        } 
+        if(Querydata[i].APXTConga4__Name__c == 'Outstanding debts'){
+            link2 += ',[DEBTS]'+Querydata[i].Id+'%3Fpv0%3D'+approw.Id;
+        }
+        if(Querydata[i].APXTConga4__Name__c == 'Asset Information'){
+            link2 += ',[ASSETS]'+Querydata[i].Id+'%3Fpv0%3D'+approw.Id;
+        }
+        if(Querydata[i].APXTConga4__Name__c == 'Driver License Query'){
+            if(partyRow.length &gt; 0)
+                link2 += ',[BORROWERDL]'+Querydata[i].Id+'%3Fpv0%3D'+approw.Id+'%7Epv1%3D'+partyRow.clcommon__Account__c;
+            if(copartyRow.length &gt; 0)
+                link2 += ',[COBORROWERDL]'+Querydata[i].Id+'%3Fpv0%3D'+approw.Id+'%7Epv1%3D'+copartyRow.clcommon__Account__c;
+        }
+    }
+    for(i=0;i&lt;Templatedata.length;i++){
+        if(params.row.clcommon__Category_Name__c == 'Adverse Action notice' &amp;&amp;  Templatedata[i].APXTConga4__Name__c == 'Adverse Action Letter - Non Real Estate')
+            link2 += '&amp;TemplateId='+Templatedata[i].Id;
+        if(params.row.clcommon__Category_Name__c == 'Credit Application' &amp;&amp; Templatedata[i].APXTConga4__Name__c == 'Consumer Credit Application - Non-Real Estate')
+            link2 += '&amp;TemplateId='+Templatedata[i].Id;
+    }
+    link2 +=  '&amp;SC0=1&amp;SC1=Attachments&amp;DefaultPDF=1&amp;DS7=7';    
+    var finallink = link1+link2;
+    window.open(finallink);
+}catch(Exception){
+    alert('Conga is not configured in this org.');
+}     
+
+</jsitem>
+		</javascript>
+		<css>
+			<cssitem location="staticresource" name="CLSStyleSheetPack" cachelocation="false" url="" namespace="genesisExtn" filepath="customcss.css"/>
+			<cssitem location="staticresource" name="FontAwesomePack" cachelocation="false" url="" namespace="genesisExtn" filepath="font-awesome-4.6.3/css/font-awesome.css"/>
+			<cssitem location="inline" name="BackgroundCSS" cachelocation="false">body {
+    background-color: white;
+}</cssitem>
+			<cssitem location="staticresource" name="CLSStyleSheetPack" cachelocation="false" url="" namespace="genesisExtn" filepath="cls-common.css"/>
+			<cssitem location="staticresource" name="CLSStyleSheetPack" cachelocation="false" url="" namespace="genesisExtn" filepath="cls-dashboard.css"/>
+			<cssitem location="staticresource" name="CLSStyleSheetPack" cachelocation="false" url="" namespace="genesisExtn" filepath="cls-tree-component.css"/>
+			<cssitem location="inline" name="GenerateButtonCSS" cachelocation="false">.ui-button.iconic-button.iconic-button-generate,
+.ui-button.iconic-button.iconic-button-generate.ui-state-hover,
+.ui-button.iconic-button.iconic-button-generate.ui-state-focus {
+    border: 2px solid #1CBDD4;
+}
+
+.ui-button.iconic-button.iconic-button-generate:before,
+.ui-button.iconic-button.iconic-button-generate.ui-state-hover:before,
+.ui-button.iconic-button.iconic-button-generate.ui-state-focus:before {
+    /*background-image: url('icons/Document-Add-32.png');*/
+    font-family: FontAwesome;
+    content: "\f063";
+    font-size: 20px;
+    color: #1CBDD4;
+    vertical-align: middle;
+}</cssitem>
+		</css>
+		<actionsequences uniqueid="sk-2qwS-535">
+			<actionsequence id="79e173c3-30ea-4eb0-afff-3e7880002fdb" type="event-triggered" event-scope="component" label="MakeDocFieldsViewOnly" event-name="page.rendered">
+				<description/>
+				<actions>
+					<action type="branch" whenfinished="stop" model="ApplicationModel">
+						<formula>{{Is_Approved__c}}</formula>
+						<iftrueactions>
+							<action type="runComponentAction" componentid="sk-1WFTEM-122" action="changeMode" mode="read"/>
+							<action type="runComponentAction" componentid="sk-1r6H0s-174" action="changeMode" mode="read"/>
+						</iftrueactions>
+					</action>
+				</actions>
+			</actionsequence>
+		</actionsequences>
+	</resources>
+	<styles>
+		<styleitem type="background" bgtype="none"/>
+	</styles>
+</skuidpage>

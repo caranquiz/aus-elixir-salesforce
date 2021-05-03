@@ -1,0 +1,130 @@
+<skuidpage unsavedchangeswarning="yes" personalizationmode="server" showsidebar="true" useviewportmeta="true" showheader="true">
+	<models>
+		<model id="Assets" limit="20" query="true" createrowifnonefound="false" datasource="salesforce" sobject="genesis__Asset_Information__c">
+			<fields>
+				<field id="genesis__Asset_Type__c"/>
+				<field id="Address__c"/>
+				<field id="genesis__Market_Value__c"/>
+				<field id="Liability__c"/>
+				<field id="Security__c"/>
+				<field id="Monthly_Income__c"/>
+			</fields>
+			<conditions>
+				<condition type="param" value="Id" field="genesis__Application__c" fieldtargetobjects="genesis__Applications__c" operator="=" enclosevalueinquotes="true"/>
+			</conditions>
+			<actions/>
+		</model>
+		<model id="Liabilities" limit="20" query="true" createrowifnonefound="false" datasource="salesforce" sobject="genesis__Liability__c">
+			<fields>
+				<field id="genesis__Liability_Type__c"/>
+				<field id="genesis__Name_of_Creditor__c"/>
+				<field id="genesis__Original_Amount__c"/>
+				<field id="genesis__Payment_Amount__c"/>
+				<field id="To_Be_Refinanced__c"/>
+				<field id="Refinanced__c"/>
+			</fields>
+			<conditions>
+				<condition type="param" value="Id" field="genesis__Application__c" fieldtargetobjects="genesis__Applications__c" operator="=" enclosevalueinquotes="true"/>
+			</conditions>
+			<actions/>
+		</model>
+	</models>
+	<components>
+		<pagetitle uniqueid="sk-1TDa-207" model="Assets">
+			<maintitle>Assets &amp; Liabilities</maintitle>
+			<actions/>
+		</pagetitle>
+		<wrapper uniqueid="sk-1TUV-411">
+			<components>
+				<skootable showconditions="true" showsavecancel="false" showerrorsinline="true" searchmethod="server" searchbox="false" showexportbuttons="false" hideheader="false" hidefooter="false" pagesize="10" alwaysresetpagination="false" createrecords="false" model="Assets" buttonposition="" mode="read" allowcolumnreordering="true" responsive="true" uniqueid="sk-1TUy-580" emptysearchbehavior="query">
+					<fields>
+						<field id="genesis__Asset_Type__c" hideable="true" uniqueid="fi-1TV8-662">
+							<label>Current Assets</label>
+						</field>
+						<field id="Address__c" hideable="true" uniqueid="fi-1TVB-671">
+							<label>Address/Details</label>
+						</field>
+						<field id="genesis__Market_Value__c" hideable="true" uniqueid="fi-1TVF-687">
+							<label>Asset Value ($)</label>
+						</field>
+						<field id="Monthly_Income__c" hideable="true" uniqueid="fi-1epJ-293">
+							<renderconditions logictype="and" onhidedatabehavior="keep"/>
+							<enableconditions logictype="and">
+								<condition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="Assets" sourcetype="fieldvalue" field="genesis__Asset_Type__c" fieldtargetobjects="genesis__Asset_Information__c" value="Investment Property"/>
+							</enableconditions>
+						</field>
+						<field id="Liability__c" hideable="true" uniqueid="fi-1TVJ-695">
+							<renderconditions logictype="and" onhidedatabehavior="keep"/>
+							<enableconditions logictype="and">
+								<condition type="multiple" operator="in" fieldmodel="Assets" sourcetype="fieldvalue" field="genesis__Asset_Type__c" fieldtargetobjects="genesis__Asset_Information__c" value="" enclosevalueinquotes="true">
+									<values>
+										<value>Owner Occupied</value>
+										<value>Investment Property</value>
+										<value>Motor Vehicle Type</value>
+										<value>Other Vehicles</value>
+									</values>
+								</condition>
+							</enableconditions>
+						</field>
+						<field id="Security__c" hideable="true" uniqueid="fi-1TVL-707">
+							<renderconditions logictype="and" onhidedatabehavior="keep"/>
+							<enableconditions logictype="and">
+								<condition type="multiple" operator="in" fieldmodel="Assets" sourcetype="fieldvalue" field="genesis__Asset_Type__c" fieldtargetobjects="genesis__Asset_Information__c" value="" enclosevalueinquotes="true">
+									<values>
+										<value>Owner Occupied</value>
+										<value>Investment Property</value>
+									</values>
+								</condition>
+							</enableconditions>
+						</field>
+					</fields>
+					<rowactions/>
+					<massactions usefirstitemasdefault="true"/>
+					<views>
+						<view type="standard"/>
+					</views>
+					<searchfields/>
+					<renderconditions logictype="and"/>
+				</skootable>
+				<skootable showconditions="true" showsavecancel="false" showerrorsinline="true" searchmethod="server" searchbox="false" showexportbuttons="false" hideheader="false" hidefooter="false" pagesize="10" alwaysresetpagination="false" createrecords="false" model="Liabilities" buttonposition="" mode="read" allowcolumnreordering="true" responsive="true" uniqueid="sk-1TUv-539" emptysearchbehavior="query">
+					<fields>
+						<field id="genesis__Liability_Type__c" hideable="true" uniqueid="fi-1TWS-1064">
+							<label>Current Liabilities</label>
+						</field>
+						<field id="genesis__Name_of_Creditor__c" hideable="true" uniqueid="fi-1TWU-1072">
+							<label>Lender Details</label>
+						</field>
+						<field id="genesis__Original_Amount__c" hideable="true" uniqueid="fi-1TWX-1081">
+							<label>Facility Balance/Limit</label>
+						</field>
+						<field id="genesis__Payment_Amount__c" hideable="true" uniqueid="fi-1TWZ-1089">
+							<label>Monthly Payment ($)</label>
+						</field>
+						<field id="To_Be_Refinanced__c" hideable="true" uniqueid="fi-1TWt-1099"/>
+						<field id="Refinanced__c" hideable="true" uniqueid="fi-1TWv-1121"/>
+					</fields>
+					<rowactions/>
+					<massactions usefirstitemasdefault="true"/>
+					<views>
+						<view type="standard"/>
+					</views>
+					<searchfields/>
+				</skootable>
+			</components>
+			<styles>
+				<styleitem type="background"/>
+				<styleitem type="border"/>
+				<styleitem type="size"/>
+			</styles>
+		</wrapper>
+	</components>
+	<resources>
+		<labels/>
+		<javascript/>
+		<css/>
+		<actionsequences uniqueid="sk-1TV7-658"/>
+	</resources>
+	<styles>
+		<styleitem type="background" bgtype="none"/>
+	</styles>
+</skuidpage>

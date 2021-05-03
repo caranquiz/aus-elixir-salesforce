@@ -1,0 +1,162 @@
+<skuidpage unsavedchangeswarning="" personalizationmode="server" showsidebar="false" showheader="false">
+	<models>
+		<model id="UserAction" limit="" query="false" createrowifnonefound="true" adapter="salesforce" type="" sobject="genesis__Action__c">
+			<fields>
+				<field id="genesis__Application__c"/>
+				<field id="genesis__Application__r.Name"/>
+				<field id="SelectedRecordTypeName" uionly="true" displaytype="TEXT" label="SelectedRecordTypeName"/>
+				<field id="genesis__Application__r.genesis__CL_Product_Name__c"/>
+			</fields>
+			<conditions/>
+			<actions>
+				<action>
+					<actions>
+						<action type="setCondition" model="SelectedAppToUpdate" condition="Id" value="{{genesis__Application__c}}"/>
+						<action type="requeryModel" model="SelectedAppToUpdate" behavior="standard"/>
+						<action type="updateRow" fieldmodel="SelectedAppToUpdate" field="genesis__Parent_Application__c" enclosevalueinquotes="true" value="{{{$Param.id}}}"/>
+					</actions>
+					<events>
+						<event>row.updated</event>
+					</events>
+					<fields>
+						<field>genesis__Application__c</field>
+					</fields>
+				</action>
+			</actions>
+		</model>
+		<model id="SelectedAppToUpdate" limit="1" query="false" createrowifnonefound="false" adapter="salesforce" type="" sobject="genesis__Applications__c" doclone="">
+			<fields>
+				<field id="genesis__Parent_Application__c"/>
+				<field id="genesis__Parent_Application__r.Name"/>
+				<field id="Id"/>
+			</fields>
+			<conditions>
+				<condition type="fieldvalue" value="" enclosevalueinquotes="true" field="Id" operator="=" state="filterableoff" inactive="true" name="Id"/>
+			</conditions>
+			<actions/>
+		</model>
+	</models>
+	<components>
+		<pagetitle model="UserAction" uniqueid="AddDealErrorPanel" cssclass="">
+			<actions>
+				<action type="multi" label="Save" icon="">
+					<actions>
+						<action type="custom" snippet="SaveDeals">
+							<onerroractions>
+								<action type="blockUI" message="There was an error" timeout="3000"/>
+							</onerroractions>
+						</action>
+					</actions>
+					<renderconditions logictype="and">
+						<rendercondition fieldmodel="SelectedAppToUpdate" sourcetype="modelproperty" nosourcerowbehavior="deactivate" sourceproperty="hasRows"/>
+					</renderconditions>
+					<enableconditions/>
+				</action>
+				<action type="multi" label="Add New" snippet="">
+					<actions>
+						<action type="showPopup">
+							<popup title="Add New Application" width="90%">
+								<components>
+									<includepanel type="skuid" uniqueid="nickname-popup" pagename="ApplicationFormForComplexDeals" module="ngUi" querystring="nickname=john"/>
+									<includepanel type="skuid" uniqueid="sk-ip5PH-175" pagename="DummyPage" module="ngUi" cssclass="dummyPage"/>
+								</components>
+							</popup>
+						</action>
+					</actions>
+				</action>
+			</actions>
+		</pagetitle>
+		<basicfieldeditor showheader="true" showsavecancel="false" showerrorsinline="true" model="UserAction" buttonposition="" uniqueid="sk-SMDzg-81" mode="edit">
+			<columns>
+				<column width="50%">
+					<sections>
+						<section title="" collapsible="no" showheader="false">
+							<fields>
+								<field id="genesis__Application__c" valuehalign="" type="" optionsource="" displaytemplate="{{Name}}" searchtemplate="{{Name}} - {{genesis__CL_Product_Name__c}}">
+									<searchfields/>
+									<filters>
+										<filter type="blank" operator="=" field="genesis__Parent_Application__c" value="null" enclosevalueinquotes="false"/>
+										<filter type="fieldvalue" operator="!=" enclosevalueinquotes="true" field="RecordType.Name" value="Package"/>
+									</filters>
+									<renderconditions logictype="and" onhidedatabehavior="keep"/>
+									<enableconditions/>
+								</field>
+							</fields>
+						</section>
+					</sections>
+				</column>
+				<column width="50%">
+					<sections>
+						<section title="" collapsible="no" showheader="false">
+							<fields/>
+						</section>
+					</sections>
+				</column>
+			</columns>
+		</basicfieldeditor>
+	</components>
+	<resources>
+		<labels/>
+		<javascript>
+			<jsitem location="staticresource" name="CLSNGUIComponent" cachelocation="false" url="" namespace="genesisExtn" filepath="messageUtils.js">var params = arguments[0],
+	            $ = skuid.$;
+            </jsitem>
+			<jsitem location="inlinesnippet" name="SaveDeals" cachelocation="false">var params = arguments[0],
+	$ = skuid.$;
+
+var userActionObject = skuid.model.getModel('UserAction').getFirstRow();
+var isErr = addErrorMsg('Select Application first'); 
+if(isErr){
+    return;
+}
+
+var selectedApplicationModel = skuid.model.getModel('SelectedAppToUpdate');
+var selectedApplication = selectedApplicationModel.getFirstRow();
+selectedApplication.genesis__Parent_Application__c = skuid.page.params.id;
+selectedApplicationModel.save({
+    callback: function (result) {
+        if (result.totalsuccess) {
+            closeTopLevelDialogAndRefresh({window : true});
+        } else {
+            addErrorMsg(result.insertResults[0]);
+        }
+    }
+});
+
+function addErrorMsg(errMsg){
+    var pageTitle = $('#AddDealErrorPanel');
+    var editor = pageTitle.data('object').editor;
+    if(!userActionObject.genesis__Application__c){
+        editor.handleMessages(
+            [
+               {
+                  message: errMsg,
+                  severity: 'ERROR'
+               },
+            ]
+        );
+        return true;
+    } 
+    return false;
+}</jsitem>
+			<jsitem location="inlinesnippet" name="LaunchAddNewApplicationDialog" cachelocation="false">var params = arguments[0],
+	$ = skuid.$;
+
+// var title = 'Add Credit Facility To Deal - ' + skuid.page.params.name;
+// var skuidPage = 'ApplicationFormForComplexDeals';
+// var iframeUrl = '/apex/skuid__ui?page=' + skuidPage + '&amp;parentId=' + skuid.page.params.id;
+
+// openTopLevelDialog({
+//     title: title,
+//     iframeUrl: iframeUrl
+// });
+
+
+skuid.page.params.newdeal = true;</jsitem>
+		</javascript>
+		<css/>
+	</resources>
+	<styles>
+		<styleitem type="background" bgtype="none"/>
+	</styles>
+</skuidpage>

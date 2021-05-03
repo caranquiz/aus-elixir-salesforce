@@ -69,7 +69,7 @@ public with sharing class CreateDocumentCategories {
                             docCategoryServiceability.clcommon__Document_Definition__c = docDefinitionMap.get('Serviceability');
                             docCategoryList.add(docCategoryServiceability);
                         }
-                        if(docDefinitionMap.get('Serviceability') != NULL){
+                        if(docDefinitionMap.get('Review Documents') != NULL){
                             clcommon__Document_Category__c docCategoryReview = new clcommon__Document_Category__c();
                             docCategoryReview.clcommon__Category_Name__c = 'Review Documents';
                             docCategoryReview.clcommon__Active__c = true;

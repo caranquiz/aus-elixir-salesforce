@@ -1,0 +1,145 @@
+<skuidpage unsavedchangeswarning="yes" personalizationmode="server" showsidebar="false" showheader="false">
+	<models>
+		<model id="SelectedAppDocumentCategory" limit="1" query="true" createrowifnonefound="false" adapter="salesforce" type="" sobject="clcommon__Document_Category__c">
+			<fields>
+				<field id="genesis__Application__c"/>
+				<field id="genesis__Application__r.Name"/>
+				<field id="Id"/>
+				<field id="clcommon__Reuse_Document__c"/>
+				<field id="clcommon__Account__c"/>
+				<field id="clcommon__Account__r.Name"/>
+				<field id="clcommon__Collateral__c"/>
+				<field id="clcommon__Collateral__r.Name"/>
+			</fields>
+			<conditions>
+				<condition type="param" value="id" field="Id" operator="=" enclosevalueinquotes="true" novaluebehavior="noquery"/>
+			</conditions>
+			<actions/>
+		</model>
+	</models>
+	<components>
+		<includepanel type="skuid" uniqueid="sk-2Hl9PV-348" pagename="AddApplicationAttachmentsToDC" module="ngUi" querystring="id={{$Param.id}}">
+			<renderconditions logictype="custom" logic="1 OR (2 AND 3)">
+				<rendercondition type="fieldvalue" operator="!=" enclosevalueinquotes="false" fieldmodel="SelectedAppDocumentCategory" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="clcommon__Reuse_Document__c" value="true"/>
+				<rendercondition type="blank" operator="=" fieldmodel="SelectedAppDocumentCategory" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="clcommon__Account__c" value="null" enclosevalueinquotes="false"/>
+				<rendercondition type="blank" operator="=" fieldmodel="SelectedAppDocumentCategory" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="clcommon__Collateral__c" value="null" enclosevalueinquotes="false"/>
+			</renderconditions>
+		</includepanel>
+		<panelset type="vertical" uniqueid="sk-2HmQFW-475">
+			<panels>
+				<panel width="225px">
+					<components>
+						<includepanel type="skuid" uniqueid="sk-2Hl-mx-390" pagename="AddCollateralAttachmentsToDC" module="ngUi" querystring="id={{$Param.id}}">
+							<renderconditions logictype="and">
+								<rendercondition type="blank" operator="!=" fieldmodel="SelectedAppDocumentCategory" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="clcommon__Collateral__c" value="null" enclosevalueinquotes="false"/>
+							</renderconditions>
+						</includepanel>
+					</components>
+				</panel>
+				<panel>
+					<components>
+						<includepanel type="skuid" uniqueid="sk-2HmAxB-414" pagename="AddAccountAttachmentsToDC" module="ngUi" querystring="id={{$Param.id}}">
+							<renderconditions logictype="and">
+								<rendercondition type="blank" operator="!=" fieldmodel="SelectedAppDocumentCategory" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="clcommon__Account__c" value="null" enclosevalueinquotes="false"/>
+							</renderconditions>
+						</includepanel>
+					</components>
+				</panel>
+			</panels>
+			<renderconditions logictype="custom" logic="(1 OR 2) AND 3">
+				<rendercondition type="blank" operator="!=" fieldmodel="SelectedAppDocumentCategory" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="clcommon__Account__c" value="null" enclosevalueinquotes="false"/>
+				<rendercondition type="blank" operator="!=" fieldmodel="SelectedAppDocumentCategory" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="clcommon__Collateral__c" value="null" enclosevalueinquotes="false"/>
+				<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="false" fieldmodel="SelectedAppDocumentCategory" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="clcommon__Reuse_Document__c" value="true"/>
+			</renderconditions>
+		</panelset>
+	</components>
+	<resources>
+		<labels/>
+		<javascript>
+			<jsitem location="staticresource" name="CLSNGUIComponent" cachelocation="false" url="" namespace="genesisExtn" filepath="commonUtils.js">var params = arguments[0],
+    $ = skuid.$;
+</jsitem>
+			<jsitem location="inlinesnippet" name="addDocuments" cachelocation="false">var params = arguments[0],
+	$ = skuid.$;
+
+var selectedIds = $.map(params.list.getSelectedItems(), function(item) {
+    return item.row.Id;
+});
+
+var id = getIdfromUrl(window.location.search.substring(1));
+
+var message = {
+    type: 'action-document-add',
+    documentCategoryId: id,
+    documentIds: selectedIds
+};
+
+window.parent.postMessage(message, '*');
+
+function getIdfromUrl(query) {
+    var id;
+	$.each(query.split('&amp;'), function(index, value) {
+		var pair = value.split('=');
+		if (pair[0] === 'id') {
+			id = pair[1];
+		}
+	});
+	return id;
+}</jsitem>
+			<jsitem location="inlinesnippet" name="SelectUploadedFiles" cachelocation="false">var params = arguments[0],
+	$ = skuid.$;
+
+var allAttachments = params.model.data;
+var origAttachments = getCurrentAttachments();
+
+var origIds = $.map(origAttachments, function(attachment, i) {
+    return attachment.Id;
+});
+
+var newAttachments = $.grep(allAttachments, function(attachment, i) {
+    return $.inArray(attachment.Id, origIds) == -1;
+});
+
+var newIds = $.map(newAttachments, function(attachment, i) {
+    return attachment.Id;
+});
+
+var attachmentTable = skuid.$('#attachment-table').data('object');
+
+$.each(newIds, function(index, id) {
+    var checkbox = $(attachmentTable.list.renderedItems[id].element).find('input[type=checkbox]');
+    if (!checkbox.attr('checked')) {
+        checkbox.trigger('click');
+    }
+});</jsitem>
+			<jsitem location="staticresource" name="CLSNGUIComponent" cachelocation="false" url="" namespace="genesisExtn" filepath="attachmentsComponent.js">var params = arguments[0],
+	$ = skuid.$;
+</jsitem>
+			<jsitem location="inlinesnippet" name="RenderFileName" cachelocation="false">var field = arguments[0],
+    value = arguments[1],
+	$ = skuid.$;
+
+field.element.text(value);</jsitem>
+		</javascript>
+		<css>
+			<cssitem location="inline" name="FileUploadLayout" cachelocation="false">.nx-fileupload {
+    height: 30px;
+    margin-bottom: 10px;
+}
+
+.nx-fileupload &gt; .ui-button {
+    float: right;
+}
+
+.nx-fileupload &gt; .nx-fileupload-status {
+    position: absolute;
+    top: 0;
+    right: 90px;
+}</cssitem>
+			<cssitem location="staticresource" name="CLSStyleSheetPack" cachelocation="false" url="" namespace="genesisExtn" filepath="cls-dashboard.css"/>
+		</css>
+	</resources>
+	<styles>
+		<styleitem type="background" bgtype="none"/>
+	</styles>
+</skuidpage>

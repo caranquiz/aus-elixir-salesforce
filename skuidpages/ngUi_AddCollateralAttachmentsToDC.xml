@@ -1,0 +1,182 @@
+<skuidpage unsavedchangeswarning="yes" personalizationmode="server" showsidebar="false" showheader="false">
+	<models>
+		<model id="NewAppDocumentCategory" limit="1" query="true" createrowifnonefound="false" adapter="salesforce" type="" sobject="clcommon__Document_Category__c">
+			<fields>
+				<field id="genesis__Application__c"/>
+				<field id="genesis__Application__r.Name"/>
+				<field id="Id"/>
+				<field id="clcommon__Reuse_Document__c"/>
+				<field id="clcommon__Account__c"/>
+				<field id="clcommon__Account__r.Name"/>
+				<field id="clcommon__Collateral__c"/>
+				<field id="clcommon__Collateral__r.Name"/>
+			</fields>
+			<conditions>
+				<condition type="param" value="id" field="Id" operator="=" enclosevalueinquotes="true" novaluebehavior="noquery"/>
+			</conditions>
+			<actions/>
+		</model>
+		<model id="DCAttachmentAssociation" limit="" query="true" createrowifnonefound="false" adapter="salesforce" type="" sobject="clcommon__Category_Attachment_Association__c">
+			<fields>
+				<field id="clcommon__Attachment_Id__c"/>
+				<field id="Name"/>
+				<field id="Id"/>
+			</fields>
+			<conditions>
+				<condition type="modelmerge" value="" field="clcommon__Document_Category__c" operator="=" model="NewAppDocumentCategory" enclosevalueinquotes="true" mergefield="Id" novaluebehavior="deactivate"/>
+			</conditions>
+			<actions/>
+		</model>
+		<model id="AttachmentCollateral" limit="1" query="true" createrowifnonefound="false" adapter="salesforce" type="" sobject="clcommon__Collateral__c">
+			<fields>
+				<field id="Id"/>
+			</fields>
+			<conditions>
+				<condition type="modelmerge" value="" field="Id" operator="=" model="NewAppDocumentCategory" enclosevalueinquotes="true" mergefield="clcommon__Collateral__c" novaluebehavior="deactivate"/>
+			</conditions>
+			<actions/>
+		</model>
+		<model id="Attachment" limit="" query="true" createrowifnonefound="false" adapter="salesforce" type="" sobject="Attachment" doclone="" orderby="LastModifiedDate DESC">
+			<fields>
+				<field id="Id"/>
+				<field id="BodyLength"/>
+				<field id="ContentType"/>
+				<field id="LastModifiedDate"/>
+				<field id="LastModifiedBy.Name"/>
+				<field id="Name"/>
+				<field id="NewField" uionly="true" displaytype="TEXT"/>
+			</fields>
+			<conditions>
+				<condition type="modelmerge" value="" field="ParentId" operator="=" model="NewAppDocumentCategory" enclosevalueinquotes="true" mergefield="clcommon__Collateral__c" novaluebehavior="deactivate"/>
+				<condition type="modelmerge" value="" field="Id" operator="not in" model="DCAttachmentAssociation" enclosevalueinquotes="true" mergefield="clcommon__Attachment_Id__c" novaluebehavior="deactivate"/>
+			</conditions>
+			<actions>
+				<action>
+					<actions>
+						<action type="custom" snippet="SelectUploadedFiles"/>
+					</actions>
+					<events>
+						<event>models.loaded</event>
+					</events>
+				</action>
+			</actions>
+		</model>
+	</models>
+	<components>
+		<file storeas="record" displayas="filename" uniqueid="sk-2JO6zH-611" model="AttachmentCollateral">
+			<renderconditions logictype="and"/>
+		</file>
+		<skootable showconditions="true" showsavecancel="false" showerrorsinline="true" searchmethod="server" searchbox="true" showexportbuttons="false" pagesize="all" createrecords="false" model="Attachment" buttonposition="" mode="readonly" uniqueid="attachment-table" emptysearchbehavior="query">
+			<fields>
+				<field id="Name" valuehalign="" type="CUSTOM" allowordering="true" readonly="true" snippet="RenderFileName"/>
+				<field id="BodyLength" valuehalign="" type="">
+					<label>Size</label>
+				</field>
+				<field id="ContentType" valuehalign="" type="" readonly="true" allowordering="true"/>
+				<field id="LastModifiedBy.Name" valuehalign="" type="" allowordering="true">
+					<label>Last Modified By</label>
+				</field>
+				<field id="LastModifiedDate" valuehalign="" type="" allowordering="true"/>
+			</fields>
+			<rowactions/>
+			<massactions usefirstitemasdefault="true" uniqueid="add-document-picker">
+				<action type="custom" label="Add Documents" icon="sk-icon-add" snippet="addDocuments"/>
+			</massactions>
+			<views>
+				<view type="standard"/>
+			</views>
+			<actions defaultlabel="Global Actions" defaulticon="sk-icon-magic" usefirstitemasdefault="true"/>
+			<searchfields/>
+			<renderconditions logictype="and"/>
+		</skootable>
+	</components>
+	<resources>
+		<labels/>
+		<javascript>
+			<jsitem location="staticresource" name="CLSNGUIComponent" cachelocation="false" url="" namespace="genesisExtn" filepath="commonUtils.js">var params = arguments[0],
+    $ = skuid.$;
+</jsitem>
+			<jsitem location="inlinesnippet" name="addDocuments" cachelocation="false">var params = arguments[0],
+	$ = skuid.$;
+
+var selectedIds = $.map(params.list.getSelectedItems(), function(item) {
+    return item.row.Id;
+});
+
+var id = getIdfromUrl(window.location.search.substring(1));
+
+var message = {
+    type: 'action-document-add',
+    documentCategoryId: id,
+    documentIds: selectedIds
+};
+
+window.parent.postMessage(message, '*');
+
+function getIdfromUrl(query) {
+    var id;
+	$.each(query.split('&amp;'), function(index, value) {
+		var pair = value.split('=');
+		if (pair[0] === 'id') {
+			id = pair[1];
+		}
+	});
+	return id;
+}</jsitem>
+			<jsitem location="inlinesnippet" name="SelectUploadedFiles" cachelocation="false">var params = arguments[0],
+	$ = skuid.$;
+
+var allAttachments = params.model.data;
+var origAttachments = getCurrentAttachments();
+
+var origIds = $.map(origAttachments, function(attachment, i) {
+    return attachment.Id;
+});
+
+var newAttachments = $.grep(allAttachments, function(attachment, i) {
+    return $.inArray(attachment.Id, origIds) == -1;
+});
+
+var newIds = $.map(newAttachments, function(attachment, i) {
+    return attachment.Id;
+});
+
+var attachmentTable = skuid.$('#attachment-table').data('object');
+
+$.each(newIds, function(index, id) {
+    var checkbox = $(attachmentTable.list.renderedItems[id].element).find('input[type=checkbox]');
+    if (!checkbox.attr('checked')) {
+        checkbox.trigger('click');
+    }
+});</jsitem>
+			<jsitem location="staticresource" name="CLSNGUIComponent" cachelocation="false" url="" namespace="genesisExtn" filepath="attachmentsComponent.js">var params = arguments[0],
+	$ = skuid.$;
+</jsitem>
+			<jsitem location="inlinesnippet" name="RenderFileName" cachelocation="false">var field = arguments[0],
+    value = arguments[1],
+	$ = skuid.$;
+
+field.element.text(value);</jsitem>
+		</javascript>
+		<css>
+			<cssitem location="inline" name="FileUploadLayout" cachelocation="false">.nx-fileupload {
+    height: 30px;
+    margin-bottom: 10px;
+}
+
+.nx-fileupload &gt; .ui-button {
+    float: right;
+}
+
+.nx-fileupload &gt; .nx-fileupload-status {
+    position: absolute;
+    top: 0;
+    right: 90px;
+}</cssitem>
+			<cssitem location="staticresource" name="CLSStyleSheetPack" cachelocation="false" url="" namespace="genesisExtn" filepath="cls-dashboard.css"/>
+		</css>
+	</resources>
+	<styles>
+		<styleitem type="background" bgtype="none"/>
+	</styles>
+</skuidpage>

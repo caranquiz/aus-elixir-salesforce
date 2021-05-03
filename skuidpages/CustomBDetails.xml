@@ -1,0 +1,154 @@
+<skuidpage unsavedchangeswarning="yes" personalizationmode="server" showsidebar="false" useviewportmeta="true" showheader="false">
+	<models>
+		<model id="NewAccModel" limit="20" query="true" createrowifnonefound="false" datasource="salesforce" sobject="Account">
+			<fields>
+				<field id="clcommon__Legal_Entity_Type__c"/>
+				<field id="clcommon__Legal_Entity_Type__r.Name"/>
+				<field id="Name"/>
+			</fields>
+			<conditions/>
+			<actions/>
+		</model>
+		<model id="NewConModel" limit="20" query="true" createrowifnonefound="false" datasource="salesforce" sobject="Contact">
+			<fields>
+				<field id="LastName"/>
+				<field id="FirstName"/>
+				<field id="clcommon__Legal_Entity_Type__c"/>
+				<field id="clcommon__Legal_Entity_Type__r.Name"/>
+				<field id="Id"/>
+				<field id="MiddleName"/>
+			</fields>
+			<conditions>
+				<condition type="blank" value="null" field="Id" operator="=" enclosevalueinquotes="false" model="NewParty"/>
+			</conditions>
+			<actions/>
+		</model>
+		<model id="OriginalApplication" limit="20" query="true" createrowifnonefound="false" datasource="salesforce" sobject="genesis__Applications__c">
+			<fields>
+				<field id="RecordTypeId"/>
+				<field id="Legal_Entity__c"/>
+				<field id="Legal_Entity__r.Name"/>
+			</fields>
+			<conditions>
+				<condition type="param" value="Id" field="Id" operator="=" enclosevalueinquotes="true" model="NewParty"/>
+			</conditions>
+			<actions/>
+		</model>
+		<model limit="20" query="true" createrowifnonefound="false" datasource="salesforce" id="NewParty" sobject="clcommon__Party__c">
+			<fields>
+				<field id="Legal_Entity__c"/>
+				<field id="Legal_Entity__r.Name"/>
+				<field id="clcommon__Type__c"/>
+				<field id="clcommon__Type__r.Name"/>
+			</fields>
+			<conditions/>
+			<actions/>
+		</model>
+	</models>
+	<components>
+		<pagetitle model="NewParty" uniqueid="sk-2uSU-554">
+			<maintitle>Add New Party</maintitle>
+			<actions>
+				<action type="save" label="New Button" uniqueid="sk-2uSU-559" window="self">
+					<models>
+						<model>NewAccModel</model>
+						<model>NewConModel</model>
+					</models>
+				</action>
+			</actions>
+		</pagetitle>
+		<grid uniqueid="sk-2tte-207">
+			<divisions>
+				<division behavior="flex" minwidth="100px" ratio="1" verticalalign="top">
+					<components>
+						<basicfieldeditor showheader="true" showsavecancel="false" showerrorsinline="true" model="NewParty" uniqueid="sk-2tuL-360" mode="read">
+							<columns>
+								<column width="50%" uniqueid="sk-2tuL-356">
+									<sections>
+										<section title="Section A" uniqueid="sk-2tuL-357" collapsible="no" showheader="false">
+											<fields>
+												<field uniqueid="sk-2uRr-419" id="Legal_Entity__c"/>
+											</fields>
+										</section>
+									</sections>
+								</column>
+								<column width="50%" uniqueid="sk-2uSM-510">
+									<sections>
+										<section title="New Section" collapsible="no" uniqueid="sk-2uSM-511" showheader="false">
+											<fields>
+												<field uniqueid="sk-2uSQ-542" id="clcommon__Type__c"/>
+											</fields>
+										</section>
+									</sections>
+								</column>
+							</columns>
+							<renderconditions logictype="and"/>
+						</basicfieldeditor>
+						<basicfieldeditor showheader="true" showsavecancel="false" showerrorsinline="true" model="NewConModel" uniqueid="sk-2tuv-472" mode="read">
+							<columns>
+								<column width="50%" uniqueid="sk-2tuv-468">
+									<sections>
+										<section title="Section A" uniqueid="sk-2tuv-469" collapsible="no" showheader="false">
+											<fields>
+												<field uniqueid="sk-2tux-485" id="LastName"/>
+												<field uniqueid="sk-2uHq-342" id="MiddleName"/>
+												<field uniqueid="sk-2tux-492" id="FirstName"/>
+											</fields>
+										</section>
+									</sections>
+								</column>
+								<column width="50%" uniqueid="sk-2tuv-470">
+									<sections>
+										<section title="Section B" uniqueid="sk-2tuv-471" collapsible="no" showheader="false">
+											<fields>
+												<field uniqueid="sk-2tuy-499" id="clcommon__Legal_Entity_Type__c"/>
+											</fields>
+										</section>
+									</sections>
+								</column>
+							</columns>
+							<renderconditions logictype="and">
+								<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="NewParty" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="Legal_Entity__r.Name" value="Individual"/>
+							</renderconditions>
+						</basicfieldeditor>
+						<basicfieldeditor showheader="true" showsavecancel="false" showerrorsinline="true" model="NewAccModel" uniqueid="sk-2uS4-457" mode="read">
+							<columns>
+								<column width="50%" uniqueid="sk-2uS4-453">
+									<sections>
+										<section title="Section A" uniqueid="sk-2uS4-454" collapsible="no" showheader="false">
+											<fields>
+												<field uniqueid="sk-2uSA-488" id="Name"/>
+											</fields>
+										</section>
+									</sections>
+								</column>
+								<column width="50%" uniqueid="sk-2uS4-455">
+									<sections>
+										<section title="Section B" uniqueid="sk-2uS4-456" collapsible="no" showheader="false">
+											<fields>
+												<field uniqueid="sk-2uSC-495" id="clcommon__Legal_Entity_Type__c"/>
+											</fields>
+										</section>
+									</sections>
+								</column>
+							</columns>
+						</basicfieldeditor>
+					</components>
+				</division>
+			</divisions>
+			<styles>
+				<styleitem type="background" bgtype="none"/>
+			</styles>
+			<renderconditions logictype="and"/>
+		</grid>
+	</components>
+	<resources>
+		<labels/>
+		<javascript/>
+		<css/>
+		<actionsequences uniqueid="sk-2tts-290"/>
+	</resources>
+	<styles>
+		<styleitem type="background" bgtype="none"/>
+	</styles>
+</skuidpage>

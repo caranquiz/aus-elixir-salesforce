@@ -1,0 +1,377 @@
+<skuidpage unsavedchangeswarning="yes" personalizationmode="server" showsidebar="true" useviewportmeta="true" showheader="true">
+	<models>
+		<model id="CategoryAttachmentAssociation" limit="20" query="true" createrowifnonefound="false" datasource="salesforce" sobject="clcommon__Category_Attachment_Association__c">
+			<fields>
+				<field id="clcommon__Attachment_Id__c"/>
+				<field id="clcommon__Document_Category__c"/>
+				<field id="clcommon__Document_Category__r.Name"/>
+				<field id="Id"/>
+				<field id="Name"/>
+			</fields>
+			<conditions>
+				<condition type="param" value="id" field="clcommon__Attachment_Id__c" fieldtargetobjects="clcommon__Document_Category__c" operator="=" enclosevalueinquotes="true" novaluebehavior="deactivate"/>
+				<condition type="param" value="docAId" field="Id" operator="=" enclosevalueinquotes="true"/>
+			</conditions>
+			<actions/>
+		</model>
+		<model id="DocumentCategory" limit="20" query="true" createrowifnonefound="false" datasource="salesforce" sobject="clcommon__Document_Category__c">
+			<fields>
+				<field id="clcommon__Account__c"/>
+				<field id="clcommon__Account__r.Name"/>
+				<field id="clcommon__Account__r.Description"/>
+				<field id="clcommon__Account__r.Fax"/>
+				<field id="clcommon__Account__r.Id"/>
+				<field id="clcommon__Account__r.Phone"/>
+				<field id="clcommon__Account__r.AccountSource"/>
+				<field id="clcommon__Account__r.Type"/>
+				<field id="clcommon__Account__r.AnnualRevenue"/>
+				<field id="clcommon__Account__r.clcommon__Archived__c"/>
+				<field id="clcommon__Account__r.BillingAddress"/>
+				<field id="clcommon__Account__r.BillingCity"/>
+				<field id="clcommon__Account__r.BillingCountry"/>
+				<field id="clcommon__Account__r.BillingGeocodeAccuracy"/>
+				<field id="clcommon__Account__r.BillingLatitude"/>
+				<field id="clcommon__Account__r.BillingLongitude"/>
+				<field id="clcommon__Account__r.BillingState"/>
+				<field id="clcommon__Account__r.BillingStreet"/>
+				<field id="clcommon__Account__r.BillingPostalCode"/>
+				<field id="clcommon__Account__r.genesis__Business_Information__c"/>
+				<field id="clcommon__Account__r.genesis__Business_Information__r.Name"/>
+				<field id="clcommon__Account__r.Jigsaw"/>
+				<field id="clcommon__Account__r.clcommon__Direct_Exposure__c"/>
+				<field id="clcommon__Account__r.clcommon__Direct_Exposure_Relationship__c"/>
+				<field id="clcommon__Account__r.clcommon__Direct_Proposed_Exposure__c"/>
+				<field id="clcommon__Account__r.clcommon__Email__c"/>
+				<field id="clcommon__Account__r.ints__Email__c"/>
+				<field id="clcommon__Account__r.NumberOfEmployees"/>
+				<field id="clcommon__Account__r.clcommon__Indirect_Exposure__c"/>
+				<field id="clcommon__Account__r.clcommon__Indirect_Exposure_Relationship__c"/>
+				<field id="clcommon__Account__r.clcommon__Indirect_Proposed_Exposure__c"/>
+				<field id="clcommon__Account__r.Industry"/>
+				<field id="clcommon__Account__r.JigsawCompanyId"/>
+				<field id="clcommon__Account__r.clcommon__Last_Modified_Date_Exposure__c"/>
+				<field id="clcommon__Account__r.clcommon__Legal_Entity_Type__c"/>
+				<field id="clcommon__Account__r.clcommon__Legal_Entity_Type__r.Name"/>
+				<field id="clcommon__Collateral__c"/>
+				<field id="clcommon__Collateral__r.Name"/>
+				<field id="clcommon__Collateral__r.genesis__Application__c"/>
+				<field id="clcommon__Collateral__r.genesis__Application__r.Name"/>
+				<field id="clcommon__Collateral__r.clcommon__Collateral_Type__c"/>
+				<field id="clcommon__Collateral__r.clcommon__Collateral_Type__r.Name"/>
+				<field id="clcommon__Collateral__r.clcommon__Collateral_Code__c"/>
+				<field id="clcommon__Collateral__r.clcommon__Address__c"/>
+				<field id="genesis__Application__c"/>
+				<field id="genesis__Application__r.Name"/>
+				<field id="genesis__Application__r.genesis__CL_Product__c"/>
+				<field id="genesis__Application__r.genesis__CL_Product__r.Name"/>
+				<field id="genesis__Application__r.genesis__Loan_Amount__c"/>
+				<field id="genesis__Application__r.genesis__Payment_Frequency__c"/>
+				<field id="genesis__Application__r.genesis__Repayment_Procedure__c"/>
+				<field id="genesis__Application__r.genesis__Term__c"/>
+				<field id="genesis__Application__r.genesis__Interest_Rate__c"/>
+				<field id="clcommon__Collateral__r.clcommon__Collateral_Category__r.Name"/>
+				<field id="clcommon__Collateral__r.clcommon__Collateral_Name__c"/>
+				<field id="clcommon__Collateral__r.clcommon__Value__c"/>
+				<field id="clcommon__Document_Definition__r.Name"/>
+			</fields>
+			<conditions>
+				<condition type="modelmerge" value="" field="Id" operator="=" model="CategoryAttachmentAssociation" enclosevalueinquotes="true" mergefield="clcommon__Document_Category__c" novaluebehavior="noquery"/>
+			</conditions>
+			<actions/>
+		</model>
+		<model id="Attachment" limit="20" query="true" createrowifnonefound="false" datasource="salesforce" sobject="Attachment">
+			<fields>
+				<field id="Id"/>
+			</fields>
+			<conditions>
+				<condition type="blank" value="null" field="Id" operator="!=" enclosevalueinquotes="false" state=""/>
+			</conditions>
+			<actions/>
+		</model>
+		<model id="Account" limit="20" query="true" createrowifnonefound="false" datasource="salesforce" sobject="Account">
+			<fields>
+				<field id="Name"/>
+				<field id="Phone"/>
+				<field id="BillingAddress"/>
+				<field id="clcommon__Legal_Entity_Type__c"/>
+				<field id="clcommon__Legal_Entity_Type__r.Name"/>
+			</fields>
+			<conditions>
+				<condition type="modelmerge" value="" field="Id" operator="=" model="DocumentCategory" enclosevalueinquotes="true" mergefield="clcommon__Account__c" novaluebehavior="noquery"/>
+			</conditions>
+			<actions/>
+		</model>
+		<model id="Application" limit="20" query="true" createrowifnonefound="false" datasource="salesforce" sobject="genesis__Applications__c">
+			<fields>
+				<field id="Name"/>
+				<field id="genesis__CL_Product__c"/>
+				<field id="genesis__CL_Product__r.Name"/>
+				<field id="genesis__Interest_Rate__c"/>
+				<field id="genesis__Loan_Amount__c"/>
+				<field id="genesis__Payment_Frequency__c"/>
+				<field id="genesis__Repayment_Procedure__c"/>
+				<field id="genesis__Term__c"/>
+			</fields>
+			<conditions>
+				<condition type="modelmerge" value="" field="Id" operator="=" model="DocumentCategory" enclosevalueinquotes="true" mergefield="genesis__Application__c" novaluebehavior="noquery"/>
+			</conditions>
+			<actions/>
+		</model>
+		<model id="Collateral" limit="20" query="true" createrowifnonefound="false" datasource="salesforce" type="" sobject="clcommon__Collateral__c">
+			<fields>
+				<field id="clcommon__Collateral_Category__r.Name"/>
+				<field id="Name"/>
+				<field id="clcommon__Collateral_Code__c"/>
+				<field id="clcommon__Collateral_Type__c"/>
+				<field id="clcommon__Collateral_Type__r.Name"/>
+				<field id="clcommon__Value__c"/>
+			</fields>
+			<conditions>
+				<condition type="modelmerge" value="" field="Id" operator="=" model="DocumentCategory" enclosevalueinquotes="true" mergefield="clcommon__Collateral__c" novaluebehavior="noquery"/>
+			</conditions>
+			<actions/>
+		</model>
+		<model id="PrimaryIdentificationInformation" limit="1" query="true" createrowifnonefound="true" datasource="salesforce" sobject="genesis__Identification_Information__c">
+			<fields>
+				<field id="genesis__Account__c"/>
+				<field id="genesis__Account__r.Name"/>
+				<field id="genesis__Date_of_Issuance__c"/>
+				<field id="IsDeleted"/>
+				<field id="genesis__Expiration_Date__c"/>
+				<field id="Name"/>
+				<field id="genesis__Identification_Number__c"/>
+				<field id="genesis__Identification_Type__c"/>
+				<field id="genesis__State_of_Issuance__c"/>
+				<field id="genesis__Application2__c"/>
+				<field id="genesis__Application2__r.Name"/>
+			</fields>
+			<conditions>
+				<condition type="modelmerge" value="" field="genesis__Account__c" fieldtargetobjects="Account" operator="=" model="DocumentCategory" enclosevalueinquotes="true" mergefield="clcommon__Account__c" novaluebehavior="deactivate"/>
+				<condition type="modelmerge" value="" field="genesis__Application2__c" fieldtargetobjects="genesis__Applications__c" operator="=" model="DocumentCategory" enclosevalueinquotes="true" mergefield="genesis__Application__c" novaluebehavior="deactivate"/>
+				<condition type="fieldvalue" value="Primary Identification" enclosevalueinquotes="true" field="Name"/>
+			</conditions>
+			<actions/>
+		</model>
+		<model id="SecondaryIdentificationInformation" limit="1" query="true" createrowifnonefound="true" datasource="salesforce" sobject="genesis__Identification_Information__c">
+			<fields>
+				<field id="genesis__Account__c"/>
+				<field id="genesis__Account__r.Name"/>
+				<field id="genesis__Date_of_Issuance__c"/>
+				<field id="IsDeleted"/>
+				<field id="genesis__Expiration_Date__c"/>
+				<field id="Name"/>
+				<field id="genesis__Identification_Number__c"/>
+				<field id="genesis__Identification_Type__c"/>
+				<field id="genesis__State_of_Issuance__c"/>
+				<field id="genesis__Application2__c"/>
+				<field id="genesis__Application2__r.Name"/>
+			</fields>
+			<conditions>
+				<condition type="modelmerge" value="" field="genesis__Account__c" fieldtargetobjects="Account" operator="=" model="DocumentCategory" enclosevalueinquotes="true" mergefield="clcommon__Account__c" novaluebehavior="deactivate"/>
+				<condition type="modelmerge" value="" field="genesis__Application2__c" fieldtargetobjects="genesis__Applications__c" operator="=" model="DocumentCategory" enclosevalueinquotes="true" mergefield="genesis__Application__c" novaluebehavior="deactivate"/>
+				<condition type="fieldvalue" value="Secondary Identification" enclosevalueinquotes="true" field="Name"/>
+			</conditions>
+			<actions/>
+		</model>
+	</models>
+	<components>
+		<pagetitle model="DocumentCategory" uniqueid="sk-ZITpq-374">
+			<actions/>
+			<maintitle>                                Document Input</maintitle>
+			<renderconditions logictype="and"/>
+		</pagetitle>
+		<basicfieldeditor showheader="true" showsavecancel="false" showerrorsinline="true" model="Account" uniqueid="sk-1WxXJR-373" mode="readonly">
+			<columns>
+				<column width="100%">
+					<sections>
+						<section title="Account Details" collapsible="no" showheader="true">
+							<fields>
+								<field id="Name" uniqueid="sk-3abv-199"/>
+								<field id="Phone" uniqueid="sk-3abv-202"/>
+								<field id="BillingAddress" uniqueid="sk-3abv-205">
+									<renderconditions logictype="and" onhidedatabehavior="keep" logic="1 AND 2">
+										<rendercondition type="fieldvalue" operator="!=" enclosevalueinquotes="true" fieldmodel="DocumentCategory" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="clcommon__Document_Definition__r.Name" value="Primary Identification"/>
+										<rendercondition type="fieldvalue" operator="!=" enclosevalueinquotes="true" fieldmodel="DocumentCategory" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="clcommon__Document_Definition__r.Name" value="Secondary Identification"/>
+									</renderconditions>
+									<enableconditions logictype="and"/>
+								</field>
+								<field id="clcommon__Legal_Entity_Type__c" uniqueid="sk-3abv-208"/>
+							</fields>
+							<renderconditions logictype="and"/>
+						</section>
+					</sections>
+				</column>
+			</columns>
+			<renderconditions logictype="and"/>
+		</basicfieldeditor>
+		<basicfieldeditor showheader="true" showsavecancel="false" showerrorsinline="true" model="Collateral" uniqueid="sk-1WxtGZ-421" mode="read">
+			<columns>
+				<column width="100%">
+					<sections>
+						<section title="Collateral Details" collapsible="no">
+							<fields>
+								<field id="clcommon__Collateral_Category__r.Name" uniqueid="sk-3abv-217"/>
+								<field id="Name" uniqueid="sk-3abv-220"/>
+								<field id="clcommon__Collateral_Code__c" uniqueid="sk-3abv-223"/>
+								<field id="clcommon__Collateral_Type__c" uniqueid="sk-3abv-226"/>
+								<field id="clcommon__Value__c" uniqueid="sk-3abv-229"/>
+							</fields>
+						</section>
+					</sections>
+				</column>
+			</columns>
+			<renderconditions logictype="and">
+				<rendercondition type="fieldvalue" operator="!=" enclosevalueinquotes="true" fieldmodel="DocumentCategory" sourcetype="fieldvalue" nosourcerowbehavior="skipandrender" field="clcommon__Document_Definition__r.Name" value="Secondary Identification"/>
+				<rendercondition type="fieldvalue" operator="!=" enclosevalueinquotes="true" fieldmodel="DocumentCategory" sourcetype="fieldvalue" nosourcerowbehavior="skipandrender" field="clcommon__Document_Definition__r.Name" value="Primary Identification"/>
+			</renderconditions>
+		</basicfieldeditor>
+		<basicfieldeditor showheader="true" showsavecancel="false" showerrorsinline="true" model="Application" uniqueid="sk-1WyFm3-467" mode="read">
+			<columns>
+				<column width="100%">
+					<sections>
+						<section title="Application Details" collapsible="no">
+							<fields>
+								<field id="Name" uniqueid="sk-3abv-238"/>
+								<field id="genesis__CL_Product__c" uniqueid="sk-3abv-241"/>
+								<field id="genesis__Interest_Rate__c" uniqueid="sk-3abv-244"/>
+								<field id="genesis__Loan_Amount__c" uniqueid="sk-3abv-247"/>
+								<field id="genesis__Payment_Frequency__c" uniqueid="sk-3abv-250"/>
+								<field id="genesis__Repayment_Procedure__c" uniqueid="sk-3abv-253"/>
+								<field id="genesis__Term__c" uniqueid="sk-3abv-256"/>
+							</fields>
+						</section>
+					</sections>
+				</column>
+			</columns>
+			<renderconditions logictype="and">
+				<rendercondition type="fieldvalue" operator="!=" enclosevalueinquotes="true" fieldmodel="DocumentCategory" sourcetype="fieldvalue" nosourcerowbehavior="skipandrender" field="clcommon__Document_Definition__r.Name" value="Primary Identification"/>
+				<rendercondition type="fieldvalue" operator="!=" enclosevalueinquotes="true" fieldmodel="DocumentCategory" sourcetype="fieldvalue" nosourcerowbehavior="skipandrender" field="clcommon__Document_Definition__r.Name" value="Secondary Identification"/>
+			</renderconditions>
+		</basicfieldeditor>
+		<basicfieldeditor showheader="true" showsavecancel="false" showerrorsinline="true" model="PrimaryIdentificationInformation" uniqueid="primaryIdentificationEditor" mode="edit">
+			<columns>
+				<column width="100%" uniqueid="sk-3aiF-674">
+					<sections>
+						<section title="Primary Identification Details" uniqueid="sk-3aiF-675" collapsible="no">
+							<fields>
+								<field uniqueid="sk-3aiX-718" id="genesis__Identification_Type__c"/>
+								<field uniqueid="sk-3aiX-719" id="genesis__Identification_Number__c"/>
+								<field uniqueid="sk-3aiX-720" id="genesis__State_of_Issuance__c"/>
+								<field uniqueid="sk-3aiX-721" id="genesis__Date_of_Issuance__c"/>
+								<field uniqueid="sk-3aiX-722" id="genesis__Expiration_Date__c"/>
+							</fields>
+						</section>
+					</sections>
+				</column>
+			</columns>
+			<renderconditions logictype="and">
+				<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="DocumentCategory" sourcetype="fieldvalue" nosourcerowbehavior="skipandnorender" field="clcommon__Document_Definition__r.Name" value="Primary Identification" fieldtargetobjects="genesis__Identification_Information__c"/>
+			</renderconditions>
+		</basicfieldeditor>
+		<basicfieldeditor showheader="true" showsavecancel="false" showerrorsinline="true" model="SecondaryIdentificationInformation" uniqueid="secondaryIdentificationEditor" mode="edit">
+			<columns>
+				<column width="100%" uniqueid="sk-3aiz-786">
+					<sections>
+						<section title="Secondary Identification Details" uniqueid="sk-3aiz-787" collapsible="no">
+							<fields>
+								<field uniqueid="sk-3aiz-788" id="genesis__Identification_Type__c"/>
+								<field uniqueid="sk-3aiz-789" id="genesis__Identification_Number__c"/>
+								<field uniqueid="sk-3aiz-790" id="genesis__State_of_Issuance__c"/>
+								<field uniqueid="sk-3aiz-791" id="genesis__Date_of_Issuance__c"/>
+								<field uniqueid="sk-3aiz-792" id="genesis__Expiration_Date__c"/>
+							</fields>
+							<renderconditions logictype="and"/>
+						</section>
+					</sections>
+				</column>
+			</columns>
+			<renderconditions logictype="and">
+				<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="DocumentCategory" sourcetype="fieldvalue" nosourcerowbehavior="skipandnorender" field="clcommon__Document_Definition__r.Name" value="Secondary Identification" fieldtargetobjects="genesis__Identification_Information__c"/>
+			</renderconditions>
+		</basicfieldeditor>
+		<buttonset uniqueid="sk-1WtuIg-232" model="DocumentCategory" position="center">
+			<buttons>
+				<button type="multi" label="Save" uniqueid="sk-3abv-262">
+					<actions>
+						<action type="custom" snippet="validateIdentificationInput"/>
+						<action type="save">
+							<models>
+								<model>Application</model>
+								<model>Collateral</model>
+								<model>PrimaryIdentificationInformation</model>
+								<model>SecondaryIdentificationInformation</model>
+							</models>
+						</action>
+						<action type="blockUI" message="Saved! You have successfully updated the borrower record." timeout="1500"/>
+					</actions>
+				</button>
+			</buttons>
+		</buttonset>
+	</components>
+	<resources>
+		<labels/>
+		<javascript>
+			<jsitem location="inlinesnippet" name="validateIdentificationInput" cachelocation="false">var params = arguments[0],
+	$ = skuid.$;
+
+var pageTitle = null;
+var documentCategoryModel = skuid.model.getModel('DocumentCategory');
+var documentCategoryRow = documentCategoryModel.data[0];
+
+if(documentCategoryRow.clcommon__Document_Definition__r!==undefined){
+    var identificationInformationModel = null;
+    if(documentCategoryRow.clcommon__Document_Definition__r.Name==='Primary Identification')
+    {
+        identificationInformationModel = skuid.model.getModel('PrimaryIdentificationInformation');
+        pageTitle = $('#primaryIdentificationEditor');
+    }
+    else if(documentCategoryRow.clcommon__Document_Definition__r.Name==='Secondary Identification')
+    {
+        identificationInformationModel = skuid.model.getModel('SecondaryIdentificationInformation');
+        pageTitle = $('#secondaryIdentificationEditor');
+    }
+    else return true
+    
+    var identificationInformationRow = identificationInformationModel.data[0];
+    let expDate = identificationInformationRow.genesis__Expiration_Date__c;
+    let issuanceDate = identificationInformationRow.genesis__Date_of_Issuance__c;
+    let today = $.datepicker.formatDate('yy-mm-dd', new Date());
+    
+    
+    var editor = pageTitle.data('object').editor;
+    
+    if (issuanceDate === '' || issuanceDate === null || issuanceDate === undefined || issuanceDate&gt;today ) {
+        editor.handleMessages( 
+            
+            [{
+               
+                message: 'Please Enter vaild Date of issuance', 
+                severity: 'ERROR'
+            }]
+        );
+    
+        return false;
+    }
+    
+    if (expDate === '' || expDate === null || expDate === undefined || expDate&lt;=today ) {
+        editor.handleMessages( 
+            
+            [{
+               
+                message: 'Expiration date should be future date', 
+                severity: 'ERROR'
+            }]
+        );
+    
+        return false;
+    }
+}
+return true;</jsitem>
+		</javascript>
+		<css/>
+		<actionsequences uniqueid="sk-3aez-508"/>
+	</resources>
+	<styles>
+		<styleitem type="background" bgtype="none"/>
+	</styles>
+</skuidpage>
