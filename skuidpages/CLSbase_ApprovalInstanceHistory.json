@@ -1,0 +1,9 @@
+{
+	"name": "ApprovalInstanceHistory",
+	"apiVersion": "v1",
+	"isMasterPage": false,
+	"maxAutoSaves": 25,
+	"module": "CLSbase",
+	"type": "Desktop",
+	"uniqueId": "CLSbase_ApprovalInstanceHistory"
+}

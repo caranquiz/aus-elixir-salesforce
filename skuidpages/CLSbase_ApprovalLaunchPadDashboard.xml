@@ -1,0 +1,52 @@
+<skuidpage unsavedchangeswarning="yes" personalizationmode="server" showsidebar="false" useviewportmeta="true" showheader="false">
+	<models>
+		<model id="ActiveOnGoingApprovals" query="true" createrowifnonefound="false" datasource="salesforce" sobject="clcommon__Reviewer__c" unloadwarningifunsavedchanges="false">
+			<fields>
+				<field id="clcommon__Approval_Review_Group__r.clcommon__Type__c"/>
+				<field id="clcommon__Approval_Review_Group__r.clcommon__Approval_Instance__r.genesis__Application__c"/>
+				<field id="clcommon__Approval_Review_Group__r.clcommon__Approval_Instance__r.genesis__Application__r.Name"/>
+				<field id="clcommon__Status__c"/>
+				<field id="clcommon__Approval_Review_Group__r.clcommon__Approval_Instance__r.clcommon__Name__c"/>
+			</fields>
+			<conditions logic="1 AND (2 OR 3)">
+				<condition type="userinfo" value="" field="clcommon__User__c" fieldtargetobjects="User" operator="=" enclosevalueinquotes="true" userinfotype="userid"/>
+				<condition type="multiple" value="" field="clcommon__Approval_Review_Group__r.clcommon__Approval_Instance__r.clcommon__Status__c" operator="in" enclosevalueinquotes="true">
+					<values>
+						<value>Submitted</value>
+						<value>Pending</value>
+					</values>
+				</condition>
+				<condition type="blank" value="null" field="clcommon__Approval_Review_Group__r.clcommon__Approval_Instance__r.clcommon__Status__c" operator="=" enclosevalueinquotes="false"/>
+			</conditions>
+			<actions/>
+		</model>
+	</models>
+	<components>
+		<skootable showconditions="true" showsavecancel="false" showerrorsinline="true" searchmethod="server" searchbox="false" showexportbuttons="false" hideheader="false" hidefooter="false" pagesize="10" alwaysresetpagination="false" createrecords="false" model="ActiveOnGoingApprovals" buttonposition="" mode="readonly" allowcolumnreordering="false" responsive="false" uniqueid="sk-5NL-461" instantfilters="false" emptysearchbehavior="query" heading="Approval Requests">
+			<fields>
+				<field id="clcommon__Approval_Review_Group__r.clcommon__Approval_Instance__r.genesis__Application__c" hideable="false" uniqueid="fi-5TQ-380" showbydefault="true"/>
+				<field id="clcommon__Approval_Review_Group__r.clcommon__Approval_Instance__r.clcommon__Name__c" hideable="false" uniqueid="fi-5T_-564" showbydefault="true"/>
+				<field id="clcommon__Approval_Review_Group__r.clcommon__Type__c" hideable="false" uniqueid="fi-5TO-372" showbydefault="true">
+					<label>Approval Review Group Type</label>
+				</field>
+				<field id="clcommon__Status__c" hideable="false" uniqueid="fi-5Te-520" showbydefault="true"/>
+			</fields>
+			<rowactions/>
+			<massactions usefirstitemasdefault="true"/>
+			<views>
+				<view type="standard"/>
+			</views>
+			<searchfields/>
+		</skootable>
+	</components>
+	<resources>
+		<labels/>
+		<javascript/>
+		<css/>
+		<actionsequences uniqueid="sk-5Av-430"/>
+	</resources>
+	<styles>
+		<styleitem type="background" bgtype="none"/>
+	</styles>
+	<interactions/>
+</skuidpage>

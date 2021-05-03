@@ -1,0 +1,439 @@
+<skuidpage unsavedchangeswarning="" personalizationmode="server" showsidebar="false" useviewportmeta="true" showheader="false">
+	<models>
+		<model id="ANR_SelectedAccount" limit="1" query="true" createrowifnonefound="false" datasource="salesforce" type="" sobject="Account">
+			<fields>
+				<field id="Id"/>
+				<field id="Name"/>
+				<field id="clcommon__Legal_Entity_Type__c"/>
+				<field id="clcommon__Legal_Entity_Type__r.Name"/>
+				<field id="IndRelationshipRecordType" uionly="true" displaytype="FORMULA" label="Ind Relationship RecordType" ogdisplaytype="TEXT" readonly="true" returntype="TEXT" defaultvaluetype="fieldvalue">
+					<formula>IF(UPPER({{clcommon__Legal_Entity_Type__r.Name}}) != 'INDIVIDUAL' &amp;&amp; UPPER({{clcommon__Legal_Entity_Type__r.Name}}) != 'SOLE PROPRIETORSHIP',
+'Business_Individual','Individual_Individual')
+
+</formula>
+				</field>
+				<field id="BusinessRelationshipRecordType" uionly="true" displaytype="FORMULA" ogdisplaytype="TEXT" readonly="true" returntype="TEXT" label="Business Relationship RecordType">
+					<formula>IF(UPPER({{clcommon__Legal_Entity_Type__r.Name}}) != 'INDIVIDUAL' &amp;&amp; UPPER({{clcommon__Legal_Entity_Type__r.Name}}) != 'SOLE PROPRIETORSHIP',
+'Business_Business', 'Business_Individual')
+
+</formula>
+				</field>
+			</fields>
+			<conditions>
+				<condition type="param" value="id" field="Id" operator="=" enclosevalueinquotes="true" novaluebehavior=""/>
+			</conditions>
+			<actions/>
+		</model>
+		<model id="ANR_NewIndividualRelationship" limit="" query="false" createrowifnonefound="true" datasource="salesforce" type="" sobject="clcommon__Relationship__c">
+			<fields>
+				<field id="clcommon__Entity__c"/>
+				<field id="clcommon__Entity__r.Name"/>
+				<field id="clcommon__Related_Entity__c"/>
+				<field id="clcommon__Related_Entity__r.Name"/>
+				<field id="clcommon__Relationship__c"/>
+				<field id="clcommon__Relationship__r.Name"/>
+				<field id="clcommon__Relationship__r.clcommon__Inverse_Role__c"/>
+			</fields>
+			<conditions>
+				<condition type="modelmerge" value="" field="clcommon__Entity__c" operator="=" novaluebehavior="deactivate" model="ANR_SelectedAccount" enclosevalueinquotes="true" mergefield="Id"/>
+			</conditions>
+			<actions/>
+		</model>
+		<model id="ANR_NewBusinessRelationship" limit="" query="false" createrowifnonefound="true" datasource="salesforce" type="" sobject="clcommon__Relationship__c">
+			<fields>
+				<field id="clcommon__Entity__c"/>
+				<field id="clcommon__Entity__r.Name"/>
+				<field id="clcommon__Related_Entity__c"/>
+				<field id="clcommon__Related_Entity__r.Name"/>
+				<field id="clcommon__Relationship__c"/>
+				<field id="clcommon__Relationship__r.Name"/>
+				<field id="clcommon__Relationship__r.clcommon__Inverse_Role__c"/>
+			</fields>
+			<conditions>
+				<condition type="modelmerge" value="" field="clcommon__Entity__c" operator="=" novaluebehavior="deactivate" model="ANR_SelectedAccount" enclosevalueinquotes="true" mergefield="Id"/>
+			</conditions>
+			<actions/>
+		</model>
+		<model id="AccountRelationDashboardPage" limit="1" query="true" createrowifnonefound="false" datasource="salesforce" type="" sobject="ApexPage">
+			<fields>
+				<field id="Id"/>
+			</fields>
+			<conditions>
+				<condition type="fieldvalue" value="genesisExtn" enclosevalueinquotes="true" field="NamespacePrefix" operator="="/>
+				<condition type="fieldvalue" value="AccountRelationDashboard" enclosevalueinquotes="true" field="Name"/>
+			</conditions>
+			<actions/>
+		</model>
+	</models>
+	<components>
+		<wrapper uniqueid="sk-3bKwfd-173">
+			<components>
+				<grid uniqueid="sk-2Jyuzc-216" rowgutter="">
+					<divisions>
+						<division behavior="flex" verticalalign="top" minwidth="22%" ratio="1">
+							<components/>
+						</division>
+						<division behavior="flex" minwidth="56%" ratio="1" verticalalign="center">
+							<components>
+								<grid uniqueid="sk-2Jqu-O-889">
+									<divisions>
+										<division behavior="flex" verticalalign="center" ratio="1" minwidth="30%">
+											<components>
+												<image source="staticresource" uniqueid="sk-2K0fmF-560" datasource="salesforce" behavior="none" resource="genesisExtn__CLSStyleSheetPack" path="images/Individual.png" resourceContentType="application/zip">
+													<styles>
+														<styleitem type="itemsize" height="custom" width="custom">
+															<styles>
+																<styleitem property="width" value="200px"/>
+																<styleitem property="height" value="200px"/>
+															</styles>
+														</styleitem>
+														<styleitem type="border"/>
+													</styles>
+												</image>
+											</components>
+										</division>
+										<division behavior="flex" verticalalign="center" ratio="1" minwidth="70%">
+											<components>
+												<basicfieldeditor showheader="true" showsavecancel="false" showerrorsinline="true" model="ANR_NewIndividualRelationship" buttonposition="" uniqueid="sk-2Jr1xL-914" mode="edit" layout="">
+													<columns>
+														<column width="100%">
+															<sections>
+																<section title="Add Individual" collapsible="no" showheader="true">
+																	<fields>
+																		<field id="clcommon__Related_Entity__c" valuehalign="" type="" optionsource="" pagesize="5">
+																			<filters>
+																				<filter type="param" operator="!=" field="Id" value="id" enclosevalueinquotes="true" novaluebehavior="deactivate"/>
+																				<filter type="multiple" operator="in" field="clcommon__Legal_Entity_Type__r.Name" value="" enclosevalueinquotes="true">
+																					<values>
+																						<value>Individual</value>
+																						<value>Sole Proprietorship</value>
+																					</values>
+																				</filter>
+																			</filters>
+																			<searchfields/>
+																		</field>
+																		<field id="clcommon__Relationship__c" valuehalign="" type="" optionsource="" pagesize="5" displaytemplate="{{clcommon__Inverse_Role__c}}" searchtemplate="{{clcommon__Inverse_Role__c}}-{{Name}}">
+																			<searchfields/>
+																			<filters>
+																				<filter type="modelmerge" operator="=" field="RecordType.DeveloperName" value="" model="ANR_SelectedAccount" enclosevalueinquotes="true" mergefield="IndRelationshipRecordType" novaluebehavior="deactivate"/>
+																			</filters>
+																			<renderconditions logictype="and" onhidedatabehavior="keep"/>
+																			<enableconditions/>
+																			<label>Role</label>
+																		</field>
+																	</fields>
+																</section>
+															</sections>
+														</column>
+														<column width="100%" cssclass="display-relations-column">
+															<sections>
+																<section title="New Section" collapsible="no" showheader="false">
+																	<fields>
+																		<field type="COMBO" valuehalign="" editmodebehavior="autopopup" allowhtml="true" readonly="true" cssclass="">
+																			<template>&lt;div class="display-relationship-text"&gt;
+    {{clcommon__Entity__r.Name}} is {{clcommon__Relationship__r.Name}};
+    {{clcommon__Related_Entity__r.Name}} is {{clcommon__Relationship__r.clcommon__Inverse_Role__c}}
+&lt;/div&gt;
+
+</template>
+																		</field>
+																	</fields>
+																</section>
+															</sections>
+															<renderconditions logictype="and">
+																<rendercondition type="blank" operator="!=" fieldmodel="ANR_NewIndividualRelationship" sourcetype="fieldvalue" field="clcommon__Related_Entity__c" value="null" enclosevalueinquotes="false"/>
+																<rendercondition type="blank" operator="!=" fieldmodel="ANR_NewIndividualRelationship" sourcetype="fieldvalue" value="null" enclosevalueinquotes="false" field="clcommon__Relationship__c"/>
+															</renderconditions>
+														</column>
+													</columns>
+												</basicfieldeditor>
+												<pagetitle uniqueid="sk-3cPuBC-1087" model="ANR_NewIndividualRelationship" cssclass="individual-save-member-error-panel">
+													<actions/>
+												</pagetitle>
+											</components>
+										</division>
+									</divisions>
+									<styles>
+										<styleitem type="background" bgtype="color">
+											<styles>
+												<styleitem property="background-color" value="#EBEEF0"/>
+											</styles>
+										</styleitem>
+									</styles>
+								</grid>
+							</components>
+						</division>
+						<division behavior="flex" verticalalign="top" minwidth="22%" ratio="1">
+							<components/>
+						</division>
+					</divisions>
+					<styles>
+						<styleitem type="background" bgtype="color">
+							<styles>
+								<styleitem property="background-color" value="white"/>
+							</styles>
+						</styleitem>
+					</styles>
+					<renderconditions logictype="and"/>
+				</grid>
+			</components>
+			<styles>
+				<styleitem type="background" bgtype="color">
+					<styles>
+						<styleitem property="background-color" value="white"/>
+					</styles>
+				</styleitem>
+				<styleitem type="border" padding="all">
+					<styles>
+						<styleitem property="padding" value="6px"/>
+						<styleitem property="box-sizing" value="border-box"/>
+					</styles>
+				</styleitem>
+				<styleitem type="size"/>
+			</styles>
+		</wrapper>
+		<wrapper uniqueid="sk-3bKy81-185">
+			<components>
+				<grid uniqueid="sk-3bJzhs-146">
+					<divisions>
+						<division behavior="flex" minwidth="22%" ratio="1" verticalalign="top">
+							<components/>
+						</division>
+						<division behavior="flex" verticalalign="top" minwidth="56%" ratio="1">
+							<components>
+								<grid uniqueid="sk-3bK5Xg-177">
+									<divisions>
+										<division behavior="flex" minwidth="30%" ratio="1" verticalalign="center">
+											<components>
+												<image source="staticresource" uniqueid="sk-3bKXYF-279" datasource="salesforce" behavior="none" resource="genesisExtn__CLSStyleSheetPack" path="images/Business.png" resourceContentType="application/zip">
+													<styles>
+														<styleitem type="itemsize" width="custom" height="custom">
+															<styles>
+																<styleitem property="width" value="200px"/>
+																<styleitem property="height" value="200px"/>
+															</styles>
+														</styleitem>
+														<styleitem type="border"/>
+													</styles>
+												</image>
+											</components>
+										</division>
+										<division behavior="flex" verticalalign="center" minwidth="70%" ratio="1">
+											<components>
+												<basicfieldeditor showheader="true" showsavecancel="false" showerrorsinline="true" model="ANR_NewBusinessRelationship" buttonposition="" uniqueid="sk-3bKLLl-219" mode="edit">
+													<columns>
+														<column width="100%">
+															<sections>
+																<section title="Add Business" collapsible="no">
+																	<fields>
+																		<field id="clcommon__Related_Entity__c" valuehalign="" type="" required="false">
+																			<filters>
+																				<filter type="param" operator="!=" field="Id" value="id" enclosevalueinquotes="true" novaluebehavior="deactivate"/>
+																				<filter type="multiple" operator="not in" field="clcommon__Legal_Entity_Type__r.Name" value="" enclosevalueinquotes="true">
+																					<values>
+																						<value>Individual</value>
+																						<value>Sole Proprietorship</value>
+																					</values>
+																				</filter>
+																			</filters>
+																		</field>
+																		<field id="clcommon__Relationship__c" valuehalign="" type="" optionsource="" pagesize="5" displaytemplate="{{clcommon__Inverse_Role__c}}" searchtemplate="{{clcommon__Inverse_Role__c}}-{{Name}}">
+																			<searchfields/>
+																			<filters>
+																				<filter type="modelmerge" operator="=" field="RecordType.DeveloperName" value="" model="ANR_SelectedAccount" enclosevalueinquotes="true" mergefield="BusinessRelationshipRecordType" novaluebehavior="deactivate"/>
+																			</filters>
+																			<label>Role</label>
+																			<renderconditions logictype="and" onhidedatabehavior="keep"/>
+																			<enableconditions/>
+																		</field>
+																	</fields>
+																</section>
+															</sections>
+														</column>
+														<column width="100%" cssclass="display-relations-column">
+															<sections>
+																<section title="New Section" collapsible="no" showheader="false">
+																	<fields>
+																		<field type="COMBO" valuehalign="" editmodebehavior="autopopup" allowhtml="true" readonly="true">
+																			<template>&lt;div class="display-relationship-text"&gt;
+    {{clcommon__Entity__r.Name}} is {{clcommon__Relationship__r.Name}};
+    {{clcommon__Related_Entity__r.Name}} is {{clcommon__Relationship__r.clcommon__Inverse_Role__c}}
+&lt;/div&gt;</template>
+																		</field>
+																	</fields>
+																	<renderconditions logictype="and"/>
+																</section>
+															</sections>
+															<renderconditions logictype="and">
+																<rendercondition type="blank" operator="!=" fieldmodel="ANR_NewBusinessRelationship" sourcetype="fieldvalue" field="clcommon__Related_Entity__c" value="null" enclosevalueinquotes="false"/>
+																<rendercondition type="blank" operator="!=" fieldmodel="ANR_NewBusinessRelationship" sourcetype="fieldvalue" value="null" enclosevalueinquotes="false" field="clcommon__Relationship__c"/>
+															</renderconditions>
+														</column>
+													</columns>
+												</basicfieldeditor>
+												<pagetitle uniqueid="sk-3cP-d7-1121" model="ANR_NewBusinessRelationship" cssclass="business-save-member-error-panel">
+													<actions/>
+												</pagetitle>
+											</components>
+										</division>
+									</divisions>
+									<styles>
+										<styleitem type="background" bgtype="color">
+											<styles>
+												<styleitem property="background-color" value="#EBEEF0"/>
+											</styles>
+										</styleitem>
+									</styles>
+								</grid>
+							</components>
+						</division>
+						<division behavior="flex" verticalalign="top" minwidth="22%" ratio="1">
+							<components/>
+						</division>
+					</divisions>
+					<styles>
+						<styleitem type="background" bgtype="none"/>
+					</styles>
+				</grid>
+			</components>
+			<styles>
+				<styleitem type="background" bgtype="color">
+					<styles>
+						<styleitem property="background-color" value="white"/>
+					</styles>
+				</styleitem>
+				<styleitem type="border" padding="all">
+					<styles>
+						<styleitem property="padding" value="6px"/>
+						<styleitem property="box-sizing" value="border-box"/>
+					</styles>
+				</styleitem>
+				<styleitem type="size"/>
+			</styles>
+		</wrapper>
+		<grid uniqueid="sk-3cH6YN-792">
+			<divisions>
+				<division behavior="flex" minwidth="33%" ratio="1" verticalalign="top">
+					<components/>
+				</division>
+				<division behavior="flex" verticalalign="top" minwidth="34%" ratio="1">
+					<components>
+						<wrapper uniqueid="sk-3cJlh7-304">
+							<components>
+								<pagetitle model="ANR_SelectedAccount" uniqueid="sk-3cGqNl-745" cssclass="add-members-button-title">
+									<actions>
+										<action type="multi" label="Save Member(s)" icon="" cssclass="save-members-btn" uniqueid="save-members-btn">
+											<actions>
+												<action type="custom" snippet="SaveMembers"/>
+											</actions>
+										</action>
+									</actions>
+									<renderconditions logictype="and"/>
+								</pagetitle>
+							</components>
+							<styles>
+								<styleitem type="background"/>
+								<styleitem type="border" padding="all">
+									<styles>
+										<styleitem property="padding" value="6px"/>
+										<styleitem property="box-sizing" value="border-box"/>
+									</styles>
+								</styleitem>
+								<styleitem type="size"/>
+							</styles>
+						</wrapper>
+					</components>
+				</division>
+				<division behavior="flex" verticalalign="top" minwidth="33%" ratio="1">
+					<components/>
+				</division>
+			</divisions>
+			<styles>
+				<styleitem type="background" bgtype="none"/>
+			</styles>
+		</grid>
+	</components>
+	<resources>
+		<labels/>
+		<javascript>
+			<jsitem location="staticresource" name="CLSNGUIComponent" cachelocation="false" url="" namespace="genesisExtn" filepath="messageUtils.js">var params = arguments[0],
+	$ = skuid.$;
+</jsitem>
+			<jsitem location="inlinesnippet" name="SaveMembers" cachelocation="false">var params = arguments[0],
+	$ = skuid.$;
+
+var modelsToSave = [];
+var isDataValid = true;
+var relModel1 = skuid.model.getModel('ANR_NewIndividualRelationship');
+if(relModel1.getFirstRow().clcommon__Related__Entity__c || relModel1.getFirstRow().clcommon__Relationship__c){
+    if(!relModel1.getFirstRow().clcommon__Related__Entity__c &amp;&amp; !relModel1.getFirstRow().clcommon__Relationship__c){
+        isDataValid = false;
+        var editor = $('.individual-save-member-error-panel').data('object').editor;
+        editor.handleMessages(
+            [
+              {
+                  message: 'Both Related Entity and Role should be selected to add new individual member',
+                  severity: 'ERROR'
+              },
+            ]
+        );
+    } else {
+        modelsToSave.push(relModel1);
+    }
+}
+
+var relModel2 = skuid.model.getModel('ANR_NewBusinessRelationship');
+if(relModel2.getFirstRow().clcommon__Related__Entity__c || relModel2.getFirstRow().clcommon__Relationship__c){
+    if(!relModel2.getFirstRow().clcommon__Related__Entity__c &amp;&amp; !relModel2.getFirstRow().clcommon__Relationship__c){
+        isDataValid = false;
+        var editor = $('.business-save-member-error-panel').data('object').editor;
+        editor.handleMessages(
+            [
+              {
+                  message: 'Both Related Entity and Role should be selected to add new business member',
+                  severity: 'ERROR'
+              },
+            ]
+        );
+    } else {
+        modelsToSave.push(relModel2);
+    }
+}
+
+if(isDataValid){
+    skuid.model.save(modelsToSave, { callback: function(result){
+        if (result.totalsuccess){
+            var parentId = skuid.model.getModel('AccountRelationDashboardPage').getFirstRow().Id;
+            if(parentId.length &gt; 15){
+                parentId = parentId.slice(0, 15);
+            }
+            var path = parentId + ',deal-dashboard-iframe';
+            closeTopLevelDialogAndRefresh({iframeIds: [path]});
+        } else {
+            // do nothing
+        }
+    }});
+}</jsitem>
+		</javascript>
+		<css>
+			<cssitem location="inline" name="AddMembersCSS" cachelocation="false">.add-members-button-title .nx-header-right,
+.add-members-button-title .nx-header-right &gt; div,
+.add-members-button-title .nx-header-right &gt; div &gt; div[role="button"]{
+    width: 100%;
+}
+
+.add-members-button-title .nx-header-right &gt; div &gt; div[role="button"]{
+    background: #1cbdd4;
+}
+
+.add-members-button-title .nx-header-right &gt; div &gt; div[role="button"] &gt; .ui-button-text{
+    font-size: 16px;
+}
+</cssitem>
+		</css>
+	</resources>
+	<styles>
+		<styleitem type="background" bgtype="none"/>
+	</styles>
+	<interactions/>
+</skuidpage>

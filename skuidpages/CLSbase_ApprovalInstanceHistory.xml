@@ -1,0 +1,73 @@
+<skuidpage personalizationmode="server" showsidebar="false" useviewportmeta="false" showheader="false" globalfeedbackenabled="false">
+	<models>
+		<model id="PrimaryApprovalInstance" query="true" createrowifnonefound="false" datasource="salesforce" sobject="clcommon__Approval_Instance__c" limit="1" orderby="ID DESC">
+			<fields>
+				<field id="Id"/>
+				<field id="genesis__Application__c"/>
+				<field id="genesis__Application__r.Name"/>
+				<field id="clcommon__Approval_Definition__c"/>
+				<field id="clcommon__Approval_Definition__r.Name"/>
+			</fields>
+			<conditions>
+				<condition type="param" value="approvalId" field="Id" fieldtargetobjects="genesis__Applications__c" operator="=" enclosevalueinquotes="true" novaluebehavior="noquery"/>
+			</conditions>
+			<actions/>
+		</model>
+		<model id="ApprovalHistory" query="true" createrowifnonefound="false" datasource="salesforce" sobject="clcommon__Approval_Instance__c" orderby="ID DESC">
+			<fields>
+				<field id="Id"/>
+				<field id="genesis__Application__c"/>
+				<field id="genesis__Application__r.Name"/>
+				<field id="clcommon__Approval_Definition__c"/>
+				<field id="clcommon__Approval_Definition__r.Name"/>
+				<field id="clcommon__Type__c"/>
+				<field id="clcommon__Cadence__c"/>
+				<field id="clcommon__Status__c"/>
+				<field id="clcommon__Start_Date__c"/>
+				<field id="clcommon__Completed_Date__c"/>
+				<field id="clcommon__Approval_Review_Group__c"/>
+				<field id="clcommon__Approval_Review_Group__r.Name"/>
+				<field id="CreatedDate"/>
+				<field id="clcommon__Approval_Review_Group__r.Id"/>
+			</fields>
+			<conditions>
+				<condition type="modelmerge" value="" field="Id" operator="!=" model="PrimaryApprovalInstance" enclosevalueinquotes="true" mergefield="Id" novaluebehavior="deactivate"/>
+				<condition type="modelmerge" value="" field="clcommon__Approval_Definition__c" fieldtargetobjects="clcommon__Approval_Definition__c" operator="=" model="PrimaryApprovalInstance" enclosevalueinquotes="true" mergefield="clcommon__Approval_Definition__c" novaluebehavior="noquery"/>
+				<condition type="modelmerge" value="" field="genesis__Application__c" fieldtargetobjects="genesis__Applications__c" operator="=" model="PrimaryApprovalInstance" enclosevalueinquotes="true" mergefield="genesis__Application__c" novaluebehavior="noquery"/>
+			</conditions>
+			<actions/>
+		</model>
+	</models>
+	<components>
+		<skootable showconditions="true" showsavecancel="false" showerrorsinline="true" searchmethod="server" searchbox="false" showexportbuttons="false" hideheader="false" hidefooter="false" pagesize="10" alwaysresetpagination="false" createrecords="false" model="ApprovalHistory" buttonposition="" mode="readonly" allowcolumnreordering="false" responsive="false" uniqueid="sk-3X1_-224" emptysearchbehavior="query" instantfilters="false">
+			<fields>
+				<field id="clcommon__Type__c" hideable="false" uniqueid="fi-3X2g-372" showbydefault="true"/>
+				<field id="clcommon__Cadence__c" hideable="false" uniqueid="fi-3X2g-373" showbydefault="true"/>
+				<field id="clcommon__Approval_Review_Group__c" hideable="false" uniqueid="fi-3X2g-377" pagesize="5" redirecttype="customurl" showbydefault="true" window="blank" rooturl="/{{clcommon__Approval_Review_Group__r.Id}}">
+					<searchfields/>
+					<filters/>
+				</field>
+				<field id="clcommon__Status__c" hideable="false" uniqueid="fi-3X2g-374" showbydefault="true"/>
+				<field id="CreatedDate" hideable="false" uniqueid="fi-3zao-327" showbydefault="true"/>
+				<field id="clcommon__Start_Date__c" hideable="false" uniqueid="fi-3X2g-375" showbydefault="true"/>
+				<field id="clcommon__Completed_Date__c" hideable="false" uniqueid="fi-3X2g-376" showbydefault="true"/>
+			</fields>
+			<rowactions/>
+			<massactions usefirstitemasdefault="true"/>
+			<views>
+				<view type="standard"/>
+			</views>
+			<searchfields/>
+		</skootable>
+	</components>
+	<resources>
+		<labels/>
+		<javascript/>
+		<css/>
+		<actionsequences uniqueid="sk-3X1T-362"/>
+	</resources>
+	<styles>
+		<styleitem type="background" bgtype="none"/>
+	</styles>
+	<interactions/>
+</skuidpage>

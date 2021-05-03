@@ -1,0 +1,79 @@
+<skuidpage unsavedchangeswarning="" personalizationmode="server" showsidebar="false" showheader="false">
+	<models>
+		<model id="SublimtRecord" limit="" query="true" createrowifnonefound="true" adapter="salesforce" type="" sobject="genesis__SubLimit__c">
+			<fields>
+				<field id="genesis__Application__c"/>
+				<field id="genesis__Application__r.Name"/>
+				<field id="genesis__Effective_Date__c"/>
+				<field id="genesis__Product__c"/>
+				<field id="genesis__Product__r.Name"/>
+				<field id="Name"/>
+				<field id="genesis__Sublimit_Amount__c"/>
+				<field id="Id"/>
+			</fields>
+			<conditions>
+				<condition type="param" value="appId" field="genesis__Application__c" operator="=" enclosevalueinquotes="true" novaluebehavior="noquery"/>
+				<condition type="param" value="id" field="Id" operator="=" state="" enclosevalueinquotes="true" novaluebehavior=""/>
+			</conditions>
+			<actions/>
+		</model>
+	</models>
+	<components>
+		<pagetitle model="SublimtRecord" uniqueid="sk-Y9KUb-368">
+			<actions>
+				<action type="multi" label="Save">
+					<actions>
+						<action type="save">
+							<models>
+								<model>SublimtRecord</model>
+							</models>
+						</action>
+						<action type="custom" snippet="CloseDialog"/>
+					</actions>
+				</action>
+			</actions>
+		</pagetitle>
+		<basicfieldeditor showheader="true" showsavecancel="false" showerrorsinline="true" model="SublimtRecord" buttonposition="" uniqueid="sk-Xs8Oh-194" mode="edit">
+			<columns>
+				<column width="100%">
+					<sections>
+						<section title="" collapsible="no" showheader="false">
+							<fields>
+								<field id="genesis__Product__c" valuehalign="" type="REFPICK" optionsource="" displaytemplate="{{clcommon__Product_Name__c}}" searchtemplate="{{clcommon__Product_Name__c}}">
+									<filters>
+										<filter type="fieldvalue" operator="=" enclosevalueinquotes="false" field="genesis__Use_As_SubLimit_Product__c" value="true"/>
+									</filters>
+									<searchfields>
+										<searchfield query="true" return="true" show="true" field="clcommon__Product_Name__c" operator="contains"/>
+									</searchfields>
+								</field>
+								<field id="genesis__Effective_Date__c"/>
+								<field id="genesis__Sublimit_Amount__c"/>
+							</fields>
+						</section>
+					</sections>
+				</column>
+			</columns>
+		</basicfieldeditor>
+	</components>
+	<resources>
+		<labels/>
+		<javascript>
+			<jsitem location="staticresource" name="CLSNGUIComponent" cachelocation="false" url="" namespace="genesisExtn" filepath="messageUtils.js">var params = arguments[0],
+	            $ = skuid.$;
+            </jsitem>
+			<jsitem location="inlinesnippet" name="CloseDialog" cachelocation="false">var params = arguments[0],
+    $ = skuid.$;
+
+closeTopLevelDialogAndRefresh({iframeIds: ['deal-dashboard-iframe,loan-details-iframe']});
+// closeTopLevelDialogAndRefresh({iframeIds: ['deal-dashboard-iframe,loan-details-iframe,sublimit-panel']});
+</jsitem>
+		</javascript>
+		<css>
+			<cssitem location="staticresource" name="CLSStyleSheetPack" cachelocation="false" url="" namespace="genesisExtn" filepath="cls-common.css"/>
+		</css>
+	</resources>
+	<styles>
+		<styleitem type="background" bgtype="none"/>
+	</styles>
+</skuidpage>

@@ -1,0 +1,466 @@
+<skuidpage unsavedchangeswarning="" personalizationmode="server" showsidebar="false" showheader="false">
+	<models>
+		<model id="NewPartyCovAddtn" limit="" query="true" createrowifnonefound="false" adapter="salesforce" type="" sobject="clcommon__Party__c">
+			<fields>
+				<field id="Id"/>
+				<field id="clcommon__Account__c"/>
+				<field id="clcommon__Account__r.Name"/>
+				<field id="genesis__Application__c"/>
+				<field id="genesis__Application__r.Name"/>
+				<field id="genesis__Application__r.genesis__CL_Product__c"/>
+				<field id="genesis__Application__r.genesis__CL_Product__r.Name"/>
+				<field id="genesis__Application__r.genesis__Expected_Close_Date__c"/>
+				<field id="genesis__Application__r.genesis__Payment_Frequency__c"/>
+				<field id="genesis__Application__r.genesis__Term__c"/>
+				<field id="genesis__Application__r.genesis__Expected_First_Payment_Date__c"/>
+				<field id="clcommon__Type__c"/>
+				<field id="clcommon__Type__r.Name"/>
+				<field id="clcommon__Account__r.clcommon__Legal_Entity_Type__c"/>
+				<field id="clcommon__Account__r.clcommon__Legal_Entity_Type__r.Name"/>
+				<field id="NoFilters" uionly="true" displaytype="BOOLEAN" label="No Filters" defaultValue="false"/>
+				<field id="RelationshipFilter" uionly="true" displaytype="BOOLEAN" label="Relationship Filter"/>
+				<field id="EntityFilter" uionly="true" displaytype="BOOLEAN" label="Entity Filter" defaultValue="false"/>
+				<field id="ProductFilter" uionly="true" displaytype="BOOLEAN" label="Product Filter" defaultValue="false"/>
+			</fields>
+			<conditions>
+				<condition type="param" value="id" field="Id" operator="=" enclosevalueinquotes="true" novaluebehavior=""/>
+			</conditions>
+			<actions/>
+		</model>
+		<model id="ApplicableCovenantDefinition" limit="" query="false" createrowifnonefound="false" adapter="salesforce" type="" sobject="clcommon__Covenant_Definition__c" orderby="Name ASC">
+			<fields>
+				<field id="clcommon__Active__c"/>
+				<field id="Name"/>
+				<field id="clcommon__Covenant_Description__c"/>
+				<field id="clcommon__Financial_Indicator__c"/>
+				<field id="clcommon__Financial_Indicator_High_Value__c"/>
+				<field id="clcommon__Financial_Indicator_Low_Value__c"/>
+				<field id="clcommon__Financial_Operator__c"/>
+				<field id="clcommon__Frequency__c"/>
+				<field id="clcommon__Legal_Entity_Type__c"/>
+				<field id="clcommon__Legal_Entity_Type__r.Name"/>
+				<field id="clcommon__Notification_Days__c"/>
+				<field id="clcommon__Product_Name__c"/>
+				<field id="clcommon__Relationship_Type__r.Name"/>
+				<field id="clcommon__Relationship_Type__c"/>
+				<field id="clcommon__Type__c"/>
+			</fields>
+			<conditions>
+				<condition type="fieldvalue" value="" field="clcommon__Relationship_Type__c" operator="=" mergefield="clcommon__Type__c" novaluebehavior="deactivate" state="filterableoff" inactive="true" name="clcommon__Relationship_Type__c" enclosevalueinquotes="true"/>
+				<condition type="fieldvalue" value="" field="clcommon__Legal_Entity_Type__c" operator="=" mergefield="clcommon__Account__r.clcommon__Legal_Entity_Type__c" novaluebehavior="deactivate" state="filterableoff" inactive="true" name="clcommon__Legal_Entity_Type__c" enclosevalueinquotes="true"/>
+				<condition type="fieldvalue" value="" field="clcommon__Product__c" operator="=" mergefield="genesis__Application__r.genesis__CL_Product__c" novaluebehavior="deactivate" state="filterableoff" inactive="true" name="clcommon__Product__c" enclosevalueinquotes="true"/>
+				<condition type="fieldvalue" value="true" enclosevalueinquotes="false" field="clcommon__Active__c" operator="="/>
+			</conditions>
+			<actions/>
+		</model>
+		<model id="NewlyCreatedCovenants" limit="" query="false" createrowifnonefound="false" adapter="salesforce" type="" sobject="clcommon__Covenant__c">
+			<fields>
+				<field id="clcommon__Account__c"/>
+				<field id="clcommon__Account__r.Name"/>
+				<field id="clcommon__Active__c"/>
+				<field id="clcommon__Covenant_Description__c"/>
+				<field id="clcommon__Covenant_Definition__c"/>
+				<field id="clcommon__Covenant_Definition__r.Name"/>
+				<field id="Name"/>
+				<field id="clcommon__Financial_Indicator__c"/>
+				<field id="clcommon__Expiration_Date__c"/>
+				<field id="clcommon__Financial_Indicator_High_Value__c"/>
+				<field id="clcommon__Financial_Indicator_Low_Value__c"/>
+				<field id="clcommon__Financial_Operator__c"/>
+				<field id="clcommon__Frequency__c"/>
+				<field id="clcommon__Notification_Days__c"/>
+			</fields>
+			<conditions/>
+			<actions/>
+		</model>
+	</models>
+	<components>
+		<grid uniqueid="sk-hbwJr-219">
+			<divisions>
+				<division behavior="flex" minwidth="100%" ratio="1" verticalalign="top">
+					<components>
+						<progressindicator__progress_indicator id-index="3" future-color="#dddddd" current-color="#1cbdd4" done-color="#2d5074" mode="tabwiz" uniqueid="sk-hc3ok-246" friendId="addCovenantsForParty">
+							<steps>
+								<step label="Select Filter" data-id="0">
+									<components/>
+								</step>
+								<step label="Select Covenant Definition(s)" data-id="1">
+									<components/>
+								</step>
+								<step label="Confirm" data-id="2">
+									<components/>
+								</step>
+							</steps>
+						</progressindicator__progress_indicator>
+					</components>
+				</division>
+				<division behavior="flex" verticalalign="top" minwidth="100%" ratio="1">
+					<components>
+						<wizard deferstepcontentsrendering="false" buttonslocation="top" uniqueid="addCovenantsForParty">
+							<steps>
+								<step stepid="step1" steplabel="">
+									<components>
+										<grid uniqueid="sk-ZwLBQ-963">
+											<divisions>
+												<division behavior="flex" minwidth="70%" ratio="1" verticalalign="top">
+													<components>
+														<pagetitle model="NewPartyCovAddtn" uniqueid="sk-ZwJSq-959">
+															<actions>
+																<action type="multi" label="No Filters" uniqueid="NoFilter" icon="fa-align-justify">
+																	<actions>
+																		<action type="updateRow" fieldmodel="NewPartyCovAddtn" field="NoFilters" enclosevalueinquotes="false" value="true"/>
+																		<action type="updateRow" fieldmodel="NewPartyCovAddtn" field="RelationshipFilter" enclosevalueinquotes="true" value="false"/>
+																		<action type="updateRow" fieldmodel="NewPartyCovAddtn" field="EntityFilter" enclosevalueinquotes="true" value="false"/>
+																		<action type="updateRow" fieldmodel="NewPartyCovAddtn" field="ProductFilter" enclosevalueinquotes="true" value="false"/>
+																		<action type="custom" snippet="ChangeFilterBtnColor"/>
+																	</actions>
+																	<renderconditions logictype="and"/>
+																	<enableconditions/>
+																</action>
+																<action type="multi" label="By Relationship Type" uniqueid="RelationshipFilter" icon="fa-filter">
+																	<actions>
+																		<action type="updateRow" fieldmodel="NewPartyCovAddtn" field="NoFilters" enclosevalueinquotes="true" value="false"/>
+																		<action type="updateRow" fieldmodel="NewPartyCovAddtn" field="RelationshipFilter" enclosevalueinquotes="false" value="true"/>
+																		<action type="updateRow" fieldmodel="NewPartyCovAddtn" field="EntityFilter" enclosevalueinquotes="true" value="false"/>
+																		<action type="updateRow" fieldmodel="NewPartyCovAddtn" field="ProductFilter" enclosevalueinquotes="true" value="false"/>
+																		<action type="custom" snippet="ChangeFilterBtnColor"/>
+																	</actions>
+																</action>
+																<action type="multi" label="By Legal Entity Type" uniqueid="EntityFilter" icon="fa-filter">
+																	<actions>
+																		<action type="updateRow" fieldmodel="NewPartyCovAddtn" field="NoFilters" enclosevalueinquotes="true" value="false"/>
+																		<action type="updateRow" fieldmodel="NewPartyCovAddtn" field="RelationshipFilter" enclosevalueinquotes="true" value="false"/>
+																		<action type="updateRow" fieldmodel="NewPartyCovAddtn" field="EntityFilter" enclosevalueinquotes="false" value="true"/>
+																		<action type="updateRow" fieldmodel="NewPartyCovAddtn" field="ProductFilter" enclosevalueinquotes="true" value="false"/>
+																		<action type="custom" snippet="ChangeFilterBtnColor"/>
+																	</actions>
+																</action>
+																<action type="multi" label="By Product" icon="fa-filter" uniqueid="ProductFilter">
+																	<actions>
+																		<action type="updateRow" fieldmodel="NewPartyCovAddtn" field="NoFilters" enclosevalueinquotes="true" value="false"/>
+																		<action type="updateRow" fieldmodel="NewPartyCovAddtn" field="RelationshipFilter" enclosevalueinquotes="true" value="false"/>
+																		<action type="updateRow" fieldmodel="NewPartyCovAddtn" field="EntityFilter" enclosevalueinquotes="false" value="false"/>
+																		<action type="updateRow" fieldmodel="NewPartyCovAddtn" field="ProductFilter" enclosevalueinquotes="true" value="true"/>
+																		<action type="custom" snippet="ChangeFilterBtnColor"/>
+																	</actions>
+																</action>
+															</actions>
+														</pagetitle>
+														<pagetitle uniqueid="sk-DaAsu-278" model="NewPartyCovAddtn">
+															<actions/>
+														</pagetitle>
+													</components>
+												</division>
+												<division behavior="flex" verticalalign="top" minwidth="30%" ratio="1">
+													<components/>
+												</division>
+											</divisions>
+											<styles>
+												<styleitem type="background" bgtype="none"/>
+											</styles>
+											<renderconditions logictype="and"/>
+										</grid>
+									</components>
+									<actions>
+										<action uniqueid="sk-hc9zu-262" type="multi" stepid="step2" label="Next" icon="sk-icon-arrow-right" window="self">
+											<actions>
+												<action type="custom" snippet="ChangeFilterBtnColor"/>
+												<action type="custom" snippet="queryCovenantDefinitions"/>
+											</actions>
+										</action>
+									</actions>
+								</step>
+								<step stepid="step2" steplabel="">
+									<components>
+										<pagetitle model="NewPartyCovAddtn" uniqueid="initializeErrorTile">
+											<actions/>
+											<renderconditions logictype="and"/>
+										</pagetitle>
+										<skootable showconditions="true" showsavecancel="false" showerrorsinline="true" searchmethod="server" searchbox="true" showexportbuttons="false" pagesize="10" createrecords="false" model="ApplicableCovenantDefinition" buttonposition="" mode="readonly" uniqueid="sk-a8XKV-2255">
+											<fields>
+												<field id="Name" valuehalign="" type="" readonly="false"/>
+												<field id="clcommon__Covenant_Description__c" valuehalign="" type="" readonly="false"/>
+												<field id="clcommon__Type__c"/>
+												<field id="clcommon__Relationship_Type__c"/>
+												<field id="clcommon__Legal_Entity_Type__c"/>
+												<field id="clcommon__Financial_Operator__c"/>
+												<field id="clcommon__Financial_Indicator__c"/>
+												<field id="clcommon__Notification_Days__c"/>
+											</fields>
+											<rowactions/>
+											<massactions usefirstitemasdefault="true">
+												<action type="multi" label="Create Covenant(s)" icon="sk-icon-add">
+													<actions>
+														<action type="custom" snippet="initializeCovenants"/>
+													</actions>
+													<renderconditions logictype="and"/>
+													<hotkeys/>
+												</action>
+											</massactions>
+											<views>
+												<view type="standard"/>
+											</views>
+											<renderconditions logictype="and"/>
+											<actions defaultlabel="Global Actions" defaulticon="sk-icon-magic" usefirstitemasdefault="true"/>
+										</skootable>
+									</components>
+									<actions>
+										<action uniqueid="sk-hc9zw-263" type="navigate" stepid="step1" label="Previous" icon="sk-icon-arrow-left" window="self"/>
+									</actions>
+								</step>
+								<step stepid="step3" steplabel="">
+									<components>
+										<pagetitle uniqueid="saveCovenantErrorTitle" model="NewPartyCovAddtn">
+											<actions/>
+										</pagetitle>
+										<skootable showconditions="true" showsavecancel="false" showerrorsinline="true" searchmethod="server" searchbox="true" showexportbuttons="false" pagesize="10" createrecords="false" model="NewlyCreatedCovenants" buttonposition="" mode="edit" uniqueid="sk-fnlOt-816">
+											<fields>
+												<field id="clcommon__Covenant_Definition__c" valuehalign="" type="" readonly="true"/>
+												<field id="clcommon__Active__c" type="" valuehalign="" readonly="true"/>
+												<field id="clcommon__Expiration_Date__c" valuehalign="" type="" readonly="true"/>
+												<field id="clcommon__Frequency__c" valuehalign="" type=""/>
+												<field id="clcommon__Financial_Operator__c" valuehalign="" type=""/>
+												<field id="clcommon__Financial_Indicator__c" decimalplaces="" valuehalign="" type=""/>
+												<field id="clcommon__Notification_Days__c" decimalplaces="" valuehalign="" type=""/>
+											</fields>
+											<rowactions>
+												<action type="delete"/>
+											</rowactions>
+											<massactions usefirstitemasdefault="true"/>
+											<views>
+												<view type="standard"/>
+											</views>
+											<renderconditions logictype="and"/>
+										</skootable>
+									</components>
+									<actions>
+										<action uniqueid="sk-hhtQd-186" type="navigate" stepid="step2" label="Previous" icon="sk-icon-arrow-left" window="self"/>
+										<action uniqueid="sk-hhtQd-187" type="multi" label="Save" icon="fa-check" window="self">
+											<actions>
+												<action type="custom" snippet="SaveCovenants">
+													<onerroractions/>
+												</action>
+											</actions>
+										</action>
+									</actions>
+								</step>
+							</steps>
+						</wizard>
+					</components>
+				</division>
+			</divisions>
+			<styles>
+				<styleitem type="background" bgtype="none"/>
+			</styles>
+		</grid>
+	</components>
+	<resources>
+		<labels/>
+		<javascript>
+			<jsitem location="staticresource" name="CLSNGUIComponent" cachelocation="false" url="" namespace="genesisExtn" filepath="messageUtils.js">var params = arguments[0],
+	            $ = skuid.$;
+            </jsitem>
+			<jsitem location="inlinesnippet" name="ChangeFilterBtnColor" cachelocation="false">var params = arguments[0],
+	$ = skuid.$;
+
+var covPartyModel = skuid.model.getModel('NewPartyCovAddtn');
+var covPartyRow = covPartyModel.data[0];
+
+if(covPartyRow.NoFilters){
+    $('#NoFilter').addClass('selected-btn');
+}else{
+    $('#NoFilter').removeClass('selected-btn');
+}
+
+if(covPartyRow.RelationshipFilter){
+    $('#RelationshipFilter').addClass('selected-btn');
+}else{
+    $('#RelationshipFilter').removeClass('selected-btn');
+}
+
+if(covPartyRow.EntityFilter){
+    $('#EntityFilter').addClass('selected-btn');
+}else{
+    $('#EntityFilter').removeClass('selected-btn');
+}
+
+if(covPartyRow.ProductFilter){
+    $('#ProductFilter').addClass('selected-btn');
+}else{
+    $('#ProductFilter').removeClass('selected-btn');
+}
+
+
+</jsitem>
+			<jsitem location="inlinesnippet" name="queryCovenantDefinitions" cachelocation="false">var params = arguments[0],
+$ = skuid.$;
+        	
+var covPartyModel = skuid.model.getModel('NewPartyCovAddtn');
+var covPartyRow = covPartyModel.data[0];
+if(!(covPartyRow.NoFilters || covPartyRow.RelationshipFilter || covPartyRow.EntityFilter || covPartyRow.ProductFilter)){
+   covPartyModel.updateRow(covPartyRow ,{ NoFilters : true ,
+                                          RelationshipFilter : false,
+                                          EntityFilter : false,
+                                          ProductFilter : false
+   });
+   $('#NoFilter').addClass('selected-btn');
+}
+
+var covenantDefModel = skuid.model.getModel('ApplicableCovenantDefinition');
+covenantDefModel.cancel();
+
+// fetch all conditions
+var relationshipCondition = covenantDefModel.getConditionByName('clcommon__Relationship_Type__c');
+var entityTypeCondition = covenantDefModel.getConditionByName('clcommon__Legal_Entity_Type__c');
+var productTypeCondition = covenantDefModel.getConditionByName('clcommon__Product__c');
+// first deactivate all conditions
+covenantDefModel.deactivateCondition(relationshipCondition);
+covenantDefModel.deactivateCondition(entityTypeCondition);
+covenantDefModel.deactivateCondition(productTypeCondition);
+
+if(covPartyRow.RelationshipFilter){
+    covenantDefModel.setCondition(relationshipCondition, covPartyRow.clcommon__Type__c);
+}else if(covPartyRow.EntityFilter){
+    covenantDefModel.setCondition(entityTypeCondition, covPartyRow.clcommon__Account__r.clcommon__Legal_Entity_Type__c);
+}else if(covPartyRow.ProductFilter){
+    covenantDefModel.setCondition(productTypeCondition, covPartyRow.genesis__Application__r.genesis__CL_Product__c);
+}else{
+    // no conditions
+}
+
+skuid.model.updateData([covenantDefModel],function(){ 
+    var wizard = $('.nx-wizard').data('object'); 
+    var currentStep = wizard.steps[wizard.currentstep];
+    currentStep.navigate('step2');
+});
+</jsitem>
+			<jsitem location="inlinesnippet" name="initializeCovenants" cachelocation="false">var params = arguments[0],
+$ = skuid.$;
+
+var covPartyModel = skuid.model.getModel('NewPartyCovAddtn');
+var covPartyRow = covPartyModel.data[0];
+var startDate;
+if(covPartyRow.genesis__Application__r.genesis__Expected_First_Payment_Date__c){
+    startDate = new Date(covPartyRow.genesis__Application__r.genesis__Expected_First_Payment_Date__c);
+}else{
+    startDate = new Date(covPartyRow.genesis__Application__r.genesis__Expected_Close_Date__c);
+}
+
+var otherParamsMap = {};
+otherParamsMap['startDay'] = startDate.getDate();
+otherParamsMap['startMonth'] = startDate.getMonth()+1;
+otherParamsMap['startYear'] = startDate.getFullYear();
+otherParamsMap['accountId'] = covPartyRow.clcommon__Account__c;
+otherParamsMap['applicationId'] = covPartyRow.genesis__Application__r.Id;
+
+// covert to salesforce object instances
+var resultObjList = [];
+if(params.rows &amp;&amp; params.rows.length &gt; 0){
+     params.rows.forEach(function (skuidObject){
+         var sObj = new sforce.SObject(params.model.objectName);
+         for(var key in skuidObject){
+             if(skuidObject[key]){
+                if(typeof skuidObject[key] !== 'object'){
+                    if(!(key.toUpperCase() === "ID15" || key.toUpperCase() === "ID")){
+                        sObj[key] = skuidObject[key];
+                    } else if(key.toUpperCase() === "ID"  &amp;&amp; skuidObject[key].length &gt;= 15){
+                        sObj[key] = skuidObject[key];
+                    }
+                }
+            }
+         }
+         resultObjList.push(sObj); 
+     });
+}
+
+var res = sforce.apex.execute('genesis.SkuidCovenantCtrl','generateCovenantsFromDefinitions', {
+                                covenantDefinitions : JSON.stringify(resultObjList) ,
+                                otherParams : JSON.stringify(otherParamsMap)
+                            });
+var resObj = JSON.parse(res);
+if(resObj.status == 'SUCCESS'){
+    var newCovenantsModel = skuid.model.getModel('NewlyCreatedCovenants');
+    newCovenantsModel.data = [];
+    for (i = 0; i &lt; resObj.content.length; i++) { 
+        var newRow = newCovenantsModel.createRow({
+            additionalConditions: [
+                { field: 'clcommon__Account__c', value:resObj.content[i].clcommon__Account__c },
+                { field: 'clcommon__Active__c', value:true },
+                { field: 'clcommon__Covenant_Definition__c', value:resObj.content[i].clcommon__Covenant_Definition__c },
+                { field: 'clcommon__Covenant_Definition__r', value:resObj.content[i].clcommon__Covenant_Definition__r },
+                { field: 'clcommon__Expiration_Date__c', value:resObj.content[i].clcommon__Expiration_Date__c },
+                { field: 'clcommon__Financial_Indicator__c', value:resObj.content[i].clcommon__Financial_Indicator__c },
+                { field: 'clcommon__Financial_Indicator_High_Value__c', value:resObj.content[i].clcommon__Financial_Indicator_High_Value__c },
+                { field: 'clcommon__Financial_Indicator_Low_Value__c', value:resObj.content[i].clcommon__Financial_Indicator_Low_Value__c },
+                { field: 'clcommon__Financial_Operator__c', value:resObj.content[i].clcommon__Financial_Operator__c },
+                { field: 'clcommon__Frequency__c', value:resObj.content[i].clcommon__Frequency__c },
+                { field: 'clcommon__Notification_Days__c', value:resObj.content[i].clcommon__Notification_Days__c },
+            ]
+        });   
+    }
+    // move to next step
+    var wizard = $('.nx-wizard').data('object');
+    var currentStep = wizard.steps[wizard.currentstep];
+    currentStep.navigate('step3');
+}else{
+    var pageTitle = $('#initializeErrorTile');
+    var editor = pageTitle.data('object').editor; 
+    editor.handleMessages(
+        [
+          {
+              message: resObj.errorMessage,
+              severity: 'ERROR'
+          },
+        ]
+    );
+}
+</jsitem>
+			<jsitem location="inlinesnippet" name="SaveCovenants" cachelocation="false">var params = arguments[0],
+$ = skuid.$;
+
+var covPartyModel = skuid.model.getModel('NewPartyCovAddtn');
+var covPartyRow = covPartyModel.data[0];
+var startDate;
+if(covPartyRow.genesis__Application__r.genesis__Expected_First_Payment_Date__c){
+    startDate = new Date(covPartyRow.genesis__Application__r.genesis__Expected_First_Payment_Date__c);
+}else{
+    startDate = new Date(covPartyRow.genesis__Application__r.genesis__Expected_Close_Date__c);
+}
+
+var otherParamsMap = {};
+otherParamsMap['accountId'] = covPartyRow.clcommon__Account__c;
+otherParamsMap['applicationId'] = covPartyRow.genesis__Application__c;
+otherParamsMap['startDay'] = startDate.getDate();
+otherParamsMap['startMonth'] = startDate.getMonth()+1;
+otherParamsMap['startYear'] = startDate.getFullYear();
+
+var newCovenantsModel = skuid.model.getModel('NewlyCreatedCovenants');
+var res = sforce.apex.execute('genesis.SkuidCovenantCtrl','saveCovenants', {
+                                covenantsJson : JSON.stringify(buildSObject(newCovenantsModel,true)) ,
+                                otherParams : JSON.stringify(otherParamsMap)
+                            });
+var resObj = JSON.parse(res);
+if(resObj.status == 'SUCCESS'){
+    skuid.$('.ui-dialog-content').last().dialog('close');
+}else{
+    console.log(resObj);
+    var pageTitle = $('#saveCovenantErrorTitle');
+    var editor = pageTitle.data('object').editor; 
+    editor.handleMessages(
+        [
+          {
+              message: resObj.errorMessage,
+              severity: 'ERROR'
+          },
+        ]
+    );
+}</jsitem>
+		</javascript>
+		<css>
+			<cssitem location="staticresource" name="CLSStyleSheetPack" cachelocation="false" url="" namespace="genesisExtn" filepath="cls-common.css"/>
+		</css>
+	</resources>
+	<styles>
+		<styleitem type="background" bgtype="none"/>
+	</styles>
+</skuidpage>

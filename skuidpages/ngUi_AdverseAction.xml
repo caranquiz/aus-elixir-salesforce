@@ -1,0 +1,326 @@
+<skuidpage personalizationmode="server" showsidebar="false" showheader="false">
+	<models>
+		<model id="ReasonCodes" limit="100" query="true" createrowifnonefound="false" datasource="salesforce" sobject="clcommon__Reason_Code__c">
+			<fields>
+				<field id="clcommon__Description__c"/>
+				<field id="clcommon__Parent_Reason__c"/>
+				<field id="clcommon__Parent_Reason__r.Name"/>
+				<field id="clcommon__Parent_Reason_Id__r" type="childRelationship" limit="10">
+					<fields>
+						<field id="Name"/>
+					</fields>
+					<conditions/>
+				</field>
+				<field id="clcommon__Parent_Reason__r.clcommon__Parent_Reason__c"/>
+				<field id="clcommon__Parent_Reason__r.clcommon__Parent_Reason__r.Name"/>
+				<field id="clcommon__Parent_Reason__r.clcommon__Description__c"/>
+				<field id="Id"/>
+				<field id="clcommon__Reason_Type__c"/>
+			</fields>
+			<conditions>
+				<condition type="blank" value="null" field="clcommon__Parent_Reason__c" fieldtargetobjects="clcommon__Reason_Code__c" operator="=" enclosevalueinquotes="false"/>
+				<condition type="fieldvalue" value="Adverse Action" enclosevalueinquotes="true" field="clcommon__Reason_Type__c"/>
+			</conditions>
+			<actions>
+				<action>
+					<actions/>
+					<events>
+						<event>row.updated</event>
+					</events>
+				</action>
+			</actions>
+		</model>
+		<model id="AppReasonJunction" query="true" createrowifnonefound="false" datasource="salesforce" limit="100" sobject="genesis__Adverse_Action_Application_Junction__c">
+			<fields>
+				<field id="genesis__Adverse_Reason_Code__c"/>
+				<field id="genesis__Adverse_Reason_Code__r.Name"/>
+				<field id="genesis__Application__c"/>
+				<field id="genesis__Application__r.Name"/>
+				<field id="Id"/>
+				<field id="genesis__Adverse_Reason_Code__r.Id"/>
+				<field id="genesis__Adverse_Reason_Code__r.clcommon__Reason_Type__c"/>
+				<field id="genesis__Adverse_Reason_Code__r.clcommon__Parent_Reason__c"/>
+				<field id="genesis__Adverse_Reason_Code__r.clcommon__Parent_Reason__r.Name"/>
+			</fields>
+			<conditions>
+				<condition type="blank" value="null" field="genesis__Adverse_Reason_Code__r.clcommon__Parent_Reason__c" fieldtargetobjects="clcommon__Reason_Code__c" operator="=" enclosevalueinquotes="false"/>
+				<condition type="param" value="id" field="genesis__Application__c" fieldtargetobjects="genesis__Applications__c" operator="=" enclosevalueinquotes="true" novaluebehavior="noquery"/>
+				<condition type="fieldvalue" value="true" enclosevalueinquotes="false" field="genesis__isdeleted__c" operator="!="/>
+			</conditions>
+			<actions/>
+		</model>
+		<model id="ChildReasonCodes" limit="100" query="true" createrowifnonefound="false" datasource="salesforce" sobject="clcommon__Reason_Code__c">
+			<fields>
+				<field id="clcommon__Description__c"/>
+				<field id="clcommon__Reason_Type__c"/>
+				<field id="clcommon__Parent_Reason__c"/>
+				<field id="clcommon__Parent_Reason__r.Name"/>
+				<field id="Id"/>
+			</fields>
+			<conditions>
+				<condition type="blank" value="null" field="clcommon__Parent_Reason__c" fieldtargetobjects="clcommon__Reason_Code__c" operator="!=" enclosevalueinquotes="false"/>
+				<condition type="fieldvalue" value="Adverse Action" enclosevalueinquotes="true" field="clcommon__Reason_Type__c"/>
+			</conditions>
+			<actions>
+				<action>
+					<actions/>
+					<events>
+						<event>row.updated</event>
+					</events>
+				</action>
+			</actions>
+		</model>
+		<model id="AppReasonChild" limit="100" query="true" createrowifnonefound="false" datasource="salesforce" sobject="genesis__Adverse_Action_Application_Junction__c">
+			<fields>
+				<field id="genesis__Adverse_Reason_Code__r.clcommon__Description__c"/>
+				<field id="Id"/>
+				<field id="genesis__Application__c"/>
+				<field id="genesis__Application__r.Name"/>
+				<field id="genesis__Adverse_Reason_Code__c"/>
+				<field id="genesis__Adverse_Reason_Code__r.Name"/>
+				<field id="Name"/>
+				<field id="genesis__Adverse_Reason_Code__r.clcommon__Parent_Reason__c"/>
+				<field id="genesis__Adverse_Reason_Code__r.clcommon__Parent_Reason__r.Name"/>
+				<field id="genesis__Adverse_Reason_Code__r.Id"/>
+			</fields>
+			<conditions>
+				<condition type="param" value="id" field="genesis__Application__c" fieldtargetobjects="genesis__Applications__c" operator="=" enclosevalueinquotes="true" novaluebehavior="noquery"/>
+				<condition type="fieldvalue" value="true" enclosevalueinquotes="false" field="genesis__isdeleted__c" operator="!="/>
+			</conditions>
+			<actions/>
+		</model>
+	</models>
+	<components>
+		<wrapper uniqueid="sk-1lURe4-72" cssclass="cls-wrapper-section">
+			<components>
+				<buttonset uniqueid="sk-x0O-209">
+					<buttons>
+						<button type="multi" label="Create" uniqueid="sk-x0O-218">
+							<actions>
+								<action type="showPopup">
+									<popup title="Assign Reasons" width="90%">
+										<components>
+											<richtext multiple="false" uniqueid="sk-1Gyp-298">
+												<contents>&lt;p&gt;Note: Selection of Primary Reasons mandatory in order to save the corresponding&amp;nbsp; Child reasons&lt;/p&gt;
+</contents>
+											</richtext>
+											<skootable showconditions="true" showsavecancel="false" showerrorsinline="false" searchmethod="server" searchbox="false" showexportbuttons="false" hideheader="false" hidefooter="true" pagesize="10" alwaysresetpagination="false" createrecords="false" model="ReasonCodes" mode="readonly" allowcolumnreordering="false" responsive="false" uniqueid="assignReasonTable" instantfilters="false" emptysearchbehavior="query">
+												<fields>
+													<field id="clcommon__Description__c" hideable="false" uniqueid="fi-1ZUr-1732" showbydefault="true">
+														<label/>
+													</field>
+												</fields>
+												<rowactions>
+													<action type="drawer" icon="fa-angle-down" openicon="fa-angle-up" label="Expand">
+														<drawer title="Drawer Area" width="90%" closehandle="true">
+															<components>
+																<skootable showconditions="true" showsavecancel="false" showerrorsinline="true" searchmethod="server" searchbox="false" showexportbuttons="false" hideheader="false" hidefooter="true" pagesize="10" alwaysresetpagination="false" createrecords="false" model="ChildReasonCodes" mode="readonly" allowcolumnreordering="false" responsive="false" uniqueid="assignReasonDrawer" instantfilters="false" emptysearchbehavior="query">
+																	<fields>
+																		<field id="clcommon__Description__c" hideable="false" uniqueid="fi-1ZVT-1866" showbydefault="true">
+																			<label/>
+																			<renderconditions logictype="and" onhidedatabehavior="keep"/>
+																			<enableconditions/>
+																		</field>
+																	</fields>
+																	<rowactions/>
+																	<massactions usefirstitemasdefault="true">
+																		<action type="custom" label="   ">
+																			<renderconditions logictype="and"/>
+																		</action>
+																	</massactions>
+																	<views/>
+																	<searchfields/>
+																	<conditions>
+																		<condition type="contextrow" field="clcommon__Parent_Reason__c" mergefield="Id" operator="=" fieldtargetobjects="clcommon__Reason_Code__c"/>
+																	</conditions>
+																	<renderconditions logictype="and"/>
+																</skootable>
+															</components>
+															<beforeload/>
+														</drawer>
+													</action>
+												</rowactions>
+												<massactions usefirstitemasdefault="true">
+													<action type="custom" label="Save" icon="fa-save" snippet="saveParentChildModels"/>
+												</massactions>
+												<views/>
+												<searchfields/>
+												<actions defaultlabel="Global Actions" defaulticon="sk-icon-magic" usefirstitemasdefault="true"/>
+												<conditions/>
+												<renderconditions logictype="and"/>
+											</skootable>
+										</components>
+									</popup>
+								</action>
+								<action type="custom" snippet="expandAllDrawers"/>
+							</actions>
+						</button>
+					</buttons>
+				</buttonset>
+				<skootable showconditions="true" showsavecancel="false" showerrorsinline="false" searchmethod="server" searchbox="false" showexportbuttons="false" hideheader="false" hidefooter="true" pagesize="all" alwaysresetpagination="false" createrecords="false" model="AppReasonJunction" mode="readonly" allowcolumnreordering="false" responsive="false" uniqueid="sk-1VR6-2716" instantfilters="false" emptysearchbehavior="query" heading="Adverse Reasons">
+					<fields>
+						<field id="genesis__Adverse_Reason_Code__c" hideable="false" uniqueid="fi-1aPg-2533" showbydefault="true" pagesize="5" redirecttype="none">
+							<label/>
+							<searchfields/>
+							<filters/>
+							<renderconditions logictype="and" onhidedatabehavior="keep"/>
+							<enableconditions/>
+						</field>
+					</fields>
+					<rowactions>
+						<action type="drawer" icon="fa-angle-down" openicon="fa-angle-up" label="Expand">
+							<drawer title="Drawer Area" width="90%" closehandle="true">
+								<components>
+									<skootable showconditions="true" showsavecancel="false" showerrorsinline="false" searchmethod="server" searchbox="false" showexportbuttons="false" hideheader="false" hidefooter="true" pagesize="all" alwaysresetpagination="false" createrecords="false" model="AppReasonChild" mode="readonly" allowcolumnreordering="false" responsive="false" uniqueid="sk-1VcX-594" instantfilters="false" emptysearchbehavior="query">
+										<fields>
+											<field id="genesis__Adverse_Reason_Code__c" hideable="false" uniqueid="fi-1p1m-645" showbydefault="true" readonly="true" pagesize="5" redirecttype="none">
+												<label/>
+												<renderconditions logictype="and" onhidedatabehavior="keep"/>
+												<enableconditions logictype="and"/>
+												<searchfields/>
+												<filters/>
+											</field>
+										</fields>
+										<rowactions/>
+										<massactions usefirstitemasdefault="true"/>
+										<views/>
+										<renderconditions logictype="and">
+											<rendercondition type="fieldvalue" operator="!=" enclosevalueinquotes="true" fieldmodel="ReasonCodes" sourcetype="fieldvalue" nosourcerowbehavior="skipandnorender" field="clcommon__Parent_Reason__c" fieldtargetobjects="clcommon__Reason_Code__c"/>
+										</renderconditions>
+										<searchfields/>
+										<conditions>
+											<condition type="contextrow" field="genesis__Adverse_Reason_Code__r.clcommon__Parent_Reason__c" mergefield="genesis__Adverse_Reason_Code__r.Id" operator="=" fieldtargetobjects="clcommon__Reason_Code__c"/>
+										</conditions>
+										<actions defaultlabel="Global Actions" defaulticon="sk-icon-magic" usefirstitemasdefault="true"/>
+									</skootable>
+								</components>
+								<beforeload/>
+							</drawer>
+						</action>
+					</rowactions>
+					<massactions usefirstitemasdefault="true"/>
+					<views/>
+					<searchfields/>
+					<renderconditions logictype="and"/>
+				</skootable>
+			</components>
+			<styles>
+				<styleitem type="background" bgtype="none"/>
+				<styleitem type="border"/>
+				<styleitem type="size"/>
+			</styles>
+		</wrapper>
+	</components>
+	<resources>
+		<labels/>
+		<javascript>
+			<jsitem location="staticresource" name="CLSNGUIComponent" cachelocation="false" url="" namespace="genesisExtn" filepath="commonUtils.js">var params = arguments[0],
+	            $ = skuid.$;
+            </jsitem>
+			<jsitem location="staticresource" name="CLSNGUIComponent" cachelocation="false" url="" namespace="genesisExtn" filepath="messageUtils.js">var params = arguments[0],
+	            $ = skuid.$;
+            </jsitem>
+			<jsitem location="inlinesnippet" name="saveParentChildModels" cachelocation="false">var params = arguments[0],
+	$ = skuid.$;
+
+const urlParams = new URLSearchParams(window.location.search);
+const appId = urlParams.get('id');
+console.log('appId'+appId);
+
+var list = params.list;
+
+var selectedList1 = skuid.$('#assignReasonTable').data('object').list.getSelectedItems();
+debugger;
+var selectedList3= [];
+var descriptionList = [];
+var selectedList2= skuid.$('#assignReasonTable').data('object').list.getSelectedItems();//[0].childComponents[0].list.getSelectedItems()
+
+selectedList2.forEach(function(entry){
+selectedList3.push(entry.drawers[0].childComponents[0].list.getSelectedItems());
+});
+
+selectedList1.forEach(function(item){
+    descriptionList.push(item.row.Id);
+});
+
+selectedList3.forEach(function(i){
+    i.forEach(function(j){
+        descriptionList.push(j.row.Id);
+    });
+});
+var result = sforce.apex.execute('genesis.AdverseAction','UpsertSelectedReasons',
+{
+    applicationId : appId,
+    itemsList : descriptionList
+});
+alert(result);
+window.location.reload();</jsitem>
+			<jsitem location="inlinesnippet" name="expandAllDrawers" cachelocation="false" url="">var params = arguments[0],
+	$ = skuid.$;
+
+
+$('#assignReasonTable &gt; div.nx-editor-contents &gt; table &gt; tbody &gt; tr&gt;td&gt;div&gt;div.nx-skootable-buttonicon').find('.fa-angle-down').click();</jsitem>
+		</javascript>
+		<css>
+			<cssitem location="staticresource" name="CLSStyleSheetPack" cachelocation="false" url="" namespace="genesisExtn" filepath="cls-common.css"/>
+			<cssitem location="inline" name="custom" cachelocation="false">body {
+	background-color: #FFFFFF;
+}
+
+body &gt; .nx-page {
+    background-color: #FFFFFF;
+}</cssitem>
+			<cssitem location="inline" cachelocation="false" name="AdverseReasonCSS">
+
+thead {
+   visibility: hidden;
+    display : none;
+}
+
+.nx-list .nx-skootable-data thead{
+   visibility: hidden;
+    display : none;
+}
+
+.mobile-checkbox {
+   visibility: hidden;
+    display : none;
+}
+
+#assignReasonDrawer &gt; div.nx-editor-header{
+    visibility: hidden !important;
+    display : none !important;
+}
+
+
+#assignReasonDrawer.nx-skootable.nx-editor .nx-editor-header{
+    visibility: hidden !important;
+    display : none !important;
+}
+
+#assignReasonDrawer &gt; div:nth-child(3) &gt; table:nth-child(1) &gt; tbody:nth-child(2) &gt; tr:nth-child(1) &gt; td:nth-child(1){
+    width: 30px !important;
+}
+
+#assignReasonTable &gt; div:nth-child(3) &gt; table:nth-child(1) &gt; tbody:nth-child(2) &gt; tr:nth-child(1) &gt; td:nth-child(1){
+    width: 30px !important;
+}
+
+#assignReasonTable &gt; div:nth-child(3) &gt; table:nth-child(1) &gt; tbody:nth-child(2) &gt; tr:nth-child(1) &gt; td:nth-child(2){
+    width: 30px !important;
+}
+
+tr.nx-item:nth-child(1) &gt; td:nth-child(1){
+    width: 30px !important;
+}
+table.nx-skootable-data tbody tr td {
+    background-color:white !important;
+}
+</cssitem>
+		</css>
+		<actionsequences uniqueid="sk-x0s-485"/>
+	</resources>
+	<styles>
+		<styleitem type="background" bgtype="none"/>
+	</styles>
+</skuidpage>

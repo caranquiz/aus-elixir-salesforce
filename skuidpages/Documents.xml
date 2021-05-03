@@ -1,0 +1,17 @@
+<skuidpage personalizationmode="server" showsidebar="true" useviewportmeta="true" showheader="true" unsavedchangeswarning="yes">
+	<models/>
+	<components>
+		<template multiple="false" uniqueid="sk-BhB-207">
+			<contents>&lt;iframe id="document-iframe"  src="/apex/genesisExtn__documentTreeView?id={{{$Model.NGLDApplication.data.0.Id}}}" width="100%" height="700px" frameborder="0" /&gt;</contents>
+		</template>
+	</components>
+	<resources>
+		<labels/>
+		<javascript/>
+		<css/>
+		<actionsequences/>
+	</resources>
+	<styles>
+		<styleitem type="background" bgtype="none"/>
+	</styles>
+</skuidpage>
