@@ -15,7 +15,7 @@ public class ABNNameResponseParser {
 
     public class MainBusinessPhysicalAddress {
         public String isCurrentIndicator;
-        public Integer postcode;
+        public String postcode;
         public String stateCode;
     }
 
