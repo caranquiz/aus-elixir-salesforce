@@ -965,4 +965,5 @@ global class ConstantValues {
   public static final String EXISTING_TAG = 'Existing';
   public static final String CREDIT_ENQUIRY_OBJECT = 'credit-enquiry={';
   public static final String CREDIT_ENQUIRY_LIST_BRACES = 'credit-enquiry=({';
+  public static final String COLLATERAL_OWNER_WARNING = 'Only accounts from the same application can be added as Collateral Owners.';
 }
