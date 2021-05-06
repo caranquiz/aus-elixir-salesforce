@@ -111,15 +111,6 @@ private class CheckRulesTest {
       applicationDetailsList[0].Id,
       employmentInfo.Id
     );
-    genesis__Application_Collateral__c appCollateral = GenericUtilityTestHelper.returnAppCollateral(
-      applicationDetailsList[0].Id,
-      accountDetails.Id
-    );
-    System.AssertNotEquals(
-      appCollateral.Id,
-      null,
-      'Collateral inserted successfully!'
-    );
 
     clcommon__Party__c returnParty = GenericUtilityTestHelper.returnParty(
       applicationDetailsList[0].Id,
@@ -129,6 +120,16 @@ private class CheckRulesTest {
     returnParty.Document_Type__c = 'Full';
     update returnParty;
 
+    genesis__Application_Collateral__c appCollateral = GenericUtilityTestHelper.returnAppCollateral(
+      applicationDetailsList[0].Id,
+      accountDetails.Id
+    );
+    System.AssertNotEquals(
+      appCollateral.Id,
+      null,
+      'Collateral inserted successfully!'
+    );
+    
     genesis__Asset_Information__c assetInfo = GenericUtilityTestHelper.returnAssetInformation(
         applicationDetailsList[0].Id
     );
