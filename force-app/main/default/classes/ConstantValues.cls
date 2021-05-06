@@ -858,7 +858,7 @@ global class ConstantValues {
   public static final String SMSF_STATUS_CONDITION = 'SMSF Status Condition';
   public static final String TRUST_DEED_PROVIDED_CONDITION = 'Trust Deed Provided Condition';
   public static final String ABN_EFFECTIVE_FROM_LIVING_EXPENSE_WARING = 'ABN Effective From Living Expense Warning';
-  public static final String GST_EFFECTIVE_FROM_LIVING_ESPENSE_WARNING = 'GST Effective From Living Expense Warning';
+  public static final String GST_EFFECTIVE_FROM_EMPLOYMENT_WARNING = 'GST Effective From Employment Warning';
   public static final String PRVATE_PENSION_AMT_WARNING = 'Private Pension Amount Warning';
   public static final String OTHER_INCOME_AMOUNT_WARNING = 'Other Income Amount Warning';
   public static final String SUPERANUATION_AMOUNT_WARNING = 'Superannuation Amount Warning';

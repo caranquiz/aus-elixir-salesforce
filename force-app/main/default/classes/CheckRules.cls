@@ -203,7 +203,7 @@ global with sharing class CheckRules {
           ConstantValues.ABN_EFFECTIVE_FROM_LIVING_EXPENSE_WARING
         );
         rulesNameList.add(
-          ConstantValues.GST_EFFECTIVE_FROM_LIVING_ESPENSE_WARNING
+          ConstantValues.GST_EFFECTIVE_FROM_EMPLOYMENT_WARNING 
         );
         rulesNameList.add(ConstantValues.PRVATE_PENSION_AMT_WARNING);
         rulesNameList.add(ConstantValues.OTHER_INCOME_AMOUNT_WARNING);
