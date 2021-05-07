@@ -1,34 +1,18 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-    <Package xmlns="http://soap.sforce.com/2006/04/metadata">
     <types>
-        <members>ABNNameCalloutTest</members>
-        <members>ABNNameResponse</members>
-        <members>ABNNameResponseParser</members>
-        <members>ABNNameResponseParserTest</members>
+        <members>CheckRules</members>
         <members>CheckRulesTest</members>
-        <members>ChildChecklistAPI</members>
+        <members>CollateralOwnerTriggerHandler</members>
         <members>ConstantValues</members>
-        <members>CreateDocumentCategories</members>
-        <members>DocumentCategoryCreationBatch</members>
-        <members>EquifaxCompanyEnquiryCalloutTest</members>
-        <members>EquifaxCompanyEnquiryResponseHelper</members>
-        <members>GenericUtilityTestHelper</members>
-        <members>SkuidValuesUpdateHelperTest</members>
         <name>ApexClass</name>
     </types>
     <types>
-        <members>Populate_Address_fields</members>
-        <members>Populate_Security_Address_fields</members>
-        <name>Flow</name>
+        <members>CollateralOwnerTrigger</members>
+        <name>ApexTrigger</name>
     </types>
     <types>
-        <members>DocumentCreationLastDate</members>
-        <members>DocumentCreationStatus</members>
-        <name>CustomLabel</name>
-    </types>
-    <types>
-        <members>CustomLabels</members>
-        <name>CustomLabels</name>
+        <members>Disable_Custom_Triggers__c.CollateralOwnerTrigger__c</members>
+        <name>CustomField</name>
     </types>
     <version>45.0</version>
 </Package>
