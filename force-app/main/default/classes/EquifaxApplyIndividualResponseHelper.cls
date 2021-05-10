@@ -805,7 +805,7 @@ public class EquifaxApplyIndividualResponseHelper {
       ) {
         partyObj.File_Number__c = helperObject.envelope.body.response.productData.enquiryReport.primaryMatch.bureauReference.nodeValue;
       }
-      charData = findInSummaryData(summaryDataList, 'NA8904_age_fle');
+      charData = findInSummaryData(summaryDataList, 'NA8902_age_fle_max');
       partyObj.Age_of_Credit_File__c = Decimal.valueOf(charData.value.nodeValue)
         .round(System.RoundingMode.HALF_DOWN);
       charData = findInSummaryData(summaryDataList, 'NY7601_adv_48_84m');
