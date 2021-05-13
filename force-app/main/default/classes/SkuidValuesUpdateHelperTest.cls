@@ -550,4 +550,153 @@ private class SkuidValuesUpdateHelperTest {
     Database.executeBatch(new DocumentCategoryCreationBatch(), 10);
     Test.stopTest();
   }
+  @isTest
+  static void calculateCreditHistoryValuesTest1() {
+    List<genesis__Applications__c> appList = [
+      SELECT id
+      FROM genesis__Applications__c
+      LIMIT 1
+    ];
+    System.assertEquals(appList.size(), 1, 'Application is present.');
+    List <clcommon__Party__c> partyList = [
+                                            SELECT Id,
+                                              genesis__Application__c
+                                            FROM clcommon__Party__c
+                                            WHERE genesis__Application__c =: appList[0].Id
+                                            AND Party_Type_Name__c = 'Borrower'];
+    System.assertEquals(partyList.size(), 1, 'Party is present.');
+    Credit_Account__c creditEnquiry = GenericUtilityTestHelper.createCreditAccount(partyList[0].Id);
+    System.AssertNotEquals(
+      creditEnquiry.Id,
+      null,
+      'Credit Account inserted successfully.'
+    );
+    Test.startTest();
+    CalculateCreditHistoryValues.calculateValues(null);
+    CalculateCreditHistoryValues.calculateValues(partyList[0].Id);
+    Test.stopTest();
+  }
+  @isTest
+  static void calculateCreditHistoryValuesTest2() {
+    List<genesis__Applications__c> appList = [
+      SELECT id
+      FROM genesis__Applications__c
+      LIMIT 1
+    ];
+    System.assertEquals(appList.size(), 1, 'Application is present.');
+    List <clcommon__Party__c> partyList = [
+                                            SELECT Id,
+                                              genesis__Application__c
+                                            FROM clcommon__Party__c
+                                            WHERE genesis__Application__c =: appList[0].Id
+                                            AND Party_Type_Name__c = 'Borrower'];
+    System.assertEquals(partyList.size(), 1, 'Party is present.');
+    Credit_Account__c creditEnquiry = GenericUtilityTestHelper.createCreditAccount(partyList[0].Id);
+    System.AssertNotEquals(
+      creditEnquiry.Id,
+      null,
+      'Credit Account inserted successfully.'
+    );
+    Test.startTest();
+    CalculateCreditHistoryValues.calculateValues(null);
+    CalculateCreditHistoryValues.calculateValues(partyList[0].Id);
+    Test.stopTest();
+  }
+  @isTest
+  static void calculateCreditHistoryValuesTest3() {
+    List<genesis__Applications__c> appList = [
+      SELECT id
+      FROM genesis__Applications__c
+      LIMIT 1
+    ];
+    System.assertEquals(appList.size(), 1, 'Application is present.');
+    List <Id> appIdList = new List<Id>();
+    List <clcommon__Party__c> partyList = [
+                                            SELECT Id,
+                                              genesis__Application__c
+                                            FROM clcommon__Party__c
+                                            WHERE genesis__Application__c =: appList[0].Id
+                                            AND Party_Type_Name__c = 'Borrower'];
+    System.assertEquals(partyList.size(), 1, 'Party is present.');
+    Credit_Account__c creditEnquiry = GenericUtilityTestHelper.createCreditAccount(partyList[0].Id);
+    System.AssertNotEquals(
+      creditEnquiry.Id,
+      null,
+      'Credit Account inserted successfully.'
+    );
+    creditEnquiry.Credit_Account_Type__c = ConstantValues.COMMERCIAL;
+    update creditEnquiry;
+    List <Credit_Account__c> creditAccountRec = [SELECT Id
+                                                    FROM Credit_Account__c 
+                                                    WHERE Credit_Account_Type__c =:ConstantValues.COMMERCIAL
+                                                    LIMIT 1];
+    System.AssertNotEquals(
+      creditAccountRec[0].Id,
+      null,
+      'Credit Account updated successfully.'
+    );          
+    Payment_Default__c paymentDefault = GenericUtilityTestHelper.createPaymentDefaults(partyList[0].Id,creditEnquiry.Id);
+    System.AssertNotEquals(
+      paymentDefault.Id,
+      null,
+      'Payment Defaults inserted successfully.'
+    );
+    Test.startTest();
+    CalculateCreditHistoryValues.calculateValues(null);
+    CalculateCreditHistoryValues.calculateValues(partyList[0].Id);
+    Test.stopTest();
+  }
+  @isTest
+  static void calculateCreditHistoryValuesTest4() {
+    List<genesis__Applications__c> appList = [
+      SELECT id
+      FROM genesis__Applications__c
+      LIMIT 1
+    ];
+    System.assertEquals(appList.size(), 1, 'Application is present.');
+    List<clcommon__Legal_Entity__c> legalEntityList = [
+      SELECT Id
+      FROM clcommon__Legal_Entity__c
+      WHERE Name = 'Company'];
+    System.assertEquals(legalEntityList.size(), 1, 'Legal Entity is present.');
+    List <clcommon__Party__c> partyList = [
+                                            SELECT Id,
+                                              clcommon__Account__c,
+                                              genesis__Application__c
+                                            FROM clcommon__Party__c
+                                            WHERE genesis__Application__c =: appList[0].Id
+                                            AND Party_Type_Name__c = 'Borrower'
+                                            AND clcommon__Account__c != NULL];
+    System.assertEquals(partyList.size(), 1, 'Party is present.');
+    Account accountRecord = new Account(Id = partyList[0].clcommon__Account__c,
+                                        clcommon__Legal_Entity_Type__c = legalEntityList[0].Id);
+    update accountRecord;
+    Account accountRec = [SELECT Id 
+                              FROM Account 
+                              WHERE Id =: partyList[0].clcommon__Account__c 
+                              AND clcommon__Legal_Entity_Type__c =: legalEntityList[0].Id];
+    System.AssertNotEquals(
+      accountRec.Id,
+      null,
+      'Account updated successfully.'
+    );                           
+    Credit_Account__c creditEnquiry = GenericUtilityTestHelper.createCreditAccount(partyList[0].Id);
+    System.AssertNotEquals(
+      creditEnquiry.Id,
+      null,
+      'Credit Account inserted successfully.'
+    );
+    creditEnquiry.Credit_Account_Type__c = ConstantValues.COMMERCIAL;
+    update creditEnquiry;
+    Payment_Default__c paymentDefault = GenericUtilityTestHelper.createPaymentDefaults(partyList[0].Id,creditEnquiry.Id);
+    System.AssertNotEquals(
+      paymentDefault.Id,
+      null,
+      'Payment Defaults inserted successfully.'
+    );
+    Test.startTest();
+    CalculateCreditHistoryValues.calculateValues(null);
+    CalculateCreditHistoryValues.calculateValues(partyList[0].Id);
+    Test.stopTest();
+  }
 }

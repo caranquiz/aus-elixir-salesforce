@@ -966,4 +966,9 @@ global class ConstantValues {
   public static final String CREDIT_ENQUIRY_OBJECT = 'credit-enquiry={';
   public static final String CREDIT_ENQUIRY_LIST_BRACES = 'credit-enquiry=({';
   public static final String COLLATERAL_OWNER_WARNING = 'Only accounts from the same application can be added as Collateral Owners.';
+  public static final String CONSUMER = 'Consumer';
+  public static final String COMMERCIAL = 'Commercial';
+  public static final String DEFAULT_JUDGEMENTS = 'Default Judgements';
+  public static final String OTHER_COURT_ACTIONS = 'Other Court Action';
+  public static final String PERSONAL_INSOLVENCIES = 'Personal Insolvencies';
 }

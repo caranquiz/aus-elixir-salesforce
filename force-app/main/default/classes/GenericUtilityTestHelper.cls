@@ -1512,4 +1512,23 @@ public with sharing class GenericUtilityTestHelper {
   insert docCategory;
   return docCategory;
   }
+  public static Credit_Account__c createCreditAccount(Id parentId){
+    Credit_Account__c creditAccount = new Credit_Account__c(
+      Default_Date__c = System.today(),
+      Party__c = parentId,
+      Credit_Account_Type__c = ConstantValues.DEFAULT_JUDGEMENTS,
+      Current_Default_Amount__c = 1200
+    );
+  insert creditAccount;
+  return creditAccount;
+  }
+  public static Payment_Default__c createPaymentDefaults(Id parentId, Id creditAccountId){
+    Payment_Default__c paymentDefault = new Payment_Default__c(
+      Status_Date__c = System.today(),
+      Credit_Account__c = creditAccountId,
+      Original_Default_Amount__c = 1200
+    );
+  insert paymentDefault;
+  return paymentDefault;
+  }
 }
