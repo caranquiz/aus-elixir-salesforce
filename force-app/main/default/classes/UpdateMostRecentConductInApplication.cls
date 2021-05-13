@@ -7,10 +7,10 @@ Development Date : 13/05/2021
 Last Modified Date : 13/05/2021
 ****************************************************************************************************/
 public with sharing class UpdateMostRecentConductInApplication {
-	@InvocableMethod(
+    @InvocableMethod(
     label='Update Date Of Most Recent Conduct Issue'
     description='Updates Date Of Most Recent Conduct Issue value on Application'
-  	)
+    )
     //Method used for updating the most recent conduct issue date in applications
     public static void updateMostRecentConductIssueDate(List<Id> appIdList){
         try{

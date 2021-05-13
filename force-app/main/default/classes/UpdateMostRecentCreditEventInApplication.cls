@@ -7,10 +7,10 @@ Development Date : 13/05/2021
 Last Modified Date : 13/05/2021
 ****************************************************************************************************/
 public with sharing  class UpdateMostRecentCreditEventInApplication {
-	@InvocableMethod(
+    @InvocableMethod(
     label='Update Date Of Most Recent Credit Event'
     description='Updates Date Of Most Recent Credit Event value on Application'
-  	)
+    )
     //Method used for updating the most recent conduct issue date in applications
     public static void updateMostRecentCreditEvent(List<Id> appIdList){
         try{

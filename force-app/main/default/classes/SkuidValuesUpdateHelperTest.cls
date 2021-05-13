@@ -645,6 +645,7 @@ private class SkuidValuesUpdateHelperTest {
     Test.startTest();
     CalculateCreditHistoryValues.calculateValues(null);
     CalculateCreditHistoryValues.calculateValues(partyList[0].Id);
+    Database.executeBatch(new CreditHistoryUpdateBatch(), 10);
     UpdateMostRecentConductInApplication.updateMostRecentConductIssueDate(appIdList);
     UpdateMostRecentCreditEventInApplication.updateMostRecentCreditEvent(appIdList);
     Test.stopTest();
