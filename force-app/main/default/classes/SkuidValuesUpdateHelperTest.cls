@@ -548,6 +548,7 @@ private class SkuidValuesUpdateHelperTest {
     System.assertEquals(appList.size(), 1, 'Application is present.');
     Test.startTest();
     Database.executeBatch(new DocumentCategoryCreationBatch(), 10);
+    Database.executeBatch(new CalculateCreditHistoryBatch(), 10);
     Test.stopTest();
   }
   @isTest
