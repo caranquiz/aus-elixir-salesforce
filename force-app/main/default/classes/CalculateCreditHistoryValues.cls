@@ -30,7 +30,7 @@ global with sharing class CalculateCreditHistoryValues {
                                                             WHERE Credit_Account__r.Party__c =: partyId 
                                                             AND Credit_Account__r.Credit_Account_Type__c 
                                                             IN (:ConstantValues.CONSUMER,:ConstantValues.COMMERCIAL)
-                                                            AND Original_Default_Amount__c > 1000
+                                                            AND Original_Default_Amount__c >: ConstantValues.CREDIT_RECORD_VALUE
                                                             AND Status_Date__c != NULL
                                                             ORDER BY Status_Date__c DESC
                                                             LIMIT 1];
@@ -42,7 +42,7 @@ global with sharing class CalculateCreditHistoryValues {
                                                                     AND ((Credit_Account_Type__c IN (
                                                                         :ConstantValues.DEFAULT_JUDGEMENTS,
                                                                         :ConstantValues.OTHER_COURT_ACTIONS)
-                                                                    AND Current_Default_Amount__c > 1000)
+                                                                    AND Current_Default_Amount__c >: ConstantValues.CREDIT_RECORD_VALUE)
                                                                     OR Credit_Account_Type__c IN (
                                                                         :ConstantValues.PERSONAL_INSOLVENCIES))
                                                                     AND Default_Date__c != NULL

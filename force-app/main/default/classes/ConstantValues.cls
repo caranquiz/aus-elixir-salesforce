@@ -971,4 +971,5 @@ global class ConstantValues {
   public static final String DEFAULT_JUDGEMENTS = 'Default Judgements';
   public static final String OTHER_COURT_ACTIONS = 'Other Court Action';
   public static final String PERSONAL_INSOLVENCIES = 'Personal Insolvencies';
+  public static final Decimal CREDIT_RECORD_VALUE = 1000;
 }
