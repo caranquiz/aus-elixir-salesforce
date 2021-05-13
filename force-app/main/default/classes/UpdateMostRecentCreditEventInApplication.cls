@@ -1,8 +1,17 @@
+/****************************************************************************************************
+Company: Cloudkaptan Consultancy Services Pvt. Ltd.
+Author: Ariz Mazhary
+Description : This class checks across all parties' Most Recent Credit Event Date 
+                and updates the Most Recent Credit Event date in application
+Development Date : 13/05/2021
+Last Modified Date : 13/05/2021
+****************************************************************************************************/
 public with sharing  class UpdateMostRecentCreditEventInApplication {
 	@InvocableMethod(
     label='Update Date Of Most Recent Credit Event'
     description='Updates Date Of Most Recent Credit Event value on Application'
   	)
+    //Method used for updating the most recent conduct issue date in applications
     public static void updateMostRecentCreditEvent(List<Id> appIdList){
         try{
             List <genesis__Applications__c> appList = [SELECT Id,
@@ -16,7 +25,7 @@ public with sharing  class UpdateMostRecentCreditEventInApplication {
                                                         FROM clcommon__Party__c
                                                         WHERE genesis__Application__c IN : appIdList
                                                         ORDER BY Date_of_Most_Recent_Credit_Event__c ASC NULLS FIRST];
-            if(partyList.size() > 0){
+            if(appList.size() > 0){
                 for(genesis__Applications__c eachApp : appList){
                     eachApp.Date_Of_Most_Recent_Credit_Event__c = NULL;
                     for(clcommon__Party__c eachParty : partyList){

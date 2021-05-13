@@ -611,6 +611,7 @@ private class SkuidValuesUpdateHelperTest {
     ];
     System.assertEquals(appList.size(), 1, 'Application is present.');
     List <Id> appIdList = new List<Id>();
+    appIdList.add(appList[0].Id);
     List <clcommon__Party__c> partyList = [
                                             SELECT Id,
                                               genesis__Application__c
@@ -644,6 +645,8 @@ private class SkuidValuesUpdateHelperTest {
     Test.startTest();
     CalculateCreditHistoryValues.calculateValues(null);
     CalculateCreditHistoryValues.calculateValues(partyList[0].Id);
+    UpdateMostRecentConductInApplication.updateMostRecentConductIssueDate(appIdList);
+    UpdateMostRecentCreditEventInApplication.updateMostRecentCreditEvent(appIdList);
     Test.stopTest();
   }
   @isTest

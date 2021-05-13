@@ -1,8 +1,17 @@
+/****************************************************************************************************
+Company: Cloudkaptan Consultancy Services Pvt. Ltd.
+Author: Ariz Mazhary
+Description : This class checks across party's Most Recent Coduct Date 
+                and updates the most recent conduct issue date in application
+Development Date : 13/05/2021
+Last Modified Date : 13/05/2021
+****************************************************************************************************/
 public with sharing class UpdateMostRecentConductInApplication {
 	@InvocableMethod(
     label='Update Date Of Most Recent Conduct Issue'
     description='Updates Date Of Most Recent Conduct Issue value on Application'
   	)
+    //Method used for updating the most recent conduct issue date in applications
     public static void updateMostRecentConductIssueDate(List<Id> appIdList){
         try{
             List <genesis__Applications__c> appList = [SELECT Id,
@@ -16,7 +25,7 @@ public with sharing class UpdateMostRecentConductInApplication {
                                                         FROM clcommon__Party__c
                                                         WHERE genesis__Application__c IN : appIdList
                                                         ORDER BY Date_of_most_recent_conduct_issue__c ASC NULLS FIRST];
-            if(partyList.size() > 0){
+            if(appList.size() > 0){
                 for(genesis__Applications__c eachApp : appList){
                     eachApp.Date_Of_Most_Recent_Conduct_Issue__c = NULL;
                     for(clcommon__Party__c eachParty : partyList){
