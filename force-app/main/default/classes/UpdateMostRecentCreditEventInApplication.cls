@@ -6,24 +6,20 @@ Description : This class checks across all parties' Most Recent Credit Event Dat
 Development Date : 13/05/2021
 Last Modified Date : 13/05/2021
 ****************************************************************************************************/
-public with sharing  class UpdateMostRecentCreditEventInApplication {
-    @InvocableMethod(
-    label='Update Date Of Most Recent Credit Event'
-    description='Updates Date Of Most Recent Credit Event value on Application'
-    )
+global with sharing  class UpdateMostRecentCreditEventInApplication {
     //Method used for updating the most recent conduct issue date in applications
-    public static void updateMostRecentCreditEvent(List<Id> appIdList){
+    Webservice static String updateMostRecentCreditEvent(Id appId){
         try{
             List <genesis__Applications__c> appList = [SELECT Id,
                                                             Date_Of_Most_Recent_Credit_Event__c
                                                         FROM genesis__Applications__c
-                                                        WHERE Id IN : appIdList];
+                                                        WHERE Id = : appId];
             
             List <clcommon__Party__c> partyList = [SELECT Id,
                                                         Date_of_Most_Recent_Credit_Event__c,
                                                         genesis__Application__c
                                                     FROM clcommon__Party__c
-                                                    WHERE genesis__Application__c IN : appIdList
+                                                    WHERE genesis__Application__c = : appId
                                                     ORDER BY Date_of_Most_Recent_Credit_Event__c ASC NULLS FIRST];
             if(appList.size() > 0){
                 for(genesis__Applications__c eachApp : appList){
@@ -41,6 +37,9 @@ public with sharing  class UpdateMostRecentCreditEventInApplication {
             
         }catch(Exception exe){
             GenericUtility.insertLog('UpdateApplicationCreditValues.updateApplicationCreditEvent', exe);
+            return ConstantValues.GENERAL_ERROR;
+
         }
+        return ConstantValues.SUCCESS;
     }
 }

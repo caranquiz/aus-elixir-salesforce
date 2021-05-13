@@ -6,24 +6,20 @@ Description : This class checks across party's Most Recent Coduct Date
 Development Date : 13/05/2021
 Last Modified Date : 13/05/2021
 ****************************************************************************************************/
-public with sharing class UpdateMostRecentConductInApplication {
-    @InvocableMethod(
-    label='Update Date Of Most Recent Conduct Issue'
-    description='Updates Date Of Most Recent Conduct Issue value on Application'
-    )
+global with sharing class UpdateMostRecentConductInApplication {
     //Method used for updating the most recent conduct issue date in applications
-    public static void updateMostRecentConductIssueDate(List<Id> appIdList){
+    Webservice static String updateMostRecentConductIssueDate(Id appId){
         try{
             List <genesis__Applications__c> appList = [SELECT Id,
                                                             Date_Of_Most_Recent_Conduct_Issue__c
                                                         FROM genesis__Applications__c
-                                                        WHERE Id IN : appIdList];
+                                                        WHERE Id  =: appId];
             
             List <clcommon__Party__c> partyList = [SELECT Id,
                                                         Date_of_most_recent_conduct_issue__c,
                                                         genesis__Application__c
                                                     FROM clcommon__Party__c
-                                                    WHERE genesis__Application__c IN : appIdList
+                                                    WHERE genesis__Application__c = : appId
                                                     ORDER BY Date_of_most_recent_conduct_issue__c ASC NULLS FIRST];
             if(appList.size() > 0){
                 for(genesis__Applications__c eachApp : appList){
@@ -41,6 +37,9 @@ public with sharing class UpdateMostRecentConductInApplication {
             
         }catch(Exception exe){
             GenericUtility.insertLog('UpdateApplicationDateValue.updateApplication', exe);
+             return ConstantValues.GENERAL_ERROR;
+
         }
+        return ConstantValues.SUCCESS;
     }
 }

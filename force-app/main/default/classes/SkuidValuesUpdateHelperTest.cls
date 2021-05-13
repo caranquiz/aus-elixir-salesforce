@@ -548,7 +548,6 @@ private class SkuidValuesUpdateHelperTest {
     System.assertEquals(appList.size(), 1, 'Application is present.');
     Test.startTest();
     Database.executeBatch(new DocumentCategoryCreationBatch(), 10);
-    Database.executeBatch(new CalculateCreditHistoryBatch(), 10);
     Test.stopTest();
   }
   @isTest
@@ -646,9 +645,8 @@ private class SkuidValuesUpdateHelperTest {
     Test.startTest();
     CalculateCreditHistoryValues.calculateValues(null);
     CalculateCreditHistoryValues.calculateValues(partyList[0].Id);
-    Database.executeBatch(new CreditHistoryUpdateBatch(), 10);
-    UpdateMostRecentConductInApplication.updateMostRecentConductIssueDate(appIdList);
-    UpdateMostRecentCreditEventInApplication.updateMostRecentCreditEvent(appIdList);
+    UpdateMostRecentConductInApplication.updateMostRecentConductIssueDate(appList[0].Id);
+    UpdateMostRecentCreditEventInApplication.updateMostRecentCreditEvent(appList[0].Id);
     Test.stopTest();
   }
   @isTest
