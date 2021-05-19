@@ -9,6 +9,9 @@ public class TransactionController {
     public Date StartDate {get;set;}
     public Date EndDate {get;set;}
     public TransactionController() {
+        if(loanId == null){
+            throw new CustomException('Invalid Loan');
+        }
     }
     public PageReference doSearch() {
          try{
@@ -88,7 +91,36 @@ public class TransactionController {
             return null;
     }
     public PageReference exportToPDF(){
-        PageReference retURLPDF = new PageReference('/apex/TrasnactionPDF?'+loanId);
+        //PageReference retURLPDF = new PageReference('/apex/TrasnactionPDF?'+loanId);
+        loan__Loan_Account__c loan = [SELECT Id, Name, loan__Branch__c, loan__Account__c FROM loan__Loan_Account__c WHERE Id =: loanId LIMIT 1];
+        if(StartDate != null){
+            loan.Statement_Start_Date__c = StartDate;
+        }
+        else {
+            loan.Statement_Start_Date__c = null;
+        }
+        if(EndDate != null){
+            loan.Statement_End_Date__c = EndDate;
+        }
+        else {
+            loan.Statement_End_Date__c = null;
+        }
+        update loan;
+        WebLink statementLink = [SELECT Id, Name, Url FROM WebLink WHERE Name = 'Generate_Statement_Document' limit 1];
+        String statementURL = statementLink.Url;
+        if(loan.loan__Branch__c != null){
+            statementURL = statementURL.replace('{!loan__Loan_Account__c.loan__AccountId__c}',loan.loan__Account__c);
+        }
+        if(loanId != null){
+            statementURL = statementURL.replace('{!loan__Loan_Account__c.Id}',loanId);
+        }
+        if(loan.loan__Account__c != null){
+            statementURL = statementURL.replace('{!loan__Loan_Account__c.loan__BranchId__c}',loan.loan__Branch__c);
+        }
+        if(loan.loan__Account__c != null){
+            statementURL = statementURL.replace('{!loan__Loan_Account__c.Name}',loan.Name);
+        }
+        PageReference retURLPDF = new PageReference(statementURL);
         return retURLPDF;
     }
 }
