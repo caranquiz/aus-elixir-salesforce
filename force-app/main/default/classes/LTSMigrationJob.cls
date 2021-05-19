@@ -11,7 +11,6 @@ global class LTSMigrationJob extends clcommon.DynamicJob {
     Date endDate;
     
     public static Integer getBatchJobSize(Integer defaultSize) {
-        System.debug('Rameswari == A');
         //First consider custom settings else default a job should have or SF's default
         Integer batchSize = loan.CustomSettingsUtil.getBatchSize();
 
@@ -24,7 +23,6 @@ global class LTSMigrationJob extends clcommon.DynamicJob {
         return 200;
     }
     global static String getAccountForLTSMigration(){
-        System.debug('Rameswari == B');
         String ns = loan.CustomSettingsUtil.getOrgParameters().loan__Namespace_Prefix__c;
         mfiflexUtil.ExecutionContext ec = mfiflexUtil.ExecutionContext.getExecContext();
         if (ec.getObject('LTSMigrationJob') != null) {
@@ -46,20 +44,17 @@ global class LTSMigrationJob extends clcommon.DynamicJob {
         ltsMigrationJobOC.setWhereClause(whereClause);
         ltsMigrationJobOC.buildQuery();
         System.debug('inside the job query ::'+ltsMigrationJobOC.getQuery());
-        System.debug('Rameswari in ==>getAccountForLTSMigration()');
         return ltsMigrationJobOC.getQuery();
     }
 
 
     global LTSMigrationJob() {
         this(null,null,null, 0);
-        System.debug('Rameswari == C');
     }
     
 
     public LTSMigrationJob(String query,Date startDate, Date endDate , Integer batchSize) {
         super(NAME, query == null ? getAccountForLTSMigration() : query);
-        System.debug('Rameswari == D');
         if(batchSize == 0) {
             batchSize = getBatchJobSize(200);
         }
@@ -69,17 +64,14 @@ global class LTSMigrationJob extends clcommon.DynamicJob {
     }
 
     public Integer getBatchSize() {
-        System.debug('Rameswari == E');
         return this.batchSize;
     }
     
     global override void doexecute(SchedulableContext sc) {
-        System.debug('Rameswari == F');
         Database.executeBatch(this.getInstance(), this.batchSize);
     }
 
     global  LTSMigrationJob getInstance() {
-        System.debug('Rameswari == G');
         LTSMigrationJob job = new LTSMigrationJob();
         return job;
     }
@@ -87,26 +79,21 @@ global class LTSMigrationJob extends clcommon.DynamicJob {
     global override void doInitialize() {} // do nothing
     
     global override String getRuntimeQuery() {
-        System.debug('Rameswari == H');
         String query = getAccountForLTSMigration();
         return query;
     }
     
     global override String getRuntimeQueryForPipelinedExecution(Set<Id> records) {
-        System.debug('Rameswari == I');
         return null;
     }
 
     global override void doStart(Database.BatchableContext bc) {} // do nothing
 
     global override void doexecute(Database.BatchableContext BC, List<sObject> scope) {
-        System.debug('Rameswari == J');
-    	List<loan__Loan_Account__c> loanAccounts = (List<loan__Loan_Account__c>)scope;
+        List<loan__Loan_Account__c> loanAccounts = (List<loan__Loan_Account__c>)scope;
         LTSMigrationHandler ltsMigrationandler = new LTSMigrationHandler(startDate,endDate);
     	ltsMigrationandler.process(loanAccounts);
     }
 
-    global override void doFinish(Database.BatchableContext bc) {
-        System.debug('Rameswari == K');
-    }
+    global override void doFinish(Database.BatchableContext bc) {}
 }

@@ -9,7 +9,6 @@ global with sharing class LTSMigrationHandler {
     Date startDate,endDate;
     String ns;
     global LTSMigrationHandler(Date startDate, Date endDate) {
-        System.debug('Rameswari == 1');
         orgParam = loan.CustomSettingsUtil.getOrgParameters();
         uowTransaction = new mfiflexUtil.UnitOfWorkTransaction(new loan.LoanAccountObjectHierarchy());
         ns = loan.CustomSettingsUtil.getOrgParameters().loan__Namespace_Prefix__c;
@@ -18,12 +17,11 @@ global with sharing class LTSMigrationHandler {
     }
 
     global List<loan__Loan_Transaction_Summary__c> getLTSTxn1(Date startDate, Date endDate,Set<Id> loanIds){
-        System.debug('Rameswari == 2');
         String fields = 'Id,Last_transaction_id__c,Loan_Account__c,Consolidated_Loan_Balance__c,Current_Interest_Rate__c,'+
                         'Current_Loan_Balance__c, Current_Principal_Remaining__c,Repayment_Txn_Reversal__c,'+
                         'Current_Payoff_Balance__c, Current_Delinquent_Amount__c,Interest_Rate__c, Balance__c,Principal_Remaining__c,Pay_Off_Amount_As_Of_Today__c,'+
                         'Loan_Disbursal__c,Discarded_Data__c,Transaction_Date__c, Other_Loan_Txn__c,Loan_Payment_Txn__c, Interest_Posting_Txn__c,'+
-                        'Loan_Charge__c,Disbursal_Reversal__c, Loan_Due_Detail__c ';
+                        'Loan_Charge__c,Disbursal_Reversal__c, Loan_Due_Detail__c, Transaction_Time__c ';
 
         mfiflexUtil.ExecutionContext ec = mfiflexUtil.ExecutionContext.getExecContext();
         mfiflexUtil.ObjectCache loanOC ; 
@@ -57,7 +55,6 @@ global with sharing class LTSMigrationHandler {
     }
 
     global List<loan__Interest_Posting_Transaction__c> getIntrstPstngTxn(Date startDate, Date endDate,Set<Id> loanIds){
-        System.debug('Rameswari == 3');
         String fields = 'Id, Name, CreatedDate, Balance__c,Loan_Contract__c, Interest_Posting_Transaction_Snapshot__c,'+ 
                         'Interest_Posting_Type__c,Transaction_Posting_Date__c, '+
                         'Additional_Interest_Component_Snapshot__c,Transaction_Posting_Date__c,Transaction_Creation_Date__c,Interest_Posted__c,Transaction_Time__c ';
@@ -97,7 +94,6 @@ global with sharing class LTSMigrationHandler {
     }
 
     global List<loan__Loan_account_Due_Details__c> getBillTxn(Date startDate, Date endDate,Set<Id> loanIds){
-        System.debug('Rameswari == 4');
         String fields = 'Id,Loan_Account__c, Archived__c,CreatedDate, Name, Due_Amt__c, Transaction_Creation_Date__c, Due_Type_Description__c';
 
         mfiflexUtil.ExecutionContext ec = mfiflexUtil.ExecutionContext.getExecContext();
@@ -133,7 +129,6 @@ global with sharing class LTSMigrationHandler {
     }
 
     global List<loan__Disbursal_Adjustment__c>  getDisRevTxn(Date startDate, Date endDate,Set<Id> loanIds){
-        System.debug('Rameswari == 5');
         String fields = ' Id, Name, Adjustment_Txn_Date__c, Transaction_Time__c, CreatedDate, Transaction_Creation_Date__c,'+
                         'Rejected__c,Adjustment_Txn_Date__c, '+
                         'Loan_Disbursal_Transaction__r.Loan_Account__c, Loan_Disbursal_Transaction__r.Disbursed_Amt__c,Loan_Disbursal_Transaction__r.Loan_Snapshot__c ';
@@ -172,7 +167,6 @@ global with sharing class LTSMigrationHandler {
     }
 
     global List<loan__Repayment_Transaction_Adjustment__c> getPayRevTxn(Date startDate, Date endDate,Set<Id> loanIds){
-        System.debug('Rameswari == 6');
         String fields = 'Id, Loan_Snapshot__c, CreatedDate, Name, Rejected__c, Loan_Payment_Transaction__r.Loan_Account__c, Loan_Payment_Transaction__r.Loan_Snapshot__c, '+
                        'Loan_Payment_Transaction__r.Transaction_Amount__c , Transaction_Creation_Date__c ';
         
@@ -209,7 +203,6 @@ global with sharing class LTSMigrationHandler {
     }
 
     global List<loan__Charge__c> getChargeTxn(Date startDate, Date endDate,Set<Id> loanIds){
-        System.debug('Rameswari == 15');
         String fields = 'Id, Name, CreatedDate, Charge_Type__c,Loan_Account__c, Archived__c, Original_Amount__c,Transaction_Creation_Date__c  ';
         mfiflexUtil.ExecutionContext ec = mfiflexUtil.ExecutionContext.getExecContext();
         mfiflexUtil.ObjectCache loanOC ; 
@@ -243,8 +236,7 @@ global with sharing class LTSMigrationHandler {
     }
 
     global List<loan__Other_Transaction__c> getOtherLoanTxn(Date startDate, Date endDate,Set<Id> loanIds){
-        System.debug('Rameswari == 7');
-        String fields = 'Id,Transaction_Creation_Date__c,Rejected__c,Loan_Snapshot__c,Loan_Account__c, CreatedDate, Name, Reversed__c, Txn_Amt__c, Transaction_Type__c ';
+        String fields = 'Id,Transaction_Creation_Date__c,Rejected__c,Loan_Snapshot__c,Loan_Account__c, CreatedDate, Name, Reversed__c, Txn_Amt__c, Transaction_Type__c, loan__Txn_Date__c ';
         mfiflexUtil.ExecutionContext ec = mfiflexUtil.ExecutionContext.getExecContext();
         String allowedLoanStatuses = '\'' + loan.LoanConstants.LOAN_TRANSACTION_RESCHEDULE + '\'' + ',' +
                                         '\'' + loan.LoanConstants.LOAN_TRANSACTION_DELINQUENT_PMT_PLAN + '\'' + ',' +
@@ -299,8 +291,7 @@ global with sharing class LTSMigrationHandler {
     }
 
     global List<loan__Loan_Disbursal_Transaction__c> getDisbursalTxn(Date startDate, Date endDate,Set<Id> loanIds){
-        System.debug('Rameswari == 8');
-        String fields = ' Id,Loan_Snapshot__c,CreatedDate,Name,Reversed__c,Rejected__c,Disbursed_Amt__c,Loan_Account__c,Loan_Disbursal_Transaction_Type__c,Transaction_Creation_Date__c ';
+        String fields = ' Id,Loan_Snapshot__c,CreatedDate,Name,Reversed__c,Rejected__c,Disbursed_Amt__c,Loan_Account__c,Loan_Disbursal_Transaction_Type__c,Transaction_Creation_Date__c,Disbursal_Date__c ';
         mfiflexUtil.ExecutionContext ec = mfiflexUtil.ExecutionContext.getExecContext();
         mfiflexUtil.ObjectCache loanOC ; 
         loanOC = ec.getObject('LoansJob');
@@ -333,7 +324,6 @@ global with sharing class LTSMigrationHandler {
     }
     
     global List<loan__Loan_Payment_transaction__c> getPaymentTxn(Date startDate, Date endDate,Set<Id> loanIds){
-        System.debug('Rameswari == 9');
         String fields = 'Id,Loan_Snapshot__c, CreatedDate, Name, Reversed__c,Loan_Account__c,Principal__c,Interest__c, Fees__c, Transaction_Amount__c,Payment_Type__c ,'+
                         'Transaction_Creation_Date__c, Transaction_Date__c ,Rejected__c ';
         mfiflexUtil.ExecutionContext ec = mfiflexUtil.ExecutionContext.getExecContext();
@@ -368,7 +358,6 @@ global with sharing class LTSMigrationHandler {
     }
     
     global List<loan__Loan_Account__c> getLoanDetails(Set<Id> loanIds){
-        System.debug('Rameswari == 10');
         String ns = loan.CustomSettingsUtil.getOrgParameters().loan__Namespace_Prefix__c;
         String fields = 'Id,Interest_Rate__c,Pay_Off_Amount_As_Of_Today__c,Delinquent_Amount__c,Loan_Balance__c,Principal_Remaining__c ,Transaction_Summary_Migrated_Till_Date__c ';
 
@@ -391,7 +380,6 @@ global with sharing class LTSMigrationHandler {
     }
 
     global void process(List<loan__Loan_Account__c> loanAccounts) {
-        System.debug('Rameswari == 11');
         Map<Id,List<loan__Loan_Transaction_Summary__c>> loanIdToLTSMap = new Map<Id,List<loan__Loan_Transaction_Summary__c>>();
         Map<Id,List<loan__Loan_Disbursal_Transaction__c>> loanIdToLDTMap = new Map<Id,List<loan__Loan_Disbursal_Transaction__c>>();
         Map<Id,List<loan__Loan_Payment_Transaction__c>> loanIdToLPTMap = new Map<Id,List<loan__Loan_Payment_Transaction__c>>();
@@ -527,7 +515,6 @@ global with sharing class LTSMigrationHandler {
     }
 
    global void updateFieldForReversal(loan__Loan_Transaction_Summary__c revSummary ,String snapShot){
-    System.debug('Rameswari == 12');
         if(snapShot!=null){
             loan__Loan_Account__C loanAcc = loan.BalanceSnapshotUnit.getLoanAccountFromSnapShot(snapShot);
             if(revSummary.loan__Current_Interest_Rate__c ==null){
@@ -553,7 +540,6 @@ global with sharing class LTSMigrationHandler {
     //This is done to ignore the situation in case when any txn is happenig that doenst have snaphot.
     //Like Bills is created just after the disbursal so current state will not be capture propely as bill snapshot will be same as LDT
     global void updateCurrentStateForLDT(loan__Loan_Transaction_Summary__c summary , Decimal amount){
-        System.debug('Rameswari == 13');
         summary.loan__Current_Interest_Rate__c = summary.loan__Interest_Rate__c;
         summary.loan__Current_Loan_Balance__c = summary.loan__Balance__c + amount;
         summary.loan__Current_Payoff_Balance__c = summary.loan__Pay_Off_Amount_As_Of_Today__c + amount;
@@ -564,7 +550,6 @@ global with sharing class LTSMigrationHandler {
         }
     }
     global void updateValueFromPrevState(loan__Loan_Transaction_Summary__c currentSummary,loan__Loan_Transaction_Summary__c prevSummary){
-        System.debug('Rameswari == 14');
         currentSummary.loan__Current_Interest_Rate__c = prevSummary.loan__Current_Interest_Rate__c;
         currentSummary.loan__Current_Loan_Balance__c = prevSummary.loan__Current_Loan_Balance__c;
         currentSummary.loan__Current_Payoff_Balance__c = prevSummary.loan__Current_Payoff_Balance__c;
@@ -573,7 +558,6 @@ global with sharing class LTSMigrationHandler {
     }
 
     global void updateValueForNewSummary(loan__Loan_Transaction_Summary__c summary , DateTime createdDate,Id lstTxnId,Id loanId){
-        System.debug('Rameswari == 16');
         summary.loan__Invalid_data__c = true;
         summary.loan__Loan_Account__c = loanId;
         summary.loan__Last_transaction_id__c = lstTxnId;
@@ -587,7 +571,6 @@ global with sharing class LTSMigrationHandler {
     In some cases like bills and rescheule the last trnasaction id is not getting populated due to the UOW
     */
     global String getLastTransactionId(loan__Loan_Transaction_Summary__c summary){
-        System.debug('Rameswari == 17');
         if(summary.loan__Loan_Due_Detail__c != null){
             return (String) summary.loan__Loan_Due_Detail__c;
         }
@@ -616,7 +599,6 @@ global with sharing class LTSMigrationHandler {
     }
 
     global void updateTransactionDate(loan__Loan_Transaction_Summary__c summary , Date transactionDate , Datetime createdDate){
-        System.debug('Rameswari == 18');
         if(summary.loan__Transaction_Date__c == null){
             if(transactionDate != null){
                 summary.loan__Transaction_Date__c =  transactionDate;
@@ -628,7 +610,6 @@ global with sharing class LTSMigrationHandler {
     }
 
     global static void updateSnapShotField(loan__Loan_Transaction_Summary__c summaryWithoutSnapshot , loan__Loan_Transaction_Summary__c summaryWithSnapshot){
-        System.debug('Rameswari == 19');
         summaryWithoutSnapshot.loan__Interest_Rate__c = summaryWithSnapshot.loan__Interest_Rate__c;
         summaryWithoutSnapshot.loan__Balance__c = summaryWithSnapshot.loan__Balance__c;
         summaryWithoutSnapshot.loan__Pay_Off_Amount_As_Of_Today__c = summaryWithSnapshot.loan__Pay_Off_Amount_As_Of_Today__c;
@@ -648,7 +629,6 @@ global with sharing class LTSMigrationHandler {
                                  List<loan__Disbursal_Adjustment__c>  disursalRevList,
                                  List<loan__Other_Transaction__c> othList,
                                  loan__Loan_Account__c loanAcct){
-        System.debug('Rameswari == 20');
         Map<String,String> transTypeToIdMapLDT = loan.LoanTransactionSummaryUtil.selectedTxnTypeMap.get('Loan_Disbursal__c');
         Map<String,String> transTypeToIdMapLPT = loan.LoanTransactionSummaryUtil.selectedTxnTypeMap.get('Loan_Payment_Txn__c');
         Map<String,String> transTypeToIdMapBills = loan.LoanTransactionSummaryUtil.selectedTxnTypeMap.get('Loan_Due_Detail__c');
@@ -1016,7 +996,6 @@ global with sharing class LTSMigrationHandler {
                     lastTxnToSummaryMap.remove(summariesToBeInserted[i].loan__Last_transaction_id__c);
                 }
             }
-            System.debug('Rameswari Check ='+summariesToBeInserted);
             uow.addToInsert(summariesToBeInserted);   
             uow.addToUpdate(loanAcct); 
             uow.addToUpdate(lastTxnToSummaryMap.values());    
