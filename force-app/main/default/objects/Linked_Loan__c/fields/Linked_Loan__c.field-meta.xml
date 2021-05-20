@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Linked_Loan__c</fullName>
+    <externalId>false</externalId>
+    <label>Linked Loan</label>
+    <referenceTo>loan__Loan_Account__c</referenceTo>
+    <relationshipLabel>Linked Loans (Linked Loan)</relationshipLabel>
+    <relationshipName>Linked_Loans</relationshipName>
+    <relationshipOrder>0</relationshipOrder>
+    <reparentableMasterDetail>false</reparentableMasterDetail>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>MasterDetail</type>
+    <writeRequiresMasterRead>false</writeRequiresMasterRead>
+</CustomField>

@@ -1,0 +1,36 @@
+<apex:page standardController="loan__Loan_Account__c" extensions="LinkedLoansExtension" lightningStylesheets="true" docType="html-5.0">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/latest/jquery.js"></script>
+    <style>
+        .apexp .bPageBlock.apexDefaultPageBlock .back .Submit .invInfo .detailInfo{
+        color:Black;
+        background-color:white;
+        }
+    </style> 
+    <apex:form style="border-style:solid;border-width:0px;
+    border-2px;background-color:navyblue">
+    <apex:sectionHeader title="Linked Loans" />
+        <apex:outputPanel id="searchOutputPanel">
+            <apex:pageBlock id="Details">
+                <apex:pageMessages ></apex:pageMessages>
+                <apex:pageBlockButtons >
+                    <apex:commandButton value="Save" action="{!Save}"/>
+                    <apex:commandButton value="Cancel" action="{!Cancel}"/> 
+                </apex:pageBlockButtons>
+                <apex:pageblockSection title="Enter Details" id="detailInfo" columns="2"
+                    collapsible="false">
+                    <apex:inputField value="{!linkedLoan1.Linked_Loan__c}" label="Linked Loan" required="true">
+                    </apex:inputField> 
+                </apex:pageblockSection>
+            </apex:pageBlock>
+        </apex:outputPanel>
+    </apex:form>
+    <apex:pageBlock id="ExistingLinkedLoans" title="Existing Linked Loans">
+        <div style="height:150px; display:block; overflow:auto">
+            <apex:pageblockSection >
+                <apex:repeat var="a" value="{!linkedLoanList}">
+                    <apex:outputText value="{!a.Linked_Loan__r.Name}"/>
+                </apex:repeat>
+            </apex:pageblockSection>
+        </div>
+    </apex:pageBlock>
+</apex:page>

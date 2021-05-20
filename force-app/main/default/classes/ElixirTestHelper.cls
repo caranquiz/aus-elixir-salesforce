@@ -208,4 +208,16 @@ public with sharing class ElixirTestHelper {
         conMap.genesis__Contract_Field_Name__c = DestinationField;
         return conMap;
     }
+    public static Linked_Loan__c returnlinkedLoan(Id currLoan,Id LLoan){
+        Linked_Loan__c linkedloan=new Linked_Loan__c();
+        linkedloan.Current_Loan_Record__c=currLoan;
+        linkedloan.Linked_Loan__c=LLoan;
+        return linkedloan;
+    }
+
+    public static loan__Org_Parameters__c returnOrgParameter(){
+        loan__Org_Parameters__c checkTrigger = new loan__Org_Parameters__c();
+        checkTrigger.loan__Disable_Triggers__c = true;
+        return checkTrigger;
+    }
 }
