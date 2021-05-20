@@ -972,4 +972,8 @@ global class ConstantValues {
   public static final String OTHER_COURT_ACTIONS = 'Other Court Action';
   public static final String PERSONAL_INSOLVENCIES = 'Personal Insolvencies';
   public static final Decimal CREDIT_RECORD_VALUE = 1000;
+
+  //Constant Error Messages of LinkedLoansExtension Class
+  public static final String LINKED_LOAN_ERROR_MSG1 = 'Linked Loan can' +'\'t be same as Current Loan';
+  public static final String LINKED_LOAN_ERROR_MSG2 = 'Linked Loan already exist in Current Loan';
 }
