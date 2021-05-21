@@ -1,0 +1,55 @@
+<apex:page lightningStylesheets="true" Controller="GenerateStatementController" docType="html-5.0"  >
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/latest/jquery.js"></script>
+    <script>
+    var isClicked = false; 
+    function checkDoubleSubmit(obj){ 
+        if (isClicked) { 
+            return false; 
+        }else { 
+            isClicked = true; 
+            return isClicked;
+        } 
+     }
+    </script>
+    <style>
+    .apexp .bPageBlock.apexDefaultPageBlock .pbBody .pbSubheader {
+        color:Black;
+        background-color:white;
+    }
+    </style> 
+  <apex:form >
+  
+  <apex:sectionHeader title="List of Transactions" />
+        <apex:outputPanel id="searchOutputPanel">
+            <apex:pageblock id="transactionList">
+                <center>
+                    <h1 style="font-size: 12px;">Accounting Transactions Search</h1>
+                    <br />
+                    <br />
+                </center>
+               <apex:commandButton action="{!exportToPDF}" value="Export to PDF" id="ExportPDF"/>
+   <apex:pageblockSection title="Search Transactions" columns="2" 
+                    collapsible="true">            
+        <apex:input type="date" value="{!StartDate}" label="StartDate" />
+        <apex:input type="date" value="{!EndDate}" label="EndDate" />
+    </apex:pageblockSection>
+        <apex:pageBlockButtons location="bottom">
+         <div align="Center" style="float:center">
+         <apex:commandButton value="Back" action="{!back}" id="back"/>
+          <apex:commandButton value="Search" action="{!doSearch}" onclick="return checkDoubleSubmit(this)" />
+         <apex:actionStatus id="searchStatus" startText="Searching..."  /> 
+   
+          <apex:pageBlockTable value="{!txnList}" var="d">
+                <apex:column value="{!d.Name}"/>
+                <apex:column value="{!d.loan__Transaction_Date__c}"/>
+                <apex:column value="{!d.Transaction_Type__c}"/>
+                <apex:column value="{!d.Debit__c}"/>
+                <apex:column value="{!d.Credit__c}"/>
+                <apex:column value="{!d.loan__Consolidated_Loan_Balance__c}"/>
+            </apex:pageBlockTable>
+            </div>
+        </apex:pageBlockButtons>
+     </apex:pageblock>
+     </apex:outputPanel>
+     </apex:form>              
+</apex:page>
