@@ -1,12 +1,12 @@
-<apex:page standardController="loan__Loan_Account__c" sidebar="false" showheader="false" lightningStylesheets="true" extensions="LinkedLoanDetails" >
+<apex:page standardController="loan__Loan_Account__c" sidebar="false" showheader="false" lightningStylesheets="true" extensions="LinkedLoanRelatedLoanController" >
     <apex:form >
         <apex:pageBlock title="Linked Loans List">
             <div style="height:150px; display:block; overflow:auto">
-                <apex:pageBlockTable value="{!linkedLoanList}" var="ct">
+                <apex:pageBlockTable value="{!LinkedLoanList}" var="ct">
                     <apex:column > 
                         <apex:facet name="header">Action</apex:facet>
-                        <apex:commandLink action="{!deleteRecord}" value="Del" style="color:#015ba7;" onclick="if(!confirm('Are you sure?')) return false;">
-                            <apex:param name="rowId" assignTo="{!llId}" value="{!ct.Id}"/>                 
+                        <apex:commandLink action="{!deleteLinkedLoan}" value="Del" style="color:#015ba7;" onclick="if(!confirm('Are you sure?')) return false;">
+                            <apex:param name="rowId" assignTo="{!linkedLoanId}" value="{!ct.Id}"/>                 
                         </apex:commandLink>
                     </apex:column>  
                     <apex:column >

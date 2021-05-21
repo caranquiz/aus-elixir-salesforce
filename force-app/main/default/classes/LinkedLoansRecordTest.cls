@@ -1,8 +1,8 @@
 /****************************************************************************************************
 Company: Cloudkaptan Consultancy Services Pvt. Ltd.
 Author: Ariz Mazhary
-Description : This class give coverage to LinkedLoansExtension,LinkedLoanDetails,
-                UpdateSumOfLinkedLoanTest and WebServiceExecuteBatches  apex class.
+Description : This class give coverage to LinkedLoansExtension,LinkedLoanRelatedLoanController,
+                TotalSumOfLinkedLoanUpdateBatch and TotalSumOfLinkedLoanBatchExecution  apex class.
 Development Date : 6/05/2021
 Last Modified Date : 20/05/2021
 ****************************************************************************************************/
@@ -12,111 +12,133 @@ public class LinkedLoansRecordTest {
     @TestSetup
     static void initialize(){
 
-        loan__Org_Parameters__c checkTrigger = ElixirTestHelper.returnOrgParameter();
-        insert checkTrigger;
+        loan__Org_Parameters__c checkTrigger = GenericUtilityTestHelper.returnOrgParameter();
         checkTrigger = loan__Org_Parameters__c.getInstance();
-        System.assertEquals(
-        checkTrigger.loan__Disable_Triggers__c,
-        true,
-        'Org Parameter config error');
+        System.AssertEquals(
+            checkTrigger.id,
+            null,
+            'Org Parameter error'
+        );
 
-        clcommon__Legal_Entity__c legalEntity=ElixirTestHelper.returnLegalEntity();
-        insert legalEntity;
-        System.assertEquals(
-        legalEntity.Name, 
-        'Individual', 
-        'Legal Entity Inserted Succesfully');
+        clcommon__Legal_Entity__c legalEntity = GenericUtilityTestHelper.returnLegalEntity();
+        System.AssertNotEquals(
+        legalEntity.Id,
+        null,
+        'Legal Entity inserted successfully.'
+        );
 
-        Account testAccount = ElixirTestHelper.returnBorrowerAccount(legalEntity.id);
-        insert testAccount;
-        System.assertEquals(
-        testAccount.name,
-        'Rameswari Barman',
-        'Account Inserted Successfully');
+        //Inserting Account
+        Account testAccount = GenericUtilityTestHelper.returnBorrowerAccount(
+        legalEntity.Id
+        );
+        System.AssertNotEquals(
+        testAccount.Id,
+        null,
+        ' Account inserted successfully.'
+        );
 
-        genesis__applications__c testApplication = ElixirTestHelper.returnApplication(testAccount.id);
-        insert testApplication;
-        System.assertEquals(
-        testApplication.genesis__Loan_Amount__c, 
-        100000, 
-        'Application Inserted Succesfully');
+        //Insert Application
+        genesis__Applications__c testApplication = GenericUtilityTestHelper.returnApplication(
+            testAccount.Id
+        );
+        System.assertNotEquals(
+            testApplication.Id,
+            null,
+            ' Application inserted Successfully'
+        );
 
-        loan__Loan_Account__c testLoanAccount = ElixirTestHelper.returnLoan(testAccount.id,testApplication.id);
+        loan__Loan_Account__c testLoanAccount = GenericUtilityTestHelper.returnLoan(
+            testAccount.id,
+            testApplication.id
+        );
         testLoanAccount.loan__Loan_Amount__c = 500000;
-        testLoanAccount.loan__Loan_Status__c = 'Approved';
-        insert testLoanAccount;
+        update testLoanAccount;
         System.assertEquals(
-        testLoanAccount.loan__Loan_Amount__c, 
-        500000, 
-        'Loan Account Inserted Successfully');
+            testLoanAccount.loan__Loan_Amount__c, 
+            500000, 
+            'Loan Account Inserted Successfully'
+        );
 
-        loan__Loan_Account__c testLoanAccount2 = ElixirTestHelper.returnLoan(testAccount.id,testApplication.id);
+        loan__Loan_Account__c testLoanAccount2 = GenericUtilityTestHelper.returnLoan(
+            testAccount.id,
+            testApplication.id
+        );
         testLoanAccount2.loan__Loan_Amount__c = 550000;
-        testLoanAccount2.loan__Loan_Status__c = 'Approved';
-        insert testLoanAccount2;
-        System.assertEquals(testLoanAccount2.loan__Loan_Amount__c, 
-        550000, 
-        'Loan Account Inserted Successfully');
+        update testLoanAccount2;
+        System.assertEquals(
+            testLoanAccount2.loan__Loan_Amount__c, 
+            550000, 
+            'Loan Account Inserted Successfully'
+        );
 
     }
 	@isTest
     static void deleteRecordTest1(){
         
-        List<loan__Loan_Account__c> llaList=[SELECT id,
+        List<loan__Loan_Account__c> loanAccountList=[SELECT id,
                                          loan__Loan_Amount__c 
                                      FROM loan__Loan_Account__c];
-        system.assertNotEquals(llaList.size(), 
-        0, 
-        'Loan Account is Present');
+        system.assertNotEquals(
+            loanAccountList.size(), 
+            0, 
+            'Loan Account is Present'
+        );
         
-        Linked_Loan__c linkedloan=ElixirTestHelper.returnlinkedLoan(llaList[0].id,llaList[1].id);
-        insert linkedloan;
-        system.assertEquals(
-        linkedloan.Current_Loan_Record__c,
-        llaList[0].id,
-        'Linked Loan Inserted Successfully');
+        Linked_Loan__c linkedloan=GenericUtilityTestHelper.returnlinkedLoan(
+            loanAccountList[0].id,
+            loanAccountList[1].id
+        );
+        system.assertNotEquals(
+            linkedloan.id,
+            null,
+            'Linked Loan Inserted Successfully'
+        );
 
-        Linked_Loan__c linkedloan1=ElixirTestHelper.returnlinkedLoan(llaList[1].id,llaList[0].id);
-        insert linkedloan1;
-        system.assertEquals(
-        linkedloan1.Current_Loan_Record__c,
-        llaList[1].id,
-        'Linked Loan Inserted Successfully');
+        Linked_Loan__c linkedloan1=GenericUtilityTestHelper.returnlinkedLoan(
+            loanAccountList[1].id,
+            loanAccountList[0].id
+        );
+        system.assertNotEquals(
+            linkedloan1.id,
+            null,
+            'Linked Loan Inserted Successfully'
+        );
 
         PageReference pageRef =page.LinkedLoansPage;
         Test.setCurrentPage(pageRef);
-        pageRef.getParameters().put('id',llaList[0].id);
+        pageRef.getParameters().put('id',loanAccountList[0].id);
         
-        ApexPages.StandardController stc = new ApexPages.StandardController(llaList[0]);
+        ApexPages.StandardController stc = new ApexPages.StandardController(loanAccountList[0]);
         
         test.startTest();
-        LinkedLoanDetails obj=new LinkedLoanDetails(stc);
-        obj.llId=linkedloan.id;
-        PageReference objPageRef = obj.deleteRecord();
-        
+        LinkedLoanRelatedLoanController obj=new LinkedLoanRelatedLoanController(stc);
+        obj.linkedLoanId=linkedloan.id;
+        PageReference objPageRef = obj.deleteLinkedLoan();
         test.stopTest();
             
     }
     @isTest
     static void deleteRecordTest2(){
         
-        List<loan__Loan_Account__c> llaList=[SELECT id,
+        List<loan__Loan_Account__c> loanAccountList=[SELECT id,
                                          loan__Loan_Amount__c 
                                      FROM loan__Loan_Account__c];
         system.assertNotEquals(
-        llaList.size(), 
-        0, 
-        'Loan Account is Present');
+            loanAccountList.size(), 
+            0, 
+            'Loan Account is Present'
+        );
 
         PageReference pageRef =page.LinkedLoansPage;
         Test.setCurrentPage(pageRef);
-        pageRef.getParameters().put('id',llaList[0].id);
+        pageRef.getParameters().put('id',loanAccountList[0].id);
         
-        ApexPages.StandardController stc = new ApexPages.StandardController(llaList[0]);
+        ApexPages.StandardController stc = new ApexPages.StandardController(loanAccountList[0]);
         
         test.startTest();
-        LinkedLoanDetails obj=new LinkedLoanDetails(stc);
-        PageReference objPageRef = obj.deleteRecord();
+        LinkedLoanRelatedLoanController obj=new LinkedLoanRelatedLoanController(stc);
+        obj.getLinkedLoanList();
+        PageReference objPageRef = obj.deleteLinkedLoan();
         
         test.stopTest();
             
@@ -125,26 +147,27 @@ public class LinkedLoansRecordTest {
     @isTest
     static void saveRecordTest(){
         
-        List<loan__Loan_Account__c> llaList=[SELECT id,
+        List<loan__Loan_Account__c> loanAccountList=[SELECT id,
                                          loan__Loan_Amount__c 
                                      FROM loan__Loan_Account__c];
         system.assertNotEquals(
-        llaList.size(), 
-        0, 
-        'Loan Account is Present');
+            loanAccountList.size(), 
+            0, 
+            'Loan Account is Present'
+        );
         
         PageReference pageRef =page.CustomLinkedLoansPage;
         Test.setCurrentPage(pageRef);
-        pageRef.getParameters().put('loanId',llaList[0].id);
+        pageRef.getParameters().put('loanId',loanAccountList[0].id);
         
-        ApexPages.StandardController stc = new ApexPages.StandardController(llaList[0]);
+        ApexPages.StandardController stc = new ApexPages.StandardController(loanAccountList[0]);
         
         test.startTest();
         LinkedLoansExtension obj=new LinkedLoansExtension(stc);
-        obj.linkedLoan1.Current_Loan_Record__c=llaList[0].id;
-        obj.linkedLoan1.Linked_Loan__c=llaList[1].id;
-        obj.linkedLoan2.Current_Loan_Record__c=llaList[0].id;
-        obj.linkedLoan2.Linked_Loan__c=llaList[1].id;
+        obj.linkedLoan1.Current_Loan_Record__c=loanAccountList[0].id;
+        obj.linkedLoan1.Linked_Loan__c=loanAccountList[1].id;
+        obj.linkedLoan2.Current_Loan_Record__c=loanAccountList[0].id;
+        obj.linkedLoan2.Linked_Loan__c=loanAccountList[1].id;
         PageReference objPageRef = obj.Save();
         test.stopTest();
             
@@ -152,24 +175,26 @@ public class LinkedLoansRecordTest {
     @isTest
     static void cancelTest(){
         
-        List<loan__Loan_Account__c> llaList=[SELECT id,
+        List<loan__Loan_Account__c> loanAccountList=[SELECT id,
                                                     loan__Loan_Amount__c 
                                                 FROM loan__Loan_Account__c 
                                                 WHERE loan__Loan_Amount__c=500000 
                                                 LIMIT 1];
         system.assertEquals(
-        llaList.size(),
-        1,
-        'Loan Account is present');
+            loanAccountList.size(),
+            1,
+            'Loan Account is present'
+        );
 
         PageReference pageRef =page.CustomLinkedLoansPage;
         Test.setCurrentPage(pageRef);
-        pageRef.getParameters().put('loanId',llaList[0].id);
+        pageRef.getParameters().put('loanId',loanAccountList[0].id);
         
-        ApexPages.StandardController stc = new ApexPages.StandardController(llaList[0]);
+        ApexPages.StandardController stc = new ApexPages.StandardController(loanAccountList[0]);
         
         test.startTest();
         LinkedLoansExtension obj=new LinkedLoansExtension(stc);
+        obj.getlinkedLoanList();
         PageReference objPageRef = obj.Cancel();
         
         test.stopTest();
@@ -179,25 +204,30 @@ public class LinkedLoansRecordTest {
     @isTest
     static void UpdateSumOfLinkedLoanTest(){
 
-        List<loan__Loan_Account__c> llaList=[SELECT id,
+        List<loan__Loan_Account__c> loanAccountList=[SELECT id,
                                          loan__Loan_Amount__c 
                                      FROM loan__Loan_Account__c];
         system.assertNotEquals(
-        llaList.size(), 
-        0, 
-        'Loan Account is Present');
+            loanAccountList.size(), 
+            0, 
+            'Loan Account is Present'
+        );
         
-        Linked_Loan__c linkedloan=ElixirTestHelper.returnlinkedLoan(llaList[0].id,llaList[1].id);
-        insert linkedloan;
-        system.assertEquals(linkedloan.Current_Loan_Record__c,
-        llaList[0].id,
-        'Linked Loan Inserted Successfully');
+        Linked_Loan__c linkedloan=GenericUtilityTestHelper.returnlinkedLoan(
+            loanAccountList[0].id,
+            loanAccountList[1].id
+        );
+        system.assertNotEquals(
+            linkedloan.id,
+            null,
+            'Linked Loan Inserted Successfully'
+        );
 
         test.startTest();
-        UpdateSumOfLinkedLoanBatch obj=new UpdateSumOfLinkedLoanBatch();
+        TotalSumOfLinkedLoanUpdateBatch obj=new TotalSumOfLinkedLoanUpdateBatch();
         String sch = '0 0 23 * * ?';
 		system.schedule('Test Check', sch, obj );
-        WebServiceExecuteBatches.ExecuteUpdateSumOfLinkedLoanBatch();
+        TotalSumOfLinkedLoanBatchExecution.executeTotalSumOfLinkedLoanUpdateBatchWS();
         test.stopTest();
     }
 }

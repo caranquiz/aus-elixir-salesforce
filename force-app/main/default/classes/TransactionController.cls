@@ -26,6 +26,7 @@ public class TransactionController {
             }
             update loan;
             List <loan__Loan_Transaction_Summary__c> txnList =  [SELECT Id,
+                                                                    Name,
                                                                     loan__Transaction_Date__c,
                                                                     Transaction_Type__c,
                                                                     Debit__c,
@@ -36,7 +37,7 @@ public class TransactionController {
                                                                     loan__Consolidated_Loan_Balance__c 
                                                                 FROM loan__Loan_Transaction_Summary__c 
                                                                 WHERE Include_in_Summary__c = true 
-                                                                    /*AND loan__Loan_Account__c =: loanId*/
+                                                                    AND loan__Loan_Account__c =: loanId
                                                                     AND loan__Consolidated_Loan_Balance__c != NULL 
                                                                     AND (Transaction_Type__c = 'Bill' 
                                                                     OR loan__Invalid_Data__c = false) 
@@ -54,7 +55,6 @@ public class TransactionController {
         return null;
     }
     public PageReference exportToPDF(){
-        //PageReference retURLPDF = new PageReference('/apex/TrasnactionPDF?'+loanId);
         loan__Loan_Account__c loan = [SELECT Id, Name, loan__Branch__c, loan__Account__c FROM loan__Loan_Account__c WHERE Id =: loanId LIMIT 1];
         if(StartDate != null){
             loan.Statement_Start_Date__c = StartDate;

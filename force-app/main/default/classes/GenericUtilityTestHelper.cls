@@ -1531,4 +1531,30 @@ public with sharing class GenericUtilityTestHelper {
   insert paymentDefault;
   return paymentDefault;
   }
+  public static loan__Loan_Account__c returnLoan(Id accId, Id appId){
+    //Inserting CL Contract
+    loan__Loan_Account__c loan = new loan__Loan_Account__c(
+      loan__Account__c=accId,
+      Application__c=appId
+      );
+    loan.loan__Loan_Amount__c=10000;
+    loan.loan__Frequency_of_Loan_Payment__c = 'Monthly';
+    loan.loan__Loan_Status__c = 'Approved';
+    insert loan;
+    return loan;
+  }
+  public static Linked_Loan__c returnlinkedLoan(Id currLoan,Id LLoan){
+    Linked_Loan__c linkedloan=new Linked_Loan__c();
+    linkedloan.Current_Loan_Record__c=currLoan;
+    linkedloan.Linked_Loan__c=LLoan;
+    insert linkedloan;
+    return linkedloan;
+  }
+
+  public static loan__Org_Parameters__c returnOrgParameter(){
+      loan__Org_Parameters__c checkTrigger = new loan__Org_Parameters__c();
+      checkTrigger.loan__Disable_Triggers__c = true;
+      insert checkTrigger;
+      return checkTrigger;
+  }
 }
