@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>GST_Suitable_Amount_Check__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF(NOT((genesis__Amount__c = 0) ||  ISBLANK( genesis__Amount__c ) ),&apos;Render&apos;, &apos;Not Render&apos;)</formula>
+    <label>GST Suitable Amount Check</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>
