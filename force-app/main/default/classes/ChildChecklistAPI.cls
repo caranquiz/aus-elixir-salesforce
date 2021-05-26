@@ -231,6 +231,10 @@ public with sharing class ChildChecklistAPI {
         Type_of_Documents_Sighted_Warning_Check__c,
         Employment_Call_Made__c,
         Document_Type__c,
+        Party__r.Goods_Services_Tax__c,
+        Party__r.GST_Suitable__c,
+        Party__r.GST_Suitable_Rule_Check__c,
+        GST_Suitable_Amount_Check__c,
         Accountant_ABN_Status__c
       FROM genesis__Income__c
       WHERE genesis__Application__c = :appId
