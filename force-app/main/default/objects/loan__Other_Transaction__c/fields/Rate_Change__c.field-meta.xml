@@ -2,7 +2,8 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Rate_Change__c</fullName>
     <externalId>false</externalId>
-    <formula>IF((CONTAINS(MID(loan__Description__c, (FIND(&apos;Int Rt:&apos;, loan__Description__c, 0)+7), 7), (MID(loan__Description__c, (FIND(&apos;Int Rt:&apos;, loan__Description__c, (FIND(&apos;Int Rt:&apos;, loan__Description__c, 0)+7))+7), 5)))), FALSE, TRUE)</formula>
+    <formula>IF(BEGINS((MID(loan__Description__c, (FIND(&apos;Int Rt:&apos;, loan__Description__c, 0)+7), 7)
+), TEXT(loan__Interest_Rate__c)) ,FALSE,TRUE)</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
     <label>Rate Changed?</label>
     <trackHistory>false</trackHistory>

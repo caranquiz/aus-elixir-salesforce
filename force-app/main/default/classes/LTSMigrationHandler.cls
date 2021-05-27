@@ -236,12 +236,12 @@ global with sharing class LTSMigrationHandler {
     }
 
     global List<loan__Other_Transaction__c> getOtherLoanTxn(Date startDate, Date endDate,Set<Id> loanIds){
-        String fields = 'Id,Transaction_Creation_Date__c,Rejected__c,Loan_Snapshot__c,Loan_Account__c, CreatedDate, Name, Reversed__c, Txn_Amt__c, Transaction_Type__c, loan__Txn_Date__c ';
+        String fields = 'Id,Transaction_Creation_Date__c,Rejected__c,Loan_Snapshot__c,Loan_Account__c, CreatedDate, Name, Reversed__c, Txn_Amt__c, Transaction_Type__c, Txn_Date__c ';
         mfiflexUtil.ExecutionContext ec = mfiflexUtil.ExecutionContext.getExecContext();
         String allowedLoanStatuses = '\'' + loan.LoanConstants.LOAN_TRANSACTION_RESCHEDULE + '\'' + ',' +
                                         '\'' + loan.LoanConstants.LOAN_TRANSACTION_DELINQUENT_PMT_PLAN + '\'' + ',' +
                                         '\'' + loan.LoanConstants.LOAN_TRANSACTION_DELINQUENT_PMT_PLAN_REV + '\'' + ',' +
-             							'\'' + loan.LoanConstants.LOAN_TRANSACTION_EXTENSION+ '\'' + ',' +
+                                        '\'' + loan.LoanConstants.LOAN_TRANSACTION_EXTENSION+ '\'' + ',' +
                                         '\'' + loan.LoanConstants.LOAN_TRANSACTION_EXTENSION_REV + '\'' + ',' +
                                         '\'' + loan.LoanConstants.LOAN_TRANSACTION_DDC + '\'' + ',' +
                                         '\'' + loan.LoanConstants.LOAN_TRANSACTION_REFUND + '\'' + ',' +

@@ -27,7 +27,18 @@
                     <br />
                     <br />
                 </center>
-               <apex:commandButton action="{!exportToPDF}" value="Export to PDF" id="ExportPDF"/>
+               <center>
+               <apex:commandLink action="{!exportToPDF}"  target="_blank" value="Export to PDF" style="
+               border: 2px solid rgb(236 235 234);
+               padding: 10px;
+               border-radius: 13px;
+               background-color: #69696947;
+               color: black;
+               text-decoration: none;
+               font-weight: 600;"/>
+               </center>
+        <br />
+        <br />
    <apex:pageblockSection title="Search Transactions" columns="2" 
                     collapsible="true">            
         <apex:input type="date" value="{!StartDate}" label="StartDate" />
