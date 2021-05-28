@@ -15,8 +15,8 @@ public class LinkedLoansRecordTest {
         loan__Org_Parameters__c checkTrigger = GenericUtilityTestHelper.returnOrgParameter();
         checkTrigger = loan__Org_Parameters__c.getInstance();
         System.AssertEquals(
-            checkTrigger.id,
-            null,
+            checkTrigger.loan__Disable_Triggers__c,
+            true,
             'Org Parameter error'
         );
 
@@ -53,9 +53,13 @@ public class LinkedLoansRecordTest {
         );
         testLoanAccount.loan__Loan_Amount__c = 500000;
         update testLoanAccount;
+        List<loan__Loan_Account__c> loanAccountList1=[SELECT id 
+                                                        FROM loan__Loan_Account__c 
+                                                        WHERE loan__Loan_Amount__c=500000
+                                                        LIMIT 1 ];
         System.assertEquals(
-            testLoanAccount.loan__Loan_Amount__c, 
-            500000, 
+            loanAccountList1.size(), 
+            1, 
             'Loan Account Inserted Successfully'
         );
 
@@ -65,10 +69,34 @@ public class LinkedLoansRecordTest {
         );
         testLoanAccount2.loan__Loan_Amount__c = 550000;
         update testLoanAccount2;
+        List<loan__Loan_Account__c> loanAccountList2=[SELECT id 
+                                                        FROM loan__Loan_Account__c 
+                                                        WHERE loan__Loan_Amount__c= 550000 
+                                                        LIMIT 1 ];
         System.assertEquals(
-            testLoanAccount2.loan__Loan_Amount__c, 
-            550000, 
+            loanAccountList2.size(), 
+            1, 
             'Loan Account Inserted Successfully'
+        );
+
+        Linked_Loan__c linkedloan1=GenericUtilityTestHelper.returnlinkedLoan(
+            testLoanAccount2.id,
+            testLoanAccount.id
+        );
+        system.assertEquals(
+            linkedloan1.Linked_Loan__c,
+            testLoanAccount.id,
+            'Linked Loan Inserted Successfully'
+        );
+
+        Linked_Loan__c linkedloan2=GenericUtilityTestHelper.returnlinkedLoan(
+            testLoanAccount2.id,
+            testLoanAccount2.id
+        );
+        system.assertEquals(
+            linkedloan2.Linked_Loan__c,
+            testLoanAccount2.id,
+            'Linked Loan Inserted Successfully'
         );
 
     }
@@ -78,9 +106,9 @@ public class LinkedLoansRecordTest {
         List<loan__Loan_Account__c> loanAccountList=[SELECT id,
                                          loan__Loan_Amount__c 
                                      FROM loan__Loan_Account__c];
-        system.assertNotEquals(
+        system.assertEquals(
             loanAccountList.size(), 
-            0, 
+            2, 
             'Loan Account is Present'
         );
         
@@ -88,19 +116,9 @@ public class LinkedLoansRecordTest {
             loanAccountList[0].id,
             loanAccountList[1].id
         );
-        system.assertNotEquals(
-            linkedloan.id,
-            null,
-            'Linked Loan Inserted Successfully'
-        );
-
-        Linked_Loan__c linkedloan1=GenericUtilityTestHelper.returnlinkedLoan(
+        system.assertEquals(
+            linkedloan.Linked_Loan__c,
             loanAccountList[1].id,
-            loanAccountList[0].id
-        );
-        system.assertNotEquals(
-            linkedloan1.id,
-            null,
             'Linked Loan Inserted Successfully'
         );
 
@@ -145,14 +163,14 @@ public class LinkedLoansRecordTest {
     }
 
     @isTest
-    static void saveRecordTest(){
+    static void saveRecordTest1(){
         
         List<loan__Loan_Account__c> loanAccountList=[SELECT id,
                                          loan__Loan_Amount__c 
                                      FROM loan__Loan_Account__c];
-        system.assertNotEquals(
+        system.assertEquals(
             loanAccountList.size(), 
-            0, 
+            2, 
             'Loan Account is Present'
         );
         
@@ -166,6 +184,34 @@ public class LinkedLoansRecordTest {
         LinkedLoansExtension obj=new LinkedLoansExtension(stc);
         obj.linkedLoan1.Current_Loan_Record__c=loanAccountList[0].id;
         obj.linkedLoan1.Linked_Loan__c=loanAccountList[1].id;
+        obj.linkedLoan2.Current_Loan_Record__c=loanAccountList[0].id;
+        obj.linkedLoan2.Linked_Loan__c=loanAccountList[1].id;
+        PageReference objPageRef = obj.Save();
+        test.stopTest();
+            
+    }
+    @isTest
+    static void saveRecordTest2(){
+        
+        List<loan__Loan_Account__c> loanAccountList=[SELECT id,
+                                         loan__Loan_Amount__c 
+                                     FROM loan__Loan_Account__c];
+        system.assertEquals(
+            loanAccountList.size(), 
+            2, 
+            'Loan Account is Present'
+        );
+        
+        PageReference pageRef =page.CustomLinkedLoansPage;
+        Test.setCurrentPage(pageRef);
+        pageRef.getParameters().put('loanId',loanAccountList[0].id);
+        
+        ApexPages.StandardController stc = new ApexPages.StandardController(loanAccountList[0]);
+        
+        test.startTest();
+        LinkedLoansExtension obj=new LinkedLoansExtension(stc);
+        obj.linkedLoan1.Current_Loan_Record__c=loanAccountList[0].id;
+        obj.linkedLoan1.Linked_Loan__c=loanAccountList[0].id;
         obj.linkedLoan2.Current_Loan_Record__c=loanAccountList[0].id;
         obj.linkedLoan2.Linked_Loan__c=loanAccountList[1].id;
         PageReference objPageRef = obj.Save();
@@ -211,16 +257,6 @@ public class LinkedLoansRecordTest {
             loanAccountList.size(), 
             0, 
             'Loan Account is Present'
-        );
-        
-        Linked_Loan__c linkedloan=GenericUtilityTestHelper.returnlinkedLoan(
-            loanAccountList[0].id,
-            loanAccountList[1].id
-        );
-        system.assertNotEquals(
-            linkedloan.id,
-            null,
-            'Linked Loan Inserted Successfully'
         );
 
         test.startTest();

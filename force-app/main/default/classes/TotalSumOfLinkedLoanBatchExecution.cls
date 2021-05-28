@@ -8,8 +8,11 @@ Last Modified Date : 20/05/2021
 ****************************************************************************************************/
 
 global with sharing class TotalSumOfLinkedLoanBatchExecution {
+
     Webservice static string executeTotalSumOfLinkedLoanUpdateBatchWS(){
-		Id batchprocessid = Database.executebatch(new TotalSumOfLinkedLoanUpdateBatch(),30);
+        TotalSumOfLinkedLoanUpdateBatch obj = new TotalSumOfLinkedLoanUpdateBatch();
+        Integer size = Integer.valueof(System.label.TotalSumOfLinkedLoanUpdateBatch_Size);  
+		Id batchprocessid = Database.executebatch(obj,size);
         return batchprocessid;
     }
 }
