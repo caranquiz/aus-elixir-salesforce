@@ -3,7 +3,7 @@
     <fullName>True_Exception__c</fullName>
     <defaultValue>false</defaultValue>
     <externalId>false</externalId>
-    <label>True Exception</label>
+    <label>True Credit Exception</label>
     <trackTrending>false</trackTrending>
     <type>Checkbox</type>
 </CustomField>
