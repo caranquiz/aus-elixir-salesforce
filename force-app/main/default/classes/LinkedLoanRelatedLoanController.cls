@@ -129,6 +129,7 @@ public with sharing class LinkedLoanRelatedLoanController {
                     }
                     
                 }
+                //Sort the Linked Loans in Ascending order 
                 if(loan1.Linked_Loans__c!=null){
                     loanNameList=loan1.Linked_Loans__c.split(';');
                     loanNameList.sort();
