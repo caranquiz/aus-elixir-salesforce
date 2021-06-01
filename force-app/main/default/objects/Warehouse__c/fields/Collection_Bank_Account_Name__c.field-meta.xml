@@ -4,7 +4,8 @@
     <externalId>false</externalId>
     <label>Collection Bank Account Name</label>
     <length>16</length>
-    <required>true</required>
+    <required>false</required>
+    <trackHistory>true</trackHistory>
     <trackTrending>false</trackTrending>
     <type>Text</type>
     <unique>false</unique>

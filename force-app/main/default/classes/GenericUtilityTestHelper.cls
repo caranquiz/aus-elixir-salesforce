@@ -1114,6 +1114,16 @@ public with sharing class GenericUtilityTestHelper {
     ware.Collection_Bank_Account_Name__c = 'Test';
     ware.Collection_Bank_Account_Number__c = '1234567';
     ware.Collection_BSB_Number__c = '343655';
+    ware.Trust_Bank_Number_Change__c = 'XYZ';
+    ware.Trust_Bank_Name_Change__c = 'XYZ';
+    ware.Trust_Bank_BSB_Change__c = 'XYZ';
+    ware.Disbursal_Bank_Name_Change__c = 'XYZ';
+    ware.Disbursal_Bank_BSB_Change__c = 'XYZ';
+    ware.Disbursal_Bank_Account_Change__c = 'XYZ';
+    ware.Disbursal_Bank_Account_Change__c = 'XYZ';
+    ware.Collection_Account_Name_Change__c = 'XYZ';
+    ware.Collection_Account_Number_Change__c = 'XYZ';
+    ware.Collection_Account_BSB_Change__c = 'XYZ';
     insert ware;
     return ware;
   }

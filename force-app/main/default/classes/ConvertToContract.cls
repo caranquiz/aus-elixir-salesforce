@@ -84,7 +84,7 @@ global with sharing class ConvertToContract{
                     }
                 }
                 //Change made by Rameswari on 24/12/2020
-                //Attaching Application Date and Approval Date
+                //Attaching Application Date
                 DateTime appCreationDate = app.CreatedDate;
                 contr.loan__Application_Date__c = date.newInstance(appCreationDate.year() ,appCreationDate.month(), appCreationDate.day());
                 
