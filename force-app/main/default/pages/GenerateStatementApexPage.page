@@ -1,4 +1,4 @@
-<apex:page lightningStylesheets="true" Controller="GenerateStatementController" docType="html-5.0"  >
+<apex:page lightningStylesheets="true" Controller="GenerateStatementController" docType="html-5.0" title="{!loanRecord.name}">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/latest/jquery.js"></script>
     <script>
     var isClicked = false; 

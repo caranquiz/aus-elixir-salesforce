@@ -12,11 +12,16 @@ public class GenerateStatementController {
     public Date StartDate {get;set;}
     public Date EndDate {get;set;}
     static Date currentSystemDate =(Test.isRunningTest()?Date.Today():(new loan.GlobalLoanUtilFacade()).getCurrentSystemDate());
+    public loan__Loan_Account__c loanRecord{get;set;}
     public GenerateStatementController () {
         showRecords = true;
         if(loanId == null){
             throw new CustomException('Invalid Loan');
         }
+        loanRecord = [SELECT id,
+                                name 
+                            FROM loan__Loan_Account__c 
+                            WHERE id = :loanId];
     }
     public PageReference doSearch() {
         try{
