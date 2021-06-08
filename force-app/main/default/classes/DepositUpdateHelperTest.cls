@@ -260,6 +260,7 @@ public with sharing class DepositUpdateHelperTest {
     app.First_Drawdown_Complete__c = true;
     update app;
     WarehouseFunding.executeFun(loanC.Id, ware.Id);
+    LoanPaymentTxnClearingJobCustomQuery.getQuery();
     test.stopTest();
   }
 }

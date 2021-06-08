@@ -800,7 +800,7 @@ global class ConstantValues {
   public static final String LICENSED_BUILDER_EXCEPTION = 'Licenced Builder Exception';
   public static final String ABN_STATUS_EXCEPTION = 'ABN Status Exception';
   public static final String OVERRIDE_EMPLOYMENT_EXCEPTION = 'Override Employment Exception';
-  public static final String BAS_EXCEPTION = 'BAS % Exception';
+  public static final String BAS_WARNING = 'BAS % Warning';
   public static final String EMPLOYMENT_CALL_MADE_EXCEPTION = 'Employment Call Made Exception';
   public static final String ABN_EFFECTIVE_SELF_EMPLOYEMENT_EXCEPTION = 'ABN Effective from Exception Self Employment';
   public static final String BROKER_DOCS_WARNING = 'Broker Documents Warning';
@@ -979,4 +979,8 @@ global class ConstantValues {
   public static final String SEMICOLON=';';
   public static final String LOAN_ID='id';
   public static final String LOAN_ACCOUNT_ID='loanId';
+
+  //Constant Value of LoanPaymentTxnClearingJobCustomQuery Class
+  public static final String PaymentTxnClearing_Limit = ' LIMIT 0';
+  public static final String BusinessHours_Name = 'Direct Debit';
 }
