@@ -1,4 +1,4 @@
-<apex:page standardController="loan__Loan_Account__c" extensions="LinkedLoansExtension" lightningStylesheets="true" docType="html-5.0">
+<apex:page standardController="loan__Loan_Account__c" extensions="LinkedLoansExtension" lightningStylesheets="true" docType="html-5.0" title="{!acct.name}">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/latest/jquery.js"></script>
     <style>
         .apexp .bPageBlock.apexDefaultPageBlock .back .Submit .invInfo .detailInfo{

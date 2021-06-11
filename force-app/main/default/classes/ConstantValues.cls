@@ -982,5 +982,9 @@ global class ConstantValues {
 
   //Constant Value of LoanPaymentTxnClearingJobCustomQuery Class
   public static final String PaymentTxnClearing_Limit = ' LIMIT 0';
-  public static final String BusinessHours_Name = 'Direct Debit';
+  public static final String BusinessHours_Name = 'Elixir Financial Holiday Setup';
+  
+  //LTS Migration class Constants
+  public static final String DEPOSIT_SUBTRACT = 'Deposit Adjustment - Subtract';
+  public static final String DEPOSIT_ADD = 'Deposit Adjustment - Add';
 }

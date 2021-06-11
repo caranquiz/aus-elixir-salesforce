@@ -145,7 +145,6 @@ global with sharing class CheckRules {
         rulesNameList.add(ConstantValues.LICENSED_BUILDER_EXCEPTION);
         rulesNameList.add(ConstantValues.ABN_STATUS_EXCEPTION);
         rulesNameList.add(ConstantValues.OVERRIDE_EMPLOYMENT_EXCEPTION);
-        rulesNameList.add(ConstantValues.BAS_EXCEPTION);
         rulesNameList.add(ConstantValues.EMPLOYMENT_CALL_MADE_EXCEPTION);
         rulesNameList.add(ConstantValues.MONTHS_SELF_EMPLOYED_EXCEPTION);
         rulesNameList.add(ConstantValues.OVERRIDE_EXCEPTION);
@@ -180,6 +179,7 @@ global with sharing class CheckRules {
         rulesNameList.add(ConstantValues.ACCOUNTANT_PHONE_NUMBER_WARNING);
         rulesNameList.add(ConstantValues.ACCOUNTANT_CALL_WARNING);
         rulesNameList.add(ConstantValues.COMMISSION_MANADATE_PERCENTAGE_WARNING);
+        rulesNameList.add(ConstantValues.BAS_WARNING);
         rulesNameList.add(ConstantValues.UPFRONT_EXCEEDS_STANDARD_PERCENTAGE);
         rulesNameList.add(ConstantValues.TRAIL_EXCEEDS_STANDARD_PERCENTAGE);
       } else if (tabName == ConstantValues.WARNING2) {
@@ -841,6 +841,7 @@ global with sharing class CheckRules {
     public String supportingDocumentVerified;
     public String waiverReason;
     public String shownOnIndicativeLetter;
+    public String trueException;
   }
   public static void updateRuleDataOnApplcationFromChecklists(
     genesis__Applications__c appObj,
@@ -853,6 +854,7 @@ global with sharing class CheckRules {
         Exception_Approver__c,
         Exception_Commentary__c,
         Exception_Recommender__c,
+        True_Exception__c,
         Status__c,
         Supporting_Documentation__c,
         Waiver_Reason__c
@@ -884,6 +886,7 @@ global with sharing class CheckRules {
         '"exceptionCommentary":"' +
         eachChecklist.Exception_Commentary__c +
         '",';
+      manualData += '"trueException":"' + String.valueOf(eachChecklist.True_Exception__c) + '",';
       manualData += '"status":"' + eachChecklist.Status__c + '",';
       manualData +=
         '"supportingDocumentVerified":"' +
@@ -954,6 +957,12 @@ global with sharing class CheckRules {
         ) {
           checklistObj.Exception_Commentary__c = eachChecklistMapping.exceptionCommentary;
         }
+        if(
+          String.isNotBlank(eachChecklistMapping.trueException) &&
+          !(eachChecklistMapping.trueException).equalsIgnoreCase('null')
+        ){
+          checklistObj.True_Exception__c=Boolean.valueOf(eachChecklistMapping.trueException);
+        }
         if (
           String.isNotBlank(eachChecklistMapping.status) &&
           !(eachChecklistMapping.status).equalsIgnoreCase('null')
@@ -1004,7 +1013,8 @@ global with sharing class CheckRules {
         Condition_Status__c,
         Supporting_Document_Verified__c,
         Waiver_Reason__c,
-        Show_on_Indicative_Approval_Letter__c
+        Show_on_Indicative_Approval_Letter__c,
+        True_Exception__c
       FROM Checklist_Detail__c
       WHERE
         Party__c IN :partyIds
@@ -1055,7 +1065,8 @@ global with sharing class CheckRules {
         Condition_Status__c,
         Supporting_Document_Verified__c,
         Waiver_Reason__c,
-        Show_on_Indicative_Approval_Letter__c
+        Show_on_Indicative_Approval_Letter__c,
+        True_Exception__c
       FROM Checklist_Detail__c
       WHERE
         Application_Collateral__c IN :appColIds
@@ -1144,6 +1155,10 @@ global with sharing class CheckRules {
           eachChecklistDetail.Exception_Commentary__c +
           '",';
         manualData +=
+          '"trueException":"' +
+          String.valueOf(eachChecklistDetail.True_Exception__c) +
+           '",';
+        manualData +=
           '"status":"' +
           eachChecklistDetail.Condition_Status__c +
           '",';
@@ -1195,7 +1210,8 @@ global with sharing class CheckRules {
         Condition_Status__c,
         Supporting_Document_Verified__c,
         Waiver_Reason__c,
-        Show_on_Indicative_Approval_Letter__c
+        Show_on_Indicative_Approval_Letter__c,
+        True_Exception__c
       FROM Checklist_Detail__c
       WHERE
         Party__c IN :partyIds
@@ -1233,7 +1249,8 @@ global with sharing class CheckRules {
         Condition_Status__c,
         Supporting_Document_Verified__c,
         Waiver_Reason__c,
-        Show_on_Indicative_Approval_Letter__c
+        Show_on_Indicative_Approval_Letter__c,
+        True_Exception__c
       FROM Checklist_Detail__c
       WHERE
         Application_Collateral__c IN :appColIds
@@ -1354,6 +1371,13 @@ global with sharing class CheckRules {
               .equalsIgnoreCase('null')
           ) {
             checklistObj.Exception_Commentary__c = eachChecklistManualData.exceptionCommentary;
+          }
+          if(
+            String.isNotBlank(eachChecklistManualData.trueException) &&
+            !(eachChecklistManualData.trueException)
+              .equalsIgnoreCase('null')
+          ){
+            checklistObj.True_Exception__c=Boolean.valueOf(eachChecklistManualData.trueException);
           }
           if (
             String.isNotBlank(eachChecklistManualData.status) &&
