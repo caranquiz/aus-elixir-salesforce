@@ -1567,4 +1567,11 @@ public with sharing class GenericUtilityTestHelper {
       insert checkTrigger;
       return checkTrigger;
   }
+   public static Telephone_Contact_Number__c returnTelephone(Id contactId){
+    Telephone_Contact_Number__c telephoneContact=new Telephone_Contact_Number__c();
+    telephoneContact.Phone_Number__c='6467778311';
+    telephoneContact.Contact__c=contactId;
+    insert telephoneContact;
+    return telephoneContact;
+  }
 }
