@@ -22,7 +22,7 @@ global with sharing class LTSMigrationHandler {
                         'Current_Loan_Balance__c, Current_Principal_Remaining__c,Repayment_Txn_Reversal__c,'+
                         'Current_Payoff_Balance__c, Current_Delinquent_Amount__c,Interest_Rate__c, Balance__c,Principal_Remaining__c,Pay_Off_Amount_As_Of_Today__c,'+
                         'Loan_Disbursal__c,Discarded_Data__c,Transaction_Date__c, Other_Loan_Txn__c,Loan_Payment_Txn__c, Interest_Posting_Txn__c,'+
-                        'Loan_Charge__c,Disbursal_Reversal__c, Loan_Due_Detail__c, Transaction_Time__c, Delinquent_Amount__c, Interest_Posting_Txn__r.Balance__c, CreatedDate ';
+                        'Loan_Charge__c,Disbursal_Reversal__c, Loan_Due_Detail__c, Transaction_Time__c, Delinquent_Amount__c, Interest_Posting_Txn__r.Balance__c, CreatedDate,Last_Transaction_Type__c  ';
 
         mfiflexUtil.ExecutionContext ec = mfiflexUtil.ExecutionContext.getExecContext();
         mfiflexUtil.ObjectCache loanOC ; //helping in query formation
@@ -46,12 +46,14 @@ global with sharing class LTSMigrationHandler {
         }
         whereClause += ' AND Investment_order__c = null';
         whereClause += ' AND Discarded_Data__c  != True';
+        whereClause +=' AND Invalid_Data__c !=True';
 
         loanOC.setWhereClause(whereClause);
         loanOC.setOrderClause('CreatedDate');
         loanOC.buildQuery();
         loanOC.executeQuery();
         List<loan__Loan_transaction_summary__c> txnList = (List<loan__Loan_transaction_summary__c>)loanOC.getRecords();
+        system.debug('LTS Record1--->'+txnList);
         return txnList;
     }
     //This function is just taking up relevant IPTs and building query for IPT
@@ -134,6 +136,7 @@ global with sharing class LTSMigrationHandler {
     }
     //This function is just taking up relevant LDT reversal and building query for LDT reversal
     global List<loan__Disbursal_Adjustment__c>  getDisRevTxn(Date startDate, Date endDate,Set<Id> loanIds){
+        System.debug('getDisRevTxngetDisRevTxn');
         String fields = ' Id, Name, Transaction_Time__c, CreatedDate, Transaction_Creation_Date__c,'+
                         'Rejected__c,Adjustment_Txn_Date__c, '+
                         'Loan_Disbursal_Transaction__r.Loan_Account__c, Loan_Disbursal_Transaction__r.Disbursed_Amt__c,'+
@@ -207,6 +210,7 @@ global with sharing class LTSMigrationHandler {
         loanOC.buildQuery();
         loanOC.executeQuery();
         List<loan__Repayment_Transaction_Adjustment__c> txnList = (List<loan__Repayment_Transaction_Adjustment__c>)loanOC.getRecords();
+        System.debug('getPayRevTxn_txnList--->'+txnList);
         return txnList;
         
     }
@@ -241,13 +245,14 @@ global with sharing class LTSMigrationHandler {
         loanOC.buildQuery();
         loanOC.executeQuery();
         List<loan__Charge__c> txnList = (List<loan__Charge__c>)loanOC.getRecords();
+        system.debug('chargeListTxn--->'+txnList);
         return txnList;
         
     }
     //This function is just taking up relevant OLT and building query for OLTs
     global List<loan__Other_Transaction__c> getOtherLoanTxn(Date startDate, Date endDate,Set<Id> loanIds){
         String fields = 'Id,Transaction_Creation_Date__c,Rejected__c,Loan_Snapshot__c,Loan_Account__c, CreatedDate, Name, Reversed__c,'+
-                        ' Txn_Amt__c, Transaction_Type__c, Txn_Date__c ';
+                        ' Txn_Amt__c, Transaction_Type__c, Txn_Date__c,New_Interest_Rate__c,Transaction_Time__c ';
         mfiflexUtil.ExecutionContext ec = mfiflexUtil.ExecutionContext.getExecContext();
         String allowedLoanStatuses = '\'' + loan.LoanConstants.LOAN_TRANSACTION_RESCHEDULE + '\'' + ',' +
                                         '\'' + loan.LoanConstants.LOAN_TRANSACTION_DELINQUENT_PMT_PLAN + '\'' + ',' +
@@ -283,14 +288,14 @@ global with sharing class LTSMigrationHandler {
         loanOC.addNamedParameter('endDate', endDate);
         loanOC.addNamedParameter('allowedLoanStatuses', allowedLoanStatuses);
         String whereClause = ' Loan_Account__c  IN :loanIds' ;
-        if(Test.isRunningTest() == false){
-            whereClause += ' AND Txn_Date__c >= :startDate';
+        /*if(Test.isRunningTest() == false){
+            whereClause += ' AND CreatedDate >= :startDate';
             whereClause += ' AND Txn_Date__c <= :endDate';
         }
-        else{
+        else{*/
             whereClause += ' AND Day_Only(CreatedDate) >= :startDate';
             whereClause += ' AND Day_Only(CreatedDate) <= :endDate';
-        }
+        //}
         whereClause += ' AND Rejected__c = false';
         whereClause += ' AND Transaction_Type__c IN (' + allowedLoanStatuses + ')';
 
@@ -299,6 +304,7 @@ global with sharing class LTSMigrationHandler {
         loanOC.buildQuery();
         loanOC.executeQuery();
         List<loan__Other_Transaction__c> txnList = (List<loan__Other_Transaction__c>)loanOC.getRecords();
+        System.debug('Other Loan Transactions 1===='+txnList);
         return txnList;
         
     }
@@ -334,13 +340,14 @@ global with sharing class LTSMigrationHandler {
         loanOC.buildQuery();
         loanOC.executeQuery();
         List<loan__Loan_Disbursal_Transaction__c> txnList = (List<loan__Loan_Disbursal_Transaction__c>)loanOC.getRecords();
+        system.debug('Disbursal Record--->>>'+txnList);
         return txnList;
     }
     //This function is just taking up relevant LPT and building query for LPTs
     global List<loan__Loan_Payment_transaction__c> getPaymentTxn(Date startDate, Date endDate,Set<Id> loanIds){
         String fields = 'Id,Loan_Snapshot__c, CreatedDate, Name, Reversed__c,Loan_Account__c,Principal__c,Interest__c,'+
                         'Fees__c, Transaction_Amount__c,Payment_Type__c,'+
-                        'Transaction_Creation_Date__c, Transaction_Date__c ,Rejected__c ';
+                        'Transaction_Creation_Date__c, Transaction_Date__c ,Rejected__c,Balance__c,Cleared__c ';
         mfiflexUtil.ExecutionContext ec = mfiflexUtil.ExecutionContext.getExecContext();
         mfiflexUtil.ObjectCache loanOC ; 
         loanOC = ec.getObject('LoansJob');
@@ -392,6 +399,7 @@ global with sharing class LTSMigrationHandler {
         loanOC.buildQuery();
         loanOC.executeQuery();
         List<loan__Loan_Account__c> loan = (List<loan__Loan_Account__c>)loanOC.getRecords();
+        system.debug('loan-->>'+loan);
         return loan;       
     }
 
@@ -423,7 +431,6 @@ global with sharing class LTSMigrationHandler {
             }
             loanIds +=loanAccounts[i].Id ;
         }
-        System.debug(loanIds+'Loan Ids');
         loan.LoanTransactionUtil.queryAndSetDepositDetailsMap(loanAccIds);
         loan.LoanTransactionSummaryUtil.transTypeMap();
         List<loan__Loan_Transaction_Summary__c> ltsList = getLTSTxn1(startDate,endDate,loanAccIds);
@@ -447,57 +454,69 @@ global with sharing class LTSMigrationHandler {
         }
         //getting all the LPT transactions in mentioned range
         List<loan__Loan_Payment_transaction__c> lptList = getPaymentTxn(startDate,endDate,loanAccIds);
+        system.debug('lptList--->'+lptList.size());
         for(loan__Loan_Payment_transaction__c lpt : lptList){
             if(!loanIdToLPTMap.containsKey(lpt.loan__Loan_Account__c)){
                 loanIdToLPTMap.put(lpt.loan__Loan_Account__c , new List<loan__Loan_Payment_transaction__c>());
             }
             List<loan__Loan_Payment_transaction__c> txnList = loanIdToLPTMap.get(lpt.loan__Loan_Account__c);
             txnList.add(lpt);
+            system.debug('lpt==>>'+lpt);
         }
         //getting all the OLT transactions in mentioned range
-        List<loan__Other_Transaction__c> oltList =  getOtherLoanTxn(startDate,endDate,loanAccIds);                         
-        for(loan__Other_Transaction__c oth : oltList){    
+        List<loan__Other_Transaction__c> oltList =  getOtherLoanTxn(startDate,endDate,loanAccIds);
+        System.debug('Other Loan transactions1'+oltList);                         
+        for(loan__Other_Transaction__c oth : oltList){  
+            System.debug('Other Loan transactions2'+oth);  
             if(!loanIdToOLTMap.containsKey(oth.loan__Loan_Account__c)){
                 loanIdToOLTMap.put(oth.loan__Loan_Account__c,new List<loan__Other_Transaction__c>());
             }
             List<loan__Other_Transaction__c> txnList = loanIdToOLTMap.get(oth.loan__Loan_Account__c);
             txnList.add(oth);
         }
+        //system.debug('Other Loan transactions4'+txnList);   
         //getting all the Reversed LPTs transactions in mentioned range
-        List<loan__Repayment_Transaction_Adjustment__c>  lptRevList =  getPayRevTxn(startDate,endDate,loanAccIds);                                          
+        List<loan__Repayment_Transaction_Adjustment__c>  lptRevList =  getPayRevTxn(startDate,endDate,loanAccIds);   
+        system.debug('getPayRevTxn');                                       
         for(loan__Repayment_Transaction_Adjustment__c lptRev : lptRevList){     
             if(!loanIdToLPTRevMap.containsKey(lptRev.loan__Loan_Payment_Transaction__r.loan__Loan_Account__c)){
                 loanIdToLPTRevMap.put(lptRev.loan__Loan_Payment_Transaction__r.loan__Loan_Account__c,new List<loan__Repayment_Transaction_Adjustment__c>());
             }
             List<loan__Repayment_Transaction_Adjustment__c> txnList =   loanIdToLPTRevMap.get(lptRev.loan__Loan_Payment_Transaction__r.loan__Loan_Account__c);
-            txnList.add(lptRev);                                        
+            txnList.add(lptRev);  
+            system.debug('lptRev====>>'+lptRev);                                      
         }
-        //getting all the Reversed LDTs transactions in mentioned range
+        /*//getting all the Reversed LDTs transactions in mentioned range- Elixir does not have reversed LDT - So commenting this for now
         List<loan__Disbursal_Adjustment__c> ldtRevList = getDisRevTxn(startDate,endDate,loanAccIds);
+        //System.debug('getDisRevTxn');
         for(loan__Disbursal_Adjustment__c ldtRev : ldtRevList){
             if(!loanIdToLDTRevMap.containsKey(ldtRev.loan__Loan_Disbursal_Transaction__r.loan__Loan_Account__c)){
                 loanIdToLDTRevMap.put(ldtRev.loan__Loan_Disbursal_Transaction__r.loan__Loan_Account__c , new List<loan__Disbursal_Adjustment__c>());
             }
             List<loan__Disbursal_Adjustment__c> txnList = loanIdToLDTRevMap.get(ldtRev.loan__Loan_Disbursal_Transaction__r.loan__Loan_Account__c);
             txnList.add(ldtRev);
-        }
+        }*/
         //getting all the Charges transactions in mentioned range
         List<loan__Charge__c> chargeList = getChargeTxn(startDate,endDate,loanAccIds);
+        system.debug('chargeList====>>>'+chargeList);
         for(loan__Charge__c charge : chargeList){
             if(!loanIdtoChargeMap.containsKey(charge.loan__Loan_Account__c)){
                 loanIdtoChargeMap.put(charge.loan__Loan_Account__c, new List<loan__Charge__c> ());
             }
             List<loan__Charge__c> txnList = loanIdtoChargeMap.get(charge.loan__Loan_Account__c);
             txnList.add(charge);
+            system.debug('txnListchargeList====>>>'+txnList);
         }
         //getting all the IPTs transactions in mentioned range
         List<loan__Interest_Posting_Transaction__c> iptList = getIntrstPstngTxn(startDate,endDate,loanAccIds);
+        system.debug('IPTList===>>'+iptList);
         for(loan__Interest_Posting_Transaction__c ipt :iptList){
             if(!IdToIPTMap.containsKey(ipt.loan__Loan_Contract__c)){
                 IdToIPTMap.put(ipt.loan__Loan_Contract__c,new List<loan__Interest_Posting_Transaction__c>());
             }
             List<loan__Interest_Posting_Transaction__c> txnList = IdToIPTMap.get(ipt.loan__Loan_Contract__c);
             txnList.add(ipt);
+            system.debug('txnListIPT===>>'+txnList);
         }
         //getting all the Bill transactions in mentioned range
         List<loan__Loan_account_Due_Details__c> billList = getBillTxn(startDate,endDate,loanAccIds);
@@ -566,18 +585,23 @@ global with sharing class LTSMigrationHandler {
             summary.loan__Current_Delinquent_Amount__c = 0;
         }
     }
-    global void updateValueFromPrevState(loan__Loan_Transaction_Summary__c currentSummary,loan__Loan_Transaction_Summary__c prevSummary,Decimal chargeBalance){
+    global void updateValueFromPrevState(loan__Loan_Transaction_Summary__c currentSummary,loan__Loan_Transaction_Summary__c prevSummary,Decimal balance){
         currentSummary.loan__Current_Interest_Rate__c = prevSummary.loan__Current_Interest_Rate__c;
         //Changes made by Rameswari
-        if(currentSummary.loan__Interest_Posting_Txn__c != NULL && currentSummary.loan__Interest_Posting_Txn__r.loan__Balance__c != NULL){
-            currentSummary.loan__Current_Loan_Balance__c = currentSummary.loan__Interest_Posting_Txn__r.loan__Balance__c;
+        system.debug('1234-->>');
+        if(currentSummary.loan__Interest_Posting_Txn__c != NULL && balance != NULL){
+            currentSummary.loan__Current_Loan_Balance__c = balance;
+            system.debug('CurrentLoanBalance_IPT--> '+balance);
         }
-        else if(currentSummary.loan__Loan_Charge__c != NULL && chargeBalance != NULL){
-           currentSummary.loan__Current_Loan_Balance__c = chargeBalance;
+        else if(currentSummary.loan__Loan_Charge__c != NULL && balance != NULL){
+           currentSummary.loan__Current_Loan_Balance__c = balance;
         }
         else{
             //Was written by prod team and the below line is responsible for updating previous balance
             currentSummary.loan__Current_Loan_Balance__c = prevSummary.loan__Current_Loan_Balance__c;
+            if(currentSummary.loan__Other_Loan_Txn__c != NULL){
+                System.debug('OLTs are here'+currentSummary);
+            }
         }
         currentSummary.loan__Current_Payoff_Balance__c = prevSummary.loan__Current_Payoff_Balance__c;
         currentSummary.loan__Current_Principal_Remaining__c = prevSummary.loan__Current_Principal_Remaining__c;
@@ -670,7 +694,33 @@ global with sharing class LTSMigrationHandler {
         Map<String,loan__Loan_Transaction_Summary__c> lastTxnToSummaryMap = new Map<String,loan__Loan_Transaction_Summary__c>();
         Map<String,loan__Loan_Transaction_Summary__c> IdsWhtSnapshot = new Map<String,loan__Loan_Transaction_Summary__c>();
         Map<String,Decimal> IDToAmountMap = new  Map<String,Decimal> ();
-        List<clcommon__Deposit__c> depositList = loan.LoanTransactionUtil.getDepositListForALoan(loanAcc.Id);  
+        List<clcommon__Deposit__c> depositList = loan.LoanTransactionUtil.getDepositListForALoan(loanAcc.Id); 
+        List<clcommon__Deposit__c> depositList2=new List<clcommon__Deposit__c>();
+       for(clcommon__Deposit__c deposit:depositList){
+            if(deposit.clcommon__Parent_Deposit__c!=NULL){
+                if(deposit.loan__Loan_Payment_Transaction__c!=NULL){
+                    system.debug('LPT--->'+deposit.loan__Loan_Payment_Transaction__c);
+                    for(loan__Loan_Payment_Transaction__c lpt:lptList){
+                        if(deposit.loan__Loan_Payment_Transaction__c==lpt.id && lpt.loan__Cleared__c==true && lpt.loan__Reversed__c!=true && lpt.loan__Rejected__c!=true ){
+                            depositList2.add(deposit);
+                            system.debug('LPT--->DEPOSIT');
+                        }
+                    }
+                }else if(deposit.loan__Other_Loan_Transaction__c!=NULL){
+                    system.debug('OTHER--->'+deposit.loan__Other_Loan_Transaction__c);
+                    for(loan__Other_Transaction__c  oth:othList){
+                        system.debug('OTHER123');
+                        if(deposit.loan__Other_Loan_Transaction__c==oth.id ){
+                            depositList2.add(deposit);
+                            system.debug('OTHER-->DEPOSIT');
+                        }
+                    }
+                }else{
+                    depositList2.add(deposit);
+                }
+                
+            }
+        }
         Map<Id,SObject> invalidTxnIdToTxnMap = new Map<Id,SObject>();  
         Decimal totalDepositAmount ;  
      
@@ -703,8 +753,8 @@ global with sharing class LTSMigrationHandler {
                     }
                     if(!lastTxnToSummaryMap.containsKey(ldt.Id)){
                         summary = loan.LoanTransactionSummaryUtil.getSummaryRecord(loanAcc.Id,null,ldt);
-                        updateValueForNewSummary(summary , (Datetime)ldt.get('CreatedDate') ,ldt.Id,ldt.loan__Loan_Account__c);
-                        updateTransactionDate(summary,ldt.loan__Transaction_Creation_Date__c,ldt.CreatedDate);//should not it be loan__Disbursal_Date__c? 
+                        updateValueForNewSummary(summary , (Datetime)ldt.get('loan__Disbursal_Date__c') ,ldt.Id,ldt.loan__Loan_Account__c);
+                        updateTransactionDate(summary,ldt.loan__Disbursal_Date__c,ldt.CreatedDate);//should not it be loan__Disbursal_Date__c? 
                         //what about backdated transactions?
                         
                     }
@@ -735,8 +785,8 @@ global with sharing class LTSMigrationHandler {
                     loan__Loan_Transaction_Summary__c summary = new loan__Loan_Transaction_Summary__c ();
                     if(!lastTxnToSummaryMap.containsKey(lpt.Id)){
                         summary = loan.LoanTransactionSummaryUtil.getSummaryRecord(loanAcc.Id,null,lpt);
-                        updateValueForNewSummary(summary , (Datetime)lpt.get('CreatedDate') ,lpt.Id,lpt.loan__Loan_Account__c);
-                        updateTransactionDate(summary,lpt.loan__Transaction_Creation_Date__c,lpt.CreatedDate);
+                        updateValueForNewSummary(summary , (Datetime)lpt.get('loan__Transaction_Date__c') ,lpt.Id,lpt.loan__Loan_Account__c);
+                        updateTransactionDate(summary,lpt.loan__Transaction_Date__c,lpt.CreatedDate);
 
                     }else{
                         summary = lastTxnToSummaryMap.get(lpt.Id);
@@ -748,7 +798,7 @@ global with sharing class LTSMigrationHandler {
                         }
                         summary.loan__Transaction_Amount__c = lpt.loan__Transaction_Amount__c;
                         summary.loan__Current_Interest_Rate__c = summary.loan__Interest_Rate__c;
-                        summary.loan__Current_Loan_Balance__c = summary.loan__Balance__c - lpt.loan__Principal__c;
+                        summary.loan__Current_Loan_Balance__c = lpt.loan__Balance__c;
                         if(summary.loan__Current_Loan_Balance__c < 0){
                             summary.loan__Current_Loan_Balance__c = 0;
                         }
@@ -767,34 +817,51 @@ global with sharing class LTSMigrationHandler {
                     summariesToBeInserted.add(summary);
                 }
             }
-
+            System.debug('othList1 ====>'+othList);
             if(othList != null && othList.size()>0){
                 for(loan__Other_Transaction__c oth :othList){
-                    if(!loan.LoanTransactionSummaryUtil.isValidTransaction(oth)){
+                    System.debug('<=====othList2HERE THE REDRAW IS FAILING!!!!!!!!!!!!!!!'+oth);
+                    if(!loan.LoanTransactionSummaryUtil.isValidTransaction(oth) && oth.loan__Transaction_Type__c != ConstantValues.DEPOSIT_SUBTRACT){
                         invalidTxnIdToTxnMap.put(oth.Id,oth);
+                        System.debug('<=====othList3====NEED TO WRITE HERE!!!!!!!!!!!!!'+oth);
                     }
                     loan__Loan_Transaction_Summary__c summary = new loan__Loan_Transaction_Summary__c();
                     if(!lastTxnToSummaryMap.containsKey(oth.Id) && oth.loan__Loan_Snapshot__c!=null){
                         summary = loan.LoanTransactionSummaryUtil.getSummaryRecord(loanAcc.Id,null,oth);
-                        updateValueForNewSummary(summary , (Datetime)oth.get('CreatedDate') ,oth.Id,oth.loan__Loan_Account__c);
-                        updateTransactionDate(summary,oth.loan__Transaction_Creation_Date__c,oth.CreatedDate);
+                        updateValueForNewSummary(summary , (Datetime)oth.get('loan__Txn_Date__c') ,oth.Id,oth.loan__Loan_Account__c);
+                        updateTransactionDate(summary,oth.loan__Txn_Date__c,oth.CreatedDate);
+                        System.debug('<=====othList4'+oth);
                     }
                     else{
-                        summary = lastTxnToSummaryMap.get(oth.Id);   
+                        if(oth.loan__Transaction_Type__c == ConstantValues.DEPOSIT_SUBTRACT){
+                            System.debug('OLTs Txn amt===>'+oth.loan__Txn_Amt__c);
+                            summary.loan__Transaction_Amount__c = ((oth.loan__Txn_Amt__c)*(-1));
+                            summary.loan__Transaction_Date__c = oth.loan__Txn_Date__c;
+                            summary.loan__Loan_Account__c = loanAcc.Id;
+                            summary.loan__Last_Transaction_Type__c = ConstantValues.DEPOSIT_SUBTRACT;
+                        }
+                        else{
+                            summary = lastTxnToSummaryMap.get(oth.Id);
+                        }
+                        System.debug('<=====othList5'+summary); 
                     }
                     if(summary != null && summary.loan__Other_Loan_Txn__c == null){
+                        System.debug('<=====othList6'+oth); 
+                        updateValueForNewSummary(summary , (Datetime)oth.get('loan__Txn_Date__c') ,oth.Id,oth.loan__Loan_Account__c);
                         summary.loan__Other_Loan_Txn__c = oth.Id;
-                        if(oth.loan__Txn_Amt__c != null){
+                        if(oth.loan__Txn_Amt__c != null && oth.loan__Transaction_Type__c != ConstantValues.DEPOSIT_SUBTRACT){
                             summary.loan__Transaction_Amount__c = oth.loan__Txn_Amt__c;
+                            System.debug('<=====othList7'+oth); 
                         }
                         if(oth.loan__Transaction_Type__c != null){
                             summary.loan__Transaction_Type_Id__c = transTypeToIdMapOLT.get(oth.loan__Transaction_Type__c);
+                            System.debug('<=====othList8'+oth); 
                         } 
                     }
                     summariesToBeInserted.add(summary);
+                    System.debug('<=====othList9'+oth); 
                 }
             }
-
             if(lptRevList != null && lptRevList.size()>0){
                 for(loan__Repayment_Transaction_Adjustment__c lptRev : lptRevList){ 
                     if(!(loan.LoanTransactionSummaryUtil.isValidTransaction(lptRev))){
@@ -802,8 +869,8 @@ global with sharing class LTSMigrationHandler {
                     }
                     loan__Loan_Transaction_Summary__c summary = new loan__Loan_Transaction_Summary__c();
                     if(!lastTxnToSummaryMap.containsKey(lptRev.Id)){
-                        updateValueForNewSummary(summary , (Datetime)lptRev.get('CreatedDate') ,lptRev.Id,lptRev.loan__Loan_Payment_Transaction__r.loan__Loan_Account__c);
-                        updateTransactionDate(summary,lptRev.loan__Transaction_Creation_Date__c,lptRev.CreatedDate);
+                        updateValueForNewSummary(summary , (Datetime)lptRev.get('loan__Adjustment_Txn_Date__c') ,lptRev.Id,lptRev.loan__Loan_Payment_Transaction__r.loan__Loan_Account__c);
+                        updateTransactionDate(summary,lptRev.loan__Adjustment_Txn_Date__c,lptRev.CreatedDate);
                     }
                     else{
                         summary = lastTxnToSummaryMap.get(lptRev.Id);
@@ -827,13 +894,13 @@ global with sharing class LTSMigrationHandler {
                     }
                     loan__Loan_Transaction_Summary__c summary = new loan__Loan_Transaction_Summary__c();
                     if(!lastTxnToSummaryMap.containsKey(bill.Id)){
-                        updateValueForNewSummary(summary , (Datetime)bill.get('CreatedDate') ,bill.Id,bill.loan__Loan_Account__c);
+                        updateValueForNewSummary(summary , (Datetime)bill.get('loan__Due_Date__c') ,bill.Id,bill.loan__Loan_Account__c);
                                                
                         if(bill.loan__Due_Type_Description__c != null){
                             summary.loan__Transaction_Type_Id__c = transTypeToIdMapBills.get(bill.loan__Due_Type_Description__c);
                         }
                         
-                        updateTransactionDate(summary,bill.loan__Transaction_Creation_Date__c,bill.CreatedDate);
+                        updateTransactionDate(summary,bill.loan__Due_Date__c,bill.CreatedDate);
                     }
                     else{
                         summary = lastTxnToSummaryMap.get(bill.Id);
@@ -856,8 +923,8 @@ global with sharing class LTSMigrationHandler {
                     }
                     loan__Loan_Transaction_Summary__c summary = new loan__Loan_Transaction_Summary__c();
                     if(!lastTxnToSummaryMap.containsKey(disursalRev.Id)){
-                        updateValueForNewSummary(summary , (Datetime)disursalRev.get('CreatedDate') ,disursalRev.Id,disursalRev.loan__Loan_Disbursal_Transaction__r.loan__Loan_Account__c);
-                        updateTransactionDate(summary,disursalRev.loan__Transaction_Creation_Date__c,disursalRev.CreatedDate);
+                        updateValueForNewSummary(summary , (Datetime)disursalRev.get('loan__Adjustment_Txn_Date__c') ,disursalRev.Id,disursalRev.loan__Loan_Disbursal_Transaction__r.loan__Loan_Account__c);
+                        updateTransactionDate(summary,disursalRev.loan__Adjustment_Txn_Date__c ,disursalRev.CreatedDate);
                         IdsWhtSnapshot.put(summary.loan__Last_transaction_id__c,summary); 
                     }
                     else{
@@ -884,9 +951,9 @@ global with sharing class LTSMigrationHandler {
                     }
                     loan__Loan_Transaction_Summary__c summary = new loan__Loan_Transaction_Summary__c();
                     if( !lastTxnToSummaryMap.containsKey(ipts.Id)){
-                        updateTransactionDate(summary,ipts.loan__Transaction_Creation_Date__c,ipts.CreatedDate);   
+                        updateTransactionDate(summary,ipts.loan__Transaction_Posting_Date__c,ipts.CreatedDate);   
                         
-                        updateValueForNewSummary(summary , (Datetime)ipts.get('CreatedDate') ,ipts.Id, ipts.loan__Loan_Contract__c);         
+                        updateValueForNewSummary(summary , (Datetime)ipts.get('loan__Transaction_Posting_Date__c') ,ipts.Id, ipts.loan__Loan_Contract__c);         
                     }
                     else{
                         summary = lastTxnToSummaryMap.get(ipts.Id);
@@ -900,8 +967,10 @@ global with sharing class LTSMigrationHandler {
                     }
                     summariesToBeInserted.add(summary);
                     IDToAmountMap.put(ipts.Id,ipts.loan__Interest_Posted__c);
-                    
+                    system.debug('IPT===>'+ipts);
+                    system.debug('Summary record'+summary);
                 }
+                system.debug('summariesToBeInserted-->'+summariesToBeInserted);
                 
             }
 
@@ -912,9 +981,9 @@ global with sharing class LTSMigrationHandler {
                     }
                     loan__Loan_Transaction_Summary__c summary = new loan__Loan_Transaction_Summary__c();
                     if(!lastTxnToSummaryMap.containsKey(charge.Id)){
-                        updateTransactionDate(summary,charge.loan__Transaction_Creation_Date__c,charge.CreatedDate);     
+                        updateTransactionDate(summary,charge.loan__Date__c,charge.CreatedDate);     
                         IdsWhtSnapshot.put(summary.loan__Last_transaction_id__c,summary); 
-                        updateValueForNewSummary(summary , (Datetime)charge.get('CreatedDate') ,charge.Id, charge.loan__Loan_Account__c); 
+                        updateValueForNewSummary(summary , (Datetime)charge.get('loan__Date__c') ,charge.Id, charge.loan__Loan_Account__c); 
                     }
                     else{
                         summary = lastTxnToSummaryMap.get(charge.Id);
@@ -939,12 +1008,16 @@ global with sharing class LTSMigrationHandler {
                 }
             }
             Integer i =0;
+            System.debug(summariesToBeInserted.size()+'==IdsWhtSnapshot'+IdsWhtSnapshot +'IdsWhtSnapshot ==summariesToBeInserted====>1'+summariesToBeInserted);
             if(!summariesToBeInserted.isEmpty()){
                 summariesToBeInserted = loan.LoanTransactionSummaryUtil.sortByTransactionTime(summariesToBeInserted);
-                
+                System.debug('summariesToBeInserted====>2.1'+summariesToBeInserted);
                 if(IdsWhtSnapshot !=null){
+                    System.debug('summariesToBeInserted====>2.2'+summariesToBeInserted);
                     for(i = 0 ;i < summariesToBeInserted.size()-1 ;i++){
+                        System.debug('summariesToBeInserted====>2.3'+summariesToBeInserted[i]);
                         if(summariesToBeInserted[i].loan__Last_transaction_id__c != NULL && IdsWhtSnapshot.containsKey(summariesToBeInserted[i].loan__Last_transaction_id__c)){
+                            System.debug('summariesToBeInserted====>2.4');
                             summariesToBeInserted.remove(i); //This is done to check whether the first sorted txn has snapshot or not
                         }
                         else{
@@ -960,23 +1033,29 @@ global with sharing class LTSMigrationHandler {
                 for(i = 0 ;i < summariesToBeInserted.size();i++){
                     if(summariesToBeInserted[i] != NULL){
                         if(IdsWhtSnapshot !=null){
+                            System.debug(summariesToBeInserted.size()+'summariesToBeInserted.size()1');
                             if(summariesToBeInserted[i].loan__Last_transaction_id__c != NULL && IdsWhtSnapshot.isEmpty() == false && IdsWhtSnapshot.containsKey(summariesToBeInserted[i].loan__Last_transaction_id__c)){
                                 //This is done to handle the case of txn order like, txn with snaphot -> wht Snaphot
                                 //reschedule - > bills ->Pmt
                                 //so to fill the value in reschule txn current state, we need value from next snapshot that is not present,
                                 //to maintain the consistency of code flow, bills LTS snapshot fields will have same snapshot value as of it is present in reschedule
                                 updateSnapShotField(summariesToBeInserted[i],summariesToBeInserted[i-1]);
+                                System.debug(summariesToBeInserted.size()+'summariesToBeInserted.size()2');
                             }
+                            System.debug(summariesToBeInserted.size()+'summariesToBeInserted.size()3');
                         }
                         if(endDate == dateutil.getCurrentSystemDate() && i != summariesToBeInserted.size()){ //GlobalLoanUtilFacade.getCurrentSystemDate
+                            System.debug(summariesToBeInserted.size()+'summariesToBeInserted.size()4');
                             if(i == summariesToBeInserted.size()-1){
+                                System.debug(summariesToBeInserted.size()+'summariesToBeInserted.size()5');
                                 break;
                             }
+                            System.debug(summariesToBeInserted.size()+'summariesToBeInserted.size()6');
                         }
                         //This is done in case next two transaction are two which will not have snapshot
                         //So,to get the better nearest data to get exact the data what was previous state of loan
                         //Like Disbursal, charge, bill ,, then we cannot get better state of loan by using snapshot because txn without snap are gtng updated from previous snapshot
-                        if((summariesToBeInserted[i].loan__Interest_Posting_Txn__c != null || summariesToBeInserted[i].loan__Loan_Due_Detail__c != null || summariesToBeInserted[i].loan__Loan_Charge__c != null)&& i > 0){
+                        if((summariesToBeInserted[i].loan__Interest_Posting_Txn__c != null || summariesToBeInserted[i].loan__Loan_Due_Detail__c != null || summariesToBeInserted[i].loan__Loan_Charge__c != null || summariesToBeInserted[i].loan__Other_Loan_Txn__c != null) && i > 0){
                             if(summariesToBeInserted[i].loan__Loan_Charge__c != null){
                                 for(loan__Charge__c charge : chargeList){
                                     if(summariesToBeInserted[i].loan__Loan_Charge__c==charge.id){
@@ -984,10 +1063,19 @@ global with sharing class LTSMigrationHandler {
                                     }
                                 }
                                 
-                            }else{
+                            }else if(summariesToBeInserted[i].loan__Interest_Posting_Txn__c != null){
+                                for(loan__Interest_Posting_Transaction__c ipts : iptsList){
+                                    if(summariesToBeInserted[i].loan__Interest_Posting_Txn__c==ipts.id){
+                                        updateValueFromPrevState(summariesToBeInserted[i],summariesToBeInserted[i-1],ipts.loan__Balance__c);
+                                    }
+                                }
+                                
+                            }
+                            else{
+                                System.debug(summariesToBeInserted.size()+'summariesToBeInserted.size()7');
                                 updateValueFromPrevState(summariesToBeInserted[i],summariesToBeInserted[i-1],0);
                             }
-                            if(summariesToBeInserted[i].loan__Loan_Due_Detail__c == null){
+                            if(summariesToBeInserted[i].loan__Loan_Due_Detail__c == null && summariesToBeInserted[i].loan__Current_Payoff_Balance__c !=NULL && summariesToBeInserted[i].loan__Last_transaction_id__c != NULL &&  IDToAmountMap.get(summariesToBeInserted[i].loan__Last_transaction_id__c) != NULL){
                                 summariesToBeInserted[i].loan__Current_Payoff_Balance__c = summariesToBeInserted[i].loan__Current_Payoff_Balance__c + IDToAmountMap.get(summariesToBeInserted[i].loan__Last_transaction_id__c) ;
                             }
                         }               
@@ -1007,18 +1095,48 @@ global with sharing class LTSMigrationHandler {
                         if(summariesToBeInserted[i].loan__Current_Delinquent_Amount__c == null && summariesToBeInserted[i+1].loan__Delinquent_Amount__c != NULL){
                             summariesToBeInserted[i].loan__Current_Delinquent_Amount__c = summariesToBeInserted[i+1].loan__Delinquent_Amount__c;
                         }
-                        if(depositList !=null && depositList.size()>=0 && summariesToBeInserted[i] != NULL && summariesToBeInserted[i].loan__Transaction_Date__c != NULL){
-                            totalDepositAmount = loan.DepositUtil.getTotalDepositAmountTillDate(depositList,summariesToBeInserted[i].loan__Transaction_Date__c);
-                            if(totalDepositAmount !=null && summariesToBeInserted[i].loan__Current_Loan_Balance__c != NULL){
-                                summariesToBeInserted[i].loan__Consolidated_Loan_Balance__c =  summariesToBeInserted[i].loan__Current_Loan_Balance__c  - totalDepositAmount;
+                             if(depositList2 !=null && depositList2.size()>1 && summariesToBeInserted[i] != NULL && summariesToBeInserted[i].loan__Transaction_Date__c != NULL){
+                            system.debug('Transaction date==='+summariesToBeInserted[i].loan__Transaction_Date__c);
+                            system.debug('Deposit List Size==='+depositList2.size());
+                            system.debug('Deposit List ==='+depositList2);
+                            //totalDepositAmount = loan.DepositUtil.getTotalDepositAmountTillDate(depositList2,summariesToBeInserted[i].loan__Transaction_Date__c);
+                            Integer j;
+                            for(j=0;j<(depositList2.size()-1);j++){
+                                if(summariesToBeInserted[i].loan__Current_Loan_Balance__c != NULL && summariesToBeInserted[i].loan__Last_Transaction_Type__c!='loan__Loan_Disbursal_Transaction__c'){
+                                    if(depositList2[j].clcommon__Deposit_Amount__c!=NULL && depositList2[j].clcommon__Transaction_Date__c <= summariesToBeInserted[i].loan__Transaction_Date__c && depositList2[j+1].clcommon__Transaction_Date__c > summariesToBeInserted[i].loan__Transaction_Date__c){
+                                        summariesToBeInserted[i].loan__Consolidated_Loan_Balance__c =  summariesToBeInserted[i].loan__Current_Loan_Balance__c  - depositList2[j].clcommon__Deposit_Amount__c;
+                                    }
+                                    if(j==depositList2.size()-2 && depositList2[j+1].clcommon__Transaction_Date__c <= summariesToBeInserted[i].loan__Transaction_Date__c ){
+                                        if(depositList2[j+1].clcommon__Deposit_Amount__c!=NULL)
+                                            summariesToBeInserted[i].loan__Consolidated_Loan_Balance__c =  summariesToBeInserted[i].loan__Current_Loan_Balance__c  - depositList2[j+1].clcommon__Deposit_Amount__c;
+                                        System.debug('Payment Received'+summariesToBeInserted[i].loan__Consolidated_Loan_Balance__c);
+                                    }
+                                }else{
+                                    if(summariesToBeInserted[i].loan__Current_Loan_Balance__c != NULL){
+                                        summariesToBeInserted[i].loan__Consolidated_Loan_Balance__c =  summariesToBeInserted[i].loan__Current_Loan_Balance__c ;
+                                    }
+                                }
                             }
-                        }
-                        else if(summariesToBeInserted[i].loan__Current_Loan_Balance__c != NULL){
+                        }else if(depositList2 !=null && depositList2.size()==1 && summariesToBeInserted[i] != NULL && summariesToBeInserted[i].loan__Transaction_Date__c != NULL && summariesToBeInserted[i].loan__Last_Transaction_Type__c!='loan__Loan_Disbursal_Transaction__c'){
+                            if(summariesToBeInserted[i].loan__Current_Loan_Balance__c != NULL && depositList2[0].clcommon__Deposit_Amount__c!=NULL && depositList2[0].clcommon__Transaction_Date__c <= summariesToBeInserted[i].loan__Transaction_Date__c){
+                                summariesToBeInserted[i].loan__Consolidated_Loan_Balance__c =  summariesToBeInserted[i].loan__Current_Loan_Balance__c  - depositList2[0].clcommon__Deposit_Amount__c;
+                            }else if(summariesToBeInserted[i].loan__Current_Loan_Balance__c != NULL){
+                                summariesToBeInserted[i].loan__Consolidated_Loan_Balance__c =  summariesToBeInserted[i].loan__Current_Loan_Balance__c;
+                            }
+                        }else if(summariesToBeInserted[i].loan__Current_Loan_Balance__c != NULL){
                             summariesToBeInserted[i].loan__Consolidated_Loan_Balance__c =  summariesToBeInserted[i].loan__Current_Loan_Balance__c ;
                         }
+                        if(summariesToBeInserted[i].loan__Consolidated_Loan_Balance__c == NULL && summariesToBeInserted[i].loan__Current_Loan_Balance__c != NULL ){
+                            summariesToBeInserted[i].loan__Consolidated_Loan_Balance__c =  summariesToBeInserted[i].loan__Current_Loan_Balance__c ;
+                        }
+                        /*if(summariesToBeInserted[i].loan__Last_Transaction_Type__c=='Deposit Adjustment - Subtract' && summariesToBeInserted[i].loan__Consolidated_Loan_Balance__c !=NULL && summariesToBeInserted[i].loan__Transaction_Amount__c != NULL   ){
+                            summariesToBeInserted[i].loan__Consolidated_Loan_Balance__c = summariesToBeInserted[i].loan__Consolidated_Loan_Balance__c + summariesToBeInserted[i].loan__Transaction_Amount__c; 
+                        }*/
                     }
                     else{
+                        System.debug(summariesToBeInserted.size()+'summariesToBeInserted.size()8');
                         summariesToBeInserted.remove(i);
+                        System.debug(summariesToBeInserted.size()+'summariesToBeInserted.size()9');
                     }
                 }
             }
@@ -1041,6 +1159,7 @@ global with sharing class LTSMigrationHandler {
             }
             //Seperate summaries that needs to be updated and inserted
             for(i=0;i<summariesToBeInserted.size();i++){
+                System.debug(summariesToBeInserted[i]+'Summary to be inserted');
                 if(summariesToBeInserted[i] != NULL){
                     if(lastTxnToSummaryMap.size() > 0 && summariesToBeInserted[i].loan__Last_transaction_id__c != NULL && (lastTxnToSummaryMap.containsKey(summariesToBeInserted[i].loan__Last_transaction_id__c) || invalidTxnIdToTxnMap.containsKey(summariesToBeInserted[i].loan__Last_transaction_id__c))){
                         summariesToBeInserted.remove(i);
@@ -1051,7 +1170,8 @@ global with sharing class LTSMigrationHandler {
                     summariesToBeInserted.remove(i);
                 }
             }
-            uow.addToInsert(summariesToBeInserted);   
+            System.debug(summariesToBeInserted.size()+'summariesToBeInserted.size()');
+            uow.addToInsert(summariesToBeInserted);
             uow.addToUpdate(loanAcct); 
             uow.addToUpdate(lastTxnToSummaryMap.values());    
 
