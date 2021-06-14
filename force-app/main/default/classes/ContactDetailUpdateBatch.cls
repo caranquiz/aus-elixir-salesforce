@@ -40,6 +40,7 @@ public class ContactDetailUpdateBatch implements DataBase.StateFul,DataBase.Batc
                                     FROM Telephone_Contact_Number__c 
                                     WHERE Contact__c IN: objContactList  
                                     AND Phone_Type__c =: ConstantValues.MOBILE_TAG
+                                    AND Phone_Number__c != NULL
                                     ORDER BY CreatedDate];
                 
                 objTelephoneList2=[SELECT Id,
@@ -49,6 +50,7 @@ public class ContactDetailUpdateBatch implements DataBase.StateFul,DataBase.Batc
                                     FROM Telephone_Contact_Number__c 
                                     WHERE Contact__c IN: objContactList  
                                     AND Phone_Type__c =: ConstantValues.Home_Phone
+                                    AND Phone_Number__c != NULL
                                     ORDER BY CreatedDate];
 
                 objAddressList1=[SELECT Id,
@@ -98,6 +100,11 @@ public class ContactDetailUpdateBatch implements DataBase.StateFul,DataBase.Batc
                         objContact.Phone=objtelephone2.Phone_Number__c;
                     }
                 }
+                objContact.OtherStreet = null;
+                objContact.OtherState = null;
+                objContact.OtherCity = null;
+                objContact.OtherPostalCode = null;
+                objContact.OtherCountry = null;
                 for(clcommon__Address__c objAddress1:objAddressList1){
                     if(objAddress1.clcommon__Contact__c==objContact.Id){
                         if(objAddress1.clcommon__County__c!=null)
