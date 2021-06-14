@@ -23,7 +23,10 @@ public class ApplicationAndContactDetailTest {
         Account testAccount = GenericUtilityTestHelper.insertDummyAccount();
         testAccount.clcommon__Legal_Entity_Type__c=legEntity.Id;
         update testAccount;
-        List<Account> testAccountList=[SELECT id FROM Account WHERE clcommon__Legal_Entity_Type__r.Name='Individual' LIMIT 1];
+        List<Account> testAccountList=[SELECT id 
+                                        FROM Account 
+                                        WHERE clcommon__Legal_Entity_Type__r.Name=:ConstantValues.indType 
+                                        LIMIT 1];
         System.AssertNotEquals(
         testAccount.Id,
         null,
@@ -44,12 +47,12 @@ public class ApplicationAndContactDetailTest {
         genesis__Applications__c testApplication = GenericUtilityTestHelper.returnApplication(
             testAccount.Id
         );
-        testApplication.Allow_Direct_Marketing__c='No';
-        testApplication.First_Home_Buyer__c='No';
+        testApplication.Allow_Direct_Marketing__c=ConstantValues.NO_TAG;
+        testApplication.First_Home_Buyer__c=ConstantValues.NO_TAG;
         update testApplication;
         List<genesis__Applications__c> applicationList=[SELECT id 
                                                         FROM genesis__Applications__c 
-                                                        WHERE Allow_Direct_Marketing__c='No'
+                                                        WHERE Allow_Direct_Marketing__c=:ConstantValues.NO_TAG
                                                         LIMIT 1 ];
         System.assertEquals(
             applicationList.size(), 
@@ -87,7 +90,7 @@ public class ApplicationAndContactDetailTest {
             'Address Inserted Successfully'
         );
 
-        clcommon__Party_Type__c partyType =GenericUtilityTestHelper.insertPartyType('Borrower');
+        clcommon__Party_Type__c partyType =GenericUtilityTestHelper.insertPartyType(ConstantValues.BORROWER);
         System.AssertNotEquals(
             partyType.Id,
             null,
@@ -100,7 +103,7 @@ public class ApplicationAndContactDetailTest {
             testAccount.Id
         );
         testParty.clcommon__Contact__c=testContact.Id;
-        testParty.First_Home_Buyer__c='Yes';
+        testParty.First_Home_Buyer__c=ConstantValues.YES_TAG;
         testParty.clcommon__Type__c=partyType.Id ;
         update testParty;
         List<clcommon__Party__c> partyList=[SELECT id 
@@ -117,11 +120,11 @@ public class ApplicationAndContactDetailTest {
         Telephone_Contact_Number__c testTelephone=GenericUtilityTestHelper.returnTelephone(
             testContact.Id
         );
-        testTelephone.Phone_Type__c = 'Mobile';
+        testTelephone.Phone_Type__c = ConstantValues.MOBILE_TAG;
         update testTelephone;
         List<Telephone_Contact_Number__c> testTelephoneList=[SELECT id 
                                                                 FROM Telephone_Contact_Number__c 
-                                                                WHERE Phone_Type__c='Mobile' 
+                                                                WHERE Phone_Type__c=:ConstantValues.MOBILE_TAG 
                                                                 LIMIT 1];
         System.assertEquals(
             testTelephoneList.size(), 
@@ -133,11 +136,11 @@ public class ApplicationAndContactDetailTest {
         Telephone_Contact_Number__c testTelephone1=GenericUtilityTestHelper.returnTelephone(
             testContact.Id
         );
-        testTelephone1.Phone_Type__c = 'Home Phone';
+        testTelephone1.Phone_Type__c = ConstantValues.Home_Phone ;
         update testTelephone1;
         List<Telephone_Contact_Number__c> testTelephoneList1=[SELECT id 
                                                                 FROM Telephone_Contact_Number__c 
-                                                                WHERE Phone_Type__c='Home Phone' 
+                                                                WHERE Phone_Type__c=:ConstantValues.Home_Phone 
                                                                 LIMIT 1];
         System.assertEquals(
             testTelephoneList1.size(), 
@@ -149,7 +152,7 @@ public class ApplicationAndContactDetailTest {
     static void applicationDetailTest(){
         List<genesis__Applications__c> testApplicationList=[SELECT id 
                                                                 FROM genesis__Applications__c 
-                                                                WHERE Allow_Direct_Marketing__c='No'
+                                                                WHERE Allow_Direct_Marketing__c=:ConstantValues.NO_TAG
                                                                 LIMIT 1];
         test.startTest();
         FirstHomeBuyerAppUpdateBatch obj = new FirstHomeBuyerAppUpdateBatch(); 
@@ -161,11 +164,11 @@ public class ApplicationAndContactDetailTest {
     static void applicationDetailTest1(){
         List<genesis__Applications__c> testApplicationList=[SELECT id 
                                                                 FROM genesis__Applications__c 
-                                                                WHERE Allow_Direct_Marketing__c='No'
+                                                                WHERE Allow_Direct_Marketing__c=:ConstantValues.NO_TAG
                                                                 LIMIT 1];
         List<clcommon__Party__c> partyList=[SELECT id 
                                                         FROM clcommon__Party__c 
-                                                        WHERE First_Home_Buyer__c='Yes'
+                                                        WHERE First_Home_Buyer__c=:ConstantValues.YES_TAG
                                                         LIMIT 1 ];
         delete partyList;
         test.startTest();

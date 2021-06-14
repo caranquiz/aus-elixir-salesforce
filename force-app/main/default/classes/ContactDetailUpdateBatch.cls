@@ -39,7 +39,7 @@ public class ContactDetailUpdateBatch implements DataBase.StateFul,DataBase.Batc
                                         Phone_Number__c 
                                     FROM Telephone_Contact_Number__c 
                                     WHERE Contact__c IN: objContactList  
-                                    AND Phone_Type__c = 'Mobile'
+                                    AND Phone_Type__c =: ConstantValues.MOBILE_TAG
                                     ORDER BY CreatedDate];
                 
                 objTelephoneList2=[SELECT Id,
@@ -48,7 +48,7 @@ public class ContactDetailUpdateBatch implements DataBase.StateFul,DataBase.Batc
                                         Phone_Number__c 
                                     FROM Telephone_Contact_Number__c 
                                     WHERE Contact__c IN: objContactList  
-                                    AND Phone_Type__c = 'Home Phone'
+                                    AND Phone_Type__c =: ConstantValues.Home_Phone
                                     ORDER BY CreatedDate];
 
                 objAddressList1=[SELECT Id,
@@ -137,7 +137,7 @@ public class ContactDetailUpdateBatch implements DataBase.StateFul,DataBase.Batc
                         }
                     }
                 }
-                if(objContact.Is_this_the_Postal_Address__c=='Yes' || objContact.Is_this_the_Postal_Address__c == 'None'){
+                if(objContact.Is_this_the_Postal_Address__c== ConstantValues.YES_TAG || objContact.Is_this_the_Postal_Address__c ==ConstantValues.None_Tag){
                     objContact.MailingStreet = null;
                     objContact.MailingState = null;
                     objContact.MailingCity = null;
@@ -195,12 +195,12 @@ public class ContactDetailUpdateBatch implements DataBase.StateFul,DataBase.Batc
                 }
                 for(clcommon__Party__c party:objPartiesList){
                     if(party.clcommon__Contact__c==objContact.Id){
-                        if(party.Politically_Exposed_Person__c == 'Yes'){
+                        if(party.Politically_Exposed_Person__c == ConstantValues.YES_TAG){
                             objContact.PEP__c = true;
                         }else{
                             objContact.PEP__c = false;
                         }
-                        if(party.genesis__Application__r.Allow_Direct_Marketing__c=='No'){
+                        if(party.genesis__Application__r.Allow_Direct_Marketing__c== ConstantValues.NO_TAG){
                             objContact.Opt_Out_of_Marketing__c = true;
                         }else{
                             objContact.Opt_Out_of_Marketing__c = false;

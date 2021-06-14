@@ -22,21 +22,21 @@ public class FirstHomeBuyerAppUpdateBatch implements DataBase.StateFul,DataBase.
                                       genesis__Application__c
                                   FROM clcommon__Party__c 
                                   WHERE genesis__Application__c IN: objApplicationList
-                                  AND First_Home_Buyer__c= 'Yes'
-                                  AND Legal_Entity_Type__c='Individual'
-                                  AND (clcommon__Type__r.Name='Borrower' 
-                                  OR clcommon__Type__r.Name='Co-applicant' 
-                                  OR clcommon__Type__r.Name='Guarantor')];
+                                  AND First_Home_Buyer__c=: ConstantValues.YES_TAG
+                                  AND Legal_Entity_Type__c=: ConstantValues.indType
+                                  AND (clcommon__Type__r.Name=:ConstantValues.BORROWER 
+                                  OR clcommon__Type__r.Name=:ConstantValues.CO_APPLICANT 
+                                  OR clcommon__Type__r.Name=: ConstantValues.GUARANTOR)];
                 
             }
             for(genesis__Applications__c application:objApplicationList){
                 for(clcommon__Party__c party:objPartiesList){
                     if(party.genesis__Application__c==application.id){
-                        application.First_Home_Buyer__c='Yes';
+                        application.First_Home_Buyer__c= ConstantValues.YES_TAG;
                     }
                 }
-                if(application.First_Home_Buyer__c!='Yes'){
-                    application.First_Home_Buyer__c='No';
+                if(application.First_Home_Buyer__c!= ConstantValues.YES_TAG){
+                    application.First_Home_Buyer__c=ConstantValues.NO_TAG;
                 }
             }
             
