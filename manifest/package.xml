@@ -1,34 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
     <types>
-        <members>ChildChecklistAPI</members>
-        <members>ConvertToContract</members>
-        <members>LinkedLoanRelatedLoanController</members>
-        <members>LinkedLoansExtension</members>
-        <members>LinkedLoansExtensionTest</members>
-        <members>LinkedLoansRecordTest</members>
-        <members>TotalSumOfLinkedLoanBatchExecution</members>
-        <members>TotalSumOfLinkedLoanUpdateBatch</members>
+        <members>ApplicationAndContactDetailTest</members>
+        <members>CheckRules</members>
+        <members>ConstantValues</members>
+        <members>ContactDetailUpdateBatch</members>
+        <members>FirstHomeBuyerAppUpdateBatch</members>
+        <members>GenericUtilityTestHelper</members>
         <name>ApexClass</name>
     </types>
     <types>
-        <members>genesis__Applications__c.Primary_Approval_Date_for_Reports__c</members>
-        <members>genesis__Applications__c.Recommended_Date_for_Reports__c</members>
-        <members>genesis__Applications__c.Secondary_Approval_Date_for_Reports__c</members>
-        <members>genesis__Income__c.GST_Suitable_Amount_Check__c</members>
+        <members>CustomLinkedLoansPage</members>
+        <name>ApexPage</name>
+    </types>
+    <types>
+        <members>genesis__Applications__c.First_Home_Buyer__c</members>
+        <members>genesis__Income__c.BAS_Render_Check__c</members>
         <name>CustomField</name>
-    </types>
-    <types>
-        <members>TotalSumOfLinkedLoanUpdateBatch_Size</members>
-        <name>CustomLabel</name>
-    </types>
-    <types>
-        <members>CustomLabels</members>
-        <name>CustomLabels</name>
-    </types>
-    <types>
-        <members>loan__Loan_Account__c.Update_Total_Sum_Of_Linked_Loans</members>
-        <name>WebLink</name>
     </types>
     <version>48.0</version>
 </Package>
