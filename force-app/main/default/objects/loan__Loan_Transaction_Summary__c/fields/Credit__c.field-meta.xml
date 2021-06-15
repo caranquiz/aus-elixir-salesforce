@@ -6,14 +6,13 @@
 IF(ISPICKVAL( loan__Loan_Payment_Txn__r.loan__Payment_Type__c,&quot;Waived&quot;) &lt;&gt; false &amp;&amp; loan__Fees_Remaining__c &lt;&gt;0,loan__Transaction_Amount__c,
 IF(ISPICKVAL( loan__Loan_Payment_Txn__r.loan__Payment_Type__c ,&quot;Waived&quot;)&amp;&amp;(loan__Interest_Waived__c !=0) &lt;&gt; false,loan__Transaction_Amount__c,
 IF(loan__Disbursal_Reversal__c &lt;&gt; &quot;&quot;,loan__Transaction_Amount__c,
-IF(loan__Other_Loan_Txn__c &lt;&gt; &quot;&quot; &amp;&amp; Transaction_Type__c != &apos;Redraw&apos;,loan__Transaction_Amount__c,
+IF(loan__Other_Loan_Txn__c &lt;&gt; &quot;&quot; &amp;&amp;  Transaction_Type__c != &apos;Redraw&apos;,loan__Transaction_Amount__c,
 null)))))</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
     <label>Credit</label>
     <precision>18</precision>
     <required>false</required>
     <scale>2</scale>
-    <trackHistory>false</trackHistory>
     <trackTrending>false</trackTrending>
     <type>Currency</type>
 </CustomField>

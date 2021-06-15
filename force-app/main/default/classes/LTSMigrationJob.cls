@@ -92,7 +92,7 @@ global class LTSMigrationJob extends clcommon.DynamicJob {
     global override void doexecute(Database.BatchableContext BC, List<sObject> scope) {
         List<loan__Loan_Account__c> loanAccounts = (List<loan__Loan_Account__c>)scope;
         LTSMigrationHandler ltsMigrationandler = new LTSMigrationHandler(startDate,endDate);
-      ltsMigrationandler.process(loanAccounts);
+    	ltsMigrationandler.process(loanAccounts);
     }
 
     global override void doFinish(Database.BatchableContext bc) {}
