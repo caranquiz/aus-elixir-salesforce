@@ -1,22 +1,61 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
     <types>
-        <members>ApplicationAndContactDetailTest</members>
-        <members>CheckRules</members>
         <members>ConstantValues</members>
-        <members>ContactDetailUpdateBatch</members>
-        <members>FirstHomeBuyerAppUpdateBatch</members>
+        <members>DepositUpdateHelperTest</members>
+        <members>GenerateStatementController</members>
         <members>GenericUtilityTestHelper</members>
+        <members>LTSMigrationHandler</members>
+        <members>LTSMigrationJob</members>
+        <members>LTSRedrawUpdateBatch</members>
+        <members>LTSRedrawUpdateBatchExecution</members>
+        <members>LoanPaymentTxnClearingJobCustomQuery</members>
+        <members>TestLoan</members>
+        <members>TestMigrationForLTS</members>
+        <members>TransactionController</members>
         <name>ApexClass</name>
     </types>
     <types>
-        <members>CustomLinkedLoansPage</members>
+        <members>GenerateStatementApexPage</members>
+        <members>TransactionPage</members>
         <name>ApexPage</name>
     </types>
     <types>
-        <members>genesis__Applications__c.First_Home_Buyer__c</members>
-        <members>genesis__Income__c.BAS_Render_Check__c</members>
+        <members>Batch_Job_Size__c.LTSRedrawUpdateBatch_Size__c</members>
+        <members>loan__Charge__c.Include_in_Summary__c</members>
+        <members>loan__Coborrower__c.Applicant_Name__c</members>
+        <members>loan__Interest_Posting_Transaction__c.Include_in_Summary__c</members>
+        <members>loan__Loan_Account__c.Statement_End_Date__c</members>
+        <members>loan__Loan_Account__c.Statement_Start_Date__c</members>
+        <members>loan__Loan_Account__c.Total_no_of_Paid_bills__c</members>
+        <members>loan__Loan_Disbursal_Transaction__c.Include_in_Summary__c</members>
+        <members>loan__Loan_Payment_Transaction__c.Include_in_Summary__c</members>
+        <members>loan__Loan_Transaction_Summary__c.Credit__c</members>
+        <members>loan__Loan_Transaction_Summary__c.Debit__c</members>
+        <members>loan__Loan_Transaction_Summary__c.Include_in_Summary__c</members>
+        <members>loan__Loan_Transaction_Summary__c.Transaction_Type__c</members>
+        <members>loan__Other_Transaction__c.Include_in_Summary__c</members>
+        <members>loan__Other_Transaction__c.Rate_Change__c</members>
         <name>CustomField</name>
+    </types>
+    <types>
+        <members>Transaction_End_Date</members>
+        <members>Transaction_Start_Date</members>
+        <name>CustomLabel</name>
+    </types>
+    <types>
+        <members>CustomLabels</members>
+        <name>CustomLabels</name>
+    </types>
+    <types>
+        <members>Batch_Job_Size__c</members>
+        <name>CustomObject</name>
+    </types>
+    <types>
+        <members>loan__Loan_Account__c.Generate_Statement_Document</members>
+        <members>loan__Loan_Account__c.Statement</members>
+        <members>loan__Loan_Account__c.Update_LTS_Redraw</members>
+        <name>WebLink</name>
     </types>
     <version>48.0</version>
 </Package>

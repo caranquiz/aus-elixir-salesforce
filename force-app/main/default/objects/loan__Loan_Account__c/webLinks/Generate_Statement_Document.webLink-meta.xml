@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Generate_Statement_Document</fullName>
+    <availability>online</availability>
+    <displayType>button</displayType>
+    <encodingKey>UTF-8</encodingKey>
+    <hasMenubar>false</hasMenubar>
+    <hasScrollbars>true</hasScrollbars>
+    <hasToolbar>false</hasToolbar>
+    <height>600</height>
+    <isResizable>true</isResizable>
+    <linkType>url</linkType>
+    <masterLabel>Generate Statement Document</masterLabel>
+    <openType>newWindow</openType>
+    <position>none</position>
+    <protected>false</protected>
+    <showsLocation>false</showsLocation>
+    <showsStatus>false</showsStatus>
+    <url>/apex/APXTConga4__Conga_Composer?SolMgr=1&amp;serverUrl={!API.Partner_Server_URL_370}&amp;QueryId=[LoanType]aCK2N0000001ulFWAQ%3Fpv0%3D{!loan__Loan_Account__c.loan__AccountId__c},[BorCoApp]aCK2N00000025wdWAA%3Fpv0%3D{!loan__Loan_Account__c.Id},[Upcoming]aCK2N00000025wiWAA%3Fpv0%3D{!loan__Loan_Account__c.Id},[BranchDate]aCK2N0000001ulPWAQ%3Fpv0%3D{!loan__Loan_Account__c.loan__BranchId__c},[Disbursals]aCK2N00000025wnWAA%3Fpv0%3D{!loan__Loan_Account__c.Id},[ipt]aCK2N00000025wsWAA%3Fpv0%3D{!loan__Loan_Account__c.Id},[fees]aCK2N00000025wxWAA%3Fpv0%3D{!loan__Loan_Account__c.Id},[redraw]aCK2N00000025x2WAA%3Fpv0%3D{!loan__Loan_Account__c.Id},[refund]aCK2N00000025x7WAA%3Fpv0%3D{!loan__Loan_Account__c.Id},[repayments]aCK2N00000025xCWAQ%3Fpv0%3D{!loan__Loan_Account__c.Id},[rateChanges]aCK2N00000025xHWAQ%3Fpv0%3D{!loan__Loan_Account__c.Id},[trans]aCK2N00000025xRWAQ%3Fpv0%3D{!loan__Loan_Account__c.Id},[open]aCK2N00000025xWWAQ%3Fpv0%3D{!loan__Loan_Account__c.Id},[close]aCK2N00000025xbWAA%3Fpv0%3D{!loan__Loan_Account__c.Id},[currentRate]aCK2N00000025xMWAQ%3Fpv0%3D{!loan__Loan_Account__c.Id},[lpt]aCK2N000000294z%3Fpv0%3D{!loan__Loan_Account__c.Id}&amp;Id={!loan__Loan_Account__c.Id}&amp;TemplateId=aCS2N000000016Y&amp;SC0=1&amp;SC1=Attachments&amp;OFN=Statement+{!loan__Loan_Account__c.Name}&amp;AttachmentParentID={!loan__Loan_Account__c.Id}&amp;DefaultPDF=1</url>
+</WebLink>

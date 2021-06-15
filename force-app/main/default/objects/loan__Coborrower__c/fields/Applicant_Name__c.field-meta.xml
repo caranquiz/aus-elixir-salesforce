@@ -2,7 +2,7 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Applicant_Name__c</fullName>
     <externalId>false</externalId>
-    <formula>IF(ISBLANK(loan__Contact__c), loan__Account__r.Name+&apos; &apos;,IF(ISBLANK(loan__Contact__r.FirstName),&apos;&apos;,loan__Contact__r.FirstName+&apos; &apos;)+IF(ISBLANK(loan__Contact__r.MiddleName),&apos;&apos;,loan__Contact__r.MiddleName+&apos; &apos;)+IF(ISBLANK(loan__Contact__r.LastName),&apos;&apos;,loan__Contact__r.LastName+&apos; &apos;))</formula>
+    <formula>IF(ISBLANK(loan__Contact__c),loan__Account__r.Name+&apos; &apos;,((IF(ISPICKVAL(loan__Contact__r.Salutation,&apos;Mr.&apos;),&apos;Mr. &apos;,(IF(ISPICKVAL(loan__Contact__r.Salutation,&apos;Ms.&apos;),&apos;Ms. &apos;,(IF(ISPICKVAL(loan__Contact__r.Salutation,&apos;Mrs.&apos;),&apos;Mrs. &apos;,(IF(ISPICKVAL(loan__Contact__r.Salutation,&apos;Dr.&apos;),&apos;Dr. &apos;,(IF(ISPICKVAL(loan__Contact__r.Salutation,&apos;Prof.&apos;),&apos;Prof. &apos;,&apos;&apos;))))))))))+(IF(ISBLANK(loan__Contact__r.FirstName),&apos;&apos;,loan__Contact__r.FirstName+&apos; &apos;)+IF(ISBLANK(loan__Contact__r.MiddleName),&apos;&apos;,loan__Contact__r.MiddleName+&apos; &apos;)+IF(ISBLANK(loan__Contact__r.LastName),&apos;&apos;,loan__Contact__r.LastName+&apos; &apos;))))</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
     <label>Applicant Name</label>
     <required>false</required>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Update_LTS_Redraw</fullName>
+    <availability>online</availability>
+    <description>Run batch Job LTSRedrawUpdateBatch</description>
+    <displayType>button</displayType>
+    <linkType>javascript</linkType>
+    <masterLabel>Update LTS Redraw</masterLabel>
+    <openType>onClickJavaScript</openType>
+    <protected>false</protected>
+    <url>{!REQUIRESCRIPT(&quot;/soap/ajax/29.0/connection.js&quot;)}
+{!REQUIRESCRIPT(&quot;/soap/ajax/29.0/apex.js&quot;)}
+
+window.alert(&apos;The batch job has started.&apos;);
+var batchid=sforce.apex.execute(&quot;LTSRedrawUpdateBatchExecution&quot;,&quot;executeLTSRedrawUpdateBatchWS&quot;,{});</url>
+</WebLink>

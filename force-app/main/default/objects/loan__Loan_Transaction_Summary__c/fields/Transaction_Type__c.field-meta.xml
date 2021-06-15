@@ -2,7 +2,7 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Transaction_Type__c</fullName>
     <externalId>false</externalId>
-    <formula>IF(loan__Last_Transaction_Type__c  == &apos;loan__Repayment_Transaction_Adjustment__c&apos; , &apos;Payment Reversed&apos;,(IF(loan__Last_Transaction_Type__c == &apos;Deposit Adjustment - Subtract&apos;,&quot;Redraw&quot;,(CASE(1,
+    <formula>IF(loan__Last_Transaction_Type__c == &apos;loan__Repayment_Transaction_Adjustment__c&apos; , &apos;Payment Reversed&apos;,(IF(loan__Last_Transaction_Type__c == &apos;Deposit Adjustment - Subtract&apos;,&quot;Redraw&quot;,(CASE(1,
 IF(loan__Interest_Posting_Txn__c &lt;&gt; &quot;&quot; &amp;&amp;ISPICKVAL( loan__Interest_Posting_Txn__r.loan__Interest_Posting_Type__c ,&apos;Regular&apos;) ,1,0),&quot;Interest&quot;,
 IF(loan__Interest_Posting_Txn__c &lt;&gt; &quot;&quot; &amp;&amp;ISPICKVAL( loan__Interest_Posting_Txn__r.loan__Interest_Posting_Type__c ,&apos;Additional Interest&apos;) ,1,0),&quot;Line Fee&quot;,
 IF(ISPICKVAL( loan__Loan_Payment_Txn__r.loan__Payment_Type__c,&apos;Waived&apos;)&amp;&amp;loan__Loan_Payment_Txn__r.loan__Applied_Spread__c!=null,1,0),&quot;Charge Waived-&quot;+ loan__Loan_Payment_Txn__r.loan__Applied_Spread__c ,
@@ -17,6 +17,7 @@ IF(loan__Repayment_Txn_Reversal__r.loan__Payment_Type__c = &apos;Regular&apos;,1
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
     <label>Transaction Type</label>
     <required>false</required>
+    <trackHistory>false</trackHistory>
     <trackTrending>false</trackTrending>
     <type>Text</type>
     <unique>false</unique>
