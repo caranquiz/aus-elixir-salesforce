@@ -22,6 +22,9 @@ global with sharing class UpdateUnpaidBillsFlagBatch implements DataBase.StateFu
                     if(rec.Total_no_of_generated_bills__c == rec.Total_no_of_Paid_bills__c){
                         rec.loan__Unpaid_Bills__c = false;
                     }
+                    else if(rec.Total_no_of_generated_bills__c > rec.Total_no_of_Paid_bills__c){
+                        rec.loan__Unpaid_Bills__c = true;
+                    }
                 }
                 Database.update(scope,false);
             }
