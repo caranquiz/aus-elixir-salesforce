@@ -68,7 +68,7 @@ public class GenerateStatementController {
                             AND loan__Loan_Account__c =: loanId
                             AND loan__Consolidated_Loan_Balance__c != NULL 
                             AND loan__Last_Transaction_Type__c != 'loan__Other_Transaction__c' 
-                            AND (Transaction_Type__c in ('Payment Received','Interest','Redraw','Disbursement','Payment Reversal') 
+                            AND (Transaction_Type__c in ('Payment Received','Interest','Redraw','Disbursement') 
                             OR loan__Invalid_Data__c = false OR loan__Loan_Charge__c != null) and (loan__Loan_Payment_Txn__c = null 
                             OR (loan__Loan_Payment_Txn__r.loan__Payment_Mode__r.Name not in ('Discount','Internal Transfer') 
                             AND loan__Loan_Payment_Txn__r.loan__Rejected__c = false 
