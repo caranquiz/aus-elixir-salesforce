@@ -61,8 +61,7 @@ public class GenerateStatementController {
                             loan__Loan_Payment_Txn__r.loan__Payment_Mode__r.Name,
                             loan__Loan_Payment_Txn__c,
                             loan__Loan_Payment_Txn__r.loan__Rejected__c,
-                            loan__Loan_Payment_Txn__r.loan__Reversed__c,
-                            LTS_Ordering_Sequence__c
+                            loan__Loan_Payment_Txn__r.loan__Reversed__c
                             FROM loan__Loan_Transaction_Summary__c 
                             WHERE Include_in_Summary__c = true 
                             AND loan__Loan_Account__c =: loanId
