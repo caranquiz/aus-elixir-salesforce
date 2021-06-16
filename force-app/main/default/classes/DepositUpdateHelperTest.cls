@@ -261,6 +261,9 @@ public with sharing class DepositUpdateHelperTest {
     update app;
     WarehouseFunding.executeFun(loanC.Id, ware.Id);
     LoanPaymentTxnClearingJobCustomQuery.getQuery();
+    UpdateUnpaidBillsFlagBatch obj=new UpdateUnpaidBillsFlagBatch();
+    String sch = '0 0 23 * * ?';
+    system.schedule('Test Check', sch, obj );
     test.stopTest();
   }
 }
