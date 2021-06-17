@@ -16,7 +16,7 @@ global with sharing class LTSMigrationHandler {
         this.startDate = startDate;
         this.endDate = endDate ;
     }
-    //Helps in picking up existing LTS records?
+    //Helps in picking up existing LTS records
     global List<loan__Loan_Transaction_Summary__c> getLTSTxn1(Date startDate, Date endDate,Set<Id> loanIds){
         String fields = 'Id,Last_transaction_id__c,Loan_Account__c,Consolidated_Loan_Balance__c,Current_Interest_Rate__c,'+
                         'Current_Loan_Balance__c, Current_Principal_Remaining__c,Repayment_Txn_Reversal__c,'+
@@ -192,7 +192,7 @@ global with sharing class LTSMigrationHandler {
         loanOC.addNamedParameter('startDate', startDate);
         loanOC.addNamedParameter('endDate', endDate);
         String whereClause = ' Loan_Account__c  IN :loanIds' ;
-        whereClause += ' AND Date__c >= :startDate';//can we use loan__Date__c instead of Transaction_Creation_Date__c
+        whereClause += ' AND Date__c >= :startDate';
         whereClause += ' AND Date__c <= :endDate';
         whereClause += ' AND Archived__c = false';
 
@@ -373,7 +373,6 @@ global with sharing class LTSMigrationHandler {
                 loanIdToLTSMap.put(lts.loan__Loan_Account__c,new List<loan__Loan_Transaction_Summary__c>());
             }
             List<loan__Loan_Transaction_Summary__c> txnList = loanIdToLTSMap.get(lts.loan__Loan_Account__c);
-            //importance? cant we take a new LTS list
             txnList.add(lts);
         }
         //getting all the LDT transactions in mentioned range
@@ -697,12 +696,11 @@ global with sharing class LTSMigrationHandler {
                     if(!lastTxnToSummaryMap.containsKey(ldt.Id)){
                         summary = loan.LoanTransactionSummaryUtil.getSummaryRecord(loanAcc.Id,null,ldt);
                         updateValueForNewSummary(summary , (Datetime)ldt.get('loan__Disbursal_Time__c') ,ldt.Id,ldt.loan__Loan_Account__c);
-                        updateTransactionDate(summary,ldt.loan__Disbursal_Date__c,ldt.CreatedDate);//should not it be loan__Disbursal_Date__c? 
-                        //what about backdated transactions?
+                        updateTransactionDate(summary,ldt.loan__Disbursal_Date__c,ldt.CreatedDate);
                         
                     }
                     else{
-                        summary = lastTxnToSummaryMap.get(ldt.Id);//did not understand the utility
+                        summary = lastTxnToSummaryMap.get(ldt.Id);
                     }
                     
                     if(summary != null && summary.loan__Loan_Disbursal__c == null){ 
@@ -830,7 +828,6 @@ global with sharing class LTSMigrationHandler {
                             summary.loan__Transaction_Amount__c = lptRev.loan__Loan_Payment_Transaction__r.loan__Transaction_Amount__c;
                         }
                         updateFieldForReversal(summary,lptRev.loan__Loan_Payment_Transaction__r.loan__Loan_Snapshot__c);
-                        //updateFieldForReversal(summary,lptRev.loan__Loan_Payment_Transaction__c,loanAcc.Id);
                         summary.loan__Transaction_Type_Id__c = transTypeToIdMapLPTRev.get(loan.LoanConstants.LOAN_TRANSACTION_PAYMENT_REVERSAL);
                     }
                     IdsWhtSnapshot.put(summary.loan__Last_transaction_id__c,summary); 
@@ -891,9 +888,8 @@ global with sharing class LTSMigrationHandler {
                         if(disursalRev.Id != null){
                             summary.loan__Last_Transaction_Type__c = String.valueOf(((Id)disursalRev.Id).getSobjectType());
                         }
-                        summary.loan__Transaction_Type_Id__c = transTypeToIdMapLDTRev.get(loan.LoanConstants.LOAN_TRANSACTION_DISBURSAL_REVERSAL); //There is no reversal type
+                        summary.loan__Transaction_Type_Id__c = transTypeToIdMapLDTRev.get(loan.LoanConstants.LOAN_TRANSACTION_DISBURSAL_REVERSAL);
                         updateFieldForReversal(summary,disursalRev.loan__Loan_Disbursal_Transaction__r.loan__Loan_Snapshot__c);
-                     // updateFieldForReversal(summary,disursalRev.loan__Loan_Disbursal_Transaction__c,loanAcc.Id);
 
                     }            
                     summariesToBeInserted.add(summary);
@@ -932,7 +928,7 @@ global with sharing class LTSMigrationHandler {
             if(chargeList != null && chargeList.size()>0){
                 for(loan__Charge__c charge : chargeList){
                     if(!loan.LoanTransactionSummaryUtil.isValidTransaction(charge)){
-                        invalidTxnIdToTxnMap.put(charge.Id,charge);// did not understand what invalidTxnIdToTxnMap is doing
+                        invalidTxnIdToTxnMap.put(charge.Id,charge);
                     }
                     loan__Loan_Transaction_Summary__c summary = new loan__Loan_Transaction_Summary__c();
                     if(!lastTxnToSummaryMap.containsKey(charge.Id)){
