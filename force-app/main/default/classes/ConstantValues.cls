@@ -992,4 +992,7 @@ global class ConstantValues {
   public static final String Home_Phone='Home Phone';
   public static final String None_Tag= 'None';
 
+  //LTSRedrawUpdateBatch Constant Values
+  public static final String REDRAW='Redraw';
+
 }

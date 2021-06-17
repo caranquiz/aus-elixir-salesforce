@@ -22,10 +22,11 @@ public class LTSRedrawUpdateBatch implements DataBase.StateFul,DataBase.Batchabl
                                                loan__Transaction_Date__c,
                                          	   loan__Consolidated_Loan_Balance__c
                                            FROM loan__Loan_Transaction_Summary__c
-                                           WHERE Transaction_Type__c= 'Redraw' 
+                                           WHERE Transaction_Type__c=: ConstantValues.REDRAW
                                            AND(loan__Transaction_Amount__c=NULL 
-                                               OR loan__Consolidated_Loan_Balance__c=NULL
-                                               OR loan__Current_Loan_Balance__c =NULL)]);
+                                           OR loan__Consolidated_Loan_Balance__c=NULL
+                                           OR loan__Current_Loan_Balance__c =NULL)
+                                           AND loan__Invalid_data__c=false]);
     }
     //This method updates LTS.
     public void execute(Database.BatchableContext bc, List<loan__Loan_Transaction_Summary__c> objLTSList) {
