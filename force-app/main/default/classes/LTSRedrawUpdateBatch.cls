@@ -18,6 +18,8 @@ public class LTSRedrawUpdateBatch implements DataBase.StateFul,DataBase.Batchabl
                                                loan__Other_Loan_Txn__r.id,
                                          	   loan__Transaction_Amount__c,
                                          	   loan__Current_Loan_Balance__c,
+                                               loan__Transaction_Time__c,
+                                               loan__Transaction_Date__c,
                                          	   loan__Consolidated_Loan_Balance__c
                                            FROM loan__Loan_Transaction_Summary__c
                                            WHERE Transaction_Type__c= 'Redraw' 
@@ -55,6 +57,7 @@ public class LTSRedrawUpdateBatch implements DataBase.StateFul,DataBase.Batchabl
                 if(depositMap.containskey(objLTS.loan__Other_Loan_Txn__r.id)){
                     objLTS.loan__Consolidated_Loan_Balance__c=objLTS.loan__Current_Loan_Balance__c-depositMap.get(objLTS.loan__Other_Loan_Txn__r.id);
                 }
+                objLTS.loan__Transaction_Time__c=objLTS.loan__Transaction_Date__c;
             }
             if(objLTSList.size()>0){
                 Database.update(objLTSList,false);
