@@ -12,16 +12,14 @@
         <members>LoanPaymentTxnClearingJobCustomQuery</members>
         <members>TestLoan</members>
         <members>TestMigrationForLTS</members>
-        <members>TransactionController</members>
+        <members>UpdateUnpaidBillsFlagBatch</members>
         <name>ApexClass</name>
     </types>
     <types>
         <members>GenerateStatementApexPage</members>
-        <members>TransactionPage</members>
         <name>ApexPage</name>
     </types>
     <types>
-        <members>loan__Loan_Account__c.Opening_Balance__c</members>
         <members>Batch_Job_Size__c.LTSRedrawUpdateBatch_Size__c</members>
         <members>loan__Charge__c.Include_in_Summary__c</members>
         <members>loan__Coborrower__c.Applicant_Name__c</members>
@@ -29,6 +27,7 @@
         <members>loan__Loan_Account__c.Statement_End_Date__c</members>
         <members>loan__Loan_Account__c.Statement_Start_Date__c</members>
         <members>loan__Loan_Account__c.Total_no_of_Paid_bills__c</members>
+        <members>loan__Loan_Account__c.Opening_Balance__c</members>
         <members>loan__Loan_Disbursal_Transaction__c.Include_in_Summary__c</members>
         <members>loan__Loan_Payment_Transaction__c.Include_in_Summary__c</members>
         <members>loan__Loan_Transaction_Summary__c.Credit__c</members>
