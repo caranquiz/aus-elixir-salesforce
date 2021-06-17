@@ -1574,4 +1574,130 @@ public with sharing class GenericUtilityTestHelper {
     insert telephoneContact;
     return telephoneContact;
   }
+  public static loan__Fee__c returnLateFee(Id curr){
+    loan__Fee__c lateFee =new loan__Fee__c(Name='LateFee',
+                                    loan__State__c = 'Active',
+                                    loan__Fee_Calculation_Method__c = 'Fixed',
+                                    loan__Amount__c = 100.0,
+                                    loan__Currency__c = curr,
+                                    loan__Fee_Category__c = 'Loan',
+                                    loan__Time_Of_Charge__c = 'Late Fees');
+
+        insert lateFee;
+        return lateFee;
+  }
+  public static Contact returnContactDetail(){
+    Contact borrower = new Contact(LastName = 'TestBorrower');
+    insert borrower;
+    return borrower;
+  }
+   public static loan__Loan_Disbursal_Transaction__c returnDisbursal(Id loanAccId,Date currentSystemDate,Id pmode){
+      loan__Loan_Disbursal_Transaction__c disTxn = new loan__Loan_Disbursal_Transaction__c();
+      disTxn.loan__Loan_Account__c = loanAccId;
+      disTxn.loan__Disbursal_Date__c = currentSystemDate;
+      disTxn.loan__Transaction_Creation_Date__c = currentSystemDate;
+      distxn.loan__Disbursed_Amt__c=10000;
+      disTxn.loan__Mode_Of_Payment__c = pmode;
+      return disTxn;
+   }
+
+  public static loan__Loan_Payment_Transaction__c returnPayment(Id loanAccId,Date currentSystemDate,Id pMode){
+      loan__Loan_Payment_Transaction__c pmt = new loan__Loan_Payment_Transaction__c();
+      pmt.loan__Loan_Account__c = loanAccId;
+      pmt.loan__Transaction_Date__c = currentSystemDate;
+      pmt.loan__Transaction_Creation_Date__c = currentSystemDate;
+      pmt.loan__Transaction_Amount__c =100;
+      pmt.loan__Principal__c = 90;
+      pmt.loan__Interest__c = 10;
+      pmt.loan__Manual_Payment__c = true;
+      pmt.loan__Payment_Mode__c = pMode;
+      insert pmt;
+      return pmt;
+  }
+  public static loan__Repayment_Transaction_Adjustment__c returnrevpayment(Date currentSystemDate,Id payment){
+      loan__Repayment_Transaction_Adjustment__c reversalTxn = new loan__Repayment_Transaction_Adjustment__c();
+      reversalTxn.loan__Adjustment_Txn_Date__c = currentSystemDate;
+      reversalTxn.loan__Transaction_Creation_Date__c = currentSystemDate;
+      reversalTxn.loan__Loan_Payment_Transaction__c = payment;
+      reversalTxn.loan__Refund_To_Borrower__c = false;
+      insert reversalTxn;
+      return reversalTxn;
+  }
+
+  public static loan__Loan_account_Due_Details__c returnBills(Id LoanId,Date currentSystemDate){
+    loan__Loan_account_Due_Details__c bills = new loan__Loan_account_Due_Details__c();
+    bills.loan__due_type_description__c ='BILL / DUE DATE';
+    bills.loan__Loan_Account__c = LoanId;
+    bills.loan__Archived__c = false;
+    bills.loan__Due_Amt__c = 450;
+    bills.loan__Due_Date__c=currentSystemDate;
+    bills.loan__Transaction_Creation_Date__c =currentSystemDate;
+    insert bills;
+    return bills;
+
+  }
+
+  public static loan__Charge__c returncharge(Id LoanId,Date currentSystemDate,Id feesId){
+    
+    loan__Charge__c charge = new loan__Charge__c();
+    charge.loan__Loan_Account__c = LoanId;
+    charge.loan__Original_Amount__c = 100;
+    charge.loan__Transaction_Creation_Date__c = currentSystemDate;
+    charge.loan__Fee__c = feesId;
+    charge.loan__Date__c = currentSystemDate;
+    insert charge;
+    return charge;
+  }
+  public static clcommon__Deposit__c returnDeposit(Id loanAccId ,Date currentSystemDate ,Integer rate,Integer sequence){
+    clcommon__Deposit__c deposit1 = new clcommon__Deposit__c(clcommon__Deposit_Amount__c = 1000,
+                                                                 clcommon__Current_Deposit_Amount__c = 1000,
+                                                                 clcommon__Deposit_Rate__c = rate,
+                                                                 clcommon__Sequence__c = sequence,
+                                                                 clcommon__Transaction_Creation_Date__c = currentSystemDate,
+                                                                 clcommon__Priority__c = sequence,
+                                                                 clcommon__Transaction_Date__c =currentSystemDate,
+                                                                 loan__Loan_Account__c= loanAccId );
+    insert deposit1;
+    return deposit1;
+  }
+  public static loan__Interest_Posting_Transaction__c returnInterest(Id LoanId,Date currentSystemDate){
+    loan__Interest_Posting_Transaction__c interestPosting = new loan__Interest_Posting_Transaction__c();
+    interestPosting.loan__Balance__c =2000;
+    interestPosting.loan__Loan_Contract__c = LoanId;
+    interestPosting.loan__Is_Posted__c = true;
+    interestPosting.loan__Archived__c = false;
+    interestPosting.loan__Reversed__c = false;
+    interestPosting.loan__Transaction_Posting_Date__c=currentSystemDate;
+    interestPosting.loan__Interest_Posted__c=10;
+    insert interestPosting;
+    return interestPosting;
+  }
+  public static loan__Loan_Account__c returnLLAccount(Date currentSystemDate,Id dummyClient,Id cont,Id lpID){
+    loan__Loan_Account__c loanAcc1 = new loan__Loan_Account__c(loan__Loan_Amount__c = 10000,
+                                                                   loan__Client__c = dummyClient,
+                                                                   loan__Contact__c = cont,
+                                                                   loan__Product_Type__c = loan.LoanConstants.LOAN,
+                                                                   loan__Loan_Product_Name__c = lpID,
+                                                                   loan__Number_Of_Installments__c = 12,
+                                                                   loan__Interest_Rate__c = 5,
+                                                                   loan__Expected_Disbursal_Date__c = currentSystemDate,
+                                                                   loan__Expected_Repayment_Start_Date__c = loan.TestHelper.systemDate.addMonths(1),
+                                                                   loan__Is_Interest_Posting_Enabled__c = true,
+                                                                   loan__Interest_Posting_Frequency__c = loan.LoanConstants.LOAN_PAYMENT_FREQ_BILLING_FREQUENCY,
+                                                                   loan__Capitalization_Frequency__c = 'Monthly',
+                                                                   loan__Pre_Bill_Days__c = 5,
+                                                                   loan__Payment_Application_Order__c = loan.LoanConstants.DATE_WISE,
+                                                                   loan__Loan_Status__c = loan.LoanConstants.LOAN_STATUS_APPROVED);
+    return loanAcc1;
+  }
+
+  public static loan__Loan_Transaction_Summary__c returntransactionSumm(Id loanId,Id otherId){
+    loan__Loan_Transaction_Summary__c lts=new loan__Loan_Transaction_Summary__c();
+        lts.loan__Loan_Account__c=loanId;
+        lts.loan__Other_Loan_Txn__c=otherId;
+        lts.loan__Last_Transaction_Type__c = 'Deposit Adjustment - Subtract';
+        lts.loan__Consolidated_Loan_Balance__c=null;
+        insert lts;
+        return lts;
+  }
 }

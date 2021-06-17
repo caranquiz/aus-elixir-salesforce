@@ -12,7 +12,8 @@ global with sharing class UpdateUnpaidBillsFlagBatch implements DataBase.StateFu
                                             Total_no_of_generated_bills__c,
                                             Total_no_of_Paid_bills__c,
                                             loan__Unpaid_Bills__c 
-                                        FROM loan__Loan_Account__c]);
+                                        FROM loan__Loan_Account__c 
+                                        WHERE loan__Unpaid_Bills__c = true]);
     }
     public void execute(Database.BatchableContext bc, List<loan__Loan_Account__c> scope) {
         try{
@@ -26,9 +27,6 @@ global with sharing class UpdateUnpaidBillsFlagBatch implements DataBase.StateFu
                     }
                 }
                 Database.update(scope,false);
-            }
-            if(Test.isRunningTest() == true){
-                Integer a = 1/0;
             }
         }catch(Exception exe){
             insert new clcommon__Log__c(

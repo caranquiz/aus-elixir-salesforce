@@ -36,14 +36,9 @@ global with sharing class LTSMigrationHandler {
         loanOC.addNamedParameter('startDate', startDate);
         loanOC.addNamedParameter('endDate', endDate);
         String whereClause = ' Loan_Account__c IN :loanIds' ;
-        if(Test.isRunningTest() == false){
-            whereClause += ' AND Transaction_Date__c >= :startDate';
-            whereClause += ' AND Transaction_Date__c <= :endDate';
-        }
-        else{
-            whereClause += ' AND Day_Only(CreatedDate) >= :startDate';
-            whereClause += ' AND Day_Only(CreatedDate) <= :endDate';
-        }
+        whereClause += ' AND Transaction_Date__c >= :startDate';
+        whereClause += ' AND Transaction_Date__c <= :endDate';
+        
         whereClause += ' AND Investment_order__c = null';
         whereClause += ' AND Discarded_Data__c  != True';
         whereClause +=' AND Invalid_Data__c !=True';
@@ -53,7 +48,6 @@ global with sharing class LTSMigrationHandler {
         loanOC.buildQuery();
         loanOC.executeQuery();
         List<loan__Loan_transaction_summary__c> txnList = (List<loan__Loan_transaction_summary__c>)loanOC.getRecords();
-        system.debug('LTS Record1--->'+txnList);
         return txnList;
     }
     //This function is just taking up relevant IPTs and building query for IPT
@@ -74,14 +68,8 @@ global with sharing class LTSMigrationHandler {
         loanOC.addNamedParameter('startDate', startDate);
         loanOC.addNamedParameter('endDate', endDate);
         String whereClause = ' Loan_Contract__c IN :loanIds' ;
-        if(Test.isRunningTest() == false){//wont the conditions need to be swapped an also should not transaction posting date be considered??
             whereClause += ' AND Transaction_Posting_Date__c >= :startDate';
             whereClause += ' AND Transaction_Posting_Date__c <= :endDate';
-        }
-        else{
-            whereClause += ' AND Day_Only(CreatedDate) >= :startDate';
-            whereClause += ' AND Day_Only(CreatedDate) <= :endDate';
-        }
         
         whereClause += ' And Is_Posted__c = true';
         whereClause += ' AND Reversed__c = false';
@@ -92,7 +80,6 @@ global with sharing class LTSMigrationHandler {
         loanOC.buildQuery();
         loanOC.executeQuery();
         List<loan__Interest_Posting_Transaction__c> txnList = (List<loan__Interest_Posting_Transaction__c>)loanOC.getRecords();
-        System.debug('Check IPT records==='+txnList);
         return txnList;
         
     }
@@ -113,16 +100,8 @@ global with sharing class LTSMigrationHandler {
         loanOC.addNamedParameter('startDate', startDate);
         loanOC.addNamedParameter('endDate', endDate);
         String whereClause = ' Loan_Account__c IN :loanIds' ;
-        if(Test.isRunningTest() == false){
-            //wont the conditions need to be swapped and also should not due date be considered instead o transactio Creation Date??
-            whereClause += ' AND Due_Date__c >= :startDate';
-            whereClause += ' AND Due_Date__c <= :endDate';
-        }
-        else{
-            whereClause += ' AND Day_Only(CreatedDate) >= :startDate';
-            whereClause += ' AND Day_Only(CreatedDate) <= :endDate';
-        }
-        
+        whereClause += ' AND Due_Date__c >= :startDate';
+        whereClause += ' AND Due_Date__c <= :endDate';
         whereClause += ' AND Archived__c = false';
 
         loanOC.setWhereClause(whereClause);
@@ -130,13 +109,11 @@ global with sharing class LTSMigrationHandler {
         loanOC.buildQuery();
         loanOC.executeQuery();
         List<loan__Loan_account_Due_Details__c> txnList = (List<loan__Loan_account_Due_Details__c>)loanOC.getRecords();
-        System.debug('Bills'+txnList);
         return txnList;
         
     }
     //This function is just taking up relevant LDT reversal and building query for LDT reversal
     global List<loan__Disbursal_Adjustment__c>  getDisRevTxn(Date startDate, Date endDate,Set<Id> loanIds){
-        System.debug('getDisRevTxngetDisRevTxn');
         String fields = ' Id, Name, Transaction_Time__c, CreatedDate, Transaction_Creation_Date__c,'+
                         'Rejected__c,Adjustment_Txn_Date__c, '+
                         'Loan_Disbursal_Transaction__r.Loan_Account__c, Loan_Disbursal_Transaction__r.Disbursed_Amt__c,'+
@@ -154,15 +131,9 @@ global with sharing class LTSMigrationHandler {
         loanOC.addNamedParameter('startDate', startDate);
         loanOC.addNamedParameter('endDate', endDate);
         String whereClause = ' Loan_Disbursal_Transaction__r.Loan_Account__c IN :loanIds' ;
-        if(Test.isRunningTest() == false){// should not the if clause execution statement be reversed? 
-            whereClause += ' AND Adjustment_Txn_Date__c >= :startDate';
-            //should not we use loan__Adjustment_Txn_Date__c instead of Transaction_Creation_Date__c
-            whereClause += ' AND _Adjustment_Txn_Date__c <= :endDate';
-        }
-        else{
-            whereClause += ' AND Day_Only(CreatedDate) >= :startDate';
-            whereClause += ' AND Day_Only(CreatedDate) <= :endDate';
-        }
+        whereClause += ' AND Adjustment_Txn_Date__c >= :startDate';
+        whereClause += ' AND _Adjustment_Txn_Date__c <= :endDate';
+        
         whereClause += ' AND Archived__c = false';
         whereClause += ' AND Rejected__c = false';
         whereClause += ' AND Cleared__c = true';
@@ -172,7 +143,6 @@ global with sharing class LTSMigrationHandler {
         loanOC.buildQuery();
         loanOC.executeQuery();
         List<loan__Disbursal_Adjustment__c> txnList = (List<loan__Disbursal_Adjustment__c>)loanOC.getRecords();
-        System.debug('Reversed LDTs'+txnList);
         return txnList;
         
     }
@@ -181,7 +151,6 @@ global with sharing class LTSMigrationHandler {
         String fields = 'Id, Loan_Snapshot__c, CreatedDate, Name, Rejected__c, Loan_Payment_Transaction__r.Loan_Account__c,'+
                         'Loan_Payment_Transaction__r.Loan_Snapshot__c,Transaction_Time__c, '+
                         'Loan_Payment_Transaction__r.Transaction_Amount__c , Transaction_Creation_Date__c, Adjustment_Txn_Date__c,Loan_Payment_Transaction__r.Balance__c ';
-        system.debug('getPay121');
         mfiflexUtil.ExecutionContext ec = mfiflexUtil.ExecutionContext.getExecContext();
         mfiflexUtil.ObjectCache loanOC ; 
         loanOC = ec.getObject('LoansJob');
@@ -193,31 +162,17 @@ global with sharing class LTSMigrationHandler {
         loanOC.addNamedParameter('loanIds', loanIds);
         loanOC.addNamedParameter('startDate', startDate);
         loanOC.addNamedParameter('endDate', endDate);
-        system.debug('getPay122');
         String whereClause = '  Loan_Payment_Transaction__r.Loan_Account__c  IN :loanIds' ;
-        if(Test.isRunningTest() == false){
-            whereClause += ' AND Adjustment_Txn_Date__c >= :startDate';
-            whereClause += ' AND Adjustment_Txn_Date__c <= :endDate';
-        }
-        else{
-            whereClause += ' AND Day_Only(CreatedDate) >= :startDate';
-            whereClause += ' AND Day_Only(CreatedDate) <= :endDate';
-        } 
-        system.debug('getPay123');   
+        whereClause += ' AND Adjustment_Txn_Date__c >= :startDate';
+        whereClause += ' AND Adjustment_Txn_Date__c <= :endDate';
         whereClause += ' AND Archived__c = false';
         whereClause += ' AND Rejected__c = false';
         whereClause += ' AND Cleared__c = true';
-        system.debug('getPay124');
         loanOC.setWhereClause(whereClause);
-        system.debug('getPay125');
         loanOC.setOrderClause('Adjustment_Txn_Date__c');
-        system.debug('getPay126');
         loanOC.buildQuery();
-        system.debug('getPay127');
         loanOC.executeQuery();
-        system.debug('getPay128');
         List<loan__Repayment_Transaction_Adjustment__c> txnList = (List<loan__Repayment_Transaction_Adjustment__c>)loanOC.getRecords();
-        System.debug('getPayRevTxn_txnList--->'+txnList);
         return txnList;
         
     }
@@ -237,14 +192,8 @@ global with sharing class LTSMigrationHandler {
         loanOC.addNamedParameter('startDate', startDate);
         loanOC.addNamedParameter('endDate', endDate);
         String whereClause = ' Loan_Account__c  IN :loanIds' ;
-        if(Test.isRunningTest() == false){
-            whereClause += ' AND Date__c >= :startDate';//can we use loan__Date__c instead of Transaction_Creation_Date__c
-            whereClause += ' AND Date__c <= :endDate';
-        }
-        else{
-            whereClause += ' AND Day_Only(CreatedDate) >= :startDate';
-            whereClause += ' AND Day_Only(CreatedDate) <= :endDate';
-        }
+        whereClause += ' AND Date__c >= :startDate';//can we use loan__Date__c instead of Transaction_Creation_Date__c
+        whereClause += ' AND Date__c <= :endDate';
         whereClause += ' AND Archived__c = false';
 
         loanOC.setWhereClause(whereClause);
@@ -252,7 +201,6 @@ global with sharing class LTSMigrationHandler {
         loanOC.buildQuery();
         loanOC.executeQuery();
         List<loan__Charge__c> txnList = (List<loan__Charge__c>)loanOC.getRecords();
-        system.debug('chargeListTxn--->'+txnList);
         return txnList;
         
     }
@@ -295,14 +243,8 @@ global with sharing class LTSMigrationHandler {
         loanOC.addNamedParameter('endDate', endDate);
         loanOC.addNamedParameter('allowedLoanStatuses', allowedLoanStatuses);
         String whereClause = ' Loan_Account__c  IN :loanIds' ;
-        /*if(Test.isRunningTest() == false){
-            whereClause += ' AND CreatedDate >= :startDate';
-            whereClause += ' AND Txn_Date__c <= :endDate';
-        }
-        else{*/
-            whereClause += ' AND Day_Only(CreatedDate) >= :startDate';
-            whereClause += ' AND Day_Only(CreatedDate) <= :endDate';
-        //}
+        whereClause += ' AND Txn_Date__c >= :startDate';
+        whereClause += ' AND Txn_Date__c <= :endDate';
         whereClause += ' AND Rejected__c = false';
         whereClause += ' AND Transaction_Type__c IN (' + allowedLoanStatuses + ')';
 
@@ -311,7 +253,6 @@ global with sharing class LTSMigrationHandler {
         loanOC.buildQuery();
         loanOC.executeQuery();
         List<loan__Other_Transaction__c> txnList = (List<loan__Other_Transaction__c>)loanOC.getRecords();
-        System.debug('Other Loan Transactions 1===='+txnList);
         return txnList;
         
     }
@@ -331,14 +272,8 @@ global with sharing class LTSMigrationHandler {
         loanOC.addNamedParameter('startDate', startDate);
         loanOC.addNamedParameter('endDate', endDate);
         String whereClause = ' Loan_Account__c  IN :loanIds' ;
-        if(Test.isRunningTest() == false){
-            whereClause += ' AND Disbursal_Date__c >= :startDate';
-            whereClause += ' AND Disbursal_Date__c <= :endDate';
-        }
-        else{
-            whereClause += ' AND Day_Only(CreatedDate) >= :startDate';
-            whereClause += ' AND Day_Only(CreatedDate) <= :endDate';
-        }
+        whereClause += ' AND Disbursal_Date__c >= :startDate';
+        whereClause += ' AND Disbursal_Date__c <= :endDate';
         whereClause += ' AND Rejected__c = false';
         whereClause += ' AND Cleared__c = true';
 
@@ -347,7 +282,6 @@ global with sharing class LTSMigrationHandler {
         loanOC.buildQuery();
         loanOC.executeQuery();
         List<loan__Loan_Disbursal_Transaction__c> txnList = (List<loan__Loan_Disbursal_Transaction__c>)loanOC.getRecords();
-        system.debug('Disbursal Record--->>>'+txnList);
         return txnList;
     }
     //This function is just taking up relevant LPT and building query for LPTs
@@ -367,14 +301,8 @@ global with sharing class LTSMigrationHandler {
         loanOC.addNamedParameter('startDate', startDate);
         loanOC.addNamedParameter('endDate', endDate);
         String whereClause = ' Loan_Account__c  IN :loanIds' ;
-        if(Test.isRunningTest() == false){
-            whereClause += ' AND Transaction_Date__c >= :startDate';
-            whereClause += ' AND Transaction_Date__c <= :endDate';
-        }
-        else{
-            whereClause += ' AND Day_Only(CreatedDate) >= :startDate';
-            whereClause += ' AND Day_Only(CreatedDate) <= :endDate';
-        }
+        whereClause += ' AND Transaction_Date__c >= :startDate';
+        whereClause += ' AND Transaction_Date__c <= :endDate';
         whereClause += ' AND Rejected__c = false';
         whereClause += ' AND Cleared__c = true';
 
@@ -383,7 +311,6 @@ global with sharing class LTSMigrationHandler {
         loanOC.buildQuery();
         loanOC.executeQuery();
         List<loan__Loan_Payment_transaction__c> txnList = (List<loan__Loan_Payment_transaction__c>)loanOC.getRecords();
-        System.debug('LPTs==='+txnList);
         return txnList;        
     }
     //This function is just taking up relevant Cl Contract and getting details from CL Contract for populating them in LTS
@@ -406,7 +333,6 @@ global with sharing class LTSMigrationHandler {
         loanOC.buildQuery();
         loanOC.executeQuery();
         List<loan__Loan_Account__c> loan = (List<loan__Loan_Account__c>)loanOC.getRecords();
-        system.debug('loan-->>'+loan);
         return loan;       
     }
 
@@ -461,41 +387,33 @@ global with sharing class LTSMigrationHandler {
         }
         //getting all the LPT transactions in mentioned range
         List<loan__Loan_Payment_transaction__c> lptList = getPaymentTxn(startDate,endDate,loanAccIds);
-        system.debug('lptList--->'+lptList.size());
         for(loan__Loan_Payment_transaction__c lpt : lptList){
             if(!loanIdToLPTMap.containsKey(lpt.loan__Loan_Account__c)){
                 loanIdToLPTMap.put(lpt.loan__Loan_Account__c , new List<loan__Loan_Payment_transaction__c>());
             }
             List<loan__Loan_Payment_transaction__c> txnList = loanIdToLPTMap.get(lpt.loan__Loan_Account__c);
             txnList.add(lpt);
-            system.debug('lpt==>>'+lpt);
         }
         //getting all the OLT transactions in mentioned range
         List<loan__Other_Transaction__c> oltList =  getOtherLoanTxn(startDate,endDate,loanAccIds);
-        System.debug('Other Loan transactions1'+oltList);                         
         for(loan__Other_Transaction__c oth : oltList){  
-            System.debug('Other Loan transactions2'+oth);  
             if(!loanIdToOLTMap.containsKey(oth.loan__Loan_Account__c)){
                 loanIdToOLTMap.put(oth.loan__Loan_Account__c,new List<loan__Other_Transaction__c>());
             }
             List<loan__Other_Transaction__c> txnList = loanIdToOLTMap.get(oth.loan__Loan_Account__c);
             txnList.add(oth);
         }
-        system.debug('Other Loan transactions4');   
         //getting all the Reversed LPTs transactions in mentioned range
         List<loan__Repayment_Transaction_Adjustment__c>  lptRevList =  getPayRevTxn(startDate,endDate,loanAccIds);   
-        system.debug('getPayRevTxn');                                       
         for(loan__Repayment_Transaction_Adjustment__c lptRev : lptRevList){     
             if(!loanIdToLPTRevMap.containsKey(lptRev.loan__Loan_Payment_Transaction__r.loan__Loan_Account__c)){
                 loanIdToLPTRevMap.put(lptRev.loan__Loan_Payment_Transaction__r.loan__Loan_Account__c,new List<loan__Repayment_Transaction_Adjustment__c>());
             }
             List<loan__Repayment_Transaction_Adjustment__c> txnList =   loanIdToLPTRevMap.get(lptRev.loan__Loan_Payment_Transaction__r.loan__Loan_Account__c);
             txnList.add(lptRev);  
-            system.debug('lptRev====>>'+lptRev);                                      
         }
         /*//getting all the Reversed LDTs transactions in mentioned range- Elixir does not have reversed LDT - So commenting this for now
         List<loan__Disbursal_Adjustment__c> ldtRevList = getDisRevTxn(startDate,endDate,loanAccIds);
-        //System.debug('getDisRevTxn');
         for(loan__Disbursal_Adjustment__c ldtRev : ldtRevList){
             if(!loanIdToLDTRevMap.containsKey(ldtRev.loan__Loan_Disbursal_Transaction__r.loan__Loan_Account__c)){
                 loanIdToLDTRevMap.put(ldtRev.loan__Loan_Disbursal_Transaction__r.loan__Loan_Account__c , new List<loan__Disbursal_Adjustment__c>());
@@ -505,25 +423,21 @@ global with sharing class LTSMigrationHandler {
         }*/
         //getting all the Charges transactions in mentioned range
         List<loan__Charge__c> chargeList = getChargeTxn(startDate,endDate,loanAccIds);
-        system.debug('chargeList====>>>'+chargeList);
         for(loan__Charge__c charge : chargeList){
             if(!loanIdtoChargeMap.containsKey(charge.loan__Loan_Account__c)){
                 loanIdtoChargeMap.put(charge.loan__Loan_Account__c, new List<loan__Charge__c> ());
             }
             List<loan__Charge__c> txnList = loanIdtoChargeMap.get(charge.loan__Loan_Account__c);
             txnList.add(charge);
-            system.debug('txnListchargeList====>>>'+txnList);
         }
         //getting all the IPTs transactions in mentioned range
         List<loan__Interest_Posting_Transaction__c> iptList = getIntrstPstngTxn(startDate,endDate,loanAccIds);
-        system.debug('IPTList===>>'+iptList);
         for(loan__Interest_Posting_Transaction__c ipt :iptList){
             if(!IdToIPTMap.containsKey(ipt.loan__Loan_Contract__c)){
                 IdToIPTMap.put(ipt.loan__Loan_Contract__c,new List<loan__Interest_Posting_Transaction__c>());
             }
             List<loan__Interest_Posting_Transaction__c> txnList = IdToIPTMap.get(ipt.loan__Loan_Contract__c);
             txnList.add(ipt);
-            system.debug('txnListIPT===>>'+txnList);
         }
         //getting all the Bill transactions in mentioned range
         List<loan__Loan_account_Due_Details__c> billList = getBillTxn(startDate,endDate,loanAccIds);
@@ -549,7 +463,6 @@ global with sharing class LTSMigrationHandler {
             }
             catch(Exception e){
                 uowTransaction.deleteUnitOfWork(laonAcc.Name);
-                System.debug(logginglevel.debug,'Error :: '+e.getStackTraceString());
             }
             
         }
@@ -607,10 +520,8 @@ global with sharing class LTSMigrationHandler {
             currentSummary.loan__Current_Interest_Rate__c = prevSummary.loan__Current_Interest_Rate__c;
         }
         //Changes made by Rameswari
-        system.debug('1234-->>');
         if(currentSummary.loan__Interest_Posting_Txn__c != NULL && balance != NULL){
             currentSummary.loan__Current_Loan_Balance__c = balance;
-            system.debug('CurrentLoanBalance_IPT--> '+balance);
         }
         else if(currentSummary.loan__Loan_Charge__c != NULL && balance != NULL){
            currentSummary.loan__Current_Loan_Balance__c = balance;
@@ -862,10 +773,8 @@ global with sharing class LTSMigrationHandler {
             }
             if(othList != null && othList.size()>0){
                 for(loan__Other_Transaction__c oth :othList){
-                    System.debug('<=====othList2HERE THE REDRAW IS FAILING!!!!!!!!!!!!!!!'+oth);
                     if(!loan.LoanTransactionSummaryUtil.isValidTransaction(oth) && oth.loan__Transaction_Type__c != ConstantValues.DEPOSIT_SUBTRACT){
                         invalidTxnIdToTxnMap.put(oth.Id,oth);
-                        System.debug('<=====othList3====NEED TO WRITE HERE!!!!!!!!!!!!!'+oth);
                     }
                     loan__Loan_Transaction_Summary__c summary = new loan__Loan_Transaction_Summary__c();
                     if(!lastTxnToSummaryMap.containsKey(oth.Id) && oth.loan__Loan_Snapshot__c!=null){
@@ -888,23 +797,18 @@ global with sharing class LTSMigrationHandler {
                         else{
                             summary = lastTxnToSummaryMap.get(oth.Id);
                         }
-                        System.debug('<=====othList5'+summary); 
                     }
                     if(summary != null && summary.loan__Other_Loan_Txn__c == null){
-                        System.debug('<=====othList6'+oth); 
                         updateValueForNewSummary(summary , (Datetime)oth.get('loan__Txn_Date__c') ,oth.Id,oth.loan__Loan_Account__c);
                         summary.loan__Other_Loan_Txn__c = oth.Id;
                         if(oth.loan__Txn_Amt__c != null && oth.loan__Transaction_Type__c != ConstantValues.DEPOSIT_SUBTRACT){
                             summary.loan__Transaction_Amount__c = oth.loan__Txn_Amt__c;
-                            System.debug('<=====othList7'+oth); 
                         }
                         if(oth.loan__Transaction_Type__c != null){
                             summary.loan__Transaction_Type_Id__c = transTypeToIdMapOLT.get(oth.loan__Transaction_Type__c);
-                            System.debug('<=====othList8'+oth); 
                         } 
                     }
                     summariesToBeInserted.add(summary);
-                    System.debug('<=====othList9'+oth); 
                 }
             }
             if(lptRevList != null && lptRevList.size()>0){
@@ -1023,8 +927,6 @@ global with sharing class LTSMigrationHandler {
                         IDToAmountMap.put(ipts.Id,ipts.loan__Interest_Posted__c);
                     }
                 }
-                system.debug('summariesToBeInserted-->'+summariesToBeInserted);
-                
             }
 
             if(chargeList != null && chargeList.size()>0){
@@ -1063,16 +965,11 @@ global with sharing class LTSMigrationHandler {
                 }
             }
             Integer i =0;
-            System.debug(summariesToBeInserted.size()+'==IdsWhtSnapshot'+IdsWhtSnapshot +'IdsWhtSnapshot ==summariesToBeInserted====>1'+summariesToBeInserted);
             if(!summariesToBeInserted.isEmpty()){
                 summariesToBeInserted = loan.LoanTransactionSummaryUtil.sortByTransactionTime(summariesToBeInserted);
-                System.debug('summariesToBeInserted====>2.1'+summariesToBeInserted);
                 if(IdsWhtSnapshot !=null){
-                    System.debug('summariesToBeInserted====>2.2'+summariesToBeInserted);
                     for(i = 0 ;i < summariesToBeInserted.size()-1 ;i++){
-                        System.debug('summariesToBeInserted====>2.3'+summariesToBeInserted[i]);
                         if(summariesToBeInserted[i].loan__Last_transaction_id__c != NULL && IdsWhtSnapshot.containsKey(summariesToBeInserted[i].loan__Last_transaction_id__c)){
-                            System.debug('summariesToBeInserted====>2.4');
                             summariesToBeInserted.remove(i); //This is done to check whether the first sorted txn has snapshot or not
                         }
                         else{
@@ -1085,28 +982,21 @@ global with sharing class LTSMigrationHandler {
                         loanAcct.loan__Transaction_Summary_Migrated_Till_Date__c = summariesToBeInserted[0].loan__Transaction_Date__c;
                     }
                 }
-                System.debug(summariesToBeInserted+'CHECK === 0'+summariesToBeInserted.size());
                 for(i = 0 ;i < summariesToBeInserted.size();i++){
                     if(summariesToBeInserted[i] != NULL){
                         if(IdsWhtSnapshot !=null){
-                            System.debug(summariesToBeInserted.size()+'summariesToBeInserted.size()1');
                             if(summariesToBeInserted[i].loan__Last_transaction_id__c != NULL && IdsWhtSnapshot.isEmpty() == false && IdsWhtSnapshot.containsKey(summariesToBeInserted[i].loan__Last_transaction_id__c)){
                                 //This is done to handle the case of txn order like, txn with snaphot -> wht Snaphot
                                 //reschedule - > bills ->Pmt
                                 //so to fill the value in reschule txn current state, we need value from next snapshot that is not present,
                                 //to maintain the consistency of code flow, bills LTS snapshot fields will have same snapshot value as of it is present in reschedule
                                 updateSnapShotField(summariesToBeInserted[i],summariesToBeInserted[i-1]);
-                                System.debug(summariesToBeInserted.size()+'summariesToBeInserted.size()2');
                             }
-                            System.debug(summariesToBeInserted.size()+'summariesToBeInserted.size()3');
                         }
                         if(endDate == dateutil.getCurrentSystemDate() && i != summariesToBeInserted.size()){ //GlobalLoanUtilFacade.getCurrentSystemDate
-                            System.debug(summariesToBeInserted.size()+'summariesToBeInserted.size()4');
                             if(i == summariesToBeInserted.size()-1){
-                                System.debug(summariesToBeInserted.size()+'summariesToBeInserted.size()5');
                                 break;
                             }
-                            System.debug(summariesToBeInserted.size()+'summariesToBeInserted.size()6');
                         }
                         //This is done in case next two transaction are two which will not have snapshot
                         //So,to get the better nearest data to get exact the data what was previous state of loan
@@ -1128,7 +1018,6 @@ global with sharing class LTSMigrationHandler {
                                 
                             }
                             else{
-                                System.debug(summariesToBeInserted.size()+'summariesToBeInserted.size()7');
                                 updateValueFromPrevState(summariesToBeInserted[i],summariesToBeInserted[i-1],0);
                             }
                             if(summariesToBeInserted[i].loan__Loan_Due_Detail__c == null && summariesToBeInserted[i].loan__Current_Payoff_Balance__c !=NULL && summariesToBeInserted[i].loan__Last_transaction_id__c != NULL &&  IDToAmountMap.get(summariesToBeInserted[i].loan__Last_transaction_id__c) != NULL){
@@ -1182,9 +1071,7 @@ global with sharing class LTSMigrationHandler {
                         }
                     }
                     else{
-                        System.debug(summariesToBeInserted.size()+'summariesToBeInserted.size()8');
                         summariesToBeInserted.remove(i);
-                        System.debug(summariesToBeInserted.size()+'summariesToBeInserted.size()9');
                     }
                 }
             }
@@ -1207,7 +1094,6 @@ global with sharing class LTSMigrationHandler {
             }
             //Seperate summaries that needs to be updated and inserted
             for(i=0;i<summariesToBeInserted.size();i++){
-                System.debug(summariesToBeInserted[i]+'Summary to be inserted');
                 if(summariesToBeInserted[i] != NULL){
                     if(lastTxnToSummaryMap.size() > 0 && summariesToBeInserted[i].loan__Last_transaction_id__c != NULL && (lastTxnToSummaryMap.containsKey(summariesToBeInserted[i].loan__Last_transaction_id__c) || invalidTxnIdToTxnMap.containsKey(summariesToBeInserted[i].loan__Last_transaction_id__c))){
                         summariesToBeInserted.remove(i);
@@ -1218,14 +1104,12 @@ global with sharing class LTSMigrationHandler {
                     summariesToBeInserted.remove(i);
                 }
             }
-            System.debug(summariesToBeInserted.size()+'summariesToBeInserted.size()');
             uow.addToInsert(summariesToBeInserted);
             uow.addToUpdate(loanAcct); 
             uow.addToUpdate(lastTxnToSummaryMap.values());    
 
         }catch(Exception e){
             
-            System.debug('====Loan Transaction summary util createSummariesForLoan=EXCEPTION=='+e.getStackTraceString());
             String error  = 'Loan Transaction summary util createSummariesForLoan=EXCEPTION ::'+e.getStackTraceString();
             loan__Batch_Process_Log__c log = new loan__Batch_Process_Log__c(loan__Date__c =  dateutil.getCurrentSystemDate(),
                                                                             loan__Log_Level__c = 'ERROR',
