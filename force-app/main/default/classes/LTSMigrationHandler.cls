@@ -1,6 +1,9 @@
 /******************************************************************
-Description : This class has been provided by CL to handle transactions present
+Description : This class has been provided by Q2 to handle transactions present
               on Transaction Summary object and migrate to Loan Transaction Summary
+Created By :  Q2 product team 
+Last Modiied by : Rameswari Barman and Ariz Mazhary
+Last Modified Date : 17/06/2021            
 ******************************************************************/
 global with sharing class LTSMigrationHandler {
     public loan__Org_Parameters__c orgParam;
