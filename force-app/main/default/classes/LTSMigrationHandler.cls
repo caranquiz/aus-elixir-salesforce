@@ -2,8 +2,10 @@
 Description : This class has been provided by Q2 to handle transactions present
               on Transaction Summary object and migrate to Loan Transaction Summary
 Created By :  Q2 product team 
-Last Modiied by : Rameswari Barman and Ariz Mazhary
-Last Modified Date : 17/06/2021            
+Last Modified by : Rameswari Barman and Ariz Mazhary
+Last Modified Date : 17/06/2021   
+Devloper's comment : Some part of the codes are hardcoded and not been put in Constant Classes - since
+                     they are referenced only here.   
 ******************************************************************/
 global with sharing class LTSMigrationHandler {
     public loan__Org_Parameters__c orgParam;
@@ -41,11 +43,9 @@ global with sharing class LTSMigrationHandler {
         String whereClause = ' Loan_Account__c IN :loanIds' ;
         whereClause += ' AND Transaction_Date__c >= :startDate';
         whereClause += ' AND Transaction_Date__c <= :endDate';
-        
         whereClause += ' AND Investment_order__c = null';
         whereClause += ' AND Discarded_Data__c  != True';
         whereClause +=' AND Invalid_Data__c !=True';
-
         loanOC.setWhereClause(whereClause);
         loanOC.setOrderClause('CreatedDate');
         loanOC.buildQuery();
@@ -71,20 +71,17 @@ global with sharing class LTSMigrationHandler {
         loanOC.addNamedParameter('startDate', startDate);
         loanOC.addNamedParameter('endDate', endDate);
         String whereClause = ' Loan_Contract__c IN :loanIds' ;
-            whereClause += ' AND Transaction_Posting_Date__c >= :startDate';
-            whereClause += ' AND Transaction_Posting_Date__c <= :endDate';
-        
+        whereClause += ' AND Transaction_Posting_Date__c >= :startDate';
+        whereClause += ' AND Transaction_Posting_Date__c <= :endDate';
         whereClause += ' And Is_Posted__c = true';
         whereClause += ' AND Reversed__c = false';
         whereClause += ' AND Archived__c = false';
-
         loanOC.setWhereClause(whereClause);
         loanOC.setOrderClause('Transaction_Posting_Date__c');
         loanOC.buildQuery();
         loanOC.executeQuery();
         List<loan__Interest_Posting_Transaction__c> txnList = (List<loan__Interest_Posting_Transaction__c>)loanOC.getRecords();
         return txnList;
-        
     }
     //This function is just taking up relevant Bills and building query for Bills
     global List<loan__Loan_account_Due_Details__c> getBillTxn(Date startDate, Date endDate,Set<Id> loanIds){
@@ -106,14 +103,12 @@ global with sharing class LTSMigrationHandler {
         whereClause += ' AND Due_Date__c >= :startDate';
         whereClause += ' AND Due_Date__c <= :endDate';
         whereClause += ' AND Archived__c = false';
-
         loanOC.setWhereClause(whereClause);
         loanOC.setOrderClause('Due_Date__c');
         loanOC.buildQuery();
         loanOC.executeQuery();
         List<loan__Loan_account_Due_Details__c> txnList = (List<loan__Loan_account_Due_Details__c>)loanOC.getRecords();
         return txnList;
-        
     }
     //This function is just taking up relevant LDT reversal and building query for LDT reversal
     global List<loan__Disbursal_Adjustment__c>  getDisRevTxn(Date startDate, Date endDate,Set<Id> loanIds){
@@ -136,18 +131,15 @@ global with sharing class LTSMigrationHandler {
         String whereClause = ' Loan_Disbursal_Transaction__r.Loan_Account__c IN :loanIds' ;
         whereClause += ' AND Adjustment_Txn_Date__c >= :startDate';
         whereClause += ' AND _Adjustment_Txn_Date__c <= :endDate';
-        
         whereClause += ' AND Archived__c = false';
         whereClause += ' AND Rejected__c = false';
         whereClause += ' AND Cleared__c = true';
-
         loanOC.setWhereClause(whereClause);
         loanOC.setOrderClause('Adjustment_Txn_Date__c');
         loanOC.buildQuery();
         loanOC.executeQuery();
         List<loan__Disbursal_Adjustment__c> txnList = (List<loan__Disbursal_Adjustment__c>)loanOC.getRecords();
         return txnList;
-        
     }
     //This function is just taking up relevant LPT reversal and building query for LPT reversal
     global List<loan__Repayment_Transaction_Adjustment__c> getPayRevTxn(Date startDate, Date endDate,Set<Id> loanIds){
@@ -177,7 +169,6 @@ global with sharing class LTSMigrationHandler {
         loanOC.executeQuery();
         List<loan__Repayment_Transaction_Adjustment__c> txnList = (List<loan__Repayment_Transaction_Adjustment__c>)loanOC.getRecords();
         return txnList;
-        
     }
     //This function is just taking up relevant Charge and building query for Charge
     global List<loan__Charge__c> getChargeTxn(Date startDate, Date endDate,Set<Id> loanIds){
@@ -198,14 +189,12 @@ global with sharing class LTSMigrationHandler {
         whereClause += ' AND Date__c >= :startDate';
         whereClause += ' AND Date__c <= :endDate';
         whereClause += ' AND Archived__c = false';
-
         loanOC.setWhereClause(whereClause);
         loanOC.setOrderClause('Date__c');
         loanOC.buildQuery();
         loanOC.executeQuery();
         List<loan__Charge__c> txnList = (List<loan__Charge__c>)loanOC.getRecords();
         return txnList;
-        
     }
     //This function is just taking up relevant OLT and building query for OLTs
     global List<loan__Other_Transaction__c> getOtherLoanTxn(Date startDate, Date endDate,Set<Id> loanIds){
@@ -250,14 +239,12 @@ global with sharing class LTSMigrationHandler {
         whereClause += ' AND Txn_Date__c <= :endDate';
         whereClause += ' AND Rejected__c = false';
         whereClause += ' AND Transaction_Type__c IN (' + allowedLoanStatuses + ')';
-
         loanOC.setWhereClause(whereClause);
         loanOC.setOrderClause('Txn_Date__c');
         loanOC.buildQuery();
         loanOC.executeQuery();
         List<loan__Other_Transaction__c> txnList = (List<loan__Other_Transaction__c>)loanOC.getRecords();
         return txnList;
-        
     }
     //This function is just taking up relevant LDT and building query for LDTs
     global List<loan__Loan_Disbursal_Transaction__c> getDisbursalTxn(Date startDate, Date endDate,Set<Id> loanIds){
@@ -279,7 +266,6 @@ global with sharing class LTSMigrationHandler {
         whereClause += ' AND Disbursal_Date__c <= :endDate';
         whereClause += ' AND Rejected__c = false';
         whereClause += ' AND Cleared__c = true';
-
         loanOC.setWhereClause(whereClause);
         loanOC.setOrderClause('Disbursal_Date__c');
         loanOC.buildQuery();
@@ -308,7 +294,6 @@ global with sharing class LTSMigrationHandler {
         whereClause += ' AND Transaction_Date__c <= :endDate';
         whereClause += ' AND Rejected__c = false';
         whereClause += ' AND Cleared__c = true';
-
         loanOC.setWhereClause(whereClause);
         loanOC.setOrderClause('Transaction_Date__c');
         loanOC.buildQuery();
@@ -331,7 +316,6 @@ global with sharing class LTSMigrationHandler {
         loanOC.addFields(fields);
         loanOC.addNamedParameter('loanIds', loanIds);
         String whereClause = ' Id IN :loanIds' ;
-        
         loanOC.setWhereClause(whereClause);
         loanOC.buildQuery();
         loanOC.executeQuery();
@@ -466,12 +450,10 @@ global with sharing class LTSMigrationHandler {
             catch(Exception e){
                 uowTransaction.deleteUnitOfWork(laonAcc.Name);
             }
-            
         }
         uowTransaction.commitWork();
         Database.insert(logsList);
     }
-
    global void updateFieldForReversal(loan__Loan_Transaction_Summary__c revSummary ,String snapShot){
         if(snapShot!=null){
             loan__Loan_Account__C loanAcc = loan.BalanceSnapshotUnit.getLoanAccountFromSnapShot(snapShot);
@@ -1108,7 +1090,6 @@ global with sharing class LTSMigrationHandler {
             uow.addToUpdate(lastTxnToSummaryMap.values());    
 
         }catch(Exception e){
-            
             String error  = 'Loan Transaction summary util createSummariesForLoan=EXCEPTION ::'+e.getStackTraceString();
             loan__Batch_Process_Log__c log = new loan__Batch_Process_Log__c(loan__Date__c =  dateutil.getCurrentSystemDate(),
                                                                             loan__Log_Level__c = 'ERROR',
