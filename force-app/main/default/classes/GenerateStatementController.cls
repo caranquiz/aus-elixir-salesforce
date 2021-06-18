@@ -109,13 +109,13 @@ public class GenerateStatementController {
         update loan;
         WebLink statementLink = [SELECT Id, Name, Url FROM WebLink WHERE Name = 'Generate_Statement_Document' limit 1];
         String statementURL = statementLink.Url;
-        if(loan.loan__Branch__c != null){
+        if(loan.loan__Account__c != null){
             statementURL = statementURL.replace('{!loan__Loan_Account__c.loan__AccountId__c}',loan.loan__Account__c);
         }
         if(loanId != null){
             statementURL = statementURL.replace('{!loan__Loan_Account__c.Id}',loanId);
         }
-        if(loan.loan__Account__c != null){
+        if(loan.loan__Branch__c != null){
             statementURL = statementURL.replace('{!loan__Loan_Account__c.loan__BranchId__c}',loan.loan__Branch__c);
         }
         if(loan.loan__Account__c != null){

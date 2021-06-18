@@ -108,7 +108,6 @@ public with sharing class TestMigrationForLTS {
             obj.loan__Enable_Tracking__c = true;
         }
         Database.update(objList);
-        
     }
     private static loan__Loan_Product__c getLoanProduct(String name) {
         loan__Loan_Product__c retVal;
@@ -176,6 +175,7 @@ public with sharing class TestMigrationForLTS {
         loan.TestHelper.createDayProcessForFullYear(dateutil.getCurrentSystemDate());
         
         loan__Loan_Account__C loanAcc = [SELECT id,
+                                                loan__Account__c,
                                                 loan__Provision_Amount__C ,
                                                 loan__Loan_Status__c
                                          FROM loan__Loan_Account__c 
@@ -195,7 +195,15 @@ public with sharing class TestMigrationForLTS {
         System.assertNotEquals(
             disTxn.Id, 
             'null');
-
+        PageReference pageRef = Page.loan__tabbedLoanAccount;
+        pageRef.getParameters().put('id', loanAcc.id);
+        Test.setCurrentPage(pageRef);
+        GenerateStatementController controllerRec = new GenerateStatementController();
+        controllerRec.loanRecord = loanAcc;
+        controllerRec.loanId = loanAcc.id;
+        controllerRec.doSearch();
+        controllerRec.exportToPDF();
+        controllerRec.back();
         Test.stopTest();
 
         loan__Loan_Payment_Transaction__c pmt = GenericUtilityTestHelper.returnPayment(loanAcc.Id,currentSystemDate,pMode.Id);
@@ -982,7 +990,6 @@ public with sharing class TestMigrationForLTS {
             null,
             'Trasaction Summary Inserted Successfully'
         );
-        
         clcommon__Deposit__c deposit=GenericUtilityTestHelper.depInfo(
             loanAcc.id
         );
@@ -1002,7 +1009,6 @@ public with sharing class TestMigrationForLTS {
 		system.schedule('Test Check', sch, obj );
         LTSRedrawUpdateBatchExecution.executeLTSRedrawUpdateBatchWS();
         Test.stopTest();
-        
     }
     
 }
