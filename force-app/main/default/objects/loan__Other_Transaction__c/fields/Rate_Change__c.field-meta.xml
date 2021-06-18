@@ -2,8 +2,7 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Rate_Change__c</fullName>
     <externalId>false</externalId>
-    <formula>IF( loan__New_Interest_Rate__c != NULL ||  loan__Interest_Rate__c != NULL,(IF(BEGINS((MID(loan__Description__c, (FIND(&apos;Int Rt:&apos;, loan__Description__c, 0)+7), 7)
-), TEXT(loan__Interest_Rate__c)) ,FALSE,TRUE)),FALSE)</formula>
+    <formula>IF((($User.loan__Current_Branch_s_System_Date__c-loan__Txn_Date__c) &lt; 365), IF(ISNULL(loan__Interest_Rate__c) == FALSE || ISNULL(loan__New_Interest_Rate__c) == FALSE,(IF(BEGINS((MID(loan__Description__c,(FIND(&apos;Int Rt:&apos;, loan__Description__c,0)+7), 7)),TEXT(loan__Interest_Rate__c)),false, true)),FALSE), FALSE)</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
     <label>Rate Changed?</label>
     <trackHistory>false</trackHistory>
