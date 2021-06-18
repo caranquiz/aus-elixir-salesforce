@@ -890,10 +890,16 @@ public with sharing class TestMigrationForLTS {
 
         lp.loan__Create_Summaries__C = true;
         Database.update(lp);
-        LTSMigrationJob batchLTS=new LTSMigrationJob(null,startDate,currentSystemDate,1);
+        Set<Id> record=new Set<Id>();
+        record.add(loanAcc.id);
+        LTSMigrationJob batchLTS=new LTSMigrationJob(null,startDate,currentSystemDate,10);
+        batchLTS.doInitialize();
+        batchLTS.batchSize=10;
         batchLTS.getBatchSize();
         batchLTS.getInstance();
-        Database.executeBatch(batchLTS, 1);
+        Database.executeBatch(batchLTS,10);
+        batchLTS.getRuntimeQuery();
+        batchLTS.getRuntimeQueryForPipelinedExecution(record);
         List<loan__Loan_Account__c > loanAccList = new List<loan__Loan_Account__c>();
         LTSMigrationHandler handler = new LTSMigrationHandler(startDate,currentSystemDate);
         loanAccList.add(TestLoan.getLoanAccount(loanAcc));
@@ -913,25 +919,6 @@ public with sharing class TestMigrationForLTS {
         System.assertEquals(4, summary.size());
     }
     
-    public testMethod static void LTSMigrationJobTest(){
-        loan.GlobalLoanUtilFacade dateutil = new loan.GlobalLoanUtilFacade();
-        Date currentSystemDate = dateutil.getCurrentSystemDate();
-        Date startDate = currentSystemDate;
-        loan__Loan_Account__C loanAcc = [SELECT id,
-                                                loan__Provision_Amount__C ,
-                                                loan__Loan_Status__c
-                                            FROM loan__Loan_Account__c 
-                                            WHERE loan__Product_Type__c =:loan.LoanConstants.LOAN 
-                                            LIMIT 1];
-        
-        Test.startTest();
-        LTSMigrationJob batchLTS=new LTSMigrationJob(null,startDate,currentSystemDate+1,10);
-        batchLTS.batchSize=10;
-        batchLTS.getBatchSize();
-        batchLTS.getInstance();
-        Database.executeBatch(batchLTS,10);
-        Test.stopTest();
-    }
     public testMethod static void LTSRedrawUpdateTest(){
         loan.GlobalLoanUtilFacade dateutil = new loan.GlobalLoanUtilFacade();
         Date currentSystemDate = dateutil.getCurrentSystemDate();
