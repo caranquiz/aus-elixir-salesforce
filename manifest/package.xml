@@ -27,7 +27,7 @@
         <members>loan__Loan_Account__c.Statement_End_Date__c</members>
         <members>loan__Loan_Account__c.Statement_Start_Date__c</members>
         <members>loan__Loan_Account__c.Total_no_of_Paid_bills__c</members>
-        <members>loan__Loan_Account__c.Opening_Balance__c</members>
+        <members>loan__Loan_Account__c.Statement_Opening_Balance__c</members>
         <members>loan__Loan_Disbursal_Transaction__c.Include_in_Summary__c</members>
         <members>loan__Loan_Payment_Transaction__c.Include_in_Summary__c</members>
         <members>loan__Loan_Transaction_Summary__c.Credit__c</members>
