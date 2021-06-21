@@ -628,18 +628,21 @@ global with sharing class LTSMigrationHandler {
         Map<String,Decimal> IDToAmountMap = new  Map<String,Decimal> ();
         List<clcommon__Deposit__c> depositList = loan.LoanTransactionUtil.getDepositListForALoan(loanAcc.Id); 
         List<clcommon__Deposit__c> depositList2=new List<clcommon__Deposit__c>();
-       for(clcommon__Deposit__c deposit:depositList){
+        Map<id,Datetime> depositMap=new Map<id,Datetime>();
+        for(clcommon__Deposit__c deposit:depositList){
             if(deposit.clcommon__Parent_Deposit__c!=NULL){
                 if(deposit.loan__Loan_Payment_Transaction__c!=NULL){
                     for(loan__Loan_Payment_Transaction__c lpt:lptList){
                         if(deposit.loan__Loan_Payment_Transaction__c==lpt.id && lpt.loan__Cleared__c==true && lpt.loan__Reversed__c!=true && lpt.loan__Rejected__c!=true ){
                             depositList2.add(deposit);
+                            depositMap.put(deposit.id,lpt.loan__Transaction_Time__c);
                         }
                     }
                 }else if(deposit.loan__Other_Loan_Transaction__c!=NULL){
                     for(loan__Other_Transaction__c  oth:othList){
                         if(deposit.loan__Other_Loan_Transaction__c==oth.id ){
                             depositList2.add(deposit);
+                            depositMap.put(deposit.id,oth.loan__Transaction_Time__c);
                         }
                     }
                 }else{
@@ -1021,14 +1024,14 @@ global with sharing class LTSMigrationHandler {
                         if(summariesToBeInserted[i].loan__Current_Delinquent_Amount__c == null && summariesToBeInserted[i+1].loan__Delinquent_Amount__c != NULL){
                             summariesToBeInserted[i].loan__Current_Delinquent_Amount__c = summariesToBeInserted[i+1].loan__Delinquent_Amount__c;
                         }
-                        if(depositList2 !=null && depositList2.size()>1 && summariesToBeInserted[i] != NULL && summariesToBeInserted[i].loan__Transaction_Date__c != NULL){
+                        if(depositList2 !=null && depositList2.size()>1 && summariesToBeInserted[i] != NULL && summariesToBeInserted[i].loan__Transaction_Time__c != NULL){
                             Integer j;
                             for(j=0;j<(depositList2.size()-1);j++){
                                 if(summariesToBeInserted[i].loan__Current_Loan_Balance__c != NULL && summariesToBeInserted[i].loan__Last_Transaction_Type__c!='loan__Loan_Disbursal_Transaction__c'){
-                                    if(depositList2[j].clcommon__Deposit_Amount__c!=NULL && depositList2[j].clcommon__Transaction_Date__c <= summariesToBeInserted[i].loan__Transaction_Date__c && depositList2[j+1].clcommon__Transaction_Date__c > summariesToBeInserted[i].loan__Transaction_Date__c){
+                                    if(depositList2[j].clcommon__Deposit_Amount__c!=NULL && depositMap.get(depositList2[j].id) <= summariesToBeInserted[i].loan__Transaction_Time__c && depositMap.get(depositList2[j+1].id) > summariesToBeInserted[i].loan__Transaction_Time__c){
                                         summariesToBeInserted[i].loan__Consolidated_Loan_Balance__c =  summariesToBeInserted[i].loan__Current_Loan_Balance__c  - depositList2[j].clcommon__Deposit_Amount__c;
                                     }
-                                    if(j==depositList2.size()-2 && depositList2[j+1].clcommon__Transaction_Date__c <= summariesToBeInserted[i].loan__Transaction_Date__c ){
+                                    if(j==depositList2.size()-2 && depositMap.get(depositList2[j+1].id) <= summariesToBeInserted[i].loan__Transaction_Time__c ){
                                         if(depositList2[j+1].clcommon__Deposit_Amount__c!=NULL)
                                             summariesToBeInserted[i].loan__Consolidated_Loan_Balance__c =  summariesToBeInserted[i].loan__Current_Loan_Balance__c  - depositList2[j+1].clcommon__Deposit_Amount__c;
                                     }
@@ -1038,8 +1041,8 @@ global with sharing class LTSMigrationHandler {
                                     }
                                 }
                             }
-                        }else if(depositList2 !=null && depositList2.size()==1 && summariesToBeInserted[i] != NULL && summariesToBeInserted[i].loan__Transaction_Date__c != NULL && summariesToBeInserted[i].loan__Last_Transaction_Type__c!='loan__Loan_Disbursal_Transaction__c'){
-                            if(summariesToBeInserted[i].loan__Current_Loan_Balance__c != NULL && depositList2[0].clcommon__Deposit_Amount__c!=NULL && depositList2[0].clcommon__Transaction_Date__c <= summariesToBeInserted[i].loan__Transaction_Date__c){
+                        }else if(depositList2 !=null && depositList2.size()==1 && summariesToBeInserted[i] != NULL && summariesToBeInserted[i].loan__Transaction_Time__c != NULL && summariesToBeInserted[i].loan__Last_Transaction_Type__c!='loan__Loan_Disbursal_Transaction__c'){
+                            if(summariesToBeInserted[i].loan__Current_Loan_Balance__c != NULL && depositList2[0].clcommon__Deposit_Amount__c!=NULL && depositMap.get(depositList2[0].id) <= summariesToBeInserted[i].loan__Transaction_Time__c){
                                 summariesToBeInserted[i].loan__Consolidated_Loan_Balance__c =  summariesToBeInserted[i].loan__Current_Loan_Balance__c  - depositList2[0].clcommon__Deposit_Amount__c;
                             }else if(summariesToBeInserted[i].loan__Current_Loan_Balance__c != NULL){
                                 summariesToBeInserted[i].loan__Consolidated_Loan_Balance__c =  summariesToBeInserted[i].loan__Current_Loan_Balance__c;
