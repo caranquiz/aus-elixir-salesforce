@@ -101,6 +101,33 @@ public class GenerateStatementController {
                                             Statement_Opening_Balance__c
                                         FROM loan__Loan_Account__c 
                                         WHERE Id =: loanId LIMIT 1];
+        List <loan__Other_Transaction__c> otherLoanTxns = [SELECT Id,
+                                                                loan__Description__c,
+                                                                loan__Txn_Date__c
+                                                                FROM loan__Other_Transaction__c
+                                                                WHERE loan__Loan_Account__c =: loanId
+                                                                AND loan__Description__c != NULL
+                                                                AND (loan__Interest_Rate__c != NULL OR loan__New_Interest_Rate__c != NULL)
+                                                            ];
+        for(loan__Other_Transaction__c eachTxn : otherLoanTxns){
+            Integer numberDaysDue = (eachTxn.loan__Txn_Date__c).daysBetween(currentSystemDate);
+            if(numberDaysDue <= 365){
+                if((eachTxn.loan__Description__c).containsIgnoreCase(ConstantValues.INT_RATE)){
+                    Integer intRateIndex = ((eachTxn.loan__Description__c).indexOf(ConstantValues.INT_RATE)+7);
+                    Decimal oldRate = Decimal.valueOf((eachTxn.loan__Description__c).substring(intRateIndex,intRateIndex+6));
+                    Integer lastIntRateIndex = ((eachTxn.loan__Description__c).lastIndexOf(ConstantValues.INT_RATE)+7);
+                    Decimal newRate = Decimal.valueOf((eachTxn.loan__Description__c).substring(lastIntRateIndex,lastIntRateIndex+4));
+                    if(oldRate != newRate){
+                            eachTxn.Rate_Changed__c = true;
+                            System.debug('Rate changed');
+                    }
+                }
+            }
+        }
+        if(otherLoanTxns.isEmpty() == false){
+            System.debug('Getting updated');
+            update otherLoanTxns;
+        }
         if(StartDate != null){
             loan.Statement_Start_Date__c = StartDate;
         }

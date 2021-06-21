@@ -35,7 +35,7 @@
         <members>loan__Loan_Transaction_Summary__c.Include_in_Summary__c</members>
         <members>loan__Loan_Transaction_Summary__c.Transaction_Type__c</members>
         <members>loan__Other_Transaction__c.Include_in_Summary__c</members>
-        <members>loan__Other_Transaction__c.Rate_Change__c</members>
+        <members>loan__Other_Transaction__c.Rate_Changed__c</members>
         <name>CustomField</name>
     </types>
     <types>
