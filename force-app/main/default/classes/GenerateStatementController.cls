@@ -111,6 +111,7 @@ public class GenerateStatementController {
                                                             ];
         for(loan__Other_Transaction__c eachTxn : otherLoanTxns){
             Integer numberDaysDue = (eachTxn.loan__Txn_Date__c).daysBetween(currentSystemDate);
+            eachTxn.Rate_Changed__c = false;
             if(numberDaysDue <= 365){
                 if((eachTxn.loan__Description__c).containsIgnoreCase(ConstantValues.INT_RATE)){
                     Integer intRateIndex = ((eachTxn.loan__Description__c).indexOf(ConstantValues.INT_RATE)+7);
@@ -119,13 +120,11 @@ public class GenerateStatementController {
                     Decimal newRate = Decimal.valueOf((eachTxn.loan__Description__c).substring(lastIntRateIndex,lastIntRateIndex+4));
                     if(oldRate != newRate){
                             eachTxn.Rate_Changed__c = true;
-                            System.debug('Rate changed');
                     }
                 }
             }
         }
         if(otherLoanTxns.isEmpty() == false){
-            System.debug('Getting updated');
             update otherLoanTxns;
         }
         if(StartDate != null){
