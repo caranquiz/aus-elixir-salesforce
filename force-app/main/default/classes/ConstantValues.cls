@@ -998,4 +998,5 @@ global class ConstantValues {
   //GenerateStatenet
   public static final String  INT_RATE = 'Int Rt:';
 
+  public static final String TITLE_RECEIVED = 'Title Received';
 }

@@ -35,6 +35,9 @@
         <members>loan__Loan_Transaction_Summary__c.Include_in_Summary__c</members>
         <members>loan__Loan_Transaction_Summary__c.Transaction_Type__c</members>
         <members>loan__Other_Transaction__c.Include_in_Summary__c</members>
+        <members>loan__Other_Transaction__c.Final_Interest_Rate__c</members>
+        <members>loan__Other_Transaction__c.Last_Interest_Before_Statement__c</members>
+        <members>loan__Other_Transaction__c.Last_Interest_Rate_Changed_Date__c</members>
         <members>loan__Other_Transaction__c.Rate_Changed__c</members>
         <name>CustomField</name>
     </types>

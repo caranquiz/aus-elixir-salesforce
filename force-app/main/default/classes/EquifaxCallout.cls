@@ -5,8 +5,8 @@
 /* Developed By         : Souvik */
 /* Description          : This is the callout class for Equifax Title Search, Order Document
  and Deliver Document APIs. */
-/* Last Modified Date   : 28/07/2020 */
-/* Last Modified By     : Souvik */
+/* Last Modified Date   : 28/06/2021 */
+/* Last Modified By     : Rameswari Barman */
 /*********************************************************************************************************/
 
 global without sharing class EquifaxCallout {
@@ -225,6 +225,8 @@ global without sharing class EquifaxCallout {
         documentData.documentAttachment.parentId = collateralObj.Id;
         Database.insert(documentData.documentAttachment);
         collateralObj.Document_Retrived__c = true;
+        //update title search document - added by RB on 28-06-2021
+        collateralObj.Title_Search_Status__c = ConstantValues.TITLE_RECEIVED;
       }
       Database.update(collateralObj);
       List<clcommon__Document_Category__c> docCatList = [
