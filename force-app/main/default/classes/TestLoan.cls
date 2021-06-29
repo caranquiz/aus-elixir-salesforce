@@ -1,17 +1,19 @@
 /******************************************************************
-Description : This test class provides coverage to LTSMigrationJob and LTSMigrationHandlerJob
-                that are  provided by CL to handle transactions present
-                on Transaction Summary object and migrate to Loan Transaction Summary
+Description : This class has been provided by CL product team to give test coverage to LTSMigration classes 
+              Nothing has been changed oin this class by CK team except the description.
+              This is used for one time use migration script class
+Last Modified : 29-06-2021
+Mast Modified By : Rameswari Barman
 ******************************************************************/
 public class TestLoan {
     public static loan__Loan_Account__c getLoanAccount(loan__Loan_Account__c loanAcc){
-        loan.GlobalLoanUtilFacade dateutil = new loan.GlobalLoanUtilFacade();
+		loan.GlobalLoanUtilFacade dateutil = new loan.GlobalLoanUtilFacade();
         Date currentSystemDate = dateutil.getCurrentSystemDate();
         return [SELECT Name,
                     loan__Last_Transaction_Timestamp__c, 
                     RecordTypeId, 
                     loan__ACH_On__c,
-                    loan__ACH_Next_Debit_Date__c,
+                	loan__ACH_Next_Debit_Date__c,
                     loan__ACH_debit_amount__c,
                     loan__OT_ACH_Debit_Date__c,
                     loan__OT_ACH_Fee_Amount__c,
@@ -19,7 +21,7 @@ public class TestLoan {
                     loan__Last_Transaction_Type__c,
                     loan__Repayment_Start_Basis__c,
                     loan__Funding_Stop_Basis__c,
-                    loan__Total_Refinance_Amount_Actual__c,
+            		loan__Total_Refinance_Amount_Actual__c,
                     loan__Branch__c,
                     loan__Branch__r.ID,
                     loan__Branch__r.Name,
@@ -29,7 +31,7 @@ public class TestLoan {
                     loan__Total_Amount_Remaining__c,
                     loan__Fees_Paid__c,
                     loan__Penalty_Paid__c,
-                    loan__Invalid_Data__c,
+                	loan__Invalid_Data__c,
                     loan__Interest_On_Overdue_Paid__c,
                     loan__Payment_Tolerance_Rate__c,
                     loan__Principal_Remaining__c, 
@@ -173,7 +175,7 @@ public class TestLoan {
                     where loan__DD_Primary_Flag__c = true and loan__Payment_Satisfied__c = false
                     order by loan__Due_Date__c desc),
                     (select Id,
-                                 Name,
+                    			 Name,
                     loan__Accrue_Interest_From__c,
                     loan__Calculated_Interest2__c, // deprecated
                     loan__Charge_Type__c,
