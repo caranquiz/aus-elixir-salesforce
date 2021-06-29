@@ -459,7 +459,15 @@ public with sharing class TestMigrationForLTS {
                                                          Order By loan__Transaction_Time__c ASC];
        
         System.assertEquals(3, summary.size());
-        
+        PageReference pageRef = Page.loan__tabbedLoanAccount;
+        pageRef.getParameters().put('id', loanAcc.id);
+        Test.setCurrentPage(pageRef);
+        GenerateStatementController controllerRec = new GenerateStatementController();
+        controllerRec.loanRecord = loanAcc;
+        controllerRec.loanId = loanAcc.id;
+        controllerRec.doSearch();
+        controllerRec.exportToPDF();
+        controllerRec.back();
     }
     
     public static testMethod void TestSummaryForDateRange(){ 
@@ -534,6 +542,13 @@ public with sharing class TestMigrationForLTS {
             
         loanAcc=TestLoan.getLoanAccount(loanAcc) ; 
         System.assertEquals(1, summary.size());
+        PageReference pageRef = Page.loan__tabbedLoanAccount;
+        pageRef.getParameters().put('id', loanAcc.id);
+        Test.setCurrentPage(pageRef);
+        GenerateStatementController controllerRec = new GenerateStatementController();
+        controllerRec.loanRecord = loanAcc;
+        controllerRec.loanId = loanAcc.id;
+        controllerRec.exportToPDF();
     }
     
     public static testMethod void TestSummaryBills(){
@@ -928,6 +943,13 @@ public with sharing class TestMigrationForLTS {
                                                          Order By loan__Transaction_Time__c ASC];
        
         System.assertEquals(4, summary.size());
+        PageReference pageRef = Page.loan__tabbedLoanAccount;
+        pageRef.getParameters().put('id', loanAcc.id);
+        Test.setCurrentPage(pageRef);
+        GenerateStatementController controllerRec = new GenerateStatementController();
+        controllerRec.loanRecord = loanAcc;
+        controllerRec.loanId = loanAcc.id;
+        controllerRec.exportToPDF();
     }
     
     public testMethod static void LTSRedrawUpdateTest(){
@@ -1011,7 +1033,33 @@ public with sharing class TestMigrationForLTS {
         String sch = '0 0 23 * * ?';
 		system.schedule('Test Check', sch, obj );
         LTSRedrawUpdateBatchExecution.executeLTSRedrawUpdateBatchWS();
+        PageReference pageRef = Page.loan__tabbedLoanAccount;
+        String description = 'Old Val: Frq:MonthlyFrequency Cycle:null Int Rt:3.9500 Int Prd:0 Term:360 Mat Dt :2050'+
+                                '-12-09 Nxt DDT:2021-02-09** New Val: Frq:Monthly Int Rt:3.70 Int Prd:0 Term:360 Mat Dt'+
+                                ' :2050-12-09 Nxt DDT:2021-02-09';
+        oTxn[0].loan__Description__c = description;
+        update oTxn;
+        List<loan__Other_Transaction__c> oTxn2 = [SELECT Id,
+                                                        Name,
+                                                        CreatedDate,
+                                                        loan__Transaction_Type__c,
+                                                        loan__Loan_Account__c
+                                                FROM loan__Other_Transaction__c
+                                                WHERE loan__Loan_Account__c = :loanAcc.Id
+                                                AND loan__Description__c =: description
+                                                Order By CreatedDate ASC];
+        System.assertEquals(
+            oTxn2.size(),
+            1,
+            'Other Transaction Updated'
+        );
+        pageRef.getParameters().put('id', loanAcc.id);
+        Test.setCurrentPage(pageRef);
+        GenerateStatementController controllerRec = new GenerateStatementController();
+        controllerRec.loanRecord = loanAcc;
+        controllerRec.loanId = loanAcc.id;
+        controllerRec.exportToPDF();
         Test.stopTest();
     }
-    
+
 }
