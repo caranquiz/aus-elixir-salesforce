@@ -5,7 +5,7 @@ Created By :  Q2 product team
 Last Modified by : Rameswari Barman and Ariz Mazhary
 Last Modified Date : 17/06/2021   
 Devloper's comment : Some part of the codes are hardcoded and not been put in Constant Classes - since
-                     they are referenced only here.   
+                     they are referenced only here and its a one time use migration code.   
 ******************************************************************/
 global with sharing class LTSMigrationHandler {
     public loan__Org_Parameters__c orgParam;
@@ -477,7 +477,7 @@ global with sharing class LTSMigrationHandler {
     }
 
     //This function is written to update the current state for LPT and LDT txn
-    //This is done to ignore the situation in case when any txn is happenig that doenst have snaphot.
+    //This is done to ignore the situation in case when any txn is happening that doesnt have snaphot.
     //Like Bills is created just after the disbursal so current state will not be capture propely as bill snapshot will be same as LDT
     global void updateCurrentStateForLDT(loan__Loan_Transaction_Summary__c summary , Decimal amount){
         if(summary.loan__Interest_Rate__c!=NULL){
@@ -526,7 +526,7 @@ global with sharing class LTSMigrationHandler {
     }
 
     global void updateValueForNewSummary(loan__Loan_Transaction_Summary__c summary , DateTime createdDate,Id lstTxnId,Id loanId){
-        summary.loan__Invalid_data__c = true;//why??
+        summary.loan__Invalid_data__c = true;
         if(loanId!=NULL){
             summary.loan__Loan_Account__c = loanId;
         }
@@ -540,9 +540,8 @@ global with sharing class LTSMigrationHandler {
     
     /*
     This function will return the transaction id that is not stored in field called last_transaction_id
-    This will happen in case if migration is happening after the summaries is on and already some transactio is created before migration started
-    In some cases like bills and rescheule the last trnasaction id is not getting populated due to the UOW
-    RB's comment EOW??
+    This will happen in case if migration is happening after the summaries is on and already some transaction is created before migration started
+    In some cases like bills and reschedule the last trnasaction id is not getting populated due to the UOW
     */
     global String getLastTransactionId(loan__Loan_Transaction_Summary__c summary){
         if(summary.loan__Loan_Due_Detail__c != null){
@@ -612,8 +611,7 @@ global with sharing class LTSMigrationHandler {
                                  List<loan__Repayment_Transaction_Adjustment__c> lptRevList,
                                  List<loan__Disbursal_Adjustment__c>  disursalRevList,
                                  List<loan__Other_Transaction__c> othList,
-                                 loan__Loan_Account__c loanAcct){
-        //Did not understand what LoanTransactionSummaryUtil.selectedTxnTypeMap is doing                            
+                                 loan__Loan_Account__c loanAcct){                        
         Map<String,String> transTypeToIdMapLDT = loan.LoanTransactionSummaryUtil.selectedTxnTypeMap.get('Loan_Disbursal__c');
         Map<String,String> transTypeToIdMapLPT = loan.LoanTransactionSummaryUtil.selectedTxnTypeMap.get('Loan_Payment_Txn__c');
         Map<String,String> transTypeToIdMapBills = loan.LoanTransactionSummaryUtil.selectedTxnTypeMap.get('Loan_Due_Detail__c');
