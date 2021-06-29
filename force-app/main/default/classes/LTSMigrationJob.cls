@@ -1,6 +1,10 @@
 /******************************************************************
-Description : This class has been provided by CL to handle transactions present
-              on Transaction Summary object and migrate to Loan Transaction Summary
+Description : This class has been provided by CL product team to create Loan Transaction Summary Records for transactions 
+              that were created before the LTS feature is switched ON in the org.
+              Nothing has been changed on this class by CK except the description.
+              This is a one time use migration script class
+Last Modified : 29-06-2021
+Mast Modified By : Rameswari Barman
 ******************************************************************/
 global class LTSMigrationJob extends clcommon.DynamicJob {
     
