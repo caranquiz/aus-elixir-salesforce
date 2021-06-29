@@ -56,7 +56,9 @@ public class LTSRedrawUpdateBatch implements DataBase.StateFul,DataBase.Batchabl
                     objLTS.loan__Current_Loan_Balance__c=objLTS.loan__Loan_Account__r.loan__Loan_Amount__c;
                 }
                 if(depositMap.containskey(objLTS.loan__Other_Loan_Txn__r.id)){
-                    objLTS.loan__Consolidated_Loan_Balance__c=objLTS.loan__Current_Loan_Balance__c-depositMap.get(objLTS.loan__Other_Loan_Txn__r.id);
+                    if(objLTS.loan__Current_Loan_Balance__c!=NULL && depositMap.get(objLTS.loan__Other_Loan_Txn__r.id) != NULL){
+                        objLTS.loan__Consolidated_Loan_Balance__c=objLTS.loan__Current_Loan_Balance__c - depositMap.get(objLTS.loan__Other_Loan_Txn__r.id);
+                    }
                 }
                 objLTS.loan__Transaction_Time__c=objLTS.loan__Transaction_Date__c;
             }

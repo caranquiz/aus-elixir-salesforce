@@ -1,23 +1,33 @@
 /****************************************************************************************************
 Company: Cloudkaptan Consultancy Services Pvt. Ltd.
 Author: Rameswari Barman
-Description : This class updates the Unpaid Bills flag for the ones wrongly updated when all the bills are satisfied
+Description : This class updates the Unpaid Bills flag for the ones wrongly updated when all the bills are satisfied/unsatisfied
 Development Date : 09/06/2021
 Last Modified Date : 09/06/2021
 ****************************************************************************************************/
-global with sharing class UpdateUnpaidBillsFlagBatch implements DataBase.StateFul,DataBase.Batchable<sObject>,Schedulable {
-    public Database.QueryLocator start(Database.BatchableContext bc) {
-        return Database.getQueryLocator([SELECT Id,
-                                            Name,
-                                            Total_no_of_generated_bills__c,
-                                            Total_no_of_Paid_bills__c,
-                                            loan__Unpaid_Bills__c 
-                                        FROM loan__Loan_Account__c]);
+global class UpdateUnpaidBillsFlagBatch extends clcommon.DynamicJob {
+
+    global UpdateUnpaidBillsFlagBatch(){
+        //BLANK CONSTRUCTOR
+    }        
+
+    global override String getRuntimeQuery() {
+        //Returning Query in String Format
+        return 'SELECT Id, Name, Total_no_of_generated_bills__c, Total_no_of_Paid_bills__c, loan__Unpaid_Bills__c FROM loan__Loan_Account__c'; 
     }
-    public void execute(Database.BatchableContext bc, List<loan__Loan_Account__c> scope) {
+
+    global override void doStart(Database.BatchableContext bc) {}
+
+    global override void doExecute(System.SchedulableContext sc) {
+        UpdateUnpaidBillsFlagBatch obj = new UpdateUnpaidBillsFlagBatch();
+        Database.executeBatch(obj, 100);
+    }
+
+    public override void doexecute(Database.BatchableContext bc, List<sobject> scope) {
         try{
             if(scope.size()>0){
-                for(loan__Loan_Account__c rec:scope){
+                List <loan__Loan_Account__c> loanList = scope;
+                for(loan__Loan_Account__c rec:loanList){
                     if(rec.Total_no_of_generated_bills__c == rec.Total_no_of_Paid_bills__c){
                         rec.loan__Unpaid_Bills__c = false;
                     }
@@ -36,10 +46,7 @@ global with sharing class UpdateUnpaidBillsFlagBatch implements DataBase.StateFu
                 clcommon__Time__c = System.Now());
         }
     }
-    public void execute(SchedulableContext sc) {
-        UpdateUnpaidBillsFlagBatch unpaidBillsBatch = new UpdateUnpaidBillsFlagBatch();  
-        database.executebatch(unpaidBillsBatch,20);
-    }
-    public void finish(Database.BatchableContext bc){
-    }
+    global override void doInitialize() {}
+  
+    global override void doFinish(Database.BatchableContext bc) {}
 }
