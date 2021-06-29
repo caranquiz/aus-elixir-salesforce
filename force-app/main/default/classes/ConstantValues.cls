@@ -995,8 +995,9 @@ global class ConstantValues {
   //LTSRedrawUpdateBatch Constant Values
   public static final String REDRAW='Redraw';
 
-  //GenerateStatenet
+  //GenerateStatment
   public static final String  INT_RATE = 'Int Rt:';
-
+  
   public static final String TITLE_RECEIVED = 'Title Received';
+
 }

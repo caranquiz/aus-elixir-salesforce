@@ -18,7 +18,7 @@
     }
     </style> 
   <apex:form >
-  
+  <apex:pageMessages ></apex:pageMessages>
   <apex:sectionHeader title="List of Transactions" />
         <apex:outputPanel id="searchOutputPanel">
             <apex:pageblock id="transactionList">
