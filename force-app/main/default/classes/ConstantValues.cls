@@ -996,8 +996,20 @@ global class ConstantValues {
   public static final String REDRAW='Redraw';
 
   //GenerateStatment
-  public static final String  INT_RATE = 'Int Rt:';
-  
+  public static final String INT_RATE = 'Int Rt:';
+  public static final String INVALID_LOAN= 'Invalid Loan';
+  public static final String END_DATE_CANT_BE_IN_FUTURE = 'End date cant be in future';
+  public static final String GENERATE_STATEMENT_DOC = 'Generate_Statement_Document';
+  public static final String LOAN_ACCOUNTID = '{!loan__Loan_Account__c.loan__AccountId__c}';
+  public static final String ACCOUNT_ID = '{!loan__Loan_Account__c.Id}';
+  public static final String BRANCH_ID = '{!loan__Loan_Account__c.loan__BranchId__c}';
+  public static final String ACCOUNT_NAME = '{!loan__Loan_Account__c.Name}';
+  public static final String PAYMENT_RECEIVED = 'Payment Received';
+  public static final String INTEREST_TAG = 'Interest';
+  public static final String DISCOUNT_TAG = 'Discount';
+  public static final String INTERNAL_TRANSFER = 'Internal Transfer';
+  public static final String LOAN_PAYOFF = 'Loan Payoff';
+  public static final String RATE_CHANGE = 'Rate Change';
+  public static final String OTHER_TRANSACTION = 'loan__Other_Transaction__c';
   public static final String TITLE_RECEIVED = 'Title Received';
-
 }
