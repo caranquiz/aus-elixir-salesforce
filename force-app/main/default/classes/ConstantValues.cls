@@ -987,6 +987,8 @@ global class ConstantValues {
   //LTS Migration class Constants
   public static final String DEPOSIT_SUBTRACT = 'Deposit Adjustment - Subtract';
   public static final String DEPOSIT_ADD = 'Deposit Adjustment - Add';
+  public static final String PAYMENT_TRANSACTION='loan__Loan_Payment_Transaction__c';
+  public static final String DISBURSAL_TRANSACTION='loan__Loan_Disbursal_Transaction__c';
 
   //Constant Values of ContactDetailUpdateBatch Class
   public static final String Home_Phone='Home Phone';

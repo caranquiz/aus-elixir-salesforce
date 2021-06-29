@@ -1,7 +1,10 @@
 /******************************************************************
 Description : This test class provides coverage to LTSMigrationJob and LTSMigrationHandlerJob
                 that are  provided by CL to handle transactions present
-                on Transaction Summary object and migrate to Loan Transaction Summary
+                on Transaction Summary object and migrate to Loan Transaction Summary.
+Created By :  Q2 product team 
+Last Modified by : Ariz Mazhary
+Last Modified Date : 17/06/2021 
 ******************************************************************/
 @isTest(SeeAllData=false)
 public with sharing class TestMigrationForLTS {
