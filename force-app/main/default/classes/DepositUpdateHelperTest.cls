@@ -235,6 +235,7 @@ public with sharing class DepositUpdateHelperTest {
     app.CL_Contract__c = loanC.Id;
     update app;
     WarehouseFunding.executeFun(loanC.Id, ware.Id);
+    Database.executeBatch(new UpdateUnpaidBillsFlagBatch(), 10);
     test.stopTest();
   }
   @isTest

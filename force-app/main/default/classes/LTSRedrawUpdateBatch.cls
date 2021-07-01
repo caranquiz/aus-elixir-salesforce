@@ -1,7 +1,8 @@
 /****************************************************************************************************
 Company: Cloudkaptan Consultancy Services Pvt. Ltd.
 Author: Ariz Mazhary
-Description : 
+Description : This class update Loan Transaction summary fields 
+            if Transaction Amount OR Current Loan Balance OR Consolidated Loan Balance is NULL.
 Development Date : 14/06/2021
 Last Modified Date : 14/06/2021
 ****************************************************************************************************/
@@ -35,7 +36,7 @@ public class LTSRedrawUpdateBatch implements DataBase.StateFul,DataBase.Batchabl
             Map<id,Decimal> depositMap=new Map<id,Decimal>();
             List<id> idOtherLoanList=new List<id>();
             for(loan__Loan_Transaction_Summary__c objLTS:objLTSList){
-                idOtherLoanList.add(objLTS.loan__Other_Loan_Txn__r.id);
+                idOtherLoanList.add(objLTS.loan__Other_Loan_Txn__c);
             }
             if(idOtherLoanList.size()>0){
                 objDepositList=[SELECT id,
@@ -46,18 +47,18 @@ public class LTSRedrawUpdateBatch implements DataBase.StateFul,DataBase.Batchabl
                                 WHERE loan__Other_Loan_Transaction__c=:idOtherLoanList];
             }
             for(clcommon__Deposit__c deposit:objDepositList){
-                depositMap.put(deposit.loan__Other_Loan_Transaction__r.id,deposit.clcommon__Deposit_Amount__c);
+                depositMap.put(deposit.loan__Other_Loan_Transaction__c,deposit.clcommon__Deposit_Amount__c);
             }
             for(loan__Loan_Transaction_Summary__c objLTS:objLTSList){
-                if(objLTS.loan__Other_Loan_Txn__r.loan__Txn_Amt__c!=NULL){
+                if(objLTS.loan__Other_Loan_Txn__c!=NULL && objLTS.loan__Other_Loan_Txn__r.loan__Txn_Amt__c!=NULL){
                     objLTS.loan__Transaction_Amount__c=-objLTS.loan__Other_Loan_Txn__r.loan__Txn_Amt__c;
                 }
-                if(objLTS.loan__Loan_Account__r.loan__Loan_Amount__c!=NULL){
+                if(objLTS.loan__Loan_Account__c !=NULL && objLTS.loan__Loan_Account__r.loan__Loan_Amount__c!=NULL){
                     objLTS.loan__Current_Loan_Balance__c=objLTS.loan__Loan_Account__r.loan__Loan_Amount__c;
                 }
-                if(depositMap.containskey(objLTS.loan__Other_Loan_Txn__r.id)){
-                    if(objLTS.loan__Current_Loan_Balance__c!=NULL && depositMap.get(objLTS.loan__Other_Loan_Txn__r.id) != NULL){
-                        objLTS.loan__Consolidated_Loan_Balance__c=objLTS.loan__Current_Loan_Balance__c - depositMap.get(objLTS.loan__Other_Loan_Txn__r.id);
+                if(depositMap.containskey(objLTS.loan__Other_Loan_Txn__c)){
+                    if(objLTS.loan__Current_Loan_Balance__c!=NULL && depositMap.get(objLTS.loan__Other_Loan_Txn__c) != NULL){
+                        objLTS.loan__Consolidated_Loan_Balance__c=objLTS.loan__Current_Loan_Balance__c - depositMap.get(objLTS.loan__Other_Loan_Txn__c);
                     }
                 }
                 objLTS.loan__Transaction_Time__c=objLTS.loan__Transaction_Date__c;

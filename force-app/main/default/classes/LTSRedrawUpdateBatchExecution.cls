@@ -9,12 +9,14 @@ Last Modified Date : 14/06/2021
 
 global with sharing class LTSRedrawUpdateBatchExecution {
     
-     Webservice static string executeLTSRedrawUpdateBatchWS(){
-       	Batch_Job_Size__c batch=Batch_Job_Size__c.getInstance();
+    Webservice static string executeLTSRedrawUpdateBatchWS(){
+
+        Batch_Job_Size__c batch=Batch_Job_Size__c.getInstance();
         LTSRedrawUpdateBatch obj = new LTSRedrawUpdateBatch();
         Integer size = batch.LTSRedrawUpdateBatch_Size__c != NULL ? Integer.valueOf(batch.LTSRedrawUpdateBatch_Size__c) : 10;  
 		Id batchprocessid = Database.executebatch(obj,size);
         return batchprocessid;
+        
     }
 
 }

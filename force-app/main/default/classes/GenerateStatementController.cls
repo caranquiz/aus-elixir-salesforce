@@ -37,9 +37,6 @@ public class GenerateStatementController {
                                                 AND loan__Disbursal_Date__c != NULL
                                                 LIMIT 1];
             //The following lines of code helps in assigning values to Statement Start and End Dates
-            if(loan == null){
-                throw new CustomException(ConstantValues.INVALID_LOAN);
-            }
             if(StartDate != null){
                 loan.Statement_Start_Date__c = StartDate;
             }
@@ -183,10 +180,15 @@ public class GenerateStatementController {
                 if(eachTxn.loan__Description__c != NULL && (eachTxn.loan__Description__c).containsIgnoreCase(ConstantValues.INT_RATE)){
                     //Checks has not been done on index of characters as the field is populated by product and description snapshot always contains new and old description values
                     Integer intRateIndex = ((eachTxn.loan__Description__c).indexOf(ConstantValues.INT_RATE)+7);
-                    Decimal oldRate = Decimal.valueOf((eachTxn.loan__Description__c).substring(intRateIndex,intRateIndex+6));
+                    Decimal oldRate,newRate;
+                    if(eachTxn.loan__Description__c.length() >= intRateIndex+6){
+                        oldRate = Decimal.valueOf((eachTxn.loan__Description__c).substring(intRateIndex,intRateIndex+6));
+                    }
                     Integer lastIntRateIndex = ((eachTxn.loan__Description__c).lastIndexOf(ConstantValues.INT_RATE)+7);
-                    Decimal newRate = Decimal.valueOf((eachTxn.loan__Description__c).substring(lastIntRateIndex,lastIntRateIndex+4));
-                    if(numberDaysDue <= 365 && oldRate != newRate){
+                    if(eachTxn.loan__Description__c.length() >= lastIntRateIndex+4){
+                        newRate = Decimal.valueOf((eachTxn.loan__Description__c).substring(lastIntRateIndex,lastIntRateIndex+4));
+                    }
+                    if(numberDaysDue <= 365 && oldRate != NULL && newRate != NULL && oldRate != newRate){
                         eachTxn.Rate_Changed__c = true;
                         if(k == 0){
                             eachTxn.Latest_Rate_Change__c = true;

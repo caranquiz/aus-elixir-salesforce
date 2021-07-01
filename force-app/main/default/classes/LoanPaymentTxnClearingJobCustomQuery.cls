@@ -12,12 +12,11 @@ global class LoanPaymentTxnClearingJobCustomQuery implements loan.IQueryBuilder 
         try{
             String query;
             loan.GlobalLoanUtilFacade glutil = new loan.GlobalLoanUtilFacade();
-            Businesshours businessHour = new Businesshours();
-            businessHour=[SELECT id,
-                                Name 
-                            FROM businesshours 
-                            WHERE Name =: ConstantValues.BusinessHours_Name
-                            LIMIT 1];
+            Businesshours businessHour=[SELECT id,
+                                              Name 
+                                          FROM businesshours 
+                                          WHERE Name =: ConstantValues.BusinessHours_Name
+                                          LIMIT 1];
             
             if(businesshours.add(businessHour.id, glutil.getCurrentSystemDate(), 1).day()==glutil.getCurrentSystemDate().day()){
                 query = loan.ProcessJobQueryUtil2.getLoanPaymentClearingJobQuery(null, null, null); 

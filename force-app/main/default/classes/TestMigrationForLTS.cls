@@ -324,6 +324,7 @@ public with sharing class TestMigrationForLTS {
                    FROM loan__Loan_Transaction_Summary__c
                    Order By CreatedDate ASC];
         
+        System.assertEquals(summary.size(),2);
         existingSummaries.put(summary[1].Id,summary[1]);
         
         loan.LoanActionFactory factory = new loan.LoanActionFactory();
@@ -347,6 +348,7 @@ public with sharing class TestMigrationForLTS {
                    FROM loan__Loan_Transaction_Summary__c
                    Order By CreatedDate ASC];
         
+        System.assertEquals(summary.size(),3);
         loanAcc = TestLoan.getLoanAccount(loanAcc);
 
         existingSummaries.put(summary[2].Id,summary[2]);

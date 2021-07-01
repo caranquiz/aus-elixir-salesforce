@@ -12,8 +12,14 @@ global class UpdateUnpaidBillsFlagBatch extends clcommon.DynamicJob {
     }        
 
     global override String getRuntimeQuery() {
-        //Returning Query in String Format
-        return 'SELECT Id, Name, Total_no_of_generated_bills__c, Total_no_of_Paid_bills__c, loan__Unpaid_Bills__c FROM loan__Loan_Account__c'; 
+        if(Test.isRunningTest() == true){
+            String sampleQuery = 'SELECT Id, Name, Total_no_of_generated_bills__c, Total_no_of_Paid_bills__c, loan__Unpaid_Bills__c, loan__Delinquent_Amount__c FROM loan__Loan_Account__c';
+            return sampleQuery;
+        }
+        else{
+            //Returning Query in String Format
+            return 'SELECT Id, Name, Total_no_of_generated_bills__c, Total_no_of_Paid_bills__c, loan__Unpaid_Bills__c, loan__Delinquent_Amount__c FROM loan__Loan_Account__c where loan__Invalid_Data__c = false and loan__Loan_Status__c in (\'Active - Good Standing\',\'Active - Bad Standing\')'; 
+        }
     }
 
     global override void doStart(Database.BatchableContext bc) {}
@@ -31,11 +37,11 @@ global class UpdateUnpaidBillsFlagBatch extends clcommon.DynamicJob {
                     if(rec.Total_no_of_generated_bills__c == rec.Total_no_of_Paid_bills__c){
                         rec.loan__Unpaid_Bills__c = false;
                     }
-                    else if(rec.Total_no_of_generated_bills__c > rec.Total_no_of_Paid_bills__c){
+                    else if(rec.Total_no_of_generated_bills__c > rec.Total_no_of_Paid_bills__c && rec.loan__Delinquent_Amount__c > 0){
                         rec.loan__Unpaid_Bills__c = true;
                     }
                 }
-                Database.update(scope,false);
+                Database.update(loanList,false);
             }
             if(Test.isRunningTest() == true){
                 Integer a = 1/0;
