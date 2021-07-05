@@ -2,7 +2,7 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Accountant_Ph_Num_Verified_Warning_Check__c</fullName>
     <externalId>false</externalId>
-    <formula>IF(INCLUDES(Company_Type_of_Documents_Sighted__c,&apos;Accountants Declaration&apos;) == TRUE,IF((Employment_Information__r.Party__r.Legal_Entity_Type__c != &apos;Individual&apos; &amp;&amp; Employment_Information__r.Party__r.Legal_Entity_Type__c != &apos;Joint&apos;),IF((OR(ISPICKVAL(Accountant_Phone_Number_Verified__c, &apos;No&apos;), ISPICKVAL(Accountant_Phone_Number_Verified__c, &apos;&apos;))), TRUE, FALSE) , IF((OR(ISPICKVAL(Accountant_Phone_Number_independently_ve__c, &apos;No&apos;), ISPICKVAL(Accountant_Phone_Number_independently_ve__c, &apos;&apos;))), TRUE, FALSE)),FALSE)</formula>
+    <formula>IF(INCLUDES(Company_Type_of_Documents_Sighted__c,&apos;Accountants Declaration&apos;) == TRUE,IF((Party__r.Legal_Entity_Type__c != &apos;Individual&apos; &amp;&amp;  Party__r.Legal_Entity_Type__c != &apos;Joint&apos;),IF((OR(ISPICKVAL(Accountant_Phone_Number_Verified__c, &apos;No&apos;), ISPICKVAL(Accountant_Phone_Number_Verified__c, &apos;&apos;))), TRUE, FALSE) , IF(AND(Employment_Information__c != NULL,(OR(ISPICKVAL(Accountant_Phone_Number_independently_ve__c, &apos;No&apos;), ISPICKVAL(Accountant_Phone_Number_independently_ve__c, &apos;&apos;)))), TRUE, FALSE)),FALSE)</formula>
     <label>Accountant Ph Num Verified Warning Check</label>
     <trackTrending>false</trackTrending>
     <type>Checkbox</type>
