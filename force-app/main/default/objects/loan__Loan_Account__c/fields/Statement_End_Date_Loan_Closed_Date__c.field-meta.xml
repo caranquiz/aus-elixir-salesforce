@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Statement_End_Date_Loan_Closed_Date__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF(Statement_End_Date__c &gt; loan__Closed_Date__c,&apos;Yes&apos;,&apos;No&apos;)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Statement End Date &gt; Loan Closed Date</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>
