@@ -8,6 +8,11 @@
     </packageVersions>
     <packageVersions>
         <majorNumber>3</majorNumber>
+        <minorNumber>3008</minorNumber>
+        <namespace>genesis</namespace>
+    </packageVersions>
+    <packageVersions>
+        <majorNumber>3</majorNumber>
         <minorNumber>2016</minorNumber>
         <namespace>intframework</namespace>
     </packageVersions>
