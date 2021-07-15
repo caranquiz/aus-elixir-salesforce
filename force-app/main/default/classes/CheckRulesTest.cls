@@ -542,6 +542,22 @@ System.debug(each.Checklist__r.genesis__Rule__r.Name);
     Test.startTest();
     String returnValue = CheckRules.callCheckRulesWS(
       applicationDetailsList[0].Id,
+      ConstantValues.CUSTOMER_INTERVIEW
+    );
+    returnValue = CheckRules.callCheckRulesWS(
+      applicationDetailsList[0].Id,
+      ConstantValues.COMMISSION_STATUS_RULE
+    );
+    returnValue = CheckRules.callCheckRulesWS(
+      applicationDetailsList[0].Id,
+      ConstantValues.ASSET_LIABILITY
+    );
+    returnValue = CheckRules.callCheckRulesWS(
+      applicationDetailsList[0].Id,
+      ConstantValues.BROKER_CONTACT_DETAILS
+    );
+    returnValue = CheckRules.callCheckRulesWS(
+      applicationDetailsList[0].Id,
       ConstantValues.RECOMMENDED
     );
     GenericUtility.createAttachment('ABC','requestBody',applicationDetailsList[0].Id);

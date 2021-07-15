@@ -105,6 +105,41 @@ public class EquifaxCompanyEnquiryResponseHelper {
     return shareholderName;
   }
 
+  public static String indSecretariesName(Map<String, Object> name) {
+    String secretariesName = '';
+    if (
+      ((Map<String, Object>) name.get(
+        ConstantValues.FAMILY_NAME_SHAREHOLDER
+      )) != null
+    ) {
+      secretariesName +=
+        (String) ((Map<String, Object>) name.get(
+            ConstantValues.FAMILY_NAME_SHAREHOLDER
+          ))
+          .get(ConstantValues.NODE_VALUE) + ' ';
+    }
+    if (
+      ((Map<String, Object>) name.get(ConstantValues.FIRST_GIVEN_NAME)) != null
+    ) {
+      secretariesName +=
+        (String) ((Map<String, Object>) name.get(
+            ConstantValues.FIRST_GIVEN_NAME
+          ))
+          .get(ConstantValues.NODE_VALUE) + ' ';
+    }
+    if (
+      ((Map<String, Object>) name.get(ConstantValues.OTHER_GIVEN_NAME)) != null
+    ) {
+      secretariesName +=
+        (String) ((Map<String, Object>) name.get(
+            ConstantValues.OTHER_GIVEN_NAME
+          ))
+          .get(ConstantValues.NODE_VALUE) + ' ';
+    }
+
+    return secretariesName;
+  }
+
   public static string processAddressLines(Map<String, Object> address) {
     String fullAddress = '';
     if (((Map<String, Object>) address.get(ConstantValues.CARE_OF)) != null) {
@@ -802,6 +837,31 @@ public class EquifaxCompanyEnquiryResponseHelper {
             .get(ConstantValues.NODE_VALUE);
         }
       }
+      //Number of Secretaries
+      if (
+        findInSummaryData(commonSumEntry, ConstantValues.SECRETARIES) != null
+      ) {
+        Map<String, Object> tempSummaryEntry = findInSummaryData(
+          commonSumEntry,
+          ConstantValues.SECRETARIES
+        );
+        if (
+          ((Map<String, Object>) tempSummaryEntry.get(
+            ConstantValues.SUMMARY_VALUE
+          )) != null &&
+          (String) ((Map<String, Object>) tempSummaryEntry.get(
+              ConstantValues.SUMMARY_VALUE
+            ))
+            .get(ConstantValues.NODE_VALUE) != null
+        ) {
+          partyObj.Number_of_Secretaries__c = Integer.valueOf(
+              (String) ((Map<String, Object>) tempSummaryEntry.get(
+                ConstantValues.SUMMARY_VALUE
+              ))
+              .get(ConstantValues.NODE_VALUE)
+              );
+        }
+      }
 
       List<Director__c> entityList = [
         SELECT Id, party__c
@@ -1384,6 +1444,221 @@ public class EquifaxCompanyEnquiryResponseHelper {
         );
       }
 
+      try {
+        if (
+          ((Map<String, Object>) commonOwnOff.get(
+            ConstantValues.SECRETARYLIST
+          )) != null &&
+          String.valueOf(
+              ((Map<String, Object>) commonOwnOff.get(
+                ConstantValues.SECRETARYLIST
+              ))
+            )
+            .contains(ConstantValues.SECRETARIES_ARRAY)
+        ) {
+          List<Object> refSecretary = ((List<Object>) ((Map<String, Object>) commonOwnOff.get(
+              ConstantValues.SECRETARYLIST
+            ))
+            .get(ConstantValues.SECRETARIES1));
+          
+          Integer check;
+          for (Object each : refSecretary) {
+            check = 0;
+            Map<String,Object> reMap = (Map<String,Object>)each;
+            Director__c secretaryObj = new Director__c();
+            secretaryObj.Party__c = partyObj.Id;
+            secretaryObj.Entity_Type__c = ConstantValues.SECRETARY;
+            if(reMap != null && reMap.get(ConstantValues.DOCUMENT_DETAILS) != null ){
+              if(String.valueOf(reMap).contains(ConstantValues.SECRETARIES_ARRAY)){
+                check++;
+                secretaryObj = new Director__c();
+                secretaryObj.Party__c = partyObj.Id;
+                secretaryObj.Entity_Type__c = ConstantValues.SECRETARY;
+                List<Object> decumentdetailsList = (List<Object>)reMap.get(ConstantValues.DOCUMENT_DETAILS);
+                for(Object documentDetails: decumentdetailsList){
+                  if (
+                    documentDetails != null &&
+                    ((Map<String, Object>) documentDetails).get(ConstantValues.DOCUMENT_NUMBER) != null
+                  ) {
+                    secretaryObj.File_Number__c = (String) ((Map<String, Object>)((Map<String, Object>)documentDetails).get(ConstantValues.DOCUMENT_NUMBER))
+                      .get(ConstantValues.NODE_VALUE);
+                  }
+                }
+                entityList.add(secretaryObj);
+              }
+              else{
+                if (
+                  ((Map<String, Object>) each) != null &&
+                  ((Map<String, Object>) ((Map<String, Object>) each)
+                    .get(ConstantValues.DOCUMENT_DETAILS)) != null &&
+                  ((Map<String, Object>) ((Map<String, Object>) ((Map<String, Object>) each)
+                      .get(ConstantValues.DOCUMENT_DETAILS))
+                    .get(ConstantValues.DOCUMENT_NUMBER)) != null
+                  ) { 
+                    secretaryObj.File_Number__c = (String) ((Map<String, Object>) ((Map<String, Object>) ((Map<String, Object>) each).get(ConstantValues.DOCUMENT_DETAILS)).get(ConstantValues.DOCUMENT_NUMBER))
+                    .get(ConstantValues.NODE_VALUE);
+                  }
+              }
+            }
+            if(reMap != null && reMap.get(ConstantValues.INDIVIDUAL_OFFICER) != null ){
+              if(String.valueOf(reMap).contains(ConstantValues.SECRETARIES_ARRAY)){
+                check++;
+                secretaryObj = new Director__c();
+                secretaryObj.Party__c = partyObj.Id;
+                secretaryObj.Entity_Type__c = ConstantValues.SECRETARY;
+                List<Object> decumentdetailsList = (List<Object>)reMap.get(ConstantValues.INDIVIDUAL_OFFICER);
+                for(Object documentDetails: decumentdetailsList){
+                  if (
+                    documentDetails != null &&
+                    ((Map<String, Object>) documentDetails).get(ConstantValues.INDIVIDUAL_NAME) != null
+                  ) {
+                    secretaryObj.Entity_Name__c = indSecretariesName( ((Map<String, Object>)((Map<String, Object>)documentDetails).get(ConstantValues.INDIVIDUAL_NAME))
+                    );
+                  }
+                  if (
+                    documentDetails != null &&
+                      ((Map<String, Object>) documentDetails)
+                        .get(ConstantValues.DATE_OF_BIRTH) != null 
+                  ) {
+                    String dirDOB =(String) ((Map<String, Object>)((Map<String, Object>)documentDetails).get(ConstantValues.DATE_OF_BIRTH))
+                      .get(ConstantValues.NODE_VALUE);
+                    if (dirDOB != null && dirDOB.length() > 9) {
+                      secretaryObj.Date_of_birth__c = Date.newInstance(
+                        Integer.valueOf(dirDOB.substring(0, 4)),
+                        Integer.valueOf(dirDOB.substring(5, 7)),
+                        Integer.valueOf(dirDOB.substring(8, 10))
+                      );
+                    }
+                  }
+                }
+                entityList.add(secretaryObj);
+              }
+              else{
+                if (
+                  ((Map<String, Object>) each) != null &&
+                  ((Map<String, Object>) ((Map<String, Object>) each)
+                    .get(ConstantValues.INDIVIDUAL_OFFICER)) != null &&
+                  ((Map<String, Object>) ((Map<String, Object>) ((Map<String, Object>) each)
+                      .get(ConstantValues.INDIVIDUAL_OFFICER))
+                    .get(ConstantValues.INDIVIDUAL_NAME)) != null
+                  ) { 
+                    secretaryObj.Entity_Name__c = indSecretariesName( ((Map<String, Object>) ((Map<String, Object>) ((Map<String, Object>) each).get(ConstantValues.INDIVIDUAL_OFFICER)).get(ConstantValues.INDIVIDUAL_NAME))
+                    );
+                  }
+
+                  if (
+                    ((Map<String, Object>) each) != null &&
+                    ((Map<String, Object>) ((Map<String, Object>) each)
+                      .get(ConstantValues.INDIVIDUAL_OFFICER)) != null &&
+                    ((Map<String, Object>) ((Map<String, Object>) ((Map<String, Object>) each)
+                        .get(ConstantValues.INDIVIDUAL_OFFICER)).get(ConstantValues.DATE_OF_BIRTH)) != null
+                  ) {
+                    String dirDOB = (String) ((Map<String, Object>) ((Map<String, Object>) ((Map<String, Object>) each)
+                      .get(ConstantValues.INDIVIDUAL_OFFICER)).get(ConstantValues.DATE_OF_BIRTH))
+                      .get(ConstantValues.NODE_VALUE);
+                    if (dirDOB != null && dirDOB.length() > 9) {
+                      secretaryObj.Date_of_birth__c = Date.newInstance(
+                        Integer.valueOf(dirDOB.substring(0, 4)),
+                        Integer.valueOf(dirDOB.substring(5, 7)),
+                        Integer.valueOf(dirDOB.substring(8, 10))
+                      );
+                    }
+                  }
+              }
+            }
+            
+            if (
+              ((Map<String, Object>) each) != null &&
+              ((Map<String, Object>) ((Map<String, Object>) each)
+                .get(ConstantValues.ADDRESS_LINES)) != null
+            ) {
+              secretaryObj.Address__c = processAddressLines(
+                ((Map<String, Object>) ((Map<String, Object>) each)
+                  .get(ConstantValues.ADDRESS_LINES))
+              );
+            }
+            if(check==0)
+              entityList.add(secretaryObj);
+          }
+        } else if (
+          ((Map<String, Object>) commonOwnOff.get(
+            ConstantValues.SECRETARYLIST
+          )) != null &&
+          String.valueOf(
+              ((Map<String, Object>) commonOwnOff.get(
+                ConstantValues.SECRETARYLIST
+              ))
+            )
+            .contains(ConstantValues.SECRETARIES_ARRAY_LIST)
+        ) {
+          Object refSecretary = ((Object) ((Map<String, Object>) commonOwnOff.get(
+              ConstantValues.SECRETARYLIST
+            ))
+            .get(ConstantValues.SECRETARIES1));
+          Director__c secretaryObj = new Director__c();
+          secretaryObj.Party__c = partyObj.Id;
+          secretaryObj.Entity_Type__c = ConstantValues.SECRETARY;
+          if (
+            ((Map<String, Object>) refSecretary) != null &&
+            ((Map<String, Object>) ((Map<String, Object>) refSecretary)
+              .get(ConstantValues.DOCUMENT_DETAILS)) != null &&
+            ((Map<String, Object>) ((Map<String, Object>) ((Map<String, Object>) refSecretary)
+                .get(ConstantValues.DOCUMENT_DETAILS))
+              .get(ConstantValues.DOCUMENT_NUMBER)) != null
+            ) { 
+              secretaryObj.File_Number__c =(String)((Map<String, Object>) ((Map<String, Object>) ((Map<String, Object>) refSecretary)
+              .get(ConstantValues.DOCUMENT_DETAILS)).get(ConstantValues.DOCUMENT_NUMBER)).get(ConstantValues.NODE_VALUE);
+          }
+          if (
+            ((Map<String, Object>) refSecretary) != null &&
+            ((Map<String, Object>) ((Map<String, Object>) refSecretary)
+              .get(ConstantValues.INDIVIDUAL_OFFICER)) != null &&
+            ((Map<String, Object>) ((Map<String, Object>) ((Map<String, Object>) refSecretary)
+                .get(ConstantValues.INDIVIDUAL_OFFICER))
+              .get(ConstantValues.INDIVIDUAL_NAME)) != null
+            ) { 
+              secretaryObj.Entity_Name__c = indSecretariesName( ((Map<String, Object>) ((Map<String, Object>) ((Map<String, Object>) refSecretary).get(ConstantValues.INDIVIDUAL_OFFICER)).get(ConstantValues.INDIVIDUAL_NAME))
+              );
+            }
+          if (
+            ((Map<String, Object>) refSecretary) != null &&
+            ((Map<String, Object>) ((Map<String, Object>) refSecretary)
+              .get(ConstantValues.ADDRESS_LINES)) != null
+          ) {
+            secretaryObj.Address__c = processAddressLines(
+              ((Map<String, Object>) ((Map<String, Object>) refSecretary)
+                .get(ConstantValues.ADDRESS_LINES))
+            );
+          }
+          if (
+            ((Map<String, Object>) refSecretary) != null &&
+            ((Map<String, Object>) ((Map<String, Object>) refSecretary)
+              .get(ConstantValues.INDIVIDUAL_OFFICER)) != null &&
+            ((Map<String, Object>) ((Map<String, Object>) ((Map<String, Object>) refSecretary)
+                .get(ConstantValues.INDIVIDUAL_OFFICER)).get(ConstantValues.DATE_OF_BIRTH)) != null
+          ) {
+            String dirDOB = (String) ((Map<String, Object>) ((Map<String, Object>) ((Map<String, Object>) refSecretary)
+              .get(ConstantValues.INDIVIDUAL_OFFICER)).get(ConstantValues.DATE_OF_BIRTH))
+              .get(ConstantValues.NODE_VALUE);
+            if (dirDOB != null && dirDOB.length() > 9) {
+              secretaryObj.Date_of_birth__c = Date.newInstance(
+                Integer.valueOf(dirDOB.substring(0, 4)),
+                Integer.valueOf(dirDOB.substring(5, 7)),
+                Integer.valueOf(dirDOB.substring(8, 10))
+              );
+            }
+          }
+          entityList.add(secretaryObj);
+        } else {
+          returnValue += ConstantValues.SECRETARY_NOT_FOUND;
+        }
+      } catch (Exception ex) {
+        GenericUtility.insertLog(
+          ConstantValues.EQUIFAX_COMPANY_ENQUIRY_RESPONSE_HELPER,
+          ex
+        );
+      }
+      
       try {
         if (
           ((Map<String, Object>) commonPpsr.get(

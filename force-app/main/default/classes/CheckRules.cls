@@ -247,6 +247,7 @@ global with sharing class CheckRules {
         rulesNameList.add(ConstantValues.TRUST_DEED_PROVIDED_CONDITION);
         rulesNameList.add(ConstantValues.CUSTOMER_ACCT_CONDITION);
         rulesNameList.add(ConstantValues.GIFT_STAT_DEC_RECEIVED_CONDITION);
+        rulesNameList.add(ConstantValues.NO_SECRETARY_APPOINTED_CONDITION);
       } else if (tabName == ConstantValues.APP_EXCEP) {
         rulesNameList.add(ConstantValues.MATRIX_RATE_EXCEPTION);
         rulesNameList.add(ConstantValues.CONFIRM_REPAYMENTS_WARNING);
@@ -1014,7 +1015,8 @@ global with sharing class CheckRules {
         Supporting_Document_Verified__c,
         Waiver_Reason__c,
         Show_on_Indicative_Approval_Letter__c,
-        True_Exception__c
+        True_Exception__c,
+        Party__r.ABN_Company_Name__c 
       FROM Checklist_Detail__c
       WHERE
         Party__c IN :partyIds
@@ -1170,10 +1172,17 @@ global with sharing class CheckRules {
           '"waiverReason":"' +
           eachChecklistDetail.Waiver_Reason__c +
           '",';
-        manualData +=
-          '"shownOnIndicativeLetter":"' +
-          eachChecklistDetail.Show_on_Indicative_Approval_Letter__c +
-          '"';
+        if(eachChecklistDetail.Checklist__r.genesis__Rule__r.Name==ConstantValues.NO_SECRETARY_APPOINTED_CONDITION){
+          manualData +=
+            '"shownOnIndicativeLetter":"' +
+            ConstantValues.NO_TAG +
+            '"';
+        }else{
+          manualData +=
+            '"shownOnIndicativeLetter":"' +
+            eachChecklistDetail.Show_on_Indicative_Approval_Letter__c +
+            '"';
+        }
         manualData += '}';
       }
       manualData += ']}';
@@ -1437,7 +1446,8 @@ global with sharing class CheckRules {
           Application_Collateral__r.genesis__Collateral__c,
           Application_Collateral__r.genesis__Collateral__r.Replacement_Value__c,
           Liability__c,
-          Liability__r.genesis__Name_of_Creditor__c
+          Liability__r.genesis__Name_of_Creditor__c,
+          Party__r.ABN_Company_Name__c 
         FROM Checklist_Detail__c
         WHERE
           Rule_Classification__c = :ConstantValues.CONDITION_CLASSIFICATION
@@ -1558,6 +1568,18 @@ global with sharing class CheckRules {
               ConstantValues.REPLACEMENT_VALUE_KEY,
               stringVal
             );
+          }
+        }else if (
+          eachChecklistDetails.Checklist__r.genesis__Rule__r.Name ==
+          ConstantValues.NO_SECRETARY_APPOINTED_CONDITION
+        ) {
+          if(eachChecklistDetails.Party__c!=NULL 
+              && eachChecklistDetails.Party__r.ABN_Company_Name__c!=NULL
+            ){
+            message = message.replace(
+                ConstantValues.BORROWER_GUARANTOR_COMPANY_NAME,
+                eachChecklistDetails.Party__r.ABN_Company_Name__c
+              );
           }
         }
         eachChecklistDetails.Manual_Message__c = message;

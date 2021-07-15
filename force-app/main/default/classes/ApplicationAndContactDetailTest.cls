@@ -1,7 +1,8 @@
 /****************************************************************************************************
 Company: Cloudkaptan Consultancy Services Pvt. Ltd.
 Author: Ariz Mazhary
-Description : This class give coverage to FirstHomeBuyerAppUpdateBatch ContactDetailUpdateBatch apex classes.
+Description : This class give coverage to FirstHomeBuyerAppUpdateBatch,BrokerApplicationUpdateBatch 
+                and ContactDetailUpdateBatch apex classes.
 Development Date : 6/05/2021
 Last Modified Date : 20/05/2021
 ****************************************************************************************************/
@@ -97,6 +98,13 @@ public class ApplicationAndContactDetailTest {
             ' Party Type inserted successfully.'
         );
 
+        clcommon__Party_Type__c partyType1 =GenericUtilityTestHelper.insertPartyType('Broker');
+        System.AssertNotEquals(
+            partyType.Id,
+            null,
+            ' Party Type inserted successfully.'
+        );
+
         //Insert Party
         clcommon__Party__c testParty=GenericUtilityTestHelper.returnParty(
             testApplication.id,
@@ -108,10 +116,29 @@ public class ApplicationAndContactDetailTest {
         update testParty;
         List<clcommon__Party__c> partyList=[SELECT id 
                                                         FROM clcommon__Party__c 
-                                                        WHERE clcommon__Contact__c=:testContact.Id
+                                                        WHERE id=:testParty.Id
                                                         LIMIT 1 ];
         System.assertEquals(
             partyList.size(), 
+            1, 
+            'Party Inserted Successfully'
+        );
+
+        //Insert Party
+        clcommon__Party__c testParty1=GenericUtilityTestHelper.returnParty(
+            testApplication.id,
+            testAccount.Id
+        );
+        testParty1.clcommon__Contact__c=testContact.Id;
+        testParty1.First_Home_Buyer__c=ConstantValues.YES_TAG;
+        testParty1.clcommon__Type__c=partyType1.Id ;
+        update testParty1;
+        List<clcommon__Party__c> partyList1=[SELECT id 
+                                                        FROM clcommon__Party__c 
+                                                        WHERE id=:testParty1.Id
+                                                        LIMIT 1 ];
+        System.assertEquals(
+            partyList1.size(), 
             1, 
             'Party Inserted Successfully'
         );
@@ -185,5 +212,12 @@ public class ApplicationAndContactDetailTest {
         database.executebatch(obj,1); 
         test.stopTest();
         
+    }
+    @isTest
+    static void applicationBrokerTest(){
+        test.startTest();
+        BrokerApplicationUpdateBatch obj = new BrokerApplicationUpdateBatch(); 
+        database.executebatch(obj,1); 
+        test.stopTest();
     }
 }

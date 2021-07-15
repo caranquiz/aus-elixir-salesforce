@@ -25,6 +25,11 @@
                 <default>false</default>
                 <label>Registrations</label>
             </value>
+            <value>
+                <fullName>Secretary</fullName>
+                <default>false</default>
+                <label>Secretary</label>
+            </value>
         </valueSetDefinition>
     </valueSet>
 </CustomField>

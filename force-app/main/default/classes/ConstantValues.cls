@@ -1014,4 +1014,18 @@ global class ConstantValues {
   public static final String RATE_CHANGE = 'Rate Change';
   public static final String OTHER_TRANSACTION = 'loan__Other_Transaction__c';
   public static final String TITLE_RECEIVED = 'Title Received';
+  
+  //Constant Values of Secretaries EquifaxCompanyEnquiryResponseHelper Class
+  public static final String SECRETARIES='Secretaries';
+  public static final String SECRETARYLIST='secretary-list';
+  public static final String SECRETARIES_ARRAY='secretaries=(';
+  public static final String DOCUMENT_DETAILS='document-details';
+  public static final String DOCUMENT_NUMBER='document-number';
+  public static final String INDIVIDUAL_OFFICER='individual-officer';
+  public static final String SECRETARY='Secretary';
+  public static final String SECRETARIES_ARRAY_LIST='secretaries={';
+  public static final String SECRETARY_NOT_FOUND='\nNo Secretary Found';
+  public static final String SECRETARIES1='secretaries';
+  public static final String NO_SECRETARY_APPOINTED_CONDITION='No Secretary Appointed Condition';
+  public static final String BORROWER_GUARANTOR_COMPANY_NAME='[borrower/guarantor company name]';
 }
