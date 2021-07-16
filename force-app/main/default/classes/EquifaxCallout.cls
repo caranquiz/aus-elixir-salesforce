@@ -225,7 +225,7 @@ global without sharing class EquifaxCallout {
         documentData.documentAttachment.parentId = collateralObj.Id;
         Database.insert(documentData.documentAttachment);
         collateralObj.Document_Retrived__c = true;
-        //update title search document - added by RB on 28-06-2021
+        //update title search status in collateral- added by RB on 28-06-2021
         collateralObj.Title_Search_Status__c = ConstantValues.TITLE_RECEIVED;
       }
       Database.update(collateralObj);
