@@ -11,25 +11,28 @@ public class BrokerApplicationUpdateBatch implements DataBase.StateFul,DataBase.
         return Database.getQueryLocator([SELECT id,
                                                Name,
                                                Broker__c
-                                           FROM genesis__Applications__c]);
+                                           FROM genesis__Applications__c
+                                           WHERE Broker__c=NULL]);
     }
     public void execute(Database.BatchableContext bc, List<genesis__Applications__c> objApplicationList) {
         try{
             List<clcommon__Party__c> objPartiesList=new List<clcommon__Party__c>();
+            Map<Id,Id> partyMap=new Map<Id,Id>();
             if(objApplicationList.size()>0){
                 objPartiesList=[SELECT id,
                                       clcommon__Account__c,
                                       genesis__Application__c
                                   FROM clcommon__Party__c 
                                   WHERE genesis__Application__c IN: objApplicationList
-                                  AND clcommon__Type__r.Name='Broker'];
+                                  AND clcommon__Type__r.Name=:ConstantValues.BROKER_PARTY_TYPE];
                 
             }
+            for(clcommon__Party__c party:objPartiesList){
+                partyMap.put(party.genesis__Application__c,party.clcommon__Account__c);
+            }
             for(genesis__Applications__c application:objApplicationList){
-                for(clcommon__Party__c party:objPartiesList){
-                    if(party.genesis__Application__c==application.id){
-                        application.Broker__c= party.clcommon__Account__c;
-                    }
+                if(partyMap.containskey(application.id) && partyMap.get(application.id)!=Null){
+                    application.Broker__c= partyMap.get(application.id);
                 }
             }
             
