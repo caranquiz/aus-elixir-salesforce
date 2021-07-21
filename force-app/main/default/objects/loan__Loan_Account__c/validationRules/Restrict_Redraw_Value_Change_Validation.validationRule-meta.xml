@@ -3,5 +3,5 @@
     <fullName>Restrict_Redraw_Value_Change_Validation</fullName>
     <active>true</active>
     <errorConditionFormula>IF(PRIORVALUE(Restrict_Redraw__c) == true &amp;&amp; Restrict_Redraw__c == false,(IF(($Profile.Name == &apos;System Administrator&apos; || $Profile.Name == &apos;System Administrator LTS Migration&apos; || $Profile.Name == &apos;Elixir System Admin&apos;),false,true)),false)</errorConditionFormula>
-    <errorMessage>Only Admin users can remove restriction on Redraws</errorMessage>
+    <errorMessage>Only Admin users can remove Redraw restriction!</errorMessage>
 </ValidationRule>
