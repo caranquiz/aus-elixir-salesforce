@@ -20,8 +20,9 @@ global with sharing class EquifaxEnquiryCallout {
     intframework.AbstractIntegrationService baseintegrationService = intframework.IntegrationServiceFactory.getBaseIntegrationService();
     dom.Document doc = new dom.Document();
     Map<String, Object> responseMap;
+    Map<String, Object> responseMap1;
     String json;
-    EquifaxApplyIndividualResponseHelper helperObject;
+    String helperObject;
     try {
       List<genesis__Applications__c> appList = [
         SELECT Id
@@ -98,20 +99,26 @@ global with sharing class EquifaxEnquiryCallout {
           partyId
         );
       }
+      if(responseObject != NULL && responseObject.responseMap != NULL){
+        responseMap1 = responseObject.responseMap;
+      }
       doc.load(responseObject.getBody());
-      responseMap = intframework.XmlToJson.parseDocumentToMap(doc);
-      json = System.JSON.serialize(responseMap);
-      helperObject = EquifaxApplyIndividualResponseHelper.parse(
+      //responseMap = intframework.XmlToJson.parseDocumentToMap(doc);
+      json = System.JSON.serialize(responseMap1);
+      System.debug('JSON ===>'+json);
+      helperObject = EquifaxIndividualResponseHelper.parse(
         json,
-        partyObj.Id
+        partyObj,
+        responseMap1
       );
       if (helperObject == null) {
         return ConstantValues.GENERAL_ERROR;
       }
-      return EquifaxApplyIndividualResponseHelper.updatePartyWithApplyIndividualResponse(
+      return helperObject;
+     /* return EquifaxApplyIndividualResponseHelper.updatePartyWithApplyIndividualResponse(
         partyObj,
         helperObject
-      );
+      );*/
     } catch (Exception ex) {
       GenericUtility.insertLog('EquifaxEnquiryCallout', ex);
       return ConstantValues.GENERAL_ERROR;
