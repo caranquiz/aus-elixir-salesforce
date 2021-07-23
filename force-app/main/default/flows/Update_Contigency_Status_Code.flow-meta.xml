@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <dynamicChoiceSets>
+        <name>HardshipType</name>
+        <dataType>Picklist</dataType>
+        <displayField xsi:nil="true"/>
+        <object xsi:nil="true"/>
+        <picklistField>Hardship_Type__c</picklistField>
+        <picklistObject>loan__Loan_Block_Code__c</picklistObject>
+    </dynamicChoiceSets>
+    <interviewLabel>Update Contigency Status Code {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Update Contigency Status Code</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>FREE_FORM_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>Flow</processType>
+    <recordLookups>
+        <name>Get_Contingency_Status_Code_Data</name>
+        <label>Get Contingency Status Code Data</label>
+        <locationX>547</locationX>
+        <locationY>74</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Change_Hardship_Type</targetReference>
+        </connector>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>recordId</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>loan__Loan_Block_Code__c</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordUpdates>
+        <name>Update_Contingency_Record</name>
+        <label>Update Contingency Record</label>
+        <locationX>1101</locationX>
+        <locationY>73</locationY>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>recordId</elementReference>
+            </value>
+        </filters>
+        <inputAssignments>
+            <field>Hardship_Type__c</field>
+            <value>
+                <elementReference>Hardship_Type</elementReference>
+            </value>
+        </inputAssignments>
+        <object>loan__Loan_Block_Code__c</object>
+    </recordUpdates>
+    <screens>
+        <name>Change_Hardship_Type</name>
+        <label>Change Hardship Type</label>
+        <locationX>822</locationX>
+        <locationY>72</locationY>
+        <allowBack>false</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>false</allowPause>
+        <connector>
+            <targetReference>Update_Contingency_Record</targetReference>
+        </connector>
+        <fields>
+            <name>Hardship_Type</name>
+            <choiceReferences>HardshipType</choiceReferences>
+            <dataType>String</dataType>
+            <fieldText>Hardship Type</fieldText>
+            <fieldType>DropdownBox</fieldType>
+            <isRequired>false</isRequired>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <start>
+        <locationX>50</locationX>
+        <locationY>54</locationY>
+        <connector>
+            <targetReference>Get_Contingency_Status_Code_Data</targetReference>
+        </connector>
+    </start>
+    <status>Active</status>
+    <variables>
+        <name>recordId</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+</Flow>
