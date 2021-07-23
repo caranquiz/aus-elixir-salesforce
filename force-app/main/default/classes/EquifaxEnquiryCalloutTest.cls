@@ -357,7 +357,7 @@ public class EquifaxEnquiryCalloutTest {
     List<intframework__Integration_API_Configuration__c> apiList = [SELECT ID,
                                                                           intframework__API_Endpoint__c 
                                                                       FROM intframework__Integration_API_Configuration__c 
-                                                                      WHERE intframework__API_Endpoint__c='/applyIndividual2'
+                                                                      WHERE intframework__API_Endpoint__c='/individualApply2'
     ];
     System.assertEquals(
       apiList.size(),
@@ -420,7 +420,7 @@ public class EquifaxEnquiryCalloutTest {
     List<intframework__Integration_API_Configuration__c> apiList = [SELECT ID,
                                                                           intframework__API_Endpoint__c 
                                                                       FROM intframework__Integration_API_Configuration__c 
-                                                                      WHERE intframework__API_Endpoint__c='/applyIndividual3'
+                                                                      WHERE intframework__API_Endpoint__c='/individualApply3'
       ];
       System.assertEquals(
       apiList.size(),
