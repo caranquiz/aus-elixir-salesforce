@@ -193,7 +193,7 @@ public class EquifaxEnquiryCalloutTest {
       'Integration Configuration records are not inserted'
     );
     List<intframework__Integration_API_Configuration__c> intApiConfigs = [
-      SELECT Id
+      SELECT Id,intframework__API_Endpoint__c
       FROM intframework__Integration_API_Configuration__c
     ];
     System.assertEquals(
@@ -322,6 +322,122 @@ public class EquifaxEnquiryCalloutTest {
     List<clcommon__Log__c> logList = [SELECT Id FROM clcommon__Log__c];
     System.assertEquals(1, logList.size(), 'Exception log not inserted');
   }
+  @isTest
+  static void testEquifaxApplyIndividual1() {
+    List<genesis__Applications__c> appList = [
+      SELECT Id
+      FROM genesis__Applications__c
+    ];
+    System.assertEquals(
+      appList.size(),
+      1,
+      'Application record is not inserted'
+    );
+    List<clcommon__Party__c> partyList = [SELECT Id FROM clcommon__Party__c];
+    System.assertEquals(partyList.size(), 1, 'Party record is not inserted');
+    List<Contact> conList = [SELECT Id FROM Contact];
+    System.assertEquals(conList.size(), 1, 'Contact record is not inserted');
+    List<clcommon__Address__c> addressList = [
+      SELECT Id
+      FROM clcommon__Address__c
+    ];
+    System.assertEquals(
+      addressList.size(),
+      1,
+      'Address record is not inserted'
+    );
+
+    intframework__Integration_API_Configuration__c api = [
+      SELECT ID,intframework__API_Endpoint__c
+      FROM intframework__Integration_API_Configuration__c
+      WHERE intframework__API_Endpoint__c='/applyIndividual'
+    ];
+    api.intframework__API_Endpoint__c = '/individualApply2';
+    update api;
+    System.assertEquals(
+      api.intframework__API_Endpoint__c,
+      '/individualApply2',
+      'Integration API Configuration records are not updated'
+    );
+
+    Test.setMock(HttpCalloutMock.class, new Mock());
+    Test.startTest();
+    String responseString = EquifaxEnquiryCallout.equifaxApplyIndividual(
+      appList[0].Id,
+      partyList[0].Id,
+      conList[0].Id,
+      addressList[0].Id
+    );
+    Test.stopTest();
+    List<clcommon__Log__c> logList = [
+      SELECT Id, clcommon__Message__c
+      FROM clcommon__Log__c
+    ];
+    System.assertEquals(0, logList.size(), 'Exception occurred');
+    System.assertNotEquals(
+      ConstantValues.GENERAL_ERROR,
+      responseString,
+      'Response fetching error'
+    );
+  }
+  @isTest
+  static void testEquifaxApplyIndividual2() {
+    List<genesis__Applications__c> appList = [
+      SELECT Id
+      FROM genesis__Applications__c
+    ];
+    System.assertEquals(
+      appList.size(),
+      1,
+      'Application record is not inserted'
+    );
+    List<clcommon__Party__c> partyList = [SELECT Id FROM clcommon__Party__c];
+    System.assertEquals(partyList.size(), 1, 'Party record is not inserted');
+    List<Contact> conList = [SELECT Id FROM Contact];
+    System.assertEquals(conList.size(), 1, 'Contact record is not inserted');
+    List<clcommon__Address__c> addressList = [
+      SELECT Id
+      FROM clcommon__Address__c
+    ];
+    System.assertEquals(
+      addressList.size(),
+      1,
+      'Address record is not inserted'
+    );
+
+    intframework__Integration_API_Configuration__c api = [
+      SELECT ID,intframework__API_Endpoint__c
+      FROM intframework__Integration_API_Configuration__c
+      WHERE intframework__API_Endpoint__c='/applyIndividual'
+    ];
+    api.intframework__API_Endpoint__c = '/individualApply3';
+    update api;
+    System.assertEquals(
+      api.intframework__API_Endpoint__c,
+      '/individualApply3',
+      'Integration API Configuration records are not updated'
+    );
+
+    Test.setMock(HttpCalloutMock.class, new Mock());
+    Test.startTest();
+    String responseString = EquifaxEnquiryCallout.equifaxApplyIndividual(
+      appList[0].Id,
+      partyList[0].Id,
+      conList[0].Id,
+      addressList[0].Id
+    );
+    Test.stopTest();
+    List<clcommon__Log__c> logList = [
+      SELECT Id, clcommon__Message__c
+      FROM clcommon__Log__c
+    ];
+    System.assertEquals(0, logList.size(), 'Exception occurred');
+    System.assertNotEquals(
+      ConstantValues.GENERAL_ERROR,
+      responseString,
+      'Response fetching error'
+    );
+  }
 
   /* Mock class returns response from static resource depending on endpoint being called */
   private class Mock implements HttpCalloutMock {
@@ -350,7 +466,9 @@ public class EquifaxEnquiryCalloutTest {
       WHERE
         Name = 'Sample_APPLY_INDIVIDUAL_Response'
         OR Name = 'Sample_PREVIOUS_ENQUIRY_Response'
-        OR Name = 'Sample_ORG_ID_Response'
+        OR Name = 'Sample_ORG_ID_Response' 
+        OR Name= 'Sample_APPLY_INDIVIDUAL_Response2'
+        OR Name= 'Sample_APPLY_INDIVIDUAL_Response3'
     ];
     for (StaticResource each : srList) {
       responseMap.put(each.Name, each.Body.toString());
@@ -362,6 +480,10 @@ public class EquifaxEnquiryCalloutTest {
       res.setBody(responseMap.get('Sample_PREVIOUS_ENQUIRY_Response'));
     } else if (endpoint.contains('EquifaxOrgIdSearch')) {
       res.setBody(responseMap.get('Sample_ORG_ID_Response'));
+    }else if (endpoint.contains('individualApply2')) {
+      res.setBody(responseMap.get('Sample_APPLY_INDIVIDUAL_Response2'));
+    }else if (endpoint.contains('individualApply3')) {
+      res.setBody(responseMap.get('Sample_APPLY_INDIVIDUAL_Response3'));
     }
     return res;
   }

@@ -1,0 +1,2330 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+<soapenv:Header>
+<wsa:MessageID xmlns:wsa="http://www.w3.org/2005/08/addressing">210720-8D948-0B302</wsa:MessageID>
+<wsa:RelatesTo xmlns:wsa="http://www.w3.org/2005/08/addressing"></wsa:RelatesTo>
+<wsa:To xmlns:wsa="http://www.w3.org/2005/08/addressing">http://www.w3.org/2005/08/addressing/anonymous</wsa:To>
+<wsa:From xmlns:wsa="http://www.w3.org/2005/08/addressing">
+<wsa:Address>https://ctaau.vedaxml.com/cta/sys2/soap11/vedascore-apply-v2-0</wsa:Address>
+</wsa:From>
+<wsa:Action xmlns:wsa="http://www.w3.org/2005/08/addressing">http://vedaxml.com/vedascore-apply/EnquiryResponse</wsa:Action>
+</soapenv:Header>
+<soapenv:Body>
+<vs:response xmlns:vs="http://vedaxml.com/vxml2/vedascore-apply-v2-0.xsd" response-type="report">
+<vs:product-header>
+<vs:enquiry-id>210720-8D948-0B302</vs:enquiry-id>
+<vs:datetime-requested>2021-07-20T18:28:34.642+10:00</vs:datetime-requested>
+<vs:datetime-generated>2021-07-20T18:28:28.984+10:00</vs:datetime-generated>
+<vs:client-reference>0054Y000000rGosQAE</vs:client-reference>
+<vs:product-name>Equifax Apply (with Trading History)</vs:product-name>
+<vs:permission-type code="XY">CONSUMER+COMMERCIAL</vs:permission-type>
+<vs:product-data-level code="N">Negative</vs:product-data-level>
+<vs:product-version>2.0</vs:product-version>
+<vs:custom-input-parameters>
+<vs:custom-input-parameter>
+<vs:key>ITH</vs:key>
+<vs:value>true</vs:value>
+</vs:custom-input-parameter>
+</vs:custom-input-parameters>
+</vs:product-header>
+<vs:product-data>
+<vs:enquiry-report>
+<vs:primary-match id-index="1" type="strong">
+<vs:bureau-reference>203871134</vs:bureau-reference>
+<vs:individual-name first-reported-date="2018-04-08" last-credit-enquiry-date="2021-07-20" last-reported-date="2021-07-20">
+<vs:family-name>NEWFILE</vs:family-name>
+<vs:first-given-name>FOR</vs:first-given-name>
+<vs:other-given-name>VEDA</vs:other-given-name>
+</vs:individual-name>
+<vs:gender code="M">Male</vs:gender>
+<vs:date-of-birth first-reported-date="2018-04-08" last-reported-date="2021-07-20">1980-06-01</vs:date-of-birth>
+<vs:drivers-licence first-reported-date="2021-07-20" last-reported-date="2021-07-20">
+<vs:number>45697121</vs:number>
+</vs:drivers-licence>
+<vs:is-deceased>false</vs:is-deceased>
+</vs:primary-match>
+<vs:other-identities>
+<vs:other-identity id-index="2">
+<vs:individual-name first-reported-date="2018-04-04" last-reported-date="2020-04-22">
+<vs:family-name>NEWFILE</vs:family-name>
+<vs:first-given-name>DUDE</vs:first-given-name>
+<vs:other-given-name>VEDA</vs:other-given-name>
+</vs:individual-name>
+<vs:is-deceased>false</vs:is-deceased>
+</vs:other-identity>
+</vs:other-identities>
+<vs:addresses>
+<vs:address first-reported-date="2019-05-28" last-reported-date="2021-07-20" type="C">
+<vs:id-references>
+<vs:id-reference>1</vs:id-reference>
+</vs:id-references>
+<vs:street-number>61</vs:street-number>
+<vs:street-name>BLAZEY</vs:street-name>
+<vs:street-type>RD</vs:street-type>
+<vs:suburb>CROYDON SOUTH</vs:suburb>
+<vs:state>VIC</vs:state>
+<vs:postcode>3136</vs:postcode>
+<vs:country-code>AUS</vs:country-code>
+</vs:address>
+<vs:address first-reported-date="2018-04-04" last-reported-date="2020-04-22" type="P">
+<vs:id-references>
+<vs:id-reference>2</vs:id-reference>
+</vs:id-references>
+<vs:street-number>80</vs:street-number>
+<vs:street-name>ARTHUR</vs:street-name>
+<vs:street-type>ST</vs:street-type>
+<vs:suburb>NORTH SYDNEY</vs:suburb>
+<vs:state>NSW</vs:state>
+<vs:postcode>2060</vs:postcode>
+<vs:country-code>AUS</vs:country-code>
+</vs:address>
+</vs:addresses>
+<vs:employment>
+<vs:employer first-reported-date="2021-07-20" last-reported-date="2021-07-20" type="C">
+<vs:id-references>
+<vs:id-reference>1</vs:id-reference>
+</vs:id-references>
+<vs:name>CITIBANK</vs:name>
+</vs:employer>
+</vs:employment>
+<vs:consumer-credit-file>
+<vs:file-notes>
+<vs:file-note date-recorded="2018-04-08">
+<vs:id-references>
+<vs:id-reference>1</vs:id-reference>
+</vs:id-references>
+<vs:note>THIS IS A SUPER TEST</vs:note>
+</vs:file-note>
+</vs:file-notes>
+<vs:credit-enquiries>
+<vs:credit-enquiry enquiry-date="2020-07-19" type="authorised-agent-enquiry">
+<vs:id-references>
+<vs:id-reference>1</vs:id-reference>
+</vs:id-references>
+<vs:account-type code="AL">Auto Loan</vs:account-type>
+<vs:enquiry-amount currency-code="AUD">55000</vs:enquiry-amount>
+<vs:relationship code="1">Principal's Account (sole)</vs:relationship>
+<vs:credit-enquirer>
+<vs:name>VOLGA</vs:name>
+<vs:classification>LATO</vs:classification>
+</vs:credit-enquirer>
+<vs:enquiry-client-reference>2</vs:enquiry-client-reference>
+</vs:credit-enquiry>
+<vs:credit-enquiry enquiry-date="2018-06-17" type="authorised-agent-enquiry">
+<vs:id-references>
+<vs:id-reference>1</vs:id-reference>
+</vs:id-references>
+<vs:account-type code="PF">Personal Loan (fixed term)</vs:account-type>
+<vs:enquiry-amount currency-code="AUD">1234</vs:enquiry-amount>
+<vs:relationship code="1">Principal's Account (sole)</vs:relationship>
+<vs:credit-enquirer>
+<vs:name>ABC 2010 AUTHORISED AGENT</vs:name>
+</vs:credit-enquirer>
+<vs:enquiry-client-reference>1</vs:enquiry-client-reference>
+</vs:credit-enquiry>
+<vs:credit-enquiry enquiry-date="2021-07-20" type="credit-application">
+<vs:id-references>
+<vs:id-reference>1</vs:id-reference>
+</vs:id-references>
+<vs:account-type code="RM">Real Property Mortgage</vs:account-type>
+<vs:enquiry-amount currency-code="AUD">100000</vs:enquiry-amount>
+<vs:relationship code="2">Principal's Account (joint)</vs:relationship>
+<vs:credit-enquirer>
+<vs:name>ORDE FINANCIAL</vs:name>
+<vs:classification>FINC</vs:classification>
+</vs:credit-enquirer>
+<vs:enquiry-client-reference>APP-0000000600</vs:enquiry-client-reference>
+</vs:credit-enquiry>
+<vs:credit-enquiry enquiry-date="2021-07-20" type="credit-application">
+<vs:id-references>
+<vs:id-reference>1</vs:id-reference>
+</vs:id-references>
+<vs:account-type code="RM">Real Property Mortgage</vs:account-type>
+<vs:enquiry-amount currency-code="AUD">111688</vs:enquiry-amount>
+<vs:relationship code="1">Principal's Account (sole)</vs:relationship>
+<vs:credit-enquirer>
+<vs:name>ING BK-INTERMEDIARY DIST NSW</vs:name>
+</vs:credit-enquirer>
+<vs:enquiry-client-reference>199953</vs:enquiry-client-reference>
+</vs:credit-enquiry>
+<vs:credit-enquiry enquiry-date="2021-07-20" type="credit-application">
+<vs:id-references>
+<vs:id-reference>1</vs:id-reference>
+</vs:id-references>
+<vs:account-type code="RM">Real Property Mortgage</vs:account-type>
+<vs:enquiry-amount currency-code="AUD">100000</vs:enquiry-amount>
+<vs:relationship code="1">Principal's Account (sole)</vs:relationship>
+<vs:credit-enquirer>
+<vs:name>MORTGAGEPORT.</vs:name>
+<vs:classification>FINA</vs:classification>
+</vs:credit-enquirer>
+</vs:credit-enquiry>
+<vs:credit-enquiry enquiry-date="2021-07-20" type="credit-application">
+<vs:id-references>
+<vs:id-reference>1</vs:id-reference>
+</vs:id-references>
+<vs:account-type code="CC">Credit Card</vs:account-type>
+<vs:enquiry-amount currency-code="AUD">0</vs:enquiry-amount>
+<vs:relationship code="1">Principal's Account (sole)</vs:relationship>
+<vs:credit-enquirer>
+<vs:name>CITICORP TEST CODE</vs:name>
+<vs:classification>SLND</vs:classification>
+</vs:credit-enquirer>
+<vs:enquiry-client-reference>180619000055893</vs:enquiry-client-reference>
+</vs:credit-enquiry>
+<vs:credit-enquiry enquiry-date="2021-07-03" type="credit-application">
+<vs:id-references>
+<vs:id-reference>1</vs:id-reference>
+</vs:id-references>
+<vs:account-type code="CC">Credit Card</vs:account-type>
+<vs:enquiry-amount currency-code="AUD">41333</vs:enquiry-amount>
+<vs:relationship code="1">Principal's Account (sole)</vs:relationship>
+<vs:credit-enquirer>
+<vs:name>AMERICAN EXPRESS</vs:name>
+</vs:credit-enquirer>
+</vs:credit-enquiry>
+<vs:credit-enquiry enquiry-date="2021-07-03" type="credit-application">
+<vs:id-references>
+<vs:id-reference>1</vs:id-reference>
+</vs:id-references>
+<vs:account-type code="RE">Equipment Hire or Rental</vs:account-type>
+<vs:enquiry-amount currency-code="AUD">150</vs:enquiry-amount>
+<vs:relationship code="1">Principal's Account (sole)</vs:relationship>
+<vs:credit-enquirer>
+<vs:name>EQUIPMENT FINANCE COMPANY</vs:name>
+<vs:classification>APPL</vs:classification>
+</vs:credit-enquirer>
+</vs:credit-enquiry>
+<vs:credit-enquiry enquiry-date="2020-11-29" type="credit-application">
+<vs:id-references>
+<vs:id-reference>1</vs:id-reference>
+</vs:id-references>
+<vs:account-type code="PF">Personal Loan (fixed term)</vs:account-type>
+<vs:enquiry-amount currency-code="AUD">16000</vs:enquiry-amount>
+<vs:relationship code="1">Principal's Account (sole)</vs:relationship>
+<vs:credit-enquirer>
+<vs:name>INTERNATIONAL REGIONAL BANK</vs:name>
+<vs:classification>LBNK</vs:classification>
+</vs:credit-enquirer>
+</vs:credit-enquiry>
+<vs:credit-enquiry enquiry-date="2020-11-22" type="credit-application">
+<vs:id-references>
+<vs:id-reference>1</vs:id-reference>
+</vs:id-references>
+<vs:account-type code="CC">Credit Card</vs:account-type>
+<vs:enquiry-amount currency-code="AUD">500</vs:enquiry-amount>
+<vs:relationship code="1">Principal's Account (sole)</vs:relationship>
+<vs:credit-enquirer>
+<vs:name>ALTERNATIVE LENDER</vs:name>
+<vs:classification>SLND</vs:classification>
+</vs:credit-enquirer>
+<vs:enquiry-client-reference>REF123</vs:enquiry-client-reference>
+</vs:credit-enquiry>
+<vs:credit-enquiry enquiry-date="2020-11-19" type="credit-application">
+<vs:id-references>
+<vs:id-reference>1</vs:id-reference>
+</vs:id-references>
+<vs:account-type code="PF">Personal Loan (fixed term)</vs:account-type>
+<vs:enquiry-amount currency-code="AUD">1990</vs:enquiry-amount>
+<vs:relationship code="1">Principal's Account (sole)</vs:relationship>
+<vs:credit-enquirer>
+<vs:name>ALTERNATIVE LENDER</vs:name>
+<vs:classification>SLND</vs:classification>
+</vs:credit-enquirer>
+</vs:credit-enquiry>
+<vs:credit-enquiry enquiry-date="2020-11-04" type="credit-application">
+<vs:id-references>
+<vs:id-reference>1</vs:id-reference>
+</vs:id-references>
+<vs:account-type code="RM">Real Property Mortgage</vs:account-type>
+<vs:enquiry-amount currency-code="AUD">350000</vs:enquiry-amount>
+<vs:relationship code="1">Principal's Account (sole)</vs:relationship>
+<vs:credit-enquirer>
+<vs:name>WPAC FLEXILOAN TEST</vs:name>
+</vs:credit-enquirer>
+</vs:credit-enquiry>
+<vs:credit-enquiry enquiry-date="2020-11-03" type="credit-application">
+<vs:id-references>
+<vs:id-reference>1</vs:id-reference>
+</vs:id-references>
+<vs:account-type code="CC">Credit Card</vs:account-type>
+<vs:enquiry-amount currency-code="AUD">10000</vs:enquiry-amount>
+<vs:relationship code="1">Principal's Account (sole)</vs:relationship>
+<vs:credit-enquirer>
+<vs:name>ANZ BANK TEST CODE</vs:name>
+</vs:credit-enquirer>
+</vs:credit-enquiry>
+<vs:credit-enquiry enquiry-date="2020-11-02" type="credit-application">
+<vs:id-references>
+<vs:id-reference>1</vs:id-reference>
+</vs:id-references>
+<vs:account-type code="TC">Telecommunications Services</vs:account-type>
+<vs:enquiry-amount currency-code="AUD">1000</vs:enquiry-amount>
+<vs:relationship code="1">Principal's Account (sole)</vs:relationship>
+<vs:credit-enquirer>
+<vs:name>TELSTRA</vs:name>
+</vs:credit-enquirer>
+</vs:credit-enquiry>
+<vs:credit-enquiry enquiry-date="2020-11-01" type="credit-application">
+<vs:id-references>
+<vs:id-reference>1</vs:id-reference>
+</vs:id-references>
+<vs:account-type code="CC">Credit Card</vs:account-type>
+<vs:enquiry-amount currency-code="AUD">10000</vs:enquiry-amount>
+<vs:relationship code="1">Principal's Account (sole)</vs:relationship>
+<vs:credit-enquirer>
+<vs:name>AMERICAN EXPRESS</vs:name>
+</vs:credit-enquirer>
+</vs:credit-enquiry>
+<vs:credit-enquiry enquiry-date="2019-06-21" type="credit-application">
+<vs:id-references>
+<vs:id-reference>1</vs:id-reference>
+</vs:id-references>
+<vs:account-type code="PF">Personal Loan (fixed term)</vs:account-type>
+<vs:enquiry-amount currency-code="AUD">1950</vs:enquiry-amount>
+<vs:relationship code="1">Principal's Account (sole)</vs:relationship>
+<vs:credit-enquirer>
+<vs:name>ALTERNATIVE LENDER</vs:name>
+<vs:classification>SLND</vs:classification>
+</vs:credit-enquirer>
+<vs:enquiry-client-reference>5006358</vs:enquiry-client-reference>
+</vs:credit-enquiry>
+<vs:credit-enquiry enquiry-date="2018-12-27" type="credit-application">
+<vs:id-references>
+<vs:id-reference>1</vs:id-reference>
+</vs:id-references>
+<vs:account-type code="PF">Personal Loan (fixed term)</vs:account-type>
+<vs:enquiry-amount currency-code="AUD">1600</vs:enquiry-amount>
+<vs:relationship code="1">Principal's Account (sole)</vs:relationship>
+<vs:credit-enquirer>
+<vs:name>ALTERNATIVE LENDER</vs:name>
+<vs:classification>SLND</vs:classification>
+</vs:credit-enquirer>
+</vs:credit-enquiry>
+</vs:credit-enquiries>
+<vs:accounts>
+<vs:account account-data-level="2" latest-update-date="2021-07-19">
+<vs:id-references>
+<vs:id-reference>1</vs:id-reference>
+</vs:id-references>
+<vs:account-id>RCBN123</vs:account-id>
+<vs:original-credit-provider>
+<vs:name>IA MISC TESTING 003 BRANCH</vs:name>
+<vs:classification>SLND</vs:classification>
+</vs:original-credit-provider>
+<vs:latest-credit-provider>
+<vs:name>INTERNATIONAL REGIONAL BANK</vs:name>
+<vs:classification>LBNK</vs:classification>
+</vs:latest-credit-provider>
+<vs:account-type code="OD">Overdraft</vs:account-type>
+<vs:relationship code="1">Principal's Account (sole)</vs:relationship>
+<vs:association-information>
+<vs:is-serious-credit-infringement>false</vs:is-serious-credit-infringement>
+</vs:association-information>
+<vs:defaults>
+<vs:default>
+<vs:status code="V">New Arrangement - Varied</vs:status>
+<vs:status-date>2020-06-24</vs:status-date>
+<vs:original-default>
+<vs:date-recorded>2020-06-24</vs:date-recorded>
+<vs:default-amount currency-code="AUD">1000</vs:default-amount>
+</vs:original-default>
+<vs:current-default>
+<vs:date-recorded>2020-06-24</vs:date-recorded>
+<vs:default-amount currency-code="AUD">1000</vs:default-amount>
+</vs:current-default>
+</vs:default>
+</vs:defaults>
+</vs:account>
+<vs:account account-data-level="3" latest-update-date="2021-07-20">
+<vs:id-references>
+<vs:id-reference>1</vs:id-reference>
+</vs:id-references>
+<vs:account-id>M001</vs:account-id>
+<vs:original-credit-provider>
+<vs:name>ITIG TCPIP 003 ACTIVE BRANCH</vs:name>
+<vs:classification>LATO</vs:classification>
+</vs:original-credit-provider>
+<vs:latest-credit-provider>
+<vs:name>AUTO FINANCE COMPANY</vs:name>
+<vs:classification>LATO</vs:classification>
+</vs:latest-credit-provider>
+<vs:account-type code="AL">Auto Loan</vs:account-type>
+<vs:relationship code="2">Principal's Account (joint)</vs:relationship>
+<vs:association-information>
+<vs:is-serious-credit-infringement>false</vs:is-serious-credit-infringement>
+<vs:default-association-start-date>2018-08-20</vs:default-association-start-date>
+</vs:association-information>
+<vs:defaults>
+<vs:default>
+<vs:status code="P">Paid</vs:status>
+<vs:status-date>2018-08-21</vs:status-date>
+<vs:original-default>
+<vs:date-recorded>2018-08-20</vs:date-recorded>
+<vs:default-amount currency-code="AUD">2000</vs:default-amount>
+</vs:original-default>
+<vs:current-default>
+<vs:date-recorded>2018-08-20</vs:date-recorded>
+<vs:default-amount currency-code="AUD">2000</vs:default-amount>
+</vs:current-default>
+</vs:default>
+</vs:defaults>
+</vs:account>
+<vs:account account-data-level="3" latest-update-date="2021-07-19">
+<vs:id-references>
+<vs:id-reference>1</vs:id-reference>
+</vs:id-references>
+<vs:account-id>AVCER16DFCNRT01</vs:account-id>
+<vs:original-credit-provider>
+<vs:name>IA MISC TESTING 003 BRANCH</vs:name>
+<vs:classification>LBNK</vs:classification>
+</vs:original-credit-provider>
+<vs:latest-credit-provider>
+<vs:name>INTERNATIONAL REGIONAL BANK</vs:name>
+<vs:classification>LBNK</vs:classification>
+</vs:latest-credit-provider>
+<vs:account-type code="CC">Credit Card</vs:account-type>
+<vs:relationship code="1">Principal's Account (sole)</vs:relationship>
+<vs:association-information>
+<vs:is-serious-credit-infringement>true</vs:is-serious-credit-infringement>
+<vs:sci-date>2018-06-30</vs:sci-date>
+<vs:default-association-start-date>2018-06-30</vs:default-association-start-date>
+</vs:association-information>
+<vs:defaults>
+<vs:default>
+<vs:status code="O">Outstanding</vs:status>
+<vs:original-default>
+<vs:date-recorded>2018-06-30</vs:date-recorded>
+<vs:default-amount currency-code="AUD">1000</vs:default-amount>
+</vs:original-default>
+<vs:current-default>
+<vs:date-recorded>2018-06-30</vs:date-recorded>
+<vs:default-amount currency-code="AUD">1000</vs:default-amount>
+</vs:current-default>
+</vs:default>
+</vs:defaults>
+</vs:account>
+<vs:account account-data-level="3" latest-update-date="2021-07-19">
+<vs:id-references>
+<vs:id-reference>1</vs:id-reference>
+</vs:id-references>
+<vs:account-id>TEST20</vs:account-id>
+<vs:original-credit-provider>
+<vs:name>ABC NORTH SYDNEY BRANCH NSW</vs:name>
+<vs:classification>LBNK</vs:classification>
+</vs:original-credit-provider>
+<vs:latest-credit-provider>
+<vs:name>LARGE BANK</vs:name>
+<vs:classification>LBNK</vs:classification>
+</vs:latest-credit-provider>
+<vs:account-type code="PR">Personal Loan (revolving)</vs:account-type>
+<vs:relationship code="1">Principal's Account (sole)</vs:relationship>
+<vs:association-information>
+<vs:is-serious-credit-infringement>false</vs:is-serious-credit-infringement>
+<vs:default-association-start-date>2018-06-27</vs:default-association-start-date>
+</vs:association-information>
+<vs:defaults>
+<vs:default>
+<vs:status code="O">Outstanding</vs:status>
+<vs:original-default>
+<vs:date-recorded>2018-06-27</vs:date-recorded>
+<vs:default-amount currency-code="AUD">1234</vs:default-amount>
+</vs:original-default>
+<vs:current-default>
+<vs:date-recorded>2018-06-30</vs:date-recorded>
+<vs:default-amount currency-code="AUD">1300</vs:default-amount>
+</vs:current-default>
+</vs:default>
+</vs:defaults>
+</vs:account>
+<vs:account account-data-level="3" latest-update-date="2021-07-20">
+<vs:id-references>
+<vs:id-reference>1</vs:id-reference>
+</vs:id-references>
+<vs:account-id>TEST014</vs:account-id>
+<vs:original-credit-provider>
+<vs:name>ABC NORTH SYDNEY BRANCH NSW</vs:name>
+<vs:classification>LBNK</vs:classification>
+</vs:original-credit-provider>
+<vs:latest-credit-provider>
+<vs:name>INTERNATIONAL REGIONAL BANK</vs:name>
+<vs:classification>LBNK</vs:classification>
+</vs:latest-credit-provider>
+<vs:account-type code="TC">Telecommunications Services</vs:account-type>
+<vs:relationship code="1">Principal's Account (sole)</vs:relationship>
+<vs:association-information>
+<vs:is-serious-credit-infringement>false</vs:is-serious-credit-infringement>
+<vs:default-association-start-date>2018-06-20</vs:default-association-start-date>
+</vs:association-information>
+<vs:defaults>
+<vs:default>
+<vs:status code="P">Paid</vs:status>
+<vs:status-date>2018-06-20</vs:status-date>
+<vs:original-default>
+<vs:date-recorded>2018-06-20</vs:date-recorded>
+<vs:default-amount currency-code="AUD">150</vs:default-amount>
+</vs:original-default>
+<vs:current-default>
+<vs:date-recorded>2018-06-20</vs:date-recorded>
+<vs:default-amount currency-code="AUD">150</vs:default-amount>
+</vs:current-default>
+</vs:default>
+</vs:defaults>
+</vs:account>
+<vs:account account-data-level="3" latest-update-date="2021-07-19">
+<vs:id-references>
+<vs:id-reference>1</vs:id-reference>
+</vs:id-references>
+<vs:account-id>TEST06</vs:account-id>
+<vs:original-credit-provider>
+<vs:name>ABC 2003 CONSUMER</vs:name>
+<vs:classification>LBNK</vs:classification>
+</vs:original-credit-provider>
+<vs:latest-credit-provider>
+<vs:name>LARGE BANK</vs:name>
+<vs:classification>LBNK</vs:classification>
+</vs:latest-credit-provider>
+<vs:account-type code="RM">Real Property Mortgage</vs:account-type>
+<vs:relationship code="1">Principal's Account (sole)</vs:relationship>
+<vs:association-information>
+<vs:is-serious-credit-infringement>true</vs:is-serious-credit-infringement>
+<vs:sci-date>2018-06-18</vs:sci-date>
+<vs:default-association-start-date>2018-06-18</vs:default-association-start-date>
+</vs:association-information>
+<vs:defaults>
+<vs:default>
+<vs:status code="O">Outstanding</vs:status>
+<vs:original-default>
+<vs:date-recorded>2018-06-18</vs:date-recorded>
+<vs:default-amount currency-code="AUD">1234</vs:default-amount>
+</vs:original-default>
+<vs:current-default>
+<vs:date-recorded>2018-06-18</vs:date-recorded>
+<vs:default-amount currency-code="AUD">1234</vs:default-amount>
+</vs:current-default>
+</vs:default>
+</vs:defaults>
+</vs:account>
+<vs:account account-data-level="3" latest-update-date="2021-07-19">
+<vs:id-references>
+<vs:id-reference>1</vs:id-reference>
+</vs:id-references>
+<vs:account-id>TEST11</vs:account-id>
+<vs:original-credit-provider>
+<vs:name>IA MISC TESTING 003 BRANCH</vs:name>
+<vs:classification>APPL</vs:classification>
+</vs:original-credit-provider>
+<vs:latest-credit-provider>
+<vs:name>EQUIPMENT FINANCE COMPANY</vs:name>
+<vs:classification>APPL</vs:classification>
+</vs:latest-credit-provider>
+<vs:account-type code="RE">Equipment Hire or Rental</vs:account-type>
+<vs:relationship code="2">Principal's Account (joint)</vs:relationship>
+<vs:association-information>
+<vs:is-serious-credit-infringement>true</vs:is-serious-credit-infringement>
+<vs:sci-date>2018-06-18</vs:sci-date>
+<vs:default-association-start-date>2018-06-18</vs:default-association-start-date>
+</vs:association-information>
+<vs:defaults>
+<vs:default>
+<vs:status code="O">Outstanding</vs:status>
+<vs:original-default>
+<vs:date-recorded>2018-06-18</vs:date-recorded>
+<vs:default-amount currency-code="AUD">1234</vs:default-amount>
+</vs:original-default>
+<vs:current-default>
+<vs:date-recorded>2018-06-18</vs:date-recorded>
+<vs:default-amount currency-code="AUD">1234</vs:default-amount>
+</vs:current-default>
+</vs:default>
+</vs:defaults>
+</vs:account>
+<vs:account account-data-level="3" latest-update-date="2021-07-19">
+<vs:id-references>
+<vs:id-reference>1</vs:id-reference>
+</vs:id-references>
+<vs:account-id>H30</vs:account-id>
+<vs:original-credit-provider>
+<vs:name>ITIG TCPIP 003 ACTIVE BRANCH</vs:name>
+<vs:classification>LBNK</vs:classification>
+</vs:original-credit-provider>
+<vs:latest-credit-provider>
+<vs:name>INTERNATIONAL REGIONAL BANK</vs:name>
+<vs:classification>LBNK</vs:classification>
+</vs:latest-credit-provider>
+<vs:account-type code="AO">All Other Account Types</vs:account-type>
+<vs:relationship code="2">Principal's Account (joint)</vs:relationship>
+<vs:association-information>
+<vs:is-serious-credit-infringement>false</vs:is-serious-credit-infringement>
+<vs:default-association-start-date>2018-06-17</vs:default-association-start-date>
+</vs:association-information>
+<vs:defaults>
+<vs:default>
+<vs:status code="O">Outstanding</vs:status>
+<vs:original-default>
+<vs:date-recorded>2018-06-17</vs:date-recorded>
+<vs:default-amount currency-code="AUD">2000</vs:default-amount>
+</vs:original-default>
+<vs:current-default>
+<vs:date-recorded>2018-06-17</vs:date-recorded>
+<vs:default-amount currency-code="AUD">3002</vs:default-amount>
+</vs:current-default>
+</vs:default>
+</vs:defaults>
+</vs:account>
+<vs:account account-data-level="3" latest-update-date="2021-07-19">
+<vs:id-references>
+<vs:id-reference>1</vs:id-reference>
+</vs:id-references>
+<vs:account-id>SMOKETEST06</vs:account-id>
+<vs:original-credit-provider>
+<vs:name>ITIG TCPIP 003 ACTIVE BRANCH</vs:name>
+<vs:classification>SLND</vs:classification>
+</vs:original-credit-provider>
+<vs:latest-credit-provider>
+<vs:name>ALTERNATIVE LENDER</vs:name>
+<vs:classification>SLND</vs:classification>
+</vs:latest-credit-provider>
+<vs:account-type code="PF">Personal Loan (fixed term)</vs:account-type>
+<vs:relationship code="3">Guarantor</vs:relationship>
+<vs:association-information>
+<vs:is-serious-credit-infringement>false</vs:is-serious-credit-infringement>
+<vs:default-association-start-date>2018-05-28</vs:default-association-start-date>
+</vs:association-information>
+<vs:defaults>
+<vs:default>
+<vs:status code="O">Outstanding</vs:status>
+<vs:original-default>
+<vs:date-recorded>2020-05-28</vs:date-recorded>
+<vs:default-amount currency-code="AUD">1234</vs:default-amount>
+</vs:original-default>
+<vs:current-default>
+<vs:date-recorded>2020-05-28</vs:date-recorded>
+<vs:default-amount currency-code="AUD">1400</vs:default-amount>
+</vs:current-default>
+</vs:default>
+</vs:defaults>
+</vs:account>
+<vs:account account-data-level="3" latest-update-date="2021-07-19">
+<vs:id-references>
+<vs:id-reference>1</vs:id-reference>
+</vs:id-references>
+<vs:account-id>KL789</vs:account-id>
+<vs:original-credit-provider>
+<vs:name>ITIG TCPIP 003 ACTIVE BRANCH</vs:name>
+<vs:classification>LATO</vs:classification>
+</vs:original-credit-provider>
+<vs:latest-credit-provider>
+<vs:name>AUTO FINANCE COMPANY</vs:name>
+<vs:classification>LATO</vs:classification>
+</vs:latest-credit-provider>
+<vs:account-type code="AL">Auto Loan</vs:account-type>
+<vs:relationship code="1">Principal's Account (sole)</vs:relationship>
+<vs:association-information>
+<vs:is-serious-credit-infringement>true</vs:is-serious-credit-infringement>
+<vs:sci-date>2018-05-19</vs:sci-date>
+<vs:default-association-start-date>2018-05-28</vs:default-association-start-date>
+</vs:association-information>
+<vs:defaults>
+<vs:default>
+<vs:status code="O">Outstanding</vs:status>
+<vs:original-default>
+<vs:date-recorded>2018-05-28</vs:date-recorded>
+<vs:default-amount currency-code="AUD">5900</vs:default-amount>
+</vs:original-default>
+<vs:current-default>
+<vs:date-recorded>2018-05-28</vs:date-recorded>
+<vs:default-amount currency-code="AUD">5900</vs:default-amount>
+</vs:current-default>
+</vs:default>
+</vs:defaults>
+</vs:account>
+<vs:account account-data-level="3" latest-update-date="2021-07-20">
+<vs:id-references>
+<vs:id-reference>1</vs:id-reference>
+</vs:id-references>
+<vs:account-id>SMOKETEST09</vs:account-id>
+<vs:original-credit-provider>
+<vs:name>ITIG TCPIP 003 ACTIVE BRANCH</vs:name>
+<vs:classification>SLND</vs:classification>
+</vs:original-credit-provider>
+<vs:latest-credit-provider>
+<vs:name>ALTERNATIVE LENDER</vs:name>
+<vs:classification>SLND</vs:classification>
+</vs:latest-credit-provider>
+<vs:account-type code="PF">Personal Loan (fixed term)</vs:account-type>
+<vs:relationship code="1">Principal's Account (sole)</vs:relationship>
+<vs:association-information>
+<vs:is-serious-credit-infringement>false</vs:is-serious-credit-infringement>
+<vs:default-association-start-date>2018-05-28</vs:default-association-start-date>
+</vs:association-information>
+<vs:defaults>
+<vs:default>
+<vs:status code="P">Paid</vs:status>
+<vs:status-date>2021-05-28</vs:status-date>
+<vs:original-default>
+<vs:date-recorded>2021-05-28</vs:date-recorded>
+<vs:default-amount currency-code="AUD">1234</vs:default-amount>
+</vs:original-default>
+<vs:current-default>
+<vs:date-recorded>2021-05-28</vs:date-recorded>
+<vs:default-amount currency-code="AUD">1500</vs:default-amount>
+</vs:current-default>
+</vs:default>
+</vs:defaults>
+</vs:account>
+<vs:account account-data-level="3" latest-update-date="2021-07-19">
+<vs:id-references>
+<vs:id-reference>1</vs:id-reference>
+</vs:id-references>
+<vs:account-id>SMOKTEST16</vs:account-id>
+<vs:original-credit-provider>
+<vs:name>ABC 2003 CONSUMER</vs:name>
+<vs:classification>SLND</vs:classification>
+</vs:original-credit-provider>
+<vs:latest-credit-provider>
+<vs:name>ALTERNATIVE LENDER</vs:name>
+<vs:classification>SLND</vs:classification>
+</vs:latest-credit-provider>
+<vs:account-type code="PF">Personal Loan (fixed term)</vs:account-type>
+<vs:relationship code="1">Principal's Account (sole)</vs:relationship>
+<vs:association-information>
+<vs:is-serious-credit-infringement>false</vs:is-serious-credit-infringement>
+<vs:default-association-start-date>2018-05-28</vs:default-association-start-date>
+</vs:association-information>
+<vs:defaults>
+<vs:default>
+<vs:status code="P">Paid</vs:status>
+<vs:status-date>2021-04-03</vs:status-date>
+<vs:original-default>
+<vs:date-recorded>2021-02-24</vs:date-recorded>
+<vs:default-amount currency-code="AUD">1234</vs:default-amount>
+</vs:original-default>
+<vs:current-default>
+<vs:date-recorded>2021-02-24</vs:date-recorded>
+<vs:default-amount currency-code="AUD">2000</vs:default-amount>
+</vs:current-default>
+</vs:default>
+</vs:defaults>
+</vs:account>
+<vs:account account-data-level="3" latest-update-date="2021-07-20">
+<vs:id-references>
+<vs:id-reference>1</vs:id-reference>
+</vs:id-references>
+<vs:account-id>VCE1529</vs:account-id>
+<vs:original-credit-provider>
+<vs:name>ABC 2003 CONSUMER</vs:name>
+<vs:classification>SLND</vs:classification>
+</vs:original-credit-provider>
+<vs:latest-credit-provider>
+<vs:name>ALTERNATIVE LENDER</vs:name>
+<vs:classification>SLND</vs:classification>
+</vs:latest-credit-provider>
+<vs:account-type code="PF">Personal Loan (fixed term)</vs:account-type>
+<vs:relationship code="1">Principal's Account (sole)</vs:relationship>
+<vs:association-information>
+<vs:is-serious-credit-infringement>false</vs:is-serious-credit-infringement>
+<vs:default-association-start-date>2018-05-26</vs:default-association-start-date>
+</vs:association-information>
+<vs:defaults>
+<vs:default>
+<vs:status code="P">Paid</vs:status>
+<vs:status-date>2021-07-06</vs:status-date>
+<vs:original-default>
+<vs:date-recorded>2021-07-06</vs:date-recorded>
+<vs:default-amount currency-code="AUD">1500</vs:default-amount>
+</vs:original-default>
+<vs:current-default>
+<vs:date-recorded>2021-07-06</vs:date-recorded>
+<vs:default-amount currency-code="AUD">1700</vs:default-amount>
+</vs:current-default>
+</vs:default>
+</vs:defaults>
+</vs:account>
+<vs:account account-data-level="3" latest-update-date="2021-07-19">
+<vs:id-references>
+<vs:id-reference>1</vs:id-reference>
+</vs:id-references>
+<vs:account-id>VCE1553</vs:account-id>
+<vs:original-credit-provider>
+<vs:name>ABC 2003 CONSUMER</vs:name>
+<vs:classification>LBNK</vs:classification>
+</vs:original-credit-provider>
+<vs:latest-credit-provider>
+<vs:name>LARGE BANK</vs:name>
+<vs:classification>LBNK</vs:classification>
+</vs:latest-credit-provider>
+<vs:account-type code="PR">Personal Loan (revolving)</vs:account-type>
+<vs:relationship code="1">Principal's Account (sole)</vs:relationship>
+<vs:association-information>
+<vs:is-serious-credit-infringement>false</vs:is-serious-credit-infringement>
+<vs:default-association-start-date>2018-05-26</vs:default-association-start-date>
+</vs:association-information>
+<vs:defaults>
+<vs:default>
+<vs:status code="O">Outstanding</vs:status>
+<vs:original-default>
+<vs:date-recorded>2018-05-26</vs:date-recorded>
+<vs:default-amount currency-code="AUD">17000</vs:default-amount>
+</vs:original-default>
+<vs:current-default>
+<vs:date-recorded>2018-05-26</vs:date-recorded>
+<vs:default-amount currency-code="AUD">17000</vs:default-amount>
+</vs:current-default>
+</vs:default>
+</vs:defaults>
+</vs:account>
+<vs:account account-data-level="3" latest-update-date="2021-07-19">
+<vs:id-references>
+<vs:id-reference>1</vs:id-reference>
+</vs:id-references>
+<vs:account-id>MEI121</vs:account-id>
+<vs:original-credit-provider>
+<vs:name>ITIG TCPIP 003 ACTIVE BRANCH</vs:name>
+<vs:classification>SLND</vs:classification>
+</vs:original-credit-provider>
+<vs:latest-credit-provider>
+<vs:name>ALTERNATIVE LENDER</vs:name>
+<vs:classification>SLND</vs:classification>
+</vs:latest-credit-provider>
+<vs:account-type code="PF">Personal Loan (fixed term)</vs:account-type>
+<vs:relationship code="2">Principal's Account (joint)</vs:relationship>
+<vs:association-information>
+<vs:is-serious-credit-infringement>false</vs:is-serious-credit-infringement>
+<vs:default-association-start-date>2018-05-26</vs:default-association-start-date>
+</vs:association-information>
+<vs:defaults>
+<vs:default>
+<vs:status code="O">Outstanding</vs:status>
+<vs:status-date>2021-06-26</vs:status-date>
+<vs:original-default>
+<vs:date-recorded>2021-06-26</vs:date-recorded>
+<vs:default-amount currency-code="AUD">5000</vs:default-amount>
+</vs:original-default>
+<vs:current-default>
+<vs:date-recorded>2021-06-26</vs:date-recorded>
+<vs:default-amount currency-code="AUD">5000</vs:default-amount>
+</vs:current-default>
+</vs:default>
+</vs:defaults>
+</vs:account>
+<vs:account account-data-level="3" latest-update-date="2021-07-19">
+<vs:id-references>
+<vs:id-reference>1</vs:id-reference>
+</vs:id-references>
+<vs:account-id>VCE1555</vs:account-id>
+<vs:original-credit-provider>
+<vs:name>ABC 2003 CONSUMER</vs:name>
+<vs:classification>SLND</vs:classification>
+</vs:original-credit-provider>
+<vs:latest-credit-provider>
+<vs:name>ALRERNATIVE LENDER</vs:name>
+<vs:classification>SLND</vs:classification>
+</vs:latest-credit-provider>
+<vs:account-type code="PF">Personal Loan (fixed term)</vs:account-type>
+<vs:relationship code="1">Principal's Account (sole)</vs:relationship>
+<vs:association-information>
+<vs:is-serious-credit-infringement>false</vs:is-serious-credit-infringement>
+<vs:default-association-start-date>2018-05-26</vs:default-association-start-date>
+</vs:association-information>
+<vs:defaults>
+<vs:default>
+<vs:status code="O">Outstanding</vs:status>
+<vs:original-default>
+<vs:date-recorded>2018-05-26</vs:date-recorded>
+<vs:default-amount currency-code="AUD">1234</vs:default-amount>
+</vs:original-default>
+<vs:current-default>
+<vs:date-recorded>2018-05-26</vs:date-recorded>
+<vs:default-amount currency-code="AUD">1234</vs:default-amount>
+</vs:current-default>
+</vs:default>
+</vs:defaults>
+</vs:account>
+<vs:account account-data-level="3" latest-update-date="2021-07-19">
+<vs:id-references>
+<vs:id-reference>1</vs:id-reference>
+</vs:id-references>
+<vs:account-id>333334</vs:account-id>
+<vs:original-credit-provider>
+<vs:name>ITIG TCPIP 003 ACTIVE BRANCH</vs:name>
+<vs:classification>SLND</vs:classification>
+</vs:original-credit-provider>
+<vs:latest-credit-provider>
+<vs:name>ALTERNATIVE LENDER</vs:name>
+<vs:classification>SLND</vs:classification>
+</vs:latest-credit-provider>
+<vs:account-type code="PF">Personal Loan (fixed term)</vs:account-type>
+<vs:relationship code="2">Principal's Account (joint)</vs:relationship>
+<vs:association-information>
+<vs:is-serious-credit-infringement>false</vs:is-serious-credit-infringement>
+<vs:default-association-start-date>2018-05-26</vs:default-association-start-date>
+</vs:association-information>
+<vs:defaults>
+<vs:default>
+<vs:status code="N">New Arrangement</vs:status>
+<vs:status-date>2020-11-10</vs:status-date>
+<vs:original-default>
+<vs:date-recorded>2020-11-10</vs:date-recorded>
+<vs:default-amount currency-code="AUD">1888</vs:default-amount>
+</vs:original-default>
+<vs:current-default>
+<vs:date-recorded>2020-11-10</vs:date-recorded>
+<vs:default-amount currency-code="AUD">2000</vs:default-amount>
+</vs:current-default>
+</vs:default>
+</vs:defaults>
+</vs:account>
+<vs:account account-data-level="3" latest-update-date="2021-07-19">
+<vs:id-references>
+<vs:id-reference>1</vs:id-reference>
+</vs:id-references>
+<vs:account-id>VCE1512</vs:account-id>
+<vs:original-credit-provider>
+<vs:name>ITIG TCPIP 003 ACTIVE BRANCH</vs:name>
+<vs:classification>SLND</vs:classification>
+</vs:original-credit-provider>
+<vs:latest-credit-provider>
+<vs:name>ALTERNATIVE LENDER</vs:name>
+<vs:classification>SLND</vs:classification>
+</vs:latest-credit-provider>
+<vs:account-type code="PF">Personal Loan (fixed term)</vs:account-type>
+<vs:relationship code="1">Principal's Account (sole)</vs:relationship>
+<vs:association-information>
+<vs:is-serious-credit-infringement>false</vs:is-serious-credit-infringement>
+<vs:default-association-start-date>2018-05-26</vs:default-association-start-date>
+</vs:association-information>
+<vs:defaults>
+<vs:default>
+<vs:status code="O">Outstanding</vs:status>
+<vs:status-date>2021-06-03</vs:status-date>
+<vs:original-default>
+<vs:date-recorded>2021-06-03</vs:date-recorded>
+<vs:default-amount currency-code="AUD">585</vs:default-amount>
+</vs:original-default>
+<vs:current-default>
+<vs:date-recorded>2021-06-03</vs:date-recorded>
+<vs:default-amount currency-code="AUD">585</vs:default-amount>
+</vs:current-default>
+</vs:default>
+</vs:defaults>
+</vs:account>
+<vs:account account-data-level="3" latest-update-date="2021-07-19">
+<vs:id-references>
+<vs:id-reference>1</vs:id-reference>
+</vs:id-references>
+<vs:account-id>VCE155301</vs:account-id>
+<vs:original-credit-provider>
+<vs:name>ABC 2003 CONSUMER</vs:name>
+<vs:classification>SLND</vs:classification>
+</vs:original-credit-provider>
+<vs:latest-credit-provider>
+<vs:name>ALTERNATIVE LENDER</vs:name>
+<vs:classification>SLND</vs:classification>
+</vs:latest-credit-provider>
+<vs:account-type code="PF">Personal Loan (fixed term)</vs:account-type>
+<vs:relationship code="1">Principal's Account (sole)</vs:relationship>
+<vs:association-information>
+<vs:is-serious-credit-infringement>false</vs:is-serious-credit-infringement>
+<vs:default-association-start-date>2018-05-26</vs:default-association-start-date>
+</vs:association-information>
+<vs:defaults>
+<vs:default>
+<vs:status code="O">Outstanding</vs:status>
+<vs:status-date>2021-02-18</vs:status-date>
+<vs:original-default>
+<vs:date-recorded>2021-02-18</vs:date-recorded>
+<vs:default-amount currency-code="AUD">1599</vs:default-amount>
+</vs:original-default>
+<vs:current-default>
+<vs:date-recorded>2021-02-18</vs:date-recorded>
+<vs:default-amount currency-code="AUD">1599</vs:default-amount>
+</vs:current-default>
+</vs:default>
+</vs:defaults>
+</vs:account>
+</vs:accounts>
+</vs:consumer-credit-file>
+<vs:commercial-credit-file>
+<vs:credit-enquiries>
+<vs:credit-enquiry enquiry-date="2018-05-27" type="authorised-agent-enquiry">
+<vs:id-references>
+<vs:id-reference>1</vs:id-reference>
+</vs:id-references>
+<vs:account-type code="OD">Bank Overdraft</vs:account-type>
+<vs:enquiry-amount currency-code="AUD">90</vs:enquiry-amount>
+<vs:relationship code="1">Principal's Account (sole)</vs:relationship>
+<vs:credit-enquirer>
+<vs:name>ITIG TCPIP 010 ACTIVE BRANCH</vs:name>
+<vs:classification>SLND</vs:classification>
+</vs:credit-enquirer>
+</vs:credit-enquiry>
+<vs:credit-enquiry enquiry-date="2018-04-08" type="authorised-agent-enquiry">
+<vs:id-references>
+<vs:id-reference>1</vs:id-reference>
+</vs:id-references>
+<vs:account-type code="OD">Bank Overdraft</vs:account-type>
+<vs:enquiry-amount currency-code="AUD">1234</vs:enquiry-amount>
+<vs:relationship code="1">Principal's Account (sole)</vs:relationship>
+<vs:credit-enquirer>
+<vs:name>ABC AUTHORISED AGENT BRANCH</vs:name>
+</vs:credit-enquirer>
+<vs:enquiry-client-reference>HADTOBEDONE1</vs:enquiry-client-reference>
+</vs:credit-enquiry>
+<vs:credit-enquiry enquiry-date="2021-07-12" type="credit-enquiry">
+<vs:id-references>
+<vs:id-reference>1</vs:id-reference>
+</vs:id-references>
+<vs:account-type code="LP">Lending Proposal</vs:account-type>
+<vs:enquiry-amount currency-code="AUD">5000</vs:enquiry-amount>
+<vs:relationship code="1">Principal's Account (sole)</vs:relationship>
+<vs:credit-enquirer>
+<vs:name>METRO FINANCE</vs:name>
+</vs:credit-enquirer>
+</vs:credit-enquiry>
+<vs:credit-enquiry enquiry-date="2020-11-18" type="credit-enquiry">
+<vs:id-references>
+<vs:id-reference>1</vs:id-reference>
+</vs:id-references>
+<vs:account-type code="CH">Cheque</vs:account-type>
+<vs:enquiry-amount currency-code="AUD">28000</vs:enquiry-amount>
+<vs:relationship code="1">Principal's Account (sole)</vs:relationship>
+<vs:credit-enquirer>
+<vs:name>AMERICAN EXPRESS</vs:name>
+</vs:credit-enquirer>
+</vs:credit-enquiry>
+<vs:credit-enquiry enquiry-date="2018-06-27" type="credit-enquiry">
+<vs:id-references>
+<vs:id-reference>1</vs:id-reference>
+</vs:id-references>
+<vs:account-type code="CD">Cash on Delivery</vs:account-type>
+<vs:enquiry-amount currency-code="AUD">1234</vs:enquiry-amount>
+<vs:relationship code="1">Principal's Account (sole)</vs:relationship>
+<vs:credit-enquirer>
+<vs:name>ABC 2003 CONSUMER</vs:name>
+<vs:classification>SLND</vs:classification>
+</vs:credit-enquirer>
+<vs:enquiry-client-reference>2</vs:enquiry-client-reference>
+</vs:credit-enquiry>
+</vs:credit-enquiries>
+<vs:accounts>
+<vs:account account-data-level="3" latest-update-date="2019-01-08">
+<vs:id-references>
+<vs:id-reference>1</vs:id-reference>
+</vs:id-references>
+<vs:account-id>TEST08</vs:account-id>
+<vs:original-credit-provider>
+<vs:name>ABC 2003 CONSUMER</vs:name>
+<vs:classification>SLND</vs:classification>
+</vs:original-credit-provider>
+<vs:latest-credit-provider>
+<vs:name>ABC 2003 CONSUMER</vs:name>
+<vs:classification>SLND</vs:classification>
+</vs:latest-credit-provider>
+<vs:account-type code="RM">Real Estate Mortgage</vs:account-type>
+<vs:relationship code="1">Principal's Account (sole)</vs:relationship>
+<vs:association-information>
+<vs:is-serious-credit-infringement>false</vs:is-serious-credit-infringement>
+<vs:default-association-start-date>2018-06-18</vs:default-association-start-date>
+</vs:association-information>
+<vs:defaults>
+<vs:default>
+<vs:status code="O">Outstanding</vs:status>
+<vs:original-default>
+<vs:date-recorded>2018-06-18</vs:date-recorded>
+<vs:default-amount currency-code="AUD">1234</vs:default-amount>
+<vs:reason-to-report code="RC">Referred to Collection or Collection Agency</vs:reason-to-report>
+</vs:original-default>
+<vs:current-default>
+<vs:date-recorded>2018-06-18</vs:date-recorded>
+<vs:default-amount currency-code="AUD">1234</vs:default-amount>
+<vs:reason-to-report code="RC">Referred to Collection or Collection Agency</vs:reason-to-report>
+</vs:current-default>
+</vs:default>
+</vs:defaults>
+</vs:account>
+<vs:account account-data-level="3" latest-update-date="2019-01-08">
+<vs:id-references>
+<vs:id-reference>1</vs:id-reference>
+</vs:id-references>
+<vs:account-id>H33</vs:account-id>
+<vs:original-credit-provider>
+<vs:name>ITIG TCPIP 003 ACTIVE BRANCH</vs:name>
+<vs:classification>FINC</vs:classification>
+</vs:original-credit-provider>
+<vs:latest-credit-provider>
+<vs:name>ITIG TCPIP 003 ACTIVE BRANCH</vs:name>
+<vs:classification>FINC</vs:classification>
+</vs:latest-credit-provider>
+<vs:account-type code="30">30-Day Account</vs:account-type>
+<vs:relationship code="3">Guarantor</vs:relationship>
+<vs:association-information>
+<vs:is-serious-credit-infringement>false</vs:is-serious-credit-infringement>
+<vs:default-association-start-date>2018-06-17</vs:default-association-start-date>
+</vs:association-information>
+<vs:defaults>
+<vs:default>
+<vs:status code="C">Current</vs:status>
+<vs:status-date>2018-06-23</vs:status-date>
+<vs:original-default>
+<vs:date-recorded>2018-06-17</vs:date-recorded>
+<vs:default-amount currency-code="AUD">110</vs:default-amount>
+<vs:reason-to-report code="PD">Payment Default</vs:reason-to-report>
+</vs:original-default>
+<vs:current-default>
+<vs:date-recorded>2018-06-23</vs:date-recorded>
+<vs:default-amount currency-code="AUD">50</vs:default-amount>
+<vs:reason-to-report code="PD">Payment Default</vs:reason-to-report>
+</vs:current-default>
+</vs:default>
+</vs:defaults>
+</vs:account>
+<vs:account account-data-level="3" latest-update-date="2019-01-08">
+<vs:id-references>
+<vs:id-reference>1</vs:id-reference>
+</vs:id-references>
+<vs:account-id>H11</vs:account-id>
+<vs:original-credit-provider>
+<vs:name>ITIG TCPIP 003 ACTIVE BRANCH</vs:name>
+<vs:classification>FINC</vs:classification>
+</vs:original-credit-provider>
+<vs:latest-credit-provider>
+<vs:name>ITIG TCPIP 003 ACTIVE BRANCH</vs:name>
+<vs:classification>FINC</vs:classification>
+</vs:latest-credit-provider>
+<vs:account-type code="CR">Commercial Rental</vs:account-type>
+<vs:relationship code="2">Principal's Account (joint)</vs:relationship>
+<vs:association-information>
+<vs:is-serious-credit-infringement>false</vs:is-serious-credit-infringement>
+<vs:default-association-start-date>2018-06-12</vs:default-association-start-date>
+</vs:association-information>
+<vs:defaults>
+<vs:default>
+<vs:status code="O">Outstanding</vs:status>
+<vs:original-default>
+<vs:date-recorded>2018-06-12</vs:date-recorded>
+<vs:default-amount currency-code="AUD">100</vs:default-amount>
+<vs:reason-to-report code="L">Legal (Where court action commenced)</vs:reason-to-report>
+</vs:original-default>
+<vs:current-default>
+<vs:date-recorded>2018-06-12</vs:date-recorded>
+<vs:default-amount currency-code="AUD">20</vs:default-amount>
+<vs:reason-to-report code="L">Legal (Where court action commenced)</vs:reason-to-report>
+</vs:current-default>
+</vs:default>
+</vs:defaults>
+</vs:account>
+<vs:account account-data-level="3" latest-update-date="2018-05-28">
+<vs:id-references>
+<vs:id-reference>1</vs:id-reference>
+</vs:id-references>
+<vs:account-id>SMOKTEST17</vs:account-id>
+<vs:original-credit-provider>
+<vs:name>ABC 2003 CONSUMER</vs:name>
+<vs:classification>SLND</vs:classification>
+</vs:original-credit-provider>
+<vs:latest-credit-provider>
+<vs:name>ABC 2003 CONSUMER</vs:name>
+<vs:classification>SLND</vs:classification>
+</vs:latest-credit-provider>
+<vs:account-type code="D">Dealership</vs:account-type>
+<vs:relationship code="1">Principal's Account (sole)</vs:relationship>
+<vs:association-information>
+<vs:is-serious-credit-infringement>false</vs:is-serious-credit-infringement>
+<vs:default-association-start-date>2018-05-28</vs:default-association-start-date>
+</vs:association-information>
+<vs:defaults>
+<vs:default>
+<vs:status code="P">Paid</vs:status>
+<vs:status-date>2018-05-28</vs:status-date>
+<vs:original-default>
+<vs:date-recorded>2018-05-28</vs:date-recorded>
+<vs:default-amount currency-code="AUD">1234</vs:default-amount>
+<vs:reason-to-report code="VS">Voluntary Surrender</vs:reason-to-report>
+</vs:original-default>
+<vs:current-default>
+<vs:date-recorded>2018-05-28</vs:date-recorded>
+<vs:default-amount currency-code="AUD">1234</vs:default-amount>
+<vs:reason-to-report code="IS">Insurance Shortfall</vs:reason-to-report>
+</vs:current-default>
+</vs:default>
+</vs:defaults>
+</vs:account>
+<vs:account account-data-level="3" latest-update-date="2019-01-08">
+<vs:id-references>
+<vs:id-reference>1</vs:id-reference>
+</vs:id-references>
+<vs:account-id>ACCT01</vs:account-id>
+<vs:original-credit-provider>
+<vs:name>ABC NORTH SYDNEY BRANCH NSW</vs:name>
+<vs:classification>SLND</vs:classification>
+</vs:original-credit-provider>
+<vs:latest-credit-provider>
+<vs:name>ABC NORTH SYDNEY BRANCH NSW</vs:name>
+<vs:classification>SLND</vs:classification>
+</vs:latest-credit-provider>
+<vs:account-type code="PF">Premium Finance</vs:account-type>
+<vs:relationship code="1">Principal's Account (sole)</vs:relationship>
+<vs:association-information>
+<vs:is-serious-credit-infringement>false</vs:is-serious-credit-infringement>
+<vs:default-association-start-date>2018-05-02</vs:default-association-start-date>
+</vs:association-information>
+<vs:defaults>
+<vs:default>
+<vs:status code="O">Outstanding</vs:status>
+<vs:original-default>
+<vs:date-recorded>2018-05-02</vs:date-recorded>
+<vs:default-amount currency-code="AUD">2134</vs:default-amount>
+<vs:reason-to-report code="SA">Scheme of Arrangement</vs:reason-to-report>
+</vs:original-default>
+<vs:current-default>
+<vs:date-recorded>2018-05-02</vs:date-recorded>
+<vs:default-amount currency-code="AUD">2134</vs:default-amount>
+<vs:reason-to-report code="SA">Scheme of Arrangement</vs:reason-to-report>
+</vs:current-default>
+</vs:default>
+</vs:defaults>
+</vs:account>
+<vs:account account-data-level="3" latest-update-date="2019-01-08">
+<vs:id-references>
+<vs:id-reference>1</vs:id-reference>
+</vs:id-references>
+<vs:account-id>002</vs:account-id>
+<vs:original-credit-provider>
+<vs:name>ITIG TCPIP 003 ACTIVE BRANCH</vs:name>
+<vs:classification>FINC</vs:classification>
+</vs:original-credit-provider>
+<vs:latest-credit-provider>
+<vs:name>ITIG TCPIP 003 ACTIVE BRANCH</vs:name>
+<vs:classification>FINC</vs:classification>
+</vs:latest-credit-provider>
+<vs:account-type code="F">Factored Account</vs:account-type>
+<vs:relationship code="2">Principal's Account (joint)</vs:relationship>
+<vs:association-information>
+<vs:is-serious-credit-infringement>false</vs:is-serious-credit-infringement>
+<vs:default-association-start-date>2018-08-20</vs:default-association-start-date>
+</vs:association-information>
+<vs:defaults>
+<vs:default>
+<vs:status code="O">Outstanding</vs:status>
+<vs:original-default>
+<vs:date-recorded>2018-08-20</vs:date-recorded>
+<vs:default-amount currency-code="AUD">2000</vs:default-amount>
+<vs:reason-to-report code="RL">Repossession Loss (After sale of the item)</vs:reason-to-report>
+</vs:original-default>
+<vs:current-default>
+<vs:date-recorded>2018-08-20</vs:date-recorded>
+<vs:default-amount currency-code="AUD">2000</vs:default-amount>
+<vs:reason-to-report code="RL">Repossession Loss (After sale of the item)</vs:reason-to-report>
+</vs:current-default>
+</vs:default>
+</vs:defaults>
+</vs:account>
+</vs:accounts>
+</vs:commercial-credit-file>
+<vs:public-record-or-consumer-credit-information>
+<vs:court-actions>
+<vs:court-action type="default-judgement">
+<vs:id-references>
+<vs:id-reference>1</vs:id-reference>
+</vs:id-references>
+<vs:action-date>2018-04-08</vs:action-date>
+<vs:creditor>TEST</vs:creditor>
+<vs:court-action-amount currency-code="AUD">1000</vs:court-action-amount>
+<vs:plaint-number>AB123456789/12/MACD</vs:plaint-number>
+<vs:court-type>Small Court</vs:court-type>
+<vs:relationship code="1">Principal's Account (sole)</vs:relationship>
+<vs:court-action-status code="P" date="2018-04-08">Paid</vs:court-action-status>
+</vs:court-action>
+</vs:court-actions>
+<vs:disqualified-directorships>
+<vs:disqualified-directorship last-extract-date="2018-04-08" last-extract-time="10:01:00.000+10:00">
+<vs:id-references>
+<vs:id-reference>1</vs:id-reference>
+</vs:id-references>
+<vs:date-disqualified>2018-01-23</vs:date-disqualified>
+<vs:date-disqualified-until>2019-01-14</vs:date-disqualified-until>
+</vs:disqualified-directorship>
+</vs:disqualified-directorships>
+<vs:directorships>
+<vs:directorship type="C">
+<vs:id-references>
+<vs:id-reference>1</vs:id-reference>
+</vs:id-references>
+<vs:date-appointed>2018-04-30</vs:date-appointed>
+<vs:organisation>
+<vs:bureau-reference>200997086</vs:bureau-reference>
+<vs:name>MARUBRAH</vs:name>
+<vs:type code="P/L">Proprietary Limited</vs:type>
+<vs:organisation-number>000456520</vs:organisation-number>
+</vs:organisation>
+</vs:directorship>
+</vs:directorships>
+<vs:business-names>
+<vs:business-name>
+<vs:id-references>
+<vs:id-reference>1</vs:id-reference>
+</vs:id-references>
+<vs:start-date>2018-04-08</vs:start-date>
+<vs:business>
+<vs:name>VEDA QA GUYS</vs:name>
+<vs:ABN>36652614875</vs:ABN>
+</vs:business>
+</vs:business-name>
+</vs:business-names>
+</vs:public-record-or-consumer-credit-information>
+</vs:enquiry-report>
+<vs:summary-data>
+<vs:data-block name="genesis" type="standard">
+<vs:characteristic id="NA8900" key-characteristic="true">
+<vs:variable-name>NA8900_xr_cur</vs:variable-name>
+<vs:description>Number of cross references</vs:description>
+<vs:value unit="count">1</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NA8904" key-characteristic="false">
+<vs:variable-name>NA8904_age_fle</vs:variable-name>
+<vs:description>Age of primary file</vs:description>
+<vs:value unit="months">39.12</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NA8905" key-characteristic="true">
+<vs:variable-name>NA8905_ntb_flg</vs:variable-name>
+<vs:description>New to bureau flag</vs:description>
+<vs:value unit="boolean">No</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NA8908" key-characteristic="true">
+<vs:variable-name>NA8908_age_ind</vs:variable-name>
+<vs:description>Main age of applicant</vs:description>
+<vs:value unit="months">493.19</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NA8911" key-characteristic="false">
+<vs:variable-name>NA8911_deceased_flg</vs:variable-name>
+<vs:description>Deceased flag</vs:description>
+<vs:value unit="boolean">No</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NA8922" key-characteristic="false">
+<vs:variable-name>NA8922_file_notes</vs:variable-name>
+<vs:description>File notes</vs:description>
+<vs:value unit="boolean">-993</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NP7500" key-characteristic="true">
+<vs:variable-name>NP7500_inslv_84m</vs:variable-name>
+<vs:description>Number of insolvencies in the last 84 months</vs:description>
+<vs:value unit="count">0</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NP7501" key-characteristic="false">
+<vs:variable-name>NP7501_inslv_dis_84m</vs:variable-name>
+<vs:description>Number of discharged insolvencies in the last 84 months</vs:description>
+<vs:value unit="count">0</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NP7502" key-characteristic="false">
+<vs:variable-name>NP7502_inslv_bkrpt_84m</vs:variable-name>
+<vs:description>Number of bankrupt only insolvencies in the last 84 months</vs:description>
+<vs:value unit="count">0</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NP7503" key-characteristic="false">
+<vs:variable-name>NP7503_inslv_dis_time_1</vs:variable-name>
+<vs:description>Months since last discharged insolvency</vs:description>
+<vs:value unit="months">-991</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NP7504" key-characteristic="true">
+<vs:variable-name>NP7504_dj_60m</vs:variable-name>
+<vs:description>Number of judgements in the last 60 months</vs:description>
+<vs:value unit="count">1</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NP7505" key-characteristic="false">
+<vs:variable-name>NP7505_dj_time_1</vs:variable-name>
+<vs:description>Months since last judgement</vs:description>
+<vs:value unit="months">39.12</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NP7509" key-characteristic="true">
+<vs:variable-name>NP7509_wr_48m</vs:variable-name>
+<vs:description>Number of court writs in the last 48 months</vs:description>
+<vs:value unit="count">0</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NP7511" key-characteristic="true">
+<vs:variable-name>NP7511_wr_60m</vs:variable-name>
+<vs:description>Number of court writs in the last 60 months</vs:description>
+<vs:value unit="count">0</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NP8500" key-characteristic="true">
+<vs:variable-name>NP8500_dr_cur</vs:variable-name>
+<vs:description>Number of current directorships</vs:description>
+<vs:value unit="count">2</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NP8501" key-characteristic="false">
+<vs:variable-name>NP8501_dr_time_max_cur</vs:variable-name>
+<vs:description>Months of longest current directorship</vs:description>
+<vs:value unit="months">39.12</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NP8502" key-characteristic="true">
+<vs:variable-name>NP8502_dr_prev_60m</vs:variable-name>
+<vs:description>Number of previous directorships in the last 60 months</vs:description>
+<vs:value unit="count">1</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NP8503" key-characteristic="false">
+<vs:variable-name>NP8503_dr_disq_60m</vs:variable-name>
+<vs:description>Number of Disqualified Directorships in the last 60 months-ever</vs:description>
+<vs:value unit="count">1</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NP8504" key-characteristic="false">
+<vs:variable-name>NP8504_dr_disq_time_1</vs:variable-name>
+<vs:description>Months since last disqualified directorship</vs:description>
+<vs:value unit="months">41.97</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NP8508" key-characteristic="true">
+<vs:variable-name>NP8508_pr_cur</vs:variable-name>
+<vs:description>Number of business names held</vs:description>
+<vs:value unit="count">1</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NP8509" key-characteristic="true">
+<vs:variable-name>NP8509_dr_prev_120m_ever</vs:variable-name>
+<vs:description>Number of previous directorships in the last 120 months-ever</vs:description>
+<vs:value unit="count">1</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NX7513" key-characteristic="true">
+<vs:variable-name>NX7513_df_6m</vs:variable-name>
+<vs:description>Number of consumer defaults/SCI in the last 6 months</vs:description>
+<vs:value unit="count">6</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NX7514" key-characteristic="true">
+<vs:variable-name>NX7514_df_12m</vs:variable-name>
+<vs:description>Number of consumer defaults/SCI in the last 12 months</vs:description>
+<vs:value unit="count">7</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NX7516" key-characteristic="true">
+<vs:variable-name>NX7516_df_60_84m</vs:variable-name>
+<vs:description>Number of consumer defaults/SCI in the last 60/84 months</vs:description>
+<vs:value unit="count">19</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NX7517" key-characteristic="true">
+<vs:variable-name>NX7517_df_tcut_6m</vs:variable-name>
+<vs:description>Number of consumer telco or utility defaults/SCI in the last 6 months</vs:description>
+<vs:value unit="count">0</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NX7518" key-characteristic="true">
+<vs:variable-name>NX7518_df_tcut_12m</vs:variable-name>
+<vs:description>Number of consumer telco or utility defaults/SCI in the last 12 months</vs:description>
+<vs:value unit="count">0</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NX7520" key-characteristic="true">
+<vs:variable-name>NX7520_df_tcut_60_84m</vs:variable-name>
+<vs:description>Number of consumer telco or utility defaults/SCI in the last 60/84 months</vs:description>
+<vs:value unit="count">1</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NX7524" key-characteristic="false">
+<vs:variable-name>NX7524_df_rm_60_84m</vs:variable-name>
+<vs:description>Number of consumer mortgage defaults/SCI in the last 60/84 months</vs:description>
+<vs:value unit="count">1</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NX7556" key-characteristic="false">
+<vs:variable-name>NX7556_df_sts_pd_60_84m</vs:variable-name>
+<vs:description>Number of consumer paid or current defaults/SCI in the last 60/84 months</vs:description>
+<vs:value unit="count">5</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NX7560" key-characteristic="false">
+<vs:variable-name>NX7560_df_sts_stld_60_84m</vs:variable-name>
+<vs:description>Number of consumer settled defaults/SCI in the last 60/84 months</vs:description>
+<vs:value unit="count">0</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NX7561" key-characteristic="false">
+<vs:variable-name>NX7561_df_sts_na_60_84m</vs:variable-name>
+<vs:description>Number of consumer new arrangement defaults/SCI in the last 60/84 months</vs:description>
+<vs:value unit="count">2</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NX7568" key-characteristic="true">
+<vs:variable-name>NX7568_df_sts_unpd_60_84m</vs:variable-name>
+<vs:description>Number of consumer unpaid defaults/SCI in the last 60/84 months</vs:description>
+<vs:value unit="count">12</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NX7585" key-characteristic="false">
+<vs:variable-name>NX7585_df_origamt_tcut_60_84m</vs:variable-name>
+<vs:description>Total original dollar amount of consumer telco or utility defaults/SCI in the last 60/84 months</vs:description>
+<vs:value unit="AUD">150</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NX7586" key-characteristic="false">
+<vs:variable-name>NX7586_df_origamt_60_84m</vs:variable-name>
+<vs:description>Total original dollar amount of consumer defaults/SCI in the last 60/84 months</vs:description>
+<vs:value unit="AUD">48260</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NX7589" key-characteristic="true">
+<vs:variable-name>NX7589_df_time_1</vs:variable-name>
+<vs:description>Months since last consumer default/SCI</vs:description>
+<vs:value unit="months">0.14</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NX7591" key-characteristic="false">
+<vs:variable-name>NX7591_df_s_1_60_84m</vs:variable-name>
+<vs:description>Status of last consumer default/SCI in the last 60/84 months</vs:description>
+<vs:value unit="char">P</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NX7596" key-characteristic="false">
+<vs:variable-name>NX7596_df_own_60_84m</vs:variable-name>
+<vs:description>Own number of consumer default/SCI in the last 60/84 months</vs:description>
+<vs:value unit="count">0</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NX7597" key-characteristic="false">
+<vs:variable-name>NX7597_df_latamt_own_60_84m</vs:variable-name>
+<vs:description>Own total latest dollar amount of consumer default/SCI in the last 60/84 months</vs:description>
+<vs:value unit="AUD">-991</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NX7801" key-characteristic="false">
+<vs:variable-name>NX7801_df_gpl_60_84m</vs:variable-name>
+<vs:description>Number of consumer personal loan defaults/SCI &lt; 60/84 mths</vs:description>
+<vs:value unit="count">11</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NX7802" key-characteristic="false">
+<vs:variable-name>NX7802_df_al_60_84m</vs:variable-name>
+<vs:description>Number of consumer auto loan defaults/SCI &lt; 60/84 mths</vs:description>
+<vs:value unit="count">2</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NX7803" key-characteristic="false">
+<vs:variable-name>NX7803_df_cc_60_84m</vs:variable-name>
+<vs:description>Number of consumer credit card defaults/SCI &lt; 60/84 mths</vs:description>
+<vs:value unit="count">1</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NX7804" key-characteristic="false">
+<vs:variable-name>NX7804_df_ca_60_84m</vs:variable-name>
+<vs:description>Number of consumer charge card defaults/SCI &lt; 60/84 mths</vs:description>
+<vs:value unit="count">0</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NX7805" key-characteristic="false">
+<vs:variable-name>NX7805_df_od_60_84m</vs:variable-name>
+<vs:description>Number of consumer overdraft defaults/SCI &lt; 60/84 mths</vs:description>
+<vs:value unit="count">1</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NX7806" key-characteristic="false">
+<vs:variable-name>NX7806_df_re_60_84m</vs:variable-name>
+<vs:description>Number of consumer equipment hire/rental defaults/SCI &lt; 60/84 mths</vs:description>
+<vs:value unit="count">1</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NX8056" key-characteristic="false">
+<vs:variable-name>NX8056_enq_amt_1</vs:variable-name>
+<vs:description>Dollar amount of last consumer enquiry</vs:description>
+<vs:value unit="AUD">111688</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NX8057" key-characteristic="false">
+<vs:variable-name>NX8057_enq_amt_2</vs:variable-name>
+<vs:description>Dollar amount of 2nd last consumer enquiry</vs:description>
+<vs:value unit="AUD">100000</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NY7513" key-characteristic="true">
+<vs:variable-name>NY7513_df_6m</vs:variable-name>
+<vs:description>Number of commercial defaults/SCI in the last 6 months</vs:description>
+<vs:value unit="count">0</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NY7514" key-characteristic="true">
+<vs:variable-name>NY7514_df_12m</vs:variable-name>
+<vs:description>Number of commercial defaults/SCI in the last 12 months</vs:description>
+<vs:value unit="count">0</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NY7516" key-characteristic="true">
+<vs:variable-name>NY7516_df_60_84m</vs:variable-name>
+<vs:description>Number of commercial defaults/SCI in the last 60/84 months</vs:description>
+<vs:value unit="count">6</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NY7517" key-characteristic="true">
+<vs:variable-name>NY7517_df_tcut_6m</vs:variable-name>
+<vs:description>Number of commercial telco or utility defaults/SCI in the last 6 months</vs:description>
+<vs:value unit="count">0</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NY7518" key-characteristic="true">
+<vs:variable-name>NY7518_df_tcut_12m</vs:variable-name>
+<vs:description>Number of commercial telco or utility defaults/SCI in the last 12 months</vs:description>
+<vs:value unit="count">0</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NY7520" key-characteristic="true">
+<vs:variable-name>NY7520_df_tcut_60_84m</vs:variable-name>
+<vs:description>Number of commercial telco or utility defaults/SCI in the last 60/84 months</vs:description>
+<vs:value unit="count">0</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NY7524" key-characteristic="false">
+<vs:variable-name>NY7524_df_RM_60_84m</vs:variable-name>
+<vs:description>Number of commercial mortgage defaults/SCI in the last 60/84 months</vs:description>
+<vs:value unit="count">1</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NY7568" key-characteristic="true">
+<vs:variable-name>NY7568_df_sts_unpd_60_84m</vs:variable-name>
+<vs:description>Number of commercial unpaid defaults/SCI in the last 60/84 months</vs:description>
+<vs:value unit="count">4</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NY7585" key-characteristic="false">
+<vs:variable-name>NY7585_df_origamt_tcut_60_84m</vs:variable-name>
+<vs:description>Total original dollar amount of commercial telco or utility defaults/SCI in the last 60/84 months</vs:description>
+<vs:value unit="AUD">-991</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NY7586" key-characteristic="false">
+<vs:variable-name>NY7586_df_origamt_60_84m</vs:variable-name>
+<vs:description>Total original dollar amount of commercial defaults/SCI in the last 60/84 months</vs:description>
+<vs:value unit="AUD">6812</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NY7589" key-characteristic="true">
+<vs:variable-name>NY7589_df_time_1</vs:variable-name>
+<vs:description>Months since last commercial default/SCI</vs:description>
+<vs:value unit="months">35.0</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NY7591" key-characteristic="false">
+<vs:variable-name>NY7591_df_s_1_60_84m</vs:variable-name>
+<vs:description>Status of last commercial default/SCI in the last 60/84 months</vs:description>
+<vs:value unit="char">O</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NY7596" key-characteristic="false">
+<vs:variable-name>NY7596_df_own_60_84m</vs:variable-name>
+<vs:description>Own number of commercial default/SCI in the last 60/84 months</vs:description>
+<vs:value unit="count">0</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NY7597" key-characteristic="false">
+<vs:variable-name>NY7597_df_latamt_own_60_84m</vs:variable-name>
+<vs:description>Own total latest dollar amount of commercial default/SCI in the last 60/84 months</vs:description>
+<vs:value unit="AUD">-991</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NY8056" key-characteristic="false">
+<vs:variable-name>NY8056_enq_amt_1</vs:variable-name>
+<vs:description>Dollar amount of last commercial enquiry</vs:description>
+<vs:value unit="AUD">28000</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NY8057" key-characteristic="false">
+<vs:variable-name>NY8057_enq_amt_2</vs:variable-name>
+<vs:description>Dollar amount of 2nd last commercial enquiry</vs:description>
+<vs:value unit="AUD">5000</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NP8510" key-characteristic="true">
+<vs:variable-name>NP8510_inslv</vs:variable-name>
+<vs:description>Number of insolvencies on file</vs:description>
+<vs:value unit="count">0</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NP8511" key-characteristic="false">
+<vs:variable-name>NP8511_inslv_dis</vs:variable-name>
+<vs:description>Number of discharged insolvencies on file</vs:description>
+<vs:value unit="count">0</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NP8512" key-characteristic="false">
+<vs:variable-name>NP8512_inslv_bkrpt</vs:variable-name>
+<vs:description>Number of bankrupt only insolvencies on file</vs:description>
+<vs:value unit="count">0</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NA8902" key-characteristic="true">
+<vs:variable-name>NA8902_age_fle_max</vs:variable-name>
+<vs:description>Age of oldest file</vs:description>
+<vs:value unit="months">39.16</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NA8920" key-characteristic="false">
+<vs:variable-name>NA8920_em_time_1</vs:variable-name>
+<vs:description>Months at latest employer</vs:description>
+<vs:value unit="months">0.0</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NA8921" key-characteristic="false">
+<vs:variable-name>NA8921_ad_time_1</vs:variable-name>
+<vs:description>Months at latest address</vs:description>
+<vs:value unit="months">25.92</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NP7506" key-characteristic="false">
+<vs:variable-name>NP7506_dj_out_amt_60m</vs:variable-name>
+<vs:description>Total dollar amount of outstanding (not settled paid or discontinued) judgements in the last 60 months</vs:description>
+<vs:value unit="AUD">0</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NP7508" key-characteristic="false">
+<vs:variable-name>NP7508_dj_out_60m</vs:variable-name>
+<vs:description>Number of unpaid or unsettled judgements in the last 60 months</vs:description>
+<vs:value unit="count">0</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NP7510" key-characteristic="false">
+<vs:variable-name>NP7510_wr_out_48m</vs:variable-name>
+<vs:description>Number of unpaid or unsettled court writs in the last 48 months</vs:description>
+<vs:value unit="count">0</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NP7512" key-characteristic="false">
+<vs:variable-name>NP7512_wr_out_60m</vs:variable-name>
+<vs:description>Number of unpaid or unsettled court writs in the last 60 months</vs:description>
+<vs:value unit="count">0</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NP8505" key-characteristic="false">
+<vs:variable-name>NP8505_dr_adv</vs:variable-name>
+<vs:description>Number of struck-off or deregistered companies for director</vs:description>
+<vs:value unit="count">0</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NP8506" key-characteristic="false">
+<vs:variable-name>NP8506_dr_adv_disq_60m_ever</vs:variable-name>
+<vs:description>Number of external administration companies for director or disqualified directorships in the last 60 months-ever</vs:description>
+<vs:value unit="count">1</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NX7511" key-characteristic="false">
+<vs:variable-name>NX7511_sci_84m</vs:variable-name>
+<vs:description>Number of consumer SCI in the last 84 months</vs:description>
+<vs:value unit="count">4</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NX7512" key-characteristic="false">
+<vs:variable-name>NX7512_sci_latamt_84m</vs:variable-name>
+<vs:description>Total latest dollar amount of consumer SCI in the last 84 months</vs:description>
+<vs:value unit="AUD">9368</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NX7587" key-characteristic="false">
+<vs:variable-name>NX7587_df_latamt_12m</vs:variable-name>
+<vs:description>Total latest dollar amount of consumer defaults/SCI in the last 12 months</vs:description>
+<vs:value unit="AUD">14384</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NX7588" key-characteristic="true">
+<vs:variable-name>NX7588_df_latamt_60_84m</vs:variable-name>
+<vs:description>Total latest dollar amount of consumer defaults/SCI in the last 60/84 months</vs:description>
+<vs:value unit="AUD">50838</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NX7601" key-characteristic="false">
+<vs:variable-name>NX7601_adv_48_84m</vs:variable-name>
+<vs:description>Consumer adverse on file flag in the last 48/84 months</vs:description>
+<vs:value unit="char">Y</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NX7999" key-characteristic="false">
+<vs:variable-name>NX7999_enq_7d</vs:variable-name>
+<vs:description>Number of consumer enquiries in the last 7 days</vs:description>
+<vs:value unit="count">4</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NX8000" key-characteristic="false">
+<vs:variable-name>NX8000_enq_1m</vs:variable-name>
+<vs:description>Number of consumer enquiries in the last 1 month</vs:description>
+<vs:value unit="count">6</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NX8001" key-characteristic="true">
+<vs:variable-name>NX8001_enq_3m</vs:variable-name>
+<vs:description>Number of consumer enquiries in the last 3 months</vs:description>
+<vs:value unit="count">6</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NX8002" key-characteristic="false">
+<vs:variable-name>NX8002_enq_6m</vs:variable-name>
+<vs:description>Number of consumer enquiries in the last 6 months</vs:description>
+<vs:value unit="count">6</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NX8003" key-characteristic="false">
+<vs:variable-name>NX8003_enq_12m</vs:variable-name>
+<vs:description>Number of consumer enquiries in the last 12 months</vs:description>
+<vs:value unit="count">13</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NX8006" key-characteristic="true">
+<vs:variable-name>NX8006_enq_60m</vs:variable-name>
+<vs:description>Number of consumer enquiries in the last 60 months</vs:description>
+<vs:value unit="count">17</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NX8028" key-characteristic="false">
+<vs:variable-name>NX8028_enq_rm_1m</vs:variable-name>
+<vs:description>Number of consumer mortgage enquiries in the last 1 month</vs:description>
+<vs:value unit="count">3</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NX8029" key-characteristic="true">
+<vs:variable-name>NX8029_enq_rm_3m</vs:variable-name>
+<vs:description>Number of consumer mortgage enquiries in the last 3 months</vs:description>
+<vs:value unit="count">3</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NX8030" key-characteristic="false">
+<vs:variable-name>NX8030_enq_rm_6m</vs:variable-name>
+<vs:description>Number of consumer mortgage enquiries in the last 6 months</vs:description>
+<vs:value unit="count">3</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NX8031" key-characteristic="false">
+<vs:variable-name>NX8031_enq_rm_12m</vs:variable-name>
+<vs:description>Number of consumer mortgage enquiries in the last 12 months</vs:description>
+<vs:value unit="count">4</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NX8034" key-characteristic="true">
+<vs:variable-name>NX8034_enq_rm_60m</vs:variable-name>
+<vs:description>Number of consumer mortgage enquiries in the last 60 months</vs:description>
+<vs:value unit="count">4</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NX8042" key-characteristic="false">
+<vs:variable-name>NX8042_enq_tcut_1m</vs:variable-name>
+<vs:description>Number of consumer telco or utility enquiries in the last 1 month</vs:description>
+<vs:value unit="count">0</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NX8043" key-characteristic="true">
+<vs:variable-name>NX8043_enq_tcut_3m</vs:variable-name>
+<vs:description>Number of consumer telco or utility enquiries in the last 3 months</vs:description>
+<vs:value unit="count">0</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NX8044" key-characteristic="false">
+<vs:variable-name>NX8044_enq_tcut_6m</vs:variable-name>
+<vs:description>Number of consumer telco or utility enquiries in the last 6 months</vs:description>
+<vs:value unit="count">0</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NX8045" key-characteristic="false">
+<vs:variable-name>NX8045_enq_tcut_12m</vs:variable-name>
+<vs:description>Number of consumer telco or utility enquiries in the last 12 months</vs:description>
+<vs:value unit="count">1</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NX8048" key-characteristic="true">
+<vs:variable-name>NX8048_enq_tcut_60m</vs:variable-name>
+<vs:description>Number of consumer telco or utility enquiries in the last 60 months</vs:description>
+<vs:value unit="count">1</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NX8049" key-characteristic="false">
+<vs:variable-name>NX8049_enq_own_3m</vs:variable-name>
+<vs:description>Own number of consumer enquiries in the last 3 months</vs:description>
+<vs:value unit="count">1</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NX8050" key-characteristic="false">
+<vs:variable-name>NX8050_enq_own_12m</vs:variable-name>
+<vs:description>Own number of consumer enquiries in the last 12 months</vs:description>
+<vs:value unit="count">1</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NX8059" key-characteristic="false">
+<vs:variable-name>NX8059_enq_time_1</vs:variable-name>
+<vs:description>Months since last consumer enquiry</vs:description>
+<vs:value unit="months">0.0</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NX8060" key-characteristic="false">
+<vs:variable-name>NX8060_enq_time_2</vs:variable-name>
+<vs:description>Months since 2nd last consumer enquiry</vs:description>
+<vs:value unit="months">0.0</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NX8062" key-characteristic="false">
+<vs:variable-name>NX8062_enq_amt_3m</vs:variable-name>
+<vs:description>Total value of consumer enquiries &lt; 3 mths</vs:description>
+<vs:value unit="AUD">353171</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NX8063" key-characteristic="false">
+<vs:variable-name>NX8063_enq_amt_60m</vs:variable-name>
+<vs:description>Total value of consumer enquiries &lt; 60 mths</vs:description>
+<vs:value unit="AUD">802445</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NY7511" key-characteristic="false">
+<vs:variable-name>NY7511_sci_84m</vs:variable-name>
+<vs:description>Number of commercial SCI in the last 84 months</vs:description>
+<vs:value unit="count">0</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NY7512" key-characteristic="false">
+<vs:variable-name>NY7512_sci_latamt_84m</vs:variable-name>
+<vs:description>Total latest dollar amount of commercial SCI in the last 84 months</vs:description>
+<vs:value unit="AUD">-991</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NY7587" key-characteristic="false">
+<vs:variable-name>NY7587_df_latamt_12m</vs:variable-name>
+<vs:description>Total latest dollar amount of commercial defaults/SCI in the last 12 months</vs:description>
+<vs:value unit="AUD">-991</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NY7588" key-characteristic="true">
+<vs:variable-name>NY7588_df_latamt_60_84m</vs:variable-name>
+<vs:description>Total latest dollar amount of commercial defaults/SCI in the last 60/84 months</vs:description>
+<vs:value unit="AUD">6672</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NY7601" key-characteristic="false">
+<vs:variable-name>NY7601_adv_48_84m</vs:variable-name>
+<vs:description>Commercial adverse on file flag in the last 48/84 months</vs:description>
+<vs:value unit="char">Y</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NY7999" key-characteristic="false">
+<vs:variable-name>NY7999_enq_7d</vs:variable-name>
+<vs:description>Number of commercial enquiries in the last 7 days</vs:description>
+<vs:value unit="count">0</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NY8000" key-characteristic="false">
+<vs:variable-name>NY8000_enq_1m</vs:variable-name>
+<vs:description>Number of commercial enquiries in the last 1 month</vs:description>
+<vs:value unit="count">1</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NY8001" key-characteristic="true">
+<vs:variable-name>NY8001_enq_3m</vs:variable-name>
+<vs:description>Number of commercial enquiries in the last 3 months</vs:description>
+<vs:value unit="count">1</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NY8002" key-characteristic="false">
+<vs:variable-name>NY8002_enq_6m</vs:variable-name>
+<vs:description>Number of commercial enquiries in the last 6 months</vs:description>
+<vs:value unit="count">1</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NY8003" key-characteristic="false">
+<vs:variable-name>NY8003_enq_12m</vs:variable-name>
+<vs:description>Number of commercial enquiries in the last 12 months</vs:description>
+<vs:value unit="count">2</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NY8006" key-characteristic="true">
+<vs:variable-name>NY8006_enq_60m</vs:variable-name>
+<vs:description>Number of commercial enquiries in the last 60 months</vs:description>
+<vs:value unit="count">5</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NY8028" key-characteristic="false">
+<vs:variable-name>NY8028_enq_rm_1m</vs:variable-name>
+<vs:description>Number of commercial mortgage enquiries in the last 1 month</vs:description>
+<vs:value unit="count">0</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NY8029" key-characteristic="false">
+<vs:variable-name>NY8029_enq_rm_3m</vs:variable-name>
+<vs:description>Number of commercial mortgage enquiries in the last 3 months</vs:description>
+<vs:value unit="count">0</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NY8030" key-characteristic="false">
+<vs:variable-name>NY8030_enq_rm_6m</vs:variable-name>
+<vs:description>Number of commercial mortgage enquiries in the last 6 months</vs:description>
+<vs:value unit="count">0</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NY8031" key-characteristic="false">
+<vs:variable-name>NY8031_enq_rm_12m</vs:variable-name>
+<vs:description>Number of commercial mortgage enquiries in the last 12 months</vs:description>
+<vs:value unit="count">0</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NY8034" key-characteristic="false">
+<vs:variable-name>NY8034_enq_rm_60m</vs:variable-name>
+<vs:description>Number of commercial mortgage enquiries in the last 60 months</vs:description>
+<vs:value unit="count">0</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NY8042" key-characteristic="false">
+<vs:variable-name>NY8042_enq_tcut_1m</vs:variable-name>
+<vs:description>Number of commercial telco or utility enquiries in the last 1 month</vs:description>
+<vs:value unit="count">0</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NY8043" key-characteristic="false">
+<vs:variable-name>NY8043_enq_tcut_3m</vs:variable-name>
+<vs:description>Number of commercial telco or utility enquiries in the last 3 months</vs:description>
+<vs:value unit="count">0</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NY8044" key-characteristic="false">
+<vs:variable-name>NY8044_enq_tcut_6m</vs:variable-name>
+<vs:description>Number of commercial telco or utility enquiries in the last 6 months</vs:description>
+<vs:value unit="count">0</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NY8045" key-characteristic="false">
+<vs:variable-name>NY8045_enq_tcut_12m</vs:variable-name>
+<vs:description>Number of commercial telco or utility enquiries in the last 12 months</vs:description>
+<vs:value unit="count">0</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NY8048" key-characteristic="false">
+<vs:variable-name>NY8048_enq_tcut_60m</vs:variable-name>
+<vs:description>Number of commercial telco or utility enquiries in the last 60 months</vs:description>
+<vs:value unit="count">0</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NY8049" key-characteristic="false">
+<vs:variable-name>NY8049_enq_own_3m</vs:variable-name>
+<vs:description>Own number of commercial enquiries in the last 3 months</vs:description>
+<vs:value unit="count">0</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NY8050" key-characteristic="false">
+<vs:variable-name>NY8050_enq_own_12m</vs:variable-name>
+<vs:description>Own number of commercial enquiries in the last 12 months</vs:description>
+<vs:value unit="count">0</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NY8059" key-characteristic="false">
+<vs:variable-name>NY8059_enq_time_1</vs:variable-name>
+<vs:description>Months since last commercial enquiry</vs:description>
+<vs:value unit="months">8.02</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NY8060" key-characteristic="false">
+<vs:variable-name>NY8060_enq_time_2</vs:variable-name>
+<vs:description>Months since 2nd last commercial enquiry</vs:description>
+<vs:value unit="months">0.08</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NY8062" key-characteristic="false">
+<vs:variable-name>NY8062_enq_amt_3m</vs:variable-name>
+<vs:description>Total value of commercial enquiries &lt; 3 mths</vs:description>
+<vs:value unit="AUD">5000</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NY8063" key-characteristic="false">
+<vs:variable-name>NY8063_enq_amt_60m</vs:variable-name>
+<vs:description>Total value of commercial enquiries &lt; 60 mths</vs:description>
+<vs:value unit="AUD">35558</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NX4000" key-characteristic="true">
+<vs:variable-name>NX4000_df_bnpl_60_84m</vs:variable-name>
+<vs:description>Number of consumer buy now pay later defaults/SCI &lt; 60/84 mths</vs:description>
+<vs:value unit="count">0</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NX4001" key-characteristic="true">
+<vs:variable-name>NX4001_enq_bf</vs:variable-name>
+<vs:description>Number of BF (BNPL Facility) enquiries in the last 60 months </vs:description>
+<vs:value unit="count">0</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NX4002" key-characteristic="false">
+<vs:variable-name>NX4002_enq_bf_36m</vs:variable-name>
+<vs:description>Number of BF (BNPL Facility) enquiries in the last 36 months </vs:description>
+<vs:value unit="count">0</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NX4003" key-characteristic="false">
+<vs:variable-name>NX4003_enq_bf_24m</vs:variable-name>
+<vs:description>Number of BF (BNPL Facility) enquiries in the last 24 months </vs:description>
+<vs:value unit="count">0</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NX4004" key-characteristic="false">
+<vs:variable-name>NX4004_enq_bf_12m</vs:variable-name>
+<vs:description>Number of BF (BNPL Facility) enquiries in the last 12 months </vs:description>
+<vs:value unit="count">0</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NX4005" key-characteristic="false">
+<vs:variable-name>NX4005_enq_bf_6m</vs:variable-name>
+<vs:description>Number of BF (BNPL Facility) enquiries in the last 6 months </vs:description>
+<vs:value unit="count">0</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NX4006" key-characteristic="true">
+<vs:variable-name>NX4006_enq_bf_3m</vs:variable-name>
+<vs:description>Number of BF (BNPL Facility) enquiries in the last 3 months </vs:description>
+<vs:value unit="count">0</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NX4007" key-characteristic="false">
+<vs:variable-name>NX4007_enq_bf_1m</vs:variable-name>
+<vs:description>Number of BF (BNPL Facility) enquiries in the last month</vs:description>
+<vs:value unit="count">0</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NX4008" key-characteristic="true">
+<vs:variable-name>NX4008_enq_bt</vs:variable-name>
+<vs:description>Number of BT (BNPL Transaction) enquiries in the last 60 months </vs:description>
+<vs:value unit="count">0</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NX4009" key-characteristic="false">
+<vs:variable-name>NX4009_enq_bf_36m</vs:variable-name>
+<vs:description>Number of BT (BNPL Transaction) enquiries in the last 36 months </vs:description>
+<vs:value unit="count">0</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NX4010" key-characteristic="false">
+<vs:variable-name>NX4010_enq_bt_24m</vs:variable-name>
+<vs:description>Number of BT (BNPL Transaction)) enquiries in the last 24 months </vs:description>
+<vs:value unit="count">0</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NX4011" key-characteristic="false">
+<vs:variable-name>NX4011_enq_bt_12m</vs:variable-name>
+<vs:description>Number of BT (BNPL Transaction) enquiries in the last 12 months </vs:description>
+<vs:value unit="count">0</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NX4012" key-characteristic="false">
+<vs:variable-name>NX4012_enq_bt_6m</vs:variable-name>
+<vs:description>Number of BT (BNPL Transaction)) enquiries in the last 6 months </vs:description>
+<vs:value unit="count">0</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NX4013" key-characteristic="true">
+<vs:variable-name>NX4013_enq_bt_3m</vs:variable-name>
+<vs:description>Number of BT (BNPL Transaction) enquiries in the last 3 months </vs:description>
+<vs:value unit="count">0</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NX4014" key-characteristic="false">
+<vs:variable-name>NX4014_enq_bt_1m</vs:variable-name>
+<vs:description>Number of BT (BNPL Transaction) enquiries in the last month</vs:description>
+<vs:value unit="count">0</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NX4015" key-characteristic="false">
+<vs:variable-name>NX4015_enq_gpl_1m</vs:variable-name>
+<vs:description>Number of consumer personal loan enquiries in the last 1 month</vs:description>
+<vs:value unit="count">0</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NX4016" key-characteristic="false">
+<vs:variable-name>NX4016_enq_gpl_3m</vs:variable-name>
+<vs:description>Number of consumer personal loan enquiries in the last 3 months</vs:description>
+<vs:value unit="count">0</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NX4017" key-characteristic="false">
+<vs:variable-name>NX4017_enq_gpl_6m</vs:variable-name>
+<vs:description>Number of consumer personal loan enquiries in the last 6 months</vs:description>
+<vs:value unit="count">0</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NX4018" key-characteristic="false">
+<vs:variable-name>NX4018_enq_gpl_12m</vs:variable-name>
+<vs:description>Number of consumer personal loan enquiries in the last 12 months</vs:description>
+<vs:value unit="count">2</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NX4019" key-characteristic="false">
+<vs:variable-name>NX4019_enq_gpl_60m</vs:variable-name>
+<vs:description>Number of consumer personal loan enquiries in the last 60 months</vs:description>
+<vs:value unit="count">4</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NX4020" key-characteristic="false">
+<vs:variable-name>NX4020_enq_cc_1m</vs:variable-name>
+<vs:description>Number of consumer credit card enquiries in the last 1 month</vs:description>
+<vs:value unit="count">2</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NX4021" key-characteristic="false">
+<vs:variable-name>NX4021_enq_cc_3m</vs:variable-name>
+<vs:description>Number of consumer credit card enquiries in the last 3 months</vs:description>
+<vs:value unit="count">2</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NX4022" key-characteristic="false">
+<vs:variable-name>NX4022_enq_cc_6m</vs:variable-name>
+<vs:description>Number of consumer credit card enquiries in the last 6 months</vs:description>
+<vs:value unit="count">2</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NX4023" key-characteristic="false">
+<vs:variable-name>NX4023_enq_cc_12m</vs:variable-name>
+<vs:description>Number of consumer credit card enquiries in the last 12 months</vs:description>
+<vs:value unit="count">5</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NX4024" key-characteristic="false">
+<vs:variable-name>NX4024_enq_cc_60m</vs:variable-name>
+<vs:description>Number of consumer credit card enquiries in the last 60 months</vs:description>
+<vs:value unit="count">5</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NX4025" key-characteristic="false">
+<vs:variable-name>NX4025_enq_al_1m</vs:variable-name>
+<vs:description>Number of consumer auto loan enquiries in the last 1 month</vs:description>
+<vs:value unit="count">0</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NX4026" key-characteristic="false">
+<vs:variable-name>NX4026_enq_al_3m</vs:variable-name>
+<vs:description>Number of consumer auto loan enquiries in the last 3 months</vs:description>
+<vs:value unit="count">0</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NX4027" key-characteristic="false">
+<vs:variable-name>NX4027_enq_al_6m</vs:variable-name>
+<vs:description>Number of consumer auto loan enquiries in the last 6 months</vs:description>
+<vs:value unit="count">0</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NX4028" key-characteristic="false">
+<vs:variable-name>NX4028_enq_al_12m</vs:variable-name>
+<vs:description>Number of consumer auto loan enquiries in the last 12 months</vs:description>
+<vs:value unit="count">0</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NX4029" key-characteristic="false">
+<vs:variable-name>NX4029_enq_al_60m</vs:variable-name>
+<vs:description>Number of consumer auto loan enquiries in the last 60 months</vs:description>
+<vs:value unit="count">0</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+</vs:data-block>
+</vs:summary-data>
+<vs:score-data>
+<vs:score>
+<vs:scorecard id="VSA_2.0_XY_NR">
+<vs:name>VedaScore Apply</vs:name>
+<vs:version>2.0</vs:version>
+<vs:type>Consumer+Commercial</vs:type>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:scorecard>
+<vs:risk-odds>1.87</vs:risk-odds>
+<vs:key-contributing-factors>
+<vs:contributing-factor id="KCF-007">
+<vs:name>Consumer Default Information</vs:name>
+<vs:description>The existence of consumer default information can be a powerful indicator of risk.</vs:description>
+<vs:score-impactor>Greatly Increases Risk</vs:score-impactor>
+</vs:contributing-factor>
+<vs:contributing-factor id="KCF-006">
+<vs:name>Historical Consumer Credit Application Information</vs:name>
+<vs:description>The type and frequency of historical credit applications can be an indicator of risk.</vs:description>
+<vs:score-impactor>Moderately Increases Risk</vs:score-impactor>
+</vs:contributing-factor>
+<vs:contributing-factor id="KCF-011">
+<vs:name>Public Adverse Information</vs:name>
+<vs:description>The existence of public adverse information such as court judgements and writs can have a powerful impact on risk.</vs:description>
+<vs:score-impactor>Moderately Increases Risk</vs:score-impactor>
+</vs:contributing-factor>
+<vs:contributing-factor id="KCF-003">
+<vs:name>Consumer Credit Application Pattern</vs:name>
+<vs:description>The type and frequency of credit applications can impact risk. Research shows that applicants with a higher risk typically apply for credit more often.</vs:description>
+<vs:score-impactor>Marginally Increases Risk</vs:score-impactor>
+</vs:contributing-factor>
+</vs:key-contributing-factors>
+<vs:score-masterscale>290</vs:score-masterscale>
+</vs:score>
+<vs:score>
+<vs:scorecard id="VS_1.1_XY_NR">
+<vs:name>VedaScore</vs:name>
+<vs:version>1.1</vs:version>
+<vs:type>Consumer+Commercial</vs:type>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:scorecard>
+<vs:risk-odds>1.54</vs:risk-odds>
+<vs:key-contributing-factors>
+<vs:contributing-factor id="KCF-212">
+<vs:name>Default Information Recorded</vs:name>
+<vs:description>The existence of default information on the consumer file can be a very powerful indicator of risk.</vs:description>
+<vs:score-impactor>Greatly Increases Risk</vs:score-impactor>
+</vs:contributing-factor>
+<vs:contributing-factor id="KCF-203">
+<vs:name>Individual Shopping Pattern </vs:name>
+<vs:description>The type and frequency of credit applications can impact risk. Research shows that applicants with a higher risk typically apply for credit more often.</vs:description>
+<vs:score-impactor>Greatly Increases Risk</vs:score-impactor>
+</vs:contributing-factor>
+<vs:contributing-factor id="KCF-215">
+<vs:name>Default Judgement Information Recorded</vs:name>
+<vs:description>The existence of default judgement information on the applicant's file can have a powerful impact on risk.</vs:description>
+<vs:score-impactor>Greatly Increases Risk</vs:score-impactor>
+</vs:contributing-factor>
+<vs:contributing-factor id="KCF-214">
+<vs:name>Specific Default Data</vs:name>
+<vs:description>Specific default information has been shown to have an impact on the risk.</vs:description>
+<vs:score-impactor>Moderately Increases Risk</vs:score-impactor>
+</vs:contributing-factor>
+</vs:key-contributing-factors>
+<vs:score-masterscale>262</vs:score-masterscale>
+</vs:score>
+</vs:score-data>
+<vs:possible-matches>
+<vs:possible-match>
+<vs:identity>
+<vs:bureau-reference>282248364</vs:bureau-reference>
+<vs:individual-name first-reported-date="2018-05-23">
+<vs:family-name>NEWFILE</vs:family-name>
+<vs:first-given-name>FOR</vs:first-given-name>
+<vs:other-given-name>VEDA</vs:other-given-name>
+</vs:individual-name>
+<vs:gender code="F">Female</vs:gender>
+<vs:date-of-birth>1980-06-01</vs:date-of-birth>
+<vs:drivers-licence>
+<vs:number>AK9871230</vs:number>
+</vs:drivers-licence>
+</vs:identity>
+<vs:addresses>
+<vs:address first-reported-date="2021-06-08" type="C">
+<vs:street-number>15</vs:street-number>
+<vs:street-name>MULGRAVE</vs:street-name>
+<vs:street-type>ST</vs:street-type>
+<vs:suburb>CARNEGIE</vs:suburb>
+<vs:state>VIC</vs:state>
+<vs:postcode>3163</vs:postcode>
+<vs:country-code>AUS</vs:country-code>
+</vs:address>
+</vs:addresses>
+<vs:employment>
+<vs:employer first-reported-date="2021-06-17" type="C">
+<vs:name>ILLION</vs:name>
+</vs:employer>
+</vs:employment>
+</vs:possible-match>
+</vs:possible-matches>
+</vs:product-data>
+</vs:response>
+</soapenv:Body>
+</soapenv:Envelope>

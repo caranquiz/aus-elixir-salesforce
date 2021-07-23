@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Hardship_Type__c</fullName>
+    <externalId>false</externalId>
+    <label>Hardship Type</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Deferral of repayment</fullName>
+                <default>false</default>
+                <label>Deferral of repayment</label>
+            </value>
+            <value>
+                <fullName>Moratorium only</fullName>
+                <default>false</default>
+                <label>Moratorium only</label>
+            </value>
+            <value>
+                <fullName>Moratorium and capitalisation</fullName>
+                <default>false</default>
+                <label>Moratorium and capitalisation</label>
+            </value>
+            <value>
+                <fullName>Partial payments</fullName>
+                <default>false</default>
+                <label>Partial payments</label>
+            </value>
+            <value>
+                <fullName>Partial payments plus capitalisation</fullName>
+                <default>false</default>
+                <label>Partial payments plus capitalisation</label>
+            </value>
+            <value>
+                <fullName>Capitalisation only</fullName>
+                <default>false</default>
+                <label>Capitalisation only</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

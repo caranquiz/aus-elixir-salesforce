@@ -1,0 +1,1260 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+<soapenv:Header>
+<wsa:MessageID xmlns:wsa="http://www.w3.org/2005/08/addressing">210720-27445-4A1D2</wsa:MessageID>
+<wsa:RelatesTo xmlns:wsa="http://www.w3.org/2005/08/addressing"></wsa:RelatesTo>
+<wsa:To xmlns:wsa="http://www.w3.org/2005/08/addressing">http://www.w3.org/2005/08/addressing/anonymous</wsa:To>
+<wsa:From xmlns:wsa="http://www.w3.org/2005/08/addressing">
+<wsa:Address>https://ctaau.vedaxml.com/cta/sys2/soap11/vedascore-apply-v2-0</wsa:Address>
+</wsa:From>
+<wsa:Action xmlns:wsa="http://www.w3.org/2005/08/addressing">http://vedaxml.com/vedascore-apply/EnquiryResponse</wsa:Action>
+</soapenv:Header>
+<soapenv:Body>
+<vs:response xmlns:vs="http://vedaxml.com/vxml2/vedascore-apply-v2-0.xsd" response-type="report">
+<vs:product-header>
+<vs:enquiry-id>210720-27445-4A1D2</vs:enquiry-id>
+<vs:datetime-requested>2021-07-20T17:02:40.528+10:00</vs:datetime-requested>
+<vs:datetime-generated>2021-07-20T17:02:34.150+10:00</vs:datetime-generated>
+<vs:client-reference>0054Y000000rGosQAE</vs:client-reference>
+<vs:product-name>Equifax Apply (with Trading History)</vs:product-name>
+<vs:permission-type code="XY">CONSUMER+COMMERCIAL</vs:permission-type>
+<vs:product-data-level code="N">Negative</vs:product-data-level>
+<vs:product-version>2.0</vs:product-version>
+<vs:custom-input-parameters>
+<vs:custom-input-parameter>
+<vs:key>ITH</vs:key>
+<vs:value>true</vs:value>
+</vs:custom-input-parameter>
+</vs:custom-input-parameters>
+</vs:product-header>
+<vs:product-data>
+<vs:enquiry-report>
+<vs:primary-match id-index="1" type="strong">
+<vs:bureau-reference>193059261</vs:bureau-reference>
+<vs:individual-name first-reported-date="2010-01-04" last-credit-enquiry-date="2021-07-18" last-reported-date="2021-07-20">
+<vs:family-name>WEBSTER</vs:family-name>
+<vs:first-given-name>JAMIE</vs:first-given-name>
+<vs:other-given-name>JULIE</vs:other-given-name>
+</vs:individual-name>
+<vs:gender code="F">Female</vs:gender>
+<vs:date-of-birth first-reported-date="2015-05-14" last-reported-date="2021-07-20">1978-08-07</vs:date-of-birth>
+<vs:drivers-licence first-reported-date="2015-05-14" last-reported-date="2021-07-19">
+<vs:number>SY5645783</vs:number>
+</vs:drivers-licence>
+<vs:is-deceased>false</vs:is-deceased>
+</vs:primary-match>
+<vs:other-identities>
+<vs:other-identity id-index="2">
+<vs:individual-name first-reported-date="2009-03-28" last-credit-enquiry-date="2021-03-31" last-reported-date="2021-03-31">
+<vs:family-name>THOMAS</vs:family-name>
+<vs:first-given-name>LEENA</vs:first-given-name>
+<vs:other-given-name>ERIC</vs:other-given-name>
+</vs:individual-name>
+<vs:gender code="F">Female</vs:gender>
+<vs:is-deceased>false</vs:is-deceased>
+</vs:other-identity>
+<vs:other-identity id-index="3">
+<vs:individual-name first-reported-date="2007-10-18" last-credit-enquiry-date="2020-08-28">
+<vs:family-name>WEBSTER</vs:family-name>
+<vs:first-given-name>LEENA</vs:first-given-name>
+</vs:individual-name>
+<vs:gender code="F">Female</vs:gender>
+<vs:is-deceased>false</vs:is-deceased>
+</vs:other-identity>
+</vs:other-identities>
+<vs:addresses>
+<vs:address first-reported-date="2021-07-20" last-reported-date="2021-07-20" type="C">
+<vs:id-references>
+<vs:id-reference>1</vs:id-reference>
+</vs:id-references>
+<vs:street-number>6</vs:street-number>
+<vs:street-name>PARK</vs:street-name>
+<vs:street-type>RD</vs:street-type>
+<vs:suburb>RYDALMERE</vs:suburb>
+<vs:state>NSW</vs:state>
+<vs:postcode>2116</vs:postcode>
+<vs:country-code>AUS</vs:country-code>
+</vs:address>
+<vs:address first-reported-date="2018-09-06" last-reported-date="2021-07-19" type="P">
+<vs:id-references>
+<vs:id-reference>1</vs:id-reference>
+</vs:id-references>
+<vs:unit-number>6</vs:unit-number>
+<vs:street-number>6</vs:street-number>
+<vs:street-name>PARK</vs:street-name>
+<vs:street-type>RD</vs:street-type>
+<vs:suburb>AUBURN</vs:suburb>
+<vs:state>NSW</vs:state>
+<vs:postcode>2144</vs:postcode>
+<vs:country-code>AUS</vs:country-code>
+</vs:address>
+<vs:address first-reported-date="2021-06-06" last-reported-date="2021-06-06" type="P">
+<vs:id-references>
+<vs:id-reference>1</vs:id-reference>
+</vs:id-references>
+<vs:street-number>225</vs:street-number>
+<vs:street-name>GEORGE</vs:street-name>
+<vs:street-type>ST</vs:street-type>
+<vs:suburb>ROCKHAMPTON CITY</vs:suburb>
+<vs:state>QLD</vs:state>
+<vs:postcode>4700</vs:postcode>
+<vs:country-code>AUS</vs:country-code>
+</vs:address>
+</vs:addresses>
+<vs:employment>
+<vs:employer first-reported-date="2021-07-19" last-reported-date="2021-07-19" type="C">
+<vs:id-references>
+<vs:id-reference>1</vs:id-reference>
+</vs:id-references>
+<vs:name>ASCADC</vs:name>
+</vs:employer>
+</vs:employment>
+<vs:consumer-credit-file>
+<vs:credit-enquiries>
+<vs:credit-enquiry enquiry-date="2020-07-22" type="credit-application">
+<vs:id-references>
+<vs:id-reference>1</vs:id-reference>
+</vs:id-references>
+<vs:account-type code="RM">Real Property Mortgage</vs:account-type>
+<vs:enquiry-amount currency-code="AUD">0</vs:enquiry-amount>
+<vs:relationship code="1">Principal's Account (sole)</vs:relationship>
+<vs:credit-enquirer>
+<vs:name>BANK FIRST</vs:name>
+<vs:classification>SBNK</vs:classification>
+</vs:credit-enquirer>
+<vs:enquiry-client-reference>11C6E9DE59</vs:enquiry-client-reference>
+</vs:credit-enquiry>
+</vs:credit-enquiries>
+<vs:accounts>
+<vs:account account-data-level="3" latest-update-date="2019-11-12">
+<vs:id-references>
+<vs:id-reference>1</vs:id-reference>
+</vs:id-references>
+<vs:account-id>000WJ8161651</vs:account-id>
+<vs:original-credit-provider>
+<vs:name>AMERICAN EXPRESS</vs:name>
+<vs:classification></vs:classification>
+</vs:original-credit-provider>
+<vs:latest-credit-provider>
+<vs:name>AMERICAN EXPRESS</vs:name>
+</vs:latest-credit-provider>
+<vs:account-type code="CC">Credit Card</vs:account-type>
+<vs:relationship code="1">Principal's Account (sole)</vs:relationship>
+<vs:association-information>
+<vs:latest-start-date>2011-11-12</vs:latest-start-date>
+<vs:is-serious-credit-infringement>false</vs:is-serious-credit-infringement>
+</vs:association-information>
+<vs:defaults>
+<vs:default>
+<vs:status code="P">Paid</vs:status>
+<vs:status-date>2019-08-19</vs:status-date>
+<vs:original-default>
+<vs:date-recorded>2019-08-19</vs:date-recorded>
+<vs:default-amount currency-code="AUD">3500</vs:default-amount>
+</vs:original-default>
+<vs:current-default>
+<vs:date-recorded>2019-08-19</vs:date-recorded>
+<vs:default-amount currency-code="AUD">3500</vs:default-amount>
+</vs:current-default>
+</vs:default>
+</vs:defaults>
+</vs:account>
+</vs:accounts>
+</vs:consumer-credit-file>
+<vs:commercial-credit-file>
+<vs:credit-enquiries>
+<vs:credit-enquiry enquiry-date="2016-10-07" type="credit-enquiry">
+<vs:id-references>
+<vs:id-reference>2</vs:id-reference>
+</vs:id-references>
+<vs:account-type code="LP">Lending Proposal</vs:account-type>
+<vs:enquiry-amount currency-code="AUD">5000</vs:enquiry-amount>
+<vs:relationship code="1">Principal's Account (sole)</vs:relationship>
+<vs:credit-enquirer>
+<vs:name>METRO FINANCE</vs:name>
+</vs:credit-enquirer>
+</vs:credit-enquiry>
+</vs:credit-enquiries>
+<vs:accounts>
+<vs:account account-data-level="3" latest-update-date="2020-07-20">
+<vs:id-references>
+<vs:id-reference>2</vs:id-reference>
+</vs:id-references>
+<vs:account-id>2345754757</vs:account-id>
+<vs:original-credit-provider>
+<vs:name>CRED - CREDIT UNIONS</vs:name>
+<vs:classification>SLND</vs:classification>
+</vs:original-credit-provider>
+<vs:latest-credit-provider>
+<vs:name>CRED - CREDIT UNIONS</vs:name>
+<vs:classification>SLND</vs:classification>
+</vs:latest-credit-provider>
+<vs:account-type code="TF">Trade Finance</vs:account-type>
+<vs:relationship code="1">Principal's Account (sole)</vs:relationship>
+<vs:association-information>
+<vs:latest-start-date>2013-03-15</vs:latest-start-date>
+<vs:is-serious-credit-infringement>false</vs:is-serious-credit-infringement>
+</vs:association-information>
+<vs:defaults>
+<vs:default>
+<vs:status code="C">Current</vs:status>
+<vs:status-date>2014-10-22</vs:status-date>
+<vs:original-default>
+<vs:date-recorded>2014-10-22</vs:date-recorded>
+<vs:default-amount currency-code="AUD">2750</vs:default-amount>
+<vs:reason-to-report code="CX">Clearout (Not watched)</vs:reason-to-report>
+</vs:original-default>
+<vs:current-default>
+<vs:date-recorded>2014-10-22</vs:date-recorded>
+<vs:default-amount currency-code="AUD">2750</vs:default-amount>
+<vs:reason-to-report code="CX">Clearout (Not watched)</vs:reason-to-report>
+</vs:current-default>
+</vs:default>
+</vs:defaults>
+</vs:account>
+</vs:accounts>
+</vs:commercial-credit-file>
+<vs:public-record-or-consumer-credit-information>
+<vs:personal-insolvencies>
+<vs:personal-insolvency>
+<vs:id-references>
+<vs:id-reference>1</vs:id-reference>
+</vs:id-references>
+<vs:type code="S">Bankruptcy (Sequestration Order)</vs:type>
+<vs:date-declared>2015-08-25</vs:date-declared>
+<vs:text>VERY BAD PERSON</vs:text>
+<vs:administration-id>
+<vs:district>NSW</vs:district>
+<vs:year>2015</vs:year>
+<vs:number>12344</vs:number>
+</vs:administration-id>
+<vs:relationship code="1">Principal's Account (sole)</vs:relationship>
+</vs:personal-insolvency>
+</vs:personal-insolvencies>
+</vs:public-record-or-consumer-credit-information>
+</vs:enquiry-report>
+<vs:summary-data>
+<vs:data-block name="genesis" type="standard">
+<vs:characteristic id="NA8900" key-characteristic="true">
+<vs:variable-name>NA8900_xr_cur</vs:variable-name>
+<vs:description>Number of cross references</vs:description>
+<vs:value unit="count">2</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NA8904" key-characteristic="false">
+<vs:variable-name>NA8904_age_fle</vs:variable-name>
+<vs:description>Age of primary file</vs:description>
+<vs:value unit="months">138.16</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NA8905" key-characteristic="true">
+<vs:variable-name>NA8905_ntb_flg</vs:variable-name>
+<vs:description>New to bureau flag</vs:description>
+<vs:value unit="boolean">No</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NA8908" key-characteristic="true">
+<vs:variable-name>NA8908_age_ind</vs:variable-name>
+<vs:description>Main age of applicant</vs:description>
+<vs:value unit="months">515.13</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NA8911" key-characteristic="false">
+<vs:variable-name>NA8911_deceased_flg</vs:variable-name>
+<vs:description>Deceased flag</vs:description>
+<vs:value unit="boolean">No</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NA8922" key-characteristic="false">
+<vs:variable-name>NA8922_file_notes</vs:variable-name>
+<vs:description>File notes</vs:description>
+<vs:value unit="boolean">-993</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NP7500" key-characteristic="true">
+<vs:variable-name>NP7500_inslv_84m</vs:variable-name>
+<vs:description>Number of insolvencies in the last 84 months</vs:description>
+<vs:value unit="count">1</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NP7501" key-characteristic="false">
+<vs:variable-name>NP7501_inslv_dis_84m</vs:variable-name>
+<vs:description>Number of discharged insolvencies in the last 84 months</vs:description>
+<vs:value unit="count">0</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NP7502" key-characteristic="false">
+<vs:variable-name>NP7502_inslv_bkrpt_84m</vs:variable-name>
+<vs:description>Number of bankrupt only insolvencies in the last 84 months</vs:description>
+<vs:value unit="count">1</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NP7503" key-characteristic="false">
+<vs:variable-name>NP7503_inslv_dis_time_1</vs:variable-name>
+<vs:description>Months since last discharged insolvency</vs:description>
+<vs:value unit="months">-991</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NP7504" key-characteristic="true">
+<vs:variable-name>NP7504_dj_60m</vs:variable-name>
+<vs:description>Number of judgements in the last 60 months</vs:description>
+<vs:value unit="count">0</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NP7505" key-characteristic="false">
+<vs:variable-name>NP7505_dj_time_1</vs:variable-name>
+<vs:description>Months since last judgement</vs:description>
+<vs:value unit="months">-991</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NP7509" key-characteristic="true">
+<vs:variable-name>NP7509_wr_48m</vs:variable-name>
+<vs:description>Number of court writs in the last 48 months</vs:description>
+<vs:value unit="count">0</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NP7511" key-characteristic="true">
+<vs:variable-name>NP7511_wr_60m</vs:variable-name>
+<vs:description>Number of court writs in the last 60 months</vs:description>
+<vs:value unit="count">0</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NP8500" key-characteristic="true">
+<vs:variable-name>NP8500_dr_cur</vs:variable-name>
+<vs:description>Number of current directorships</vs:description>
+<vs:value unit="count">0</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NP8501" key-characteristic="false">
+<vs:variable-name>NP8501_dr_time_max_cur</vs:variable-name>
+<vs:description>Months of longest current directorship</vs:description>
+<vs:value unit="months">-991</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NP8502" key-characteristic="true">
+<vs:variable-name>NP8502_dr_prev_60m</vs:variable-name>
+<vs:description>Number of previous directorships in the last 60 months</vs:description>
+<vs:value unit="count">0</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NP8503" key-characteristic="false">
+<vs:variable-name>NP8503_dr_disq_60m</vs:variable-name>
+<vs:description>Number of Disqualified Directorships in the last 60 months-ever</vs:description>
+<vs:value unit="count">0</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NP8504" key-characteristic="false">
+<vs:variable-name>NP8504_dr_disq_time_1</vs:variable-name>
+<vs:description>Months since last disqualified directorship</vs:description>
+<vs:value unit="months">-991</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NP8508" key-characteristic="true">
+<vs:variable-name>NP8508_pr_cur</vs:variable-name>
+<vs:description>Number of business names held</vs:description>
+<vs:value unit="count">0</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NP8509" key-characteristic="true">
+<vs:variable-name>NP8509_dr_prev_120m_ever</vs:variable-name>
+<vs:description>Number of previous directorships in the last 120 months-ever</vs:description>
+<vs:value unit="count">0</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NX7513" key-characteristic="true">
+<vs:variable-name>NX7513_df_6m</vs:variable-name>
+<vs:description>Number of consumer defaults/SCI in the last 6 months</vs:description>
+<vs:value unit="count">0</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NX7514" key-characteristic="true">
+<vs:variable-name>NX7514_df_12m</vs:variable-name>
+<vs:description>Number of consumer defaults/SCI in the last 12 months</vs:description>
+<vs:value unit="count">0</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NX7516" key-characteristic="true">
+<vs:variable-name>NX7516_df_60_84m</vs:variable-name>
+<vs:description>Number of consumer defaults/SCI in the last 60/84 months</vs:description>
+<vs:value unit="count">2</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NX7517" key-characteristic="true">
+<vs:variable-name>NX7517_df_tcut_6m</vs:variable-name>
+<vs:description>Number of consumer telco or utility defaults/SCI in the last 6 months</vs:description>
+<vs:value unit="count">0</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NX7518" key-characteristic="true">
+<vs:variable-name>NX7518_df_tcut_12m</vs:variable-name>
+<vs:description>Number of consumer telco or utility defaults/SCI in the last 12 months</vs:description>
+<vs:value unit="count">0</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NX7520" key-characteristic="true">
+<vs:variable-name>NX7520_df_tcut_60_84m</vs:variable-name>
+<vs:description>Number of consumer telco or utility defaults/SCI in the last 60/84 months</vs:description>
+<vs:value unit="count">0</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NX7524" key-characteristic="false">
+<vs:variable-name>NX7524_df_rm_60_84m</vs:variable-name>
+<vs:description>Number of consumer mortgage defaults/SCI in the last 60/84 months</vs:description>
+<vs:value unit="count">0</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NX7556" key-characteristic="false">
+<vs:variable-name>NX7556_df_sts_pd_60_84m</vs:variable-name>
+<vs:description>Number of consumer paid or current defaults/SCI in the last 60/84 months</vs:description>
+<vs:value unit="count">1</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NX7560" key-characteristic="false">
+<vs:variable-name>NX7560_df_sts_stld_60_84m</vs:variable-name>
+<vs:description>Number of consumer settled defaults/SCI in the last 60/84 months</vs:description>
+<vs:value unit="count">0</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NX7561" key-characteristic="false">
+<vs:variable-name>NX7561_df_sts_na_60_84m</vs:variable-name>
+<vs:description>Number of consumer new arrangement defaults/SCI in the last 60/84 months</vs:description>
+<vs:value unit="count">0</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NX7568" key-characteristic="true">
+<vs:variable-name>NX7568_df_sts_unpd_60_84m</vs:variable-name>
+<vs:description>Number of consumer unpaid defaults/SCI in the last 60/84 months</vs:description>
+<vs:value unit="count">1</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NX7585" key-characteristic="false">
+<vs:variable-name>NX7585_df_origamt_tcut_60_84m</vs:variable-name>
+<vs:description>Total original dollar amount of consumer telco or utility defaults/SCI in the last 60/84 months</vs:description>
+<vs:value unit="AUD">-991</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NX7586" key-characteristic="false">
+<vs:variable-name>NX7586_df_origamt_60_84m</vs:variable-name>
+<vs:description>Total original dollar amount of consumer defaults/SCI in the last 60/84 months</vs:description>
+<vs:value unit="AUD">11000</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NX7589" key-characteristic="true">
+<vs:variable-name>NX7589_df_time_1</vs:variable-name>
+<vs:description>Months since last consumer default/SCI</vs:description>
+<vs:value unit="months">23.01</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NX7591" key-characteristic="false">
+<vs:variable-name>NX7591_df_s_1_60_84m</vs:variable-name>
+<vs:description>Status of last consumer default/SCI in the last 60/84 months</vs:description>
+<vs:value unit="char">P</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NX7596" key-characteristic="false">
+<vs:variable-name>NX7596_df_own_60_84m</vs:variable-name>
+<vs:description>Own number of consumer default/SCI in the last 60/84 months</vs:description>
+<vs:value unit="count">0</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NX7597" key-characteristic="false">
+<vs:variable-name>NX7597_df_latamt_own_60_84m</vs:variable-name>
+<vs:description>Own total latest dollar amount of consumer default/SCI in the last 60/84 months</vs:description>
+<vs:value unit="AUD">-991</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NX7801" key-characteristic="false">
+<vs:variable-name>NX7801_df_gpl_60_84m</vs:variable-name>
+<vs:description>Number of consumer personal loan defaults/SCI &lt; 60/84 mths</vs:description>
+<vs:value unit="count">0</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NX7802" key-characteristic="false">
+<vs:variable-name>NX7802_df_al_60_84m</vs:variable-name>
+<vs:description>Number of consumer auto loan defaults/SCI &lt; 60/84 mths</vs:description>
+<vs:value unit="count">0</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NX7803" key-characteristic="false">
+<vs:variable-name>NX7803_df_cc_60_84m</vs:variable-name>
+<vs:description>Number of consumer credit card defaults/SCI &lt; 60/84 mths</vs:description>
+<vs:value unit="count">2</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NX7804" key-characteristic="false">
+<vs:variable-name>NX7804_df_ca_60_84m</vs:variable-name>
+<vs:description>Number of consumer charge card defaults/SCI &lt; 60/84 mths</vs:description>
+<vs:value unit="count">0</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NX7805" key-characteristic="false">
+<vs:variable-name>NX7805_df_od_60_84m</vs:variable-name>
+<vs:description>Number of consumer overdraft defaults/SCI &lt; 60/84 mths</vs:description>
+<vs:value unit="count">0</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NX7806" key-characteristic="false">
+<vs:variable-name>NX7806_df_re_60_84m</vs:variable-name>
+<vs:description>Number of consumer equipment hire/rental defaults/SCI &lt; 60/84 mths</vs:description>
+<vs:value unit="count">0</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NX8056" key-characteristic="false">
+<vs:variable-name>NX8056_enq_amt_1</vs:variable-name>
+<vs:description>Dollar amount of last consumer enquiry</vs:description>
+<vs:value unit="AUD">500000</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NX8057" key-characteristic="false">
+<vs:variable-name>NX8057_enq_amt_2</vs:variable-name>
+<vs:description>Dollar amount of 2nd last consumer enquiry</vs:description>
+<vs:value unit="AUD">0</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NY7513" key-characteristic="true">
+<vs:variable-name>NY7513_df_6m</vs:variable-name>
+<vs:description>Number of commercial defaults/SCI in the last 6 months</vs:description>
+<vs:value unit="count">0</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NY7514" key-characteristic="true">
+<vs:variable-name>NY7514_df_12m</vs:variable-name>
+<vs:description>Number of commercial defaults/SCI in the last 12 months</vs:description>
+<vs:value unit="count">0</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NY7516" key-characteristic="true">
+<vs:variable-name>NY7516_df_60_84m</vs:variable-name>
+<vs:description>Number of commercial defaults/SCI in the last 60/84 months</vs:description>
+<vs:value unit="count">1</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NY7517" key-characteristic="true">
+<vs:variable-name>NY7517_df_tcut_6m</vs:variable-name>
+<vs:description>Number of commercial telco or utility defaults/SCI in the last 6 months</vs:description>
+<vs:value unit="count">0</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NY7518" key-characteristic="true">
+<vs:variable-name>NY7518_df_tcut_12m</vs:variable-name>
+<vs:description>Number of commercial telco or utility defaults/SCI in the last 12 months</vs:description>
+<vs:value unit="count">0</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NY7520" key-characteristic="true">
+<vs:variable-name>NY7520_df_tcut_60_84m</vs:variable-name>
+<vs:description>Number of commercial telco or utility defaults/SCI in the last 60/84 months</vs:description>
+<vs:value unit="count">0</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NY7524" key-characteristic="false">
+<vs:variable-name>NY7524_df_RM_60_84m</vs:variable-name>
+<vs:description>Number of commercial mortgage defaults/SCI in the last 60/84 months</vs:description>
+<vs:value unit="count">0</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NY7568" key-characteristic="true">
+<vs:variable-name>NY7568_df_sts_unpd_60_84m</vs:variable-name>
+<vs:description>Number of commercial unpaid defaults/SCI in the last 60/84 months</vs:description>
+<vs:value unit="count">0</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NY7585" key-characteristic="false">
+<vs:variable-name>NY7585_df_origamt_tcut_60_84m</vs:variable-name>
+<vs:description>Total original dollar amount of commercial telco or utility defaults/SCI in the last 60/84 months</vs:description>
+<vs:value unit="AUD">-991</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NY7586" key-characteristic="false">
+<vs:variable-name>NY7586_df_origamt_60_84m</vs:variable-name>
+<vs:description>Total original dollar amount of commercial defaults/SCI in the last 60/84 months</vs:description>
+<vs:value unit="AUD">2750</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NY7589" key-characteristic="true">
+<vs:variable-name>NY7589_df_time_1</vs:variable-name>
+<vs:description>Months since last commercial default/SCI</vs:description>
+<vs:value unit="months">80.98</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NY7591" key-characteristic="false">
+<vs:variable-name>NY7591_df_s_1_60_84m</vs:variable-name>
+<vs:description>Status of last commercial default/SCI in the last 60/84 months</vs:description>
+<vs:value unit="char">C</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NY7596" key-characteristic="false">
+<vs:variable-name>NY7596_df_own_60_84m</vs:variable-name>
+<vs:description>Own number of commercial default/SCI in the last 60/84 months</vs:description>
+<vs:value unit="count">0</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NY7597" key-characteristic="false">
+<vs:variable-name>NY7597_df_latamt_own_60_84m</vs:variable-name>
+<vs:description>Own total latest dollar amount of commercial default/SCI in the last 60/84 months</vs:description>
+<vs:value unit="AUD">-991</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NY8056" key-characteristic="false">
+<vs:variable-name>NY8056_enq_amt_1</vs:variable-name>
+<vs:description>Dollar amount of last commercial enquiry</vs:description>
+<vs:value unit="AUD">5000</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NY8057" key-characteristic="false">
+<vs:variable-name>NY8057_enq_amt_2</vs:variable-name>
+<vs:description>Dollar amount of 2nd last commercial enquiry</vs:description>
+<vs:value unit="AUD">75000</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NP8510" key-characteristic="true">
+<vs:variable-name>NP8510_inslv</vs:variable-name>
+<vs:description>Number of insolvencies on file</vs:description>
+<vs:value unit="count">1</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NP8511" key-characteristic="false">
+<vs:variable-name>NP8511_inslv_dis</vs:variable-name>
+<vs:description>Number of discharged insolvencies on file</vs:description>
+<vs:value unit="count">0</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NP8512" key-characteristic="false">
+<vs:variable-name>NP8512_inslv_bkrpt</vs:variable-name>
+<vs:description>Number of bankrupt only insolvencies on file</vs:description>
+<vs:value unit="count">1</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NA8902" key-characteristic="true">
+<vs:variable-name>NA8902_age_fle_max</vs:variable-name>
+<vs:description>Age of oldest file</vs:description>
+<vs:value unit="months">165.02</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NA8920" key-characteristic="false">
+<vs:variable-name>NA8920_em_time_1</vs:variable-name>
+<vs:description>Months at latest employer</vs:description>
+<vs:value unit="months">0.01</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NA8921" key-characteristic="false">
+<vs:variable-name>NA8921_ad_time_1</vs:variable-name>
+<vs:description>Months at latest address</vs:description>
+<vs:value unit="months">0.0</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NP7506" key-characteristic="false">
+<vs:variable-name>NP7506_dj_out_amt_60m</vs:variable-name>
+<vs:description>Total dollar amount of outstanding (not settled paid or discontinued) judgements in the last 60 months</vs:description>
+<vs:value unit="AUD">-991</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NP7508" key-characteristic="false">
+<vs:variable-name>NP7508_dj_out_60m</vs:variable-name>
+<vs:description>Number of unpaid or unsettled judgements in the last 60 months</vs:description>
+<vs:value unit="count">0</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NP7510" key-characteristic="false">
+<vs:variable-name>NP7510_wr_out_48m</vs:variable-name>
+<vs:description>Number of unpaid or unsettled court writs in the last 48 months</vs:description>
+<vs:value unit="count">0</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NP7512" key-characteristic="false">
+<vs:variable-name>NP7512_wr_out_60m</vs:variable-name>
+<vs:description>Number of unpaid or unsettled court writs in the last 60 months</vs:description>
+<vs:value unit="count">0</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NP8505" key-characteristic="false">
+<vs:variable-name>NP8505_dr_adv</vs:variable-name>
+<vs:description>Number of struck-off or deregistered companies for director</vs:description>
+<vs:value unit="count">0</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NP8506" key-characteristic="false">
+<vs:variable-name>NP8506_dr_adv_disq_60m_ever</vs:variable-name>
+<vs:description>Number of external administration companies for director or disqualified directorships in the last 60 months-ever</vs:description>
+<vs:value unit="count">0</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NX7511" key-characteristic="false">
+<vs:variable-name>NX7511_sci_84m</vs:variable-name>
+<vs:description>Number of consumer SCI in the last 84 months</vs:description>
+<vs:value unit="count">0</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NX7512" key-characteristic="false">
+<vs:variable-name>NX7512_sci_latamt_84m</vs:variable-name>
+<vs:description>Total latest dollar amount of consumer SCI in the last 84 months</vs:description>
+<vs:value unit="AUD">-991</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NX7587" key-characteristic="false">
+<vs:variable-name>NX7587_df_latamt_12m</vs:variable-name>
+<vs:description>Total latest dollar amount of consumer defaults/SCI in the last 12 months</vs:description>
+<vs:value unit="AUD">-991</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NX7588" key-characteristic="true">
+<vs:variable-name>NX7588_df_latamt_60_84m</vs:variable-name>
+<vs:description>Total latest dollar amount of consumer defaults/SCI in the last 60/84 months</vs:description>
+<vs:value unit="AUD">11000</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NX7601" key-characteristic="false">
+<vs:variable-name>NX7601_adv_48_84m</vs:variable-name>
+<vs:description>Consumer adverse on file flag in the last 48/84 months</vs:description>
+<vs:value unit="char">Y</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NX7999" key-characteristic="false">
+<vs:variable-name>NX7999_enq_7d</vs:variable-name>
+<vs:description>Number of consumer enquiries in the last 7 days</vs:description>
+<vs:value unit="count">5</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NX8000" key-characteristic="false">
+<vs:variable-name>NX8000_enq_1m</vs:variable-name>
+<vs:description>Number of consumer enquiries in the last 1 month</vs:description>
+<vs:value unit="count">5</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NX8001" key-characteristic="true">
+<vs:variable-name>NX8001_enq_3m</vs:variable-name>
+<vs:description>Number of consumer enquiries in the last 3 months</vs:description>
+<vs:value unit="count">18</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NX8002" key-characteristic="false">
+<vs:variable-name>NX8002_enq_6m</vs:variable-name>
+<vs:description>Number of consumer enquiries in the last 6 months</vs:description>
+<vs:value unit="count">33</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NX8003" key-characteristic="false">
+<vs:variable-name>NX8003_enq_12m</vs:variable-name>
+<vs:description>Number of consumer enquiries in the last 12 months</vs:description>
+<vs:value unit="count">50</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NX8006" key-characteristic="true">
+<vs:variable-name>NX8006_enq_60m</vs:variable-name>
+<vs:description>Number of consumer enquiries in the last 60 months</vs:description>
+<vs:value unit="count">50</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NX8028" key-characteristic="false">
+<vs:variable-name>NX8028_enq_rm_1m</vs:variable-name>
+<vs:description>Number of consumer mortgage enquiries in the last 1 month</vs:description>
+<vs:value unit="count">3</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NX8029" key-characteristic="true">
+<vs:variable-name>NX8029_enq_rm_3m</vs:variable-name>
+<vs:description>Number of consumer mortgage enquiries in the last 3 months</vs:description>
+<vs:value unit="count">12</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NX8030" key-characteristic="false">
+<vs:variable-name>NX8030_enq_rm_6m</vs:variable-name>
+<vs:description>Number of consumer mortgage enquiries in the last 6 months</vs:description>
+<vs:value unit="count">18</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NX8031" key-characteristic="false">
+<vs:variable-name>NX8031_enq_rm_12m</vs:variable-name>
+<vs:description>Number of consumer mortgage enquiries in the last 12 months</vs:description>
+<vs:value unit="count">24</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NX8034" key-characteristic="true">
+<vs:variable-name>NX8034_enq_rm_60m</vs:variable-name>
+<vs:description>Number of consumer mortgage enquiries in the last 60 months</vs:description>
+<vs:value unit="count">24</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NX8042" key-characteristic="false">
+<vs:variable-name>NX8042_enq_tcut_1m</vs:variable-name>
+<vs:description>Number of consumer telco or utility enquiries in the last 1 month</vs:description>
+<vs:value unit="count">0</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NX8043" key-characteristic="true">
+<vs:variable-name>NX8043_enq_tcut_3m</vs:variable-name>
+<vs:description>Number of consumer telco or utility enquiries in the last 3 months</vs:description>
+<vs:value unit="count">1</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NX8044" key-characteristic="false">
+<vs:variable-name>NX8044_enq_tcut_6m</vs:variable-name>
+<vs:description>Number of consumer telco or utility enquiries in the last 6 months</vs:description>
+<vs:value unit="count">2</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NX8045" key-characteristic="false">
+<vs:variable-name>NX8045_enq_tcut_12m</vs:variable-name>
+<vs:description>Number of consumer telco or utility enquiries in the last 12 months</vs:description>
+<vs:value unit="count">6</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NX8048" key-characteristic="true">
+<vs:variable-name>NX8048_enq_tcut_60m</vs:variable-name>
+<vs:description>Number of consumer telco or utility enquiries in the last 60 months</vs:description>
+<vs:value unit="count">6</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NX8049" key-characteristic="false">
+<vs:variable-name>NX8049_enq_own_3m</vs:variable-name>
+<vs:description>Own number of consumer enquiries in the last 3 months</vs:description>
+<vs:value unit="count">1</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NX8050" key-characteristic="false">
+<vs:variable-name>NX8050_enq_own_12m</vs:variable-name>
+<vs:description>Own number of consumer enquiries in the last 12 months</vs:description>
+<vs:value unit="count">1</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NX8059" key-characteristic="false">
+<vs:variable-name>NX8059_enq_time_1</vs:variable-name>
+<vs:description>Months since last consumer enquiry</vs:description>
+<vs:value unit="months">0.02</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NX8060" key-characteristic="false">
+<vs:variable-name>NX8060_enq_time_2</vs:variable-name>
+<vs:description>Months since 2nd last consumer enquiry</vs:description>
+<vs:value unit="months">0.06</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NX8062" key-characteristic="false">
+<vs:variable-name>NX8062_enq_amt_3m</vs:variable-name>
+<vs:description>Total value of consumer enquiries &lt; 3 mths</vs:description>
+<vs:value unit="AUD">4411559</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NX8063" key-characteristic="false">
+<vs:variable-name>NX8063_enq_amt_60m</vs:variable-name>
+<vs:description>Total value of consumer enquiries &lt; 60 mths</vs:description>
+<vs:value unit="AUD">9799265</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NY7511" key-characteristic="false">
+<vs:variable-name>NY7511_sci_84m</vs:variable-name>
+<vs:description>Number of commercial SCI in the last 84 months</vs:description>
+<vs:value unit="count">0</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NY7512" key-characteristic="false">
+<vs:variable-name>NY7512_sci_latamt_84m</vs:variable-name>
+<vs:description>Total latest dollar amount of commercial SCI in the last 84 months</vs:description>
+<vs:value unit="AUD">-991</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NY7587" key-characteristic="false">
+<vs:variable-name>NY7587_df_latamt_12m</vs:variable-name>
+<vs:description>Total latest dollar amount of commercial defaults/SCI in the last 12 months</vs:description>
+<vs:value unit="AUD">-991</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NY7588" key-characteristic="true">
+<vs:variable-name>NY7588_df_latamt_60_84m</vs:variable-name>
+<vs:description>Total latest dollar amount of commercial defaults/SCI in the last 60/84 months</vs:description>
+<vs:value unit="AUD">2750</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NY7601" key-characteristic="false">
+<vs:variable-name>NY7601_adv_48_84m</vs:variable-name>
+<vs:description>Commercial adverse on file flag in the last 48/84 months</vs:description>
+<vs:value unit="char">Y</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NY7999" key-characteristic="false">
+<vs:variable-name>NY7999_enq_7d</vs:variable-name>
+<vs:description>Number of commercial enquiries in the last 7 days</vs:description>
+<vs:value unit="count">0</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NY8000" key-characteristic="false">
+<vs:variable-name>NY8000_enq_1m</vs:variable-name>
+<vs:description>Number of commercial enquiries in the last 1 month</vs:description>
+<vs:value unit="count">0</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NY8001" key-characteristic="true">
+<vs:variable-name>NY8001_enq_3m</vs:variable-name>
+<vs:description>Number of commercial enquiries in the last 3 months</vs:description>
+<vs:value unit="count">3</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NY8002" key-characteristic="false">
+<vs:variable-name>NY8002_enq_6m</vs:variable-name>
+<vs:description>Number of commercial enquiries in the last 6 months</vs:description>
+<vs:value unit="count">5</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NY8003" key-characteristic="false">
+<vs:variable-name>NY8003_enq_12m</vs:variable-name>
+<vs:description>Number of commercial enquiries in the last 12 months</vs:description>
+<vs:value unit="count">6</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NY8006" key-characteristic="true">
+<vs:variable-name>NY8006_enq_60m</vs:variable-name>
+<vs:description>Number of commercial enquiries in the last 60 months</vs:description>
+<vs:value unit="count">17</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NY8028" key-characteristic="false">
+<vs:variable-name>NY8028_enq_rm_1m</vs:variable-name>
+<vs:description>Number of commercial mortgage enquiries in the last 1 month</vs:description>
+<vs:value unit="count">0</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NY8029" key-characteristic="false">
+<vs:variable-name>NY8029_enq_rm_3m</vs:variable-name>
+<vs:description>Number of commercial mortgage enquiries in the last 3 months</vs:description>
+<vs:value unit="count">0</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NY8030" key-characteristic="false">
+<vs:variable-name>NY8030_enq_rm_6m</vs:variable-name>
+<vs:description>Number of commercial mortgage enquiries in the last 6 months</vs:description>
+<vs:value unit="count">0</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NY8031" key-characteristic="false">
+<vs:variable-name>NY8031_enq_rm_12m</vs:variable-name>
+<vs:description>Number of commercial mortgage enquiries in the last 12 months</vs:description>
+<vs:value unit="count">0</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NY8034" key-characteristic="false">
+<vs:variable-name>NY8034_enq_rm_60m</vs:variable-name>
+<vs:description>Number of commercial mortgage enquiries in the last 60 months</vs:description>
+<vs:value unit="count">0</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NY8042" key-characteristic="false">
+<vs:variable-name>NY8042_enq_tcut_1m</vs:variable-name>
+<vs:description>Number of commercial telco or utility enquiries in the last 1 month</vs:description>
+<vs:value unit="count">0</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NY8043" key-characteristic="false">
+<vs:variable-name>NY8043_enq_tcut_3m</vs:variable-name>
+<vs:description>Number of commercial telco or utility enquiries in the last 3 months</vs:description>
+<vs:value unit="count">0</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NY8044" key-characteristic="false">
+<vs:variable-name>NY8044_enq_tcut_6m</vs:variable-name>
+<vs:description>Number of commercial telco or utility enquiries in the last 6 months</vs:description>
+<vs:value unit="count">0</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NY8045" key-characteristic="false">
+<vs:variable-name>NY8045_enq_tcut_12m</vs:variable-name>
+<vs:description>Number of commercial telco or utility enquiries in the last 12 months</vs:description>
+<vs:value unit="count">0</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NY8048" key-characteristic="false">
+<vs:variable-name>NY8048_enq_tcut_60m</vs:variable-name>
+<vs:description>Number of commercial telco or utility enquiries in the last 60 months</vs:description>
+<vs:value unit="count">0</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NY8049" key-characteristic="false">
+<vs:variable-name>NY8049_enq_own_3m</vs:variable-name>
+<vs:description>Own number of commercial enquiries in the last 3 months</vs:description>
+<vs:value unit="count">0</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NY8050" key-characteristic="false">
+<vs:variable-name>NY8050_enq_own_12m</vs:variable-name>
+<vs:description>Own number of commercial enquiries in the last 12 months</vs:description>
+<vs:value unit="count">0</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NY8059" key-characteristic="false">
+<vs:variable-name>NY8059_enq_time_1</vs:variable-name>
+<vs:description>Months since last commercial enquiry</vs:description>
+<vs:value unit="months">1.03</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NY8060" key-characteristic="false">
+<vs:variable-name>NY8060_enq_time_2</vs:variable-name>
+<vs:description>Months since 2nd last commercial enquiry</vs:description>
+<vs:value unit="months">2.08</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NY8062" key-characteristic="false">
+<vs:variable-name>NY8062_enq_amt_3m</vs:variable-name>
+<vs:description>Total value of commercial enquiries &lt; 3 mths</vs:description>
+<vs:value unit="AUD">80001</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NY8063" key-characteristic="false">
+<vs:variable-name>NY8063_enq_amt_60m</vs:variable-name>
+<vs:description>Total value of commercial enquiries &lt; 60 mths</vs:description>
+<vs:value unit="AUD">510002</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NX4000" key-characteristic="true">
+<vs:variable-name>NX4000_df_bnpl_60_84m</vs:variable-name>
+<vs:description>Number of consumer buy now pay later defaults/SCI &lt; 60/84 mths</vs:description>
+<vs:value unit="count">0</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NX4001" key-characteristic="true">
+<vs:variable-name>NX4001_enq_bf</vs:variable-name>
+<vs:description>Number of BF (BNPL Facility) enquiries in the last 60 months </vs:description>
+<vs:value unit="count">0</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NX4002" key-characteristic="false">
+<vs:variable-name>NX4002_enq_bf_36m</vs:variable-name>
+<vs:description>Number of BF (BNPL Facility) enquiries in the last 36 months </vs:description>
+<vs:value unit="count">0</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NX4003" key-characteristic="false">
+<vs:variable-name>NX4003_enq_bf_24m</vs:variable-name>
+<vs:description>Number of BF (BNPL Facility) enquiries in the last 24 months </vs:description>
+<vs:value unit="count">0</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NX4004" key-characteristic="false">
+<vs:variable-name>NX4004_enq_bf_12m</vs:variable-name>
+<vs:description>Number of BF (BNPL Facility) enquiries in the last 12 months </vs:description>
+<vs:value unit="count">0</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NX4005" key-characteristic="false">
+<vs:variable-name>NX4005_enq_bf_6m</vs:variable-name>
+<vs:description>Number of BF (BNPL Facility) enquiries in the last 6 months </vs:description>
+<vs:value unit="count">0</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NX4006" key-characteristic="true">
+<vs:variable-name>NX4006_enq_bf_3m</vs:variable-name>
+<vs:description>Number of BF (BNPL Facility) enquiries in the last 3 months </vs:description>
+<vs:value unit="count">0</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NX4007" key-characteristic="false">
+<vs:variable-name>NX4007_enq_bf_1m</vs:variable-name>
+<vs:description>Number of BF (BNPL Facility) enquiries in the last month</vs:description>
+<vs:value unit="count">0</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NX4008" key-characteristic="true">
+<vs:variable-name>NX4008_enq_bt</vs:variable-name>
+<vs:description>Number of BT (BNPL Transaction) enquiries in the last 60 months </vs:description>
+<vs:value unit="count">0</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NX4009" key-characteristic="false">
+<vs:variable-name>NX4009_enq_bf_36m</vs:variable-name>
+<vs:description>Number of BT (BNPL Transaction) enquiries in the last 36 months </vs:description>
+<vs:value unit="count">0</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NX4010" key-characteristic="false">
+<vs:variable-name>NX4010_enq_bt_24m</vs:variable-name>
+<vs:description>Number of BT (BNPL Transaction)) enquiries in the last 24 months </vs:description>
+<vs:value unit="count">0</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NX4011" key-characteristic="false">
+<vs:variable-name>NX4011_enq_bt_12m</vs:variable-name>
+<vs:description>Number of BT (BNPL Transaction) enquiries in the last 12 months </vs:description>
+<vs:value unit="count">0</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NX4012" key-characteristic="false">
+<vs:variable-name>NX4012_enq_bt_6m</vs:variable-name>
+<vs:description>Number of BT (BNPL Transaction)) enquiries in the last 6 months </vs:description>
+<vs:value unit="count">0</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NX4013" key-characteristic="true">
+<vs:variable-name>NX4013_enq_bt_3m</vs:variable-name>
+<vs:description>Number of BT (BNPL Transaction) enquiries in the last 3 months </vs:description>
+<vs:value unit="count">0</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NX4014" key-characteristic="false">
+<vs:variable-name>NX4014_enq_bt_1m</vs:variable-name>
+<vs:description>Number of BT (BNPL Transaction) enquiries in the last month</vs:description>
+<vs:value unit="count">0</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NX4015" key-characteristic="false">
+<vs:variable-name>NX4015_enq_gpl_1m</vs:variable-name>
+<vs:description>Number of consumer personal loan enquiries in the last 1 month</vs:description>
+<vs:value unit="count">1</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NX4016" key-characteristic="false">
+<vs:variable-name>NX4016_enq_gpl_3m</vs:variable-name>
+<vs:description>Number of consumer personal loan enquiries in the last 3 months</vs:description>
+<vs:value unit="count">1</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NX4017" key-characteristic="false">
+<vs:variable-name>NX4017_enq_gpl_6m</vs:variable-name>
+<vs:description>Number of consumer personal loan enquiries in the last 6 months</vs:description>
+<vs:value unit="count">3</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NX4018" key-characteristic="false">
+<vs:variable-name>NX4018_enq_gpl_12m</vs:variable-name>
+<vs:description>Number of consumer personal loan enquiries in the last 12 months</vs:description>
+<vs:value unit="count">4</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NX4019" key-characteristic="false">
+<vs:variable-name>NX4019_enq_gpl_60m</vs:variable-name>
+<vs:description>Number of consumer personal loan enquiries in the last 60 months</vs:description>
+<vs:value unit="count">4</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NX4020" key-characteristic="false">
+<vs:variable-name>NX4020_enq_cc_1m</vs:variable-name>
+<vs:description>Number of consumer credit card enquiries in the last 1 month</vs:description>
+<vs:value unit="count">1</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NX4021" key-characteristic="false">
+<vs:variable-name>NX4021_enq_cc_3m</vs:variable-name>
+<vs:description>Number of consumer credit card enquiries in the last 3 months</vs:description>
+<vs:value unit="count">3</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NX4022" key-characteristic="false">
+<vs:variable-name>NX4022_enq_cc_6m</vs:variable-name>
+<vs:description>Number of consumer credit card enquiries in the last 6 months</vs:description>
+<vs:value unit="count">7</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NX4023" key-characteristic="false">
+<vs:variable-name>NX4023_enq_cc_12m</vs:variable-name>
+<vs:description>Number of consumer credit card enquiries in the last 12 months</vs:description>
+<vs:value unit="count">12</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NX4024" key-characteristic="false">
+<vs:variable-name>NX4024_enq_cc_60m</vs:variable-name>
+<vs:description>Number of consumer credit card enquiries in the last 60 months</vs:description>
+<vs:value unit="count">12</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NX4025" key-characteristic="false">
+<vs:variable-name>NX4025_enq_al_1m</vs:variable-name>
+<vs:description>Number of consumer auto loan enquiries in the last 1 month</vs:description>
+<vs:value unit="count">0</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NX4026" key-characteristic="false">
+<vs:variable-name>NX4026_enq_al_3m</vs:variable-name>
+<vs:description>Number of consumer auto loan enquiries in the last 3 months</vs:description>
+<vs:value unit="count">0</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NX4027" key-characteristic="false">
+<vs:variable-name>NX4027_enq_al_6m</vs:variable-name>
+<vs:description>Number of consumer auto loan enquiries in the last 6 months</vs:description>
+<vs:value unit="count">0</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NX4028" key-characteristic="false">
+<vs:variable-name>NX4028_enq_al_12m</vs:variable-name>
+<vs:description>Number of consumer auto loan enquiries in the last 12 months</vs:description>
+<vs:value unit="count">0</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+<vs:characteristic id="NX4029" key-characteristic="false">
+<vs:variable-name>NX4029_enq_al_60m</vs:variable-name>
+<vs:description>Number of consumer auto loan enquiries in the last 60 months</vs:description>
+<vs:value unit="count">0</vs:value>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:characteristic>
+</vs:data-block>
+</vs:summary-data>
+<vs:score-data>
+<vs:score>
+<vs:scorecard id="VSA_2.0_XY_NR">
+<vs:name>VedaScore Apply</vs:name>
+<vs:version>2.0</vs:version>
+<vs:type>Consumer+Commercial</vs:type>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:scorecard>
+<vs:key-contributing-factors>
+<vs:contributing-factor id="KCF-018">
+<vs:name>Bankrupt</vs:name>
+<vs:description>Bankrupt (excluding Discharged, Part X, Part IX) as at time of enquiry.</vs:description>
+<vs:score-impactor></vs:score-impactor>
+</vs:contributing-factor>
+</vs:key-contributing-factors>
+<vs:score-masterscale>-903</vs:score-masterscale>
+</vs:score>
+<vs:score>
+<vs:scorecard id="VS_1.1_XY_NR">
+<vs:name>VedaScore</vs:name>
+<vs:version>1.1</vs:version>
+<vs:type>Consumer+Commercial</vs:type>
+<vs:data-level code="N">Negative</vs:data-level>
+</vs:scorecard>
+<vs:score-masterscale>-999</vs:score-masterscale>
+</vs:score>
+</vs:score-data>
+<vs:possible-matches>
+<vs:possible-match>
+<vs:identity>
+<vs:bureau-reference>203964530</vs:bureau-reference>
+<vs:individual-name first-reported-date="2013-08-16">
+<vs:family-name>WEBSTER</vs:family-name>
+<vs:first-given-name>JAMIE</vs:first-given-name>
+<vs:other-given-name>JULIE</vs:other-given-name>
+</vs:individual-name>
+<vs:gender code="F">Female</vs:gender>
+<vs:date-of-birth>1978-08-07</vs:date-of-birth>
+<vs:drivers-licence>
+<vs:number>S00000001</vs:number>
+</vs:drivers-licence>
+</vs:identity>
+<vs:addresses>
+<vs:address first-reported-date="2015-10-11" type="C">
+<vs:unit-number>6</vs:unit-number>
+<vs:street-number>6</vs:street-number>
+<vs:street-name>PARK</vs:street-name>
+<vs:street-type>RD</vs:street-type>
+<vs:suburb>AUBURN</vs:suburb>
+<vs:state>NSW</vs:state>
+<vs:postcode>2144</vs:postcode>
+<vs:country-code>AUS</vs:country-code>
+</vs:address>
+<vs:address first-reported-date="2013-08-16" type="P">
+<vs:street-number>12</vs:street-number>
+<vs:street-name>LITTLE</vs:street-name>
+<vs:street-type>ST</vs:street-type>
+<vs:suburb>YAGOONA</vs:suburb>
+<vs:state>NSW</vs:state>
+<vs:postcode>2199</vs:postcode>
+<vs:country-code>AUS</vs:country-code>
+</vs:address>
+</vs:addresses>
+<vs:employment>
+<vs:employer first-reported-date="2019-08-15" type="C">
+<vs:name>DATA FISH PTY LTD</vs:name>
+</vs:employer>
+</vs:employment>
+</vs:possible-match>
+</vs:possible-matches>
+</vs:product-data>
+</vs:response>
+</soapenv:Body>
+</soapenv:Envelope>
