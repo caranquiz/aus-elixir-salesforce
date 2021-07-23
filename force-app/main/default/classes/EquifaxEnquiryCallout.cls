@@ -92,7 +92,7 @@ global with sharing class EquifaxEnquiryCallout {
       //Storing Reponse as Attachment
       Request_And_Response_Storage__c responseSettings = Request_And_Response_Storage__c.getOrgDefaults();
       
-      if(responseSettings.Store_Individual_Prv_Enq_RequestResponse__c == true){
+      if(responseSettings.Store_Individual_Prv_Enq_RequestResponse__c == true && responseObject != NULL){
         //Storing raw response in Attachments
         GenericUtility.createAttachment('EquifaxApplyIndividualResponse_'+String.valueOf(DateTime.now())+'.xml',
           responseObject.getBody(),
@@ -101,24 +101,20 @@ global with sharing class EquifaxEnquiryCallout {
       }
       if(responseObject != NULL && responseObject.responseMap != NULL){
         responseMap1 = responseObject.responseMap;
+        doc.load(responseObject.getBody());
+        json = System.JSON.serialize(responseMap1);
+        helperObject = EquifaxIndividualResponseHelper.parse(
+          json,
+          partyObj,
+          responseMap1
+        );
       }
-      doc.load(responseObject.getBody());
-      //responseMap = intframework.XmlToJson.parseDocumentToMap(doc);
-      json = System.JSON.serialize(responseMap1);
-      System.debug('JSON ===>'+json);
-      helperObject = EquifaxIndividualResponseHelper.parse(
-        json,
-        partyObj,
-        responseMap1
-      );
+      
       if (helperObject == null) {
         return ConstantValues.GENERAL_ERROR;
       }
       return helperObject;
-     /* return EquifaxApplyIndividualResponseHelper.updatePartyWithApplyIndividualResponse(
-        partyObj,
-        helperObject
-      );*/
+
     } catch (Exception ex) {
       GenericUtility.insertLog('EquifaxEnquiryCallout', ex);
       return ConstantValues.GENERAL_ERROR;

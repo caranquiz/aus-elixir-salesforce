@@ -19,14 +19,14 @@ public class EquifaxIndividualResponseHelper {
       for (Object summaryCheck : detailList) {
         if (
           summaryCheck == null ||
-          ((String)((Map<String, Object>) summaryCheck).get('variable-name')) ==
+          ((String)((Map<String, Object>) summaryCheck).get(ConstantValues.VARIABLE_NAME)) ==
           null
         ) {
           continue;
         }
         if (
           ((String) ((Map<String, Object>) summaryCheck)
-              .get('variable-name')) == referenceValue
+              .get(ConstantValues.VARIABLE_NAME)) == referenceValue
         ) {
           return ((Map<String, Object>) summaryCheck);
         }
@@ -35,29 +35,29 @@ public class EquifaxIndividualResponseHelper {
     }
     public static String processAddress(Map<String, Object> address) {
       String res = '';
-      if (((String)((Map<String, Object>) address).get('unit-number'))!= null) {
-        res += ((String)((Map<String, Object>) address).get('unit-number'));
+      if (((String)((Map<String, Object>) address).get(ConstantValues.UNIT_NUMBER))!= null) {
+        res += ((String)((Map<String, Object>) address).get(ConstantValues.UNIT_NUMBER));
       }
-      if (((String)((Map<String, Object>) address).get('street-number'))!= null){
-        res += ' ' + ((String)((Map<String, Object>) address).get('street-number'));
+      if (((String)((Map<String, Object>) address).get(ConstantValues.STREET_NUMBER))!= null){
+        res += ' ' + ((String)((Map<String, Object>) address).get(ConstantValues.STREET_NUMBER));
       }
-      if (((String)((Map<String, Object>) address).get('street-name')) != null) {
-        res += ' ' + (String) ((String)((Map<String, Object>) address).get('street-name'));
+      if (((String)((Map<String, Object>) address).get(ConstantValues.STREET_NAME)) != null) {
+        res += ' ' + (String) ((String)((Map<String, Object>) address).get(ConstantValues.STREET_NAME));
       }
-      if (((String)((Map<String, Object>) address).get('street-type'))!= null){
-        res += ' ' + ((String)((Map<String, Object>) address).get('street-type'));
+      if (((String)((Map<String, Object>) address).get(ConstantValues.STREET_TYPE))!= null){
+        res += ' ' + ((String)((Map<String, Object>) address).get(ConstantValues.STREET_TYPE));
       }
-      if (((String)((Map<String, Object>) address).get('suburb')) != null) {
-        res += ' ' + (String) ((String)((Map<String, Object>) address).get('suburb'));
+      if (((String)((Map<String, Object>) address).get(ConstantValues.SUBURB)) != null) {
+        res += ' ' + (String) ((String)((Map<String, Object>) address).get(ConstantValues.SUBURB));
       }
-      if (((String)((Map<String, Object>) address).get('state'))!= null){
-        res += ' ' + ((String)((Map<String, Object>) address).get('state'));
+      if (((String)((Map<String, Object>) address).get(ConstantValues.STATE))!= null){
+        res += ' ' + ((String)((Map<String, Object>) address).get(ConstantValues.STATE));
       }
-      if (((String)((Map<String, Object>) address).get('postcode')) != null) {
-        res += ' ' + (String) ((String)((Map<String, Object>) address).get('postcode'));
+      if (((String)((Map<String, Object>) address).get(ConstantValues.POSTCODE)) != null) {
+        res += ' ' + (String) ((String)((Map<String, Object>) address).get(ConstantValues.POSTCODE));
       }
-      if (((String)((Map<String, Object>) address).get('country-code')) != null) {
-        res += ' ' + (String) ((String)((Map<String, Object>) address).get('country-code'));
+      if (((String)((Map<String, Object>) address).get(ConstantValues.COUNTRY_CODE)) != null) {
+        res += ' ' + (String) ((String)((Map<String, Object>) address).get(ConstantValues.COUNTRY_CODE));
       }
       return res;
     }
@@ -66,67 +66,68 @@ public class EquifaxIndividualResponseHelper {
     ) {
       String data = '';
       if ((Map<String,Object>)possibleMatchData != null 
-          && ((Map<String,Object>)((Map<String,Object>)possibleMatchData).get('identity')) != null
+          && ((Map<String,Object>)((Map<String,Object>)possibleMatchData).get(ConstantValues.IDENTITY)) != null
       ) {
-        if (((Map<String,Object>)((Map<String,Object>)((Map<String,Object>)possibleMatchData).get('identity')).get('individual-name')) != null) {
+        if (((Map<String,Object>)((Map<String,Object>)((Map<String,Object>)possibleMatchData).get(ConstantValues.IDENTITY)).get(ConstantValues.INDIVIDUAL_NAME)) != null) {
           if (
             ((String)((Map<String,Object>)((Map<String,Object>)((Map<String,Object>)possibleMatchData)
-            .get('identity')).get('individual-name')).get('first-given-name')) != null 
+            .get(ConstantValues.IDENTITY)).get(ConstantValues.INDIVIDUAL_NAME)).get(ConstantValues.FIRST_GIVEN_NAME)) != null 
             
           ) {
             data +=
             ((String)((Map<String,Object>)((Map<String,Object>)((Map<String,Object>)possibleMatchData)
-            .get('identity')).get('individual-name')).get('first-given-name')) +
+            .get(ConstantValues.IDENTITY)).get(ConstantValues.INDIVIDUAL_NAME)).get(ConstantValues.FIRST_GIVEN_NAME)) +
               ' ';
           }
           if (
             ((String)((Map<String,Object>)((Map<String,Object>)((Map<String,Object>)possibleMatchData)
-            .get('identity')).get('individual-name')).get('other-given-name'))!=null
+            .get(ConstantValues.IDENTITY)).get(ConstantValues.INDIVIDUAL_NAME)).get(ConstantValues.OTHER_GIVEN_NAME))!=null
           ) {
             data +=
             ((String)((Map<String,Object>)((Map<String,Object>)((Map<String,Object>)possibleMatchData)
-            .get('identity')).get('individual-name')).get('other-given-name')) +
+            .get(ConstantValues.IDENTITY)).get(ConstantValues.INDIVIDUAL_NAME)).get(ConstantValues.OTHER_GIVEN_NAME)) +
               ' ';
           }
           if (
             ((String)((Map<String,Object>)((Map<String,Object>)((Map<String,Object>)possibleMatchData)
-            .get('identity')).get('individual-name')).get('family-name'))!=null
+            .get(ConstantValues.IDENTITY)).get(ConstantValues.INDIVIDUAL_NAME)).get(ConstantValues.FAMILY_NAME_DIRECTOR))!=null
           ) {
             data +=
             ((String)((Map<String,Object>)((Map<String,Object>)((Map<String,Object>)possibleMatchData)
-            .get('identity')).get('individual-name')).get('family-name')) +
+            .get(ConstantValues.IDENTITY)).get(ConstantValues.INDIVIDUAL_NAME)).get(ConstantValues.FAMILY_NAME_DIRECTOR)) +
               ' ';
           }
         }
         if (
           ((String)((Map<String,Object>)((Map<String,Object>)possibleMatchData)
-            .get('identity')).get('date-of-birth'))!=null
+            .get(ConstantValues.IDENTITY)).get(ConstantValues.DATE_OF_BIRTH))!=null
         ) {
           data += '\nD.O.B : ' + ((String)((Map<String,Object>)((Map<String,Object>)possibleMatchData)
-          .get('identity')).get('date-of-birth'));
+          .get(ConstantValues.IDENTITY)).get(ConstantValues.DATE_OF_BIRTH));
         }
       }
       if (
         ((Map<String,Object>)possibleMatchData) != null 
-          && ((Object)((Map<String,Object>)possibleMatchData).get('addresses')) != null &&
+          && ((Object)((Map<String,Object>)possibleMatchData).get(ConstantValues.ADDRESSES)) != null &&
           String.valueOf(
             ((Map<String,Object>)possibleMatchData)
-          ).contains('addresses=(')
+          ).contains(ConstantValues.ADDRESSES_ARRAY)
       ) {
         data += '\nAddresses : ';
-        List<Object> addressList=((List<Object>)((Map<String,Object>)possibleMatchData).get('addresses'));
+        List<Object> addressList=((List<Object>)((Map<String,Object>)possibleMatchData).get(ConstantValues.ADDRESSES));
         for (Object eachAddress : addressList) {
           data += processAddress(((Map<String,Object>) eachAddress)) + '\n';
         }
       }else if(
         ((Map<String,Object>)possibleMatchData) != null 
-          && ((Object)((Map<String,Object>)possibleMatchData).get('addresses')) != null &&
+          && ((Object)((Map<String,Object>)possibleMatchData).get(ConstantValues.ADDRESSES)) != null &&
           String.valueOf(
             ((Map<String,Object>)possibleMatchData)
-          ).contains('addresses={')
+          ).contains(ConstantValues.ADDRESSES_OBJECT)
       ){
         data += '\nAddresses : ';
-        Object eachAddress=((Object)((Map<String,Object>)((Map<String,Object>)possibleMatchData).get('addresses')).get('address'));
+        Object eachAddress=((Object)((Map<String,Object>)((Map<String,Object>)possibleMatchData)
+                .get(ConstantValues.ADDRESSES)).get(ConstantValues.ADDRESS));
         data += processAddress(((Map<String,Object>) eachAddress)) + '\n';
       }
       return data;
@@ -153,94 +154,93 @@ public class EquifaxIndividualResponseHelper {
         Id partyId;
         try {
           if(
-            ((Map<String, Object>) response.get('Envelope')) !=null &&
+            ((Map<String, Object>) response.get(ConstantValues.ENVELOPE_KEY)) !=null &&
             ((Map<String, Object>) ((Map<String, Object>) response.get(
-              'Envelope'
+              ConstantValues.ENVELOPE_KEY
             ))
-            .get('Body')) != null &&
+            .get(ConstantValues.BODY_KEY)) != null &&
             ((Map<String, Object>) ((Map<String, Object>) ((Map<String, Object>) response.get(
-              'Envelope'
+              ConstantValues.ENVELOPE_KEY
             ))
-            .get('Body')).get('response')) != null &&
+            .get(ConstantValues.BODY_KEY)).get(ConstantValues.RESPONSE_KEY)) != null &&
             ((Map<String, Object>) ((Map<String, Object>) ((Map<String, Object>) ((Map<String, Object>) response.get(
-                'Envelope'
-              )).get('Body')).get('response')).get('product-header')) != null
+                ConstantValues.ENVELOPE_KEY
+              )).get(ConstantValues.BODY_KEY)).get(ConstantValues.RESPONSE_KEY)).get(ConstantValues.PRODUCT_HEADER)) != null
 
           ){
-            productHeader=((Map<String, Object>) ((Map<String, Object>) ((Map<String, Object>) ((Map<String, Object>) response.get('Envelope'
-                      )).get('Body')).get('response')).get('product-header'));
+            productHeader=((Map<String, Object>) ((Map<String, Object>) ((Map<String, Object>) ((Map<String, Object>) response.get(ConstantValues.ENVELOPE_KEY
+                      )).get(ConstantValues.BODY_KEY)).get(ConstantValues.RESPONSE_KEY)).get(ConstantValues.PRODUCT_HEADER));
           }
           if(
-            ((Map<String, Object>) response.get('Envelope')) !=null &&
+            ((Map<String, Object>) response.get(ConstantValues.ENVELOPE_KEY)) !=null &&
             ((Map<String, Object>) ((Map<String, Object>) response.get(
-              'Envelope'
+              ConstantValues.ENVELOPE_KEY
             ))
-            .get('Body')) != null &&
+            .get(ConstantValues.BODY_KEY)) != null &&
             ((Map<String, Object>) ((Map<String, Object>) ((Map<String, Object>) response.get(
-              'Envelope'
+              ConstantValues.ENVELOPE_KEY
             ))
-            .get('Body')).get('response')) != null &&
+            .get(ConstantValues.BODY_KEY)).get(ConstantValues.RESPONSE_KEY)) != null &&
             ((Map<String, Object>) ((Map<String, Object>) ((Map<String, Object>) ((Map<String, Object>) response.get(
-                'Envelope'
-              )).get('Body')).get('response')).get('product-data')) != null
+                ConstantValues.ENVELOPE_KEY
+              )).get(ConstantValues.BODY_KEY)).get(ConstantValues.RESPONSE_KEY)).get(ConstantValues.PRODUCT_DATA)) != null
 
           ){
-            productData=((Map<String, Object>) ((Map<String, Object>) ((Map<String, Object>) ((Map<String, Object>) response.get('Envelope'
-                      )).get('Body')).get('response')).get('product-data'));
+            productData=((Map<String, Object>) ((Map<String, Object>) ((Map<String, Object>) ((Map<String, Object>) response.get(ConstantValues.ENVELOPE_KEY
+                      )).get(ConstantValues.BODY_KEY)).get(ConstantValues.RESPONSE_KEY)).get(ConstantValues.PRODUCT_DATA));
           }
           if(
-            productData!=null && ((Map<String, Object>)productData.get('enquiry-report'))!=null
+            productData!=null && ((Map<String, Object>)productData.get(ConstantValues.ENQUIRY_REPORT))!=null
           ){
-            enquiryReport=((Map<String, Object>)productData.get('enquiry-report'));
+            enquiryReport=((Map<String, Object>)productData.get(ConstantValues.ENQUIRY_REPORT));
           }
           if(
-            productData!=null && ((Map<String, Object>)productData.get('summary-data'))!=null
+            productData!=null && ((Map<String, Object>)productData.get(ConstantValues.SUMMARY_DATA))!=null
           ){
-            summaryData=((Map<String, Object>)productData.get('summary-data'));
+            summaryData=((Map<String, Object>)productData.get(ConstantValues.SUMMARY_DATA));
           }
           if(
-            enquiryReport !=null && ((Map<String, Object>)enquiryReport.get('public-record-or-consumer-credit-information'))!=null
+            enquiryReport !=null && ((Map<String, Object>)enquiryReport.get(ConstantValues.PUBLIC_CONSUMER_CREDIT))!=null
           ){
-            publicReport=((Map<String, Object>)enquiryReport.get('public-record-or-consumer-credit-information'));
+            publicReport=((Map<String, Object>)enquiryReport.get(ConstantValues.PUBLIC_CONSUMER_CREDIT));
           }
           if(
-            enquiryReport !=null && ((Map<String, Object>)enquiryReport.get('consumer-credit-file'))!=null
+            enquiryReport !=null && ((Map<String, Object>)enquiryReport.get(ConstantValues.CONSUMER_CREDIT))!=null
           ){
-            consumerCredit=((Map<String, Object>)enquiryReport.get('consumer-credit-file'));
+            consumerCredit=((Map<String, Object>)enquiryReport.get(ConstantValues.CONSUMER_CREDIT));
           }
           if(
-            enquiryReport !=null && ((Map<String, Object>)enquiryReport.get('commercial-credit-file'))!=null
+            enquiryReport !=null && ((Map<String, Object>)enquiryReport.get(ConstantValues.COMMERCIAL_CREDIT))!=null
           ){
-            commercialCredit=((Map<String, Object>)enquiryReport.get('commercial-credit-file'));
+            commercialCredit=((Map<String, Object>)enquiryReport.get(ConstantValues.COMMERCIAL_CREDIT));
           }
           if(
-            enquiryReport !=null && ((Map<String, Object>)enquiryReport.get('public-record-or-consumer-credit-information'))!=null
+            enquiryReport !=null && ((Map<String, Object>)enquiryReport.get(ConstantValues.PUBLIC_CONSUMER_CREDIT))!=null
           ){
-            publicRecordOrConsumerCreditInformation=((Map<String, Object>)enquiryReport.get('public-record-or-consumer-credit-information'));
+            publicRecordOrConsumerCreditInformation=((Map<String, Object>)enquiryReport.get(ConstantValues.PUBLIC_CONSUMER_CREDIT));
           }
           if (summaryData != null &&
               ((List<Object>) summaryData
-                .get('data-block')) != null
+                .get(ConstantValues.DATA_BLOCK)) != null
           ) {
               commonSumEntry = ((List<Object>)summaryData 
-                .get('data-block'));
+                .get(ConstantValues.DATA_BLOCK));
           }
           clearPartyObjectData(partyObj);
           if (
             enquiryReport!=null &&
-            ((Map<String, Object>) enquiryReport.get('primary-match')) !=
+            ((Map<String, Object>) enquiryReport.get(ConstantValues.PRIMARY_MATCH)) !=
             null &&
-            ((String) ((Map<String, Object>)enquiryReport.get('primary-match')).get('bureau-reference'))!=NUll
+            ((String) ((Map<String, Object>)enquiryReport.get(ConstantValues.PRIMARY_MATCH)).get(ConstantValues.BUREAU_REFERENCE))!=NUll
           ) {
-            partyObj.File_Number__c = ((String) ((Map<String, Object>)enquiryReport.get('primary-match')).get('bureau-reference'));
+            partyObj.File_Number__c = ((String) ((Map<String, Object>)enquiryReport.get(ConstantValues.PRIMARY_MATCH)).get(ConstantValues.BUREAU_REFERENCE));
           }
           if(
             productHeader!=null &&
-            ((String)productHeader.get('enquiry-id'))!= null
+            ((String)productHeader.get(ConstantValues.ENQUIRY_ID))!= null
           ) {
-            partyObj.Request_Id__c = ((String)productHeader.get('enquiry-id'));
+            partyObj.Request_Id__c = ((String)productHeader.get(ConstantValues.ENQUIRY_ID));
           }
-          system.debug('135-->'+commonSumEntry);
           if (
             findInSummaryData(
               commonSumEntry,
@@ -253,14 +253,14 @@ public class EquifaxIndividualResponseHelper {
             );
             if (
               ((Map<String, Object>) tempSummaryEntry.get(
-                'value'
+                ConstantValues.VALUE
               )) != null &&
               (String) ((Map<String, Object>) tempSummaryEntry.get(
-                'value'
+                ConstantValues.VALUE
                 ))
-                .get('ele_text') != null
+                .get(ConstantValues.ELE_TEXT) != null
             ) {
-              partyObj.Age_of_Credit_File__c = Decimal.valueOf(((String) ((Map<String, Object>) tempSummaryEntry.get('value')).get('ele_text')))
+              partyObj.Age_of_Credit_File__c = Decimal.valueOf(((String) ((Map<String, Object>) tempSummaryEntry.get(ConstantValues.VALUE)).get(ConstantValues.ELE_TEXT)))
               .round(System.RoundingMode.HALF_DOWN);
             }
           }
@@ -276,17 +276,17 @@ public class EquifaxIndividualResponseHelper {
             );
             if (
               ((Map<String, Object>) tempSummaryEntry.get(
-                'value'
+                ConstantValues.VALUE
               )) != null &&
               (String) ((Map<String, Object>) tempSummaryEntry.get(
-                'value'
+                ConstantValues.VALUE
                 ))
-                .get('ele_text') != null
+                .get(ConstantValues.ELE_TEXT) != null
             ) {
-              if(((String) ((Map<String, Object>) tempSummaryEntry.get('value')).get('ele_text'))=='Y'){
-                partyObj.Adverse_on_file__c = 'Yes';
-              }else if(((String) ((Map<String, Object>) tempSummaryEntry.get('value')).get('ele_text'))=='N'){
-                partyObj.Adverse_on_file__c = 'No';
+              if(((String) ((Map<String, Object>) tempSummaryEntry.get(ConstantValues.VALUE)).get(ConstantValues.ELE_TEXT))=='Y'){
+                partyObj.Adverse_on_file__c = ConstantValues.YES_TAG;
+              }else if(((String) ((Map<String, Object>) tempSummaryEntry.get(ConstantValues.VALUE)).get(ConstantValues.ELE_TEXT))=='N'){
+                partyObj.Adverse_on_file__c = ConstantValues.NO_TAG;
               }
             }
           }
@@ -302,17 +302,17 @@ public class EquifaxIndividualResponseHelper {
             );
             if (
               ((Map<String, Object>) tempSummaryEntry.get(
-                'value'
+                ConstantValues.VALUE
               )) != null &&
               (String) ((Map<String, Object>) tempSummaryEntry.get(
-                'value'
+                ConstantValues.VALUE
                 ))
-                .get('ele_text') != null
+                .get(ConstantValues.ELE_TEXT) != null
             ) {
-              if(((String) ((Map<String, Object>) tempSummaryEntry.get('value')).get('ele_text'))=='Y'){
-                partyObj.Consumer_Adverse_on_file__c = 'Yes';
-              }else if(((String) ((Map<String, Object>) tempSummaryEntry.get('value')).get('ele_text'))=='N'){
-                partyObj.Consumer_Adverse_on_file__c = 'No';
+              if(((String) ((Map<String, Object>) tempSummaryEntry.get(ConstantValues.VALUE)).get(ConstantValues.ELE_TEXT))=='Y'){
+                partyObj.Consumer_Adverse_on_file__c = ConstantValues.YES_TAG;
+              }else if(((String) ((Map<String, Object>) tempSummaryEntry.get(ConstantValues.VALUE)).get(ConstantValues.ELE_TEXT))=='N'){
+                partyObj.Consumer_Adverse_on_file__c = ConstantValues.NO_TAG;
               }
             }
           }
@@ -328,14 +328,14 @@ public class EquifaxIndividualResponseHelper {
             );
             if (
               ((Map<String, Object>) tempSummaryEntry.get(
-                'value'
+                ConstantValues.VALUE
               )) != null &&
               (String) ((Map<String, Object>) tempSummaryEntry.get(
-                'value'
+                ConstantValues.VALUE
                 ))
-                .get('ele_text') != null
+                .get(ConstantValues.ELE_TEXT) != null
             ) {
-              partyObj.Current_Directorships__c = Integer.valueOf(((String) ((Map<String, Object>) tempSummaryEntry.get('value')).get('ele_text')));
+              partyObj.Current_Directorships__c = Integer.valueOf(((String) ((Map<String, Object>) tempSummaryEntry.get(ConstantValues.VALUE)).get(ConstantValues.ELE_TEXT)));
             }
           }
           if (
@@ -350,14 +350,14 @@ public class EquifaxIndividualResponseHelper {
             );
             if (
               ((Map<String, Object>) tempSummaryEntry.get(
-                'value'
+                ConstantValues.VALUE
               )) != null &&
               (String) ((Map<String, Object>) tempSummaryEntry.get(
-                'value'
+                ConstantValues.VALUE
                 ))
-                .get('ele_text') != null
+                .get(ConstantValues.ELE_TEXT) != null
             ) {
-              partyObj.External_Administrators__c = Integer.valueOf(((String) ((Map<String, Object>) tempSummaryEntry.get('value')).get('ele_text')));
+              partyObj.External_Administrators__c = Integer.valueOf(((String) ((Map<String, Object>) tempSummaryEntry.get(ConstantValues.VALUE)).get(ConstantValues.ELE_TEXT)));
             }
           }
           if (
@@ -372,14 +372,14 @@ public class EquifaxIndividualResponseHelper {
             );
             if (
               ((Map<String, Object>) tempSummaryEntry.get(
-                'value'
+                ConstantValues.VALUE
               )) != null &&
               (String) ((Map<String, Object>) tempSummaryEntry.get(
-                'value'
+                ConstantValues.VALUE
                 ))
-                .get('ele_text') != null
+                .get(ConstantValues.ELE_TEXT) != null
             ) {
-              partyObj.Number_of_bankrupt_on_file__c = Integer.valueOf(((String) ((Map<String, Object>) tempSummaryEntry.get('value')).get('ele_text')));
+              partyObj.Number_of_bankrupt_on_file__c = Integer.valueOf(((String) ((Map<String, Object>) tempSummaryEntry.get(ConstantValues.VALUE)).get(ConstantValues.ELE_TEXT)));
             }
           }
           if (
@@ -394,14 +394,14 @@ public class EquifaxIndividualResponseHelper {
             );
             if (
               ((Map<String, Object>) tempSummaryEntry.get(
-                'value'
+                ConstantValues.VALUE
               )) != null &&
               (String) ((Map<String, Object>) tempSummaryEntry.get(
-                'value'
+                ConstantValues.VALUE
                 ))
-                .get('ele_text') != null
+                .get(ConstantValues.ELE_TEXT) != null
             ) {
-              partyObj.Number_of_bankrupt_on_file_in_last_84m__c = Integer.valueOf(((String) ((Map<String, Object>) tempSummaryEntry.get('value')).get('ele_text')));
+              partyObj.Number_of_bankrupt_on_file_in_last_84m__c = Integer.valueOf(((String) ((Map<String, Object>) tempSummaryEntry.get(ConstantValues.VALUE)).get(ConstantValues.ELE_TEXT)));
             }
           }
           if (
@@ -416,14 +416,14 @@ public class EquifaxIndividualResponseHelper {
             );
             if (
               ((Map<String, Object>) tempSummaryEntry.get(
-                'value'
+                ConstantValues.VALUE
               )) != null &&
               (String) ((Map<String, Object>) tempSummaryEntry.get(
-                'value'
+                ConstantValues.VALUE
                 ))
-                .get('ele_text') != null
+                .get(ConstantValues.ELE_TEXT) != null
             ) {
-              partyObj.Number_of_Discharged_Insolvencies__c = Integer.valueOf(((String) ((Map<String, Object>) tempSummaryEntry.get('value')).get('ele_text')));
+              partyObj.Number_of_Discharged_Insolvencies__c = Integer.valueOf(((String) ((Map<String, Object>) tempSummaryEntry.get(ConstantValues.VALUE)).get(ConstantValues.ELE_TEXT)));
             }
           }
           if (
@@ -438,72 +438,76 @@ public class EquifaxIndividualResponseHelper {
             );
             if (
               ((Map<String, Object>) tempSummaryEntry.get(
-                'value'
+                ConstantValues.VALUE
               )) != null &&
               (String) ((Map<String, Object>) tempSummaryEntry.get(
-                'value'
+                ConstantValues.VALUE
                 ))
-                .get('ele_text') != null
+                .get(ConstantValues.ELE_TEXT) != null
             ) {
-              partyObj.Number_of_insolvencies_on_file__c = Integer.valueOf(((String) ((Map<String, Object>) tempSummaryEntry.get('value')).get('ele_text')));
+              partyObj.Number_of_insolvencies_on_file__c = Integer.valueOf(((String) ((Map<String, Object>) tempSummaryEntry.get(ConstantValues.VALUE)).get(ConstantValues.ELE_TEXT)));
             }
           }
           if(
             productData!=null &&
-            ((Object)productData.get('score-data'))!= null &&
+            ((Object)productData.get(ConstantValues.SCORE_DATA))!= null &&
             String.valueOf(
               productData
-            ).contains('score-data=(')
+            ).contains(ConstantValues.SCORE_DATA_ARRAY)
           ){
-            List<Object> scoreList =((List<Object>)productData.get('score-data'));
+            List<Object> scoreList =((List<Object>)productData.get(ConstantValues.SCORE_DATA));
             for (Object eachScore : scoreList){
               if (
                 ((Map<String,Object>)eachScore) == null ||
-                ((Map<String,Object>)((Map<String,Object>)eachScore).get('scorecard')) == null ||
-                (String)((Map<String,Object>)((Map<String,Object>)eachScore).get('scorecard')).get('id') == null
+                ((Map<String,Object>)((Map<String,Object>)eachScore).get(ConstantValues.SCORECARD)) == null ||
+                (String)((Map<String,Object>)((Map<String,Object>)eachScore).get(ConstantValues.SCORECARD))
+                .get(ConstantValues.SCORECARD_ID) == null
               ) {
                 continue;
               }
-              String scoreCardIdVal = (String)((Map<String,Object>)((Map<String,Object>)eachScore).get('scorecard')).get('id');
+              String scoreCardIdVal = (String)((Map<String,Object>)((Map<String,Object>)eachScore).get(ConstantValues.SCORECARD))
+                    .get(ConstantValues.SCORECARD_ID);
               if (
                 scoreCardIdVal.equalsIgnoreCase('VSA_2.0_XY_NR') ||
                 scoreCardIdVal.equalsIgnoreCase('CCAI_2.0_YX_NR')
               ) {
                 if (
                   ((Map<String,Object>)eachScore) == null ||
-                ((String)((Map<String,Object>)eachScore).get('score-masterscale')) == null 
+                ((String)((Map<String,Object>)eachScore).get(ConstantValues.SCORE_MASTERSCALE)) == null 
                 ) {
                   continue;
                 }
                 partyObj.Credit_Score__c = Decimal.valueOf(
-                  ((String)((Map<String,Object>)eachScore).get('score-masterscale'))
+                  ((String)((Map<String,Object>)eachScore).get(ConstantValues.SCORE_MASTERSCALE))
                 );
               }
             }
           }else if(
             productData!=null &&
-            ((Object)productData.get('score-data'))!= null &&
+            ((Object)productData.get(ConstantValues.SCORE_DATA))!= null &&
             String.valueOf(
               productData
-            ).contains('score-data={')
+            ).contains(ConstantValues.SCORE_DATA_OBJECT)
           ){
-            Object eachScore =((Object)((Map<String,Object>)productData.get('score-data')).get('score'));
+            Object eachScore =((Object)((Map<String,Object>)productData.get(ConstantValues.SCORE_DATA)).get('score'));
             if (
               ((Map<String,Object>)eachScore) != null ||
-              ((Map<String,Object>)((Map<String,Object>)eachScore).get('scorecard')) != null ||
-              (String)((Map<String,Object>)((Map<String,Object>)eachScore).get('scorecard')).get('id') != null
+              ((Map<String,Object>)((Map<String,Object>)eachScore).get(ConstantValues.SCORECARD)) != null ||
+              (String)((Map<String,Object>)((Map<String,Object>)eachScore).get(ConstantValues.SCORECARD))
+              .get(ConstantValues.SCORECARD_ID) != null
             ) {
-              String scoreCardIdVal = (String)((Map<String,Object>)((Map<String,Object>)eachScore).get('scorecard')).get('id');
+              String scoreCardIdVal = (String)((Map<String,Object>)((Map<String,Object>)eachScore).get(ConstantValues.SCORECARD))
+                  .get(ConstantValues.SCORECARD_ID);
               if (
                 scoreCardIdVal.equalsIgnoreCase('VSA_2.0_XY_NR') ||
                 scoreCardIdVal.equalsIgnoreCase('CCAI_2.0_YX_NR')
               ) {
                 if (
                   ((Map<String,Object>)eachScore) != null ||
-                ((String)((Map<String,Object>)eachScore).get('score-masterscale')) != null 
+                ((String)((Map<String,Object>)eachScore).get(ConstantValues.SCORE_MASTERSCALE)) != null 
                 ) {
                   partyObj.Credit_Score__c = Decimal.valueOf(
-                  ((String)((Map<String,Object>)eachScore).get('score-masterscale'))
+                  ((String)((Map<String,Object>)eachScore).get(ConstantValues.SCORE_MASTERSCALE))
                 );
                 }
                 
@@ -513,15 +517,15 @@ public class EquifaxIndividualResponseHelper {
           }
           if(
             productHeader!=null &&
-            ((Map<String,Object>)productHeader.get('permission-type'))!= null
+            ((Map<String,Object>)productHeader.get(ConstantValues.PERMISSION_TYPE))!= null
           ) {
-            partyObj.Permission_Type__c = ((String)((Map<String,Object>)productHeader.get('permission-type')).get('ele_text'));
+            partyObj.Permission_Type__c = ((String)((Map<String,Object>)productHeader.get(ConstantValues.PERMISSION_TYPE)).get(ConstantValues.ELE_TEXT));
           }
           if (
             productHeader!=null &&
-            ((String)productHeader.get('datetime-requested')) != null
+            ((String)productHeader.get(ConstantValues.DATETIME_REQUESTED)) != null
           ) {
-            String reportCreateDate = ((String)productHeader.get('datetime-requested'));
+            String reportCreateDate = ((String)productHeader.get(ConstantValues.DATETIME_REQUESTED));
             if (reportCreateDate != null && reportCreateDate.length() > 9) {
               partyObj.Report_Created_Date__c = Date.newInstance(
                 Integer.valueOf(reportCreateDate.substring(0, 4)),
@@ -532,51 +536,52 @@ public class EquifaxIndividualResponseHelper {
           }
           if (
             enquiryReport!=null &&
-            ((Object) enquiryReport.get('employment')) !=
+            ((Object) enquiryReport.get(ConstantValues.EMPLOYMENT)) !=
             null &&
             String.valueOf(
               enquiryReport
-            ).contains('employment=(')
+            ).contains(ConstantValues.EMPLOYMENT_ARRAY)
           ) {
-            List<Object> employmentList=((List<Object>) enquiryReport.get('employment'));
+            List<Object> employmentList=((List<Object>) enquiryReport.get(ConstantValues.EMPLOYMENT));
             for(object eachEmployment:employmentList){
               if(
                 ((Map<String,Object>)eachEmployment)!=null &&
-                ((String)((Map<String,Object>)eachEmployment).get('name'))!=null
+                ((String)((Map<String,Object>)eachEmployment).get(ConstantValues.NAME_KEY))!=null
               ){
-                partyObj.Employer__c = ((String)((Map<String,Object>)eachEmployment).get('name'));
+                partyObj.Employer__c = ((String)((Map<String,Object>)eachEmployment).get(ConstantValues.NAME_KEY));
               }
             }
             
           }else if (
             enquiryReport!=null &&
-            ((Object) enquiryReport.get('employment')) !=
+            ((Object) enquiryReport.get(ConstantValues.EMPLOYMENT)) !=
             null &&
             String.valueOf(
               enquiryReport
-            ).contains('employment={')
+            ).contains(ConstantValues.EMPLOYMENT_OBJECT)
           ) {
-            Object eachEmployment=((Object)((Map<String,Object>) enquiryReport.get('employment')).get('employer'));
+            Object eachEmployment=((Object)((Map<String,Object>) enquiryReport.get(ConstantValues.EMPLOYMENT))
+                    .get(ConstantValues.EMPLOYER));
             if(
               ((Map<String,Object>)eachEmployment)!=null &&
-              ((String)((Map<String,Object>)eachEmployment).get('name'))!=null
+              ((String)((Map<String,Object>)eachEmployment).get(ConstantValues.NAME_KEY))!=null
             ){
-              partyObj.Employer__c = ((String)((Map<String,Object>)eachEmployment).get('name'));
+              partyObj.Employer__c = ((String)((Map<String,Object>)eachEmployment).get(ConstantValues.NAME_KEY));
             }
           }
           if (
             enquiryReport!=null &&
-            ((Object) enquiryReport.get('addresses')) !=
+            ((Object) enquiryReport.get(ConstantValues.ADDRESSES)) !=
             null && String.valueOf(
               enquiryReport
-            ).contains('addresses=(')
+            ).contains(ConstantValues.ADDRESSES_ARRAY)
           ) {
-            List<Object> addressList = ((List<Object>) enquiryReport.get('addresses'));
+            List<Object> addressList = ((List<Object>) enquiryReport.get(ConstantValues.ADDRESSES));
             for (Object eachAddress : addressList) {
               if (
                 ((Map<String,Object>)eachAddress)!=null &&
-                ((String)((Map<String,Object>)eachAddress).get('type'))!=null &&
-                ((String)((Map<String,Object>)eachAddress).get('type'))=='C'
+                ((String)((Map<String,Object>)eachAddress).get(ConstantValues.TYPE))!=null &&
+                ((String)((Map<String,Object>)eachAddress).get(ConstantValues.TYPE))=='C'
               ) {
                 partyObj.Individual_Address__c = processAddress(((Map<String,Object>)eachAddress));
                 break;
@@ -584,16 +589,16 @@ public class EquifaxIndividualResponseHelper {
             }
           }else if(
             enquiryReport!=null &&
-            ((Object) enquiryReport.get('addresses')) !=
+            ((Object) enquiryReport.get(ConstantValues.ADDRESSES)) !=
             null && String.valueOf(
               enquiryReport
-            ).contains('addresses={')
+            ).contains(ConstantValues.ADDRESSES_OBJECT)
           ){
-            Object eachAddress = ((Object)((Map<String,Object>) enquiryReport.get('addresses')).get('address'));
+            Object eachAddress = ((Object)((Map<String,Object>) enquiryReport.get(ConstantValues.ADDRESSES)).get(ConstantValues.ADDRESS));
             if (
               ((Map<String,Object>)eachAddress)!=null &&
-              ((String)((Map<String,Object>)eachAddress).get('type'))!=null &&
-              ((String)((Map<String,Object>)eachAddress).get('type'))=='C'
+              ((String)((Map<String,Object>)eachAddress).get(ConstantValues.TYPE))!=null &&
+              ((String)((Map<String,Object>)eachAddress).get(ConstantValues.TYPE))=='C'
             ) {
               partyObj.Individual_Address__c = processAddress(((Map<String,Object>)eachAddress));
               
@@ -601,12 +606,12 @@ public class EquifaxIndividualResponseHelper {
           }
           if (
             productData!=null &&
-            ((Map<String,Object>)((Map<String,Object>)productData).get('possible-matches')) !=
+            ((Map<String,Object>)((Map<String,Object>)productData).get(ConstantValues.POSSIBLE_MATCHES)) !=
             null &&
-            ((Map<String,Object>)((Map<String,Object>)((Map<String,Object>)productData).get('possible-matches')).get('possible-match'))!=
-            null
+            ((Map<String,Object>)((Map<String,Object>)((Map<String,Object>)productData).get(ConstantValues.POSSIBLE_MATCHES))
+            .get(ConstantValues.POSSIBLE_MATCH))!=null
           ) {
-            possibleMatchData = ((Map<String,Object>)((Map<String,Object>)((Map<String,Object>)productData).get('possible-matches')).get('possible-match'));
+            possibleMatchData = ((Map<String,Object>)((Map<String,Object>)((Map<String,Object>)productData).get(ConstantValues.POSSIBLE_MATCHES)).get(ConstantValues.POSSIBLE_MATCH));
             partyObj.Possibly_matched_data__c = processPossiblyMatchedData(
               possibleMatchData
             );
@@ -622,47 +627,51 @@ public class EquifaxIndividualResponseHelper {
             if (
               publicReport!=null &&
               ((Object)publicReport.get(
-                'directorships'
+                ConstantValues.DIRECTORSHIPS
               )) != null && String.valueOf(
                 publicReport
-              ).contains('directorships=(')
+              ).contains(ConstantValues.DIRECTORSHIPS_ARRAY)
             ) {
               List<Object> refDirShip = ((List<Object>) publicReport.get(
-                'directorships'
+                ConstantValues.DIRECTORSHIPS
               ));
               for (Object eachDirectorship : refDirShip) {
-                if(((String) ((Map<String, Object>) eachDirectorship).get('type'))=='C'){
+                if(((String) ((Map<String, Object>) eachDirectorship).get(ConstantValues.TYPE))=='C'){
                   Current_Directorship__c currDirector=new Current_Directorship__c();
                   currDirector.Directorship_Type__c = 'Current';
                   currDirector.Party__c=partyObj.id;
                   if (
                     ((Map<String, Object>) eachDirectorship) != null &&
                     ((Map<String, Object>) ((Map<String, Object>) eachDirectorship)
-                      .get('organisation')) != null
+                      .get(ConstantValues.ORGANISATION)) != null
                   ){
                     if(((String)((Map<String, Object>) ((Map<String, Object>) eachDirectorship)
-                    .get('organisation')).get('name')) != null)
-                    currDirector.Org_Name__c=((String)((Map<String, Object>) ((Map<String, Object>) eachDirectorship).get('organisation')).get('name'));
+                    .get(ConstantValues.ORGANISATION)).get(ConstantValues.NAME_KEY)) != null)
+                    currDirector.Org_Name__c=((String)((Map<String, Object>) ((Map<String, Object>) eachDirectorship)
+                        .get(ConstantValues.ORGANISATION)).get(ConstantValues.NAME_KEY));
                   
                     if(((Map<String, Object>)((Map<String, Object>) ((Map<String, Object>) eachDirectorship)
-                    .get('organisation')).get('type')) != null
+                    .get(ConstantValues.ORGANISATION)).get(ConstantValues.TYPE)) != null
                     && ((String)((Map<String, Object>)((Map<String, Object>) ((Map<String, Object>) eachDirectorship)
-                    .get('organisation')).get('type')).get('ele_text')) != null)
-                    currDirector.Org_Name__c+=' '+((String)((Map<String, Object>)((Map<String, Object>) ((Map<String, Object>) eachDirectorship).get('organisation')).get('type')).get('ele_text'));
+                    .get(ConstantValues.ORGANISATION)).get(ConstantValues.TYPE)).get(ConstantValues.ELE_TEXT)) != null)
+                    currDirector.Org_Name__c+=' '+((String)((Map<String, Object>)((Map<String, Object>) ((Map<String, Object>) eachDirectorship)
+                        .get(ConstantValues.ORGANISATION)).get(ConstantValues.TYPE)).get(ConstantValues.ELE_TEXT));
                 
                     if(((Map<String, Object>)((Map<String, Object>) ((Map<String, Object>) eachDirectorship)
-                    .get('organisation')).get('status')) !=null && 
+                    .get(ConstantValues.ORGANISATION)).get(ConstantValues.status)) !=null && 
                     ((String)((Map<String, Object>)((Map<String, Object>) ((Map<String, Object>) eachDirectorship)
-                    .get('organisation')).get('status')).get('ele_text')) != null )
-                    currDirector.Company_Status__c=((String)((Map<String, Object>)((Map<String, Object>) ((Map<String, Object>) eachDirectorship).get('organisation')).get('status')).get('ele_text'));
+                    .get(ConstantValues.ORGANISATION)).get(ConstantValues.status)).get(ConstantValues.ELE_TEXT)) != null )
+                    currDirector.Company_Status__c=((String)((Map<String, Object>)((Map<String, Object>) ((Map<String, Object>) eachDirectorship)
+                        .get(ConstantValues.ORGANISATION)).get(ConstantValues.status)).get(ConstantValues.ELE_TEXT));
                   
                     if(((String)((Map<String, Object>) ((Map<String, Object>) eachDirectorship)
-                    .get('organisation')).get('ABN')) != null)
-                    currDirector.ABN__c=((String)((Map<String, Object>) ((Map<String, Object>) eachDirectorship).get('organisation')).get('ABN'));
+                    .get(ConstantValues.ORGANISATION)).get(ConstantValues.DIRECTORSHIPS_ABN)) != null)
+                    currDirector.ABN__c=((String)((Map<String, Object>) ((Map<String, Object>) eachDirectorship).get(ConstantValues.ORGANISATION))
+                        .get(ConstantValues.DIRECTORSHIPS_ABN));
 
                     if(((String)((Map<String, Object>) ((Map<String, Object>) eachDirectorship)
-                    .get('organisation')).get('organisation-number')) != null)
-                    currDirector.ACN__c=((String)((Map<String, Object>) ((Map<String, Object>) eachDirectorship).get('organisation')).get('organisation-number'));
+                    .get(ConstantValues.ORGANISATION)).get(ConstantValues.ORGANISATION_NUMBER)) != null)
+                    currDirector.ACN__c=((String)((Map<String, Object>) ((Map<String, Object>) eachDirectorship).get(ConstantValues.ORGANISATION)).get(ConstantValues.ORGANISATION_NUMBER));
                   
                   }
                   directorships.add(currDirector);
@@ -671,44 +680,49 @@ public class EquifaxIndividualResponseHelper {
             }else if(
               publicReport!=null &&
               ((Object)publicReport.get(
-                'directorships'
+                ConstantValues.DIRECTORSHIPS
               )) != null && String.valueOf(
                 publicReport
-              ).contains('directorships={')
+              ).contains(ConstantValues.DIRECTORSHIPS_OBJECT)
             ){
-              Object eachDirectorship = ((Object)((Map<String, Object>) publicReport.get('directorships')).get('directorship'));
-              if(((String) ((Map<String, Object>) eachDirectorship).get('type'))=='C'){
+              Object eachDirectorship = ((Object)((Map<String, Object>) publicReport.get(ConstantValues.DIRECTORSHIPS)).get(ConstantValues.DIRECTORSHIP));
+              if(((String) ((Map<String, Object>) eachDirectorship).get(ConstantValues.TYPE))=='C'){
                 Current_Directorship__c currDirector=new Current_Directorship__c();
                 currDirector.Directorship_Type__c = 'Current';
                 currDirector.Party__c=partyObj.id;
                 if (
                   ((Map<String, Object>) eachDirectorship) != null &&
                   ((Map<String, Object>) ((Map<String, Object>) eachDirectorship)
-                    .get('organisation')) != null
+                    .get(ConstantValues.ORGANISATION)) != null
                 ){
                   if(((String)((Map<String, Object>) ((Map<String, Object>) eachDirectorship)
-                  .get('organisation')).get('name')) != null)
-                  currDirector.Org_Name__c=((String)((Map<String, Object>) ((Map<String, Object>) eachDirectorship).get('organisation')).get('name'));
+                  .get(ConstantValues.ORGANISATION)).get(ConstantValues.NAME_KEY)) != null)
+                  currDirector.Org_Name__c=((String)((Map<String, Object>) ((Map<String, Object>) eachDirectorship).get(ConstantValues.ORGANISATION))
+                      .get(ConstantValues.NAME_KEY));
                 
                   if(((Map<String, Object>)((Map<String, Object>) ((Map<String, Object>) eachDirectorship)
-                  .get('organisation')).get('type')) != null
+                  .get(ConstantValues.ORGANISATION)).get(ConstantValues.TYPE)) != null
                   && ((String)((Map<String, Object>)((Map<String, Object>) ((Map<String, Object>) eachDirectorship)
-                  .get('organisation')).get('type')).get('ele_text')) != null)
-                  currDirector.Org_Name__c+=' '+((String)((Map<String, Object>)((Map<String, Object>) ((Map<String, Object>) eachDirectorship).get('organisation')).get('type')).get('ele_text'));
+                  .get(ConstantValues.ORGANISATION)).get(ConstantValues.TYPE)).get(ConstantValues.ELE_TEXT)) != null)
+                  currDirector.Org_Name__c+=' '+((String)((Map<String, Object>)((Map<String, Object>) ((Map<String, Object>) eachDirectorship)
+                      .get(ConstantValues.ORGANISATION)).get(ConstantValues.TYPE)).get(ConstantValues.ELE_TEXT));
               
                   if(((Map<String, Object>)((Map<String, Object>) ((Map<String, Object>) eachDirectorship)
-                  .get('organisation')).get('status')) !=null && 
+                  .get(ConstantValues.ORGANISATION)).get(ConstantValues.status)) !=null && 
                   ((String)((Map<String, Object>)((Map<String, Object>) ((Map<String, Object>) eachDirectorship)
-                  .get('organisation')).get('status')).get('ele_text')) != null )
-                  currDirector.Company_Status__c=((String)((Map<String, Object>)((Map<String, Object>) ((Map<String, Object>) eachDirectorship).get('organisation')).get('status')).get('ele_text'));
+                  .get(ConstantValues.ORGANISATION)).get(ConstantValues.status)).get(ConstantValues.ELE_TEXT)) != null )
+                  currDirector.Company_Status__c=((String)((Map<String, Object>)((Map<String, Object>) ((Map<String, Object>) eachDirectorship)
+                      .get(ConstantValues.ORGANISATION)).get(ConstantValues.status)).get(ConstantValues.ELE_TEXT));
                 
                   if(((String)((Map<String, Object>) ((Map<String, Object>) eachDirectorship)
-                  .get('organisation')).get('ABN')) != null)
-                  currDirector.ABN__c=((String)((Map<String, Object>) ((Map<String, Object>) eachDirectorship).get('organisation')).get('ABN'));
+                  .get(ConstantValues.ORGANISATION)).get(ConstantValues.DIRECTORSHIPS_ABN)) != null)
+                  currDirector.ABN__c=((String)((Map<String, Object>) ((Map<String, Object>) eachDirectorship).get(ConstantValues.ORGANISATION))
+                      .get(ConstantValues.DIRECTORSHIPS_ABN));
 
                   if(((String)((Map<String, Object>) ((Map<String, Object>) eachDirectorship)
-                  .get('organisation')).get('organisation-number')) != null)
-                  currDirector.ACN__c=((String)((Map<String, Object>) ((Map<String, Object>) eachDirectorship).get('organisation')).get('organisation-number'));
+                  .get(ConstantValues.ORGANISATION)).get(ConstantValues.ORGANISATION_NUMBER)) != null)
+                  currDirector.ACN__c=((String)((Map<String, Object>) ((Map<String, Object>) eachDirectorship).get(ConstantValues.ORGANISATION))
+                      .get(ConstantValues.ORGANISATION_NUMBER));
                 
                 }
                 directorships.add(currDirector);
@@ -726,12 +740,12 @@ public class EquifaxIndividualResponseHelper {
             if (
               publicReport!=null &&
               ((Object) publicReport.get(
-                'disqualified-directorships'
+                ConstantValues.DISQUALIFIED_DIRECTORSHIPS
               ))!=null &&
-              String.valueOf(publicReport).contains('disqualified-directorships=(') 
+              String.valueOf(publicReport).contains(ConstantValues.DISQUALIFIED_DIRECTORSHIPS_ARRAY) 
             ) {
               List<Object> refDisqDirShip = ((List<Object>)publicReport.get(
-                'disqualified-directorships'
+                ConstantValues.DISQUALIFIED_DIRECTORSHIPS
               ));
               for (Object eachDisqualified : refDisqDirShip) {      
                 Current_Directorship__c refDirShip = new Current_Directorship__c();
@@ -740,9 +754,9 @@ public class EquifaxIndividualResponseHelper {
                 if (
                   ((Map<String, Object>) eachDisqualified) != null &&
                   ((String) ((Map<String, Object>) eachDisqualified)
-                    .get('date-disqualified')) != null
+                    .get(ConstantValues.DATE_DISQUALIFIED)) != null
                 ) {
-                  String reportCreateDate =((String) ((Map<String, Object>) eachDisqualified).get('date-disqualified'));
+                  String reportCreateDate =((String) ((Map<String, Object>) eachDisqualified).get(ConstantValues.DATE_DISQUALIFIED));
                   if (reportCreateDate != null && reportCreateDate.length() > 9) {
                     refDirShip.Date_Disqualified__c = Date.newInstance(
                       Integer.valueOf(reportCreateDate.substring(0, 4)),
@@ -754,9 +768,9 @@ public class EquifaxIndividualResponseHelper {
                 if (
                   ((Map<String, Object>) eachDisqualified) != null &&
                   ((String) ((Map<String, Object>) eachDisqualified)
-                    .get('date-disqualified-until')) != null
+                    .get(ConstantValues.DATE_DISQUALIFIED_UNTIL)) != null
                 ) {
-                  String reportCreateDate =((String) ((Map<String, Object>) eachDisqualified).get('date-disqualified-until'));
+                  String reportCreateDate =((String) ((Map<String, Object>) eachDisqualified).get(ConstantValues.DATE_DISQUALIFIED_UNTIL));
                   if (reportCreateDate != null && reportCreateDate.length() > 9) {
                     refDirShip.Date_disqualified_until__c = Date.newInstance(
                       Integer.valueOf(reportCreateDate.substring(0, 4)),
@@ -770,22 +784,22 @@ public class EquifaxIndividualResponseHelper {
             }else if(
               publicReport!=null &&
               ((Object) publicReport.get(
-                'disqualified-directorships'
+                ConstantValues.DISQUALIFIED_DIRECTORSHIPS
               ))!=null &&
-              String.valueOf(publicReport).contains('disqualified-directorships={')  
+              String.valueOf(publicReport).contains(ConstantValues.DISQUALIFIED_DIRECTORSHIPS_OBJECT)  
             ){
               Object refDisqDirShip = ((Object)((Map<String, Object>) ((Map<String, Object>)publicReport).get(
-                'disqualified-directorships'
-              )).get('disqualified-directorship'));
+                ConstantValues.DISQUALIFIED_DIRECTORSHIPS
+              )).get(ConstantValues.DISQUALIFIED_DIRECTORSHIP));
               Current_Directorship__c refDirShip = new Current_Directorship__c();
               refDirShip.Directorship_Type__c = 'Disqualified';
               refDirShip.Party__c = partyObj.Id;
               if (
                 ((Map<String, Object>) refDisqDirShip) != null &&
                 ((String) ((Map<String, Object>) refDisqDirShip)
-                  .get('date-disqualified')) != null
+                  .get(ConstantValues.DATE_DISQUALIFIED)) != null
               ) {
-                String reportCreateDate =((String) ((Map<String, Object>) refDisqDirShip).get('date-disqualified'));
+                String reportCreateDate =((String) ((Map<String, Object>) refDisqDirShip).get(ConstantValues.DATE_DISQUALIFIED));
                 if (reportCreateDate != null && reportCreateDate.length() > 9) {
                   refDirShip.Date_Disqualified__c = Date.newInstance(
                     Integer.valueOf(reportCreateDate.substring(0, 4)),
@@ -798,9 +812,9 @@ public class EquifaxIndividualResponseHelper {
               if (
                 ((Map<String, Object>) refDisqDirShip) != null &&
                 ((String) ((Map<String, Object>) refDisqDirShip)
-                  .get('date-disqualified-until')) != null
+                  .get(ConstantValues.DATE_DISQUALIFIED_UNTIL)) != null
               ) {
-                String reportCreateDate =((String) ((Map<String, Object>) refDisqDirShip).get('date-disqualified-until'));
+                String reportCreateDate =((String) ((Map<String, Object>) refDisqDirShip).get(ConstantValues.DATE_DISQUALIFIED_UNTIL));
                 if (reportCreateDate != null && reportCreateDate.length() > 9) {
                   refDirShip.Date_disqualified_until__c = Date.newInstance(
                     Integer.valueOf(reportCreateDate.substring(0, 4)),
@@ -811,7 +825,7 @@ public class EquifaxIndividualResponseHelper {
               }
               directorships.add(refDirShip);
             }else{
-              returnValue+='\nNo Disqualified Directorships found';
+              returnValue+=ConstantValues.NO_DISQUALIFIED_DIRECTORSHIP_FOUND;
             }
           }catch(Exception ex){
             GenericUtility.insertLog(
@@ -830,23 +844,114 @@ public class EquifaxIndividualResponseHelper {
             if (
               consumerCredit!=null &&
               ((Object) consumerCredit.get(
-                'credit-enquiries'
-              ))!=null && String.valueOf(consumerCredit).contains('credit-enquiries=(')
+                ConstantValues.CREDIT_ENQUIRIES
+              ))!=null && String.valueOf(consumerCredit).contains(ConstantValues.CREDIT_ENQUIRIES_ARRAY)
             ) {
               List<Object> refCreditEnq = ((List<Object>) consumerCredit.get(
-                'credit-enquiries'
+                ConstantValues.CREDIT_ENQUIRIES
               ));
               for (Object eachCredit : refCreditEnq) {
                 Credit_Enquiry__c creditEnquiryObj;
                 creditEnquiryObj = new Credit_Enquiry__c();
                 creditEnquiryObj.Party__c = partyObj.Id;
-                creditEnquiryObj.Credit_Enquiry_Type__c = 'Consumer';
+                creditEnquiryObj.Credit_Enquiry_Type__c = ConstantValues.CONSUMER;
                 if(
                   ((Map<String, Object>) eachCredit) != null &&
                   ((String) ((Map<String, Object>) eachCredit)
-                  .get('enquiry-date')) != null
+                  .get(ConstantValues.ENQUIRY_DATE)) != null
                 ){
-                  String dateString = ((String) ((Map<String, Object>) eachCredit).get('enquiry-date'));
+                  String dateString = ((String) ((Map<String, Object>) eachCredit).get(ConstantValues.ENQUIRY_DATE));
+                  if(dateString!=NULL && dateString.length()!=0 && dateString.length()>=10){
+                    Date enqDate = Date.newInstance(
+                      Integer.valueOf(dateString.subString(0, 4)),
+                      Integer.valueOf(dateString.subString(5, 7)),
+                      Integer.valueOf(dateString.subString(8, 10))
+                    );
+                    creditEnquiryObj.Enquiry_Date__c = enqDate;
+                  }
+                }
+                if(
+                  ((Map<String, Object>) eachCredit) != null &&
+                  ((Map<String, Object>) ((Map<String, Object>) eachCredit)
+                  .get(ConstantValues.ACCOUNT_TYPE)) !=null &&
+                  ((String)((Map<String, Object>) ((Map<String, Object>) eachCredit)
+                  .get(ConstantValues.ACCOUNT_TYPE)).get(ConstantValues.ELE_TEXT)) != null
+                ){
+                  creditEnquiryObj.Account_Type__c = ((String)((Map<String, Object>) ((Map<String, Object>) eachCredit)
+                      .get(ConstantValues.ACCOUNT_TYPE)).get(ConstantValues.ELE_TEXT));
+                }
+                if(
+                  ((Map<String, Object>) eachCredit) != null &&
+                  ((Map<String, Object>) ((Map<String, Object>) eachCredit)
+                  .get(ConstantValues.CREDIT_ENQUIRER)) !=null &&
+                  ((String)((Map<String, Object>) ((Map<String, Object>) eachCredit)
+                  .get(ConstantValues.CREDIT_ENQUIRER)).get(ConstantValues.NAME_KEY)) != null
+                ){
+                  creditEnquiryObj.Credit_Enquirer__c = ((String)((Map<String, Object>) ((Map<String, Object>) eachCredit)
+                      .get(ConstantValues.CREDIT_ENQUIRER)).get(ConstantValues.NAME_KEY));
+                }
+                if(
+                  ((Map<String, Object>) eachCredit) != null &&
+                  ((Map<String, Object>) ((Map<String, Object>) eachCredit)
+                  .get(ConstantValues.ENQUIRY_AMOUNT)) !=null &&
+                  ((String)((Map<String, Object>) ((Map<String, Object>) eachCredit)
+                  .get(ConstantValues.ENQUIRY_AMOUNT)).get(ConstantValues.ELE_TEXT)) != null
+                ){
+                  creditEnquiryObj.Enquiry_amount__c = Decimal.valueOf(((String)((Map<String, Object>) ((Map<String, Object>) eachCredit)
+                      .get(ConstantValues.ENQUIRY_AMOUNT)).get(ConstantValues.ELE_TEXT)));
+                }
+                if (
+                  ((Map<String, Object>) eachCredit) != null &&
+                  ((Map<String, Object>) ((Map<String, Object>) eachCredit)
+                  .get(ConstantValues.RELATIONSHIP)) !=null &&
+                  ((String)((Map<String, Object>) ((Map<String, Object>) eachCredit)
+                  .get(ConstantValues.RELATIONSHIP)).get(ConstantValues.CODE)) != null
+                ) {
+                  Integer codeValue = Integer.valueOf(
+                    ((String)((Map<String, Object>) ((Map<String, Object>) eachCredit).get(ConstantValues.RELATIONSHIP))
+                    .get(ConstantValues.CODE))
+                  );
+                  switch on codeValue {
+                    when 1 {
+                      creditEnquiryObj.Role_in_Enquiry__c = ConstantValues.PRINCIPAL_SOLE;
+                    }
+                    when 2 {
+                      creditEnquiryObj.Role_in_Enquiry__c = ConstantValues.PRINCIPAL_JOINT;
+                    }
+                    when 3 {
+                      creditEnquiryObj.Role_in_Enquiry__c = ConstantValues.GUARANTOR;
+                    }
+                  }
+                }
+                if (
+                  ((Map<String, Object>) eachCredit) != null &&
+                  ((String) ((Map<String, Object>) eachCredit)
+                  .get(ConstantValues.ENQUIRY_CLIENT)) !=null
+                ) {
+                  creditEnquiryObj.Reference_No__c = ((String) ((Map<String, Object>) eachCredit).get(ConstantValues.ENQUIRY_CLIENT));
+                }
+                creditEnquiries.add(creditEnquiryObj);
+              }
+            }else if (
+              consumerCredit!=null &&
+              ((Object) consumerCredit.get(
+                ConstantValues.CREDIT_ENQUIRIES
+              ))!=null && String.valueOf(consumerCredit).contains(ConstantValues.CREDIT_ENQUIRIES_OBJECT)
+            ) {
+              Object eachCredit = ((Object)((Map<String, Object>)consumerCredit.get(
+                ConstantValues.CREDIT_ENQUIRIES
+              )).get(ConstantValues.CREDIT_ENQUIRY));
+              Credit_Enquiry__c creditEnquiryObj;
+              creditEnquiryObj = new Credit_Enquiry__c();
+              creditEnquiryObj.Party__c = partyObj.Id;
+              creditEnquiryObj.Credit_Enquiry_Type__c = ConstantValues.CONSUMER;
+              if(
+                ((Map<String, Object>) eachCredit) != null &&
+                ((String) ((Map<String, Object>) eachCredit)
+                .get(ConstantValues.ENQUIRY_DATE)) != null
+              ){
+                String dateString = ((String) ((Map<String, Object>) eachCredit).get(ConstantValues.ENQUIRY_DATE));
+                if(dateString!=NULL && dateString.length()!=0 && dateString.length()>=10){
                   Date enqDate = Date.newInstance(
                     Integer.valueOf(dateString.subString(0, 4)),
                     Integer.valueOf(dateString.subString(5, 7)),
@@ -854,150 +959,67 @@ public class EquifaxIndividualResponseHelper {
                   );
                   creditEnquiryObj.Enquiry_Date__c = enqDate;
                 }
-                if(
-                  ((Map<String, Object>) eachCredit) != null &&
-                  ((Map<String, Object>) ((Map<String, Object>) eachCredit)
-                  .get('account-type')) !=null &&
-                  ((String)((Map<String, Object>) ((Map<String, Object>) eachCredit)
-                  .get('account-type')).get('ele_text')) != null
-                ){
-                  creditEnquiryObj.Account_Type__c = ((String)((Map<String, Object>) ((Map<String, Object>) eachCredit).get('account-type')).get('ele_text'));
-                }
-                if(
-                  ((Map<String, Object>) eachCredit) != null &&
-                  ((Map<String, Object>) ((Map<String, Object>) eachCredit)
-                  .get('credit-enquirer')) !=null &&
-                  ((String)((Map<String, Object>) ((Map<String, Object>) eachCredit)
-                  .get('credit-enquirer')).get('name')) != null
-                ){
-                  creditEnquiryObj.Credit_Enquirer__c = ((String)((Map<String, Object>) ((Map<String, Object>) eachCredit).get('credit-enquirer')).get('name'));
-                }
-                if(
-                  ((Map<String, Object>) eachCredit) != null &&
-                  ((Map<String, Object>) ((Map<String, Object>) eachCredit)
-                  .get('enquiry-amount')) !=null &&
-                  ((String)((Map<String, Object>) ((Map<String, Object>) eachCredit)
-                  .get('enquiry-amount')).get('ele_text')) != null
-                ){
-                  creditEnquiryObj.Enquiry_amount__c = Decimal.valueOf(((String)((Map<String, Object>) ((Map<String, Object>) eachCredit).get('enquiry-amount')).get('ele_text')));
-                }
-                if (
-                  ((Map<String, Object>) eachCredit) != null &&
-                  ((Map<String, Object>) ((Map<String, Object>) eachCredit)
-                  .get('relationship')) !=null &&
-                  ((String)((Map<String, Object>) ((Map<String, Object>) eachCredit)
-                  .get('relationship')).get('code')) != null
-                ) {
-                  Integer codeValue = Integer.valueOf(
-                    ((String)((Map<String, Object>) ((Map<String, Object>) eachCredit).get('relationship')).get('code'))
-                  );
-                  switch on codeValue {
-                    when 1 {
-                      creditEnquiryObj.Role_in_Enquiry__c = 'Principal (sole)';
-                    }
-                    when 2 {
-                      creditEnquiryObj.Role_in_Enquiry__c = 'Principal (joint)';
-                    }
-                    when 3 {
-                      creditEnquiryObj.Role_in_Enquiry__c = 'Guarantor';
-                    }
-                  }
-                }
-                if (
-                  ((Map<String, Object>) eachCredit) != null &&
-                  ((String) ((Map<String, Object>) eachCredit)
-                  .get('enquiry-client-reference')) !=null
-                ) {
-                  creditEnquiryObj.Reference_No__c = ((String) ((Map<String, Object>) eachCredit).get('enquiry-client-reference'));
-                }
-                creditEnquiries.add(creditEnquiryObj);
-              }
-            }else if (
-              consumerCredit!=null &&
-              ((Object) consumerCredit.get(
-                'credit-enquiries'
-              ))!=null && String.valueOf(consumerCredit).contains('credit-enquiries={')
-            ) {
-              Object eachCredit = ((Object)((Map<String, Object>)consumerCredit.get(
-                'credit-enquiries'
-              )).get('credit-enquiry'));
-              Credit_Enquiry__c creditEnquiryObj;
-              creditEnquiryObj = new Credit_Enquiry__c();
-              creditEnquiryObj.Party__c = partyObj.Id;
-              creditEnquiryObj.Credit_Enquiry_Type__c = 'Consumer';
-              if(
-                ((Map<String, Object>) eachCredit) != null &&
-                ((String) ((Map<String, Object>) eachCredit)
-                .get('enquiry-date')) != null
-              ){
-                String dateString = ((String) ((Map<String, Object>) eachCredit).get('enquiry-date'));
-                Date enqDate = Date.newInstance(
-                  Integer.valueOf(dateString.subString(0, 4)),
-                  Integer.valueOf(dateString.subString(5, 7)),
-                  Integer.valueOf(dateString.subString(8, 10))
-                );
-                creditEnquiryObj.Enquiry_Date__c = enqDate;
               }
               if(
                 ((Map<String, Object>) eachCredit) != null &&
                 ((Map<String, Object>) ((Map<String, Object>) eachCredit)
-                .get('account-type')) !=null &&
+                .get(ConstantValues.ACCOUNT_TYPE)) !=null &&
                 ((String)((Map<String, Object>) ((Map<String, Object>) eachCredit)
-                .get('account-type')).get('ele_text')) != null
+                .get(ConstantValues.ACCOUNT_TYPE)).get(ConstantValues.ELE_TEXT)) != null
               ){
-                creditEnquiryObj.Account_Type__c = ((String)((Map<String, Object>) ((Map<String, Object>) eachCredit).get('account-type')).get('ele_text'));
+                creditEnquiryObj.Account_Type__c = ((String)((Map<String, Object>) ((Map<String, Object>) eachCredit).get(ConstantValues.ACCOUNT_TYPE)).get(ConstantValues.ELE_TEXT));
               }
               if(
                 ((Map<String, Object>) eachCredit) != null &&
                 ((Map<String, Object>) ((Map<String, Object>) eachCredit)
-                .get('credit-enquirer')) !=null &&
+                .get(ConstantValues.CREDIT_ENQUIRER)) !=null &&
                 ((String)((Map<String, Object>) ((Map<String, Object>) eachCredit)
-                .get('credit-enquirer')).get('name')) != null
+                .get(ConstantValues.CREDIT_ENQUIRER)).get(ConstantValues.NAME_KEY)) != null
               ){
-                creditEnquiryObj.Credit_Enquirer__c = ((String)((Map<String, Object>) ((Map<String, Object>) eachCredit).get('credit-enquirer')).get('name'));
+                creditEnquiryObj.Credit_Enquirer__c = ((String)((Map<String, Object>) ((Map<String, Object>) eachCredit).get(ConstantValues.CREDIT_ENQUIRER)).get(ConstantValues.NAME_KEY));
               }
               if(
                 ((Map<String, Object>) eachCredit) != null &&
                 ((Map<String, Object>) ((Map<String, Object>) eachCredit)
-                .get('enquiry-amount')) !=null &&
+                .get(ConstantValues.ENQUIRY_AMOUNT)) !=null &&
                 ((String)((Map<String, Object>) ((Map<String, Object>) eachCredit)
-                .get('enquiry-amount')).get('ele_text')) != null
+                .get(ConstantValues.ENQUIRY_AMOUNT)).get(ConstantValues.ELE_TEXT)) != null
               ){
-                creditEnquiryObj.Enquiry_amount__c = Decimal.valueOf(((String)((Map<String, Object>) ((Map<String, Object>) eachCredit).get('enquiry-amount')).get('ele_text')));
+                creditEnquiryObj.Enquiry_amount__c = Decimal.valueOf(((String)((Map<String, Object>) ((Map<String, Object>) eachCredit).get(ConstantValues.ENQUIRY_AMOUNT)).get(ConstantValues.ELE_TEXT)));
               }
               if (
                 ((Map<String, Object>) eachCredit) != null &&
                 ((Map<String, Object>) ((Map<String, Object>) eachCredit)
-                .get('relationship')) !=null &&
+                .get(ConstantValues.RELATIONSHIP)) !=null &&
                 ((String)((Map<String, Object>) ((Map<String, Object>) eachCredit)
-                .get('relationship')).get('code')) != null
+                .get(ConstantValues.RELATIONSHIP)).get(ConstantValues.CODE)) != null
               ) {
                 Integer codeValue = Integer.valueOf(
-                  ((String)((Map<String, Object>) ((Map<String, Object>) eachCredit).get('relationship')).get('code'))
+                  ((String)((Map<String, Object>) ((Map<String, Object>) eachCredit).get(ConstantValues.RELATIONSHIP)).get(ConstantValues.CODE))
                 );
                 switch on codeValue {
                   when 1 {
-                    creditEnquiryObj.Role_in_Enquiry__c = 'Principal (sole)';
+                    creditEnquiryObj.Role_in_Enquiry__c = ConstantValues.PRINCIPAL_SOLE;
                   }
                   when 2 {
-                    creditEnquiryObj.Role_in_Enquiry__c = 'Principal (joint)';
+                    creditEnquiryObj.Role_in_Enquiry__c = ConstantValues.PRINCIPAL_JOINT;
                   }
                   when 3 {
-                    creditEnquiryObj.Role_in_Enquiry__c = 'Guarantor';
+                    creditEnquiryObj.Role_in_Enquiry__c = ConstantValues.GUARANTOR;
                   }
                 }
               }
               if (
                 ((Map<String, Object>) eachCredit) != null &&
                 ((String) ((Map<String, Object>) eachCredit)
-                .get('enquiry-client-reference')) !=null
+                .get(ConstantValues.ENQUIRY_CLIENT)) !=null
               ) {
-                creditEnquiryObj.Reference_No__c = ((String) ((Map<String, Object>) eachCredit).get('enquiry-client-reference'));
+                creditEnquiryObj.Reference_No__c = ((String) ((Map<String, Object>) eachCredit).get(ConstantValues.ENQUIRY_CLIENT));
               }
             
               creditEnquiries.add(creditEnquiryObj);
             }else{
-              returnValue+='\nNo Consumer Credit Enquiries found';
+              returnValue+=ConstantValues.NO_CONSUMER_CREDIT_ENQUIRIES_FOUND;
             }
           }catch(Exception ex){
             GenericUtility.insertLog(
@@ -1009,25 +1031,112 @@ public class EquifaxIndividualResponseHelper {
             if (
               commercialCredit!=null &&
               ((Object) commercialCredit.get(
-                'credit-enquiries'
+                ConstantValues.CREDIT_ENQUIRIES
               ))!=null && String.valueOf(
                 commercialCredit
-              ).contains('credit-enquiries=(')
+              ).contains(ConstantValues.CREDIT_ENQUIRIES_ARRAY)
             ) {
               List<Object> refCreditEnq = ((List<Object>) commercialCredit.get(
-                'credit-enquiries'
+                ConstantValues.CREDIT_ENQUIRIES
               ));
               for (Object eachCredit : refCreditEnq) {
                 Credit_Enquiry__c creditEnquiryObj;
                 creditEnquiryObj = new Credit_Enquiry__c();
                 creditEnquiryObj.Party__c = partyObj.Id;
-                creditEnquiryObj.Credit_Enquiry_Type__c = 'Commercial';
+                creditEnquiryObj.Credit_Enquiry_Type__c = ConstantValues.COMMERCIAL;
                 if(
                   ((Map<String, Object>) eachCredit) != null &&
                   ((String) ((Map<String, Object>) eachCredit)
-                  .get('enquiry-date')) != null
+                  .get(ConstantValues.ENQUIRY_DATE)) != null
                 ){
-                  String dateString = ((String) ((Map<String, Object>) eachCredit).get('enquiry-date'));
+                  String dateString = ((String) ((Map<String, Object>) eachCredit).get(ConstantValues.ENQUIRY_DATE));
+                  if(dateString!=NULL && dateString.length()!=0 && dateString.length()>=10){
+                    Date enqDate = Date.newInstance(
+                      Integer.valueOf(dateString.subString(0, 4)),
+                      Integer.valueOf(dateString.subString(5, 7)),
+                      Integer.valueOf(dateString.subString(8, 10))
+                    );
+                    creditEnquiryObj.Enquiry_Date__c = enqDate;
+                  }
+                }
+                if(
+                  ((Map<String, Object>) eachCredit) != null &&
+                  ((Map<String, Object>) ((Map<String, Object>) eachCredit)
+                  .get(ConstantValues.ACCOUNT_TYPE)) !=null &&
+                  ((String)((Map<String, Object>) ((Map<String, Object>) eachCredit)
+                  .get(ConstantValues.ACCOUNT_TYPE)).get(ConstantValues.ELE_TEXT)) != null
+                ){
+                  creditEnquiryObj.Account_Type__c = ((String)((Map<String, Object>) ((Map<String, Object>) eachCredit).get(ConstantValues.ACCOUNT_TYPE)).get(ConstantValues.ELE_TEXT));
+                }
+                if(
+                  ((Map<String, Object>) eachCredit) != null &&
+                  ((Map<String, Object>) ((Map<String, Object>) eachCredit)
+                  .get(ConstantValues.CREDIT_ENQUIRER)) !=null &&
+                  ((String)((Map<String, Object>) ((Map<String, Object>) eachCredit)
+                  .get(ConstantValues.CREDIT_ENQUIRER)).get(ConstantValues.NAME_KEY)) != null
+                ){
+                  creditEnquiryObj.Credit_Enquirer__c = ((String)((Map<String, Object>) ((Map<String, Object>) eachCredit).get(ConstantValues.CREDIT_ENQUIRER)).get(ConstantValues.NAME_KEY));
+                }
+                if(
+                  ((Map<String, Object>) eachCredit) != null &&
+                  ((Map<String, Object>) ((Map<String, Object>) eachCredit)
+                  .get(ConstantValues.ENQUIRY_AMOUNT)) !=null &&
+                  ((String)((Map<String, Object>) ((Map<String, Object>) eachCredit)
+                  .get(ConstantValues.ENQUIRY_AMOUNT)).get(ConstantValues.ELE_TEXT)) != null
+                ){
+                  creditEnquiryObj.Enquiry_amount__c = Decimal.valueOf(((String)((Map<String, Object>) ((Map<String, Object>) eachCredit).get(ConstantValues.ENQUIRY_AMOUNT)).get(ConstantValues.ELE_TEXT)));
+                }
+                if (
+                  ((Map<String, Object>) eachCredit) != null &&
+                  ((Map<String, Object>) ((Map<String, Object>) eachCredit)
+                  .get(ConstantValues.RELATIONSHIP)) !=null &&
+                  ((String)((Map<String, Object>) ((Map<String, Object>) eachCredit)
+                  .get(ConstantValues.RELATIONSHIP)).get(ConstantValues.CODE)) != null
+                ) {
+                  Integer codeValue = Integer.valueOf(
+                    ((String)((Map<String, Object>) ((Map<String, Object>) eachCredit).get(ConstantValues.RELATIONSHIP)).get(ConstantValues.CODE))
+                  );
+                  switch on codeValue {
+                    when 1 {
+                      creditEnquiryObj.Role_in_Enquiry__c = ConstantValues.PRINCIPAL_SOLE;
+                    }
+                    when 2 {
+                      creditEnquiryObj.Role_in_Enquiry__c = ConstantValues.PRINCIPAL_JOINT;
+                    }
+                    when 3 {
+                      creditEnquiryObj.Role_in_Enquiry__c = ConstantValues.GUARANTOR;
+                    }
+                  }
+                }
+                if (
+                  ((Map<String, Object>) eachCredit) != null &&
+                  ((String) ((Map<String, Object>) eachCredit)
+                  .get(ConstantValues.ENQUIRY_CLIENT)) !=null
+                ) {
+                  creditEnquiryObj.Reference_No__c = ((String) ((Map<String, Object>) eachCredit).get(ConstantValues.ENQUIRY_CLIENT));
+                }
+                creditEnquiries.add(creditEnquiryObj);
+              }
+            }else if (
+              commercialCredit!=null &&
+              ((Object) commercialCredit.get(
+                ConstantValues.CREDIT_ENQUIRIES
+              ))!=null && String.valueOf(
+                commercialCredit
+              ).contains(ConstantValues.CREDIT_ENQUIRIES_OBJECT)
+            ) {
+              Object eachCredit = ((Object)((Map<String, Object>)commercialCredit.get(ConstantValues.CREDIT_ENQUIRIES)).get(ConstantValues.CREDIT_ENQUIRY));
+              Credit_Enquiry__c creditEnquiryObj;
+              creditEnquiryObj = new Credit_Enquiry__c();
+              creditEnquiryObj.Party__c = partyObj.Id;
+              creditEnquiryObj.Credit_Enquiry_Type__c = ConstantValues.COMMERCIAL;
+              if(
+                ((Map<String, Object>) eachCredit) != null &&
+                ((String) ((Map<String, Object>) eachCredit)
+                .get(ConstantValues.ENQUIRY_DATE)) != null
+              ){
+                String dateString = ((String) ((Map<String, Object>) eachCredit).get(ConstantValues.ENQUIRY_DATE));
+                if(dateString!=NULL && dateString.length()!=0 && dateString.length()>=10){
                   Date enqDate = Date.newInstance(
                     Integer.valueOf(dateString.subString(0, 4)),
                     Integer.valueOf(dateString.subString(5, 7)),
@@ -1035,149 +1144,66 @@ public class EquifaxIndividualResponseHelper {
                   );
                   creditEnquiryObj.Enquiry_Date__c = enqDate;
                 }
-                if(
-                  ((Map<String, Object>) eachCredit) != null &&
-                  ((Map<String, Object>) ((Map<String, Object>) eachCredit)
-                  .get('account-type')) !=null &&
-                  ((String)((Map<String, Object>) ((Map<String, Object>) eachCredit)
-                  .get('account-type')).get('ele_text')) != null
-                ){
-                  creditEnquiryObj.Account_Type__c = ((String)((Map<String, Object>) ((Map<String, Object>) eachCredit).get('account-type')).get('ele_text'));
-                }
-                if(
-                  ((Map<String, Object>) eachCredit) != null &&
-                  ((Map<String, Object>) ((Map<String, Object>) eachCredit)
-                  .get('credit-enquirer')) !=null &&
-                  ((String)((Map<String, Object>) ((Map<String, Object>) eachCredit)
-                  .get('credit-enquirer')).get('name')) != null
-                ){
-                  creditEnquiryObj.Credit_Enquirer__c = ((String)((Map<String, Object>) ((Map<String, Object>) eachCredit).get('credit-enquirer')).get('name'));
-                }
-                if(
-                  ((Map<String, Object>) eachCredit) != null &&
-                  ((Map<String, Object>) ((Map<String, Object>) eachCredit)
-                  .get('enquiry-amount')) !=null &&
-                  ((String)((Map<String, Object>) ((Map<String, Object>) eachCredit)
-                  .get('enquiry-amount')).get('ele_text')) != null
-                ){
-                  creditEnquiryObj.Enquiry_amount__c = Decimal.valueOf(((String)((Map<String, Object>) ((Map<String, Object>) eachCredit).get('enquiry-amount')).get('ele_text')));
-                }
-                if (
-                  ((Map<String, Object>) eachCredit) != null &&
-                  ((Map<String, Object>) ((Map<String, Object>) eachCredit)
-                  .get('relationship')) !=null &&
-                  ((String)((Map<String, Object>) ((Map<String, Object>) eachCredit)
-                  .get('relationship')).get('code')) != null
-                ) {
-                  Integer codeValue = Integer.valueOf(
-                    ((String)((Map<String, Object>) ((Map<String, Object>) eachCredit).get('relationship')).get('code'))
-                  );
-                  switch on codeValue {
-                    when 1 {
-                      creditEnquiryObj.Role_in_Enquiry__c = 'Principal (sole)';
-                    }
-                    when 2 {
-                      creditEnquiryObj.Role_in_Enquiry__c = 'Principal (joint)';
-                    }
-                    when 3 {
-                      creditEnquiryObj.Role_in_Enquiry__c = 'Guarantor';
-                    }
-                  }
-                }
-                if (
-                  ((Map<String, Object>) eachCredit) != null &&
-                  ((String) ((Map<String, Object>) eachCredit)
-                  .get('enquiry-client-reference')) !=null
-                ) {
-                  creditEnquiryObj.Reference_No__c = ((String) ((Map<String, Object>) eachCredit).get('enquiry-client-reference'));
-                }
-                creditEnquiries.add(creditEnquiryObj);
-              }
-            }else if (
-              commercialCredit!=null &&
-              ((Object) commercialCredit.get(
-                'credit-enquiries'
-              ))!=null && String.valueOf(
-                commercialCredit
-              ).contains('credit-enquiries={')
-            ) {
-              Object eachCredit = ((Object)((Map<String, Object>)commercialCredit.get('credit-enquiries')).get('credit-enquiry'));
-              Credit_Enquiry__c creditEnquiryObj;
-              creditEnquiryObj = new Credit_Enquiry__c();
-              creditEnquiryObj.Party__c = partyObj.Id;
-              creditEnquiryObj.Credit_Enquiry_Type__c = 'Commercial';
-              if(
-                ((Map<String, Object>) eachCredit) != null &&
-                ((String) ((Map<String, Object>) eachCredit)
-                .get('enquiry-date')) != null
-              ){
-                String dateString = ((String) ((Map<String, Object>) eachCredit).get('enquiry-date'));
-                Date enqDate = Date.newInstance(
-                  Integer.valueOf(dateString.subString(0, 4)),
-                  Integer.valueOf(dateString.subString(5, 7)),
-                  Integer.valueOf(dateString.subString(8, 10))
-                );
-                creditEnquiryObj.Enquiry_Date__c = enqDate;
               }
               if(
                 ((Map<String, Object>) eachCredit) != null &&
                 ((Map<String, Object>) ((Map<String, Object>) eachCredit)
-                .get('account-type')) !=null &&
+                .get(ConstantValues.ACCOUNT_TYPE)) !=null &&
                 ((String)((Map<String, Object>) ((Map<String, Object>) eachCredit)
-                .get('account-type')).get('ele_text')) != null
+                .get(ConstantValues.ACCOUNT_TYPE)).get(ConstantValues.ELE_TEXT)) != null
               ){
-                creditEnquiryObj.Account_Type__c = ((String)((Map<String, Object>) ((Map<String, Object>) eachCredit).get('account-type')).get('ele_text'));
+                creditEnquiryObj.Account_Type__c = ((String)((Map<String, Object>) ((Map<String, Object>) eachCredit).get(ConstantValues.ACCOUNT_TYPE)).get(ConstantValues.ELE_TEXT));
               }
               if(
                 ((Map<String, Object>) eachCredit) != null &&
                 ((Map<String, Object>) ((Map<String, Object>) eachCredit)
-                .get('credit-enquirer')) !=null &&
+                .get(ConstantValues.CREDIT_ENQUIRER)) !=null &&
                 ((String)((Map<String, Object>) ((Map<String, Object>) eachCredit)
-                .get('credit-enquirer')).get('name')) != null
+                .get(ConstantValues.CREDIT_ENQUIRER)).get(ConstantValues.NAME_KEY)) != null
               ){
-                creditEnquiryObj.Credit_Enquirer__c = ((String)((Map<String, Object>) ((Map<String, Object>) eachCredit).get('credit-enquirer')).get('name'));
+                creditEnquiryObj.Credit_Enquirer__c = ((String)((Map<String, Object>) ((Map<String, Object>) eachCredit).get(ConstantValues.CREDIT_ENQUIRER)).get(ConstantValues.NAME_KEY));
               }
               if(
                 ((Map<String, Object>) eachCredit) != null &&
                 ((Map<String, Object>) ((Map<String, Object>) eachCredit)
-                .get('enquiry-amount')) !=null &&
+                .get(ConstantValues.ENQUIRY_AMOUNT)) !=null &&
                 ((String)((Map<String, Object>) ((Map<String, Object>) eachCredit)
-                .get('enquiry-amount')).get('ele_text')) != null
+                .get(ConstantValues.ENQUIRY_AMOUNT)).get(ConstantValues.ELE_TEXT)) != null
               ){
-                creditEnquiryObj.Enquiry_amount__c = Decimal.valueOf(((String)((Map<String, Object>) ((Map<String, Object>) eachCredit).get('enquiry-amount')).get('ele_text')));
+                creditEnquiryObj.Enquiry_amount__c = Decimal.valueOf(((String)((Map<String, Object>) ((Map<String, Object>) eachCredit).get(ConstantValues.ENQUIRY_AMOUNT)).get(ConstantValues.ELE_TEXT)));
               }
               if (
                 ((Map<String, Object>) eachCredit) != null &&
                 ((Map<String, Object>) ((Map<String, Object>) eachCredit)
-                .get('relationship')) !=null &&
+                .get(ConstantValues.RELATIONSHIP)) !=null &&
                 ((String)((Map<String, Object>) ((Map<String, Object>) eachCredit)
-                .get('relationship')).get('code')) != null
+                .get(ConstantValues.RELATIONSHIP)).get(ConstantValues.CODE)) != null
               ) {
                 Integer codeValue = Integer.valueOf(
-                  ((String)((Map<String, Object>) ((Map<String, Object>) eachCredit).get('relationship')).get('code'))
+                  ((String)((Map<String, Object>) ((Map<String, Object>) eachCredit).get(ConstantValues.RELATIONSHIP)).get(ConstantValues.CODE))
                 );
                 switch on codeValue {
                   when 1 {
-                    creditEnquiryObj.Role_in_Enquiry__c = 'Principal (sole)';
+                    creditEnquiryObj.Role_in_Enquiry__c = ConstantValues.PRINCIPAL_SOLE;
                   }
                   when 2 {
-                    creditEnquiryObj.Role_in_Enquiry__c = 'Principal (joint)';
+                    creditEnquiryObj.Role_in_Enquiry__c = ConstantValues.PRINCIPAL_JOINT;
                   }
                   when 3 {
-                    creditEnquiryObj.Role_in_Enquiry__c = 'Guarantor';
+                    creditEnquiryObj.Role_in_Enquiry__c = ConstantValues.GUARANTOR;
                   }
                 }
               }
               if (
                 ((Map<String, Object>) eachCredit) != null &&
                 ((String) ((Map<String, Object>) eachCredit)
-                .get('enquiry-client-reference')) !=null
+                .get(ConstantValues.ENQUIRY_CLIENT)) !=null
               ) {
-                creditEnquiryObj.Reference_No__c = ((String) ((Map<String, Object>) eachCredit).get('enquiry-client-reference'));
+                creditEnquiryObj.Reference_No__c = ((String) ((Map<String, Object>) eachCredit).get(ConstantValues.ENQUIRY_CLIENT));
               }
               creditEnquiries.add(creditEnquiryObj);
             }else{
-              returnValue+='\nNo Commercial Credit Enquiries found';
+              returnValue+=ConstantValues.NO_COMMERCIAL_CREDIT_ENQUIRIES_FOUND;
             }
           }catch(Exception ex){
             GenericUtility.insertLog(
@@ -1196,115 +1222,128 @@ public class EquifaxIndividualResponseHelper {
             if(
               commercialCredit!=null &&
               ((Object) commercialCredit.get(
-                'accounts'
+                ConstantValues.ACCOUNTS
               ))!=null && String.valueOf(
                 commercialCredit
-              ).contains('accounts=(')
+              ).contains(ConstantValues.ACCOUNTS_ARRAY)
             ) {
-              List<Object> refCreditAccount=((List<Object>) commercialCredit.get('accounts'));
+              List<Object> refCreditAccount=((List<Object>) commercialCredit.get(ConstantValues.ACCOUNTS));
               for(Object eachCredit:refCreditAccount){
                 Credit_Account__c creditAccountObj;
                 creditAccountObj = new Credit_Account__c();
                 creditAccountObj.Party__c = partyObj.Id;
-                creditAccountObj.Credit_Account_Type__c = 'Commercial';
+                creditAccountObj.Credit_Account_Type__c = ConstantValues.COMMERCIAL;
                 if(
                 ((Map<String, Object>) eachCredit) != null &&
                 ((String) ((Map<String, Object>) eachCredit)
-                .get('account-id')) !=null){
-                  creditAccountObj.Account_Id__c = ((String) ((Map<String, Object>) eachCredit).get('account-id'));
+                .get(ConstantValues.ACCOUNT_ID_ACCOUNT)) !=null){
+                  creditAccountObj.Account_Id__c = ((String) ((Map<String, Object>) eachCredit).get(ConstantValues.ACCOUNT_ID_ACCOUNT));
                 }
                 if(
                   ((Map<String, Object>) eachCredit) != null &&
                   ((Map<String, Object>) ((Map<String, Object>) eachCredit)
-                  .get('account-type')) !=null &&
+                  .get(ConstantValues.ACCOUNT_TYPE)) !=null &&
                   ((String)((Map<String, Object>) ((Map<String, Object>) eachCredit)
-                  .get('account-type')).get('ele_text'))!=null
+                  .get(ConstantValues.ACCOUNT_TYPE)).get(ConstantValues.ELE_TEXT))!=null
                 ){
-                  creditAccountObj.Account_Type__c = ((String) ((Map<String, Object>)((Map<String, Object>) eachCredit).get('account-type')).get('ele_text'));
+                  creditAccountObj.Account_Type__c = ((String) ((Map<String, Object>)((Map<String, Object>) eachCredit)
+                  .get(ConstantValues.ACCOUNT_TYPE)).get(ConstantValues.ELE_TEXT));
                 }
                 if (
                   ((Map<String, Object>) eachCredit) != null &&
                   ((Map<String, Object>) ((Map<String, Object>) eachCredit)
-                  .get('original-credit-provider')) !=null &&
+                  .get(ConstantValues.ORIGINAL_CREDIT_PROVIDER)) !=null &&
                   ((String)((Map<String, Object>) ((Map<String, Object>) eachCredit)
-                  .get('original-credit-provider')).get('name'))!=null
+                  .get(ConstantValues.ORIGINAL_CREDIT_PROVIDER)).get(ConstantValues.NAME_KEY))!=null
                 ) {
-                  creditAccountObj.Original_Credit_Provider__c = ((String)((Map<String, Object>) ((Map<String, Object>) eachCredit).get('original-credit-provider')).get('name'));
+                  creditAccountObj.Original_Credit_Provider__c = ((String)((Map<String, Object>) ((Map<String, Object>) eachCredit)
+                  .get(ConstantValues.ORIGINAL_CREDIT_PROVIDER)).get(ConstantValues.NAME_KEY));
                 }
                 if (
                   ((Map<String, Object>) eachCredit) != null &&
                   ((Map<String, Object>) ((Map<String, Object>) eachCredit)
-                  .get('latest-credit-provider')) !=null &&
+                  .get(ConstantValues.LATEST_CREDIT_PROVIDER)) !=null &&
                   ((String)((Map<String, Object>) ((Map<String, Object>) eachCredit)
-                  .get('latest-credit-provider')).get('name'))!=null
+                  .get(ConstantValues.LATEST_CREDIT_PROVIDER)).get(ConstantValues.NAME_KEY))!=null
                 ) {
-                  creditAccountObj.Latest_Credit_Provider__c = ((String)((Map<String, Object>) ((Map<String, Object>) eachCredit).get('latest-credit-provider')).get('name'));
+                  creditAccountObj.Latest_Credit_Provider__c = ((String)((Map<String, Object>) ((Map<String, Object>) eachCredit)
+                  .get(ConstantValues.LATEST_CREDIT_PROVIDER)).get(ConstantValues.NAME_KEY));
                 }
                 if (
                   ((Map<String, Object>) eachCredit) != null &&
                   ((Map<String, Object>) ((Map<String, Object>) eachCredit)
-                  .get('relationship')) !=null &&
+                  .get(ConstantValues.RELATIONSHIP)) !=null &&
                   ((String)((Map<String, Object>) ((Map<String, Object>) eachCredit)
-                  .get('relationship')).get('ele_text'))!=null
+                  .get(ConstantValues.RELATIONSHIP)).get(ConstantValues.ELE_TEXT))!=null
                 ) {
-                  creditAccountObj.Relationship__c = ((String)((Map<String, Object>) ((Map<String, Object>) eachCredit).get('relationship')).get('ele_text'));
+                  creditAccountObj.Relationship__c = ((String)((Map<String, Object>) ((Map<String, Object>) eachCredit)
+                  .get(ConstantValues.RELATIONSHIP)).get(ConstantValues.ELE_TEXT));
                 }
                 creditAccounts.add(creditAccountObj);
                 if(
                   ((Map<String, Object>) eachCredit) != null &&
                   ((Object) ((Map<String, Object>) eachCredit)
-                  .get('defaults')) !=null && String.valueOf(
+                  .get(ConstantValues.DEFAULTS_LIST)) !=null && String.valueOf(
                     ((Map<String, Object>) eachCredit)
-                  ).contains('defaults=(')
+                  ).contains(ConstantValues.DEFAULT_ARRAY)
                 ){
-                  List<Object> refDefault=((List<Object>) ((Map<String, Object>) eachCredit).get('defaults'));
+                  List<Object> refDefault=((List<Object>) ((Map<String, Object>) eachCredit).get(ConstantValues.DEFAULTS_LIST));
                   for(Object eachDefault:refDefault){
                     Payment_Default__c paymentDefaultObj;
                     paymentDefaultObj = new Payment_Default__c();
                     if (
                       ((Map<String, Object>) eachDefault) != null &&
-                      ((Map<String, Object>)((Map<String, Object>) eachDefault).get('status')) != null &&
-                      ((String)((Map<String, Object>)((Map<String, Object>) eachDefault).get('status')).get('ele_text'))!=null
+                      ((Map<String, Object>)((Map<String, Object>) eachDefault).get(ConstantValues.status)) != null &&
+                      ((String)((Map<String, Object>)((Map<String, Object>) eachDefault).get(ConstantValues.status)).get(ConstantValues.ELE_TEXT))!=null
                     ) {
-                      paymentDefaultObj.Status__c = ((String)((Map<String, Object>)((Map<String, Object>) eachDefault).get('status')).get('ele_text'));
+                      paymentDefaultObj.Status__c = ((String)((Map<String, Object>)((Map<String, Object>) eachDefault).get(ConstantValues.status)).get(ConstantValues.ELE_TEXT));
                     }
                     if (
                       ((Map<String, Object>) eachDefault) != null &&
-                      ((Map<String, Object>)((Map<String, Object>) eachDefault).get('original-default')) != null &&
-                      ((String)((Map<String, Object>)((Map<String, Object>) eachDefault).get('original-default')).get('date-recorded'))!=null
+                      ((Map<String, Object>)((Map<String, Object>) eachDefault).get(ConstantValues.ORIGINAL_DEFAULT)) != null &&
+                      ((String)((Map<String, Object>)((Map<String, Object>) eachDefault).get(ConstantValues.ORIGINAL_DEFAULT))
+                      .get(ConstantValues.DATE_RECORDED))!=null
                     ) {
-                      String dateString = ((String)((Map<String, Object>)((Map<String, Object>) eachDefault).get('original-default')).get('date-recorded'));
-                      Date statusDate = Date.newInstance(
-                        Integer.valueOf(dateString.subString(0, 4)),
-                        Integer.valueOf(dateString.subString(5, 7)),
-                        Integer.valueOf(dateString.subString(8, 10))
-                      );
-                      paymentDefaultObj.Status_Date__c = statusDate;
+                      String dateString = ((String)((Map<String, Object>)((Map<String, Object>) eachDefault).get(ConstantValues.ORIGINAL_DEFAULT))
+                          .get(ConstantValues.DATE_RECORDED));
+                      if(dateString!=NULL && dateString.length()!=0 && dateString.length()>=10){
+                        Date statusDate = Date.newInstance(
+                          Integer.valueOf(dateString.subString(0, 4)),
+                          Integer.valueOf(dateString.subString(5, 7)),
+                          Integer.valueOf(dateString.subString(8, 10))
+                        );
+                        paymentDefaultObj.Status_Date__c = statusDate;
+                      }
                     }
                     if (
                       ((Map<String, Object>) eachDefault) != null &&
-                      ((Map<String, Object>)((Map<String, Object>) eachDefault).get('current-default')) != null &&
-                      ((Map<String, Object>)((Map<String, Object>)((Map<String, Object>) eachDefault).get('current-default')).get('default-amount'))!=null &&
-                      ((String)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>) eachDefault).get('current-default')).get('default-amount')).get('ele_text')) !=null
+                      ((Map<String, Object>)((Map<String, Object>) eachDefault).get(ConstantValues.CURRENT_DEFAULT)) != null &&
+                      ((Map<String, Object>)((Map<String, Object>)((Map<String, Object>) eachDefault).get(ConstantValues.CURRENT_DEFAULT))
+                      .get(ConstantValues.DEFAULT_AMOUNT))!=null &&
+                      ((String)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>) eachDefault).get(ConstantValues.CURRENT_DEFAULT))
+                      .get(ConstantValues.DEFAULT_AMOUNT)).get(ConstantValues.ELE_TEXT)) !=null
                     ) {
                       paymentDefaultObj.Current_Default_Amount__c = Decimal.valueOf(
-                        ((String)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>) eachDefault).get('current-default')).get('default-amount')).get('ele_text'))
+                        ((String)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>) eachDefault).get(ConstantValues.CURRENT_DEFAULT)).get(ConstantValues.DEFAULT_AMOUNT)).get(ConstantValues.ELE_TEXT))
                       );
                     }
                     if (
                       ((Map<String, Object>) eachDefault) != null &&
-                      ((Map<String, Object>)((Map<String, Object>) eachDefault).get('original-default')) != null &&
-                      ((Map<String, Object>)((Map<String, Object>)((Map<String, Object>) eachDefault).get('original-default')).get('default-amount'))!=null &&
-                      ((String)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>) eachDefault).get('original-default')).get('default-amount')).get('ele_text')) !=null
+                      ((Map<String, Object>)((Map<String, Object>) eachDefault).get(ConstantValues.ORIGINAL_DEFAULT)) != null &&
+                      ((Map<String, Object>)((Map<String, Object>)((Map<String, Object>) eachDefault).get(ConstantValues.ORIGINAL_DEFAULT))
+                      .get(ConstantValues.DEFAULT_AMOUNT))!=null &&
+                      ((String)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>) eachDefault).get(ConstantValues.ORIGINAL_DEFAULT))
+                      .get(ConstantValues.DEFAULT_AMOUNT)).get(ConstantValues.ELE_TEXT)) !=null
                     ) {
                       paymentDefaultObj.Original_Default_Amount__c = Decimal.valueOf(
-                        ((String)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>) eachDefault).get('original-default')).get('default-amount')).get('ele_text'))
+                        ((String)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>) eachDefault).get(ConstantValues.ORIGINAL_DEFAULT))
+                        .get(ConstantValues.DEFAULT_AMOUNT)).get(ConstantValues.ELE_TEXT))
                       );
                     }
                     if (paymentDefaultObj != null) {
                       if (String.isNotBlank(creditAccountObj.Account_Id__c)) {
                         accountIdDefaultMap.put(
-                          'Commercial' + creditAccountObj.Account_Id__c,
+                          ConstantValues.COMMERCIAL + creditAccountObj.Account_Id__c,
                           paymentDefaultObj
                         );
                       }
@@ -1313,57 +1352,66 @@ public class EquifaxIndividualResponseHelper {
                 } else if(
                   ((Map<String, Object>) eachCredit) != null &&
                   ((Object) ((Map<String, Object>) eachCredit)
-                  .get('defaults')) !=null && String.valueOf(
+                  .get(ConstantValues.DEFAULTS_LIST)) !=null && String.valueOf(
                     ((Map<String, Object>) eachCredit)
-                  ).contains('defaults={')
+                  ).contains(ConstantValues.DEFAULT_OBJECT)
                 ){
-                  Object eachDefault=((Object)((Map<String, Object>) ((Map<String, Object>) eachCredit).get('defaults')).get('default'));
+                  Object eachDefault=((Object)((Map<String, Object>) ((Map<String, Object>) eachCredit).get(ConstantValues.DEFAULTS_LIST)).get('default'));
                   Payment_Default__c paymentDefaultObj;
                   paymentDefaultObj = new Payment_Default__c();
                   if (
                     ((Map<String, Object>) eachDefault) != null &&
-                    ((Map<String, Object>)((Map<String, Object>) eachDefault).get('status')) != null &&
-                    ((String)((Map<String, Object>)((Map<String, Object>) eachDefault).get('status')).get('ele_text'))!=null
+                    ((Map<String, Object>)((Map<String, Object>) eachDefault).get(ConstantValues.status)) != null &&
+                    ((String)((Map<String, Object>)((Map<String, Object>) eachDefault).get(ConstantValues.status)).get(ConstantValues.ELE_TEXT))!=null
                   ) {
-                    paymentDefaultObj.Status__c = ((String)((Map<String, Object>)((Map<String, Object>) eachDefault).get('status')).get('ele_text'));
+                    paymentDefaultObj.Status__c = ((String)((Map<String, Object>)((Map<String, Object>) eachDefault).get(ConstantValues.status)).get(ConstantValues.ELE_TEXT));
                   }
                   if (
                     ((Map<String, Object>) eachDefault) != null &&
-                    ((Map<String, Object>)((Map<String, Object>) eachDefault).get('original-default')) != null &&
-                    ((String)((Map<String, Object>)((Map<String, Object>) eachDefault).get('original-default')).get('date-recorded'))!=null
+                    ((Map<String, Object>)((Map<String, Object>) eachDefault).get(ConstantValues.ORIGINAL_DEFAULT)) != null &&
+                    ((String)((Map<String, Object>)((Map<String, Object>) eachDefault).get(ConstantValues.ORIGINAL_DEFAULT))
+                    .get(ConstantValues.DATE_RECORDED))!=null
                   ) {
-                    String dateString = ((String)((Map<String, Object>)((Map<String, Object>) eachDefault).get('original-default')).get('date-recorded'));
-                    Date statusDate = Date.newInstance(
-                      Integer.valueOf(dateString.subString(0, 4)),
-                      Integer.valueOf(dateString.subString(5, 7)),
-                      Integer.valueOf(dateString.subString(8, 10))
-                    );
-                    paymentDefaultObj.Status_Date__c = statusDate;
+                    String dateString = ((String)((Map<String, Object>)((Map<String, Object>) eachDefault)
+                        .get(ConstantValues.ORIGINAL_DEFAULT)).get(ConstantValues.DATE_RECORDED));
+                    if(dateString!=NULL && dateString.length()!=0 && dateString.length()>=10){
+                      Date statusDate = Date.newInstance(
+                        Integer.valueOf(dateString.subString(0, 4)),
+                        Integer.valueOf(dateString.subString(5, 7)),
+                        Integer.valueOf(dateString.subString(8, 10))
+                      );
+                      paymentDefaultObj.Status_Date__c = statusDate;
+                    }
                   }
                   if (
                     ((Map<String, Object>) eachDefault) != null &&
-                    ((Map<String, Object>)((Map<String, Object>) eachDefault).get('current-default')) != null &&
-                    ((Map<String, Object>)((Map<String, Object>)((Map<String, Object>) eachDefault).get('current-default')).get('default-amount'))!=null &&
-                    ((String)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>) eachDefault).get('current-default')).get('default-amount')).get('ele_text')) !=null
+                    ((Map<String, Object>)((Map<String, Object>) eachDefault).get(ConstantValues.CURRENT_DEFAULT)) != null &&
+                    ((Map<String, Object>)((Map<String, Object>)((Map<String, Object>) eachDefault)
+                    .get(ConstantValues.CURRENT_DEFAULT)).get(ConstantValues.DEFAULT_AMOUNT))!=null &&
+                    ((String)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>) eachDefault)
+                    .get(ConstantValues.CURRENT_DEFAULT)).get(ConstantValues.DEFAULT_AMOUNT)).get(ConstantValues.ELE_TEXT)) !=null
                   ) {
                     paymentDefaultObj.Current_Default_Amount__c = Decimal.valueOf(
-                      ((String)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>) eachDefault).get('current-default')).get('default-amount')).get('ele_text'))
+                      ((String)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>) eachDefault)
+                      .get(ConstantValues.CURRENT_DEFAULT)).get(ConstantValues.DEFAULT_AMOUNT)).get(ConstantValues.ELE_TEXT))
                     );
                   }
                   if (
                     ((Map<String, Object>) eachDefault) != null &&
-                    ((Map<String, Object>)((Map<String, Object>) eachDefault).get('original-default')) != null &&
-                    ((Map<String, Object>)((Map<String, Object>)((Map<String, Object>) eachDefault).get('original-default')).get('default-amount'))!=null &&
-                    ((String)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>) eachDefault).get('original-default')).get('default-amount')).get('ele_text')) !=null
+                    ((Map<String, Object>)((Map<String, Object>) eachDefault).get(ConstantValues.ORIGINAL_DEFAULT)) != null &&
+                    ((Map<String, Object>)((Map<String, Object>)((Map<String, Object>) eachDefault).get(ConstantValues.ORIGINAL_DEFAULT)).get(ConstantValues.DEFAULT_AMOUNT))!=null &&
+                    ((String)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>) eachDefault)
+                    .get(ConstantValues.ORIGINAL_DEFAULT)).get(ConstantValues.DEFAULT_AMOUNT)).get(ConstantValues.ELE_TEXT)) !=null
                   ) {
                     paymentDefaultObj.Original_Default_Amount__c = Decimal.valueOf(
-                      ((String)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>) eachDefault).get('original-default')).get('default-amount')).get('ele_text'))
+                      ((String)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>) eachDefault)
+                      .get(ConstantValues.ORIGINAL_DEFAULT)).get(ConstantValues.DEFAULT_AMOUNT)).get(ConstantValues.ELE_TEXT))
                     );
                   }
                   if (paymentDefaultObj != null) {
                     if (String.isNotBlank(creditAccountObj.Account_Id__c)) {
                       accountIdDefaultMap.put(
-                        'Commercial' + creditAccountObj.Account_Id__c,
+                        ConstantValues.COMMERCIAL + creditAccountObj.Account_Id__c,
                         paymentDefaultObj
                       );
                     }
@@ -1373,114 +1421,117 @@ public class EquifaxIndividualResponseHelper {
             }else if(
               commercialCredit!=null &&
               ((Object) commercialCredit.get(
-                'accounts'
+                ConstantValues.ACCOUNTS
               ))!=null && String.valueOf(
                 commercialCredit
-              ).contains('accounts={')
+              ).contains(ConstantValues.ACCOUNTS_OBJECT)
             ) {
-              Object eachCredit=((Object)((Map<String, Object>) commercialCredit.get('accounts')).get('account'));
+              Object eachCredit=((Object)((Map<String, Object>) commercialCredit.get(ConstantValues.ACCOUNTS)).get(ConstantValues.ACCOUNT));
               Credit_Account__c creditAccountObj;
               creditAccountObj = new Credit_Account__c();
               creditAccountObj.Party__c = partyObj.Id;
-              creditAccountObj.Credit_Account_Type__c = 'Commercial';
+              creditAccountObj.Credit_Account_Type__c = ConstantValues.COMMERCIAL;
               if(
               ((Map<String, Object>) eachCredit) != null &&
               ((String) ((Map<String, Object>) eachCredit)
-              .get('account-id')) !=null){
-                creditAccountObj.Account_Id__c = ((String) ((Map<String, Object>) eachCredit).get('account-id'));
+              .get(ConstantValues.ACCOUNT_ID_ACCOUNT)) !=null){
+                creditAccountObj.Account_Id__c = ((String) ((Map<String, Object>) eachCredit).get(ConstantValues.ACCOUNT_ID_ACCOUNT));
               }
               if(
                 ((Map<String, Object>) eachCredit) != null &&
                 ((Map<String, Object>) ((Map<String, Object>) eachCredit)
-                .get('account-type')) !=null &&
+                .get(ConstantValues.ACCOUNT_TYPE)) !=null &&
                 ((String)((Map<String, Object>) ((Map<String, Object>) eachCredit)
-                .get('account-type')).get('ele_text'))!=null
+                .get(ConstantValues.ACCOUNT_TYPE)).get(ConstantValues.ELE_TEXT))!=null
               ){
-                creditAccountObj.Account_Type__c = ((String) ((Map<String, Object>)((Map<String, Object>) eachCredit).get('account-type')).get('ele_text'));
+                creditAccountObj.Account_Type__c = ((String) ((Map<String, Object>)((Map<String, Object>) eachCredit).get(ConstantValues.ACCOUNT_TYPE)).get(ConstantValues.ELE_TEXT));
               }
               if (
                 ((Map<String, Object>) eachCredit) != null &&
                 ((Map<String, Object>) ((Map<String, Object>) eachCredit)
-                .get('original-credit-provider')) !=null &&
+                .get(ConstantValues.ORIGINAL_CREDIT_PROVIDER)) !=null &&
                 ((String)((Map<String, Object>) ((Map<String, Object>) eachCredit)
-                .get('original-credit-provider')).get('name'))!=null
+                .get(ConstantValues.ORIGINAL_CREDIT_PROVIDER)).get(ConstantValues.NAME_KEY))!=null
               ) {
-                creditAccountObj.Original_Credit_Provider__c = ((String)((Map<String, Object>) ((Map<String, Object>) eachCredit).get('original-credit-provider')).get('name'));
+                creditAccountObj.Original_Credit_Provider__c = ((String)((Map<String, Object>) ((Map<String, Object>) eachCredit)
+                .get(ConstantValues.ORIGINAL_CREDIT_PROVIDER)).get(ConstantValues.NAME_KEY));
               }
               if (
                 ((Map<String, Object>) eachCredit) != null &&
                 ((Map<String, Object>) ((Map<String, Object>) eachCredit)
-                .get('latest-credit-provider')) !=null &&
+                .get(ConstantValues.LATEST_CREDIT_PROVIDER)) !=null &&
                 ((String)((Map<String, Object>) ((Map<String, Object>) eachCredit)
-                .get('latest-credit-provider')).get('name'))!=null
+                .get(ConstantValues.LATEST_CREDIT_PROVIDER)).get(ConstantValues.NAME_KEY))!=null
               ) {
-                creditAccountObj.Latest_Credit_Provider__c = ((String)((Map<String, Object>) ((Map<String, Object>) eachCredit).get('latest-credit-provider')).get('name'));
+                creditAccountObj.Latest_Credit_Provider__c = ((String)((Map<String, Object>) ((Map<String, Object>) eachCredit).get(ConstantValues.LATEST_CREDIT_PROVIDER)).get(ConstantValues.NAME_KEY));
               }
               if (
                 ((Map<String, Object>) eachCredit) != null &&
                 ((Map<String, Object>) ((Map<String, Object>) eachCredit)
-                .get('relationship')) !=null &&
+                .get(ConstantValues.RELATIONSHIP)) !=null &&
                 ((String)((Map<String, Object>) ((Map<String, Object>) eachCredit)
-                .get('relationship')).get('ele_text'))!=null
+                .get(ConstantValues.RELATIONSHIP)).get(ConstantValues.ELE_TEXT))!=null
               ) {
-                creditAccountObj.Relationship__c = ((String)((Map<String, Object>) ((Map<String, Object>) eachCredit).get('relationship')).get('ele_text'));
+                creditAccountObj.Relationship__c = ((String)((Map<String, Object>) ((Map<String, Object>) eachCredit).get(ConstantValues.RELATIONSHIP)).get(ConstantValues.ELE_TEXT));
               }
               creditAccounts.add(creditAccountObj);
               if(
                 ((Map<String, Object>) eachCredit) != null &&
                   ((Object) ((Map<String, Object>) eachCredit)
-                  .get('defaults')) !=null && String.valueOf(
+                  .get(ConstantValues.DEFAULTS_LIST)) !=null && String.valueOf(
                     ((Map<String, Object>) eachCredit)
-                  ).contains('defaults=(')
+                  ).contains(ConstantValues.DEFAULT_ARRAY)
               ){
-                List<Object> refDefault=((List<Object>) ((Map<String, Object>) eachCredit).get('defaults'));
+                List<Object> refDefault=((List<Object>) ((Map<String, Object>) eachCredit).get(ConstantValues.DEFAULTS_LIST));
                 for(Object eachDefault:refDefault){
                   Payment_Default__c paymentDefaultObj;
                   paymentDefaultObj = new Payment_Default__c();
                   if (
                     ((Map<String, Object>) eachDefault) != null &&
-                    ((Map<String, Object>)((Map<String, Object>) eachDefault).get('status')) != null &&
-                    ((String)((Map<String, Object>)((Map<String, Object>) eachDefault).get('status')).get('ele_text'))!=null
+                    ((Map<String, Object>)((Map<String, Object>) eachDefault).get(ConstantValues.status)) != null &&
+                    ((String)((Map<String, Object>)((Map<String, Object>) eachDefault).get(ConstantValues.status)).get(ConstantValues.ELE_TEXT))!=null
                   ) {
-                    paymentDefaultObj.Status__c = ((String)((Map<String, Object>)((Map<String, Object>) eachDefault).get('status')).get('ele_text'));
+                    paymentDefaultObj.Status__c = ((String)((Map<String, Object>)((Map<String, Object>) eachDefault).get(ConstantValues.status)).get(ConstantValues.ELE_TEXT));
                   }
                   if (
                     ((Map<String, Object>) eachDefault) != null &&
-                    ((Map<String, Object>)((Map<String, Object>) eachDefault).get('original-default')) != null &&
-                    ((String)((Map<String, Object>)((Map<String, Object>) eachDefault).get('original-default')).get('date-recorded'))!=null
+                    ((Map<String, Object>)((Map<String, Object>) eachDefault).get(ConstantValues.ORIGINAL_DEFAULT)) != null &&
+                    ((String)((Map<String, Object>)((Map<String, Object>) eachDefault).get(ConstantValues.ORIGINAL_DEFAULT)).get(ConstantValues.DATE_RECORDED))!=null
                   ) {
-                    String dateString = ((String)((Map<String, Object>)((Map<String, Object>) eachDefault).get('original-default')).get('date-recorded'));
-                    Date statusDate = Date.newInstance(
-                      Integer.valueOf(dateString.subString(0, 4)),
-                      Integer.valueOf(dateString.subString(5, 7)),
-                      Integer.valueOf(dateString.subString(8, 10))
-                    );
-                    paymentDefaultObj.Status_Date__c = statusDate;
+                    String dateString = ((String)((Map<String, Object>)((Map<String, Object>) eachDefault).get(ConstantValues.ORIGINAL_DEFAULT)).get(ConstantValues.DATE_RECORDED));
+                    if(dateString!=NULL && dateString.length()!=0 && dateString.length()>=10){
+                      Date statusDate = Date.newInstance(
+                        Integer.valueOf(dateString.subString(0, 4)),
+                        Integer.valueOf(dateString.subString(5, 7)),
+                        Integer.valueOf(dateString.subString(8, 10))
+                      );
+                      paymentDefaultObj.Status_Date__c = statusDate;
+                    }
                   }
                   if (
                     ((Map<String, Object>) eachDefault) != null &&
-                    ((Map<String, Object>)((Map<String, Object>) eachDefault).get('current-default')) != null &&
-                    ((Map<String, Object>)((Map<String, Object>)((Map<String, Object>) eachDefault).get('current-default')).get('default-amount'))!=null &&
-                    ((String)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>) eachDefault).get('current-default')).get('default-amount')).get('ele_text')) !=null
+                    ((Map<String, Object>)((Map<String, Object>) eachDefault).get(ConstantValues.CURRENT_DEFAULT)) != null &&
+                    ((Map<String, Object>)((Map<String, Object>)((Map<String, Object>) eachDefault).get(ConstantValues.CURRENT_DEFAULT)).get(ConstantValues.DEFAULT_AMOUNT))!=null &&
+                    ((String)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>) eachDefault).get(ConstantValues.CURRENT_DEFAULT)).get(ConstantValues.DEFAULT_AMOUNT)).get(ConstantValues.ELE_TEXT)) !=null
                   ) {
                     paymentDefaultObj.Current_Default_Amount__c = Decimal.valueOf(
-                      ((String)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>) eachDefault).get('current-default')).get('default-amount')).get('ele_text'))
+                      ((String)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>) eachDefault).get(ConstantValues.CURRENT_DEFAULT)).get(ConstantValues.DEFAULT_AMOUNT)).get(ConstantValues.ELE_TEXT))
                     );
                   }
                   if (
                     ((Map<String, Object>) eachDefault) != null &&
-                    ((Map<String, Object>)((Map<String, Object>) eachDefault).get('original-default')) != null &&
-                    ((Map<String, Object>)((Map<String, Object>)((Map<String, Object>) eachDefault).get('original-default')).get('default-amount'))!=null &&
-                    ((String)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>) eachDefault).get('original-default')).get('default-amount')).get('ele_text')) !=null
+                    ((Map<String, Object>)((Map<String, Object>) eachDefault).get(ConstantValues.ORIGINAL_DEFAULT)) != null &&
+                    ((Map<String, Object>)((Map<String, Object>)((Map<String, Object>) eachDefault).get(ConstantValues.ORIGINAL_DEFAULT)).get(ConstantValues.DEFAULT_AMOUNT))!=null &&
+                    ((String)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>) eachDefault).get(ConstantValues.ORIGINAL_DEFAULT)).get(ConstantValues.DEFAULT_AMOUNT)).get(ConstantValues.ELE_TEXT)) !=null
                   ) {
                     paymentDefaultObj.Original_Default_Amount__c = Decimal.valueOf(
-                      ((String)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>) eachDefault).get('original-default')).get('default-amount')).get('ele_text'))
+                      ((String)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>) eachDefault).get(ConstantValues.ORIGINAL_DEFAULT)).get(ConstantValues.DEFAULT_AMOUNT)).get(ConstantValues.ELE_TEXT))
                     );
                   }
                   if (paymentDefaultObj != null) {
                     if (String.isNotBlank(creditAccountObj.Account_Id__c)) {
                       accountIdDefaultMap.put(
-                        'Commercial' + creditAccountObj.Account_Id__c,
+                        ConstantValues.COMMERCIAL + creditAccountObj.Account_Id__c,
                         paymentDefaultObj
                       );
                     }
@@ -1489,64 +1540,66 @@ public class EquifaxIndividualResponseHelper {
               } else if(
                 ((Map<String, Object>) eachCredit) != null &&
                   ((Object) ((Map<String, Object>) eachCredit)
-                  .get('defaults')) !=null && String.valueOf(
+                  .get(ConstantValues.DEFAULTS_LIST)) !=null && String.valueOf(
                     ((Map<String, Object>) eachCredit)
-                  ).contains('defaults={')
+                  ).contains(ConstantValues.DEFAULT_OBJECT)
               ){
-                Object eachDefault=((Object)((Map<String, Object>) ((Map<String, Object>) eachCredit).get('defaults')).get('default'));
+                Object eachDefault=((Object)((Map<String, Object>) ((Map<String, Object>) eachCredit).get(ConstantValues.DEFAULTS_LIST)).get('default'));
                 Payment_Default__c paymentDefaultObj;
                 paymentDefaultObj = new Payment_Default__c();
                 if (
                   ((Map<String, Object>) eachDefault) != null &&
-                  ((Map<String, Object>)((Map<String, Object>) eachDefault).get('status')) != null &&
-                  ((String)((Map<String, Object>)((Map<String, Object>) eachDefault).get('status')).get('ele_text'))!=null
+                  ((Map<String, Object>)((Map<String, Object>) eachDefault).get(ConstantValues.status)) != null &&
+                  ((String)((Map<String, Object>)((Map<String, Object>) eachDefault).get(ConstantValues.status)).get(ConstantValues.ELE_TEXT))!=null
                 ) {
-                  paymentDefaultObj.Status__c = ((String)((Map<String, Object>)((Map<String, Object>) eachDefault).get('status')).get('ele_text'));
+                  paymentDefaultObj.Status__c = ((String)((Map<String, Object>)((Map<String, Object>) eachDefault).get(ConstantValues.status)).get(ConstantValues.ELE_TEXT));
                 }
                 if (
                   ((Map<String, Object>) eachDefault) != null &&
-                  ((Map<String, Object>)((Map<String, Object>) eachDefault).get('original-default')) != null &&
-                  ((String)((Map<String, Object>)((Map<String, Object>) eachDefault).get('original-default')).get('date-recorded'))!=null
+                  ((Map<String, Object>)((Map<String, Object>) eachDefault).get(ConstantValues.ORIGINAL_DEFAULT)) != null &&
+                  ((String)((Map<String, Object>)((Map<String, Object>) eachDefault).get(ConstantValues.ORIGINAL_DEFAULT)).get(ConstantValues.DATE_RECORDED))!=null
                 ) {
-                  String dateString = ((String)((Map<String, Object>)((Map<String, Object>) eachDefault).get('original-default')).get('date-recorded'));
-                  Date statusDate = Date.newInstance(
-                    Integer.valueOf(dateString.subString(0, 4)),
-                    Integer.valueOf(dateString.subString(5, 7)),
-                    Integer.valueOf(dateString.subString(8, 10))
-                  );
-                  paymentDefaultObj.Status_Date__c = statusDate;
+                  String dateString = ((String)((Map<String, Object>)((Map<String, Object>) eachDefault).get(ConstantValues.ORIGINAL_DEFAULT)).get(ConstantValues.DATE_RECORDED));
+                  if(dateString!=NULL && dateString.length()!=0 && dateString.length()>=10){  
+                    Date statusDate = Date.newInstance(
+                      Integer.valueOf(dateString.subString(0, 4)),
+                      Integer.valueOf(dateString.subString(5, 7)),
+                      Integer.valueOf(dateString.subString(8, 10))
+                    );
+                    paymentDefaultObj.Status_Date__c = statusDate;
+                  }
                 }
                 if (
                   ((Map<String, Object>) eachDefault) != null &&
-                  ((Map<String, Object>)((Map<String, Object>) eachDefault).get('current-default')) != null &&
-                  ((Map<String, Object>)((Map<String, Object>)((Map<String, Object>) eachDefault).get('current-default')).get('default-amount'))!=null &&
-                  ((String)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>) eachDefault).get('current-default')).get('default-amount')).get('ele_text')) !=null
+                  ((Map<String, Object>)((Map<String, Object>) eachDefault).get(ConstantValues.CURRENT_DEFAULT)) != null &&
+                  ((Map<String, Object>)((Map<String, Object>)((Map<String, Object>) eachDefault).get(ConstantValues.CURRENT_DEFAULT)).get(ConstantValues.DEFAULT_AMOUNT))!=null &&
+                  ((String)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>) eachDefault).get(ConstantValues.CURRENT_DEFAULT)).get(ConstantValues.DEFAULT_AMOUNT)).get(ConstantValues.ELE_TEXT)) !=null
                 ) {
                   paymentDefaultObj.Current_Default_Amount__c = Decimal.valueOf(
-                    ((String)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>) eachDefault).get('current-default')).get('default-amount')).get('ele_text'))
+                    ((String)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>) eachDefault).get(ConstantValues.CURRENT_DEFAULT)).get(ConstantValues.DEFAULT_AMOUNT)).get(ConstantValues.ELE_TEXT))
                   );
                 }
                 if (
                   ((Map<String, Object>) eachDefault) != null &&
-                  ((Map<String, Object>)((Map<String, Object>) eachDefault).get('original-default')) != null &&
-                  ((Map<String, Object>)((Map<String, Object>)((Map<String, Object>) eachDefault).get('original-default')).get('default-amount'))!=null &&
-                  ((String)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>) eachDefault).get('original-default')).get('default-amount')).get('ele_text')) !=null
+                  ((Map<String, Object>)((Map<String, Object>) eachDefault).get(ConstantValues.ORIGINAL_DEFAULT)) != null &&
+                  ((Map<String, Object>)((Map<String, Object>)((Map<String, Object>) eachDefault).get(ConstantValues.ORIGINAL_DEFAULT)).get(ConstantValues.DEFAULT_AMOUNT))!=null &&
+                  ((String)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>) eachDefault).get(ConstantValues.ORIGINAL_DEFAULT)).get(ConstantValues.DEFAULT_AMOUNT)).get(ConstantValues.ELE_TEXT)) !=null
                 ) {
                   paymentDefaultObj.Original_Default_Amount__c = Decimal.valueOf(
-                    ((String)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>) eachDefault).get('original-default')).get('default-amount')).get('ele_text'))
+                    ((String)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>) eachDefault).get(ConstantValues.ORIGINAL_DEFAULT)).get(ConstantValues.DEFAULT_AMOUNT)).get(ConstantValues.ELE_TEXT))
                   );
                 }
                 if (paymentDefaultObj != null) {
                   if (String.isNotBlank(creditAccountObj.Account_Id__c)) {
                     accountIdDefaultMap.put(
-                      'Commercial' + creditAccountObj.Account_Id__c,
+                      ConstantValues.COMMERCIAL + creditAccountObj.Account_Id__c,
                       paymentDefaultObj
                     );
                   }
                 }
               }
             }else{
-              returnValue+='\nNo Commercial Credit Accounts found';
+              returnValue+=ConstantValues.NO_COMMERCIAL_CREDIT_ACCOUNTS_FOUND;
             }
           }catch(Exception exe){
             GenericUtility.insertLog(
@@ -1558,116 +1611,118 @@ public class EquifaxIndividualResponseHelper {
             if(
               consumerCredit!=null &&
               ((Object) consumerCredit.get(
-                'accounts'
+                ConstantValues.ACCOUNTS
               ))!=null && 
               String.valueOf(
                 consumerCredit)
-              .contains('accounts=(')
+              .contains(ConstantValues.ACCOUNTS_ARRAY)
             ) {
-              List<Object> refCreditAccount=((List<Object>)consumerCredit.get('accounts'));
+              List<Object> refCreditAccount=((List<Object>)consumerCredit.get(ConstantValues.ACCOUNTS));
               for(Object eachCredit:refCreditAccount){
                 Credit_Account__c creditAccountObj;
                 creditAccountObj = new Credit_Account__c();
                 creditAccountObj.Party__c = partyObj.Id;
-                creditAccountObj.Credit_Account_Type__c = 'Consumer';
+                creditAccountObj.Credit_Account_Type__c = ConstantValues.CONSUMER;
                 if(
                 ((Map<String, Object>) eachCredit) != null &&
                 ((String) ((Map<String, Object>) eachCredit)
-                .get('account-id')) !=null){
-                  creditAccountObj.Account_Id__c = ((String) ((Map<String, Object>) eachCredit).get('account-id'));
+                .get(ConstantValues.ACCOUNT_ID_ACCOUNT)) !=null){
+                  creditAccountObj.Account_Id__c = ((String) ((Map<String, Object>) eachCredit).get(ConstantValues.ACCOUNT_ID_ACCOUNT));
                 }
                 if(
                   ((Map<String, Object>) eachCredit) != null &&
                   ((Map<String, Object>) ((Map<String, Object>) eachCredit)
-                  .get('account-type')) !=null &&
+                  .get(ConstantValues.ACCOUNT_TYPE)) !=null &&
                   ((String)((Map<String, Object>) ((Map<String, Object>) eachCredit)
-                  .get('account-type')).get('ele_text'))!=null
+                  .get(ConstantValues.ACCOUNT_TYPE)).get(ConstantValues.ELE_TEXT))!=null
                 ){
-                  creditAccountObj.Account_Type__c = ((String) ((Map<String, Object>)((Map<String, Object>) eachCredit).get('account-type')).get('ele_text'));
+                  creditAccountObj.Account_Type__c = ((String) ((Map<String, Object>)((Map<String, Object>) eachCredit).get(ConstantValues.ACCOUNT_TYPE)).get(ConstantValues.ELE_TEXT));
                 }
                 if (
                   ((Map<String, Object>) eachCredit) != null &&
                   ((Map<String, Object>) ((Map<String, Object>) eachCredit)
-                  .get('original-credit-provider')) !=null &&
+                  .get(ConstantValues.ORIGINAL_CREDIT_PROVIDER)) !=null &&
                   ((String)((Map<String, Object>) ((Map<String, Object>) eachCredit)
-                  .get('original-credit-provider')).get('name'))!=null
+                  .get(ConstantValues.ORIGINAL_CREDIT_PROVIDER)).get(ConstantValues.NAME_KEY))!=null
                 ) {
-                  creditAccountObj.Original_Credit_Provider__c = ((String)((Map<String, Object>) ((Map<String, Object>) eachCredit).get('original-credit-provider')).get('name'));
+                  creditAccountObj.Original_Credit_Provider__c = ((String)((Map<String, Object>) ((Map<String, Object>) eachCredit).get(ConstantValues.ORIGINAL_CREDIT_PROVIDER)).get(ConstantValues.NAME_KEY));
                 }
                 if (
                   ((Map<String, Object>) eachCredit) != null &&
                   ((Map<String, Object>) ((Map<String, Object>) eachCredit)
-                  .get('latest-credit-provider')) !=null &&
+                  .get(ConstantValues.LATEST_CREDIT_PROVIDER)) !=null &&
                   ((String)((Map<String, Object>) ((Map<String, Object>) eachCredit)
-                  .get('latest-credit-provider')).get('name'))!=null
+                  .get(ConstantValues.LATEST_CREDIT_PROVIDER)).get(ConstantValues.NAME_KEY))!=null
                 ) {
-                  creditAccountObj.Latest_Credit_Provider__c = ((String)((Map<String, Object>) ((Map<String, Object>) eachCredit).get('latest-credit-provider')).get('name'));
+                  creditAccountObj.Latest_Credit_Provider__c = ((String)((Map<String, Object>) ((Map<String, Object>) eachCredit).get(ConstantValues.LATEST_CREDIT_PROVIDER)).get(ConstantValues.NAME_KEY));
                 }
                 if (
                   ((Map<String, Object>) eachCredit) != null &&
                   ((Map<String, Object>) ((Map<String, Object>) eachCredit)
-                  .get('relationship')) !=null &&
+                  .get(ConstantValues.RELATIONSHIP)) !=null &&
                   ((String)((Map<String, Object>) ((Map<String, Object>) eachCredit)
-                  .get('relationship')).get('ele_text'))!=null
+                  .get(ConstantValues.RELATIONSHIP)).get(ConstantValues.ELE_TEXT))!=null
                 ) {
-                  creditAccountObj.Relationship__c = ((String)((Map<String, Object>) ((Map<String, Object>) eachCredit).get('relationship')).get('ele_text'));
+                  creditAccountObj.Relationship__c = ((String)((Map<String, Object>) ((Map<String, Object>) eachCredit).get(ConstantValues.RELATIONSHIP)).get(ConstantValues.ELE_TEXT));
                 }
                 creditAccounts.add(creditAccountObj);
                 if(
                   ((Map<String, Object>) eachCredit) != null &&
                   ((Object) ((Map<String, Object>) eachCredit)
-                  .get('defaults')) !=null && String.valueOf(
+                  .get(ConstantValues.DEFAULTS_LIST)) !=null && String.valueOf(
                     ((Map<String, Object>) eachCredit)
-                  ).contains('defaults=(')
+                  ).contains(ConstantValues.DEFAULT_ARRAY)
                 ){
-                  List<Object> refDefault=((List<Object>) ((Map<String, Object>) eachCredit).get('defaults'));
+                  List<Object> refDefault=((List<Object>) ((Map<String, Object>) eachCredit).get(ConstantValues.DEFAULTS_LIST));
                   for(Object eachDefault:refDefault){
                     Payment_Default__c paymentDefaultObj;
                     paymentDefaultObj = new Payment_Default__c();
                     if (
                       ((Map<String, Object>) eachDefault) != null &&
-                      ((Map<String, Object>)((Map<String, Object>) eachDefault).get('status')) != null &&
-                      ((String)((Map<String, Object>)((Map<String, Object>) eachDefault).get('status')).get('ele_text'))!=null
+                      ((Map<String, Object>)((Map<String, Object>) eachDefault).get(ConstantValues.status)) != null &&
+                      ((String)((Map<String, Object>)((Map<String, Object>) eachDefault).get(ConstantValues.status)).get(ConstantValues.ELE_TEXT))!=null
                     ) {
-                      paymentDefaultObj.Status__c = ((String)((Map<String, Object>)((Map<String, Object>) eachDefault).get('status')).get('ele_text'));
+                      paymentDefaultObj.Status__c = ((String)((Map<String, Object>)((Map<String, Object>) eachDefault).get(ConstantValues.status)).get(ConstantValues.ELE_TEXT));
                     }
                     if (
                       ((Map<String, Object>) eachDefault) != null &&
-                      ((Map<String, Object>)((Map<String, Object>) eachDefault).get('original-default')) != null &&
-                      ((String)((Map<String, Object>)((Map<String, Object>) eachDefault).get('original-default')).get('date-recorded'))!=null
+                      ((Map<String, Object>)((Map<String, Object>) eachDefault).get(ConstantValues.ORIGINAL_DEFAULT)) != null &&
+                      ((String)((Map<String, Object>)((Map<String, Object>) eachDefault).get(ConstantValues.ORIGINAL_DEFAULT)).get(ConstantValues.DATE_RECORDED))!=null
                     ) {
-                      String dateString = ((String)((Map<String, Object>)((Map<String, Object>) eachDefault).get('original-default')).get('date-recorded'));
-                      Date statusDate = Date.newInstance(
-                        Integer.valueOf(dateString.subString(0, 4)),
-                        Integer.valueOf(dateString.subString(5, 7)),
-                        Integer.valueOf(dateString.subString(8, 10))
-                      );
-                      paymentDefaultObj.Status_Date__c = statusDate;
+                      String dateString = ((String)((Map<String, Object>)((Map<String, Object>) eachDefault).get(ConstantValues.ORIGINAL_DEFAULT)).get(ConstantValues.DATE_RECORDED));
+                      if(dateString!=NULL && dateString.length()!=0 && dateString.length()>=10){
+                        Date statusDate = Date.newInstance(
+                          Integer.valueOf(dateString.subString(0, 4)),
+                          Integer.valueOf(dateString.subString(5, 7)),
+                          Integer.valueOf(dateString.subString(8, 10))
+                        );
+                        paymentDefaultObj.Status_Date__c = statusDate;
+                      }
                     }
                     if (
                       ((Map<String, Object>) eachDefault) != null &&
-                      ((Map<String, Object>)((Map<String, Object>) eachDefault).get('current-default')) != null &&
-                      ((Map<String, Object>)((Map<String, Object>)((Map<String, Object>) eachDefault).get('current-default')).get('default-amount'))!=null &&
-                      ((String)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>) eachDefault).get('current-default')).get('default-amount')).get('ele_text')) !=null
+                      ((Map<String, Object>)((Map<String, Object>) eachDefault).get(ConstantValues.CURRENT_DEFAULT)) != null &&
+                      ((Map<String, Object>)((Map<String, Object>)((Map<String, Object>) eachDefault).get(ConstantValues.CURRENT_DEFAULT)).get(ConstantValues.DEFAULT_AMOUNT))!=null &&
+                      ((String)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>) eachDefault).get(ConstantValues.CURRENT_DEFAULT)).get(ConstantValues.DEFAULT_AMOUNT)).get(ConstantValues.ELE_TEXT)) !=null
                     ) {
                       paymentDefaultObj.Current_Default_Amount__c = Decimal.valueOf(
-                        ((String)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>) eachDefault).get('current-default')).get('default-amount')).get('ele_text'))
+                        ((String)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>) eachDefault).get(ConstantValues.CURRENT_DEFAULT)).get(ConstantValues.DEFAULT_AMOUNT)).get(ConstantValues.ELE_TEXT))
                       );
                     }
                     if (
                       ((Map<String, Object>) eachDefault) != null &&
-                      ((Map<String, Object>)((Map<String, Object>) eachDefault).get('original-default')) != null &&
-                      ((Map<String, Object>)((Map<String, Object>)((Map<String, Object>) eachDefault).get('original-default')).get('default-amount'))!=null &&
-                      ((String)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>) eachDefault).get('original-default')).get('default-amount')).get('ele_text')) !=null
+                      ((Map<String, Object>)((Map<String, Object>) eachDefault).get(ConstantValues.ORIGINAL_DEFAULT)) != null &&
+                      ((Map<String, Object>)((Map<String, Object>)((Map<String, Object>) eachDefault).get(ConstantValues.ORIGINAL_DEFAULT)).get(ConstantValues.DEFAULT_AMOUNT))!=null &&
+                      ((String)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>) eachDefault).get(ConstantValues.ORIGINAL_DEFAULT)).get(ConstantValues.DEFAULT_AMOUNT)).get(ConstantValues.ELE_TEXT)) !=null
                     ) {
                       paymentDefaultObj.Original_Default_Amount__c = Decimal.valueOf(
-                        ((String)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>) eachDefault).get('original-default')).get('default-amount')).get('ele_text'))
+                        ((String)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>) eachDefault).get(ConstantValues.ORIGINAL_DEFAULT)).get(ConstantValues.DEFAULT_AMOUNT)).get(ConstantValues.ELE_TEXT))
                       );
                     }
                     if (paymentDefaultObj != null) {
                       if (String.isNotBlank(creditAccountObj.Account_Id__c)) {
                         accountIdDefaultMap.put(
-                          'Consumer' + creditAccountObj.Account_Id__c,
+                          ConstantValues.CONSUMER + creditAccountObj.Account_Id__c,
                           paymentDefaultObj
                         );
                       }
@@ -1676,57 +1731,59 @@ public class EquifaxIndividualResponseHelper {
                 } else if(
                   ((Map<String, Object>) eachCredit) != null &&
                   ((Object) ((Map<String, Object>) eachCredit)
-                  .get('defaults')) !=null && String.valueOf(
+                  .get(ConstantValues.DEFAULTS_LIST)) !=null && String.valueOf(
                     ((Map<String, Object>) eachCredit)
-                  ).contains('defaults={')
+                  ).contains(ConstantValues.DEFAULT_OBJECT)
                 ){
-                  Object eachDefault=((Object)((Map<String, Object>) ((Map<String, Object>) eachCredit).get('defaults')).get('default'));
+                  Object eachDefault=((Object)((Map<String, Object>) ((Map<String, Object>) eachCredit).get(ConstantValues.DEFAULTS_LIST)).get('default'));
                   Payment_Default__c paymentDefaultObj;
                   paymentDefaultObj = new Payment_Default__c();
                   if (
                     ((Map<String, Object>) eachDefault) != null &&
-                    ((Map<String, Object>)((Map<String, Object>) eachDefault).get('status')) != null &&
-                    ((String)((Map<String, Object>)((Map<String, Object>) eachDefault).get('status')).get('ele_text'))!=null
+                    ((Map<String, Object>)((Map<String, Object>) eachDefault).get(ConstantValues.status)) != null &&
+                    ((String)((Map<String, Object>)((Map<String, Object>) eachDefault).get(ConstantValues.status)).get(ConstantValues.ELE_TEXT))!=null
                   ) {
-                    paymentDefaultObj.Status__c = ((String)((Map<String, Object>)((Map<String, Object>) eachDefault).get('status')).get('ele_text'));
+                    paymentDefaultObj.Status__c = ((String)((Map<String, Object>)((Map<String, Object>) eachDefault).get(ConstantValues.status)).get(ConstantValues.ELE_TEXT));
                   }
                   if (
                     ((Map<String, Object>) eachDefault) != null &&
-                    ((Map<String, Object>)((Map<String, Object>) eachDefault).get('original-default')) != null &&
-                    ((String)((Map<String, Object>)((Map<String, Object>) eachDefault).get('original-default')).get('date-recorded'))!=null
+                    ((Map<String, Object>)((Map<String, Object>) eachDefault).get(ConstantValues.ORIGINAL_DEFAULT)) != null &&
+                    ((String)((Map<String, Object>)((Map<String, Object>) eachDefault).get(ConstantValues.ORIGINAL_DEFAULT)).get(ConstantValues.DATE_RECORDED))!=null
                   ) {
-                    String dateString = ((String)((Map<String, Object>)((Map<String, Object>) eachDefault).get('original-default')).get('date-recorded'));
-                    Date statusDate = Date.newInstance(
-                      Integer.valueOf(dateString.subString(0, 4)),
-                      Integer.valueOf(dateString.subString(5, 7)),
-                      Integer.valueOf(dateString.subString(8, 10))
-                    );
-                    paymentDefaultObj.Status_Date__c = statusDate;
+                    String dateString = ((String)((Map<String, Object>)((Map<String, Object>) eachDefault).get(ConstantValues.ORIGINAL_DEFAULT)).get(ConstantValues.DATE_RECORDED));
+                    if(dateString!=NULL && dateString.length()!=0 && dateString.length()>=10){
+                      Date statusDate = Date.newInstance(
+                        Integer.valueOf(dateString.subString(0, 4)),
+                        Integer.valueOf(dateString.subString(5, 7)),
+                        Integer.valueOf(dateString.subString(8, 10))
+                      );
+                      paymentDefaultObj.Status_Date__c = statusDate;
+                    }
                   }
                   if (
                     ((Map<String, Object>) eachDefault) != null &&
-                    ((Map<String, Object>)((Map<String, Object>) eachDefault).get('current-default')) != null &&
-                    ((Map<String, Object>)((Map<String, Object>)((Map<String, Object>) eachDefault).get('current-default')).get('default-amount'))!=null &&
-                    ((String)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>) eachDefault).get('current-default')).get('default-amount')).get('ele_text')) !=null
+                    ((Map<String, Object>)((Map<String, Object>) eachDefault).get(ConstantValues.CURRENT_DEFAULT)) != null &&
+                    ((Map<String, Object>)((Map<String, Object>)((Map<String, Object>) eachDefault).get(ConstantValues.CURRENT_DEFAULT)).get(ConstantValues.DEFAULT_AMOUNT))!=null &&
+                    ((String)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>) eachDefault).get(ConstantValues.CURRENT_DEFAULT)).get(ConstantValues.DEFAULT_AMOUNT)).get(ConstantValues.ELE_TEXT)) !=null
                   ) {
                     paymentDefaultObj.Current_Default_Amount__c = Decimal.valueOf(
-                      ((String)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>) eachDefault).get('current-default')).get('default-amount')).get('ele_text'))
+                      ((String)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>) eachDefault).get(ConstantValues.CURRENT_DEFAULT)).get(ConstantValues.DEFAULT_AMOUNT)).get(ConstantValues.ELE_TEXT))
                     );
                   }
                   if (
                     ((Map<String, Object>) eachDefault) != null &&
-                    ((Map<String, Object>)((Map<String, Object>) eachDefault).get('original-default')) != null &&
-                    ((Map<String, Object>)((Map<String, Object>)((Map<String, Object>) eachDefault).get('original-default')).get('default-amount'))!=null &&
-                    ((String)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>) eachDefault).get('original-default')).get('default-amount')).get('ele_text')) !=null
+                    ((Map<String, Object>)((Map<String, Object>) eachDefault).get(ConstantValues.ORIGINAL_DEFAULT)) != null &&
+                    ((Map<String, Object>)((Map<String, Object>)((Map<String, Object>) eachDefault).get(ConstantValues.ORIGINAL_DEFAULT)).get(ConstantValues.DEFAULT_AMOUNT))!=null &&
+                    ((String)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>) eachDefault).get(ConstantValues.ORIGINAL_DEFAULT)).get(ConstantValues.DEFAULT_AMOUNT)).get(ConstantValues.ELE_TEXT)) !=null
                   ) {
                     paymentDefaultObj.Original_Default_Amount__c = Decimal.valueOf(
-                      ((String)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>) eachDefault).get('original-default')).get('default-amount')).get('ele_text'))
+                      ((String)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>) eachDefault).get(ConstantValues.ORIGINAL_DEFAULT)).get(ConstantValues.DEFAULT_AMOUNT)).get(ConstantValues.ELE_TEXT))
                     );
                   }
                   if (paymentDefaultObj != null) {
                     if (String.isNotBlank(creditAccountObj.Account_Id__c)) {
                       accountIdDefaultMap.put(
-                        'Consumer' + creditAccountObj.Account_Id__c,
+                        ConstantValues.CONSUMER + creditAccountObj.Account_Id__c,
                         paymentDefaultObj
                       );
                     }
@@ -1736,116 +1793,117 @@ public class EquifaxIndividualResponseHelper {
             }else if(
               consumerCredit!=null &&
               ((Object) consumerCredit.get(
-                'accounts'
+                ConstantValues.ACCOUNTS
               ))!=null && 
               String.valueOf(
                 consumerCredit)
-              .contains('accounts={')
+              .contains(ConstantValues.ACCOUNTS_OBJECT)
             ){
-              Object eachCredit=((Object)((Map<String,Object>)consumerCredit.get('accounts')).get('account'));
+              Object eachCredit=((Object)((Map<String,Object>)consumerCredit.get(ConstantValues.ACCOUNTS)).get(ConstantValues.ACCOUNT));
               Credit_Account__c creditAccountObj;
               creditAccountObj = new Credit_Account__c();
               creditAccountObj.Party__c = partyObj.Id;
-              creditAccountObj.Credit_Account_Type__c = 'Consumer';
-              System.debug('1519-->'+eachCredit);
+              creditAccountObj.Credit_Account_Type__c = ConstantValues.CONSUMER;
               if(
               ((Map<String, Object>) eachCredit) != null &&
               ((String) ((Map<String, Object>) eachCredit)
-              .get('account-id')) !=null){
-                creditAccountObj.Account_Id__c = ((String) ((Map<String, Object>) eachCredit).get('account-id'));
+              .get(ConstantValues.ACCOUNT_ID_ACCOUNT)) !=null){
+                creditAccountObj.Account_Id__c = ((String) ((Map<String, Object>) eachCredit).get(ConstantValues.ACCOUNT_ID_ACCOUNT));
               }
               if(
                 ((Map<String, Object>) eachCredit) != null &&
                 ((Map<String, Object>) ((Map<String, Object>) eachCredit)
-                .get('account-type')) !=null &&
+                .get(ConstantValues.ACCOUNT_TYPE)) !=null &&
                 ((String)((Map<String, Object>) ((Map<String, Object>) eachCredit)
-                .get('account-type')).get('ele_text'))!=null
+                .get(ConstantValues.ACCOUNT_TYPE)).get(ConstantValues.ELE_TEXT))!=null
               ){
-                creditAccountObj.Account_Type__c = ((String) ((Map<String, Object>)((Map<String, Object>) eachCredit).get('account-type')).get('ele_text'));
+                creditAccountObj.Account_Type__c = ((String) ((Map<String, Object>)((Map<String, Object>) eachCredit).get(ConstantValues.ACCOUNT_TYPE)).get(ConstantValues.ELE_TEXT));
               }
               if (
                 ((Map<String, Object>) eachCredit) != null &&
                 ((Map<String, Object>) ((Map<String, Object>) eachCredit)
-                .get('original-credit-provider')) !=null &&
+                .get(ConstantValues.ORIGINAL_CREDIT_PROVIDER)) !=null &&
                 ((String)((Map<String, Object>) ((Map<String, Object>) eachCredit)
-                .get('original-credit-provider')).get('name'))!=null
+                .get(ConstantValues.ORIGINAL_CREDIT_PROVIDER)).get(ConstantValues.NAME_KEY))!=null
               ) {
-                creditAccountObj.Original_Credit_Provider__c = ((String)((Map<String, Object>) ((Map<String, Object>) eachCredit).get('original-credit-provider')).get('name'));
+                creditAccountObj.Original_Credit_Provider__c = ((String)((Map<String, Object>) ((Map<String, Object>) eachCredit).get(ConstantValues.ORIGINAL_CREDIT_PROVIDER)).get(ConstantValues.NAME_KEY));
               }
               if (
                 ((Map<String, Object>) eachCredit) != null &&
                 ((Map<String, Object>) ((Map<String, Object>) eachCredit)
-                .get('latest-credit-provider')) !=null &&
+                .get(ConstantValues.LATEST_CREDIT_PROVIDER)) !=null &&
                 ((String)((Map<String, Object>) ((Map<String, Object>) eachCredit)
-                .get('latest-credit-provider')).get('name'))!=null
+                .get(ConstantValues.LATEST_CREDIT_PROVIDER)).get(ConstantValues.NAME_KEY))!=null
               ) {
-                creditAccountObj.Latest_Credit_Provider__c = ((String)((Map<String, Object>) ((Map<String, Object>) eachCredit).get('latest-credit-provider')).get('name'));
+                creditAccountObj.Latest_Credit_Provider__c = ((String)((Map<String, Object>) ((Map<String, Object>) eachCredit).get(ConstantValues.LATEST_CREDIT_PROVIDER)).get(ConstantValues.NAME_KEY));
               }
               if (
                 ((Map<String, Object>) eachCredit) != null &&
                 ((Map<String, Object>) ((Map<String, Object>) eachCredit)
-                .get('relationship')) !=null &&
+                .get(ConstantValues.RELATIONSHIP)) !=null &&
                 ((String)((Map<String, Object>) ((Map<String, Object>) eachCredit)
-                .get('relationship')).get('ele_text'))!=null
+                .get(ConstantValues.RELATIONSHIP)).get(ConstantValues.ELE_TEXT))!=null
               ) {
-                creditAccountObj.Relationship__c = ((String)((Map<String, Object>) ((Map<String, Object>) eachCredit).get('relationship')).get('ele_text'));
+                creditAccountObj.Relationship__c = ((String)((Map<String, Object>) ((Map<String, Object>) eachCredit).get(ConstantValues.RELATIONSHIP)).get(ConstantValues.ELE_TEXT));
               }
               creditAccounts.add(creditAccountObj);
               if(
                 ((Map<String, Object>) eachCredit) != null &&
                   ((Object) ((Map<String, Object>) eachCredit)
-                  .get('defaults')) !=null && String.valueOf(
+                  .get(ConstantValues.DEFAULTS_LIST)) !=null && String.valueOf(
                     ((Map<String, Object>) eachCredit)
-                  ).contains('defaults=(')
+                  ).contains(ConstantValues.DEFAULT_ARRAY)
               ){
-                List<Object> refDefault=((List<Object>) ((Map<String, Object>) eachCredit).get('defaults'));
+                List<Object> refDefault=((List<Object>) ((Map<String, Object>) eachCredit).get(ConstantValues.DEFAULTS_LIST));
                 for(Object eachDefault:refDefault){
                   Payment_Default__c paymentDefaultObj;
                   paymentDefaultObj = new Payment_Default__c();
                   if (
                     ((Map<String, Object>) eachDefault) != null &&
-                    ((Map<String, Object>)((Map<String, Object>) eachDefault).get('status')) != null &&
-                    ((String)((Map<String, Object>)((Map<String, Object>) eachDefault).get('status')).get('ele_text'))!=null
+                    ((Map<String, Object>)((Map<String, Object>) eachDefault).get(ConstantValues.status)) != null &&
+                    ((String)((Map<String, Object>)((Map<String, Object>) eachDefault).get(ConstantValues.status)).get(ConstantValues.ELE_TEXT))!=null
                   ) {
-                    paymentDefaultObj.Status__c = ((String)((Map<String, Object>)((Map<String, Object>) eachDefault).get('status')).get('ele_text'));
+                    paymentDefaultObj.Status__c = ((String)((Map<String, Object>)((Map<String, Object>) eachDefault).get(ConstantValues.status)).get(ConstantValues.ELE_TEXT));
                   }
                   if (
                     ((Map<String, Object>) eachDefault) != null &&
-                    ((Map<String, Object>)((Map<String, Object>) eachDefault).get('original-default')) != null &&
-                    ((String)((Map<String, Object>)((Map<String, Object>) eachDefault).get('original-default')).get('date-recorded'))!=null
+                    ((Map<String, Object>)((Map<String, Object>) eachDefault).get(ConstantValues.ORIGINAL_DEFAULT)) != null &&
+                    ((String)((Map<String, Object>)((Map<String, Object>) eachDefault).get(ConstantValues.ORIGINAL_DEFAULT)).get(ConstantValues.DATE_RECORDED))!=null
                   ) {
-                    String dateString = ((String)((Map<String, Object>)((Map<String, Object>) eachDefault).get('original-default')).get('date-recorded'));
-                    Date statusDate = Date.newInstance(
-                      Integer.valueOf(dateString.subString(0, 4)),
-                      Integer.valueOf(dateString.subString(5, 7)),
-                      Integer.valueOf(dateString.subString(8, 10))
-                    );
-                    paymentDefaultObj.Status_Date__c = statusDate;
+                    String dateString = ((String)((Map<String, Object>)((Map<String, Object>) eachDefault).get(ConstantValues.ORIGINAL_DEFAULT)).get(ConstantValues.DATE_RECORDED));
+                    if(dateString!=NULL && dateString.length()!=0 && dateString.length()>=10){
+                      Date statusDate = Date.newInstance(
+                        Integer.valueOf(dateString.subString(0, 4)),
+                        Integer.valueOf(dateString.subString(5, 7)),
+                        Integer.valueOf(dateString.subString(8, 10))
+                      );
+                      paymentDefaultObj.Status_Date__c = statusDate;
+                    }
                   }
                   if (
                     ((Map<String, Object>) eachDefault) != null &&
-                    ((Map<String, Object>)((Map<String, Object>) eachDefault).get('current-default')) != null &&
-                    ((Map<String, Object>)((Map<String, Object>)((Map<String, Object>) eachDefault).get('current-default')).get('default-amount'))!=null &&
-                    ((String)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>) eachDefault).get('current-default')).get('default-amount')).get('ele_text')) !=null
+                    ((Map<String, Object>)((Map<String, Object>) eachDefault).get(ConstantValues.CURRENT_DEFAULT)) != null &&
+                    ((Map<String, Object>)((Map<String, Object>)((Map<String, Object>) eachDefault).get(ConstantValues.CURRENT_DEFAULT)).get(ConstantValues.DEFAULT_AMOUNT))!=null &&
+                    ((String)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>) eachDefault).get(ConstantValues.CURRENT_DEFAULT)).get(ConstantValues.DEFAULT_AMOUNT)).get(ConstantValues.ELE_TEXT)) !=null
                   ) {
                     paymentDefaultObj.Current_Default_Amount__c = Decimal.valueOf(
-                      ((String)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>) eachDefault).get('current-default')).get('default-amount')).get('ele_text'))
+                      ((String)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>) eachDefault).get(ConstantValues.CURRENT_DEFAULT)).get(ConstantValues.DEFAULT_AMOUNT)).get(ConstantValues.ELE_TEXT))
                     );
                   }
                   if (
                     ((Map<String, Object>) eachDefault) != null &&
-                    ((Map<String, Object>)((Map<String, Object>) eachDefault).get('original-default')) != null &&
-                    ((Map<String, Object>)((Map<String, Object>)((Map<String, Object>) eachDefault).get('original-default')).get('default-amount'))!=null &&
-                    ((String)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>) eachDefault).get('original-default')).get('default-amount')).get('ele_text')) !=null
+                    ((Map<String, Object>)((Map<String, Object>) eachDefault).get(ConstantValues.ORIGINAL_DEFAULT)) != null &&
+                    ((Map<String, Object>)((Map<String, Object>)((Map<String, Object>) eachDefault).get(ConstantValues.ORIGINAL_DEFAULT)).get(ConstantValues.DEFAULT_AMOUNT))!=null &&
+                    ((String)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>) eachDefault).get(ConstantValues.ORIGINAL_DEFAULT)).get(ConstantValues.DEFAULT_AMOUNT)).get(ConstantValues.ELE_TEXT)) !=null
                   ) {
                     paymentDefaultObj.Original_Default_Amount__c = Decimal.valueOf(
-                      ((String)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>) eachDefault).get('original-default')).get('default-amount')).get('ele_text'))
+                      ((String)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>) eachDefault).get(ConstantValues.ORIGINAL_DEFAULT)).get(ConstantValues.DEFAULT_AMOUNT)).get(ConstantValues.ELE_TEXT))
                     );
                   }
                   if (paymentDefaultObj != null) {
                     if (String.isNotBlank(creditAccountObj.Account_Id__c)) {
                       accountIdDefaultMap.put(
-                        'Consumer' + creditAccountObj.Account_Id__c,
+                        ConstantValues.CONSUMER + creditAccountObj.Account_Id__c,
                         paymentDefaultObj
                       );
                     }
@@ -1854,64 +1912,66 @@ public class EquifaxIndividualResponseHelper {
               } else if(
                 ((Map<String, Object>) eachCredit) != null &&
                   ((Object) ((Map<String, Object>) eachCredit)
-                  .get('defaults')) !=null && String.valueOf(
+                  .get(ConstantValues.DEFAULTS_LIST)) !=null && String.valueOf(
                     ((Map<String, Object>) eachCredit)
-                  ).contains('defaults={')
+                  ).contains(ConstantValues.DEFAULT_OBJECT)
               ){
-                Object eachDefault=((Object)((Map<String, Object>) ((Map<String, Object>) eachCredit).get('defaults')).get('default'));
+                Object eachDefault=((Object)((Map<String, Object>) ((Map<String, Object>) eachCredit).get(ConstantValues.DEFAULTS_LIST)).get('default'));
                 Payment_Default__c paymentDefaultObj;
                 paymentDefaultObj = new Payment_Default__c();
                 if (
                   ((Map<String, Object>) eachDefault) != null &&
-                  ((Map<String, Object>)((Map<String, Object>) eachDefault).get('status')) != null &&
-                  ((String)((Map<String, Object>)((Map<String, Object>) eachDefault).get('status')).get('ele_text'))!=null
+                  ((Map<String, Object>)((Map<String, Object>) eachDefault).get(ConstantValues.status)) != null &&
+                  ((String)((Map<String, Object>)((Map<String, Object>) eachDefault).get(ConstantValues.status)).get(ConstantValues.ELE_TEXT))!=null
                 ) {
-                  paymentDefaultObj.Status__c = ((String)((Map<String, Object>)((Map<String, Object>) eachDefault).get('status')).get('ele_text'));
+                  paymentDefaultObj.Status__c = ((String)((Map<String, Object>)((Map<String, Object>) eachDefault).get(ConstantValues.status)).get(ConstantValues.ELE_TEXT));
                 }
                 if (
                   ((Map<String, Object>) eachDefault) != null &&
-                  ((Map<String, Object>)((Map<String, Object>) eachDefault).get('original-default')) != null &&
-                  ((String)((Map<String, Object>)((Map<String, Object>) eachDefault).get('original-default')).get('date-recorded'))!=null
+                  ((Map<String, Object>)((Map<String, Object>) eachDefault).get(ConstantValues.ORIGINAL_DEFAULT)) != null &&
+                  ((String)((Map<String, Object>)((Map<String, Object>) eachDefault).get(ConstantValues.ORIGINAL_DEFAULT)).get(ConstantValues.DATE_RECORDED))!=null
                 ) {
-                  String dateString = ((String)((Map<String, Object>)((Map<String, Object>) eachDefault).get('original-default')).get('date-recorded'));
-                  Date statusDate = Date.newInstance(
-                    Integer.valueOf(dateString.subString(0, 4)),
-                    Integer.valueOf(dateString.subString(5, 7)),
-                    Integer.valueOf(dateString.subString(8, 10))
-                  );
-                  paymentDefaultObj.Status_Date__c = statusDate;
+                  String dateString = ((String)((Map<String, Object>)((Map<String, Object>) eachDefault).get(ConstantValues.ORIGINAL_DEFAULT)).get(ConstantValues.DATE_RECORDED));
+                  if(dateString!=NULL && dateString.length()!=0 && dateString.length()>=10){
+                    Date statusDate = Date.newInstance(
+                      Integer.valueOf(dateString.subString(0, 4)),
+                      Integer.valueOf(dateString.subString(5, 7)),
+                      Integer.valueOf(dateString.subString(8, 10))
+                    );
+                    paymentDefaultObj.Status_Date__c = statusDate;
+                  }
                 }
                 if (
                   ((Map<String, Object>) eachDefault) != null &&
-                  ((Map<String, Object>)((Map<String, Object>) eachDefault).get('current-default')) != null &&
-                  ((Map<String, Object>)((Map<String, Object>)((Map<String, Object>) eachDefault).get('current-default')).get('default-amount'))!=null &&
-                  ((String)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>) eachDefault).get('current-default')).get('default-amount')).get('ele_text')) !=null
+                  ((Map<String, Object>)((Map<String, Object>) eachDefault).get(ConstantValues.CURRENT_DEFAULT)) != null &&
+                  ((Map<String, Object>)((Map<String, Object>)((Map<String, Object>) eachDefault).get(ConstantValues.CURRENT_DEFAULT)).get(ConstantValues.DEFAULT_AMOUNT))!=null &&
+                  ((String)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>) eachDefault).get(ConstantValues.CURRENT_DEFAULT)).get(ConstantValues.DEFAULT_AMOUNT)).get(ConstantValues.ELE_TEXT)) !=null
                 ) {
                   paymentDefaultObj.Current_Default_Amount__c = Decimal.valueOf(
-                    ((String)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>) eachDefault).get('current-default')).get('default-amount')).get('ele_text'))
+                    ((String)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>) eachDefault).get(ConstantValues.CURRENT_DEFAULT)).get(ConstantValues.DEFAULT_AMOUNT)).get(ConstantValues.ELE_TEXT))
                   );
                 }
                 if (
                   ((Map<String, Object>) eachDefault) != null &&
-                  ((Map<String, Object>)((Map<String, Object>) eachDefault).get('original-default')) != null &&
-                  ((Map<String, Object>)((Map<String, Object>)((Map<String, Object>) eachDefault).get('original-default')).get('default-amount'))!=null &&
-                  ((String)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>) eachDefault).get('original-default')).get('default-amount')).get('ele_text')) !=null
+                  ((Map<String, Object>)((Map<String, Object>) eachDefault).get(ConstantValues.ORIGINAL_DEFAULT)) != null &&
+                  ((Map<String, Object>)((Map<String, Object>)((Map<String, Object>) eachDefault).get(ConstantValues.ORIGINAL_DEFAULT)).get(ConstantValues.DEFAULT_AMOUNT))!=null &&
+                  ((String)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>) eachDefault).get(ConstantValues.ORIGINAL_DEFAULT)).get(ConstantValues.DEFAULT_AMOUNT)).get(ConstantValues.ELE_TEXT)) !=null
                 ) {
                   paymentDefaultObj.Original_Default_Amount__c = Decimal.valueOf(
-                    ((String)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>) eachDefault).get('original-default')).get('default-amount')).get('ele_text'))
+                    ((String)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>) eachDefault).get(ConstantValues.ORIGINAL_DEFAULT)).get(ConstantValues.DEFAULT_AMOUNT)).get(ConstantValues.ELE_TEXT))
                   );
                 }
                 if (paymentDefaultObj != null) {
                   if (String.isNotBlank(creditAccountObj.Account_Id__c)) {
                     accountIdDefaultMap.put(
-                      'Consumer' + creditAccountObj.Account_Id__c,
+                      ConstantValues.CONSUMER + creditAccountObj.Account_Id__c,
                       paymentDefaultObj
                     );
                   }
                 }
               }
             }else{
-              returnValue+='\nNo Consumer Credit Accounts found';
+              returnValue+=ConstantValues.NO_CONSUMER_CREDIT_ACCOUNTS_FOUND;
             }
           }catch(Exception exe){
             GenericUtility.insertLog(
@@ -1942,21 +2002,21 @@ public class EquifaxIndividualResponseHelper {
           try {
             if(
               publicRecordOrConsumerCreditInformation!=null &&
-              ((Object)publicRecordOrConsumerCreditInformation.get('court-actions')) !=null &&
+              ((Object)publicRecordOrConsumerCreditInformation.get(ConstantValues.COURT_ACTIONS)) !=null &&
               String.valueOf(
               (publicRecordOrConsumerCreditInformation)
-              ).contains('court-actions=(')
+              ).contains(ConstantValues.COURT_ACTIONS_ARRAY)
             ){
-              List<Object> courtActionList=((List<Object>)publicRecordOrConsumerCreditInformation.get('court-actions'));
+              List<Object> courtActionList=((List<Object>)publicRecordOrConsumerCreditInformation.get(ConstantValues.COURT_ACTIONS));
               for(Object eachCourtAction:courtActionList){
                 Credit_Account__c creditAccountObj;
                 String courtActionType;
-                if (String.isBlank(((String)((Map<String,Object>)eachCourtAction).get('type')))) {
+                if (String.isBlank(((String)((Map<String,Object>)eachCourtAction).get(ConstantValues.TYPE)))) {
                   continue;
-                } else if (((String)((Map<String,Object>)eachCourtAction).get('type')) == 'default-judgement') {
-                  courtActionType = 'Default Judgements';
+                } else if (((String)((Map<String,Object>)eachCourtAction).get(ConstantValues.TYPE)) == ConstantValues.DEFAULT_JUDGEMENT) {
+                  courtActionType = ConstantValues.DEFAULT_JUDGEMENTS;
                 } else {
-                  courtActionType = 'Other Court Action';
+                  courtActionType = ConstantValues.OTHER_COURT_ACTIONS;
                 }
                 creditAccountObj = new Credit_Account__c();
                 creditAccountObj.Party__c = partyObj.Id;
@@ -1964,60 +2024,63 @@ public class EquifaxIndividualResponseHelper {
                 if (
                     ((Map<String, Object>) eachCourtAction) != null &&
                     ((String) ((Map<String, Object>) eachCourtAction)
-                      .get('creditor')) != null
+                      .get(ConstantValues.CREDITOR)) != null
                 ){
-                  creditAccountObj.Relationship__c =((String) ((Map<String, Object>) eachCourtAction).get('creditor'));
+                  creditAccountObj.Relationship__c =((String) ((Map<String, Object>) eachCourtAction).get(ConstantValues.CREDITOR));
                 }
                 if (
                   ((Map<String, Object>) eachCourtAction) != null &&
                   ((String) ((Map<String, Object>) eachCourtAction)
-                  .get('action-date')) != null
+                  .get(ConstantValues.ACTION_DATE)) != null
                 ) {
-                  String dateString =((String) ((Map<String, Object>) eachCourtAction).get('action-date'));
-                  Date statusDate = Date.newInstance(
-                    Integer.valueOf(dateString.subString(0, 4)),
-                    Integer.valueOf(dateString.subString(5, 7)),
-                    Integer.valueOf(dateString.subString(8, 10))
-                  );
-                  creditAccountObj.Default_Date__c = statusDate;
+                  String dateString =((String) ((Map<String, Object>) eachCourtAction).get(ConstantValues.ACTION_DATE));
+                  if(dateString!=NULL && dateString.length()!=0 && dateString.length()>=10){
+                    Date statusDate = Date.newInstance(
+                      Integer.valueOf(dateString.subString(0, 4)),
+                      Integer.valueOf(dateString.subString(5, 7)),
+                      Integer.valueOf(dateString.subString(8, 10))
+                    );
+                    creditAccountObj.Default_Date__c = statusDate;
+                  }
                 }
                 if (
                   ((Map<String, Object>) eachCourtAction) != null &&
                   ((Map<String, Object>) ((Map<String, Object>) eachCourtAction)
-                  .get('court-action-amount'))!=null &&
+                  .get(ConstantValues.COURT_ACTION_AMOUNT))!=null &&
                   ((String)((Map<String, Object>) ((Map<String, Object>) eachCourtAction)
-                  .get('court-action-amount')).get('ele_text')) != null
+                  .get(ConstantValues.COURT_ACTION_AMOUNT)).get(ConstantValues.ELE_TEXT)) != null
                 ) {
                   creditAccountObj.Current_Default_Amount__c = Decimal.valueOf(
-                    ((String)((Map<String, Object>) ((Map<String, Object>) eachCourtAction).get('court-action-amount')).get('ele_text'))
+                    ((String)((Map<String, Object>) ((Map<String, Object>) eachCourtAction).get(ConstantValues.COURT_ACTION_AMOUNT))
+                        .get(ConstantValues.ELE_TEXT))
                   );
                 }
                 if (
                   ((Map<String, Object>) eachCourtAction) != null &&
                   ((String) ((Map<String, Object>) eachCourtAction)
-                  .get('plaint-number')) != null
+                  .get(ConstantValues.PLAINT_NUMBER)) != null
                 ) {
-                  creditAccountObj.Account_Id__c = ((String) ((Map<String, Object>) eachCourtAction).get('plaint-number'));
+                  creditAccountObj.Account_Id__c = ((String) ((Map<String, Object>) eachCourtAction).get(ConstantValues.PLAINT_NUMBER));
                 }
                 if (
                   ((Map<String, Object>) eachCourtAction) != null &&
                   ((Map<String, Object>) ((Map<String, Object>) eachCourtAction)
-                  .get('court-action-status')) != null &&
+                  .get(ConstantValues.COURT_ACTION_STATUS)) != null &&
                   ((String)((Map<String, Object>) ((Map<String, Object>) eachCourtAction)
-                  .get('court-action-status')).get('ele_text')) != null
+                  .get(ConstantValues.COURT_ACTION_STATUS)).get(ConstantValues.ELE_TEXT)) != null
                 ) {
                   creditAccountObj.Status__c = ((String)((Map<String, Object>) ((Map<String, Object>) eachCourtAction)
-                  .get('court-action-status')).get('ele_text'));
+                  .get(ConstantValues.COURT_ACTION_STATUS)).get(ConstantValues.ELE_TEXT));
                 }
                 if (
                   ((Map<String, Object>) eachCourtAction) != null &&
                   ((Map<String, Object>) ((Map<String, Object>) eachCourtAction)
-                  .get('court-action-status')) != null &&
+                  .get(ConstantValues.COURT_ACTION_STATUS)) != null &&
                   ((String)((Map<String, Object>) ((Map<String, Object>) eachCourtAction)
-                  .get('court-action-status')).get('date')) != null
+                  .get(ConstantValues.COURT_ACTION_STATUS)).get(ConstantValues.DATE_COURT)) != null
                   ) {
                   String dateString = ((String)((Map<String, Object>) ((Map<String, Object>) eachCourtAction)
-                  .get('court-action-status')).get('date'));
+                  .get(ConstantValues.COURT_ACTION_STATUS)).get(ConstantValues.DATE_COURT));
                   Date statusDate = Date.newInstance(
                     Integer.valueOf(dateString.subString(0, 4)),
                     Integer.valueOf(dateString.subString(5, 7)),
@@ -2031,18 +2094,18 @@ public class EquifaxIndividualResponseHelper {
               }
             }else if(
               publicRecordOrConsumerCreditInformation!=null &&
-              ((Object)publicRecordOrConsumerCreditInformation.get('court-actions')) !=null &&
+              ((Object)publicRecordOrConsumerCreditInformation.get(ConstantValues.COURT_ACTIONS)) !=null &&
               String.valueOf(
               (publicRecordOrConsumerCreditInformation)
-              ).contains('court-actions={')
+              ).contains(ConstantValues.COURT_ACTIONS_OBJECT)
             ){
-              Object eachCourtAction=((Object)((Map<String,Object>)publicRecordOrConsumerCreditInformation.get('court-actions')).get('court-action'));
+              Object eachCourtAction=((Object)((Map<String,Object>)publicRecordOrConsumerCreditInformation.get(ConstantValues.COURT_ACTIONS)).get('court-action'));
               Credit_Account__c creditAccountObj;
               String courtActionType;
-              if (((String)((Map<String,Object>)eachCourtAction).get('type')) == 'default-judgement') {
-                courtActionType = 'Default Judgements';
+              if (((String)((Map<String,Object>)eachCourtAction).get(ConstantValues.TYPE)) == ConstantValues.DEFAULT_JUDGEMENT) {
+                courtActionType = ConstantValues.DEFAULT_JUDGEMENTS;
               } else {
-                courtActionType = 'Other Court Action';
+                courtActionType = ConstantValues.OTHER_COURT_ACTIONS;
               }
               creditAccountObj = new Credit_Account__c();
               creditAccountObj.Party__c = partyObj.Id;
@@ -2050,73 +2113,77 @@ public class EquifaxIndividualResponseHelper {
               if (
                 ((Map<String, Object>) eachCourtAction) != null &&
                 ((String) ((Map<String, Object>) eachCourtAction)
-                  .get('creditor')) != null
+                  .get(ConstantValues.CREDITOR)) != null
               ){
-                creditAccountObj.Relationship__c =((String) ((Map<String, Object>) eachCourtAction).get('creditor'));
+                creditAccountObj.Relationship__c =((String) ((Map<String, Object>) eachCourtAction).get(ConstantValues.CREDITOR));
               }
               if (
                 ((Map<String, Object>) eachCourtAction) != null &&
                 ((String) ((Map<String, Object>) eachCourtAction)
-                .get('action-date')) != null
+                .get(ConstantValues.ACTION_DATE)) != null
               ) {
-                String dateString =((String) ((Map<String, Object>) eachCourtAction).get('action-date'));
-                Date statusDate = Date.newInstance(
-                  Integer.valueOf(dateString.subString(0, 4)),
-                  Integer.valueOf(dateString.subString(5, 7)),
-                  Integer.valueOf(dateString.subString(8, 10))
-                );
-                creditAccountObj.Default_Date__c = statusDate;
+                String dateString =((String) ((Map<String, Object>) eachCourtAction).get(ConstantValues.ACTION_DATE));
+                if(dateString!=NULL && dateString.length()!=0 && dateString.length()>=10){
+                  Date statusDate = Date.newInstance(
+                    Integer.valueOf(dateString.subString(0, 4)),
+                    Integer.valueOf(dateString.subString(5, 7)),
+                    Integer.valueOf(dateString.subString(8, 10))
+                  );
+                  creditAccountObj.Default_Date__c = statusDate;
+                }
               }
               if (
                 ((Map<String, Object>) eachCourtAction) != null &&
                 ((Map<String, Object>) ((Map<String, Object>) eachCourtAction)
-                .get('court-action-amount'))!=null &&
+                .get(ConstantValues.COURT_ACTION_AMOUNT))!=null &&
                 ((String)((Map<String, Object>) ((Map<String, Object>) eachCourtAction)
-                .get('court-action-amount')).get('ele_text')) != null
+                .get(ConstantValues.COURT_ACTION_AMOUNT)).get(ConstantValues.ELE_TEXT)) != null
               ) {
                 creditAccountObj.Current_Default_Amount__c = Decimal.valueOf(
-                  ((String)((Map<String, Object>) ((Map<String, Object>) eachCourtAction).get('court-action-amount')).get('ele_text'))
+                  ((String)((Map<String, Object>) ((Map<String, Object>) eachCourtAction).get(ConstantValues.COURT_ACTION_AMOUNT)).get(ConstantValues.ELE_TEXT))
                 );
               }
               if (
                 ((Map<String, Object>) eachCourtAction) != null &&
                 ((String) ((Map<String, Object>) eachCourtAction)
-                .get('plaint-number')) != null
+                .get(ConstantValues.PLAINT_NUMBER)) != null
               ) {
-                creditAccountObj.Account_Id__c = ((String) ((Map<String, Object>) eachCourtAction).get('plaint-number'));
+                creditAccountObj.Account_Id__c = ((String) ((Map<String, Object>) eachCourtAction).get(ConstantValues.PLAINT_NUMBER));
               }
               if (
                 ((Map<String, Object>) eachCourtAction) != null &&
                 ((Map<String, Object>) ((Map<String, Object>) eachCourtAction)
-                .get('court-action-status')) != null &&
+                .get(ConstantValues.COURT_ACTION_STATUS)) != null &&
                 ((String)((Map<String, Object>) ((Map<String, Object>) eachCourtAction)
-                .get('court-action-status')).get('ele_text')) != null
+                .get(ConstantValues.COURT_ACTION_STATUS)).get(ConstantValues.ELE_TEXT)) != null
               ) {
                 creditAccountObj.Status__c = ((String)((Map<String, Object>) ((Map<String, Object>) eachCourtAction)
-                .get('court-action-status')).get('ele_text'));
+                .get(ConstantValues.COURT_ACTION_STATUS)).get(ConstantValues.ELE_TEXT));
               }
               if (
                 ((Map<String, Object>) eachCourtAction) != null &&
                 ((Map<String, Object>) ((Map<String, Object>) eachCourtAction)
-                .get('court-action-status')) != null &&
+                .get(ConstantValues.COURT_ACTION_STATUS)) != null &&
                 ((String)((Map<String, Object>) ((Map<String, Object>) eachCourtAction)
-                .get('court-action-status')).get('date')) != null
+                .get(ConstantValues.COURT_ACTION_STATUS)).get(ConstantValues.DATE_COURT)) != null
                 ) {
                 String dateString = ((String)((Map<String, Object>) ((Map<String, Object>) eachCourtAction)
-                .get('court-action-status')).get('date'));
-                Date statusDate = Date.newInstance(
-                  Integer.valueOf(dateString.subString(0, 4)),
-                  Integer.valueOf(dateString.subString(5, 7)),
-                  Integer.valueOf(dateString.subString(8, 10))
-                );
-                creditAccountObj.Status_Date__c = statusDate;
+                .get(ConstantValues.COURT_ACTION_STATUS)).get(ConstantValues.DATE_COURT));
+                if(dateString!=NULL && dateString.length()!=0 && dateString.length()>=10){
+                  Date statusDate = Date.newInstance(
+                    Integer.valueOf(dateString.subString(0, 4)),
+                    Integer.valueOf(dateString.subString(5, 7)),
+                    Integer.valueOf(dateString.subString(8, 10))
+                  );
+                  creditAccountObj.Status_Date__c = statusDate;
+                }
               }
               if (creditAccountObj != null) {
                 creditAccounts.add(creditAccountObj);
               }
               
             }else{
-              returnValue+='\n' + 'No Default Judgements or Court Actions found';
+              returnValue+=ConstantValues.NO_DEFAULT_JUDGEMENT_COURT_ACTION;
             }
           }catch(Exception exe){
             GenericUtility.insertLog(
@@ -2127,68 +2194,94 @@ public class EquifaxIndividualResponseHelper {
           try{
             if(
               publicRecordOrConsumerCreditInformation!=null &&
-              ((Object)publicRecordOrConsumerCreditInformation.get('personal-insolvencies')) !=null &&
+              ((Object)publicRecordOrConsumerCreditInformation.get(ConstantValues.PERSONAL_INSOLVENCIES_LIST)) !=null &&
               String.valueOf(
               (publicRecordOrConsumerCreditInformation)
-              ).contains('personal-insolvencies=(')
+              ).contains(ConstantValues.PERSONAL_INSOLVENCIES_ARRAY)
             ){
-              List<Object> personalInsolvencyList=((List<Object>)publicRecordOrConsumerCreditInformation.get('personal-insolvencies'));
+              List<Object> personalInsolvencyList=((List<Object>)publicRecordOrConsumerCreditInformation.get(ConstantValues.PERSONAL_INSOLVENCIES_LIST));
               for(Object eachPersonalInsolvency:personalInsolvencyList){
                 Credit_Account__c creditAccountObj;
                 creditAccountObj = new Credit_Account__c();
                 creditAccountObj.Party__c = partyObj.Id;
-                creditAccountObj.Credit_Account_Type__c = 'Personal Insolvencies';
+                creditAccountObj.Credit_Account_Type__c = ConstantValues.PERSONAL_INSOLVENCIES;
                 if (
                   ((Map<String,Object>)eachPersonalInsolvency)!=null &&
-                  ((Map<String,Object>)((Map<String,Object>)eachPersonalInsolvency).get('type'))!=null &&
-                  ((String)((Map<String,Object>)((Map<String,Object>)eachPersonalInsolvency).get('type')).get('ele_text'))!=null
+                  ((Map<String,Object>)((Map<String,Object>)eachPersonalInsolvency).get(ConstantValues.TYPE))!=null &&
+                  ((String)((Map<String,Object>)((Map<String,Object>)eachPersonalInsolvency).get(ConstantValues.TYPE))
+                  .get(ConstantValues.ELE_TEXT))!=null
                 ) {
-                  creditAccountObj.Account_Type__c = ((String)((Map<String,Object>)((Map<String,Object>)eachPersonalInsolvency).get('type')).get('ele_text'));
+                  creditAccountObj.Account_Type__c = ((String)((Map<String,Object>)((Map<String,Object>)eachPersonalInsolvency)
+                  .get(ConstantValues.TYPE)).get(ConstantValues.ELE_TEXT));
                 }
                 if (
                   ((Map<String,Object>)eachPersonalInsolvency)!=null &&
-                  ((String)((Map<String,Object>)eachPersonalInsolvency).get('text'))!=null
+                  ((String)((Map<String,Object>)eachPersonalInsolvency).get(ConstantValues.TEXT))!=null
                 ) {
-                  creditAccountObj.Relationship__c = ((String)((Map<String,Object>)eachPersonalInsolvency).get('text'));
+                  creditAccountObj.Relationship__c = ((String)((Map<String,Object>)eachPersonalInsolvency).get(ConstantValues.TEXT));
                 }
                 if (
                   ((Map<String,Object>)eachPersonalInsolvency)!=null &&
-                  ((Map<String,Object>)((Map<String,Object>)eachPersonalInsolvency).get('status'))!=null &&
-                  ((String)((Map<String,Object>)((Map<String,Object>)eachPersonalInsolvency).get('status')).get('ele_text'))!=null
+                  ((Map<String,Object>)((Map<String,Object>)eachPersonalInsolvency).get(ConstantValues.status))!=null &&
+                  ((String)((Map<String,Object>)((Map<String,Object>)eachPersonalInsolvency).get(ConstantValues.status))
+                  .get(ConstantValues.ELE_TEXT))!=null
                 ) {
-                  creditAccountObj.Status__c = ((String)((Map<String,Object>)((Map<String,Object>)eachPersonalInsolvency).get('status')).get('ele_text'));
+                  creditAccountObj.Status__c = ((String)((Map<String,Object>)((Map<String,Object>)eachPersonalInsolvency)
+                  .get(ConstantValues.status)).get(ConstantValues.ELE_TEXT));
                 }
                 if (
                   ((Map<String,Object>)eachPersonalInsolvency)!=null &&
-                  ((Map<String,Object>)((Map<String,Object>)eachPersonalInsolvency).get('status'))!=null &&
-                  ((String)((Map<String,Object>)((Map<String,Object>)eachPersonalInsolvency).get('status')).get('date'))!=null
+                  ((Map<String,Object>)((Map<String,Object>)eachPersonalInsolvency).get(ConstantValues.status))!=null &&
+                  ((String)((Map<String,Object>)((Map<String,Object>)eachPersonalInsolvency).get(ConstantValues.status))
+                  .get(ConstantValues.DATE_COURT))!=null
                 ) {
-                  String dateString =  ((String)((Map<String,Object>)((Map<String,Object>)eachPersonalInsolvency).get('status')).get('date'));
-                  Date statusDate = Date.newInstance(
-                    Integer.valueOf(dateString.subString(0, 4)),
-                    Integer.valueOf(dateString.subString(5, 7)),
-                    Integer.valueOf(dateString.subString(8, 10))
-                  );
-                  creditAccountObj.Status_Date__c = statusDate;
+                  String dateString =  ((String)((Map<String,Object>)((Map<String,Object>)eachPersonalInsolvency)
+                      .get(ConstantValues.status)).get(ConstantValues.DATE_COURT));
+                  if(dateString!=NULL && dateString.length()!=0 && dateString.length()>=10){
+                    Date statusDate = Date.newInstance(
+                      Integer.valueOf(dateString.subString(0, 4)),
+                      Integer.valueOf(dateString.subString(5, 7)),
+                      Integer.valueOf(dateString.subString(8, 10))
+                    );
+                    creditAccountObj.Status_Date__c = statusDate;
+                  }
                 }
                 if (
                   ((Map<String,Object>)eachPersonalInsolvency)!=null &&
-                  ((String)((Map<String,Object>)eachPersonalInsolvency).get('date-declared'))!=null
+                  ((String)((Map<String,Object>)eachPersonalInsolvency).get('status-date'))!=null
                 ) {
-                  String dateString = ((String)((Map<String,Object>)eachPersonalInsolvency).get('date-declared'));
-                  Date statusDate = Date.newInstance(
-                    Integer.valueOf(dateString.subString(0, 4)),
-                    Integer.valueOf(dateString.subString(5, 7)),
-                    Integer.valueOf(dateString.subString(8, 10))
-                  );
-                  creditAccountObj.Default_Date__c = statusDate;
+                  String dateString =  ((String)((Map<String,Object>)eachPersonalInsolvency).get('status-date'));
+                  if(dateString!=NULL && dateString.length()!=0 && dateString.length()>=10){
+                    Date statusDate = Date.newInstance(
+                      Integer.valueOf(dateString.subString(0, 4)),
+                      Integer.valueOf(dateString.subString(5, 7)),
+                      Integer.valueOf(dateString.subString(8, 10))
+                    );
+                    creditAccountObj.Status_Date__c = statusDate;
+                  }
                 }
                 if (
                   ((Map<String,Object>)eachPersonalInsolvency)!=null &&
-                  ((Map<String,Object>)((Map<String,Object>)eachPersonalInsolvency).get('administration-id'))!=null &&
-                  ((String)((Map<String,Object>)((Map<String,Object>)eachPersonalInsolvency).get('administration-id')).get('number'))!=null
+                  ((String)((Map<String,Object>)eachPersonalInsolvency).get(ConstantValues.DATE_DECLARED))!=null
                 ) {
-                  creditAccountObj.Account_Id__c = ((String)((Map<String,Object>)((Map<String,Object>)eachPersonalInsolvency).get('administration-id')).get('number'));
+                  String dateString = ((String)((Map<String,Object>)eachPersonalInsolvency).get(ConstantValues.DATE_DECLARED));
+                  if(dateString!=NULL && dateString.length()!=0 && dateString.length()>=10){
+                    Date statusDate = Date.newInstance(
+                      Integer.valueOf(dateString.subString(0, 4)),
+                      Integer.valueOf(dateString.subString(5, 7)),
+                      Integer.valueOf(dateString.subString(8, 10))
+                    );
+                    creditAccountObj.Default_Date__c = statusDate;
+                  }
+                }
+                if (
+                  ((Map<String,Object>)eachPersonalInsolvency)!=null &&
+                  ((Map<String,Object>)((Map<String,Object>)eachPersonalInsolvency).get(ConstantValues.ADMINISTRATION_ID))!=null &&
+                  ((String)((Map<String,Object>)((Map<String,Object>)eachPersonalInsolvency).get(ConstantValues.ADMINISTRATION_ID))
+                  .get(ConstantValues.NUMBER_PERSONAL))!=null
+                ) {
+                  creditAccountObj.Account_Id__c = ((String)((Map<String,Object>)((Map<String,Object>)eachPersonalInsolvency)
+                      .get(ConstantValues.ADMINISTRATION_ID)).get(ConstantValues.NUMBER_PERSONAL));
                 }
                 if (creditAccountObj != null) {
                   creditAccounts.add(creditAccountObj);
@@ -2196,74 +2289,84 @@ public class EquifaxIndividualResponseHelper {
               }
             }else if(
               publicRecordOrConsumerCreditInformation!=null &&
-              ((Object)publicRecordOrConsumerCreditInformation.get('personal-insolvencies')) !=null &&
+              ((Object)publicRecordOrConsumerCreditInformation.get(ConstantValues.PERSONAL_INSOLVENCIES_LIST)) !=null &&
               String.valueOf(
               (publicRecordOrConsumerCreditInformation)
-              ).contains('personal-insolvencies={')
+              ).contains(ConstantValues.PERSONAL_INSOLVENCIES_OBJECT)
             ){
-              Object eachPersonalInsolvency=((Object)((Map<String,Object>)publicRecordOrConsumerCreditInformation.get('personal-insolvencies')).get('personal-insolvency'));
+              Object eachPersonalInsolvency=((Object)((Map<String,Object>)publicRecordOrConsumerCreditInformation.get(ConstantValues.PERSONAL_INSOLVENCIES_LIST)).get('personal-insolvency'));
             
               Credit_Account__c creditAccountObj;
               creditAccountObj = new Credit_Account__c();
               creditAccountObj.Party__c = partyObj.Id;
-              creditAccountObj.Credit_Account_Type__c = 'Personal Insolvencies';
+              creditAccountObj.Credit_Account_Type__c = ConstantValues.PERSONAL_INSOLVENCIES;
               if (
                 ((Map<String,Object>)eachPersonalInsolvency)!=null &&
-                ((Map<String,Object>)((Map<String,Object>)eachPersonalInsolvency).get('type'))!=null &&
-                ((String)((Map<String,Object>)((Map<String,Object>)eachPersonalInsolvency).get('type')).get('ele_text'))!=null
+                ((Map<String,Object>)((Map<String,Object>)eachPersonalInsolvency).get(ConstantValues.TYPE))!=null &&
+                ((String)((Map<String,Object>)((Map<String,Object>)eachPersonalInsolvency).get(ConstantValues.TYPE))
+                .get(ConstantValues.ELE_TEXT))!=null
               ) {
-                creditAccountObj.Account_Type__c = ((String)((Map<String,Object>)((Map<String,Object>)eachPersonalInsolvency).get('type')).get('ele_text'));
+                creditAccountObj.Account_Type__c = ((String)((Map<String,Object>)((Map<String,Object>)eachPersonalInsolvency)
+                .get(ConstantValues.TYPE)).get(ConstantValues.ELE_TEXT));
               }
               if (
                 ((Map<String,Object>)eachPersonalInsolvency)!=null &&
-                ((String)((Map<String,Object>)eachPersonalInsolvency).get('text'))!=null
+                ((String)((Map<String,Object>)eachPersonalInsolvency).get(ConstantValues.TEXT))!=null
               ) {
-                creditAccountObj.Relationship__c = ((String)((Map<String,Object>)eachPersonalInsolvency).get('text'));
+                creditAccountObj.Relationship__c = ((String)((Map<String,Object>)eachPersonalInsolvency).get(ConstantValues.TEXT));
               }
               if (
                 ((Map<String,Object>)eachPersonalInsolvency)!=null &&
-                ((Map<String,Object>)((Map<String,Object>)eachPersonalInsolvency).get('status'))!=null &&
-                ((String)((Map<String,Object>)((Map<String,Object>)eachPersonalInsolvency).get('status')).get('ele_text'))!=null
+                ((Map<String,Object>)((Map<String,Object>)eachPersonalInsolvency).get(ConstantValues.status))!=null &&
+                ((String)((Map<String,Object>)((Map<String,Object>)eachPersonalInsolvency).get(ConstantValues.status))
+                .get(ConstantValues.ELE_TEXT))!=null
               ) {
-                creditAccountObj.Status__c = ((String)((Map<String,Object>)((Map<String,Object>)eachPersonalInsolvency).get('status')).get('ele_text'));
+                creditAccountObj.Status__c = ((String)((Map<String,Object>)((Map<String,Object>)eachPersonalInsolvency)
+                    .get(ConstantValues.status)).get(ConstantValues.ELE_TEXT));
               }
               if (
                 ((Map<String,Object>)eachPersonalInsolvency)!=null &&
-                ((Map<String,Object>)((Map<String,Object>)eachPersonalInsolvency).get('status'))!=null &&
-                ((String)((Map<String,Object>)((Map<String,Object>)eachPersonalInsolvency).get('status')).get('date'))!=null
+                ((Map<String,Object>)((Map<String,Object>)eachPersonalInsolvency).get(ConstantValues.status))!=null &&
+                ((String)((Map<String,Object>)((Map<String,Object>)eachPersonalInsolvency).get(ConstantValues.status))
+                .get(ConstantValues.DATE_COURT))!=null
               ) {
-                String dateString =  ((String)((Map<String,Object>)((Map<String,Object>)eachPersonalInsolvency).get('status')).get('date'));
-                Date statusDate = Date.newInstance(
-                  Integer.valueOf(dateString.subString(0, 4)),
-                  Integer.valueOf(dateString.subString(5, 7)),
-                  Integer.valueOf(dateString.subString(8, 10))
-                );
-                creditAccountObj.Status_Date__c = statusDate;
+                String dateString =  ((String)((Map<String,Object>)((Map<String,Object>)eachPersonalInsolvency)
+                    .get(ConstantValues.status)).get(ConstantValues.DATE_COURT));
+                if(dateString!=NULL && dateString.length()!=0 && dateString.length()>=10){
+                  Date statusDate = Date.newInstance(
+                    Integer.valueOf(dateString.subString(0, 4)),
+                    Integer.valueOf(dateString.subString(5, 7)),
+                    Integer.valueOf(dateString.subString(8, 10))
+                  );
+                  creditAccountObj.Status_Date__c = statusDate;
+                }
               }
               if (
                 ((Map<String,Object>)eachPersonalInsolvency)!=null &&
-                ((String)((Map<String,Object>)eachPersonalInsolvency).get('date-declared'))!=null
+                ((String)((Map<String,Object>)eachPersonalInsolvency).get(ConstantValues.DATE_DECLARED))!=null
               ) {
-                String dateString = ((String)((Map<String,Object>)eachPersonalInsolvency).get('date-declared'));
-                Date statusDate = Date.newInstance(
-                  Integer.valueOf(dateString.subString(0, 4)),
-                  Integer.valueOf(dateString.subString(5, 7)),
-                  Integer.valueOf(dateString.subString(8, 10))
-                );
-                creditAccountObj.Default_Date__c = statusDate;
+                String dateString = ((String)((Map<String,Object>)eachPersonalInsolvency).get(ConstantValues.DATE_DECLARED));
+                if(dateString!=NULL && dateString.length()!=0 && dateString.length()>=10){
+                  Date statusDate = Date.newInstance(
+                    Integer.valueOf(dateString.subString(0, 4)),
+                    Integer.valueOf(dateString.subString(5, 7)),
+                    Integer.valueOf(dateString.subString(8, 10))
+                  );
+                  creditAccountObj.Default_Date__c = statusDate;
+                }
               }
               if (
                 ((Map<String,Object>)eachPersonalInsolvency)!=null &&
-                ((Map<String,Object>)((Map<String,Object>)eachPersonalInsolvency).get('administration-id'))!=null &&
-                ((String)((Map<String,Object>)((Map<String,Object>)eachPersonalInsolvency).get('administration-id')).get('number'))!=null
+                ((Map<String,Object>)((Map<String,Object>)eachPersonalInsolvency).get(ConstantValues.ADMINISTRATION_ID))!=null &&
+                ((String)((Map<String,Object>)((Map<String,Object>)eachPersonalInsolvency).get(ConstantValues.ADMINISTRATION_ID)).get(ConstantValues.NUMBER_PERSONAL))!=null
               ) {
-                creditAccountObj.Account_Id__c = ((String)((Map<String,Object>)((Map<String,Object>)eachPersonalInsolvency).get('administration-id')).get('number'));
+                creditAccountObj.Account_Id__c = ((String)((Map<String,Object>)((Map<String,Object>)eachPersonalInsolvency).get(ConstantValues.ADMINISTRATION_ID)).get(ConstantValues.NUMBER_PERSONAL));
               }
               if (creditAccountObj != null) {
                 creditAccounts.add(creditAccountObj);
               }
             }else{
-              returnValue+='\n' + 'No Personal Insolvencies found';
+              returnValue+=ConstantValues.NO_PERSONAL_INSOLVENCIES_FOUND;
             }
 
           }catch(Exception exe){

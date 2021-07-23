@@ -354,9 +354,14 @@ public class EquifaxEnquiryCalloutTest {
     ];
     api.intframework__API_Endpoint__c = '/individualApply2';
     update api;
+    List<intframework__Integration_API_Configuration__c> apiList = [SELECT ID,
+                                                                          intframework__API_Endpoint__c 
+                                                                      FROM intframework__Integration_API_Configuration__c 
+                                                                      WHERE intframework__API_Endpoint__c='/applyIndividual2'
+    ];
     System.assertEquals(
-      api.intframework__API_Endpoint__c,
-      '/individualApply2',
+      apiList.size(),
+      1,
       'Integration API Configuration records are not updated'
     );
 
@@ -412,11 +417,16 @@ public class EquifaxEnquiryCalloutTest {
     ];
     api.intframework__API_Endpoint__c = '/individualApply3';
     update api;
-    System.assertEquals(
-      api.intframework__API_Endpoint__c,
-      '/individualApply3',
+    List<intframework__Integration_API_Configuration__c> apiList = [SELECT ID,
+                                                                          intframework__API_Endpoint__c 
+                                                                      FROM intframework__Integration_API_Configuration__c 
+                                                                      WHERE intframework__API_Endpoint__c='/applyIndividual3'
+      ];
+      System.assertEquals(
+      apiList.size(),
+      1,
       'Integration API Configuration records are not updated'
-    );
+      );
 
     Test.setMock(HttpCalloutMock.class, new Mock());
     Test.startTest();
