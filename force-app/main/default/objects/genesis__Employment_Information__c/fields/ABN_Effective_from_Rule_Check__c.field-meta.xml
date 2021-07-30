@@ -3,7 +3,7 @@
     <fullName>ABN_Effective_from_Rule_Check__c</fullName>
     <description>ABN Effective from Rule Check</description>
     <externalId>false</externalId>
-    <formula>IF(AND(IF(MONTH(TODAY())&gt;MONTH(DATEVALUE(ABN_Effective_From__c) ),YEAR(TODAY())-YEAR(DATEVALUE(ABN_Effective_From__c)),IF(AND(MONTH(TODAY())=MONTH(DATEVALUE (ABN_Effective_From__c)),DAY(TODAY())&gt;=DAY(DATEVALUE (ABN_Effective_From__c))),YEAR(TODAY())-YEAR(DATEVALUE(ABN_Effective_From__c)),(YEAR(TODAY())-YEAR(DATEVALUE(ABN_Effective_From__c)))-1))&lt;2,NOT(ISBLANK( DATEVALUE(ABN_Effective_From__c)))),true,false)</formula>
+    <formula>IF( AND(RecordType.Name == &apos;Self Employed&apos;, INCLUDES( Party__r.Employment_Type__c ,&apos;Self Employed&apos;) ) ,IF(AND(IF(MONTH(TODAY())&gt;MONTH(DATEVALUE(ABN_Effective_From__c) ),YEAR(TODAY())-YEAR(DATEVALUE(ABN_Effective_From__c)),IF(AND(MONTH(TODAY())=MONTH(DATEVALUE (ABN_Effective_From__c)),DAY(TODAY())&gt;=DAY(DATEVALUE (ABN_Effective_From__c))),YEAR(TODAY())-YEAR(DATEVALUE(ABN_Effective_From__c)),(YEAR(TODAY())-YEAR(DATEVALUE(ABN_Effective_From__c)))-1))&lt;2,NOT(ISBLANK( DATEVALUE(ABN_Effective_From__c)))),true,false),false)</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
     <label>ABN Effective from Rule Check</label>
     <trackTrending>false</trackTrending>

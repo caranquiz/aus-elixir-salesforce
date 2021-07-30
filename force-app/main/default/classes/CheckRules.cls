@@ -16,7 +16,8 @@ global with sharing class CheckRules {
       AND (Name = :ConstantValues.RISK_GRADE_COMPARE_WARNING
       OR Name = :ConstantValues.PRIMARY_PURPOSE_WARNING
       OR Name = :ConstantValues.DOCUMENT_TYPE_WARNING
-      OR Name = :ConstantValues.VALUATION_PAID_WARNING)
+      OR Name = :ConstantValues.VALUATION_PAID_WARNING
+      OR Name = :ConstantValues.SETTLEMENT_FEE_WARNING)
   ];
   private static String applicationManualData;
   private static Map<String, String> sObjectNameManualDataMap = new Map<String, String>();
@@ -262,10 +263,12 @@ global with sharing class CheckRules {
         rulesNameList.add(ConstantValues.APPLICATION_FEE_WARNING);
         rulesNameList.add(ConstantValues.APPLICATION_FEE_PERCENTAGE_WARNING);
         rulesNameList.add(ConstantValues.APPLICATION_FORM_COMPLETED_WARNING);
+        rulesNameList.add(ConstantValues.APPLICATION_SETTLEMENT_FEE_WARNING);
         loanDetailsRiskGradeWarningCheck(applicationId);
         loanDetailsPrimaryPurposeWarningCheck(applicationId);
         loanDetailsDocumentCompareWarningCheck(applicationId);
         loanDetailsValuationPaidWarningCheck(applicationId);
+        applicationSettlementFeeCheck(applicationId);
       }
       Map<Id, genesis__Rule__c> mapRules = new Map<Id, genesis__Rule__c>(
         [
@@ -719,6 +722,57 @@ global with sharing class CheckRules {
       );
     }
   }
+  private static void applicationSettlementFeeCheck(Id appId) {
+    try {
+      genesis__Rule__c settlementFeeRule;
+      for (genesis__Rule__c eachRule : ruleList) {
+        if ((eachRule.Name).equals(ConstantValues.SETTLEMENT_FEE_WARNING)) {
+            settlementFeeRule = eachRule;
+        }
+      }
+      if (settlementFeeRule == null) {
+        return;
+      }
+      List<genesis__Checklist__c> previousChecklist = [
+        SELECT Id, genesis__Rule__c
+        FROM genesis__Checklist__c
+        WHERE
+          genesis__Rule__c = :settlementFeeRule.Id
+          AND genesis__Application__c = :appId
+      ];
+      Id previousChecklistId;
+      if (previousChecklist.isEmpty()) {
+        previousChecklistId = null;
+      } else {
+        previousChecklistId = previousChecklist[0].Id;
+      }
+      // Database.delete(previousChecklists, false);
+      List<clcommon__Party__c> parties = [
+        SELECT Id, Settlement_Fee_Check__c, Party_Type_Name__c
+        FROM clcommon__Party__c
+        WHERE
+          genesis__Application__c = :appId
+          AND Party_Type_Name__c =:ConstantValues.BROKER_PARTY_TYPE
+      ];
+      if (parties.isEmpty()) {
+        return;
+      }
+      for (clcommon__Party__c eachParty : parties) {
+        if (eachParty.Settlement_Fee_Check__c==False) {
+          errorCheckList(settlementFeeRule, appId, previousChecklistId);
+          return;
+        } else{
+            successCheckList(settlementFeeRule, appId, previousChecklistId);
+          return;
+        }
+      }
+    } catch (Exception ex) {
+      GenericUtility.insertLog(
+        'CheckRules.applicationSettlementFeeCheck',
+        ex
+      );
+    }
+  }
   public static void loanDetailsValuationPaidWarningCheck(Id appId) {
     try {
       genesis__Rule__c valPaidRule;
@@ -986,7 +1040,11 @@ global with sharing class CheckRules {
         updatedChecklists.add(checklistObj);
       }
     }
-    Database.update(updatedChecklists, false);
+    map<id,genesis__Checklist__c> checkListMap = new map<id,genesis__Checklist__c>(); 
+    checkListMap.putall(updatedChecklists);
+    if(checkListMap.size()>0){
+      Database.update(checkListMap.values(), false);
+    }
   }
   public static void updateRuleDataOnPartiesFromChecklistDetails(
     List<clcommon__Party__c> partyList,

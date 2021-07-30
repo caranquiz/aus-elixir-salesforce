@@ -194,7 +194,8 @@ public with sharing class ChildChecklistAPI {
         Living_Expense_Explanation_Received__c,
         Trust_Structure__c,
         Number_of_Secretaries__c,
-        Secretary_Check__c
+        Secretary_Check__c,
+        Settlement_Fee_Check__c
       FROM clcommon__Party__c
       WHERE genesis__Application__c = :appId
     ];

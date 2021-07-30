@@ -972,6 +972,8 @@ global class ConstantValues {
   public static final String OTHER_COURT_ACTIONS = 'Other Court Action';
   public static final String PERSONAL_INSOLVENCIES = 'Personal Insolvencies';
   public static final Decimal CREDIT_RECORD_VALUE = 1000;
+  public static final String SETTLEMENT_FEE_WARNING = 'Settlement Fee % Warning';
+  public static final String APPLICATION_SETTLEMENT_FEE_WARNING = 'Settlement Fee Percentage Warning';
 
   //Constant of LinkedLoansExtension Class
   public static final String LINKED_LOAN_ERROR_MSG1 = 'Linked Loan can' +'\'t be same as Current Loan';
@@ -1120,4 +1122,6 @@ global class ConstantValues {
   public static final string ADMINISTRATION_ID='administration-id';
   public static final string NUMBER_PERSONAL='number';
   public static final string NO_PERSONAL_INSOLVENCIES_FOUND='\nNo Personal Insolvencies found';
+  public static final string SETTLEMENT_FEE_PLAN = 'Settlement Fee Plan';
+  public static final string ELIXIR_COMMISSION_PLAN = 'Elixir Commission Plan';
 }

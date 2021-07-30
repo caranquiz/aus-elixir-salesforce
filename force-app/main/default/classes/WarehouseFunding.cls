@@ -70,7 +70,8 @@ global class WarehouseFunding {
           Commission_Paid__c,
           Commission_Structure__c,
           clcommon__Account__c,
-          clcommon__Account__r.parentId
+          clcommon__Account__r.parentId,
+          Settlement_Fee__c
         FROM clcommon__Party__c
         WHERE
           genesis__Application__c = :app.Id
@@ -78,6 +79,15 @@ global class WarehouseFunding {
       ];
       if (loanAcc != null && app.First_Drawdown_Complete__c == false) {
         if (brokerPartyList.size() > 0) {
+          List<loan__Broker__c> broRecs = new List<loan__Broker__c>();
+          if(brokerPartyList[0].Settlement_Fee__c != NULL && brokerPartyList[0].Settlement_Fee__c > 0  && brokerPartyList[0].clcommon__Account__c != NULL){
+            broRecs.addAll(BrokerCommissionUtility.comUtil(
+              loanAcc.Id,
+              brokerPartyList[0].clcommon__Account__c,
+              brokerPartyList[0].Settlement_Fee__c,
+              ConstantValues.SETTLEMENT_FEE_PLAN
+            ));
+          }
           if (
             brokerPartyList[0].Commission_Paid__c == System.label.Yes &&
             (brokerPartyList[0].Commission_Structure__c ==
@@ -111,20 +121,22 @@ global class WarehouseFunding {
                   System.label.Commission_Paid_To_Exception
                 );
               }
-              List<loan__Broker__c> broRecs = BrokerCommissionUtility.comUtil(
+              broRecs.addAll(BrokerCommissionUtility.comUtil(
                 loanAcc.Id,
                 broIden,
-                brokerPartyList[0].Upfront_Payment_Percentage__c
+                brokerPartyList[0].Upfront_Payment_Percentage__c,
+                ConstantValues.ELIXIR_COMMISSION_PLAN
+                )
               );
-              if (broRecs != null && broRecs.size() > 0) {
-                if (!(Test.isRunningTest())) {
-                  insert broRecs;
-                }
-              }
             } else {
               throw new CustomException(
                 System.label.Commission_Paid_Message_Upfront_Not_present
               );
+            }
+          }
+          if (broRecs != null && broRecs.size() > 0) {
+            if (!(Test.isRunningTest())) {
+              insert broRecs;
             }
           }
         } else {

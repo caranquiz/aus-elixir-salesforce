@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Settlement_Fee_Percentage_Check</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND(Mortgage_Manager__c , ISBLANK( Settlement_Fee_Percentage__c ) )</errorConditionFormula>
+    <errorMessage>Value must be entered into the Settlement Fee Percentage</errorMessage>
+</ValidationRule>
