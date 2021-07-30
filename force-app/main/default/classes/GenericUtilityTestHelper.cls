@@ -528,6 +528,14 @@ public with sharing class GenericUtilityTestHelper {
       genesis__Message_success__c = 'SUCCESS',
       Rule_Classification__c = ConstantValues.CONDITION_CLASSIFICATION
     );
+    genesis__Rule__c ruleTnty5 = new genesis__Rule__c(
+      genesis__Object_Type__c = 'Application',
+      Name = ConstantValues.SETTLEMENT_FEE_WARNING,
+      genesis__Enabled__c = true,
+      genesis__Message_failure__c = 'FAILURE',
+      genesis__Message_success__c = 'SUCCESS',
+      Rule_Classification__c = ConstantValues.WARNING_CLASSIFICATION
+    );
 
     List<genesis__Rule__c> ruleLists = new List<genesis__Rule__c>();
     ruleLists.add(ruleOne);
@@ -554,6 +562,7 @@ public with sharing class GenericUtilityTestHelper {
     ruleLists.add(ruleTnty2);
     ruleLists.add(ruleTnty3);
     ruleLists.add(ruleTnty4);
+    ruleLists.add(ruleTnty5);
     //Inserting rule
     insert ruleLists;
     List<genesis__RuleCriteria__c> criteriaList = new List<genesis__RuleCriteria__c>();

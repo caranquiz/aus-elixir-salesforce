@@ -760,10 +760,8 @@ global with sharing class CheckRules {
       for (clcommon__Party__c eachParty : parties) {
         if (eachParty.Settlement_Fee_Check__c==False) {
           errorCheckList(settlementFeeRule, appId, previousChecklistId);
-          return;
         } else{
             successCheckList(settlementFeeRule, appId, previousChecklistId);
-          return;
         }
       }
     } catch (Exception ex) {
