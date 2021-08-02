@@ -1038,11 +1038,7 @@ global with sharing class CheckRules {
         updatedChecklists.add(checklistObj);
       }
     }
-    map<id,genesis__Checklist__c> checkListMap = new map<id,genesis__Checklist__c>(); 
-    checkListMap.putall(updatedChecklists);
-    if(checkListMap.size()>0){
-      Database.update(checkListMap.values(), false);
-    }
+    Database.update(updatedChecklists, false);
   }
   public static void updateRuleDataOnPartiesFromChecklistDetails(
     List<clcommon__Party__c> partyList,

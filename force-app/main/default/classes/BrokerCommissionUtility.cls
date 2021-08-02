@@ -44,7 +44,7 @@ global with sharing class BrokerCommissionUtility{
             if(txnType.equalsIgnoreCase(ConstantValues.SETTLEMENT_FEE_PLAN)){
                 comPlanRec.loan__Plan_Description__c = (ConstantValues.SETTLEMENT_FEE_PLAN+' '+comPercen);
             }
-            else if(txnType.equalsIgnoreCase(ConstantValues.ELIXIR_COMMISSION_PLAN)){
+            else{
                 comPlanRec.loan__Plan_Description__c = (ConstantValues.ELIXIR_COMMISSION_PLAN+' '+comPercen);
             }
             comPlanRec.loan__Calculation_Method__c = 'Percentage Of Financed Amount';
