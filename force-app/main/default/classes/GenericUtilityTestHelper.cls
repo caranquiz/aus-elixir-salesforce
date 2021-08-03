@@ -1709,4 +1709,28 @@ public with sharing class GenericUtilityTestHelper {
         insert lts;
         return lts;
   }
+
+  public static Director__c returnDirector(Id partyId){
+    Director__c director=new Director__c();
+    director.Party__c=partyId;
+    director.Entity_Type__c='Director';
+    insert director;
+    return director;
+  }
+
+  public static Current_Directorship__c returnDirectorship(Id partyId){
+    Current_Directorship__c directorship=new Current_Directorship__c();
+    directorship.Party__c=partyId;
+    directorship.Directorship_Type__c='Current';
+    insert directorship;
+    return directorship;
+  }
+  
+  public static Credit_Enquiry__c returnCreditEnquiry(Id partyId){
+    Credit_Enquiry__c creditEnquiry=new Credit_Enquiry__c();
+    creditEnquiry.Party__c=partyId;
+    creditEnquiry.Credit_Enquiry_Type__c='Consumer';
+    insert creditEnquiry;
+    return creditEnquiry;
+  }
 }
