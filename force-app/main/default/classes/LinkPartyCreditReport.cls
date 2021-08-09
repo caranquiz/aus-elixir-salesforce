@@ -2,7 +2,7 @@
 Company: Cloudkaptan Consultancy Services Pvt. Ltd.
 Author: Ariz Mazhary
 Description : This class pull the credit Report from selected party and 
-            insert the credit Report in another party.
+            insert the credit Report in another party
 Development Date : 30/06/2021
 Last Modified Date : 06/07/2021
 ****************************************************************************************************/
@@ -13,7 +13,7 @@ global with sharing class LinkPartyCreditReport {
         try{
             Map<String, Payment_Default__c> accountIdDefaultMap = new Map<String, Payment_Default__c>();
             Map<String, Id> accountIdIdMap = new Map<String, Id>();
-            clcommon__Party__c party=new clcommon__Party__c();
+            List<clcommon__Party__c> objPartyList=new List<clcommon__Party__c>();
             List <clcommon__Party__c> partyList = [SELECT Id,
                                                         ABN_Company_Name__c,
                                                         Request_Id__c,
@@ -70,122 +70,122 @@ global with sharing class LinkPartyCreditReport {
                                                         Loan_Assesment_Commentary_Credit_History__c,
                                                         genesis__Application__c
                                                     FROM clcommon__Party__c
-                                                    WHERE id = : partyId];
+                                                    WHERE id = :partyId];
         
             if(partyId2!=NULL){
-                party=[SELECT Id,
-                            Request_Id__c,
-                            Report_Created_Date__c,
-                            File_Number__c,
-                            Permission_Type__c,
-                            Age_of_Credit_File__c,
-                            ASIC_Extract_Date__c,
-                            clcommon__Account__c,
-                            clcommon__Account__r.Name,
-                            Organization_Status__c,
-                            Incorporation_Date__c,
-                            Registered_Office__c,
-                            File_create_date__c,
-                            Explanation_of_Age_of_Credit_File_Suitab__c,
-                            Explanation_of_Age_of_Credit_File_Commen__c,
-                            Credit_Score__c,
-                            External_Administrators__c,
-                            Possibly_Matched_data__c,
-                            Confirm_Possible_Match_Credit_Report_Run__c,
-                            Adverse_on_file__c,
-                            Consumer_Adverse_on_file__c,
-                            Individual_Address__c,
-                            Employer__c,
-                            Linked_Application_Search__c,
-                            genesis__Application__r.Legal_Entity__c,
-                            Number_of_Credit_Enquiries_in_Last_12_Mo__c,
-                            Explanation_of_Credit_Enquiries_Suitable__c,
-                            Explanation_of_Credit_Enquiries_Commenta__c,
-                            Applicant_ever_declared_banckrupt__c,
-                            Bankrupt_Date__c,
-                            bankrupt_discharged__c,
-                            Previously_Bankrupt_Discharge_Date__c,
-                            Explanation_of_Bankruptcy_Received__c,
-                            Explanation_of_Bankruptcy_Suitable__c,
-                            Explanation_of_Bankruptcy_Commentary__c,
-                            Company_Director_s_Adverse__c,
-                            Company_Director_s_Related_Entity_Advers__c,
-                            Court_Writs__c,
-                            Court_Writ_Amount__c,
-                            Court_Actions__c,
-                            Court_Action_Amount__c,
-                            Petitions__c,
-                            Ignore__c,
-                            Credit_Event__c,
-                            Explanation_Provided__c,
-                            Number_Of_Credit_Events__c,
-                            Credit_Status__c,
-                            Explanation_of_Credit_Events_Suitable__c,
-                            Explanation_of_Credit_Events_Commentary__c,
-                            Risk_Grade__c,
-                            Date_of_Most_Recent_Credit_Event__c,
-                            ABN_Status_Explanation_Provided__c,
-                            ABN_Status_Explanation_Suitable__c,
-                            ABN_Status_Commentary__c,
-                            Loan_Assesment_Commentary_Credit_History__c,
-                            genesis__Application__c
-                        FROM clcommon__Party__c
-                        WHERE id = : partyId2];
-                if(party!=NULL && partyList.size()>0){
+                objPartyList=[SELECT Id,
+                                    Request_Id__c,
+                                    Report_Created_Date__c,
+                                    File_Number__c,
+                                    Permission_Type__c,
+                                    Age_of_Credit_File__c,
+                                    ASIC_Extract_Date__c,
+                                    clcommon__Account__c,
+                                    clcommon__Account__r.Name,
+                                    Organization_Status__c,
+                                    Incorporation_Date__c,
+                                    Registered_Office__c,
+                                    File_create_date__c,
+                                    Explanation_of_Age_of_Credit_File_Suitab__c,
+                                    Explanation_of_Age_of_Credit_File_Commen__c,
+                                    Credit_Score__c,
+                                    External_Administrators__c,
+                                    Possibly_Matched_data__c,
+                                    Confirm_Possible_Match_Credit_Report_Run__c,
+                                    Adverse_on_file__c,
+                                    Consumer_Adverse_on_file__c,
+                                    Individual_Address__c,
+                                    Employer__c,
+                                    Linked_Application_Search__c,
+                                    genesis__Application__r.Legal_Entity__c,
+                                    Number_of_Credit_Enquiries_in_Last_12_Mo__c,
+                                    Explanation_of_Credit_Enquiries_Suitable__c,
+                                    Explanation_of_Credit_Enquiries_Commenta__c,
+                                    Applicant_ever_declared_banckrupt__c,
+                                    Bankrupt_Date__c,
+                                    bankrupt_discharged__c,
+                                    Previously_Bankrupt_Discharge_Date__c,
+                                    Explanation_of_Bankruptcy_Received__c,
+                                    Explanation_of_Bankruptcy_Suitable__c,
+                                    Explanation_of_Bankruptcy_Commentary__c,
+                                    Company_Director_s_Adverse__c,
+                                    Company_Director_s_Related_Entity_Advers__c,
+                                    Court_Writs__c,
+                                    Court_Writ_Amount__c,
+                                    Court_Actions__c,
+                                    Court_Action_Amount__c,
+                                    Petitions__c,
+                                    Ignore__c,
+                                    Credit_Event__c,
+                                    Explanation_Provided__c,
+                                    Number_Of_Credit_Events__c,
+                                    Credit_Status__c,
+                                    Explanation_of_Credit_Events_Suitable__c,
+                                    Explanation_of_Credit_Events_Commentary__c,
+                                    Risk_Grade__c,
+                                    Date_of_Most_Recent_Credit_Event__c,
+                                    ABN_Status_Explanation_Provided__c,
+                                    ABN_Status_Explanation_Suitable__c,
+                                    ABN_Status_Commentary__c,
+                                    Loan_Assesment_Commentary_Credit_History__c,
+                                    genesis__Application__c
+                                FROM clcommon__Party__c
+                                WHERE id = :partyId2];
+                if(objPartyList.size()>0 && partyList.size()>0){
 
-                    partyList[0].Request_Id__c=party.Request_Id__c;
-                    partyList[0].Report_Created_Date__c=party.Report_Created_Date__c;
-                    partyList[0].File_Number__c=party.File_Number__c;
-                    partyList[0].Permission_Type__c=party.Permission_Type__c;
-                    partyList[0].Age_of_Credit_File__c=party.Age_of_Credit_File__c;
-                    partyList[0].ASIC_Extract_Date__c=party.ASIC_Extract_Date__c;
-                    partyList[0].Organization_Status__c=party.Organization_Status__c;
-                    partyList[0].Incorporation_Date__c=party.Incorporation_Date__c;
-                    partyList[0].Registered_Office__c=party.Registered_Office__c;
-                    partyList[0].File_create_date__c=party.File_create_date__c;
-                    partyList[0].Explanation_of_Age_of_Credit_File_Suitab__c=party.Explanation_of_Age_of_Credit_File_Suitab__c;
-                    partyList[0].Explanation_of_Age_of_Credit_File_Commen__c=party.Explanation_of_Age_of_Credit_File_Commen__c;
-                    partyList[0].Credit_Score__c=party.Credit_Score__c;
-                    partyList[0].External_Administrators__c=party.External_Administrators__c;
-                    partyList[0].Possibly_Matched_data__c=party.Possibly_Matched_data__c;
-                    partyList[0].Confirm_Possible_Match_Credit_Report_Run__c=party.Confirm_Possible_Match_Credit_Report_Run__c;
-                    partyList[0].Adverse_on_file__c=party.Adverse_on_file__c;
-                    partyList[0].Consumer_Adverse_on_file__c=party.Consumer_Adverse_on_file__c;
-                    partyList[0].Employer__c=party.Employer__c;
-                    partyList[0].Individual_Address__c=party.Individual_Address__c;
-                    partyList[0].Number_of_Credit_Enquiries_in_Last_12_Mo__c=party.Number_of_Credit_Enquiries_in_Last_12_Mo__c;
-                    partyList[0].Explanation_of_Credit_Enquiries_Suitable__c=party.Explanation_of_Credit_Enquiries_Suitable__c;
-                    partyList[0].Explanation_of_Credit_Enquiries_Commenta__c=party.Explanation_of_Credit_Enquiries_Commenta__c;
-                    partyList[0].Applicant_ever_declared_banckrupt__c=party.Applicant_ever_declared_banckrupt__c;
-                    partyList[0].Bankrupt_Date__c=party.Bankrupt_Date__c;
-                    partyList[0].bankrupt_discharged__c=party.bankrupt_discharged__c;
-                    partyList[0].Previously_Bankrupt_Discharge_Date__c=party.Previously_Bankrupt_Discharge_Date__c;
-                    partyList[0].Explanation_of_Bankruptcy_Received__c=party.Explanation_of_Bankruptcy_Received__c;
-                    partyList[0].Explanation_of_Bankruptcy_Suitable__c=party.Explanation_of_Bankruptcy_Suitable__c;
-                    partyList[0].Explanation_of_Bankruptcy_Commentary__c=party.Explanation_of_Bankruptcy_Commentary__c;
-                    partyList[0].Company_Director_s_Adverse__c=party.Company_Director_s_Adverse__c;
-                    partyList[0].Company_Director_s_Related_Entity_Advers__c=party.Company_Director_s_Related_Entity_Advers__c;
-                    partyList[0].Court_Writs__c=party.Court_Writs__c;
-                    partyList[0].Court_Writ_Amount__c=party.Court_Writ_Amount__c;
-                    partyList[0].Court_Actions__c=party.Court_Actions__c;
-                    partyList[0].Court_Action_Amount__c=party.Court_Action_Amount__c;
-                    partyList[0].Petitions__c=party.Petitions__c;
-                    partyList[0].Ignore__c=party.Ignore__c;
-                    partyList[0].Credit_Event__c=party.Credit_Event__c;
-                    partyList[0].Explanation_Provided__c=party.Explanation_Provided__c;
-                    partyList[0].Number_Of_Credit_Events__c=party.Number_Of_Credit_Events__c;
-                    partyList[0].Credit_Status__c=party.Credit_Status__c;
-                    partyList[0].Explanation_of_Credit_Events_Suitable__c=party.Explanation_of_Credit_Events_Suitable__c;
-                    partyList[0].Explanation_of_Credit_Events_Commentary__c=party.Explanation_of_Credit_Events_Commentary__c;
-                    partyList[0].Risk_Grade__c=party.Risk_Grade__c;
-                    partyList[0].Date_of_Most_Recent_Credit_Event__c=party.Date_of_Most_Recent_Credit_Event__c;
-                    partyList[0].ABN_Status_Explanation_Provided__c=party.ABN_Status_Explanation_Provided__c;
-                    partyList[0].ABN_Status_Explanation_Suitable__c=party.ABN_Status_Explanation_Suitable__c;
-                    partyList[0].ABN_Status_Commentary__c=party.ABN_Status_Commentary__c;
-                    partyList[0].Loan_Assesment_Commentary_Credit_History__c=party.Loan_Assesment_Commentary_Credit_History__c;
+                    partyList[0].Request_Id__c=objPartyList[0].Request_Id__c;
+                    partyList[0].Report_Created_Date__c=objPartyList[0].Report_Created_Date__c;
+                    partyList[0].File_Number__c=objPartyList[0].File_Number__c;
+                    partyList[0].Permission_Type__c=objPartyList[0].Permission_Type__c;
+                    partyList[0].Age_of_Credit_File__c=objPartyList[0].Age_of_Credit_File__c;
+                    partyList[0].ASIC_Extract_Date__c=objPartyList[0].ASIC_Extract_Date__c;
+                    partyList[0].Organization_Status__c=objPartyList[0].Organization_Status__c;
+                    partyList[0].Incorporation_Date__c=objPartyList[0].Incorporation_Date__c;
+                    partyList[0].Registered_Office__c=objPartyList[0].Registered_Office__c;
+                    partyList[0].File_create_date__c=objPartyList[0].File_create_date__c;
+                    partyList[0].Explanation_of_Age_of_Credit_File_Suitab__c=objPartyList[0].Explanation_of_Age_of_Credit_File_Suitab__c;
+                    partyList[0].Explanation_of_Age_of_Credit_File_Commen__c=objPartyList[0].Explanation_of_Age_of_Credit_File_Commen__c;
+                    partyList[0].Credit_Score__c=objPartyList[0].Credit_Score__c;
+                    partyList[0].External_Administrators__c=objPartyList[0].External_Administrators__c;
+                    partyList[0].Possibly_Matched_data__c=objPartyList[0].Possibly_Matched_data__c;
+                    partyList[0].Confirm_Possible_Match_Credit_Report_Run__c=objPartyList[0].Confirm_Possible_Match_Credit_Report_Run__c;
+                    partyList[0].Adverse_on_file__c=objPartyList[0].Adverse_on_file__c;
+                    partyList[0].Consumer_Adverse_on_file__c=objPartyList[0].Consumer_Adverse_on_file__c;
+                    partyList[0].Employer__c=objPartyList[0].Employer__c;
+                    partyList[0].Individual_Address__c=objPartyList[0].Individual_Address__c;
+                    partyList[0].Number_of_Credit_Enquiries_in_Last_12_Mo__c=objPartyList[0].Number_of_Credit_Enquiries_in_Last_12_Mo__c;
+                    partyList[0].Explanation_of_Credit_Enquiries_Suitable__c=objPartyList[0].Explanation_of_Credit_Enquiries_Suitable__c;
+                    partyList[0].Explanation_of_Credit_Enquiries_Commenta__c=objPartyList[0].Explanation_of_Credit_Enquiries_Commenta__c;
+                    partyList[0].Applicant_ever_declared_banckrupt__c=objPartyList[0].Applicant_ever_declared_banckrupt__c;
+                    partyList[0].Bankrupt_Date__c=objPartyList[0].Bankrupt_Date__c;
+                    partyList[0].bankrupt_discharged__c=objPartyList[0].bankrupt_discharged__c;
+                    partyList[0].Previously_Bankrupt_Discharge_Date__c=objPartyList[0].Previously_Bankrupt_Discharge_Date__c;
+                    partyList[0].Explanation_of_Bankruptcy_Received__c=objPartyList[0].Explanation_of_Bankruptcy_Received__c;
+                    partyList[0].Explanation_of_Bankruptcy_Suitable__c=objPartyList[0].Explanation_of_Bankruptcy_Suitable__c;
+                    partyList[0].Explanation_of_Bankruptcy_Commentary__c=objPartyList[0].Explanation_of_Bankruptcy_Commentary__c;
+                    partyList[0].Company_Director_s_Adverse__c=objPartyList[0].Company_Director_s_Adverse__c;
+                    partyList[0].Company_Director_s_Related_Entity_Advers__c=objPartyList[0].Company_Director_s_Related_Entity_Advers__c;
+                    partyList[0].Court_Writs__c=objPartyList[0].Court_Writs__c;
+                    partyList[0].Court_Writ_Amount__c=objPartyList[0].Court_Writ_Amount__c;
+                    partyList[0].Court_Actions__c=objPartyList[0].Court_Actions__c;
+                    partyList[0].Court_Action_Amount__c=objPartyList[0].Court_Action_Amount__c;
+                    partyList[0].Petitions__c=objPartyList[0].Petitions__c;
+                    partyList[0].Ignore__c=objPartyList[0].Ignore__c;
+                    partyList[0].Credit_Event__c=objPartyList[0].Credit_Event__c;
+                    partyList[0].Explanation_Provided__c=objPartyList[0].Explanation_Provided__c;
+                    partyList[0].Number_Of_Credit_Events__c=objPartyList[0].Number_Of_Credit_Events__c;
+                    partyList[0].Credit_Status__c=objPartyList[0].Credit_Status__c;
+                    partyList[0].Explanation_of_Credit_Events_Suitable__c=objPartyList[0].Explanation_of_Credit_Events_Suitable__c;
+                    partyList[0].Explanation_of_Credit_Events_Commentary__c=objPartyList[0].Explanation_of_Credit_Events_Commentary__c;
+                    partyList[0].Risk_Grade__c=objPartyList[0].Risk_Grade__c;
+                    partyList[0].Date_of_Most_Recent_Credit_Event__c=objPartyList[0].Date_of_Most_Recent_Credit_Event__c;
+                    partyList[0].ABN_Status_Explanation_Provided__c=objPartyList[0].ABN_Status_Explanation_Provided__c;
+                    partyList[0].ABN_Status_Explanation_Suitable__c=objPartyList[0].ABN_Status_Explanation_Suitable__c;
+                    partyList[0].ABN_Status_Commentary__c=objPartyList[0].ABN_Status_Commentary__c;
+                    partyList[0].Loan_Assesment_Commentary_Credit_History__c=objPartyList[0].Loan_Assesment_Commentary_Credit_History__c;
                 }
             }
-            if(partyId2!=NULL && partyId!=NULL){
+            if(partyList.size()>0 && objPartyList.size()>0){
                 List<Credit_Enquiry__c> creditEnquiryList1=[SELECT id,
                                                                   Party__c,
                                                                   Account_Type__c,
@@ -196,8 +196,8 @@ global with sharing class LinkPartyCreditReport {
                                                                   Reference_No__c,
                                                                   Role_in_Enquiry__c
                                                             FROM Credit_Enquiry__c 
-                                                            WHERE Party__c=:partyId2];
-                List<Credit_Enquiry__c> deletecreditEnquiryList=[SELECT id FROM Credit_Enquiry__c WHERE Party__c=:partyId];
+                                                            WHERE Party__c=: objPartyList[0].id];
+                List<Credit_Enquiry__c> deletecreditEnquiryList=[SELECT id FROM Credit_Enquiry__c WHERE Party__c=: partyList[0].id];
                 if(deletecreditEnquiryList.size()>0){
                     Database.delete(deletecreditEnquiryList,false);
                 }
@@ -217,9 +217,7 @@ global with sharing class LinkPartyCreditReport {
                 if(creditEnquiryList.size()>0){
                     Database.insert(creditEnquiryList,false);
                 }
-            }
-
-            if(partyId2!=NULL && partyId!=NULL){
+            
                 List<Director__c> directorList1=[SELECT id,
                                                         Party__c,
                                                         Address__c,
@@ -241,8 +239,8 @@ global with sharing class LinkPartyCreditReport {
                                                         Secured_Parties__c,
                                                         Start_Date__c
                                                     FROM Director__c
-                                                    WHERE Party__c=:partyId2];
-                List<Director__c> deleteDirectorList=[SELECT id FROM Director__c WHERE Party__c=:partyId];
+                                                    WHERE Party__c=: objPartyList[0].id];
+                List<Director__c> deleteDirectorList=[SELECT id FROM Director__c WHERE Party__c=: partyList[0].id];
                 if(deleteDirectorList.size()>0){
                     Database.delete(deleteDirectorList,false);
                 }
@@ -272,10 +270,7 @@ global with sharing class LinkPartyCreditReport {
                 }
                 if(directorList.size()>0){
                     Database.insert(directorList,false);
-                }   
-            }
-
-            if(partyId2!=NULL && partyId!=NULL){
+                }
                 List<Current_Directorship__c> currentDirectorshipList1=[SELECT id,
                                                                                 Party__c,
                                                                                 ABN__c,
@@ -292,9 +287,9 @@ global with sharing class LinkPartyCreditReport {
                                                                                 Appointment_Date__c,
                                                                                 Record_Extract_Date__c
                                                                             FROM Current_Directorship__c 
-                                                                            WHERE Party__c=: partyId2];
+                                                                            WHERE Party__c=: objPartyList[0].id];
 
-                List<Current_Directorship__c> deleteCurrentDirectorshipList=[SELECT id FROM Current_Directorship__c WHERE Party__c=: partyId];
+                List<Current_Directorship__c> deleteCurrentDirectorshipList=[SELECT id FROM Current_Directorship__c WHERE Party__c=: partyList[0].id];
                 if(deleteCurrentDirectorshipList.size()>0){
                     Database.delete(deleteCurrentDirectorshipList,false);
                 }
@@ -319,9 +314,8 @@ global with sharing class LinkPartyCreditReport {
                 }
                 if(currentDirectorshipList.size()>0){
                     Database.insert(currentDirectorshipList,false);
-                }                                                   
-            }
-            if(partyId2!=NULL && partyId!=NULL){
+                } 
+            
                 List<Credit_Account__c> creditAccountList1=[SELECT id,
                                                                     Party__c,
                                                                     Account_Id__c,
@@ -344,7 +338,7 @@ global with sharing class LinkPartyCreditReport {
                                                                     Status__c,
                                                                     Status_Date__c
                                                                 FROM Credit_Account__c
-                                                                WHERE Party__c=:partyId2];
+                                                                WHERE Party__c=: objPartyList[0].id];
                 List<Payment_Default__c> paymentDefault1=[SELECT id,
                                                                 Credit_Account__c,
                                                                 Credit_Event__c,
@@ -357,7 +351,7 @@ global with sharing class LinkPartyCreditReport {
                                                             FROM Payment_Default__c 
                                                             WHERE Credit_Account__c IN:creditAccountList1];
 
-                List<Credit_Account__c> deleteCreditAccount=[SELECT id FROM Credit_Account__c WHERE Party__c=:partyId];
+                List<Credit_Account__c> deleteCreditAccount=[SELECT id FROM Credit_Account__c WHERE Party__c=: partyList[0].id];
                 if(deleteCreditAccount.size()>0){
                     Database.delete(deleteCreditAccount,false);
                 }
@@ -424,9 +418,7 @@ global with sharing class LinkPartyCreditReport {
                     paymentDefault.add(paymentDefaultObj);
                 }
                 Database.insert(paymentDefault, false);
-            }
             
-            if(partyId2!=NULL && partyId!=NULL){
                 List<Credit_History__c> creditHistoryList1=[SELECT id,
                                                                 Party__c,
                                                                 Issue__c,
@@ -436,9 +428,9 @@ global with sharing class LinkPartyCreditReport {
                                                                 Date__c,
                                                                 Default_to_be_ignored__c
                                                             FROM Credit_History__c
-                                                            WHERE Party__c=: partyId2];
+                                                            WHERE Party__c=: objPartyList[0].id];
 
-                List<Credit_History__c> deletecreditHistoryList=[SELECT id FROM Credit_History__c WHERE Party__c=:partyId];
+                List<Credit_History__c> deletecreditHistoryList=[SELECT id FROM Credit_History__c WHERE Party__c=: partyList[0].id];
                 if(deletecreditHistoryList.size()>0){
                     Database.delete(deletecreditHistoryList,false);
                 }
@@ -457,16 +449,15 @@ global with sharing class LinkPartyCreditReport {
                 if(creditHistoryList.size()>0){
                     Database.insert(creditHistoryList,false);
                 }
-            }
-            if(partyId2!=NULL && partyId!=NULL){
+            
                 List<PPSR_Registration__c> registrationList1=[SELECT id,
                                                                 Party__c,
                                                                 Search_Number__c,
                                                                 Search_Date__c,
                                                                 Total_Registrations__c
                                                             FROM PPSR_Registration__c
-                                                            WHERE Party__c=:partyId2];
-                List<PPSR_Registration__c> deleteRegistrationList=[SELECT id FROM PPSR_Registration__c WHERE Party__c=:partyId];
+                                                            WHERE Party__c=: objPartyList[0].id];
+                List<PPSR_Registration__c> deleteRegistrationList=[SELECT id FROM PPSR_Registration__c WHERE Party__c=: partyList[0].id];
                 if(deleteRegistrationList.size()>0){
                     Database.delete(deleteRegistrationList,false);
                 }
@@ -482,11 +473,9 @@ global with sharing class LinkPartyCreditReport {
                 if(registrationList.size()>0){
                     Database.insert(registrationList,false);
                 }
-            }
-            if(party!=null && partyId2!=null){
-                String attchmentName=ConstantValues.PREV_ENQ_PDF_NAME_PREF + party.clcommon__Account__r.Name +' (OBSOLETE).pdf';
-                List<Attachment> att = [Select Id,Body from Attachment where ParentId =: partyId2 and Name =:attchmentName];
-                List<Attachment> attch=[Select Id,Body from Attachment where ParentId =: partyId and Name =:attchmentName];
+                String attchmentName=ConstantValues.PREV_ENQ_PDF_NAME_PREF + objPartyList[0].clcommon__Account__r.Name +' (OBSOLETE).pdf';
+                List<Attachment> att = [Select Id,Body from Attachment where ParentId =: objPartyList[0].id and Name =:attchmentName];
+                List<Attachment> attch=[Select Id,Body from Attachment where ParentId =: partyList[0].id and Name =:attchmentName];
                 if(attch.size()>0){
                     Database.delete(attch,false);
                 }
@@ -498,7 +487,6 @@ global with sharing class LinkPartyCreditReport {
                     Database.insert(attachmentObj,false);
                 }
             }
-            
             Database.update(partyList,false);
             return 'Success';
         }catch(Exception exe){
