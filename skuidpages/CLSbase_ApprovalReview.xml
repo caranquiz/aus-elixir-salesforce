@@ -501,8 +501,8 @@ if(appRowRel.genesis__Status__c === 'Val Received'){
     });
     var records = sforce.connection.query("SELECT Id,genesis__Message__c FROM genesis__Checklist__c where genesis__Application__c ='"+appRowRel.Id+"' and genesis__Message__c != 'SUCCESS' and Rule_Classification2__c = 'Rule' and genesis__Rule__r.Name in ('Cash Out Purpose Suitable Rule','Interest Only Suitable Rule','Exit Strategy Suitable Rule','Lenders Mortgage Insurance Rule','LMI and LMI Approved both should be yes rule')");
     var checkListQuery = records.getArray('records');
-    var checkListDetailQuery1 = sforce.connection.query("SELECT Id, Status__c, Checklist__c, Checklist__r.genesis__Application__c FROM Checklist_Detail__c where Checklist__r.genesis__Application__c = '"+appRowRel.Id+"' and Status__c != 'SUCCESS' and Rule_Classification__c = 'Rule'");
-    var checkListDetailQuery = checkListDetailQuery1.getArray('checkListDetailQuery1');
+    records = sforce.connection.query("SELECT Id, Status__c, Checklist__c, Checklist__r.genesis__Application__c FROM Checklist_Detail__c where Checklist__r.genesis__Application__c = '"+appRowRel.Id+"' and Status__c != 'SUCCESS' and Rule_Classification__c = 'Rule'");
+    var checkListDetailQuery = records.getArray('records');
     if((checkListDetailQuery !== undefined &amp;&amp; checkListDetailQuery.length &gt; 0) || (checkListQuery !== undefined &amp;&amp; checkListQuery.length &gt; 0)){
         alert('Application cannot be changed to Recommended status as there are failed rules in this application!');
         $.unblockUI();
@@ -510,7 +510,8 @@ if(appRowRel.genesis__Status__c === 'Val Received'){
     }
 }</jsitem>
 			<jsitem location="inlinesnippet" cachelocation="false" name="ApprovalChanges">var today = new Date();
-var date = today.getDate()+'/'+(today.getMonth()+1)+'/'+today.getFullYear();
+/*var date = today.getDate()+'/'+(today.getMonth()+1)+'/'+today.getFullYear();*/
+var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
 var appModel2 = skuid.model.getModel('CommonApplicationApprovalsCheck');
 appModel2.updateData();
 var appRowRel = appModel2.data[0];

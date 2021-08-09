@@ -389,6 +389,7 @@
 								<button type="multi" label="Save" uniqueid="sk-3rJ7-3040" icon="sk-webicon-font-awesome:floppy-o">
 									<actions>
 										<action type="blockUI" message="The changes are being recorded!" timeout="9000"/>
+										<action type="custom" snippet="OverrideCheck"/>
 										<action type="save">
 											<models>
 												<model>NGPartyClone</model>
@@ -1562,7 +1563,7 @@
 				<action type="blockUI" message="Error found while uploading the file. Please check the file name, file size or contact Admin." timeout="3000"/>
 			</uploadfailureactions>
 		</file>
-		<skootable showconditions="true" showsavecancel="false" showerrorsinline="true" searchmethod="server" searchbox="true" showexportbuttons="false" hideheader="false" hidefooter="false" pagesize="10" alwaysresetpagination="false" createrecords="false" model="IncomeAttachments" buttonposition="" mode="readonly" allowcolumnreordering="true" responsive="true" uniqueid="sk-3LEW-1492" heading="Income Documents">
+		<skootable showconditions="true" showsavecancel="false" showerrorsinline="true" searchmethod="server" searchbox="true" showexportbuttons="false" hideheader="false" hidefooter="false" pagesize="all" alwaysresetpagination="false" createrecords="false" model="IncomeAttachments" buttonposition="" mode="readonly" allowcolumnreordering="true" responsive="true" uniqueid="sk-3LEW-1492" heading="Income Documents">
 			<fields>
 				<field id="Name" hideable="true" uniqueid="fi-3LEc-1542"/>
 				<field id="CreatedBy.Name" hideable="true" uniqueid="fi-3LEh-1566">
@@ -1725,6 +1726,21 @@ var resCheck = sforce.apex.execute('CategoryAttachmentUtility','deleteAttachment
         attachId : records.row.Id
     });
 alert(resCheck);</jsitem>
+			<jsitem location="inlinesnippet" name="OverrideCheck" cachelocation="false">var params = arguments[0],
+	$ = skuid.$;
+var incomeDetailModel=skuid.model.getModel('CompanyIncomeDetailsFullAggregate');
+var incomeDetailRow=incomeDetailModel.data[0];
+var partyModel=skuid.model.getModel('NGPartyClone');
+var partyRow=partyModel.data[0];
+
+var flag=true;
+if(incomeDetailRow!==undefined &amp;&amp; incomeDetailRow!==null &amp;&amp; partyRow.Document_Type__c==='Full'){
+    if(incomeDetailRow.Override__c===null || incomeDetailRow.Override__c==='None' || incomeDetailRow.Override__c===undefined){
+        alert('Override is Required');
+        flag=false;
+    }
+}
+return flag;</jsitem>
 		</javascript>
 		<css>
 			<cssitem location="staticresource" name="CLSStyleSheetPack" cachelocation="false" url="" namespace="genesisExtn" filepath="cls-common.css"/>

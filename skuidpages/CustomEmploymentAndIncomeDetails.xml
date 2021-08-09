@@ -298,6 +298,7 @@
 				<field id="GST_Suitable__c"/>
 				<field id="Months_Self_Employed_Commentary__c"/>
 				<field id="Months_Self_Employed_Suitable__c"/>
+				<field id="GST_Check" uionly="true" displaytype="BOOLEAN" length="255" ogdisplaytype="TEXT" defaultvaluetype="fieldvalue" defaultValue="false"/>
 			</fields>
 			<conditions>
 				<condition type="modelmerge" value="" field="Party__c" fieldtargetobjects="clcommon__Party__c" operator="=" model="NGPartyEmp" enclosevalueinquotes="true" mergefield="Id" novaluebehavior="deactivate"/>
@@ -843,6 +844,7 @@
 						<action type="multi" label="Save" uniqueid="sk-3DtS-3096" icon="sk-webicon-font-awesome:floppy-o">
 							<actions>
 								<action type="blockUI" message="The changes are being recorded please wait and do not change tab or reload the page!" timeout="10000"/>
+								<action type="custom" snippet="AccountantCallValueCheck"/>
 								<action type="save" rollbackonanyerror="true">
 									<models>
 										<model>NGPartyEmp</model>
@@ -1447,6 +1449,7 @@
 									<enableconditions logictype="and">
 										<condition type="blank" operator="!=" fieldmodel="SelfEmploymentDetails" sourcetype="fieldvalue" field="Goods_Services_Tax__c" fieldtargetobjects="genesis__Employment_Information__c" value="null" enclosevalueinquotes="false"/>
 										<condition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="SelfEmploymentDetails" sourcetype="snippet" sourcesnippet="gstEffectiveFromCheck"/>
+										<condition type="fieldvalue" operator="=" enclosevalueinquotes="false" fieldmodel="SelfEmploymentDetails" sourcetype="fieldvalue" field="GST_Check" fieldtargetobjects="genesis__Employment_Information__c" value="true"/>
 									</enableconditions>
 								</field>
 								<field id="GST_Commentary__c" hideable="true" uniqueid="fi-SIg-1649">
@@ -1454,6 +1457,7 @@
 									<enableconditions logictype="and">
 										<condition type="blank" operator="!=" fieldmodel="SelfEmploymentDetails" sourcetype="fieldvalue" field="Goods_Services_Tax__c" fieldtargetobjects="genesis__Employment_Information__c" value="null" enclosevalueinquotes="false"/>
 										<condition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="SelfEmploymentDetails" sourcetype="snippet" sourcesnippet="gstEffectiveFromCheck"/>
+										<condition type="fieldvalue" operator="=" enclosevalueinquotes="false" fieldmodel="SelfEmploymentDetails" sourcetype="fieldvalue" field="GST_Check" fieldtargetobjects="genesis__Employment_Information__c" value="true"/>
 									</enableconditions>
 								</field>
 								<field id="Record_Extract_Date__c" hideable="true" uniqueid="fi-3EJB-1934" monthpicker="true" yearpicker="true" yearpickermin="c-30" yearpickermax="c+30">
@@ -2128,7 +2132,7 @@
 						<action type="blockUI" timeout="3000" message="Error found while uploading the file. Please check the file name, file size or contact Admin."/>
 					</uploadfailureactions>
 				</file>
-				<skootable showconditions="true" showsavecancel="false" showerrorsinline="true" searchmethod="server" searchbox="true" showexportbuttons="false" hideheader="false" hidefooter="false" pagesize="10" alwaysresetpagination="false" createrecords="false" model="PAYGAttachments" buttonposition="" mode="readonly" allowcolumnreordering="true" responsive="true" uniqueid="sk-3LjP-3617" heading="PAYG Documents">
+				<skootable showconditions="true" showsavecancel="false" showerrorsinline="true" searchmethod="server" searchbox="true" showexportbuttons="false" hideheader="false" hidefooter="false" pagesize="all" alwaysresetpagination="false" createrecords="false" model="PAYGAttachments" buttonposition="" mode="readonly" allowcolumnreordering="true" responsive="true" uniqueid="sk-3LjP-3617" heading="PAYG Documents">
 					<fields>
 						<field id="Name" hideable="true" uniqueid="fi-3Lkm-4008"/>
 						<field id="CreatedBy.Name" hideable="true" uniqueid="fi-3Lkr-4031">
@@ -2168,7 +2172,7 @@
 						<action type="blockUI" message="Error found while uploading the file. Please check the file name, file size or contact Admin." timeout="3000"/>
 					</uploadfailureactions>
 				</file>
-				<skootable showconditions="true" showsavecancel="false" showerrorsinline="true" searchmethod="server" searchbox="true" showexportbuttons="false" hideheader="false" hidefooter="false" pagesize="10" alwaysresetpagination="false" createrecords="false" model="SelfEmploymentDetailsAttachments" buttonposition="" mode="readonly" allowcolumnreordering="true" responsive="true" uniqueid="sk-3LjP-3635" heading="Self Employment Documents">
+				<skootable showconditions="true" showsavecancel="false" showerrorsinline="true" searchmethod="server" searchbox="true" showexportbuttons="false" hideheader="false" hidefooter="false" pagesize="all" alwaysresetpagination="false" createrecords="false" model="SelfEmploymentDetailsAttachments" buttonposition="" mode="readonly" allowcolumnreordering="true" responsive="true" uniqueid="sk-3LjP-3635" heading="Self Employment Documents">
 					<fields>
 						<field id="Name" hideable="true" uniqueid="fi-3Lkx-4103"/>
 						<field id="CreatedBy.Name" hideable="true" uniqueid="fi-3Ll0-4128">
@@ -2211,7 +2215,7 @@
 						<action type="blockUI" timeout="3000" message="Error found while uploading the file. Please check the file name, file size or contact Admin."/>
 					</uploadfailureactions>
 				</file>
-				<skootable showconditions="true" showsavecancel="false" showerrorsinline="true" searchmethod="server" searchbox="true" showexportbuttons="false" hideheader="false" hidefooter="false" pagesize="10" alwaysresetpagination="false" createrecords="false" model="DifferentIncomeAttachements" buttonposition="" mode="readonly" allowcolumnreordering="true" responsive="true" uniqueid="sk-3LjQ-3653" heading="Unemployment/Student/Home Duties/Retirement Documents">
+				<skootable showconditions="true" showsavecancel="false" showerrorsinline="true" searchmethod="server" searchbox="true" showexportbuttons="false" hideheader="false" hidefooter="false" pagesize="all" alwaysresetpagination="false" createrecords="false" model="DifferentIncomeAttachements" buttonposition="" mode="readonly" allowcolumnreordering="true" responsive="true" uniqueid="sk-3LjQ-3653" heading="Unemployment/Student/Home Duties/Retirement Documents">
 					<fields>
 						<field id="Name" hideable="true" uniqueid="fi-3Ll4-4167"/>
 						<field id="CreatedBy.Name" hideable="true" uniqueid="fi-3Ll8-4205">
@@ -2254,7 +2258,7 @@
 						<action type="blockUI" message="Error found while uploading the file. Please check the file name, file size or contact Admin." timeout="3000"/>
 					</uploadfailureactions>
 				</file>
-				<skootable showconditions="true" showsavecancel="false" showerrorsinline="true" searchmethod="server" searchbox="true" showexportbuttons="false" hideheader="false" hidefooter="false" pagesize="10" alwaysresetpagination="false" createrecords="false" model="OtherIncomeAttachments" buttonposition="" mode="readonly" allowcolumnreordering="true" responsive="true" uniqueid="sk-3LjR-3671" heading="Other Documents">
+				<skootable showconditions="true" showsavecancel="false" showerrorsinline="true" searchmethod="server" searchbox="true" showexportbuttons="false" hideheader="false" hidefooter="false" pagesize="all" alwaysresetpagination="false" createrecords="false" model="OtherIncomeAttachments" buttonposition="" mode="readonly" allowcolumnreordering="true" responsive="true" uniqueid="sk-3LjR-3671" heading="Other Documents">
 					<fields>
 						<field id="Name" hideable="true" uniqueid="fi-3LlE-4304"/>
 						<field id="CreatedBy.Name" hideable="true" uniqueid="fi-3LlJ-4336">
@@ -2713,12 +2717,16 @@ $.each(selfEmpModel.getRows(),function(i,row){
         var date2 = new Date(value2);
         var diffInTime = date2.getTime() - date1.getTime();
         var diffInMonths = diffInTime / (1000 * 3600 * 24 * 30);
-        if(diffInMonths &lt; 6){
-            flag = true;
+        if(diffInMonths &lt; 6 || row.Goods_Services_Tax__c=== 'Not currently registered for GST'){
+            selfEmpModel.updateRow(row, {GST_Check: true});
+        }
+        else{
+            selfEmpModel.updateRow(row, {GST_Check: false});
         }
     }
 });
-return flag;</jsitem>
+
+return true;</jsitem>
 			<jsitem location="inlinesnippet" name="checkEmpCom" cachelocation="false">var params = arguments[0],
 	$ = skuid.$;
 </jsitem>
@@ -2824,6 +2832,63 @@ if(documentCategoryRecord[0].Id !== undefined &amp;&amp; attModelIdenModel.data.
 else{
     alert('Document Category Not Found or Uploaded Documents could not be recognised.Please contact Admin as category Attachments could not be created');
 }</jsitem>
+			<jsitem location="inlinesnippet" name="AccountantCallValueCheck" cachelocation="false">var params = arguments[0],
+	$ = skuid.$;
+var selfincomeModel=skuid.model.getModel('SelfEmploymentIncomeAltType');
+var flag =true;
+$.each(selfincomeModel.getRows(),function(i,incomeRow){
+    var data='Please put the following Field details to Save Changes\n';
+    var count=0;
+    if(incomeRow.Accountant_Call__c==='Yes'){
+        if(incomeRow.Date_of_Call__c===null || incomeRow.Date_of_Call__c === undefined || incomeRow.Date_of_Call__c===''){
+            data+='Date of Call\n';
+            count++;
+            flag=false;
+        }
+        if(incomeRow.Confirm_letter_prepared_by_accountant__c===null || incomeRow.Confirm_letter_prepared_by_accountant__c === undefined || incomeRow.Confirm_letter_prepared_by_accountant__c===''){
+            data+='Confirm letter prepared by accountant\n';
+            count++;
+            flag=false;
+        }
+        if(incomeRow.Confirm_stated_annual_income__c===null || incomeRow.Confirm_stated_annual_income__c === undefined || incomeRow.Confirm_stated_annual_income__c===''){
+            data+='Confirm stated annual income\n';
+            count++;
+            flag=false;
+        }
+        if(incomeRow.Does_stated_income_include_rental_income__c===null || incomeRow.Does_stated_income_include_rental_income__c === undefined || incomeRow.Does_stated_income_include_rental_income__c===''){
+            data+='Does stated income include rental income\n';
+            count++;
+            flag=false;
+        }
+        if(incomeRow.Is_the_accountant_aware_of_any_circumsta__c===null || incomeRow.Is_the_accountant_aware_of_any_circumsta__c === undefined || incomeRow.Is_the_accountant_aware_of_any_circumsta__c===''){
+            data+='Is the accountant aware of any circumstances\n';
+            count++;
+            flag=false;
+        }
+        if(incomeRow.Accountant_Call_Commentary__c===null || incomeRow.Accountant_Call_Commentary__c === undefined || incomeRow.Accountant_Call_Commentary__c===''){
+            data+='Accountant Call Commentary\n';
+            count++;
+            flag=false;
+        }
+        if(incomeRow.Accountant_Call_Suitable__c===null || incomeRow.Accountant_Call_Suitable__c === undefined || incomeRow.Accountant_Call_Suitable__c===''){
+            data+='Accountant Call Suitable\n';
+            count++;
+            flag=false;
+        }
+        if(count&gt;0 &amp;&amp; count!==undefined){
+            alert(data);
+        }
+    }
+});
+var incomeSummaryModel=skuid.model.getModel('IncomeSummaryEmpModel');
+$.each(incomeSummaryModel.getRows(),function(i,row){
+    if(row.Override__c===null || row.Override__c==='None' || row.Override__c===undefined){
+        alert('Override is Required');
+        flag=false;
+    }
+});
+return flag;
+</jsitem>
 		</javascript>
 		<css>
 			<cssitem location="staticresource" name="CLSStyleSheetPack" cachelocation="false" url="" namespace="genesisExtn" filepath="cls-common.css"/>

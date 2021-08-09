@@ -202,6 +202,9 @@
 				<field id="Loan_Assesment_Commentary_Loan_Details__c"/>
 				<field id="Matrix_Rate_Exception_Check__c"/>
 				<field id="LVR_Used_for_Pricing__c"/>
+				<field id="Recommended_Date_for_Reports__c"/>
+				<field id="Primary_Approval_Date_for_Reports__c"/>
+				<field id="Secondary_Approval_Date_for_Reports__c"/>
 			</fields>
 			<conditions>
 				<condition type="param" value="Id" field="Id" operator="=" enclosevalueinquotes="true" model="DebtConsolidation"/>
@@ -501,6 +504,7 @@
 														<model>QBEModel</model>
 													</models>
 												</action>
+												<action type="custom" snippet="CopyContactData2"/>
 											</actions>
 											<renderconditions logictype="and">
 												<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="false" fieldmodel="CommonApplicationLoanDetails" sourcetype="fieldvalue" field="Is_Approved__c" fieldtargetobjects="genesis__Applications__c" value="false"/>
@@ -580,9 +584,15 @@
 																						<renderconditions logictype="and" onhidedatabehavior="keep"/>
 																						<enableconditions/>
 																					</field>
-																					<field uniqueid="sk-34Ap-1247" id="Recommended_Date__c" readonly="true"/>
-																					<field uniqueid="sk-34As-1277" id="Primary_Approval_Date__c" readonly="true"/>
-																					<field uniqueid="sk-34Au-1305" id="Secondary_Approval_Date__c" readonly="true"/>
+																					<field uniqueid="sk-37GA-1349" id="Recommended_Date_for_Reports__c">
+																						<label>Recommended Date</label>
+																					</field>
+																					<field uniqueid="sk-37GB-1356" id="Primary_Approval_Date_for_Reports__c">
+																						<label>Primary Approval Date</label>
+																					</field>
+																					<field uniqueid="sk-37GB-1363" id="Secondary_Approval_Date_for_Reports__c">
+																						<label>Secodary Approval Date</label>
+																					</field>
 																				</fields>
 																			</section>
 																		</sections>
@@ -2143,7 +2153,7 @@
 				<rendercondition type="fieldvalue" enclosevalueinquotes="true" fieldmodel="LoanDetailsDocumentCategory" sourcetype="modelproperty" nosourcerowbehavior="deactivate" sourceproperty="hasRows"/>
 			</renderconditions>
 		</file>
-		<skootable showconditions="true" showsavecancel="false" showerrorsinline="true" searchmethod="server" searchbox="true" showexportbuttons="false" hideheader="false" hidefooter="false" pagesize="10" alwaysresetpagination="false" createrecords="false" model="LoanDetailsDocumentAttachments" buttonposition="" mode="readonly" allowcolumnreordering="true" responsive="true" uniqueid="sk-2rhr-1901" heading="Loan Details Documents">
+		<skootable showconditions="true" showsavecancel="false" showerrorsinline="true" searchmethod="server" searchbox="true" showexportbuttons="false" hideheader="false" hidefooter="false" pagesize="all" alwaysresetpagination="false" createrecords="false" model="LoanDetailsDocumentAttachments" buttonposition="" mode="readonly" allowcolumnreordering="true" responsive="true" uniqueid="sk-2rhr-1901" heading="Loan Details Documents">
 			<fields>
 				<field id="Name" hideable="true" uniqueid="fi-2ri4-1968"/>
 				<field id="CreatedBy.Name" hideable="true" uniqueid="fi-2ri3-1958">
@@ -2282,6 +2292,29 @@ attachIdList : attIds
 }
 else{
 alert('Document Category Not Found or Uploaded Documents could not be recognised.Please contact Admin as category Attachments could not be created');
+}</jsitem>
+			<jsitem location="inlinesnippet" name="CopyContactData2" cachelocation="false">var params = arguments[0],
+	$ = skuid.$;
+var appModelIdenCheck = skuid.model.getModel('CommonApplicationLoanDetails');
+var appModelIdenRowCheck = appModelIdenCheck.data[0];
+var records = sforce.connection.query("Select Id,clcommon__Contact__c,clcommon__Contact__r.Opt_Out_of_Marketing__c from clcommon__Party__c where clcommon__Contact__c != null and genesis__Application__c = '"+appModelIdenRowCheck.Id+"' and Party_Type_Name__c in ('Borrower','Co-applicant','Director','Director &amp; Shareholder','Guarantor','Shareholder','Trustee','TRUSTEE')");
+var recordsArray = records.getArray('records');
+if(appModelIdenRowCheck !== undefined &amp;&amp; appModelIdenRowCheck!==null){
+    if(appModelIdenRowCheck.Allow_Direct_Marketing__c == 'No'){
+        for(var a=0;a&lt;recordsArray.length;a++){
+            var contactObj = new sforce.SObject("Contact");
+            contactObj.Id = recordsArray[a].clcommon__Contact__c;
+            contactObj.Opt_Out_of_Marketing__c = true;
+            var result = sforce.connection.update([contactObj]);
+        }
+    }else{
+        for(var a=0;a&lt;recordsArray.length;a++){
+            var contactObj = new sforce.SObject("Contact");
+            contactObj.Id = recordsArray[a].clcommon__Contact__c;
+            contactObj.Opt_Out_of_Marketing__c = false;
+            var result = sforce.connection.update([contactObj]);
+        }
+    }
 }</jsitem>
 		</javascript>
 		<css>

@@ -215,6 +215,7 @@
 											</models>
 										</action>
 										<action type="blockUI" message="The changes are being recorded!" timeout="1000"/>
+										<action type="custom" snippet="CopyContactDetails"/>
 									</actions>
 									<renderconditions logictype="and">
 										<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="false" fieldmodel="CIParty" sourcetype="fieldvalue" field="genesis__Application__r.Is_Approved__c" value="false"/>
@@ -296,7 +297,7 @@
 										</panel>
 									</panels>
 								</panelset>
-								<skootable showconditions="true" showsavecancel="false" showerrorsinline="true" searchmethod="server" searchbox="true" showexportbuttons="false" hideheader="false" hidefooter="false" pagesize="10" alwaysresetpagination="false" createrecords="false" model="PartyAttachments" buttonposition="" mode="readonly" allowcolumnreordering="true" responsive="true" uniqueid="sk-3qby-1050" heading="Identification Documents Attachments">
+								<skootable showconditions="true" showsavecancel="false" showerrorsinline="true" searchmethod="server" searchbox="true" showexportbuttons="false" hideheader="false" hidefooter="false" pagesize="all" alwaysresetpagination="false" createrecords="false" model="PartyAttachments" buttonposition="" mode="readonly" allowcolumnreordering="true" responsive="true" uniqueid="sk-3qby-1050" heading="Identification Documents Attachments">
 									<fields>
 										<field id="Name" hideable="true" uniqueid="fi-3qcE-1118"/>
 										<field id="CreatedBy.Name" hideable="true" uniqueid="fi-3qcF-1128">
@@ -420,6 +421,24 @@ var resCheck = sforce.apex.execute('CategoryAttachmentUtility','deleteAttachment
         attachId : records.row.Id
     });
 alert(resCheck);</jsitem>
+			<jsitem location="inlinesnippet" name="CopyContactDetails" cachelocation="false">var params = arguments[0],
+	$ = skuid.$;
+var partyModel = skuid.model.getModel('CIParty');
+var partyRow = partyModel.data[0];
+var contactObj = new sforce.SObject("Contact");
+contactObj.Id = partyRow.clcommon__Contact__c;
+if(partyRow.Politically_Exposed_Person__c !== undefined &amp;&amp; partyRow.Politically_Exposed_Person__c !== null){
+    if(partyRow.Politically_Exposed_Person__c == 'Yes'){
+        contactObj.PEP__c = true;
+    }
+    else if(partyRow.Politically_Exposed_Person__c == 'No'){
+        contactObj.PEP__c = false;
+    }
+    else{
+        contactObj.PEP__c = false;
+    }
+}
+var result = sforce.connection.update([contactObj]);</jsitem>
 		</javascript>
 		<css>
 			<cssitem location="staticresource" name="CLSStyleSheetPack" cachelocation="false" url="" namespace="genesisExtn" filepath="cls-common.css"/>

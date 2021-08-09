@@ -521,11 +521,15 @@
 				</tab>
 				<tab name="Documents" loadlazypanels="true">
 					<components>
-						<includepanel type="skuid" uniqueid="sk-BgC-664" pagename="Documents"/>
+						<includepanel type="skuid" uniqueid="sk-BgC-664" pagename="Documents">
+							<renderconditions logictype="and"/>
+						</includepanel>
 					</components>
 					<oninitialshowactions/>
 					<onshowactions/>
-					<renderconditions logictype="and"/>
+					<renderconditions logictype="and">
+						<rendercondition type="fieldvalue" operator="lte" enclosevalueinquotes="false" fieldmodel="NGLDApplication" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="CreatedDate" fieldtargetobjects="genesis__Applications__c" value="2021-04-21T14:00:00.000Z"/>
+					</renderconditions>
 				</tab>
 				<tab name="Review" loadlazypanels="true">
 					<components>

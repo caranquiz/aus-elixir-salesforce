@@ -1,6 +1,6 @@
 <skuidpage unsavedchangeswarning="yes" personalizationmode="server" showsidebar="true" useviewportmeta="true" showheader="true">
 	<models>
-		<model id="Assets" limit="20" query="true" createrowifnonefound="false" datasource="salesforce" sobject="genesis__Asset_Information__c">
+		<model id="Assets" limit="" query="true" createrowifnonefound="false" datasource="salesforce" sobject="genesis__Asset_Information__c">
 			<fields>
 				<field id="genesis__Asset_Type__c"/>
 				<field id="Address__c"/>
@@ -14,7 +14,7 @@
 			</conditions>
 			<actions/>
 		</model>
-		<model id="Liabilities" limit="20" query="true" createrowifnonefound="false" datasource="salesforce" sobject="genesis__Liability__c">
+		<model id="Liabilities" limit="" query="true" createrowifnonefound="false" datasource="salesforce" sobject="genesis__Liability__c">
 			<fields>
 				<field id="genesis__Liability_Type__c"/>
 				<field id="genesis__Name_of_Creditor__c"/>

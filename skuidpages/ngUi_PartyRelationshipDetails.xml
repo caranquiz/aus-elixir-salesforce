@@ -901,7 +901,15 @@ var appModel = skuid.model.getModel('ApplicationParty');
 var appli = appModel.data[0];
 var resCheck = sforce.apex.execute('SkuidValuesUpdateHelper','updateEmploymentTypeMonthsSelfEmployed',
     {   appId : appli.Id, 
-    });</jsitem>
+    });
+var appObj = new sforce.SObject("genesis__Applications__c");	
+appObj.Id = appli.Id;	
+records= sforce.connection.query("Select id,Party_Type_Name__c From clcommon__Party__c Where genesis__Application__c= '"+appli.Id+"' and Party_Type_Name__c='Broker'");	
+var partyObj=records.getArray('records');	
+if(partyObj.length===0){	
+    appObj.Broker__c=null;	
+}	
+var result2 = sforce.connection.update([appObj]);</jsitem>
 		</javascript>
 		<css>
 			<cssitem location="staticresource" name="CLSStyleSheetPack" cachelocation="false" url="" namespace="genesisExtn" filepath="cls-common.css"/>

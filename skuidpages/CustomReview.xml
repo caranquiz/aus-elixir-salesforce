@@ -176,7 +176,7 @@
 			</conditions>
 			<actions/>
 		</model>
-		<model id="CRAssets" limit="200" query="true" createrowifnonefound="false" datasource="salesforce" sobject="genesis__Asset_Information__c">
+		<model id="CRAssets" limit="" query="true" createrowifnonefound="false" datasource="salesforce" sobject="genesis__Asset_Information__c">
 			<fields>
 				<field id="Party__c"/>
 				<field id="Party__r.Name"/>
@@ -187,8 +187,18 @@
 				<field id="Party__r.Living_Expense_Section_Render__c"/>
 				<field id="Party__r.Primary_Residence_Property_Costs__c"/>
 			</fields>
-			<conditions>
+			<conditions logic="1 AND ((2 AND 3 AND 4) OR 5)">
 				<condition type="modelmerge" value="" field="genesis__Application__c" fieldtargetobjects="genesis__Applications__c" operator="=" model="CRApplication" enclosevalueinquotes="true" mergefield="Id" novaluebehavior="deactivate"/>
+				<condition type="fieldvalue" value="Solicitor" enclosevalueinquotes="true" field="Party__r.clcommon__Type__r.Name" operator="!="/>
+				<condition type="fieldvalue" value="Yes" enclosevalueinquotes="true" field="Party__r.Is_this_a_joint_applicant__c" operator="!="/>
+				<condition type="multiple" value="" field="Party__r.clcommon__Account__r.clcommon__Legal_Entity_Type__r.Name" operator="not in" enclosevalueinquotes="true">
+					<values>
+						<value>Company</value>
+						<value>Trust</value>
+						<value>SMSF</value>
+					</values>
+				</condition>
+				<condition type="fieldvalue" value="Household" enclosevalueinquotes="true" field="Party__r.clcommon__Type__r.Name" fieldtargetobjects="clcommon__Party_Type__c"/>
 			</conditions>
 			<actions/>
 		</model>
@@ -861,7 +871,7 @@
 								<rendercondition type="fieldvalue" enclosevalueinquotes="true" fieldmodel="ConditionDocumentCategory" sourcetype="modelproperty" nosourcerowbehavior="deactivate" sourceproperty="hasRows"/>
 							</renderconditions>
 						</file>
-						<skootable showconditions="true" showsavecancel="false" showerrorsinline="true" searchmethod="server" searchbox="true" showexportbuttons="false" hideheader="false" hidefooter="false" pagesize="10" alwaysresetpagination="false" createrecords="false" model="ConditionDocumentsAttachments" buttonposition="" mode="readonly" allowcolumnreordering="true" responsive="true" uniqueid="sk-2sBW-1464" heading="Review - Condition Documents">
+						<skootable showconditions="true" showsavecancel="false" showerrorsinline="true" searchmethod="server" searchbox="true" showexportbuttons="false" hideheader="false" hidefooter="false" pagesize="all" alwaysresetpagination="false" createrecords="false" model="ConditionDocumentsAttachments" buttonposition="" mode="readonly" allowcolumnreordering="true" responsive="true" uniqueid="sk-2sBW-1464" heading="Review - Condition Documents">
 							<fields>
 								<field id="Name" hideable="true" uniqueid="fi-2sBb-1510"/>
 								<field id="CreatedBy.Name" hideable="true" uniqueid="fi-2sBc-1520">
@@ -1131,7 +1141,7 @@
 										<rendercondition type="fieldvalue" enclosevalueinquotes="true" fieldmodel="ExceptionDocumentCategory" sourcetype="modelproperty" nosourcerowbehavior="deactivate" sourceproperty="hasRows"/>
 									</renderconditions>
 								</file>
-								<skootable showconditions="true" showsavecancel="false" showerrorsinline="true" searchmethod="server" searchbox="true" showexportbuttons="false" hideheader="false" hidefooter="false" pagesize="10" alwaysresetpagination="false" createrecords="false" model="ExceptionDocumentAttachments" buttonposition="" mode="readonly" allowcolumnreordering="true" responsive="true" uniqueid="sk-2sDN-2392" heading="Review - Exception Documents">
+								<skootable showconditions="true" showsavecancel="false" showerrorsinline="true" searchmethod="server" searchbox="true" showexportbuttons="false" hideheader="false" hidefooter="false" pagesize="all" alwaysresetpagination="false" createrecords="false" model="ExceptionDocumentAttachments" buttonposition="" mode="readonly" allowcolumnreordering="true" responsive="true" uniqueid="sk-2sDN-2392" heading="Review - Exception Documents">
 									<fields>
 										<field id="Name" hideable="true" uniqueid="fi-2sDl-2497"/>
 										<field id="CreatedBy.Name" hideable="true" uniqueid="fi-2sDm-2518">
@@ -1257,7 +1267,7 @@
 										<rendercondition type="fieldvalue" enclosevalueinquotes="true" fieldmodel="WarningDocumentCategory" sourcetype="modelproperty" nosourcerowbehavior="deactivate" sourceproperty="hasRows"/>
 									</renderconditions>
 								</file>
-								<skootable showconditions="true" showsavecancel="false" showerrorsinline="true" searchmethod="server" searchbox="true" showexportbuttons="false" hideheader="false" hidefooter="false" pagesize="10" alwaysresetpagination="false" createrecords="false" model="WarningDocumentAttachment" buttonposition="" mode="readonly" allowcolumnreordering="true" responsive="true" uniqueid="sk-2sCt-2176" heading="Review - Warning Documents">
+								<skootable showconditions="true" showsavecancel="false" showerrorsinline="true" searchmethod="server" searchbox="true" showexportbuttons="false" hideheader="false" hidefooter="false" pagesize="all" alwaysresetpagination="false" createrecords="false" model="WarningDocumentAttachment" buttonposition="" mode="readonly" allowcolumnreordering="true" responsive="true" uniqueid="sk-2sCt-2176" heading="Review - Warning Documents">
 									<fields>
 										<field id="Name" hideable="true" uniqueid="fi-2sDA-2315"/>
 										<field id="CreatedBy.Name" hideable="true" uniqueid="fi-2sDC-2327">

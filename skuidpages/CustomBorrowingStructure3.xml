@@ -89,6 +89,12 @@
 				<field id="ShippingPostalCode"/>
 				<field id="clcommon__Legal_Entity_Type__r.Id"/>
 				<field id="Commission_Paid_To__c"/>
+				<field id="FirstName"/>
+				<field id="MiddleName"/>
+				<field id="LastName"/>
+				<field id="PersonBirthdate"/>
+				<field id="RecordType.Name"/>
+				<field id="RecordType.IsPersonType"/>
 			</fields>
 			<conditions>
 				<condition type="modelmerge" value="" field="Id" operator="=" state="filterableoff" inactive="true" name="Id" mergefield="clcommon__Account__c" novaluebehavior="deactivate" model="NewPartyModel" enclosevalueinquotes="true"/>
@@ -155,6 +161,8 @@
 				<field id="MiddleName"/>
 				<field id="AccountId"/>
 				<field id="Account.Name"/>
+				<field id="Opt_Out_of_Marketing__c"/>
+				<field id="Account.RecordType.IsPersonType"/>
 			</fields>
 			<conditions logic="1 OR 2">
 				<condition type="blank" value="null" field="Id" operator="=" enclosevalueinquotes="false"/>
@@ -285,7 +293,7 @@
 			</conditions>
 			<actions/>
 		</model>
-		<model id="ApplicationModel" query="true" createrowifnonefound="false" datasource="salesforce" sobject="genesis__Applications__c">
+		<model id="ApplicationModel" query="true" createrowifnonefound="false" datasource="salesforce" sobject="genesis__Applications__c" limit="20">
 			<fields>
 				<field id="RecordTypeId"/>
 				<field id="genesis__CL_Product__r.clcommon__Asset_Class__r.Name"/>
@@ -293,6 +301,7 @@
 				<field id="genesis__Asset_Class__c"/>
 				<field id="genesis__Account__c"/>
 				<field id="genesis__Account__r.Name"/>
+				<field id="Allow_Direct_Marketing__c"/>
 			</fields>
 			<conditions>
 				<condition type="param" value="id" field="Id" operator="=" enclosevalueinquotes="true"/>
@@ -698,6 +707,40 @@
 																<rendercondition fieldmodel="NewPartyModel" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" enclosevalueinquotes="false" sourceproperty="hasRows" operator="=" type="fieldvalue" field="IndividualRelationship" fieldtargetobjects="clcommon__Party__c" value="false"/>
 															</renderconditions>
 														</basicfieldeditor>
+														<basicfieldeditor showheader="true" showsavecancel="false" showerrorsinline="true" model="NewAccountModel" uniqueid="sk-FUM-2489" mode="edit">
+															<columns>
+																<column width="50%">
+																	<sections>
+																		<section title="" collapsible="no" showheader="false">
+																			<fields>
+																				<field uniqueid="sk-FUS-2533" id="FirstName"/>
+																				<field uniqueid="sk-FUU-2545" id="MiddleName"/>
+																				<field uniqueid="sk-FUe-2595" id="PersonBirthdate"/>
+																			</fields>
+																		</section>
+																	</sections>
+																</column>
+																<column width="50%">
+																	<sections>
+																		<section title="" collapsible="no" showheader="false">
+																			<fields>
+																				<field uniqueid="sk-FUW-2562" id="LastName"/>
+																				<field id="clcommon__Legal_Entity_Type__c" optionsource="" required="true" readonly="true" uniqueid="sk-FUM-2491">
+																					<searchfields/>
+																					<filters/>
+																					<renderconditions logictype="and" onhidedatabehavior="keep"/>
+																					<enableconditions/>
+																				</field>
+																			</fields>
+																		</section>
+																	</sections>
+																</column>
+															</columns>
+															<renderconditions logictype="and">
+																<rendercondition fieldmodel="NewPartyModel" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" enclosevalueinquotes="false" sourceproperty="hasRows" operator="=" type="fieldvalue" field="IndividualRelationship" fieldtargetobjects="clcommon__Party__c" value="true"/>
+																<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="false" fieldmodel="NewAccountModel" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="RecordType.IsPersonType" value="true"/>
+															</renderconditions>
+														</basicfieldeditor>
 														<basicfieldeditor showheader="true" showsavecancel="false" showerrorsinline="true" model="NewContactModel" uniqueid="sk-Rk-9T-580" mode="edit">
 															<columns>
 																<column width="50%">
@@ -732,6 +775,7 @@
 															</columns>
 															<renderconditions logictype="and">
 																<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="false" fieldmodel="NewPartyModel" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="IndividualRelationship" fieldtargetobjects="clcommon__Party__c" value="true"/>
+																<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="false" fieldmodel="NewContactModel" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="Account.RecordType.IsPersonType" value="false"/>
 															</renderconditions>
 														</basicfieldeditor>
 													</components>
@@ -785,27 +829,28 @@
 																<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="false" fieldmodel="NewPartyModel" sourcetype="fieldvalue" nosourcerowbehavior="skipandnorender" field="IndividualRelationship" value="false"/>
 															</renderconditions>
 														</basicfieldeditor>
-														<basicfieldeditor showheader="true" showsavecancel="false" showerrorsinline="true" model="NewContactModel" uniqueid="sk-3isQ-3726" mode="edit">
+														<basicfieldeditor showheader="true" showsavecancel="false" showerrorsinline="true" model="NewAccountModel" uniqueid="sk-FD9-2122" mode="edit">
 															<columns>
 																<column width="50%">
 																	<sections>
-																		<section title="Section A" collapsible="no" showheader="false">
+																		<section title="" collapsible="no" showheader="false">
 																			<fields>
-																				<field id="FirstName" uniqueid="sk-3isQ-3728"/>
-																				<field uniqueid="sk-2kD-1136" id="MiddleName"/>
-																				<field id="LastName" uniqueid="sk-3isQ-3727" cssclass="required"/>
+																				<field uniqueid="sk-FDC-2157" id="FirstName"/>
+																				<field uniqueid="sk-FDD-2173" id="MiddleName"/>
+																				<field uniqueid="sk-FDF-2187" id="LastName"/>
 																			</fields>
 																		</section>
 																	</sections>
+																	<renderconditions logictype="and"/>
 																</column>
 																<column width="50%">
 																	<sections>
-																		<section title="Section B" collapsible="no" showheader="false">
+																		<section title="" collapsible="no" showheader="false">
 																			<fields>
-																				<field id="Birthdate" uniqueid="sk-3isQ-3729" showhelp="true" monthpicker="true" yearpicker="true" yearpickermin="-100" yearpickermax="-18"/>
-																				<field id="clcommon__Legal_Entity_Type__c" readonly="false" uniqueid="sk-3isQ-3734" required="true" pagesize="5" redirecttype="datasourcedefault" cssclass="required">
+																				<field uniqueid="sk-FDL-2218" id="PersonBirthdate"/>
+																				<field id="clcommon__Legal_Entity_Type__c" required="true" uniqueid="sk-FD9-2124" pagesize="5" redirecttype="datasourcedefault">
 																					<filters>
-																						<filter type="multiple" operator="in" field="Name" fieldtargetobjects="clcommon__Legal_Entity__c" value="" enclosevalueinquotes="true">
+																						<filter type="multiple" operator="in" field="Name" value="" enclosevalueinquotes="true">
 																							<values>
 																								<value>Sole Proprietorship</value>
 																								<value>Individual</value>
@@ -813,8 +858,6 @@
 																						</filter>
 																					</filters>
 																					<searchfields/>
-																					<renderconditions logictype="and" onhidedatabehavior="keep"/>
-																					<enableconditions logictype="and"/>
 																				</field>
 																			</fields>
 																		</section>
@@ -1838,45 +1881,52 @@ skuid.$('.nx-wizard-step .ui-button:visible').has('.ui-button-text:contains(Save
 
 var newPartyModel = skuid.model.getModel('NewPartyModel');
 var newPartyRow = newPartyModel.data[0];
-
 var appModel = skuid.model.getModel('ApplicationModel');
 var appRow = appModel.data[0];
-
 var newAccountModel = skuid.model.getModel('NewAccountModel');
 var newAccountRow = newAccountModel.data[0];
-
-var newContactModel = skuid.model.getModel('NewContactModel');
+var newContactModel = skuid.model.getModel('NewContactModel');	
 var newContactRow = newContactModel.data[0];
-
 var businessInfoModel = skuid.model.getModel('NewBusinessInfoModel');
 var businessInfoRow = businessInfoModel.data[0];
-
 var collateralOwnerModel = skuid.model.getModel('CollateralOwnerModel');
 var collData = [];
+var existingContactModel=skuid.model.getModel('NewContactModelForExistingRel');
+var existingContactRow=existingContactModel.data[0];
 collateralOwnerModel.data.forEach(function (colDataObj){
     if(!collateralOwnerModel.isRowMarkedForDeletion(colDataObj) &amp;&amp; colDataObj.clcommon__Collateral__c){
         collData.push(colDataObj);
     }
 });
 collateralOwnerModel.data = collData;
-
 var consentPage = $('#consentTitle');
 var editorNew = consentPage.data('object').editor;
 editorNew.clearMessages();
 var partyArgs = {};
-
 if(newPartyRow.NewRelationship) {
     if(newPartyRow.IndividualRelationship){
-        partyArgs[0] = newContactModel;
-        partyArgs[1] = null;
+        var personAccountQuery = "SELECT Id,Name, SobjectType,IsPersonType FROM RecordType WHERE SobjectType='Account' AND IsPersonType=True";
+        var actualPersonQuery = sforce.connection.query(personAccountQuery);
+        records = actualPersonQuery.getArray("records"); 
+        newAccountModel.updateRow(newAccountRow, {
+            RecordTypeId: records[0].Id
+        });
+        partyArgs[0] = null;
+        partyArgs[1] = newAccountModel;
     } else {
         partyArgs[0] = null;
         partyArgs[1] = newAccountModel;
     }
 } else {
     if(newPartyRow.IndividualRelationship){
-        partyArgs[0] = newContactModel;
-        partyArgs[1] = null;
+        var personAccountQuery = "SELECT Id,Name, SobjectType,IsPersonType FROM RecordType WHERE SobjectType='Account' AND IsPersonType=True";
+        var actualPersonQuery = sforce.connection.query(personAccountQuery);
+        records = actualPersonQuery.getArray("records"); 
+        newAccountModel.updateRow(newAccountRow, {
+            RecordTypeId: records[0].Id
+        });
+        newPartyRow.clcommon__Contact__c=existingContactRow.Id;
+        partyArgs[0] = null;
     } else {
         partyArgs[0] = null;
         partyArgs[1] = newAccountModel;
@@ -1886,10 +1936,8 @@ var bModel = businessInfoModel;
 if (Object.keys(businessInfoModel.data[0]).length &lt;= 2){
     bModel = null;
 }
-
 var res = saveParty(newPartyModel,partyArgs[0],partyArgs[1],bModel,collateralOwnerModel);
 var resObj = JSON.parse(res);
-
 var partType = newPartyRow.clcommon__Type__r.Name;
 if(partType == 'Broker'){
    appModel.updateRow(appRow,'Broker_Trail_Percentage__c',newAccountRow.Broker_Trail_Percentage__c);
@@ -1897,14 +1945,29 @@ if(partType == 'Broker'){
    appModel.updateRow(appRow,'Percentage_Of_Commission__c',newAccountRow.Percentage_Of_Commission__c);
    appModel.save();
 }
-
-
 if(resObj.status == 'SUCCESS'){
     if(newPartyRow.IndividualRelationship){
-        var contactId = resObj.content[0].clcommon__Contact__r.Id;
-        newContactModel.updateRow(newContactRow, {
-            Id: contactId
+        var flag=false;
+        if(appRow.Allow_Direct_Marketing__c !== undefined &amp;&amp; appRow.Allow_Direct_Marketing__c !== null){
+            if(appRow.Allow_Direct_Marketing__c === 'No'){
+                flag = true;
+            }
+        }
+        if(newPartyRow.NewRelationship == false &amp;&amp; newPartyRow.IndividualRelationship == true){
+            var accId = newAccountRow.Id;
+        }
+        else{
+            var accId = resObj.content[0].clcommon__Account__r.Id;
+        }
+        newAccountModel.updateRow(newAccountRow, {
+            Id: accId
         });
+        var records = sforce.connection.query("Select id,Opt_Out_of_Marketing__pc from Account where Id = '"+accId+"' Limit 1");
+        if(records!==undefined &amp;&amp; records!==null){
+            var accObj= (records.getArray('records'))[0];
+            accObj.Opt_Out_of_Marketing__pc=flag;
+            var result1 = sforce.connection.update([accObj]);
+        }
         newPartyRow.SaveParty = false;
         $("#PartySaveButton").button('enable');
     }

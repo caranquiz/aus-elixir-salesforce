@@ -112,6 +112,9 @@
 				<field id="Search_for_duplicate_loan_application__c"/>
 				<field id="NewField" uionly="true" displaytype="TEXT"/>
 				<field id="genesis__Pricing_Method__c"/>
+				<field id="genesis__Account__r.FirstName"/>
+				<field id="genesis__Account__r.MiddleName"/>
+				<field id="genesis__Account__r.LastName"/>
 			</fields>
 			<conditions>
 				<condition type="fieldvalue" value="" enclosevalueinquotes="true" field="Id" operator="=" state="filterableoff" inactive="true" name="AppId" model="PersonAccount"/>
@@ -357,6 +360,9 @@
 				<field id="MasterRecord.Name"/>
 				<field id="genesis__Business_Information__c"/>
 				<field id="genesis__Business_Information__r.Name"/>
+				<field id="FirstName"/>
+				<field id="MiddleName"/>
+				<field id="LastName"/>
 			</fields>
 			<conditions>
 				<condition type="fieldvalue" value="" field="Id" state="filterableoff" inactive="true" name="CommonAccId" operator="=" mergefield="genesis__Account__c" novaluebehavior="deactivate" enclosevalueinquotes="true" model="PersonAccount"/>
@@ -541,6 +547,7 @@
 																		<enableconditions logictype="and"/>
 																	</field>
 																</fields>
+																<renderconditions logictype="and"/>
 															</section>
 														</sections>
 														<renderconditions logictype="and"/>
@@ -605,12 +612,6 @@
 													<enableconditions/>
 													<searchfields/>
 													<filters>
-														<filter type="multiple" operator="not in" field="clcommon__Legal_Entity_Type__r.Name" value="" enclosevalueinquotes="true">
-															<values>
-																<value>Individial</value>
-																<value>Sole Proprietorship</value>
-															</values>
-														</filter>
 														<filter type="blank" operator="!=" field="clcommon__Legal_Entity_Type__c" value="null" enclosevalueinquotes="false"/>
 													</filters>
 													<label>Borrower</label>
@@ -623,6 +624,7 @@
 									<sections>
 										<section title="Section B" collapsible="no" showheader="false">
 											<fields/>
+											<renderconditions logictype="and"/>
 										</section>
 									</sections>
 								</column>
@@ -680,32 +682,28 @@
 				</wrapper>
 				<wrapper uniqueid="sk-2oyK-2684">
 					<components>
-						<basicfieldeditor showheader="true" showsavecancel="false" showerrorsinline="true" model="CommonContactModel" uniqueid="sk-2oyW-2720" mode="edit">
+						<basicfieldeditor showheader="true" showsavecancel="false" showerrorsinline="true" model="CommonAccountModel" uniqueid="sk-AlX-771" mode="edit">
 							<columns>
-								<column width="50%" uniqueid="sk-2oyW-2716">
+								<column width="50%" uniqueid="sk-AlX-767">
 									<sections>
-										<section title="Section A" uniqueid="sk-2oyW-2717" collapsible="no" showheader="false">
+										<section title="Section A" uniqueid="sk-AlX-768" collapsible="no" showheader="false">
 											<fields>
-												<field uniqueid="sk-2oye-2753" id="FirstName" snippet="fieldRenderMode1"/>
-												<field uniqueid="sk-2oyk-2788" id="MiddleName" snippet="fieldRenderMode1">
-													<renderconditions logictype="and" onhidedatabehavior="keep"/>
-													<enableconditions/>
-												</field>
+												<field uniqueid="sk-Ald-798" id="FirstName"/>
+												<field uniqueid="sk-Ale-814" id="MiddleName"/>
 											</fields>
 										</section>
 									</sections>
 								</column>
-								<column width="50%" uniqueid="sk-2oyW-2718">
+								<column width="50%" uniqueid="sk-AlX-769">
 									<sections>
-										<section title="Section B" uniqueid="sk-2oyW-2719" collapsible="no" showheader="false">
+										<section title="Section B" uniqueid="sk-AlX-770" collapsible="no" showheader="false">
 											<fields>
-												<field uniqueid="sk-2oyi-2767" id="LastName" snippet="fieldRenderMode1"/>
+												<field uniqueid="sk-Alg-832" id="LastName"/>
 											</fields>
 										</section>
 									</sections>
 								</column>
 							</columns>
-							<renderconditions logictype="and"/>
 						</basicfieldeditor>
 					</components>
 					<styles>
@@ -1017,9 +1015,9 @@ if(!result){
     );
     return;
 }
-//var applicationModel = skuid.model.getModel('CommonApplicationModel');
 var applicationModel = result['genesis__Applications__c'];
 var appRow = applicationModel.data[0];
+
 if(skuid.page.params.RecordType){
     appRow.RecordTypeId = skuid.page.params.RecordType;    
 }
@@ -1031,10 +1029,9 @@ var selectedProductRow = selectedProductModel.data[0];
 if(selectedProductRow.Id &amp;&amp; selectedProductRow.Id.length &gt; 14){
     appRow.genesis__CL_Product__c = selectedProductRow.Id;
 }
-var contactModel = skuid.model.getModel('CommonContactModel');
-var contactRow = contactModel.data[0];
 var accountModel = skuid.model.getModel('CommonAccountModel');
 var accRow = accountModel.data[0];
+var appActionModel = skuid.model.getModel('CreateApplicationActionModel');
 var branchModel = skuid.model.getModel('SystemBranch');
 var branchRow = branchModel.data[0];
 
@@ -1068,38 +1065,19 @@ if(!appRow.genesis__Draw_Term__c){
 if(!appRow.genesis__Initial_Advance__c){
     appRow.genesis__Initial_Advance__c = 0;
 }
-/*if(!appRow.genesis__Product_Type__c){
-    appRow.genesis__Product_Type__c = 'LOAN';
-}
-if(!appRow.genesis__Product_Sub_Type__c){
-    appRow.genesis__Product_Sub_Type__c = 'UNDEFINED';
-}
-/*
-if(!appRow.genesis__Pricing_Method__c){
-    appRow.genesis__Pricing_Method__c = 'RATE CARD';
-}
-if(!appRow.genesis__Sales_Division__c){
-    appRow.genesis__Sales_Division__c = 'DEALER';
-}
-*/
-
 if(!appRow.genesis__Other_Financed_fees__c){
     appRow.genesis__Other_Financed_fees__c = 0;
 }
 if(!appRow.genesis__Expected_Start_Date__c){
     appRow.genesis__Expected_Start_Date__c = branchRow.loan__Current_System_Date__c;
 }
-/*if(!appRow.genesis__Expected_First_Payment_Date__c){
-    var dt = new Date(branchRow.loan__Current_System_Date__c);
-    appRow.genesis__Expected_First_Payment_Date__c = dt.setMonth(dt.getMonth() + 1);
-}*/
 if(selectedProductRow.clcommon__Product_Name__c == 'Construction Development'){
     appRow.genesis__Interest_Calculation_Method__c = 'Flat';
 }
 newAppParams.applicationM = applicationModel;
 newAppParams.pmtstreamM = null;
 newAppParams.businessM = businessModel;
-if(accRow.Name){
+if((accRow.Name || accRow.LastName) &amp;&amp; (!(applicationModel.data[0].Legal_Entity__r.Name === 'Individual' &amp;&amp; appActionModel.data[0].genesis__New_Borrower__c === false))){
     var accRow1 = accountModel.getFirstRow();
     accountModel.updateRow(accRow1,{clcommon__Legal_Entity_Type__c:skuid.model.getModel('CommonApplicationModel').data[0].Legal_Entity__c});
     //************************************************************************
@@ -1119,80 +1097,22 @@ if(accRow.Name){
 }else{
     newAppParams.accountM = null;
 }
-
-if(contactRow &amp;&amp; contactRow.LastName &amp;&amp; !accRow.Name){
-    var conRow1 = contactModel.getFirstRow();
-    try{
-    contactModel.updateRow(conRow1,{clcommon__Legal_Entity_Type__c:skuid.model.getModel('CommonApplicationModel').data[0].Legal_Entity__c});    
-    }
-    catch(err){
-        alert(''+err.message);
-    }
-    //*******assign legal entity type for contact****
-    if(!contactModel.data[0].clcommon__Legal_Entity_Type__c){
-        $.unblockUI();
-        editor.handleMessages(
-            [
-              {
-                  message: 'Legal Entity Type is missing',
-                  severity: 'ERROR'
-              },
-            ]
-        );
-        return;
-    }
-    newAppParams.contactM = contactModel;
-}else{
-    newAppParams.contactM = null;
-}
 var skuidApplicationId = appRow.Id;
 //block ui and call save app function
-
 $.blockUI({
     onBlock: function() {
+        var personAccountQuery = "SELECT Id,Name, SobjectType,IsPersonType FROM RecordType WHERE SobjectType='Account' AND IsPersonType=True";
+        var actualPersonQuery = sforce.connection.query(personAccountQuery);
+        records = actualPersonQuery.getArray("records"); 
+        if(applicationModel.data[0].Legal_Entity__r.Name === 'Individual' &amp;&amp; appActionModel.data[0].genesis__New_Borrower__c === true){
+            accRow.RecordTypeId = records[0].Id;
+        }
         var result=saveNGApplication(newAppParams);
         var resultJSON = $.parseJSON(result[0]);
         if(resultJSON.errorMessage){
             $.unblockUI();
             error(resultJSON.errorMessage);
             return;
-        }
-        
-        var legalEntityId = accountModel.data[0]['clcommon__Legal_Entity_Type__c'];
-        var myquery = "SELECT Name FROM clcommon__Legal_Entity__c WHERE id = '"+applicationModel.data[0].Legal_Entity__c+"'"; 
-        var resultQuery;
-        resultQuery = sforce.connection.query(myquery); 
-        records = resultQuery.getArray("records"); 
-        
-        //Query party type individual for contact person details.
-        var individualPartyId = "SELECT Id FROM clcommon__Legal_Entity__c WHERE Name = 'Individual'"; 
-        var companyPartyId = "SELECT Id FROM clcommon__Legal_Entity__c WHERE Name = 'Company'";
-        var resultIndPartyQuery;
-        resultIndPartyQuery = sforce.connection.query(companyPartyId); 
-        
-        records1 = resultIndPartyQuery.getArray("records");
-        if(records[0].Name  === 'Company' || records[0].Name === 'Trust' || records[0].Name === 'SMSF'){
-            contactModel.updateRow(contactModel.getFirstRow,
-                {
-                    AccountId : resultJSON.content[0].genesis__Account__c,
-                    clcommon__Legal_Entity_Type__c:records1[0].Id
-                }
-            );
-            //changed
-            contactModel.save({callback : function(saveContact){
-            }})
-        } else if(records[0].Name === 'Individual'){
-            if(contactRow.FirstName &amp;&amp; contactRow.MiddleName &amp;&amp; contactRow.LastName){
-                var fullName=contactRow.FirstName+' '+contactRow.MiddleName+' '+contactRow.LastName;
-                var accObj= new sforce.SObject("Account");
-                accObj.Name=fullName;
-                accObj.Id=resultJSON.content[0].genesis__Account__c;
-                var updateAccResult = sforce.connection.update([accObj]);
-               if(updateAccResult[0].getBoolean("success")){
-               }else{
-                   alert(updateAccResult);
-               }
-            }
         }
         if (resultJSON.status === 'ERROR') {
             $.unblockUI();
@@ -1214,10 +1134,7 @@ $.blockUI({
     //*******************finish on block 
     },
     message: 'The changes are being recorded!'
-});
-        
-        
-        </jsitem>
+});   </jsitem>
 			<jsitem location="inlinesnippet" name="CloseDialog" cachelocation="false">var params = arguments[0],
     $ = skuid.$;
 

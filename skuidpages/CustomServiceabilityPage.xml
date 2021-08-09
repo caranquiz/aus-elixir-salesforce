@@ -153,7 +153,7 @@
 										<rendercondition type="fieldvalue" enclosevalueinquotes="true" fieldmodel="ServiecabiltyDocumentCategory" sourcetype="modelproperty" nosourcerowbehavior="deactivate" sourceproperty="hasRows"/>
 									</renderconditions>
 								</file>
-								<skootable showconditions="true" showsavecancel="false" showerrorsinline="true" searchmethod="server" searchbox="true" showexportbuttons="false" hideheader="false" hidefooter="false" pagesize="10" alwaysresetpagination="false" createrecords="false" model="ServiceabiltyDocumentAttachments" buttonposition="" mode="readonly" allowcolumnreordering="true" responsive="true" uniqueid="sk-2rc8-931" heading="Serviceability Documents">
+								<skootable showconditions="true" showsavecancel="false" showerrorsinline="true" searchmethod="server" searchbox="true" showexportbuttons="false" hideheader="false" hidefooter="false" pagesize="all" alwaysresetpagination="false" createrecords="false" model="ServiceabiltyDocumentAttachments" buttonposition="" mode="readonly" allowcolumnreordering="true" responsive="true" uniqueid="sk-2rc8-931" heading="Serviceability Documents">
 									<fields>
 										<field id="Name" hideable="true" uniqueid="fi-2rcB-951"/>
 										<field id="CreatedBy.Name" hideable="true" uniqueid="fi-2rcC-961">

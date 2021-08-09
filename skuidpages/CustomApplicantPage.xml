@@ -67,6 +67,56 @@
 				<field id="Commission_Email__c"/>
 				<field id="Contact_Name__c"/>
 				<field id="clcommon__Email__c"/>
+				<field id="FirstName"/>
+				<field id="LastName"/>
+				<field id="MiddleName"/>
+				<field id="PersonTitle"/>
+				<field id="PersonBirthdate"/>
+				<field id="clcommon__Marital_Status__pc"/>
+				<field id="PersonEmail"/>
+				<field id="PersonHomePhone"/>
+				<field id="PersonMobilePhone"/>
+				<field id="PersonOtherPhone"/>
+				<field id="Australian_Citizen__pc"/>
+				<field id="ints__Driver_License__pc"/>
+				<field id="Number_Of_Dependents__pc"/>
+				<field id="PersonMailingAddress"/>
+				<field id="Mailing_Address_Street_No__pc"/>
+				<field id="Mailing_Address_Street_Type__pc"/>
+				<field id="Mailing_Address_Unit_No__pc"/>
+				<field id="PersonMailingCity"/>
+				<field id="PersonMailingCountry"/>
+				<field id="PersonMailingStreet"/>
+				<field id="PersonMailingState"/>
+				<field id="PersonMailingPostalCode"/>
+				<field id="clcommon__Years_At_Current_Address__pc"/>
+				<field id="Enter_Address_Manually__pc"/>
+				<field id="Enter_postal_address_manually__pc"/>
+				<field id="Is_this_the_Postal_Address__pc"/>
+				<field id="clcommon__Current_Zip_Code__pc"/>
+				<field id="Postal_Address__pc"/>
+				<field id="clcommon__Residential_Status__pc"/>
+				<field id="Gender__pc"/>
+				<field id="Temporary_Visa_Expiry_Date__pc"/>
+				<field id="Visa_Subclass_Code__pc"/>
+				<field id="Has_applied_for_Permanent_Residency_Visa__pc"/>
+				<field id="Permanent_Residency_Apply_Date__pc"/>
+				<field id="Permanent_Residency_Date__pc"/>
+				<field id="Housing_Status__pc"/>
+				<field id="Is_the_applicant_s_age_less_than_18_yrs__pc"/>
+				<field id="Age_of_Applicant__pc"/>
+				<field id="Applicant_reside_in_Australia__pc"/>
+				<field id="Salutation"/>
+				<field id="Address__pc"/>
+				<field id="Position__pc"/>
+				<field id="Ages__pc"/>
+				<field id="Broker_Underwriter__pc"/>
+				<field id="Exit_Strategy_Commentary__pc"/>
+				<field id="Exit_Strategy_Provided__pc"/>
+				<field id="Exit_Strategy_Suitable__pc"/>
+				<field id="Temporary_Visa_Suitability__pc"/>
+				<field id="Temporary_Visa_Suitability_Commentary__pc"/>
+				<field id="Opt_Out_of_Marketing__pc"/>
 			</fields>
 			<conditions>
 				<condition type="param" value="Id" field="Id" fieldtargetobjects="Account" operator="=" mergefield="genesis__Account__c" novaluebehavior="deactivate" enclosevalueinquotes="true" model="AccountBillingAddress"/>
@@ -265,6 +315,10 @@
 				<field id="Upfront_Payment_Warning_Check__c"/>
 				<field id="Trail_Payment_Warning_Check__c"/>
 				<field id="Exit_Strategy_Section_Render_Check__c"/>
+				<field id="Number_of_Secretaries__c"/>
+				<field id="Settlement_Fee__c"/>
+				<field id="Settlement_Fee_Amount__c"/>
+				<field id="clcommon__Account__r.clcommon__Marital_Status__pc"/>
 			</fields>
 			<conditions>
 				<condition type="modelmerge" value="" field="clcommon__Account__c" fieldtargetobjects="Account" operator="=" model="Account" enclosevalueinquotes="true" mergefield="Id" novaluebehavior="deactivate"/>
@@ -373,7 +427,7 @@
 			</conditions>
 			<actions/>
 		</model>
-		<model id="ContactPostalAddress" query="true" createrowifnonefound="true" datasource="salesforce" sobject="clcommon__Address__c">
+		<model id="ContactPostalAddress" query="true" createrowifnonefound="true" datasource="salesforce" sobject="clcommon__Address__c" limit="20">
 			<fields>
 				<field id="Other_At__c"/>
 				<field id="clcommon__Contact__c"/>
@@ -516,6 +570,8 @@
 				<field id="Id"/>
 				<field id="Is_Approved__c"/>
 				<field id="Button_disable__c"/>
+				<field id="Allow_Direct_Marketing__c"/>
+				<field id="First_Home_Buyer__c"/>
 			</fields>
 			<conditions>
 				<condition type="param" field="Id" operator="=" enclosevalueinquotes="true" value="appId" novaluebehavior="noquery"/>
@@ -674,7 +730,7 @@
 					</enableconditions>
 					<hotkeys/>
 					<actions>
-						<action type="blockUI" message="The changes are being recorded!" timeout="8000"/>
+						<action type="blockUI" message="The changes are being recorded please wait and do not change tab or reload the page!" timeout="8000"/>
 						<action type="custom" snippet="AgeCheck"/>
 						<action type="save">
 							<models>
@@ -688,6 +744,7 @@
 							<onerroractions/>
 						</action>
 						<action type="custom" snippet="callEraseRedundantDataForIndividual"/>
+						<action type="custom" snippet="CopyContactData"/>
 						<action type="requeryModels" behavior="standard">
 							<models>
 								<model>Account</model>
@@ -709,6 +766,7 @@
 								<model>AggregatorModel</model>
 							</models>
 						</action>
+						<action type="unblockUI"/>
 					</actions>
 					<models>
 						<model>Account</model>
@@ -1463,7 +1521,7 @@
 		</basicfieldeditor>
 		<wrapper uniqueid="sk-2AcX-3255">
 			<components>
-				<basicfieldeditor showheader="true" showsavecancel="false" showerrorsinline="true" model="Contact" uniqueid="sk-2AcX-3258" mode="edit">
+				<basicfieldeditor showheader="true" showsavecancel="false" showerrorsinline="true" model="Account" uniqueid="sk-2AcX-3258" mode="edit">
 					<columns layoutmode="fixed">
 						<column width="100%" uniqueid="sk-2AcX-3259">
 							<sections>
@@ -1474,10 +1532,10 @@
 												<sections>
 													<section title="New Section" collapsible="no" uniqueid="sk-1pZ-1738" showheader="false">
 														<fields>
-															<field uniqueid="sk-V-M-1037" id="Salutation" snippet="fieldRenderer2" required="false">
+															<field uniqueid="sk-3skt-4453" id="Salutation" snippet="fieldRenderer2">
 																<label>Name Title</label>
 																<renderconditions logictype="and" onhidedatabehavior="keep"/>
-																<enableconditions logictype="and"/>
+																<enableconditions/>
 															</field>
 														</fields>
 													</section>
@@ -1494,7 +1552,7 @@
 																</template>
 																<label>Required</label>
 																<renderconditions logictype="and" onhidedatabehavior="cancel">
-																	<rendercondition type="blank" operator="=" fieldmodel="Contact" sourcetype="fieldvalue" field="Salutation" fieldtargetobjects="Contact" value="null" enclosevalueinquotes="false"/>
+																	<rendercondition type="blank" operator="=" fieldmodel="Account" sourcetype="fieldvalue" field="Salutation" fieldtargetobjects="Account" value="null" enclosevalueinquotes="false" nosourcerowbehavior="deactivate"/>
 																</renderconditions>
 																<enableconditions/>
 															</field>
@@ -1510,11 +1568,7 @@
 												<sections>
 													<section title="New Section" collapsible="no" uniqueid="sk-1pd-1769" showheader="false">
 														<fields>
-															<field uniqueid="sk-2AcX-3262" id="FirstName" snippet="fieldRenderer2">
-																<label>First Name</label>
-																<renderconditions logictype="and" onhidedatabehavior="keep"/>
-																<enableconditions/>
-															</field>
+															<field uniqueid="sk-3sl4-4563" id="FirstName" snippet="fieldRenderer2"/>
 														</fields>
 													</section>
 												</sections>
@@ -1529,8 +1583,8 @@
 																	<contents/>
 																</template>
 																<renderconditions logictype="or" onhidedatabehavior="cancel" logic="1 AND (2 OR 3)">
-																	<rendercondition type="blank" operator="=" fieldmodel="Contact" sourcetype="fieldvalue" field="FirstName" fieldtargetobjects="Contact" value="null" enclosevalueinquotes="false"/>
-																	<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="Contact" sourcetype="fieldvalue" field="FirstName" fieldtargetobjects="Contact" value="''"/>
+																	<rendercondition type="blank" operator="=" fieldmodel="Account" sourcetype="fieldvalue" field="FirstName" fieldtargetobjects="Account" value="null" enclosevalueinquotes="false" nosourcerowbehavior="deactivate"/>
+																	<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="Account" sourcetype="fieldvalue" field="FirstName" fieldtargetobjects="Account" value="''" nosourcerowbehavior="deactivate"/>
 																</renderconditions>
 																<enableconditions/>
 															</field>
@@ -1550,10 +1604,7 @@
 												<sections>
 													<section title="New Section" collapsible="no" uniqueid="sk-1tR-1893" showheader="false">
 														<fields>
-															<field uniqueid="sk-1tl-1241" id="MiddleName">
-																<renderconditions logictype="and" onhidedatabehavior="keep"/>
-																<enableconditions/>
-															</field>
+															<field uniqueid="sk-3swX-4594" id="MiddleName"/>
 														</fields>
 													</section>
 												</sections>
@@ -1575,8 +1626,7 @@
 												<sections>
 													<section title="New Section" collapsible="no" uniqueid="sk-1t--1337" showheader="false">
 														<fields>
-															<field uniqueid="sk-2AcX-3269" id="LastName" snippet="fieldRenderer2" cssclass="required">
-																<label>Last Name</label>
+															<field uniqueid="sk-3swe-4624" id="LastName" cssclass="required" snippet="fieldRenderer2" required="true">
 																<renderconditions logictype="and" onhidedatabehavior="keep"/>
 																<enableconditions/>
 															</field>
@@ -1595,8 +1645,8 @@
 																</template>
 																<renderconditions logictype="custom" onhidedatabehavior="cancel" logic="1 AND (2 OR 3)">
 																	<rendercondition type="fieldvalue" enclosevalueinquotes="false" fieldmodel="Contact" sourcetype="modelproperty" sourceproperty="hasChanged" value="false" operator="="/>
-																	<rendercondition type="blank" operator="=" fieldmodel="Contact" sourcetype="fieldvalue" field="LastName" fieldtargetobjects="Contact" value="null" enclosevalueinquotes="false"/>
-																	<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="Contact" sourcetype="fieldvalue" field="LastName" fieldtargetobjects="Contact" value="''"/>
+																	<rendercondition type="blank" operator="=" fieldmodel="Account" sourcetype="fieldvalue" field="LastName" fieldtargetobjects="Account" value="null" enclosevalueinquotes="false" nosourcerowbehavior="deactivate"/>
+																	<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="Account" sourcetype="fieldvalue" field="LastName" fieldtargetobjects="Account" value="''" nosourcerowbehavior="deactivate"/>
 																</renderconditions>
 																<enableconditions/>
 															</field>
@@ -1614,10 +1664,7 @@
 												<sections>
 													<section title="New Section" collapsible="no" uniqueid="sk-1z4-1262" showheader="false">
 														<fields>
-															<field uniqueid="sk-Lzq-988" id="Gender__c" snippet="fieldRenderer2">
-																<renderconditions logictype="and" onhidedatabehavior="keep"/>
-																<enableconditions/>
-															</field>
+															<field uniqueid="sk-3swl-4655" id="Gender__pc" type="CUSTOM" snippet="fieldRenderer2"/>
 														</fields>
 													</section>
 												</sections>
@@ -1632,7 +1679,7 @@
 																	<contents/>
 																</template>
 																<renderconditions logictype="and" onhidedatabehavior="cancel">
-																	<rendercondition type="blank" operator="=" fieldmodel="Contact" sourcetype="fieldvalue" field="Gender__c" fieldtargetobjects="Contact" value="null" enclosevalueinquotes="false"/>
+																	<rendercondition type="blank" operator="=" fieldmodel="Account" sourcetype="fieldvalue" field="Gender__pc" fieldtargetobjects="Account" value="null" enclosevalueinquotes="false" nosourcerowbehavior="deactivate"/>
 																</renderconditions>
 																<enableconditions/>
 															</field>
@@ -1650,11 +1697,7 @@
 												<sections>
 													<section title="New Section" collapsible="no" uniqueid="sk-24R-1734" showheader="false">
 														<fields>
-															<field uniqueid="sk-2AcX-3270" id="Birthdate" snippet="dateCheck" monthpicker="true" yearpicker="true" yearpickermin="-100" yearpickermax="-18" showhelp="true">
-																<label>Date of Birth</label>
-																<renderconditions logictype="and" onhidedatabehavior="keep"/>
-																<enableconditions/>
-															</field>
+															<field uniqueid="sk-3swv-4680" id="PersonBirthdate" snippet="dateCheck"/>
 														</fields>
 													</section>
 												</sections>
@@ -1669,7 +1712,7 @@
 																	<contents/>
 																</template>
 																<renderconditions logictype="and" onhidedatabehavior="cancel" logic="1 AND 2">
-																	<rendercondition type="blank" operator="=" fieldmodel="Contact" sourcetype="fieldvalue" field="Birthdate" fieldtargetobjects="Contact" value="null" enclosevalueinquotes="false"/>
+																	<rendercondition type="blank" operator="=" fieldmodel="Account" sourcetype="fieldvalue" field="PersonBirthdate" fieldtargetobjects="Account" value="null" enclosevalueinquotes="false" nosourcerowbehavior="deactivate"/>
 																</renderconditions>
 																<enableconditions/>
 															</field>
@@ -1727,11 +1770,11 @@
 						</column>
 					</columns>
 					<renderconditions logictype="and">
-						<rendercondition type="blank" operator="!=" fieldmodel="Contact" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="Birthdate" fieldtargetobjects="Contact" value="null" enclosevalueinquotes="false"/>
+						<rendercondition type="blank" operator="!=" fieldmodel="Account" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="PersonBirthdate" fieldtargetobjects="Account" value="null" enclosevalueinquotes="false"/>
 						<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="Party" sourcetype="snippet" nosourcerowbehavior="deactivate" datasource="salesforce" sourcedatasourcetypeuserinfo="userid" sourcesnippet="dobCheck"/>
 					</renderconditions>
 				</basicfieldeditor>
-				<basicfieldeditor showheader="true" showsavecancel="false" showerrorsinline="true" model="Contact" uniqueid="sk-NOb-3729" mode="edit">
+				<basicfieldeditor showheader="true" showsavecancel="false" showerrorsinline="true" model="Account" uniqueid="sk-NOb-3729" mode="edit">
 					<columns layoutmode="fixed">
 						<column width="100%" uniqueid="sk-NOb-3730">
 							<sections>
@@ -1742,7 +1785,7 @@
 												<sections>
 													<section title="New Section" collapsible="no" uniqueid="sk-NOb-3783" showheader="false">
 														<fields>
-															<field uniqueid="sk-NOb-3784" id="Australian_Citizen__c" snippet="fieldRenderer2">
+															<field uniqueid="sk-3sxg-4707" id="Australian_Citizen__pc" snippet="fieldRenderer2">
 																<label>Australian Citizenship</label>
 																<renderconditions logictype="and" onhidedatabehavior="keep"/>
 																<enableconditions/>
@@ -1761,7 +1804,7 @@
 																	<contents/>
 																</template>
 																<renderconditions logictype="and" onhidedatabehavior="cancel">
-																	<rendercondition type="blank" operator="=" fieldmodel="Contact" sourcetype="fieldvalue" field="Australian_Citizen__c" fieldtargetobjects="Contact" value="null" enclosevalueinquotes="false"/>
+																	<rendercondition type="blank" operator="=" fieldmodel="Account" sourcetype="fieldvalue" field="Australian_Citizen__pc" fieldtargetobjects="Account" value="null" enclosevalueinquotes="false" nosourcerowbehavior="deactivate"/>
 																</renderconditions>
 																<enableconditions logictype="and"/>
 															</field>
@@ -1779,7 +1822,7 @@
 												<sections>
 													<section title="New Section" collapsible="no" uniqueid="sk-NOb-3791" showheader="false">
 														<fields>
-															<field uniqueid="sk-NOb-3792" id="Applicant_reside_in_Australia__c">
+															<field uniqueid="sk-3sxy-4738" id="Applicant_reside_in_Australia__pc">
 																<label>Does Applicant Reside In Australia?</label>
 																<renderconditions logictype="and" onhidedatabehavior="keep"/>
 																<enableconditions/>
@@ -1798,7 +1841,7 @@
 																	<contents/>
 																</template>
 																<renderconditions logictype="and" onhidedatabehavior="cancel">
-																	<rendercondition type="blank" operator="=" fieldmodel="Contact" sourcetype="fieldvalue" field="Applicant_reside_in_Australia__c" fieldtargetobjects="Contact" value="null" enclosevalueinquotes="false"/>
+																	<rendercondition type="blank" operator="=" fieldmodel="Account" sourcetype="fieldvalue" field="Applicant_reside_in_Australia__pc" fieldtargetobjects="Account" value="null" enclosevalueinquotes="false" nosourcerowbehavior="deactivate"/>
 																</renderconditions>
 																<enableconditions/>
 															</field>
@@ -1818,7 +1861,7 @@
 				</basicfieldeditor>
 				<wrapper uniqueid="sk-1AX6-4958">
 					<components>
-						<basicfieldeditor showheader="true" showsavecancel="false" showerrorsinline="true" model="Contact" uniqueid="sk-3ng9-3139" mode="edit">
+						<basicfieldeditor showheader="true" showsavecancel="false" showerrorsinline="true" model="Account" uniqueid="sk-3ng9-3139" mode="edit">
 							<columns>
 								<column width="100%" uniqueid="sk-3ng9-3135">
 									<sections>
@@ -1829,11 +1872,11 @@
 														<sections>
 															<section title="New Section" collapsible="no" uniqueid="sk-3ngC-3191" showheader="false">
 																<fields>
-																	<field uniqueid="sk-3nVp-1649" id="clcommon__Residential_Status__c" snippet="fieldRenderer2">
+																	<field uniqueid="sk-3szE-4810" id="clcommon__Residential_Status__pc" snippet="fieldRenderer2">
 																		<label>Residency Status</label>
-																		<renderconditions logictype="and" onhidedatabehavior="cancel">
-																			<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="Contact" sourcetype="fieldvalue" field="Australian_Citizen__c" fieldtargetobjects="Contact" value="No"/>
-																			<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="Contact" sourcetype="fieldvalue" field="Applicant_reside_in_Australia__c" fieldtargetobjects="Contact" value="Yes"/>
+																		<renderconditions logictype="and" onhidedatabehavior="keep">
+																			<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="Account" sourcetype="fieldvalue" field="Australian_Citizen__pc" fieldtargetobjects="Account" value="No"/>
+																			<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="Account" sourcetype="fieldvalue" field="Applicant_reside_in_Australia__pc" fieldtargetobjects="Account" value="Yes"/>
 																		</renderconditions>
 																		<enableconditions/>
 																	</field>
@@ -1853,9 +1896,9 @@
 																			<contents/>
 																		</template>
 																		<renderconditions logictype="and" onhidedatabehavior="cancel" logic="1 AND 2 AND 3 AND 4">
-																			<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="Contact" sourcetype="fieldvalue" field="Australian_Citizen__c" fieldtargetobjects="Contact" value="No"/>
-																			<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="Contact" sourcetype="fieldvalue" field="Applicant_reside_in_Australia__c" fieldtargetobjects="Contact" value="No"/>
-																			<rendercondition type="blank" operator="=" fieldmodel="Contact" sourcetype="fieldvalue" field="clcommon__Residential_Status__c" fieldtargetobjects="Contact" value="null" enclosevalueinquotes="false"/>
+																			<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="Account" sourcetype="fieldvalue" field="Australian_Citizen__pc" fieldtargetobjects="Account" value="No" nosourcerowbehavior="deactivate"/>
+																			<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="Account" sourcetype="fieldvalue" field="Applicant_reside_in_Australia__pc" fieldtargetobjects="Account" value="No" nosourcerowbehavior="deactivate"/>
+																			<rendercondition type="blank" operator="=" fieldmodel="Account" sourcetype="fieldvalue" field="clcommon__Residential_Status__pc" fieldtargetobjects="Account" value="null" enclosevalueinquotes="false" nosourcerowbehavior="deactivate"/>
 																		</renderconditions>
 																		<enableconditions/>
 																	</field>
@@ -1875,9 +1918,9 @@
 														<sections>
 															<section title="New Section" collapsible="no" uniqueid="sk-3ngG-3214" showheader="false">
 																<fields>
-																	<field uniqueid="sk-L-4-1018" id="Temporary_Visa_Expiry_Date__c" snippet="fieldRenderer2" monthpicker="true" yearpicker="true" yearpickermin="c-30" yearpickermax="c+30">
-																		<renderconditions logictype="and" onhidedatabehavior="cancel">
-																			<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="Contact" sourcetype="fieldvalue" field="clcommon__Residential_Status__c" fieldtargetobjects="Contact" value="Temporary"/>
+																	<field uniqueid="sk-3szU-4839" id="Temporary_Visa_Expiry_Date__pc" snippet="fieldRenderer2">
+																		<renderconditions logictype="and" onhidedatabehavior="keep">
+																			<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="Account" sourcetype="fieldvalue" field="clcommon__Residential_Status__pc" fieldtargetobjects="Account" value="Temporary"/>
 																		</renderconditions>
 																		<enableconditions/>
 																	</field>
@@ -1896,8 +1939,8 @@
 																			<contents/>
 																		</template>
 																		<renderconditions logictype="and" onhidedatabehavior="cancel" logic="1 AND 2 AND 3">
-																			<rendercondition type="fieldvalue" operator="=" fieldmodel="Contact" sourcetype="fieldvalue" field="clcommon__Residential_Status__c" fieldtargetobjects="Contact" value="Temporary" enclosevalueinquotes="true"/>
-																			<rendercondition type="blank" operator="=" fieldmodel="Contact" sourcetype="fieldvalue" field="Temporary_Visa_Expiry_Date__c" fieldtargetobjects="Contact" value="null" userinfotype="userid" enclosevalueinquotes="false"/>
+																			<rendercondition type="fieldvalue" operator="=" fieldmodel="Account" sourcetype="fieldvalue" field="clcommon__Residential_Status__pc" fieldtargetobjects="Account" value="Temporary" enclosevalueinquotes="true" nosourcerowbehavior="deactivate"/>
+																			<rendercondition type="blank" operator="=" fieldmodel="Account" sourcetype="fieldvalue" field="Temporary_Visa_Expiry_Date__pc" fieldtargetobjects="Account" value="null" userinfotype="userid" enclosevalueinquotes="false" nosourcerowbehavior="deactivate"/>
 																		</renderconditions>
 																		<enableconditions/>
 																	</field>
@@ -1917,12 +1960,12 @@
 														<sections>
 															<section title="New Section" collapsible="no" uniqueid="sk-3ngg-3299" showheader="false">
 																<fields>
-																	<field uniqueid="sk-M0M-989" id="Visa_Subclass_Code__c" snippet="fieldRenderer2">
-																		<renderconditions logictype="and" onhidedatabehavior="cancel">
-																			<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="Contact" sourcetype="fieldvalue" field="Australian_Citizen__c" fieldtargetobjects="Contact" value="No"/>
-																			<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="Contact" sourcetype="fieldvalue" field="Applicant_reside_in_Australia__c" fieldtargetobjects="Contact" value="Yes"/>
+																	<field uniqueid="sk-3szb-4862" id="Visa_Subclass_Code__pc" snippet="fieldRenderer2">
+																		<renderconditions logictype="and" onhidedatabehavior="keep">
+																			<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="Account" sourcetype="fieldvalue" field="Applicant_reside_in_Australia__pc" fieldtargetobjects="Account" value="Yes"/>
+																			<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="Account" sourcetype="fieldvalue" field="Australian_Citizen__pc" fieldtargetobjects="Account" value="No"/>
 																		</renderconditions>
-																		<enableconditions logictype="and" message="1 OR (2 AND 3)"/>
+																		<enableconditions/>
 																	</field>
 																</fields>
 															</section>
@@ -1939,10 +1982,10 @@
 																			<contents/>
 																		</template>
 																		<renderconditions logictype="custom" onhidedatabehavior="cancel" logic="1 OR (2 AND 3) AND 4">
-																			<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="Contact" sourcetype="fieldvalue" field="clcommon__Residential_Status__c" fieldtargetobjects="Contact" value="Temporary"/>
-																			<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="Contact" sourcetype="fieldvalue" field="Australian_Citizen__c" fieldtargetobjects="Contact" value="No"/>
-																			<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="Contact" sourcetype="fieldvalue" field="clcommon__Residential_Status__c" fieldtargetobjects="Contact" value="Permanent"/>
-																			<rendercondition type="blank" operator="=" fieldmodel="Contact" sourcetype="fieldvalue" field="Visa_Subclass_Code__c" fieldtargetobjects="Contact" value="null" enclosevalueinquotes="false"/>
+																			<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="Account" sourcetype="fieldvalue" field="clcommon__Residential_Status__pc" fieldtargetobjects="Account" value="Temporary" nosourcerowbehavior="deactivate"/>
+																			<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="Account" sourcetype="fieldvalue" field="Australian_Citizen__pc" fieldtargetobjects="Account" value="No" nosourcerowbehavior="deactivate"/>
+																			<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="Account" sourcetype="fieldvalue" field="clcommon__Residential_Status__pc" fieldtargetobjects="Account" value="Permanent" nosourcerowbehavior="deactivate"/>
+																			<rendercondition type="blank" operator="=" fieldmodel="Account" sourcetype="fieldvalue" field="Visa_Subclass_Code__pc" fieldtargetobjects="Account" value="null" enclosevalueinquotes="false" nosourcerowbehavior="deactivate"/>
 																		</renderconditions>
 																		<enableconditions/>
 																	</field>
@@ -1961,11 +2004,11 @@
 														<sections>
 															<section title="New Section" collapsible="no" uniqueid="sk-3ngo-3335" showheader="false">
 																<fields>
-																	<field uniqueid="sk-M1W-986" id="Has_applied_for_Permanent_Residency_Visa__c" snippet="fieldRenderer2">
-																		<renderconditions logictype="and" onhidedatabehavior="cancel">
-																			<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="Contact" sourcetype="fieldvalue" field="Australian_Citizen__c" fieldtargetobjects="Contact" value="No"/>
-																			<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="Contact" sourcetype="fieldvalue" field="Applicant_reside_in_Australia__c" fieldtargetobjects="Contact" value="Yes"/>
-																			<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="Contact" sourcetype="fieldvalue" field="clcommon__Residential_Status__c" fieldtargetobjects="Contact" value="Temporary"/>
+																	<field uniqueid="sk-3szk-4883" id="Has_applied_for_Permanent_Residency_Visa__pc" snippet="fieldRenderer2">
+																		<renderconditions logictype="and" onhidedatabehavior="keep">
+																			<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="Account" sourcetype="fieldvalue" field="Australian_Citizen__pc" fieldtargetobjects="Account" value="No"/>
+																			<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="Account" sourcetype="fieldvalue" field="Applicant_reside_in_Australia__pc" fieldtargetobjects="Account" value="Yes"/>
+																			<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="Account" sourcetype="fieldvalue" field="clcommon__Residential_Status__pc" fieldtargetobjects="Account" value="Temporary"/>
 																		</renderconditions>
 																		<enableconditions/>
 																	</field>
@@ -1984,10 +2027,10 @@
 																			<contents/>
 																		</template>
 																		<renderconditions logictype="and" onhidedatabehavior="cancel">
-																			<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="Contact" sourcetype="fieldvalue" field="clcommon__Residential_Status__c" fieldtargetobjects="Contact" value="Temporary"/>
-																			<rendercondition type="blank" operator="=" fieldmodel="Contact" sourcetype="fieldvalue" field="Has_applied_for_Permanent_Residency_Visa__c" fieldtargetobjects="Contact" value="null" enclosevalueinquotes="false"/>
-																			<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="Contact" sourcetype="fieldvalue" field="Australian_Citizen__c" fieldtargetobjects="Contact" value="No"/>
-																			<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="Contact" sourcetype="fieldvalue" field="Applicant_reside_in_Australia__c" fieldtargetobjects="Contact" value="Yes"/>
+																			<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="Account" sourcetype="fieldvalue" field="clcommon__Residential_Status__pc" fieldtargetobjects="Account" value="Temporary" nosourcerowbehavior="deactivate"/>
+																			<rendercondition type="blank" operator="=" fieldmodel="Account" sourcetype="fieldvalue" field="Has_applied_for_Permanent_Residency_Visa__pc" fieldtargetobjects="Account" value="null" enclosevalueinquotes="false" nosourcerowbehavior="deactivate"/>
+																			<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="Account" sourcetype="fieldvalue" field="Australian_Citizen__pc" fieldtargetobjects="Account" value="No" nosourcerowbehavior="deactivate"/>
+																			<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="Account" sourcetype="fieldvalue" field="Applicant_reside_in_Australia__pc" fieldtargetobjects="Account" value="Yes" nosourcerowbehavior="deactivate"/>
 																		</renderconditions>
 																		<enableconditions/>
 																	</field>
@@ -2006,12 +2049,12 @@
 														<sections>
 															<section title="New Section" collapsible="no" uniqueid="sk-3ngs-3372" showheader="false">
 																<fields>
-																	<field uniqueid="sk-M2S-996" id="Permanent_Residency_Apply_Date__c" snippet="fieldRenderer2" monthpicker="true" yearpicker="true" yearpickermin="c-30" yearpickermax="c+30">
-																		<renderconditions logictype="and" onhidedatabehavior="cancel">
-																			<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="Contact" sourcetype="fieldvalue" field="Has_applied_for_Permanent_Residency_Visa__c" fieldtargetobjects="Contact" value="Yes"/>
-																			<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="Contact" sourcetype="fieldvalue" field="Australian_Citizen__c" fieldtargetobjects="Contact" value="No"/>
-																			<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="Contact" sourcetype="fieldvalue" field="Applicant_reside_in_Australia__c" fieldtargetobjects="Contact" value="Yes"/>
-																			<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="Contact" sourcetype="fieldvalue" field="clcommon__Residential_Status__c" fieldtargetobjects="Contact" value="Temporary"/>
+																	<field uniqueid="sk-3s_1-4930" id="Permanent_Residency_Apply_Date__pc" type="CUSTOM" snippet="fieldRenderer2" monthpicker="true" yearpicker="true" yearpickermin="c-30" yearpickermax="c+30">
+																		<renderconditions logictype="and" onhidedatabehavior="keep">
+																			<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="Account" sourcetype="fieldvalue" field="Has_applied_for_Permanent_Residency_Visa__pc" fieldtargetobjects="Account" value="Yes"/>
+																			<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="Account" sourcetype="fieldvalue" field="Australian_Citizen__pc" fieldtargetobjects="Account" value="No"/>
+																			<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="Account" sourcetype="fieldvalue" field="Applicant_reside_in_Australia__pc" fieldtargetobjects="Account" value="Yes"/>
+																			<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="Account" sourcetype="fieldvalue" field="clcommon__Residential_Status__pc" fieldtargetobjects="Account" value="Temporary"/>
 																		</renderconditions>
 																		<enableconditions/>
 																	</field>
@@ -2030,8 +2073,8 @@
 																			<contents/>
 																		</template>
 																		<renderconditions logictype="and" onhidedatabehavior="cancel">
-																			<rendercondition type="fieldvalue" enclosevalueinquotes="true" fieldmodel="Contact" sourcetype="fieldvalue" sourceproperty="hasRows" operator="=" field="Has_applied_for_Permanent_Residency_Visa__c" fieldtargetobjects="Contact" value="Yes"/>
-																			<rendercondition type="blank" operator="=" fieldmodel="Contact" sourcetype="fieldvalue" field="Permanent_Residency_Apply_Date__c" fieldtargetobjects="Contact" value="null" enclosevalueinquotes="false"/>
+																			<rendercondition type="fieldvalue" enclosevalueinquotes="true" fieldmodel="Account" sourcetype="fieldvalue" sourceproperty="hasRows" operator="=" field="Has_applied_for_Permanent_Residency_Visa__pc" fieldtargetobjects="Account" value="Yes" nosourcerowbehavior="deactivate"/>
+																			<rendercondition type="blank" operator="=" fieldmodel="Account" sourcetype="fieldvalue" field="Permanent_Residency_Apply_Date__pc" fieldtargetobjects="Account" value="null" enclosevalueinquotes="false" nosourcerowbehavior="deactivate"/>
 																		</renderconditions>
 																		<enableconditions/>
 																	</field>
@@ -2050,12 +2093,12 @@
 														<sections>
 															<section title="New Section" collapsible="no" uniqueid="sk-3ngw-3409" showheader="false">
 																<fields>
-																	<field uniqueid="sk-M2d-1043" id="Permanent_Residency_Date__c" snippet="fieldRenderer2" monthpicker="true" yearpicker="true" yearpickermin="c-30" yearpickermax="c+30">
-																		<renderconditions logictype="and" onhidedatabehavior="cancel">
-																			<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="Contact" sourcetype="fieldvalue" field="clcommon__Residential_Status__c" fieldtargetobjects="Contact" value="Permanent"/>
-																			<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="Contact" sourcetype="fieldvalue" field="Australian_Citizen__c" fieldtargetobjects="Contact" value="No"/>
+																	<field uniqueid="sk-3s_6-4963" id="Permanent_Residency_Date__pc" snippet="fieldRenderer2" monthpicker="true" yearpicker="true" yearpickermin="c-30" yearpickermax="c+30">
+																		<renderconditions logictype="and" onhidedatabehavior="keep">
+																			<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="Account" sourcetype="fieldvalue" field="clcommon__Residential_Status__pc" fieldtargetobjects="Account" value="Permanent"/>
+																			<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="Account" sourcetype="fieldvalue" field="Australian_Citizen__pc" fieldtargetobjects="Account" value="No"/>
 																		</renderconditions>
-																		<enableconditions logictype="and"/>
+																		<enableconditions/>
 																	</field>
 																</fields>
 															</section>
@@ -2072,9 +2115,9 @@
 																			<contents/>
 																		</template>
 																		<renderconditions logictype="and" onhidedatabehavior="cancel" logic="1 AND 2 AND 3 AND 4">
-																			<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="Contact" sourcetype="fieldvalue" field="Australian_Citizen__c" fieldtargetobjects="Contact" value="No"/>
-																			<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="Contact" sourcetype="fieldvalue" field="Applicant_reside_in_Australia__c" fieldtargetobjects="Contact" value="No"/>
-																			<rendercondition type="blank" operator="=" fieldmodel="Contact" sourcetype="fieldvalue" field="Permanent_Residency_Date__c" fieldtargetobjects="Contact" value="null" enclosevalueinquotes="false"/>
+																			<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="Account" sourcetype="fieldvalue" field="Australian_Citizen__pc" fieldtargetobjects="Account" value="No" nosourcerowbehavior="deactivate"/>
+																			<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="Account" sourcetype="fieldvalue" field="Applicant_reside_in_Australia__pc" fieldtargetobjects="Account" value="No" nosourcerowbehavior="deactivate"/>
+																			<rendercondition type="blank" operator="=" fieldmodel="Account" sourcetype="fieldvalue" field="Permanent_Residency_Date__pc" fieldtargetobjects="Account" value="null" enclosevalueinquotes="false" nosourcerowbehavior="deactivate"/>
 																		</renderconditions>
 																		<enableconditions/>
 																	</field>
@@ -2092,7 +2135,7 @@
 							</columns>
 							<renderconditions logictype="and"/>
 						</basicfieldeditor>
-						<basicfieldeditor showheader="true" showsavecancel="false" showerrorsinline="true" model="Contact" uniqueid="sk-1zdu-3690" mode="edit">
+						<basicfieldeditor showheader="true" showsavecancel="false" showerrorsinline="true" model="Account" uniqueid="sk-1zdu-3690" mode="edit">
 							<columns>
 								<column width="100%" uniqueid="sk-1zdu-3686">
 									<sections>
@@ -2103,11 +2146,11 @@
 														<sections>
 															<section title="New Section" collapsible="no" uniqueid="sk-1ze2-3786" showheader="false">
 																<fields>
-																	<field uniqueid="sk-1zeO-3879" id="Temporary_Visa_Suitability__c">
-																		<renderconditions logictype="and" onhidedatabehavior="cancel">
-																			<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="Contact" sourcetype="snippet" sourcesnippet="checkTempVisaExpDate"/>
-																			<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="Contact" sourcetype="fieldvalue" field="Has_applied_for_Permanent_Residency_Visa__c" fieldtargetobjects="Contact" value="No"/>
-																			<rendercondition type="blank" operator="!=" fieldmodel="Contact" sourcetype="fieldvalue" field="Temporary_Visa_Expiry_Date__c" fieldtargetobjects="Contact" value="null" enclosevalueinquotes="false"/>
+																	<field uniqueid="sk-3s_W-4997" id="Temporary_Visa_Suitability__pc" type="CUSTOM">
+																		<renderconditions logictype="and" onhidedatabehavior="keep">
+																			<rendercondition type="blank" operator="!=" fieldmodel="Account" sourcetype="fieldvalue" field="Temporary_Visa_Expiry_Date__pc" fieldtargetobjects="Account" value="null" enclosevalueinquotes="false"/>
+																			<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="Account" sourcetype="fieldvalue" field="Has_applied_for_Permanent_Residency_Visa__pc" fieldtargetobjects="Account" value="No"/>
+																			<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="Account" sourcetype="snippet" sourcesnippet="checkTempVisaExpDate"/>
 																		</renderconditions>
 																		<enableconditions/>
 																	</field>
@@ -2129,14 +2172,14 @@
 														<sections>
 															<section title="New Section" collapsible="no" uniqueid="sk-1J1G-3661" showheader="false">
 																<fields>
-																	<field uniqueid="sk-1zeP-3888" id="Temporary_Visa_Suitability_Commentary__c">
-																		<renderconditions logictype="and" onhidedatabehavior="cancel">
-																			<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="Contact" sourcetype="fieldvalue" field="Temporary_Visa_Suitability__c" fieldtargetobjects="Contact" value="Yes"/>
-																			<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="Contact" sourcetype="snippet" sourcesnippet="checkTempVisaExpDate"/>
-																			<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="Contact" sourcetype="fieldvalue" field="Has_applied_for_Permanent_Residency_Visa__c" fieldtargetobjects="Contact" value="No"/>
-																			<rendercondition type="blank" operator="!=" fieldmodel="Contact" sourcetype="fieldvalue" field="Temporary_Visa_Expiry_Date__c" fieldtargetobjects="Contact" value="null" enclosevalueinquotes="false"/>
+																	<field uniqueid="sk-3s_a-5016" id="Temporary_Visa_Suitability_Commentary__pc">
+																		<renderconditions logictype="and" onhidedatabehavior="keep">
+																			<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="Account" sourcetype="fieldvalue" field="Temporary_Visa_Suitability__pc" fieldtargetobjects="Account" value="Yes"/>
+																			<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="Account" sourcetype="snippet" sourcesnippet="checkTempVisaExpDate"/>
+																			<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="Account" sourcetype="fieldvalue" field="Has_applied_for_Permanent_Residency_Visa__pc" fieldtargetobjects="Account" value="No"/>
+																			<rendercondition type="blank" operator="!=" fieldmodel="Account" sourcetype="fieldvalue" field="Temporary_Visa_Expiry_Date__pc" fieldtargetobjects="Account" value="null" enclosevalueinquotes="false"/>
 																		</renderconditions>
-																		<enableconditions logictype="and"/>
+																		<enableconditions/>
 																	</field>
 																</fields>
 															</section>
@@ -2172,7 +2215,7 @@
 					<renderconditions logictype="and"/>
 					<interactions/>
 				</wrapper>
-				<basicfieldeditor showheader="true" showsavecancel="false" showerrorsinline="true" model="Contact" uniqueid="sk-1Aca-6555" mode="edit">
+				<basicfieldeditor showheader="true" showsavecancel="false" showerrorsinline="true" model="Account" uniqueid="sk-1Aca-6555" mode="edit">
 					<columns layoutmode="fixed">
 						<column width="100%" uniqueid="sk-1Aca-6556">
 							<sections>
@@ -2183,7 +2226,7 @@
 												<sections>
 													<section title="New Section" collapsible="no" uniqueid="sk-1Aca-6622" showheader="false">
 														<fields>
-															<field uniqueid="sk-1Aca-6623" id="clcommon__Marital_Status__c" snippet="fieldRenderer2">
+															<field uniqueid="sk-3s-z-5040" id="clcommon__Marital_Status__pc" snippet="fieldRenderer2">
 																<renderconditions logictype="and" onhidedatabehavior="keep"/>
 																<enableconditions/>
 															</field>
@@ -2201,7 +2244,7 @@
 																	<contents/>
 																</template>
 																<renderconditions logictype="and" onhidedatabehavior="keep" logic="1 AND 2">
-																	<rendercondition type="blank" operator="=" fieldmodel="Contact" sourcetype="fieldvalue" field="clcommon__Marital_Status__c" fieldtargetobjects="Contact" value="null" enclosevalueinquotes="false"/>
+																	<rendercondition type="blank" operator="=" fieldmodel="Account" sourcetype="fieldvalue" field="clcommon__Marital_Status__pc" fieldtargetobjects="Account" value="null" enclosevalueinquotes="false" nosourcerowbehavior="deactivate"/>
 																</renderconditions>
 																<enableconditions/>
 															</field>
@@ -2220,7 +2263,7 @@
 												<sections>
 													<section title="New Section" collapsible="no" uniqueid="sk-1Aca-6630" showheader="false">
 														<fields>
-															<field uniqueid="sk-1Aca-6631" id="Number_Of_Dependents__c" snippet="ValidateNoOfDependents" cssclass="noOfDependent">
+															<field uniqueid="sk-3t01-5067" id="Number_Of_Dependents__pc" snippet="ValidateNoOfDependents" cssclass="noOfDependent">
 																<renderconditions logictype="and" onhidedatabehavior="keep"/>
 																<enableconditions/>
 															</field>
@@ -2238,7 +2281,7 @@
 																	<contents/>
 																</template>
 																<renderconditions logictype="and" onhidedatabehavior="keep" logic="1 AND 2">
-																	<rendercondition type="blank" operator="=" fieldmodel="Contact" sourcetype="fieldvalue" field="Number_Of_Dependents__c" fieldtargetobjects="Contact" value="null" enclosevalueinquotes="false"/>
+																	<rendercondition type="blank" operator="=" fieldmodel="Account" sourcetype="fieldvalue" field="Number_Of_Dependents__pc" fieldtargetobjects="Account" value="null" enclosevalueinquotes="false" nosourcerowbehavior="deactivate"/>
 																</renderconditions>
 																<enableconditions/>
 															</field>
@@ -2258,9 +2301,9 @@
 												<sections>
 													<section title="New Section" collapsible="no" uniqueid="sk-1Aca-6638" showheader="false">
 														<fields>
-															<field uniqueid="sk-1Aca-6639" id="Ages__c">
-																<renderconditions logictype="and" onhidedatabehavior="cancel">
-																	<rendercondition type="fieldvalue" operator="gt" enclosevalueinquotes="false" fieldmodel="Contact" sourcetype="fieldvalue" field="Number_Of_Dependents__c" fieldtargetobjects="Contact" value="0.0"/>
+															<field uniqueid="sk-3t1W-5087" id="Ages__pc">
+																<renderconditions logictype="and" onhidedatabehavior="keep">
+																	<rendercondition type="fieldvalue" operator="gt" enclosevalueinquotes="false" fieldmodel="Account" sourcetype="fieldvalue" field="Number_Of_Dependents__pc" fieldtargetobjects="Account" value="0.0"/>
 																</renderconditions>
 																<enableconditions/>
 															</field>
@@ -2279,9 +2322,9 @@
 																	<contents/>
 																</template>
 																<renderconditions logictype="custom" onhidedatabehavior="keep" logic="1 AND (2 OR 3)">
-																	<rendercondition type="fieldvalue" operator="gt" enclosevalueinquotes="false" fieldmodel="Contact" sourcetype="fieldvalue" field="Number_Of_Dependents__c" fieldtargetobjects="Contact" value="0.0"/>
-																	<rendercondition type="blank" operator="=" fieldmodel="Contact" sourcetype="fieldvalue" field="Ages__c" fieldtargetobjects="Contact" value="null" enclosevalueinquotes="false"/>
-																	<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="Contact" sourcetype="fieldvalue" field="Ages__c" fieldtargetobjects="Contact" value="&quot;&quot;"/>
+																	<rendercondition type="fieldvalue" operator="gt" enclosevalueinquotes="false" fieldmodel="Account" sourcetype="fieldvalue" field="Number_Of_Dependents__pc" fieldtargetobjects="Account" value="0.0" nosourcerowbehavior="deactivate"/>
+																	<rendercondition type="blank" operator="=" fieldmodel="Account" sourcetype="fieldvalue" field="Ages__pc" fieldtargetobjects="Account" value="null" enclosevalueinquotes="false" nosourcerowbehavior="deactivate"/>
+																	<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="Account" sourcetype="fieldvalue" field="Ages__pc" fieldtargetobjects="Account" value="&quot;&quot;" nosourcerowbehavior="deactivate"/>
 																</renderconditions>
 																<enableconditions/>
 															</field>
@@ -2299,8 +2342,7 @@
 												<sections>
 													<section title="New Section" collapsible="no" uniqueid="sk-1Aca-6646" showheader="false">
 														<fields>
-															<field uniqueid="sk-1Aca-6647" id="ints__Driver_License__c" snippet="fieldRenderer2">
-																<label>Drivers License</label>
+															<field uniqueid="sk-3t1j-5107" id="ints__Driver_License__pc" snippet="fieldRenderer2">
 																<renderconditions logictype="and" onhidedatabehavior="keep"/>
 																<enableconditions/>
 															</field>
@@ -2318,8 +2360,8 @@
 																</template>
 																<renderconditions logictype="or" onhidedatabehavior="keep" logic="1 AND (2 OR 3)">
 																	<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="Contact" sourcetype="param" sourceparam="Id" value="12314"/>
-																	<rendercondition type="blank" operator="=" fieldmodel="Contact" sourcetype="fieldvalue" field="ints__Driver_License__c" fieldtargetobjects="Contact" value="null" enclosevalueinquotes="false"/>
-																	<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="Contact" sourcetype="fieldvalue" field="ints__Driver_License__c" fieldtargetobjects="Contact" value="''"/>
+																	<rendercondition type="blank" operator="=" fieldmodel="Account" sourcetype="fieldvalue" field="ints__Driver_License__pc" fieldtargetobjects="Account" value="null" enclosevalueinquotes="false" nosourcerowbehavior="deactivate"/>
+																	<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="Account" sourcetype="fieldvalue" field="ints__Driver_License__pc" fieldtargetobjects="Account" value="''" nosourcerowbehavior="deactivate"/>
 																</renderconditions>
 																<enableconditions/>
 																<label>Required</label>
@@ -2339,7 +2381,7 @@
 												<sections>
 													<section title="New Section" collapsible="no" uniqueid="sk-1Aca-6654" showheader="false">
 														<fields>
-															<field uniqueid="sk-1Aca-6655" id="Email" snippet="fieldRenderer2">
+															<field uniqueid="sk-3t25-5127" id="PersonEmail" snippet="fieldRenderer2">
 																<renderconditions logictype="and" onhidedatabehavior="keep"/>
 																<enableconditions/>
 															</field>
@@ -2356,8 +2398,8 @@
 																	<contents/>
 																</template>
 																<renderconditions logictype="or" onhidedatabehavior="keep" logic="1 AND (2 OR 3)">
-																	<rendercondition type="blank" operator="=" fieldmodel="Contact" sourcetype="fieldvalue" field="Email" fieldtargetobjects="Contact" value="null" enclosevalueinquotes="false"/>
-																	<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="Contact" sourcetype="fieldvalue" field="Email" fieldtargetobjects="Contact" value="''"/>
+																	<rendercondition type="blank" operator="=" fieldmodel="Account" sourcetype="fieldvalue" field="PersonEmail" fieldtargetobjects="Account" value="null" enclosevalueinquotes="false" nosourcerowbehavior="deactivate"/>
+																	<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="Account" sourcetype="fieldvalue" field="PersonEmail" fieldtargetobjects="Account" value="''" nosourcerowbehavior="deactivate"/>
 																</renderconditions>
 																<enableconditions/>
 																<label>Required</label>
@@ -2397,13 +2439,13 @@
 												<sections>
 													<section title="New Section" collapsible="no" uniqueid="sk-3dTb-7546" showheader="false">
 														<fields>
-															<field uniqueid="sk-3dV_-3320" id="Is_this_a_joint_applicant__c">
+															<field uniqueid="sk-3dV_-3320" id="Is_this_a_joint_applicant__c" required="false" addnoneoption="true">
 																<label>Are you applying with your partner?</label>
 																<renderconditions logictype="and" onhidedatabehavior="cancel">
-																	<rendercondition type="multiple" operator="in" fieldmodel="Contact" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="clcommon__Marital_Status__c" fieldtargetobjects="Contact" value="" enclosevalueinquotes="true">
+																	<rendercondition type="multiple" operator="in" fieldmodel="Account" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="clcommon__Marital_Status__pc" fieldtargetobjects="Account" value="" enclosevalueinquotes="true">
 																		<values>
-																			<value>De Facto</value>
 																			<value>Married</value>
+																			<value>De Facto</value>
 																		</values>
 																	</rendercondition>
 																</renderconditions>
@@ -2432,7 +2474,7 @@
 																</template>
 																<renderconditions logictype="and" onhidedatabehavior="keep">
 																	<rendercondition type="blank" operator="=" fieldmodel="Party" sourcetype="fieldvalue" field="Is_this_a_joint_applicant__c" fieldtargetobjects="clcommon__Party__c" value="null" enclosevalueinquotes="false"/>
-																	<rendercondition type="multiple" operator="in" fieldmodel="Contact" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="clcommon__Marital_Status__c" fieldtargetobjects="Contact" value="" enclosevalueinquotes="true">
+																	<rendercondition type="multiple" operator="in" fieldmodel="Account" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="clcommon__Marital_Status__pc" fieldtargetobjects="Account" value="" enclosevalueinquotes="true">
 																		<values>
 																			<value>Married</value>
 																			<value>De Facto</value>
@@ -2455,7 +2497,7 @@
 												<sections>
 													<section title="New Section" collapsible="no" uniqueid="sk-2B6-3435" showheader="false">
 														<fields>
-															<field uniqueid="sk-PhT-3382" id="First_Home_Buyer__c" snippet="fieldRenderer2">
+															<field uniqueid="sk-PhT-3382" id="First_Home_Buyer__c" snippet="fieldRenderer2" required="false" addnoneoption="true">
 																<renderconditions logictype="and" onhidedatabehavior="keep"/>
 																<enableconditions/>
 															</field>
@@ -2657,7 +2699,7 @@
 					</styles>
 					<renderconditions logictype="and"/>
 				</grid>
-				<basicfieldeditor showheader="true" showsavecancel="false" showerrorsinline="true" model="Contact" uniqueid="sk-3dYK-6571" mode="edit">
+				<basicfieldeditor showheader="true" showsavecancel="false" showerrorsinline="true" model="Account" uniqueid="sk-3dYK-6571" mode="edit">
 					<columns layoutmode="fixed">
 						<column width="100%" uniqueid="sk-3dYK-6567">
 							<sections>
@@ -2676,34 +2718,12 @@
 																	<sections>
 																		<section title="New Section" collapsible="no" uniqueid="sk-3dYZ-6682" showheader="false">
 																			<fields>
-																				<field uniqueid="sk-3dYF-6459" type="COMBO" editmodebehavior="autopopup" allowhtml="true">
+																				<field uniqueid="sk-3t2Y-5172" type="COMBO" editmodebehavior="autopopup" allowhtml="true" redirecttype="none">
 																					<label>Address</label>
-																					<renderconditions logictype="and" onhidedatabehavior="cancel">
+																					<renderconditions logictype="and" onhidedatabehavior="keep">
 																						<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="false" fieldmodel="ApplicationRen" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="Is_Approved__c" fieldtargetobjects="genesis__Applications__c" value="false"/>
 																					</renderconditions>
-																					<enableconditions logictype="and"/>
-																					<editmodepopup title="Address" width="450">
-																						<components>
-																							<basicfieldeditor showsavecancel="false" mode="edit" model="Contact" uniqueid="sk-3dYF-6460">
-																								<columns>
-																									<column width="100%">
-																										<sections>
-																											<section title="" collapsible="no" showheader="false">
-																												<fields>
-																													<field uniqueid="sk-3dYF-6461" type="COMBO" editmodebehavior="autopopup" allowhtml="true">
-																														<label>Template Field</label>
-																														<template model="AccountBillingAddress">
-																															<contents/>
-																														</template>
-																													</field>
-																												</fields>
-																											</section>
-																										</sections>
-																									</column>
-																								</columns>
-																							</basicfieldeditor>
-																						</components>
-																					</editmodepopup>
+																					<enableconditions/>
 																					<template>&lt;!DOCTYPE html&gt;
 &lt;html&gt;
 
@@ -2900,36 +2920,35 @@
 													<section title="New Section" collapsible="no" uniqueid="sk-3dYc-6711" showheader="false">
 														<fields>
 															<columns uniqueid="sk-3dYe-6732" layoutmode="fixed">
-																<column width="80%" uniqueid="sk-3dYe-6719">
+																<column width="80%" uniqueid="sk-6ce-4034">
 																	<sections>
-																		<section title="New Section" collapsible="no" uniqueid="sk-3dYe-6720" showheader="false">
+																		<section title="New Section" collapsible="no" uniqueid="sk-6ce-4035" showheader="false">
 																			<fields>
-																				<field uniqueid="sk-3dZ3-6915" id="clcommon__Years_At_Current_Address__c">
+																				<field uniqueid="sk-7Ai-3509" id="clcommon__Years_At_Current_Address__pc">
 																					<label>No of years at address</label>
-																					<renderconditions logictype="and" onhidedatabehavior="keep"/>
-																					<enableconditions/>
 																				</field>
 																			</fields>
 																		</section>
 																	</sections>
 																</column>
-																<column width="20%" uniqueid="sk-3dYe-6737">
+																<column width="20%" uniqueid="sk-7Ak-3516">
 																	<sections>
-																		<section title="New Section" collapsible="no" uniqueid="sk-3dYe-6738" showheader="false">
+																		<section title="New Section" collapsible="no" uniqueid="sk-7Ak-3517" showheader="false">
 																			<fields>
-																				<field uniqueid="sk-2tc-1726" type="COMBO" editmodebehavior="autopopup" readonly="true">
-																					<label>Required</label>
+																				<field uniqueid="sk-7Cg-3580" type="COMBO" editmodebehavior="autopopup" readonly="true" redirecttype="none">
 																					<template>
 																						<contents/>
 																					</template>
+																					<label>Required</label>
 																					<renderconditions logictype="and" onhidedatabehavior="keep">
-																						<rendercondition type="blank" operator="=" fieldmodel="Contact" sourcetype="fieldvalue" field="clcommon__Years_At_Current_Address__c" fieldtargetobjects="Contact" value="null" enclosevalueinquotes="false"/>
+																						<rendercondition type="blank" operator="=" fieldmodel="Account" sourcetype="fieldvalue" field="clcommon__Years_At_Current_Address__pc" fieldtargetobjects="Account" value="null" enclosevalueinquotes="false"/>
 																					</renderconditions>
 																					<enableconditions/>
 																				</field>
 																			</fields>
 																		</section>
 																	</sections>
+																	<renderconditions logictype="and"/>
 																</column>
 															</columns>
 														</fields>
@@ -2941,7 +2960,7 @@
 																	<sections>
 																		<section title="New Section" collapsible="no" uniqueid="sk-3dYj-6775" showheader="false">
 																			<fields>
-																				<field uniqueid="sk-3dZ9-6947" id="Housing_Status__c">
+																				<field uniqueid="sk-3t3F-5350" id="Housing_Status__pc">
 																					<renderconditions logictype="and" onhidedatabehavior="keep"/>
 																					<enableconditions/>
 																				</field>
@@ -2953,19 +2972,20 @@
 																	<sections>
 																		<section title="New Section" collapsible="no" uniqueid="sk-3dYj-6794" showheader="false">
 																			<fields>
-																				<field uniqueid="sk-2th-1792" type="COMBO" editmodebehavior="autopopup" readonly="true">
+																				<field uniqueid="sk-2th-1792" type="COMBO" editmodebehavior="autopopup" readonly="true" redirecttype="none">
 																					<label>Required</label>
 																					<template>
 																						<contents/>
 																					</template>
 																					<renderconditions logictype="and" onhidedatabehavior="keep">
-																						<rendercondition type="blank" operator="=" fieldmodel="Contact" sourcetype="fieldvalue" field="Housing_Status__c" fieldtargetobjects="Contact" value="null" enclosevalueinquotes="false"/>
+																						<rendercondition type="blank" operator="=" fieldmodel="Account" sourcetype="fieldvalue" field="Housing_Status__pc" fieldtargetobjects="Account" value="null" enclosevalueinquotes="false" nosourcerowbehavior="deactivate"/>
 																					</renderconditions>
 																					<enableconditions/>
 																				</field>
 																			</fields>
 																		</section>
 																	</sections>
+																	<renderconditions logictype="and"/>
 																</column>
 															</columns>
 														</fields>
@@ -2977,10 +2997,10 @@
 																	<sections>
 																		<section title="New Section" collapsible="no" uniqueid="sk-3dYm-6814" showheader="false">
 																			<fields>
-																				<field uniqueid="sk-3dZC-6978" id="Is_this_the_Postal_Address__c">
-																					<label>Is the residential address same as postal address?</label>
+																				<field uniqueid="sk-3t3Q-5425" id="Is_this_the_Postal_Address__pc">
 																					<renderconditions logictype="and" onhidedatabehavior="keep"/>
 																					<enableconditions/>
+																					<label>Is the residential address same as postal address?</label>
 																				</field>
 																			</fields>
 																		</section>
@@ -2996,7 +3016,7 @@
 																						<contents/>
 																					</template>
 																					<renderconditions logictype="and" onhidedatabehavior="keep">
-																						<rendercondition type="blank" operator="=" fieldmodel="Contact" sourcetype="fieldvalue" field="Is_this_the_Postal_Address__c" fieldtargetobjects="Contact" value="null" enclosevalueinquotes="false"/>
+																						<rendercondition type="blank" operator="=" fieldmodel="Account" sourcetype="fieldvalue" field="Is_this_the_Postal_Address__pc" fieldtargetobjects="Account" value="null" enclosevalueinquotes="false" nosourcerowbehavior="deactivate"/>
 																					</renderconditions>
 																					<enableconditions/>
 																				</field>
@@ -3014,7 +3034,7 @@
 																	<sections>
 																		<section title="New Section" collapsible="no" uniqueid="sk-3dYq-6851" showheader="false">
 																			<fields>
-																				<field uniqueid="sk-3dZI-7017" id="Enter_Address_Manually__c">
+																				<field uniqueid="sk-3t3V-5453" id="Enter_Address_Manually__pc">
 																					<renderconditions logictype="and" onhidedatabehavior="keep"/>
 																					<enableconditions/>
 																				</field>
@@ -3040,6 +3060,7 @@
 							</sections>
 						</column>
 					</columns>
+					<renderconditions logictype="and"/>
 				</basicfieldeditor>
 				<basicfieldeditor showheader="true" showsavecancel="false" showerrorsinline="true" model="ContactMailingAddress" uniqueid="sk-3BRE-1171" mode="edit">
 					<columns>
@@ -3067,27 +3088,27 @@
 																					<label>Unit No.</label>
 																					<renderconditions logictype="and" onhidedatabehavior="keep"/>
 																					<enableconditions logictype="and">
-																						<condition type="fieldvalue" operator="=" enclosevalueinquotes="false" fieldmodel="Contact" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="Enter_Address_Manually__c" fieldtargetobjects="Contact" value="true" model="ABN_ComapnyName_Model"/>
+																						<condition type="fieldvalue" operator="=" enclosevalueinquotes="false" fieldmodel="Account" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="Enter_Address_Manually__pc" fieldtargetobjects="Account" value="true" model="ABN_ComapnyName_Model"/>
 																					</enableconditions>
 																				</field>
 																				<field uniqueid="sk-2Z1Y-3047" id="Street_Name__c">
 																					<renderconditions logictype="and" onhidedatabehavior="keep"/>
 																					<enableconditions logictype="and">
-																						<condition type="fieldvalue" operator="=" enclosevalueinquotes="false" fieldmodel="Contact" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="Enter_Address_Manually__c" fieldtargetobjects="Contact" value="true"/>
+																						<condition type="fieldvalue" operator="=" enclosevalueinquotes="false" fieldmodel="Account" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="Enter_Address_Manually__pc" fieldtargetobjects="Account" value="true"/>
 																					</enableconditions>
 																				</field>
 																				<field uniqueid="sk-3BRT-1226" id="clcommon__City__c">
 																					<label>Suburb</label>
 																					<renderconditions logictype="and" onhidedatabehavior="keep"/>
 																					<enableconditions logictype="and">
-																						<condition type="fieldvalue" operator="=" enclosevalueinquotes="false" fieldmodel="Contact" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="Enter_Address_Manually__c" fieldtargetobjects="Contact" value="true" model="ABN_ComapnyName_Model"/>
+																						<condition type="fieldvalue" operator="=" enclosevalueinquotes="false" fieldmodel="Account" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="Enter_Address_Manually__pc" fieldtargetobjects="Account" value="true" model="ABN_ComapnyName_Model"/>
 																					</enableconditions>
 																				</field>
 																				<field uniqueid="sk-3BRV-1233" id="clcommon__Zip_Code__c">
 																					<label>Postcode</label>
 																					<renderconditions logictype="and" onhidedatabehavior="keep"/>
 																					<enableconditions logictype="and">
-																						<condition type="fieldvalue" operator="=" enclosevalueinquotes="false" fieldmodel="Contact" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="Enter_Address_Manually__c" fieldtargetobjects="Contact" value="true" model="ABN_ComapnyName_Model"/>
+																						<condition type="fieldvalue" operator="=" enclosevalueinquotes="false" fieldmodel="Account" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="Enter_Address_Manually__pc" fieldtargetobjects="Account" value="true" model="ABN_ComapnyName_Model"/>
 																					</enableconditions>
 																				</field>
 																			</fields>
@@ -3102,25 +3123,25 @@
 																				<field uniqueid="sk-3BRX-1240" id="Street_No__c">
 																					<renderconditions logictype="and" onhidedatabehavior="keep"/>
 																					<enableconditions logictype="and">
-																						<condition type="fieldvalue" operator="=" enclosevalueinquotes="false" fieldmodel="Contact" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="Enter_Address_Manually__c" fieldtargetobjects="Contact" value="true" model="ABN_ComapnyName_Model"/>
+																						<condition type="fieldvalue" operator="=" enclosevalueinquotes="false" fieldmodel="Account" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="Enter_Address_Manually__pc" fieldtargetobjects="Account" value="true" model="ABN_ComapnyName_Model"/>
 																					</enableconditions>
 																				</field>
 																				<field uniqueid="sk-3BRa-1261" id="Street_Type__c">
 																					<renderconditions logictype="and" onhidedatabehavior="keep"/>
 																					<enableconditions logictype="and">
-																						<condition type="fieldvalue" operator="=" enclosevalueinquotes="false" fieldmodel="Contact" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="Enter_Address_Manually__c" fieldtargetobjects="Contact" value="true" model="ABN_ComapnyName_Model"/>
+																						<condition type="fieldvalue" operator="=" enclosevalueinquotes="false" fieldmodel="Account" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="Enter_Address_Manually__pc" fieldtargetobjects="Account" value="true" model="ABN_ComapnyName_Model"/>
 																					</enableconditions>
 																				</field>
 																				<field uniqueid="sk-XCH-6123" id="State__c">
 																					<renderconditions logictype="and" onhidedatabehavior="keep"/>
 																					<enableconditions logictype="and">
-																						<condition type="fieldvalue" operator="=" enclosevalueinquotes="false" fieldmodel="Contact" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="Enter_Address_Manually__c" fieldtargetobjects="Contact" value="true"/>
+																						<condition type="fieldvalue" operator="=" enclosevalueinquotes="false" fieldmodel="Account" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="Enter_Address_Manually__pc" fieldtargetobjects="Account" value="true"/>
 																					</enableconditions>
 																				</field>
 																				<field uniqueid="sk-3BRd-1272" id="clcommon__Country__c">
 																					<renderconditions logictype="and" onhidedatabehavior="keep"/>
 																					<enableconditions logictype="and">
-																						<condition type="fieldvalue" operator="=" enclosevalueinquotes="false" fieldmodel="Contact" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="Enter_Address_Manually__c" fieldtargetobjects="Contact" value="true" model="ABN_ComapnyName_Model"/>
+																						<condition type="fieldvalue" operator="=" enclosevalueinquotes="false" fieldmodel="Account" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="Enter_Address_Manually__pc" fieldtargetobjects="Account" value="true" model="ABN_ComapnyName_Model"/>
 																					</enableconditions>
 																				</field>
 																			</fields>
@@ -3142,7 +3163,7 @@
 																	<contents/>
 																</template>
 																<renderconditions logictype="custom" onhidedatabehavior="keep" logic="1 AND (2 OR 3 OR 4 OR 5 OR 6 OR 7 OR 8)">
-																	<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="false" fieldmodel="Contact" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="Enter_Address_Manually__c" fieldtargetobjects="Contact" value="true"/>
+																	<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="false" fieldmodel="Account" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="Enter_Address_Manually__pc" fieldtargetobjects="Account" value="true"/>
 																	<rendercondition type="blank" operator="=" fieldmodel="ContactMailingAddress" sourcetype="fieldvalue" field="Street_No__c" fieldtargetobjects="clcommon__Address__c" value="null" enclosevalueinquotes="false"/>
 																	<rendercondition type="blank" operator="=" fieldmodel="ContactMailingAddress" sourcetype="fieldvalue" field="clcommon__City__c" fieldtargetobjects="clcommon__Address__c" value="null" enclosevalueinquotes="false"/>
 																	<rendercondition type="blank" operator="=" fieldmodel="ContactMailingAddress" sourcetype="fieldvalue" field="clcommon__Zip_Code__c" fieldtargetobjects="clcommon__Address__c" value="null" enclosevalueinquotes="false"/>
@@ -3167,7 +3188,7 @@
 					</columns>
 					<renderconditions logictype="and"/>
 				</basicfieldeditor>
-				<basicfieldeditor showheader="true" showsavecancel="false" showerrorsinline="true" model="Contact" uniqueid="sk-3TSO-4686" mode="edit">
+				<basicfieldeditor showheader="true" showsavecancel="false" showerrorsinline="true" model="Account" uniqueid="sk-3TSO-4686" mode="edit">
 					<columns>
 						<column width="100%" uniqueid="sk-3TSO-4682">
 							<sections>
@@ -3346,7 +3367,7 @@
 
 &lt;/html&gt;</template>
 										</field>
-										<field uniqueid="sk-3Sv_-853" id="Enter_postal_address_manually__c">
+										<field uniqueid="sk-3t3g-5481" id="Enter_postal_address_manually__pc">
 											<renderconditions logictype="and" onhidedatabehavior="keep"/>
 											<enableconditions/>
 										</field>
@@ -3358,7 +3379,7 @@
 						</column>
 					</columns>
 					<renderconditions logictype="and">
-						<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="Contact" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="Is_this_the_Postal_Address__c" fieldtargetobjects="Contact" value="No"/>
+						<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="Account" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="Is_this_the_Postal_Address__pc" fieldtargetobjects="Account" value="No"/>
 					</renderconditions>
 				</basicfieldeditor>
 				<basicfieldeditor showheader="true" showsavecancel="false" showerrorsinline="true" model="ContactPostalAddress" uniqueid="sk-3BYF-1916" mode="edit">
@@ -3385,36 +3406,36 @@
 																			<fields>
 																				<field uniqueid="sk-3BYm-2022" id="clcommon__County__c">
 																					<renderconditions logictype="and" onhidedatabehavior="cancel">
-																						<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="Contact" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="Is_this_the_Postal_Address__c" fieldtargetobjects="Contact" value="No"/>
+																						<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="Account" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="Is_this_the_Postal_Address__pc" fieldtargetobjects="Account" value="No"/>
 																					</renderconditions>
 																					<enableconditions logictype="and">
-																						<condition type="fieldvalue" operator="=" enclosevalueinquotes="false" fieldmodel="Contact" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="Enter_postal_address_manually__c" fieldtargetobjects="Contact" value="true" model="ABN_ComapnyName_Model"/>
+																						<condition type="fieldvalue" operator="=" enclosevalueinquotes="false" fieldmodel="Account" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="Enter_postal_address_manually__pc" fieldtargetobjects="Account" value="true" model="ABN_ComapnyName_Model"/>
 																					</enableconditions>
 																					<label>Unit No.</label>
 																				</field>
 																				<field uniqueid="sk-2Z2h-3212" id="Street_Name__c">
 																					<renderconditions logictype="and" onhidedatabehavior="cancel">
-																						<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="Contact" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="Is_this_the_Postal_Address__c" fieldtargetobjects="Contact" value="No"/>
+																						<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="Account" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="Is_this_the_Postal_Address__pc" fieldtargetobjects="Account" value="No"/>
 																					</renderconditions>
 																					<enableconditions logictype="and">
-																						<condition type="fieldvalue" operator="=" enclosevalueinquotes="false" fieldmodel="Contact" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="Enter_postal_address_manually__c" fieldtargetobjects="Contact" value="true"/>
+																						<condition type="fieldvalue" operator="=" enclosevalueinquotes="false" fieldmodel="Account" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="Enter_postal_address_manually__pc" fieldtargetobjects="Account" value="true"/>
 																					</enableconditions>
 																				</field>
 																				<field uniqueid="sk-3BYl-2015" id="clcommon__City__c">
 																					<renderconditions logictype="and" onhidedatabehavior="cancel">
-																						<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="Contact" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="Is_this_the_Postal_Address__c" fieldtargetobjects="Contact" value="No"/>
+																						<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="Account" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="Is_this_the_Postal_Address__pc" fieldtargetobjects="Account" value="No"/>
 																					</renderconditions>
 																					<enableconditions logictype="and">
-																						<condition type="fieldvalue" operator="=" enclosevalueinquotes="false" fieldmodel="Contact" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="Enter_postal_address_manually__c" fieldtargetobjects="Contact" value="true" model="ABN_ComapnyName_Model"/>
+																						<condition type="fieldvalue" operator="=" enclosevalueinquotes="false" fieldmodel="Account" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="Enter_postal_address_manually__pc" fieldtargetobjects="Account" value="true" model="ABN_ComapnyName_Model"/>
 																					</enableconditions>
 																					<label>Suburb</label>
 																				</field>
 																				<field uniqueid="sk-3BYq-2049" id="clcommon__Zip_Code__c">
 																					<renderconditions logictype="and" onhidedatabehavior="cancel">
-																						<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="Contact" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="Is_this_the_Postal_Address__c" fieldtargetobjects="Contact" value="No"/>
+																						<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="Account" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="Is_this_the_Postal_Address__pc" fieldtargetobjects="Account" value="No"/>
 																					</renderconditions>
 																					<enableconditions logictype="and">
-																						<condition type="fieldvalue" operator="=" enclosevalueinquotes="false" fieldmodel="Contact" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="Enter_postal_address_manually__c" fieldtargetobjects="Contact" value="true" model="ABN_ComapnyName_Model"/>
+																						<condition type="fieldvalue" operator="=" enclosevalueinquotes="false" fieldmodel="Account" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="Enter_postal_address_manually__pc" fieldtargetobjects="Account" value="true" model="ABN_ComapnyName_Model"/>
 																					</enableconditions>
 																					<label>Postcode</label>
 																				</field>
@@ -3428,34 +3449,34 @@
 																			<fields>
 																				<field uniqueid="sk-3BYk-2008" id="Street_No__c">
 																					<renderconditions logictype="and" onhidedatabehavior="cancel">
-																						<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="Contact" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="Is_this_the_Postal_Address__c" fieldtargetobjects="Contact" value="No"/>
+																						<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="Account" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="Is_this_the_Postal_Address__pc" fieldtargetobjects="Account" value="No"/>
 																					</renderconditions>
 																					<enableconditions logictype="and">
-																						<condition type="fieldvalue" operator="=" enclosevalueinquotes="false" fieldmodel="Contact" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="Enter_postal_address_manually__c" fieldtargetobjects="Contact" value="true" model="ABN_ComapnyName_Model"/>
+																						<condition type="fieldvalue" operator="=" enclosevalueinquotes="false" fieldmodel="Account" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="Enter_postal_address_manually__pc" fieldtargetobjects="Account" value="true" model="ABN_ComapnyName_Model"/>
 																					</enableconditions>
 																				</field>
 																				<field uniqueid="sk-3BYo-2036" id="Street_Type__c">
 																					<renderconditions logictype="and" onhidedatabehavior="cancel">
-																						<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="Contact" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="Is_this_the_Postal_Address__c" fieldtargetobjects="Contact" value="No"/>
+																						<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="Account" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="Is_this_the_Postal_Address__pc" fieldtargetobjects="Account" value="No"/>
 																					</renderconditions>
 																					<enableconditions logictype="and">
-																						<condition type="fieldvalue" operator="=" enclosevalueinquotes="false" fieldmodel="Contact" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="Enter_postal_address_manually__c" fieldtargetobjects="Contact" value="true" model="ABN_ComapnyName_Model"/>
+																						<condition type="fieldvalue" operator="=" enclosevalueinquotes="false" fieldmodel="Account" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="Enter_postal_address_manually__pc" fieldtargetobjects="Account" value="true" model="ABN_ComapnyName_Model"/>
 																					</enableconditions>
 																				</field>
 																				<field uniqueid="sk-XCT-6179" id="State__c">
 																					<renderconditions logictype="and" onhidedatabehavior="cancel">
-																						<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="Contact" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="Is_this_the_Postal_Address__c" fieldtargetobjects="Contact" value="No"/>
+																						<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="Account" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="Is_this_the_Postal_Address__pc" fieldtargetobjects="Account" value="No"/>
 																					</renderconditions>
 																					<enableconditions logictype="and">
-																						<condition type="fieldvalue" operator="=" enclosevalueinquotes="false" fieldmodel="Contact" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="Enter_postal_address_manually__c" fieldtargetobjects="Contact" value="true"/>
+																						<condition type="fieldvalue" operator="=" enclosevalueinquotes="false" fieldmodel="Account" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="Enter_postal_address_manually__pc" fieldtargetobjects="Account" value="true"/>
 																					</enableconditions>
 																				</field>
 																				<field uniqueid="sk-3BYn-2029" id="clcommon__Country__c">
 																					<renderconditions logictype="and" onhidedatabehavior="cancel">
-																						<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="Contact" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="Is_this_the_Postal_Address__c" fieldtargetobjects="Contact" value="No"/>
+																						<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="Account" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="Is_this_the_Postal_Address__pc" fieldtargetobjects="Account" value="No"/>
 																					</renderconditions>
 																					<enableconditions logictype="and">
-																						<condition type="fieldvalue" operator="=" enclosevalueinquotes="false" fieldmodel="Contact" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="Enter_postal_address_manually__c" fieldtargetobjects="Contact" value="true" model="ABN_ComapnyName_Model"/>
+																						<condition type="fieldvalue" operator="=" enclosevalueinquotes="false" fieldmodel="Account" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="Enter_postal_address_manually__pc" fieldtargetobjects="Account" value="true" model="ABN_ComapnyName_Model"/>
 																					</enableconditions>
 																				</field>
 																			</fields>
@@ -3477,7 +3498,7 @@
 																	<contents/>
 																</template>
 																<renderconditions logictype="custom" onhidedatabehavior="keep" logic="1 AND (2 OR 3 OR 4 OR 5 OR 6 OR 7 OR 8)">
-																	<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="false" fieldmodel="Contact" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="Enter_postal_address_manually__c" fieldtargetobjects="Contact" value="true"/>
+																	<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="false" fieldmodel="Account" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="Enter_postal_address_manually__pc" fieldtargetobjects="Account" value="true"/>
 																	<rendercondition type="blank" operator="=" fieldmodel="ContactPostalAddress" sourcetype="fieldvalue" field="clcommon__City__c" fieldtargetobjects="clcommon__Address__c" value="null" enclosevalueinquotes="false"/>
 																	<rendercondition type="blank" operator="=" fieldmodel="ContactPostalAddress" sourcetype="fieldvalue" field="clcommon__Zip_Code__c" fieldtargetobjects="clcommon__Address__c" value="null" enclosevalueinquotes="false"/>
 																	<rendercondition type="blank" operator="=" fieldmodel="ContactPostalAddress" sourcetype="fieldvalue" field="Street_Type__c" fieldtargetobjects="clcommon__Address__c" value="null" enclosevalueinquotes="false"/>
@@ -3500,7 +3521,7 @@
 						</column>
 					</columns>
 					<renderconditions logictype="and">
-						<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="Contact" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="Is_this_the_Postal_Address__c" fieldtargetobjects="Contact" value="No"/>
+						<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="Account" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="Is_this_the_Postal_Address__pc" fieldtargetobjects="Account" value="No"/>
 					</renderconditions>
 				</basicfieldeditor>
 			</components>
@@ -4006,11 +4027,11 @@
 								<section title="New Section" collapsible="no" uniqueid="sk-vdc-2034" showheader="false">
 									<fields>
 										<columns uniqueid="sk-veg-2540" layoutmode="fixed">
-											<column width="80%" uniqueid="sk-veg-2529">
+											<column width="50%" uniqueid="sk-veg-2529">
 												<sections>
 													<section title="New Section" collapsible="no" uniqueid="sk-veg-2530" showheader="false">
 														<fields>
-															<field uniqueid="sk-18cj-1099" id="Number_of_Shareholders__c" snippet="fieldRenderer2">
+															<field uniqueid="sk-18cj-1099" id="Number_of_Shareholders__c" snippet="fieldRenderer2" showhelp="true">
 																<renderconditions logictype="and" onhidedatabehavior="keep"/>
 																<enableconditions/>
 															</field>
@@ -4019,7 +4040,7 @@
 												</sections>
 												<renderconditions logictype="and"/>
 											</column>
-											<column width="20%" uniqueid="sk-veg-2543">
+											<column width="50%" uniqueid="sk-veg-2543">
 												<sections>
 													<section title="New Section" collapsible="no" uniqueid="sk-veg-2544" showheader="false">
 														<fields>
@@ -4033,6 +4054,17 @@
 																</renderconditions>
 																<enableconditions/>
 															</field>
+														</fields>
+													</section>
+												</sections>
+											</column>
+										</columns>
+										<columns uniqueid="sk-1tFV-3725" layoutmode="fixed">
+											<column uniqueid="sk-1tFV-3708" width="80%">
+												<sections>
+													<section title="New Section" collapsible="no" uniqueid="sk-1tFV-3709" showheader="false">
+														<fields>
+															<field uniqueid="sk-1tFa-3726" id="Number_of_Secretaries__c"/>
 														</fields>
 													</section>
 												</sections>
@@ -4196,7 +4228,7 @@
 														<fields>
 															<field uniqueid="sk-1wbR-3474" id="Is_General_Security_Aggrement_Being_Take__c">
 																<label>Is General Security Agreement Being Taken?</label>
-																<renderconditions logictype="and" onhidedatabehavior="cancel"/>
+																<renderconditions logictype="and" onhidedatabehavior="keep"/>
 																<enableconditions/>
 															</field>
 														</fields>
@@ -6287,7 +6319,7 @@
 										<section collapsible="no" uniqueid="sk-1ryP-3446" showheader="false">
 											<fields>
 												<field uniqueid="sk-1ryQ-3458" id="Is_General_Security_Aggrement_Being_Take__c">
-													<renderconditions logictype="and" onhidedatabehavior="cancel"/>
+													<renderconditions logictype="and" onhidedatabehavior="keep"/>
 													<enableconditions/>
 													<label>Is General Security Agreement taken?</label>
 												</field>
@@ -6297,6 +6329,7 @@
 														<rendercondition type="multiple" operator="in" fieldmodel="Account" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="clcommon__Legal_Entity_Type__r.Name" value="" enclosevalueinquotes="true">
 															<values>
 																<value>Trust</value>
+																<value>SMSF</value>
 															</values>
 														</rendercondition>
 													</renderconditions>
@@ -6317,12 +6350,6 @@
 													</template>
 													<renderconditions logictype="and" onhidedatabehavior="cancel">
 														<rendercondition type="blank" operator="!=" fieldmodel="Party" sourcetype="fieldvalue" field="Is_General_Security_Aggrement_Being_Take__c" fieldtargetobjects="clcommon__Party__c" value="null" enclosevalueinquotes="false"/>
-														<rendercondition type="multiple" operator="in" fieldmodel="Party" sourcetype="fieldvalue" field="Legal_Entity_Type__c" fieldtargetobjects="clcommon__Party__c" value="" enclosevalueinquotes="true">
-															<values>
-																<value>Trust</value>
-															</values>
-														</rendercondition>
-														<rendercondition type="fieldvalue" operator="!=" enclosevalueinquotes="true" fieldmodel="Party" sourcetype="fieldvalue" field="Trust_Structure__c" fieldtargetobjects="clcommon__Party__c" value="SMSF"/>
 													</renderconditions>
 													<enableconditions/>
 												</field>
@@ -6343,9 +6370,9 @@
 						<rendercondition type="multiple" operator="in" fieldmodel="Account" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="clcommon__Legal_Entity_Type__r.Name" value="" enclosevalueinquotes="true">
 							<values>
 								<value>Trust</value>
+								<value>SMSF</value>
 							</values>
 						</rendercondition>
-						<rendercondition type="fieldvalue" operator="!=" enclosevalueinquotes="true" fieldmodel="Party" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="Trust_Structure__c" fieldtargetobjects="clcommon__Party__c" value="SMSF"/>
 					</renderconditions>
 				</wrapper>
 				<wrapper uniqueid="sk-14aj-4555">
@@ -9152,36 +9179,19 @@
 		</wrapper>
 		<wrapper uniqueid="sk-2Aud-1465">
 			<components>
-				<basicfieldeditor showheader="true" showsavecancel="false" showerrorsinline="true" model="Contact" uniqueid="sk-2Aud-1466" mode="edit">
+				<basicfieldeditor showheader="true" showsavecancel="false" showerrorsinline="true" model="Account" uniqueid="sk-2Aud-1466" mode="edit">
 					<columns layoutmode="fixed">
 						<column width="100%" uniqueid="sk-2Aud-1467">
 							<sections>
 								<section title="Section A" uniqueid="sk-2Aud-1468" collapsible="no" showheader="false">
 									<fields>
-										<field uniqueid="sk-2Aud-1469" id="Salutation" snippet="fieldRenderer2">
-											<label>Name Title</label>
-											<renderconditions logictype="and" onhidedatabehavior="keep"/>
-											<enableconditions/>
-										</field>
-										<field uniqueid="sk-2Aud-1470" id="FirstName" snippet="fieldRenderer2">
-											<label>First Name</label>
-											<renderconditions logictype="and" onhidedatabehavior="keep"/>
-											<enableconditions/>
-										</field>
-										<field uniqueid="sk-2Aud-1471" id="MiddleName" snippet="fieldRenderer2">
-											<label>Middle Names</label>
-											<renderconditions logictype="and" onhidedatabehavior="keep"/>
-											<enableconditions/>
-										</field>
-										<field uniqueid="sk-2Aud-1472" id="LastName" snippet="fieldRenderer2">
+										<field uniqueid="sk-3t4Q-5550" id="Salutation"/>
+										<field uniqueid="sk-3t4e-5629" id="FirstName"/>
+										<field uniqueid="sk-3t4e-5630" id="MiddleName"/>
+										<field uniqueid="sk-3t4e-5631" id="LastName">
 											<label>Surname</label>
-											<renderconditions logictype="and" onhidedatabehavior="keep"/>
-											<enableconditions/>
 										</field>
-										<field uniqueid="sk-2Aud-1473" id="Gender__c" snippet="fieldRenderer2">
-											<renderconditions logictype="and" onhidedatabehavior="keep"/>
-											<enableconditions/>
-										</field>
+										<field uniqueid="sk-3t4e-5632" id="Gender__pc"/>
 									</fields>
 								</section>
 							</sections>
@@ -9397,21 +9407,21 @@
 											<renderconditions logictype="and" onhidedatabehavior="keep"/>
 											<enableconditions/>
 										</field>
+										<field uniqueid="sk-3kTh-3161" id="Commission_Paid__c">
+											<renderconditions logictype="and" onhidedatabehavior="keep"/>
+											<enableconditions/>
+										</field>
+										<field uniqueid="sk-3kTi-3165" id="Commission_Structure__c">
+											<renderconditions logictype="and" onhidedatabehavior="cancel">
+												<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="Party" sourcetype="fieldvalue" field="Commission_Paid__c" fieldtargetobjects="clcommon__Party__c" value="Yes"/>
+											</renderconditions>
+											<enableconditions/>
+										</field>
 										<columns uniqueid="sk-3kTr-3185" layoutmode="fixed">
 											<column width="50%" uniqueid="sk-3kTr-3175">
 												<sections>
 													<section title="New Section" collapsible="no" uniqueid="sk-3kTr-3176" showheader="false">
 														<fields>
-															<field uniqueid="sk-3kTh-3161" id="Commission_Paid__c">
-																<renderconditions logictype="and" onhidedatabehavior="keep"/>
-																<enableconditions/>
-															</field>
-															<field uniqueid="sk-3kTi-3165" id="Commission_Structure__c">
-																<renderconditions logictype="and" onhidedatabehavior="cancel">
-																	<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="Party" sourcetype="fieldvalue" field="Commission_Paid__c" fieldtargetobjects="clcommon__Party__c" value="Yes"/>
-																</renderconditions>
-																<enableconditions/>
-															</field>
 															<field uniqueid="sk-3kgE-3247" id="Upfront_Payment_Percentage__c">
 																<label>Upfront Payment (%)</label>
 																<renderconditions logictype="and" onhidedatabehavior="cancel">
@@ -9436,6 +9446,7 @@
 																</renderconditions>
 																<enableconditions/>
 															</field>
+															<field uniqueid="sk-3YMW-3478" id="Settlement_Fee__c"/>
 															<field uniqueid="sk-1iuu-3812" id="Confirm_increased_Commission_Reason__c">
 																<renderconditions logictype="or" onhidedatabehavior="cancel" logic="1 AND ((2 AND 5 AND 8) OR (3 AND 6 AND 7) OR (4 AND (7 OR 8) AND (5 OR 6)))">
 																	<rendercondition type="fieldvalue" operator="gt" enclosevalueinquotes="false" fieldmodel="Party" sourcetype="fieldvalue" field="Upfront_Payment_Percentage__c" fieldtargetobjects="clcommon__Party__c" value="0.5"/>
@@ -9473,6 +9484,7 @@
 																</renderconditions>
 																<enableconditions/>
 															</field>
+															<field uniqueid="sk-3YMX-3484" id="Settlement_Fee_Amount__c"/>
 														</fields>
 													</section>
 												</sections>
@@ -9688,6 +9700,7 @@
 					<views>
 						<view type="standard"/>
 					</views>
+					<renderconditions logictype="and"/>
 				</skootable>
 				<basicfieldeditor showheader="true" showsavecancel="false" showerrorsinline="true" model="Account" uniqueid="sk-10nP-2357" mode="readonly">
 					<columns>
@@ -9811,6 +9824,7 @@
 						<view type="standard"/>
 					</views>
 					<searchfields/>
+					<renderconditions logictype="and"/>
 				</skootable>
 				<basicfieldeditor showheader="true" showsavecancel="false" showerrorsinline="true" model="Account" uniqueid="sk-10nb-2403" mode="readonly">
 					<columns>
@@ -9883,7 +9897,7 @@
 				<action type="blockUI" message="Error found while uploading the file. Please check the file name, file size or contact Admin." timeout="3000"/>
 			</uploadfailureactions>
 		</file>
-		<skootable showconditions="true" showsavecancel="false" showerrorsinline="true" searchmethod="server" searchbox="true" showexportbuttons="false" hideheader="false" hidefooter="false" pagesize="10" alwaysresetpagination="false" createrecords="false" model="ContactDetailsAttachments" buttonposition="" mode="readonly" allowcolumnreordering="true" responsive="true" uniqueid="sk-3qlN-6946" heading="Contact Details Documents">
+		<skootable showconditions="true" showsavecancel="false" showerrorsinline="true" searchmethod="server" searchbox="true" showexportbuttons="false" hideheader="false" hidefooter="false" pagesize="all" alwaysresetpagination="false" createrecords="false" model="ContactDetailsAttachments" buttonposition="" mode="readonly" allowcolumnreordering="true" responsive="true" uniqueid="sk-3qlN-6946" heading="Contact Details Documents">
 			<fields>
 				<field id="Name" hideable="true" uniqueid="fi-3qlo-7070"/>
 				<field id="CreatedBy.Name" hideable="true" uniqueid="fi-3qlp-7082">
@@ -9983,22 +9997,22 @@ skuid.model.save([contactModel],{callback: function(resultOfSaveContact){
 //window.location.reload();*/</jsitem>
 			<jsitem location="inlinesnippet" name="AgeCheck" cachelocation="false">var accModel = skuid.model.getModel('Account');
 var accrow = accModel.data[0];
-var contactModel = skuid.model.getModel('Contact');
-var newContactRow = contactModel.data[0];
+//var contactModel = skuid.model.getModel('Contact');
+//var newContactRow = contactModel.data[0];
 var branch = skuid.model.getModel('SystemBranch');
 var branchRow = branch.getFirstRow();
-var birthYear = new Date(newContactRow.Birthdate);
-var middleName = newContactRow.MiddleName;
+var birthYear = new Date(accrow.PersonBirthdate	);
+var middleName = accrow.MiddleName;
 var letterNumber = /^[a-zA-Z]+$/;
 var curYear = new Date(branchRow.loan__Current_System_Date__c);
 if((curYear.getFullYear()-birthYear.getFullYear())&lt;18){
-    contactModel.updateRow(newContactRow, {Is_the_applicant_s_age_less_than_18_yrs__c: true});
-    contactModel.updateRow(newContactRow, {Birthdate: null});
+    accModel.updateRow(accrow, {Is_the_applicant_s_age_less_than_18_yrs__pc: true});
+    accModel.updateRow(accrow, {PersonBirthdate	: null});
     alert('The age of application should be above 18!') ;
     return false;
 }
 else{
-     contactModel.updateRow(newContactRow, {Is_the_applicant_s_age_less_than_18_yrs__c: false});
+     accModel.updateRow(accrow, {Is_the_applicant_s_age_less_than_18_yrs__pc: false});
      return true;
 }
    
@@ -10087,17 +10101,17 @@ window.location.reload();</jsitem>
 var accModel = skuid.model.getModel('Account');
 var accrow = accModel.data[0];
 //if(accRow.clcommon__Legal_Entity_Type__r.Name === 'Individual'){
-    var contactModel = skuid.model.getModel('Contact');
-    var newContactRow = contactModel.data[0];
+    //var contactModel = skuid.model.getModel('Contact');
+    //var newContactRow = contactModel.data[0];
     var Integer = Integer.new;
     var branch = skuid.model.getModel('SystemBranch');
     var branchRow = branch.getFirstRow();
-    var MiddleName = newContactRow.MiddleName[0];
+    var MiddleName = accrow.MiddleName[0];
     var letterNumber = /^[a-zA-Z]+$/;
     var curYear = new Date(branchRow.loan__Current_System_Date__c);
     if((MiddleName.value.match(letterNumber)))
     {
-             contactModel.save();
+             accModel.save();
 
     }
 else{
@@ -10187,7 +10201,7 @@ $(div).attr("class", "nx-error-inline");
 $(div).attr("id", "error-msg");
 
 field.element.change(function(){
-    var value = skuid.model.getModel('Contact').getFirstRow().Number_Of_Dependents__c ;
+    var value = skuid.model.getModel('Account').getFirstRow().Number_Of_Dependents__pc ;
     var noOfDependent = /^[0-9]{1,}$/ ;  // /^[0-9]{1,}$/
     if(value){
         if(value!=undefined &amp;&amp; value!='' &amp;&amp; value!=null &amp;&amp; !noOfDependent.test(value)){
@@ -10226,38 +10240,37 @@ partyModel.updateRow(partyRow, {Broker_Underwriter__c: records.row.Id});</jsitem
 			<jsitem location="inlinesnippet" name="callEraseRedundantDataForIndividual" cachelocation="false">var params = arguments[0],
 	$ = skuid.$;
 var accountModel = skuid.model.getModel('Account');
-var contactModel = skuid.model.getModel('Contact');
 var partyModel = skuid.model.getModel('Party');
 var officeModel = skuid.model.getModel('Office');
 var addressModel = skuid.model.getModel('ContactPostalAddress');
-sforce.apex.execute('EraseRedundantData','eraseHiddenFieldsDataOf', { objectName : 'Contact', paramId : contactModel.data[0].Id });
+sforce.apex.execute('EraseRedundantData','eraseHiddenFieldsDataOf', { objectName : 'Account', paramId : accountModel.data[0].Id });
 sforce.apex.execute('EraseRedundantData','eraseHiddenFieldsDataOf', { objectName : 'clcommon__Party__c', paramId : partyModel.data[0].Id });
 sforce.apex.execute('EraseRedundantData','eraseRelatedObjectFieldData',
-{   objectName : 'Contact', 
+{   objectName : 'Account', 
     sectionName : 'Are you applying with your partner?',
     renderedObjectName : 'clcommon__Party__c',
-    paramId : contactModel.data[0].Id,
+    paramId : accountModel.data[0].Id,
     listOfIds : partyModel.data[0].Id,
     isFieldData : true,
     listOffieldNamesIfFieldData : 'Is_this_a_joint_applicant__c'
 });
 sforce.apex.execute('EraseRedundantData','eraseRelatedObjectFieldData',
-{   objectName : 'Contact', 
+{   objectName : 'Account', 
     sectionName : 'Postal Address',
     renderedObjectName : 'clcommon__Address__c',
-    paramId : contactModel.data[0].Id,
+    paramId : accountModel.data[0].Id,
     listOfIds : addressModel.data[0].Id,
     isFieldData : true,
     listOffieldNamesIfFieldData : 'clcommon__County__c;Street_Name__c;clcommon__City__c;clcommon__Zip_Code__c;Street_No__c;Street_Type__c;State__c;clcommon__Country__c;Duplicate_State_Name__c;Duplicate_Street_Type__c'
 });
 
-var value1 = contactModel.data[0].Birthdate;
+var value1 = accountModel.data[0].PersonBirthdate;
 var value2 = officeModel.data[0].loan__Current_System_Date__c;
 var date2 = new Date(value2);
 var date1 = new Date(value1);
 var diffInTime = date2.getTime() - date1.getTime(); 
 var diffInYrs = diffInTime / (1000 * 3600 * 24 * 365);
-if(contactModel.data[0].Birthdate === undefined || diffInYrs &lt; 45){
+if(accountModel.data[0].PersonBirthdate === undefined || diffInYrs &lt; 45){
     sforce.apex.execute('EraseRedundantData','eraseRelatedObjectFieldData',
     {   objectName : 'clcommon__Party__c', 
         sectionName : 'Some Section',
@@ -10269,48 +10282,48 @@ if(contactModel.data[0].Birthdate === undefined || diffInYrs &lt; 45){
         shouldClearField : true
     });
 }
-value1 = contactModel.data[0].Temporary_Visa_Expiry_Date__c;
+value1 = accountModel.data[0].Temporary_Visa_Expiry_Date__pc;
 date2 = new Date(value1);
 date1 = new Date(value2);
 diffInTime = date2.getTime() - date1.getTime(); 
 var diffInMonths = diffInTime / (1000 * 3600 * 24 * 30);
-if(contactModel.data[0].Temporary_Visa_Suitability__c === undefined || contactModel.data[0].Temporary_Visa_Suitability__c === 'No'){
+if(accountModel.data[0].Temporary_Visa_Suitability__pc === undefined || accountModel.data[0].Temporary_Visa_Suitability__pc === 'No'){
     sforce.apex.execute('EraseRedundantData','eraseRelatedObjectFieldData',
-    {   objectName : 'Contact', 
+    {   objectName : 'Account', 
         sectionName : 'Some Section',
-        renderedObjectName : 'Contact',
-        paramId : contactModel.data[0].Id,
-        listOfIds : contactModel.data[0].Id,
+        renderedObjectName : 'Account',
+        paramId : accountModel.data[0].Id,
+        listOfIds : accountModel.data[0].Id,
         isFieldData : true,
-        listOffieldNamesIfFieldData : 'Temporary_Visa_Suitability_Commentary__c',
+        listOffieldNamesIfFieldData : 'Temporary_Visa_Suitability_Commentary__pc',
         shouldClearField : true
     });
 }
-if(contactModel.data[0].Australian_Citizen__c === undefined || contactModel.data[0].Australian_Citizen__c !== 'No'
-    || contactModel.data[0].Applicant_reside_in_Australia__c === undefined || contactModel.data[0].Applicant_reside_in_Australia__c !== 'Yes'
-    || contactModel.data[0].Has_applied_for_Permanent_Residency_Visa__c === undefined || contactModel.data[0].Has_applied_for_Permanent_Residency_Visa__c !== 'No'
-    || contactModel.data[0].clcommon__Residential_Status__c === undefined || contactModel.data[0].clcommon__Residential_Status__c !== 'Temporary'
-    || contactModel.data[0].Temporary_Visa_Expiry_Date__c === undefined || Number(diffInMonths) &gt;= 12){
+if(accountModel.data[0].Australian_Citizen__pc === undefined || accountModel.data[0].Australian_Citizen__pc !== 'No'
+    || accountModel.data[0].Applicant_reside_in_Australia__pc === undefined || accountModel.data[0].Applicant_reside_in_Australia__pc !== 'Yes'
+    || accountModel.data[0].Has_applied_for_Permanent_Residency_Visa__pc === undefined || accountModel.data[0].Has_applied_for_Permanent_Residency_Visa__pc !== 'No'
+    || accountModel.data[0].clcommon__Residential_Status__pc === undefined || accountModel.data[0].clcommon__Residential_Status__pc !== 'Temporary'
+    || accountModel.data[0].Temporary_Visa_Expiry_Date__pc === undefined || Number(diffInMonths) &gt;= 12){
     sforce.apex.execute('EraseRedundantData','eraseRelatedObjectFieldData',
-    {   objectName : 'Contact', 
+    {   objectName : 'Account', 
         sectionName : 'Some Section',
-        renderedObjectName : 'Contact',
-        paramId : contactModel.data[0].Id,
-        listOfIds : contactModel.data[0].Id,
+        renderedObjectName : 'Account',
+        paramId : accountModel.data[0].Id,
+        listOfIds : accountModel.data[0].Id,
         isFieldData : true,
-        listOffieldNamesIfFieldData : 'Temporary_Visa_Suitability__c;Temporary_Visa_Suitability_Commentary__c',
+        listOffieldNamesIfFieldData : 'Temporary_Visa_Suitability__pc;Temporary_Visa_Suitability_Commentary__pc',
         shouldClearField : true
     });
 }
 var flag = false;
 if(partyModel.data[0].Party_Type_Name__c !== 'Household'
 || partyModel.data[0].Party_Type_Name__c !== 'Guarantor'){
-    if(contactModel.data.length &gt; 0){
-        if((contactModel.data[0].clcommon__Marital_Status__c === undefined
-        || (contactModel.data[0].clcommon__Marital_Status__c !== 'Divorced'
-        &amp;&amp; contactModel.data[0].clcommon__Marital_Status__c !== 'Separated'
-        &amp;&amp; contactModel.data[0].clcommon__Marital_Status__c !== 'Single'
-        &amp;&amp; contactModel.data[0].clcommon__Marital_Status__c !== 'Widowed'))){
+    if(accountModel.data.length &gt; 0){
+        if((accountModel.data[0].clcommon__Marital_Status__pc === undefined
+        || (accountModel.data[0].clcommon__Marital_Status__pc !== 'Divorced'
+        &amp;&amp; accountModel.data[0].clcommon__Marital_Status__pc !== 'Separated'
+        &amp;&amp; accountModel.data[0].clcommon__Marital_Status__pc !== 'Single'
+        &amp;&amp; accountModel.data[0].clcommon__Marital_Status__pc !== 'Widowed'))){
             if(partyModel.data[0].Is_this_a_joint_applicant__c === undefined
                 || partyModel.data[0].Is_this_a_joint_applicant__c === 'Yes'){
                 flag = true;
@@ -10326,10 +10339,10 @@ var listOfFields = 'Primary_Residence_Property_Costs__c;Clothing_Personal_Care__
 'Living_Expense_Used_for_Servicing_Purpos__c;Living_Expense_Explanation_Received__c;Living_Expense_Explanation_Suitable__c;Living_Expense_Suitale_Commentary__c;Bank_Statements_Required_to_be_Reviewed__c;'+
 'Bank_Statments_Reviewed__c';
 sforce.apex.execute('EraseRedundantData','eraseRelatedObjectFieldData',
-{   objectName : 'Contact',
+{   objectName : 'Account',
     sectionName : 'Some Section',
     renderedObjectName : 'clcommon__Party__c',
-    paramId : contactModel.data[0].Id,
+    paramId : accountModel.data[0].Id,
     listOfIds : partyModel.data[0].Id,
     isFieldData : true,
     listOffieldNamesIfFieldData : listOfFields,
@@ -10436,10 +10449,10 @@ else if(partyModel.data[0] !== undefined &amp;&amp; partyModel.data[0].Trust_Str
 }</jsitem>
 			<jsitem location="inlinesnippet" name="dobCheck" cachelocation="false">var params = arguments[0],
 	$ = skuid.$;
-var contactModel = skuid.model.getModel('Contact');
+var accountModel = skuid.model.getModel('Account');
 var officeModel = skuid.model.getModel('Office');
 
-var value1 = contactModel.data[0].Birthdate;
+var value1 = accountModel.data[0].PersonBirthdate;
 var value2 = officeModel.data[0].loan__Current_System_Date__c;
 var date2 = new Date(value2);
 var date1 = new Date(value1);
@@ -10451,10 +10464,10 @@ if(diffInMonths &gt;= 45){
 return false;</jsitem>
 			<jsitem location="inlinesnippet" name="checkTempVisaExpDate" cachelocation="false">var params = arguments[0],
 	$ = skuid.$;
-var contactModel = skuid.model.getModel('Contact');
+var accountModel = skuid.model.getModel('Account');
 var officeModel = skuid.model.getModel('Office');
 
-var value1 = contactModel.data[0].Temporary_Visa_Expiry_Date__c;
+var value1 = accountModel.data[0].Temporary_Visa_Expiry_Date__pc;
 var value2 = officeModel.data[0].loan__Current_System_Date__c;
 var date2 = new Date(value1);
 var date1 = new Date(value2);
@@ -10619,9 +10632,6 @@ var smsfModel  = skuid.model.getModel('SMSFModel');
             partyModel.updateRow(partyRow,'SMSF_Status__c','This ABN has been cancelled and the fund may no longer be operating');
         }
     }</jsitem>
-			<jsitem location="external" name="connectionJS" cachelocation="false" url="/soap/ajax/35.0/connection.js">var params = arguments[0],
-	$ = skuid.$;
-</jsitem>
 			<jsitem location="inlinesnippet" name="CustomIndividualRules" cachelocation="false">var partyModel = skuid.model.getModel('Party');
 var partyRow = partyModel.data[0];
 var checkDetail = skuid.model.getModel('ContactDetailCheckDetail');
@@ -10727,16 +10737,16 @@ if(partyRow.Party_Type_Name__c == 'Broker'){
 return true;</jsitem>
 			<jsitem location="inlinesnippet" name="Update Middle Name of Account" cachelocation="false">var accModel = skuid.model.getModel('Account');
 var accrow = accModel.data[0];
-var contactModel = skuid.model.getModel('Contact');
-var newContactRow = contactModel.data[0];	
-contactModel.updateData();
+//var contactModel = skuid.model.getModel('Contact');
+//var newContactRow = contactModel.data[0];	
+//contactModel.updateData();
 accModel.updateData();
 var totName;
-if(newContactRow.MiddleName !== undefined &amp;&amp; newContactRow.MiddleName !== ''){
-    totName = newContactRow.FirstName+' '+newContactRow.MiddleName+' '+newContactRow.LastName;
+if(accrow.MiddleName !== undefined &amp;&amp; accrow.MiddleName !== ''){
+    totName = accrow.FirstName+' '+accrow.MiddleName+' '+accrow.LastName;
 }
 else{
-    totName = newContactRow.FirstName+' '+newContactRow.LastName;
+    totName = accrow.FirstName+' '+accrow.LastName;
 }
 if(accrow.Name !== totName){
     var accObj = new sforce.SObject("Account");
@@ -10744,7 +10754,7 @@ if(accrow.Name !== totName){
     accObj.Name = totName;
     var result = sforce.connection.update([accObj]);
 }
-contactModel.updateData();
+//contactModel.updateData();
 accModel.updateData();</jsitem>
 			<jsitem location="inlinesnippet" name="CheckAndCreateCategoryContactDetailsAttachmentsRecords" cachelocation="false">var params = arguments[0],
 	$ = skuid.$;
@@ -10776,6 +10786,210 @@ var resCheck = sforce.apex.execute('CategoryAttachmentUtility','deleteAttachment
         attachId : records.row.Id
     });
 alert(resCheck);</jsitem>
+			<jsitem location="inlinesnippet" cachelocation="false" name="CopyContactData">var params = arguments[0],
+	$ = skuid.$;
+var accountModel = skuid.model.getModel('Account');
+var accountRow = accountModel.data[0];
+var appModel = skuid.model.getModel('ApplicationRen');
+var appRow = appModel.data[0];
+accountModel.updateData();
+var contactModel=skuid.model.getModel('Contact');
+var contactRow=contactModel.data[0];
+var accountObj = new sforce.SObject("Account");
+accountObj.Id = accountRow.Id;
+appModel.updateData();
+if(accountRow.Is_this_the_Postal_Address__pc == 'Yes' || accountRow.Is_this_the_Postal_Address__pc == 'None'){
+    accountObj.PersonMailingStreet = null;
+    accountObj.PersonMailingState = null;
+    accountObj.PersonMailingCity = null;
+    accountObj.PersonMailingPostalCode = null;
+    accountObj.PersonMailingCountry = null;
+}
+var records = sforce.connection.query("Select Id,Account__c,Phone_Type__c,Phone_Number__c from Telephone_Contact_Number__c where Contact__c = '"+contactRow.Id+"' and  Phone_Type__c = 'Mobile' ORDER BY CreatedDate LIMIT 1");
+if(records !== undefined &amp;&amp; records !== null){
+    var teleRecs = (records.getArray('records'))[0];
+    if(teleRecs !== undefined &amp;&amp; teleRecs.Phone_Number__c !== undefined &amp;&amp; teleRecs.Phone_Number__c !== null &amp;&amp; teleRecs.Phone_Number__c !== ''){
+        accountObj.PersonMobilePhone = teleRecs.Phone_Number__c;
+    }
+    else{
+        accountObj.PersonMobilePhone = null;
+    }
+}
+if(records !== undefined &amp;&amp; records !== null){
+    records = sforce.connection.query("Select Id,Account__c,Phone_Type__c,Phone_Number__c from Telephone_Contact_Number__c where Contact__c = '"+contactRow.Id+"' and Phone_Type__c = 'Home Phone' ORDER BY CreatedDate LIMIT 1");
+    teleRecs = (records.getArray('records'))[0];
+    if(teleRecs !== undefined &amp;&amp; teleRecs.Phone_Number__c !== undefined &amp;&amp; teleRecs.Phone_Number__c !== null &amp;&amp; teleRecs.Phone_Number__c !== ''){
+        accountObj.Phone = teleRecs.Phone_Number__c;
+    }
+    else{
+        accountObj.Phone = null;
+    }
+}
+records = sforce.connection.query("Select Id,clcommon__County__c,Street_No__c,Street_Name__c,Street_Type__c,clcommon__City__c,State__c,clcommon__Zip_Code__c,clcommon__Country__c from clcommon__Address__c where clcommon__Contact__c = '"+contactRow.Id+"' and Mail_At__c = True LIMIT 1");
+if(records !== undefined &amp;&amp; records !== null){
+    teleRecs = (records.getArray('records'))[0];
+    if(teleRecs !== undefined &amp;&amp; teleRecs !== null){
+        accountObj.PersonOtherStreet = null;
+        accountObj.PersonOtherState = null;
+        accountObj.PersonOtherCity = null;
+        accountObj.PersonOtherPostalCode = null;
+        accountObj.PersonOtherCountry = null;
+        if(teleRecs.clcommon__County__c !== undefined &amp;&amp; teleRecs.clcommon__County__c !== null &amp;&amp; teleRecs.clcommon__County__c !== ''){
+            accountObj.PersonOtherStreet = ''+teleRecs.clcommon__County__c;
+        }
+        if(teleRecs.Street_No__c !== undefined &amp;&amp; teleRecs.Street_No__c !== null &amp;&amp; teleRecs.Street_No__c !== ''){
+            if(accountObj.PersonOtherStreet !== null &amp;&amp; accountObj.PersonOtherStreet !== undefined &amp;&amp; accountObj.PersonOtherStreet !== ''){
+                accountObj.PersonOtherStreet = accountObj.PersonOtherStreet+' '+teleRecs.Street_No__c;
+            }
+            else {
+                accountObj.PersonOtherStreet = teleRecs.Street_No__c;
+            }
+        }
+        if(teleRecs.Street_Name__c !== undefined &amp;&amp; teleRecs.Street_Name__c !== null &amp;&amp; teleRecs.Street_Name__c !== ''){
+            if(accountObj.PersonOtherStreet !== undefined &amp;&amp; accountObj.PersonOtherStreet !== null &amp;&amp; accountObj.PersonOtherStreet !== ''){
+                accountObj.PersonOtherStreet = accountObj.PersonOtherStreet+' '+teleRecs.Street_Name__c;
+            }
+            else{
+                accountObj.PersonOtherStreet = teleRecs.Street_Name__c;
+            }
+        }
+        if(teleRecs.Street_Type__c !== undefined &amp;&amp; teleRecs.Street_Type__c !== null &amp;&amp; teleRecs.Street_Type__c !== ''){
+            if(accountObj.PersonOtherStreet !== undefined &amp;&amp; accountObj.PersonOtherStreet !== null &amp;&amp; accountObj.PersonOtherStreet !== ''){
+                accountObj.PersonOtherStreet = accountObj.PersonOtherStreet+' '+teleRecs.Street_Type__c;
+            }
+            else{
+                accountObj.PersonOtherStreet = teleRecs.Street_Type__c;
+            }
+        }
+        if(teleRecs.State__c !== undefined &amp;&amp; teleRecs.State__c !== null &amp;&amp; teleRecs.State__c !== ''){
+            accountObj.PersonOtherState = teleRecs.State__c;
+        }
+        if(teleRecs.clcommon__City__c !== undefined &amp;&amp; teleRecs.clcommon__City__c !== null &amp;&amp; teleRecs.clcommon__City__c !== ''){
+            accountObj.PersonOtherCity = teleRecs.clcommon__City__c;
+        }
+        if(teleRecs.clcommon__Zip_Code__c !== undefined &amp;&amp; teleRecs.clcommon__Zip_Code__c !== null &amp;&amp; teleRecs.clcommon__Zip_Code__c !== ''){
+            accountObj.PersonOtherPostalCode = teleRecs.clcommon__Zip_Code__c;
+        }
+        if(teleRecs.clcommon__Country__c !== undefined &amp;&amp; teleRecs.clcommon__Country__c !== null &amp;&amp; teleRecs.clcommon__Country__c !== ''){
+            accountObj.PersonOtherCountry = teleRecs.clcommon__Country__c;
+        }
+    }
+}
+
+records = sforce.connection.query("Select Id,clcommon__County__c,Street_No__c,Street_Name__c,Street_Type__c,clcommon__City__c,State__c,clcommon__Zip_Code__c,clcommon__Country__c from clcommon__Address__c where clcommon__Contact__c = '"+contactRow.Id+"' and Other_At__c = True LIMIT 1");
+teleRecs = (records.getArray('records'))[0];
+if(teleRecs !== undefined &amp;&amp; teleRecs !== null &amp;&amp; accountRow.Is_this_the_Postal_Address__pc == 'No'){
+    accountObj.PersonMailingStreet = '';
+    accountObj.PersonMailingState = '';
+    accountObj.PersonMailingCity = '';
+    accountObj.PersonMailingPostalCode = '';
+    accountObj.PersonMailingCountry = '';
+    if(teleRecs.clcommon__County__c !== undefined &amp;&amp; teleRecs.clcommon__County__c !== null &amp;&amp; teleRecs.clcommon__County__c !== ''){
+        accountObj.PersonMailingStreet = teleRecs.clcommon__County__c;
+    }
+    if(teleRecs.Street_No__c !== undefined &amp;&amp; teleRecs.Street_No__c !== null &amp;&amp; teleRecs.Street_No__c !== ''){
+        if(accountObj.PersonMailingStreet !== undefined &amp;&amp; accountObj.PersonMailingStreet !== null &amp;&amp; accountObj.PersonMailingStreet !== ''){
+            accountObj.PersonMailingStreet = accountObj.PersonMailingStreet+' '+teleRecs.Street_No__c;
+        }
+        else{
+            accountObj.PersonMailingStreet = teleRecs.Street_No__c;
+        }
+    }
+    if(teleRecs.Street_Name__c !== undefined &amp;&amp; teleRecs.Street_Name__c !== null &amp;&amp; teleRecs.Street_Name__c !== ''){
+        if(accountObj.PersonMailingStreet !== undefined &amp;&amp; accountObj.PersonMailingStreet !== null &amp;&amp; accountObj.PersonMailingStreet !== ''){
+            accountObj.PersonMailingStreet = accountObj.PersonMailingStreet+' '+teleRecs.Street_Name__c;
+        }
+        else{
+            accountObj.PersonMailingStreet = teleRecs.Street_Name__c;
+        }
+    }
+    if(teleRecs.Street_Type__c !== undefined &amp;&amp; teleRecs.Street_Type__c !== null &amp;&amp; teleRecs.Street_Type__c !== ''){
+        if(accountObj.PersonMailingStreet !== undefined &amp;&amp; accountObj.PersonMailingStreet !== null &amp;&amp; accountObj.PersonMailingStreet !== ''){
+            accountObj.PersonMailingStreet = accountObj.PersonMailingStreet+' '+teleRecs.Street_Type__c;
+        }
+        else{
+            accountObj.PersonMailingStreet = teleRecs.Street_Type__c;
+        }
+    }
+    if(teleRecs.State__c !== undefined &amp;&amp; teleRecs.State__c !== null &amp;&amp; teleRecs.State__c !== ''){
+        accountObj.PersonMailingState = teleRecs.State__c;
+    }
+    if(teleRecs.clcommon__City__c !== undefined &amp;&amp; teleRecs.clcommon__City__c !== null &amp;&amp; teleRecs.clcommon__City__c !== ''){
+        accountObj.PersonMailingCity = teleRecs.clcommon__City__c;
+    }
+    if(teleRecs.clcommon__Zip_Code__c !== undefined &amp;&amp; teleRecs.clcommon__Zip_Code__c !== null &amp;&amp; teleRecs.clcommon__Zip_Code__c !== ''){
+        accountObj.PersonMailingPostalCode = teleRecs.clcommon__Zip_Code__c;
+    }
+    if(teleRecs.clcommon__Country__c !== undefined &amp;&amp; teleRecs.clcommon__Country__c !== null &amp;&amp; teleRecs.clcommon__Country__c !== ''){
+        accountObj.PersonMailingCountry = teleRecs.clcommon__Country__c;
+    }
+}
+else{
+    accountObj.PersonMailingStreet = null;
+    accountObj.PersonMailingState = null;
+    accountObj.PersonMailingCity = null;
+    accountObj.PersonMailingPostalCode = null;
+    accountObj.PersonMailingCountry = null;
+}
+if(appRow.Allow_Direct_Marketing__c !== undefined &amp;&amp; appRow.Allow_Direct_Marketing__c !== null){
+    if(appRow.Allow_Direct_Marketing__c === 'Yes'){
+        accountObj.Opt_Out_of_Marketing__pc = false;
+    }
+    else if(appRow.Allow_Direct_Marketing__c === 'No'){
+        accountObj.Opt_Out_of_Marketing__pc = true;
+    }
+    else{
+        accountObj.Opt_Out_of_Marketing__pc = false;
+    }
+}
+var appObj = new sforce.SObject("genesis__Applications__c");
+appObj.Id = appRow.Id;
+records= sforce.connection.query("Select id,First_Home_Buyer__c,clcommon__Type__r.Name,genesis__Application__c,Legal_Entity_Type__c from clcommon__Party__c where genesis__Application__c = '"+appRow.Id+"' and First_Home_Buyer__c='Yes' and Legal_Entity_Type__c='Individual' and (clcommon__Type__r.Name ='Borrower' or clcommon__Type__r.Name ='Co-applicant' or clcommon__Type__r.Name ='Guarantor')");
+var partyObj=records.getArray('records');
+if(partyObj.length&gt;0){
+  appObj.First_Home_Buyer__c='Yes';  
+}else{
+    appObj.First_Home_Buyer__c='No';
+}
+var result1 = sforce.connection.update([accountObj]);
+var result2 = sforce.connection.update([appObj]);</jsitem>
+			<jsitem location="inlinesnippet" name="contactDetailCheck" cachelocation="false">var params = arguments[0],
+	$ = skuid.$;
+var contactModel = skuid.model.getModel('Account');
+var newContactRow = contactModel.data[0];
+var partyModel = skuid.model.getModel('Party');
+var partyRow = partyModel.data[0];
+var data='Please put the following Field details to Save Changes\n';
+var count=0;
+if(newContactRow.clcommon__Marital_Status__pc===null || newContactRow.clcommon__Marital_Status__pc===undefined || newContactRow.clcommon__Marital_Status__pc==='None' || newContactRow.clcommon__Marital_Status__pc==='' ){
+    data=data+'Marital Status\n';
+    count++;
+}
+if(newContactRow.Number_Of_Dependents__pc===null || newContactRow.Number_Of_Dependents__pc==='' || newContactRow.Number_Of_Dependents__pc===undefined){
+    data+='Number Of Dependents\n';
+    count++;
+}
+if(newContactRow.clcommon__Years_At_Current_Address__pc===null || newContactRow.clcommon__Years_At_Current_Address__pc==='' || newContactRow.clcommon__Years_At_Current_Address__pc	===undefined){
+    data+='No of years at Address\n';
+    count++;
+}
+if(partyRow.First_Home_Buyer__c===null || partyRow.First_Home_Buyer__c==='None' || partyRow.First_Home_Buyer__c===undefined || partyRow.First_Home_Buyer__c===''){
+    data+='First Home Buyer\n';
+    count++;
+}
+if(newContactRow.clcommon__Marital_Status__pc==='Married' || newContactRow.clcommon__Marital_Status__pc==='De Facto'){
+    if(partyRow.Is_this_a_joint_applicant__c===null || partyRow.Is_this_a_joint_applicant__c==='None' || partyRow.Is_this_a_joint_applicant__c===undefined || partyRow.Is_this_a_joint_applicant__c===''){
+        data+='Are you applying with your partner?\n';
+        count++;
+        
+    }
+}
+if(count&gt;0 &amp;&amp; count!==undefined){
+    alert(data);
+    return false;
+}else{
+    return true;
+}</jsitem>
 		</javascript>
 		<css>
 			<cssitem location="inline" name="requiredCss" cachelocation="false">/*

@@ -1659,7 +1659,7 @@
 								<rendercondition type="fieldvalue" enclosevalueinquotes="true" fieldmodel="SettlementsDocumentCategory" sourcetype="modelproperty" nosourcerowbehavior="deactivate" sourceproperty="hasRows"/>
 							</renderconditions>
 						</file>
-						<skootable showconditions="true" showsavecancel="false" showerrorsinline="true" searchmethod="server" searchbox="true" showexportbuttons="false" hideheader="false" hidefooter="false" pagesize="10" alwaysresetpagination="false" createrecords="false" model="SettlementDocumentAttachments" buttonposition="" mode="readonly" allowcolumnreordering="true" responsive="true" uniqueid="sk-3qNm-1319" heading="Settlement Documents">
+						<skootable showconditions="true" showsavecancel="false" showerrorsinline="true" searchmethod="server" searchbox="true" showexportbuttons="false" hideheader="false" hidefooter="false" pagesize="all" alwaysresetpagination="false" createrecords="false" model="SettlementDocumentAttachments" buttonposition="" mode="readonly" allowcolumnreordering="true" responsive="true" uniqueid="sk-3qNm-1319" heading="Settlement Documents">
 							<fields>
 								<field id="Name" hideable="true" uniqueid="fi-3qOe-1539"/>
 								<field id="CreatedBy.Name" hideable="true" uniqueid="fi-3qOf-1550">
