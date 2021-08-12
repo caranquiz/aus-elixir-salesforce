@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Declarations_Comments__c</fullName>
+    <description>If any of the declarations are yes then the BDM needs to discuss with the Broker or Aggregator</description>
+    <externalId>false</externalId>
+    <label>Declarations Comments</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <type>TextArea</type>
+</CustomField>

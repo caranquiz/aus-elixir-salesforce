@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Legal_finalization_breach</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND(ISPICKVAL(Stage__c, &quot;Closed&quot;),
+OR(ISPICKVAL(Report_to_ASIC__c, &quot;&quot;),
+ISPICKVAL(Breach_reported_to_ASIC__c, &quot;&quot;),
+ISPICKVAL(Breach_Significance_Compliance__c, &quot;&quot;),
+ISPICKVAL(Is_a_process_improvement_required__c, &quot;&quot;),
+ISBLANK( Risk_Classification__c)))</errorConditionFormula>
+    <errorMessage>Please complete all fields in the Head of Compliance section before proceeding.</errorMessage>
+</ValidationRule>

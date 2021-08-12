@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Submit_to_department_head</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND( ISPICKVAL( Stage__c , &quot;Submitted to Department Head&quot;),
+ OR( ISBLANK( Details_of_Circumstances__c),
+ ISBLANK( Identified_and_Escalated__c ),
+ ISBLANK( Remedial_Action__c ),
+ ISBLANK( Isolated_or_systemic_explanation__c ),
+ ISBLANK( Significance_explanation__c ),
+ ISBLANK( What_is_the_potential_or_actual_cost__c ),
+ ISBLANK( Date_Breach_was_Detected__c ),
+ ISBLANK( Summary_of_Breach__c ),
+ ISPICKVAL( Breach_Significance__c, &quot;&quot;),
+ ISPICKVAL( Has_the_breach_been_resolved__c , &quot;&quot;),
+ ISPICKVAL( Isolated_or_systemic_event__c , &quot;&quot;),
+ ISBLANK( Recommendations__c )))</errorConditionFormula>
+    <errorMessage>Please complete all sections before proceeding.</errorMessage>
+</ValidationRule>

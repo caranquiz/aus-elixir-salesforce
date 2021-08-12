@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Loan_Scenario</fullName>
+    <active>true</active>
+    <businessProcess>Loan Scenario</businessProcess>
+    <description>For Loan Scenarios</description>
+    <label>Loan Scenario</label>
+    <picklistValues>
+        <picklist>ForecastCategoryName</picklist>
+        <values>
+            <fullName>Best Case</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Closed</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Commit</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Omitted</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Pipeline</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>LeadSource</picklist>
+        <values>
+            <fullName>Advertisement</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Employee Referral</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>External Referral</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Other</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Partner</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Public Relations</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Seminar - Internal</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Seminar - Partner</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Trade Show</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Web</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Word of mouth</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Loan_Purpose__c</picklist>
+        <values>
+            <fullName>Cash Out</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Consolidation</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Purchase</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Refinance</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Lost_Reason__c</picklist>
+        <values>
+            <fullName>Customer Not Proceeding</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Fund Opportunity</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Other Lender</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Outside COVID Credit Policy</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Outside Max LVR</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Outside ORDE Credit Policy</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Outside ORDE Policy</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Security</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Security location</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Servicing</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Product__c</picklist>
+        <values>
+            <fullName>Commercial</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Commercial IO</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Construction and Development</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Highest %26 Best Use - Commercial</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Highest %26 Best Use - Residential</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Residential</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Residential Construction</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Residential IO</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>SMSF Commercial</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>SMSF Residential</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Risk_Grade__c</picklist>
+        <values>
+            <fullName>Near Prime</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Near Prime %2B</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Prime</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Specialist</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Specialist %2B</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>State__c</picklist>
+        <values>
+            <fullName>ACT</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>NSW</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>NT</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>QLD</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>SA</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>TAS</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>VIC</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>WA</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Type</picklist>
+        <values>
+            <fullName>Existing Business</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>New Business</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Verfication__c</picklist>
+        <values>
+            <fullName>Alt Doc</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Full Doc</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Lease Doc</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>loan__DeliveryInstallationStatus__c</picklist>
+        <values>
+            <fullName>Completed</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>In progress</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Yet to begin</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+</RecordType>

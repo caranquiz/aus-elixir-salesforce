@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Breach_not_approved</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND( Approved__c = FALSE,  ISPICKVAL( Stage__c , &quot;Submitted to Legal and Compliance&quot;))</errorConditionFormula>
+    <errorMessage>Breach has not been approved yet and can&apos;t proceed to next stage.</errorMessage>
+</ValidationRule>

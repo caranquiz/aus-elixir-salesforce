@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Must_Convert_to_Qualify</fullName>
+    <active>true</active>
+    <description>Lead must be converted to change to qualified</description>
+    <errorConditionFormula>AND( IsConverted = False,  ISPICKVAL( Status , &quot;Qualified&quot;))</errorConditionFormula>
+    <errorMessage>Can not be marked Qualified if not converted</errorMessage>
+</ValidationRule>

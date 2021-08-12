@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>been_resolved</fullName>
+    <active>true</active>
+    <errorConditionFormula>ISPICKVAL( Has_the_breach_been_resolved__c , &quot;no&quot;) &amp;&amp;  ISBLANK( Expected_timing_of_rectification__c )</errorConditionFormula>
+    <errorMessage>Please complete the expected timing of rectification section.</errorMessage>
+</ValidationRule>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Due_Diligence_Submit_Broker</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND( RecordType.Name = &quot;Direct Accredited ACR&quot; ,  ISPICKVAL( Status , &quot;submitted for approval&quot;),  OR( Broker_Accreditation_Form__c = False,   Confirmation_of_Industry_Body_Membership__c = False,  Aggregator_Confirmation_of_Appointment__c = False, ACL_ACR_Confirmation__c = False ) )</errorConditionFormula>
+    <errorMessage>All Due Diligence Items must be checked to proceed</errorMessage>
+</ValidationRule>

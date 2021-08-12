@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Head_of_compliance_completion</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND(ISPICKVAL(Stage__c , &quot;Submitted to Legal and Compliance&quot;),
+OR(ISNULL(Risk_Classification__c),
+ISPICKVAL(Is_a_process_improvement_required__c , &quot;&quot;),
+ISPICKVAL(Breach_Significance_Compliance__c , &quot;&quot;)))</errorConditionFormula>
+    <errorMessage>Please complete all fields in the Head of Compliance section before proceeding.</errorMessage>
+</ValidationRule>

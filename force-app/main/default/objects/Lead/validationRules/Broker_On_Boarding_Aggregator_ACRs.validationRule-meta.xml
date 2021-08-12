@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Broker_On_Boarding_Aggregator_ACRs</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND( RecordType.Name = &quot;Broker On Boarding (Aggregator ACRs)&quot;,  ISPICKVAL( Status ,&quot;submitted for approval&quot;),  Broker_Training_Completed__c = False)</errorConditionFormula>
+    <errorMessage>Training with Broker needs to be completed before in order to proceed.</errorMessage>
+</ValidationRule>

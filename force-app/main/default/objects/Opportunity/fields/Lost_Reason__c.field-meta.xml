@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Lost_Reason__c</fullName>
+    <externalId>false</externalId>
+    <label>Lost Reason</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Customer Not Proceeding</fullName>
+                <default>false</default>
+                <label>Customer Not Proceeding</label>
+            </value>
+            <value>
+                <fullName>Other Lender</fullName>
+                <default>false</default>
+                <label>Other Lender</label>
+            </value>
+            <value>
+                <fullName>Outside ORDE Policy</fullName>
+                <default>false</default>
+                <label>Outside ORDE Policy</label>
+            </value>
+            <value>
+                <fullName>Servicing</fullName>
+                <default>false</default>
+                <label>Servicing</label>
+            </value>
+            <value>
+                <fullName>Outside Max LVR</fullName>
+                <default>false</default>
+                <label>Outside Max LVR</label>
+            </value>
+            <value>
+                <fullName>Security</fullName>
+                <default>false</default>
+                <label>Security</label>
+            </value>
+            <value>
+                <fullName>Security location</fullName>
+                <default>false</default>
+                <label>Security location</label>
+            </value>
+            <value>
+                <fullName>Fund Opportunity</fullName>
+                <default>false</default>
+                <label>Fund Opportunity</label>
+            </value>
+            <value>
+                <fullName>Outside ORDE Credit Policy</fullName>
+                <default>false</default>
+                <label>Outside ORDE Credit Policy</label>
+            </value>
+            <value>
+                <fullName>Outside COVID Credit Policy</fullName>
+                <default>false</default>
+                <label>Outside COVID Credit Policy</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

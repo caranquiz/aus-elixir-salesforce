@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Declarations_ACRs_on_boarding</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND ( RecordType.Name = &quot;Broker On Boarding (Aggregator ACRs)&quot;, ISPICKVAL( Status , &quot;submitted for approval&quot;) , Discussed_Declarations_with_Broker__c = False, OR( ISPICKVAL( Accreditation_Been_Withdrawn__c , &quot;Yes&quot;), ISPICKVAL(Been_Bankrupt__c , &quot;Yes&quot; ), ISPICKVAL( Guilty_of_a_Crime__c , &quot;Yes&quot;) ))</errorConditionFormula>
+    <errorMessage>Declaration issue must be discussed with Aggregator before proceeding.</errorMessage>
+</ValidationRule>

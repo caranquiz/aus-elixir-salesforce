@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Date_report_to_ASIC</fullName>
+    <active>true</active>
+    <errorConditionFormula>ISPICKVAL( Breach_reported_to_ASIC__c , &quot;yes&quot;) &amp;&amp;  ISBLANK( Date_Reported_to_ASIC__c )</errorConditionFormula>
+    <errorMessage>Please complete date breach was reported to ASIC</errorMessage>
+</ValidationRule>

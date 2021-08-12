@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Product__c</fullName>
+    <externalId>false</externalId>
+    <label>Product</label>
+    <required>true</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Commercial</fullName>
+                <default>false</default>
+                <label>Commercial</label>
+            </value>
+            <value>
+                <fullName>Commercial IO</fullName>
+                <default>false</default>
+                <label>Commercial IO</label>
+            </value>
+            <value>
+                <fullName>Construction and Development</fullName>
+                <default>false</default>
+                <label>Construction and Development</label>
+            </value>
+            <value>
+                <fullName>Residential</fullName>
+                <default>false</default>
+                <label>Residential</label>
+            </value>
+            <value>
+                <fullName>Residential Construction</fullName>
+                <default>false</default>
+                <label>Residential Construction</label>
+            </value>
+            <value>
+                <fullName>Residential IO</fullName>
+                <default>false</default>
+                <label>Residential IO</label>
+            </value>
+            <value>
+                <fullName>SMSF Commercial</fullName>
+                <default>false</default>
+                <label>SMSF Commercial</label>
+            </value>
+            <value>
+                <fullName>SMSF Residential</fullName>
+                <default>false</default>
+                <label>SMSF Residential</label>
+            </value>
+            <value>
+                <fullName>Highest &amp; Best Use - Commercial</fullName>
+                <default>false</default>
+                <label>Highest &amp; Best Use - Commercial</label>
+            </value>
+            <value>
+                <fullName>Highest &amp; Best Use - Residential</fullName>
+                <default>false</default>
+                <label>Highest &amp; Best Use - Residential</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>
