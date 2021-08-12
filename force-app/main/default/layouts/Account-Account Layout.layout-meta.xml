@@ -2,7 +2,6 @@
 <Layout xmlns="http://soap.sforce.com/2006/04/metadata">
     <excludeButtons>DataDotComClean</excludeButtons>
     <excludeButtons>DataDotComCompanyHierarchy</excludeButtons>
-    <excludeButtons>Submit</excludeButtons>
     <layoutSections>
         <customLabel>true</customLabel>
         <detailHeading>true</detailHeading>
@@ -26,10 +25,6 @@
         <label>Account Information</label>
         <layoutColumns>
             <layoutItems>
-                <behavior>Edit</behavior>
-                <field>OwnerId</field>
-            </layoutItems>
-            <layoutItems>
                 <behavior>Required</behavior>
                 <field>Name</field>
             </layoutItems>
@@ -39,99 +34,15 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Site</field>
+                <field>BillingAddress</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Type</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>GST_Registered__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Billing_Address_Unit_No__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Billing_Address_Street_No__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Enter_Address_Manually__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Billing_Address_Street_Type__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Number_of_years_at_address__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Trust_Date_Of_Establishment__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Type_of_trust__c</field>
+                <field>ShippingAddress</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>Correspondence_Address__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Enter_Correspondence_Address_Manually__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Is_the_postal_address__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>No_of_Directors__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Is_this_the_trading_address__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Enter_Trading_Address_Manually__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>I_do_not_wish_to_provide_a_TFN__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Last_Approved_Application_ID__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Bank_Account_Name__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>BSB__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Bank_Account_Number__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>I_want_to_set_Exemption__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Exemption__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Bank_Name__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
@@ -141,11 +52,7 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Phone</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Fax</field>
+                <field>OwnerId</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
@@ -153,67 +60,18 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Ownership</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
                 <field>RecordTypeId</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Broker_Trail_Percentage__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsTopToBottom</style>
-    </layoutSections>
-    <layoutSections>
-        <customLabel>true</customLabel>
-        <detailHeading>true</detailHeading>
-        <editHeading>true</editHeading>
-        <label>Investor Funds</label>
-        <layoutColumns>
-            <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>peer__Portfolio_Amount__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>loan__Undeployed_Funds__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>peer__Amount_In_Funding__c</field>
-            </layoutItems>
-        </layoutColumns>
-        <layoutColumns>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>loan__Total_Invested_Amount__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>loan__Investor__c</field>
-            </layoutItems>
-        </layoutColumns>
-        <style>TwoColumnsLeftToRight</style>
     </layoutSections>
     <layoutSections>
         <customLabel>false</customLabel>
         <detailHeading>true</detailHeading>
         <editHeading>false</editHeading>
         <label>Address Information</label>
-        <layoutColumns>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>BillingAddress</field>
-            </layoutItems>
-        </layoutColumns>
-        <layoutColumns>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>ShippingAddress</field>
-            </layoutItems>
-        </layoutColumns>
+        <layoutColumns/>
+        <layoutColumns/>
         <style>TwoColumnsTopToBottom</style>
     </layoutSections>
     <layoutSections>
@@ -221,12 +79,7 @@
         <detailHeading>false</detailHeading>
         <editHeading>false</editHeading>
         <label>Description Information</label>
-        <layoutColumns>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Description</field>
-            </layoutItems>
-        </layoutColumns>
+        <layoutColumns/>
         <style>OneColumn</style>
     </layoutSections>
     <layoutSections>
@@ -253,24 +106,9 @@
         <detailHeading>true</detailHeading>
         <editHeading>false</editHeading>
         <label>Custom Links</label>
-        <layoutColumns>
-            <layoutItems>
-                <customLink>GoogleSearch</customLink>
-            </layoutItems>
-            <layoutItems>
-                <customLink>HooversProfile</customLink>
-            </layoutItems>
-        </layoutColumns>
-        <layoutColumns>
-            <layoutItems>
-                <customLink>GoogleMaps</customLink>
-            </layoutItems>
-        </layoutColumns>
-        <layoutColumns>
-            <layoutItems>
-                <customLink>GoogleNews</customLink>
-            </layoutItems>
-        </layoutColumns>
+        <layoutColumns/>
+        <layoutColumns/>
+        <layoutColumns/>
         <style>CustomLinks</style>
     </layoutSections>
     <quickActionList>
@@ -291,26 +129,36 @@
         </quickActionListItems>
     </quickActionList>
     <relatedLists>
-        <relatedList>RelatedEntityHistoryList</relatedList>
-    </relatedLists>
-    <relatedLists>
         <fields>NAME</fields>
-        <fields>clcommon__Bank_Account_Name__c</fields>
-        <fields>clcommon__Bank_Account_Number__c</fields>
-        <fields>clcommon__Bank_Name__c</fields>
-        <relatedList>clcommon__Bank_Account__c.clcommon__Account__c</relatedList>
-    </relatedLists>
-    <relatedLists>
-        <fields>NAME</fields>
-        <relatedList>clcommon__Relationship__c.clcommon__Related_Entity__c</relatedList>
-    </relatedLists>
-    <relatedLists>
-        <fields>NAME</fields>
-        <relatedList>clcommon__Relationship__c.clcommon__Entity__c</relatedList>
+        <fields>Accepted__c</fields>
+        <relatedList>Gift_Register__c.Account__c</relatedList>
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
         <relatedList>clcommon__Address__c.clcommon__Account__c</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <fields>TASK.SUBJECT</fields>
+        <fields>TASK.WHO_NAME</fields>
+        <fields>TASK.WHAT_NAME</fields>
+        <fields>ACTIVITY.TASK</fields>
+        <fields>TASK.DUE_DATE</fields>
+        <fields>CORE.USERS.FULL_NAME</fields>
+        <fields>TASK.LAST_UPDATE</fields>
+        <relatedList>RelatedHistoryList</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <fields>NAME</fields>
+        <relatedList>loan__Bank_Account__c.loan__Account__c</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <relatedList>RelatedEntityHistoryList</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <fields>loan__Loan__c</fields>
+        <fields>NAME</fields>
+        <fields>loan__Party_Type__c</fields>
+        <relatedList>loan__Coborrower__c.loan__Account__c</relatedList>
     </relatedLists>
     <relatedLists>
         <fields>genesis__Application__c</fields>
@@ -320,86 +168,28 @@
         <fields>CL_Contract_ID__c</fields>
         <fields>Loan_Balance__c</fields>
         <fields>Loan_Status__c</fields>
+        <fields>genesis__Party_Name__c</fields>
+        <fields>NAME</fields>
         <relatedList>clcommon__Party__c.clcommon__Account__c</relatedList>
-    </relatedLists>
-    <relatedLists>
-        <fields>NAME</fields>
-        <fields>Bank_Account_Name__c</fields>
-        <fields>loan__Bank_Name__c</fields>
-        <fields>BSB_Number__c</fields>
-        <relatedList>loan__Bank_Account__c.loan__Account__c</relatedList>
-    </relatedLists>
-    <relatedLists>
-        <fields>NAME</fields>
-        <relatedList>genesis__Application_Parties__c.genesis__Party_Account_Name__c</relatedList>
     </relatedLists>
     <relatedLists>
         <excludeButtons>Merge</excludeButtons>
         <fields>FULL_NAME</fields>
         <fields>Position__c</fields>
         <fields>CONTACT.PHONE1</fields>
+        <fields>CONTACT.PHONE3</fields>
         <fields>CONTACT.EMAIL</fields>
         <fields>Broker_Membership_Type__c</fields>
-        <fields>Main_Business_Contacts__c</fields>
+        <fields>Membership_Expiry_Date__c</fields>
+        <fields>Primary_Contact__c</fields>
         <fields>Broker_Underwriter__c</fields>
         <relatedList>RelatedContactList</relatedList>
     </relatedLists>
     <relatedLists>
-        <fields>NAME</fields>
-        <relatedList>loan__Investor_Fund_Transaction__c.loan__Account__c</relatedList>
-    </relatedLists>
-    <relatedLists>
-        <fields>NAME</fields>
-        <fields>peer__Date__c</fields>
-        <fields>peer__Amount__c</fields>
-        <fields>peer__Number_of_Bookings__c</fields>
-        <relatedList>peer__Booking_Order__c.peer__Investor__c</relatedList>
-    </relatedLists>
-    <relatedLists>
-        <fields>NAME</fields>
-        <fields>genesis__Account__c</fields>
-        <fields>genesis__Contact__c</fields>
-        <fields>genesis__Status__c</fields>
-        <fields>genesis__Estimated_Selling_Price__c</fields>
-        <fields>genesis__Financed_Amount__c</fields>
-        <fields>genesis__Product_Type__c</fields>
-        <relatedList>genesis__Applications__c.Sales_Channel_type__c</relatedList>
-    </relatedLists>
-    <relatedLists>
-        <fields>NAME</fields>
-        <fields>genesis__Account__c</fields>
-        <fields>genesis__Contact__c</fields>
-        <fields>genesis__Status__c</fields>
-        <fields>genesis__Estimated_Selling_Price__c</fields>
-        <fields>genesis__Financed_Amount__c</fields>
-        <fields>genesis__Product_Type__c</fields>
-        <relatedList>genesis__Applications__c.Broker__c</relatedList>
-    </relatedLists>
-    <relatedLists>
-        <fields>NAME</fields>
-        <fields>genesis__Account__c</fields>
-        <fields>genesis__Contact__c</fields>
-        <fields>genesis__Status__c</fields>
-        <fields>genesis__Estimated_Selling_Price__c</fields>
-        <fields>genesis__Financed_Amount__c</fields>
-        <fields>genesis__Product_Type__c</fields>
-        <relatedList>genesis__Applications__c.Aggregator__c</relatedList>
-    </relatedLists>
-    <relatedLists>
-        <fields>NAME</fields>
-        <fields>genesis__Account__c</fields>
-        <fields>genesis__Contact__c</fields>
-        <fields>genesis__Status__c</fields>
-        <fields>genesis__Estimated_Selling_Price__c</fields>
-        <fields>genesis__Financed_Amount__c</fields>
-        <fields>genesis__Product_Type__c</fields>
-        <relatedList>genesis__Applications__c.Brokers_BDM__c</relatedList>
-    </relatedLists>
-    <relatedLists>
-        <relatedList>RelatedNoteList</relatedList>
-    </relatedLists>
-    <relatedLists>
         <relatedList>RelatedContentNoteList</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <relatedList>RelatedFileList</relatedList>
     </relatedLists>
     <relatedObjects>ParentId</relatedObjects>
     <showEmailCheckbox>false</showEmailCheckbox>
