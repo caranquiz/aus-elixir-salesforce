@@ -12,15 +12,21 @@ public class RedrawController {
   }
   public RedrawController() {
     acct = [
-      SELECT Id, Name
+      SELECT Id, Name,Restrict_Redraw__c
       FROM loan__Loan_Account__c
       WHERE Id = :ApexPages.currentPage().getParameters().get('loanId')
     ];
+    if(acct.Restrict_Redraw__c == true){
+      apexpages.addMessage(new ApexPages.message(Apexpages.Severity.ERROR,'Redraw is not allowed in this CL Contract. Please remove the restriction and try again!'));
+    }
   }
   public PageReference doRedraw() {
     try {
       if (redrawAmount != null && Decimal.valueOf(redrawAmount) <= 0) {
         throw new MyException(System.label.Redraw_Error_Msg);
+      }
+      if(redrawAmount.contains(',')){
+        throw new MyException('Please remove the comma (,) from the redraw amount and try again!');
       }
       clcommon__Deposit__c dep = [
         SELECT id, clcommon__Parent_Deposit__c, loan__Loan_Account__c
@@ -50,6 +56,7 @@ public class RedrawController {
       loan.AbstractLoanActions loanActions = lAFactory.getLoanActionsAPI();
       loanActions.changeDepositAction(loanAccountParamList, null);
       message = System.label.Redraw_Success_Msg;
+      apexpages.addMessage(new ApexPages.message(Apexpages.Severity.CONFIRM,System.label.Redraw_Success_Msg));
       return new Pagereference(
         '/' + ApexPages.currentPage().getParameters().get('loanId')
       );

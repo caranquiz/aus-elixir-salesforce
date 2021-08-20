@@ -21,6 +21,7 @@
     <apex:outputPanel >
         <div style="height:300px">
             <apex:form >
+                <apex:pageMessages ></apex:pageMessages>
                 <apex:pageBlock >
                         <label for="theInput">Redraw Amount: </label>
                     <apex:inputText id="theInput" value="{!redrawAmount}"/> <p/>
