@@ -1733,4 +1733,11 @@ public with sharing class GenericUtilityTestHelper {
     insert creditEnquiry;
     return creditEnquiry;
   }
+  public static clcommon__DAG_Schedule__c returnDAGSchedule(){
+    clcommon__DAG_Schedule__c objDAG=new clcommon__DAG_Schedule__c();
+    objDAG.clcommon__DAG_Name__c='Generate LPTs, create bank files and run payment clearing job';
+    insert objDAG;
+    return objDAG;
+  }
+  
 }
