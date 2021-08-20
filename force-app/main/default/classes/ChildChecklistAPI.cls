@@ -101,7 +101,6 @@ public with sharing class ChildChecklistAPI {
       SELECT
         Id,
         clcommon__Contact__c,
-        clcommon__Account__c,
         clcommon__Account__r.Temporary_Visa_Suitability__pc,
         clcommon__Account__r.Temporary_Visa_Suitability_Rule_Check__pc,
         clcommon__Account__r.Age_of_Applicant__pc,
