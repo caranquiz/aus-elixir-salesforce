@@ -1,3 +1,11 @@
+/****************************************************************************************************
+Company: Cloudkaptan Consultancy Services Pvt. Ltd.
+Author: Ariz Mazhary
+Description : This class give coverage to AccountMigrationBatch apex classes.
+Development Date : 7/08/2021
+Last Modified Date : 07/08/2021
+****************************************************************************************************/
+
 @isTest(SeeAllData=false)
 public class AccountMigrationBatchTest {
 	@TestSetup
