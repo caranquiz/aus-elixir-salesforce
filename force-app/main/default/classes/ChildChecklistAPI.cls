@@ -128,6 +128,7 @@ public with sharing class ChildChecklistAPI {
         Explanation_of_Living_Expense_Rule_Check__c,
         Is_Borrower_Staff__c,
         GST_Suitable_Rule_Check__c,
+        clcommon__Account__c,
         clcommon__Account__r.Commission_Status__c,
         ACL_ACR_Verified__c,
         Party_Type_Name__c,
