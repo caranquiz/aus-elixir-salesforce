@@ -1140,7 +1140,8 @@ public with sharing class GenericUtilityTestHelper {
   public static clcommon__Party__c returnParty(Id appId, Id account) {
     clcommon__Party__c party = new clcommon__Party__c(
       genesis__Application__c = appId,
-      clcommon__Account__c = account
+      clcommon__Account__c = account,
+      createdDate=Date.newInstance(2020,12,12)
     );
     insert party;
     return party;
