@@ -17,22 +17,30 @@ public class AccountMigrationBatch implements DataBase.StateFul,DataBase.Batchab
         for(Schema.FieldSetMember fieldMember : SObjectType.Contact.FieldSets.Contact_to_Person_Account_Utility_Field.getFields()){
             queryString+=',clcommon__Contact__r.'+fieldMember.getFieldPath();
         }
-        queryString+=' FROM clcommon__Party__c WHERE clcommon__Account__c!=NULL AND clcommon__Contact__c!=NULL AND Legal_Entity_Type__c=\'Individual\' AND createdDate >=:startDate AND createdDate <=: endDate';
+        queryString+=' FROM clcommon__Party__c WHERE clcommon__Account__c!=NULL AND clcommon__Contact__c!=NULL AND Legal_Entity_Type__c=\''+ConstantValues.indType+'\' AND createdDate >=:startDate AND createdDate <=: endDate';
         return Database.getQueryLocator(queryString);
     }
     public void execute(Database.BatchableContext bc, List<clcommon__Party__c> objPartyList) {
         try{
             List<Account> objAccountList=new List<Account>();
+            List<Account> objAccountList2=new List<Account>();
             Set<Id> objAccountSet=new Set<Id>();
-            List<Contact> objContactList=new List<Contact>();
-            String RecTypeId= [SELECT Id 
-                                FROM RecordType 
-                                WHERE Name='Person Account' 
-                                AND SobjectType='Account'].Id;
             
             for(clcommon__Party__c objParty:objPartyList){
+                Account objAccount=new Account(id=objParty.clcommon__Account__c,ParentId=Null);
+                if(objParty.clcommon__Contact__c!=null && objParty.clcommon__Contact__r.Phone!=null){
+                    objAccount.Contact_Phone_Number__c=objParty.clcommon__Contact__r.Phone;
+                }
                 objAccountSet.add(objParty.clcommon__Account__c);
+                objAccountList2.add(objAccount);
             }
+            if(objAccountList2.size()>0){
+                Database.update(objAccountList2,false);
+            }
+            String RecTypeId= [SELECT Id 
+                                    FROM RecordType 
+                                    WHERE Name=:ConstantValues.PERSON_ACCOUNT 
+                                    AND SobjectType='Account'].Id;
             objAccountList=[SELECT id,RecordTypeID FROM Account WHERE id=:objAccountSet AND ParentId=Null];
             for(Account account:objAccountList){
                 account.RecordTypeID=RecTypeId;
