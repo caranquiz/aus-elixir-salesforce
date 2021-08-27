@@ -1124,4 +1124,5 @@ global class ConstantValues {
   public static final string NO_PERSONAL_INSOLVENCIES_FOUND='\nNo Personal Insolvencies found';
   public static final string SETTLEMENT_FEE_PLAN = 'Settlement Fee Plan';
   public static final string ELIXIR_COMMISSION_PLAN = 'Elixir Commission Plan';
+  public static final string PERSON_ACCOUNT='Person Account';
 }
