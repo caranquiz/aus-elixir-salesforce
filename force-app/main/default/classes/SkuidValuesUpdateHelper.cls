@@ -325,6 +325,7 @@ global with sharing class SkuidValuesUpdateHelper {
     Webservice static String updateLoanPartyDetails(Id appId){
         try{
             Integer countSecurity=0,countIndividualApplicants = 0;
+            String gsaList='';
             if(String.isBlank(appId)){
                 return null;
             }
@@ -343,6 +344,19 @@ global with sharing class SkuidValuesUpdateHelper {
                                                             and clcommon__Contact__c != null
                                                             and Legal_Entity_Type__c =: ConstantValues.indType
                                                         ];
+            List <clcommon__Party__c> gsaPartyList = [SELECT Id,
+                                                        Name_for_Purpose_of_GSA_Contract__c,
+                                                        Is_General_Security_Aggrement_Being_Take__c
+                                                        FROM clcommon__Party__c
+                                                        WHERE genesis__Application__c =: appId
+                                                        AND Is_General_Security_Aggrement_Being_Take__c= 'Yes'
+                                                        AND Name_for_Purpose_of_GSA_Contract__c != NULL
+                                                    ];
+            for(clcommon__Party__c eachGSA : gsaPartyList){
+                gsaList = gsaList+eachGSA.Name_for_Purpose_of_GSA_Contract__c + ' ';
+            }
+            genesis__Applications__c application = new genesis__Applications__c(Id = appId,GSA_Contact_List__c = gsaList);
+            update application;
             if(borrowerPartyList.size() > 0 == false){
                 return null;
             }
