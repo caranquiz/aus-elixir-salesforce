@@ -1,53 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
     <types>
-        <members>loan__Coborrower__c.Applicant_Name__c</members>
-        <members>Contact.Main_Business_Contacts__c</members>
-        <members>Applicant_Name_with_Salutation__c</members>
-        <name>CustomField</name>
-    </types>
-    <types>
-        <members>Contact.Contact_to_Person_Account_Utility_Field</members>
-        <name>FieldSet</name>
-    </types>
-    <types>
-        <members>ChildChecklistAPI</members>
-        <members>AccountMigrationBatch</members>
-        <members>AccountMigrationBatchTest</members>
-        <members>GenericUtilityTestHelper</members>
-        <members>CheckRulesTest</members>-->
-        <members>RedrawController</members>
+        <members>ValuationDateExpiryUpdateHelper</members>
+        <members>ValuationDateExpiryUpdateHelperTest</members>
         <name>ApexClass</name>
     </types>
     <types>
-        <members>RedrawController</members>
-        <name>ApexClass</name>
+        <members>UpdateValuationDateExpiry</members>
+        <members>UpdateValueDateTrigger</members>
+        <name>ApexTrigger</name>
     </types>
     <types>
-        <members>withdrawDeposit</members>
-        <name>ApexPage</name>
-    </types>
-    <types>
-        <members>clcommon__CL_Product__c.Block_Redraw__c</members>
-        <members>genesis__Applications__c.Restrict_Redraw__c</members>
-        <members>loan__Loan_Account__c.Restrict_Redraw__c</members>
+        <members>Disable_Custom_Triggers__c.UpdateValuationDateExpiry__c</members>
+        <members>Disable_Custom_Triggers__c.UpdateValueDateTrigger__c</members>
+        <members>clcommon__Collateral__c.Valuation_Date_Expiry__c</members>
+        <members>genesis__Application_Collateral__c.Valued_Date_Warning_Check__c</members>
+        <members>genesis__Applications__c.Primary_Approval_Date_for_Reports__c</members>
+        <members>genesis__Applications__c.Valuation_Date_Expiry__c</members>
+        <members>genesis__Income__c.Income_Consistant_Rule_Check__c</members>
         <name>CustomField</name>
-    </types>
-    <types>
-        <members>genesis__Applications__c.Restrict_Redraw_Value_Change_Validation</members>
-        <members>loan__Loan_Account__c.Restrict_Redraw_Value_Change_Validation</members>
-        <members>loan__Other_Transaction__c.Block_Redraw_Validation</members>
-        <name>ValidationRule</name>
-    </types>
-    <types>
-        <members>genesis__Applications__c.Update_Restrict_Redraw_to_false</members>
-        <members>genesis__Applications__c.Update_Restrict_Redraw_to_true</members>
-        <name>WorkflowFieldUpdate</name>
-    </types>
-    <types>
-        <members>genesis__Applications__c.Update Restrict Redraw value in application to False</members>
-        <members>genesis__Applications__c.Update Restrict Redraw value in application to True</members>
-        <name>WorkflowRule</name>
     </types>
     <version>48.0</version>
 </Package>

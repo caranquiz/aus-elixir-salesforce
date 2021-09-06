@@ -2,7 +2,12 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Primary_Approval_Date_for_Reports__c</fullName>
     <externalId>false</externalId>
-    <formula>DATEVALUE( Primary_Approval_Date__c )</formula>
+    <formula>DATE(VALUE( RIGHT(Primary_Approval_Date__c,4) ),
+      VALUE(LEFT(
+MID(Primary_Approval_Date__c, FIND(&quot;/&quot;, Primary_Approval_Date__c) + 1, 4),
+FIND(&quot;/&quot;, MID(Primary_Approval_Date__c, FIND(&quot;/&quot;, Primary_Approval_Date__c) + 1, 4)) - 1 )),
+VALUE(LEFT(Primary_Approval_Date__c, FIND(&quot;/&quot;, Primary_Approval_Date__c)-1))
+)</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
     <label>Primary Approval Date for Reports</label>
     <required>false</required>
