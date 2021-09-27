@@ -584,7 +584,7 @@
 																			</field>
 																			<field uniqueid="sk-nL7-1071" id="Override_Amount__c">
 																				<renderconditions logictype="and" onhidedatabehavior="cancel">
-																					<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="ServicingIncomeApplication" sourcetype="fieldvalue" field="Override__c" fieldtargetobjects="genesis__Applications__c" value="Yes"/>
+																					<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="CompanyIncomeDetailsFullAggregate" sourcetype="fieldvalue" field="Override__c" fieldtargetobjects="genesis__Applications__c" value="Yes" nosourcerowbehavior="deactivate"/>
 																				</renderconditions>
 																				<enableconditions/>
 																			</field>

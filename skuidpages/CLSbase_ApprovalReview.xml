@@ -43,6 +43,11 @@
 				<field id="Legal_Entity__r.Name"/>
 				<field id="Primary_Loan_Purpose__c"/>
 				<field id="Recommend_Comments__c"/>
+				<field id="Rejected_By__c"/>
+				<field id="Rejected_Comment__c"/>
+				<field id="Rejected_Date__c"/>
+				<field id="Primary_Approval_Comments__c"/>
+				<field id="Secondary_Approval_Comments__c"/>
 			</fields>
 			<conditions>
 				<condition type="modelmerge" value="" field="Id" operator="=" model="LoggedInUserReviewerModel" enclosevalueinquotes="true" mergefield="clcommon__Approval_Review_Group__r.clcommon__Approval_Instance__r.genesis__Application__r.Id" novaluebehavior="deactivate"/>
@@ -69,10 +74,12 @@
 				<field id="clcommon__User__c"/>
 				<field id="clcommon__User__r.Name"/>
 				<field id="clcommon__User__r.Email"/>
+				<field id="clcommon__Review_Comments__c"/>
 			</fields>
-			<conditions>
+			<conditions logic="(1 AND (2 OR 3))">
 				<condition type="modelmerge" value="" field="clcommon__Approval_Review_Group__c" fieldtargetobjects="clcommon__Approval_Review_Group__c" operator="=" model="MostRecentApprovalInst" enclosevalueinquotes="true" mergefield="clcommon__Approval_Review_Group__c" novaluebehavior="deactivate"/>
 				<condition type="fieldvalue" value="Approved" enclosevalueinquotes="true" field="clcommon__Status__c"/>
+				<condition type="fieldvalue" value="Rejected" enclosevalueinquotes="true" field="clcommon__Status__c"/>
 			</conditions>
 			<actions/>
 		</model>
@@ -526,6 +533,8 @@ contactModel.updateData();
 var conRow = contactModel.data[0];
 var primaryApproverUser = '';
 var secondaryApproverUser = '';
+var primaryComment='';
+var secondaryComment='';
 var k=0;
 var records = sforce.connection.query("Select Id,genesis__Application__c,clcommon__Account__c,clcommon__Account__r.Brokers_BDM__c,clcommon__Account__r.Brokers_BDM__r.Email from clcommon__Party__c where genesis__Application__c = '"+appRowRel.Id+"' and Party_Type_Name__c = 'Broker'");
 var appRecord = (records.getArray('records'))[0];
@@ -551,6 +560,7 @@ else if(appRowRel.genesis__Status__c ==  'Recommended' &amp;&amp; instanceRow.cl
     var apptyObj = new sforce.SObject("genesis__applications__c");
     apptyObj.Id = appRowRel.Id;
     apptyObj.Primary_Approval_By__c = reviewGroup.clcommon__User__r.Name;
+    apptyObj.Primary_Approval_Comments__c=reviewGroup.clcommon__Review_Comments__c;
     apptyObj.Primary_Approval_Date__c = date+'';
     var result = sforce.connection.update([apptyObj]);
     
@@ -559,10 +569,12 @@ else if(appRowRel.genesis__Status__c ==  'Recommended' &amp;&amp; (instanceRow.c
     $.each(reviewGroupModel.data,function(i,row){
         if(k === 0){
             primaryApproverUser = row.clcommon__User__r.Name;
+            primaryComment=row.clcommon__Review_Comments__c;
             k=k+1;
         }
         else{
             secondaryApprover = row.clcommon__User__r.Name;
+            secondaryComment=row.clcommon__Review_Comments__c;
         }
     });
     var apptyObj = new sforce.SObject("genesis__applications__c");
@@ -570,10 +582,12 @@ else if(appRowRel.genesis__Status__c ==  'Recommended' &amp;&amp; (instanceRow.c
     if(instanceRow.clcommon__Name__c == 'Single Level Approval' || instanceRow.clcommon__Name__c == 'Single Level Approval (Risk Loans)'){
         apptyObj.Primary_Approval_By__c = primaryApproverUser;
         apptyObj.Primary_Approval_Date__c = date+'';
+        apptyObj.Primary_Approval_Comments__c=primaryComment;
     }
     else if(instanceRow.clcommon__Name__c == 'Dual Level Approval'){
         apptyObj.Secondary_Approval_By__c = secondaryApprover;
         apptyObj.Secondary_Approval_Date__c = date;
+        apptyObj.Secondary_Approval_Comments__c=secondaryComment;
     }
     apptyObj.genesis__Status__c = 'Formally Approved';
     //Changing the location of collaterals on application getting approved
@@ -596,6 +610,11 @@ else if(appRowRel.genesis__Status__c ==  'Recommended' &amp;&amp; (instanceRow.c
     apptyObj.Primary_Approval_Date__c = null;
     apptyObj.Secondary_Approval_By__c = null;
     apptyObj.Secondary_Approval_Date__c = null;
+    if(reviewGroupModel.data.length &gt; 0){
+        apptyObj.Rejected_Date__c=date;
+        apptyObj.Rejected_By__c = reviewGroup.clcommon__User__r.Name;
+        apptyObj.Rejected_Comment__c=reviewGroup.clcommon__Review_Comments__c;
+    }
     var result = sforce.connection.update([apptyObj]);
     closeTopLevelDialogAndRefresh({window : true});
 }</jsitem>

@@ -87,6 +87,8 @@
 						<value>Document Type Compare Warning</value>
 						<value>Valuation Paid Warning</value>
 						<value>Commission Mandate Percentage Warning</value>
+						<value>Settlement Fee Percentage Warning</value>
+						<value>Settlement Fee % Warning</value>
 					</values>
 				</condition>
 			</conditions>
@@ -155,14 +157,21 @@
 			</conditions>
 			<actions/>
 		</model>
-		<model id="ConditionCheckList" limit="200" query="true" createrowifnonefound="false" datasource="salesforce" sobject="Checklist_Detail__c">
+		<model id="ConditionCheckList" limit="200" query="true" createrowifnonefound="false" datasource="salesforce" sobject="Checklist_Detail__c" orderby="Condition_Status__c">
 			<fields>
 				<field id="Checklist__r.genesis__Rule__r.Name"/>
 				<field id="Checklist__r.genesis__Rule__r.genesis__Message_failure__c"/>
 				<field id="Application_Collateral__r.genesis__Collateral__r.clcommon__Collateral_Name__c"/>
 				<field id="Party_Name__c"/>
-				<field id="Waiver_Reason__c"/>
-				<field id="Condition_Status__c"/>
+				<field id="Waiver_Reason__c" overridemetadata="true" ogdisplaytype="STRING" displaytype="TEXTAREA"/>
+				<field id="Condition_Status__c" overridemetadata="true" ogdisplaytype="PICKLIST" displaytype="PICKLIST" picklistsource="manual" returntype="TEXT">
+					<picklistentries>
+						<entry value="Open" label="Open"/>
+						<entry value="Referred to Assessor" label="Referred to Assessor"/>
+						<entry value="Satisfied" label="Satisfied"/>
+						<entry value="Waived" label="Waived"/>
+					</picklistentries>
+				</field>
 				<field id="Supporting_Document_Verified__c"/>
 				<field id="Application_Collateral__r.genesis__Collateral__r.Full_Address__c"/>
 				<field id="Manual_Message__c"/>
@@ -352,7 +361,7 @@
 			</conditions>
 			<actions/>
 		</model>
-		<model id="CRPolicyException" limit="200" query="true" createrowifnonefound="false" datasource="salesforce" sobject="genesis__Policy_Exception__c" orderby="LastModifiedDate DESC">
+		<model id="CRPolicyException" limit="200" query="true" createrowifnonefound="false" datasource="salesforce" sobject="genesis__Policy_Exception__c" orderby="genesis__Status__c">
 			<fields>
 				<field id="genesis__Application__c"/>
 				<field id="genesis__Application__r.Name"/>
@@ -592,24 +601,39 @@
 						<action type="custom" snippet="reload"/>
 					</actions>
 				</button>
-				<button type="save" label="Save" uniqueid="sk-2ynq-7490" window="self">
-					<models>
-						<model>CRExceptionList</model>
-						<model>ConditionList</model>
-						<model>WarningList</model>
-						<model>ExceptionCheckList</model>
-						<model>WarningCheckList</model>
-						<model>ConditionCheckList</model>
-						<model>ManualExceptionChecklist</model>
-						<model>ManualWarningChecklist</model>
-						<model>CRPolicyException</model>
-					</models>
+				<button type="multi" label="Save" uniqueid="sk-2ynq-7490" window="self">
 					<hotkeys/>
 					<renderconditions logictype="or">
 						<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="false" fieldmodel="CRApplication" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="Is_Approved__c" fieldtargetobjects="genesis__Applications__c" value="false"/>
 						<rendercondition type="fieldvalue" enclosevalueinquotes="false" fieldmodel="CRPolicyException" sourcetype="modelproperty" nosourcerowbehavior="deactivate" sourceproperty="hasChanged" value="true" operator="="/>
 					</renderconditions>
-					<enableconditions/>
+					<enableconditions logictype="or">
+						<condition type="fieldvalue" enclosevalueinquotes="false" fieldmodel="CRExceptionList" sourcetype="modelproperty" nosourcerowbehavior="deactivate" sourceproperty="hasChanged" value="true" operator="="/>
+						<condition type="fieldvalue" enclosevalueinquotes="false" fieldmodel="ConditionList" sourcetype="modelproperty" nosourcerowbehavior="deactivate" sourceproperty="hasChanged" value="true" operator="="/>
+						<condition type="fieldvalue" enclosevalueinquotes="false" fieldmodel="WarningList" sourcetype="modelproperty" nosourcerowbehavior="deactivate" sourceproperty="hasChanged" value="true" operator="="/>
+						<condition type="fieldvalue" enclosevalueinquotes="false" fieldmodel="ExceptionCheckList" sourcetype="modelproperty" nosourcerowbehavior="deactivate" sourceproperty="hasChanged" value="true" operator="="/>
+						<condition type="fieldvalue" enclosevalueinquotes="false" fieldmodel="WarningCheckList" sourcetype="modelproperty" nosourcerowbehavior="deactivate" sourceproperty="hasChanged" value="true" operator="="/>
+						<condition type="fieldvalue" enclosevalueinquotes="false" fieldmodel="ConditionCheckList" sourcetype="modelproperty" nosourcerowbehavior="deactivate" sourceproperty="hasChanged" value="true" operator="="/>
+						<condition type="fieldvalue" enclosevalueinquotes="false" fieldmodel="ManualExceptionChecklist" sourcetype="modelproperty" nosourcerowbehavior="deactivate" sourceproperty="hasChanged" value="true" operator="="/>
+						<condition type="fieldvalue" enclosevalueinquotes="false" fieldmodel="ManualWarningChecklist" sourcetype="modelproperty" nosourcerowbehavior="deactivate" sourceproperty="hasChanged" value="true" operator="="/>
+						<condition type="fieldvalue" enclosevalueinquotes="false" fieldmodel="CRPolicyException" sourcetype="modelproperty" nosourcerowbehavior="deactivate" sourceproperty="hasChanged" value="true" operator="="/>
+					</enableconditions>
+					<actions>
+						<action type="save">
+							<models>
+								<model>CRExceptionList</model>
+								<model>ConditionList</model>
+								<model>WarningList</model>
+								<model>ExceptionCheckList</model>
+								<model>WarningCheckList</model>
+								<model>ConditionCheckList</model>
+								<model>ManualExceptionChecklist</model>
+								<model>ManualWarningChecklist</model>
+								<model>CRPolicyException</model>
+							</models>
+						</action>
+						<action type="requeryModel" model="ConditionCheckList" behavior="standard"/>
+					</actions>
 				</button>
 				<button type="cancel" label="Cancel" uniqueid="sk-2yov-7550" window="self">
 					<models>
@@ -660,7 +684,7 @@
 									<renderconditions logictype="and" onhidedatabehavior="keep"/>
 									<enableconditions/>
 								</field>
-								<field id="Waiver_Reason__c" hideable="true" uniqueid="fi-3KiZ-1150">
+								<field id="Waiver_Reason__c" hideable="true" uniqueid="fi-3KiZ-1150" displayrows="4" columnwidth="400px">
 									<renderconditions logictype="and" onhidedatabehavior="keep"/>
 									<enableconditions/>
 								</field>

@@ -854,8 +854,8 @@
 							<values>
 								<value>App Received</value>
 								<value>App Processed</value>
-								<value>Indicative Issued</value>
-								<value>Indicative Accepted</value>
+								<value>Conditional Issued</value>
+								<value>Conditional Accepted</value>
 								<value>Val Ordered</value>
 								<value>Val Received</value>
 							</values>

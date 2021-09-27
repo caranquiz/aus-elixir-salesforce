@@ -53,97 +53,204 @@
 			</conditions>
 			<actions/>
 		</model>
+		<model id="ApplicationModel" limit="20" query="true" createrowifnonefound="false" datasource="salesforce" sobject="genesis__Applications__c">
+			<fields>
+				<field id="RecordTypeId"/>
+				<field id="genesis__Status__c"/>
+				<field id="Rejected_By__c"/>
+				<field id="Rejected_Comment__c"/>
+				<field id="Rejected_Date__c"/>
+				<field id="Secondary_Approval_By__c"/>
+				<field id="Secondary_Approval_Comments__c"/>
+				<field id="Secondary_Approval_Date__c"/>
+				<field id="Primary_Approval_By__c"/>
+				<field id="Primary_Approval_Date__c"/>
+				<field id="Primary_Approval_Comments__c"/>
+				<field id="Recommend_Comments__c"/>
+				<field id="Recommended_By__c"/>
+				<field id="Recommended_Date__c"/>
+			</fields>
+			<conditions>
+				<condition type="param" value="id" field="Id" operator="=" enclosevalueinquotes="true"/>
+			</conditions>
+			<actions/>
+		</model>
 	</models>
 	<components>
-		<wrapper uniqueid="all-approvals-queue-view">
-			<components>
-				<panelset type="custom" uniqueid="approvals-panelset" cssclass="noPaddingTop" scroll="fixed" height="800px">
-					<panels>
-						<panel width="50%" uniqueid="ApprovalsQueue">
+		<panelset type="standard" uniqueid="sk-MOi-412">
+			<panels>
+				<panel>
+					<components>
+						<wrapper uniqueid="all-approvals-queue-view">
 							<components>
-								<buttonset uniqueid="sk-1apB-1342" position="left">
-									<buttons>
-										<button type="multi" label="Generate LAS" uniqueid="sk-1apB-1343" icon="sk-icon-popup" snippet="GenerateLASDoc">
-											<actions>
-												<action type="custom" snippet="GenerateLASDoc"/>
-											</actions>
-										</button>
-									</buttons>
-									<renderconditions logictype="and"/>
-								</buttonset>
-								<panelset type="custom" uniqueid="sk-3Jo8-596">
+								<panelset type="custom" uniqueid="approvals-panelset" cssclass="noPaddingTop" scroll="fixed" height="800px">
 									<panels>
-										<panel width="100%" uniqueid="approvals-queue-wrapper-panel">
+										<panel width="50%" uniqueid="ApprovalsQueue">
 											<components>
-												<queue model="AllApprovalDefinitions" tagrendertype="template" searchbox="false" tokenizesearch="true" showsearchbydefault="false" hideheader="false" hidefooter="false" uniqueid="approvals-definition-queue" cssclass="simple-queue" itemicon="sk-icon-activities" searchmethod="server" instantfilters="false">
-													<rendertemplate>{{Name}}</rendertemplate>
-													<interactions>
-														<interaction type="tap">
-															<action type="custom" querystring="id={{Id}}" snippet="UpdateIFrameIds"/>
-														</interaction>
-													</interactions>
-													<searchfields/>
-												</queue>
+												<buttonset uniqueid="sk-1apB-1342" position="left">
+													<buttons>
+														<button type="multi" label="Generate LAS" uniqueid="sk-1apB-1343" icon="sk-icon-popup" snippet="GenerateLASDoc">
+															<actions>
+																<action type="custom" snippet="GenerateLASDoc"/>
+															</actions>
+														</button>
+													</buttons>
+													<renderconditions logictype="and"/>
+												</buttonset>
+												<panelset type="custom" uniqueid="sk-3Jo8-596">
+													<panels>
+														<panel width="100%" uniqueid="approvals-queue-wrapper-panel">
+															<components>
+																<queue model="AllApprovalDefinitions" tagrendertype="template" searchbox="false" tokenizesearch="true" showsearchbydefault="false" hideheader="false" hidefooter="false" uniqueid="approvals-definition-queue" cssclass="simple-queue" itemicon="sk-icon-activities" searchmethod="server" instantfilters="false">
+																	<rendertemplate>{{Name}}</rendertemplate>
+																	<interactions>
+																		<interaction type="tap">
+																			<action type="custom" querystring="id={{Id}}" snippet="UpdateIFrameIds"/>
+																		</interaction>
+																	</interactions>
+																	<searchfields/>
+																</queue>
+															</components>
+														</panel>
+													</panels>
+												</panelset>
+											</components>
+										</panel>
+										<panel uniqueid="approvals-dashboard-container" width="50%">
+											<components>
+												<template multiple="false" uniqueid="dashboard-container">
+													<contents>&lt;iframe id="approval-dashboard-iframe" src="/apex/skuid__ui?page=ApprovalDetails&amp;defId={{{$Model.AllApprovalDefinitions.data.0.Id}}}&amp;id={{$Params.id}}" width="100%" height="100%" frameborder="0"/&gt;</contents>
+												</template>
 											</components>
 										</panel>
 									</panels>
+									<renderconditions logictype="and">
+										<rendercondition type="fieldvalue" enclosevalueinquotes="true" fieldmodel="AllValidApprovals" sourcetype="modelproperty" nosourcerowbehavior="deactivate" sourceproperty="hasRows"/>
+									</renderconditions>
+								</panelset>
+								<panelset type="custom" uniqueid="sk-3qBZ-262">
+									<panels>
+										<panel width="20%">
+											<components>
+												<buttonset uniqueid="sk-1ajj-1016" position="left">
+													<buttons>
+														<button type="multi" label="Generate LAS" uniqueid="sk-1ajj-1017" icon="sk-icon-popup" snippet="GenerateLASDoc">
+															<actions>
+																<action type="custom" snippet="GenerateLASDoc"/>
+															</actions>
+														</button>
+													</buttons>
+													<renderconditions logictype="and"/>
+												</buttonset>
+											</components>
+										</panel>
+										<panel width="80%">
+											<components>
+												<template multiple="false" uniqueid="sk-3qBu-498">
+													<contents>&lt;div class="cls-page-title-header"&gt;No Approvals To Display&lt;/div&gt;</contents>
+												</template>
+											</components>
+										</panel>
+									</panels>
+									<renderconditions logictype="and">
+										<rendercondition fieldmodel="AllValidApprovals" sourcetype="modelproperty" nosourcerowbehavior="deactivate" sourceproperty="hasNoRows"/>
+									</renderconditions>
 								</panelset>
 							</components>
-						</panel>
-						<panel uniqueid="approvals-dashboard-container" width="50%">
+							<styles>
+								<styleitem type="background"/>
+								<styleitem type="border"/>
+								<styleitem type="size"/>
+								<styleitem property="position" value="absolute"/>
+								<styleitem property="top" value="0"/>
+								<styleitem property="bottom" value="0"/>
+								<styleitem property="left" value="0"/>
+								<styleitem property="right" value="0"/>
+							</styles>
+							<interactions/>
+							<renderconditions logictype="and"/>
+						</wrapper>
+					</components>
+				</panel>
+				<panel type="right" width="500px">
+					<components>
+						<wrapper uniqueid="sk-MO--606">
 							<components>
-								<template multiple="false" uniqueid="dashboard-container">
-									<contents>&lt;iframe id="approval-dashboard-iframe" src="/apex/skuid__ui?page=ApprovalDetails&amp;defId={{{$Model.AllApprovalDefinitions.data.0.Id}}}&amp;id={{$Params.id}}" width="100%" height="100%" frameborder="0"/&gt;</contents>
-								</template>
+								<basicfieldeditor showheader="true" showsavecancel="false" showerrorsinline="true" model="ApplicationModel" uniqueid="sk-MPM-622" mode="readonly">
+									<columns>
+										<column width="100%" uniqueid="sk-MPM-618">
+											<sections>
+												<section title="Recommended" uniqueid="sk-MPM-619" collapsible="no">
+													<fields>
+														<field uniqueid="sk-MQy-976" id="Recommended_By__c"/>
+														<field uniqueid="sk-MQy-977" id="Recommend_Comments__c"/>
+														<field uniqueid="sk-MQy-978" id="Recommended_Date__c"/>
+													</fields>
+													<renderconditions logictype="and">
+														<rendercondition type="blank" operator="!=" fieldmodel="ApplicationModel" sourcetype="fieldvalue" field="Recommended_By__c" fieldtargetobjects="genesis__Applications__c" value="null" enclosevalueinquotes="false"/>
+													</renderconditions>
+												</section>
+											</sections>
+										</column>
+										<column width="100%" uniqueid="sk-MQT-853">
+											<sections>
+												<section collapsible="no" uniqueid="sk-MQT-854" title="Approved">
+													<fields>
+														<field uniqueid="sk-MR0-995" id="Primary_Approval_By__c"/>
+														<field uniqueid="sk-MR0-996" id="Primary_Approval_Comments__c"/>
+														<field uniqueid="sk-MR0-997" id="Primary_Approval_Date__c"/>
+														<field uniqueid="sk-MR3-1017" id="Secondary_Approval_By__c">
+															<renderconditions logictype="and" onhidedatabehavior="keep">
+																<rendercondition type="blank" operator="!=" fieldmodel="ApplicationModel" sourcetype="fieldvalue" field="Secondary_Approval_By__c" fieldtargetobjects="genesis__Applications__c" value="null" enclosevalueinquotes="false"/>
+															</renderconditions>
+															<enableconditions/>
+														</field>
+														<field uniqueid="sk-MR3-1018" id="Secondary_Approval_Comments__c">
+															<renderconditions logictype="and" onhidedatabehavior="keep">
+																<rendercondition type="blank" operator="!=" fieldmodel="ApplicationModel" sourcetype="fieldvalue" field="Secondary_Approval_By__c" fieldtargetobjects="genesis__Applications__c" value="null" enclosevalueinquotes="false"/>
+															</renderconditions>
+															<enableconditions/>
+														</field>
+														<field uniqueid="sk-MR3-1019" id="Secondary_Approval_Date__c">
+															<renderconditions logictype="and" onhidedatabehavior="keep">
+																<rendercondition type="blank" operator="!=" fieldmodel="ApplicationModel" sourcetype="fieldvalue" field="Secondary_Approval_By__c" fieldtargetobjects="genesis__Applications__c" value="null" enclosevalueinquotes="false"/>
+															</renderconditions>
+															<enableconditions/>
+														</field>
+													</fields>
+													<renderconditions logictype="and">
+														<rendercondition type="blank" operator="!=" fieldmodel="ApplicationModel" sourcetype="fieldvalue" field="Primary_Approval_By__c" fieldtargetobjects="genesis__Applications__c" value="null" enclosevalueinquotes="false"/>
+													</renderconditions>
+												</section>
+											</sections>
+										</column>
+										<column uniqueid="sk-MQn-909" width="100%">
+											<sections>
+												<section collapsible="no" uniqueid="sk-MQn-910" title="Rejected">
+													<fields>
+														<field uniqueid="sk-MR7-1043" id="Rejected_By__c"/>
+														<field uniqueid="sk-MR7-1044" id="Rejected_Comment__c"/>
+														<field uniqueid="sk-MR7-1045" id="Rejected_Date__c"/>
+													</fields>
+													<renderconditions logictype="and">
+														<rendercondition type="blank" operator="!=" fieldmodel="ApplicationModel" sourcetype="fieldvalue" field="Rejected_By__c" fieldtargetobjects="genesis__Applications__c" value="null" enclosevalueinquotes="false"/>
+													</renderconditions>
+												</section>
+											</sections>
+										</column>
+									</columns>
+								</basicfieldeditor>
 							</components>
-						</panel>
-					</panels>
-					<renderconditions logictype="and">
-						<rendercondition type="fieldvalue" enclosevalueinquotes="true" fieldmodel="AllValidApprovals" sourcetype="modelproperty" nosourcerowbehavior="deactivate" sourceproperty="hasRows"/>
-					</renderconditions>
-				</panelset>
-				<panelset type="custom" uniqueid="sk-3qBZ-262">
-					<panels>
-						<panel width="20%">
-							<components>
-								<buttonset uniqueid="sk-1ajj-1016" position="left">
-									<buttons>
-										<button type="multi" label="Generate LAS" uniqueid="sk-1ajj-1017" icon="sk-icon-popup" snippet="GenerateLASDoc">
-											<actions>
-												<action type="custom" snippet="GenerateLASDoc"/>
-											</actions>
-										</button>
-									</buttons>
-									<renderconditions logictype="and"/>
-								</buttonset>
-							</components>
-						</panel>
-						<panel width="80%">
-							<components>
-								<template multiple="false" uniqueid="sk-3qBu-498">
-									<contents>&lt;div class="cls-page-title-header"&gt;No Approvals To Display&lt;/div&gt;</contents>
-								</template>
-							</components>
-						</panel>
-					</panels>
-					<renderconditions logictype="and">
-						<rendercondition fieldmodel="AllValidApprovals" sourcetype="modelproperty" nosourcerowbehavior="deactivate" sourceproperty="hasNoRows"/>
-					</renderconditions>
-				</panelset>
-			</components>
-			<styles>
-				<styleitem type="background"/>
-				<styleitem type="border"/>
-				<styleitem type="size"/>
-				<styleitem property="position" value="absolute"/>
-				<styleitem property="top" value="0"/>
-				<styleitem property="bottom" value="0"/>
-				<styleitem property="left" value="0"/>
-				<styleitem property="right" value="0"/>
-			</styles>
-			<interactions/>
-			<renderconditions logictype="and"/>
-		</wrapper>
+							<styles>
+								<styleitem type="background"/>
+								<styleitem type="border"/>
+								<styleitem type="size"/>
+							</styles>
+						</wrapper>
+					</components>
+				</panel>
+			</panels>
+		</panelset>
 	</components>
 	<resources>
 		<labels/>

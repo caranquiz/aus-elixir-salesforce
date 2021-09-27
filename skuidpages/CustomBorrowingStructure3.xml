@@ -713,9 +713,9 @@
 																	<sections>
 																		<section title="" collapsible="no" showheader="false">
 																			<fields>
-																				<field uniqueid="sk-FUS-2533" id="FirstName"/>
-																				<field uniqueid="sk-FUU-2545" id="MiddleName"/>
-																				<field uniqueid="sk-FUe-2595" id="PersonBirthdate"/>
+																				<field uniqueid="sk-FUS-2533" id="FirstName" readonly="true"/>
+																				<field uniqueid="sk-FUU-2545" id="MiddleName" readonly="true"/>
+																				<field uniqueid="sk-FUe-2595" id="PersonBirthdate" readonly="true"/>
 																			</fields>
 																		</section>
 																	</sections>
@@ -724,7 +724,7 @@
 																	<sections>
 																		<section title="" collapsible="no" showheader="false">
 																			<fields>
-																				<field uniqueid="sk-FUW-2562" id="LastName"/>
+																				<field uniqueid="sk-FUW-2562" id="LastName" readonly="true"/>
 																				<field id="clcommon__Legal_Entity_Type__c" optionsource="" required="true" readonly="true" uniqueid="sk-FUM-2491">
 																					<searchfields/>
 																					<filters/>
@@ -747,9 +747,9 @@
 																	<sections>
 																		<section title="Section A" collapsible="no" showheader="false">
 																			<fields>
-																				<field id="FirstName" uniqueid="sk-6UD-385"/>
-																				<field uniqueid="sk-2kB-1132" id="MiddleName"/>
-																				<field id="Birthdate" uniqueid="sk-6UD-388" showhelp="true" monthpicker="true" yearpicker="true" yearpickermin="-100" yearpickermax="+1">
+																				<field id="FirstName" uniqueid="sk-6UD-385" readonly="true"/>
+																				<field uniqueid="sk-2kB-1132" id="MiddleName" readonly="true"/>
+																				<field id="Birthdate" uniqueid="sk-6UD-388" showhelp="true" monthpicker="true" yearpicker="true" yearpickermin="-100" yearpickermax="+1" readonly="true">
 																					<renderconditions logictype="and" onhidedatabehavior="keep"/>
 																					<enableconditions/>
 																				</field>
@@ -761,7 +761,7 @@
 																	<sections>
 																		<section title="Section B" collapsible="no" showheader="false">
 																			<fields>
-																				<field id="LastName" uniqueid="sk-6UD-382" cssclass="required"/>
+																				<field id="LastName" uniqueid="sk-6UD-382" cssclass="required" readonly="true"/>
 																				<field id="clcommon__Legal_Entity_Type__c" readonly="true" uniqueid="sk-6UD-406" pagesize="5" redirecttype="datasourcedefault" cssclass="required">
 																					<searchfields/>
 																					<filters/>

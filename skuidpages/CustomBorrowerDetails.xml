@@ -106,7 +106,7 @@
 				<field id="Aggregator__c"/>
 				<field id="Aggregator__r.Name"/>
 				<field id="Total Fees Amount" uionly="true" displaytype="FORMULA" ogdisplaytype="TEXT" readonly="true" returntype="CURRENCY" precision="9" scale="2">
-					<formula>IF(ISBLANK({{Valuation_Fee__c}}),0,{{Valuation_Fee__c}}) + IF(ISBLANK({{Associated_Out_of_Pocket_Expense_Fee__c}}),0,{{Associated_Out_of_Pocket_Expense_Fee__c}}) +IF(ISBLANK({{Application_Fee__c}}),0,{{Application_Fee__c}}) +IF(ISBLANK({{Settlement_Advance_Fee__c}}),0,{{Settlement_Advance_Fee__c}}) + IF(ISBLANK({{Settlement_Rescheduling_Fee__c}}),0,{{Settlement_Rescheduling_Fee__c}})+IF(ISBLANK({{Regulated_Product_Lender_s_Legals__c}}),0,{{Regulated_Product_Lender_s_Legals__c}})+IF(ISBLANK({{Credit_Providers_Mortgage_Insurance__c}}),0,{{Credit_Providers_Mortgage_Insurance__c}})+IF(ISBLANK({{Non_Regulated_Product_Lender_s_Legals__c}}),0,{{Non_Regulated_Product_Lender_s_Legals__c}})+IF(ISBLANK({{Mortgage_Registration_Fee__c}}),0,{{Mortgage_Registration_Fee__c}})+IF(ISBLANK({{Title_Insurance_Fee__c}}),0,{{Title_Insurance_Fee__c}})+IF(ISBLANK({{Rate_Lock_In_Fee__c}}),0,{{Rate_Lock_In_Fee__c}})+IF(ISBLANK({{General_Security_Agreement_GSA_Fee__c}}),0,{{General_Security_Agreement_GSA_Fee__c}})+IF(ISBLANK({{Mortgage_Stamp_Duty__c}}),0,{{Mortgage_Stamp_Duty__c}})+IF(ISBLANK({{Commission_Mandate_Amount__c}}),0,{{Commission_Mandate_Amount__c}})+IF(ISBLANK({{PEXA_Transaction_Fee__c}}),0,{{PEXA_Transaction_Fee__c}})+IF(ISBLANK({{Re_documentation_Fee__c}}),0,{{Re_documentation_Fee__c}})</formula>
+					<formula>IF(ISBLANK({{Valuation_Fee__c}}),0,{{Valuation_Fee__c}}) + IF(ISBLANK({{Associated_Out_of_Pocket_Expense_Fee__c}}),0,{{Associated_Out_of_Pocket_Expense_Fee__c}}) +IF(ISBLANK({{Application_Fee__c}}),0,{{Application_Fee__c}}) +IF(ISBLANK({{Settlement_Advance_Fee__c}}),0,{{Settlement_Advance_Fee__c}}) + IF(ISBLANK({{Settlement_Rescheduling_Fee__c}}),0,{{Settlement_Rescheduling_Fee__c}})+IF(ISBLANK({{Regulated_Product_Lender_s_Legals__c}}),0,{{Regulated_Product_Lender_s_Legals__c}})+IF(ISBLANK({{Credit_Providers_Mortgage_Insurance__c}}),0,{{Credit_Providers_Mortgage_Insurance__c}})+IF(ISBLANK({{Non_Regulated_Product_Lender_s_Legals__c}}),0,{{Non_Regulated_Product_Lender_s_Legals__c}})+IF(ISBLANK({{Mortgage_Registration_Fee__c}}),0,{{Mortgage_Registration_Fee__c}})+IF(ISBLANK({{Title_Insurance_Fee__c}}),0,{{Title_Insurance_Fee__c}})+IF(ISBLANK({{Rate_Lock_In_Fee__c}}),0,{{Rate_Lock_In_Fee__c}})+IF(ISBLANK({{General_Security_Agreement_GSA_Fee__c}}),0,{{General_Security_Agreement_GSA_Fee__c}})+IF(ISBLANK({{Mortgage_Stamp_Duty__c}}),0,{{Mortgage_Stamp_Duty__c}})+IF(ISBLANK({{Commission_Mandate_Amount__c}}),0,{{Commission_Mandate_Amount__c}})+IF(ISBLANK({{PEXA_Transaction_Fee__c}}),0,{{PEXA_Transaction_Fee__c}})+IF(ISBLANK({{Re_documentation_Fee__c}}),0,{{Re_documentation_Fee__c}})+IF(ISBLANK({{Settlement_Fee_Amount__c}}),0,{{Settlement_Fee_Amount__c}})</formula>
 				</field>
 				<field id="LMI_Approved__c"/>
 				<field id="Repayment_Type__c"/>
@@ -205,6 +205,9 @@
 				<field id="Recommended_Date_for_Reports__c"/>
 				<field id="Primary_Approval_Date_for_Reports__c"/>
 				<field id="Secondary_Approval_Date_for_Reports__c"/>
+				<field id="Settlement_Fee__c"/>
+				<field id="Settlement_Fee_Percentage__c"/>
+				<field id="Settlement_Fee_Amount__c"/>
 			</fields>
 			<conditions>
 				<condition type="param" value="Id" field="Id" operator="=" enclosevalueinquotes="true" model="DebtConsolidation"/>
@@ -448,8 +451,8 @@
 													<values>
 														<value>App Received</value>
 														<value>App Processed</value>
-														<value>Indicative Issued</value>
-														<value>Indicative Accepted</value>
+														<value>Conditional Issued</value>
+														<value>Conditional Accepted</value>
 														<value>Val Ordered</value>
 														<value>Val Received</value>
 													</values>
@@ -463,8 +466,8 @@
 													<values>
 														<value>App Received</value>
 														<value>App Processed</value>
-														<value>Indicative Issued</value>
-														<value>Indicative Accepted</value>
+														<value>Conditional Issued</value>
+														<value>Conditional Accepted</value>
 														<value>Val Ordered</value>
 														<value>Val Received</value>
 													</values>
@@ -504,7 +507,15 @@
 														<model>QBEModel</model>
 													</models>
 												</action>
+												<action type="custom" snippet="SumOfExpenses"/>
 												<action type="custom" snippet="CopyContactData2"/>
+												<action type="save">
+													<models>
+														<model>CommonApplicationLoanDetails</model>
+														<model>MortgageModel</model>
+														<model>DebtConsolidation</model>
+													</models>
+												</action>
 											</actions>
 											<renderconditions logictype="and">
 												<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="false" fieldmodel="CommonApplicationLoanDetails" sourcetype="fieldvalue" field="Is_Approved__c" fieldtargetobjects="genesis__Applications__c" value="false"/>
@@ -591,7 +602,7 @@
 																						<label>Primary Approval Date</label>
 																					</field>
 																					<field uniqueid="sk-37GB-1363" id="Secondary_Approval_Date_for_Reports__c">
-																						<label>Secodary Approval Date</label>
+																						<label>Secondary Approval Date</label>
 																					</field>
 																				</fields>
 																			</section>
@@ -1701,6 +1712,13 @@
 																						<renderconditions logictype="and" onhidedatabehavior="keep"/>
 																						<enableconditions/>
 																					</field>
+																					<field uniqueid="sk-Bwo-1330" id="Settlement_Fee__c"/>
+																					<field uniqueid="sk-Bwu-1335" id="Settlement_Fee_Percentage__c">
+																						<renderconditions logictype="and" onhidedatabehavior="cancel">
+																							<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="CommonApplicationLoanDetails" sourcetype="fieldvalue" field="Settlement_Fee__c" fieldtargetobjects="genesis__Applications__c" value="Yes"/>
+																						</renderconditions>
+																						<enableconditions/>
+																					</field>
 																					<field uniqueid="sk-cHF-5558" id="Settlement_Rescheduling_Fee__c">
 																						<renderconditions logictype="and" onhidedatabehavior="keep"/>
 																						<enableconditions/>
@@ -1758,6 +1776,12 @@
 																					<field uniqueid="sk-cHF-5567" id="Non_Regulated_Product_Lender_s_Legals__c">
 																						<renderconditions logictype="and" onhidedatabehavior="keep">
 																							<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="CommonApplicationLoanDetails" sourcetype="fieldvalue" field="Id" fieldtargetobjects="genesis__Applications__c" value="CKSC"/>
+																						</renderconditions>
+																						<enableconditions/>
+																					</field>
+																					<field uniqueid="sk-Bwu-1340" id="Settlement_Fee_Amount__c">
+																						<renderconditions logictype="and" onhidedatabehavior="cancel">
+																							<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="CommonApplicationLoanDetails" sourcetype="fieldvalue" field="Settlement_Fee__c" fieldtargetobjects="genesis__Applications__c" value="Yes"/>
 																						</renderconditions>
 																						<enableconditions/>
 																					</field>
@@ -2187,7 +2211,75 @@ $ = skuid.$;
 			<jsitem location="external" name="connectionJS" cachelocation="false" url="/soap/ajax/35.0/connection.js">var params = arguments[0],
 $ = skuid.$;
 </jsitem>
-			<jsitem location="inlinesnippet" name="SumOfExpenses" cachelocation="false">var params = arguments[0], 	$ = skuid.$; var appModel = skuid.model.getModel('CommonApplicationLoanDetails'); var appRow = appModel.data[0];  var mortgageModel = skuid.model.getModel('MortgageModel'); var mortgageRow = mortgageModel.data[0];  var debtModel= skuid.model.getModel('DebtConsolidation'); var debtRow = debtModel.data[0];  var totalAmount =0, mortgageSum =0, debtSum=0;  $.each(mortgageModel.getRows(),function(i,row){        mortgageSum = mortgageSum + row.Refinance_Mortgages_Amount__c; }); $.each(debtModel.getRows(),function(i,row){        debtSum = debtSum + row.Refinance_Consolidation_Amount__c; }); if(appRow.House_dewelling_Amount__c === null || appRow.House_dewelling_Amount__c === undefined || appRow.House_dewelling_Amount__c ===''){     appRow.House_dewelling_Amount__c =0.00; } if(appRow.Other_dewelling_Amount__c === null || appRow.Other_dewelling_Amount__c === undefined || appRow.Other_dewelling_Amount__c ===''){     appRow.Other_dewelling_Amount__c =0.00; } if(appRow.Purchase_Existing_Amount__c === null || appRow.Purchase_Existing_Amount__c === undefined || appRow.Purchase_Existing_Amount__c ===''){     appRow.Purchase_Existing_Amount__c =0.00; } if(appRow.Purchase_New_Amount__c === null || appRow.Purchase_New_Amount__c === undefined || appRow.Purchase_New_Amount__c ===''){     appRow.Purchase_New_Amount__c =0.00; } if(appRow.Purchase_Off_the_Plan_Amount__c === null || appRow.Purchase_Off_the_Plan_Amount__c === undefined || appRow.Purchase_Off_the_Plan_Amount__c ===''){     appRow.Purchase_Off_the_Plan_Amount__c =0.00; } if(appRow.Buy_Asset_Investment_Amount__c === null || appRow.Buy_Asset_Investment_Amount__c === undefined || appRow.Buy_Asset_Investment_Amount__c ===''){     appRow.Buy_Asset_Investment_Amount__c =0.00; }  if(appRow.Marketing_Advertising_Amount__c === null || appRow.Marketing_Advertising_Amount__c === undefined || appRow.Marketing_Advertising_Amount__c ===''){     appRow.Marketing_Advertising_Amount__c =0.00; }  if(appRow.Business_Other_Amount__c === null || appRow.Business_Other_Amount__c === undefined || appRow.Business_Other_Amount__c ===''){     appRow.Business_Other_Amount__c =0.00; }  if(appRow.Purchase_Business_Amount__c === null || appRow.Purchase_Business_Amount__c === undefined || appRow.Purchase_Business_Amount__c ===''){     appRow.Purchase_Business_Amount__c =0.00; }  if(appRow.Working_Capital_Amount__c === null || appRow.Working_Capital_Amount__c === undefined || appRow.Working_Capital_Amount__c ===''){     appRow.Working_Capital_Amount__c =0.00; }  if(appRow.Divorce_Settlement_Amount__c === null || appRow.Divorce_Settlement_Amount__c === undefined || appRow.Divorce_Settlement_Amount__c ===''){     appRow.Divorce_Settlement_Amount__c =0.00; }  if(appRow.Holiday_Travel_Amount__c === null || appRow.Holiday_Travel_Amount__c === undefined || appRow.Holiday_Travel_Amount__c ===''){     appRow.Holiday_Travel_Amount__c =0.00; }  if(appRow.Home_Imaprovements_Amount__c === null || appRow.Home_Imaprovements_Amount__c === undefined || appRow.Home_Imaprovements_Amount__c ===''){     appRow.Home_Imaprovements_Amount__c =0.00; }  if(appRow.Cash_Out_Other_Amount__c === null || appRow.Cash_Out_Other_Amount__c === undefined || appRow.Cash_Out_Other_Amount__c ===''){     appRow.Cash_Out_Other_Amount__c =0.00; } if(appRow.Personal_Investments_Amount__c === null || appRow.Personal_Investments_Amount__c === undefined || appRow.Personal_Investments_Amount__c ===''){     appRow.Personal_Investments_Amount__c =0.00; } if(appRow.Property_Purchase_Amount__c === null || appRow.Property_Purchase_Amount__c === undefined || appRow.Property_Purchase_Amount__c ===''){     appRow.Property_Purchase_Amount__c =0.00; } if(appRow.Purchase_Goods_Amount__c === null || appRow.Purchase_Goods_Amount__c === undefined || appRow.Purchase_Goods_Amount__c ===''){     appRow.Purchase_Goods_Amount__c =0.00; }else{     totalAmount= appRow.House_dewelling_Amount__c + appRow.Other_dewelling_Amount__c + appRow.Purchase_Existing_Amount__c + appRow.Purchase_New_Amount__c +                   appRow.Purchase_Off_the_Plan_Amount__c + appRow.Buy_Asset_Investment_Amount__c + appRow.Marketing_Advertising_Amount__c +                   appRow.Business_Other_Amount__c + appRow.Purchase_Business_Amount__c + appRow.Working_Capital_Amount__c + appRow.Divorce_Settlement_Amount__c +                   appRow.Holiday_Travel_Amount__c + appRow.Home_Imaprovements_Amount__c + appRow.Cash_Out_Other_Amount__c + appRow.Personal_Investments_Amount__c +                   appRow.Property_Purchase_Amount__c + mortgageSum + debtSum + appRow.Purchase_Goods_Amount__c; } /*appModel.updateRow(appRow ,                 {'TotalAmount': totalAmount});*/ appModel.updateRow(appRow ,                 {'Total_Loan_Purpose_Amount__c': totalAmount});</jsitem>
+			<jsitem location="inlinesnippet" name="SumOfExpenses" cachelocation="false">var params = arguments[0], 	$ = skuid.$;
+var appModel = skuid.model.getModel('CommonApplicationLoanDetails');
+var appRow = appModel.data[0];
+var mortgageModel = skuid.model.getModel('MortgageModel');
+var mortgageRow = mortgageModel.data[0];
+var debtModel= skuid.model.getModel('DebtConsolidation');
+var debtRow = debtModel.data[0];
+var totalAmount =0, mortgageSum =0, debtSum=0;
+$.each(mortgageModel.getRows(),function(i,row){ 
+    mortgageSum = mortgageSum + row.Refinance_Mortgages_Amount__c; 
+    
+}); 
+$.each(debtModel.getRows(),function(i,row){
+    debtSum = debtSum + row.Refinance_Consolidation_Amount__c; 
+    
+});
+if(appRow.House_dewelling_Amount__c === null || appRow.House_dewelling_Amount__c === undefined || appRow.House_dewelling_Amount__c ===''){
+    appRow.House_dewelling_Amount__c =0.00; 
+    
+} if(appRow.Other_dewelling_Amount__c === null || appRow.Other_dewelling_Amount__c === undefined || appRow.Other_dewelling_Amount__c ===''){ 
+    appRow.Other_dewelling_Amount__c =0.00; 
+    
+} if(appRow.Purchase_Existing_Amount__c === null || appRow.Purchase_Existing_Amount__c === undefined || appRow.Purchase_Existing_Amount__c ===''){ 
+    appRow.Purchase_Existing_Amount__c =0.00; 
+    
+} if(appRow.Purchase_New_Amount__c === null || appRow.Purchase_New_Amount__c === undefined || appRow.Purchase_New_Amount__c ===''){ 
+    appRow.Purchase_New_Amount__c =0.00; 
+    
+} if(appRow.Purchase_Off_the_Plan_Amount__c === null || appRow.Purchase_Off_the_Plan_Amount__c === undefined || appRow.Purchase_Off_the_Plan_Amount__c ===''){
+    appRow.Purchase_Off_the_Plan_Amount__c =0.00; 
+    
+} if(appRow.Buy_Asset_Investment_Amount__c === null || appRow.Buy_Asset_Investment_Amount__c === undefined || appRow.Buy_Asset_Investment_Amount__c ===''){ 
+    appRow.Buy_Asset_Investment_Amount__c =0.00;
+}  
+if(appRow.Marketing_Advertising_Amount__c === null || appRow.Marketing_Advertising_Amount__c === undefined || appRow.Marketing_Advertising_Amount__c ===''){ 
+    appRow.Marketing_Advertising_Amount__c =0.00; 
+    
+}  if(appRow.Business_Other_Amount__c === null || appRow.Business_Other_Amount__c === undefined || appRow.Business_Other_Amount__c ===''){ 
+    appRow.Business_Other_Amount__c =0.00; 
+    
+}  if(appRow.Purchase_Business_Amount__c === null || appRow.Purchase_Business_Amount__c === undefined || appRow.Purchase_Business_Amount__c ===''){ 
+    appRow.Purchase_Business_Amount__c =0.00; 
+    
+}  if(appRow.Working_Capital_Amount__c === null || appRow.Working_Capital_Amount__c === undefined || appRow.Working_Capital_Amount__c ===''){
+    appRow.Working_Capital_Amount__c =0.00;
+}  if(appRow.Divorce_Settlement_Amount__c === null || appRow.Divorce_Settlement_Amount__c === undefined || appRow.Divorce_Settlement_Amount__c ===''){ 
+        appRow.Divorce_Settlement_Amount__c =0.00; 
+        
+}  if(appRow.Holiday_Travel_Amount__c === null || appRow.Holiday_Travel_Amount__c === undefined || appRow.Holiday_Travel_Amount__c ===''){
+    appRow.Holiday_Travel_Amount__c =0.00; 
+    
+}  if(appRow.Home_Imaprovements_Amount__c === null || appRow.Home_Imaprovements_Amount__c === undefined || appRow.Home_Imaprovements_Amount__c ===''){ 
+    appRow.Home_Imaprovements_Amount__c =0.00; 
+    
+}  if(appRow.Cash_Out_Other_Amount__c === null || appRow.Cash_Out_Other_Amount__c === undefined || appRow.Cash_Out_Other_Amount__c ===''){   
+    appRow.Cash_Out_Other_Amount__c =0.00;
+} if(appRow.Personal_Investments_Amount__c === null || appRow.Personal_Investments_Amount__c === undefined || appRow.Personal_Investments_Amount__c ===''){
+        appRow.Personal_Investments_Amount__c =0.00; 
+        
+} if(appRow.Property_Purchase_Amount__c === null || appRow.Property_Purchase_Amount__c === undefined || appRow.Property_Purchase_Amount__c ===''){ 
+    appRow.Property_Purchase_Amount__c =0.00;
+} if(appRow.Purchase_Goods_Amount__c === null || appRow.Purchase_Goods_Amount__c === undefined || appRow.Purchase_Goods_Amount__c ===''){ 
+    appRow.Purchase_Goods_Amount__c =0.00; 
+    
+} else{    
+totalAmount= appRow.House_dewelling_Amount__c + appRow.Other_dewelling_Amount__c + appRow.Purchase_Existing_Amount__c + appRow.Purchase_New_Amount__c +appRow.Purchase_Off_the_Plan_Amount__c + appRow.Buy_Asset_Investment_Amount__c + appRow.Marketing_Advertising_Amount__c +appRow.Business_Other_Amount__c + appRow.Purchase_Business_Amount__c + appRow.Working_Capital_Amount__c + appRow.Divorce_Settlement_Amount__c +                   appRow.Holiday_Travel_Amount__c + appRow.Home_Imaprovements_Amount__c + appRow.Cash_Out_Other_Amount__c + appRow.Personal_Investments_Amount__c +appRow.Property_Purchase_Amount__c + mortgageSum + debtSum + appRow.Purchase_Goods_Amount__c; 
+}    
+ /*appModel.updateRow(appRow ,                 {'TotalAmount': totalAmount});*/
+appModel.updateRow(appRow , {'Total_Loan_Purpose_Amount__c': totalAmount});</jsitem>
 			<jsitem location="inline" name="newInlineJS" cachelocation="false" url="">/*console.log('I am in inline JS'); (function(skuid){ 	var $ = skuid.$; 	$(document.body).one('pageload',function(){ 		var params = arguments[0],     	$ = skuid.$;         var appModel = skuid.model.getModel('CommonApplicationModel');         var appRow = appModel.data[0];                  var mortgageModel = skuid.model.getModel('MortgageModel');         var mortgageRow = mortgageModel.data[0];                  var debtModel= skuid.model.getModel('DebtConsolidation');         var debtRow = debtModel.data[0];                  var totalAmount =0, mortgageSum =0, debtSum=0;                  $.each(mortgageModel.getRows(),function(i,row){                mortgageSum = mortgageSum + row.Refinance_Mortgages_Amount__c;         });         $.each(debtModel.getRows(),function(i,row){                debtSum = debtSum + row.Refinance_Consolidation_Amount__c;         });totalAmount= mortgageSum + debtSum;                  appModel.updateRow(appRow ,                         {'TotalAmount': totalAmount});         });          })(skuid);*/</jsitem>
 			<jsitem location="inlinesnippet" name="callEraseRedundantData" cachelocation="false">var params = arguments[0], 	$ = skuid.$;
 var appModel = skuid.model.getModel('CommonApplicationLoanDetails');

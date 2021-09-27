@@ -97,6 +97,7 @@
 				<field id="CreatedById"/>
 				<field id="CreatedBy.Name"/>
 				<field id="Date_of_Most_Recent_Credit_Event__c"/>
+				<field id="Linked_Application_Search__c"/>
 			</fields>
 			<conditions>
 				<condition type="param" value="Id" field="Id" operator="=" enclosevalueinquotes="true" novaluebehavior="noquery"/>
@@ -596,6 +597,21 @@
 			</conditions>
 			<actions/>
 		</model>
+		<model id="Party" limit="200" query="true" createrowifnonefound="false" datasource="salesforce" sobject="clcommon__Party__c">
+			<fields>
+				<field id="genesis__Application__c"/>
+				<field id="genesis__Application__r.Name"/>
+				<field id="Id"/>
+				<field id="clcommon__Account__c"/>
+				<field id="clcommon__Account__r.Name"/>
+				<field id="Linked_Application_Search__c"/>
+			</fields>
+			<conditions>
+				<condition type="modelmerge" value="" field="clcommon__Account__r.Id" operator="=" model="AccountModel" enclosevalueinquotes="true" mergefield="Id" novaluebehavior="deactivate"/>
+				<condition type="modelmerge" value="" field="Id" operator="!=" model="CCAParty" enclosevalueinquotes="true" mergefield="Id" novaluebehavior="deactivate"/>
+			</conditions>
+			<actions/>
+		</model>
 	</models>
 	<components>
 		<pagetitle model="CCAParty" uniqueid="sk-Ztv-540">
@@ -630,6 +646,7 @@
 						<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="CAAApplication" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="Signed_The_Form__c" fieldtargetobjects="genesis__Applications__c" value="Yes"/>
 						<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="CAAApplication" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="signed_the_Privacy_Act_Consent__c" fieldtargetobjects="genesis__Applications__c" value="Yes"/>
 						<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="CAAApplication" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="Allow_Credit_Check__c" fieldtargetobjects="genesis__Applications__c" value="Yes"/>
+						<rendercondition type="blank" operator="=" fieldmodel="CCAParty" sourcetype="fieldvalue" field="Linked_Application_Search__c" fieldtargetobjects="clcommon__Party__c" value="null" enclosevalueinquotes="false"/>
 					</renderconditions>
 					<enableconditions/>
 				</action>
@@ -653,6 +670,7 @@
 							</values>
 						</rendercondition>
 						<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="AccountModel" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="clcommon__Legal_Entity_Type__r.Name" value="Individual"/>
+						<rendercondition type="blank" operator="=" fieldmodel="CCAParty" sourcetype="fieldvalue" field="Linked_Application_Search__c" fieldtargetobjects="clcommon__Party__c" value="null" enclosevalueinquotes="false"/>
 					</renderconditions>
 					<enableconditions logictype="and">
 						<condition type="blank" operator="!=" fieldmodel="CCAParty" sourcetype="fieldvalue" field="Request_Id__c" fieldtargetobjects="clcommon__Party__c" value="null" userinfotype="userid" enclosevalueinquotes="false"/>
@@ -696,8 +714,8 @@
 							<values>
 								<value>App Received</value>
 								<value>App Processed</value>
-								<value>Indicative Issued</value>
-								<value>Indicative Accepted</value>
+								<value>Conditional Issued</value>
+								<value>Conditional Accepted</value>
 								<value>Val Ordered</value>
 								<value>Val Received</value>
 							</values>
@@ -775,6 +793,81 @@
 					</renderconditions>
 					<enableconditions/>
 					<hotkeys/>
+				</action>
+				<action type="popup" label="Find Linked Credit Report" uniqueid="sk-fsO-1574">
+					<popup title="Linked Application" width="70%">
+						<components>
+							<pagetitle model="CCAParty" uniqueid="sk-fsl-1601">
+								<actions>
+									<action type="multi" label="Select Application" uniqueid="sk-ft0-1636">
+										<actions>
+											<action type="showPopup">
+												<popup title="Select Application" width="70%">
+													<components>
+														<skootable showconditions="true" showsavecancel="false" showerrorsinline="true" searchmethod="server" searchbox="true" showexportbuttons="false" hideheader="false" hidefooter="false" pagesize="10" alwaysresetpagination="false" createrecords="false" model="Party" buttonposition="" mode="read" allowcolumnreordering="true" responsive="true" uniqueid="sk-fuS-1743">
+															<fields>
+																<field id="genesis__Application__r.Name" hideable="true" uniqueid="fi-fww-1846">
+																	<label>Application</label>
+																</field>
+															</fields>
+															<rowactions>
+																<action type="edit">
+																	<renderconditions logictype="and">
+																		<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="Party" sourcetype="param" sourceparam="Id" value="1234"/>
+																	</renderconditions>
+																</action>
+																<action type="delete">
+																	<renderconditions logictype="and">
+																		<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="Party" sourcetype="param" sourceparam="Id" value="1234"/>
+																	</renderconditions>
+																</action>
+															</rowactions>
+															<massactions usefirstitemasdefault="true">
+																<action type="massupdate">
+																	<renderconditions logictype="and">
+																		<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="Party" sourcetype="param" nosourcerowbehavior="deactivate" sourceparam="Id" value="1234"/>
+																	</renderconditions>
+																</action>
+																<action type="massdelete">
+																	<renderconditions logictype="and">
+																		<rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="Party" sourcetype="param" nosourcerowbehavior="deactivate" sourceparam="Id" value="1234"/>
+																	</renderconditions>
+																</action>
+															</massactions>
+															<views>
+																<view type="standard"/>
+															</views>
+															<actions defaultlabel="Global Actions" defaulticon="sk-icon-magic" usefirstitemasdefault="true">
+																<action type="multi" icon="sk-webicon-font-awesome:check-square-o" label="Verify">
+																	<actions>
+																		<action type="custom" snippet="applicationDetail"/>
+																	</actions>
+																</action>
+															</actions>
+															<renderconditions logictype="and"/>
+														</skootable>
+													</components>
+												</popup>
+											</action>
+										</actions>
+									</action>
+								</actions>
+							</pagetitle>
+							<basicfieldeditor showheader="true" showsavecancel="false" showerrorsinline="true" model="CCAParty" uniqueid="sk-fsq-1611" mode="read">
+								<columns>
+									<column width="100%" uniqueid="sk-fsq-1607">
+										<sections>
+											<section title="Linked Application" uniqueid="sk-fsq-1608" collapsible="no">
+												<fields>
+													<field uniqueid="sk-ftd-1693" id="Linked_Application_Search__c" readonly="true"/>
+												</fields>
+											</section>
+										</sections>
+									</column>
+								</columns>
+							</basicfieldeditor>
+						</components>
+					</popup>
 				</action>
 			</actions>
 			<renderconditions logictype="and"/>
@@ -2295,6 +2388,37 @@ var resCheck = sforce.apex.execute('CategoryAttachmentUtility','deleteAttachment
         attachId : records.row.Id
     });
 alert(resCheck);</jsitem>
+			<jsitem location="inlinesnippet" name="applicationDetail" cachelocation="false">var params = arguments[0],
+    $ = skuid.$;
+    var partyModel = skuid.model.getModel('CCAParty');
+    var partyRow = partyModel.data[0];
+    var records = skuid.$.map(arguments[0].list.getSelectedItems(),function(item){
+        return item.row;
+    });
+    if ( !records[0]  || records.length &lt; 1) {
+        alert("Please select at least one Application");
+    }else if(records  &amp;&amp; records.length &gt; 1){
+        alert("Please select at only one Application");
+    } else{
+        if(partyRow.clcommon__Account__c==records[0].clcommon__Account__c){
+            var agree=window.confirm('Are you sure ?');
+            if(agree){
+                var partyobj = new sforce.SObject("clcommon__Party__c");
+                partyobj.Id = partyRow.Id;
+                partyobj.Linked_Application_Search__c=records[0].genesis__Application__r.Name;
+                var result1 = sforce.connection.update([partyobj]);
+                 sforce.apex.execute('LinkPartyCreditReport','linkCreditReport',
+                {
+                    partyId : partyRow.Id,
+                    partyId2 : records[0].Id
+                });
+                window.location.reload();
+            }
+        }else{
+            alert('Applicant Not Found');
+        }
+    }
+   </jsitem>
 		</javascript>
 		<css/>
 		<actionsequences uniqueid="sk-2zfu-304">
