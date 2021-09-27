@@ -23,14 +23,14 @@
                 <label>App Processed</label>
             </value>
             <value>
-                <fullName>Indicative Issued</fullName>
+                <fullName>Conditional Issued</fullName>
                 <default>false</default>
-                <label>Indicative Issued</label>
+                <label>Conditional Issued</label>
             </value>
             <value>
-                <fullName>Indicative Accepted</fullName>
+                <fullName>Conditional Accepted</fullName>
                 <default>false</default>
-                <label>Indicative Accepted</label>
+                <label>Conditional Accepted</label>
             </value>
             <value>
                 <fullName>Val Ordered</fullName>

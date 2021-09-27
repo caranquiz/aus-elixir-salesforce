@@ -13,6 +13,7 @@
         <locationY>300</locationY>
         <actionName>clcommon__ApprovalInvokeAction</actionName>
         <actionType>apex</actionType>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
         <inputParameters>
             <processMetadataValues>
                 <name>dataType</name>
@@ -69,6 +70,7 @@
         <locationY>200</locationY>
         <actionName>clcommon__ApprovalInvokeAction</actionName>
         <actionType>apex</actionType>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
         <inputParameters>
             <processMetadataValues>
                 <name>dataType</name>
@@ -112,6 +114,7 @@
             </value>
         </inputParameters>
     </actionCalls>
+    <apiVersion>49.0</apiVersion>
     <decisions>
         <name>isChangedDecision10_myRule_8_genesis_Loan_Amount_c</name>
         <label>isChangedDecision10_myRule_8_genesis_Loan_Amount_c</label>
@@ -1022,7 +1025,7 @@
                 <leftValueReference>myVariable_current.genesis__Status__c</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
-                    <stringValue>Indicative Issued</stringValue>
+                    <stringValue>Conditional Issued</stringValue>
                 </rightValue>
             </conditions>
             <conditions>
@@ -1053,7 +1056,7 @@
                 <leftValueReference>myVariable_current.genesis__Status__c</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
-                    <stringValue>Indicative Accepted</stringValue>
+                    <stringValue>Conditional Accepted</stringValue>
                 </rightValue>
             </conditions>
             <conditions>
@@ -1224,7 +1227,7 @@
                 <stringValue>[genesis__Applications__c].genesis__Initial_Advance__c+[genesis__Applications__c].First_Tranche_Prepaid_Interest__c+[genesis__Applications__c].Subsequent_Drawdown_Prepaid_Interest_Sum__c+[genesis__Applications__c].Total_Subsequent_Drawdown__c</stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_6_myRule_1_A1_3171908237</name>
+        <name>formula_6_myRule_1_A1_4648112265</name>
         <dataType>Number</dataType>
         <expression>{!myVariable_current.genesis__Initial_Advance__c}+{!myVariable_current.First_Tranche_Prepaid_Interest__c}+{!myVariable_current.Subsequent_Drawdown_Prepaid_Interest_Sum__c}+{!myVariable_current.Total_Subsequent_Drawdown__c}</expression>
         <scale>18</scale>
@@ -1288,6 +1291,7 @@
         <connector>
             <targetReference>myRule_1_A2</targetReference>
         </connector>
+        <filterLogic>and</filterLogic>
         <filters>
             <processMetadataValues>
                 <name>implicit</name>
@@ -1334,7 +1338,7 @@
             </processMetadataValues>
             <field>genesis__Loan_Amount__c</field>
             <value>
-                <elementReference>formula_6_myRule_1_A1_3171908237</elementReference>
+                <elementReference>formula_6_myRule_1_A1_4648112265</elementReference>
             </value>
         </inputAssignments>
         <object>genesis__Applications__c</object>
