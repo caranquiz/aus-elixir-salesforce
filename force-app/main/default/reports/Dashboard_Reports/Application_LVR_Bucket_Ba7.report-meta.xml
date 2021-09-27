@@ -96,9 +96,10 @@
     <filter>
         <criteriaItems>
             <column>genesis__Applications__c.genesis__Status__c</column>
+            <columnToColumn>false</columnToColumn>
             <isUnlocked>true</isUnlocked>
-            <operator>equals</operator>
-            <value>App Received,App Processed,Indicative Issued,Indicative Accepted,Val Ordered,Val Received,Recommended,Formally Approved,LOO Issued,LOO Accepted,Approved,Approved - Converted to Contract</value>
+            <operator>notEqual</operator>
+            <value>Loan Settled,Cancelled,Declined</value>
         </criteriaItems>
     </filter>
     <format>Summary</format>
@@ -110,6 +111,11 @@
     <groupingsDown>
         <dateGranularity>Day</dateGranularity>
         <field>BucketField_7140453</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>genesis__Applications__c.Document_Type__c</field>
         <sortOrder>Asc</sortOrder>
     </groupingsDown>
     <name>Application LVR &amp; Loan Amount Bucket</name>
