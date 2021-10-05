@@ -560,6 +560,14 @@ System.debug(each.Checklist__r.genesis__Rule__r.Name);
       applicationDetailsList[0].Id,
       ConstantValues.RECOMMENDED
     );
+    returnValue = CheckRules.callCheckRulesWS(
+      applicationDetailsList[0].Id,
+      ConstantValues.TAB_NAME_RULE
+    );
+    returnValue = CheckRules.callCheckRulesWS(
+      applicationDetailsList[0].Id,
+      ConstantValues.TAB_NAME_RULE2
+    );
     GenericUtility.createAttachment('ABC','requestBody',applicationDetailsList[0].Id);
     GenericUtility.insertRestResourceIntegrationLog('ABC','requestog','responselog','1234');
     GenericUtility.insertCustomExceptionLog('ABC','Message');

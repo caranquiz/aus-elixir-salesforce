@@ -1128,5 +1128,27 @@ global class ConstantValues {
 
   public static final String TAB_NAME_RULE='Rule';
   public static final String TAB_NAME_RULE2='Rule2';
+  public static final String CREDIT_PROVIDERS_MORTGAGE_INSURANCE_WARNING='Credit Providers Mortgage Insurance Warning';
+  public static final String VACANT_LAND='Vacant Land';
+  public static final String VACANT_LAND_DETAILS_LIMIT='Vacant Land Details Limit';
+  public static final String BETWEEN_ONE_AND_ONE_POINT_FIVE ='Between $1mil and $1.5mil';
+  public static final String BETWEEN_ONE_POINT_FIVE_AND_TWO ='Between $1.5mil and $2mil';
+  public static final String FULL_DOC_LESS_THAN_EQUAL_TO_SEVENTY='Full Doc less than equal to 70';
+  public static final String FULL_dOC_LESS_THAN_EIGHTY_GREATER_THAN_SEVENTY='Full Doc Less than 80 greater than 70';
+  public static final String ALT_LESS_THAN_SEVENTY='Alt Doc less than 70';
+  public static final String ALT_DOC_LESS_THAN_EIGHTY_GREATER_THAN_SEVENTY='Alt Doc Less than 80 greater than 70';
+  public static final String RESIDENTIAL='Residential';
+  public static final String RESIDENTIAL_LESS_THAN_600000='Residential <= 600000';
+  public static final String RESIDENTIAL_GREATER_THAN_600000_AND_LESS_THAN_1000000='Residential >= 600001 and <=1000000';
+  public static final String RESIDENTIAL_GREATER_THAN_1000000_AND_LESS_THAN_2000000='Residential >= 1000001 and <= 2000000';
+  public static final String RESIDENTIAL_GREATER_THAN_2000000_AND_LESS_THAN_3000000='Residential >= 2000001 and <= 3000000';
+  public static final String RESIDENTIAL_GREATER_THAN_3000000_AND_LESS_THAN_4000000='Residential >= 3000001 and <= 4000000';
+  public static final String COMMERCIAL_LESS_THAN_500000='Commercial <=500000';
+  public static final String COMMERCIAL_GREATER_THAN_500000='Commercial >=500001';
+
+  //ABAFileGeneratorController
+  public static final String PENDING='Pending';
+  public static final String DAG_NAME='Generate LPTs, create bank files and run payment clearing job';
+  public static final String APPROVAL_PENDING=' is Pending for Approval';
 
 }

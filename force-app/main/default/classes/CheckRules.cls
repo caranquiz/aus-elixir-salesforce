@@ -183,7 +183,7 @@ global with sharing class CheckRules {
         rulesNameList.add(ConstantValues.BAS_WARNING);
         rulesNameList.add(ConstantValues.UPFRONT_EXCEEDS_STANDARD_PERCENTAGE);
         rulesNameList.add(ConstantValues.TRAIL_EXCEEDS_STANDARD_PERCENTAGE);
-        rulesNameList.add('Credit Providers Mortgage Insurance Warning');
+        rulesNameList.add(ConstantValues.CREDIT_PROVIDERS_MORTGAGE_INSURANCE_WARNING);
       } else if (tabName == ConstantValues.WARNING2) {
         rulesNameList.add(
           ConstantValues.ACCOUNTANT_ABN_SEARCH_CONDUCTED_WARNING

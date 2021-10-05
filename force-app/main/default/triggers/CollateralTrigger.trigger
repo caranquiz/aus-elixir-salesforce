@@ -11,18 +11,22 @@ trigger CollateralTrigger on clcommon__Collateral__c (After update) {
     List<Id> collStateIds=new List<Id>();
     List<Id> collprimary=new List<Id>();
     List<Id> collStatus=new List<Id>();
-    List<genesis__Applications__c> appList = new List<genesis__Applications__c>();
     List<Id> appIds = new List<Id>();
-    List<genesis__Applications__c> appList1 = new List<genesis__Applications__c>();
     List<Id> applicationId = new List<Id>();
-    List<genesis__Applications__c> appList2 = new List<genesis__Applications__c>();
     List<Id> appId2 = new List<Id>();
+    List<genesis__Application_Collateral__c> appcollateralList=new List<genesis__Application_Collateral__c>();
     if(trigger.isUpdate && trigger.isAfter){
         Savepoint sp = Database.setSavepoint();
         try{
             Disable_Custom_Triggers__c disCustomTrigger = Disable_Custom_Triggers__c.getOrgDefaults();//Custom setting to disable this particular trigger
             if(!(disCustomTrigger.CollateralTrigger__c)){
-                
+                appcollateralList=[SELECT id,
+                                        genesis__Collateral__c,
+                                        genesis__Collateral__r.id,
+                                        genesis__Application__c,
+                                        genesis__Application__r.id
+                                    FROM  genesis__Application_Collateral__c
+                                    WHERE genesis__Collateral__c in: Trigger.new];
                 for (clcommon__Collateral__c collateral: Trigger.new) {
                     clcommon__Collateral__c oldcollateral = Trigger.oldMap.get(collateral.Id);
                     if(collateral.clcommon__Value_Date__c!= oldcollateral.clcommon__Value_Date__c){
@@ -39,40 +43,17 @@ trigger CollateralTrigger on clcommon__Collateral__c (After update) {
                         collStatus.add(collateral.Id);
                     }
                 }
-                if(collStateIds.size()>0){
-                    appList = [Select Id,
-                                    Mortgage_Registration_Fee__c
-                                    FROM genesis__Applications__c
-                                    WHERE Id IN (SELECT genesis__Application__c
-                                    FROM genesis__Application_Collateral__c 
-                                    WHERE genesis__Collateral__c in: collStateIds)
-                                    ORDER BY Id];
-                    for(genesis__Applications__c eachApp : appList){
-                        appIds.add(eachApp.Id);
+                
+                for(genesis__Application_Collateral__c appcollateral:appcollateralList){
+                    if(collStateIds.size()>0 && collStateIds.contains(appcollateral.genesis__Collateral__r.id)){
+                        appIds.add(appCollateral.genesis__Application__r.id);
+                    }else if(collprimary.size()>0 && collprimary.contains(appcollateral.genesis__Collateral__r.id)){
+                        applicationId.add(appCollateral.genesis__Application__r.id);
+                    }else if(collStatus.size()>0 && collStatus.contains(appcollateral.genesis__Collateral__r.id)){
+                        appId2.add(appCollateral.genesis__Application__r.id);                        
                     }
                 }
-                if(collprimary.size()>0){
-                    appList1 = [Select Id
-                                    FROM genesis__Applications__c
-                                    WHERE Id IN (SELECT genesis__Application__c
-                                    FROM genesis__Application_Collateral__c 
-                                    WHERE genesis__Collateral__c in: collprimary)
-                                    ORDER BY Id];
-                    for(genesis__Applications__c eachApp : appList1){
-                        applicationId.add(eachApp.Id);
-                    }
-                }
-                if(collStatus.size()>0){
-                    appList2 = [Select Id
-                                    FROM genesis__Applications__c
-                                    WHERE Id IN (SELECT genesis__Application__c
-                                    FROM genesis__Application_Collateral__c 
-                                    WHERE genesis__Collateral__c in: collStatus)
-                                    ORDER BY Id];
-                    for(genesis__Applications__c eachApp : appList2){
-                        appId2.add(eachApp.Id);
-                    }
-                }
+                
                 ValuationDateExpiryUpdateHelper.colletaralValuationDateExpiry(collId);
                 UpdateFees.updateMortgageFees(appIds);
                 UpdateFees.updateTitleInsuranceFees(applicationId);

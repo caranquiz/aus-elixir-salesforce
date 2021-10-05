@@ -1736,9 +1736,30 @@ public with sharing class GenericUtilityTestHelper {
   }
   public static clcommon__DAG_Schedule__c returnDAGSchedule(){
     clcommon__DAG_Schedule__c objDAG=new clcommon__DAG_Schedule__c();
-    objDAG.clcommon__DAG_Name__c='Generate LPTs, create bank files and run payment clearing job';
+    objDAG.clcommon__DAG_Name__c=ConstantValues.DAG_NAME;
     insert objDAG;
     return objDAG;
   }
-  
+  public static loan__Automated_Payment_Setup__c returnAPS(Id contractId,Id paymentMode){
+    loan__Automated_Payment_Setup__c objAPS=new loan__Automated_Payment_Setup__c();
+    objAPS.loan__CL_Contract__c=contractId;
+    objAPS.loan__Debit_Day__c=20;
+    objAPS.loan__Debit_Date__c=Date.today();
+    objAPS.loan__Payment_Mode__c=paymentMode;
+    objAPS.loan__Type__c='ONE TIME';
+    objAPS.loan__Amount_Type_Split_Factor__c=1;
+    objAPS.loan__Actual_Date__c=Date.today();
+    objAPS.loan__Setup_Date__c=Date.today();
+    objAPS.loan__Transaction_Amount__c=1000;
+    objAPS.Transaction_Amount_Change__c=1000;
+    insert objAPS;
+    return objAPS;
+  }
+  public static ProcessInstance returnProcessInstance(Id objAPS){
+    ProcessInstance objProcess=new ProcessInstance();
+    objProcess.TARGETOBJECTID=objAPS;
+    objProcess.Status=ConstantValues.PENDING;
+    insert objProcess;
+    return objProcess;
+  }
 }

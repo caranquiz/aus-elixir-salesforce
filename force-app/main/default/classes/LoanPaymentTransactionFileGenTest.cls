@@ -237,6 +237,11 @@ private class LoanPaymentTransactionFileGenTest {
     ];
     loanContract.loan__Borrower_ACH__c = null;
     update loanContract;
+    List<loan__Loan_Account__c> testLoanContract=[SELECT Id, 
+                                                        loan__Borrower_ACH__c
+                                                    FROM loan__Loan_Account__c
+                                                    WHERE loan__Borrower_ACH__c = null];
+    System.assertEquals(testLoanContract.size(), 1, 'Loan Update Error');
 
     test.startTest();
     loan.TransactionSweepToACHState state = new loan.TransactionSweepToACHState();
@@ -285,7 +290,6 @@ private class LoanPaymentTransactionFileGenTest {
 
     test.startTest();
     ABAFileGeneratorController abaControl = new ABAFileGeneratorController();
-    abaControl.nothing();
     abaControl.runLPTFileGen();
     abaControl.runLDTFileGen();
     test.stopTest();

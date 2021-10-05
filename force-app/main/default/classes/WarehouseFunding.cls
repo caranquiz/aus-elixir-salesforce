@@ -509,6 +509,7 @@ global class WarehouseFunding {
         pmtSetup.loan__Amount_Type__c = System.label.APS_Payment_Amount;
         pmtSetup.loan__Frequency__c = loanRec.APS_Frequency__c;
         pmtSetup.Amount_Type_Split_Factor_Change__c=pmtSetup.loan__Amount_Type_Split_Factor__c;
+          pmtSetup.loan__Debit_Day__c = startDate.day();
       } else if (loanRec.APS_Frequency__c == System.label.BI_WEEKLY) {
         pmtSetup.loan__Debit_Date__c = currentSystemDate + 14;
         startDate = currentSystemDate + 14;
@@ -516,25 +517,21 @@ global class WarehouseFunding {
         pmtSetup.loan__Amount_Type__c = System.label.APS_Payment_Amount;
         pmtSetup.loan__Frequency__c = loanRec.APS_Frequency__c;
         pmtSetup.Amount_Type_Split_Factor_Change__c=pmtSetup.loan__Amount_Type_Split_Factor__c;
+        pmtSetup.loan__Debit_Day__c = startDate.day();
       } else if (loanRec.APS_Frequency__c == System.label.MONTHLY) {
         pmtSetup.loan__Debit_Date__c = loanRec.loan__Next_Installment_Date__c;
         pmtSetup.loan__Recurring_ACH_End_Date__c = loanRec.loan__Last_Installment_Date__c;
         startDate = loanRec.loan__Next_Installment_Date__c;
         pmtSetup.loan__Amount_Type__c = System.label.LastBilledAmt;
         pmtSetup.loan__Frequency__c = System.label.APS_Frequency;
-      } else {
-      }
+        pmtSetup.loan__Debit_Day__c = loanRec.loan__Due_Day__c;
+      } 
 
       pmtSetup.loan__Payment_Mode__c = pmtMode.Id;
       pmtSetup.loan__Recurring_ACH_Start_Date__c = currentSystemDate;
       pmtSetup.loan__Type__c = System.label.Recurring;
       pmtSetup.loan__Setup_Date__c = currentSystemDate;
       pmtSetup.Created_after_conversion__c=True;
-      if (loanRec.APS_Frequency__c == System.label.MONTHLY) {
-        pmtSetup.loan__Debit_Day__c = loanRec.loan__Due_Day__c;
-      } else {
-        pmtSetup.loan__Debit_Day__c = startDate.day();
-      }
       loanRec.APS_Created__c = true;
       loanRec.loan__Expected_Disbursal_Date__c = currentSystemDate;
       

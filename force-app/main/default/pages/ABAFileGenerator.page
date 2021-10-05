@@ -1,4 +1,4 @@
-<apex:page controller="ABAFileGeneratorController" action="{!nothing}" lightningStylesheets="true" docType="html-5.0">
+<apex:page controller="ABAFileGeneratorController" lightningStylesheets="true" docType="html-5.0">
   <script src="//ajax.googleapis.com/ajax/libs/jquery/latest/jquery.js"></script>
   <style>
     .apexp .bPageBlock.apexDefaultPageBlock .pbBody .pbSubheader .searchOutputPanel {

@@ -150,7 +150,12 @@ public with sharing class DepositUpdateHelperTest {
     loanC.loan__Loan_Status__c = 'Approved';
     loanC.APS_Frequency__c=ConstantValues.MONTHLY;
     update loanC;
-    System.assertEquals(loanC.Loan__Principal_Remaining__c, 100);
+
+    List<loan__Loan_Account__c> loanAccountList=[SELECT id 
+                                                    FROM loan__Loan_Account__c 
+                                                    WHERE loan__Account__c=: acc.Id 
+                                                    AND Application__c=: app.id];
+    System.assertEquals(loanAccountList.size(), 1);
 
     loan__Payment_Mode__c pmt = GenericUtilityTestHelper.loanPaymentMode();
     System.assertEquals(pmt.name, 'ACH');
