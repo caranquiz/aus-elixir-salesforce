@@ -1,33 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
     <types>
-        <members>ABAFileGeneratorController</members>
-        <members>CheckRules</members>
-        <members>CheckRulesTest</members>
-        <members>ConstantValues</members>
-        <members>DepositUpdateHelperTest</members>
-        <members>GenericUtilityTestHelper</members>
-        <members>LoanPaymentTransactionFileGenTest</members>
-        <members>UpdateFees</members>
-        <members>ValuationDateExpiryUpdateHelperTest</members>
-        <members>WarehouseFunding</members>
-        <name>ApexClass</name>
-    </types>
-    <types>
-        <members>ABAFileGenerator</members>
-        <name>ApexPage</name>
-    </types>
-    <types>
-        <members>ApplicationTrigger</members>
-        <members>CollateralTrigger</members>
-        <members>UpdateValueDateTrigger</members>
-        <name>ApexTrigger</name>
-    </types>
-    <types>
-        <members>loan__Automated_Payment_Setup__c.APS_Approval_Process</members>
-        <name>ApprovalProcess</name>
-    </types>
-    <types>
         <members>Additional_Appication_Fee_on_Loan_Size__mdt.Additional_Fee_for_Application_Fee__c</members>
         <members>Additional_Appication_Fee_on_Loan_Size__mdt.Loan_Size_Lower_Limit__c</members>
         <members>Additional_Appication_Fee_on_Loan_Size__mdt.Loan_Size_Upper_Limit__c</members>
@@ -68,7 +41,7 @@
         <members>CustomLabels</members>
         <name>CustomLabels</name>
     </types>
-     <types>
+    <types>
         <members>Additional_Appication_Fee_on_Loan_Size.Between_1_5mil_and_2mil</members>
         <members>Additional_Appication_Fee_on_Loan_Size.Between_1mil_and_1_5mil</members>
         <members>Additional_Appication_Fee_on_Loan_Size.Vacant_Land_Details_Limit</members>
@@ -92,6 +65,17 @@
         <members>Title_Insurance_Fee_Base_Premium_and_GST.Residential_600000</members>
         <members>Title_Insurance_Fee_Base_Premium_and_GST.Residential_600001_and_1000000</members>
         <name>CustomMetadata</name>
+    </types>
+    <types>
+        <members>loan__Automated_Payment_Setup__c.Record_Type_Changes</members>
+        <members>loan__Automated_Payment_Setup__c.Record_Type_Change</members>
+        <members>loan__Automated_Payment_Setup__c.Record_Type_update</members>
+        <members>loan__Automated_Payment_Setup__c.Uncheck_Manual_Update_Value</members>
+        <members>loan__Automated_Payment_Setup__c.Unlock_Record</members>
+        <members>loan__Automated_Payment_Setup__c.Unlock_Record_Type_update</members>
+        <members>loan__Automated_Payment_Setup__c.Update_Manually_Updated_flag</members>
+        <members>loan__Automated_Payment_Setup__c.Update_Maually_Update_flag</members>
+        <name>WorkflowFieldUpdate</name>
     </types>
     <types>
         <members>Additional_Appication_Fee_on_Loan_Size__mdt</members>
