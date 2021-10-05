@@ -3,8 +3,8 @@
     <assignments>
         <name>Assign_null_to_Transaction_Amount</name>
         <label>Assign null to Transaction Amount</label>
-        <locationX>1424</locationX>
-        <locationY>270</locationY>
+        <locationX>1531</locationX>
+        <locationY>332</locationY>
         <assignmentItems>
             <assignToReference>$Record.loan__Transaction_Amount__c</assignToReference>
             <operator>Assign</operator>
@@ -14,10 +14,10 @@
         </connector>
     </assignments>
     <assignments>
-        <name>Assign_to_Transaction_Amount_Change</name>
-        <label>Assign to Transaction Amount Change</label>
-        <locationX>412</locationX>
-        <locationY>223</locationY>
+        <name>Assign_null_to_Transaction_Amount_Change</name>
+        <label>Assign null to Transaction Amount Change</label>
+        <locationX>283</locationX>
+        <locationY>503</locationY>
         <assignmentItems>
             <assignToReference>$Record.Transaction_Amount_Change__c</assignToReference>
             <operator>Assign</operator>
@@ -472,7 +472,7 @@
             <label>Amount type changed from Current Payment Amount to Last Billed Amount</label>
         </rules>
         <rules>
-            <name>Amount_Type_Change_changed_from_Current_Payment_Amount_to_Last_Billed_Amount</name>
+            <name>Amount_Type_Change_change_from_Current_Payment_Amount_to_Last_Billed_Amount</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
                 <leftValueReference>$Record.Amount_Type_Change__c</leftValueReference>
@@ -489,9 +489,9 @@
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>Assign_to_Transaction_Amount_Change</targetReference>
+                <targetReference>Assign_null_to_Transaction_Amount_Change</targetReference>
             </connector>
-            <label>Amount Type Change changed from Current Payment Amount to Last Billed Amount</label>
+            <label>Amount Type Change change from Current Payment Amount to Last Billed Amount</label>
         </rules>
     </decisions>
     <formulas>
