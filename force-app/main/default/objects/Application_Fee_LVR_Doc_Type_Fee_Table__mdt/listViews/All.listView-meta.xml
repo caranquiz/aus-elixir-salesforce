@@ -3,10 +3,9 @@
     <fullName>All</fullName>
     <columns>MasterLabel</columns>
     <columns>DeveloperName</columns>
-    <columns>NamespacePrefix</columns>
+    <columns>Prime_Amount__c</columns>
     <columns>Near_Prime_Amount__c</columns>
     <columns>Near_Prime_Plus_Amount__c</columns>
-    <columns>Prime_Amount__c</columns>
     <columns>Specialist_Amount__c</columns>
     <columns>Specialist_Plus_Amount__c</columns>
     <filterScope>Everything</filterScope>

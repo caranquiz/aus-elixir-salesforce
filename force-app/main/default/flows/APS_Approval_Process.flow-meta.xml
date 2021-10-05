@@ -373,7 +373,7 @@ Please approve the changes. Thanks!</stringValue>
             <processMetadataValues>
                 <name>leftHandSideReferenceTo</name>
                 <value>
-                    <stringValue></stringValue>
+                    <stringValue/>
                 </value>
             </processMetadataValues>
             <processMetadataValues>
@@ -409,7 +409,7 @@ Please approve the changes. Thanks!</stringValue>
             <processMetadataValues>
                 <name>leftHandSideReferenceTo</name>
                 <value>
-                    <stringValue></stringValue>
+                    <stringValue/>
                 </value>
             </processMetadataValues>
             <processMetadataValues>
@@ -445,7 +445,7 @@ Please approve the changes. Thanks!</stringValue>
             <processMetadataValues>
                 <name>leftHandSideReferenceTo</name>
                 <value>
-                    <stringValue></stringValue>
+                    <stringValue/>
                 </value>
             </processMetadataValues>
             <processMetadataValues>
@@ -481,7 +481,7 @@ Please approve the changes. Thanks!</stringValue>
             <processMetadataValues>
                 <name>leftHandSideReferenceTo</name>
                 <value>
-                    <stringValue></stringValue>
+                    <stringValue/>
                 </value>
             </processMetadataValues>
             <processMetadataValues>
@@ -517,7 +517,7 @@ Please approve the changes. Thanks!</stringValue>
             <processMetadataValues>
                 <name>leftHandSideReferenceTo</name>
                 <value>
-                    <stringValue></stringValue>
+                    <stringValue/>
                 </value>
             </processMetadataValues>
             <processMetadataValues>
@@ -553,7 +553,7 @@ Please approve the changes. Thanks!</stringValue>
             <processMetadataValues>
                 <name>leftHandSideReferenceTo</name>
                 <value>
-                    <stringValue></stringValue>
+                    <stringValue/>
                 </value>
             </processMetadataValues>
             <processMetadataValues>
@@ -589,7 +589,7 @@ Please approve the changes. Thanks!</stringValue>
             <processMetadataValues>
                 <name>leftHandSideReferenceTo</name>
                 <value>
-                    <stringValue></stringValue>
+                    <stringValue/>
                 </value>
             </processMetadataValues>
             <processMetadataValues>
@@ -625,7 +625,7 @@ Please approve the changes. Thanks!</stringValue>
             <processMetadataValues>
                 <name>leftHandSideReferenceTo</name>
                 <value>
-                    <stringValue></stringValue>
+                    <stringValue/>
                 </value>
             </processMetadataValues>
             <processMetadataValues>
@@ -661,7 +661,7 @@ Please approve the changes. Thanks!</stringValue>
             <processMetadataValues>
                 <name>leftHandSideReferenceTo</name>
                 <value>
-                    <stringValue></stringValue>
+                    <stringValue/>
                 </value>
             </processMetadataValues>
             <processMetadataValues>
@@ -741,7 +741,7 @@ Please approve the changes. Thanks!</stringValue>
             <processMetadataValues>
                 <name>leftHandSideReferenceTo</name>
                 <value>
-                    <stringValue></stringValue>
+                    <stringValue/>
                 </value>
             </processMetadataValues>
             <processMetadataValues>
@@ -821,7 +821,7 @@ Please approve the changes. Thanks!</stringValue>
             <processMetadataValues>
                 <name>leftHandSideReferenceTo</name>
                 <value>
-                    <stringValue></stringValue>
+                    <stringValue/>
                 </value>
             </processMetadataValues>
             <processMetadataValues>
@@ -901,7 +901,7 @@ Please approve the changes. Thanks!</stringValue>
             <processMetadataValues>
                 <name>leftHandSideReferenceTo</name>
                 <value>
-                    <stringValue></stringValue>
+                    <stringValue/>
                 </value>
             </processMetadataValues>
             <processMetadataValues>
@@ -937,7 +937,7 @@ Please approve the changes. Thanks!</stringValue>
             <processMetadataValues>
                 <name>leftHandSideReferenceTo</name>
                 <value>
-                    <stringValue></stringValue>
+                    <stringValue/>
                 </value>
             </processMetadataValues>
             <processMetadataValues>
@@ -973,7 +973,7 @@ Please approve the changes. Thanks!</stringValue>
             <processMetadataValues>
                 <name>leftHandSideReferenceTo</name>
                 <value>
-                    <stringValue></stringValue>
+                    <stringValue/>
                 </value>
             </processMetadataValues>
             <processMetadataValues>
@@ -1009,7 +1009,7 @@ Please approve the changes. Thanks!</stringValue>
             <processMetadataValues>
                 <name>leftHandSideReferenceTo</name>
                 <value>
-                    <stringValue></stringValue>
+                    <stringValue/>
                 </value>
             </processMetadataValues>
             <processMetadataValues>
@@ -1045,7 +1045,7 @@ Please approve the changes. Thanks!</stringValue>
             <processMetadataValues>
                 <name>leftHandSideReferenceTo</name>
                 <value>
-                    <stringValue></stringValue>
+                    <stringValue/>
                 </value>
             </processMetadataValues>
             <processMetadataValues>
@@ -1081,7 +1081,7 @@ Please approve the changes. Thanks!</stringValue>
             <processMetadataValues>
                 <name>leftHandSideReferenceTo</name>
                 <value>
-                    <stringValue></stringValue>
+                    <stringValue/>
                 </value>
             </processMetadataValues>
             <processMetadataValues>
@@ -1117,7 +1117,7 @@ Please approve the changes. Thanks!</stringValue>
             <processMetadataValues>
                 <name>leftHandSideReferenceTo</name>
                 <value>
-                    <stringValue></stringValue>
+                    <stringValue/>
                 </value>
             </processMetadataValues>
             <processMetadataValues>
@@ -1153,7 +1153,7 @@ Please approve the changes. Thanks!</stringValue>
             <processMetadataValues>
                 <name>leftHandSideReferenceTo</name>
                 <value>
-                    <stringValue></stringValue>
+                    <stringValue/>
                 </value>
             </processMetadataValues>
             <processMetadataValues>
@@ -1189,7 +1189,7 @@ Please approve the changes. Thanks!</stringValue>
             <processMetadataValues>
                 <name>leftHandSideReferenceTo</name>
                 <value>
-                    <stringValue></stringValue>
+                    <stringValue/>
                 </value>
             </processMetadataValues>
             <processMetadataValues>
@@ -1206,7 +1206,7 @@ Please approve the changes. Thanks!</stringValue>
         <object>loan__Automated_Payment_Setup__c</object>
     </recordUpdates>
     <startElementReference>myDecision</startElementReference>
-    <status>Draft</status>
+    <status>Active</status>
     <variables>
         <name>myVariable_current</name>
         <dataType>SObject</dataType>

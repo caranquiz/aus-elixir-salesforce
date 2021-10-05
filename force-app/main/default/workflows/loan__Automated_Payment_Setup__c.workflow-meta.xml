@@ -11,16 +11,6 @@
         <protected>false</protected>
     </fieldUpdates>
     <fieldUpdates>
-        <fullName>Record_Type_Changes</fullName>
-        <field>RecordTypeId</field>
-        <lookupValue>Lock_Approval_Record</lookupValue>
-        <lookupValueType>RecordType</lookupValueType>
-        <name>Record Type Change</name>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>LookupValue</operation>
-        <protected>false</protected>
-    </fieldUpdates>
-    <fieldUpdates>
         <fullName>Record_Type_update</fullName>
         <field>RecordTypeId</field>
         <lookupValue>loan__RECURRING</lookupValue>
