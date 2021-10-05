@@ -2,7 +2,7 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Debit__c</fullName>
     <externalId>false</externalId>
-    <formula>IF(loan__Interest_Posting_Txn__c&lt;&gt;&quot;&quot;,loan__Transaction_Amount__c,IF(loan__Loan_Charge__c&lt;&gt;&quot;&quot;,loan__Transaction_Amount__c,IF(loan__Loan_Disbursal__c&lt;&gt;&quot;&quot;,loan__Transaction_Amount__c,IF(loan__Repayment_Txn_Reversal__r.loan__Payment_Type__c=&apos;Waived&apos;,loan__Transaction_Amount__c,IF(loan__Repayment_Txn_Reversal__r.loan__Payment_Type__c=&apos;Regular&apos;,loan__Transaction_Amount__c,IF(loan__Loan_Due_Detail__c&lt;&gt;&quot;&quot;,loan__Transaction_Amount__c,IF( loan__Last_Transaction_Type__c==&apos;Deposit Adjustment - Subtract&apos;,loan__Transaction_Amount__c,null)))))))</formula>
+    <formula>IF(ISBLANK(loan__Interest_Posting_Txn__c) == FALSE,loan__Transaction_Amount__c,IF(ISBLANK(loan__Loan_Charge__c) == FALSE,loan__Transaction_Amount__c,IF(ISBLANK(loan__Loan_Disbursal__c) == FALSE,loan__Transaction_Amount__c,IF(loan__Repayment_Txn_Reversal__r.loan__Payment_Type__c=&apos;Waived&apos;,loan__Transaction_Amount__c,IF(loan__Repayment_Txn_Reversal__r.loan__Payment_Type__c=&apos;Regular&apos;,loan__Transaction_Amount__c,IF(ISBLANK(loan__Loan_Due_Detail__c) == FALSE,loan__Transaction_Amount__c,IF( loan__Last_Transaction_Type__c==&apos;Deposit Adjustment - Subtract&apos;,loan__Transaction_Amount__c,null)))))))</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
     <label>Debit</label>
     <precision>18</precision>

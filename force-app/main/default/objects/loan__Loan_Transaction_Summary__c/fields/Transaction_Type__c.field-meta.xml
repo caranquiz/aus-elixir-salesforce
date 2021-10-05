@@ -2,16 +2,16 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Transaction_Type__c</fullName>
     <externalId>false</externalId>
-    <formula>IF(loan__Last_Transaction_Type__c  == &apos;loan__Repayment_Transaction_Adjustment__c&apos; , &apos;Payment Reversed&apos;,(IF(loan__Last_Transaction_Type__c == &apos;Deposit Adjustment - Subtract&apos;,&quot;Redraw&quot;,(CASE(1,
-IF(loan__Interest_Posting_Txn__c &lt;&gt; &quot;&quot;,1,0),&quot;Interest&quot;,
-IF(loan__Interest_Posting_Txn__c &lt;&gt; &quot;&quot; &amp;&amp;ISPICKVAL( loan__Interest_Posting_Txn__r.loan__Interest_Posting_Type__c ,&apos;Additional Interest&apos;) ,1,0),&quot;Line Fee&quot;,
+    <formula>IF(loan__Last_Transaction_Type__c == &apos;loan__Repayment_Transaction_Adjustment__c&apos; , &apos;Payment Reversed&apos;,(IF(loan__Last_Transaction_Type__c == &apos;Deposit Adjustment - Subtract&apos;,&quot;Redraw&quot;,(CASE(1,
+IF(NOT(ISBLANK(loan__Interest_Posting_Txn__c)),1,0),&quot;Interest&quot;,
+IF(NOT(ISBLANK(loan__Interest_Posting_Txn__c)) &amp;&amp;ISPICKVAL( loan__Interest_Posting_Txn__r.loan__Interest_Posting_Type__c ,&apos;Additional Interest&apos;) ,1,0),&quot;Line Fee&quot;,
 IF(ISPICKVAL( loan__Loan_Payment_Txn__r.loan__Payment_Type__c,&apos;Waived&apos;)&amp;&amp;loan__Loan_Payment_Txn__r.loan__Applied_Spread__c!=null,1,0),&quot;Charge Waived-&quot;+ loan__Loan_Payment_Txn__r.loan__Applied_Spread__c ,
-IF(loan__Loan_Charge__c &lt;&gt; &quot;&quot;,1,0),loan__Loan_Charge__r.loan__Fee__r.Name,
-IF(loan__Disbursal_Reversal__c &lt;&gt; &quot;&quot;,1,0),&quot;Disbursal Reversal&quot;,
-IF(loan__Loan_Disbursal__c &lt;&gt; &quot;&quot;,1,0),&quot;Disbursement&quot;,
-IF(loan__Loan_Due_Detail__c &lt;&gt; &quot;&quot;,1,0),&quot;Bill&quot;,
-IF(loan__Loan_Payment_Txn__c &lt;&gt; &quot;&quot; &amp;&amp;(ISPICKVAL( loan__Loan_Payment_Txn__r.loan__Payment_Type__c,&apos;Regular&apos;) || ISPICKVAL( loan__Loan_Payment_Txn__r.loan__Payment_Type__c,&apos;Deposit Payment&apos;) ),1,0),&quot;Payment Received&quot;,
-IF(loan__Loan_Payment_Txn__r.loan__Applied_Spread__c =null&amp;&amp;ISPICKVAL( loan__Loan_Payment_Txn__r.loan__Payment_Type__c,&apos;Waived&apos;),1,0),&quot;Interest Waived&quot;,IF(loan__Loan_Payment_Txn__c &lt;&gt; &quot;&quot; &amp;&amp;ISPICKVAL( loan__Loan_Payment_Txn__r.loan__Payment_Type__c,&apos;Closure-Tolerance&apos;) ,1,0),&quot;Closure-Tolerance&quot;,
+IF(NOT(ISBLANK(loan__Loan_Charge__c)),1,0),loan__Loan_Charge__r.loan__Fee__r.Name,
+IF(NOT(ISBLANK(loan__Disbursal_Reversal__c)),1,0),&quot;Disbursal Reversal&quot;,
+IF(NOT(ISBLANK(loan__Loan_Disbursal__c)),1,0),&quot;Disbursement&quot;,
+IF(NOT(ISBLANK(loan__Loan_Due_Detail__c)),1,0),&quot;Bill&quot;,
+IF(NOT(ISBLANK(loan__Loan_Payment_Txn__c)) &amp;&amp;(ISPICKVAL( loan__Loan_Payment_Txn__r.loan__Payment_Type__c,&apos;Regular&apos;) || ISPICKVAL( loan__Loan_Payment_Txn__r.loan__Payment_Type__c,&apos;Deposit Payment&apos;) ),1,0),&quot;Payment Received&quot;,
+IF(loan__Loan_Payment_Txn__r.loan__Applied_Spread__c =null &amp;&amp; ISPICKVAL( loan__Loan_Payment_Txn__r.loan__Payment_Type__c,&apos;Waived&apos;),1,0),&quot;Interest Waived&quot;,IF(NOT(ISBLANK(loan__Loan_Payment_Txn__c)) &amp;&amp; ISPICKVAL( loan__Loan_Payment_Txn__r.loan__Payment_Type__c,&apos;Closure-Tolerance&apos;) ,1,0),&quot;Closure-Tolerance&quot;,
 IF((loan__Fees_Waived__c != 0) &amp;&amp;(loan__Principal_Paid__c =0),1,0),&quot;Charge Waiver Reversal&quot;,
 IF(loan__Repayment_Txn_Reversal__r.loan__Payment_Type__c = &apos;Regular&apos;,1,0),&quot;Payment Reversal&quot;,&quot;&quot;)))))</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
