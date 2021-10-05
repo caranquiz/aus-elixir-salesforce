@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Transaction_Amount_Check</fullName>
+    <active>true</active>
+    <errorConditionFormula>ISPICKVAL( loan__Type__c ,&quot;ONE TIME&quot;)  &amp;&amp;  ISBLANK( loan__Transaction_Amount__c )</errorConditionFormula>
+    <errorDisplayField>loan__Transaction_Amount__c</errorDisplayField>
+    <errorMessage>Transaction Amount can not be null for &apos;One Time&apos; type.</errorMessage>
+</ValidationRule>

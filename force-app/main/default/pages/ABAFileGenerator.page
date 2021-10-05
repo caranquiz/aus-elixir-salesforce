@@ -12,6 +12,7 @@
     <apex:pageBlock >
       <apex:pageBlockSection >
         <apex:commandButton value="Generate Disbursal Files" onclick="return confirm('Do you want to proceed?');" action="{!runLDTFileGen}"/>
+        <apex:commandButton value="Create Payment and Generate Files" onclick="return confirm('Do you want to proceed?');" action="{!runLPTFileGen}"/>
       </apex:pageBlockSection>
     </apex:pageBlock>
   </apex:form>

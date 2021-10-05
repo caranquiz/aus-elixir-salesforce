@@ -148,6 +148,7 @@ public with sharing class DepositUpdateHelperTest {
     loanC.loan__Next_Installment_Date__c = Date.today();
     loanC.loan__Principal_Remaining__c = 100;
     loanC.loan__Loan_Status__c = 'Approved';
+    loanC.APS_Frequency__c=ConstantValues.MONTHLY;
     update loanC;
     System.assertEquals(loanC.Loan__Principal_Remaining__c, 100);
 

@@ -508,12 +508,14 @@ global class WarehouseFunding {
         pmtSetup.loan__Amount_Type_Split_Factor__c = 4;
         pmtSetup.loan__Amount_Type__c = System.label.APS_Payment_Amount;
         pmtSetup.loan__Frequency__c = loanRec.APS_Frequency__c;
+        pmtSetup.Amount_Type_Split_Factor_Change__c=pmtSetup.loan__Amount_Type_Split_Factor__c;
       } else if (loanRec.APS_Frequency__c == System.label.BI_WEEKLY) {
         pmtSetup.loan__Debit_Date__c = currentSystemDate + 14;
         startDate = currentSystemDate + 14;
         pmtSetup.loan__Amount_Type_Split_Factor__c = 2;
         pmtSetup.loan__Amount_Type__c = System.label.APS_Payment_Amount;
         pmtSetup.loan__Frequency__c = loanRec.APS_Frequency__c;
+        pmtSetup.Amount_Type_Split_Factor_Change__c=pmtSetup.loan__Amount_Type_Split_Factor__c;
       } else if (loanRec.APS_Frequency__c == System.label.MONTHLY) {
         pmtSetup.loan__Debit_Date__c = loanRec.loan__Next_Installment_Date__c;
         pmtSetup.loan__Recurring_ACH_End_Date__c = loanRec.loan__Last_Installment_Date__c;
@@ -527,6 +529,7 @@ global class WarehouseFunding {
       pmtSetup.loan__Recurring_ACH_Start_Date__c = currentSystemDate;
       pmtSetup.loan__Type__c = System.label.Recurring;
       pmtSetup.loan__Setup_Date__c = currentSystemDate;
+      pmtSetup.Created_after_conversion__c=True;
       if (loanRec.APS_Frequency__c == System.label.MONTHLY) {
         pmtSetup.loan__Debit_Day__c = loanRec.loan__Due_Day__c;
       } else {
@@ -534,9 +537,27 @@ global class WarehouseFunding {
       }
       loanRec.APS_Created__c = true;
       loanRec.loan__Expected_Disbursal_Date__c = currentSystemDate;
+      
+      pmtSetup.Type_Change__c=pmtSetup.loan__Type__c;
+      pmtSetup.Debit_Date_Change__c=pmtSetup.loan__Debit_Date__c;
+      pmtSetup.Debit_Day_Change__c=pmtSetup.loan__Debit_Day__c;
+      pmtSetup.Actual_Date_Change__c=pmtSetup.loan__Debit_Date__c;
+      pmtSetup.Active_Change__c=pmtSetup.loan__Active__c;
+      pmtSetup.Amount_Type_Change__c=pmtSetup.loan__Amount_Type__c;
+      pmtSetup.Frequency_Change__c=pmtSetup.loan__Frequency__c;
+
       if (pmtSetup != null) {
         insert pmtSetup;
       }
+      List<loan__Automated_Payment_Setup__c> objAPSList=[SELECT id,Created_after_conversion__c FROM loan__Automated_Payment_Setup__c WHERE id=:pmtSetup.id]  ;
+      for(loan__Automated_Payment_Setup__c objAPS:objAPSList){
+        objAPS.Created_after_conversion__c=False;
+      }
+
+      if(objAPSList.size()>0){
+        update objAPSList;
+      }
+      
       if (loanRec != null) {
         update loanRec;
       }

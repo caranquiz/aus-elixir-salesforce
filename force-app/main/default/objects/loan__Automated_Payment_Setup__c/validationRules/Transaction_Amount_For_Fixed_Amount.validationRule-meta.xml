@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Transaction_Amount_For_Fixed_Amount</fullName>
+    <active>true</active>
+    <errorConditionFormula>ISPICKVAL( loan__Amount_Type__c , &quot;Fixed Amount&quot;) &amp;&amp;  ISBLANK( loan__Transaction_Amount__c )</errorConditionFormula>
+    <errorMessage>Transaction Amount can not be null for Fixed Amount Type</errorMessage>
+</ValidationRule>

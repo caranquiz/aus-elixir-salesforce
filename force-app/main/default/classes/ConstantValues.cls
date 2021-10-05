@@ -1125,4 +1125,8 @@ global class ConstantValues {
   public static final string SETTLEMENT_FEE_PLAN = 'Settlement Fee Plan';
   public static final string ELIXIR_COMMISSION_PLAN = 'Elixir Commission Plan';
   public static final string PERSON_ACCOUNT='Person Account';
+
+  public static final String TAB_NAME_RULE='Rule';
+  public static final String TAB_NAME_RULE2='Rule2';
+
 }

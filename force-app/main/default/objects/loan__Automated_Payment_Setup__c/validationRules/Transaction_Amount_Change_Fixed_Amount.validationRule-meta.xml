@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Transaction_Amount_Change_Fixed_Amount</fullName>
+    <active>true</active>
+    <errorConditionFormula>IF($Profile.Name == &apos;System Administrator&apos; || $Profile.Name == &apos;Orde Customer Community Plus User&apos; || $Profile.Name == &apos;Customer Community Plus User&apos; ,false, IF(AND(ISNEW()== false, ISPICKVAL( Amount_Type_Change__c ,&quot;Fixed Amount&quot;),ISBLANK( Transaction_Amount_Change__c )), true,false ))</errorConditionFormula>
+    <errorMessage>Transaction Amount Change can not be null for Fixed Amount type.</errorMessage>
+</ValidationRule>

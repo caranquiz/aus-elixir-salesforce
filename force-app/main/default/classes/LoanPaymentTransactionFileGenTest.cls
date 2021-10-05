@@ -118,6 +118,15 @@ private class LoanPaymentTransactionFileGenTest {
       1,
       'Loan Payment Transaction insert error'
     );
+
+    clcommon__DAG_Schedule__c testDAGSchedule=GenericUtilityTestHelper.returnDAGSchedule();
+    List<clcommon__DAG_Schedule__c> testDAGList=[SELECT id FROM clcommon__DAG_Schedule__c WHERE id=:testDAGSchedule.id];
+    System.assertEquals(testDAGList.size(), 1, 'DAG Schedule insert error');
+
+    loan__Automated_Payment_Setup__c testAPS=GenericUtilityTestHelper.returnAPS(testLoanAccount.Id,testDDPaymentMode.Id);
+    List<loan__Automated_Payment_Setup__c> testAPSList=[SELECT id FROM loan__Automated_Payment_Setup__c WHERE id=:testAPS.id];
+    System.assertEquals(testAPSList.size(), 1, 'Automated Payment Setup insert error');
+
   }
   static testMethod void testWithValidScope() {
     loan__Automated_Payment_Configuration__c apc = [
@@ -271,6 +280,9 @@ private class LoanPaymentTransactionFileGenTest {
     test.stopTest();
   }
   static testMethod void callABAFilegenerationPage() {
+    List<clcommon__DAG_Schedule__c> dagSchedule=[SELECT id FROM clcommon__DAG_Schedule__c];
+    List<loan__Automated_Payment_Setup__c> testAPSList=[SELECT id FROM loan__Automated_Payment_Setup__c];
+
     test.startTest();
     ABAFileGeneratorController abaControl = new ABAFileGeneratorController();
     abaControl.nothing();

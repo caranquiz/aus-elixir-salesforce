@@ -50,6 +50,8 @@ public class ValuationDateExpiryUpdateHelperTest {
             'NSW', 
             '2205'
         );
+        testcollateral.Primary_Usage__c='Residential';
+        update testcollateral;
         System.AssertNotEquals(
             testcollateral.Id,
             null,
@@ -69,7 +71,8 @@ public class ValuationDateExpiryUpdateHelperTest {
     @isTest
     static void collateralTest(){
         test.startTest();
-        clcommon__Collateral__c collateral=[SELECT id,clcommon__Value_Date__c FROM clcommon__Collateral__c];
+        clcommon__Collateral__c collateral=[SELECT id,clcommon__Value_Date__c,Primary_Usage__c FROM clcommon__Collateral__c];
+        collateral.Primary_Usage__c='Commercial';
         collateral.clcommon__Value_Date__c=Date.newInstance(2020, 12, 12);
         update collateral;
         test.stopTest();
@@ -82,4 +85,49 @@ public class ValuationDateExpiryUpdateHelperTest {
         delete applicationColl;
         test.stopTest();
     }
+    @isTest
+    static void applicationTest(){
+        test.startTest();
+        genesis__applications__c application=[SELECT id,genesis__Loan_Amount__c FROM genesis__applications__c];
+        application.genesis__Loan_Amount__c=650000;
+        application.Document_Type__c='Full Doc';
+        application.Actual_Security_Value__c=1000000;
+        application.Risk_grade_list__c='Specialist';
+        update application;
+        test.stopTest();
+    }
+    @isTest
+    static void applicationTest1(){
+        test.startTest();
+        genesis__applications__c application=[SELECT id,genesis__Loan_Amount__c FROM genesis__applications__c];
+        application.genesis__Loan_Amount__c=1050000;
+        application.Document_Type__c='Full Doc';
+        application.Actual_Security_Value__c=140000;
+        application.Risk_grade_list__c='Near Prime +';
+        update application;
+        test.stopTest();
+    }
+    @isTest
+    static void applicationTest2(){
+        test.startTest();
+        genesis__applications__c application=[SELECT id,genesis__Loan_Amount__c FROM genesis__applications__c];
+        application.genesis__Loan_Amount__c=2050000;
+        application.Document_Type__c='Alt Doc';
+        application.Actual_Security_Value__c=3153846.1;
+        application.Risk_grade_list__c='Prime';
+        update application;
+        test.stopTest();
+    }
+    @isTest
+    static void applicationTest3(){
+        test.startTest();
+        genesis__applications__c application=[SELECT id,genesis__Loan_Amount__c FROM genesis__applications__c];
+        application.genesis__Loan_Amount__c=3400000;
+        application.Document_Type__c='Alt Doc';
+        application.Actual_Security_Value__c=4533333.33;
+        application.Risk_grade_list__c='Near Prime';
+        update application;
+        test.stopTest();
+    }
+
 }
