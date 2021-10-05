@@ -1,0 +1,482 @@
+{
+  "CustomLabels__ABN_Search_results_error_message": {
+    "fullName": "ABN_Search_results_error_message",
+    "type": "CustomLabels",
+    "metadataFilePath": "C:\\Users\\Priyanka\\OneDrive\\Documents\\ElixirPhase3\\aus-elixir-salesforce\\force-app\\main\\default\\labels\\CustomLabels.labels-meta.xml"
+  },
+  "CustomLabels__ACH": {
+    "fullName": "ACH",
+    "type": "CustomLabels",
+    "metadataFilePath": "C:\\Users\\Priyanka\\OneDrive\\Documents\\ElixirPhase3\\aus-elixir-salesforce\\force-app\\main\\default\\labels\\CustomLabels.labels-meta.xml"
+  },
+  "CustomLabels__APS_Frequency": {
+    "fullName": "APS_Frequency",
+    "type": "CustomLabels",
+    "metadataFilePath": "C:\\Users\\Priyanka\\OneDrive\\Documents\\ElixirPhase3\\aus-elixir-salesforce\\force-app\\main\\default\\labels\\CustomLabels.labels-meta.xml"
+  },
+  "CustomLabels__APS_Payment_Amount": {
+    "fullName": "APS_Payment_Amount",
+    "type": "CustomLabels",
+    "metadataFilePath": "C:\\Users\\Priyanka\\OneDrive\\Documents\\ElixirPhase3\\aus-elixir-salesforce\\force-app\\main\\default\\labels\\CustomLabels.labels-meta.xml"
+  },
+  "CustomLabels__APS_Payment_Mode": {
+    "fullName": "APS_Payment_Mode",
+    "type": "CustomLabels",
+    "metadataFilePath": "C:\\Users\\Priyanka\\OneDrive\\Documents\\ElixirPhase3\\aus-elixir-salesforce\\force-app\\main\\default\\labels\\CustomLabels.labels-meta.xml"
+  },
+  "CustomLabels__AccountNotFound": {
+    "fullName": "AccountNotFound",
+    "type": "CustomLabels",
+    "metadataFilePath": "C:\\Users\\Priyanka\\OneDrive\\Documents\\ElixirPhase3\\aus-elixir-salesforce\\force-app\\main\\default\\labels\\CustomLabels.labels-meta.xml"
+  },
+  "CustomLabels__Account_Object": {
+    "fullName": "Account_Object",
+    "type": "CustomLabels",
+    "metadataFilePath": "C:\\Users\\Priyanka\\OneDrive\\Documents\\ElixirPhase3\\aus-elixir-salesforce\\force-app\\main\\default\\labels\\CustomLabels.labels-meta.xml"
+  },
+  "CustomLabels__Account_Owner_ID": {
+    "fullName": "Account_Owner_ID",
+    "type": "CustomLabels",
+    "metadataFilePath": "C:\\Users\\Priyanka\\OneDrive\\Documents\\ElixirPhase3\\aus-elixir-salesforce\\force-app\\main\\default\\labels\\CustomLabels.labels-meta.xml"
+  },
+  "CustomLabels__Active": {
+    "fullName": "Active",
+    "type": "CustomLabels",
+    "metadataFilePath": "C:\\Users\\Priyanka\\OneDrive\\Documents\\ElixirPhase3\\aus-elixir-salesforce\\force-app\\main\\default\\labels\\CustomLabels.labels-meta.xml"
+  },
+  "CustomLabels__Aggregator": {
+    "fullName": "Aggregator",
+    "type": "CustomLabels",
+    "metadataFilePath": "C:\\Users\\Priyanka\\OneDrive\\Documents\\ElixirPhase3\\aus-elixir-salesforce\\force-app\\main\\default\\labels\\CustomLabels.labels-meta.xml"
+  },
+  "CustomLabels__Aggregator_missing_msg": {
+    "fullName": "Aggregator_missing_msg",
+    "type": "CustomLabels",
+    "metadataFilePath": "C:\\Users\\Priyanka\\OneDrive\\Documents\\ElixirPhase3\\aus-elixir-salesforce\\force-app\\main\\default\\labels\\CustomLabels.labels-meta.xml"
+  },
+  "CustomLabels__ApplicantNotFoundErrorMsg": {
+    "fullName": "ApplicantNotFoundErrorMsg",
+    "type": "CustomLabels",
+    "metadataFilePath": "C:\\Users\\Priyanka\\OneDrive\\Documents\\ElixirPhase3\\aus-elixir-salesforce\\force-app\\main\\default\\labels\\CustomLabels.labels-meta.xml"
+  },
+  "CustomLabels__ApplicationStatusAfterCLContractConverted": {
+    "fullName": "ApplicationStatusAfterCLContractConverted",
+    "type": "CustomLabels",
+    "metadataFilePath": "C:\\Users\\Priyanka\\OneDrive\\Documents\\ElixirPhase3\\aus-elixir-salesforce\\force-app\\main\\default\\labels\\CustomLabels.labels-meta.xml"
+  },
+  "CustomLabels__ApplicationStatusAfterConvertedToContract": {
+    "fullName": "ApplicationStatusAfterConvertedToContract",
+    "type": "CustomLabels",
+    "metadataFilePath": "C:\\Users\\Priyanka\\OneDrive\\Documents\\ElixirPhase3\\aus-elixir-salesforce\\force-app\\main\\default\\labels\\CustomLabels.labels-meta.xml"
+  },
+  "CustomLabels__ApplicationToCLContractSuccessStatus": {
+    "fullName": "ApplicationToCLContractSuccessStatus",
+    "type": "CustomLabels",
+    "metadataFilePath": "C:\\Users\\Priyanka\\OneDrive\\Documents\\ElixirPhase3\\aus-elixir-salesforce\\force-app\\main\\default\\labels\\CustomLabels.labels-meta.xml"
+  },
+  "CustomLabels__Application_converted_to_Contract_message": {
+    "fullName": "Application_converted_to_Contract_message",
+    "type": "CustomLabels",
+    "metadataFilePath": "C:\\Users\\Priyanka\\OneDrive\\Documents\\ElixirPhase3\\aus-elixir-salesforce\\force-app\\main\\default\\labels\\CustomLabels.labels-meta.xml"
+  },
+  "CustomLabels__BI_WEEKLY": {
+    "fullName": "BI_WEEKLY",
+    "type": "CustomLabels",
+    "metadataFilePath": "C:\\Users\\Priyanka\\OneDrive\\Documents\\ElixirPhase3\\aus-elixir-salesforce\\force-app\\main\\default\\labels\\CustomLabels.labels-meta.xml"
+  },
+  "CustomLabels__Borrower_Bank_Account_Type": {
+    "fullName": "Borrower_Bank_Account_Type",
+    "type": "CustomLabels",
+    "metadataFilePath": "C:\\Users\\Priyanka\\OneDrive\\Documents\\ElixirPhase3\\aus-elixir-salesforce\\force-app\\main\\default\\labels\\CustomLabels.labels-meta.xml"
+  },
+  "CustomLabels__Broker": {
+    "fullName": "Broker",
+    "type": "CustomLabels",
+    "metadataFilePath": "C:\\Users\\Priyanka\\OneDrive\\Documents\\ElixirPhase3\\aus-elixir-salesforce\\force-app\\main\\default\\labels\\CustomLabels.labels-meta.xml"
+  },
+  "CustomLabels__Broker_not_present_error": {
+    "fullName": "Broker_not_present_error",
+    "type": "CustomLabels",
+    "metadataFilePath": "C:\\Users\\Priyanka\\OneDrive\\Documents\\ElixirPhase3\\aus-elixir-salesforce\\force-app\\main\\default\\labels\\CustomLabels.labels-meta.xml"
+  },
+  "CustomLabels__CollateralOwnerCreationEndDate": {
+    "fullName": "CollateralOwnerCreationEndDate",
+    "type": "CustomLabels",
+    "metadataFilePath": "C:\\Users\\Priyanka\\OneDrive\\Documents\\ElixirPhase3\\aus-elixir-salesforce\\force-app\\main\\default\\labels\\CustomLabels.labels-meta.xml"
+  },
+  "CustomLabels__CollateralOwnerCreationStartDate": {
+    "fullName": "CollateralOwnerCreationStartDate",
+    "type": "CustomLabels",
+    "metadataFilePath": "C:\\Users\\Priyanka\\OneDrive\\Documents\\ElixirPhase3\\aus-elixir-salesforce\\force-app\\main\\default\\labels\\CustomLabels.labels-meta.xml"
+  },
+  "CustomLabels__Commercial": {
+    "fullName": "Commercial",
+    "type": "CustomLabels",
+    "metadataFilePath": "C:\\Users\\Priyanka\\OneDrive\\Documents\\ElixirPhase3\\aus-elixir-salesforce\\force-app\\main\\default\\labels\\CustomLabels.labels-meta.xml"
+  },
+  "CustomLabels__Commission_Paid_Message_Upfront_Not_present": {
+    "fullName": "Commission_Paid_Message_Upfront_Not_present",
+    "type": "CustomLabels",
+    "metadataFilePath": "C:\\Users\\Priyanka\\OneDrive\\Documents\\ElixirPhase3\\aus-elixir-salesforce\\force-app\\main\\default\\labels\\CustomLabels.labels-meta.xml"
+  },
+  "CustomLabels__Commission_Paid_To_Exception": {
+    "fullName": "Commission_Paid_To_Exception",
+    "type": "CustomLabels",
+    "metadataFilePath": "C:\\Users\\Priyanka\\OneDrive\\Documents\\ElixirPhase3\\aus-elixir-salesforce\\force-app\\main\\default\\labels\\CustomLabels.labels-meta.xml"
+  },
+  "CustomLabels__Company_ABN": {
+    "fullName": "Company_ABN",
+    "type": "CustomLabels",
+    "metadataFilePath": "C:\\Users\\Priyanka\\OneDrive\\Documents\\ElixirPhase3\\aus-elixir-salesforce\\force-app\\main\\default\\labels\\CustomLabels.labels-meta.xml"
+  },
+  "CustomLabels__Company_Legal_Entity": {
+    "fullName": "Company_Legal_Entity",
+    "type": "CustomLabels",
+    "metadataFilePath": "C:\\Users\\Priyanka\\OneDrive\\Documents\\ElixirPhase3\\aus-elixir-salesforce\\force-app\\main\\default\\labels\\CustomLabels.labels-meta.xml"
+  },
+  "CustomLabels__Construction_Development": {
+    "fullName": "Construction_Development",
+    "type": "CustomLabels",
+    "metadataFilePath": "C:\\Users\\Priyanka\\OneDrive\\Documents\\ElixirPhase3\\aus-elixir-salesforce\\force-app\\main\\default\\labels\\CustomLabels.labels-meta.xml"
+  },
+  "CustomLabels__Construction_Progress_Payment_Fee": {
+    "fullName": "Construction_Progress_Payment_Fee",
+    "type": "CustomLabels",
+    "metadataFilePath": "C:\\Users\\Priyanka\\OneDrive\\Documents\\ElixirPhase3\\aus-elixir-salesforce\\force-app\\main\\default\\labels\\CustomLabels.labels-meta.xml"
+  },
+  "CustomLabels__ConvertedToContractStatus": {
+    "fullName": "ConvertedToContractStatus",
+    "type": "CustomLabels",
+    "metadataFilePath": "C:\\Users\\Priyanka\\OneDrive\\Documents\\ElixirPhase3\\aus-elixir-salesforce\\force-app\\main\\default\\labels\\CustomLabels.labels-meta.xml"
+  },
+  "CustomLabels__Data_not_found_for_callout": {
+    "fullName": "Data_not_found_for_callout",
+    "type": "CustomLabels",
+    "metadataFilePath": "C:\\Users\\Priyanka\\OneDrive\\Documents\\ElixirPhase3\\aus-elixir-salesforce\\force-app\\main\\default\\labels\\CustomLabels.labels-meta.xml"
+  },
+  "CustomLabels__Deposit_Withdrawal_Message": {
+    "fullName": "Deposit_Withdrawal_Message",
+    "type": "CustomLabels",
+    "metadataFilePath": "C:\\Users\\Priyanka\\OneDrive\\Documents\\ElixirPhase3\\aus-elixir-salesforce\\force-app\\main\\default\\labels\\CustomLabels.labels-meta.xml"
+  },
+  "CustomLabels__Director_party": {
+    "fullName": "Director_party",
+    "type": "CustomLabels",
+    "metadataFilePath": "C:\\Users\\Priyanka\\OneDrive\\Documents\\ElixirPhase3\\aus-elixir-salesforce\\force-app\\main\\default\\labels\\CustomLabels.labels-meta.xml"
+  },
+  "CustomLabels__Disbursement": {
+    "fullName": "Disbursement",
+    "type": "CustomLabels",
+    "metadataFilePath": "C:\\Users\\Priyanka\\OneDrive\\Documents\\ElixirPhase3\\aus-elixir-salesforce\\force-app\\main\\default\\labels\\CustomLabels.labels-meta.xml"
+  },
+  "CustomLabels__DocumentCreationLastDate": {
+    "fullName": "DocumentCreationLastDate",
+    "type": "CustomLabels",
+    "metadataFilePath": "C:\\Users\\Priyanka\\OneDrive\\Documents\\ElixirPhase3\\aus-elixir-salesforce\\force-app\\main\\default\\labels\\CustomLabels.labels-meta.xml"
+  },
+  "CustomLabels__DocumentCreationStatus": {
+    "fullName": "DocumentCreationStatus",
+    "type": "CustomLabels",
+    "metadataFilePath": "C:\\Users\\Priyanka\\OneDrive\\Documents\\ElixirPhase3\\aus-elixir-salesforce\\force-app\\main\\default\\labels\\CustomLabels.labels-meta.xml"
+  },
+  "CustomLabels__Drawdown_Prepaid_Interest": {
+    "fullName": "Drawdown_Prepaid_Interest",
+    "type": "CustomLabels",
+    "metadataFilePath": "C:\\Users\\Priyanka\\OneDrive\\Documents\\ElixirPhase3\\aus-elixir-salesforce\\force-app\\main\\default\\labels\\CustomLabels.labels-meta.xml"
+  },
+  "CustomLabels__Each_Additional_Property_Title_Insurance_Fee": {
+    "fullName": "Each_Additional_Property_Title_Insurance_Fee",
+    "type": "CustomLabels",
+    "metadataFilePath": "C:\\Users\\Priyanka\\OneDrive\\Documents\\ElixirPhase3\\aus-elixir-salesforce\\force-app\\main\\default\\labels\\CustomLabels.labels-meta.xml"
+  },
+  "CustomLabels__Each_Additional_Property_Title_Insurance_GST_Fee": {
+    "fullName": "Each_Additional_Property_Title_Insurance_GST_Fee",
+    "type": "CustomLabels",
+    "metadataFilePath": "C:\\Users\\Priyanka\\OneDrive\\Documents\\ElixirPhase3\\aus-elixir-salesforce\\force-app\\main\\default\\labels\\CustomLabels.labels-meta.xml"
+  },
+  "CustomLabels__Elixir_Custom_Community_Portal_Profile": {
+    "fullName": "Elixir_Custom_Community_Portal_Profile",
+    "type": "CustomLabels",
+    "metadataFilePath": "C:\\Users\\Priyanka\\OneDrive\\Documents\\ElixirPhase3\\aus-elixir-salesforce\\force-app\\main\\default\\labels\\CustomLabels.labels-meta.xml"
+  },
+  "CustomLabels__Execution_Priority_for_ABN_from_Employment_Information": {
+    "fullName": "Execution_Priority_for_ABN_from_Employment_Information",
+    "type": "CustomLabels",
+    "metadataFilePath": "C:\\Users\\Priyanka\\OneDrive\\Documents\\ElixirPhase3\\aus-elixir-salesforce\\force-app\\main\\default\\labels\\CustomLabels.labels-meta.xml"
+  },
+  "CustomLabels__Execution_Priority_for_ABN_from_Parties": {
+    "fullName": "Execution_Priority_for_ABN_from_Parties",
+    "type": "CustomLabels",
+    "metadataFilePath": "C:\\Users\\Priyanka\\OneDrive\\Documents\\ElixirPhase3\\aus-elixir-salesforce\\force-app\\main\\default\\labels\\CustomLabels.labels-meta.xml"
+  },
+  "CustomLabels__Family_Trust_Legal_Entity": {
+    "fullName": "Family_Trust_Legal_Entity",
+    "type": "CustomLabels",
+    "metadataFilePath": "C:\\Users\\Priyanka\\OneDrive\\Documents\\ElixirPhase3\\aus-elixir-salesforce\\force-app\\main\\default\\labels\\CustomLabels.labels-meta.xml"
+  },
+  "CustomLabels__Family_corporate_party": {
+    "fullName": "Family_corporate_party",
+    "type": "CustomLabels",
+    "metadataFilePath": "C:\\Users\\Priyanka\\OneDrive\\Documents\\ElixirPhase3\\aus-elixir-salesforce\\force-app\\main\\default\\labels\\CustomLabels.labels-meta.xml"
+  },
+  "CustomLabels__Family_individual_party": {
+    "fullName": "Family_individual_party",
+    "type": "CustomLabels",
+    "metadataFilePath": "C:\\Users\\Priyanka\\OneDrive\\Documents\\ElixirPhase3\\aus-elixir-salesforce\\force-app\\main\\default\\labels\\CustomLabels.labels-meta.xml"
+  },
+  "CustomLabels__First_Tranche_Prepaid_Interest": {
+    "fullName": "First_Tranche_Prepaid_Interest",
+    "type": "CustomLabels",
+    "metadataFilePath": "C:\\Users\\Priyanka\\OneDrive\\Documents\\ElixirPhase3\\aus-elixir-salesforce\\force-app\\main\\default\\labels\\CustomLabels.labels-meta.xml"
+  },
+  "CustomLabels__Funded": {
+    "fullName": "Funded",
+    "type": "CustomLabels",
+    "metadataFilePath": "C:\\Users\\Priyanka\\OneDrive\\Documents\\ElixirPhase3\\aus-elixir-salesforce\\force-app\\main\\default\\labels\\CustomLabels.labels-meta.xml"
+  },
+  "CustomLabels__FundingMsg": {
+    "fullName": "FundingMsg",
+    "type": "CustomLabels",
+    "metadataFilePath": "C:\\Users\\Priyanka\\OneDrive\\Documents\\ElixirPhase3\\aus-elixir-salesforce\\force-app\\main\\default\\labels\\CustomLabels.labels-meta.xml"
+  },
+  "CustomLabels__GUID_not_found": {
+    "fullName": "GUID_not_found",
+    "type": "CustomLabels",
+    "metadataFilePath": "C:\\Users\\Priyanka\\OneDrive\\Documents\\ElixirPhase3\\aus-elixir-salesforce\\force-app\\main\\default\\labels\\CustomLabels.labels-meta.xml"
+  },
+  "CustomLabels__Highest_Best_Use_Commercial": {
+    "fullName": "Highest_Best_Use_Commercial",
+    "type": "CustomLabels",
+    "metadataFilePath": "C:\\Users\\Priyanka\\OneDrive\\Documents\\ElixirPhase3\\aus-elixir-salesforce\\force-app\\main\\default\\labels\\CustomLabels.labels-meta.xml"
+  },
+  "CustomLabels__Highest_Best_Use_Residential": {
+    "fullName": "Highest_Best_Use_Residential",
+    "type": "CustomLabels",
+    "metadataFilePath": "C:\\Users\\Priyanka\\OneDrive\\Documents\\ElixirPhase3\\aus-elixir-salesforce\\force-app\\main\\default\\labels\\CustomLabels.labels-meta.xml"
+  },
+  "CustomLabels__InFunding": {
+    "fullName": "InFunding",
+    "type": "CustomLabels",
+    "metadataFilePath": "C:\\Users\\Priyanka\\OneDrive\\Documents\\ElixirPhase3\\aus-elixir-salesforce\\force-app\\main\\default\\labels\\CustomLabels.labels-meta.xml"
+  },
+  "CustomLabels__Individiual_party": {
+    "fullName": "Individiual_party",
+    "type": "CustomLabels",
+    "metadataFilePath": "C:\\Users\\Priyanka\\OneDrive\\Documents\\ElixirPhase3\\aus-elixir-salesforce\\force-app\\main\\default\\labels\\CustomLabels.labels-meta.xml"
+  },
+  "CustomLabels__Individual_Legal_Entity": {
+    "fullName": "Individual_Legal_Entity",
+    "type": "CustomLabels",
+    "metadataFilePath": "C:\\Users\\Priyanka\\OneDrive\\Documents\\ElixirPhase3\\aus-elixir-salesforce\\force-app\\main\\default\\labels\\CustomLabels.labels-meta.xml"
+  },
+  "CustomLabels__Invest_Error": {
+    "fullName": "Invest_Error",
+    "type": "CustomLabels",
+    "metadataFilePath": "C:\\Users\\Priyanka\\OneDrive\\Documents\\ElixirPhase3\\aus-elixir-salesforce\\force-app\\main\\default\\labels\\CustomLabels.labels-meta.xml"
+  },
+  "CustomLabels__Investor_Record_Type": {
+    "fullName": "Investor_Record_Type",
+    "type": "CustomLabels",
+    "metadataFilePath": "C:\\Users\\Priyanka\\OneDrive\\Documents\\ElixirPhase3\\aus-elixir-salesforce\\force-app\\main\\default\\labels\\CustomLabels.labels-meta.xml"
+  },
+  "CustomLabels__Joint_Individual_party": {
+    "fullName": "Joint_Individual_party",
+    "type": "CustomLabels",
+    "metadataFilePath": "C:\\Users\\Priyanka\\OneDrive\\Documents\\ElixirPhase3\\aus-elixir-salesforce\\force-app\\main\\default\\labels\\CustomLabels.labels-meta.xml"
+  },
+  "CustomLabels__Joint_Legal_Entity": {
+    "fullName": "Joint_Legal_Entity",
+    "type": "CustomLabels",
+    "metadataFilePath": "C:\\Users\\Priyanka\\OneDrive\\Documents\\ElixirPhase3\\aus-elixir-salesforce\\force-app\\main\\default\\labels\\CustomLabels.labels-meta.xml"
+  },
+  "CustomLabels__Joint_party": {
+    "fullName": "Joint_party",
+    "type": "CustomLabels",
+    "metadataFilePath": "C:\\Users\\Priyanka\\OneDrive\\Documents\\ElixirPhase3\\aus-elixir-salesforce\\force-app\\main\\default\\labels\\CustomLabels.labels-meta.xml"
+  },
+  "CustomLabels__LDT_file_name": {
+    "fullName": "LDT_file_name",
+    "type": "CustomLabels",
+    "metadataFilePath": "C:\\Users\\Priyanka\\OneDrive\\Documents\\ElixirPhase3\\aus-elixir-salesforce\\force-app\\main\\default\\labels\\CustomLabels.labels-meta.xml"
+  },
+  "CustomLabels__LPT_File_Name": {
+    "fullName": "LPT_File_Name",
+    "type": "CustomLabels",
+    "metadataFilePath": "C:\\Users\\Priyanka\\OneDrive\\Documents\\ElixirPhase3\\aus-elixir-salesforce\\force-app\\main\\default\\labels\\CustomLabels.labels-meta.xml"
+  },
+  "CustomLabels__LastBilledAmt": {
+    "fullName": "LastBilledAmt",
+    "type": "CustomLabels",
+    "metadataFilePath": "C:\\Users\\Priyanka\\OneDrive\\Documents\\ElixirPhase3\\aus-elixir-salesforce\\force-app\\main\\default\\labels\\CustomLabels.labels-meta.xml"
+  },
+  "CustomLabels__LoanWarehouseTrigger": {
+    "fullName": "LoanWarehouseTrigger",
+    "type": "CustomLabels",
+    "metadataFilePath": "C:\\Users\\Priyanka\\OneDrive\\Documents\\ElixirPhase3\\aus-elixir-salesforce\\force-app\\main\\default\\labels\\CustomLabels.labels-meta.xml"
+  },
+  "CustomLabels__Loan_Settled": {
+    "fullName": "Loan_Settled",
+    "type": "CustomLabels",
+    "metadataFilePath": "C:\\Users\\Priyanka\\OneDrive\\Documents\\ElixirPhase3\\aus-elixir-salesforce\\force-app\\main\\default\\labels\\CustomLabels.labels-meta.xml"
+  },
+  "CustomLabels__MONTHLY": {
+    "fullName": "MONTHLY",
+    "type": "CustomLabels",
+    "metadataFilePath": "C:\\Users\\Priyanka\\OneDrive\\Documents\\ElixirPhase3\\aus-elixir-salesforce\\force-app\\main\\default\\labels\\CustomLabels.labels-meta.xml"
+  },
+  "CustomLabels__No_deposit_found_error_msg": {
+    "fullName": "No_deposit_found_error_msg",
+    "type": "CustomLabels",
+    "metadataFilePath": "C:\\Users\\Priyanka\\OneDrive\\Documents\\ElixirPhase3\\aus-elixir-salesforce\\force-app\\main\\default\\labels\\CustomLabels.labels-meta.xml"
+  },
+  "CustomLabels__PartyCreationEndDate": {
+    "fullName": "PartyCreationEndDate",
+    "type": "CustomLabels",
+    "metadataFilePath": "C:\\Users\\Priyanka\\OneDrive\\Documents\\ElixirPhase3\\aus-elixir-salesforce\\force-app\\main\\default\\labels\\CustomLabels.labels-meta.xml"
+  },
+  "CustomLabels__PartyCreationStartDate": {
+    "fullName": "PartyCreationStartDate",
+    "type": "CustomLabels",
+    "metadataFilePath": "C:\\Users\\Priyanka\\OneDrive\\Documents\\ElixirPhase3\\aus-elixir-salesforce\\force-app\\main\\default\\labels\\CustomLabels.labels-meta.xml"
+  },
+  "CustomLabels__Pre_Paid_Fee": {
+    "fullName": "Pre_Paid_Fee",
+    "type": "CustomLabels",
+    "metadataFilePath": "C:\\Users\\Priyanka\\OneDrive\\Documents\\ElixirPhase3\\aus-elixir-salesforce\\force-app\\main\\default\\labels\\CustomLabels.labels-meta.xml"
+  },
+  "CustomLabels__Prepaid_Interest": {
+    "fullName": "Prepaid_Interest",
+    "type": "CustomLabels",
+    "metadataFilePath": "C:\\Users\\Priyanka\\OneDrive\\Documents\\ElixirPhase3\\aus-elixir-salesforce\\force-app\\main\\default\\labels\\CustomLabels.labels-meta.xml"
+  },
+  "CustomLabels__Product_Name": {
+    "fullName": "Product_Name",
+    "type": "CustomLabels",
+    "metadataFilePath": "C:\\Users\\Priyanka\\OneDrive\\Documents\\ElixirPhase3\\aus-elixir-salesforce\\force-app\\main\\default\\labels\\CustomLabels.labels-meta.xml"
+  },
+  "CustomLabels__Recurring": {
+    "fullName": "Recurring",
+    "type": "CustomLabels",
+    "metadataFilePath": "C:\\Users\\Priyanka\\OneDrive\\Documents\\ElixirPhase3\\aus-elixir-salesforce\\force-app\\main\\default\\labels\\CustomLabels.labels-meta.xml"
+  },
+  "CustomLabels__Redraw_Error_Msg": {
+    "fullName": "Redraw_Error_Msg",
+    "type": "CustomLabels",
+    "metadataFilePath": "C:\\Users\\Priyanka\\OneDrive\\Documents\\ElixirPhase3\\aus-elixir-salesforce\\force-app\\main\\default\\labels\\CustomLabels.labels-meta.xml"
+  },
+  "CustomLabels__Redraw_Success_Msg": {
+    "fullName": "Redraw_Success_Msg",
+    "type": "CustomLabels",
+    "metadataFilePath": "C:\\Users\\Priyanka\\OneDrive\\Documents\\ElixirPhase3\\aus-elixir-salesforce\\force-app\\main\\default\\labels\\CustomLabels.labels-meta.xml"
+  },
+  "CustomLabels__Regular": {
+    "fullName": "Regular",
+    "type": "CustomLabels",
+    "metadataFilePath": "C:\\Users\\Priyanka\\OneDrive\\Documents\\ElixirPhase3\\aus-elixir-salesforce\\force-app\\main\\default\\labels\\CustomLabels.labels-meta.xml"
+  },
+  "CustomLabels__Residential": {
+    "fullName": "Residential",
+    "type": "CustomLabels",
+    "metadataFilePath": "C:\\Users\\Priyanka\\OneDrive\\Documents\\ElixirPhase3\\aus-elixir-salesforce\\force-app\\main\\default\\labels\\CustomLabels.labels-meta.xml"
+  },
+  "CustomLabels__Residential_Construction": {
+    "fullName": "Residential_Construction",
+    "type": "CustomLabels",
+    "metadataFilePath": "C:\\Users\\Priyanka\\OneDrive\\Documents\\ElixirPhase3\\aus-elixir-salesforce\\force-app\\main\\default\\labels\\CustomLabels.labels-meta.xml"
+  },
+  "CustomLabels__Retained_Stock_Commercial": {
+    "fullName": "Retained_Stock_Commercial",
+    "type": "CustomLabels",
+    "metadataFilePath": "C:\\Users\\Priyanka\\OneDrive\\Documents\\ElixirPhase3\\aus-elixir-salesforce\\force-app\\main\\default\\labels\\CustomLabels.labels-meta.xml"
+  },
+  "CustomLabels__Retained_Stock_Residential": {
+    "fullName": "Retained_Stock_Residential",
+    "type": "CustomLabels",
+    "metadataFilePath": "C:\\Users\\Priyanka\\OneDrive\\Documents\\ElixirPhase3\\aus-elixir-salesforce\\force-app\\main\\default\\labels\\CustomLabels.labels-meta.xml"
+  },
+  "CustomLabels__SMSF_Legal_Entity": {
+    "fullName": "SMSF_Legal_Entity",
+    "type": "CustomLabels",
+    "metadataFilePath": "C:\\Users\\Priyanka\\OneDrive\\Documents\\ElixirPhase3\\aus-elixir-salesforce\\force-app\\main\\default\\labels\\CustomLabels.labels-meta.xml"
+  },
+  "CustomLabels__Smsf_corporate_party": {
+    "fullName": "Smsf_corporate_party",
+    "type": "CustomLabels",
+    "metadataFilePath": "C:\\Users\\Priyanka\\OneDrive\\Documents\\ElixirPhase3\\aus-elixir-salesforce\\force-app\\main\\default\\labels\\CustomLabels.labels-meta.xml"
+  },
+  "CustomLabels__Smsf_individual_party": {
+    "fullName": "Smsf_individual_party",
+    "type": "CustomLabels",
+    "metadataFilePath": "C:\\Users\\Priyanka\\OneDrive\\Documents\\ElixirPhase3\\aus-elixir-salesforce\\force-app\\main\\default\\labels\\CustomLabels.labels-meta.xml"
+  },
+  "CustomLabels__Subsequent_Drawdown_Prepaid_Interest": {
+    "fullName": "Subsequent_Drawdown_Prepaid_Interest",
+    "type": "CustomLabels",
+    "metadataFilePath": "C:\\Users\\Priyanka\\OneDrive\\Documents\\ElixirPhase3\\aus-elixir-salesforce\\force-app\\main\\default\\labels\\CustomLabels.labels-meta.xml"
+  },
+  "CustomLabels__SuccessMessage": {
+    "fullName": "SuccessMessage",
+    "type": "CustomLabels",
+    "metadataFilePath": "C:\\Users\\Priyanka\\OneDrive\\Documents\\ElixirPhase3\\aus-elixir-salesforce\\force-app\\main\\default\\labels\\CustomLabels.labels-meta.xml"
+  },
+  "CustomLabels__TotalSumOfLinkedLoanUpdateBatch_Size": {
+    "fullName": "TotalSumOfLinkedLoanUpdateBatch_Size",
+    "type": "CustomLabels",
+    "metadataFilePath": "C:\\Users\\Priyanka\\OneDrive\\Documents\\ElixirPhase3\\aus-elixir-salesforce\\force-app\\main\\default\\labels\\CustomLabels.labels-meta.xml"
+  },
+  "CustomLabels__Transaction_End_Date": {
+    "fullName": "Transaction_End_Date",
+    "type": "CustomLabels",
+    "metadataFilePath": "C:\\Users\\Priyanka\\OneDrive\\Documents\\ElixirPhase3\\aus-elixir-salesforce\\force-app\\main\\default\\labels\\CustomLabels.labels-meta.xml"
+  },
+  "CustomLabels__Transaction_Start_Date": {
+    "fullName": "Transaction_Start_Date",
+    "type": "CustomLabels",
+    "metadataFilePath": "C:\\Users\\Priyanka\\OneDrive\\Documents\\ElixirPhase3\\aus-elixir-salesforce\\force-app\\main\\default\\labels\\CustomLabels.labels-meta.xml"
+  },
+  "CustomLabels__True": {
+    "fullName": "True",
+    "type": "CustomLabels",
+    "metadataFilePath": "C:\\Users\\Priyanka\\OneDrive\\Documents\\ElixirPhase3\\aus-elixir-salesforce\\force-app\\main\\default\\labels\\CustomLabels.labels-meta.xml"
+  },
+  "CustomLabels__Trustee_Party": {
+    "fullName": "Trustee_Party",
+    "type": "CustomLabels",
+    "metadataFilePath": "C:\\Users\\Priyanka\\OneDrive\\Documents\\ElixirPhase3\\aus-elixir-salesforce\\force-app\\main\\default\\labels\\CustomLabels.labels-meta.xml"
+  },
+  "CustomLabels__UnableToFund": {
+    "fullName": "UnableToFund",
+    "type": "CustomLabels",
+    "metadataFilePath": "C:\\Users\\Priyanka\\OneDrive\\Documents\\ElixirPhase3\\aus-elixir-salesforce\\force-app\\main\\default\\labels\\CustomLabels.labels-meta.xml"
+  },
+  "CustomLabels__Upfront": {
+    "fullName": "Upfront",
+    "type": "CustomLabels",
+    "metadataFilePath": "C:\\Users\\Priyanka\\OneDrive\\Documents\\ElixirPhase3\\aus-elixir-salesforce\\force-app\\main\\default\\labels\\CustomLabels.labels-meta.xml"
+  },
+  "CustomLabels__Upfront_Trail": {
+    "fullName": "Upfront_Trail",
+    "type": "CustomLabels",
+    "metadataFilePath": "C:\\Users\\Priyanka\\OneDrive\\Documents\\ElixirPhase3\\aus-elixir-salesforce\\force-app\\main\\default\\labels\\CustomLabels.labels-meta.xml"
+  },
+  "CustomLabels__Vacant_Land_Residential": {
+    "fullName": "Vacant_Land_Residential",
+    "type": "CustomLabels",
+    "metadataFilePath": "C:\\Users\\Priyanka\\OneDrive\\Documents\\ElixirPhase3\\aus-elixir-salesforce\\force-app\\main\\default\\labels\\CustomLabels.labels-meta.xml"
+  },
+  "CustomLabels__WEEKLY": {
+    "fullName": "WEEKLY",
+    "type": "CustomLabels",
+    "metadataFilePath": "C:\\Users\\Priyanka\\OneDrive\\Documents\\ElixirPhase3\\aus-elixir-salesforce\\force-app\\main\\default\\labels\\CustomLabels.labels-meta.xml"
+  },
+  "CustomLabels__Yes": {
+    "fullName": "Yes",
+    "type": "CustomLabels",
+    "metadataFilePath": "C:\\Users\\Priyanka\\OneDrive\\Documents\\ElixirPhase3\\aus-elixir-salesforce\\force-app\\main\\default\\labels\\CustomLabels.labels-meta.xml"
+  },
+  "CustomLabels__notify_event_retry_count": {
+    "fullName": "notify_event_retry_count",
+    "type": "CustomLabels",
+    "metadataFilePath": "C:\\Users\\Priyanka\\OneDrive\\Documents\\ElixirPhase3\\aus-elixir-salesforce\\force-app\\main\\default\\labels\\CustomLabels.labels-meta.xml"
+  }
+}

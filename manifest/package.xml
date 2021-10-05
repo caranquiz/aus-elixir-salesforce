@@ -68,7 +68,14 @@
         <members>CustomLabels</members>
         <name>CustomLabels</name>
     </types>
-    <types>
+     <types>
+        <members>Additional_Appication_Fee_on_Loan_Size.Between_1_5mil_and_2mil</members>
+        <members>Additional_Appication_Fee_on_Loan_Size.Between_1mil_and_1_5mil</members>
+        <members>Additional_Appication_Fee_on_Loan_Size.Vacant_Land_Details_Limit</members>
+        <members>Application_Fee_LVR_Doc_Type_Fee_Table.Alt_Doc_Less_than_80_greater_than_70</members>
+        <members>Application_Fee_LVR_Doc_Type_Fee_Table.Alt_Doc_less_than_70</members>
+        <members>Application_Fee_LVR_Doc_Type_Fee_Table.Full_Doc_Less_than_80_greater_than_70</members>
+        <members>Application_Fee_LVR_Doc_Type_Fee_Table.Full_Doc_less_than_equal_to_70</members>
         <members>Statewise_MRF_and_Title_Insurace.ACT</members>
         <members>Statewise_MRF_and_Title_Insurace.NSW</members>
         <members>Statewise_MRF_and_Title_Insurace.NT</members>
