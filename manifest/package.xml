@@ -1,13 +1,141 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
     <types>
-        <members>SkuidValuesUpdateHelper</members>
-        <members>SkuidValuesUpdateHelperTest</members>
+        <members>ABAFileGeneratorController</members>
+        <members>CheckRules</members>
+        <members>CheckRulesTest</members>
+        <members>ConstantValues</members>
+        <members>DepositUpdateHelperTest</members>
+        <members>GenericUtilityTestHelper</members>
+        <members>LoanPaymentTransactionFileGenTest</members>
+        <members>UpdateFees</members>
+        <members>ValuationDateExpiryUpdateHelperTest</members>
+        <members>WarehouseFunding</members>
         <name>ApexClass</name>
     </types>
     <types>
-        <members>genesis__Applications__c.GSA_Contact_List__c</members>
+        <members>ABAFileGenerator</members>
+        <name>ApexPage</name>
+    </types>
+    <types>
+        <members>ApplicationTrigger</members>
+        <members>CollateralTrigger</members>
+        <members>UpdateValueDateTrigger</members>
+        <name>ApexTrigger</name>
+    </types>
+    <types>
+        <members>loan__Automated_Payment_Setup__c.APS_Approval_Process</members>
+        <name>ApprovalProcess</name>
+    </types>
+    <types>
+        <members>Additional_Appication_Fee_on_Loan_Size__mdt.Additional_Fee_for_Application_Fee__c</members>
+        <members>Additional_Appication_Fee_on_Loan_Size__mdt.Loan_Size_Lower_Limit__c</members>
+        <members>Additional_Appication_Fee_on_Loan_Size__mdt.Loan_Size_Upper_Limit__c</members>
+        <members>Application_Fee_LVR_Doc_Type_Fee_Table__mdt.Near_Prime_Amount__c</members>
+        <members>Application_Fee_LVR_Doc_Type_Fee_Table__mdt.Near_Prime_Plus_Amount__c</members>
+        <members>Application_Fee_LVR_Doc_Type_Fee_Table__mdt.Prime_Amount__c</members>
+        <members>Application_Fee_LVR_Doc_Type_Fee_Table__mdt.Specialist_Amount__c</members>
+        <members>Application_Fee_LVR_Doc_Type_Fee_Table__mdt.Specialist_Plus_Amount__c</members>
+        <members>Disable_Custom_Triggers__c.ApplicationTrigger__c</members>
+        <members>Disable_Custom_Triggers__c.CollateralTrigger__c</members>
+        <members>Statewise_MRF_and_Title_Insurace__mdt.Mortgage_Registration_Fee__c</members>
+        <members>Statewise_MRF_and_Title_Insurace__mdt.Stamp_Duty__c</members>
+        <members>Title_Insurance_Fee_Base_Premium_and_GST__mdt.Additional_Fee_per_Unit__c</members>
+        <members>Title_Insurance_Fee_Base_Premium_and_GST__mdt.Base_Premium__c</members>
+        <members>Title_Insurance_Fee_Base_Premium_and_GST__mdt.Base_Premiumum_Unit__c</members>
+        <members>Title_Insurance_Fee_Base_Premium_and_GST__mdt.GST__c</members>
+        <members>genesis__Applications__c.PEXA_Transaction_Fee__c</members>
+        <members>genesis__Applications__c.Reassess_Fails__c</members>
+        <members>loan__Automated_Payment_Setup__c.Active_Change__c</members>
+        <members>loan__Automated_Payment_Setup__c.Actual_Date_Change__c</members>
+        <members>loan__Automated_Payment_Setup__c.Amount_Type_Change__c</members>
+        <members>loan__Automated_Payment_Setup__c.Amount_Type_Split_Factor_Change__c</members>
+        <members>loan__Automated_Payment_Setup__c.Created_after_conversion__c</members>
+        <members>loan__Automated_Payment_Setup__c.Debit_Date_Change__c</members>
+        <members>loan__Automated_Payment_Setup__c.Debit_Day_Change__c</members>
+        <members>loan__Automated_Payment_Setup__c.Frequency_Change__c</members>
+        <members>loan__Automated_Payment_Setup__c.Manually_Updated_and_Submit_for_Approval__c</members>
+        <members>loan__Automated_Payment_Setup__c.Transaction_Amount_Change__c</members>
+        <members>loan__Automated_Payment_Setup__c.Type_Change__c</members>
         <name>CustomField</name>
+    </types>
+    <types>
+        <members>Each_Additional_Property_Title_Insurance_Fee</members>
+        <members>Each_Additional_Property_Title_Insurance_GST_Fee</members>
+        <name>CustomLabel</name>
+    </types>
+    <types>
+        <members>CustomLabels</members>
+        <name>CustomLabels</name>
+    </types>
+    <types>
+        <members>Statewise_MRF_and_Title_Insurace.ACT</members>
+        <members>Statewise_MRF_and_Title_Insurace.NSW</members>
+        <members>Statewise_MRF_and_Title_Insurace.NT</members>
+        <members>Statewise_MRF_and_Title_Insurace.QLD</members>
+        <members>Statewise_MRF_and_Title_Insurace.SA</members>
+        <members>Statewise_MRF_and_Title_Insurace.TAS</members>
+        <members>Statewise_MRF_and_Title_Insurace.VIC</members>
+        <members>Statewise_MRF_and_Title_Insurace.WA</members>
+        <members>Title_Insurance_Fee_Base_Premium_and_GST.Commercial_500000</members>
+        <members>Title_Insurance_Fee_Base_Premium_and_GST.Commercial_500001</members>
+        <members>Title_Insurance_Fee_Base_Premium_and_GST.Residential_1000001_and_2000000</members>
+        <members>Title_Insurance_Fee_Base_Premium_and_GST.Residential_2000001_and_3000000</members>
+        <members>Title_Insurance_Fee_Base_Premium_and_GST.Residential_3000001_and_4000000</members>
+        <members>Title_Insurance_Fee_Base_Premium_and_GST.Residential_600000</members>
+        <members>Title_Insurance_Fee_Base_Premium_and_GST.Residential_600001_and_1000000</members>
+        <name>CustomMetadata</name>
+    </types>
+    <types>
+        <members>Additional_Appication_Fee_on_Loan_Size__mdt</members>
+        <members>Application_Fee_LVR_Doc_Type_Fee_Table__mdt</members>
+        <members>Statewise_MRF_and_Title_Insurace__mdt</members>
+        <members>Title_Insurance_Fee_Base_Premium_and_GST__mdt</members>
+        <name>CustomObject</name>
+    </types>
+    <types>
+        <members>unfiled$public/APS_Approval_Email_Template</members>
+        <members>unfiled$public/APS_is_Approved_Email_Template</members>
+        <members>unfiled$public/APS_is_Rejected_Email_Template</members>
+        <name>EmailTemplate</name>
+    </types>
+    <types>
+        <members>APS_Approval_Process</members>
+        <name>Flow</name>
+    </types>
+    <types>
+        <members>Additional_Appication_Fee_on_Loan_Size__mdt-Additional Appication Fee on Loan Size Layout</members>
+        <members>Application_Fee_LVR_Doc_Type_Fee_Table__mdt-Application Fee LVR Doc Type Fee Table Layout</members>
+        <members>Statewise_MRF_and_Title_Insurace__mdt-Statewise MRF-Title Insurance Stamp Duty Layout</members>
+        <members>Title_Insurance_Fee_Base_Premium_and_GST__mdt-Title Insurance Fee Base Premium and GST Layout</members>
+        <members>loan__Automated_Payment_Setup__c-ReadOnlyPageLayout</members>
+        <name>Layout</name>
+    </types>
+    <types>
+        <members>loan__Automated_Payment_Setup__c.Lock_Approval_Record</members>
+        <name>RecordType</name>
+    </types>
+    <types>
+        <members>loan__Automated_Payment_Setup__c.APS_Active_Check</members>
+        <members>loan__Automated_Payment_Setup__c.Account_Type_Change_Fixed</members>
+        <members>loan__Automated_Payment_Setup__c.Amount_Type_Split_Factor_Change_Check</members>
+        <members>loan__Automated_Payment_Setup__c.Debit_Day_Change_must_not_be_null</members>
+        <members>loan__Automated_Payment_Setup__c.Frequency_Change_Check</members>
+        <members>loan__Automated_Payment_Setup__c.Non_Weekend_Change</members>
+        <members>loan__Automated_Payment_Setup__c.One_time_payment_change</members>
+        <members>loan__Automated_Payment_Setup__c.Transaction_Amount_Change_Check</members>
+        <members>loan__Automated_Payment_Setup__c.Transaction_Amount_Change_Fixed_Amount</members>
+        <members>loan__Automated_Payment_Setup__c.Transaction_Amount_Check</members>
+        <members>loan__Automated_Payment_Setup__c.Transaction_Amount_For_Fixed_Amount</members>
+        <members>loan__Automated_Payment_Setup__c.Type_Change_cannot_be_null</members>
+        <members>loan__Automated_Payment_Setup__c.biweekly_frequency_change</members>
+        <members>loan__Automated_Payment_Setup__c.weekly_frequency_change</members>
+        <name>ValidationRule</name>
+    </types>
+    <types>
+        <members>CL_Contract_Updation</members>
+        <members>Update_APS_Values</members>
+        <name>Flow</name>
     </types>
     <version>48.0</version>
 </Package>
