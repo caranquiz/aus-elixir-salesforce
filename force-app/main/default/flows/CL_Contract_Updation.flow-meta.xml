@@ -184,7 +184,7 @@
         </rules>
         <rules>
             <name>Current_Payment_amount_is_changed_or_Frequency_is_changed_to_Monthly</name>
-            <conditionLogic>and</conditionLogic>
+            <conditionLogic>(1 OR 3) AND 2</conditionLogic>
             <conditions>
                 <leftValueReference>Iterating_through_APS.loan__Frequency__c</leftValueReference>
                 <operator>EqualTo</operator>
@@ -197,6 +197,13 @@
                 <operator>EqualTo</operator>
                 <rightValue>
                     <stringValue>CURRENT PAYMENT AMOUNT</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>Iterating_through_APS.loan__Frequency__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Billing Frequency</stringValue>
                 </rightValue>
             </conditions>
             <connector>
@@ -287,6 +294,13 @@
             <operator>EqualTo</operator>
             <value>
                 <stringValue>Bi-weekly</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>loan__Frequency__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Billing Frequency</stringValue>
             </value>
         </filters>
         <getFirstRecordOnly>false</getFirstRecordOnly>

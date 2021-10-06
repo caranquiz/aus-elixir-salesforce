@@ -300,7 +300,7 @@
         </rules>
         <rules>
             <name>Current_Payment_amount_is_changed_or_Frequency_is_changed_to_Monthly</name>
-            <conditionLogic>2 AND 3 AND ( 1 OR 4 OR 5)</conditionLogic>
+            <conditionLogic>2 AND (3 OR 6) AND ( 1 OR 4 OR 5)</conditionLogic>
             <conditions>
                 <leftValueReference>APSisNew</leftValueReference>
                 <operator>EqualTo</operator>
@@ -334,6 +334,13 @@
                 <operator>IsChanged</operator>
                 <rightValue>
                     <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.loan__Frequency__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Billing Frequency</stringValue>
                 </rightValue>
             </conditions>
             <connector>
@@ -415,7 +422,7 @@
         </rules>
         <rules>
             <name>Frequency_Change_is_Changed_to_Monthly_When_Amount_Type_Change_is_Current</name>
-            <conditionLogic>1 AND 2 AND (3 OR 4 )</conditionLogic>
+            <conditionLogic>1 AND (2 OR 5) AND (3 OR 4 )</conditionLogic>
             <conditions>
                 <leftValueReference>$Record.Amount_Type_Change__c</leftValueReference>
                 <operator>EqualTo</operator>
@@ -442,6 +449,13 @@
                 <operator>IsChanged</operator>
                 <rightValue>
                     <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Frequency_Change__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Billing Frequency</stringValue>
                 </rightValue>
             </conditions>
             <connector>
