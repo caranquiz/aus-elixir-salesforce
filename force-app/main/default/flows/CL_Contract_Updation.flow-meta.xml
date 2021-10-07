@@ -303,6 +303,13 @@
                 <stringValue>Billing Frequency</stringValue>
             </value>
         </filters>
+        <filters>
+            <field>loan__Amount_Type__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>CURRENT PAYMENT AMOUNT</stringValue>
+            </value>
+        </filters>
         <getFirstRecordOnly>false</getFirstRecordOnly>
         <object>loan__Automated_Payment_Setup__c</object>
         <storeOutputAutomatically>true</storeOutputAutomatically>
