@@ -2,6 +2,6 @@
 <ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>One_time_payment_change</fullName>
     <active>true</active>
-    <errorConditionFormula>IF($Profile.Name == &apos;System Administrator&apos; || $Profile.Name == &apos;Orde Customer Community Plus User&apos; || $Profile.Name == &apos;Customer Community Plus User&apos; ,false, IF(ISNEW()== false &amp;&amp; ISPICKVAL( Type_Change__c , &quot;One Time&quot;)  &amp;&amp;  (  Amount_Type_Split_Factor_Change__c  &gt; 1 ), true,false ))</errorConditionFormula>
+    <errorConditionFormula>IF($Profile.Name == &apos;System Administrator&apos; || $Profile.Name == &apos;Orde Customer Community Login User&apos; || $Profile.Name == &apos;Customer Community Login User&apos; ,false, IF(ISNEW()== false &amp;&amp; ISPICKVAL( Type_Change__c , &quot;One Time&quot;)  &amp;&amp;  (  Amount_Type_Split_Factor_Change__c  &gt; 1 ), true,false ))</errorConditionFormula>
     <errorMessage>If type change is one time then split factor must be 1</errorMessage>
 </ValidationRule>

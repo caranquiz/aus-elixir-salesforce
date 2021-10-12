@@ -167,7 +167,7 @@ Please approve the changes. Thanks!</stringValue>
             <connector>
                 <targetReference>myRule_3_A1</targetReference>
             </connector>
-            <label>APS is triggered by staff members?</label>
+            <label>APS is triggered by staff members or portal user?</label>
         </rules>
     </decisions>
     <decisions>
@@ -239,23 +239,23 @@ Please approve the changes. Thanks!</stringValue>
         <processMetadataValues>
             <name>originalFormula</name>
             <value>
-                <stringValue>IF(($Profile.Name != &apos;System Administrator&apos; &amp;&amp; $Profile.Name != &apos;Orde Customer Community Plus User&apos;) &amp;&amp; (ISNEW()==true &amp;&amp; [loan__Automated_Payment_Setup__c].Created_after_conversion__c ==false) ,TRUE,FALSE)</stringValue>
+                <stringValue>IF(($Profile.Name != &apos;System Administrator&apos; &amp;&amp; $Profile.Name != &apos;Orde Customer Community Login User&apos;) &amp;&amp; (ISNEW()==true &amp;&amp; [loan__Automated_Payment_Setup__c].Created_after_conversion__c ==false) ,TRUE,FALSE)</stringValue>
             </value>
         </processMetadataValues>
         <name>formula_myRule_1</name>
         <dataType>Boolean</dataType>
-        <expression>IF(({!$Profile.Name} != &apos;System Administrator&apos; &amp;&amp; {!$Profile.Name} != &apos;Orde Customer Community Plus User&apos;) &amp;&amp; (ISNEW()==true &amp;&amp; {!myVariable_current.Created_after_conversion__c} ==false) ,TRUE,FALSE)</expression>
+        <expression>IF(({!$Profile.Name} != &apos;System Administrator&apos; &amp;&amp; {!$Profile.Name} != &apos;Orde Customer Community Login User&apos;) &amp;&amp; (ISNEW()==true &amp;&amp; {!myVariable_current.Created_after_conversion__c} ==false) ,TRUE,FALSE)</expression>
     </formulas>
     <formulas>
         <processMetadataValues>
             <name>originalFormula</name>
             <value>
-                <stringValue>IF(($Profile.Name != &apos;System Administrator&apos; &amp;&amp; $Profile.Name != &apos;Orde Customer Community Plus User&apos;) &amp;&amp; ((ISCHANGED([loan__Automated_Payment_Setup__c].Active_Change__c) == true || ISCHANGED([loan__Automated_Payment_Setup__c].Actual_Date_Change__c) == true || ISCHANGED([loan__Automated_Payment_Setup__c].Amount_Type_Change__c) == true  || ISCHANGED([loan__Automated_Payment_Setup__c].Amount_Type_Split_Factor_Change__c) == true  || ISCHANGED([loan__Automated_Payment_Setup__c].Debit_Date_Change__c) == true  || ISCHANGED([loan__Automated_Payment_Setup__c].Debit_Day_Change__c) == true  || ISCHANGED([loan__Automated_Payment_Setup__c].Frequency_Change__c) == true  || ISCHANGED([loan__Automated_Payment_Setup__c].Transaction_Amount_Change__c) == true  || ISCHANGED([loan__Automated_Payment_Setup__c].Type_Change__c) == true)), TRUE, FALSE) </stringValue>
+                <stringValue>IF(($Profile.Name != &apos;System Administrator&apos; &amp;&amp; $Profile.Name != &apos;Orde Customer Community Login User&apos;) &amp;&amp; ((ISCHANGED([loan__Automated_Payment_Setup__c].Active_Change__c) == true || ISCHANGED([loan__Automated_Payment_Setup__c].Actual_Date_Change__c) == true || ISCHANGED([loan__Automated_Payment_Setup__c].Amount_Type_Change__c) == true  || ISCHANGED([loan__Automated_Payment_Setup__c].Amount_Type_Split_Factor_Change__c) == true  || ISCHANGED([loan__Automated_Payment_Setup__c].Debit_Date_Change__c) == true  || ISCHANGED([loan__Automated_Payment_Setup__c].Debit_Day_Change__c) == true  || ISCHANGED([loan__Automated_Payment_Setup__c].Frequency_Change__c) == true  || ISCHANGED([loan__Automated_Payment_Setup__c].Transaction_Amount_Change__c) == true  || ISCHANGED([loan__Automated_Payment_Setup__c].Type_Change__c) == true)), TRUE, FALSE) </stringValue>
             </value>
         </processMetadataValues>
         <name>formula_myRule_3</name>
         <dataType>Boolean</dataType>
-        <expression>IF(({!$Profile.Name} != &apos;System Administrator&apos; &amp;&amp; {!$Profile.Name} != &apos;Orde Customer Community Plus User&apos;) &amp;&amp; ((ISCHANGED({!myVariable_current.Active_Change__c}) == true || ISCHANGED({!myVariable_current.Actual_Date_Change__c}) == true || ISCHANGED({!myVariable_current.Amount_Type_Change__c}) == true  || ISCHANGED({!myVariable_current.Amount_Type_Split_Factor_Change__c}) == true  || ISCHANGED({!myVariable_current.Debit_Date_Change__c}) == true  || ISCHANGED({!myVariable_current.Debit_Day_Change__c}) == true  || ISCHANGED({!myVariable_current.Frequency_Change__c}) == true  || ISCHANGED({!myVariable_current.Transaction_Amount_Change__c}) == true  || ISCHANGED({!myVariable_current.Type_Change__c}) == true)), TRUE, FALSE)</expression>
+        <expression>IF(({!$Profile.Name} != &apos;System Administrator&apos; &amp;&amp; {!$Profile.Name} != &apos;Orde Customer Community Login User&apos;) &amp;&amp; ((ISCHANGED({!myVariable_current.Active_Change__c}) == true || ISCHANGED({!myVariable_current.Actual_Date_Change__c}) == true || ISCHANGED({!myVariable_current.Amount_Type_Change__c}) == true  || ISCHANGED({!myVariable_current.Amount_Type_Split_Factor_Change__c}) == true  || ISCHANGED({!myVariable_current.Debit_Date_Change__c}) == true  || ISCHANGED({!myVariable_current.Debit_Day_Change__c}) == true  || ISCHANGED({!myVariable_current.Frequency_Change__c}) == true  || ISCHANGED({!myVariable_current.Transaction_Amount_Change__c}) == true  || ISCHANGED({!myVariable_current.Type_Change__c}) == true)), TRUE, FALSE)</expression>
     </formulas>
     <formulas>
         <processMetadataValues>
@@ -279,7 +279,7 @@ Please approve the changes. Thanks!</stringValue>
         <dataType>Boolean</dataType>
         <expression>IF({!myVariable_old.Manually_Updated_and_Submit_for_Approval__c}  == FALSE &amp;&amp; ISCHANGED({!myVariable_old.Manually_Updated_and_Submit_for_Approval__c}) == TRUE, TRUE, FALSE)</expression>
     </formulas>
-    <interviewLabel>APS_Approval_Process-26_InterviewLabel</interviewLabel>
+    <interviewLabel>APS_Approval_Process-3_InterviewLabel</interviewLabel>
     <label>APS Approval Process</label>
     <processMetadataValues>
         <name>ObjectType</name>
@@ -373,7 +373,7 @@ Please approve the changes. Thanks!</stringValue>
             <processMetadataValues>
                 <name>leftHandSideReferenceTo</name>
                 <value>
-                    <stringValue/>
+                    <stringValue></stringValue>
                 </value>
             </processMetadataValues>
             <processMetadataValues>
@@ -409,7 +409,7 @@ Please approve the changes. Thanks!</stringValue>
             <processMetadataValues>
                 <name>leftHandSideReferenceTo</name>
                 <value>
-                    <stringValue/>
+                    <stringValue></stringValue>
                 </value>
             </processMetadataValues>
             <processMetadataValues>
@@ -445,7 +445,7 @@ Please approve the changes. Thanks!</stringValue>
             <processMetadataValues>
                 <name>leftHandSideReferenceTo</name>
                 <value>
-                    <stringValue/>
+                    <stringValue></stringValue>
                 </value>
             </processMetadataValues>
             <processMetadataValues>
@@ -481,7 +481,7 @@ Please approve the changes. Thanks!</stringValue>
             <processMetadataValues>
                 <name>leftHandSideReferenceTo</name>
                 <value>
-                    <stringValue/>
+                    <stringValue></stringValue>
                 </value>
             </processMetadataValues>
             <processMetadataValues>
@@ -517,7 +517,7 @@ Please approve the changes. Thanks!</stringValue>
             <processMetadataValues>
                 <name>leftHandSideReferenceTo</name>
                 <value>
-                    <stringValue/>
+                    <stringValue></stringValue>
                 </value>
             </processMetadataValues>
             <processMetadataValues>
@@ -553,7 +553,7 @@ Please approve the changes. Thanks!</stringValue>
             <processMetadataValues>
                 <name>leftHandSideReferenceTo</name>
                 <value>
-                    <stringValue/>
+                    <stringValue></stringValue>
                 </value>
             </processMetadataValues>
             <processMetadataValues>
@@ -589,7 +589,7 @@ Please approve the changes. Thanks!</stringValue>
             <processMetadataValues>
                 <name>leftHandSideReferenceTo</name>
                 <value>
-                    <stringValue/>
+                    <stringValue></stringValue>
                 </value>
             </processMetadataValues>
             <processMetadataValues>
@@ -625,7 +625,7 @@ Please approve the changes. Thanks!</stringValue>
             <processMetadataValues>
                 <name>leftHandSideReferenceTo</name>
                 <value>
-                    <stringValue/>
+                    <stringValue></stringValue>
                 </value>
             </processMetadataValues>
             <processMetadataValues>
@@ -661,7 +661,7 @@ Please approve the changes. Thanks!</stringValue>
             <processMetadataValues>
                 <name>leftHandSideReferenceTo</name>
                 <value>
-                    <stringValue/>
+                    <stringValue></stringValue>
                 </value>
             </processMetadataValues>
             <processMetadataValues>
@@ -741,7 +741,7 @@ Please approve the changes. Thanks!</stringValue>
             <processMetadataValues>
                 <name>leftHandSideReferenceTo</name>
                 <value>
-                    <stringValue/>
+                    <stringValue></stringValue>
                 </value>
             </processMetadataValues>
             <processMetadataValues>
@@ -821,7 +821,7 @@ Please approve the changes. Thanks!</stringValue>
             <processMetadataValues>
                 <name>leftHandSideReferenceTo</name>
                 <value>
-                    <stringValue/>
+                    <stringValue></stringValue>
                 </value>
             </processMetadataValues>
             <processMetadataValues>
@@ -901,7 +901,7 @@ Please approve the changes. Thanks!</stringValue>
             <processMetadataValues>
                 <name>leftHandSideReferenceTo</name>
                 <value>
-                    <stringValue/>
+                    <stringValue></stringValue>
                 </value>
             </processMetadataValues>
             <processMetadataValues>
@@ -937,7 +937,7 @@ Please approve the changes. Thanks!</stringValue>
             <processMetadataValues>
                 <name>leftHandSideReferenceTo</name>
                 <value>
-                    <stringValue/>
+                    <stringValue></stringValue>
                 </value>
             </processMetadataValues>
             <processMetadataValues>
@@ -973,7 +973,7 @@ Please approve the changes. Thanks!</stringValue>
             <processMetadataValues>
                 <name>leftHandSideReferenceTo</name>
                 <value>
-                    <stringValue/>
+                    <stringValue></stringValue>
                 </value>
             </processMetadataValues>
             <processMetadataValues>
@@ -1009,7 +1009,7 @@ Please approve the changes. Thanks!</stringValue>
             <processMetadataValues>
                 <name>leftHandSideReferenceTo</name>
                 <value>
-                    <stringValue/>
+                    <stringValue></stringValue>
                 </value>
             </processMetadataValues>
             <processMetadataValues>
@@ -1045,7 +1045,7 @@ Please approve the changes. Thanks!</stringValue>
             <processMetadataValues>
                 <name>leftHandSideReferenceTo</name>
                 <value>
-                    <stringValue/>
+                    <stringValue></stringValue>
                 </value>
             </processMetadataValues>
             <processMetadataValues>
@@ -1081,7 +1081,7 @@ Please approve the changes. Thanks!</stringValue>
             <processMetadataValues>
                 <name>leftHandSideReferenceTo</name>
                 <value>
-                    <stringValue/>
+                    <stringValue></stringValue>
                 </value>
             </processMetadataValues>
             <processMetadataValues>
@@ -1117,7 +1117,7 @@ Please approve the changes. Thanks!</stringValue>
             <processMetadataValues>
                 <name>leftHandSideReferenceTo</name>
                 <value>
-                    <stringValue/>
+                    <stringValue></stringValue>
                 </value>
             </processMetadataValues>
             <processMetadataValues>
@@ -1153,7 +1153,7 @@ Please approve the changes. Thanks!</stringValue>
             <processMetadataValues>
                 <name>leftHandSideReferenceTo</name>
                 <value>
-                    <stringValue/>
+                    <stringValue></stringValue>
                 </value>
             </processMetadataValues>
             <processMetadataValues>
@@ -1189,7 +1189,7 @@ Please approve the changes. Thanks!</stringValue>
             <processMetadataValues>
                 <name>leftHandSideReferenceTo</name>
                 <value>
-                    <stringValue/>
+                    <stringValue></stringValue>
                 </value>
             </processMetadataValues>
             <processMetadataValues>
