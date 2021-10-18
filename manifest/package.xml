@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
     <types>
-        <members>CL_Contract_Updation</members>
-        <members>Update_APS_Values</members>
-        <name>Flow</name>
+        <members>loan__Loan_Account__c.Pending_Discharge__c</members>
+        <members>loan__Loan_Account__c.Pending_Discharge_Date__c</members>
+        <members>loan__Loan_Account__c.Approx_Funds_Being_Received__c</members>
+        <name>CustomField</name>
     </types>
     <version>48.0</version>
 </Package>
