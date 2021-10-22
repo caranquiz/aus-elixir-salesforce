@@ -5,6 +5,10 @@
         <name>ApexClass</name>
     </types>
     <types>
+        <members>CollateralTrigger</members>
+        <name>ApexTrigger</name>
+    </types>
+    <types>
         <members>Checklist_Detail__c.Party_Name__c</members>
         <members>loan__Loan_Account__c.Approx_Funds_Being_Received__c</members>
         <members>loan__Loan_Account__c.Pending_Discharge_Date__c</members>

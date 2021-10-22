@@ -36,7 +36,7 @@ trigger CollateralTrigger on clcommon__Collateral__c (After update) {
                         collStateIds.add(collateral.Id);
                         collprimary.add(collateral.Id);
                     }
-                    if(collateral.Primary_Usage__c!= oldcollateral.Primary_Usage__c){
+                    if((collateral.Primary_Usage__c!= oldcollateral.Primary_Usage__c) || (collateral.Primary_Security__c != oldcollateral.Primary_Security__c)){
                         collprimary.add(collateral.Id);
                     }
                     if(collateral.clcommon__Status__c!= oldcollateral.clcommon__Status__c){

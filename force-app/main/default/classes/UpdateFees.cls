@@ -252,7 +252,8 @@ global class UpdateFees{
                             Decimal.ValueOf(System.Label.Each_Additional_Property_Title_Insurance_GST_Fee))*(size-1);
                         }
                     }
-                    if(mortgageFeeMap.get(appCollateral.genesis__Collateral__r.clcommon__State__c) != NULL && appCollateral.genesis__Collateral__r.Primary_Security__c=='Yes'){
+                    if(mortgageFeeMap.get(appCollateral.genesis__Collateral__r.clcommon__State__c) != NULL 
+                            && appCollateral.genesis__Collateral__r.Primary_Security__c=='Yes' && eachApp.Title_Insurance_Fee__c!=NULL){
                         stampDuty=(eachApp.Title_Insurance_Fee__c)*(mortgageFeeMap.get(appCollateral.genesis__Collateral__r.clcommon__State__c));
                         
                     }
