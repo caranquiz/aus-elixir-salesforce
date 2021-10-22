@@ -1151,4 +1151,9 @@ global class ConstantValues {
   public static final String DAG_NAME='Generate LPTs, create bank files and run payment clearing job';
   public static final String APPROVAL_PENDING=' is Pending for Approval';
 
+  //WarehouseFunding
+  public static final String PRINCIPAL_INTEREST='Principal and Interest';
+  public static final String INTEREST_ONLY_REVERTING='Interest Only reverting to Principal and Interest';
+  public static final String INTEREST_ONLY='Interest Only';
+  
 }

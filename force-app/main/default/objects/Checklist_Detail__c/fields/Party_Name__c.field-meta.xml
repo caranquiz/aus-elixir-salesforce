@@ -2,7 +2,7 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Party_Name__c</fullName>
     <externalId>false</externalId>
-    <formula>IF(ISNULL(Party__c), IF(ISNULL(Employment_Information__c), IF(ISNULL(Income__c), &apos;&apos;, Income__r.Party__r.genesis__Party_Name__c), Employment_Information__r.Party__r.genesis__Party_Name__c), Party__r.genesis__Party_Name__c)</formula>
+    <formula>IF(ISNULL(Party__c), IF(ISNULL(Employment_Information__c), IF(ISNULL(Income__c), &apos;&apos;, Income__r.Party__r.genesis__Party_Name__c), Employment_Information__r.Party__r.genesis__Party_Name__c),  IF(  Party__r.clcommon__Account__r.IsPersonAccount == True,  Party__r.clcommon__Account__r.FirstName + &apos; &apos; +  Party__r.clcommon__Account__r.LastName ,Party__r.genesis__Party_Name__c ))</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
     <label>Party Name</label>
     <required>false</required>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Pending_Discharge_Validation</fullName>
+    <active>true</active>
+    <errorConditionFormula>IF( Pending_Discharge__c == TRUE &amp;&amp; ISNULL(Pending_Discharge_Date__c),TRUE ,FALSE)</errorConditionFormula>
+    <errorMessage>Please provide pending discharge date!</errorMessage>
+</ValidationRule>
