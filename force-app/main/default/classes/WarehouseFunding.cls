@@ -554,19 +554,18 @@ global class WarehouseFunding {
       }
       List<loan__Automated_Payment_Setup__c> objAPSList=[SELECT id,Created_after_conversion__c,Debit_Date_Change__c,loan__Debit_Date__c FROM loan__Automated_Payment_Setup__c WHERE id=:pmtSetup.id]  ;
       for(loan__Automated_Payment_Setup__c objAPS:objAPSList){
-        //objAPS.Created_after_conversion__c=False;
         objAPS.Debit_Date_Change__c=objAPS.loan__Debit_Date__c;
       }
 
       if(objAPSList.size()>0){
         update objAPSList;
       }
-      List<loan__Automated_Payment_Setup__c> objAPSList2=[SELECT id,Created_after_conversion__c FROM loan__Automated_Payment_Setup__c WHERE id=:pmtSetup.id]  ;
-      for(loan__Automated_Payment_Setup__c objAPS:objAPSList2){
+      //due to flow (APS Approval Process) is triggered that's why 'Created_after_conversion__c' is updated at the end
+      for(loan__Automated_Payment_Setup__c objAPS:objAPSList){
         objAPS.Created_after_conversion__c=False;
       }
-      if(objAPSList2.size()>0){
-        update objAPSList2;
+      if(objAPSList.size()>0){
+        update objAPSList;
       }
       if (loanRec != null) {
         update loanRec;
