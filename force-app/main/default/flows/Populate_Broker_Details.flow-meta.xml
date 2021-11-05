@@ -326,7 +326,7 @@ ISCHANGED([clcommon__Party__c].HEM__c)</stringValue>
         <expression>ISCHANGED({!myVariable_current.Total_HEM_Monthly_Living_Expenses__c} ) || ISCHANGED({!myVariable_current.Total_Non_HEM_Living_Expenses__c}) ||
 ISCHANGED({!myVariable_current.HEM__c})</expression>
     </formulas>
-    <interviewLabel>Populate_Broker_Details-5_InterviewLabel</interviewLabel>
+    <interviewLabel>Populate_Broker_Details-7_InterviewLabel</interviewLabel>
     <label>Populate Broker Details</label>
     <processMetadataValues>
         <name>ObjectType</name>
@@ -468,6 +468,42 @@ ISCHANGED({!myVariable_current.HEM__c})</expression>
             <field>Commission_Paid_To__c</field>
             <value>
                 <elementReference>myVariable_current.clcommon__Account__r.Commission_Paid_To__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>Number</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Settlement Fee (%)</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideReferenceTo</name>
+                <value>
+                    <stringValue></stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Reference</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>Settlement_Fee__c</field>
+            <value>
+                <elementReference>myVariable_current.clcommon__Account__r.Settlement_Fee_Percentage__c</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
