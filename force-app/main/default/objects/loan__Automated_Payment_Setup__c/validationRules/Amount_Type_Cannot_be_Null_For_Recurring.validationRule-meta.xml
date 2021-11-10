@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Amount_Type_Cannot_be_Null_For_Recurring</fullName>
+    <active>true</active>
+    <errorConditionFormula>IF(ISPICKVAL(  loan__Type__c , &apos;RECURRING&apos;)  &amp;&amp;  (ISBLANK( TEXT( loan__Amount_Type__c ) )  ||  ISNULL( TEXT( loan__Amount_Type__c ) ) ),True, False)</errorConditionFormula>
+    <errorMessage>Amount Type must not be null</errorMessage>
+</ValidationRule>

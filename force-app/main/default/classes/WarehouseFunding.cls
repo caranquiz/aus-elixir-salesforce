@@ -552,7 +552,7 @@ global class WarehouseFunding {
       if (pmtSetup != null) {
         insert pmtSetup;
       }
-      List<loan__Automated_Payment_Setup__c> objAPSList=[SELECT id,Created_after_conversion__c,Debit_Date_Change__c,loan__Debit_Date__c FROM loan__Automated_Payment_Setup__c WHERE id=:pmtSetup.id]  ;
+      /*List<loan__Automated_Payment_Setup__c> objAPSList=[SELECT id,Created_after_conversion__c,Debit_Date_Change__c,loan__Debit_Date__c FROM loan__Automated_Payment_Setup__c WHERE id=:pmtSetup.id]  ;
       for(loan__Automated_Payment_Setup__c objAPS:objAPSList){
         objAPS.Debit_Date_Change__c=objAPS.loan__Debit_Date__c;
       }
@@ -566,7 +566,7 @@ global class WarehouseFunding {
       }
       if(objAPSList.size()>0){
         update objAPSList;
-      }
+      }*/
       if (loanRec != null) {
         update loanRec;
       }

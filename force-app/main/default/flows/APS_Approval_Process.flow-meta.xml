@@ -73,14 +73,14 @@ Please approve the changes. Thanks!</stringValue>
                 <stringValue>currentUser</stringValue>
             </value>
         </processMetadataValues>
-        <name>myRule_3_A1</name>
+        <name>myRule_5_A1</name>
         <label>Submit for APS Approval</label>
-        <locationX>300</locationX>
+        <locationX>500</locationX>
         <locationY>200</locationY>
         <actionName>submit</actionName>
         <actionType>submit</actionType>
         <connector>
-            <targetReference>myRule_3_A2</targetReference>
+            <targetReference>myRule_5_A2</targetReference>
         </connector>
         <inputParameters>
             <name>objectId</name>
@@ -167,7 +167,7 @@ Please approve the changes. Thanks!</stringValue>
             <connector>
                 <targetReference>myRule_3_A1</targetReference>
             </connector>
-            <label>APS is triggered by staff members or portal user?</label>
+            <label>APS Created After Conversion</label>
         </rules>
     </decisions>
     <decisions>
@@ -181,6 +181,9 @@ Please approve the changes. Thanks!</stringValue>
         <label>myDecision4</label>
         <locationX>50</locationX>
         <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>myDecision6</targetReference>
+        </defaultConnector>
         <defaultConnectorLabel>default</defaultConnectorLabel>
         <rules>
             <name>myRule_5</name>
@@ -193,22 +196,50 @@ Please approve the changes. Thanks!</stringValue>
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>myRule_5_pmetdec</targetReference>
+                <targetReference>myRule_5_A1</targetReference>
+            </connector>
+            <label>APS is triggered by staff members?</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <processMetadataValues>
+            <name>index</name>
+            <value>
+                <numberValue>3.0</numberValue>
+            </value>
+        </processMetadataValues>
+        <name>myDecision6</name>
+        <label>myDecision6</label>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <defaultConnectorLabel>default</defaultConnectorLabel>
+        <rules>
+            <name>myRule_7</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>formula_myRule_7</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>myRule_7_pmetdec</targetReference>
             </connector>
             <label>APS Approved?</label>
         </rules>
     </decisions>
     <decisions>
-        <name>myRule_5_pmetdec</name>
+        <name>myRule_7_pmetdec</name>
         <label>Previously Met Decision</label>
-        <locationX>500</locationX>
+        <locationX>700</locationX>
         <locationY>100</locationY>
         <defaultConnector>
-            <targetReference>myRule_5_A1</targetReference>
+            <targetReference>myRule_7_A1</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>Not Previously Met</defaultConnectorLabel>
         <rules>
-            <name>myRule_5_pmetnullrule</name>
+            <name>myRule_7_pmetnullrule</name>
             <conditionLogic>or</conditionLogic>
             <conditions>
                 <leftValueReference>myVariable_old</leftValueReference>
@@ -218,15 +249,15 @@ Please approve the changes. Thanks!</stringValue>
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>myRule_5_A1</targetReference>
+                <targetReference>myRule_7_A1</targetReference>
             </connector>
             <label>Previously Met - Null</label>
         </rules>
         <rules>
-            <name>myRule_5_pmetrule</name>
+            <name>myRule_7_pmetrule</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
-                <leftValueReference>formula_myRule_5_pmetrule</leftValueReference>
+                <leftValueReference>formula_myRule_7_pmetrule</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
                     <booleanValue>true</booleanValue>
@@ -250,12 +281,23 @@ Please approve the changes. Thanks!</stringValue>
         <processMetadataValues>
             <name>originalFormula</name>
             <value>
-                <stringValue>IF(($Profile.Name != &apos;System Administrator&apos; &amp;&amp; $Profile.Name != &apos;Orde Customer Community Login User&apos;) &amp;&amp; ((ISCHANGED([loan__Automated_Payment_Setup__c].Active_Change__c) == true || ISCHANGED([loan__Automated_Payment_Setup__c].Actual_Date_Change__c) == true || ISCHANGED([loan__Automated_Payment_Setup__c].Amount_Type_Change__c) == true  || ISCHANGED([loan__Automated_Payment_Setup__c].Amount_Type_Split_Factor_Change__c) == true  || ISCHANGED([loan__Automated_Payment_Setup__c].Debit_Date_Change__c) == true  || ISCHANGED([loan__Automated_Payment_Setup__c].Debit_Day_Change__c) == true  || ISCHANGED([loan__Automated_Payment_Setup__c].Frequency_Change__c) == true  || ISCHANGED([loan__Automated_Payment_Setup__c].Transaction_Amount_Change__c) == true  || ISCHANGED([loan__Automated_Payment_Setup__c].Type_Change__c) == true)), TRUE, FALSE) </stringValue>
+                <stringValue>ISNEW() == True &amp;&amp;  [loan__Automated_Payment_Setup__c].Created_after_conversion__c  == true</stringValue>
             </value>
         </processMetadataValues>
         <name>formula_myRule_3</name>
         <dataType>Boolean</dataType>
-        <expression>IF(({!$Profile.Name} != &apos;System Administrator&apos; &amp;&amp; {!$Profile.Name} != &apos;Orde Customer Community Login User&apos;) &amp;&amp; ((ISCHANGED({!myVariable_current.Active_Change__c}) == true || ISCHANGED({!myVariable_current.Actual_Date_Change__c}) == true || ISCHANGED({!myVariable_current.Amount_Type_Change__c}) == true  || ISCHANGED({!myVariable_current.Amount_Type_Split_Factor_Change__c}) == true  || ISCHANGED({!myVariable_current.Debit_Date_Change__c}) == true  || ISCHANGED({!myVariable_current.Debit_Day_Change__c}) == true  || ISCHANGED({!myVariable_current.Frequency_Change__c}) == true  || ISCHANGED({!myVariable_current.Transaction_Amount_Change__c}) == true  || ISCHANGED({!myVariable_current.Type_Change__c}) == true)), TRUE, FALSE)</expression>
+        <expression>ISNEW() == True &amp;&amp;  {!myVariable_current.Created_after_conversion__c}  == true</expression>
+    </formulas>
+    <formulas>
+        <processMetadataValues>
+            <name>originalFormula</name>
+            <value>
+                <stringValue>IF(($Profile.Name != &apos;System Administrator&apos; &amp;&amp; $Profile.Name != &apos;Orde Customer Community Login User&apos;) &amp;&amp;  [loan__Automated_Payment_Setup__c].Created_after_conversion__c  == false &amp;&amp; ((ISCHANGED([loan__Automated_Payment_Setup__c].Active_Change__c) == true || ISCHANGED([loan__Automated_Payment_Setup__c].Actual_Date_Change__c) == true || ISCHANGED([loan__Automated_Payment_Setup__c].Amount_Type_Change__c) == true  || ISCHANGED([loan__Automated_Payment_Setup__c].Amount_Type_Split_Factor_Change__c) == true  || ISCHANGED([loan__Automated_Payment_Setup__c].Debit_Date_Change__c) == true  || ISCHANGED([loan__Automated_Payment_Setup__c].Debit_Day_Change__c) == true  || ISCHANGED([loan__Automated_Payment_Setup__c].Frequency_Change__c) == true  || ISCHANGED([loan__Automated_Payment_Setup__c].Transaction_Amount_Change__c) == true  || ISCHANGED([loan__Automated_Payment_Setup__c].Type_Change__c) == true)), TRUE, FALSE) </stringValue>
+            </value>
+        </processMetadataValues>
+        <name>formula_myRule_5</name>
+        <dataType>Boolean</dataType>
+        <expression>IF(({!$Profile.Name} != &apos;System Administrator&apos; &amp;&amp; {!$Profile.Name} != &apos;Orde Customer Community Login User&apos;) &amp;&amp;  {!myVariable_current.Created_after_conversion__c}  == false &amp;&amp; ((ISCHANGED({!myVariable_current.Active_Change__c}) == true || ISCHANGED({!myVariable_current.Actual_Date_Change__c}) == true || ISCHANGED({!myVariable_current.Amount_Type_Change__c}) == true  || ISCHANGED({!myVariable_current.Amount_Type_Split_Factor_Change__c}) == true  || ISCHANGED({!myVariable_current.Debit_Date_Change__c}) == true  || ISCHANGED({!myVariable_current.Debit_Day_Change__c}) == true  || ISCHANGED({!myVariable_current.Frequency_Change__c}) == true  || ISCHANGED({!myVariable_current.Transaction_Amount_Change__c}) == true  || ISCHANGED({!myVariable_current.Type_Change__c}) == true)), TRUE, FALSE)</expression>
     </formulas>
     <formulas>
         <processMetadataValues>
@@ -264,7 +306,7 @@ Please approve the changes. Thanks!</stringValue>
                 <stringValue>IF([loan__Automated_Payment_Setup__c].Manually_Updated_and_Submit_for_Approval__c  == FALSE &amp;&amp; ISCHANGED([loan__Automated_Payment_Setup__c].Manually_Updated_and_Submit_for_Approval__c) == TRUE, TRUE, FALSE) </stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_myRule_5</name>
+        <name>formula_myRule_7</name>
         <dataType>Boolean</dataType>
         <expression>IF({!myVariable_current.Manually_Updated_and_Submit_for_Approval__c}  == FALSE &amp;&amp; ISCHANGED({!myVariable_current.Manually_Updated_and_Submit_for_Approval__c}) == TRUE, TRUE, FALSE)</expression>
     </formulas>
@@ -275,11 +317,11 @@ Please approve the changes. Thanks!</stringValue>
                 <stringValue>IF([loan__Automated_Payment_Setup__c].Manually_Updated_and_Submit_for_Approval__c  == FALSE &amp;&amp; ISCHANGED([loan__Automated_Payment_Setup__c].Manually_Updated_and_Submit_for_Approval__c) == TRUE, TRUE, FALSE) </stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_myRule_5_pmetrule</name>
+        <name>formula_myRule_7_pmetrule</name>
         <dataType>Boolean</dataType>
         <expression>IF({!myVariable_old.Manually_Updated_and_Submit_for_Approval__c}  == FALSE &amp;&amp; ISCHANGED({!myVariable_old.Manually_Updated_and_Submit_for_Approval__c}) == TRUE, TRUE, FALSE)</expression>
     </formulas>
-    <interviewLabel>APS_Approval_Process-3_InterviewLabel</interviewLabel>
+    <interviewLabel>APS_Approval_Process-8_InterviewLabel</interviewLabel>
     <label>APS Approval Process</label>
     <processMetadataValues>
         <name>ObjectType</name>
@@ -782,9 +824,161 @@ Please approve the changes. Thanks!</stringValue>
         <processMetadataValues>
             <name>referenceTargetField</name>
         </processMetadataValues>
-        <name>myRule_3_A2</name>
-        <label>Update Manually Update Flag</label>
+        <name>myRule_3_A1</name>
+        <label>Update Record Type</label>
         <locationX>300</locationX>
+        <locationY>200</locationY>
+        <filters>
+            <processMetadataValues>
+                <name>implicit</name>
+                <value>
+                    <booleanValue>true</booleanValue>
+                </value>
+            </processMetadataValues>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>myVariable_current.Id</elementReference>
+            </value>
+        </filters>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>Boolean</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Created after conversion</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideReferenceTo</name>
+                <value>
+                    <stringValue></stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Boolean</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>Created_after_conversion__c</field>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>Date</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Debit Date Change</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideReferenceTo</name>
+                <value>
+                    <stringValue></stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Reference</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>Debit_Date_Change__c</field>
+            <value>
+                <elementReference>myVariable_current.loan__Debit_Date__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>ID</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Record Type ID</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideReferenceTo</name>
+                <value>
+                    <stringValue>RecordType</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>ID</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>RecordTypeId</field>
+            <value>
+                <stringValue>0122v000001taqW</stringValue>
+            </value>
+        </inputAssignments>
+        <object>loan__Automated_Payment_Setup__c</object>
+    </recordUpdates>
+    <recordUpdates>
+        <processMetadataValues>
+            <name>evaluationType</name>
+            <value>
+                <stringValue>always</stringValue>
+            </value>
+        </processMetadataValues>
+        <processMetadataValues>
+            <name>extraTypeInfo</name>
+        </processMetadataValues>
+        <processMetadataValues>
+            <name>isChildRelationship</name>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </processMetadataValues>
+        <processMetadataValues>
+            <name>reference</name>
+            <value>
+                <stringValue>[loan__Automated_Payment_Setup__c]</stringValue>
+            </value>
+        </processMetadataValues>
+        <processMetadataValues>
+            <name>referenceTargetField</name>
+        </processMetadataValues>
+        <name>myRule_5_A2</name>
+        <label>Update Manually Update Flag</label>
+        <locationX>500</locationX>
         <locationY>300</locationY>
         <filters>
             <processMetadataValues>
@@ -862,9 +1056,9 @@ Please approve the changes. Thanks!</stringValue>
         <processMetadataValues>
             <name>referenceTargetField</name>
         </processMetadataValues>
-        <name>myRule_5_A1</name>
+        <name>myRule_7_A1</name>
         <label>Update Changes</label>
-        <locationX>500</locationX>
+        <locationX>700</locationX>
         <locationY>200</locationY>
         <filters>
             <processMetadataValues>
@@ -1206,7 +1400,7 @@ Please approve the changes. Thanks!</stringValue>
         <object>loan__Automated_Payment_Setup__c</object>
     </recordUpdates>
     <startElementReference>myDecision</startElementReference>
-    <status>Active</status>
+    <status>Draft</status>
     <variables>
         <name>myVariable_current</name>
         <dataType>SObject</dataType>
