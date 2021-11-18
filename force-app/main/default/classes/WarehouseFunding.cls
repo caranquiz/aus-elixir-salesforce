@@ -540,6 +540,8 @@ global class WarehouseFunding {
       pmtSetup.Created_after_conversion__c=True;
       loanRec.APS_Created__c = true;
       loanRec.loan__Expected_Disbursal_Date__c = currentSystemDate;
+      loanRec.loan__Payment_Tolerance_End_Date__c = currentSystemDate.addYears(100);
+      loanRec.loan__Payment_Tolerance_Start_Date__c = currentSystemDate;
       
       pmtSetup.Type_Change__c=pmtSetup.loan__Type__c;
       //pmtSetup.Debit_Date_Change__c=pmtSetup.loan__Debit_Date__c;
