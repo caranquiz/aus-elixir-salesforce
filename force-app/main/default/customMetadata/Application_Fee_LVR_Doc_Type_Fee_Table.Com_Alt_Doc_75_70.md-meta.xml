@@ -1,25 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomMetadata xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-    <label>Res Alt Doc less than 70</label>
+    <label>Com Alt Doc &lt;= 75 &amp; &gt;= 70</label>
     <protected>false</protected>
     <values>
         <field>Near_Prime_Amount__c</field>
-        <value xsi:type="xsd:string">0.50%</value>
-    </values>
-    <values>
-        <field>Near_Prime_Plus_Amount__c</field>
-        <value xsi:type="xsd:string">1.00%</value>
-    </values>
-    <values>
-        <field>Prime_Amount__c</field>
-        <value xsi:type="xsd:string">0.25%</value>
-    </values>
-    <values>
-        <field>Specialist_Amount__c</field>
         <value xsi:type="xsd:string">1.25%</value>
     </values>
     <values>
-        <field>Specialist_Plus_Amount__c</field>
+        <field>Near_Prime_Plus_Amount__c</field>
         <value xsi:type="xsd:string">1.50%</value>
+    </values>
+    <values>
+        <field>Prime_Amount__c</field>
+        <value xsi:type="xsd:string">1.25%</value>
+    </values>
+    <values>
+        <field>Specialist_Amount__c</field>
+        <value xsi:type="xsd:string">1.75%</value>
+    </values>
+    <values>
+        <field>Specialist_Plus_Amount__c</field>
+        <value xsi:nil="true"/>
     </values>
 </CustomMetadata>

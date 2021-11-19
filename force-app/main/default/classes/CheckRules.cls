@@ -265,6 +265,7 @@ global with sharing class CheckRules {
         rulesNameList.add(ConstantValues.APPLICATION_FEE_PERCENTAGE_WARNING);
         rulesNameList.add(ConstantValues.APPLICATION_FORM_COMPLETED_WARNING);
         rulesNameList.add(ConstantValues.APPLICATION_SETTLEMENT_FEE_WARNING);
+        rulesNameList.add(ConstantValues.SUGGESTED_APPLICATION_FEE_WARNING);
         loanDetailsRiskGradeWarningCheck(applicationId);
         loanDetailsPrimaryPurposeWarningCheck(applicationId);
         loanDetailsDocumentCompareWarningCheck(applicationId);

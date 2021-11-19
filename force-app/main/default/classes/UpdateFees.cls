@@ -62,10 +62,12 @@ global class UpdateFees{
         try{
             appList = [SELECT Id,
                             Application_Fee__c,
+                            Suggested_Application_Fee__c,
                             LVR_Used_for_Pricing__c,
                             Document_Type__c,
                             Risk_grade_list__c,
                             genesis__Loan_Amount__c,
+                            genesis__CL_Product__r.clcommon__Product_Name__c,
                             genesis__CL_Product_Name__c
                         FROM genesis__Applications__c
                         WHERE Id IN: appIds];
@@ -110,63 +112,138 @@ global class UpdateFees{
 
                 for(genesis__Applications__c eachApp : appList){
                     Application_Fee_LVR_Doc_Type_Fee_Table__mdt appFee;
-                    eachApp.Application_Fee__c = 0;
-                    if(eachApp.Document_Type__c != NULL  
-                            && eachApp.Document_Type__c == ConstantValues.FULL_DOC 
-                            && eachApp.LVR_Used_for_Pricing__c <= 70 
-                            && eachApp.LVR_Used_for_Pricing__c >= 0 
-                            && appFeeMap.get(ConstantValues.FULL_DOC_LESS_THAN_EQUAL_TO_SEVENTY) != NULL
-                    ){
-                        appFee = appFeeMap.get(ConstantValues.FULL_DOC_LESS_THAN_EQUAL_TO_SEVENTY);
-                    }
-                    else if(eachApp.Document_Type__c != NULL  
-                            && eachApp.Document_Type__c == ConstantValues.FULL_DOC  
-                            && eachApp.LVR_Used_for_Pricing__c <= 80 
-                            && eachApp.LVR_Used_for_Pricing__c > 70 
-                            && appFeeMap.get(ConstantValues.FULL_dOC_LESS_THAN_EIGHTY_GREATER_THAN_SEVENTY) != NULL){
-                        appFee = appFeeMap.get(ConstantValues.FULL_dOC_LESS_THAN_EIGHTY_GREATER_THAN_SEVENTY);
-                    }
-                    else if(eachApp.Document_Type__c != NULL  
-                            && eachApp.Document_Type__c == ConstantValues.ALT_DOC  
-                            && eachApp.LVR_Used_for_Pricing__c <= 70 
-                            && eachApp.LVR_Used_for_Pricing__c >= 0 
-                            && appFeeMap.get(ConstantValues.ALT_LESS_THAN_SEVENTY) != NULL){
-                        appFee = appFeeMap.get(ConstantValues.ALT_LESS_THAN_SEVENTY);
-                    }
-                    else if(eachApp.Document_Type__c != NULL  
-                            && eachApp.Document_Type__c == ConstantValues.ALT_DOC  
-                            && eachApp.LVR_Used_for_Pricing__c <= 80 
-                            && eachApp.LVR_Used_for_Pricing__c > 70 
-                            && appFeeMap.get(ConstantValues.ALT_DOC_LESS_THAN_EIGHTY_GREATER_THAN_SEVENTY) != NULL){
-                        appFee = appFeeMap.get(ConstantValues.ALT_DOC_LESS_THAN_EIGHTY_GREATER_THAN_SEVENTY);
+                    eachApp.Suggested_Application_Fee__c = 0;
+                    if(eachApp.genesis__CL_Product__r.clcommon__Product_Name__c == ConstantValues.RESIDENTIAL
+                            || eachApp.genesis__CL_Product__r.clcommon__Product_Name__c == ConstantValues.VACANT_LAND_RESIDENTIAL){
+                        if(eachApp.Document_Type__c != NULL  
+                                && eachApp.Document_Type__c == ConstantValues.FULL_DOC 
+                                && eachApp.LVR_Used_for_Pricing__c <= 70 
+                                && eachApp.LVR_Used_for_Pricing__c >= 0 
+                                && appFeeMap.get(ConstantValues.FULL_DOC_LESS_THAN_EQUAL_TO_SEVENTY) != NULL
+                        ){
+                            appFee = appFeeMap.get(ConstantValues.FULL_DOC_LESS_THAN_EQUAL_TO_SEVENTY);
+                        }
+                        else if(eachApp.Document_Type__c != NULL  
+                                && eachApp.Document_Type__c == ConstantValues.FULL_DOC  
+                                && eachApp.LVR_Used_for_Pricing__c <= 80 
+                                && eachApp.LVR_Used_for_Pricing__c > 70 
+                                && appFeeMap.get(ConstantValues.FULL_dOC_LESS_THAN_EIGHTY_GREATER_THAN_SEVENTY) != NULL){
+                            appFee = appFeeMap.get(ConstantValues.FULL_dOC_LESS_THAN_EIGHTY_GREATER_THAN_SEVENTY);
+                        }
+                        else if(eachApp.Document_Type__c != NULL  
+                                && eachApp.Document_Type__c == ConstantValues.ALT_DOC  
+                                && eachApp.LVR_Used_for_Pricing__c <= 70 
+                                && eachApp.LVR_Used_for_Pricing__c >= 0 
+                                && appFeeMap.get(ConstantValues.ALT_LESS_THAN_SEVENTY) != NULL){
+                            appFee = appFeeMap.get(ConstantValues.ALT_LESS_THAN_SEVENTY);
+                        }
+                        else if(eachApp.Document_Type__c != NULL  
+                                && eachApp.Document_Type__c == ConstantValues.ALT_DOC  
+                                && eachApp.LVR_Used_for_Pricing__c <= 80 
+                                && eachApp.LVR_Used_for_Pricing__c > 70 
+                                && appFeeMap.get(ConstantValues.ALT_DOC_LESS_THAN_EIGHTY_GREATER_THAN_SEVENTY) != NULL){
+                            appFee = appFeeMap.get(ConstantValues.ALT_DOC_LESS_THAN_EIGHTY_GREATER_THAN_SEVENTY);
+                        }
+                    }else if(eachApp.genesis__CL_Product__r.clcommon__Product_Name__c == ConstantValues.COMMERCIAL){
+                        if(eachApp.Document_Type__c != NULL  
+                                && (eachApp.Document_Type__c == ConstantValues.FULL_DOC
+                                || eachApp.Document_Type__c == ConstantValues.LEASE_DOC) 
+                                && eachApp.LVR_Used_for_Pricing__c <= 70 
+                                && eachApp.LVR_Used_for_Pricing__c >= 0 
+                                && appFeeMap.get(ConstantValues.COM_FULL_DOC_LESS_THAN_70) != NULL
+                        ){
+                            appFee = appFeeMap.get(ConstantValues.COM_FULL_DOC_LESS_THAN_70);
+                        }
+                        else if(eachApp.Document_Type__c != NULL  
+                                && (eachApp.Document_Type__c == ConstantValues.FULL_DOC
+                                || eachApp.Document_Type__c == ConstantValues.LEASE_DOC)  
+                                && eachApp.LVR_Used_for_Pricing__c <= 75 
+                                && eachApp.LVR_Used_for_Pricing__c > 70 
+                                && appFeeMap.get(ConstantValues.COM_FULL_DOC_LESS_THAN_75_AND_GREATER_THAN_70) != NULL){
+                            appFee = appFeeMap.get(ConstantValues.COM_FULL_DOC_LESS_THAN_75_AND_GREATER_THAN_70);
+                        }
+                        else if(eachApp.Document_Type__c != NULL  
+                                && eachApp.Document_Type__c == ConstantValues.ALT_DOC  
+                                && eachApp.LVR_Used_for_Pricing__c <= 70 
+                                && eachApp.LVR_Used_for_Pricing__c >= 0 
+                                && appFeeMap.get(ConstantValues.COM_ALT_DOC_LESS_THAN_70) != NULL){
+                            appFee = appFeeMap.get(ConstantValues.COM_ALT_DOC_LESS_THAN_70);
+                        }
+                        else if(eachApp.Document_Type__c != NULL  
+                                && eachApp.Document_Type__c == ConstantValues.ALT_DOC  
+                                && eachApp.LVR_Used_for_Pricing__c <= 75 
+                                && eachApp.LVR_Used_for_Pricing__c > 70 
+                                && appFeeMap.get(ConstantValues.COM_ALT_DOC_LESS_THAN_75_AND_GREATER_THAN_70) != NULL){
+                            appFee = appFeeMap.get(ConstantValues.COM_ALT_DOC_LESS_THAN_75_AND_GREATER_THAN_70);
+                        }
+                    }else if(eachApp.genesis__CL_Product__r.clcommon__Product_Name__c == ConstantValues.SMSF_RESIDENTIAL
+                            && appFeeMap.get(ConstantValues.SMSF_RESIDENTIAL) != NULL){
+                        appFee = appFeeMap.get(ConstantValues.SMSF_RESIDENTIAL);
+                    }else if(eachApp.genesis__CL_Product__r.clcommon__Product_Name__c == ConstantValues.SMSF_COMMERCIAL
+                            && appFeeMap.get(ConstantValues.SMSF_COMMERCIAL) != NULL){
+                        appFee = appFeeMap.get(ConstantValues.SMSF_COMMERCIAL);
+                    }else if(eachApp.genesis__CL_Product__r.clcommon__Product_Name__c == ConstantValues.RETAINED_STOCK_RESIDENTIAL){
+                        calculateApplicationFeeAmount('1.25%',eachApp);
+                    }else if(eachApp.genesis__CL_Product__r.clcommon__Product_Name__c == ConstantValues.RETAINED_STOCK_COMMERCIAL){
+                        calculateApplicationFeeAmount('1.50%',eachApp);
+                    }else if(eachApp.genesis__CL_Product__r.clcommon__Product_Name__c == ConstantValues.HIGHEST_BEST_USE_RESIDENTIAL
+                        || eachApp.genesis__CL_Product__r.clcommon__Product_Name__c == ConstantValues.HIGHEST_BEST_USE_COMMERCIAL){
+                            calculateApplicationFeeAmount('1.50%',eachApp);
+                    }else if(eachApp.genesis__CL_Product__r.clcommon__Product_Name__c == ConstantValues.NON_RESIDENT_RESIDENTIAL
+                    || eachApp.genesis__CL_Product__r.clcommon__Product_Name__c == ConstantValues.NON_RESIDENT_COMMERCIAL){
+                        calculateApplicationFeeAmount('2.00%',eachApp);
                     }
 
                     if(appFee != NULL){
                         applicationFeeCalculation(appFee,eachApp);
                     }
 
-                    for(genesis__Application_Collateral__c eachAppCollateral : appCollateralList){
+                    /*for(genesis__Application_Collateral__c eachAppCollateral : appCollateralList){
                         appSet.add(eachAppCollateral.genesis__Application__c);
-                    }
-                    if(appSet.contains(eachApp.Id) 
+                    }*/
+                    
+                    if(eachApp.genesis__CL_Product__r.clcommon__Product_Name__c == ConstantValues.VACANT_LAND_RESIDENTIAL
                             && eachApp.genesis__Loan_Amount__c!=NULL 
+                            && eachApp.Suggested_Application_Fee__c!=NULL
                             && (additionalAppFeeMap.get(ConstantValues.VACANT_LAND_DETAILS_LIMIT)).Additional_Fee_for_Application_Fee__c != NULL  
                             && (additionalAppFeeMap.get(ConstantValues.VACANT_LAND_DETAILS_LIMIT)).Additional_Fee_for_Application_Fee__c > 0){
-                        eachApp.Application_Fee__c = eachApp.Application_Fee__c + ((((additionalAppFeeMap.get(ConstantValues.VACANT_LAND_DETAILS_LIMIT)).Additional_Fee_for_Application_Fee__c))/100)*eachApp.genesis__Loan_Amount__c;
+                        eachApp.Suggested_Application_Fee__c = eachApp.Suggested_Application_Fee__c + ((((additionalAppFeeMap.get(ConstantValues.VACANT_LAND_DETAILS_LIMIT)).Additional_Fee_for_Application_Fee__c))/100)*eachApp.genesis__Loan_Amount__c;
                             
-                    }
-                    else if(eachApp.genesis__Loan_Amount__c != NULL 
-                            && eachApp.genesis__Loan_Amount__c >= 1000000 
-                            && eachApp.genesis__Loan_Amount__c <= 1500000 
-                            && additionalAppFeeMap.get(ConstantValues.BETWEEN_ONE_AND_ONE_POINT_FIVE) != NULL){
-                        eachApp.Application_Fee__c = eachApp.Application_Fee__c + ((((additionalAppFeeMap.get(ConstantValues.BETWEEN_ONE_AND_ONE_POINT_FIVE)).Additional_Fee_for_Application_Fee__c))/100)*eachApp.genesis__Loan_Amount__c;
-                        
-                    }
-                    else if(eachApp.genesis__Loan_Amount__c != NULL
-                            && eachApp.genesis__Loan_Amount__c > 1500000
-                            && eachApp.genesis__Loan_Amount__c <= 2000000
-                            && additionalAppFeeMap.get(ConstantValues.BETWEEN_ONE_POINT_FIVE_AND_TWO) != NULL){
-                        eachApp.Application_Fee__c = eachApp.Application_Fee__c + ((((additionalAppFeeMap.get(ConstantValues.BETWEEN_ONE_POINT_FIVE_AND_TWO)).Additional_Fee_for_Application_Fee__c))/100)*eachApp.genesis__Loan_Amount__c;
+                    }else if(eachApp.genesis__CL_Product__r.clcommon__Product_Name__c == ConstantValues.RESIDENTIAL){
+                        if(eachApp.genesis__Loan_Amount__c != NULL 
+                                && eachApp.genesis__Loan_Amount__c >= 1000000 
+                                && eachApp.genesis__Loan_Amount__c <= 1500000 
+                                && additionalAppFeeMap.get(ConstantValues.BETWEEN_ONE_AND_ONE_POINT_FIVE) != NULL
+                                && ((additionalAppFeeMap.get(ConstantValues.BETWEEN_ONE_AND_ONE_POINT_FIVE)).Additional_Fee_for_Application_Fee__c) > 0
+                                && eachApp.Suggested_Application_Fee__c != NULL){
+                            eachApp.Suggested_Application_Fee__c = eachApp.Suggested_Application_Fee__c + ((((additionalAppFeeMap.get(ConstantValues.BETWEEN_ONE_AND_ONE_POINT_FIVE)).Additional_Fee_for_Application_Fee__c))/100)*eachApp.genesis__Loan_Amount__c;
+                            
+                        }
+                        else if(eachApp.genesis__Loan_Amount__c != NULL
+                                && eachApp.genesis__Loan_Amount__c > 1500000
+                                && eachApp.genesis__Loan_Amount__c <= 2000000
+                                && eachApp.LVR_Used_for_Pricing__c < 65 
+                                && eachApp.LVR_Used_for_Pricing__c >= 0 
+                                && eachApp.Suggested_Application_Fee__c !=NULL
+                                && additionalAppFeeMap.get(ConstantValues.BETWEEN_ONE_POINT_FIVE_AND_TWO_AND_LVR_65) != NULL
+                                && ((additionalAppFeeMap.get(ConstantValues.BETWEEN_ONE_POINT_FIVE_AND_TWO_AND_LVR_65)).Additional_Fee_for_Application_Fee__c) >0 ){
+                            eachApp.Suggested_Application_Fee__c = eachApp.Suggested_Application_Fee__c + ((((additionalAppFeeMap.get(ConstantValues.BETWEEN_ONE_POINT_FIVE_AND_TWO_AND_LVR_65)).Additional_Fee_for_Application_Fee__c))/100)*eachApp.genesis__Loan_Amount__c;
+                        }
+                        else if(eachApp.genesis__Loan_Amount__c != NULL
+                                && eachApp.genesis__Loan_Amount__c > 1500000
+                                && eachApp.genesis__Loan_Amount__c <= 2000000
+                                && eachApp.LVR_Used_for_Pricing__c >= 65 
+                                && additionalAppFeeMap.get(ConstantValues.BETWEEN_ONE_POINT_FIVE_AND_TWO) != NULL
+                                && eachApp.Suggested_Application_Fee__c != NULL){
+                            eachApp.Suggested_Application_Fee__c = eachApp.Suggested_Application_Fee__c + ((((additionalAppFeeMap.get(ConstantValues.BETWEEN_ONE_POINT_FIVE_AND_TWO)).Additional_Fee_for_Application_Fee__c))/100)*eachApp.genesis__Loan_Amount__c;
+                        }
+                    }else if(eachApp.genesis__CL_Product__r.clcommon__Product_Name__c == ConstantValues.SMSF_RESIDENTIAL
+                            && eachApp.genesis__Loan_Amount__c != NULL
+                            && eachApp.genesis__Loan_Amount__c >= 750000
+                            && additionalAppFeeMap.get(ConstantValues.SMSF_RESIDENTIAL) != NULL
+                            && eachApp.Suggested_Application_Fee__c!=NULL 
+                            && ((additionalAppFeeMap.get(ConstantValues.SMSF_RESIDENTIAL)).Additional_Fee_for_Application_Fee__c)>0){
+                        eachApp.Suggested_Application_Fee__c = eachApp.Suggested_Application_Fee__c + ((((additionalAppFeeMap.get(ConstantValues.SMSF_RESIDENTIAL)).Additional_Fee_for_Application_Fee__c))/100)*eachApp.genesis__Loan_Amount__c;
                     }
                 }
                 update appList;
@@ -252,8 +329,7 @@ global class UpdateFees{
                             Decimal.ValueOf(System.Label.Each_Additional_Property_Title_Insurance_GST_Fee))*(size-1);
                         }
                     }
-                    if(mortgageFeeMap.get(appCollateral.genesis__Collateral__r.clcommon__State__c) != NULL 
-                            && appCollateral.genesis__Collateral__r.Primary_Security__c=='Yes' && eachApp.Title_Insurance_Fee__c!=NULL){
+                    if(mortgageFeeMap.get(appCollateral.genesis__Collateral__r.clcommon__State__c) != NULL && appCollateral.genesis__Collateral__r.Primary_Security__c=='Yes'){
                         stampDuty=(eachApp.Title_Insurance_Fee__c)*(mortgageFeeMap.get(appCollateral.genesis__Collateral__r.clcommon__State__c));
                         
                     }
@@ -272,7 +348,7 @@ global class UpdateFees{
                 calculateApplicationFeeAmount(appFee.Prime_Amount__c, eachApp);
             }
             else {
-                eachApp.Application_Fee__c = Decimal.ValueOf(appFee.Prime_Amount__c);
+                eachApp.Suggested_Application_Fee__c = Decimal.ValueOf(appFee.Prime_Amount__c);
             }
         }
         else if(eachApp.Risk_grade_list__c == ConstantValues.NEAR_PRIME){
@@ -280,7 +356,7 @@ global class UpdateFees{
                 calculateApplicationFeeAmount(appFee.Near_Prime_Amount__c, eachApp);
             }
             else {
-                eachApp.Application_Fee__c = Decimal.ValueOf(appFee.Near_Prime_Amount__c);
+                eachApp.Suggested_Application_Fee__c = Decimal.ValueOf(appFee.Near_Prime_Amount__c);
             }
         }
         else if(eachApp.Risk_grade_list__c == ConstantValues.NEAR_PRIME_PLUS){
@@ -288,7 +364,7 @@ global class UpdateFees{
                 calculateApplicationFeeAmount(appFee.Near_Prime_Plus_Amount__c, eachApp);
             }
             else {
-                eachApp.Application_Fee__c = Decimal.ValueOf(appFee.Near_Prime_Plus_Amount__c);
+                eachApp.Suggested_Application_Fee__c = Decimal.ValueOf(appFee.Near_Prime_Plus_Amount__c);
             }
         }
         else if(eachApp.Risk_grade_list__c == ConstantValues.SPECIALIST){
@@ -296,7 +372,7 @@ global class UpdateFees{
                 calculateApplicationFeeAmount(appFee.Specialist_Amount__c, eachApp);
             }
             else {
-                eachApp.Application_Fee__c = Decimal.ValueOf(appFee.Specialist_Amount__c);
+                eachApp.Suggested_Application_Fee__c = Decimal.ValueOf(appFee.Specialist_Amount__c);
             }
         }
         else if(eachApp.Risk_grade_list__c == ConstantValues.SPECIALIST_PLUS){
@@ -304,7 +380,7 @@ global class UpdateFees{
                 calculateApplicationFeeAmount(appFee.Specialist_Plus_Amount__c, eachApp);
             }
             else {
-                eachApp.Application_Fee__c = Decimal.ValueOf(appFee.Specialist_Plus_Amount__c);
+                eachApp.Suggested_Application_Fee__c = Decimal.ValueOf(appFee.Specialist_Plus_Amount__c);
             }
         }
     }
@@ -360,7 +436,7 @@ global class UpdateFees{
         String riskPercentage = amount;
         Decimal basePercentage = Decimal.ValueOf(riskPercentage.substring(0,riskPercentage.length()-1));
         if(eachApp.genesis__Loan_Amount__c!=NULL){
-            eachApp.Application_Fee__c = (basePercentage/100)*(eachApp.genesis__Loan_Amount__c);            
+            eachApp.Suggested_Application_Fee__c = (basePercentage/100)*(eachApp.genesis__Loan_Amount__c);            
         }
     }
     public static void calculateTitleInsuranceFeeAmount(Title_Insurance_Fee_Base_Premium_and_GST__mdt titleInsFee,genesis__Applications__c eachApp){

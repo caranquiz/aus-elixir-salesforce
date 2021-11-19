@@ -1133,10 +1133,10 @@ global class ConstantValues {
   public static final String VACANT_LAND_DETAILS_LIMIT='Vacant Land Details Limit';
   public static final String BETWEEN_ONE_AND_ONE_POINT_FIVE ='Between $1mil and $1.5mil';
   public static final String BETWEEN_ONE_POINT_FIVE_AND_TWO ='Between $1.5mil and $2mil';
-  public static final String FULL_DOC_LESS_THAN_EQUAL_TO_SEVENTY='Full Doc less than equal to 70';
-  public static final String FULL_dOC_LESS_THAN_EIGHTY_GREATER_THAN_SEVENTY='Full Doc Less than 80 greater than 70';
-  public static final String ALT_LESS_THAN_SEVENTY='Alt Doc less than 70';
-  public static final String ALT_DOC_LESS_THAN_EIGHTY_GREATER_THAN_SEVENTY='Alt Doc Less than 80 greater than 70';
+  public static final String FULL_DOC_LESS_THAN_EQUAL_TO_SEVENTY='Res Full Doc less than equal to 70';
+  public static final String FULL_dOC_LESS_THAN_EIGHTY_GREATER_THAN_SEVENTY='ResFull Doc Less than 80 greater than 70';
+  public static final String ALT_LESS_THAN_SEVENTY='Res Alt Doc less than 70';
+  public static final String ALT_DOC_LESS_THAN_EIGHTY_GREATER_THAN_SEVENTY='Res Alt Doc Less than 80 greater than 70';
   public static final String RESIDENTIAL='Residential';
   public static final String RESIDENTIAL_LESS_THAN_600000='Residential <= 600000';
   public static final String RESIDENTIAL_GREATER_THAN_600000_AND_LESS_THAN_1000000='Residential >= 600001 and <=1000000';
@@ -1156,4 +1156,24 @@ global class ConstantValues {
   public static final String INTEREST_ONLY_REVERTING='Interest Only reverting to Principal and Interest';
   public static final String INTEREST_ONLY='Interest Only';
   
+  //CheckRules
+  public static final String SUGGESTED_APPLICATION_FEE_WARNING='Suggested Application Fee Warning';
+
+  //UpdateFees
+  public static final String BETWEEN_ONE_POINT_FIVE_AND_TWO_AND_LVR_65='Between $1.5mil and $2mil & LVR < 65';
+  public static final String COM_ALT_DOC_LESS_THAN_75_AND_GREATER_THAN_70='Com Alt Doc <= 75 & >= 70';
+  public static final String COM_ALT_DOC_LESS_THAN_70='Com Alt Doc <= 70';
+  public static final String COM_FULL_DOC_LESS_THAN_75_AND_GREATER_THAN_70='Com Full & Lease Doc <= 75 & >=70';
+  public static final String COM_FULL_DOC_LESS_THAN_70='Com Full & Lease Doc <= 70';
+  public static final String LEASE_DOC='Lease Doc';
+  public static final String SMSF_RESIDENTIAL='SMSF Residential';
+  public static final String SMSF_COMMERCIAL='SMSF Commercial';
+  public static final String RETAINED_STOCK_RESIDENTIAL='Retained Stock - Residential';
+  public static final String RETAINED_STOCK_COMMERCIAL='Retained Stock - Commercial';
+  public static final String HIGHEST_BEST_USE_RESIDENTIAL='Highest & Best Use – Residential';
+  public static final String HIGHEST_BEST_USE_COMMERCIAL='Highest & Best Use – Commercial';
+  public static final String NON_RESIDENT_RESIDENTIAL='Non-Resident – Residential';
+  public static final String NON_RESIDENT_COMMERCIAL='Non-Resident - Commercial';
+  public static final String VACANT_LAND_RESIDENTIAL='Vacant Land - Residential';
+
 }

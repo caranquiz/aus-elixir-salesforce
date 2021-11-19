@@ -21,7 +21,8 @@ trigger ApplicationTrigger on genesis__Applications__c (After update) {
                         appIds.add(application.Id);
                     }
                     if((application.Document_Type__c!= oldapplication.Document_Type__c) || (application.LVR_Used_for_Pricing__c!= oldapplication.LVR_Used_for_Pricing__c) 
-                            || (application.genesis__Loan_Amount__c!= oldapplication.genesis__Loan_Amount__c) ||  (application.Risk_grade_list__c!= oldapplication.Risk_grade_list__c)){
+                            || (application.genesis__Loan_Amount__c!= oldapplication.genesis__Loan_Amount__c) ||  (application.Risk_grade_list__c!= oldapplication.Risk_grade_list__c)
+                            || (application.genesis__CL_Product__c!= oldapplication.genesis__CL_Product__c)){
                         applicationIds.add(application.Id);
                     }
                 }

@@ -1,14 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Primary_Approval_Date_for_Reports__c</fullName>
+    <description>RJohnston 7/6/21
+For reporting the primary approval date as original field wasn&apos;t a date field
+https://wingategroup.atlassian.net/secure/RapidBoard.jspa?rapidView=8&amp;projectKey=AMS&amp;modal=detail&amp;selectedIssue=AMS-746</description>
     <externalId>false</externalId>
-    <formula>DATE(VALUE( RIGHT(Primary_Approval_Date__c,4) ),
-      VALUE(LEFT(
-MID(Primary_Approval_Date__c, FIND(&quot;/&quot;, Primary_Approval_Date__c) + 1, 4),
-FIND(&quot;/&quot;, MID(Primary_Approval_Date__c, FIND(&quot;/&quot;, Primary_Approval_Date__c) + 1, 4)) - 1 )),
-VALUE(LEFT(Primary_Approval_Date__c, FIND(&quot;/&quot;, Primary_Approval_Date__c)-1))
-)</formula>
-    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <formula>DATEVALUE(Primary_Approval_Date__c)</formula>
     <label>Primary Approval Date for Reports</label>
     <required>false</required>
     <trackHistory>false</trackHistory>

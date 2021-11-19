@@ -3,19 +3,43 @@
     <active>true</active>
     <allowRecall>false</allowRecall>
     <allowedSubmitters>
-        <submitter>alex@argologic.com.au.orde.ordeqa2</submitter>
+        <submitter>agao@orde.com.au</submitter>
         <type>user</type>
     </allowedSubmitters>
     <allowedSubmitters>
-        <submitter>amelia@argologic.com.au.orde</submitter>
+        <submitter>aheifetz@orde.com.au</submitter>
         <type>user</type>
     </allowedSubmitters>
     <allowedSubmitters>
-        <submitter>ariz.mazhary@cloudkaptan.com</submitter>
+        <submitter>akusur@orde.com.au</submitter>
         <type>user</type>
     </allowedSubmitters>
     <allowedSubmitters>
-        <submitter>bneelagiri@wingate.com.au</submitter>
+        <submitter>alyons@orde.com.au</submitter>
+        <type>user</type>
+    </allowedSubmitters>
+    <allowedSubmitters>
+        <submitter>anne.tran@au.ey.com</submitter>
+        <type>user</type>
+    </allowedSubmitters>
+    <allowedSubmitters>
+        <submitter>athorley@orde.com.au</submitter>
+        <type>user</type>
+    </allowedSubmitters>
+    <allowedSubmitters>
+        <submitter>blowrie@orde.com.au</submitter>
+        <type>user</type>
+    </allowedSubmitters>
+    <allowedSubmitters>
+        <submitter>brobb@orde.com.au</submitter>
+        <type>user</type>
+    </allowedSubmitters>
+    <allowedSubmitters>
+        <submitter>cboardman@orde.com.au</submitter>
+        <type>user</type>
+    </allowedSubmitters>
+    <allowedSubmitters>
+        <submitter>cfinnie@orde.com.au</submitter>
         <type>user</type>
     </allowedSubmitters>
     <allowedSubmitters>
@@ -23,7 +47,27 @@
         <type>user</type>
     </allowedSubmitters>
     <allowedSubmitters>
+        <submitter>cmeale@orde.com.au</submitter>
+        <type>user</type>
+    </allowedSubmitters>
+    <allowedSubmitters>
+        <submitter>csandford@orde.com.au</submitter>
+        <type>user</type>
+    </allowedSubmitters>
+    <allowedSubmitters>
+        <submitter>dcherry@orde.com.au</submitter>
+        <type>user</type>
+    </allowedSubmitters>
+    <allowedSubmitters>
         <submitter>ethan@argologic.com.au.orde</submitter>
+        <type>user</type>
+    </allowedSubmitters>
+    <allowedSubmitters>
+        <submitter>fautolitano@orde.com.au</submitter>
+        <type>user</type>
+    </allowedSubmitters>
+    <allowedSubmitters>
+        <submitter>gaoun@orde.com.au</submitter>
         <type>user</type>
     </allowedSubmitters>
     <allowedSubmitters>
@@ -31,11 +75,11 @@
         <type>user</type>
     </allowedSubmitters>
     <allowedSubmitters>
-        <submitter>insightssecurity@00d4y0000008b4xuaa.com</submitter>
+        <submitter>insightssecurity@00d9p0000000dpneaq.com</submitter>
         <type>user</type>
     </allowedSubmitters>
     <allowedSubmitters>
-        <submitter>integration@00d4y0000008b4xuaa.com</submitter>
+        <submitter>integration@00d9p0000000dpneaq.com</submitter>
         <type>user</type>
     </allowedSubmitters>
     <allowedSubmitters>
@@ -43,7 +87,27 @@
         <type>user</type>
     </allowedSubmitters>
     <allowedSubmitters>
+        <submitter>jkusur@orde.com.au</submitter>
+        <type>user</type>
+    </allowedSubmitters>
+    <allowedSubmitters>
+        <submitter>jlee@orde.com.au</submitter>
+        <type>user</type>
+    </allowedSubmitters>
+    <allowedSubmitters>
+        <submitter>jregan@orde.com.au</submitter>
+        <type>user</type>
+    </allowedSubmitters>
+    <allowedSubmitters>
         <submitter>jshastri@orde.com.au</submitter>
+        <type>user</type>
+    </allowedSubmitters>
+    <allowedSubmitters>
+        <submitter>kpatterson@orde.com.au</submitter>
+        <type>user</type>
+    </allowedSubmitters>
+    <allowedSubmitters>
+        <submitter>pcoghlan@orde.com.au</submitter>
         <type>user</type>
     </allowedSubmitters>
     <allowedSubmitters>
@@ -55,11 +119,11 @@
         <type>user</type>
     </allowedSubmitters>
     <allowedSubmitters>
-        <submitter>rameswari.barman@cloudkaptan.com</submitter>
+        <submitter>pwells@orde.com.au</submitter>
         <type>user</type>
     </allowedSubmitters>
     <allowedSubmitters>
-        <submitter>rameswari.barman@gmail.com</submitter>
+        <submitter>rhargreaves@orde.com.au</submitter>
         <type>user</type>
     </allowedSubmitters>
     <allowedSubmitters>
@@ -71,11 +135,36 @@
         <type>user</type>
     </allowedSubmitters>
     <allowedSubmitters>
-        <submitter>tim@argologic.com.au.orde</submitter>
+        <submitter>rjohnston@wingate.com.au</submitter>
+        <type>user</type>
+    </allowedSubmitters>
+    <allowedSubmitters>
+        <submitter>slay@orde.com.au</submitter>
+        <type>user</type>
+    </allowedSubmitters>
+    <allowedSubmitters>
+        <submitter>srobertson@orde.com.au</submitter>
+        <type>user</type>
+    </allowedSubmitters>
+    <allowedSubmitters>
+        <submitter>tsinclair@orde.com.au</submitter>
+        <type>user</type>
+    </allowedSubmitters>
+    <allowedSubmitters>
+        <submitter>vpham@orde.com.au</submitter>
+        <type>user</type>
+    </allowedSubmitters>
+    <allowedSubmitters>
+        <submitter>zbaviello@orde.com.au</submitter>
+        <type>user</type>
+    </allowedSubmitters>
+    <allowedSubmitters>
+        <submitter>zspeth@orde.com.au</submitter>
         <type>user</type>
     </allowedSubmitters>
     <approvalPageFields>
         <field>Name</field>
+        <field>Owner</field>
         <field>loan__CL_Contract__c</field>
         <field>loan__Active__c</field>
         <field>Active_Change__c</field>
@@ -95,7 +184,6 @@
         <field>Transaction_Amount_Change__c</field>
         <field>loan__Type__c</field>
         <field>Type_Change__c</field>
-        <field>Owner</field>
     </approvalPageFields>
     <approvalStep>
         <allowDelegate>false</allowDelegate>
@@ -106,10 +194,6 @@
             </approver>
             <approver>
                 <name>jshastri@orde.com.au</name>
-                <type>user</type>
-            </approver>
-            <approver>
-                <name>rjohnston@orde.com.au</name>
                 <type>user</type>
             </approver>
             <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>
@@ -147,11 +231,15 @@
             <name>Uncheck_Manual_Update_Value</name>
             <type>FieldUpdate</type>
         </action>
+        <action>
+            <name>Update_Rejected_Field</name>
+            <type>FieldUpdate</type>
+        </action>
     </finalRejectionActions>
     <finalRejectionRecordLock>false</finalRejectionRecordLock>
     <initialSubmissionActions>
         <action>
-            <name>Record_Type_Changes</name>
+            <name>Record_Type_Change</name>
             <type>FieldUpdate</type>
         </action>
     </initialSubmissionActions>
