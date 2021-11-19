@@ -60,5 +60,9 @@
         <members>loan__Automated_Payment_Setup__c.Type_Change_cannot_be_null</members>
         <name>ValidationRule</name>
     </types>
+    <types>
+        <members>loan__Automated_Payment_Setup__c.Update_Rejected_Field</members>
+        <name>WorkflowFieldUpdate</name>
+    </types>
     <version>48.0</version>
 </Package>
