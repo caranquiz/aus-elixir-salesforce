@@ -75,14 +75,6 @@
         <type>user</type>
     </allowedSubmitters>
     <allowedSubmitters>
-        <submitter>insightssecurity@00d9p0000000dpneaq.com</submitter>
-        <type>user</type>
-    </allowedSubmitters>
-    <allowedSubmitters>
-        <submitter>integration@00d9p0000000dpneaq.com</submitter>
-        <type>user</type>
-    </allowedSubmitters>
-    <allowedSubmitters>
         <submitter>jgidman@orde.com.au</submitter>
         <type>user</type>
     </allowedSubmitters>
