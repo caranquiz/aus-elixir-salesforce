@@ -59,10 +59,6 @@
         <type>user</type>
     </allowedSubmitters>
     <allowedSubmitters>
-        <submitter>ethan@argologic.com.au.orde</submitter>
-        <type>user</type>
-    </allowedSubmitters>
-    <allowedSubmitters>
         <submitter>fautolitano@orde.com.au</submitter>
         <type>user</type>
     </allowedSubmitters>
