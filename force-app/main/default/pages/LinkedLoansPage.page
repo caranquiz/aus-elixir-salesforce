@@ -16,6 +16,7 @@
                         </apex:outputLink>
                     </apex:column>
                     <apex:column headerValue="Current Loan Balance Excluding Deposit" value="{! ct.Current_Loan_Balance_Excluding_Deposit__c }"/>
+                    <apex:column headerValue="Funding Warehouse" value="{! ct.Linked_Loan__r.Warehouse__c}"/>
                     <apex:column headerValue="Status" value="{! ct.Linked_Loan_Status__c}"/>
                 </apex:pageBlockTable>
             </div>

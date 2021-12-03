@@ -87,11 +87,15 @@ public with sharing class LinkedLoansExtension {
             List<loan__Loan_Account__c> loanList=new List<loan__Loan_Account__c>();
             List<Linked_Loan__c> linkedLoanList1=new List<Linked_Loan__c>();
             List<String> loanNameList=new List<String>();
+            List<String> loanFinancierList=new List<String>();
             if(loanIdList.size()>0){
                 loanList=[SELECT Name,
                                 Total_Sum_Of_Linked_Loans__c,
                                 Current_Loan_Balance_Excluding_Deposit__c,
-                                Linked_Loans__c 
+                                Linked_Loans__c,
+                                Financier_Linked_Loans__c,
+                                Warehouse__c,
+                                Total_Sum_of_Financier_Exposure__c  
                             FROM loan__Loan_Account__c 
                             WHERE id in: loanIdList ];
 
@@ -100,7 +104,8 @@ public with sharing class LinkedLoansExtension {
                                         Linked_Loan__r.Name,
                                         Current_Loan_Record__r.Name,
                                         Current_Loan_Record__c,
-                                        Current_Loan_Balance_Excluding_Deposit__c 
+                                        Current_Loan_Balance_Excluding_Deposit__c,
+                                        Linked_Loan__r.Warehouse__c   
                                     FROM Linked_Loan__c 
                                     WHERE Current_Loan_Record__c IN: loanIdList
                                     ORDER BY Linked_Loan__r.Name ASC];
@@ -108,6 +113,8 @@ public with sharing class LinkedLoansExtension {
             for(loan__Loan_Account__c loan1: loanList){
                 loan1.Linked_Loans__c=loan1.Name;
                 loan1.Total_Sum_Of_Linked_Loans__c=loan1.Current_Loan_Balance_Excluding_Deposit__c;
+                loan1.Financier_Linked_Loans__c=null;
+                loan1.Total_Sum_of_Financier_Exposure__c=0;
                 for(Linked_Loan__c linkedloan : linkedLoanList1){
                     if((loan1.id==linkedloan.Current_Loan_Record__c)){
                         if(loan1.Total_Sum_Of_Linked_Loans__c==null){
@@ -119,6 +126,22 @@ public with sharing class LinkedLoansExtension {
                         if(loan1.Linked_Loans__c!=null){
                             loan1.Linked_Loans__c = loan1.Linked_Loans__c
                                             +ConstantValues.SEMICOLON+linkedloan.Linked_Loan__r.Name;
+                        }
+                        if(loan1.Financier_Linked_Loans__c==null){
+                            loan1.Financier_Linked_Loans__c=loan1.Name;
+                        }
+                        if(loan1.Financier_Linked_Loans__c != null && linkedLoan.Linked_Loan__r.Name!=null 
+                            && linkedLoan.Linked_Loan__r.Warehouse__c==loan1.Warehouse__c){
+                            loan1.Financier_Linked_Loans__c = loan1.Financier_Linked_Loans__c
+                                + ConstantValues.SEMICOLON+linkedLoan.Linked_Loan__r.Name;
+                        }
+                        if(loan1.Total_Sum_of_Financier_Exposure__c==0 && linkedLoan.Current_Loan_Balance_Excluding_Deposit__c!=null){
+                            loan1.Total_Sum_of_Financier_Exposure__c=loan1.Current_Loan_Balance_Excluding_Deposit__c;
+                        }
+                        if(loan1.Total_Sum_of_Financier_Exposure__c!=null && linkedLoan.Current_Loan_Balance_Excluding_Deposit__c!=null
+                            && linkedLoan.Linked_Loan__r.Warehouse__c==loan1.Warehouse__c){
+                            loan1.Total_Sum_of_Financier_Exposure__c = loan1.Total_Sum_of_Financier_Exposure__c
+                                                                +linkedLoan.Current_Loan_Balance_Excluding_Deposit__c;
                         }
                     }    
                 }
@@ -133,6 +156,20 @@ public with sharing class LinkedLoansExtension {
                         }else{
                             loan1.Linked_Loans__c = loan1.Linked_Loans__c
                                             +ConstantValues.SEMICOLON+loanName;
+                        }
+                    }
+                }
+                //Sort the Financier Linked Loans in Ascending Order.
+                if(loan1.Financier_Linked_Loans__c!=null){
+                    loanFinancierList=loan1.Financier_Linked_Loans__c.split(';');
+                    loanFinancierList.sort();
+                    loan1.Financier_Linked_Loans__c=null;
+                    for(String loanFinancier:loanFinancierList){
+                        if(loan1.Financier_Linked_Loans__c==null){
+                            loan1.Financier_Linked_Loans__c = loanFinancier;
+                        }else{
+                            loan1.Financier_Linked_Loans__c = loan1.Financier_Linked_Loans__c
+                                            +ConstantValues.SEMICOLON+loanFinancier;
                         }
                     }
                 }

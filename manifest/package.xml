@@ -1,68 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
     <types>
-        <members>CheckRules</members>
-        <members>ConstantValues</members>
-        <members>UpdateFees</members>
-        <members>ValuationDateExpiryUpdateHelperTest</members>
+        <members>DepositUpdateHelperTest</members>
+        <members>GenericUtilityTestHelper</members>
+        <members>LTSConsolidatedLoanBalanceUpdate</members>
+        <members>LTSRedrawUpdateBatch</members>
+        <members>LinkedLoanRelatedLoanController</members>
+        <members>LinkedLoansExtension</members>
+        <members>TestMigrationForLTS</members>
+        <members>TotalSumOfLinkedLoanUpdateBatch</members>
         <members>WarehouseFunding</members>
         <name>ApexClass</name>
     </types>
     <types>
-        <members>ApplicationTrigger</members>
-        <name>ApexTrigger</name>
+        <members>LinkedLoansPage</members>
+        <name>ApexPage</name>
     </types>
     <types>
-        <members>loan__Automated_Payment_Setup__c.APS_Approval_Process</members>
-        <name>ApprovalProcess</name>
-    </types>
-    <types>
-        <members>genesis__Applications__c.Primary_Approval_Date_for_Reports__c</members>
-        <members>genesis__Applications__c.Suggested_Application_Fee_Warning_Check__c</members>
-        <members>genesis__Applications__c.Suggested_Application_Fee__c</members>
-        <members>genesis__Applications__c.Suggested_Application_Percentage__c</members>
-        <members>loan__Automated_Payment_Setup__c.Rejected__c</members>
+        <members>loan__Loan_Account__c.Financier_Linked_Loans__c</members>
+        <members>loan__Loan_Account__c.First_Debit_Date__c</members>
+        <members>loan__Loan_Account__c.Linked_Loans__c</members>
+        <members>loan__Loan_Account__c.Total_Sum_Of_Linked_Loans__c</members>
+        <members>loan__Loan_Account__c.Total_Sum_of_Financier_Exposure__c</members>
         <name>CustomField</name>
     </types>
     <types>
-        <members>Additional_Appication_Fee_on_Loan_Size.Between_1_5mil_and_2mil</members>
-        <members>Additional_Appication_Fee_on_Loan_Size.Between_1_5mil_and_2mil_LVR_65</members>
-        <members>Additional_Appication_Fee_on_Loan_Size.Between_1mil_and_1_5mil</members>
-        <members>Additional_Appication_Fee_on_Loan_Size.SMSF_Residential</members>
-        <members>Additional_Appication_Fee_on_Loan_Size.Vacant_Land_Details_Limit</members>
-        <members>Application_Fee_LVR_Doc_Type_Fee_Table.Alt_Doc_Less_than_80_greater_than_70</members>
-        <members>Application_Fee_LVR_Doc_Type_Fee_Table.Alt_Doc_less_than_70</members>
-        <members>Application_Fee_LVR_Doc_Type_Fee_Table.Com_Alt_Doc_70</members>
-        <members>Application_Fee_LVR_Doc_Type_Fee_Table.Com_Alt_Doc_75_70</members>
-        <members>Application_Fee_LVR_Doc_Type_Fee_Table.Com_Full_Lease_Doc_70</members>
-        <members>Application_Fee_LVR_Doc_Type_Fee_Table.Com_Full_Lease_Doc_75_70</members>
-        <members>Application_Fee_LVR_Doc_Type_Fee_Table.Full_Doc_Less_than_80_greater_than_70</members>
-        <members>Application_Fee_LVR_Doc_Type_Fee_Table.Full_Doc_less_than_equal_to_70</members>
-        <members>Application_Fee_LVR_Doc_Type_Fee_Table.SMSF_Commercial</members>
-        <members>Application_Fee_LVR_Doc_Type_Fee_Table.SMSF_Residential</members>
-        <name>CustomMetadata</name>
+        <members>PartyType</members>
+        <members>loanStatus</members>
+        <name>CustomLabel</name>
     </types>
     <types>
-        <members>APS_Approval_Process</members>
+        <members>CustomLabels</members>
+        <name>CustomLabels</name>
+    </types>
+    <types>
+        <members>Update_Consolidated_Loan_Balance_of_LTS</members>
+        <members>Update_LTS_Record_When_LPT_is_reversed</members>
         <name>Flow</name>
-    </types>
-    <types>
-        <members>loan__Automated_Payment_Setup__c-APS Layout For New Creation</members>
-        <members>loan__Automated_Payment_Setup__c-loan__Automated Payment Setup Layout</members>
-        <name>Layout</name>
-    </types>
-    <types>
-        <members>loan__Automated_Payment_Setup__c.New_APS_Record</members>
-        <name>RecordType</name>
-    </types>
-    <types>
-        <members>loan__Automated_Payment_Setup__c.Amount_Type_Cannot_be_Null_For_Recurring</members>
-        <members>loan__Automated_Payment_Setup__c.Type_Change_cannot_be_null</members>
-        <name>ValidationRule</name>
-    </types>
-    <types>
-        <members>loan__Automated_Payment_Setup__c.Update_Rejected_Field</members>
-        <name>WorkflowFieldUpdate</name>
     </types>
     <version>48.0</version>
 </Package>

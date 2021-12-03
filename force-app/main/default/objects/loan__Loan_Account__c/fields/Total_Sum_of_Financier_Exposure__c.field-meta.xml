@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>Total_Sum_Of_Linked_Loans__c</fullName>
-    <defaultValue>0</defaultValue>
+    <fullName>Total_Sum_of_Financier_Exposure__c</fullName>
     <externalId>false</externalId>
-    <label>Total Sum of Group Exposure</label>
+    <label>Total Sum of Financier Exposure</label>
     <precision>18</precision>
     <required>false</required>
     <scale>2</scale>

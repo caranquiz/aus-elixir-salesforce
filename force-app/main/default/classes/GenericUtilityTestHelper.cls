@@ -1762,4 +1762,13 @@ public with sharing class GenericUtilityTestHelper {
     insert objProcess;
     return objProcess;
   }
+  public static loan__Coborrower__c returnCoborrower(Id loanId,Id accountId){
+    loan__Coborrower__c objCoborrower=new loan__Coborrower__c();
+    objCoborrower.loan__Loan__c=loanId;
+    objCoborrower.loan__Account__c=accountId;
+    objCoborrower.loan__Party_Type__c='Borrower';
+    insert objCoborrower;
+    return objCoborrower;
+  }
+
 }

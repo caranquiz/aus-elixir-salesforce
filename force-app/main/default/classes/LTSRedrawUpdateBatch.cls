@@ -13,7 +13,8 @@ public class LTSRedrawUpdateBatch implements DataBase.StateFul,DataBase.Batchabl
         return Database.getQueryLocator([SELECT id,
                                                Name,
                                          	   loan__Other_Loan_Txn__c,
-                                         	   loan__Loan_Account__c,
+                                                loan__Loan_Account__c,
+                                         	   loan__Loan_Account__r.loan__Loan_Balance__c,
                                          	   loan__Loan_Account__r.loan__Loan_Amount__c,
                                          	   loan__Other_Loan_Txn__r.loan__Txn_Amt__c,
                                                loan__Other_Loan_Txn__r.id,
@@ -21,6 +22,7 @@ public class LTSRedrawUpdateBatch implements DataBase.StateFul,DataBase.Batchabl
                                          	   loan__Current_Loan_Balance__c,
                                                loan__Transaction_Time__c,
                                                loan__Transaction_Date__c,
+                                               loan__Other_Loan_Txn__r.loan__Txn_Date__c,
                                          	   loan__Consolidated_Loan_Balance__c
                                            FROM loan__Loan_Transaction_Summary__c
                                            WHERE Transaction_Type__c=: ConstantValues.REDRAW
@@ -53,15 +55,18 @@ public class LTSRedrawUpdateBatch implements DataBase.StateFul,DataBase.Batchabl
                 if(objLTS.loan__Other_Loan_Txn__c!=NULL && objLTS.loan__Other_Loan_Txn__r.loan__Txn_Amt__c!=NULL){
                     objLTS.loan__Transaction_Amount__c=-objLTS.loan__Other_Loan_Txn__r.loan__Txn_Amt__c;
                 }
-                if(objLTS.loan__Loan_Account__c !=NULL && objLTS.loan__Loan_Account__r.loan__Loan_Amount__c!=NULL){
-                    objLTS.loan__Current_Loan_Balance__c=objLTS.loan__Loan_Account__r.loan__Loan_Amount__c;
+                if(objLTS.loan__Loan_Account__c !=NULL && objLTS.loan__Loan_Account__r.loan__Loan_Balance__c!=NULL){
+                    objLTS.loan__Current_Loan_Balance__c=objLTS.loan__Loan_Account__r.loan__Loan_Balance__c;
                 }
                 if(depositMap.containskey(objLTS.loan__Other_Loan_Txn__c)){
                     if(objLTS.loan__Current_Loan_Balance__c!=NULL && depositMap.get(objLTS.loan__Other_Loan_Txn__c) != NULL){
                         objLTS.loan__Consolidated_Loan_Balance__c=objLTS.loan__Current_Loan_Balance__c - depositMap.get(objLTS.loan__Other_Loan_Txn__c);
                     }
                 }
-                objLTS.loan__Transaction_Time__c=objLTS.loan__Transaction_Date__c;
+                if(objLTS.loan__Other_Loan_Txn__c != null && objLTS.loan__Other_Loan_Txn__r.loan__Txn_Date__c!=null){
+                    objLTS.loan__Transaction_Date__c=objLTS.loan__Other_Loan_Txn__r.loan__Txn_Date__c;
+                    objLTS.loan__Transaction_Time__c=objLTS.loan__Other_Loan_Txn__r.loan__Txn_Date__c;
+                }
             }
             if(objLTSList.size()>0){
                 Database.update(objLTSList,false);

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <name>Update_Consolidated_Loan_Balance</name>
+        <label>Update Consolidated Loan Balance</label>
+        <locationX>176</locationX>
+        <locationY>433</locationY>
+        <actionName>LTSConsolidatedLoanBalanceUpdate</actionName>
+        <actionType>apex</actionType>
+        <inputParameters>
+            <name>lptIdList</name>
+            <value>
+                <elementReference>$Record.loan__Loan_Payment_Transaction__r.Id</elementReference>
+            </value>
+        </inputParameters>
+    </actionCalls>
+    <interviewLabel>Update LTS Record When LPT is reversed {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Update LTS Record When LPT is reversed</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>FREE_FORM_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <start>
+        <locationX>50</locationX>
+        <locationY>50</locationY>
+        <connector>
+            <targetReference>Update_Consolidated_Loan_Balance</targetReference>
+        </connector>
+        <object>loan__Repayment_Transaction_Adjustment__c</object>
+        <recordTriggerType>Create</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>

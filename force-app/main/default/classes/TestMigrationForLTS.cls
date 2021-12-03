@@ -286,7 +286,6 @@ public with sharing class TestMigrationForLTS {
         System.assertNotEquals(
             disTxn.Id, 
             'null');
-        Test.stopTest();
         List<loan__Loan_transaction_summary__c> summary = [SELECT loan__Current_Interest_Rate__c,
                                                                   loan__Current_Loan_Balance__c,
                                                                   loan__Current_Payoff_Balance__c,
@@ -312,6 +311,10 @@ public with sharing class TestMigrationForLTS {
             1,
             'LPT inserted Sucessfully'
         );
+        List<Id> lptList=new List<Id>();
+        lptList.add(pmt.id);
+        LTSConsolidatedLoanBalanceUpdate.updateConsolidatedLoanBalance(lptList);
+        Test.stopTest();
 
         summary = [SELECT loan__Current_Interest_Rate__c,
                           loan__Current_Loan_Balance__c,
@@ -376,7 +379,8 @@ public with sharing class TestMigrationForLTS {
         for(loan__Loan_Transaction_Summary__c lts:newSummariesList){
             loan__Loan_Transaction_Summary__c extngLts = existingSummaries.get(lts.Id);
             System.assertEquals(extngLts.loan__Current_Principal_Remaining__c, lts.loan__Current_Principal_Remaining__c);
-        }       
+        } 
+        
     }
     public static testMethod void TestSummaryOLTTxn(){
         loan.GlobalLoanUtilFacade dateutil = new loan.GlobalLoanUtilFacade();
@@ -425,7 +429,6 @@ public with sharing class TestMigrationForLTS {
                                                 WHERE loan__Loan_Account__c = :loanAcc.Id
                                                 Order By CreatedDate ASC];
         System.assertEquals(oTxn.size(),1);
-        Test.stopTest();
         loan.GlobalProcessFacade.moveSystemToDate(currentSystemDate+1,false);   
         currentSystemDate=dateutil.getCurrentSystemDate();
 
@@ -441,7 +444,12 @@ public with sharing class TestMigrationForLTS {
             1,
             'LPT inserted Sucessfully'
         );
-        
+
+        List<Id> lptList=new List<Id>();
+        lptList.add(pmt.id);
+        LTSConsolidatedLoanBalanceUpdate.updateConsolidatedLoanBalance(lptList);
+        Test.stopTest();
+
         lp.loan__Create_Summaries__C = true;
         Database.update(lp);
         List<loan__Loan_Account__c > loanAccList = new List<loan__Loan_Account__c>();
@@ -798,7 +806,6 @@ public with sharing class TestMigrationForLTS {
         System.assertNotEquals(
             disTxn.Id, 
             'null');
-        Test.stopTest();
 
         loan.GlobalProcessFacade.moveSystemToDate(currentSystemDate+1,false);   
         currentSystemDate=dateutil.getCurrentSystemDate();
@@ -815,7 +822,10 @@ public with sharing class TestMigrationForLTS {
             1,
             'LPT inserted Sucessfully'
         );
-        
+        List<Id> lptList=new List<Id>();
+        lptList.add(pmt.id);
+        LTSConsolidatedLoanBalanceUpdate.updateConsolidatedLoanBalance(lptList);
+        Test.stopTest();
         loan.GlobalProcessFacade.moveSystemToDate(currentSystemDate+1,false);   
         currentSystemDate = dateutil.getCurrentSystemDate(); 
    
@@ -1007,11 +1017,27 @@ public with sharing class TestMigrationForLTS {
             1,
             'Other Transaction Inserted'
         );
+        loan.GlobalProcessFacade.moveSystemToDate(currentSystemDate+1,false);   
+        currentSystemDate=dateutil.getCurrentSystemDate();
+        loan__Loan_Payment_Transaction__c pmt = GenericUtilityTestHelper.returnPayment(loanAcc.Id,currentSystemDate,pMode.Id);
+        pmt.loan__Cleared__c = true;
+        Database.update(pmt);
+        List<loan__Loan_Payment_Transaction__c> payment = [SELECT Id ,
+                                                                loan__Transaction_Amount__c 
+                                                            FROM loan__Loan_Payment_Transaction__c LIMIT 1];
+        
+        System.assertEquals(
+            payment.size(), 
+            1,
+            'LPT inserted Sucessfully'
+        );
 
         loan__Loan_Transaction_Summary__c lts=GenericUtilityTestHelper.returntransactionSumm(
             loanAcc.id,
             oTxn[0].id
         );
+        lts.loan__Transaction_Date__c=currentSystemDate;
+        update lts;
         system.assertNotEquals(
             lts.id, 
             null,
@@ -1040,6 +1066,7 @@ public with sharing class TestMigrationForLTS {
                                 '-12-09 Nxt DDT:2021-02-09** New Val: Frq:Monthly Int Rt:3.70 Int Prd:0 Term:360 Mat Dt'+
                                 ' :2050-12-09 Nxt DDT:2021-02-09';
         oTxn[0].loan__Description__c = description;
+        oTxn[0].loan__Txn_Date__c=currentSystemDate;
         update oTxn;
         List<loan__Other_Transaction__c> oTxn2 = [SELECT Id,
                                                         Name,
@@ -1061,6 +1088,11 @@ public with sharing class TestMigrationForLTS {
         controllerRec.loanRecord = loanAcc;
         controllerRec.loanId = loanAcc.id;
         controllerRec.exportToPDF();
+
+        List<Id> lptList=new List<Id>();
+        lptList.add(pmt.id);
+        LTSConsolidatedLoanBalanceUpdate.updateConsolidatedLoanBalance(lptList);
+
         Test.stopTest();
     }
 

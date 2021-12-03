@@ -177,6 +177,21 @@ public with sharing class DepositUpdateHelperTest {
       feeAmt1.Id
     );
     System.assertEquals(conFee.loan__Amount__c, 400);
+
+    loan__Coborrower__c coBorrower=GenericUtilityTestHelper.returnCoborrower(loanC.id,acc.id);
+    List<loan__Coborrower__c> coBorrowerList=[SELECT id 
+                                                  FROM loan__Coborrower__c 
+                                                  WHERE loan__Loan__c=:loanC.id 
+                                                  AND loan__Account__c=: acc.id];
+    System.assertEquals(coBorrowerList.size(),1);
+
+    Linked_Loan__c linkedLoan=GenericUtilityTestHelper.returnlinkedLoan(loanC.id,loanC.id);
+    List<Linked_Loan__c> linkedLoanList=[SELECT id 
+                                            FROM Linked_Loan__c 
+                                            WHERE Linked_Loan__c=:loanC.id
+                                            AND Current_Loan_Record__c=: loanC.id];
+    System.assertEquals(linkedLoanList.size(),1);
+
   }
   @isTest
   static void test() {
