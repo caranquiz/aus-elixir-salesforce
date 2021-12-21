@@ -514,6 +514,13 @@
         <value>01-02-2018</value>
     </labels>
     <labels>
+        <fullName>PartyType</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>PartyType</shortDescription>
+        <value>Borrower,Co-applicant,Guarantor</value>
+    </labels>
+    <labels>
         <fullName>Pre_Paid_Fee</fullName>
         <categories>Prepaid Fee</categories>
         <language>en_US</language>
@@ -646,14 +653,14 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Transaction End Date</shortDescription>
-        <value>24-10-2021</value>
+        <value>17-12-2021</value>
     </labels>
     <labels>
         <fullName>Transaction_Start_Date</fullName>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Transaction Start Date</shortDescription>
-        <value>26-8-2018</value>
+        <value>08-07-2021</value>
     </labels>
     <labels>
         <fullName>True</fullName>
@@ -717,6 +724,13 @@
         <value>Yes</value>
     </labels>
     <labels>
+        <fullName>loanStatus</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>loanStatus</shortDescription>
+        <value>Canceled,Closed - Obligations met,Closed- Written Off,Closed - Refinanced,Closed - Premature</value>
+    </labels>
+    <labels>
         <fullName>notify_event_retry_count</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -724,17 +738,10 @@
         <value>5</value>
     </labels>
     <labels>
-        <fullName>PartyType</fullName>
+        <fullName>Active_CL_Contract_Status</fullName>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>PartyType</shortDescription>
-        <value>Borrower,Co-applicant,Guarantor</value>
-    </labels>
-    <labels>
-        <fullName>loanStatus</fullName>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>loanStatus</shortDescription>
-        <value>Canceled,Closed - Obligations met,Closed- Written Off,Closed - Refinanced,Closed - Premature</value>
+        <shortDescription>Active CL Contract Status</shortDescription>
+        <value>Active - Good Standing,Active - Bad Standing,Active - Matured,Closed - Obligations met</value>
     </labels>
 </CustomLabels>

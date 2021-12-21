@@ -1,0 +1,3 @@
+<apex:page standardController="loan__Loan_Account__c" lightningStylesheets="true" docType="html-5.0" >
+        <apex:relatedList subject="{!loan__Loan_Account__c.Id}" list="AttachedContentDocuments"/>
+</apex:page>

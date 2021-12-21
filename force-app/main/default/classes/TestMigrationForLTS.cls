@@ -111,6 +111,21 @@ public with sharing class TestMigrationForLTS {
             obj.loan__Enable_Tracking__c = true;
         }
         Database.update(objList);
+
+        //Conga Batch Details
+        APXT_BPM__Conductor__c congaBatch=GenericUtilityTestHelper.returnCongaBatch();
+        System.assert(congaBatch != null,'Conga Batch Should not be null');
+
+        ContentVersion content=GenericUtilityTestHelper.returnContentVersion();
+        System.assert(content != null,'ContentVersion Should not be null');
+
+        //ContentDocumentLink Detail
+        ContentDocumentLink documentLink =GenericUtilityTestHelper.returnContentDocumentLink(
+            loanAccountList[0].id,
+            content.id
+        );
+        System.assert(documentLink != null, 'ContentDocumentLink Should not be null');
+
     }
     private static loan__Loan_Product__c getLoanProduct(String name) {
         loan__Loan_Product__c retVal;
@@ -198,6 +213,22 @@ public with sharing class TestMigrationForLTS {
         System.assertNotEquals(
             disTxn.Id, 
             'null');
+
+        APXT_BPM__Conductor__c congaBatchRecord = [SELECT id,
+                                                        name,
+                                                        Statement_Generation_End_Date__c,
+                                                        Statement_Generation_Start_Date__c,
+                                                        APXT_BPM__Title__c
+                                                    FROM APXT_BPM__Conductor__c 
+                                                    WHERE APXT_BPM__Title__c=: ConstantValues.STATEMENT_CONGA_BATCH];
+        System.assert(congaBatchRecord != null,'Conga Batch Should not be null');
+
+
+        LoanStatementBulkGenerationFile bulkStatement=new LoanStatementBulkGenerationFile();
+        bulkStatement.congaBatch=congaBatchRecord;
+        bulkStatement.clickLaunch();
+        bulkStatement.runbatch();
+
         PageReference pageRef = Page.loan__tabbedLoanAccount;
         pageRef.getParameters().put('id', loanAcc.id);
         Test.setCurrentPage(pageRef);
@@ -469,6 +500,21 @@ public with sharing class TestMigrationForLTS {
                                                          Order By loan__Transaction_Time__c ASC];
        
         System.assertEquals(3, summary.size());
+
+        APXT_BPM__Conductor__c congaBatchRecord = [SELECT id,
+                            name,
+                            Statement_Generation_End_Date__c,
+                            Statement_Generation_Start_Date__c,
+                            APXT_BPM__Title__c
+                            FROM APXT_BPM__Conductor__c 
+                            WHERE APXT_BPM__Title__c=: ConstantValues.STATEMENT_CONGA_BATCH];
+        System.assert(congaBatchRecord != null,'Conga Batch Should not be null');
+
+        LoanStatementBulkGenerationFile bulkStatement=new LoanStatementBulkGenerationFile();
+        bulkStatement.congaBatch=congaBatchRecord;
+        bulkStatement.clickLaunch();
+        bulkStatement.runbatch();
+
         PageReference pageRef = Page.loan__tabbedLoanAccount;
         pageRef.getParameters().put('id', loanAcc.id);
         Test.setCurrentPage(pageRef);
@@ -478,6 +524,7 @@ public with sharing class TestMigrationForLTS {
         controllerRec.doSearch();
         controllerRec.exportToPDF();
         controllerRec.back();
+
     }
     
     public static testMethod void TestSummaryForDateRange(){ 
@@ -552,6 +599,21 @@ public with sharing class TestMigrationForLTS {
             
         loanAcc=TestLoan.getLoanAccount(loanAcc) ; 
         System.assertEquals(1, summary.size());
+
+        APXT_BPM__Conductor__c congaBatchRecord = [SELECT id,
+                            name,
+                            Statement_Generation_End_Date__c,
+                            Statement_Generation_Start_Date__c,
+                            APXT_BPM__Title__c
+                            FROM APXT_BPM__Conductor__c 
+                            WHERE APXT_BPM__Title__c=: ConstantValues.STATEMENT_CONGA_BATCH];
+        System.assert(congaBatchRecord != null,'Conga Batch Should not be null');
+
+        LoanStatementBulkGenerationFile bulkStatement=new LoanStatementBulkGenerationFile();
+        bulkStatement.congaBatch=congaBatchRecord;
+        bulkStatement.clickLaunch();
+        bulkStatement.runbatch();
+
         PageReference pageRef = Page.loan__tabbedLoanAccount;
         pageRef.getParameters().put('id', loanAcc.id);
         Test.setCurrentPage(pageRef);
@@ -955,6 +1017,21 @@ public with sharing class TestMigrationForLTS {
                                                          Order By loan__Transaction_Time__c ASC];
        
         System.assertEquals(4, summary.size());
+
+        APXT_BPM__Conductor__c congaBatchRecord = [SELECT id,
+                            name,
+                            Statement_Generation_End_Date__c,
+                            Statement_Generation_Start_Date__c,
+                            APXT_BPM__Title__c
+                            FROM APXT_BPM__Conductor__c 
+                            WHERE APXT_BPM__Title__c=: ConstantValues.STATEMENT_CONGA_BATCH];
+        System.assert(congaBatchRecord != null,'Conga Batch Should not be null');
+
+        LoanStatementBulkGenerationFile bulkStatement=new LoanStatementBulkGenerationFile();
+        bulkStatement.congaBatch=congaBatchRecord;
+        bulkStatement.clickLaunch();
+        bulkStatement.runbatch();
+
         PageReference pageRef = Page.loan__tabbedLoanAccount;
         pageRef.getParameters().put('id', loanAcc.id);
         Test.setCurrentPage(pageRef);
@@ -1061,6 +1138,11 @@ public with sharing class TestMigrationForLTS {
         String sch = '0 0 23 * * ?';
 		system.schedule('Test Check', sch, obj );
         LTSRedrawUpdateBatchExecution.executeLTSRedrawUpdateBatchWS();
+
+        ContentDocumentLinkVisibilityUpdateBatch objcontent=new ContentDocumentLinkVisibilityUpdateBatch();
+        String schdu = '0 0 22 * * ?';
+		system.schedule('Test ContentDocumentLinkVisibilityUpdateBatch', schdu, objcontent );
+
         PageReference pageRef = Page.loan__tabbedLoanAccount;
         String description = 'Old Val: Frq:MonthlyFrequency Cycle:null Int Rt:3.9500 Int Prd:0 Term:360 Mat Dt :2050'+
                                 '-12-09 Nxt DDT:2021-02-09** New Val: Frq:Monthly Int Rt:3.70 Int Prd:0 Term:360 Mat Dt'+
@@ -1082,6 +1164,20 @@ public with sharing class TestMigrationForLTS {
             1,
             'Other Transaction Updated'
         );
+        APXT_BPM__Conductor__c congaBatchRecord = [SELECT id,
+                            name,
+                            Statement_Generation_End_Date__c,
+                            Statement_Generation_Start_Date__c,
+                            APXT_BPM__Title__c
+                            FROM APXT_BPM__Conductor__c 
+                            WHERE APXT_BPM__Title__c=: ConstantValues.STATEMENT_CONGA_BATCH];
+        System.assert(congaBatchRecord != null,'Conga Batch Should not be null');
+
+        LoanStatementBulkGenerationFile bulkStatement=new LoanStatementBulkGenerationFile();
+        bulkStatement.congaBatch=congaBatchRecord;
+        bulkStatement.clickLaunch();
+        bulkStatement.runbatch();
+
         pageRef.getParameters().put('id', loanAcc.id);
         Test.setCurrentPage(pageRef);
         GenerateStatementController controllerRec = new GenerateStatementController();

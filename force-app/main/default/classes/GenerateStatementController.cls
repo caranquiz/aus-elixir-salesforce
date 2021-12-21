@@ -98,7 +98,7 @@ public class GenerateStatementController {
                             AND loan__Loan_Disbursal__r.loan__Rejected__c= false 
                             AND loan__Loan_Disbursal__r.loan__Cleared__c = true))
                             AND (loan__Loan_Charge__c= null OR (loan__Loan_Charge__r.loan__Waive__c= false))
-                            ORDER BY loan__Transaction_Date__c ASC, CreatedDate ASC, loan__Transaction_Time__c ASC
+                            ORDER BY loan__Transaction_Date__c ASC, CreatedDate ASC, loan__Transaction_Time__c ASC, Name ASC
                             ];
             //Querying out the payoff LPT separately as puttinng that in above list was messing the transaction list
             //As when a loan is paid off - the IPT records gets created some seconds after the payoff LPT
@@ -124,12 +124,12 @@ public class GenerateStatementController {
                                     AND loan__Loan_Payment_Txn__r.loan__Cheque_Number__c =: ConstantValues.LOAN_PAYOFF
                                     AND loan__Loan_Payment_Txn__r.loan__Payoff_Balance__c = 0 
                                     AND loan__Loan_Payment_Txn__r.loan__Rejected__c = false and loan__Loan_Payment_Txn__r.loan__Reversed__c = false 
-                                    ORDER BY loan__Transaction_Date__c ASC, CreatedDate ASC, loan__Transaction_Time__c ASC];
+                                    ORDER BY loan__Transaction_Date__c ASC, CreatedDate ASC, loan__Transaction_Time__c ASC, Name ASC];
             if(payoffList.isEmpty() == false){
                 txnList.addAll(payoffList);
             }
             if(test.isRunningTest()){
-            	Integer a = 4/0;
+                Integer a = 4/0;
             }
         }
         catch(Exception e){
@@ -278,7 +278,7 @@ public class GenerateStatementController {
                                                                                 AND (loan__Loan_Disbursal__c = null OR (loan__Loan_Disbursal__r.loan__Reversed__c= false 
                                                                                 AND loan__Loan_Disbursal__r.loan__Rejected__c= false AND loan__Loan_Disbursal__r.loan__Cleared__c = true)) 
                                                                                 AND (loan__Loan_Charge__c= null OR (loan__Loan_Charge__r.loan__Waive__c= false)) 
-                                                                                ORDER BY loan__Transaction_Date__c DESC, loan__Transaction_Time__c DESC LIMIT 1];
+                                                                                ORDER BY loan__Transaction_Date__c DESC, loan__Transaction_Time__c DESC, Name ASC LIMIT 1];
                 if(openingBalanceList.size() > 0 && openingBalanceList[0].loan__Consolidated_Loan_Balance__c != NULL){
                     loan.Statement_Opening_Balance__c = openingBalanceList[0].loan__Consolidated_Loan_Balance__c;
                 }
@@ -304,7 +304,7 @@ public class GenerateStatementController {
             }
             PageReference retURLPDF = new PageReference(statementURL);
             if(test.isRunningTest()){
-            	Integer a = 4/0;
+                Integer a = 4/0;
             }
             return retURLPDF;
         }

@@ -1176,4 +1176,22 @@ global class ConstantValues {
   public static final String NON_RESIDENT_COMMERCIAL='Non-Resident - Commercial';
   public static final String VACANT_LAND_RESIDENTIAL='Vacant Land - Residential';
 
+  //TotalSumOfLinkedLoanUpdateBatch
+  public static final String CANCELED='Canceled';
+  public static final String CLOSED_OBLIGATIONS_MET='Closed - Obligations met';
+  public static final String CLOSED_WRITTEN_OFF='Closed- Written Off';
+  public static final String CLOSED_REFINANCED='Closed - Refinanced';
+  public static final String CLOSED_PREMATURE='Closed - Premature';
+
+  //LoanStatementBulkGenerationFiles
+  public static final String STATEMENT_CONGA_BATCH='Statement Conga Batch';
+  public static final String HALF_YEARLY_STATEMENT='Half Yearly Statement';
+  public static final String ALLUSERS='AllUsers';
+  public static final String SHARE_TYPE_V='V';
+  public static final String MAIL_SUBJECT='Content Document Link Visibility ';
+  public static final String MAIL_BODY='ContentDocumentLinkVisibilityUpdateBatch Batch Job Status : The batch Apex job processed: ';
+  public static final String MAIL_BODY_COMPLETED='The job for content document link visibility has been completed. The statements will now appear on the portal.';
+  public static final String COMPLETED='Completed';
+  public static final String BATCH_JOB_START='The batch job has started successfully';
+
 }

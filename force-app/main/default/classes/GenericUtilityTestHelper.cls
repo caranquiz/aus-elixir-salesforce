@@ -1770,5 +1770,29 @@ public with sharing class GenericUtilityTestHelper {
     insert objCoborrower;
     return objCoborrower;
   }
-
+  public static APXT_BPM__Conductor__c returnCongaBatch(){
+      APXT_BPM__Conductor__c congaBatch=new APXT_BPM__Conductor__c();
+      congaBatch.APXT_BPM__Title__c=ConstantValues.STATEMENT_CONGA_BATCH;
+      congaBatch.APXT_BPM__Description__c='Generate Statement';
+      insert congaBatch;
+      return congaBatch;
+  }
+  public static ContentVersion returnContentVersion(){
+      ContentVersion content=new ContentVersion(); 
+      content.Title='Half Yearly Statement'; 
+      content.PathOnClient='/' + content.Title + '.jpg'; 
+      Blob bodyBlob=Blob.valueOf('Half Yearly Statement'); 
+      content.VersionData=bodyBlob; 
+      content.origin = 'H';
+      insert content;
+      return content;
+  }
+  public static ContentDocumentLink returnContentDocumentLink(Id loanId,Id contentId){
+      ContentDocumentLink documentLink =new ContentDocumentLink();
+      documentLink.LinkedEntityId=loanId;
+      documentLink.ContentDocumentId =[select contentdocumentid from contentversion where id =: contentId].contentdocumentid;
+      documentLink.shareType='V';
+      insert documentLink;
+      return documentLink;
+  }
 }

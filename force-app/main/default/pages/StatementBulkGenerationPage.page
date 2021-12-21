@@ -1,0 +1,19 @@
+<apex:page controller="LoanStatementBulkGenerationFile" lightningStylesheets="true" docType="html-5.0">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/latest/jquery.js"></script>
+  <style>
+    .apexp .bPageBlock.apexDefaultPageBlock .pbBody .pbSubheader .searchOutputPanel {
+        color:Black;
+        background-color:white;
+    }
+    </style> 
+  <apex:form style="border-style:solid;border-width:0px; border-2px;background-color:navyblue">
+    <apex:sectionHeader title="Conga Batch" />
+    <apex:pagemessages />
+    <apex:pageBlock >
+      <apex:pageBlockSection >
+        <apex:commandButton value="Launch Conga Batch" action="{!clickLaunch}" />
+        <apex:commandButton value="Update File Visibility" action="{!runbatch}" />
+      </apex:pageBlockSection>
+    </apex:pageBlock>
+   </apex:form>
+</apex:page>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Generate_Statement_Bulk__c</fullName>
+    <externalId>false</externalId>
+    <formula>&quot;&amp;solmgr=1&quot; +	
+&quot;&amp;queryid=[LoanType]aCK5m00000003GzGAI?pv0=&quot; + loan__Account__r.Id + &quot;,[BorCoApp]aCK8w000000000pGAA?pv0=&quot; + Id + &quot;,[Upcoming]aCK8w000000001JGAQ?pv0=&quot; + Id + &quot;,[BranchDate]aCK5m00000003GuGAI?pv0=&quot; + loan__Branch__r.Id + &quot;,[Disbursals]aCK8w000000000uGAA?pv0=&quot; + Id + &quot;,[ipt]aCK8w000000000zGAA?pv0=&quot; + Id + &quot;,[fees]aCK8w0000000014GAA?pv0=&quot; + Id + &quot;,[redraw]aCK8w0000000019GAA?pv0=&quot; + Id + &quot;,[refund]aCK8w000000001EGAQ?pv0=&quot; + Id + &quot;,[repayments]aCK8w000000001OGAQ?pv0=&quot; + Id + &quot;,[rateChanges]aCK8w000000001TGAQ?pv0=&quot; + Id + &quot;,[trans]aCK8w000000001dGAA?pv0=&quot; + Id + &quot;,[close]aCK8w000000001iGAA?pv0=&quot; + Id + &quot;,[currentRate]aCK8w000000001YGAQ?pv0=&quot; + Id + &quot;,[unclpt]aCK8w000000000kGAA?pv0=&quot; + Id + &quot;,[rejlpt]aCK8w000000000fGAA?pv0=&quot; + Id + &quot;,[oldInt]aCK8w000000000aGAA?pv0=&quot; + Id + &quot;,[payoff]aCK8w000000000VGAQ?pv0=&quot; + Id +	
+&quot;&amp;id=&quot; + Id +	
+&quot;&amp;templateid=aCS8w0000000lJD&quot; + 	
+&quot;&amp;sc0=1&quot; + 	
+&quot;&amp;sc1=Attachments&quot; + 	
+&quot;&amp;ofn=Half Yearly Statement &quot; + Name + &quot; &quot; + TEXT( DAY( Statement_Start_Date__c ))+	
+CASE(MONTH(Statement_Start_Date__c ),	
+1, &quot;Jan&quot;,	
+2, &quot;Feb&quot;,	
+3, &quot;Mar&quot;,	
+4, &quot;Apr&quot;,	
+5, &quot;May&quot;,	
+6, &quot;June&quot;,	
+7, &quot;July&quot;,	
+8, &quot;Aug&quot;,	
+9, &quot;Sept&quot;,	
+10, &quot;Oct&quot;,	
+11, &quot;Nov&quot;,	
+12, &quot;Dec&quot;,	
+&quot;None&quot;) +	
+RIGHT( TEXT( YEAR(Statement_Start_Date__c ) ) , 2) + &quot;-&quot; + TEXT( DAY( Statement_End_Date__c ))+	
+CASE(MONTH(Statement_End_Date__c ),	
+1, &quot;Jan&quot;,	
+2, &quot;Feb&quot;,	
+3, &quot;Mar&quot;,	
+4, &quot;Apr&quot;,	
+5, &quot;May&quot;,	
+6, &quot;June&quot;,	
+7, &quot;July&quot;,	
+8, &quot;Aug&quot;,	
+9, &quot;Sept&quot;,	
+10, &quot;Oct&quot;,	
+11, &quot;Nov&quot;,	
+12, &quot;Dec&quot;,	
+&quot;None&quot;) +	
+RIGHT( TEXT( YEAR(Statement_End_Date__c ) ) , 2) +	
+&quot;&amp;attachmentparentid=&quot; + Id +	
+&quot;&amp;defaultpdf=1&quot; + 	
+&quot;&amp;qmode=SalesforceFile&quot;</formula>
+    <label>Generate Statement Bulk</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>
