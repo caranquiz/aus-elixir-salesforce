@@ -33,7 +33,9 @@ public class ContentDocumentLinkVisibilityUpdateBatch implements DataBase.StateF
                                                                   		Visibility,
                                                                   		shareType
                                                                   FROM ContentDocumentLink
-                                                                  WHERE LinkedEntityId IN: newSet];
+                                                                  WHERE LinkedEntityId IN: newSet
+                                                                  AND (Visibility !=: ConstantValues.ALLUSERS
+                                                                  OR shareType!=:ConstantValues.SHARE_TYPE_V)];
             for(ContentDocumentLink objcontentDocument:contentDocumentLinkList){
                 if((objcontentDocument.ContentDocument.Title).startsWith(ConstantValues.HALF_YEARLY_STATEMENT)){
 					objcontentDocument.Visibility =ConstantValues.ALLUSERS;

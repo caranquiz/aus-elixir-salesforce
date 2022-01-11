@@ -1193,5 +1193,14 @@ global class ConstantValues {
   public static final String MAIL_BODY_COMPLETED='The job for content document link visibility has been completed. The statements will now appear on the portal.';
   public static final String COMPLETED='Completed';
   public static final String BATCH_JOB_START='The batch job has started successfully';
+  public static final String REFUND='Refund';
+  public static final Integer ONE=1;
+  public static final Integer SIX=6;
+  public static final Integer SEVEN=7;
+  public static final Integer TWELVE=12;
+  public static final Integer THIRTY=30;
+  public static final Integer THIRTY_ONE=31;
+  public static final Integer THREE_SIXTY_FIVE=365;
+  public static final Integer FOUR=4;
 
 }

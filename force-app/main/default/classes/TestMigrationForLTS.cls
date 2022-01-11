@@ -227,6 +227,7 @@ public with sharing class TestMigrationForLTS {
         LoanStatementBulkGenerationFile bulkStatement=new LoanStatementBulkGenerationFile();
         bulkStatement.congaBatch=congaBatchRecord;
         bulkStatement.clickLaunch();
+        bulkStatement.redirectWhenDone();
         bulkStatement.runbatch();
 
         PageReference pageRef = Page.loan__tabbedLoanAccount;
@@ -513,6 +514,7 @@ public with sharing class TestMigrationForLTS {
         LoanStatementBulkGenerationFile bulkStatement=new LoanStatementBulkGenerationFile();
         bulkStatement.congaBatch=congaBatchRecord;
         bulkStatement.clickLaunch();
+        bulkStatement.redirectWhenDone();
         bulkStatement.runbatch();
 
         PageReference pageRef = Page.loan__tabbedLoanAccount;
@@ -612,6 +614,7 @@ public with sharing class TestMigrationForLTS {
         LoanStatementBulkGenerationFile bulkStatement=new LoanStatementBulkGenerationFile();
         bulkStatement.congaBatch=congaBatchRecord;
         bulkStatement.clickLaunch();
+        bulkStatement.redirectWhenDone();
         bulkStatement.runbatch();
 
         PageReference pageRef = Page.loan__tabbedLoanAccount;
@@ -1030,6 +1033,7 @@ public with sharing class TestMigrationForLTS {
         LoanStatementBulkGenerationFile bulkStatement=new LoanStatementBulkGenerationFile();
         bulkStatement.congaBatch=congaBatchRecord;
         bulkStatement.clickLaunch();
+        bulkStatement.redirectWhenDone();
         bulkStatement.runbatch();
 
         PageReference pageRef = Page.loan__tabbedLoanAccount;
@@ -1143,6 +1147,10 @@ public with sharing class TestMigrationForLTS {
         String schdu = '0 0 22 * * ?';
 		system.schedule('Test ContentDocumentLinkVisibilityUpdateBatch', schdu, objcontent );
 
+        StatementBulkGenerationLoanUpdateBatch objStatement=new StatementBulkGenerationLoanUpdateBatch();
+        String sched = '0 0 21 * * ?';
+		system.schedule('Test StatementBulkGenerationLoanUpdateBatch', sched, objStatement );
+
         PageReference pageRef = Page.loan__tabbedLoanAccount;
         String description = 'Old Val: Frq:MonthlyFrequency Cycle:null Int Rt:3.9500 Int Prd:0 Term:360 Mat Dt :2050'+
                                 '-12-09 Nxt DDT:2021-02-09** New Val: Frq:Monthly Int Rt:3.70 Int Prd:0 Term:360 Mat Dt'+
@@ -1176,6 +1184,7 @@ public with sharing class TestMigrationForLTS {
         LoanStatementBulkGenerationFile bulkStatement=new LoanStatementBulkGenerationFile();
         bulkStatement.congaBatch=congaBatchRecord;
         bulkStatement.clickLaunch();
+        bulkStatement.redirectWhenDone();
         bulkStatement.runbatch();
 
         pageRef.getParameters().put('id', loanAcc.id);

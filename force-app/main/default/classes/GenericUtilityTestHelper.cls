@@ -1791,7 +1791,7 @@ public with sharing class GenericUtilityTestHelper {
       ContentDocumentLink documentLink =new ContentDocumentLink();
       documentLink.LinkedEntityId=loanId;
       documentLink.ContentDocumentId =[select contentdocumentid from contentversion where id =: contentId].contentdocumentid;
-      documentLink.shareType='V';
+      documentLink.shareType='I';
       insert documentLink;
       return documentLink;
   }

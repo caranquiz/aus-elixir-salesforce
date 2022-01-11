@@ -13,6 +13,7 @@
       <apex:pageBlockSection >
         <apex:commandButton value="Launch Conga Batch" action="{!clickLaunch}" />
         <apex:commandButton value="Update File Visibility" action="{!runbatch}" />
+        <apex:actionPoller action="{!redirectWhenDone}" rendered="{!waitPoll}" interval="5" />
       </apex:pageBlockSection>
     </apex:pageBlock>
    </apex:form>
