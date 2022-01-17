@@ -1,21 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
-     <types>
-        <members>ConstantValues</members>
-        <members>ContentDocumentLinkVisibilityUpdateBatch</members>
-        <members>GenericUtilityTestHelper</members>
-        <members>LoanStatementBulkGenerationFile</members>
-        <members>StatementBulkGenerationLoanUpdateBatch</members>
+    <types>
+        <members>ActivityPageRecordTest</members>
+        <members>CheckRules</members>
+        <members>LTSChargeUpdateBatch</members>
+        <members>LTSChargeUpdateBatchExecution</members>
+        <members>TaskRelatedLoanController</members>
         <members>TestMigrationForLTS</members>
         <name>ApexClass</name>
     </types>
     <types>
-        <members>StatementBulkGenerationPage</members>
+        <members>ActivityListPage</members>
         <name>ApexPage</name>
     </types>
     <types>
-        <members>Batch_Job_Size__c.StatementBulkGenerationLoanUpdateBatch__c</members>
+        <members>Batch_Job_Size__c.LTSChargeUpdateBatch__c</members>
         <name>CustomField</name>
+    </types>
+    <types>
+        <members>genesis__Applications__c.Application_has_been_Formally_Approved_Email_Alert</members>
+        <name>WorkflowAlert</name>
+    </types>
+    <types>
+        <members>genesis__Applications__c.Application status is changed to Formally Approved</members>
+        <name>WorkflowRule</name>
     </types>
     <version>48.0</version>
 </Package>

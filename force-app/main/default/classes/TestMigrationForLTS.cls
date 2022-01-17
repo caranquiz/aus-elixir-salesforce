@@ -676,6 +676,7 @@ public with sharing class TestMigrationForLTS {
             dateutil.getCurrentSystemDate(),
             fees.get(0).Id);
         charge.loan__Transaction_Creation_Date__c = currentSystemDate;
+        charge.loan__Date__c=currentSystemDate;
         Database.update(charge);
         List<loan__Charge__c> charges = [SELECT ID,
                                                 loan__Date__c,
@@ -704,6 +705,11 @@ public with sharing class TestMigrationForLTS {
 
         List<loan__Loan_Account__c > loanAccList = new List<loan__Loan_Account__c>();
         LTSMigrationHandler handler = new LTSMigrationHandler(startDate,currentSystemDate);
+
+        LTSChargeUpdateBatch objCharge = new LTSChargeUpdateBatch();
+        String schCharge = '0 0 20 * * ?';
+		system.schedule('Test Check Charge Batch', schCharge, objCharge );
+        LTSChargeUpdateBatchExecution.executeLTSRedrawUpdateBatchWS();
 
         loanAccList.add(TestLoan.getLoanAccount(loanAcc));
         handler.process(loanAccList);
@@ -1137,6 +1143,12 @@ public with sharing class TestMigrationForLTS {
             1,
             'Deposit Inserted Successfully'
         );
+
+        LTSChargeUpdateBatch objCharge = new LTSChargeUpdateBatch();
+        String schCharge = '0 0 20 * * ?';
+		system.schedule('Test Check Charge Batch', schCharge, objCharge );
+        LTSChargeUpdateBatchExecution.executeLTSRedrawUpdateBatchWS();
+
 
         LTSRedrawUpdateBatch obj=new LTSRedrawUpdateBatch();
         String sch = '0 0 23 * * ?';

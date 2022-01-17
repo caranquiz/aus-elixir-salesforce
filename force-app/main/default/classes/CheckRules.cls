@@ -179,11 +179,9 @@ global with sharing class CheckRules {
         rulesNameList.add(ConstantValues.ACCOUNTANT_ABN_STATUS_WARNING);
         rulesNameList.add(ConstantValues.ACCOUNTANT_PHONE_NUMBER_WARNING);
         rulesNameList.add(ConstantValues.ACCOUNTANT_CALL_WARNING);
-        rulesNameList.add(ConstantValues.COMMISSION_MANADATE_PERCENTAGE_WARNING);
         rulesNameList.add(ConstantValues.BAS_WARNING);
         rulesNameList.add(ConstantValues.UPFRONT_EXCEEDS_STANDARD_PERCENTAGE);
         rulesNameList.add(ConstantValues.TRAIL_EXCEEDS_STANDARD_PERCENTAGE);
-        rulesNameList.add(ConstantValues.CREDIT_PROVIDERS_MORTGAGE_INSURANCE_WARNING);
       } else if (tabName == ConstantValues.WARNING2) {
         rulesNameList.add(
           ConstantValues.ACCOUNTANT_ABN_SEARCH_CONDUCTED_WARNING
@@ -266,6 +264,8 @@ global with sharing class CheckRules {
         rulesNameList.add(ConstantValues.APPLICATION_FORM_COMPLETED_WARNING);
         rulesNameList.add(ConstantValues.APPLICATION_SETTLEMENT_FEE_WARNING);
         rulesNameList.add(ConstantValues.SUGGESTED_APPLICATION_FEE_WARNING);
+        rulesNameList.add(ConstantValues.COMMISSION_MANADATE_PERCENTAGE_WARNING);
+        rulesNameList.add(ConstantValues.CREDIT_PROVIDERS_MORTGAGE_INSURANCE_WARNING);
         loanDetailsRiskGradeWarningCheck(applicationId);
         loanDetailsPrimaryPurposeWarningCheck(applicationId);
         loanDetailsDocumentCompareWarningCheck(applicationId);
