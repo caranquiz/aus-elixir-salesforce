@@ -2,7 +2,7 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Transaction_Type__c</fullName>
     <externalId>false</externalId>
-    <formula>IF(loan__Last_Transaction_Type__c == &apos;loan__Repayment_Transaction_Adjustment__c&apos; , &apos;Payment Reversed&apos;,(IF(loan__Last_Transaction_Type__c == &apos;Deposit Adjustment - Subtract&apos;,&quot;Redraw&quot;,(CASE(1,
+    <formula>IF(loan__Last_Transaction_Type__c == &apos;loan__Other_Transaction__c&apos;  &amp;&amp;  (ISPICKVAL(loan__Other_Loan_Txn__r.loan__Transaction_Type__c, &apos;Refund&apos;)),&apos;Refund&apos;,(IF(loan__Last_Transaction_Type__c == &apos;loan__Repayment_Transaction_Adjustment__c&apos; , &apos;Payment Reversed&apos;,(IF(loan__Last_Transaction_Type__c == &apos;Deposit Adjustment - Subtract&apos;,&quot;Redraw&quot;,(CASE(1,
 IF(NOT(ISBLANK(loan__Interest_Posting_Txn__c)),1,0),&quot;Interest&quot;,
 IF(NOT(ISBLANK(loan__Interest_Posting_Txn__c)) &amp;&amp;ISPICKVAL( loan__Interest_Posting_Txn__r.loan__Interest_Posting_Type__c ,&apos;Additional Interest&apos;) ,1,0),&quot;Line Fee&quot;,
 IF(ISPICKVAL( loan__Loan_Payment_Txn__r.loan__Payment_Type__c,&apos;Waived&apos;)&amp;&amp;loan__Loan_Payment_Txn__r.loan__Applied_Spread__c!=null,1,0),&quot;Charge Waived-&quot;+ loan__Loan_Payment_Txn__r.loan__Applied_Spread__c ,
@@ -13,10 +13,10 @@ IF(NOT(ISBLANK(loan__Loan_Due_Detail__c)),1,0),&quot;Bill&quot;,
 IF(NOT(ISBLANK(loan__Loan_Payment_Txn__c)) &amp;&amp;(ISPICKVAL( loan__Loan_Payment_Txn__r.loan__Payment_Type__c,&apos;Regular&apos;) || ISPICKVAL( loan__Loan_Payment_Txn__r.loan__Payment_Type__c,&apos;Deposit Payment&apos;) ),1,0),&quot;Payment Received&quot;,
 IF(loan__Loan_Payment_Txn__r.loan__Applied_Spread__c =null &amp;&amp; ISPICKVAL( loan__Loan_Payment_Txn__r.loan__Payment_Type__c,&apos;Waived&apos;),1,0),&quot;Interest Waived&quot;,IF(NOT(ISBLANK(loan__Loan_Payment_Txn__c)) &amp;&amp; ISPICKVAL( loan__Loan_Payment_Txn__r.loan__Payment_Type__c,&apos;Closure-Tolerance&apos;) ,1,0),&quot;Closure-Tolerance&quot;,
 IF((loan__Fees_Waived__c != 0) &amp;&amp;(loan__Principal_Paid__c =0),1,0),&quot;Charge Waiver Reversal&quot;,
-IF(loan__Repayment_Txn_Reversal__r.loan__Payment_Type__c = &apos;Regular&apos;,1,0),&quot;Payment Reversal&quot;,&quot;&quot;)))))</formula>
-    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+IF(loan__Repayment_Txn_Reversal__r.loan__Payment_Type__c = &apos;Regular&apos;,1,0),&quot;Payment Reversal&quot;,&quot;&quot;)))))))</formula>
     <label>Transaction Type</label>
     <required>false</required>
+    <trackHistory>false</trackHistory>
     <trackTrending>false</trackTrending>
     <type>Text</type>
     <unique>false</unique>

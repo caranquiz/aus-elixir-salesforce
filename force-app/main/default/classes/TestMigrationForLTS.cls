@@ -214,6 +214,28 @@ public with sharing class TestMigrationForLTS {
             disTxn.Id, 
             'null');
 
+        loan.LoanAction la = new loan.LoanActionFactory().getLoanActionAPI();
+        la.changeInterestRate(loanAcc.id, null, 7);
+        List<loan__Other_Transaction__c> oTxn = [SELECT Id,
+                                                        Name,
+                                                        CreatedDate,
+                                                        loan__Transaction_Type__c,
+                                                        loan__Txn_Amt__c,
+                                                        loan__Loan_Account__c
+                                                FROM loan__Other_Transaction__c
+                                                WHERE loan__Loan_Account__c = :loanAcc.Id
+                                                Order By CreatedDate ASC];
+        oTxn[0].loan__Transaction_Type__c='Deposit Adjustment - Add';
+        oTxn[0].loan__Txn_Amt__c=2000;
+        update oTxn;
+        List<loan__Other_Transaction__c> oTxnList = [SELECT Id
+                                                FROM loan__Other_Transaction__c
+                                                WHERE loan__Loan_Account__c = :loanAcc.Id 
+                                                AND loan__Transaction_Type__c='Deposit Adjustment - Add' 
+                                                AND loan__Txn_Amt__c=2000 
+                                                Order By CreatedDate ASC];
+        System.assertEquals(oTxnList.size(),1);
+
         APXT_BPM__Conductor__c congaBatchRecord = [SELECT id,
                                                         name,
                                                         Statement_Generation_End_Date__c,
@@ -230,15 +252,6 @@ public with sharing class TestMigrationForLTS {
         bulkStatement.redirectWhenDone();
         bulkStatement.runbatch();
 
-        PageReference pageRef = Page.loan__tabbedLoanAccount;
-        pageRef.getParameters().put('id', loanAcc.id);
-        Test.setCurrentPage(pageRef);
-        GenerateStatementController controllerRec = new GenerateStatementController();
-        controllerRec.loanRecord = loanAcc;
-        controllerRec.loanId = loanAcc.id;
-        controllerRec.doSearch();
-        controllerRec.exportToPDF();
-        controllerRec.back();
         Test.stopTest();
 
         loan__Loan_Payment_Transaction__c pmt = GenericUtilityTestHelper.returnPayment(loanAcc.Id,currentSystemDate,pMode.Id);
@@ -271,16 +284,37 @@ public with sharing class TestMigrationForLTS {
         Date resolvedDate = Date.newinstance(currentSystemDate.year(), currentSystemDate.month(), currentSystemDate.day());
         handler.process(loanAccList);
         
+        List<loan__Loan_Transaction_Summary__c> summary1 = [SELECT loan__Other_Loan_Txn__c,
+                                                                  loan__Last_Transaction_Type__c,
+                                                                  loan__Invalid_data__c
+                                                           FROM loan__Loan_Transaction_Summary__c
+                                                           WHERE loan__Other_Loan_Txn__c=: oTxn[0].id
+                                                           Order By loan__Transaction_Time__c ASC]; 
+        summary1[0].loan__Last_Transaction_Type__c = 'Deposit Adjustment - Add';
+        update summary1;
+        
         List<loan__Loan_Transaction_Summary__c> summary = [SELECT loan__Current_Interest_Rate__c,
                                                                   loan__Current_Loan_Balance__c,
                                                                   loan__Current_Payoff_Balance__c,
                                                                   loan__Current_Principal_Remaining__c,
                                                                   loan__Current_Delinquent_Amount__c,
+                                                                  loan__Last_Transaction_Type__c,
                                                                   loan__Invalid_data__c
                                                            FROM loan__Loan_Transaction_Summary__c
                                                            Order By loan__Transaction_Time__c ASC]; 
+        System.assertEquals(summary.size(),4);
         
-        System.assertEquals(summary.size(),3);
+        PageReference pageRef = Page.loan__tabbedLoanAccount;
+        pageRef.getParameters().put('id', loanAcc.id);
+        Test.setCurrentPage(pageRef);
+        GenerateStatementController controllerRec = new GenerateStatementController();
+        controllerRec.loanRecord = loanAcc;
+        controllerRec.loanId = loanAcc.id;
+        controllerRec.doSearch();
+        controllerRec.exportToPDF();
+        controllerRec.redrawLoanSummary(loanAcc.id);
+        controllerRec.back();
+
     }
     
     public static testMethod void TestSummaryIfAlreadyPresent(){
@@ -318,6 +352,7 @@ public with sharing class TestMigrationForLTS {
         System.assertNotEquals(
             disTxn.Id, 
             'null');
+
         List<loan__Loan_transaction_summary__c> summary = [SELECT loan__Current_Interest_Rate__c,
                                                                   loan__Current_Loan_Balance__c,
                                                                   loan__Current_Payoff_Balance__c,
@@ -346,6 +381,7 @@ public with sharing class TestMigrationForLTS {
         List<Id> lptList=new List<Id>();
         lptList.add(pmt.id);
         LTSConsolidatedLoanBalanceUpdate.updateConsolidatedLoanBalance(lptList);
+
         Test.stopTest();
 
         summary = [SELECT loan__Current_Interest_Rate__c,
@@ -456,11 +492,22 @@ public with sharing class TestMigrationForLTS {
                                                         Name,
                                                         CreatedDate,
                                                         loan__Transaction_Type__c,
+                                                        loan__Txn_Amt__c,
                                                         loan__Loan_Account__c
                                                 FROM loan__Other_Transaction__c
                                                 WHERE loan__Loan_Account__c = :loanAcc.Id
                                                 Order By CreatedDate ASC];
-        System.assertEquals(oTxn.size(),1);
+        oTxn[0].loan__Transaction_Type__c='Refund';
+        oTxn[0].loan__Txn_Amt__c=2000;
+        update oTxn;
+        List<loan__Other_Transaction__c> oTxnList = [SELECT Id
+                                                FROM loan__Other_Transaction__c
+                                                WHERE loan__Loan_Account__c = :loanAcc.Id 
+                                                AND loan__Transaction_Type__c='Refund' 
+                                                AND loan__Txn_Amt__c=2000 
+                                                Order By CreatedDate ASC];
+        System.assertEquals(oTxnList.size(),1);
+
         loan.GlobalProcessFacade.moveSystemToDate(currentSystemDate+1,false);   
         currentSystemDate=dateutil.getCurrentSystemDate();
 
@@ -476,6 +523,7 @@ public with sharing class TestMigrationForLTS {
             1,
             'LPT inserted Sucessfully'
         );
+        
 
         List<Id> lptList=new List<Id>();
         lptList.add(pmt.id);
@@ -510,6 +558,11 @@ public with sharing class TestMigrationForLTS {
                             FROM APXT_BPM__Conductor__c 
                             WHERE APXT_BPM__Title__c=: ConstantValues.STATEMENT_CONGA_BATCH];
         System.assert(congaBatchRecord != null,'Conga Batch Should not be null');
+
+        LTSRedrawUpdateBatch obj=new LTSRedrawUpdateBatch();
+        String sch = '0 0 23 * * ?';
+		system.schedule('Test Check', sch, obj );
+        LTSRedrawUpdateBatchExecution.executeLTSRedrawUpdateBatchWS();
 
         LoanStatementBulkGenerationFile bulkStatement=new LoanStatementBulkGenerationFile();
         bulkStatement.congaBatch=congaBatchRecord;
@@ -1146,9 +1199,8 @@ public with sharing class TestMigrationForLTS {
 
         LTSChargeUpdateBatch objCharge = new LTSChargeUpdateBatch();
         String schCharge = '0 0 20 * * ?';
-		system.schedule('Test Check Charge Batch', schCharge, objCharge );
+		system.schedule('Test Check Charge Batch', schCharge, objCharge);
         LTSChargeUpdateBatchExecution.executeLTSRedrawUpdateBatchWS();
-
 
         LTSRedrawUpdateBatch obj=new LTSRedrawUpdateBatch();
         String sch = '0 0 23 * * ?';

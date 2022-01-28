@@ -9,6 +9,7 @@ Description : Used to display the list of transactions when Statement button in 
 public class GenerateStatementController {
     public List<loan__Loan_Transaction_Summary__c> txnList {get; set;}
     public List<loan__Loan_Transaction_Summary__c> payoffList {get; set;}
+    public List<loan__Loan_Transaction_Summary__c> refundList {get; set;}
     public String loanId=ApexPages.currentPage().getParameters().get(ConstantValues.LOAN_ID);
     public Date StartDate {get;set;}
     public Date EndDate {get;set;}
@@ -51,12 +52,13 @@ public class GenerateStatementController {
             }
             if(loan.Statement_End_Date__c != NULL && currentSystemDate != NULL && loan.Statement_End_Date__c > currentSystemDate){
                 ApexPages.addmessage(
-                  new ApexPages.message(ApexPages.severity.error, ConstantValues.END_DATE_CANT_BE_IN_FUTURE)
+                    new ApexPages.message(ApexPages.severity.error, ConstantValues.END_DATE_CANT_BE_IN_FUTURE)
                 );
                 return null;
             }
             //Statement start and end dates updated so that relevant transaction records are picked based on that
             update loan;
+            redrawLoanSummary(loanId);
             //Querying out list of transactions based on certain inclusions and exclusions
             txnList =  [SELECT Id,
                             Name,
@@ -78,7 +80,7 @@ public class GenerateStatementController {
                             FROM loan__Loan_Transaction_Summary__c 
                             WHERE Include_in_Summary__c = true 
                             AND loan__Loan_Account__c =: loanId
-                            AND loan__Consolidated_Loan_Balance__c != NULL 
+                            AND loan__Consolidated_Loan_Balance__c != NULL
                             AND loan__Last_Transaction_Type__c NOT IN (:ConstantValues.OTHER_TRANSACTION)
                             AND (Transaction_Type__c in (:ConstantValues.PAYMENT_RECEIVED,
                                 :ConstantValues.INTEREST_TAG,:ConstantValues.REDRAW,:ConstantValues.DISBURSEMENT) 
@@ -87,8 +89,7 @@ public class GenerateStatementController {
                                 (:ConstantValues.DISCOUNT_TAG,:ConstantValues.INTERNAL_TRANSFER) 
                             AND loan__Loan_Payment_Txn__r.loan__Rejected__c = false 
                             AND loan__Loan_Payment_Txn__r.loan__Reversed__c = false
-                            AND (loan__Loan_Payment_Txn__r.loan__Cheque_Number__c NOT IN (:ConstantValues.LOAN_PAYOFF)
-                            OR loan__Loan_Payment_Txn__r.loan__Payoff_Balance__c > 0)))
+                            AND loan__Loan_Payment_Txn__r.loan__Payoff_Balance__c > 0))
                             AND (loan__Interest_Posting_Txn__c = null 
                             OR loan__Interest_Posting_Txn__r.loan__Reversed__c = false) 
                             AND (loan__Other_Loan_Txn__c = null 
@@ -117,13 +118,15 @@ public class GenerateStatementController {
                                     WHERE Include_in_Summary__c = true 
                                     AND loan__Loan_Account__c =: loanId
                                     AND loan__Consolidated_Loan_Balance__c != NULL 
-                                    AND Transaction_Type__c =: ConstantValues.PAYMENT_RECEIVED
-                                    AND loan__Loan_Payment_Txn__c != null 
-                                    AND loan__Loan_Payment_Txn__r.loan__Payment_Mode__r.Name NOT IN
+                                    AND Transaction_Type__c IN (:ConstantValues.PAYMENT_RECEIVED,:ConstantValues.REFUND)
+                                    AND (loan__Loan_Payment_Txn__c = null 
+                                    OR (loan__Loan_Payment_Txn__r.loan__Payment_Mode__r.Name NOT IN
                                         (:ConstantValues.DISCOUNT_TAG,:ConstantValues.INTERNAL_TRANSFER) 
-                                    AND loan__Loan_Payment_Txn__r.loan__Cheque_Number__c =: ConstantValues.LOAN_PAYOFF
-                                    AND loan__Loan_Payment_Txn__r.loan__Payoff_Balance__c = 0 
-                                    AND loan__Loan_Payment_Txn__r.loan__Rejected__c = false and loan__Loan_Payment_Txn__r.loan__Reversed__c = false 
+                                    AND (loan__Loan_Payment_Txn__r.loan__Cheque_Number__c =: ConstantValues.LOAN_PAYOFF
+                                    OR loan__Loan_Payment_Txn__r.loan__Payoff_Balance__c = 0)
+                                    AND loan__Loan_Payment_Txn__r.loan__Rejected__c = false and loan__Loan_Payment_Txn__r.loan__Reversed__c = false ))
+                                    AND (loan__Other_Loan_Txn__c = null
+                                    OR loan__Other_Loan_Txn__r.loan__Reversed__c = false)
                                     ORDER BY loan__Transaction_Date__c ASC, CreatedDate ASC, loan__Transaction_Time__c ASC, Name ASC];
             if(payoffList.isEmpty() == false){
                 txnList.addAll(payoffList);
@@ -169,6 +172,7 @@ public class GenerateStatementController {
                                                                 AND (loan__Interest_Rate__c != NULL OR loan__New_Interest_Rate__c != NULL)
                                                                 ORDER BY loan__Transaction_Time__c DESC, loan__Txn_Date__c DESC, CreatedDate DESC
                                                                 ];
+            
             for(loan__Other_Transaction__c eachTxn : otherLoanTxns){
                 eachTxn.Latest_Rate_Change__c = false;
                 eachTxn.Final_Interest_Rate__c = false;
@@ -264,9 +268,8 @@ public class GenerateStatementController {
                                                                                 WHERE loan__Transaction_Date__c <: statementStartDate
                                                                                 AND loan__Loan_Account__c =: loanId
                                                                                 AND loan__Consolidated_Loan_Balance__c != NULL
-                                                                                AND loan__Last_Transaction_Type__c NOT IN (:ConstantValues.OTHER_TRANSACTION)
                                                                                 AND (Transaction_Type__c IN (:ConstantValues.PAYMENT_RECEIVED,
-                                                                                    :ConstantValues.INTEREST_TAG,:ConstantValues.REDRAW,:ConstantValues.DISBURSEMENT) 
+                                                                                    :ConstantValues.INTEREST_TAG,:ConstantValues.REDRAW,:ConstantValues.DISBURSEMENT,:ConstantValues.REFUND) 
                                                                                 OR loan__Invalid_Data__c = false OR loan__Loan_Charge__c != null)
                                                                                 AND (loan__Loan_Payment_Txn__c = null
                                                                                 OR (loan__Loan_Payment_Txn__r.loan__Payment_Mode__r.Name NOT IN 
@@ -284,6 +287,9 @@ public class GenerateStatementController {
                 }
             }
             update loan;
+
+            redrawLoanSummary(loanId);
+
             WebLink statementLink = [SELECT Id, 
                                         Name, Url 
                                     FROM WebLink 
@@ -314,7 +320,7 @@ public class GenerateStatementController {
         }
     }
     //This method is called when Back button is clicked in VF page - helps in redirecting to CL Contract page
-      public pagereference back() {
+    public pagereference back() {
         try{
             Pagereference pg = new Pagereference('/' + loanId);
             pg.setRedirect(true);
@@ -327,5 +333,70 @@ public class GenerateStatementController {
             GenericUtility.insertLog('GenerateStatementController.back', e);
             return null;
         }
-      }
+    }
+    public void redrawLoanSummary(Id loanId){
+        List<loan__Loan_Transaction_Summary__c> loanSummary=[SELECT Id,
+                                                                    Name,
+                                                                    loan__Transaction_Date__c,
+                                                                    Include_in_Summary__c,
+                                                                    loan__Invalid_Data__c,
+                                                                    loan__Loan_Payment_Txn__c,
+                                                                    loan__Loan_Payment_Txn__r.loan__Rejected__c,
+                                                                    CreatedDate,
+                                                                    loan__Other_Loan_Txn__c,
+                                                                    loan__Other_Loan_Txn__r.loan__Txn_Amt__c
+                                                                FROM loan__Loan_Transaction_Summary__c 
+                                                                WHERE  loan__Loan_Account__c =: loanId
+                                                                AND loan__Other_Loan_Txn__c != null
+                                                                AND Include_in_Summary__c = true
+                                                                AND loan__Other_Loan_Txn__r.loan__Reversed__c = false
+                                                                AND loan__Last_Transaction_Type__c =: ConstantValues.DEPOSIT_ADD];
+
+        List<Date> transactionDate=new List<Date>();
+        List<Decimal> transactionAmount=new List<Decimal>();
+        List<DateTime> endDate=new List<DateTime>();
+        for(loan__Loan_Transaction_Summary__c txnSumm : loanSummary){
+            transactionDate.add(txnSumm.loan__Transaction_Date__c);
+            transactionAmount.add(txnSumm.loan__Other_Loan_Txn__r.loan__Txn_Amt__c);
+            endDate.add(txnSumm.CreatedDate);
+        }
+        if(loanSummary.size()>0){
+            List<loan__Loan_Transaction_Summary__c> loanSummary2=[SELECT Id,
+                                                                        Name,
+                                                                        loan__Transaction_Date__c,
+                                                                        loan__Transaction_Amount__c,
+                                                                        Include_in_Summary__c,
+                                                                        loan__Invalid_Data__c,
+                                                                        loan__Loan_Payment_Txn__c,
+                                                                        loan__Other_Loan_Txn__r.loan__Txn_Amt__c,
+                                                                        loan__Loan_Payment_Txn__r.loan__Reversed__c
+                                                                    FROM loan__Loan_Transaction_Summary__c 
+                                                                    WHERE loan__Loan_Account__c =: loanId
+                                                                    AND loan__Consolidated_Loan_Balance__c != NULL 
+                                                                    AND loan__Other_Loan_Txn__c != null
+                                                                    AND loan__Other_Loan_Txn__r.loan__Reversed__c = false
+                                                                    AND loan__Transaction_Date__c IN: transactionDate 
+                                                                    AND loan__Transaction_Amount__c IN: transactionAmount
+                                                                    AND CreatedDate <=: endDate
+                                                                    AND loan__Other_Loan_Txn__c != null
+                                                                    AND loan__Other_Loan_Txn__r.loan__Reversed__c = false
+                                                                    AND loan__Last_Transaction_Type__c =: ConstantValues.DEPOSIT_SUBTRACT
+                                                                    ORDER BY CreatedDate DESC ];
+            
+            for(loan__Loan_Transaction_Summary__c loanTransaction : loanSummary){
+                for(loan__Loan_Transaction_Summary__c loanTransaction2 : loanSummary2){
+                    if( loanTransaction.loan__Other_Loan_Txn__c != Null
+                            && loanTransaction2.loan__Transaction_Amount__c == loanTransaction.loan__Other_Loan_Txn__r.loan__Txn_Amt__c
+                            && loanTransaction2.loan__Transaction_Date__c == loanTransaction.loan__Transaction_Date__c ){
+                        loanTransaction2.loan__Transaction_Date__c=Date.newInstance(3000,1,1);
+                        loanTransaction.loan__Transaction_Date__c=Date.newInstance(3000,1,1);
+                        break;
+                    }
+                }
+            }
+            Database.update(loanSummary2,false);
+            Database.update(loanSummary,false);
+            
+        }
+    }
 }
