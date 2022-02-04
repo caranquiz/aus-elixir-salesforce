@@ -1,27 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>Deployment 28012022</fullName>
+    <fullName>Deployment 04012022</fullName>
     <types>
-        <members>GenerateStatementController</members>
-        <members>LTSCalculateConsolidatedLoanBalance</members>
-        <members>LTSChargeUpdateBatch</members>
-        <members>LTSConsolidatedLoanBalanceUpdate</members>
-        <members>LTSRedrawUpdateBatch</members>
-        <members>TestMigrationForLTS</members>
+        <members>SMSFABNNameSearchCallout</members>
+        <members>SMSFABNNameSearchCalloutTest</members>
+        <members>SMSFSearchByABNNameResponse</members>
+        <members>WarehouseFunding</members>
         <name>ApexClass</name>
     </types>
     <types>
-        <members>clcommon__Party__c.SMSF_Status__c</members>
-        <members>loan__Charge__c.Check_loan_Payoff__c</members>
-        <members>loan__Charge__c.Update_LTS_Charge_Check__c</members>
-        <members>loan__Loan_Transaction_Summary__c.Credit__c</members>
-        <members>loan__Loan_Transaction_Summary__c.Debit__c</members>
-        <members>loan__Loan_Transaction_Summary__c.Transaction_Type__c</members>
-        <name>CustomField</name>
-    </types>
-    <types>
-        <members>Update_Consolidated_Loan_Balance_of_LTS</members>
-        <name>Flow</name>
+        <members>SMSFSearchByABNNameResponseDummyXML</members>
+        <name>StaticResource</name>
     </types>
     <version>48.0</version>
 </Package>

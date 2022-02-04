@@ -25,11 +25,17 @@ class SMSFABNNameSearchCalloutTest {
       'Custom Setting not inserted successfully'
     );
     //Inserting Account
-    Account acc = GenericUtilityTestHelper.createAccount();
-    System.assertNotEquals(acc.Id, null, 'Account not inserted successfully');
+    Account objAccountOne = GenericUtilityTestHelper.createAccount();
+    System.assertNotEquals(objAccountOne.Id, null, 'Account not inserted successfully');
+    Account objAccountTwo = GenericUtilityTestHelper.createAccount();
+    objAccountTwo.Name = 'Mauritius Group Pty Ltd ATF Mauritius Group';
+    update(objAccountTwo);
+    System.assertNotEquals(objAccountTwo.Id, null, 'Account not inserted successfully');
     //Inserting Party
-    clcommon__Party__c party = GenericUtilityTestHelper.createParty(acc);
-    System.assertNotEquals(party.Id, null, 'Party not inserted successfully');
+    clcommon__Party__c testPartyOne = GenericUtilityTestHelper.createParty(objAccountOne);
+    clcommon__Party__c testPartyTwo = GenericUtilityTestHelper.createParty(objAccountTwo);
+    System.assertNotEquals(testPartyOne.Id, null, 'Party not inserted successfully');
+    System.assertNotEquals(testPartyTwo.Id, null, 'Party not inserted successfully');
     //Inserting Integration Family
     intframework__Integration_Family__c family = GenericUtilityTestHelper.getFamily(
       ConstantValues.FAMILY_NAME
@@ -83,15 +89,21 @@ class SMSFABNNameSearchCalloutTest {
       'API configuration not inserted succesfully'
     );
   }
-  /* Mock class returns response from static resource depending on endpoint being called */
-  private class Mock implements HttpCalloutMock {
+  /* Mock classes returns response from static resource depending on endpoint being called */
+  private class mockForAccountOne implements HttpCalloutMock {
     public HTTPResponse respond(HTTPRequest req) {
-      return getMockResponse(req.getEndpoint(), 200);
+      return getMockResponseForAccountOne(req.getEndpoint(), 200);
     }
   }
+  
+  private class mockForAccountTwo implements HttpCalloutMock {
+    public HTTPResponse respond(HTTPRequest req) {
+      return getMockResponseForAccountTwo(req.getEndpoint(), 200);
+    }
+}
 
-  /* method to get mock response */
-  private static HttpResponse getMockResponse(
+  /* methods to get mock response */
+  private static HttpResponse getMockResponseForAccountOne(
     String endpoint,
     Integer statusCode
   ) {
@@ -106,18 +118,48 @@ class SMSFABNNameSearchCalloutTest {
     res.setStatusCode(statusCode);
     res.setHeader('Content-Type', 'text/xml');
     res.setStatus('SUCCESS');
+    String str = '<?xml version="1.0" encoding="utf-8"?><SuperFundNamesPayload xmlns:xsd="http://www.w3.org/2001/XMLSchema" '
+            +'xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://superfundlookup.gov.au"><Request><Guid>c4726ad0-af04-4d8d-987b-d15966cd1cfd</Guid><Name>'
+            +'^</Name><ActiveFundsOnly>Y</ActiveFundsOnly></Request><Response><DateTimeRetrieved>2020-10-21T04:57:03.8000062+11:00</DateTimeRetrieved>'
+            +'<Exception><Code>Search</Code><Description>No records found</Description></Exception></Response></SuperFundNamesPayload>';
     if (endpoint.contains('nothing')) {
-      res.setBody(
-        '<?xml version="1.0" encoding="utf-8"?><SuperFundNamesPayload xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://superfundlookup.gov.au"><Request><Guid>c4726ad0-af04-4d8d-987b-d15966cd1cfd</Guid><Name>^</Name><ActiveFundsOnly>Y</ActiveFundsOnly></Request><Response><DateTimeRetrieved>2020-10-21T04:57:03.8000062+11:00</DateTimeRetrieved><Exception><Code>Search</Code><Description>No records found</Description></Exception></Response></SuperFundNamesPayload>'
-      );
+      res.setBody(str);
     } else {
       res.setBody(xml);
     }
     return res;
   }
+  
+  private static HttpResponse getMockResponseForAccountTwo(
+    String endpoint,
+    Integer statusCode
+  ) {
+    List<StaticResource> srList = [
+      SELECT Id, Name, Body
+      FROM StaticResource
+      WHERE Name = 'SMSFSearchByABNNameResponseDummyXML'
+    ];
+    System.assertEquals(srList.size(), 1, 'Static Resource not found');
+    String xml = srList[0].Body.toString();
+    HttpResponse res = new HttpResponse();
+    res.setStatusCode(statusCode);
+    res.setHeader('Content-Type', 'text/xml');
+    res.setStatus('SUCCESS');
+    String str = '<?xml version="1.0" encoding="utf-8"?><SuperFundNamesPayload xmlns:xsd="http://www.w3.org/2001/XMLSchema" '
+            +'xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://superfundlookup.gov.au"><Request><Guid>c4726ad0-af04-4d8d-987b-d15966cd1cfd</Guid><Name>'
+            +'^</Name><ActiveFundsOnly>Y</ActiveFundsOnly></Request><Response><DateTimeRetrieved>2020-10-21T04:57:03.8000062+11:00</DateTimeRetrieved>'
+            +'<Exception><Code>Search</Code><Description>No records found</Description></Exception></Response></SuperFundNamesPayload>';
+    if (endpoint.contains('nothing')) {
+      res.setBody(str);
+    } else {
+      res.setBody(xml);
+    }
+    return res;
+  }
+  
   @isTest
-  static void testSearchBySMSFName() {
-    Test.setMock(HttpCalloutMock.class, new Mock());
+  static void testSearchBySMSFNameForAccountOne() {
+    Test.setMock(HttpCalloutMock.class, new mockForAccountOne());
     Test.startTest();
     clcommon__Party__c party = [
       SELECT Id
@@ -135,6 +177,29 @@ class SMSFABNNameSearchCalloutTest {
       System.debug(each.clcommon__Message__c);
     }
   }
+  
+  @isTest
+  static void testSearchBySMSFNameForAccountTwo() {
+    Test.setMock(HttpCalloutMock.class, new mockForAccountTwo());
+    Test.startTest();
+    clcommon__Party__c party = [
+      SELECT Id
+      FROM clcommon__Party__c
+      WHERE clcommon__Account__r.Name = 'Mauritius Group Pty Ltd ATF Mauritius Group'
+    ];
+    String responseString = SMSFABNNameSearchCallout.searchBySMSFName(party.Id);
+    System.assert(responseString != null, 'ABN Response fetch error');
+    Test.stopTest();
+    List<clcommon__Log__c> logList = [
+      SELECT Id, clcommon__Message__c
+      FROM clcommon__Log__c
+    ];
+    for (clcommon__Log__c each : logList) {
+      System.debug(each.clcommon__Message__c);
+    }
+  }
+  
+  
   @isTest
   static void testSearchBySMSFNameWithError() {
     List<intframework__Integration_API_Configuration__c> intApiConfig = [
@@ -150,7 +215,7 @@ class SMSFABNNameSearchCalloutTest {
     );
     intApiConfig[0].intframework__API_Endpoint__c = 'nothing';
     update intApiConfig;
-    Test.setMock(HttpCalloutMock.class, new Mock());
+    Test.setMock(HttpCalloutMock.class, new mockForAccountOne());
     Test.startTest();
     clcommon__Party__c party = [
       SELECT Id

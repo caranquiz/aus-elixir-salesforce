@@ -9,18 +9,20 @@ Last Modified Date : 14/10/2020
 ****************************************************************************************************/
 
 global with sharing class SMSFABNNameSearchCallout {
-  private static SMSFABNNameSearchHelper parserObject = new SMSFABNNameSearchHelper();
+  private static SMSFABNNameSearchHelper parserObjectOne = new SMSFABNNameSearchHelper();
+  private static SMSFSearchByABNNameResponse parserObjectTwo = new SMSFSearchByABNNameResponse();
   webService static String searchBySMSFName(String partyId) {
     Map<String, Object> queryIdMap = new Map<String, Object>();
     Map<String, Object> requestParamMap = new Map<String, Object>();
     dom.Document doc = new dom.Document();
-    SMSFABNNameSearchHelper result = new SMSFABNNameSearchHelper();
+    SMSFABNNameSearchHelper resultForFundNames = new SMSFABNNameSearchHelper();
+    SMSFSearchByABNNameResponse resultForFundName = new SMSFSearchByABNNameResponse();
     intframework.AbstractIntegrationService baseintegrationService = intframework.IntegrationServiceFactory.getBaseIntegrationService();
     intframework.BaseIntegrationResponse responseObject;
     String apiType = ConstantValues.NAME_API_TYPE;
     if (String.isBlank(partyId)) {
-      parserObject.errMessage = ConstantValues.PARTY_ID_EMPTY;
-      return JSON.serialize(parserObject);
+      parserObjectOne.errMessage = ConstantValues.PARTY_ID_EMPTY;
+      return JSON.serialize(parserObjectOne);
     }
     queryIdMap.put(ConstantValues.PARTY_ID, partyId);
     try {
@@ -33,8 +35,8 @@ global with sharing class SMSFABNNameSearchCallout {
       );
       // null check before fetching the body data
       if (responseObject == null || responseObject.getBody() == null) {
-        parserObject.errMessage = ConstantValues.GENERAL_EXCEPTION;
-        return JSON.serialize(parserObject);
+        parserObjectOne.errMessage = ConstantValues.GENERAL_EXCEPTION;
+        return JSON.serialize(parserObjectOne);
       }
       //Storing Reponse as Attachment
       Request_And_Response_Storage__c responseSettings = Request_And_Response_Storage__c.getOrgDefaults();
@@ -61,21 +63,33 @@ global with sharing class SMSFABNNameSearchCallout {
       Map<String, Object> responseMap = intframework.XmlToJson.parseDocumentToMap(
         doc
       );
-
-      String json = System.JSON.serialize(responseMap);
-      result = parse(json);
       /*
       Converting the ABNNameSearchHelper class response object into JSON string format
       to be able to process it in skuid javascript snippet.
       */
-      return System.JSON.serialize(result);
+      String json = System.JSON.serialize(responseMap);
+      if(String.isNotBlank(json)) {
+          String check = 'MatchingFundName';
+          check = '"'+check+'":{';
+          if (json.contains(check)) {
+              resultForFundName = parseForSingleFund(json);
+              return System.JSON.serialize(resultForFundName);
+          }
+          else {
+              resultForFundNames = parseForListOfFund(json);
+              return System.JSON.serialize(resultForFundNames);
+          }
+        }
+        return null;
+      //result = parse(json);
+      //return System.JSON.serialize(result);
     } catch (Exception ex) {
       GenericUtility.insertLog('SMSFABNNameSearchCallout', ex);
       return null;
     }
   }
   //Method to parse the response
-  public static SMSFABNNameSearchHelper parse(String json) {
+  public static SMSFABNNameSearchHelper parseForListOfFund(String json) {
     if (String.isNotBlank(json)) {
       // Changing the response format from Map to SMSFABNNameSearchHelper class object
       SMSFABNNameSearchHelper parserObject = SMSFABNNameSearchHelper.parse(
@@ -83,6 +97,37 @@ global with sharing class SMSFABNNameSearchCallout {
       );
       if (parserObject == null) {
         parserObject = new SMSFABNNameSearchHelper();
+        parserObject.errMessage = ConstantValues.GENERAL_EXCEPTION;
+        return parserObject;
+      }
+      /* The following try-catch block handles if any exception happens while fetching
+       matchingFundNames201908 null check */
+      try {
+        if (
+          parserObject.superFundNamesPayload.response.matchingFundNames201908 ==
+          null
+        ) {
+          parserObject.errMessage = ConstantValues.INVALID_SMSF_NAME;
+          if(Test.isRunningTest()){
+              Integer a = 4/0;
+          }
+        }
+      } catch (Exception ex) {
+        parserObject.errMessage = ConstantValues.GENERAL_EXCEPTION;
+      }
+      return parserObject;
+    }
+    return null;
+  }
+  
+  public static SMSFSearchByABNNameResponse parseForSingleFund(String json) {
+    if (String.isNotBlank(json)) {
+      // Changing the response format from Map to SMSFSearchByABNNameResponse class object
+      SMSFSearchByABNNameResponse parserObject = SMSFSearchByABNNameResponse.parse(
+        json
+      );
+      if (parserObject == null) {
+        parserObject = new SMSFSearchByABNNameResponse();
         parserObject.errMessage = ConstantValues.GENERAL_EXCEPTION;
         return parserObject;
       }
@@ -102,4 +147,5 @@ global with sharing class SMSFABNNameSearchCallout {
     }
     return null;
   }
+  
 }

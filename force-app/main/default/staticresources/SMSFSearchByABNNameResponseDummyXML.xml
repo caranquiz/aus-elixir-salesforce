@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SuperFundNamesPayload xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://superfundlookup.gov.au">
+  <Request>
+    <Guid>c4726ad0-af04-4d8d-987b-d15966cd1cfd</Guid>
+    <Name>Mauritius Group Pty Ltd ATF Mauritius Group</Name>
+    <ActiveFundsOnly>N</ActiveFundsOnly>
+  </Request>
+  <Response>
+    <UsageStatement>This extract is based on information supplied by superannuation entities to the Commissioner of Taxation. You should consider verifying this information from other sources. Neither the Australian Government nor the Tax Office endorse or guarantee the performance of complying superannuation funds.</UsageStatement>
+    <DateTimeRetrieved>2021-11-12T15:48:20.3611693+11:00</DateTimeRetrieved>
+    <MatchingFundNames201908>
+      <NumberOfRecords>1</NumberOfRecords>
+      <MatchingFundName>
+        <ABN>
+          <Value>34549189471</Value>
+          <IdentifierStatus>Active</IdentifierStatus>
+        </ABN>
+        <FundName>
+          <Name>The Trustee for Mauritius Group</Name>
+          <NameType>Entity Name</NameType>
+          <Score>100</Score>
+          <NameStatus>Current</NameStatus>
+          <FundTypeCode>SMF</FundTypeCode>
+          <FundTypeDescription>ATO Regulated Self-Managed Superannuation Fund</FundTypeDescription>
+        </FundName>
+        <Location>
+          <StateTerritoryCode>WA</StateTerritoryCode>
+          <Postcode>6108</Postcode>
+        </Location>
+      </MatchingFundName>
+    </MatchingFundNames201908>
+  </Response>
+</SuperFundNamesPayload>
