@@ -102,7 +102,7 @@ class SMSFABNNameSearchCalloutTest {
     }
 }
 
-  /* methods to get mock response */
+  /* methodes to get mock response */
   private static HttpResponse getMockResponseForAccountOne(
     String endpoint,
     Integer statusCode
@@ -237,7 +237,7 @@ class SMSFABNNameSearchCalloutTest {
     );
   }
   @isTest
-  static void testSearchBySMSFNameNullResponse() {
+  static void testSearchBySMSFNameNullResponseForAccoutOne() {
     Test.startTest();
     clcommon__Party__c party = [
       SELECT Id
@@ -252,9 +252,35 @@ class SMSFABNNameSearchCalloutTest {
     );
   }
   @isTest
-  static void SMSFSearchByABNNameHelperParseWithError() {
+  static void testSearchBySMSFNameNullResponseForAccountTwo() {
+    Test.startTest();
+    clcommon__Party__c party = [
+      SELECT Id
+      FROM clcommon__Party__c
+      WHERE clcommon__Account__r.Name = 'Mauritius Group Pty Ltd ATF Mauritius Group'
+    ];
+    String responseString = SMSFABNNameSearchCallout.searchBySMSFName(party.Id);
+    Test.stopTest();
+    System.assert(
+      responseString.contains(ConstantValues.GENERAL_EXCEPTION),
+      'ABN Response error'
+    );
+  }
+  @isTest
+  static void SMSFABNNameSearchHelperParseWithError() {
     Test.startTest();
     SMSFABNNameSearchHelper parsedResponse = SMSFABNNameSearchHelper.parse(
+      '<>'
+    );
+    Test.stopTest();
+    System.assert(parsedResponse == null, 'Response parsing error');
+    List<clcommon__Log__c> logList = [SELECT Id FROM clcommon__Log__c];
+    System.assert(logList.size() == 1, 'Log insetion error');
+  }
+  @isTest
+  static void SMSFSearchByABNNameResponseParseWithError() {
+    Test.startTest();
+    SMSFSearchByABNNameResponse parsedResponse = SMSFSearchByABNNameResponse.parse(
       '<>'
     );
     Test.stopTest();
