@@ -4,7 +4,7 @@
     <externalId>false</externalId>
     <label>Hardship Type</label>
     <required>false</required>
-    <trackHistory>false</trackHistory>
+    <trackHistory>true</trackHistory>
     <trackTrending>false</trackTrending>
     <type>Picklist</type>
     <valueSet>
@@ -40,6 +40,16 @@
                 <fullName>Capitalisation only</fullName>
                 <default>false</default>
                 <label>Capitalisation only</label>
+            </value>
+            <value>
+                <fullName>Time to sell security</fullName>
+                <default>false</default>
+                <label>Time to sell security</label>
+            </value>
+            <value>
+                <fullName>Early release of Superannuation</fullName>
+                <default>false</default>
+                <label>Early release of Superannuation</label>
             </value>
         </valueSetDefinition>
     </valueSet>
