@@ -34,9 +34,9 @@
     </classAccesses>
     <custom>true</custom>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Account.Sub_Aggregator__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -95,7 +95,7 @@
     </fieldPermissions>
     <tabVisibilities>
         <tab>Clone_Record_Configuration__c</tab>
-        <visibility>DefaultOn</visibility>
+        <visibility>Hidden</visibility>
     </tabVisibilities>
     <userLicense>Customer Community Plus</userLicense>
     <userPermissions>

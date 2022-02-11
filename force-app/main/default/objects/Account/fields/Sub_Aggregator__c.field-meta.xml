@@ -2,8 +2,18 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Sub_Aggregator__c</fullName>
     <deleteConstraint>SetNull</deleteConstraint>
+    <description>Shows Sub Aggregator of Broker Account Records</description>
     <externalId>false</externalId>
     <label>Sub Aggregator</label>
+    <lookupFilter>
+        <active>true</active>
+        <filterItems>
+            <field>Account.RecordTypeId</field>
+            <operation>equals</operation>
+            <value>Sub Aggregator</value>
+        </filterItems>
+        <isOptional>false</isOptional>
+    </lookupFilter>
     <referenceTo>Account</referenceTo>
     <relationshipLabel>Accounts (Sub Aggregator)</relationshipLabel>
     <relationshipName>Accounts</relationshipName>

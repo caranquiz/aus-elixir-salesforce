@@ -34,7 +34,7 @@
     </classAccesses>
     <custom>true</custom>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
         <field>Account.Sub_Aggregator__c</field>
         <readable>true</readable>
     </fieldPermissions>
