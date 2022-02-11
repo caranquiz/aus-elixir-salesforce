@@ -9,10 +9,6 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>CloneApplicationRecordTest</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
         <apexClass>CloneApplicationRelatedListParser</apexClass>
         <enabled>false</enabled>
     </classAccesses>
