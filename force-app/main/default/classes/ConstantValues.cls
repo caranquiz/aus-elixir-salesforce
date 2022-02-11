@@ -803,6 +803,10 @@ global class ConstantValues {
   public static final String BAS_WARNING = 'BAS % Warning';
   public static final String EMPLOYMENT_CALL_MADE_EXCEPTION = 'Employment Call Made Exception';
   public static final String ABN_EFFECTIVE_SELF_EMPLOYEMENT_EXCEPTION = 'ABN Effective from Exception Self Employment';
+  public static final String ERF_CAN_NOT_BE_CHARGED_ON_A_REGULATED_LOAN_RULE = 'ERF can not be charged on a regulated loan Rule';
+  public static final String ERF_FLAG_DOES_NOT_MATCH_PRODUCT_AND_NCCP_STATUS_DEFAULT_WARNING = 'ERF Flag does not match product and NCCP Status Default Warning';
+  public static final String ERF_FLAG_DOES_NOT_MATCH_NCCP_STATUS_AND_PRODUCT_DEFAULT_WARNING  = 'ERF Flag does not match NCCP Status and product Default Warning';
+  public static final String ERF_PERCENTAGE_OR_TERM_DOES_NOT_MATCH_PRODUCT_DEFAULT_WARNING = 'ERF % or term does not match product default Warning';
   public static final String BROKER_DOCS_WARNING = 'Broker Documents Warning';
   public static final String POLITICALLY_EXPOSED_WARNING = 'Politically Exposed Person Warning';
   public static final String KYC_AML_WARNING = 'KYC/AML Verified Warning';
@@ -1155,6 +1159,8 @@ global class ConstantValues {
   public static final String PRINCIPAL_INTEREST='Principal and Interest';
   public static final String INTEREST_ONLY_REVERTING='Interest Only reverting to Principal and Interest';
   public static final String INTEREST_ONLY='Interest Only';
+  public static final String SUB_AGGREGATOR = 'Sub Aggregator';
+  public static final String SUB_AGGREGATOR_MISSING = 'Please attach sub aggregator to the brokers account record to pay commission to the sub-aggregator as stated on the brokers party record!';
   
   //CheckRules
   public static final String SUGGESTED_APPLICATION_FEE_WARNING='Suggested Application Fee Warning';
@@ -1202,5 +1208,25 @@ global class ConstantValues {
   public static final Integer THIRTY_ONE=31;
   public static final Integer THREE_SIXTY_FIVE=365;
   public static final Integer FOUR=4;
+
+  //CloneApplicationRecord 
+  public static final String APPLICATION_RECORD='Application Record';
+  public static final String PARTY_C='Party__c';
+  public static final String PARTY_R='Party__r';
+  public static final String Employment_Information_c='Employment_Information__c';
+  public static final String ABN_Company_Information_c='ABN_Company_Information__c';
+  public static final String ABN_Information_c='ABN_Information__c';
+  public static final String genesis_Collateral_c='genesis__Collateral__c';
+  public static final String clcommon_Collateral_c='clcommon__Collateral__c';
+  public static final String clcommon_Collateral_Owner_c='clcommon__Collateral_Owner__c';
+  public static final String genesis_Application_c='genesis__Application__c';
+  public static final String clcommon_Account_r='clcommon__Account__r';
+  public static final String genesis_Collateral_r='genesis__Collateral__r';
+  public static final String clcommon_Collateral_r='clcommon__Collateral__r';
+  public static final String clcommon_Collateral_Name_c='clcommon__Collateral_Name__c';
+  public static final String Employment_Information_r='Employment_Information__r';
+  public static final String ABN_Information_r='ABN_Information__r';
+  public static final String ABN_Company_Information_r='ABN_Company_Information__r';
+
 
 }

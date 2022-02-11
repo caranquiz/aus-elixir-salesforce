@@ -79,6 +79,7 @@ global with sharing class CheckRules {
           ConstantValues.SELF_EMPLOYMENT_ABN_EFFECTIVE_FROM_RULE
         );
       } else if (tabName == ConstantValues.LOAN_DETAILS) {
+        rulesNameList.add(ConstantValues.ERF_CAN_NOT_BE_CHARGED_ON_A_REGULATED_LOAN_RULE);
         rulesNameList.add(ConstantValues.CASHOUT_PURPOSE_RULE);
         rulesNameList.add(ConstantValues.INTEREST_ONLY_SUITABE_RULE);
         rulesNameList.add(ConstantValues.EXIT_STRATEGY_SUITABLE_RULE);
@@ -266,6 +267,9 @@ global with sharing class CheckRules {
         rulesNameList.add(ConstantValues.SUGGESTED_APPLICATION_FEE_WARNING);
         rulesNameList.add(ConstantValues.COMMISSION_MANADATE_PERCENTAGE_WARNING);
         rulesNameList.add(ConstantValues.CREDIT_PROVIDERS_MORTGAGE_INSURANCE_WARNING);
+        rulesNameList.add(ConstantValues.ERF_FLAG_DOES_NOT_MATCH_PRODUCT_AND_NCCP_STATUS_DEFAULT_WARNING);
+        rulesNameList.add(ConstantValues.ERF_FLAG_DOES_NOT_MATCH_NCCP_STATUS_AND_PRODUCT_DEFAULT_WARNING);
+        rulesNameList.add(ConstantValues.ERF_PERCENTAGE_OR_TERM_DOES_NOT_MATCH_PRODUCT_DEFAULT_WARNING);
         loanDetailsRiskGradeWarningCheck(applicationId);
         loanDetailsPrimaryPurposeWarningCheck(applicationId);
         loanDetailsDocumentCompareWarningCheck(applicationId);
@@ -300,6 +304,7 @@ global with sharing class CheckRules {
         rulesNameList.add(ConstantValues.SELF_EMPLOYMENT_ABN_EFFECTIVE_FROM_RULE);
         rulesNameList.add(ConstantValues.TEMPORARY_VISA_SUITABILITY_RULE);
       }else if(tabName == ConstantValues.TAB_NAME_RULE2){
+        rulesNameList.add(ConstantValues.ERF_CAN_NOT_BE_CHARGED_ON_A_REGULATED_LOAN_RULE);
         rulesNameList.add(ConstantValues.CASHOUT_PURPOSE_RULE);
         rulesNameList.add(ConstantValues.EXIT_STRATEGY_SUITABLE_RULE);
         rulesNameList.add(ConstantValues.INTEREST_ONLY_SUITABE_RULE);

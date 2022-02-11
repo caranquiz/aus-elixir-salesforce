@@ -1,36 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
-    <alerts>
-        <fullName>Application_has_been_Formally_Approved_Email_Alert</fullName>
-        <ccEmails>settlements@orde.com.au</ccEmails>
-        <description>Application has been Formally Approved - Email Alert</description>
+    <fieldUpdates>
+        <fullName>ERF_Flag_Checked</fullName>
+        <field>ERF_to_be_charged__c</field>
+        <literalValue>1</literalValue>
+        <name>ERF Flag Checked</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
         <protected>false</protected>
-        <recipients>
-            <field>Recommender_s_Email_Address__c</field>
-            <type>email</type>
-        </recipients>
-        <recipients>
-            <type>owner</type>
-        </recipients>
-        <recipients>
-            <field>Brokers_BDM__c</field>
-            <type>userLookup</type>
-        </recipients>
-        <senderType>CurrentUser</senderType>
-        <template>unfiled$public/Application_is_Approved_Email_Template</template>
-    </alerts>
-    <rules>
-        <fullName>Application status is changed to Formally Approved</fullName>
-        <actions>
-            <name>Application_has_been_Formally_Approved_Email_Alert</name>
-            <type>Alert</type>
-        </actions>
-        <actions>
-            <name>Update_Approval_Date_in_App</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <active>true</active>
-        <formula>IF(  ISPICKVAL(genesis__Status__c ,&apos;Formally Approved&apos;)  &amp;&amp;  ISPICKVAL( PRIORVALUE(genesis__Status__c ),&apos;Recommended&apos;)  , true, false)</formula>
-        <triggerType>onAllChanges</triggerType>
-    </rules>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
 </Workflow>

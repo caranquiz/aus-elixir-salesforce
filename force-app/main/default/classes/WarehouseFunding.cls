@@ -73,6 +73,7 @@ global class WarehouseFunding {
             Commission_Structure__c,
             clcommon__Account__c,
             clcommon__Account__r.parentId,
+            clcommon__Account__r.Sub_Aggregator__c,
             Settlement_Fee__c
           FROM clcommon__Party__c
           WHERE
@@ -118,7 +119,21 @@ global class WarehouseFunding {
                       System.label.Aggregator_missing_msg
                     );
                   }
-                } else {
+                    }else if (
+                      (brokerPartyList[0].Commission_Paid_To__c).equals(ConstantValues.SUB_AGGREGATOR)
+                    ) {
+                      if (
+                        brokerPartyList[0].clcommon__Account__c != null &&
+                        brokerPartyList[0].clcommon__Account__r.Sub_Aggregator__c != null
+                      ) {
+                        broIden = brokerPartyList[0].clcommon__Account__r.Sub_Aggregator__c;
+                      }
+                      else {
+                        throw new CustomException(
+                          ConstantValues.SUB_AGGREGATOR_MISSING
+                        );
+                      }
+                    } else {
                   throw new CustomException(
                     System.label.Commission_Paid_To_Exception
                   );

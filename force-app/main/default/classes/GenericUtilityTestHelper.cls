@@ -1795,4 +1795,31 @@ public with sharing class GenericUtilityTestHelper {
       insert documentLink;
       return documentLink;
   }
+  public static Task returnTask(Id loanId){
+      Task testTask=new Task();
+      testTask.Subject='Call';
+      testTask.WhatId=loanId;
+      insert testTask;
+      return testTask;
+  }
+  public static Clone_Record_Configuration__c returnCloneRecord(){
+    Clone_Record_Configuration__c cloneRecordConfig=new Clone_Record_Configuration__c();
+    cloneRecordConfig.Name='Application Record';
+    cloneRecordConfig.Active__c=true;
+    cloneRecordConfig.Related_Object_List__c='{"objName":"genesis__Applications__c","Lookup":"Id","relatedObj":['+
+    '{"objName":"clcommon__Party__c","Lookup":"genesis__Application__c","relatedObj":['+
+    '{"objName":"genesis__Employment_Information__c","Lookup":"genesis__Application__c","relatedObj":['+
+    '{"objName":"genesis__Income__c","Lookup":"genesis__Application__c","relatedObj":[]},'+
+    '{"objName":"ABN_Information__c","Lookup":"Employment_Information__r.Party__r.genesis__Application__c","relatedObj":[]},'+
+    '{"objName":"ABN_Company_Information__c","Lookup":"Employment_Information__r.Party__r.genesis__Application__c","relatedObj":['+
+    '{"objName":"ABN_Company_List__c","Lookup":"ABN_Company_Information__r.Employment_Information__r.Party__r.genesis__Application__c","relatedObj":[]}]}]},'+
+    '{"objName":"genesis__Asset_Information__c","Lookup":"genesis__Application__c","relatedObj":[]},'+
+    '{"objName":"genesis__Liability__c","Lookup":"genesis__Application__c","relatedObj":[]},'+
+    '{"objName":"Proof_Of_Identity_Do__c","Lookup":"Party__r.genesis__Application__c","relatedObj":[]}]},'+
+    '{"objName":"clcommon__Collateral__c","Lookup":"Id","relatedObj":[{"objName":"clcommon__Collateral_Owner__c","Lookup":"clcommon__Collateral__c","relatedObj":[]},'+
+    '{"objName":"genesis__Application_Collateral__c","Lookup":"genesis__Application__c","relatedObj":[]}]},'+
+    '{"objName":"genesis__Application_Document_Category__c","Lookup":"genesis__Application__c","relatedObj":[]}]}';
+    insert cloneRecordConfig;
+    return cloneRecordConfig;
+  }
 }
