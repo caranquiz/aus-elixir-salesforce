@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Rural_Usage_Validation</fullName>
+    <active>true</active>
+    <errorConditionFormula>ISNEW()  &amp;&amp;  ISPICKVAL( Primary_Usage__c , &apos;Rural&apos;)  &amp;&amp;   ISBLANK( TEXT( Rural_Usage_List__c ))  &amp;&amp;  Created_after_conversion__c = false</errorConditionFormula>
+    <errorDisplayField>Rural_Usage_List__c</errorDisplayField>
+    <errorMessage>Rural Usage List can&apos;t be blank</errorMessage>
+</ValidationRule>

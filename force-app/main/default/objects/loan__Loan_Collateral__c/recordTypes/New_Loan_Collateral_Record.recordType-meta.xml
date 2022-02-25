@@ -1,0 +1,434 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>New_Loan_Collateral_Record</fullName>
+    <active>true</active>
+    <label>New Loan Collateral Record</label>
+    <picklistValues>
+        <picklist>Land_Area_Units__c</picklist>
+        <values>
+            <fullName>Acres</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Square Metres</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Primary_Purpose__c</picklist>
+        <values>
+            <fullName>Business</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Investment</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Owner Occupied</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Primary_Security__c</picklist>
+        <values>
+            <fullName>No</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Yes</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Primary_Usage__c</picklist>
+        <values>
+            <fullName>Commercial</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Industrial</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Residential</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Rural</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Property_Insurance_Cover_Type__c</picklist>
+        <values>
+            <fullName>Body Corporate</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Standard</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Property_Type__c</picklist>
+        <values>
+            <fullName>25 Acres or Less</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Aged Care Unit</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Apartment Unit Flat</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Bedsitter Bachelor</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Block of Units or Flats</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Company Title Unit</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Converted Commercial Property</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Converted Industrial Property</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Converted Motel Units</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Display House</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Duplex</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Factory</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Fully Detached House</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>High Density Apartment</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Holiday Home</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Holiday Rental</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Improved Land</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Kit Home</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Light Industrial</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Low Density Apartment</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Luxury House</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Luxury Other</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Medium Density Apartment</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Multiple Dwelling Development</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Non Specialised Commercial</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Non Specialised Industrial</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Offices</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Other</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Over 100 Acres</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Over 25 less than 100 acres</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Professional Chambers</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Property Development</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Relocatable Home</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Residential Commercial</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Resort Unit</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Retail Shop</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Retirement Village</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Semi Detached House</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Serviced Apartment</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Strata Hotel Unit</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Strata Title Unit</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Studio Warehouse Apartment</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Terrace</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Townhouse</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Unit Student Accommodation</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Vacant Land</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Villa</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Warehouse</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Rural_Usage_List__c</picklist>
+        <values>
+            <fullName>Income Producing</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Rural Life</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Rural Residential</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Security_Status__c</picklist>
+        <values>
+            <fullName>Active</fullName>
+            <default>true</default>
+        </values>
+        <values>
+            <fullName>Discharged</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Mortgagee in Possession</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>State__c</picklist>
+        <values>
+            <fullName>NSW</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>NT</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>QLD</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>SA</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>TAS</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>VIC</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>WA</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Status__c</picklist>
+        <values>
+            <fullName>Established</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>New Building</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Off the Plan</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Vacant Land</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Tenure_Type__c</picklist>
+        <values>
+            <fullName>Community Title</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Company Title</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Crown Land</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Crown Lease</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Freehold</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Group Titles Plan</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Leasehold</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Moiety Title</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>None</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Other Title</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Purple Title</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Strata Title</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Stratum Title</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Survey Strata Title</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Unit Title</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Title_System__c</picklist>
+        <values>
+            <fullName>Company</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Old Law</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Qualified</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Torrens</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Unregistered</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+</RecordType>

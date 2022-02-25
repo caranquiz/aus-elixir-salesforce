@@ -103,6 +103,7 @@ global with sharing class CheckRules {
         rulesNameList.add(ConstantValues.EXPLANATION_OF_CREDIT_ENQUIRIES);
         rulesNameList.add(ConstantValues.EXPLANATION_OF_BANKRUPTCY);
         rulesNameList.add(ConstantValues.EXPLANATION_OF_AGE_OF_CREDIT_FILE);
+        rulesNameList.add(ConstantValues.CREDIT_EVENTS_RULE);
       } else if (tabName == ConstantValues.INDIVIDUAL_EMPLOYMENT_INFORMATION) {
         rulesNameList.add(ConstantValues.CONFIRM_LETTER_PREPARED_BY_ACCOUNTANT);
         rulesNameList.add(ConstantValues.CONFIRM_STATED_ANNUAL_INCOME);
@@ -249,6 +250,10 @@ global with sharing class CheckRules {
         rulesNameList.add(ConstantValues.CUSTOMER_ACCT_CONDITION);
         rulesNameList.add(ConstantValues.GIFT_STAT_DEC_RECEIVED_CONDITION);
         rulesNameList.add(ConstantValues.NO_SECRETARY_APPOINTED_CONDITION);
+        rulesNameList.add(ConstantValues.INDENTIFICATION_CHECKLIST_CONDITION);
+        rulesNameList.add(ConstantValues.EXIT_STRATEGY_CONDITION);
+        rulesNameList.add(ConstantValues.ACCEPTABLE_VALUATIONSS_CONDITION);
+        rulesNameList.add(ConstantValues.CERTIFICATE_OF_TITLE_TO_BE_ISSUED_CONDITION);
       } else if (tabName == ConstantValues.APP_EXCEP) {
         rulesNameList.add(ConstantValues.MATRIX_RATE_EXCEPTION);
         rulesNameList.add(ConstantValues.CONFIRM_REPAYMENTS_WARNING);
@@ -303,6 +308,7 @@ global with sharing class CheckRules {
         rulesNameList.add(ConstantValues.SATISFACTORY_EXPLANATION_PROVIDED_RULE);
         rulesNameList.add(ConstantValues.SELF_EMPLOYMENT_ABN_EFFECTIVE_FROM_RULE);
         rulesNameList.add(ConstantValues.TEMPORARY_VISA_SUITABILITY_RULE);
+        rulesNameList.add(ConstantValues.CREDIT_EVENTS_RULE);
       }else if(tabName == ConstantValues.TAB_NAME_RULE2){
         rulesNameList.add(ConstantValues.ERF_CAN_NOT_BE_CHARGED_ON_A_REGULATED_LOAN_RULE);
         rulesNameList.add(ConstantValues.CASHOUT_PURPOSE_RULE);
@@ -456,6 +462,17 @@ global with sharing class CheckRules {
         tabName == ConstantValues.WARNING ||
         tabName == ConstantValues.WARNING2 ||
         tabName == ConstantValues.XCEPTION ||
+        tabName == ConstantValues.TAB_NAME_RULE ||
+        tabName == ConstantValues.CREDIT_HISTORY ||
+        tabName == ConstantValues.LOAN_DETAILS ||
+        tabName == ConstantValues.CUSTOMER_INTERVIEW ||
+        tabName == ConstantValues.INDIVIDUAL_CONTACT_DETAILS ||
+        tabName == ConstantValues.NON_INDIVIDUAL_CONTACT_DETAILS ||
+        tabName == ConstantValues.INDIVIDUAL_EMPLOYMENT_INFORMATION ||
+        tabName == ConstantValues.COMPANY_INCOME ||
+        tabName == ConstantValues.LIVING_EXPENSE ||
+        tabName == ConstantValues.BROKER_CONTACT_DETAILS ||
+        tabName == ConstantValues.ASSET_LIABILITY ||
         tabName == ConstantValues.CONDITION
       ) {
         updateChecklistsFromRuleDataOnApplication(application, rulesNameList);
@@ -1538,12 +1555,13 @@ global with sharing class CheckRules {
           Application_Collateral__c,
           Application_Collateral__r.genesis__Collateral__c,
           Application_Collateral__r.genesis__Collateral__r.Replacement_Value__c,
+          Application_Collateral__r.genesis__Collateral__r.Full_Address__c,
           Liability__c,
           Liability__r.genesis__Name_of_Creditor__c,
           Party__r.ABN_Company_Name__c 
         FROM Checklist_Detail__c
         WHERE
-          Rule_Classification__c = :ConstantValues.CONDITION_CLASSIFICATION
+          (Rule_Classification__c = :ConstantValues.CONDITION_CLASSIFICATION OR Rule_Classification__c='Rule')
           AND Status__c != :ConstantValues.SUCCESS_STATUS
           AND Checklist__r.genesis__Application__c = :applicationId
       ];
@@ -1580,6 +1598,30 @@ global with sharing class CheckRules {
           message = message.replace(
             ConstantValues.GURANTORS_NAME_KEY,
             gurantorNames
+          );
+        } else if (
+          eachChecklistDetails.Checklist__r.genesis__Rule__r.Name ==
+          ConstantValues.INDENTIFICATION_CHECKLIST_CONDITION
+        ) {
+          message = message.replace(
+            ConstantValues.IND_APPLICANT_KEY,
+            eachChecklistDetails.Party__r.clcommon__Account__r.Name
+          );
+        } else if (
+           eachChecklistDetails.Checklist__r.genesis__Rule__r.Name ==
+           ConstantValues.EXIT_STRATEGY_CONDITION 
+        ) {
+          message = message.replace(
+            ConstantValues.IND_APPLICANT_KEY,
+            eachChecklistDetails.Party__r.clcommon__Account__r.Name
+          );
+        } else if (
+           eachChecklistDetails.Checklist__r.genesis__Rule__r.Name ==
+           ConstantValues.ACCEPTABLE_VALUATIONSS_CONDITION
+        ) {
+          message = message.replace(
+            ConstantValues.COLLATERAL_ADDRESS,
+            eachChecklistDetails.Application_Collateral__r.genesis__Collateral__r.Full_Address__c
           );
         } else if (
           eachChecklistDetails.Checklist__r.genesis__Rule__r.Name ==
@@ -1674,6 +1716,11 @@ global with sharing class CheckRules {
                 eachChecklistDetails.Party__r.ABN_Company_Name__c
               );
           }
+        }else if (
+          eachChecklistDetails.Checklist__r.genesis__Rule__r.Name ==
+          ConstantValues.CREDIT_EVENTS_RULE
+        ) {
+          message = message + ' ' + eachChecklistDetails.Party__r.clcommon__Account__r.Name + ' please complete this field)';
         }
         eachChecklistDetails.Manual_Message__c = message;
       }

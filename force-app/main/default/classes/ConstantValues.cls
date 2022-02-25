@@ -978,7 +978,13 @@ global class ConstantValues {
   public static final Decimal CREDIT_RECORD_VALUE = 1000;
   public static final String SETTLEMENT_FEE_WARNING = 'Settlement Fee % Warning';
   public static final String APPLICATION_SETTLEMENT_FEE_WARNING = 'Settlement Fee Percentage Warning';
-
+  public static final String INDENTIFICATION_CHECKLIST_CONDITION = 'Identification checklist Condition';
+  public static final String EXIT_STRATEGY_CONDITION = 'Exit Strategy Condition';
+  public static final String ACCEPTABLE_VALUATIONSS_CONDITION = 'Acceptable Valuation(s) Condition';
+  public static final String CERTIFICATE_OF_TITLE_TO_BE_ISSUED_CONDITION = 'Certificate of title to be issued Condition';
+  public static final String SUPERANNUATION_CAPACITY_CONDITION = 'Superannuation Capacity Condition';
+  public static final String TRUST_DEED_VETTED_CONDITION = 'Trust deed vetted Condition';
+  
   //Constant of LinkedLoansExtension Class
   public static final String LINKED_LOAN_ERROR_MSG1 = 'Linked Loan can' +'\'t be same as Current Loan';
   public static final String LINKED_LOAN_ERROR_MSG2 = 'Linked Loan already exist in Current Loan';
@@ -1034,6 +1040,7 @@ global class ConstantValues {
   public static final String SECRETARIES1='secretaries';
   public static final String NO_SECRETARY_APPOINTED_CONDITION='No Secretary Appointed Condition';
   public static final String BORROWER_GUARANTOR_COMPANY_NAME='[borrower/guarantor company name]';
+  public static final String COLLATERAL_ADDRESS = '[collateral address]';
 
   //Equifax Individual Response
   public static final string VARIABLE_NAME='variable-name';
@@ -1228,5 +1235,9 @@ global class ConstantValues {
   public static final String ABN_Information_r='ABN_Information__r';
   public static final String ABN_Company_Information_r='ABN_Company_Information__r';
 
-
+  // LoanCollateralTriggerHelper
+  public static final String ERROR_MSG_LOANCOLLATERAL='Primary Security Cannot be Yes for more than One Collateral';
+  public static final String RECORD_TYPE_LOANCOLLATERAL='0129p0000001M05';
+  public static final String DISCHARGED='Discharged';
+  public static final String CREDIT_EVENTS_RULE='Credit Events Rule';
 }
