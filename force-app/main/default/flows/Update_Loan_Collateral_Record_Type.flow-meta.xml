@@ -1,77 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
-    <decisions>
-        <name>Check_Primary_Security_Count</name>
-        <label>Check Primary Security Count</label>
-        <locationX>1083</locationX>
-        <locationY>332</locationY>
-        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
-        <rules>
-            <name>Primary_Security_Check</name>
-            <conditionLogic>and</conditionLogic>
-            <conditions>
-                <leftValueReference>$Record.Primary_Security__c</leftValueReference>
-                <operator>EqualTo</operator>
-                <rightValue>
-                    <stringValue>Yes</stringValue>
-                </rightValue>
-            </conditions>
-            <conditions>
-                <leftValueReference>PrimaryCount</leftValueReference>
-                <operator>GreaterThan</operator>
-                <rightValue>
-                    <numberValue>1.0</numberValue>
-                </rightValue>
-            </conditions>
-            <connector>
-                <targetReference>Update_Primary_Security_Yes_and_Count_is_greater_1</targetReference>
-            </connector>
-            <label>Primary Security Check</label>
-        </rules>
-        <rules>
-            <name>Primary_Security_is_Yes_but_count_is_less_1</name>
-            <conditionLogic>and</conditionLogic>
-            <conditions>
-                <leftValueReference>$Record.Primary_Security__c</leftValueReference>
-                <operator>EqualTo</operator>
-                <rightValue>
-                    <stringValue>Yes</stringValue>
-                </rightValue>
-            </conditions>
-            <conditions>
-                <leftValueReference>PrimaryCount</leftValueReference>
-                <operator>LessThanOrEqualTo</operator>
-                <rightValue>
-                    <numberValue>1.0</numberValue>
-                </rightValue>
-            </conditions>
-            <connector>
-                <targetReference>Update_Primary_Security_is_Yes_but_count_is_less_1</targetReference>
-            </connector>
-            <label>Primary Security is Yes but count is less 1</label>
-        </rules>
-        <rules>
-            <name>Primary_Security_is_No</name>
-            <conditionLogic>and</conditionLogic>
-            <conditions>
-                <leftValueReference>$Record.Primary_Security__c</leftValueReference>
-                <operator>EqualTo</operator>
-                <rightValue>
-                    <stringValue>No</stringValue>
-                </rightValue>
-            </conditions>
-            <connector>
-                <targetReference>Update_Primary_security_is_No</targetReference>
-            </connector>
-            <label>Primary Security is No</label>
-        </rules>
-    </decisions>
-    <formulas>
-        <name>PrimaryCount</name>
-        <dataType>Number</dataType>
-        <expression>{!$Record.Count_Primary_Security__c} + 1</expression>
-        <scale>0</scale>
-    </formulas>
     <interviewLabel>Update Loan Collateral Record Type {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Update Loan Collateral Record Type</label>
     <processMetadataValues>
@@ -94,86 +22,27 @@
     </processMetadataValues>
     <processType>AutoLaunchedFlow</processType>
     <recordUpdates>
-        <name>Update_Primary_security_is_No</name>
-        <label>Update Primary security is No</label>
-        <locationX>835</locationX>
-        <locationY>331</locationY>
+        <name>Update_Loan_Collateral_Record</name>
+        <label>Update Loan Collateral Record</label>
+        <locationX>670</locationX>
+        <locationY>352</locationY>
         <inputAssignments>
             <field>RecordTypeId</field>
             <value>
-                <stringValue>0129p0000001M05</stringValue>
-            </value>
-        </inputAssignments>
-        <inputReference>$Record</inputReference>
-    </recordUpdates>
-    <recordUpdates>
-        <name>Update_Primary_Security_is_Yes_but_count_is_less_1</name>
-        <label>Update Primary Security is Yes but count is less 1</label>
-        <locationX>1111</locationX>
-        <locationY>543</locationY>
-        <inputAssignments>
-            <field>Primary_Security__c</field>
-            <value>
-                <elementReference>PrimaryCount</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <field>RecordTypeId</field>
-            <value>
-                <stringValue>0129p0000001M05</stringValue>
-            </value>
-        </inputAssignments>
-        <inputReference>$Record</inputReference>
-    </recordUpdates>
-    <recordUpdates>
-        <name>Update_Primary_Security_Yes_and_Count_is_greater_1</name>
-        <label>Update Primary Security Yes and Count is greater 1</label>
-        <locationX>1339</locationX>
-        <locationY>319</locationY>
-        <inputAssignments>
-            <field>Primary_Security__c</field>
-            <value>
-                <elementReference>PrimaryCount</elementReference>
+                <stringValue>0128s00000063w5</stringValue>
             </value>
         </inputAssignments>
         <inputReference>$Record</inputReference>
     </recordUpdates>
     <start>
-        <locationX>971</locationX>
+        <locationX>543</locationX>
         <locationY>48</locationY>
         <connector>
-            <targetReference>Check_Primary_Security_Count</targetReference>
+            <targetReference>Update_Loan_Collateral_Record</targetReference>
         </connector>
         <object>loan__Loan_Collateral__c</object>
         <recordTriggerType>Create</recordTriggerType>
-        <triggerType>RecordBeforeSave</triggerType>
+        <triggerType>RecordAfterSave</triggerType>
     </start>
-    <status>Obsolete</status>
-    <variables>
-        <name>LoanCollateralList</name>
-        <dataType>SObject</dataType>
-        <isCollection>true</isCollection>
-        <isInput>true</isInput>
-        <isOutput>false</isOutput>
-        <objectType>loan__Loan_Collateral__c</objectType>
-    </variables>
-    <variables>
-        <name>LoanCollateralRecord</name>
-        <dataType>SObject</dataType>
-        <isCollection>false</isCollection>
-        <isInput>true</isInput>
-        <isOutput>false</isOutput>
-        <objectType>loan__Loan_Collateral__c</objectType>
-    </variables>
-    <variables>
-        <name>VarCount</name>
-        <dataType>Number</dataType>
-        <isCollection>false</isCollection>
-        <isInput>true</isInput>
-        <isOutput>true</isOutput>
-        <scale>0</scale>
-        <value>
-            <numberValue>0.0</numberValue>
-        </value>
-    </variables>
+    <status>Active</status>
 </Flow>

@@ -251,9 +251,9 @@ global with sharing class CheckRules {
         rulesNameList.add(ConstantValues.GIFT_STAT_DEC_RECEIVED_CONDITION);
         rulesNameList.add(ConstantValues.NO_SECRETARY_APPOINTED_CONDITION);
         rulesNameList.add(ConstantValues.INDENTIFICATION_CHECKLIST_CONDITION);
-        rulesNameList.add(ConstantValues.EXIT_STRATEGY_CONDITION);
+        //rulesNameList.add(ConstantValues.EXIT_STRATEGY_CONDITION);
         rulesNameList.add(ConstantValues.ACCEPTABLE_VALUATIONSS_CONDITION);
-        rulesNameList.add(ConstantValues.CERTIFICATE_OF_TITLE_TO_BE_ISSUED_CONDITION);
+        //rulesNameList.add(ConstantValues.CERTIFICATE_OF_TITLE_TO_BE_ISSUED_CONDITION);
       } else if (tabName == ConstantValues.APP_EXCEP) {
         rulesNameList.add(ConstantValues.MATRIX_RATE_EXCEPTION);
         rulesNameList.add(ConstantValues.CONFIRM_REPAYMENTS_WARNING);
@@ -1602,14 +1602,6 @@ global with sharing class CheckRules {
         } else if (
           eachChecklistDetails.Checklist__r.genesis__Rule__r.Name ==
           ConstantValues.INDENTIFICATION_CHECKLIST_CONDITION
-        ) {
-          message = message.replace(
-            ConstantValues.IND_APPLICANT_KEY,
-            eachChecklistDetails.Party__r.clcommon__Account__r.Name
-          );
-        } else if (
-           eachChecklistDetails.Checklist__r.genesis__Rule__r.Name ==
-           ConstantValues.EXIT_STRATEGY_CONDITION 
         ) {
           message = message.replace(
             ConstantValues.IND_APPLICANT_KEY,
