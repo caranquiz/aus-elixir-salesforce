@@ -195,7 +195,9 @@ public with sharing class ChildChecklistAPI {
         Trust_Structure__c,
         Number_of_Secretaries__c,
         Secretary_Check__c,
-        Settlement_Fee_Check__c
+        Settlement_Fee_Check__c,
+        Credit_Event_Check__c,
+        Age_Check__c
       FROM clcommon__Party__c
       WHERE genesis__Application__c = :appId
     ];
@@ -239,6 +241,7 @@ public with sharing class ChildChecklistAPI {
         Party__r.GST_Suitable_Rule_Check__c,
         GST_Suitable_Amount_Check__c,
         Accountant_ABN_Status__c
+        //Accountant_Interview_Condition_Field__c
       FROM genesis__Income__c
       WHERE genesis__Application__c = :appId
     ];
@@ -278,6 +281,7 @@ public with sharing class ChildChecklistAPI {
         genesis__Collateral__r.Primary_Usage__c,
         genesis__Collateral__r.Check_Val_Ordered_Date__c,
         genesis__Collateral__r.Valuation_Received_Date__c,
+        genesis__Collateral__r.Valuation_Received_Date_Check__c,
         X110_check__c,
         X110_Render_Check__c
       FROM genesis__Application_Collateral__c

@@ -1,78 +1,28 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
-    <types>
-        <members>CheckRules</members>
-        <members>CloneApplicationRecord</members>
-        <members>CloneApplicationRecordTest</members>
-        <members>CloneApplicationRelatedListParser</members>
-        <members>ConstantValues</members>
-        <members>DepositUpdateHelperTest</members>
-        <members>GenericUtilityTestHelper</members>
-        <members>WarehouseFunding</members>
-        <name>ApexClass</name>
-    </types>
-    <types>
-        <members>Account.Sub_Aggregator__c</members>
-        <members>Clone_Record_Configuration__c.Active__c</members>
-        <members>Clone_Record_Configuration__c.Object_Name__c</members>
-        <members>Clone_Record_Configuration__c.Related_Object_List__c</members>
-        <members>ERF_Percentage_Of_Different_Products__mdt.ERF_if_paid_within__c</members>
-        <members>ERF_Percentage_Of_Different_Products__mdt.ERF_percentage__c</members>
-        <members>ERF_Percentage_Of_Different_Products__mdt.Product__c</members>
-        <members>genesis__Applications__c.Clone_Application__c</members>
-        <members>genesis__Applications__c.ERF_if_paid_within__c</members>
-        <members>genesis__Applications__c.ERF_percentage__c</members>
-        <members>genesis__Applications__c.ERF_to_be_charged__c</members>
-        <members>genesis__Applications__c.NCCP_Status_Check__c</members>
-        <name>CustomField</name>
-    </types>
-    <types>
-        <members>ERF_Percentage_Of_Different_Products.For_Commercial_IO_Bullet_Product</members>
-        <members>ERF_Percentage_Of_Different_Products.For_Commercial_Product</members>
-        <members>ERF_Percentage_Of_Different_Products.For_Construction_Development_Product</members>
-        <members>ERF_Percentage_Of_Different_Products.For_Highest_Best_Use_Commercial_Prod</members>
-        <members>ERF_Percentage_Of_Different_Products.For_Highest_Best_Use_Residential_Prd</members>
-        <members>ERF_Percentage_Of_Different_Products.For_Non_Resident_Commercial_Product</members>
-        <members>ERF_Percentage_Of_Different_Products.For_Non_Resident_Residential_Product</members>
-        <members>ERF_Percentage_Of_Different_Products.For_Residential_Construction_Product</members>
-        <members>ERF_Percentage_Of_Different_Products.For_Residential_IO_Bullet_Product</members>
-        <members>ERF_Percentage_Of_Different_Products.For_Residential_Product</members>
-        <members>ERF_Percentage_Of_Different_Products.For_Retained_Stock_Commercial_Product</members>
-        <members>ERF_Percentage_Of_Different_Products.For_Retained_Stock_Residential_Product</members>
-        <members>ERF_Percentage_Of_Different_Products.For_SMSF_Commercial_Product</members>
-        <members>ERF_Percentage_Of_Different_Products.For_SMSF_Residential_Product</members>
-        <members>ERF_Percentage_Of_Different_Products.For_Vacant_Land_Residential</members>
-        <name>CustomMetadata</name>
-    </types>
-    <types>
-        <members>Clone_Record_Configuration__c</members>
-        <members>ERF_Percentage_Of_Different_Products__mdt</members>
-        <name>CustomObject</name>
-    </types>
-    <types>
-        <members>Clone_Record_Configuration__c</members>
-        <name>CustomTab</name>
-    </types>
-    <types>
-        <members>clcommon__Party__c.clonePartyFieldSet</members>
-        <members>genesis__Applications__c.ApplicationFieldSet</members>
-        <name>FieldSet</name>
-    </types>
-    <types>
-        <members>Set_ERF_Fields</members>
-        <name>Flow</name>
-    </types>
-    <types>
-        <members>Admin</members>
-        <members>BDM</members>
-        <members>Credit Analyst</members>
-        <members>Elixir System Admin</members>
-        <members>Orde Customer Community Plus User</members>
-        <name>Profile</name>
-    </types>
-    <types>
-        <members>genesis__Applications__c.ERF_Flag_Checked</members>
-        <name>WorkflowFieldUpdate</name>
-    </types>
-    <version>48.0</version>
+<types>
+<members>CheckRules</members>
+<members>ChildChecklistAPI</members>
+<members>ConstantValues</members>
+<members>GenerateStatementController</members>
+<members>LTSCalculateConsolidatedLoanBalance</members>
+<members>LTSConsolidatedLoanBalanceUpdate</members>
+<members>ValuationDateExpiryUpdateHelper</members>
+<members>ValuationDateExpiryUpdateHelperTest</members>
+<name>ApexClass</name>
+</types>
+<types>
+<members>CollateralTrigger</members>
+<name>ApexTrigger</name>
+</types>
+<types>
+<members>clcommon__Party__c.Age_Check__c</members>
+<members>genesis__Checklist__c.Show_on_Indicative_Approval_Letter__c</members>
+<members>loan__Loan_Transaction_Summary__c.Paid_Off_Check__c</members>
+<name>CustomField</name>
+</types>
+<types>
+<members>genesis__Applications__c.Generate_Indicative_Approval_Letter</members>
+<name>WebLink</name>
+</types>
+<version>48.0</version>
 </Package>

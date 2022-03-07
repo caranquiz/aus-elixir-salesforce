@@ -6,7 +6,7 @@ Development Date : 31/08/2021
 Last Modified Date : 31/08/2021
 ****************************************************************************************************/
 
-global class ValuationDateExpiryUpdateHelper {
+global with sharing class ValuationDateExpiryUpdateHelper {
     global static void colletaralValuationDateExpiry(List <Id> collId){
         List<genesis__Applications__c> appList=new List<genesis__Applications__c>();
         List<genesis__Application_Collateral__c> appCollateralList=new List<genesis__Application_Collateral__c>();
@@ -78,6 +78,62 @@ global class ValuationDateExpiryUpdateHelper {
         }catch(Exception e){
             insert new clcommon__Batch_Process_Log__c(clcommon__Message__c = 'ValuationDateExpiryUpdateHelper :'+e.getStackTraceString()+':Error::'+e.getMessage()+' at Line Number '+e.getLineNumber(), clcommon__Timestamp__c = 
                     System.Now(),clcommon__Log_Level__c = 'ERROR'); 
+        }
+    }
+    global static void valueUpdate(List<Id> appId){
+        
+        List<genesis__Applications__c> appList=new List<genesis__Applications__c>();
+        List<genesis__Application_Collateral__c> appCollateralList=new List<genesis__Application_Collateral__c>();
+        try{
+            appList=[SELECT id,
+                            Actual_Security_Value__c,
+                            Expected_security_value__c	
+                        FROM genesis__Applications__c 
+                        WHERE id IN: appId];
+            appCollateralList=[SELECT id,
+                                    genesis__Collateral__c,
+                                    genesis__Application__c,
+                                    genesis__Application__r.id,
+                                    genesis__Collateral__r.clcommon__Value__c,
+                                    genesis__Collateral__r.Estimated_Value__c,
+                                    genesis__Collateral__r.clcommon__Collateral_Name__c
+                                FROM genesis__Application_Collateral__c 
+                                WHERE genesis__Application__c IN: appId];
+            Map<Id,Double> sumOfValueMap=new Map<Id,Double>();
+            Map<Id,Double> sumOfExpectedMap=new Map<Id,Double>();
+            for(genesis__Applications__c application:appList){
+                sumOfValueMap.put(application.id, 0.0);
+                sumOfExpectedMap.put(application.id, 0.0);
+            }
+            for(genesis__Application_Collateral__c appColl:appCollateralList){
+                if(sumOfValueMap.containsKey(appColl.genesis__Application__r.id) 
+                        && sumOfValueMap.get(appColl.genesis__Application__r.id)!=NULL
+                        && appColl.genesis__Collateral__c != NULL
+                        && appColl.genesis__Collateral__r.clcommon__Value__c!=NULL){
+                    sumOfValueMap.put(appColl.genesis__Application__r.id,sumOfValueMap.get(appColl.genesis__Application__r.id)+appColl.genesis__Collateral__r.clcommon__Value__c);
+                }
+                if(sumOfExpectedMap.containsKey(appColl.genesis__Application__r.id) 
+                        && sumOfExpectedMap.get(appColl.genesis__Application__r.id)!=NULL 
+                        && appColl.genesis__Collateral__c!=NULL
+                        && appColl.genesis__Collateral__r.Estimated_Value__c!=NULL){
+                    sumOfExpectedMap.put(appColl.genesis__Application__r.id,sumOfExpectedMap.get(appColl.genesis__Application__r.id)+appColl.genesis__Collateral__r.Estimated_Value__c);
+                }
+            }
+            for(genesis__Applications__c application:appList){
+                if(sumOfValueMap.containsKey(application.id) 
+                        && sumOfValueMap.get(application.id)!=NULL){
+                    application.Actual_Security_Value__c=sumOfValueMap.get(application.id);
+                }
+                if(sumOfExpectedMap.containsKey(application.id) 
+                        && sumOfExpectedMap.get(application.id)!=NULL){
+                    application.Expected_security_value__c=sumOfExpectedMap.get(application.id);
+                }
+            }
+            if(appList.size()>0){
+                Database.update(appList,false);
+            }
+        }catch(Exception e){
+            GenericUtility.insertLog('ValuationDateExpiryUpdateHelper.valueUpdate',e);
         }
     }
 }

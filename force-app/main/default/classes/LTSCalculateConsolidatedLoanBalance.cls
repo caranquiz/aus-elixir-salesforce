@@ -38,12 +38,12 @@ public class LTSCalculateConsolidatedLoanBalance {
                                                                                     (:ConstantValues.DISCOUNT_TAG,:ConstantValues.INTERNAL_TRANSFER) 
                                                                                 AND loan__Loan_Payment_Txn__r.loan__Rejected__c = false
                                                                                 AND loan__Loan_Payment_Txn__r.loan__Reversed__c = false
-                                                                                AND loan__Loan_Payment_Txn__r.loan__Payoff_Balance__c > 0))
-                                                                                AND (loan__Interest_Posting_Txn__c = null OR loan__Interest_Posting_Txn__r.loan__Reversed__c = false) 
-                                                                                AND (loan__Other_Loan_Txn__c = null OR loan__Other_Loan_Txn__r.loan__Reversed__c = false) 
+                                                                                AND loan__Loan_Payment_Txn__r.loan__Payoff_Balance__c > 0 AND Paid_Off_Check__c = false))
+                                                                                AND (loan__Interest_Posting_Txn__c = null OR (loan__Interest_Posting_Txn__r.loan__Reversed__c = false AND Paid_Off_Check__c=false)) 
+                                                                                AND (loan__Other_Loan_Txn__c = null OR (loan__Other_Loan_Txn__r.loan__Reversed__c = false AND Paid_Off_Check__c=false)) 
                                                                                 AND (loan__Loan_Disbursal__c = null OR (loan__Loan_Disbursal__r.loan__Reversed__c= false 
-                                                                                AND loan__Loan_Disbursal__r.loan__Rejected__c= false AND loan__Loan_Disbursal__r.loan__Cleared__c = true)) 
-                                                                                AND (loan__Loan_Charge__c= null OR (loan__Loan_Charge__r.loan__Waive__c= false)) 
+                                                                                AND loan__Loan_Disbursal__r.loan__Rejected__c= false AND loan__Loan_Disbursal__r.loan__Cleared__c = true AND Paid_Off_Check__c=false)) 
+                                                                                AND (loan__Loan_Charge__c= null OR (loan__Loan_Charge__r.loan__Waive__c= false AND Paid_Off_Check__c=false)) 
                                                                                 ORDER BY loan__Transaction_Date__c ASC, CreatedDate ASC, loan__Transaction_Time__c ASC, Name ASC];
             List <loan__Loan_Transaction_Summary__c> payoffList = [SELECT Id,
                                                                         Name,
@@ -61,15 +61,25 @@ public class LTSCalculateConsolidatedLoanBalance {
                                                                     AND loan__Loan_Account__c in: loanIdList
                                                                     AND Include_in_Summary__c=true
                                                                     AND loan__Consolidated_Loan_Balance__c != NULL 
-                                                                    AND Transaction_Type__c IN (:ConstantValues.PAYMENT_RECEIVED,:ConstantValues.REFUND)
+                                                                    AND (Transaction_Type__c IN (:ConstantValues.PAYMENT_RECEIVED,:ConstantValues.REFUND,
+                                                                            :ConstantValues.INTEREST_TAG,:ConstantValues.REDRAW,:ConstantValues.DISBURSEMENT)
+                                                                    OR loan__Loan_Charge__c != null)
                                                                     AND (loan__Loan_Payment_Txn__c = null 
                                                                     OR (loan__Loan_Payment_Txn__r.loan__Payment_Mode__r.Name NOT IN
                                                                         (:ConstantValues.DISCOUNT_TAG,:ConstantValues.INTERNAL_TRANSFER) 
                                                                     AND (loan__Loan_Payment_Txn__r.loan__Cheque_Number__c =: ConstantValues.LOAN_PAYOFF
-                                                                    OR loan__Loan_Payment_Txn__r.loan__Payoff_Balance__c = 0)
+                                                                    OR loan__Loan_Payment_Txn__r.loan__Payoff_Balance__c = 0 OR Paid_Off_Check__c = true)
                                                                     AND loan__Loan_Payment_Txn__r.loan__Rejected__c = false and loan__Loan_Payment_Txn__r.loan__Reversed__c = false ))
                                                                     AND (loan__Other_Loan_Txn__c = null
-                                                                    OR loan__Other_Loan_Txn__r.loan__Reversed__c = false)
+                                                                    OR (loan__Other_Loan_Txn__r.loan__Reversed__c = false 
+                                                                    AND (Paid_Off_Check__c=true OR Transaction_Type__c=:ConstantValues.REFUND)))
+                                                                    AND (loan__Loan_Disbursal__c = null 
+                                                                    OR (loan__Loan_Disbursal__r.loan__Reversed__c= false 
+                                                                    AND loan__Loan_Disbursal__r.loan__Rejected__c= false 
+                                                                    AND loan__Loan_Disbursal__r.loan__Cleared__c = true AND Paid_Off_Check__c=true))
+                                                                    AND (loan__Loan_Charge__c= null OR (loan__Loan_Charge__r.loan__Waive__c= false AND Paid_Off_Check__c=true))
+                                                                    AND (loan__Interest_Posting_Txn__c = null 
+                                                                    OR (loan__Interest_Posting_Txn__r.loan__Reversed__c = false AND Paid_Off_Check__c=true))
                                                                     ORDER BY loan__Transaction_Date__c ASC, CreatedDate ASC, loan__Transaction_Time__c ASC, Name ASC];
             if(payoffList.isEmpty() == false){
                 transactionSummaryList.addAll(payoffList);

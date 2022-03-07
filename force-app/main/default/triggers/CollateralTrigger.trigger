@@ -11,9 +11,11 @@ trigger CollateralTrigger on clcommon__Collateral__c (After update) {
     List<Id> collStateIds=new List<Id>();
     List<Id> collprimary=new List<Id>();
     List<Id> collStatus=new List<Id>();
+    List<Id> collateralValueList=new List<Id>();
     List<Id> appIds = new List<Id>();
     List<Id> applicationId = new List<Id>();
     List<Id> appId2 = new List<Id>();
+    List<Id> appId3 = new List<Id>();
     List<genesis__Application_Collateral__c> appcollateralList=new List<genesis__Application_Collateral__c>();
     if(trigger.isUpdate && trigger.isAfter){
         Savepoint sp = Database.setSavepoint();
@@ -42,6 +44,13 @@ trigger CollateralTrigger on clcommon__Collateral__c (After update) {
                     if(collateral.clcommon__Status__c!= oldcollateral.clcommon__Status__c){
                         collStatus.add(collateral.Id);
                     }
+                    if(collateral.clcommon__Value__c!= oldcollateral.clcommon__Value__c){
+                        collateralValueList.add(collateral.Id);
+                    }
+                    if(collateral.Estimated_Value__c!= oldcollateral.Estimated_Value__c){
+                        collateralValueList.add(collateral.Id);
+                    }
+                    
                 }
                 
                 for(genesis__Application_Collateral__c appcollateral:appcollateralList){
@@ -51,6 +60,9 @@ trigger CollateralTrigger on clcommon__Collateral__c (After update) {
                         applicationId.add(appCollateral.genesis__Application__r.id);
                     }else if(collStatus.size()>0 && collStatus.contains(appcollateral.genesis__Collateral__r.id)){
                         appId2.add(appCollateral.genesis__Application__r.id);                        
+                    } 
+                    if(collateralValueList.size()>0 && collateralValueList.contains(appcollateral.genesis__Collateral__r.id)){
+                        appId3.add(appCollateral.genesis__Application__r.id);                        
                     }
                 }
                 
@@ -58,6 +70,7 @@ trigger CollateralTrigger on clcommon__Collateral__c (After update) {
                 UpdateFees.updateMortgageFees(appIds);
                 UpdateFees.updateTitleInsuranceFees(applicationId);
                 UpdateFees.updateApplicationFees(appId2);
+                ValuationDateExpiryUpdateHelper.valueUpdate(appId3);
             }
             if(Test.isRunningTest()){
                 Integer a = 4/0;

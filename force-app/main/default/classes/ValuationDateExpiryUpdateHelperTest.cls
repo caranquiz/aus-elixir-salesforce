@@ -118,8 +118,14 @@ public class ValuationDateExpiryUpdateHelperTest {
         clcommon__Collateral__c collateral=[SELECT id,clcommon__Value_Date__c,Primary_Usage__c FROM clcommon__Collateral__c];
         collateral.Primary_Usage__c=ConstantValues.COMMERCIAL;
         collateral.clcommon__Value_Date__c=Date.newInstance(2020, 12, 12);
+        collateral.clcommon__Value__c=6000;
+        collateral.Estimated_Value__c=2000;
         update collateral;
-        List<clcommon__Collateral__c> collateralList=[SELECT id FROM clcommon__Collateral__c WHERE Primary_Usage__c=: ConstantValues.COMMERCIAL];
+        List<clcommon__Collateral__c> collateralList=[SELECT id 
+                                                        FROM clcommon__Collateral__c 
+                                                        WHERE Primary_Usage__c=: ConstantValues.COMMERCIAL 
+                                                        AND clcommon__Value__c=6000
+                                                        AND Estimated_Value__c=2000];
         System.assertEquals(
             collateralList.size(), 
             1, 
