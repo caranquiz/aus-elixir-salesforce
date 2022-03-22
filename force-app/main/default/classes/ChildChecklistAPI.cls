@@ -182,6 +182,7 @@ public with sharing class ChildChecklistAPI {
         Does_applicant_understand_English__c,
         genesis__Application__c,
         genesis__Application__r.NCCP_status_list__c,
+        //genesis__Application__r.ABS_Lending_Purpose_Check__c,
         genesis__Application__r.genesis__CL_Product_Name__c,
         Customer_Interview_completed__c,
         Bankrupt_Discharged_Date_Warning_Check__c,
@@ -196,7 +197,8 @@ public with sharing class ChildChecklistAPI {
         Number_of_Secretaries__c,
         Secretary_Check__c,
         Settlement_Fee_Check__c,
-        Credit_Event_Check__c
+        Credit_Event_Check__c,
+        Age_Check__c
       FROM clcommon__Party__c
       WHERE genesis__Application__c = :appId
     ];
@@ -239,7 +241,8 @@ public with sharing class ChildChecklistAPI {
         Party__r.GST_Suitable__c,
         Party__r.GST_Suitable_Rule_Check__c,
         GST_Suitable_Amount_Check__c,
-        Accountant_ABN_Status__c
+        Accountant_ABN_Status__c,
+        Accountant_Interview_Condition_Field__c
       FROM genesis__Income__c
       WHERE genesis__Application__c = :appId
     ];

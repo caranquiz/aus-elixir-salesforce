@@ -251,9 +251,15 @@ global with sharing class CheckRules {
         rulesNameList.add(ConstantValues.GIFT_STAT_DEC_RECEIVED_CONDITION);
         rulesNameList.add(ConstantValues.NO_SECRETARY_APPOINTED_CONDITION);
         rulesNameList.add(ConstantValues.INDENTIFICATION_CHECKLIST_CONDITION);
-        //rulesNameList.add(ConstantValues.EXIT_STRATEGY_CONDITION);
+        rulesNameList.add(ConstantValues.EXIT_STRATEGY_CONDITION);
         rulesNameList.add(ConstantValues.ACCEPTABLE_VALUATIONSS_CONDITION);
         //rulesNameList.add(ConstantValues.CERTIFICATE_OF_TITLE_TO_BE_ISSUED_CONDITION);
+        rulesNameList.add(ConstantValues.ACCOUNTANTS_INTERVIEW_CONDITION);
+        rulesNameList.add(ConstantValues.GENERAL_SECURITY_AGREEMENT_CONDITION);
+        rulesNameList.add(ConstantValues.SUPERANNUATION_CAPACITY_CONDITION);
+        rulesNameList.add(ConstantValues.TRUST_DEED_VETTED_CONDITION);
+        rulesNameList.add(ConstantValues.NOT_ATTACHED_TO_TRUST_CONDITION); 
+        //rulesNameList.add(ConstantValues.STRUCTURE_AND_SERVICING_REVIEW_CONDITION);
       } else if (tabName == ConstantValues.APP_EXCEP) {
         rulesNameList.add(ConstantValues.MATRIX_RATE_EXCEPTION);
         rulesNameList.add(ConstantValues.CONFIRM_REPAYMENTS_WARNING);
@@ -275,6 +281,8 @@ global with sharing class CheckRules {
         rulesNameList.add(ConstantValues.ERF_FLAG_DOES_NOT_MATCH_PRODUCT_AND_NCCP_STATUS_DEFAULT_WARNING);
         rulesNameList.add(ConstantValues.ERF_FLAG_DOES_NOT_MATCH_NCCP_STATUS_AND_PRODUCT_DEFAULT_WARNING);
         rulesNameList.add(ConstantValues.ERF_PERCENTAGE_OR_TERM_DOES_NOT_MATCH_PRODUCT_DEFAULT_WARNING);
+        //rulesNameList.add(ConstantValues.CERTIFICATE_OF_TITLE_TO_BE_ISSUED_CONDITION);
+        rulesNameList.add(ConstantValues.STRUCTURE_AND_SERVICING_REVIEW_CONDITION);
         loanDetailsRiskGradeWarningCheck(applicationId);
         loanDetailsPrimaryPurposeWarningCheck(applicationId);
         loanDetailsDocumentCompareWarningCheck(applicationId);
@@ -968,7 +976,8 @@ global with sharing class CheckRules {
         True_Exception__c,
         Status__c,
         Supporting_Documentation__c,
-        Waiver_Reason__c
+        Waiver_Reason__c,
+        Show_on_Indicative_Approval_Letter__c
       FROM genesis__Checklist__c
       WHERE
         genesis__Rule__r.Name IN :rulesNameList
@@ -999,6 +1008,7 @@ global with sharing class CheckRules {
         '",';
       manualData += '"trueException":"' + String.valueOf(eachChecklist.True_Exception__c) + '",';
       manualData += '"status":"' + eachChecklist.Status__c + '",';
+      manualData += ConstantValues.SHOW_ON_INDICATIVE_LETTER + eachChecklist.Show_on_Indicative_Approval_Letter__c + '",';
       manualData +=
         '"supportingDocumentVerified":"' +
         eachChecklist.Supporting_Documentation__c +
@@ -1079,6 +1089,12 @@ global with sharing class CheckRules {
           !(eachChecklistMapping.status).equalsIgnoreCase('null')
         ) {
           checklistObj.Status__c = eachChecklistMapping.status;
+        }
+        if (
+          String.isNotBlank(eachChecklistMapping.shownOnIndicativeLetter) &&
+          !(eachChecklistMapping.shownOnIndicativeLetter).equalsIgnoreCase('null')
+        ) {
+          checklistObj.Show_on_Indicative_Approval_Letter__c = eachChecklistMapping.shownOnIndicativeLetter;
         }
         if (
           String.isNotBlank(eachChecklistMapping.supportingDocumentVerified) &&
@@ -1558,7 +1574,8 @@ global with sharing class CheckRules {
           Application_Collateral__r.genesis__Collateral__r.Full_Address__c,
           Liability__c,
           Liability__r.genesis__Name_of_Creditor__c,
-          Party__r.ABN_Company_Name__c 
+          Party__r.ABN_Company_Name__c,
+          Party__r.Name_for_Purpose_of_GSA_Contract__c 
         FROM Checklist_Detail__c
         WHERE
           (Rule_Classification__c = :ConstantValues.CONDITION_CLASSIFICATION OR Rule_Classification__c='Rule')
@@ -1609,12 +1626,58 @@ global with sharing class CheckRules {
           );
         } else if (
            eachChecklistDetails.Checklist__r.genesis__Rule__r.Name ==
+           ConstantValues.EXIT_STRATEGY_CONDITION 
+        ) {
+          message = message.replace(
+            ConstantValues.IND_APPLICANT_KEY,
+            eachChecklistDetails.Party__r.clcommon__Account__r.Name
+          );
+        } else if (
+           eachChecklistDetails.Checklist__r.genesis__Rule__r.Name ==
            ConstantValues.ACCEPTABLE_VALUATIONSS_CONDITION
         ) {
           message = message.replace(
             ConstantValues.COLLATERAL_ADDRESS,
             eachChecklistDetails.Application_Collateral__r.genesis__Collateral__r.Full_Address__c
           );
+        } else if (
+          eachChecklistDetails.Checklist__r.genesis__Rule__r.Name ==
+          ConstantValues.SUPERANNUATION_CAPACITY_CONDITION
+        ) {
+            message = message.replace(
+            ConstantValues.IND_APPLICANT_KEY,
+            eachChecklistDetails.Party__r.clcommon__Account__r.Name
+          );
+        } else if (
+            eachChecklistDetails.Checklist__r.genesis__Rule__r.Name ==
+            ConstantValues.NOT_ATTACHED_TO_TRUST_CONDITION
+        ){
+           message = message.replace(
+            ConstantValues.COMPANY_NAME,
+            eachChecklistDetails.Party__r.ABN_Company_Name__c
+          ); 
+        } else if (
+          eachChecklistDetails.Checklist__r.genesis__Rule__r.Name ==
+          ConstantValues.TRUST_DEED_VETTED_CONDITION
+        ){ if(String.isNotBlank(message)) {
+                message = message.replace(
+                   ConstantValues.IND_APPLICANT_KEY,
+                   eachChecklistDetails.Party__r.clcommon__Account__r.Name
+                );
+            }
+        } else if (
+          eachChecklistDetails.Checklist__r.genesis__Rule__r.Name ==
+          ConstantValues.ACCOUNTANTS_INTERVIEW_CONDITION
+        ){
+          message = message.replace(
+            ConstantValues.IND_APPLICANT_KEY ,
+            eachChecklistDetails.Party__r.clcommon__Account__r.Name
+          );
+        } else if (
+          eachChecklistDetails.Checklist__r.genesis__Rule__r.Name ==
+          ConstantValues.GENERAL_SECURITY_AGREEMENT_CONDITION
+        ){
+          message = message + ' ' + eachChecklistDetails.Party__r.Name_for_Purpose_of_GSA_Contract__c + '.';
         } else if (
           eachChecklistDetails.Checklist__r.genesis__Rule__r.Name ==
           ConstantValues.DOES_APPLICANT_UNDERSTAND_ENGLISH_WARNING

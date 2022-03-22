@@ -981,9 +981,14 @@ global class ConstantValues {
   public static final String INDENTIFICATION_CHECKLIST_CONDITION = 'Identification checklist Condition';
   public static final String EXIT_STRATEGY_CONDITION = 'Exit Strategy Condition';
   public static final String ACCEPTABLE_VALUATIONSS_CONDITION = 'Acceptable Valuation(s) Condition';
-  public static final String CERTIFICATE_OF_TITLE_TO_BE_ISSUED_CONDITION = 'Certificate of title to be issued Condition';
+  //public static final String CERTIFICATE_OF_TITLE_TO_BE_ISSUED_CONDITION = 'Certificate of title to be issued Condition';
   public static final String SUPERANNUATION_CAPACITY_CONDITION = 'Superannuation Capacity Condition';
-  public static final String TRUST_DEED_VETTED_CONDITION = 'Trust deed vetted Condition';
+  public static final String TRUST_DEED_VETTED_CONDITION = 'Trust Deed Vetted Condition';
+  public static final String ACCOUNTANTS_INTERVIEW_CONDITION = 'Accountant’s Interview Condition';
+  public static final String STRUCTURE_AND_SERVICING_REVIEW_CONDITION = 'Structure and Servicing Review Condition';
+  public static final String GENERAL_SECURITY_AGREEMENT_CONDITION = 'General Security Agreement Condition';
+  public static final String NOT_ATTACHED_TO_TRUST_CONDITION = 'Not Attached to Trust Condition';
+ 
   
   //Constant of LinkedLoansExtension Class
   public static final String LINKED_LOAN_ERROR_MSG1 = 'Linked Loan can' +'\'t be same as Current Loan';
@@ -1041,6 +1046,8 @@ global class ConstantValues {
   public static final String NO_SECRETARY_APPOINTED_CONDITION='No Secretary Appointed Condition';
   public static final String BORROWER_GUARANTOR_COMPANY_NAME='[borrower/guarantor company name]';
   public static final String COLLATERAL_ADDRESS = '[collateral address]';
+  public static final String COMPANY_NAME = '[company name]';
+  public static final String SHOW_ON_INDICATIVE_LETTER = '"'+'shownOnIndicativeLetter":"';
 
   //Equifax Individual Response
   public static final string VARIABLE_NAME='variable-name';
