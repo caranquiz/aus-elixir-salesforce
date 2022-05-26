@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Generate_Indicative_Approval_Letter</fullName>
+    <availability>online</availability>
+    <displayType>button</displayType>
+    <encodingKey>UTF-8</encodingKey>
+    <hasMenubar>false</hasMenubar>
+    <hasScrollbars>true</hasScrollbars>
+    <hasToolbar>false</hasToolbar>
+    <height>600</height>
+    <isResizable>true</isResizable>
+    <linkType>url</linkType>
+    <masterLabel>Generate Indicative Approval Letter</masterLabel>
+    <openType>newWindow</openType>
+    <position>none</position>
+    <protected>false</protected>
+    <showsLocation>false</showsLocation>
+    <showsStatus>false</showsStatus>
+    <url>/apex/APXTConga4__Conga_Composer?SolMgr=1&amp;serverUrl={!API.Partner_Server_URL_370}&amp;QueryId=[SecurityQuery]aCK5m00000002L9GAI%3Fpv0%3D{!genesis__Applications__c.Id},[PILoan]aCK5m00000002LuGAI%3Fpv0%3D{!genesis__Applications__c.Id},[AllGua]aCK5m00000002M7GAI%3Fpv0%3D{!genesis__Applications__c.Id},[PolicyConditionsQuer]aCK5m00000002M4GAI%3Fpv0%3D{!genesis__Applications__c.Id},[con]aCK5m00000002M1GAI%3Fpv0%3D{!genesis__Applications__c.Id},
+[conOnApp]aCK8w000000004h%3Fpv0%3D{!genesis__Applications__c.Id},
+[BorCoApp]aCK5m00000002LyGAI%3Fpv0%3D{!genesis__Applications__c.Id},[BorIndAdd]aCK5m00000002LzGAI%3Fpv0%3D{!genesis__Applications__c.Id},[GuaCheck]aCK5m00000002M0GAI%3Fpv0%3D{!genesis__Applications__c.Id},[BorComAdd]aCK5m00000002M2GAI%3Fpv0%3D{!genesis__Applications__c.Id},[Set]aCK8w000000002H%3Fpv0%3D{!genesis__Applications__c.Id},[BrokerUnderwriter]aCK5m00000002LvGAI%3Fpv0%3D{!genesis__Applications__c.Id}&amp;Id={!genesis__Applications__c.Id}&amp;TemplateId=aCS5m0000004uFh&amp;SC0=1&amp;SC1=Attachments&amp;OFN=Conditional+Approval+Letter+{!genesis__Applications__c.Name}&amp;AttachmentParentID={!genesis__Applications__c.Id}&amp;DefaultPDF=1</url>
+</WebLink>
