@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <name>Publish_Application_Platform_Event</name>
+        <label>Publish Application Platform Event</label>
+        <locationX>868</locationX>
+        <locationY>604</locationY>
+        <actionName>NextGenApplicationPlatformEvent</actionName>
+        <actionType>apex</actionType>
+        <inputParameters>
+            <name>appIdList</name>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </inputParameters>
+    </actionCalls>
+    <actionCalls>
+        <name>Publish_Platform_Event_When_Solicitor_Status_Change</name>
+        <label>Publish Platform Event When Solicitor Status Change</label>
+        <locationX>1299</locationX>
+        <locationY>604</locationY>
+        <actionName>NextGenApplicationSolicitorStatusChange</actionName>
+        <actionType>apex</actionType>
+        <inputParameters>
+            <name>appIdList</name>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </inputParameters>
+    </actionCalls>
+    <decisions>
+        <name>New_Application_or_Application_Status_Change</name>
+        <label>New Application or Application Status Change</label>
+        <locationX>1088</locationX>
+        <locationY>397</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>New_Application_or_Status_Change</name>
+            <conditionLogic>or</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.genesis__Status__c</leftValueReference>
+                <operator>IsChanged</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>NewApplicationCheck</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Publish_Application_Platform_Event</targetReference>
+            </connector>
+            <label>New Application or Status Change</label>
+        </rules>
+        <rules>
+            <name>When_Solicitor_Status_Change</name>
+            <conditionLogic>1 AND ( 2 OR 3)</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Solicitor_Status__c</leftValueReference>
+                <operator>IsChanged</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Solicitor_Status__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Ready to Book</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Solicitor_Status__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Settlement Booked</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Publish_Platform_Event_When_Solicitor_Status_Change</targetReference>
+            </connector>
+            <label>When Solicitor Status Change</label>
+        </rules>
+    </decisions>
+    <formulas>
+        <name>NewApplicationCheck</name>
+        <dataType>Boolean</dataType>
+        <expression>ISNEW()</expression>
+    </formulas>
+    <interviewLabel>Application publish platform Event {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Application publish platform Event</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>FREE_FORM_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <start>
+        <locationX>970</locationX>
+        <locationY>48</locationY>
+        <connector>
+            <targetReference>New_Application_or_Application_Status_Change</targetReference>
+        </connector>
+        <object>genesis__Applications__c</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>
