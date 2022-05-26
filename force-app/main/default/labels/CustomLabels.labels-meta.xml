@@ -744,4 +744,47 @@
         <shortDescription>notify event retry count</shortDescription>
         <value>5</value>
     </labels>
+    <labels>
+        <fullName>Anna_Email</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Anna Email</shortDescription>
+        <value>aheifetz@orde.com.au</value>
+    </labels>
+    <labels>
+        <fullName>LAIs_for_Interest_Rate_Change</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>LAIs for Interest Rate Change</shortDescription>
+        <value>LAI-00001763,LAI-00001764</value>
+    </labels>
+    <labels>
+        <fullName>Loan_Statuses_for_Rate_Change</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Loan Statuses for Rate Change</shortDescription>
+        <value>Active - Good Standing,Active - Bad Standing,Active - Matured</value>
+    </labels>
+    <labels>
+        <fullName>Min_No_of_Notice_Period_for_IR_change</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Min No of Notice Period for IR change</shortDescription>
+        <value>20</value>
+    </labels>
+    <labels>
+        <fullName>Rosie_Johnston_Email</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Rosie Johnston Email</shortDescription>
+        <value>rjohnston@orde.com.au</value>
+    </labels>
+    <labels>
+        <fullName>Sub_aggregator</fullName>
+        <categories>Commission Paid To</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Sub Aggregator</shortDescription>
+        <value>Sub Aggregator</value>
+    </labels>
 </CustomLabels>

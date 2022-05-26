@@ -981,13 +981,14 @@ global class ConstantValues {
   public static final String INDENTIFICATION_CHECKLIST_CONDITION = 'Identification checklist Condition';
   public static final String EXIT_STRATEGY_CONDITION = 'Exit Strategy Condition';
   public static final String ACCEPTABLE_VALUATIONSS_CONDITION = 'Acceptable Valuation(s) Condition';
-  //public static final String CERTIFICATE_OF_TITLE_TO_BE_ISSUED_CONDITION = 'Certificate of title to be issued Condition';
+  public static final String CERTIFICATE_OF_TITLE_TO_BE_ISSUED_CONDITION = 'Certificate of title to be issued Condition';
   public static final String SUPERANNUATION_CAPACITY_CONDITION = 'Superannuation Capacity Condition';
-  //public static final String TRUST_DEED_VETTED_CONDITION = 'Trust Deed Vetted Condition';
-  //public static final String ACCOUNTANTS_INTERVIEW_CONDITION = 'Accountant’s Interview Condition';
+  public static final String TRUST_DEED_VETTED_CONDITION = 'Trust Deed Vetted Condition';
+  public static final String ACCOUNTANTS_INTERVIEW_CONDITION = 'Accountant’s Interview Condition';
   public static final String STRUCTURE_AND_SERVICING_REVIEW_CONDITION = 'Structure and Servicing Review Condition';
-  //public static final String GENERAL_SECURITY_AGREEMENT_CONDITION = 'General Security Agreement Condition';
+  public static final String GENERAL_SECURITY_AGREEMENT_CONDITION = 'General Security Agreement Condition';
   public static final String NOT_ATTACHED_TO_TRUST_CONDITION = 'Not Attached to Trust Condition';
+  public static final String UNDERSTAND_ENGLISH_CONDITION = 'Understand English Condition';
  
   
   //Constant of LinkedLoansExtension Class
@@ -1247,4 +1248,28 @@ global class ConstantValues {
   public static final String RECORD_TYPE_LOANCOLLATERAL='0129p0000001M05';
   public static final String DISCHARGED='Discharged';
   public static final String CREDIT_EVENTS_RULE='Credit Events Rule';
+  
+  public static final String SUSPENDED_PAY = 'Suspended';
+  public static final String SUSPENDED_DONT_PAY = 'Suspend don'+'\''+'t pay';
+  public static final String REVIEW_AND_RESUBMIT = 'Review and resubmit';
+  public static final String HIGH = 'High';
+  public static final String NOT_STARTED = 'Not Started';
+  public static final String INTERNAL_TASK = 'Internal Task';
+  public static final String CONTRACT_LOAN_RECORD_TYPE_ID = '0122v000001taql';
+  
+  public static final String READY_TO_BOOK='Ready to Book';
+  public static final String SETTLEMENT_BOOKED='Settlement Booked';
+  
+  //Interest Rate Changes Constants
+  public static final String FIXED ='Fixed';
+  public static final String SUCCESSFULLY = '% successfully.';
+  public static final String RATE_CHANGED_SUCCESS = 'SUCCESS::Rate has been changed to ';
+  public static final String RATE_CHANGE_FAILURE_MSG= 'FAILURE::Rate could not have been changed due to ERROR::';
+  public static final String EQUAL_MONTHLY_INSTALLMENTS = 'Equal Monthly Installments';
+  public static final String NEW_DUE_DAY_MISSING = 'New Due Day is missing.';
+  public static final String LOAN_FREQUENCY_IS_MISSING = 'Loan Frequency is missing.';
+  public static final String TOTAL_NO_OF_INSTALLMENTS_MISSING = 'Total number of installments is missing.';
+  public static final String INTEREST_ONLY_PERIOD_MISSING = 'Interest only period is missing.';
+  public static final String PRINCIPAL_REMAINING = 'Principal Remaining';
+
 }

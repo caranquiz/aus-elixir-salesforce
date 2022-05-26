@@ -1822,4 +1822,11 @@ public with sharing class GenericUtilityTestHelper {
     insert cloneRecordConfig;
     return cloneRecordConfig;
   }
+  public static loan__Loan_Collateral__c returnLoanCollateral(Id loanId){
+    loan__Loan_Collateral__c loanColl=new loan__Loan_Collateral__c();
+    loanColl.loan__Loan__c=loanId;
+    loanColl.Postal_Code__c='2030';
+    insert loanColl;
+    return loanColl;
+  }
 }

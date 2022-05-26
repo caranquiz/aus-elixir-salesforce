@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Credit_Event_Check__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF( (clcommon__Type__r.Name  = &apos;Borrower&apos;  || clcommon__Type__r.Name  = &apos;Co-applicant&apos;  || clcommon__Type__r.Name  =&apos;Guarantor&apos;)  &amp;&amp; ( Legal_Entity_Type__c = &apos;Company&apos;  || Legal_Entity_Type__c = &apos;SMSF&apos;  || Legal_Entity_Type__c = &apos;Individual&apos; || Legal_Entity_Type__c = &apos;Trust&apos; || Legal_Entity_Type__c = &apos;Family Trust&apos;), IF((Legal_Entity_Type__c = &apos;Trust&apos; || Legal_Entity_Type__c = &apos;SMSF&apos; || Legal_Entity_Type__c = &apos;Family Trust&apos;)  &amp;&amp;  ISPICKVAL(Trustee_Type__c, &apos;Individual&apos;), true, IF(  NOT( ISBLANK(Number_Of_Credit_Events__c ) ) , true, false))  , true)</formula>
+    <label>Credit Event Check</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

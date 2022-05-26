@@ -254,10 +254,10 @@ global with sharing class CheckRules {
         rulesNameList.add(ConstantValues.EXIT_STRATEGY_CONDITION);
         rulesNameList.add(ConstantValues.ACCEPTABLE_VALUATIONSS_CONDITION);
         //rulesNameList.add(ConstantValues.CERTIFICATE_OF_TITLE_TO_BE_ISSUED_CONDITION);
-        //rulesNameList.add(ConstantValues.ACCOUNTANTS_INTERVIEW_CONDITION);
-        //rulesNameList.add(ConstantValues.GENERAL_SECURITY_AGREEMENT_CONDITION);
+        rulesNameList.add(ConstantValues.ACCOUNTANTS_INTERVIEW_CONDITION);
+        rulesNameList.add(ConstantValues.GENERAL_SECURITY_AGREEMENT_CONDITION);
         rulesNameList.add(ConstantValues.SUPERANNUATION_CAPACITY_CONDITION);
-        //rulesNameList.add(ConstantValues.TRUST_DEED_VETTED_CONDITION);
+        rulesNameList.add(ConstantValues.TRUST_DEED_VETTED_CONDITION);
         rulesNameList.add(ConstantValues.NOT_ATTACHED_TO_TRUST_CONDITION); 
         //rulesNameList.add(ConstantValues.STRUCTURE_AND_SERVICING_REVIEW_CONDITION);
       } else if (tabName == ConstantValues.APP_EXCEP) {
@@ -1574,7 +1574,8 @@ global with sharing class CheckRules {
           Application_Collateral__r.genesis__Collateral__r.Full_Address__c,
           Liability__c,
           Liability__r.genesis__Name_of_Creditor__c,
-          Party__r.ABN_Company_Name__c 
+          Party__r.ABN_Company_Name__c,
+          Party__r.Name_for_Purpose_of_GSA_Contract__c 
         FROM Checklist_Detail__c
         WHERE
           (Rule_Classification__c = :ConstantValues.CONDITION_CLASSIFICATION OR Rule_Classification__c='Rule')
@@ -1655,15 +1656,15 @@ global with sharing class CheckRules {
             ConstantValues.COMPANY_NAME,
             eachChecklistDetails.Party__r.ABN_Company_Name__c
           ); 
-        }
-        /* else if (
+        } else if (
           eachChecklistDetails.Checklist__r.genesis__Rule__r.Name ==
           ConstantValues.TRUST_DEED_VETTED_CONDITION
-        ){
-          message = message.replace(
-            ConstantValues.IND_APPLICANT_KEY ,
-            eachChecklistDetails.Party__r.clcommon__Account__r.Name
-          );
+        ){ if(String.isNotBlank(message)) {
+                message = message.replace(
+                   ConstantValues.IND_APPLICANT_KEY,
+                   eachChecklistDetails.Party__r.clcommon__Account__r.Name
+                );
+            }
         } else if (
           eachChecklistDetails.Checklist__r.genesis__Rule__r.Name ==
           ConstantValues.ACCOUNTANTS_INTERVIEW_CONDITION
@@ -1672,8 +1673,12 @@ global with sharing class CheckRules {
             ConstantValues.IND_APPLICANT_KEY ,
             eachChecklistDetails.Party__r.clcommon__Account__r.Name
           );
-        }*/
-         else if (
+        } else if (
+          eachChecklistDetails.Checklist__r.genesis__Rule__r.Name ==
+          ConstantValues.GENERAL_SECURITY_AGREEMENT_CONDITION
+        ){
+          message = message + ' ' + eachChecklistDetails.Party__r.Name_for_Purpose_of_GSA_Contract__c + '.';
+        } else if (
           eachChecklistDetails.Checklist__r.genesis__Rule__r.Name ==
           ConstantValues.DOES_APPLICANT_UNDERSTAND_ENGLISH_WARNING
         ) {

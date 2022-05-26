@@ -1,0 +1,310 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Property_Type__c</fullName>
+    <externalId>false</externalId>
+    <label>Property Type</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>25 Acres or Less</fullName>
+                <default>false</default>
+                <label>25 Acres or Less</label>
+            </value>
+            <value>
+                <fullName>Aged Care Unit</fullName>
+                <default>false</default>
+                <label>Aged Care Unit</label>
+            </value>
+            <value>
+                <fullName>Apartment Unit Flat</fullName>
+                <default>false</default>
+                <label>Apartment Unit Flat</label>
+            </value>
+            <value>
+                <fullName>Bedsitter Bachelor</fullName>
+                <default>false</default>
+                <label>Bedsitter Bachelor</label>
+            </value>
+            <value>
+                <fullName>Block of Units or Flats</fullName>
+                <default>false</default>
+                <label>Block of Units or Flats</label>
+            </value>
+            <value>
+                <fullName>Company Title Unit</fullName>
+                <default>false</default>
+                <label>Company Title Unit</label>
+            </value>
+            <value>
+                <fullName>Converted Commercial Property</fullName>
+                <default>false</default>
+                <label>Converted Commercial Property</label>
+            </value>
+            <value>
+                <fullName>Converted Industrial Property</fullName>
+                <default>false</default>
+                <label>Converted Industrial Property</label>
+            </value>
+            <value>
+                <fullName>Converted Motel Units</fullName>
+                <default>false</default>
+                <label>Converted Motel Units</label>
+            </value>
+            <value>
+                <fullName>Display House</fullName>
+                <default>false</default>
+                <label>Display House</label>
+            </value>
+            <value>
+                <fullName>Duplex</fullName>
+                <default>false</default>
+                <label>Duplex</label>
+            </value>
+            <value>
+                <fullName>Factory</fullName>
+                <default>false</default>
+                <label>Factory</label>
+            </value>
+            <value>
+                <fullName>Fully Detached House</fullName>
+                <default>false</default>
+                <label>Fully Detached House</label>
+            </value>
+            <value>
+                <fullName>High Density Apartment</fullName>
+                <default>false</default>
+                <label>High Density Apartment</label>
+            </value>
+            <value>
+                <fullName>Holiday Home</fullName>
+                <default>false</default>
+                <label>Holiday Home</label>
+            </value>
+            <value>
+                <fullName>Holiday Rental</fullName>
+                <default>false</default>
+                <label>Holiday Rental</label>
+            </value>
+            <value>
+                <fullName>Improved Land</fullName>
+                <default>false</default>
+                <label>Improved Land</label>
+            </value>
+            <value>
+                <fullName>Kit Home</fullName>
+                <default>false</default>
+                <label>Kit Home</label>
+            </value>
+            <value>
+                <fullName>Light Industrial</fullName>
+                <default>false</default>
+                <label>Light Industrial</label>
+            </value>
+            <value>
+                <fullName>Low Density Apartment</fullName>
+                <default>false</default>
+                <label>Low Density Apartment</label>
+            </value>
+            <value>
+                <fullName>Luxury House</fullName>
+                <default>false</default>
+                <label>Luxury House</label>
+            </value>
+            <value>
+                <fullName>Luxury Other</fullName>
+                <default>false</default>
+                <label>Luxury Other</label>
+            </value>
+            <value>
+                <fullName>Medium Density Apartment</fullName>
+                <default>false</default>
+                <label>Medium Density Apartment</label>
+            </value>
+            <value>
+                <fullName>Multiple Dwelling Development</fullName>
+                <default>false</default>
+                <label>Multiple Dwelling Development</label>
+            </value>
+            <value>
+                <fullName>Non Specialised Commercial</fullName>
+                <default>false</default>
+                <label>Non Specialised Commercial</label>
+            </value>
+            <value>
+                <fullName>Non Specialised Industrial</fullName>
+                <default>false</default>
+                <label>Non Specialised Industrial</label>
+            </value>
+            <value>
+                <fullName>Offices</fullName>
+                <default>false</default>
+                <label>Offices</label>
+            </value>
+            <value>
+                <fullName>Other</fullName>
+                <default>false</default>
+                <label>Other</label>
+            </value>
+            <value>
+                <fullName>Over 100 Acres</fullName>
+                <default>false</default>
+                <label>Over 100 Acres</label>
+            </value>
+            <value>
+                <fullName>Professional Chambers</fullName>
+                <default>false</default>
+                <label>Professional Chambers</label>
+            </value>
+            <value>
+                <fullName>Property Development</fullName>
+                <default>false</default>
+                <label>Property Development</label>
+            </value>
+            <value>
+                <fullName>Relocatable Home</fullName>
+                <default>false</default>
+                <label>Relocatable Home</label>
+            </value>
+            <value>
+                <fullName>Residential Commercial</fullName>
+                <default>false</default>
+                <label>Residential Commercial</label>
+            </value>
+            <value>
+                <fullName>Resort Unit</fullName>
+                <default>false</default>
+                <label>Resort Unit</label>
+            </value>
+            <value>
+                <fullName>Retail Shop</fullName>
+                <default>false</default>
+                <label>Retail Shop</label>
+            </value>
+            <value>
+                <fullName>Retirement Village</fullName>
+                <default>false</default>
+                <label>Retirement Village</label>
+            </value>
+            <value>
+                <fullName>Semi Detached House</fullName>
+                <default>false</default>
+                <label>Semi Detached House</label>
+            </value>
+            <value>
+                <fullName>Serviced Apartment</fullName>
+                <default>false</default>
+                <label>Serviced Apartment</label>
+            </value>
+            <value>
+                <fullName>Strata Hotel Unit</fullName>
+                <default>false</default>
+                <label>Strata Hotel Unit</label>
+            </value>
+            <value>
+                <fullName>Strata Title Unit</fullName>
+                <default>false</default>
+                <label>Strata Title Unit</label>
+            </value>
+            <value>
+                <fullName>Studio Warehouse Apartment</fullName>
+                <default>false</default>
+                <label>Studio Warehouse Apartment</label>
+            </value>
+            <value>
+                <fullName>Terrace</fullName>
+                <default>false</default>
+                <label>Terrace</label>
+            </value>
+            <value>
+                <fullName>Townhouse</fullName>
+                <default>false</default>
+                <label>Townhouse</label>
+            </value>
+            <value>
+                <fullName>Unit Student Accommodation</fullName>
+                <default>false</default>
+                <label>Unit Student Accommodation</label>
+            </value>
+            <value>
+                <fullName>Vacant Land</fullName>
+                <default>false</default>
+                <label>Vacant Land</label>
+            </value>
+            <value>
+                <fullName>Villa</fullName>
+                <default>false</default>
+                <label>Villa</label>
+            </value>
+            <value>
+                <fullName>Warehouse</fullName>
+                <default>false</default>
+                <label>Warehouse</label>
+            </value>
+            <value>
+                <fullName>Over 25 less than 100 acres</fullName>
+                <default>false</default>
+                <label>Over 25 less than 100 acres</label>
+            </value>
+            <value>
+                <fullName>Commercial Office</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Commercial Office</label>
+            </value>
+            <value>
+                <fullName>Commercial Vacant Land</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Commercial Vacant Land</label>
+            </value>
+            <value>
+                <fullName>Industrial Unit</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Industrial Unit</label>
+            </value>
+            <value>
+                <fullName>Residential Dwelling</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Residential Dwelling</label>
+            </value>
+            <value>
+                <fullName>Residential Unit</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Residential Unit</label>
+            </value>
+            <value>
+                <fullName>Residential Vacant Land</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Residential Vacant Land</label>
+            </value>
+            <value>
+                <fullName>Rural Residential</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Rural Residential</label>
+            </value>
+            <value>
+                <fullName>Rural(&gt;100acres)</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Rural(&gt;100acres)</label>
+            </value>
+            <value>
+                <fullName>Serviced/Managed apartment</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Serviced/Managed apartment</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

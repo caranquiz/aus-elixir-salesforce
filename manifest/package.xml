@@ -1,28 +1,55 @@
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
-    <types>
-        <members>CheckRules</members>
-        <members>ChildChecklistAPI</members>
-        <members>ConstantValues</members>
-        <members>GenerateStatementController</members>
-        <members>LTSCalculateConsolidatedLoanBalance</members>
-        <members>LTSConsolidatedLoanBalanceUpdate</members>
-        <members>ValuationDateExpiryUpdateHelper</members>
-        <members>ValuationDateExpiryUpdateHelperTest</members>
-    <name>ApexClass</name>
-    </types>
-    <types>
-        <members>CollateralTrigger</members>
-    <name>ApexTrigger</name>
-    </types>
-    <types>
-        <members>clcommon__Party__c.Age_Check__c</members>
-        <members>genesis__Checklist__c.Show_on_Indicative_Approval_Letter__c</members>
-        <members>loan__Loan_Transaction_Summary__c.Paid_Off_Check__c</members>
-    <name>CustomField</name>
-    </types>
-    <types>
-        <members>genesis__Applications__c.Generate_Indicative_Approval_Letter</members>
-    <name>WebLink</name>
-    </types>
+<fullName>NextGen Deployment</fullName>
+<types>
+<members>ConstantValues</members>
+<members>IndividualApplicantNextGen</members>
+<members>NextGenApplicationHelper</members>
+<members>NextGenApplicationPlatformEvent</members>
+<members>NextGenApplicationSolicitorStatusChange</members>
+<members>NextGenAuthenticationTest</members>
+<members>NextGenAuthetication</members>
+<members>NextGenBCMAdapter</members>
+<members>NextGenBCMCallout</members>
+<members>NextGenCollateralCreation</members>
+<members>NextGenLoanDetailCreation</members>
+<members>NextGenPartyCreation</members>
+<members>NextGenResponseDetailHelper</members>
+<name>ApexClass</name>
+</types>
+<types>
+<members>Application_Platform_Event__e.Application_Id__c</members>
+<members>Application_Platform_Event__e.Application_Name__c</members>
+<members>Application_Platform_Event__e.Originator_Id__c</members>
+<members>Application_Platform_Event__e.Status__c</members>
+<members>genesis__Applications__c.Check_Status_Change__c</members>
+<members>genesis__Applications__c.Commentary_Last_Updated__c</members>
+<members>genesis__Applications__c.Solicitor_File_Owner__c</members>
+<members>genesis__Applications__c.Solicitor_Reference__c</members>
+<members>genesis__Applications__c.Solicitor_Status__c</members>
+<name>CustomField</name>
+</types>
+<types>
+<members>Anna_Email</members>
+<name>CustomLabel</name>
+</types>
+<types>
+<members>CustomLabels</members>
+<name>CustomLabels</name>
+</types>
+<types>
+<members>Application_Platform_Event__e</members>
+<name>CustomObject</name>
+</types>
+<types>
+<members>Application_publish_platform_Event</members>
+<members>NextGen_BCM_Callout</members>
+<members>Set_ERF_Fields</members>
+<members>Update_prepaid_interest_plus_drawdown_for_loan_amount</members>
+<name>Flow</name>
+</types>
+<types>
+<members>NextGenBCM</members>
+<name>NamedCredential</name>
+</types>
 <version>48.0</version>
 </Package>

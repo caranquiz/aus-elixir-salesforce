@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <name>NextGen_BCM_Callout</name>
+        <label>NextGen BCM Callout</label>
+        <locationX>176</locationX>
+        <locationY>194</locationY>
+        <actionName>NextGenBCMCallout</actionName>
+        <actionType>apex</actionType>
+        <inputParameters>
+            <name>appIdList</name>
+            <value>
+                <elementReference>$Record</elementReference>
+            </value>
+        </inputParameters>
+    </actionCalls>
+    <interviewLabel>NextGen BCM Callout {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>NextGen BCM Callout</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <start>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>NextGen_BCM_Callout</targetReference>
+        </connector>
+        <object>Application_Platform_Event__e</object>
+        <triggerType>PlatformEvent</triggerType>
+    </start>
+    <status>Obsolete</status>
+</Flow>

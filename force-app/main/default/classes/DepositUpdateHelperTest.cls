@@ -58,6 +58,37 @@ public with sharing class DepositUpdateHelperTest {
     update app;
     System.assertEquals(app.genesis__account__c, acc.Id);
 
+    //Insert Borrower Party Type
+    clcommon__Party_Type__c partyType = GenericUtilityTestHelper.insertPartyType(
+      ConstantValues.BORROWER
+    );
+    System.assertNotEquals(
+      partyType.Id,
+      null,
+      'Party type insertion is successful'
+    );
+    //Inserting Borrower Party
+    clcommon__Party__c party = GenericUtilityTestHelper.createBorowerParty(
+      acc,
+      partyType.Id,
+      app.Id
+    );
+    System.AssertNotEquals(
+      party.Id,
+      null,
+      'Party inserted successfully!'
+    );
+    //Insert Application Collaterals
+    genesis__Application_Collateral__c appCollateral = GenericUtilityTestHelper.returnAppCollateral(
+      app.Id,
+      acc.Id
+    );
+    System.AssertNotEquals(
+      appCollateral.Id,
+      null,
+      'Collateral inserted successfully!'
+    );
+
     //Inserting Loan Purpose
     loan__Loan_Purpose__c loanPurpose = GenericUtilityTestHelper.insertLoanPurpose();
     System.assertNotEquals(loanPurpose.Id, Null,'Loan Purpose is not inserted');
@@ -136,20 +167,20 @@ public with sharing class DepositUpdateHelperTest {
       'Conversion Mapping inserted successfully!'
     );
 
-    loan__Loan_Account__c loanC = ElixirTestHelper.returnLoanAccount();
-    loanC.loan__Account__c = acc.Id;
-    loanC.loan__Loan_Amount__c = 1000;
-    loanC.loan__Frequency_of_Loan_Payment__c = ConstantValues.MONTHLY;
-    loanC.Loan__Loan_Status__c = loan.LoanConstants.LOAN_STATUSACTIVE_BAD_STANDING;
-    loanC.Application__c = app.id;
-    loanC.APS_Created__c = false;
-    loanC.loan__Account__c = acc.Id;
-    loanC.loan__Last_Installment_Date__c = Date.today();
-    loanC.loan__Next_Installment_Date__c = Date.today();
-    loanC.loan__Principal_Remaining__c = 100;
-    loanC.loan__Loan_Status__c = 'Approved';
-    loanC.APS_Frequency__c=ConstantValues.MONTHLY;
-    update loanC;
+    loan__Loan_Account__c loanAccount = ElixirTestHelper.returnLoanAccount();
+    loanAccount.loan__Account__c = acc.Id;
+    loanAccount.loan__Loan_Amount__c = 1000;
+    loanAccount.loan__Frequency_of_Loan_Payment__c = ConstantValues.MONTHLY;
+    loanAccount.Loan__Loan_Status__c = loan.LoanConstants.LOAN_STATUSACTIVE_BAD_STANDING;
+    loanAccount.Application__c = app.id;
+    loanAccount.APS_Created__c = false;
+    loanAccount.loan__Account__c = acc.Id;
+    loanAccount.loan__Last_Installment_Date__c = Date.today();
+    loanAccount.loan__Next_Installment_Date__c = Date.today();
+    loanAccount.loan__Principal_Remaining__c = 100;
+    loanAccount.loan__Loan_Status__c = 'Approved';
+    loanAccount.APS_Frequency__c=ConstantValues.MONTHLY;
+    update loanAccount;
 
     List<loan__Loan_Account__c> loanAccountList=[SELECT id 
                                                     FROM loan__Loan_Account__c 
@@ -173,24 +204,32 @@ public with sharing class DepositUpdateHelperTest {
     System.assertEquals(feeAmt1.name, 'Application Fee');
 
     loan__Contract_Pre_Paid_Fee__c conFee = GenericUtilityTestHelper.contractFee(
-      loanC.Id,
+      loanAccount.Id,
       feeAmt1.Id
     );
     System.assertEquals(conFee.loan__Amount__c, 400);
 
-    loan__Coborrower__c coBorrower=GenericUtilityTestHelper.returnCoborrower(loanC.id,acc.id);
+    loan__Coborrower__c coBorrower=GenericUtilityTestHelper.returnCoborrower(loanAccount.id,acc.id);
     List<loan__Coborrower__c> coBorrowerList=[SELECT id 
                                                   FROM loan__Coborrower__c 
-                                                  WHERE loan__Loan__c=:loanC.id 
+                                                  WHERE loan__Loan__c=:loanAccount.id 
                                                   AND loan__Account__c=: acc.id];
     System.assertEquals(coBorrowerList.size(),1);
 
-    Linked_Loan__c linkedLoan=GenericUtilityTestHelper.returnlinkedLoan(loanC.id,loanC.id);
+    Linked_Loan__c linkedLoan=GenericUtilityTestHelper.returnlinkedLoan(loanAccount.id,loanAccount.id);
     List<Linked_Loan__c> linkedLoanList=[SELECT id 
                                             FROM Linked_Loan__c 
-                                            WHERE Linked_Loan__c=:loanC.id
-                                            AND Current_Loan_Record__c=: loanC.id];
+                                            WHERE Linked_Loan__c=:loanAccount.id
+                                            AND Current_Loan_Record__c=: loanAccount.id];
     System.assertEquals(linkedLoanList.size(),1);
+
+    loan__Loan_Collateral__c loanCollateral=GenericUtilityTestHelper.returnLoanCollateral(
+      loanAccount.id
+    );
+    List<loan__Loan_Collateral__c> loanCollateralList=[SELECT id 
+                                            FROM loan__Loan_Collateral__c 
+                                            WHERE loan__Loan__c=:loanAccount.id];
+    System.assertEquals(loanCollateralList.size(),1);
 
   }
   @isTest
@@ -276,6 +315,10 @@ public with sharing class DepositUpdateHelperTest {
     app.CL_Contract__c = loanC.Id;
     update app;
     ConvertToContract.attachValues(app.Id);
+    ConvertToContract.collateralValues(app.Id,loanC.Id);
+    List<loan__Loan_Account__c> loanIdList=new List<loan__Loan_Account__c>();
+    loanIdList.add(loanC);
+    ConvertToContract.updateClContract(loanIdList);
     WarehouseFunding.executeFun(loanC.Id, ware.Id);
     app.Drawdown_Prepaid_Interest__c = 1000;
     app.Subsequent_Drawdown__c = 5000;
@@ -285,6 +328,16 @@ public with sharing class DepositUpdateHelperTest {
     LoanPaymentTxnClearingJobCustomQuery.getQuery();
     Database.executeBatch(new UpdateUnpaidBillsFlagBatch(), 10);
     DepositPaymentCreationCustomQuery.getCustomQuery('loan.LoanDepositPaymentCreationDynamicJob');
+    LoanCollateralUpdateBatch obj=new LoanCollateralUpdateBatch();
+    String sch = '0 0 23 * * ?';
+		Id jobId = system.schedule('Test Check', sch, obj );
+
+    LoanCollateralUpdateBatchExecution.executeLoanCollateralUpdateBatchWS();
+
+    Id batchJobId=Database.executeBatch(new LoanCollateralGenerationBatch(), 10);
+
     test.stopTest();
+    AsyncApexJob aaj = [SELECT Id, Status, JobItemsProcessed, TotalJobItems, NumberOfErrors FROM AsyncApexJob WHERE ID =: batchJobId OR ID=:jobId ];
+    System.assert(aaj.Status=='Completed', 'Job run successfully');
   }
 }

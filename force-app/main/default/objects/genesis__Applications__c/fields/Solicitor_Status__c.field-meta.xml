@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Solicitor_Status__c</fullName>
+    <externalId>false</externalId>
+    <label>Solicitor Status</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Instructions Received</fullName>
+                <default>false</default>
+                <label>Instructions Received</label>
+            </value>
+            <value>
+                <fullName>Matter On Hold</fullName>
+                <default>false</default>
+                <label>Matter On Hold</label>
+            </value>
+            <value>
+                <fullName>File in Doc Prep QA</fullName>
+                <default>false</default>
+                <label>File in Doc Prep QA</label>
+            </value>
+            <value>
+                <fullName>Docs Sent</fullName>
+                <default>false</default>
+                <label>Docs Sent</label>
+            </value>
+            <value>
+                <fullName>Docs Returned</fullName>
+                <default>false</default>
+                <label>Docs Returned</label>
+            </value>
+            <value>
+                <fullName>Outstanding Requirements</fullName>
+                <default>false</default>
+                <label>Outstanding Requirements</label>
+            </value>
+            <value>
+                <fullName>Docs Verified</fullName>
+                <default>false</default>
+                <label>Docs Verified</label>
+            </value>
+            <value>
+                <fullName>File in Settlement QA</fullName>
+                <default>false</default>
+                <label>File in Settlement QA</label>
+            </value>
+            <value>
+                <fullName>Ready to Book</fullName>
+                <default>false</default>
+                <label>Ready to Book</label>
+            </value>
+            <value>
+                <fullName>Settlement Booked</fullName>
+                <default>false</default>
+                <label>Settlement Booked</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>
