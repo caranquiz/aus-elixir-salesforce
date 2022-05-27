@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CompactLayout xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Gift_Register_Compact</fullName>
+    <fields>Name</fields>
+    <fields>Contact__c</fields>
+    <fields>Given_Received__c</fields>
+    <fields>Date_Given_Received__c</fields>
+    <fields>Value__c</fields>
+    <fields>OwnerId</fields>
+    <label>Gift Register Compact</label>
+</CompactLayout>

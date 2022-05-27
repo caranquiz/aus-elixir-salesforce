@@ -1,8 +1,52 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<RecordType xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Broker_Underwriter</fullName>
     <active>true</active>
+    <compactLayoutAssignment>Contact_Data</compactLayoutAssignment>
     <label>Broker Underwriter</label>
+    <picklistValues>
+        <picklist>Accredited_Products__c</picklist>
+        <values>
+            <fullName>Commercial</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Commercial IO</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Commercial SMSF</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Development %26 Construction</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Highest %26 Best Use - Commercial</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Highest %26 Best Use - Residential</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Residential</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Residential Development</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Residential IO</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Residential SMSF</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
     <picklistValues>
         <picklist>Applicant_reside_in_Australia__c</picklist>
         <values>
@@ -37,6 +81,47 @@
         </values>
         <values>
             <fullName>MFAA</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Broker_Status__c</picklist>
+        <values>
+            <fullName>Active</fullName>
+            <default>true</default>
+        </values>
+        <values>
+            <fullName>Cancelled</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Cancelled - Do Not Register</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Internal Review</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Exit_Strategy_Provided__c</picklist>
+        <values>
+            <fullName>No</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Yes</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Exit_Strategy_Suitable__c</picklist>
+        <values>
+            <fullName>No</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Yes</fullName>
             <default>false</default>
         </values>
     </picklistValues>
@@ -1146,6 +1231,17 @@
         </values>
     </picklistValues>
     <picklistValues>
+        <picklist>NCCP_Transaction_Type__c</picklist>
+        <values>
+            <fullName>Regulated</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Unregulated</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
         <picklist>Name</picklist>
         <values>
             <fullName>Dr%2E</fullName>
@@ -1164,7 +1260,68 @@
             <default>false</default>
         </values>
         <values>
+            <fullName>Other</fullName>
+            <default>false</default>
+        </values>
+        <values>
             <fullName>Prof%2E</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Secret_Question__c</picklist>
+        <values>
+            <fullName>In what city did you meet your spouse%2Fsignificant other%3F</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>In what city was your first job%3F</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>In what city were you born%3F</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>What is the name of your favorite childhood friend%3F</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>What is your mother%27s maiden name%3F</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>What is your pet%27s name%3F</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>What was your childhood nickname%3F</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Temporary_Visa_Suitability__c</picklist>
+        <values>
+            <fullName>No</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Yes</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>clcommon__Gender__c</picklist>
+        <values>
+            <fullName>Female</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Male</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Other</fullName>
             <default>false</default>
         </values>
     </picklistValues>

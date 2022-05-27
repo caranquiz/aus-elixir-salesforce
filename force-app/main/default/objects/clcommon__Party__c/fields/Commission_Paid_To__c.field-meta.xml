@@ -21,6 +21,11 @@
                 <default>false</default>
                 <label>Aggregator</label>
             </value>
+            <value>
+                <fullName>Sub Aggregator</fullName>
+                <default>false</default>
+                <label>Sub Aggregator</label>
+            </value>
         </valueSetDefinition>
     </valueSet>
 </CustomField>

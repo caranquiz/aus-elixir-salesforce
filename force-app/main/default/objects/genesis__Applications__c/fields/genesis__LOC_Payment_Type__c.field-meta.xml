@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>genesis__LOC_Payment_Type__c</fullName>
+    <deprecated>false</deprecated>
+    <description>This field will store the different LOC Payment methods applicable in servicing.</description>
+    <externalId>false</externalId>
+    <label>LOC Payment Type</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Accrued Interest Only</fullName>
+                <default>false</default>
+                <label>Accrued Interest Only</label>
+            </value>
+            <value>
+                <fullName>Fixed Amount Plus Accrued Interest</fullName>
+                <default>false</default>
+                <label>Fixed Amount Plus Accrued Interest</label>
+            </value>
+            <value>
+                <fullName>Fixed Amount</fullName>
+                <default>false</default>
+                <label>Fixed Amount</label>
+            </value>
+            <value>
+                <fullName>Fixed Amount per $1000 of Outstanding Balance</fullName>
+                <default>false</default>
+                <label>Fixed Amount per $1000 of Outstanding Balance</label>
+            </value>
+            <value>
+                <fullName>Greater of a Fixed Amount or Accrued Interest</fullName>
+                <default>false</default>
+                <label>Greater of a Fixed Amount or Accrued Interest</label>
+            </value>
+            <value>
+                <fullName>Greater of a Percentage of the Outstanding Balance or a Fixed Amount</fullName>
+                <default>false</default>
+                <label>Greater of a Percentage of the Outstanding Balance or a Fixed Amount</label>
+            </value>
+            <value>
+                <fullName>Greater of a Percentage of the Outstanding Balance Plus Accrued Interest or a Fixed Amount</fullName>
+                <default>false</default>
+                <label>Greater of a Percentage of the Outstanding Balance Plus Accrued Interest or a Fixed Amount</label>
+            </value>
+            <value>
+                <fullName>Greater of a Percentage of the Outstanding Balance or Accrued Interest</fullName>
+                <default>false</default>
+                <label>Greater of a Percentage of the Outstanding Balance or Accrued Interest</label>
+            </value>
+            <value>
+                <fullName>Percentage of the Outstanding Balance</fullName>
+                <default>false</default>
+                <label>Percentage of the Outstanding Balance</label>
+            </value>
+            <value>
+                <fullName>Percentage of the Outstanding Balance Plus Accrued Interest</fullName>
+                <default>false</default>
+                <label>Percentage of the Outstanding Balance Plus Accrued Interest</label>
+            </value>
+            <value>
+                <fullName>Others (as specified)</fullName>
+                <default>false</default>
+                <label>Others (as specified)</label>
+            </value>
+            <value>
+                <fullName>Balloon</fullName>
+                <default>false</default>
+                <label>Balloon</label>
+            </value>
+            <value>
+                <fullName>Amortized Payment (Principal and Interest)</fullName>
+                <default>false</default>
+                <label>Amortized Payment (Principal and Interest)</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

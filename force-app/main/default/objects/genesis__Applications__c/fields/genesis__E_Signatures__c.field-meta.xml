@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>genesis__E_Signatures__c</fullName>
+    <defaultValue>false</defaultValue>
+    <deprecated>false</deprecated>
+    <description>This checkbox on the application indicates if an electronic signature will be used in closing documents.
+		This check box is different from e-sign consent.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>This checkbox is to indicate when an electronic signature will be used.</inlineHelpText>
+    <label>E-Signature</label>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

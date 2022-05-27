@@ -2827,4 +2827,42 @@
         </columns>
         <masterLabel>Loan Payment Transactions</masterLabel>
     </sections>
+    <sections>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Statement_End_Date_Loan_Closed_Date__c</field>
+            <table>loan__Bank_Account__c.loan__Lending__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Calculated_Upcoming_Repayment_Amount__c</field>
+            <table>loan__Bank_Account__c.loan__Lending__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>New_Interest_Rate_Effective_Date__c</field>
+            <table>loan__Bank_Account__c.loan__Lending__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>New_Interest_Rate__c</field>
+            <table>loan__Bank_Account__c.loan__Lending__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Interest_Rate_Change_Notification_Date__c</field>
+            <table>loan__Bank_Account__c.loan__Lending__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>First_Repayment_Date_After_IR_Change__c</field>
+            <table>loan__Bank_Account__c.loan__Lending__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Second_Repayment_Date_After_IR_Change__c</field>
+            <table>loan__Bank_Account__c.loan__Lending__r</table>
+        </columns>
+        <masterLabel>CL Contracts</masterLabel>
+    </sections>
 </ReportType>

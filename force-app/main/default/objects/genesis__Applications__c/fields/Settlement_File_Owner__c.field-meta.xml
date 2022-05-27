@@ -2,6 +2,9 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Settlement_File_Owner__c</fullName>
     <deleteConstraint>SetNull</deleteConstraint>
+    <description>RJohnston 4/1/22
+To assist the CAs on who will be taking care of this loan at settlement
+https://wingategroup.atlassian.net/browse/AMS-1140</description>
     <externalId>false</externalId>
     <inlineHelpText>ORDE Settlement File Owner post formal approval</inlineHelpText>
     <label>Settlement File Owner</label>

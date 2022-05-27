@@ -3,9 +3,9 @@
     <fullName>loan__Move_Across_Months__c</fullName>
     <defaultValue>false</defaultValue>
     <deprecated>false</deprecated>
-    <description>It will define whether the schedule&#39;s due date should get moved across the month if schedule is lying on holiday.</description>
+    <description>It will define whether the schedule&apos;s due date should get moved across the month if schedule is lying on holiday.</description>
     <externalId>false</externalId>
-    <inlineHelpText>It will define whether the schedule&#39;s due date should get moved across the month if schedule is lying on holiday.</inlineHelpText>
+    <inlineHelpText>It will define whether the schedule&apos;s due date should get moved across the month if schedule is lying on holiday.</inlineHelpText>
     <label>Move Across Months</label>
     <trackHistory>false</trackHistory>
     <trackTrending>false</trackTrending>

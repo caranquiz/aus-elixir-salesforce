@@ -1,0 +1,133 @@
+<!--
+ - Created by Ethan Sargent on 13/08/2021.
+ -->
+
+<!-- mainTemplate -->
+<template>
+    <section role="dialog" tabindex="-1" aria-label={cardTitle} aria-modal="true"
+             aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open" >
+        <div class="slds-modal__container">
+            <header class="slds-modal__header slds-modal__header_empty">
+                <button style="font-size: 28px" class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse"
+                        title="Close" onclick={handleCancel}>
+                    &times;
+                    <span class="slds-assistive-text">Close</span>
+                </button>
+            </header>
+            <c-cl-orde-card class="slds-modal__content" card-title={cardTitle}>
+<!--                <span slot="title">{cardTitle}</span>-->
+                <template if:true={formPageOne}>
+                    <lightning-radio-group
+                            name="directDebitType"
+                            label="Direct Debit Type"
+                            class="direct-debit-input"
+                            options={directDebitTypeOptions}
+                            value={directDebitType}
+                            required
+                            onchange={handleInputChange}
+                    ></lightning-radio-group>
+                </template>
+
+                <template if:false={formPageThree}>
+                    <template if:true={formPageTwo}>
+                        <lightning-radio-group
+                                if:true={showAmountType}
+                                name="amountType"
+                                class="direct-debit-input"
+                                label="Amount"
+                                options={amountTypeOptions}
+                                value={amountType}
+                                required
+                                onchange={handleInputChange}
+                        ></lightning-radio-group>
+                    </template>
+                </template>
+                <template if:true={formPageThree}>
+                    <lightning-input
+                            if:true={showTransactionAmount}
+                            name="transactionAmount"
+                            formatter="currency"
+                            step=".01"
+                            class="direct-debit-input"
+                            label="Transaction Amount"
+                            type="number"
+                            value={transactionAmount}
+                            required
+                            onchange={handleInputChange}
+                    ></lightning-input>
+
+                    <lightning-input
+                            name="debitDate"
+                            class="direct-debit-input"
+                            label="Debit Date"
+                            type="date"
+                            value={debitDate}
+                            min={today}
+                            message-when-range-underflow="Debit date cannot be today's date or in the past."
+                            required
+                            onchange={handleDebitDateChange}
+                    ></lightning-input>
+
+                    <lightning-radio-group
+                            if:true={showFrequency}
+                            class="direct-debit-input"
+                            name="frequency"
+                            label="Frequency"
+                            options={frequencyOptions}
+                            value={frequency}
+                            required
+                            onchange={handleInputChange}
+                    ></lightning-radio-group>
+                </template>
+                <div class="slds-clearfix submit-button-group slds-m-top_large slds-p-top_medium slds-border_top">
+                    <template if:false={requestInProgress}>
+                    <lightning-button
+                            class="slds-float_left"
+                            variant="neutral"
+                            label="Cancel"
+                            onclick={handleCancel}
+                    ></lightning-button>
+                    <template if:true={showBack}>
+                        <lightning-button
+                                class="slds-float_left orde-button"
+                                variant="base"
+                                label="Back"
+                                onclick={handleBack}
+                        ></lightning-button>
+                    </template>
+
+                    <template if:true={showNext}>
+                        <lightning-button
+                                class="slds-float_right orde-button"
+                                variant="base"
+                                label="Next"
+                                onclick={handleNext}
+                        ></lightning-button>
+                    </template>
+                    <template if:true={showSubmit}>
+                        <lightning-button
+                                class="slds-float_right orde-button"
+                                variant="base"
+                                label="Save"
+                                onclick={handleSubmit}
+                        ></lightning-button>
+                    </template>
+                    </template>
+                    <br>
+                    <template if:true={requestInProgress}>
+                        <div class="submit-spinner-wrapper slds-clearfix">
+                            <div style="margin-left: auto; margin-right: auto; width: 10px">
+                                <lightning-spinner  style="position: relative;"
+                                               alternative-text="Submitting your request, please wait"></lightning-spinner>
+                            </div>
+                        </div>
+                    </template>
+                </div>
+                <div if:true={buttonError} class="slds-text-align_center slds-text-color_error">
+                    {buttonError}
+                </div>
+            </c-cl-orde-card>
+        </div>
+    </section>
+    <div class="slds-backdrop slds-backdrop_open" ></div>
+</template>

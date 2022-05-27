@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>clcommon__Military_Post_Office_Box__c</fullName>
+    <deprecated>false</deprecated>
+    <description>This field will be enabled only if the Military address checkbox is true .It will store the Army Post Office or Fleet Post Office Box number if the address is a military address.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>This field will store the Army Post Office or Fleet Post Office Box number if the address is a military address.</inlineHelpText>
+    <label>Military Post Office Box</label>
+    <length>255</length>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

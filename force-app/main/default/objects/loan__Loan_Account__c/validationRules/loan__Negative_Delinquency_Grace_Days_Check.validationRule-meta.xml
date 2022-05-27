@@ -5,5 +5,5 @@
     <description>&quot;Delinquency Grace Days&quot; cannot be negative</description>
     <errorConditionFormula>loan__Delinquency_Grace_Days__c &lt; 0</errorConditionFormula>
     <errorDisplayField>loan__Delinquency_Grace_Days__c</errorDisplayField>
-    <errorMessage>&#39;Delinquency Grace Days&#39; cannot be negative</errorMessage>
+    <errorMessage>&apos;Delinquency Grace Days&apos; cannot be negative</errorMessage>
 </ValidationRule>

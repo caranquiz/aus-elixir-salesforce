@@ -198,6 +198,10 @@
             <default>false</default>
         </values>
         <values>
+            <fullName>Billing Frequency</fullName>
+            <default>false</default>
+        </values>
+        <values>
             <fullName>Daily</fullName>
             <default>false</default>
         </values>
@@ -279,6 +283,10 @@
         </values>
         <values>
             <fullName>Bills</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Schedule Balance</fullName>
             <default>false</default>
         </values>
     </picklistValues>
@@ -443,6 +451,10 @@
         </values>
         <values>
             <fullName>Flexible Repayment</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Future Value Based</fullName>
             <default>false</default>
         </values>
     </picklistValues>

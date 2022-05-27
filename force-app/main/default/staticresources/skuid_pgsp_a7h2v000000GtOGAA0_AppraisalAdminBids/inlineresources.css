@@ -1,0 +1,81 @@
+#appAdminBidsQueueId .bids-container {
+    margin-top: -33px;
+    margin-left: -5px;
+}
+
+#appAdminBidsQueueId .nx-queue-item {
+    background: #37444E;
+}
+
+#appAdminBidsQueueId .numberCircle {
+    float: left;
+}
+
+#appAdminBidsQueueId .div2 {
+    /*border: 1px solid red;*/
+    float: left;
+    margin-top: -15px;
+    margin-left: 3px;
+}
+
+#appAdminBidsQueueId .numberCircle {
+    border-radius: 44%;
+    width: 73px;
+    font-size: x-small;
+    border: 2px solid #666;
+    background-color: white;
+    color: black;
+    text-align: center;
+    height: 24px;
+    margin-top: 9px;
+}
+
+#appAdminBidsQueueId .numberCircle span {
+    text-align: center;
+    line-height: 0px;
+    display: block;
+}
+
+#appAdminBidsQueueId .nx-template {
+    margin-top: -40px;
+    margin-left: 20px;
+}
+
+
+
+.nx-list-footer {
+    display:none;
+}
+
+
+
+#appAdminBidsQueueId  .nx-item.nx-queue-item .nx-queue-loader {
+    display: none;
+}
+
+
+#appAdminBidsQueueId .nx-queue-header {
+    display:none;
+}
+
+#appAdminBidsQueueId {
+    margin-top:-37px;
+}
+
+
+#appAdminQueueDivision {
+    margin-left: -9px;
+}
+
+#appAdminBidsQueueId .nx-queue-item-selected:hover>.nx-queue-item-inner,.nx-queue-item-selected:focus>.nx-queue-item-inner {
+    background-color: #2d507a !important;
+}
+
+#appAdminBidsQueueId .nx-queue-item-selected>.nx-queue-item-inner {
+    background-color: #2d507a !important;
+}
+
+
+#app-request-bids-template{
+    text-align: center;
+}

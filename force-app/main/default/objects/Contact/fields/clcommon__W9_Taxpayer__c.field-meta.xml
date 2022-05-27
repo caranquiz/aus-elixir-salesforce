@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>clcommon__W9_Taxpayer__c</fullName>
+    <defaultValue>false</defaultValue>
+    <deprecated>false</deprecated>
+    <description>This checkbox will identify if the Individual relationship(Individual or Sole Proprietorship) is a W9 Taxpayer.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>This checkbox will identify if the Individual relationship(Individual or Sole Proprietorship) is a W9 Taxpayer.</inlineHelpText>
+    <label>W9 Taxpayer</label>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Checkbox</type>
+</CustomField>

@@ -3,7 +3,7 @@
     <fullName>loan__No_of_Installments_Boundary_Check</fullName>
     <active>false</active>
     <description>No_of_Installments_Boundary_Check</description>
-    <errorConditionFormula>AND(ISPICKVAL(loan__Loan_Product_Name__r.loan__Loan_Cycle_Setup__c, &#39;Same for all Loans&#39;),(  loan__Number_of_Installments__c  &gt;  loan__Loan_Product_Name__r.loan__Max_Number_of_Installments__c
+    <errorConditionFormula>AND(ISPICKVAL(loan__Loan_Product_Name__r.loan__Loan_Cycle_Setup__c, &apos;Same for all Loans&apos;),(  loan__Number_of_Installments__c  &gt;  loan__Loan_Product_Name__r.loan__Max_Number_of_Installments__c
  ||
   loan__Number_of_Installments__c  &lt;   loan__Loan_Product_Name__r.loan__Min_Number_of_Installments__c ))</errorConditionFormula>
     <errorDisplayField>loan__Number_of_Installments__c</errorDisplayField>

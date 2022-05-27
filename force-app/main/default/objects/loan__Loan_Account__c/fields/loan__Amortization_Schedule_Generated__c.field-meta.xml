@@ -4,7 +4,7 @@
     <defaultValue>false</defaultValue>
     <deprecated>false</deprecated>
     <externalId>false</externalId>
-    <inlineHelpText>This flag is set to true when the amortization schedule is successfully generated for a contract with Funding In Tranches as &#39;Yes&#39; .</inlineHelpText>
+    <inlineHelpText>This flag is set to true when the amortization schedule is successfully generated for a contract with Funding In Tranches as &apos;Yes&apos; .</inlineHelpText>
     <label>Amortization Schedule Generated</label>
     <trackHistory>false</trackHistory>
     <trackTrending>false</trackTrending>

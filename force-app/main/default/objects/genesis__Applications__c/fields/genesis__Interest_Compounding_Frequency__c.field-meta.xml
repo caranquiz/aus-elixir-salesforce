@@ -27,8 +27,13 @@
             </value>
             <value>
                 <fullName>Monthly</fullName>
-                <default>true</default>
+                <default>false</default>
                 <label>Monthly</label>
+            </value>
+            <value>
+                <fullName>Billing Frequency</fullName>
+                <default>true</default>
+                <label>Billing Frequency</label>
             </value>
             <value>
                 <fullName>Annual</fullName>

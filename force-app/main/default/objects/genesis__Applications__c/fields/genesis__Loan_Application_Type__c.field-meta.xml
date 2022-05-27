@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>genesis__Loan_Application_Type__c</fullName>
+    <deprecated>false</deprecated>
+    <description>This field is to identify specific application types that are needed for generation of closing documents.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>This field is to identify specific application types that are needed for generation of closing documents.</inlineHelpText>
+    <label>Application Type</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Direct Installment</fullName>
+                <default>false</default>
+                <label>Direct Installment</label>
+            </value>
+            <value>
+                <fullName>Loan Modification</fullName>
+                <default>false</default>
+                <label>Loan Modification</label>
+            </value>
+            <value>
+                <fullName>Other</fullName>
+                <default>false</default>
+                <label>Other</label>
+            </value>
+            <value>
+                <fullName>Indirect Installment</fullName>
+                <default>false</default>
+                <label>Indirect Installment</label>
+            </value>
+            <value>
+                <fullName>Line of Credit</fullName>
+                <default>false</default>
+                <label>Line of Credit</label>
+            </value>
+            <value>
+                <fullName>Credit Card</fullName>
+                <default>false</default>
+                <label>Credit Card</label>
+            </value>
+            <value>
+                <fullName>Mortgage Loan</fullName>
+                <default>false</default>
+                <label>Mortgage Loan</label>
+            </value>
+            <value>
+                <fullName>Term Loan</fullName>
+                <default>false</default>
+                <label>Term Loan</label>
+            </value>
+            <value>
+                <fullName>Single Payment</fullName>
+                <default>false</default>
+                <label>Single Payment</label>
+            </value>
+            <value>
+                <fullName>Letter of Credit</fullName>
+                <default>false</default>
+                <label>Letter of Credit</label>
+            </value>
+            <value>
+                <fullName>Loan Renewal</fullName>
+                <default>false</default>
+                <label>Loan Renewal</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

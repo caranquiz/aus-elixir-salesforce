@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>clcommon__Status_Tracking_At_Document_File_Level__c</fullName>
+    <defaultValue>false</defaultValue>
+    <deprecated>false</deprecated>
+    <description>This field if checked enable the status and the document comments to be tracked at the File level</description>
+    <externalId>false</externalId>
+    <inlineHelpText>This field if checked enable the status and the document comments to be tracked at the File level</inlineHelpText>
+    <label>Status Tracking at Document File Level</label>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

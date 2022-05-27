@@ -171,6 +171,11 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
+            <field>Pending_Broker__c</field>
+            <table>loan__Loan_Account__c.Applications__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
             <field>loan__Adjust_Deposit_Amount_In_Payoff__c</field>
             <table>loan__Loan_Account__c</table>
         </columns>
@@ -2124,6 +2129,41 @@
             <field>Warehouse__c</field>
             <table>loan__Loan_Account__c</table>
         </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Statement_End_Date_Loan_Closed_Date__c</field>
+            <table>loan__Loan_Account__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Calculated_Upcoming_Repayment_Amount__c</field>
+            <table>loan__Loan_Account__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>New_Interest_Rate_Effective_Date__c</field>
+            <table>loan__Loan_Account__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>New_Interest_Rate__c</field>
+            <table>loan__Loan_Account__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Interest_Rate_Change_Notification_Date__c</field>
+            <table>loan__Loan_Account__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>First_Repayment_Date_After_IR_Change__c</field>
+            <table>loan__Loan_Account__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Second_Repayment_Date_After_IR_Change__c</field>
+            <table>loan__Loan_Account__c</table>
+        </columns>
         <masterLabel>CL Contracts</masterLabel>
     </sections>
     <sections>
@@ -2300,11 +2340,6 @@
         <columns>
             <checkedByDefault>false</checkedByDefault>
             <field>Broker__c</field>
-            <table>loan__Loan_Account__c.Applications__r</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>Brokers_BDM__c</field>
             <table>loan__Loan_Account__c.Applications__r</table>
         </columns>
         <columns>
@@ -3665,6 +3700,11 @@
         <columns>
             <checkedByDefault>false</checkedByDefault>
             <field>genesis__Yield__c</field>
+            <table>loan__Loan_Account__c.Applications__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>First_Home_Buyer__c</field>
             <table>loan__Loan_Account__c.Applications__r</table>
         </columns>
         <masterLabel>Applications</masterLabel>

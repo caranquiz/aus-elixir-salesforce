@@ -2,6 +2,6 @@
 <ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>loan__Check_Top_Up_Loan</fullName>
     <active>true</active>
-    <errorConditionFormula>loan__Loan_Product_Name__r.loan__Is_Sub_Product__c == true &amp;&amp;   ISPICKVAL(loan__Loan_Product_Name__r.loan__Parent_Loan_Product__r.loan__Status__c, &#39;Inactive&#39;)</errorConditionFormula>
-    <errorMessage>Top up loan&#39;s parent must be active.</errorMessage>
+    <errorConditionFormula>loan__Loan_Product_Name__r.loan__Is_Sub_Product__c == true &amp;&amp;   ISPICKVAL(loan__Loan_Product_Name__r.loan__Parent_Loan_Product__r.loan__Status__c, &apos;Inactive&apos;)</errorConditionFormula>
+    <errorMessage>Top up loan&apos;s parent must be active.</errorMessage>
 </ValidationRule>

@@ -3,8 +3,8 @@
     <fullName>loan__Interest_Only_Check</fullName>
     <active>true</active>
     <errorConditionFormula>AND(
-ISPICKVAL( loan__Interest_Calculation_Method__c  , &#39;Interest Only&#39;),
+ISPICKVAL( loan__Interest_Calculation_Method__c  , &apos;Interest Only&apos;),
  ISBLANK(loan__Interest_Only_Period__c)
 )</errorConditionFormula>
-    <errorMessage>&#39;Interest Only Period&#39; cannot be blank for an &#39;Interest Only&#39; loan product.</errorMessage>
+    <errorMessage>&apos;Interest Only Period&apos; cannot be blank for an &apos;Interest Only&apos; loan product.</errorMessage>
 </ValidationRule>

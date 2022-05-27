@@ -1,0 +1,20 @@
+<!--
+ - Created by Ethan Sargent on 27/08/2021.
+ -->
+
+<!-- bottomAlignValueTemplate -->
+<template>
+    <div class="fieldGroup maxRowHeight">
+        <p class="switcherLabel fieldLabel">{field.label}</p>
+        <template if:true={field.isDefault}>
+            <p class="fieldValue slds-align-bottom">{field.value}</p>
+        </template>
+        <template if:true={field.isDate}>
+            <lightning-formatted-date-time class="fieldValue slds-align-bottom"
+                                           value={field.value}></lightning-formatted-date-time>
+        </template>
+    </div>
+    <template if:true={displaySeparator}>
+        <div class="field-separator orde-border-bottom"></div>
+    </template>
+</template>

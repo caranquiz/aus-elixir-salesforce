@@ -1,0 +1,121 @@
+#sk-1uFo3V-67{
+    -webkit-animation: fadein .5s; /* Safari, Chrome and Opera > 12.1 */
+    animation: fadein .5s;
+}
+
+.nx-page{
+    padding: 0 0 10px 0;
+}
+
+@keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/* Safari, Chrome and Opera > 12.1 */
+@-webkit-keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/* If header is present */
+.bodyDiv .sk-headerwrapper {
+    display: none;
+}
+
+.bodyDiv .nx-pagebuilder-toolbar-wrapper-fixed {
+    padding: 0 27px;
+}
+
+/** legacy IE8 support **/
+.sk-ie-legacy .sk-grid-division{
+    width: 200px;
+    height: 43px;
+    display: block;
+    float: left;
+}
+.sk-ie-legacy .sk-master-grid-navigation,
+.sk-ie-legacy .sk-master-grid-navigation .sk-navigation{
+    width: 450px;
+    color: #eee !important;
+}
+.sk-ie-legacy .sk-master-grid-profpic{
+    width: 30px;
+}
+.sk-ie-legacy .sk-master-grid-logo{
+    width: 101px;
+}
+.sk-ie-legacy .sk-master-grid-division-rightside{
+    float: right;
+    color: #eee;
+}
+
+.sk-ie-legacy .sk-subnavigation,
+.sk-ie-legacy .sk-dropnav-dropdown,
+.sk-ie-legacy .sk-subnavigation div{
+    background: #333 !important;
+}
+
+.sk-ie-legacy .sk-master-grid-division-search .ui-autocomplete-input{
+    background: #222;
+}
+
+.sk-ie-legacy .sk-master-grid-division-search .sk-search-results{
+    background: #111;
+}
+#skuid-central-wrapper h1, #skuid-central-wrapper h2, #skuid-central-wrapper h3, .body-text, #skuid-central-wrapper a {
+    font-family: "Open Sans", sans-serif;
+}
+
+h1 {
+    font-size: 29px;
+    font-weight: 600;
+    color: #484E54;
+}
+
+h2 {
+    font-size: 19px;
+    font-weight: 500;
+    color: #484E54;
+}
+.top-banner {
+    text-align: center;
+    margin: 0 auto;
+    max-width:450px;
+}
+.guide-tutorial-header {
+    text-align:center;
+    max-width:400px;
+    margin:20px auto;
+}
+.button-set {
+    margin-bottom:20px;
+}
+.main-content-wrapper {
+    margin: 0 auto;
+}
+.guides-and-tutorials {
+    margin: 0 auto;
+}
+.callout-image {
+    margin:0 auto;
+}
+h3 {
+    font-size: 16px;
+    font-weight: 400;
+    color: #686B71;
+}
+
+.body-text {
+    font-size: 14px;
+    margin-bottom:20px;
+    color: #686B71;
+}
+
+a.reference-link {
+    font-size: 17px;
+    font-weight: 500;
+    color: #4B4E54;
+    cursor: pointer;
+    text-decoration: none;
+}

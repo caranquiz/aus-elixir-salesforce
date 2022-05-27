@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <layouts>
+        <layout>New Loan Collateral Layout</layout>
+        <sections>
+            <label></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label></label>
+            <section>Property Insurance Details</section>
+        </sections>
+        <sections>
+            <label></label>
+            <section>Security Details</section>
+        </sections>
+        <sections>
+            <label></label>
+            <section>Security Status</section>
+        </sections>
+        <sections>
+            <label></label>
+            <section>Title Details</section>
+        </sections>
+        <sections>
+            <label></label>
+            <section>Title Insurance Details</section>
+        </sections>
+        <sections>
+            <label></label>
+            <section>Valuation Details</section>
+        </sections>
+    </layouts>
+    <recordTypes>
+        <label></label>
+        <name>Loan_Collateral_Record</name>
+    </recordTypes>
+    <recordTypes>
+        <label></label>
+        <name>New_Loan_Collateral_Record</name>
+    </recordTypes>
+    <validationRules>
+        <errorMessage></errorMessage>
+        <name>Rural_Usage_Validation</name>
+    </validationRules>
+</CustomObjectTranslation>

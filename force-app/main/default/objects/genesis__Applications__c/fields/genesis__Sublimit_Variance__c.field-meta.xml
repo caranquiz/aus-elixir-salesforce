@@ -3,8 +3,8 @@
     <fullName>genesis__Sublimit_Variance__c</fullName>
     <deprecated>false</deprecated>
     <externalId>false</externalId>
-    <formula>IF( OR(ISPICKVAL(genesis__Product_Type__c ,&#39;LOAN&#39;),ISPICKVAL(genesis__Product_Type__c ,&#39;PACKAGE&#39;)) , genesis__Loan_Amount__c -  genesis__SubLimit_Total__c ,
-IF( ISPICKVAL(genesis__Product_Type__c ,&#39;LEASE&#39;), genesis__Financed_Amount__c - genesis__SubLimit_Total__c, genesis__Credit_Limit__c - genesis__SubLimit_Total__c))</formula>
+    <formula>IF( OR(ISPICKVAL(genesis__Product_Type__c ,&apos;LOAN&apos;),ISPICKVAL(genesis__Product_Type__c ,&apos;PACKAGE&apos;)) , genesis__Loan_Amount__c -  genesis__SubLimit_Total__c ,
+IF( ISPICKVAL(genesis__Product_Type__c ,&apos;LEASE&apos;), genesis__Financed_Amount__c - genesis__SubLimit_Total__c, genesis__Credit_Limit__c - genesis__SubLimit_Total__c))</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
     <label>Sublimit Variance</label>
     <precision>18</precision>

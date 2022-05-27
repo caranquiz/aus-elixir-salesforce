@@ -23,7 +23,7 @@
             </value>
             <value>
                 <fullName>Upfront &amp; Trail</fullName>
-                <default>false</default>
+                <default>true</default>
                 <label>Upfront &amp; Trail</label>
             </value>
         </valueSetDefinition>

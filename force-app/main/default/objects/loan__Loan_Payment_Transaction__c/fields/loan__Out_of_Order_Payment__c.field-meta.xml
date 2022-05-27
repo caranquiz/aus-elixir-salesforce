@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>loan__Out_of_Order_Payment__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <deprecated>false</deprecated>
+    <description>This field will represent the related loan payment transaction.
+New LPT will point to Old LPT and vice versa during out of order reversal.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>This field will represent the related loan payment transaction.
+New LPT will point to Old LPT and vice versa during out of order reversal.</inlineHelpText>
+    <label>Out of Order Payment</label>
+    <referenceTo>loan__Loan_Payment_Transaction__c</referenceTo>
+    <relationshipLabel>Loan Payment Transactions (Out of Order Payment)</relationshipLabel>
+    <relationshipName>Loan_Payment_Transactions2</relationshipName>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

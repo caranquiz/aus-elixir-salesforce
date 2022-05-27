@@ -18,7 +18,7 @@
             </value>
             <value>
                 <fullName>Square Metres</fullName>
-                <default>true</default>
+                <default>false</default>
                 <label>Square Metres</label>
             </value>
             <value>

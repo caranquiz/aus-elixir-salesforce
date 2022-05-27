@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>First_Home_Buyer__c</fullName>
+    <description>RJohnston 15/6/21 for reporting on first home buyers
+https://wingategroup.atlassian.net/secure/RapidBoard.jspa?rapidView=8&amp;projectKey=AMS&amp;modal=detail&amp;selectedIssue=AMS-840</description>
     <externalId>false</externalId>
     <label>First Home Buyer</label>
     <required>false</required>

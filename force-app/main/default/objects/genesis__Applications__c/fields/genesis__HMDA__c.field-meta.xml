@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>genesis__HMDA__c</fullName>
+    <defaultValue>false</defaultValue>
+    <deprecated>false</deprecated>
+    <description>Indicate if the lender wants to collect government monitoring information - as required by HMDA and Regulation B - through the use of a standalone document.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>This checkbox is to indicate that the loan is exempt from beneficial owner due diligence.</inlineHelpText>
+    <label>HMDA Loan</label>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

@@ -1,0 +1,9 @@
+.rendered-app-id .nx-field {
+    margin: 0 !important;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+	      #task-creation-editor .ui-icon.ui-icon-search.nx-field-reference-search {
+    /*line-height: 3;*/
+    display:none;
+}

@@ -74,7 +74,6 @@
             </value>
         </inputAssignments>
         <object>clcommon__Party__c</object>
-        <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordCreates>
     <recordLookups>
         <name>Get_Application_Collateral_Record</name>
@@ -92,9 +91,7 @@
                 <elementReference>$Record.Id</elementReference>
             </value>
         </filters>
-        <getFirstRecordOnly>true</getFirstRecordOnly>
         <object>genesis__Application_Collateral__c</object>
-        <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
     <recordLookups>
         <name>Get_Party_Record</name>
@@ -119,9 +116,7 @@
                 <elementReference>$Record.Valuer__c</elementReference>
             </value>
         </filters>
-        <getFirstRecordOnly>true</getFirstRecordOnly>
         <object>clcommon__Party__c</object>
-        <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
     <recordLookups>
         <name>Get_Party_Type</name>
@@ -139,26 +134,8 @@
                 <stringValue>Valuer</stringValue>
             </value>
         </filters>
-        <getFirstRecordOnly>true</getFirstRecordOnly>
         <object>clcommon__Party_Type__c</object>
-        <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
-    <start>
-        <locationX>970</locationX>
-        <locationY>48</locationY>
-        <connector>
-            <targetReference>Get_Application_Collateral_Record</targetReference>
-        </connector>
-        <filters>
-            <field>Valuer__c</field>
-            <operator>IsChanged</operator>
-            <value>
-                <booleanValue>true</booleanValue>
-            </value>
-        </filters>
-        <object>clcommon__Collateral__c</object>
-        <recordTriggerType>Update</recordTriggerType>
-        <triggerType>RecordAfterSave</triggerType>
-    </start>
+    <startElementReference>Get_Application_Collateral_Record</startElementReference>
     <status>Active</status>
 </Flow>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>clcommon__Motor_Type__c</fullName>
+    <deprecated>false</deprecated>
+    <description>To capture the motor type.</description>
+    <externalId>false</externalId>
+    <label>Motor Type</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Outboard</fullName>
+                <default>false</default>
+                <label>Outboard</label>
+            </value>
+            <value>
+                <fullName>Inboard</fullName>
+                <default>false</default>
+                <label>Inboard</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

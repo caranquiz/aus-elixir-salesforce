@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Breach Report</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Breach Register</value>
+    </caseValues>
+    <layouts>
+        <layout>Breach Report Layout</layout>
+        <sections>
+            <label></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label></label>
+            <section>Head of Compliance to Complete</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Master breach layout</layout>
+        <sections>
+            <label></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label></label>
+            <section>Head of Compliance to Complete</section>
+        </sections>
+    </layouts>
+    <recordTypes>
+        <label></label>
+        <name>AML_Breach</name>
+    </recordTypes>
+    <recordTypes>
+        <description></description>
+        <label></label>
+        <name>Compliance_Breach</name>
+    </recordTypes>
+    <recordTypes>
+        <description></description>
+        <label></label>
+        <name>Operational_Breach</name>
+    </recordTypes>
+    <recordTypes>
+        <label></label>
+        <name>Privacy_Breach</name>
+    </recordTypes>
+    <startsWith>Consonant</startsWith>
+    <validationRules>
+        <errorMessage></errorMessage>
+        <name>Breach_not_approved</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage></errorMessage>
+        <name>Date_report_to_ASIC</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage></errorMessage>
+        <name>Has_it_been_reported_to_ASIC</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage></errorMessage>
+        <name>Head_of_compliance_completion</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage></errorMessage>
+        <name>Legal_finalization_breach</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage></errorMessage>
+        <name>Report_to_ASIC</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage></errorMessage>
+        <name>Submit_to_department_head</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage></errorMessage>
+        <name>been_resolved</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage></errorMessage>
+        <name>process_improvement</name>
+    </validationRules>
+    <workflowTasks>
+        <description></description>
+        <name>Re_submit_breach_report</name>
+        <subject></subject>
+    </workflowTasks>
+</CustomObjectTranslation>

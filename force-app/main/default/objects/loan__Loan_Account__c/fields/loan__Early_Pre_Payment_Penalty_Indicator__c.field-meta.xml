@@ -3,7 +3,7 @@
     <fullName>loan__Early_Pre_Payment_Penalty_Indicator__c</fullName>
     <defaultValue>false</defaultValue>
     <deprecated>false</deprecated>
-    <description>If this is checked and account is passed it&#39;s maturity date then we do not asses pre payment penalty fees.</description>
+    <description>If this is checked and account is passed it&apos;s maturity date then we do not asses pre payment penalty fees.</description>
     <externalId>false</externalId>
     <label>Early Pre Payment Penalty Indicator</label>
     <trackHistory>false</trackHistory>

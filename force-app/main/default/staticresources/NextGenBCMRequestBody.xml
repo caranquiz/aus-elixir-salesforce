@@ -1,0 +1,57 @@
+﻿<soapenv:Envelope
+    xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+    <soapenv:Header>
+        <wsa:To
+            xmlns:wsa="http://www.w3.org/2005/08/addressing">http://resources.nextgen.net/Reference/NextGen/Entity/NGBroker 
+        </wsa:To>
+        <wsa:From
+            xmlns:wsa="http://www.w3.org/2005/08/addressing">
+            <wsa:Address>http://resources.nextgen.net/Reference/NextGen/Entity/ORDE</wsa:Address>
+        </wsa:From>
+        <wsse:Security
+            xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd">
+            <wsse:UsernameToken
+                xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" wsu:ID="UsernameToken-92864207">
+                <wsse:Username>ORDE</wsse:Username>
+                <wsse:Password Type="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-username-token-profile-1.0#PasswordText">BC3ED5F0-C231-4080-8ECB-6150E1CFAD6F</wsse:Password>
+            </wsse:UsernameToken>
+        </wsse:Security>
+        <wsa:Action
+            xmlns:wsa="http://www.w3.org/2005/08/addressing">http://resources.nextgen.net/Reference/XGATE/CreditProcessing/wsdl/MessageBatchRequest 
+        </wsa:Action>
+        <wsa:MessageID
+            xmlns:wsa="http://www.w3.org/2005/08/addressing">1479244560420 
+        </wsa:MessageID>
+    </soapenv:Header>
+    <soapenv:Body>
+        <MessageBatch
+            xmlns="http://www.lixi.org.au/schema/cal1.5/MessageBatch" ProductionData="No">
+            <Identifier UniqueID="MessageBatchUniqueId"/>
+            <RevisionNumber LIXIVersion="1.5" LenderVersion="1.5"/>
+            <Date>2016-11-16</Date>
+            <Time>08:16:00</Time>
+            <Publisher>
+                <RelatedEntityRef RelatedID="Lender-XYZ"/>
+            </Publisher>
+            <Message>
+                <Identifier UniqueID="MessageUniqueId"/>
+                <MessageRelatesTo>
+                    <Application>
+                        <Identifier UniqueID="ApplicationId" Type="LenderAssigned"/>
+                        <Identifier UniqueID="BrokerId" Type="BrokerAssigned"/>
+                        <SalesChannel SalesChannelType="Broker">
+                            <Identifier UniqueID="1" Type="BrokerAssigned"/>
+                            <CompanyName BusinessName="BrokerName"/>
+                        </SalesChannel>
+                    </Application>
+                </MessageRelatesTo>
+                <MessageBody Type="Information">
+                    <Event Name="Status">
+                        <Date>2022-05-06</Date>
+                        <Time>08:16:00</Time>
+                    </Event>
+                </MessageBody>
+            </Message>
+        </MessageBatch>
+    </soapenv:Body>
+</soapenv:Envelope>

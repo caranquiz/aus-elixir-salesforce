@@ -1,0 +1,26 @@
+/**
+ * Created by Ethan Sargent on 10/08/2021.
+ */
+
+@import 'c/cssLibrary';
+
+.orde-card
+{
+    /*border-radius: 5px;*/
+    box-shadow: 4px 4px 0 0 #05D7F2;
+    width: 100%;
+    background-color: white;
+    padding-bottom: 1rem;
+}
+
+h2
+{
+    font-size: 16px;
+    color: #05D7F2;
+}
+
+h3
+{
+    font-size: 14px;
+    font-weight: bold;
+}

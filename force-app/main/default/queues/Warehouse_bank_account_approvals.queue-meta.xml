@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Queue xmlns="http://soap.sforce.com/2006/04/metadata">
+    <doesSendEmailToMembers>true</doesSendEmailToMembers>
+    <name>Warehouse bank account approvals</name>
+    <queueMembers>
+        <users>
+            <user>jshastri@orde.com.au</user>
+            <user>pwells@orde.com.au</user>
+            <user>rharkness@orde.com.au</user>
+        </users>
+    </queueMembers>
+    <queueSobject>
+        <sobjectType>Warehouse__c</sobjectType>
+    </queueSobject>
+</Queue>

@@ -253,7 +253,7 @@ global with sharing class CheckRules {
         rulesNameList.add(ConstantValues.INDENTIFICATION_CHECKLIST_CONDITION);
         rulesNameList.add(ConstantValues.EXIT_STRATEGY_CONDITION);
         rulesNameList.add(ConstantValues.ACCEPTABLE_VALUATIONSS_CONDITION);
-        //rulesNameList.add(ConstantValues.CERTIFICATE_OF_TITLE_TO_BE_ISSUED_CONDITION);
+        rulesNameList.add(ConstantValues.CERTIFICATE_OF_TITLE_TO_BE_ISSUED_CONDITION);
         rulesNameList.add(ConstantValues.ACCOUNTANTS_INTERVIEW_CONDITION);
         rulesNameList.add(ConstantValues.GENERAL_SECURITY_AGREEMENT_CONDITION);
         rulesNameList.add(ConstantValues.SUPERANNUATION_CAPACITY_CONDITION);
@@ -1636,6 +1636,14 @@ global with sharing class CheckRules {
            eachChecklistDetails.Checklist__r.genesis__Rule__r.Name ==
            ConstantValues.ACCEPTABLE_VALUATIONSS_CONDITION
         ) {
+          message = message.replace(
+            ConstantValues.COLLATERAL_ADDRESS,
+            eachChecklistDetails.Application_Collateral__r.genesis__Collateral__r.Full_Address__c
+          );
+        } else if(
+           eachChecklistDetails.Checklist__r.genesis__Rule__r.Name ==
+           ConstantValues.CERTIFICATE_OF_TITLE_TO_BE_ISSUED_CONDITION
+        ){
           message = message.replace(
             ConstantValues.COLLATERAL_ADDRESS,
             eachChecklistDetails.Application_Collateral__r.genesis__Collateral__r.Full_Address__c

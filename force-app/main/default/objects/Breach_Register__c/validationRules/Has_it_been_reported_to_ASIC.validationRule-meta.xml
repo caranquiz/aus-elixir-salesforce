@@ -4,6 +4,6 @@
     <active>true</active>
     <errorConditionFormula>AND( ISPICKVAL( Stage__c , &quot;closed&quot;),
  OR( ISPICKVAL( Report_to_ASIC__c , &quot;yes&quot;) &amp;&amp;
- ISPICKVAL( Breach_reported_to_ASIC__c , &quot;&quot;)))</errorConditionFormula>
+ ISBLANK(TEXT(Breach_reported_to_ASIC__c))))</errorConditionFormula>
     <errorMessage>Please report to ASIC</errorMessage>
 </ValidationRule>

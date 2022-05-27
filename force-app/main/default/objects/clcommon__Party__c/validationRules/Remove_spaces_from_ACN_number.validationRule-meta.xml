@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Remove_spaces_from_ACN_number</fullName>
+    <active>true</active>
+    <description>RJohnston 29/11/2021
+https://wingategroup.atlassian.net/jira/software/c/projects/OIBCR/boards/10?modal=detail&amp;selectedIssue=OIBCR-652
+To stop the team being able to save ACNs with spaces</description>
+    <errorConditionFormula>OR( CONTAINS( Trustee_ACN__c , &quot; &quot;),  
+CONTAINS( Company_ACN__c , &quot; &quot;))</errorConditionFormula>
+    <errorMessage>Please remove the spaces in the ACN record</errorMessage>
+</ValidationRule>

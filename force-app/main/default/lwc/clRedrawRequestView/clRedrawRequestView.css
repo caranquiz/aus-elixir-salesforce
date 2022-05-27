@@ -1,0 +1,18 @@
+/**
+ * Created by Ethan Sargent on 26/07/2021.
+ */
+
+@import 'c/cssLibrary';
+
+.redrawFormContents
+{
+    width: 100%;
+    text-align: center;
+    max-width: 400px;
+    font-size: 0.75rem;
+}
+
+.formPreview
+{
+    width: 150px;
+}

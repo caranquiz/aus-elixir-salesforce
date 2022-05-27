@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>clcommon__Not_A_Citizen__c</fullName>
+    <defaultValue>false</defaultValue>
+    <deprecated>false</deprecated>
+    <description>This field will identify if the contact is not citizen of the country where the FI is located</description>
+    <externalId>false</externalId>
+    <inlineHelpText>This field will identify if the contact is not citizen of the country where the FI is located</inlineHelpText>
+    <label>Not A Citizen</label>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Checkbox</type>
+</CustomField>

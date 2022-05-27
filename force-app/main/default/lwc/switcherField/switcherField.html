@@ -1,0 +1,19 @@
+<!--
+ - Created by Ethan Sargent on 29/07/2021.
+ -->
+
+<!-- Switcher Field -->
+<template>
+    <span class="switcherLabel slds-p-around_small">{fieldLabel}</span>
+    <span class="switcherValue slds-p-around_small">
+            <template if:true={isDate}>
+                <lightning-formatted-date-time value={fieldValue}></lightning-formatted-date-time>
+            </template>
+            <template if:false={isDate}>
+                {fieldValue}
+            </template>
+    </span>
+    <template if:true={lineBreak}>
+        <br>
+    </template>
+</template>

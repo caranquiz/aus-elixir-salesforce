@@ -3,6 +3,6 @@
     <fullName>loan__Service_Fee_Principal_Check</fullName>
     <active>true</active>
     <description>User cannot select both Principal paid and principal remaining to calculate the service fee.</description>
-    <errorConditionFormula>AND( INCLUDES(loan__Collect_Service_Fees_on__c, &#39;Principal&#39;) , INCLUDES(loan__Collect_Service_Fees_on__c, &#39;Principal Remaining&#39;) )</errorConditionFormula>
+    <errorConditionFormula>AND( INCLUDES(loan__Collect_Service_Fees_on__c, &apos;Principal&apos;) , INCLUDES(loan__Collect_Service_Fees_on__c, &apos;Principal Remaining&apos;) )</errorConditionFormula>
     <errorMessage>You can select either Principal or Principal Remaining but not both of them.</errorMessage>
 </ValidationRule>

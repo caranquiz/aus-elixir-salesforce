@@ -1,0 +1,66 @@
+/**
+ * Created by Ethan Sargent on 23/07/2021.
+ */
+@import 'c/cssLibrary';
+
+table {
+    border-collapse: separate;
+    table-layout: auto;
+    border-radius: 5px;
+}
+
+h3
+{
+    font-size: 18px;
+}
+
+th {
+    background-color: var(--lwc-cptHeaderBackgroundColor,rgb(41, 48, 56));
+    color: white;
+    border-top: thin solid rgba(0,0,0,0.2)
+}
+
+td, th {
+    /*border: thin solid #999;*/
+    padding: 0.5rem;
+    text-align: left;
+}
+
+tr:nth-child(even) td
+{
+    background-color: lightgray;
+}
+
+/*make table rounded corners and nice borders*/
+th:first-of-type {
+    border-top-left-radius: 10px;
+    border-left: thin solid rgba(0,0,0,0.2)
+}
+th:last-of-type {
+    border-top-right-radius: 10px;
+    border-right: thin solid rgba(0,0,0,0.2)
+}
+tr:last-of-type td:first-of-type {
+    border-bottom-left-radius: 10px;
+}
+tr:last-of-type td:last-of-type {
+    border-bottom-right-radius: 10px;
+}
+tr:last-of-type td{
+    border-bottom: thin solid #999;
+}
+
+td:first-of-type
+{
+    border-left: thin solid #999;
+}
+td:last-of-type
+{
+    border-right: thin solid #999;
+}
+
+.tableEmptyContent
+{
+    text-align: center;
+    color: #999;
+}

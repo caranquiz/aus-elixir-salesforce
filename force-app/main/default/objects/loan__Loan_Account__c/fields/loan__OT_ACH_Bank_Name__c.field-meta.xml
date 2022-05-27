@@ -4,7 +4,7 @@
     <deprecated>false</deprecated>
     <description>One time ACH Bank Name</description>
     <externalId>false</externalId>
-    <inlineHelpText>One time ACH Bank&#39;s name</inlineHelpText>
+    <inlineHelpText>One time ACH Bank&apos;s name</inlineHelpText>
     <label>OT ACH Bank Name</label>
     <length>255</length>
     <required>false</required>

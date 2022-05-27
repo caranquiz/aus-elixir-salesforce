@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>clcommon__Military_Address__c</fullName>
+    <defaultValue>false</defaultValue>
+    <deprecated>false</deprecated>
+    <description>This field is to identify if the address is a Military Address.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>This field is to identify if the address is a Military Address.</inlineHelpText>
+    <label>Military Address</label>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

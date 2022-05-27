@@ -15,7 +15,7 @@ Quarterly
 Semi-Annual
 Annual
 Single-Payment</inlineHelpText>
-    <label>Capitalization Frequency</label>
+    <label>Compounding Frequency</label>
     <required>false</required>
     <trackHistory>false</trackHistory>
     <trackTrending>false</trackTrending>
@@ -72,6 +72,11 @@ Single-Payment</inlineHelpText>
                 <fullName>Single-Payment</fullName>
                 <default>false</default>
                 <label>Single-Payment</label>
+            </value>
+            <value>
+                <fullName>Billing Frequency</fullName>
+                <default>false</default>
+                <label>Billing Frequency</label>
             </value>
         </valueSetDefinition>
     </valueSet>

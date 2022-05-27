@@ -9,8 +9,16 @@
     <tabs>standard-CmsChannel</tabs>
     <tabs>standard-CmsWorkspaces</tabs>
     <tabs>standard-CmsExperiences</tabs>
+    <tabs>Breach_Register__c</tabs>
+    <tabs>Redraw_Request__c</tabs>
     <uiType>Lightning</uiType>
     <workspaceConfig>
+        <mappings>
+            <tab>Breach_Register__c</tab>
+        </mappings>
+        <mappings>
+            <tab>Redraw_Request__c</tab>
+        </mappings>
         <mappings>
             <tab>standard-CmsAuthorHome</tab>
         </mappings>

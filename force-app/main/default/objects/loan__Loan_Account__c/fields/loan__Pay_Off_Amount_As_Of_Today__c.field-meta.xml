@@ -6,7 +6,7 @@
     <description>Tells the pay off amount for this account as of today</description>
     <externalId>false</externalId>
     <inlineHelpText>Tells the pay off amount for this account as of today</inlineHelpText>
-    <label>Today&#39;s Payoff</label>
+    <label>Today&apos;s Payoff</label>
     <precision>18</precision>
     <required>false</required>
     <scale>2</scale>

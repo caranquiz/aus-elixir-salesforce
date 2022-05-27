@@ -1,0 +1,24 @@
+<!--
+ - Created by Ethan Sargent on 17/09/2021.
+ -->
+
+<!-- Portal Security Question Challenge -->
+<template>
+    <template if:true={securityInfoLoaded}>
+    <c-cl-orde-card title="Answer your Security Question">
+        <div class="slds-p-around_medium">
+            <p>Please answer your security question for your account to finish {action}</p>
+
+            <lightning-formatted-text>{userSecurityQuestion}</lightning-formatted-text>
+            <lightning-input
+                    label="Answer"
+                    onchange={handleAnswerChange}
+                    ></lightning-input>
+            <lightning-button
+                    variant="base"
+                    class="orde-button"
+            ></lightning-button>
+        </div>
+    </c-cl-orde-card>
+    </template>
+</template>

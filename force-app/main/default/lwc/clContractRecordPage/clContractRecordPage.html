@@ -1,0 +1,130 @@
+<!--
+ - Created by Ethan Sargent on 8/07/2021.
+ -->
+
+<!-- Cl Contract Record Page -->
+<template>
+    <template if:false={dataPopulated}>
+        <lightning-spinner alternative-text="Loading information"></lightning-spinner>
+    </template>
+    <template if:true={dataPopulated}>
+
+        <c-portal-banner banner-text={loanAccountTitle}></c-portal-banner>
+        <c-cl-orde-card>
+            <!--        <span slot="title" class="orde-card-header">-->
+            <!--            Loan Account {loanAccountTitle}-->
+            <!--        </span>-->
+
+            <!--                <lightning-layout>-->
+            <!--                    <template for:each={loanAccountSummaryFields} for:item="field">-->
+            <!--                        <lightning-layout-item style="box-sizing: content-box" padding="horizontal-small" key={field}-->
+            <!--                                               flexibility="auto, no-grow">-->
+            <!--                            <c-orde-field field={field} align-values-to-bottom="true"></c-orde-field>-->
+            <!--                        </lightning-layout-item>-->
+            <!--                    </template>-->
+            <!--                </lightning-layout>-->
+            <div slot="header" class="slds-scrollable_x tab-select-outer">
+                <div class="tab-select-inner">
+                    <lightning-layout>
+                        <lightning-layout-item class="slds-m-right_small slds-m-left_large"
+                                               flexibility="no-shrink, no-grow">
+                            <div class="tab-button-container">
+                                <button class="slds-button tab-button selected-tab"
+                                        onmousedown={handleMouseInput}
+                                        onclick={handleTabChange}
+                                        value="transactionHistory">Transaction History
+                                </button>
+                            </div>
+                        </lightning-layout-item>
+                        <lightning-layout-item class="slds-m-right_small" flexibility="no-shrink, no-grow">
+                            <div class="tab-button-container">
+                                <button class="slds-button tab-button orde-border-bottom"
+                                        onmousedown={handleMouseInput}
+                                        onclick={handleTabChange}
+                                        value="statements">Statements
+                                </button>
+                            </div>
+                        </lightning-layout-item>
+                        <template if:true={redrawAllowed}>
+                            <lightning-layout-item class="slds-m-right_small" flexibility="no-shrink, no-grow">
+                                <div class="tab-button-container">
+                                    <button class="slds-button tab-button orde-border-bottom"
+                                            onmousedown={handleMouseInput}
+                                            onclick={handleTabChange}
+                                            value="redrawRequest">Redraw Request
+                                    </button>
+                                </div>
+                            </lightning-layout-item>
+                        </template>
+                        <lightning-layout-item class="slds-m-right_small" flexibility="no-shrink, no-grow">
+                            <div class="tab-button-container">
+                                <button class="slds-button tab-button orde-border-bottom"
+                                        onmousedown={handleMouseInput}
+                                        onclick={handleTabChange}
+                                        value="directDebit">Payment Setup
+                                </button>
+                            </div>
+                        </lightning-layout-item>
+
+                        <lightning-layout-item class="slds-m-right_medium" flexibility="no-shrink, no-grow">
+                            <div class="tab-button-container">
+                                <button class="slds-button tab-button orde-border-bottom"
+                                        onmousedown={handleMouseInput}
+                                        onclick={handleTabChange}
+                                        value="details">Details
+                                </button>
+                            </div>
+                        </lightning-layout-item>
+                    </lightning-layout>
+                </div>
+            </div>
+            <div class="orde-card-body">
+                <template if:true={dataPopulated}>
+                    <div class="tab-body">
+                        <!--                    <template if:false={reloadingView}>-->
+                        <template if:true={detailsSelected}>
+                            <c-cl-contract-details-view
+                                    display-fields={displayFields}
+                            ></c-cl-contract-details-view>
+                        </template>
+
+                        <template if:true={transactionHistorySelected}>
+                            <c-cl-transaction-history
+                                    transactions={displayTransactions}
+                                    start-date={defaultStartDate}
+                                    end-date={defaultEndDate}
+                                    onsearch={handleTransactionSearch}
+                                    key={displayTransactions.key}
+                            ></c-cl-transaction-history>
+                        </template>
+
+                        <template if:true={redrawAllowed}>
+                            <template if:true={redrawRequestSelected}>
+                                <c-cl-redraw-request-view record-id={recordId}
+                                                          onuploadfinished={handleUploadFinished}></c-cl-redraw-request-view>
+                            </template>
+                        </template>
+
+                        <template if:true={directDebitSelected}>
+                            <c-cl-direct-debit-view
+                                    direct-debit-details={displayDirectDebitInfo.ddInfo}
+                                    direct-debit-field-map={directDebitInformation}
+                                    loan-remaining-io={remainingIoPeriod}
+                                    loan-account-id={recordId}
+                                    onrefreshdirectdebitinfo={refreshDirectDebitInformation}
+                                    key={displayDirectDebitInfo.key}
+                            ></c-cl-direct-debit-view>
+                        </template>
+
+                        <template if:true={statementsSelected}>
+                            <c-cl-statement-view
+                                    statement-details={displayStatementDetails}
+                                    onstatementdownload={handleStatementDownloadRequest}
+                            ></c-cl-statement-view>
+                        </template>
+                    </div>
+                </template>
+            </div>
+        </c-cl-orde-card>
+    </template>
+</template>

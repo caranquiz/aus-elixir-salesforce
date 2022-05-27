@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>genesis__Rate_Lock__c</fullName>
+    <defaultValue>false</defaultValue>
+    <deprecated>false</deprecated>
+    <description>This field denotes whether the rate for first rate schedule on application is locked or not.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>This field denotes whether the rate for first rate schedule on application is locked or not.</inlineHelpText>
+    <label>Rate Lock</label>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

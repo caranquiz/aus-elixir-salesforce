@@ -6,10 +6,10 @@
     <description>Custom Applications-Parties-Employment Info</description>
     <join>
         <join>
-            <outerJoin>false</outerJoin>
+            <outerJoin>true</outerJoin>
             <relationship>Employment_Information__r</relationship>
         </join>
-        <outerJoin>false</outerJoin>
+        <outerJoin>true</outerJoin>
         <relationship>genesis__Parties__r</relationship>
     </join>
     <label>Custom Applications-Parties-Employment Info</label>
@@ -111,6 +111,11 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
+            <field>Refinance_Debt_Consolidation__c</field>
+            <table>genesis__Applications__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
             <field>Application_Percentage__c</field>
             <table>genesis__Applications__c</table>
         </columns>
@@ -126,6 +131,11 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
+            <field>Refinance_Debt_Consolidation_Total__c</field>
+            <table>genesis__Applications__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
             <field>genesis__Arrears__c</field>
             <table>genesis__Applications__c</table>
         </columns>
@@ -137,6 +147,11 @@
         <columns>
             <checkedByDefault>false</checkedByDefault>
             <field>genesis__Asset_Class__c</field>
+            <table>genesis__Applications__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Pending_Broker__c</field>
             <table>genesis__Applications__c</table>
         </columns>
         <columns>
@@ -187,11 +202,6 @@
         <columns>
             <checkedByDefault>false</checkedByDefault>
             <field>Broker__c</field>
-            <table>genesis__Applications__c</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>Brokers_BDM__c</field>
             <table>genesis__Applications__c</table>
         </columns>
         <columns>
@@ -3499,6 +3509,11 @@
             <field>CL_Contract__c.Warehouse__c</field>
             <table>genesis__Applications__c</table>
         </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>First_Home_Buyer__c</field>
+            <table>genesis__Applications__c</table>
+        </columns>
         <masterLabel>Applications</masterLabel>
     </sections>
     <sections>
@@ -4312,6 +4327,16 @@
             <field>Upfront_Payment_Percentage__c</field>
             <table>genesis__Applications__c.genesis__Parties__r</table>
         </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Number_of_Secretaries__c</field>
+            <table>genesis__Applications__c.genesis__Parties__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Secretary_Check__c</field>
+            <table>genesis__Applications__c.genesis__Parties__r</table>
+        </columns>
         <masterLabel>Parties</masterLabel>
     </sections>
     <sections>
@@ -4633,6 +4658,11 @@
         <columns>
             <checkedByDefault>false</checkedByDefault>
             <field>Type_of_Documents_Sighted__c</field>
+            <table>genesis__Applications__c.genesis__Parties__r.Employment_Information__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Primary_Employment__c</field>
             <table>genesis__Applications__c.genesis__Parties__r.Employment_Information__r</table>
         </columns>
         <masterLabel>Employment Information</masterLabel>

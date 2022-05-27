@@ -34,7 +34,7 @@
             <value>
                 <fullName>Representational Risk</fullName>
                 <default>false</default>
-                <label>Representational Risk</label>
+                <label>Reputational Risk</label>
             </value>
             <value>
                 <fullName>Operational Risk</fullName>

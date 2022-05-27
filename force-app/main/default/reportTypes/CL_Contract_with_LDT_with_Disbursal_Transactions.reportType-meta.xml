@@ -2,7 +2,7 @@
 <ReportType xmlns="http://soap.sforce.com/2006/04/metadata">
     <baseObject>loan__Loan_Account__c</baseObject>
     <category>other</category>
-    <deployed>false</deployed>
+    <deployed>true</deployed>
     <description>Custom CL Contract with LDT with Disbursal Transactions Distributions</description>
     <join>
         <join>
@@ -2052,6 +2052,41 @@
         <columns>
             <checkedByDefault>false</checkedByDefault>
             <field>Total_no_of_generated_bills__c</field>
+            <table>loan__Loan_Account__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Statement_End_Date_Loan_Closed_Date__c</field>
+            <table>loan__Loan_Account__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Calculated_Upcoming_Repayment_Amount__c</field>
+            <table>loan__Loan_Account__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>New_Interest_Rate_Effective_Date__c</field>
+            <table>loan__Loan_Account__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>New_Interest_Rate__c</field>
+            <table>loan__Loan_Account__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Interest_Rate_Change_Notification_Date__c</field>
+            <table>loan__Loan_Account__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>First_Repayment_Date_After_IR_Change__c</field>
+            <table>loan__Loan_Account__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Second_Repayment_Date_After_IR_Change__c</field>
             <table>loan__Loan_Account__c</table>
         </columns>
         <masterLabel>CL Contracts</masterLabel>

@@ -1,0 +1,107 @@
+<!--
+ - Created by Ethan Sargent on 19/08/2021.
+ -->
+
+<!-- Portal User Profile -->
+<template>
+    <c-cl-orde-card card-title="My Profile">
+<!--        <span slot="title">My Profile</span>-->
+
+        <lightning-layout multiple-rows="true">
+            <lightning-layout-item size="12" medium-device-size="6" padding="horizontal-small">
+                <c-orde-field field={userFullNameField}></c-orde-field>
+            </lightning-layout-item>
+
+            <lightning-layout-item size="12" medium-device-size="6" padding="horizontal-small">
+                <c-orde-field field={userEmailField}></c-orde-field>
+            </lightning-layout-item>
+            <lightning-layout-item size="12" medium-device-size="6" padding="horizontal-small">
+                <c-orde-field field={userMobileField}></c-orde-field>
+            </lightning-layout-item>
+
+            <lightning-layout-item size="12" medium-device-size="6" padding="horizontal-small">
+                <lightning-input label="Phone"
+                                 name="userPhone"
+                                 value={userPhone}
+                                 onchange={handleUserInputChange}
+                ></lightning-input>
+            </lightning-layout-item>
+
+            <lightning-layout-item size="12" padding="around-small">
+                <a
+                        class="change-password-link"
+                        href={changePasswordLink}
+                >Change Password</a>
+            </lightning-layout-item>
+
+            <lightning-layout-item size="12" padding="around-small">
+                <lightning-input label="Opt Out of Marketing"
+                                 name="userMarketingPreference"
+                                 type="checkbox"
+                                 checked={userMarketingPreference}
+                                 onchange={handleUserInputChange}
+                ></lightning-input>
+            </lightning-layout-item>
+
+            <lightning-layout-item size="12" padding="horizontal-small">
+                <div class="picklist-width">
+                    <lightning-combobox label="Is this your postal address?"
+                                        name="userIsPostal"
+                                        options={yesNoOptions}
+                                        value={userIsPostalPicklistValue}
+                                        onchange={handleUserInputChange}
+                    ></lightning-combobox>
+                </div>
+            </lightning-layout-item>
+            <lightning-layout-item size="12" medium-device-size="6" padding="horizontal-small">
+                <lightning-input-address
+                        address-label="Residential Address"
+                        street-label="Street"
+                        city-label="City"
+                        country-label="Country"
+                        province-label="State"
+                        postal-code-label="Post Code"
+                        street={userOtherStreet}
+                        city={userOtherCity}
+                        country={userOtherCountry}
+                        province={userOtherProvince}
+                        province-options={ausStates}
+                        postal-code={userOtherPostalCode}
+                        name="residentialAddress"
+                        onchange={handleAddressChange}
+                ></lightning-input-address>
+            </lightning-layout-item>
+            <lightning-layout-item size="12" medium-device-size="6" padding="horizontal-small">
+                <div if:false={userIsPostal}>
+                    <lightning-input-address
+                            address-label="Postal Address"
+                            street-label="Street"
+                            city-label="City"
+                            country-label="Country"
+                            province-label="State"
+                            postal-code-label="Post Code"
+                            street={userMailingStreet}
+                            city={userMailingCity}
+                            country={userMailingCountry}
+                            province={userMailingProvince}
+                            province-options={ausStates}
+                            postal-code={userMailingPostalCode}
+                            name="mailingAddress"
+                            onchange={handleAddressChange}
+                    ></lightning-input-address>
+                </div>
+            </lightning-layout-item>
+
+
+            <lightning-layout-item class="slds-align_absolute-center" padding="around-medium" size="12" large-device-size="6">
+                <div>
+                    <lightning-button class="submit-button orde-button"
+                                      variant="base"
+                                      label="Save"
+                                      onclick={handleSubmit}
+                    ></lightning-button>
+                </div>
+            </lightning-layout-item>
+        </lightning-layout>
+    </c-cl-orde-card>
+</template>

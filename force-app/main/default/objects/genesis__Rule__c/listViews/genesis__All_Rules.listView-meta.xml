@@ -8,10 +8,5 @@
     <columns>genesis__Message_failure__c</columns>
     <columns>genesis__Message_success__c</columns>
     <filterScope>Everything</filterScope>
-    <filters>
-        <field>Rule_Classification__c</field>
-        <operation>equals</operation>
-        <value>Condition</value>
-    </filters>
     <label>All</label>
 </ListView>

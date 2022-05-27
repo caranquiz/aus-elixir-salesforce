@@ -3,8 +3,9 @@
     <fullName>Explanation_of_Previous_Conduct_Commenta__c</fullName>
     <externalId>false</externalId>
     <label>Explanation of Previous Conduct Commenta</label>
-    <required>false</required>
+    <length>1500</length>
     <trackHistory>false</trackHistory>
     <trackTrending>false</trackTrending>
-    <type>TextArea</type>
+    <type>LongTextArea</type>
+    <visibleLines>10</visibleLines>
 </CustomField>

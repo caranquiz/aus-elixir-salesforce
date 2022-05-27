@@ -2,6 +2,8 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Broker__c</fullName>
     <deleteConstraint>SetNull</deleteConstraint>
+    <description>RJohnston 19/7/21 https://wingategroup.atlassian.net/secure/RapidBoard.jspa?rapidView=8&amp;projectKey=AMS&amp;modal=detail&amp;selectedIssue=AMS-864
+For reporting on the broker for the application</description>
     <externalId>false</externalId>
     <label>Broker</label>
     <referenceTo>Account</referenceTo>

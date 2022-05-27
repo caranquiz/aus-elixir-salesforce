@@ -112,15 +112,6 @@
         </value>
     </processMetadataValues>
     <processType>AutoLaunchedFlow</processType>
-    <start>
-        <locationX>970</locationX>
-        <locationY>48</locationY>
-        <connector>
-            <targetReference>New_Application_or_Application_Status_Change</targetReference>
-        </connector>
-        <object>genesis__Applications__c</object>
-        <recordTriggerType>CreateAndUpdate</recordTriggerType>
-        <triggerType>RecordAfterSave</triggerType>
-    </start>
+    <startElementReference>New_Application_or_Application_Status_Change</startElementReference>
     <status>Active</status>
 </Flow>

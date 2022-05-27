@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<CustomField xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>clcommon__Monthly_Residential_Payment_Amount__c</fullName>
     <deprecated>false</deprecated>
     <description>This will track the payment amount depending on residential status</description>
@@ -9,6 +9,7 @@
     <required>false</required>
     <scale>2</scale>
     <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
     <type>Number</type>
     <unique>false</unique>
 </CustomField>

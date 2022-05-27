@@ -5,5 +5,5 @@
     <description>&quot;Late Charge Grace Days&quot; cannot be negative</description>
     <errorConditionFormula>loan__Grace_Period_for_Repayments__c &lt; 0</errorConditionFormula>
     <errorDisplayField>loan__Grace_Period_for_Repayments__c</errorDisplayField>
-    <errorMessage>&#39;Late Charge Grace Days&#39; cannot be negative</errorMessage>
+    <errorMessage>&apos;Late Charge Grace Days&apos; cannot be negative</errorMessage>
 </ValidationRule>

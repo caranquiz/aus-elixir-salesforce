@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>genesis__Solve_For__c</fullName>
+    <deprecated>false</deprecated>
+    <description>Based on this filed the yield for various Payment Schedule should be calculated</description>
+    <externalId>false</externalId>
+    <label>Solve For</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Yield</fullName>
+                <default>false</default>
+                <label>Yield</label>
+            </value>
+            <value>
+                <fullName>Payment Amount</fullName>
+                <default>false</default>
+                <label>Payment Amount</label>
+            </value>
+            <value>
+                <fullName>Financed Amount</fullName>
+                <default>false</default>
+                <label>Financed Amount</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

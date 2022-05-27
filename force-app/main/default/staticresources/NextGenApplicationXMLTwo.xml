@@ -1,0 +1,833 @@
+﻿<soapenv:Envelope
+    xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+    <soapenv:Body>
+        <Application
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xmlns="http://resources.nextgen.net/Reference/MAL/schema/NextGen-MALI/2008/12/05" Type="NewApplication" xsi:schemaLocation="http://resources.nextgen.net/Reference/MAL/schema/NextGen-MALI/2008/12/05 file:///C:/AOL/Web/LIM/ORDEBrokerApplication/Schema/ApplicationBatch.xsd">
+            <Identifier>2152870</Identifier>
+            <SalesChannel SalesChannelType="LenderAssigned">
+                <Identifier>sender-id</Identifier>
+            </SalesChannel>
+            <SalesChannel SalesChannelType="Broker">
+                <Identifier>CA08120735GB</Identifier>
+                <CompanyName BusinessName="Developer"/>
+                <PersonName>
+                    <NameTitle Value="Mrs"/>
+                    <FirstName>Broker</FirstName>
+                    <Surname>Man</Surname>
+                </PersonName>
+                <Address>
+                    <BuildingName>Noosa Boardroom</BuildingName>
+                    <FloorNo>1</FloorNo>
+                    <UnitNo>8</UnitNo>
+                    <StreetNo>20</StreetNo>
+                    <Street Type="Street">Taylor</Street>
+                    <City>SYDNEY</City>
+                    <State Name="NSW"/>
+                    <Postcode>2000</Postcode>
+                    <Country ISO3166="AU"/>
+                </Address>
+                <WorkPhone PreferredContactMethod="Yes">
+                    <Phone>
+                        <FixedPhone AreaCode="02">91231234r</FixedPhone>
+                    </Phone>
+                    <Phone>
+                        <Mobile>0444444444r</Mobile>
+                    </Phone>
+                    <Phone>
+                        <Fax AreaCode="02">72268302r</Fax>
+                    </Phone>
+                </WorkPhone>
+                <Email>rory.sheaffe@nextgen.netrer</Email>
+            </SalesChannel>
+            <SalesChannel SalesChannelDescription="BDM">
+                <Identifier/>
+            </SalesChannel>
+            <Comment/>
+            <PartySegment>
+                <Party Type="Applicant" PrimaryApplicant="Yes">
+                    <Identifier>1097796793796</Identifier>
+                    <Privacy SignatureVerification="No" PointVerificationCompleted="No" ExistingCustomer="No" AllowCreditCheck="Yes" AllowThirdPartyDisclosure="Yes" ESignConsent="No">
+                        <DocumentsSightedBy LoanWriter="No"/>
+                    </Privacy>
+                    <Trust TrustName="AML/CTF Test Trust" TrustType="Hybrid" TrustDate="2011-02-10" CountryEstablished="AU" TradingName="AML/CTF Test Trust" SettlorExemption="No">
+                        <RelatedEntityRef>1097796793796</RelatedEntityRef>
+                        <BeneficialOwner>
+                            <RelatedEntityRef>1647481399825</RelatedEntityRef>
+                            <Role Type="Trustee"/>
+                        </BeneficialOwner>
+                        <Settlor>
+                            <RelatedEntityRef>1647481349812</RelatedEntityRef>
+                        </Settlor>
+                        <ContactDetails>
+                            <AddressDetails>
+                                <RelatedEntityRef>1647481322044</RelatedEntityRef>
+                            </AddressDetails>
+                        </ContactDetails>
+                    </Trust>
+                    <ResponsibleLend AnyChange="No"/>
+                    <Company ANZSIC="2611" NatureOfBusiness="NonClassifiableEstablishments">
+                        <CompanyName BusinessName="NICORP PTY. LIMITED"/>
+                        <ContactPersonName>
+                            <NameTitle Value="Mr"/>
+                            <FirstName>Compnay</FirstName>
+                            <Surname>Test</Surname>
+                        </ContactPersonName>
+                        <ContactDetails>
+                            <AddressDetails Mailing="Yes">
+                                <RelatedEntityRef>1647481184350</RelatedEntityRef>
+                            </AddressDetails>
+                            <AddressDetails Residential="Yes">
+                                <RelatedEntityRef>1647481184350</RelatedEntityRef>
+                            </AddressDetails>
+                        </ContactDetails>
+                        <Shareholder>
+                            <RelatedEntityRef>1647483618866</RelatedEntityRef>
+                        </Shareholder>
+                        <CompanyType/>
+                        <CompanyNumber ABN="25003716578" ACN="003716578" ABRN=""/>
+                        <RegisteredIn>
+                            <Date>2016-08-23</Date>
+                        </RegisteredIn>
+                        <CompanyIncome>
+                            <ValueItem Value="25000">
+                                <Identifier>idp462600624</Identifier>
+                                <Income Type="CompanyProfitBeforeTax" Description="">
+                                    <Period Unit="Yearly">
+                                        <StartDate>2020-07-01</StartDate>
+                                        <EndDate>2021-06-30</EndDate>
+                                    </Period>
+                                </Income>
+                            </ValueItem>
+                            <ValueItem Value="0.0">
+                                <Identifier>idp459698224</Identifier>
+                                <Income Type="CompanyProfitBeforeTax" Description="">
+                                    <Period Unit="Yearly">
+                                        <StartDate>2019-07-01</StartDate>
+                                        <EndDate>2020-06-30</EndDate>
+                                    </Period>
+                                    <RelatedEntityRef>idp462600624</RelatedEntityRef>
+                                </Income>
+                            </ValueItem>
+                        </CompanyIncome>
+                    </Company>
+                </Party>
+                <Party Type="Guarantor" PrimaryApplicant="No">
+                    <Identifier>1647483843129</Identifier>
+                    <Privacy ExistingCustomer="No" AllowCreditCheck="Yes" AllowThirdPartyDisclosure="Yes" ESignConsent="No">
+                        <DocumentsSightedBy LoanWriter="No"/>
+                    </Privacy>
+                    <ResponsibleLend AnyChange="No"/>
+                    <Person Director="No" Sex="Male" FirstHomeBuyer="No" CustomerOfLender="No" EmployeeOfLender="No">
+                        <PersonName>
+                            <NameTitle Value="Mr"/>
+                            <FirstName>Test</FirstName>
+                            <Surname>Guarantor</Surname>
+                        </PersonName>
+                        <DateOfBirth>1989-05-02</DateOfBirth>
+                        <MaritalStatus Status="Single"/>
+                        <Residency PermanentInAustralia="Yes" Status="Citizen">
+                            <Country ISO3166="AU"/>
+                        </Residency>
+                        <CreditHistory>
+                            <BorrowerProvHistory LegalIssue="No">
+                                <RelatedEntityRef/>
+                            </BorrowerProvHistory>
+                            <BorrowerProvHistory JudgementIssue="No">
+                                <RelatedEntityRef/>
+                            </BorrowerProvHistory>
+                        </CreditHistory>
+                        <ContactDetails>
+                            <AddressDetails Residential="Yes" Mailing="No" PriorAddress="No" PostSettlement="No" HousingStatus="Renting">
+                                <RelatedEntityRef>1647481322044</RelatedEntityRef>
+                                <StartAndEndDates>
+                                    <StartDate>2015-10-22</StartDate>
+                                </StartAndEndDates>
+                            </AddressDetails>
+                            <AddressDetails Residential="No" Mailing="Yes" PriorAddress="No" PostSettlement="No">
+                                <RelatedEntityRef>1647481322044</RelatedEntityRef>
+                            </AddressDetails>
+                            <AddressDetails Residential="No" Mailing="No" PriorAddress="No" PostSettlement="Yes">
+                                <RelatedEntityRef>1647481322044</RelatedEntityRef>
+                            </AddressDetails>
+                            <HomePhone>
+                                <Phone>
+                                    <FixedPhone AreaCode="02">89568956</FixedPhone>
+                                </Phone>
+                            </HomePhone>
+                        </ContactDetails>
+                        <Employment OnProbation="No" PrimaryEmployment="Yes" PriorEmployment="No" Role="1291-11" RoleDescription="Policy and Planning Manager">
+                            <PAYE Type="FullTime">
+                                <RelatedEntityRef/>
+                            </PAYE>
+                            <StartAndEndDates>
+                                <StartDate>2017-05-10</StartDate>
+                            </StartAndEndDates>
+                            <EmploymentIncome>
+                                <ValueItem Value="650000">
+                                    <Identifier>1-1647483718528</Identifier>
+                                    <Income Type="GrossSalary">
+                                        <Period Unit="Monthly">
+                                            <StartDate>2020-07-01</StartDate>
+                                            <EndDate>2021-06-30</EndDate>
+                                        </Period>
+                                    </Income>
+                                </ValueItem>
+                            </EmploymentIncome>
+                        </Employment>
+                    </Person>
+                </Party>
+            </PartySegment>
+            <AddressSegment>
+                <AddressWrapper>
+                    <Identifier>1647481184350</Identifier>
+                    <Address>
+                        <UnitNo>78</UnitNo>
+                        <StreetNo>1</StreetNo>
+                        <Street Type="Road">ALAMEIN</Street>
+                        <City>SUSSEX INLET</City>
+                        <State Name="NSW"/>
+                        <Postcode>2540</Postcode>
+                        <Country ISO3166="AU"/>
+                    </Address>
+                </AddressWrapper>
+                <AddressWrapper>
+                    <Identifier>1647481239604</Identifier>
+                    <Address>
+                        <UnitNo>77</UnitNo>
+                        <StreetNo>1</StreetNo>
+                        <Street Type="Road">ALAMEIN</Street>
+                        <City>SUSSEX INLET</City>
+                        <State Name="NSW"/>
+                        <Postcode>2540</Postcode>
+                        <Country ISO3166="AU"/>
+                    </Address>
+                </AddressWrapper>
+                <AddressWrapper>
+                    <Identifier>1647481322044</Identifier>
+                    <Address>
+                        <UnitNo>66</UnitNo>
+                        <StreetNo>1</StreetNo>
+                        <Street Type="Road">ALAMEIN</Street>
+                        <City>SUSSEX INLET</City>
+                        <State Name="NSW"/>
+                        <Postcode>2540</Postcode>
+                        <Country ISO3166="AU"/>
+                    </Address>
+                </AddressWrapper>
+                <AddressWrapper>
+                    <Identifier>1647481362566</Identifier>
+                    <Address>
+                        <UnitNo>77</UnitNo>
+                        <StreetNo>1</StreetNo>
+                        <Street Type="Road">ALAMEIN</Street>
+                        <City>SUSSEX INLET</City>
+                        <State Name="NSW"/>
+                        <Postcode>2540</Postcode>
+                        <Country ISO3166="AU"/>
+                    </Address>
+                </AddressWrapper>
+                <AddressWrapper>
+                    <Identifier>1647481428129</Identifier>
+                    <Address>
+                        <UnitNo>5</UnitNo>
+                        <StreetNo>1</StreetNo>
+                        <Street Type="Place">AARON</Street>
+                        <City>WAHROONGA</City>
+                        <State Name="NSW"/>
+                        <Postcode>2076</Postcode>
+                        <Country ISO3166="AU"/>
+                    </Address>
+                </AddressWrapper>
+            </AddressSegment>
+            <FinancialSegment NoOtherAssets="No" NoLiabilities="No" NoIncome="No">
+                <ValueItem Value="100000">
+                    <Identifier>1097796822609</Identifier>
+                    <OwnedByAllApplicants/>
+                    <Asset Class="CurrentSecurity" SecurityType="RegisteredMortgage">
+                        <RealEstate Transaction="Purchasing" PrimarySecurity="Yes" PropertyPrimaryPurpose="OwnerOccupied" ApprovalInPrinciple="No" Status="Established" Holding="Sole">
+                            <Residential WillOwn3UnitsInComplex="No" WillOwn25PercentOfComplex="No" OffThePlan="No" Type="AptUnitFlat"/>
+                            <EstimatedValue EstimateBasis="ApplicantEstimate">100000</EstimatedValue>
+                            <MaxLendingValLtdByGtee Amount="0"/>
+                            <ContractPrice LicencedRealEstateAgentContract="No" ContractPriceAmount="100000"/>
+                            <Location>
+                                <RelatedEntityRef>1647481239604</RelatedEntityRef>
+                                <Title TitleType="Torrens" TenureType="CommunityTitle"/>
+                            </Location>
+                        </RealEstate>
+                    </Asset>
+                </ValueItem>
+                <ValueItem Value="250000">
+                    <Identifier>1647481699588</Identifier>
+                    <OwnedByAllApplicants/>
+                    <Asset Class="CurrentAsset">
+                        <NonRealEstate PrimarySecurity="No">
+                            <OtherAsset OtherAssetType="Boat" OtherAssetDescription="Test Asset"/>
+                            <EstimatedValue EstimateBasis="ApplicantEstimate">250000</EstimatedValue>
+                        </NonRealEstate>
+                    </Asset>
+                </ValueItem>
+                <ValueItem Value="5000">
+                    <Identifier>1647481712344</Identifier>
+                    <OwnedByAllApplicants/>
+                    <Liability Type="CommercialBill" Description="Test Liability" UnpaidBalance="15000" ScheduledBalance="5000" ContinuingAfterSettlement="Yes">
+                        <RelatedEntityRef>1647481712344-Party</RelatedEntityRef>
+                    </Liability>
+                </ValueItem>
+                <ValueItem Value="5000">
+                    <Identifier>1647481728270</Identifier>
+                    <OwnedByAllApplicants/>
+                    <Income Type="Addback" Description="" AddbackType="Depreciation">
+                        <Period Unit="Monthly"/>
+                    </Income>
+                </ValueItem>
+                <ValueItem Value="1000">
+                    <Identifier>1647481172492</Identifier>
+                    <OwnedByAllApplicants/>
+                    <Expense Type="Board" Description="" ContinuingAfterSettlement="Yes">
+                        <Period Unit="Monthly"/>
+                    </Expense>
+                </ValueItem>
+                <ValueItem Value="1000">
+                    <Identifier>1647481172493</Identifier>
+                    <OwnedByAllApplicants/>
+                    <Expense Type="Childcare" Description="" ContinuingAfterSettlement="Yes">
+                        <Period Unit="Monthly"/>
+                    </Expense>
+                </ValueItem>
+                <ValueItem Value="1000">
+                    <Identifier>1647481172494</Identifier>
+                    <OwnedByAllApplicants/>
+                    <Expense Type="ChildMaintenance" Description="" ContinuingAfterSettlement="Yes">
+                        <Period Unit="Monthly"/>
+                    </Expense>
+                </ValueItem>
+                <ValueItem Value="1000">
+                    <Identifier>1647481172495</Identifier>
+                    <OwnedByAllApplicants/>
+                    <Expense Type="ClothingPersonalCare" Description="" ContinuingAfterSettlement="Yes">
+                        <Period Unit="Monthly"/>
+                    </Expense>
+                </ValueItem>
+                <ValueItem Value="1000">
+                    <Identifier>1647481172496</Identifier>
+                    <OwnedByAllApplicants/>
+                    <Expense Type="InsuranceGeneral" Description="" ContinuingAfterSettlement="Yes">
+                        <Period Unit="Monthly"/>
+                    </Expense>
+                </ValueItem>
+                <ValueItem Value="1000">
+                    <Identifier>1647481172497</Identifier>
+                    <OwnedByAllApplicants/>
+                    <Expense Type="Groceries" Description="" ContinuingAfterSettlement="Yes">
+                        <Period Unit="Monthly"/>
+                    </Expense>
+                </ValueItem>
+                <ValueItem Value="1000">
+                    <Identifier>1647481172498</Identifier>
+                    <OwnedByAllApplicants/>
+                    <Expense Type="EducationTertiary" Description="" ContinuingAfterSettlement="Yes">
+                        <Period Unit="Monthly"/>
+                    </Expense>
+                </ValueItem>
+                <ValueItem Value="1000">
+                    <Identifier>1647481172499</Identifier>
+                    <OwnedByAllApplicants/>
+                    <Expense Type="InvestmentUtilities" Description="" ContinuingAfterSettlement="Yes">
+                        <Period Unit="Monthly"/>
+                    </Expense>
+                </ValueItem>
+                <ValueItem Value="1000">
+                    <Identifier>1647481172500</Identifier>
+                    <OwnedByAllApplicants/>
+                    <Expense Type="MedicalHealth" Description="" ContinuingAfterSettlement="Yes">
+                        <Period Unit="Monthly"/>
+                    </Expense>
+                </ValueItem>
+                <ValueItem Value="1000">
+                    <Identifier>1647481172501</Identifier>
+                    <OwnedByAllApplicants/>
+                    <Expense Type="OtherExpenses" Description="" ContinuingAfterSettlement="Yes">
+                        <Period Unit="Monthly"/>
+                    </Expense>
+                </ValueItem>
+                <ValueItem Value="1000">
+                    <Identifier>1647481172502</Identifier>
+                    <OwnedByAllApplicants/>
+                    <Expense Type="InsurancesOther" Description="" ContinuingAfterSettlement="Yes">
+                        <Period Unit="Monthly"/>
+                    </Expense>
+                </ValueItem>
+                <ValueItem Value="1000">
+                    <Identifier>1647481172503</Identifier>
+                    <OwnedByAllApplicants/>
+                    <Expense Type="OwnerOccupiedLandTaxBodyCorpAndStrataFees" Description="" ContinuingAfterSettlement="Yes">
+                        <Period Unit="Monthly"/>
+                    </Expense>
+                </ValueItem>
+                <ValueItem Value="1000">
+                    <Identifier>1647481172504</Identifier>
+                    <OwnedByAllApplicants/>
+                    <Expense Type="InsuranceMedical" Description="" ContinuingAfterSettlement="Yes">
+                        <Period Unit="Monthly"/>
+                    </Expense>
+                </ValueItem>
+                <ValueItem Value="1000">
+                    <Identifier>1647481172505</Identifier>
+                    <OwnedByAllApplicants/>
+                    <Expense Type="Other" Description="" ContinuingAfterSettlement="Yes">
+                        <Period Unit="Monthly"/>
+                    </Expense>
+                </ValueItem>
+                <ValueItem Value="1000">
+                    <Identifier>1647481172506</Identifier>
+                    <OwnedByAllApplicants/>
+                    <Expense Type="PrimaryResidenceCosts" Description="" ContinuingAfterSettlement="Yes">
+                        <Period Unit="Monthly"/>
+                    </Expense>
+                </ValueItem>
+                <ValueItem Value="1000">
+                    <Identifier>1647481172507</Identifier>
+                    <OwnedByAllApplicants/>
+                    <Expense Type="EducationPrivate" Description="" ContinuingAfterSettlement="Yes">
+                        <Period Unit="Monthly"/>
+                    </Expense>
+                </ValueItem>
+                <ValueItem Value="1000">
+                    <Identifier>1647481172508</Identifier>
+                    <OwnedByAllApplicants/>
+                    <Expense Type="EducationPublic" Description="" ContinuingAfterSettlement="Yes">
+                        <Period Unit="Monthly"/>
+                    </Expense>
+                </ValueItem>
+                <ValueItem Value="1000">
+                    <Identifier>1647481172509</Identifier>
+                    <OwnedByAllApplicants/>
+                    <Expense Type="Recreation" Description="" ContinuingAfterSettlement="Yes">
+                        <Period Unit="Monthly"/>
+                    </Expense>
+                </ValueItem>
+                <ValueItem Value="1000">
+                    <Identifier>1647481172510</Identifier>
+                    <OwnedByAllApplicants/>
+                    <Expense Type="Rent" Description="" ContinuingAfterSettlement="Yes">
+                        <Period Unit="Monthly"/>
+                    </Expense>
+                </ValueItem>
+                <ValueItem Value="1000">
+                    <Identifier>1647481172511</Identifier>
+                    <OwnedByAllApplicants/>
+                    <Expense Type="SecondaryResidenceCosts" Description="" ContinuingAfterSettlement="Yes">
+                        <Period Unit="Monthly"/>
+                    </Expense>
+                </ValueItem>
+                <ValueItem Value="1000">
+                    <Identifier>1647481172512</Identifier>
+                    <OwnedByAllApplicants/>
+                    <Expense Type="TelephoneInternet" Description="" ContinuingAfterSettlement="Yes">
+                        <Period Unit="Monthly"/>
+                    </Expense>
+                </ValueItem>
+                <ValueItem Value="1000">
+                    <Identifier>1647481172513</Identifier>
+                    <OwnedByAllApplicants/>
+                    <Expense Type="Transport" Description="" ContinuingAfterSettlement="Yes">
+                        <Period Unit="Monthly"/>
+                    </Expense>
+                </ValueItem>
+                <ValueItem Value="0">
+                    <Identifier>1647484418163</Identifier>
+                    <PercentOwned Percent="100">
+                        <RelatedEntityRef>1097796793796</RelatedEntityRef>
+                    </PercentOwned>
+                    <Expense Type="Board" Description="" ContinuingAfterSettlement="Yes">
+                        <Period Unit="Monthly"/>
+                    </Expense>
+                </ValueItem>
+                <ValueItem Value="0">
+                    <Identifier>1647484418164</Identifier>
+                    <PercentOwned Percent="100">
+                        <RelatedEntityRef>1097796793796</RelatedEntityRef>
+                    </PercentOwned>
+                    <Expense Type="Childcare" Description="" ContinuingAfterSettlement="Yes">
+                        <Period Unit="Monthly"/>
+                    </Expense>
+                </ValueItem>
+                <ValueItem Value="0">
+                    <Identifier>1647484418165</Identifier>
+                    <PercentOwned Percent="100">
+                        <RelatedEntityRef>1097796793796</RelatedEntityRef>
+                    </PercentOwned>
+                    <Expense Type="ChildMaintenance" Description="" ContinuingAfterSettlement="Yes">
+                        <Period Unit="Monthly"/>
+                    </Expense>
+                </ValueItem>
+                <ValueItem Value="0">
+                    <Identifier>1647484418166</Identifier>
+                    <PercentOwned Percent="100">
+                        <RelatedEntityRef>1097796793796</RelatedEntityRef>
+                    </PercentOwned>
+                    <Expense Type="ClothingPersonalCare" Description="" ContinuingAfterSettlement="Yes">
+                        <Period Unit="Monthly"/>
+                    </Expense>
+                </ValueItem>
+                <ValueItem Value="0">
+                    <Identifier>1647484418167</Identifier>
+                    <PercentOwned Percent="100">
+                        <RelatedEntityRef>1097796793796</RelatedEntityRef>
+                    </PercentOwned>
+                    <Expense Type="InsuranceGeneral" Description="" ContinuingAfterSettlement="Yes">
+                        <Period Unit="Monthly"/>
+                    </Expense>
+                </ValueItem>
+                <ValueItem Value="0">
+                    <Identifier>1647484418168</Identifier>
+                    <PercentOwned Percent="100">
+                        <RelatedEntityRef>1097796793796</RelatedEntityRef>
+                    </PercentOwned>
+                    <Expense Type="Groceries" Description="" ContinuingAfterSettlement="Yes">
+                        <Period Unit="Monthly"/>
+                    </Expense>
+                </ValueItem>
+                <ValueItem Value="0">
+                    <Identifier>1647484418169</Identifier>
+                    <PercentOwned Percent="100">
+                        <RelatedEntityRef>1097796793796</RelatedEntityRef>
+                    </PercentOwned>
+                    <Expense Type="EducationTertiary" Description="" ContinuingAfterSettlement="Yes">
+                        <Period Unit="Monthly"/>
+                    </Expense>
+                </ValueItem>
+                <ValueItem Value="0">
+                    <Identifier>1647484418170</Identifier>
+                    <PercentOwned Percent="100">
+                        <RelatedEntityRef>1097796793796</RelatedEntityRef>
+                    </PercentOwned>
+                    <Expense Type="InvestmentUtilities" Description="" ContinuingAfterSettlement="Yes">
+                        <Period Unit="Monthly"/>
+                    </Expense>
+                </ValueItem>
+                <ValueItem Value="0">
+                    <Identifier>1647484418171</Identifier>
+                    <PercentOwned Percent="100">
+                        <RelatedEntityRef>1097796793796</RelatedEntityRef>
+                    </PercentOwned>
+                    <Expense Type="MedicalHealth" Description="" ContinuingAfterSettlement="Yes">
+                        <Period Unit="Monthly"/>
+                    </Expense>
+                </ValueItem>
+                <ValueItem Value="0">
+                    <Identifier>1647484418172</Identifier>
+                    <PercentOwned Percent="100">
+                        <RelatedEntityRef>1097796793796</RelatedEntityRef>
+                    </PercentOwned>
+                    <Expense Type="OtherExpenses" Description="" ContinuingAfterSettlement="Yes">
+                        <Period Unit="Monthly"/>
+                    </Expense>
+                </ValueItem>
+                <ValueItem Value="0">
+                    <Identifier>1647484418173</Identifier>
+                    <PercentOwned Percent="100">
+                        <RelatedEntityRef>1097796793796</RelatedEntityRef>
+                    </PercentOwned>
+                    <Expense Type="InsurancesOther" Description="" ContinuingAfterSettlement="Yes">
+                        <Period Unit="Monthly"/>
+                    </Expense>
+                </ValueItem>
+                <ValueItem Value="0">
+                    <Identifier>1647484418174</Identifier>
+                    <PercentOwned Percent="100">
+                        <RelatedEntityRef>1097796793796</RelatedEntityRef>
+                    </PercentOwned>
+                    <Expense Type="OwnerOccupiedLandTaxBodyCorpAndStrataFees" Description="" ContinuingAfterSettlement="Yes">
+                        <Period Unit="Monthly"/>
+                    </Expense>
+                </ValueItem>
+                <ValueItem Value="0">
+                    <Identifier>1647484418175</Identifier>
+                    <PercentOwned Percent="100">
+                        <RelatedEntityRef>1097796793796</RelatedEntityRef>
+                    </PercentOwned>
+                    <Expense Type="InsuranceMedical" Description="" ContinuingAfterSettlement="Yes">
+                        <Period Unit="Monthly"/>
+                    </Expense>
+                </ValueItem>
+                <ValueItem Value="0">
+                    <Identifier>1647484418176</Identifier>
+                    <PercentOwned Percent="100">
+                        <RelatedEntityRef>1097796793796</RelatedEntityRef>
+                    </PercentOwned>
+                    <Expense Type="Petcare" Description="" ContinuingAfterSettlement="Yes">
+                        <Period Unit="Monthly"/>
+                    </Expense>
+                </ValueItem>
+                <ValueItem Value="0">
+                    <Identifier>1647484418177</Identifier>
+                    <PercentOwned Percent="100">
+                        <RelatedEntityRef>1097796793796</RelatedEntityRef>
+                    </PercentOwned>
+                    <Expense Type="PrimaryResidenceCosts" Description="" ContinuingAfterSettlement="Yes">
+                        <Period Unit="Monthly"/>
+                    </Expense>
+                </ValueItem>
+                <ValueItem Value="0">
+                    <Identifier>1647484418178</Identifier>
+                    <PercentOwned Percent="100">
+                        <RelatedEntityRef>1097796793796</RelatedEntityRef>
+                    </PercentOwned>
+                    <Expense Type="EducationPrivate" Description="" ContinuingAfterSettlement="Yes">
+                        <Period Unit="Monthly"/>
+                    </Expense>
+                </ValueItem>
+                <ValueItem Value="0">
+                    <Identifier>1647484418179</Identifier>
+                    <PercentOwned Percent="100">
+                        <RelatedEntityRef>1097796793796</RelatedEntityRef>
+                    </PercentOwned>
+                    <Expense Type="EducationPublic" Description="" ContinuingAfterSettlement="Yes">
+                        <Period Unit="Monthly"/>
+                    </Expense>
+                </ValueItem>
+                <ValueItem Value="0">
+                    <Identifier>1647484418180</Identifier>
+                    <PercentOwned Percent="100">
+                        <RelatedEntityRef>1097796793796</RelatedEntityRef>
+                    </PercentOwned>
+                    <Expense Type="Recreation" Description="" ContinuingAfterSettlement="Yes">
+                        <Period Unit="Monthly"/>
+                    </Expense>
+                </ValueItem>
+                <ValueItem Value="0">
+                    <Identifier>1647484418181</Identifier>
+                    <PercentOwned Percent="100">
+                        <RelatedEntityRef>1097796793796</RelatedEntityRef>
+                    </PercentOwned>
+                    <Expense Type="Rent" Description="" ContinuingAfterSettlement="Yes">
+                        <Period Unit="Monthly"/>
+                    </Expense>
+                </ValueItem>
+                <ValueItem Value="0">
+                    <Identifier>1647484418182</Identifier>
+                    <PercentOwned Percent="100">
+                        <RelatedEntityRef>1097796793796</RelatedEntityRef>
+                    </PercentOwned>
+                    <Expense Type="SecondaryResidenceCosts" Description="" ContinuingAfterSettlement="Yes">
+                        <Period Unit="Monthly"/>
+                    </Expense>
+                </ValueItem>
+                <ValueItem Value="0">
+                    <Identifier>1647484418183</Identifier>
+                    <PercentOwned Percent="100">
+                        <RelatedEntityRef>1097796793796</RelatedEntityRef>
+                    </PercentOwned>
+                    <Expense Type="TelephoneInternet" Description="" ContinuingAfterSettlement="Yes">
+                        <Period Unit="Monthly"/>
+                    </Expense>
+                </ValueItem>
+                <ValueItem Value="0">
+                    <Identifier>1647484418184</Identifier>
+                    <PercentOwned Percent="100">
+                        <RelatedEntityRef>1097796793796</RelatedEntityRef>
+                    </PercentOwned>
+                    <Expense Type="Transport" Description="" ContinuingAfterSettlement="Yes">
+                        <Period Unit="Monthly"/>
+                    </Expense>
+                </ValueItem>
+                <ValueItem Value="0">
+                    <Identifier>1647484418185</Identifier>
+                    <OwnedByAllApplicants/>
+                    <Expense Type="SMSFManagement" Description="" ContinuingAfterSettlement="Yes">
+                        <Period Unit="Monthly"/>
+                    </Expense>
+                </ValueItem>
+            </FinancialSegment>
+            <RelatedPartySegment>
+                <RelatedParty RelPartyType="Lender">
+                    <Identifier>1097796817156</Identifier>
+                    <CompanyName BusinessName="ORDE"/>
+                </RelatedParty>
+                <RelatedParty RelPartyType="Creditor">
+                    <Identifier>1647481712344-Party</Identifier>
+                    <CompanyName BusinessName=""/>
+                </RelatedParty>
+                <RelatedParty RelPartyType="Employer">
+                    <Identifier>1097796810218</Identifier>
+                    <CompanyName BusinessName="LARK RIDGE FARRIERY"/>
+                    <PersonName>
+                        <NameTitle Value="Mr"/>
+                        <FirstName>Test</FirstName>
+                        <Surname>Employer</Surname>
+                    </PersonName>
+                    <RelatedEntityRef Type="ResidentialAddress">1647481239604</RelatedEntityRef>
+                    <WorkPhone>
+                        <Phone>
+                            <Mobile>0458956235</Mobile>
+                        </Phone>
+                        <Phone>
+                            <FixedPhone CountryCode="61" AreaCode="02">89568956</FixedPhone>
+                        </Phone>
+                        <Phone>
+                            <Fax CountryCode="61" AreaCode="02">78457845</Fax>
+                        </Phone>
+                    </WorkPhone>
+                    <Email>test@test.com</Email>
+                    <CompanyNumber ABN="84431050100"/>
+                    <RegisteredIn>
+                        <Date>2022-02-21</Date>
+                    </RegisteredIn>
+                </RelatedParty>
+                <RelatedParty RelPartyType="TrustSettlor">
+                    <Identifier>1647481349812</Identifier>
+                    <PersonName>
+                        <NameTitle Value="Miss"/>
+                        <FirstName>Test</FirstName>
+                        <Surname>Non Loan Party</Surname>
+                    </PersonName>
+                    <RelatedEntityRef Type="ResidentialAddress">1647481362566</RelatedEntityRef>
+                    <WorkPhone>
+                        <Phone>
+                            <Mobile>0458957458</Mobile>
+                        </Phone>
+                        <Phone>
+                            <FixedPhone CountryCode="61" AreaCode="02">89568956</FixedPhone>
+                        </Phone>
+                        <Phone>
+                            <Fax CountryCode="61" AreaCode="02">56895689</Fax>
+                        </Phone>
+                    </WorkPhone>
+                    <Email>test@ttt.com</Email>
+                </RelatedParty>
+                <RelatedParty RelPartyType="Other">
+                    <Identifier>1647481349812</Identifier>
+                    <PersonName>
+                        <NameTitle Value="Miss"/>
+                        <FirstName>Test</FirstName>
+                        <Surname>Non Loan Party</Surname>
+                    </PersonName>
+                    <RelatedEntityRef Type="ResidentialAddress">1647481362566</RelatedEntityRef>
+                    <WorkPhone>
+                        <Phone>
+                            <Mobile>0458957458</Mobile>
+                        </Phone>
+                        <Phone>
+                            <FixedPhone CountryCode="61" AreaCode="02">89568956</FixedPhone>
+                        </Phone>
+                        <Phone>
+                            <Fax CountryCode="61" AreaCode="02">56895689</Fax>
+                        </Phone>
+                    </WorkPhone>
+                    <Email>test@ttt.com</Email>
+                </RelatedParty>
+                <RelatedParty RelPartyType="Shareholder">
+                    <Identifier>1647481399825</Identifier>
+                    <PersonName>
+                        <NameTitle Value="Mrs"/>
+                        <FirstName>Test</FirstName>
+                        <AlsoKnownAs>party 2</AlsoKnownAs>
+                        <Surname>Non Loan Party 2</Surname>
+                    </PersonName>
+                    <RelatedEntityRef Type="ResidentialAddress">1647481428129</RelatedEntityRef>
+                    <WorkPhone>
+                        <Phone>
+                            <Mobile>0458956258</Mobile>
+                        </Phone>
+                        <Phone>
+                            <FixedPhone CountryCode="61" AreaCode="02">89568956</FixedPhone>
+                        </Phone>
+                        <Phone>
+                            <Fax CountryCode="61" AreaCode="02">56895689</Fax>
+                        </Phone>
+                    </WorkPhone>
+                    <Email>test@testyyy.com</Email>
+                </RelatedParty>
+                <RelatedParty RelPartyType="Other">
+                    <Identifier>1647481399825</Identifier>
+                    <PersonName>
+                        <NameTitle Value="Mrs"/>
+                        <FirstName>Test</FirstName>
+                        <AlsoKnownAs>party 2</AlsoKnownAs>
+                        <Surname>Non Loan Party 2</Surname>
+                    </PersonName>
+                    <RelatedEntityRef Type="ResidentialAddress">1647481428129</RelatedEntityRef>
+                    <WorkPhone>
+                        <Phone>
+                            <Mobile>0458956258</Mobile>
+                        </Phone>
+                        <Phone>
+                            <FixedPhone CountryCode="61" AreaCode="02">89568956</FixedPhone>
+                        </Phone>
+                        <Phone>
+                            <Fax CountryCode="61" AreaCode="02">56895689</Fax>
+                        </Phone>
+                    </WorkPhone>
+                    <Email>test@testyyy.com</Email>
+                </RelatedParty>
+                <RelatedParty RelPartyType="Shareholder">
+                    <Identifier>1647483618866</Identifier>
+                    <PersonName>
+                        <NameTitle Value="Mr"/>
+                        <FirstName>Test</FirstName>
+                        <AlsoKnownAs>shareholder</AlsoKnownAs>
+                        <Surname>non loan party shareholder</Surname>
+                    </PersonName>
+                    <RelatedEntityRef Type="ResidentialAddress">1647481362566</RelatedEntityRef>
+                    <WorkPhone>
+                        <Phone>
+                            <Mobile>0458956235</Mobile>
+                        </Phone>
+                        <Phone>
+                            <FixedPhone CountryCode="61" AreaCode="02">89568956</FixedPhone>
+                        </Phone>
+                        <Phone>
+                            <Fax CountryCode="61" AreaCode="02">89568956</Fax>
+                        </Phone>
+                    </WorkPhone>
+                    <Email>test@tttttt.com</Email>
+                </RelatedParty>
+                <RelatedParty RelPartyType="Other">
+                    <Identifier>1647483618866</Identifier>
+                    <PersonName>
+                        <NameTitle Value="Mr"/>
+                        <FirstName>Test</FirstName>
+                        <AlsoKnownAs>shareholder</AlsoKnownAs>
+                        <Surname>non loan party shareholder</Surname>
+                    </PersonName>
+                    <RelatedEntityRef Type="ResidentialAddress">1647481362566</RelatedEntityRef>
+                    <WorkPhone>
+                        <Phone>
+                            <Mobile>0458956235</Mobile>
+                        </Phone>
+                        <Phone>
+                            <FixedPhone CountryCode="61" AreaCode="02">89568956</FixedPhone>
+                        </Phone>
+                        <Phone>
+                            <Fax CountryCode="61" AreaCode="02">89568956</Fax>
+                        </Phone>
+                    </WorkPhone>
+                    <Email>test@tttttt.com</Email>
+                </RelatedParty>
+            </RelatedPartySegment>
+            <LoanDetailSegment>
+                <LoanDetails>
+                    <Identifier>1097796802265</Identifier>
+                    <EstimatedSettlement>2025-12-31</EstimatedSettlement>
+                    <LoanPurpose PrimaryPurpose="OwnerOccupied" OwnerBuilderApplication="No">
+                        <LendingPurposeCode ABSCode="ABS-125" PurposeAmount="0.0" Description="125 - Purchase of newly erected dwellings - House by first mortgage"/>
+                    </LoanPurpose>
+                    <LoanPortion ProductName="Residential (Prime)" ProductCode="" StatementCycle="Monthly" PackageName="">
+                        <Identifier>1097796802265-1</Identifier>
+                        <LoanTerm Type="TotalTerm" Units="Years">5</LoanTerm>
+                        <LoanTerm Type="Variable" PaymentType="PrincipalAndInterest" Units="Years">5</LoanTerm>
+                        <AmountRequested Amount="102000" BaseAmount="102000"/>
+                    </LoanPortion>
+                </LoanDetails>
+                <Representation>
+                    <NominatedRepresentation>
+                        <RelatedEntityRef/>
+                    </NominatedRepresentation>
+                </Representation>
+            </LoanDetailSegment>
+            <CrossSellSegment Enabled="true"/>
+        </Application>
+    </soapenv:Body>
+</soapenv:Envelope>

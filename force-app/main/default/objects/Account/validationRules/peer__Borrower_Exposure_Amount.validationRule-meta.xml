@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>peer__Borrower_Exposure_Amount</fullName>
+    <active>true</active>
+    <description>Either Borrower Exposure Amount or Borrower Exposure Percentage should be given</description>
+    <errorConditionFormula>AND(NOT(ISBLANK(peer__Borrower_Exposure_Percentage__c)),NOT(ISBLANK(peer__Borrower_Exposure_Amount__c)))</errorConditionFormula>
+    <errorMessage>Either Borrower Exposure Amount or Borrower Exposure Percentage should be given.</errorMessage>
+</ValidationRule>

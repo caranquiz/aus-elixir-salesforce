@@ -21,7 +21,6 @@
         </value>
     </processMetadataValues>
     <processType>Flow</processType>
-    <runInMode>SystemModeWithoutSharing</runInMode>
     <screens>
         <name>Show_Contracts</name>
         <label>Show Contracts</label>
@@ -43,13 +42,7 @@
         <showFooter>true</showFooter>
         <showHeader>true</showHeader>
     </screens>
-    <start>
-        <locationX>50</locationX>
-        <locationY>50</locationY>
-        <connector>
-            <targetReference>Get_Contracts_Flow</targetReference>
-        </connector>
-    </start>
+    <startElementReference>Get_Contracts_Flow</startElementReference>
     <status>Active</status>
     <subflows>
         <name>Get_Contracts_Flow</name>

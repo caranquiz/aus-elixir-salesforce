@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>genesis__Total_Assets__c</fullName>
+    <deprecated>false</deprecated>
+    <description>This field will store the rollup summary of all the borrower&apos;s Assets(sum of Market Value). This is from asset information.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>This field will store the rollup summary of all the borrower&apos;s Assets(sum of Market Value). This is from asset information.</inlineHelpText>
+    <label>Total Assets</label>
+    <summarizedField>genesis__Asset_Information__c.genesis__Market_Value__c</summarizedField>
+    <summaryForeignKey>genesis__Asset_Information__c.genesis__Application__c</summaryForeignKey>
+    <summaryOperation>sum</summaryOperation>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Summary</type>
+</CustomField>

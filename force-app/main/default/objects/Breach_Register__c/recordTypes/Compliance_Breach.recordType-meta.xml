@@ -159,7 +159,7 @@
         </values>
         <values>
             <fullName>Open</fullName>
-            <default>false</default>
+            <default>true</default>
         </values>
         <values>
             <fullName>Submitted to Department Head</fullName>

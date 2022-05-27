@@ -18,4 +18,7 @@
         <value>genesis__Applications__c.genesis__Loan</value>
     </filters>
     <label>Loan Applications</label>
+    <sharedTo>
+        <role>Staff</role>
+    </sharedTo>
 </ListView>

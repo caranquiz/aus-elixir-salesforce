@@ -45,9 +45,7 @@
                 <elementReference>recordId</elementReference>
             </value>
         </filters>
-        <getFirstRecordOnly>true</getFirstRecordOnly>
         <object>loan__Loan_Block_Code__c</object>
-        <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
     <recordUpdates>
         <name>Update_Contingency_Record</name>
@@ -91,13 +89,7 @@
         <showFooter>true</showFooter>
         <showHeader>true</showHeader>
     </screens>
-    <start>
-        <locationX>50</locationX>
-        <locationY>54</locationY>
-        <connector>
-            <targetReference>Get_Contingency_Status_Code_Data</targetReference>
-        </connector>
-    </start>
+    <startElementReference>Get_Contingency_Status_Code_Data</startElementReference>
     <status>Active</status>
     <variables>
         <name>recordId</name>

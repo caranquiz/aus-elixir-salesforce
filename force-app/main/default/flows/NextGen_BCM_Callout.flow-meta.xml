@@ -10,7 +10,7 @@
         <inputParameters>
             <name>appIdList</name>
             <value>
-                <elementReference>$Record</elementReference>
+                <elementReference>$Record.Application_Id__c</elementReference>
             </value>
         </inputParameters>
     </actionCalls>
@@ -35,14 +35,6 @@
         </value>
     </processMetadataValues>
     <processType>AutoLaunchedFlow</processType>
-    <start>
-        <locationX>50</locationX>
-        <locationY>0</locationY>
-        <connector>
-            <targetReference>NextGen_BCM_Callout</targetReference>
-        </connector>
-        <object>Application_Platform_Event__e</object>
-        <triggerType>PlatformEvent</triggerType>
-    </start>
-    <status>Obsolete</status>
+    <startElementReference>NextGen_BCM_Callout</startElementReference>
+    <status>Active</status>
 </Flow>

@@ -78,16 +78,7 @@
         </value>
     </processMetadataValues>
     <processType>AutoLaunchedFlow</processType>
-    <start>
-        <locationX>50</locationX>
-        <locationY>50</locationY>
-        <connector>
-            <targetReference>LPT_is_cleared_or_rejected_or_reversed</targetReference>
-        </connector>
-        <object>loan__Loan_Payment_Transaction__c</object>
-        <recordTriggerType>CreateAndUpdate</recordTriggerType>
-        <triggerType>RecordAfterSave</triggerType>
-    </start>
+    <startElementReference>LPT_is_cleared_or_rejected_or_reversed</startElementReference>
     <status>Active</status>
     <variables>
         <name>LTSList</name>

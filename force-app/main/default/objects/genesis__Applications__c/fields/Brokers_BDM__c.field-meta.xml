@@ -4,6 +4,15 @@
     <deleteConstraint>SetNull</deleteConstraint>
     <externalId>false</externalId>
     <label>Brokers BDM</label>
+    <lookupFilter>
+        <active>false</active>
+        <filterItems>
+            <field>User.Profile.Name</field>
+            <operation>notEqual</operation>
+            <value>Orde Customer Community Login User</value>
+        </filterItems>
+        <isOptional>false</isOptional>
+    </lookupFilter>
     <referenceTo>User</referenceTo>
     <relationshipName>Applications</relationshipName>
     <required>false</required>

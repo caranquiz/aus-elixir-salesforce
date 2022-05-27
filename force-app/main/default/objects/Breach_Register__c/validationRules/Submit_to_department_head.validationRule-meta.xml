@@ -11,9 +11,9 @@
  ISBLANK( What_is_the_potential_or_actual_cost__c ),
  ISBLANK( Date_Breach_was_Detected__c ),
  ISBLANK( Summary_of_Breach__c ),
- ISPICKVAL( Breach_Significance__c, &quot;&quot;),
- ISPICKVAL( Has_the_breach_been_resolved__c , &quot;&quot;),
- ISPICKVAL( Isolated_or_systemic_event__c , &quot;&quot;),
+ISBLANK(TEXT(Breach_Significance__c)),
+ISBLANK(TEXT(Has_the_breach_been_resolved__c)),
+ISBLANK(TEXT(Isolated_or_systemic_event__c)),
  ISBLANK( Recommendations__c )))</errorConditionFormula>
     <errorMessage>Please complete all sections before proceeding.</errorMessage>
 </ValidationRule>

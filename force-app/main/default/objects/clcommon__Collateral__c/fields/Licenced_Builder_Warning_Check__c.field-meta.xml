@@ -4,6 +4,7 @@
     <externalId>false</externalId>
     <formula>IF(ISPICKVAL(Construction__c, &apos;Yes&apos;), OR(ISPICKVAL(Licenced_Builder__c, &apos;No&apos;), ISPICKVAL(Licenced_Builder__c, &apos;&apos;)), FALSE)</formula>
     <label>Licenced Builder Warning Check</label>
+    <trackHistory>false</trackHistory>
     <trackTrending>false</trackTrending>
     <type>Checkbox</type>
 </CustomField>

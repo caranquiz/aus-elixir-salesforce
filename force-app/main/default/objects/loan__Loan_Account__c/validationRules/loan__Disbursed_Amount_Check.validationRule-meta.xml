@@ -3,6 +3,6 @@
     <fullName>loan__Disbursed_Amount_Check</fullName>
     <active>false</active>
     <description>Amount disbursed can not be more than the total amount for disbursal for a loan.</description>
-    <errorConditionFormula>AND(ISPICKVAL(loan__Product_Type__c, &#39;Loan&#39;), (loan__Disbursed_Amount__c &gt; loan__Disbursal_Amount__c))</errorConditionFormula>
+    <errorConditionFormula>AND(ISPICKVAL(loan__Product_Type__c, &apos;Loan&apos;), (loan__Disbursed_Amount__c &gt; loan__Disbursal_Amount__c) , ( !loan__Revolving__c))</errorConditionFormula>
     <errorMessage>Amount disbursed can not be more than the amount for disbursal.</errorMessage>
 </ValidationRule>

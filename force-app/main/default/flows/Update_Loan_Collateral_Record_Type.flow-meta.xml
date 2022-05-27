@@ -24,25 +24,16 @@
     <recordUpdates>
         <name>Update_Loan_Collateral_Record</name>
         <label>Update Loan Collateral Record</label>
-        <locationX>670</locationX>
+        <locationX>671</locationX>
         <locationY>352</locationY>
         <inputAssignments>
             <field>RecordTypeId</field>
             <value>
-                <stringValue>0128s00000063w5</stringValue>
+                <stringValue>0128w0000004J9X</stringValue>
             </value>
         </inputAssignments>
         <inputReference>$Record</inputReference>
     </recordUpdates>
-    <start>
-        <locationX>543</locationX>
-        <locationY>48</locationY>
-        <connector>
-            <targetReference>Update_Loan_Collateral_Record</targetReference>
-        </connector>
-        <object>loan__Loan_Collateral__c</object>
-        <recordTriggerType>Create</recordTriggerType>
-        <triggerType>RecordAfterSave</triggerType>
-    </start>
+    <startElementReference>Update_Loan_Collateral_Record</startElementReference>
     <status>Active</status>
 </Flow>

@@ -13,5 +13,8 @@
         <operation>notEqual</operation>
         <value>Loan Settled,Declined,Cancelled</value>
     </filters>
-    <label>All</label>
+    <label>All Active Applications</label>
+    <sharedTo>
+        <role>Staff</role>
+    </sharedTo>
 </ListView>

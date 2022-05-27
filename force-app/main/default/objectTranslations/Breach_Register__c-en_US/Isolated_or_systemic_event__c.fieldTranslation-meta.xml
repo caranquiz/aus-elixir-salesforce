@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help></help>
+    <label></label>
+    <name>Isolated_or_systemic_event__c</name>
+    <picklistValues>
+        <masterLabel>Isolated</masterLabel>
+        <translation></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Systemic</masterLabel>
+        <translation></translation>
+    </picklistValues>
+</CustomFieldTranslation>

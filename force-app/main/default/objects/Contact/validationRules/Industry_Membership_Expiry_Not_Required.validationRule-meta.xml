@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Industry_Membership_Expiry_Not_Required</fullName>
+    <active>true</active>
+    <description>18/03/2021 - RJohnston
+Jira: https://wingategroup.atlassian.net/browse/OIBCR-232
+Membership expiry date not required for direct accredited under aggregator</description>
+    <errorConditionFormula>AND( RecordType.DeveloperName = &quot;Broker_Underwriter&quot; ,  
+ISPICKVAL( Account.Direct_Accredited__c , &quot;Yes&quot;), 
+ISBLANK( Membership_Expiry_Date__c ))</errorConditionFormula>
+    <errorMessage>Membership expiry date required for direct accredited brokers</errorMessage>
+</ValidationRule>

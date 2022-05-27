@@ -3,7 +3,7 @@
     <fullName>Non_Regulated_Product_Lender_s_Legals__c</fullName>
     <defaultValue>0</defaultValue>
     <externalId>false</externalId>
-    <label>Non Regulated Product Lender&#39;s Legals</label>
+    <label>Non Regulated Product Lender&apos;s Legals</label>
     <precision>18</precision>
     <required>false</required>
     <scale>2</scale>

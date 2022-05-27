@@ -3,6 +3,7 @@
     <fullName>Broker_Account</fullName>
     <columns>ACCOUNT.NAME</columns>
     <columns>PARENT_NAME</columns>
+    <columns>CORE.USERS.ALIAS</columns>
     <columns>Brokers_BDM__c</columns>
     <columns>Aggregator__c</columns>
     <columns>Broker_ACL_Number__c</columns>
@@ -11,6 +12,8 @@
     <columns>Commission_Paid_To__c</columns>
     <columns>Upfront_Payment_Percentage__c</columns>
     <columns>Trail_Percentage__c</columns>
+    <columns>CORE.USERS.FIRST_NAME</columns>
+    <columns>CORE.USERS.LAST_NAME</columns>
     <filterScope>Everything</filterScope>
     <filters>
         <field>ACCOUNT.RECORDTYPE</field>

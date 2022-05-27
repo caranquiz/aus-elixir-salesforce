@@ -1,0 +1,96 @@
+<!--
+ - Created by Ethan Sargent on 27/08/2021.
+ -->
+
+<!-- mobileOrdeTable -->
+<template>
+    <lightning-layout-item size="12">
+        <h3 class="slds-m-top_medium slds-p-left_small slds-text-align_center">{tableData.heading}</h3>
+        <!--        <lightning-layout multiple-rows="true">-->
+        <lightning-layout multiple-rows="true">
+            <template for:each={tableData.body} for:item="tableEntry">
+                <div class="field-separator orde-border-bottom slds-m-bottom_small"
+                     key={tableEntry.key} size="12" flexibility="auto, no-shrink">
+                    <lightning-layout>
+                        <lightning-layout-item size="12" flexibility="no-shrink">
+                            <table key={tableEntry.key}
+                                   class="">
+                                <tbody>
+                                <template for:each={tableEntry.fields} for:item="field">
+                                    <tr class="fieldGroup" if:true={field.value} key={field.key}>
+                                        <td class="fieldLabel slds-p-left_medium">
+                                            {field.label}
+                                        </td>
+                                        <template if:true={field.isDefault}>
+                                            <td class="fieldValue">
+                                                {field.value}
+                                            </td>
+                                        </template>
+                                        <template if:true={field.isDate}>
+                                            <td>
+                                                <lightning-formatted-date-time
+                                                        value={field.value}></lightning-formatted-date-time>
+                                            </td>
+                                        </template>
+                                    </tr>
+                                </template>
+                                </tbody>
+                            </table>
+                        </lightning-layout-item>
+                    </lightning-layout>
+                </div>
+
+                <template if:true={rowLevelActions}>
+                    <div style="width: 100%" key={tableEntry.key}>
+                        <div class="mobile-button-wrapper" >
+                        <div if:true={allowEdit}>
+                            <div class="mobile-button-item"
+                                 if:false={tableEntry.restrictEdit}>
+                                <lightning-button if:true={allowEdit}
+                                                  variant="base" label="Edit"
+                                                  class="orde-button"
+                                                  data-record-id={tableEntry.recordId}
+                                                  data-additional-conditions={tableEntry.additionalConditions}
+                                                  onclick={handleEdit}>
+                                </lightning-button>
+                            </div>
+                        </div>
+                        <div if:true={allowDelete}>
+                            <div class="mobile-button-item"
+                                 if:false={tableEntry.restrictDelete}>
+                                <lightning-button if:true={allowDelete}
+                                                  label="Delete"
+                                                  variant="destructive"
+                                                  data-record-id={tableEntry.recordId}
+                                                  data-additional-conditions={tableEntry.additionalConditions}
+                                                  onclick={handleDelete}>
+                                </lightning-button>
+                            </div>
+                        </div>
+
+                        <div if:true={allowDownload}>
+
+                            <div class="mobile-button-item">
+                                <!--                                        <lightning-button class="orde-button"-->
+                                <!--                                                          label="Download"-->
+                                <!--                                                          if:true={allowDownload} variant="base"-->
+                                <!--                                                          data-record-id={tableEntry.recordId}-->
+                                <!--                                                          onclick={handleDownload}>-->
+                                <!--                                        </lightning-button>-->
+                                <a href={tableEntry.downloadUrl} if:true={allowDownload}
+                                   class="slds-m-right_small slds-float_right orde-button slds-button"
+                                   target="_blank">Download</a>
+                            </div>
+                        </div>
+                        <!--                            </div>-->
+                    </div>
+                    </div>
+                </template>
+            </template>
+        </lightning-layout>
+        <template if:true={emptyTable}>
+            <span class="tableEmptyContent slds-p-left_medium slds-text-align_center">No entries found.</span>
+        </template>
+    </lightning-layout-item>
+
+</template>

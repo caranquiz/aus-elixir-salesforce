@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>genesis__Credit_Check_Consent__c</fullName>
+    <defaultValue>false</defaultValue>
+    <deprecated>false</deprecated>
+    <description>Consent to perform a credit check and employment/income verification</description>
+    <externalId>false</externalId>
+    <inlineHelpText>I hereby authorize you to check my credit and employment history and to answer permissible questions, under the Fair Credit Reporting Act, others may ask you about my credit record with you.</inlineHelpText>
+    <label>Credit Check Consent</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

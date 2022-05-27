@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Settlement_Phone__c</fullName>
+    <description>RJohnston 4/1/21 - https://wingategroup.atlassian.net/browse/AMS-1140
+To assist the settlements team in the settlement contact details for solicitor</description>
     <externalId>false</externalId>
     <label>Phone</label>
     <required>false</required>

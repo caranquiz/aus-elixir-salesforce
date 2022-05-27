@@ -1,0 +1,49 @@
+<!--
+ - Created by Ethan Sargent on 26/07/2021.
+ -->
+
+<!-- Redraw Request View -->
+<template>
+    <div class="slds-container_center redrawFormContents slds-m-top_medium">
+        <template if:true={showFirstPage}>
+            <p>As part of your loan contract, if you have paid off more then the minimum required amount on your loan,
+                you can make a redraw request to withdraw the extra money you have paid.
+                To request a redraw please click the link below to download our redraw request form.
+                <br>
+                Once you have completed and signed the form you can upload using submit redraw request button and we will process your request.
+                Please note it may take up to 3 business days from the time ORDE Financial processes this request for funds to appear in your nominated bank account. </p>
+            <div class="formPreview slds-container_center">
+                <a href={redrawRequestForm} target="_blank"
+                   download>
+                    <img class="slds-m-around_medium" src={redrawRequestImg} alt="Form Thumbnail" width="100px" height="200px">
+                    Download Redraw Request Form
+                </a>
+            </div>
+            <br>
+            <lightning-button
+                    label="Submit Redraw Request"
+                    variant="base"
+                    class="slds-p-around_medium orde-button"
+                    onclick={handleNext}
+            >Submit Redraw Request
+            </lightning-button>
+
+        </template>
+
+        <template if:true={showSecondPage}>
+            <lightning-file-upload
+                    label="Upload Redraw Request"
+                    file-field-name="Loan_Account_fileupload__c"
+                    file-field-value={recordId}
+                    name="Redraw Request"
+                    onuploadfinished={handleUploadFinished}
+            ></lightning-file-upload>
+            <lightning-button
+                    label="Go Back"
+                    variant="base"
+                    class="slds-p-around_medium orde-button"
+                    onclick={handlePrevious}
+            >Go Back</lightning-button>
+        </template>
+    </div>
+</template>

@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <layouts>
+        <layout>APS Layout For New Creation</layout>
+        <sections>
+            <label></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label></label>
+            <section>Retry Details</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>ReadOnlyPageLayout</layout>
+        <sections>
+            <label></label>
+            <section>APS Update Changes</section>
+        </sections>
+        <sections>
+            <label></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label></label>
+            <section>Retry Details</section>
+        </sections>
+    </layouts>
+    <recordTypes>
+        <label></label>
+        <name>Lock_Approval_Record</name>
+    </recordTypes>
+    <recordTypes>
+        <label></label>
+        <name>New_APS_Record</name>
+    </recordTypes>
+    <validationRules>
+        <errorMessage></errorMessage>
+        <name>APS_Active_Check</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage></errorMessage>
+        <name>Account_Type_Change_Fixed</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage></errorMessage>
+        <name>Amount_Type_Cannot_be_Null_For_Recurring</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage></errorMessage>
+        <name>Amount_Type_Split_Factor_Change_Check</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage></errorMessage>
+        <name>Debit_Day_Change_must_not_be_null</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage></errorMessage>
+        <name>Frequency_Change_Check</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage></errorMessage>
+        <name>Non_Weekend_Change</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage></errorMessage>
+        <name>One_time_payment_change</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage></errorMessage>
+        <name>Transaction_Amount_Change_Check</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage></errorMessage>
+        <name>Transaction_Amount_Change_Fixed_Amount</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage></errorMessage>
+        <name>Transaction_Amount_Check</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage></errorMessage>
+        <name>Transaction_Amount_For_Fixed_Amount</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage></errorMessage>
+        <name>Type_Change_cannot_be_null</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage></errorMessage>
+        <name>biweekly_frequency_change</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage></errorMessage>
+        <name>weekly_frequency_change</name>
+    </validationRules>
+</CustomObjectTranslation>

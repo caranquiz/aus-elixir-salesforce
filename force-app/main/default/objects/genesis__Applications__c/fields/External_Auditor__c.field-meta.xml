@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>External_Auditor__c</fullName>
+    <description>https://wingategroup.atlassian.net/secure/RapidBoard.jspa?rapidView=10&amp;projectKey=OIBCR&amp;modal=detail&amp;selectedIssue=OIBCR-325
+RJohnston 04/05/2021
+For filtering applications for external auditors</description>
+    <externalId>false</externalId>
+    <label>External Auditor</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>NAB</fullName>
+                <default>false</default>
+                <label>NAB</label>
+            </value>
+            <value>
+                <fullName>Kapstream</fullName>
+                <default>false</default>
+                <label>Kapstream</label>
+            </value>
+            <value>
+                <fullName>AUP</fullName>
+                <default>false</default>
+                <label>AUP</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

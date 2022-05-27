@@ -3,6 +3,9 @@
     <fullName>All</fullName>
     <columns>NAME</columns>
     <columns>Date_of_Breach__c</columns>
+    <columns>Stage__c</columns>
+    <columns>RECORDTYPE</columns>
+    <columns>OWNER.FIRST_NAME</columns>
     <filterScope>Everything</filterScope>
     <label>All</label>
 </ListView>

@@ -119,7 +119,7 @@ appModel.updateRow(appRow ,
         $.each(debtModel.getRows(),function(i,row){
                debtSum = debtSum + row.Refinance_Consolidation_Amount__c;
         });totalAmount= mortgageSum + debtSum;
-        console.log('Before Timeout');
+        
         appModel.updateRow(appRow ,
                         {'TotalAmount': totalAmount});
         });
@@ -130,6 +130,32 @@ skuid.snippet.register('approvedReload',function(args) {var params = arguments[0
 var appModel = skuid.model.getModel('CommonApplicationLoanDetails');
 var appRow = appModel.data[0];
 if(appRow.genesis__Status__c === 'Formally Approved'){
+    var collModel = skuid.model.getModel('AllCollModel');
+    var spModel = skuid.model.getModel('S_P_Model');
+    var qbeModel = skuid.model.getModel('QBEModel');
+    if(collModel !== undefined && collModel !== null && collModel.data.length !== 0){
+        $.each(collModel.data,function(i,row){
+            if(row.clcommon__Postal_Code__c !== undefined && row.clcommon__Postal_Code__c !== ''){
+                if(spModel !== undefined && spModel !== null && spModel.data.length !== 0){
+                    $.each(spModel.data,function(i,spRow){
+                        if(spRow.PostCode_High_RangeNumber__c >= row.clcommon__Postal_Code__c && spRow.PostCode_Low_RangeNumber__c <= row.clcommon__Postal_Code__c){
+                            collModel.updateRow(row,'S_P_Location__c',spRow.Location__c);
+                        }
+                    });
+                }
+                if(qbeModel !== undefined && qbeModel !== null && qbeModel.data.length !== 0){
+                    $.each(qbeModel.data,function(i,qbeRow){
+                        if(qbeRow.PostCode_High_RangeNumber__c >= row.clcommon__Postal_Code__c && qbeRow.PostCode_Low_RangeNumber__c <= row.clcommon__Postal_Code__c){
+                            collModel.updateRow(row,'QBE_Location__c',qbeRow.Location__c);
+                        }
+                    });
+                }
+            }
+        });
+        skuid.model.save([
+               collModel
+        ]) ;
+    }
     window.location.reload(true);
 }
 });

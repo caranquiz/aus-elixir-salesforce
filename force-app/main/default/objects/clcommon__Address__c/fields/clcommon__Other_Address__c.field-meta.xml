@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>clcommon__Other_Address__c</fullName>
+    <defaultValue>false</defaultValue>
+    <deprecated>false</deprecated>
+    <description>This checkbox is to identify an address as Previous address. This checkbox will be enabled for Contact and  Account.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>This checkbox is to identify an address as Previous address.</inlineHelpText>
+    <label>Other Address</label>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

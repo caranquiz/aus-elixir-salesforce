@@ -3,7 +3,7 @@
     <fullName>loan__ACH_Next_Debit_Date__c</fullName>
     <deprecated>false</deprecated>
     <externalId>false</externalId>
-    <inlineHelpText>It is the next date on which the installment amount will be deducted from the borrower&#39;s account.</inlineHelpText>
+    <inlineHelpText>It is the next date on which the installment amount will be deducted from the borrower&apos;s account.</inlineHelpText>
     <label>ACH Next Debit Date</label>
     <required>false</required>
     <trackHistory>false</trackHistory>

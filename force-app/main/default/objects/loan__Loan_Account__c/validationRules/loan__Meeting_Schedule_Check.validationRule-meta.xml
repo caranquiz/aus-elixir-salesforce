@@ -4,7 +4,7 @@
     <active>false</active>
     <description>This validation rule is deprecated</description>
     <errorConditionFormula>AND(
-NOT(ISPICKVAL( loan__Loan_Product_Name__r.loan__Loan_Product_Type__c , &#39;Group&#39;)),
+NOT(ISPICKVAL( loan__Loan_Product_Name__r.loan__Loan_Product_Type__c , &apos;Group&apos;)),
 NOT($Setup.loan__Org_Parameters__c.loan__Integrate_Salesforce_CRM__c),
 OR(
 AND ( loan__Repayment_Tied_to_Meeting_Schedule__c ,
@@ -19,5 +19,5 @@ ISBLANK( loan__Client__r.loan__Center__r.loan__Meeting_Schedule__c )
 )
 )
 )</errorConditionFormula>
-    <errorMessage>Client&#39;s group or center does not have a meeting schedule. Or Client is not associated with a Center or a Group.</errorMessage>
+    <errorMessage>Client&apos;s group or center does not have a meeting schedule. Or Client is not associated with a Center or a Group.</errorMessage>
 </ValidationRule>

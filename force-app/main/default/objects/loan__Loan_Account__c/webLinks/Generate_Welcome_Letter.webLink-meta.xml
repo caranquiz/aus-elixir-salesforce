@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Generate_Welcome_Letter</fullName>
+    <availability>online</availability>
+    <displayType>button</displayType>
+    <encodingKey>UTF-8</encodingKey>
+    <hasMenubar>false</hasMenubar>
+    <hasScrollbars>true</hasScrollbars>
+    <hasToolbar>false</hasToolbar>
+    <height>600</height>
+    <isResizable>true</isResizable>
+    <linkType>url</linkType>
+    <masterLabel>Generate Welcome Letter</masterLabel>
+    <openType>newWindow</openType>
+    <position>none</position>
+    <protected>false</protected>
+    <showsLocation>false</showsLocation>
+    <showsStatus>false</showsStatus>
+    <url>/apex/APXTConga4__Conga_Composer?SolMgr=1&amp;serverUrl={!API.Partner_Server_URL_370}&amp;QueryId=[SecurityQuery]aCK5m00000002L9GAI%3Fpv0%3D{!loan__Loan_Account__c.ApplicationId__c},[BorCoApp]aCK5m00000002LyGAI%3Fpv0%3D{!loan__Loan_Account__c.ApplicationId__c},[GuaTrustee]aCK5m00000003Gp%3Fpv0%3D{!loan__Loan_Account__c.ApplicationId__c},
+[AllGua]aCK5m00000002M7%3Fpv0%3D{!loan__Loan_Account__c.ApplicationId__c},
+[RepaymentDate]aCK8w000000003y%3Fpv0%3D{!loan__Loan_Account__c.Id},
+[APSTransaction]aCK8w000000003t%3Fpv0%3D{!loan__Loan_Account__c.Id},
+[LoanType]aCK5m00000003Gz%3Fpv0%3D{!loan__Loan_Account__c.loan__AccountId__c},[BorIndAdd]aCK5m00000002LzGAI%3Fpv0%3D{!loan__Loan_Account__c.ApplicationId__c},[BorComAdd]aCK5m00000002M2GAI%3Fpv0%3D{!loan__Loan_Account__c.ApplicationId__c},[BranchDate]aCK5m00000003Gu%3Fpv0%3D{!loan__Loan_Account__c.loan__BranchId__c},[Applicants]aCK5m00000002LWGAY%3Fpv0%3D{!loan__Loan_Account__c.ApplicationId__c},[LoanGua]aCK8w0000000043%3Fpv0%3D{!loan__Loan_Account__c.Id}&amp;Id={!loan__Loan_Account__c.Id}&amp;TemplateId=aCS5m0000005SHt&amp;SC0=1&amp;SC1=Attachments&amp;OFN=Welcome+Letter+{!loan__Loan_Account__c.Name}&amp;AttachmentParentID={!loan__Loan_Account__c.Id}&amp;DefaultPDF=1</url>
+</WebLink>

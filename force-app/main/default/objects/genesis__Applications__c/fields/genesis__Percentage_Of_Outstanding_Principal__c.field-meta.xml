@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>genesis__Percentage_Of_Outstanding_Principal__c</fullName>
+    <deprecated>false</deprecated>
+    <description>This field will store the percentage of outstanding that needs to be repaid as part of the LOC repayment. This field is applicable only if LOC Payment Type is any of the following:
+
+Fixed fraction of outstanding principal balance
+Greater of a percentage of the outstanding balance or a Dollar Amount
+Greater of a percentage of the outstanding balance plus accrued interest or a Dollar Amount
+Greater of a percentage  of the outstanding balance or accrued interest.
+Percentage of the outstanding balance
+Percentage of the outstanding balance plus accrued interest</description>
+    <externalId>false</externalId>
+    <inlineHelpText>This field will store the percentage of outstanding that needs to be repaid as part of the LOC repayment.</inlineHelpText>
+    <label>Percentage of Outstanding Principal (LOC</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Percent</type>
+</CustomField>

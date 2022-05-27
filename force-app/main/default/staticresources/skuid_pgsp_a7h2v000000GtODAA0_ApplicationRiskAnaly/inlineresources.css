@@ -1,0 +1,145 @@
+body {
+    background-color: #ffffff;
+}
+body > .nx-page {
+    background-color: #ffffff;
+}
+#skuidEditBtn {
+    display: none;
+}
+#scorecardtable2 .table.nx-skootable-data th {
+    width: 20%;
+}
+#financial-account-table .nx-editor-contents {
+    margin-top: 0;
+    padding-top: 0;
+}
+#financial-account-table thead {
+/*    display: none; */
+}
+#financial-account-table .nx-editor-header {
+/*     display: none; */
+}
+#interface-contract-table .nx-editor-contents {
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+div #interface-contract-table .nx-skootable .nx-editor {
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+#financial-account-table td {
+    width: 25%;
+}
+#interface-contract-table td {
+    width: 25%;
+}
+
+.nx-button-list-config {
+    display: none; 
+}
+.financial-account-background {
+    background-color: #ffffff;
+}
+.highcharts-button {
+/*    display: none;*/
+}
+.highcharts-container {
+    border: 1px solid #dddddd;
+    margin-right: 10px;
+}
+.highcharts-title {
+    background-color: #475560;
+}
+.highcharts-series-group {
+    margin-top: -10px;
+}
+#highcharts-0 .highcharts-title {
+    background-color: #475560;
+}
+.sk-chart-container .sk-chart-standard {
+    margin-bottom: 20px;
+}
+.sk-chartset {
+    margin-bottom: 20px;
+    margin-right: 20px;
+}
+.cls-dashboard-section .nx-pagetitle .nx-pagetitle-maintitle {
+    padding: 0;
+}
+.nx-pagetitle-subtitle {
+    padding-left: 0;
+}
+.cls-dashboard-section .nx-pagetitle {
+    border-bottom: 0px;
+}
+.ui-button.iconic-button.iconic-button-scorecardgen,
+.ui-button.iconic-button.iconic-button-scorecardgen.ui-state-hover,
+.ui-button.iconic-button.iconic-button-scorecardgen.ui-state-focus {
+    border: 2px solid #1cbdd4;
+}
+
+.ui-button.iconic-button.iconic-button-scorecardgen:before,
+.ui-button.iconic-button.iconic-button-scorecardgen.ui-state-hover:before,
+.ui-button.iconic-button.iconic-button-scorecardgen.ui-state-focus:before {
+    font-family: FontAwesome;
+    content: "\f1ec";
+    font-size: 20px;
+    color: #1cbdd4;
+    vertical-align: middle;    
+}
+.ui-button.iconic-button.iconic-button-pricing,
+.ui-button.iconic-button.iconic-button-pricing.ui-state-hover,
+.ui-button.iconic-button.iconic-button-pricing.ui-state-focus {
+    border: 2px solid #48ce94;
+}
+
+.ui-button.iconic-button.iconic-button-pricing:before,
+.ui-button.iconic-button.iconic-button-pricing.ui-state-hover:before,
+.ui-button.iconic-button.iconic-button-pricing.ui-state-focus:before {
+    font-family: FontAwesome;
+    content: "\f155";
+    font-size: 20px;
+    color: #48ce94;
+    vertical-align: middle;    
+}
+.nx-list-footer {
+    display: none; 
+    /*font-size: 11px;
+    float: left;
+    color: #bbbbbb;*/
+}
+
+
+.credit-rating-box {
+    padding-top: 12px; 
+    padding-bottom: 12px; 
+    padding-right: 8px; 
+    padding-left: 8px; 
+    border-radius: 5px; 
+    background-color: #747d83; 
+    color: #ffffff; 
+    font-size: 12px; 
+    font-weight: bold; 
+    float: left; 
+    margin-right: 6px;
+}
+.scorecard-sub-title {
+    padding-top: 35px;
+}
+.highcharts-title {
+    display: none;
+}
+.scorecard-left-panel {
+    padding-right: 20px;
+}
+.nx-header-right, .nx-footer-right {
+    padding-right: 12px;
+}
+.nx-basicfieldeditor-section-header {
+    font-size: 12px;
+    font-weight: 700;
+}
+.nx-basicfieldeditor-column:last-child>.nx-basicfieldeditor-section-wrapper>.nx-basicfieldeditor-section {
+    padding-left: 29px;
+}

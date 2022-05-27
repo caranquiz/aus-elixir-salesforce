@@ -7,6 +7,22 @@
         <fridayStartTime>00:00:00.000Z</fridayStartTime>
         <mondayEndTime>00:00:00.000Z</mondayEndTime>
         <mondayStartTime>00:00:00.000Z</mondayStartTime>
+        <name>ACH</name>
+        <thursdayEndTime>00:00:00.000Z</thursdayEndTime>
+        <thursdayStartTime>00:00:00.000Z</thursdayStartTime>
+        <timeZoneId>Australia/Sydney</timeZoneId>
+        <tuesdayEndTime>00:00:00.000Z</tuesdayEndTime>
+        <tuesdayStartTime>00:00:00.000Z</tuesdayStartTime>
+        <wednesdayEndTime>00:00:00.000Z</wednesdayEndTime>
+        <wednesdayStartTime>00:00:00.000Z</wednesdayStartTime>
+    </businessHours>
+    <businessHours>
+        <active>true</active>
+        <default>false</default>
+        <fridayEndTime>00:00:00.000Z</fridayEndTime>
+        <fridayStartTime>00:00:00.000Z</fridayStartTime>
+        <mondayEndTime>00:00:00.000Z</mondayEndTime>
+        <mondayStartTime>00:00:00.000Z</mondayStartTime>
         <name>Default</name>
         <saturdayEndTime>00:00:00.000Z</saturdayEndTime>
         <saturdayStartTime>00:00:00.000Z</saturdayStartTime>
@@ -15,6 +31,22 @@
         <thursdayEndTime>00:00:00.000Z</thursdayEndTime>
         <thursdayStartTime>00:00:00.000Z</thursdayStartTime>
         <timeZoneId>America/Los_Angeles</timeZoneId>
+        <tuesdayEndTime>00:00:00.000Z</tuesdayEndTime>
+        <tuesdayStartTime>00:00:00.000Z</tuesdayStartTime>
+        <wednesdayEndTime>00:00:00.000Z</wednesdayEndTime>
+        <wednesdayStartTime>00:00:00.000Z</wednesdayStartTime>
+    </businessHours>
+    <businessHours>
+        <active>true</active>
+        <default>false</default>
+        <fridayEndTime>00:00:00.000Z</fridayEndTime>
+        <fridayStartTime>00:00:00.000Z</fridayStartTime>
+        <mondayEndTime>00:00:00.000Z</mondayEndTime>
+        <mondayStartTime>00:00:00.000Z</mondayStartTime>
+        <name>Direct Debit</name>
+        <thursdayEndTime>00:00:00.000Z</thursdayEndTime>
+        <thursdayStartTime>00:00:00.000Z</thursdayStartTime>
+        <timeZoneId>Australia/Sydney</timeZoneId>
         <tuesdayEndTime>00:00:00.000Z</tuesdayEndTime>
         <tuesdayStartTime>00:00:00.000Z</tuesdayStartTime>
         <wednesdayEndTime>00:00:00.000Z</wednesdayEndTime>
@@ -44,6 +76,8 @@
     </holidays>
     <holidays>
         <activityDate>2080-04-25</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -51,6 +85,8 @@
     </holidays>
     <holidays>
         <activityDate>2079-04-25</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -58,6 +94,8 @@
     </holidays>
     <holidays>
         <activityDate>2078-04-25</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -65,6 +103,8 @@
     </holidays>
     <holidays>
         <activityDate>2075-04-25</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -72,6 +112,8 @@
     </holidays>
     <holidays>
         <activityDate>2074-04-25</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -79,6 +121,8 @@
     </holidays>
     <holidays>
         <activityDate>2073-04-25</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -86,6 +130,8 @@
     </holidays>
     <holidays>
         <activityDate>2072-04-25</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -93,6 +139,8 @@
     </holidays>
     <holidays>
         <activityDate>2070-04-25</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -100,6 +148,8 @@
     </holidays>
     <holidays>
         <activityDate>2069-04-25</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -107,6 +157,8 @@
     </holidays>
     <holidays>
         <activityDate>2068-04-25</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -114,6 +166,8 @@
     </holidays>
     <holidays>
         <activityDate>2067-04-25</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -121,6 +175,8 @@
     </holidays>
     <holidays>
         <activityDate>2064-04-25</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -128,6 +184,8 @@
     </holidays>
     <holidays>
         <activityDate>2063-04-25</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -135,6 +193,8 @@
     </holidays>
     <holidays>
         <activityDate>2062-04-25</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -142,6 +202,8 @@
     </holidays>
     <holidays>
         <activityDate>2061-04-25</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -149,6 +211,8 @@
     </holidays>
     <holidays>
         <activityDate>2059-04-25</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -156,6 +220,8 @@
     </holidays>
     <holidays>
         <activityDate>2058-04-25</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -163,6 +229,8 @@
     </holidays>
     <holidays>
         <activityDate>2057-04-25</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -170,6 +238,8 @@
     </holidays>
     <holidays>
         <activityDate>2056-04-25</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -177,6 +247,8 @@
     </holidays>
     <holidays>
         <activityDate>2053-04-25</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -184,6 +256,8 @@
     </holidays>
     <holidays>
         <activityDate>2052-04-25</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -191,6 +265,8 @@
     </holidays>
     <holidays>
         <activityDate>2051-04-25</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -198,6 +274,8 @@
     </holidays>
     <holidays>
         <activityDate>2050-04-25</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -205,6 +283,8 @@
     </holidays>
     <holidays>
         <activityDate>2047-04-25</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -212,6 +292,8 @@
     </holidays>
     <holidays>
         <activityDate>2046-04-25</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -219,6 +301,8 @@
     </holidays>
     <holidays>
         <activityDate>2045-04-25</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -226,6 +310,8 @@
     </holidays>
     <holidays>
         <activityDate>2042-04-25</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -233,6 +319,8 @@
     </holidays>
     <holidays>
         <activityDate>2041-04-25</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -240,6 +328,8 @@
     </holidays>
     <holidays>
         <activityDate>2040-04-25</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -247,6 +337,8 @@
     </holidays>
     <holidays>
         <activityDate>2039-04-25</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -254,6 +346,8 @@
     </holidays>
     <holidays>
         <activityDate>2036-04-25</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -261,6 +355,8 @@
     </holidays>
     <holidays>
         <activityDate>2035-04-25</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -268,6 +364,8 @@
     </holidays>
     <holidays>
         <activityDate>2034-04-25</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -275,6 +373,8 @@
     </holidays>
     <holidays>
         <activityDate>2033-04-25</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -282,6 +382,8 @@
     </holidays>
     <holidays>
         <activityDate>2031-04-25</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -289,6 +391,8 @@
     </holidays>
     <holidays>
         <activityDate>2030-04-25</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -296,6 +400,8 @@
     </holidays>
     <holidays>
         <activityDate>2029-04-25</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -303,6 +409,8 @@
     </holidays>
     <holidays>
         <activityDate>2028-04-25</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -310,6 +418,8 @@
     </holidays>
     <holidays>
         <activityDate>2025-04-25</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -317,6 +427,8 @@
     </holidays>
     <holidays>
         <activityDate>2024-04-25</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -324,6 +436,8 @@
     </holidays>
     <holidays>
         <activityDate>2023-04-25</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -331,6 +445,8 @@
     </holidays>
     <holidays>
         <activityDate>2022-04-25</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -344,6 +460,8 @@
     </holidays>
     <holidays>
         <activityDate>2080-01-26</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -351,6 +469,8 @@
     </holidays>
     <holidays>
         <activityDate>2079-01-26</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -358,6 +478,8 @@
     </holidays>
     <holidays>
         <activityDate>2078-01-26</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -365,6 +487,8 @@
     </holidays>
     <holidays>
         <activityDate>2077-01-26</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -372,6 +496,8 @@
     </holidays>
     <holidays>
         <activityDate>2076-01-27</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -379,6 +505,8 @@
     </holidays>
     <holidays>
         <activityDate>2075-01-28</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -386,6 +514,8 @@
     </holidays>
     <holidays>
         <activityDate>2074-01-26</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -393,6 +523,8 @@
     </holidays>
     <holidays>
         <activityDate>2073-01-26</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -400,6 +532,8 @@
     </holidays>
     <holidays>
         <activityDate>2072-01-26</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -407,6 +541,8 @@
     </holidays>
     <holidays>
         <activityDate>2071-01-27</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -414,6 +550,8 @@
     </holidays>
     <holidays>
         <activityDate>2070-01-26</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -421,6 +559,8 @@
     </holidays>
     <holidays>
         <activityDate>2069-01-28</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -428,6 +568,8 @@
     </holidays>
     <holidays>
         <activityDate>2068-01-26</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -435,6 +577,8 @@
     </holidays>
     <holidays>
         <activityDate>2067-01-26</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -442,6 +586,8 @@
     </holidays>
     <holidays>
         <activityDate>2066-01-26</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -449,6 +595,8 @@
     </holidays>
     <holidays>
         <activityDate>2065-01-26</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -456,6 +604,8 @@
     </holidays>
     <holidays>
         <activityDate>2064-01-28</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -463,6 +613,8 @@
     </holidays>
     <holidays>
         <activityDate>2063-01-26</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -470,6 +622,8 @@
     </holidays>
     <holidays>
         <activityDate>2062-01-26</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -477,6 +631,8 @@
     </holidays>
     <holidays>
         <activityDate>2061-01-26</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -484,6 +640,8 @@
     </holidays>
     <holidays>
         <activityDate>2060-01-26</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -491,6 +649,8 @@
     </holidays>
     <holidays>
         <activityDate>2059-01-27</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -498,6 +658,8 @@
     </holidays>
     <holidays>
         <activityDate>2058-01-26</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -505,6 +667,8 @@
     </holidays>
     <holidays>
         <activityDate>2057-01-26</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -512,6 +676,8 @@
     </holidays>
     <holidays>
         <activityDate>2056-01-26</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -519,6 +685,8 @@
     </holidays>
     <holidays>
         <activityDate>2055-01-26</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -526,6 +694,8 @@
     </holidays>
     <holidays>
         <activityDate>2054-01-26</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -533,6 +703,8 @@
     </holidays>
     <holidays>
         <activityDate>2053-01-27</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -540,6 +712,8 @@
     </holidays>
     <holidays>
         <activityDate>2052-01-26</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -547,6 +721,8 @@
     </holidays>
     <holidays>
         <activityDate>2051-01-26</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -554,6 +730,8 @@
     </holidays>
     <holidays>
         <activityDate>2050-01-26</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -561,6 +739,8 @@
     </holidays>
     <holidays>
         <activityDate>2049-01-26</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -568,6 +748,8 @@
     </holidays>
     <holidays>
         <activityDate>2048-01-27</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -575,6 +757,8 @@
     </holidays>
     <holidays>
         <activityDate>2047-01-28</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -582,6 +766,8 @@
     </holidays>
     <holidays>
         <activityDate>2046-01-26</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -589,6 +775,8 @@
     </holidays>
     <holidays>
         <activityDate>2045-01-26</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -596,6 +784,8 @@
     </holidays>
     <holidays>
         <activityDate>2044-01-26</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -603,6 +793,8 @@
     </holidays>
     <holidays>
         <activityDate>2043-01-26</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -610,6 +802,8 @@
     </holidays>
     <holidays>
         <activityDate>2042-01-27</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -617,6 +811,8 @@
     </holidays>
     <holidays>
         <activityDate>2041-01-28</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -624,6 +820,8 @@
     </holidays>
     <holidays>
         <activityDate>2040-01-26</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -631,6 +829,8 @@
     </holidays>
     <holidays>
         <activityDate>2039-01-26</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -638,6 +838,8 @@
     </holidays>
     <holidays>
         <activityDate>2038-01-26</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -645,6 +847,8 @@
     </holidays>
     <holidays>
         <activityDate>2037-01-26</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -652,6 +856,8 @@
     </holidays>
     <holidays>
         <activityDate>2036-01-28</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -659,6 +865,8 @@
     </holidays>
     <holidays>
         <activityDate>2035-01-26</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -666,6 +874,8 @@
     </holidays>
     <holidays>
         <activityDate>2034-01-26</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -673,6 +883,8 @@
     </holidays>
     <holidays>
         <activityDate>2033-01-26</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -680,6 +892,8 @@
     </holidays>
     <holidays>
         <activityDate>2032-01-26</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -687,6 +901,8 @@
     </holidays>
     <holidays>
         <activityDate>2031-01-27</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -694,6 +910,8 @@
     </holidays>
     <holidays>
         <activityDate>2030-01-28</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -701,6 +919,8 @@
     </holidays>
     <holidays>
         <activityDate>2029-01-26</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -708,6 +928,8 @@
     </holidays>
     <holidays>
         <activityDate>2028-01-26</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -715,6 +937,8 @@
     </holidays>
     <holidays>
         <activityDate>2027-01-26</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -722,6 +946,8 @@
     </holidays>
     <holidays>
         <activityDate>2026-01-26</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -729,6 +955,8 @@
     </holidays>
     <holidays>
         <activityDate>2025-01-27</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -736,6 +964,8 @@
     </holidays>
     <holidays>
         <activityDate>2024-01-26</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -743,6 +973,8 @@
     </holidays>
     <holidays>
         <activityDate>2023-01-26</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -750,6 +982,8 @@
     </holidays>
     <holidays>
         <activityDate>2022-01-26</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -778,6 +1012,8 @@
     </holidays>
     <holidays>
         <activityDate>2080-12-26</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -785,6 +1021,8 @@
     </holidays>
     <holidays>
         <activityDate>2079-12-26</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -792,6 +1030,8 @@
     </holidays>
     <holidays>
         <activityDate>2078-12-26</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -799,6 +1039,8 @@
     </holidays>
     <holidays>
         <activityDate>2077-12-28</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -806,6 +1048,8 @@
     </holidays>
     <holidays>
         <activityDate>2076-12-28</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -813,6 +1057,8 @@
     </holidays>
     <holidays>
         <activityDate>2075-12-26</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -820,6 +1066,8 @@
     </holidays>
     <holidays>
         <activityDate>2074-12-26</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -827,6 +1075,8 @@
     </holidays>
     <holidays>
         <activityDate>2073-12-26</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -834,6 +1084,8 @@
     </holidays>
     <holidays>
         <activityDate>2072-12-26</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -841,6 +1093,8 @@
     </holidays>
     <holidays>
         <activityDate>2071-12-28</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -848,6 +1102,8 @@
     </holidays>
     <holidays>
         <activityDate>2070-12-26</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -855,6 +1111,8 @@
     </holidays>
     <holidays>
         <activityDate>2069-12-26</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -862,6 +1120,8 @@
     </holidays>
     <holidays>
         <activityDate>2068-12-26</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -869,6 +1129,8 @@
     </holidays>
     <holidays>
         <activityDate>2067-12-26</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -876,6 +1138,8 @@
     </holidays>
     <holidays>
         <activityDate>2066-12-28</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -883,6 +1147,8 @@
     </holidays>
     <holidays>
         <activityDate>2065-12-28</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -890,6 +1156,8 @@
     </holidays>
     <holidays>
         <activityDate>2064-12-26</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -897,6 +1165,8 @@
     </holidays>
     <holidays>
         <activityDate>2063-12-26</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -904,6 +1174,8 @@
     </holidays>
     <holidays>
         <activityDate>2062-12-26</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -911,6 +1183,8 @@
     </holidays>
     <holidays>
         <activityDate>2061-12-26</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -918,6 +1192,8 @@
     </holidays>
     <holidays>
         <activityDate>2060-12-28</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -925,6 +1201,8 @@
     </holidays>
     <holidays>
         <activityDate>2059-12-26</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -932,6 +1210,8 @@
     </holidays>
     <holidays>
         <activityDate>2058-12-26</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -939,6 +1219,8 @@
     </holidays>
     <holidays>
         <activityDate>2057-12-26</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -946,6 +1228,8 @@
     </holidays>
     <holidays>
         <activityDate>2056-12-26</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -953,6 +1237,8 @@
     </holidays>
     <holidays>
         <activityDate>2055-12-28</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -960,6 +1246,8 @@
     </holidays>
     <holidays>
         <activityDate>2054-12-28</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -967,6 +1255,8 @@
     </holidays>
     <holidays>
         <activityDate>2053-12-26</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -974,6 +1264,8 @@
     </holidays>
     <holidays>
         <activityDate>2052-12-26</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -981,6 +1273,8 @@
     </holidays>
     <holidays>
         <activityDate>2051-12-26</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -988,6 +1282,8 @@
     </holidays>
     <holidays>
         <activityDate>2050-12-26</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -995,6 +1291,8 @@
     </holidays>
     <holidays>
         <activityDate>2049-12-28</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -1002,6 +1300,8 @@
     </holidays>
     <holidays>
         <activityDate>2048-12-28</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -1009,6 +1309,8 @@
     </holidays>
     <holidays>
         <activityDate>2047-12-26</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -1016,6 +1318,8 @@
     </holidays>
     <holidays>
         <activityDate>2046-12-26</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -1023,6 +1327,8 @@
     </holidays>
     <holidays>
         <activityDate>2045-12-26</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -1030,6 +1336,8 @@
     </holidays>
     <holidays>
         <activityDate>2044-12-26</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -1037,6 +1345,8 @@
     </holidays>
     <holidays>
         <activityDate>2043-12-28</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -1044,6 +1354,8 @@
     </holidays>
     <holidays>
         <activityDate>2042-12-26</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -1051,6 +1363,8 @@
     </holidays>
     <holidays>
         <activityDate>2041-12-26</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -1058,6 +1372,8 @@
     </holidays>
     <holidays>
         <activityDate>2040-12-26</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -1065,6 +1381,8 @@
     </holidays>
     <holidays>
         <activityDate>2039-12-26</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -1072,6 +1390,8 @@
     </holidays>
     <holidays>
         <activityDate>2038-12-28</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -1079,6 +1399,8 @@
     </holidays>
     <holidays>
         <activityDate>2037-12-28</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -1086,6 +1408,8 @@
     </holidays>
     <holidays>
         <activityDate>2036-12-26</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -1093,6 +1417,8 @@
     </holidays>
     <holidays>
         <activityDate>2035-12-26</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -1100,6 +1426,8 @@
     </holidays>
     <holidays>
         <activityDate>2034-12-26</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -1107,6 +1435,8 @@
     </holidays>
     <holidays>
         <activityDate>2033-12-26</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -1114,6 +1444,8 @@
     </holidays>
     <holidays>
         <activityDate>2032-12-28</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -1121,6 +1453,8 @@
     </holidays>
     <holidays>
         <activityDate>2031-12-26</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -1128,6 +1462,8 @@
     </holidays>
     <holidays>
         <activityDate>2030-12-26</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -1135,6 +1471,8 @@
     </holidays>
     <holidays>
         <activityDate>2029-12-26</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -1142,6 +1480,8 @@
     </holidays>
     <holidays>
         <activityDate>2028-12-26</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -1149,6 +1489,8 @@
     </holidays>
     <holidays>
         <activityDate>2027-12-28</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -1156,6 +1498,8 @@
     </holidays>
     <holidays>
         <activityDate>2026-12-28</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -1163,6 +1507,8 @@
     </holidays>
     <holidays>
         <activityDate>2025-12-26</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -1170,6 +1516,8 @@
     </holidays>
     <holidays>
         <activityDate>2024-12-26</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -1177,6 +1525,8 @@
     </holidays>
     <holidays>
         <activityDate>2023-12-26</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -1184,6 +1534,8 @@
     </holidays>
     <holidays>
         <activityDate>2022-12-26</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -1191,6 +1543,8 @@
     </holidays>
     <holidays>
         <activityDate>2021-12-28</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -1211,6 +1565,8 @@
     </holidays>
     <holidays>
         <activityDate>2080-12-25</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -1218,6 +1574,8 @@
     </holidays>
     <holidays>
         <activityDate>2079-12-25</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -1225,6 +1583,8 @@
     </holidays>
     <holidays>
         <activityDate>2078-12-27</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -1232,6 +1592,8 @@
     </holidays>
     <holidays>
         <activityDate>2077-12-27</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -1239,6 +1601,8 @@
     </holidays>
     <holidays>
         <activityDate>2076-12-25</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -1246,6 +1610,8 @@
     </holidays>
     <holidays>
         <activityDate>2075-12-25</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -1253,6 +1619,8 @@
     </holidays>
     <holidays>
         <activityDate>2074-12-25</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -1260,6 +1628,8 @@
     </holidays>
     <holidays>
         <activityDate>2073-12-25</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -1267,6 +1637,8 @@
     </holidays>
     <holidays>
         <activityDate>2072-12-27</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -1274,6 +1646,8 @@
     </holidays>
     <holidays>
         <activityDate>2071-12-25</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -1281,6 +1655,8 @@
     </holidays>
     <holidays>
         <activityDate>2070-12-25</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -1288,6 +1664,8 @@
     </holidays>
     <holidays>
         <activityDate>2069-12-25</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -1295,6 +1673,8 @@
     </holidays>
     <holidays>
         <activityDate>2068-12-25</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -1302,6 +1682,8 @@
     </holidays>
     <holidays>
         <activityDate>2067-12-27</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -1309,6 +1691,8 @@
     </holidays>
     <holidays>
         <activityDate>2066-12-27</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -1316,6 +1700,8 @@
     </holidays>
     <holidays>
         <activityDate>2065-12-25</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -1323,6 +1709,8 @@
     </holidays>
     <holidays>
         <activityDate>2064-12-25</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -1330,6 +1718,8 @@
     </holidays>
     <holidays>
         <activityDate>2063-12-25</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -1337,6 +1727,8 @@
     </holidays>
     <holidays>
         <activityDate>2062-12-25</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -1344,6 +1736,8 @@
     </holidays>
     <holidays>
         <activityDate>2061-12-27</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -1351,6 +1745,8 @@
     </holidays>
     <holidays>
         <activityDate>2060-12-27</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -1358,6 +1754,8 @@
     </holidays>
     <holidays>
         <activityDate>2059-12-25</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -1365,6 +1763,8 @@
     </holidays>
     <holidays>
         <activityDate>2058-12-25</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -1372,6 +1772,8 @@
     </holidays>
     <holidays>
         <activityDate>2057-12-25</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -1379,6 +1781,8 @@
     </holidays>
     <holidays>
         <activityDate>2056-12-25</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -1386,6 +1790,8 @@
     </holidays>
     <holidays>
         <activityDate>2055-12-27</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -1393,6 +1799,8 @@
     </holidays>
     <holidays>
         <activityDate>2054-12-25</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -1400,6 +1808,8 @@
     </holidays>
     <holidays>
         <activityDate>2053-12-25</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -1407,6 +1817,8 @@
     </holidays>
     <holidays>
         <activityDate>2052-12-25</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -1414,6 +1826,8 @@
     </holidays>
     <holidays>
         <activityDate>2051-12-25</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -1421,6 +1835,8 @@
     </holidays>
     <holidays>
         <activityDate>2050-12-27</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -1428,6 +1844,8 @@
     </holidays>
     <holidays>
         <activityDate>2049-12-27</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -1435,6 +1853,8 @@
     </holidays>
     <holidays>
         <activityDate>2048-12-25</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -1442,6 +1862,8 @@
     </holidays>
     <holidays>
         <activityDate>2047-12-25</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -1449,6 +1871,8 @@
     </holidays>
     <holidays>
         <activityDate>2046-12-25</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -1456,6 +1880,8 @@
     </holidays>
     <holidays>
         <activityDate>2045-12-25</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -1463,6 +1889,8 @@
     </holidays>
     <holidays>
         <activityDate>2044-12-27</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -1470,6 +1898,8 @@
     </holidays>
     <holidays>
         <activityDate>2043-12-25</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -1477,6 +1907,8 @@
     </holidays>
     <holidays>
         <activityDate>2042-12-25</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -1484,6 +1916,8 @@
     </holidays>
     <holidays>
         <activityDate>2041-12-25</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -1491,6 +1925,8 @@
     </holidays>
     <holidays>
         <activityDate>2040-12-25</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -1498,6 +1934,8 @@
     </holidays>
     <holidays>
         <activityDate>2039-12-27</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -1505,6 +1943,8 @@
     </holidays>
     <holidays>
         <activityDate>2038-12-27</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -1512,6 +1952,8 @@
     </holidays>
     <holidays>
         <activityDate>2037-12-25</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -1519,6 +1961,8 @@
     </holidays>
     <holidays>
         <activityDate>2036-12-25</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -1526,6 +1970,8 @@
     </holidays>
     <holidays>
         <activityDate>2035-12-25</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -1533,6 +1979,8 @@
     </holidays>
     <holidays>
         <activityDate>2034-12-25</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -1540,6 +1988,8 @@
     </holidays>
     <holidays>
         <activityDate>2033-12-27</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -1547,6 +1997,8 @@
     </holidays>
     <holidays>
         <activityDate>2032-12-27</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -1554,6 +2006,8 @@
     </holidays>
     <holidays>
         <activityDate>2031-12-25</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -1561,6 +2015,8 @@
     </holidays>
     <holidays>
         <activityDate>2030-12-25</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -1568,6 +2024,8 @@
     </holidays>
     <holidays>
         <activityDate>2029-12-25</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -1575,6 +2033,8 @@
     </holidays>
     <holidays>
         <activityDate>2028-12-25</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -1582,6 +2042,8 @@
     </holidays>
     <holidays>
         <activityDate>2027-12-27</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -1589,6 +2051,8 @@
     </holidays>
     <holidays>
         <activityDate>2026-12-25</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -1596,6 +2060,8 @@
     </holidays>
     <holidays>
         <activityDate>2025-12-25</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -1603,6 +2069,8 @@
     </holidays>
     <holidays>
         <activityDate>2024-12-25</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -1610,6 +2078,8 @@
     </holidays>
     <holidays>
         <activityDate>2023-12-25</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -1617,6 +2087,8 @@
     </holidays>
     <holidays>
         <activityDate>2022-12-27</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -1624,6 +2096,8 @@
     </holidays>
     <holidays>
         <activityDate>2021-12-27</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -1644,6 +2118,8 @@
     </holidays>
     <holidays>
         <activityDate>2080-04-08</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -1651,6 +2127,8 @@
     </holidays>
     <holidays>
         <activityDate>2079-04-24</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -1658,6 +2136,8 @@
     </holidays>
     <holidays>
         <activityDate>2078-04-04</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -1665,6 +2145,8 @@
     </holidays>
     <holidays>
         <activityDate>2077-04-12</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -1672,6 +2154,8 @@
     </holidays>
     <holidays>
         <activityDate>2076-04-20</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -1679,6 +2163,8 @@
     </holidays>
     <holidays>
         <activityDate>2075-04-08</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -1686,6 +2172,8 @@
     </holidays>
     <holidays>
         <activityDate>2074-04-16</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -1693,6 +2181,8 @@
     </holidays>
     <holidays>
         <activityDate>2073-03-27</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -1700,6 +2190,8 @@
     </holidays>
     <holidays>
         <activityDate>2072-04-11</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -1707,6 +2199,8 @@
     </holidays>
     <holidays>
         <activityDate>2071-04-20</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -1714,6 +2208,8 @@
     </holidays>
     <holidays>
         <activityDate>2070-03-31</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -1721,6 +2217,8 @@
     </holidays>
     <holidays>
         <activityDate>2069-04-15</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -1728,6 +2226,8 @@
     </holidays>
     <holidays>
         <activityDate>2068-04-23</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -1735,6 +2235,8 @@
     </holidays>
     <holidays>
         <activityDate>2067-04-04</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -1742,6 +2244,8 @@
     </holidays>
     <holidays>
         <activityDate>2066-04-12</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -1749,6 +2253,8 @@
     </holidays>
     <holidays>
         <activityDate>2065-03-30</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -1756,6 +2262,8 @@
     </holidays>
     <holidays>
         <activityDate>2064-04-07</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -1763,6 +2271,8 @@
     </holidays>
     <holidays>
         <activityDate>2063-04-16</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -1770,6 +2280,8 @@
     </holidays>
     <holidays>
         <activityDate>2062-03-27</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -1777,6 +2289,8 @@
     </holidays>
     <holidays>
         <activityDate>2061-04-11</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -1784,6 +2298,8 @@
     </holidays>
     <holidays>
         <activityDate>2060-04-19</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -1791,6 +2307,8 @@
     </holidays>
     <holidays>
         <activityDate>2059-03-31</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -1798,6 +2316,8 @@
     </holidays>
     <holidays>
         <activityDate>2058-04-15</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -1805,6 +2325,8 @@
     </holidays>
     <holidays>
         <activityDate>2057-04-23</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -1812,6 +2334,8 @@
     </holidays>
     <holidays>
         <activityDate>2056-04-03</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -1819,6 +2343,8 @@
     </holidays>
     <holidays>
         <activityDate>2055-04-19</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -1826,6 +2352,8 @@
     </holidays>
     <holidays>
         <activityDate>2054-03-30</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -1833,6 +2361,8 @@
     </holidays>
     <holidays>
         <activityDate>2053-04-07</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -1840,6 +2370,8 @@
     </holidays>
     <holidays>
         <activityDate>2052-04-22</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -1847,6 +2379,8 @@
     </holidays>
     <holidays>
         <activityDate>2051-04-03</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -1854,6 +2388,8 @@
     </holidays>
     <holidays>
         <activityDate>2050-04-11</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -1861,6 +2397,8 @@
     </holidays>
     <holidays>
         <activityDate>2049-04-19</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -1868,6 +2406,8 @@
     </holidays>
     <holidays>
         <activityDate>2048-04-06</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -1875,6 +2415,8 @@
     </holidays>
     <holidays>
         <activityDate>2047-04-15</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -1882,6 +2424,8 @@
     </holidays>
     <holidays>
         <activityDate>2046-03-26</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -1889,6 +2433,8 @@
     </holidays>
     <holidays>
         <activityDate>2045-04-10</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -1896,6 +2442,8 @@
     </holidays>
     <holidays>
         <activityDate>2044-04-18</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -1903,6 +2451,8 @@
     </holidays>
     <holidays>
         <activityDate>2043-03-30</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -1910,6 +2460,8 @@
     </holidays>
     <holidays>
         <activityDate>2042-04-07</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -1917,6 +2469,8 @@
     </holidays>
     <holidays>
         <activityDate>2041-04-22</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -1924,6 +2478,8 @@
     </holidays>
     <holidays>
         <activityDate>2040-04-02</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -1931,6 +2487,8 @@
     </holidays>
     <holidays>
         <activityDate>2039-04-11</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -1938,6 +2496,8 @@
     </holidays>
     <holidays>
         <activityDate>2038-04-26</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -1945,6 +2505,8 @@
     </holidays>
     <holidays>
         <activityDate>2037-04-06</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -1952,6 +2514,8 @@
     </holidays>
     <holidays>
         <activityDate>2036-04-14</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -1959,6 +2523,8 @@
     </holidays>
     <holidays>
         <activityDate>2035-03-26</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -1966,6 +2532,8 @@
     </holidays>
     <holidays>
         <activityDate>2034-04-10</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -1973,6 +2541,8 @@
     </holidays>
     <holidays>
         <activityDate>2033-04-18</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -1980,6 +2550,8 @@
     </holidays>
     <holidays>
         <activityDate>2032-03-29</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -1987,6 +2559,8 @@
     </holidays>
     <holidays>
         <activityDate>2031-04-14</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -1994,6 +2568,8 @@
     </holidays>
     <holidays>
         <activityDate>2030-04-22</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -2001,6 +2577,8 @@
     </holidays>
     <holidays>
         <activityDate>2029-04-02</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -2008,6 +2586,8 @@
     </holidays>
     <holidays>
         <activityDate>2028-04-17</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -2015,6 +2595,8 @@
     </holidays>
     <holidays>
         <activityDate>2027-03-29</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -2022,6 +2604,8 @@
     </holidays>
     <holidays>
         <activityDate>2026-04-06</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -2029,6 +2613,8 @@
     </holidays>
     <holidays>
         <activityDate>2025-04-21</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -2036,6 +2622,8 @@
     </holidays>
     <holidays>
         <activityDate>2024-04-01</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -2043,6 +2631,8 @@
     </holidays>
     <holidays>
         <activityDate>2023-04-10</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -2050,6 +2640,8 @@
     </holidays>
     <holidays>
         <activityDate>2022-04-18</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -2077,6 +2669,8 @@
     </holidays>
     <holidays>
         <activityDate>2080-04-05</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -2084,6 +2678,8 @@
     </holidays>
     <holidays>
         <activityDate>2079-04-21</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -2091,6 +2687,8 @@
     </holidays>
     <holidays>
         <activityDate>2078-04-01</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -2098,6 +2696,8 @@
     </holidays>
     <holidays>
         <activityDate>2077-04-09</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -2105,6 +2705,8 @@
     </holidays>
     <holidays>
         <activityDate>2076-04-17</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -2112,6 +2714,8 @@
     </holidays>
     <holidays>
         <activityDate>2075-04-05</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -2119,6 +2723,8 @@
     </holidays>
     <holidays>
         <activityDate>2074-04-13</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -2126,6 +2732,8 @@
     </holidays>
     <holidays>
         <activityDate>2073-03-24</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -2133,6 +2741,8 @@
     </holidays>
     <holidays>
         <activityDate>2072-04-08</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -2140,6 +2750,8 @@
     </holidays>
     <holidays>
         <activityDate>2071-04-17</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -2147,6 +2759,8 @@
     </holidays>
     <holidays>
         <activityDate>2070-03-28</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -2154,6 +2768,8 @@
     </holidays>
     <holidays>
         <activityDate>2069-04-12</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -2161,6 +2777,8 @@
     </holidays>
     <holidays>
         <activityDate>2068-04-20</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -2168,6 +2786,8 @@
     </holidays>
     <holidays>
         <activityDate>2067-04-01</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -2175,6 +2795,8 @@
     </holidays>
     <holidays>
         <activityDate>2066-04-09</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -2182,6 +2804,8 @@
     </holidays>
     <holidays>
         <activityDate>2065-03-27</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -2189,6 +2813,8 @@
     </holidays>
     <holidays>
         <activityDate>2064-04-04</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -2196,6 +2822,8 @@
     </holidays>
     <holidays>
         <activityDate>2063-04-13</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -2203,6 +2831,8 @@
     </holidays>
     <holidays>
         <activityDate>2062-03-24</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -2210,6 +2840,8 @@
     </holidays>
     <holidays>
         <activityDate>2061-04-08</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -2217,6 +2849,8 @@
     </holidays>
     <holidays>
         <activityDate>2060-04-16</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -2224,6 +2858,8 @@
     </holidays>
     <holidays>
         <activityDate>2059-03-28</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -2231,6 +2867,8 @@
     </holidays>
     <holidays>
         <activityDate>2058-04-12</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -2238,6 +2876,8 @@
     </holidays>
     <holidays>
         <activityDate>2057-04-20</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -2245,6 +2885,8 @@
     </holidays>
     <holidays>
         <activityDate>2056-03-31</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -2252,6 +2894,8 @@
     </holidays>
     <holidays>
         <activityDate>2055-04-16</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -2259,6 +2903,8 @@
     </holidays>
     <holidays>
         <activityDate>2054-03-27</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -2266,6 +2912,8 @@
     </holidays>
     <holidays>
         <activityDate>2053-04-04</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -2273,6 +2921,8 @@
     </holidays>
     <holidays>
         <activityDate>2052-04-19</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -2280,6 +2930,8 @@
     </holidays>
     <holidays>
         <activityDate>2051-03-31</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -2287,6 +2939,8 @@
     </holidays>
     <holidays>
         <activityDate>2050-04-08</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -2294,6 +2948,8 @@
     </holidays>
     <holidays>
         <activityDate>2049-04-16</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -2301,6 +2957,8 @@
     </holidays>
     <holidays>
         <activityDate>2048-04-03</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -2308,6 +2966,8 @@
     </holidays>
     <holidays>
         <activityDate>2047-04-12</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -2315,6 +2975,8 @@
     </holidays>
     <holidays>
         <activityDate>2046-03-23</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -2322,6 +2984,8 @@
     </holidays>
     <holidays>
         <activityDate>2045-04-07</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -2329,6 +2993,8 @@
     </holidays>
     <holidays>
         <activityDate>2044-04-15</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -2336,6 +3002,8 @@
     </holidays>
     <holidays>
         <activityDate>2043-03-27</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -2343,6 +3011,8 @@
     </holidays>
     <holidays>
         <activityDate>2042-04-04</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -2350,6 +3020,8 @@
     </holidays>
     <holidays>
         <activityDate>2041-04-19</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -2357,6 +3029,8 @@
     </holidays>
     <holidays>
         <activityDate>2040-03-30</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -2364,6 +3038,8 @@
     </holidays>
     <holidays>
         <activityDate>2039-04-08</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -2371,6 +3047,8 @@
     </holidays>
     <holidays>
         <activityDate>2038-04-23</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -2378,6 +3056,8 @@
     </holidays>
     <holidays>
         <activityDate>2037-04-03</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -2385,6 +3065,8 @@
     </holidays>
     <holidays>
         <activityDate>2036-04-11</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -2392,6 +3074,8 @@
     </holidays>
     <holidays>
         <activityDate>2035-03-23</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -2399,6 +3083,8 @@
     </holidays>
     <holidays>
         <activityDate>2034-04-07</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -2406,6 +3092,8 @@
     </holidays>
     <holidays>
         <activityDate>2033-04-15</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -2413,6 +3101,8 @@
     </holidays>
     <holidays>
         <activityDate>2032-03-26</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -2420,6 +3110,8 @@
     </holidays>
     <holidays>
         <activityDate>2031-04-11</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -2427,6 +3119,8 @@
     </holidays>
     <holidays>
         <activityDate>2030-04-19</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -2434,6 +3128,8 @@
     </holidays>
     <holidays>
         <activityDate>2029-03-30</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -2441,6 +3137,8 @@
     </holidays>
     <holidays>
         <activityDate>2028-04-14</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -2448,6 +3146,8 @@
     </holidays>
     <holidays>
         <activityDate>2027-03-26</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -2455,6 +3155,8 @@
     </holidays>
     <holidays>
         <activityDate>2026-04-03</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -2462,6 +3164,8 @@
     </holidays>
     <holidays>
         <activityDate>2025-04-18</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -2469,6 +3173,8 @@
     </holidays>
     <holidays>
         <activityDate>2024-03-29</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -2476,6 +3182,8 @@
     </holidays>
     <holidays>
         <activityDate>2023-04-07</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -2483,6 +3191,8 @@
     </holidays>
     <holidays>
         <activityDate>2022-04-15</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -2524,6 +3234,8 @@
     </holidays>
     <holidays>
         <activityDate>2022-01-03</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -2531,6 +3243,8 @@
     </holidays>
     <holidays>
         <activityDate>2023-01-02</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -2538,6 +3252,8 @@
     </holidays>
     <holidays>
         <activityDate>2024-01-01</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -2545,6 +3261,8 @@
     </holidays>
     <holidays>
         <activityDate>2025-01-01</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -2552,6 +3270,8 @@
     </holidays>
     <holidays>
         <activityDate>2026-01-01</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -2559,6 +3279,8 @@
     </holidays>
     <holidays>
         <activityDate>2027-01-01</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -2566,6 +3288,8 @@
     </holidays>
     <holidays>
         <activityDate>2028-01-01</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -2573,6 +3297,8 @@
     </holidays>
     <holidays>
         <activityDate>2029-01-01</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -2580,6 +3306,8 @@
     </holidays>
     <holidays>
         <activityDate>2030-01-01</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -2587,6 +3315,8 @@
     </holidays>
     <holidays>
         <activityDate>2031-01-01</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -2594,6 +3324,8 @@
     </holidays>
     <holidays>
         <activityDate>2032-01-01</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -2601,6 +3333,8 @@
     </holidays>
     <holidays>
         <activityDate>2033-01-01</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -2608,6 +3342,8 @@
     </holidays>
     <holidays>
         <activityDate>2034-01-02</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -2615,6 +3351,8 @@
     </holidays>
     <holidays>
         <activityDate>2035-01-01</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -2622,6 +3360,8 @@
     </holidays>
     <holidays>
         <activityDate>2036-01-01</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -2629,6 +3369,8 @@
     </holidays>
     <holidays>
         <activityDate>2037-01-01</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -2636,6 +3378,8 @@
     </holidays>
     <holidays>
         <activityDate>2038-01-01</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -2643,6 +3387,8 @@
     </holidays>
     <holidays>
         <activityDate>2039-01-01</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -2650,6 +3396,8 @@
     </holidays>
     <holidays>
         <activityDate>2040-01-02</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -2657,6 +3405,8 @@
     </holidays>
     <holidays>
         <activityDate>2041-01-01</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -2664,6 +3414,8 @@
     </holidays>
     <holidays>
         <activityDate>2042-01-01</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -2671,6 +3423,8 @@
     </holidays>
     <holidays>
         <activityDate>2043-01-01</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -2678,6 +3432,8 @@
     </holidays>
     <holidays>
         <activityDate>2044-01-01</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -2685,6 +3441,8 @@
     </holidays>
     <holidays>
         <activityDate>2045-01-02</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -2692,6 +3450,8 @@
     </holidays>
     <holidays>
         <activityDate>2046-01-01</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -2699,6 +3459,8 @@
     </holidays>
     <holidays>
         <activityDate>2047-01-01</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -2706,6 +3468,8 @@
     </holidays>
     <holidays>
         <activityDate>2048-01-01</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -2713,6 +3477,8 @@
     </holidays>
     <holidays>
         <activityDate>2049-01-01</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -2720,6 +3486,8 @@
     </holidays>
     <holidays>
         <activityDate>2050-01-01</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -2727,6 +3495,8 @@
     </holidays>
     <holidays>
         <activityDate>2051-01-02</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -2734,6 +3504,8 @@
     </holidays>
     <holidays>
         <activityDate>2052-01-01</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -2741,6 +3513,8 @@
     </holidays>
     <holidays>
         <activityDate>2053-01-01</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -2748,6 +3522,8 @@
     </holidays>
     <holidays>
         <activityDate>2054-01-01</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -2755,6 +3531,8 @@
     </holidays>
     <holidays>
         <activityDate>2055-01-01</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -2762,6 +3540,8 @@
     </holidays>
     <holidays>
         <activityDate>2056-01-01</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -2769,6 +3549,8 @@
     </holidays>
     <holidays>
         <activityDate>2057-01-01</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -2776,6 +3558,8 @@
     </holidays>
     <holidays>
         <activityDate>2058-01-01</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -2783,6 +3567,8 @@
     </holidays>
     <holidays>
         <activityDate>2059-01-01</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -2790,6 +3576,8 @@
     </holidays>
     <holidays>
         <activityDate>2060-01-01</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -2797,6 +3585,8 @@
     </holidays>
     <holidays>
         <activityDate>2061-01-01</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -2804,6 +3594,8 @@
     </holidays>
     <holidays>
         <activityDate>2062-01-02</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -2811,6 +3603,8 @@
     </holidays>
     <holidays>
         <activityDate>2063-01-01</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -2818,6 +3612,8 @@
     </holidays>
     <holidays>
         <activityDate>2064-01-01</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -2825,6 +3621,8 @@
     </holidays>
     <holidays>
         <activityDate>2065-01-01</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -2832,6 +3630,8 @@
     </holidays>
     <holidays>
         <activityDate>2066-01-01</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -2839,6 +3639,8 @@
     </holidays>
     <holidays>
         <activityDate>2067-01-01</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -2846,6 +3648,8 @@
     </holidays>
     <holidays>
         <activityDate>2068-01-02</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -2853,6 +3657,8 @@
     </holidays>
     <holidays>
         <activityDate>2069-01-01</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -2860,6 +3666,8 @@
     </holidays>
     <holidays>
         <activityDate>2070-01-01</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -2867,6 +3675,8 @@
     </holidays>
     <holidays>
         <activityDate>2071-01-01</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -2874,6 +3684,8 @@
     </holidays>
     <holidays>
         <activityDate>2072-01-01</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -2881,6 +3693,8 @@
     </holidays>
     <holidays>
         <activityDate>2073-01-02</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -2888,6 +3702,8 @@
     </holidays>
     <holidays>
         <activityDate>2074-01-01</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -2895,6 +3711,8 @@
     </holidays>
     <holidays>
         <activityDate>2075-01-01</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -2902,6 +3720,8 @@
     </holidays>
     <holidays>
         <activityDate>2076-01-01</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -2909,6 +3729,8 @@
     </holidays>
     <holidays>
         <activityDate>2077-01-01</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -2916,6 +3738,8 @@
     </holidays>
     <holidays>
         <activityDate>2078-01-01</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -2923,6 +3747,8 @@
     </holidays>
     <holidays>
         <activityDate>2079-01-02</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>
@@ -2930,6 +3756,8 @@
     </holidays>
     <holidays>
         <activityDate>2080-01-01</activityDate>
+        <businessHours>ACH</businessHours>
+        <businessHours>Direct Debit</businessHours>
         <businessHours>Elixir Financial Holiday Setup</businessHours>
         <description>National Public Holiday</description>
         <isRecurring>false</isRecurring>

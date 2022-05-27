@@ -15,4 +15,6 @@
     <tabs>standard-report</tabs>
     <tabs>standard-Dashboard</tabs>
     <tabs>loan__Fiscal_Year__c</tabs>
+    <tabs>Breach_Register__c</tabs>
+    <tabs>Redraw_Request__c</tabs>
 </CustomApplication>

@@ -3,8 +3,8 @@
     <decisions>
         <name>Application_is_new_or_not</name>
         <label>Application is new or not</label>
-        <locationX>781</locationX>
-        <locationY>315</locationY>
+        <locationX>965</locationX>
+        <locationY>273</locationY>
         <defaultConnector>
             <targetReference>LoanStatusCommentaryCheck</targetReference>
         </defaultConnector>
@@ -20,7 +20,7 @@
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>Set_ERF</targetReference>
+                <targetReference>Set_ERF_Field</targetReference>
             </connector>
             <label>New</label>
         </rules>
@@ -28,11 +28,11 @@
     <decisions>
         <name>isERFFlagChanged</name>
         <label>isERFFlagChanged</label>
-        <locationX>1311</locationX>
-        <locationY>356</locationY>
+        <locationX>1294</locationX>
+        <locationY>445</locationY>
         <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
         <rules>
-            <name>False_to_True</name>
+            <name>False_To_True</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
                 <leftValueReference>$Record.ERF_to_be_charged__c</leftValueReference>
@@ -49,20 +49,20 @@
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>Get</targetReference>
+                <targetReference>Get_Record</targetReference>
             </connector>
-            <label>False to True</label>
+            <label>False To True</label>
         </rules>
     </decisions>
     <decisions>
         <name>isProductEdited</name>
         <label>isProductEdited</label>
-        <locationX>398</locationX>
-        <locationY>827</locationY>
+        <locationX>407</locationX>
+        <locationY>964</locationY>
         <defaultConnector>
             <targetReference>isERFFlagChanged</targetReference>
         </defaultConnector>
-        <defaultConnectorLabel>Not Edited</defaultConnectorLabel>
+        <defaultConnectorLabel>Product Not Edited</defaultConnectorLabel>
         <rules>
             <name>Product_Edited</name>
             <conditionLogic>and</conditionLogic>
@@ -74,7 +74,7 @@
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>Get</targetReference>
+                <targetReference>Get_Record</targetReference>
             </connector>
             <label>Product Edited</label>
         </rules>
@@ -83,7 +83,7 @@
         <name>LoanStatusCommentaryCheck</name>
         <label>LoanStatusCommentaryCheck</label>
         <locationX>50</locationX>
-        <locationY>550</locationY>
+        <locationY>486</locationY>
         <defaultConnector>
             <targetReference>isProductEdited</targetReference>
         </defaultConnector>
@@ -99,16 +99,11 @@
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>updateCommentaryLastUpdated</targetReference>
+                <targetReference>updateCommentaryLastUpdate</targetReference>
             </connector>
             <label>LoanStatusCommentaryChanged</label>
         </rules>
     </decisions>
-    <formulas>
-        <name>ERFFlagFalseToTrue</name>
-        <dataType>Boolean</dataType>
-        <expression>ISCHANGED({!$Record.ERF_to_be_charged__c})</expression>
-    </formulas>
     <formulas>
         <name>isNew</name>
         <dataType>Boolean</dataType>
@@ -141,10 +136,10 @@
     </processMetadataValues>
     <processType>AutoLaunchedFlow</processType>
     <recordLookups>
-        <name>Get</name>
+        <name>Get_Record</name>
         <label>Get Record</label>
-        <locationX>1242</locationX>
-        <locationY>931</locationY>
+        <locationX>826</locationX>
+        <locationY>479</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Set_Record</targetReference>
@@ -156,17 +151,15 @@
                 <elementReference>$Record.genesis__CL_Product__r.clcommon__Product_Name__c</elementReference>
             </value>
         </filters>
-        <getFirstRecordOnly>true</getFirstRecordOnly>
         <object>ERF_Percentage_Of_Different_Products__mdt</object>
-        <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
     <recordUpdates>
-        <name>Set_ERF</name>
+        <name>Set_ERF_Field</name>
         <label>Set ERF Field</label>
-        <locationX>521</locationX>
-        <locationY>414</locationY>
+        <locationX>590</locationX>
+        <locationY>363</locationY>
         <connector>
-            <targetReference>Get</targetReference>
+            <targetReference>Get_Record</targetReference>
         </connector>
         <filters>
             <field>genesis__CL_Product_Name__c</field>
@@ -193,8 +186,8 @@
     <recordUpdates>
         <name>Set_Record</name>
         <label>Set Record</label>
-        <locationX>1045</locationX>
-        <locationY>601</locationY>
+        <locationX>1190</locationX>
+        <locationY>531</locationY>
         <filters>
             <field>ERF_to_be_charged__c</field>
             <operator>EqualTo</operator>
@@ -205,22 +198,22 @@
         <inputAssignments>
             <field>ERF_if_paid_within__c</field>
             <value>
-                <elementReference>Get.ERF_if_paid_within__c</elementReference>
+                <elementReference>Get_Record.ERF_if_paid_within__c</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
             <field>ERF_percentage__c</field>
             <value>
-                <elementReference>Get.ERF_percentage__c</elementReference>
+                <elementReference>Get_Record.ERF_percentage__c</elementReference>
             </value>
         </inputAssignments>
         <inputReference>$Record</inputReference>
     </recordUpdates>
     <recordUpdates>
-        <name>updateCommentaryLastUpdated</name>
-        <label>updateCommentaryLastUpdated</label>
-        <locationX>59</locationX>
-        <locationY>815</locationY>
+        <name>updateCommentaryLastUpdate</name>
+        <label>updateCommentaryLastUpdate</label>
+        <locationX>129</locationX>
+        <locationY>826</locationY>
         <connector>
             <targetReference>isProductEdited</targetReference>
         </connector>
@@ -232,15 +225,6 @@
         </inputAssignments>
         <inputReference>$Record</inputReference>
     </recordUpdates>
-    <start>
-        <locationX>657</locationX>
-        <locationY>50</locationY>
-        <connector>
-            <targetReference>Application_is_new_or_not</targetReference>
-        </connector>
-        <object>genesis__Applications__c</object>
-        <recordTriggerType>CreateAndUpdate</recordTriggerType>
-        <triggerType>RecordBeforeSave</triggerType>
-    </start>
+    <startElementReference>Application_is_new_or_not</startElementReference>
     <status>Active</status>
 </Flow>

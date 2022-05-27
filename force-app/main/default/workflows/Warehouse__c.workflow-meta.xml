@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <alerts>
+        <fullName>Bank_Account_Change_Rejection</fullName>
+        <description>Bank Account Change Rejection</description>
+        <protected>false</protected>
+        <recipients>
+            <recipient>cjackson@orde.com.au</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>ppolemikos@orde.com.au</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>rjohnston@orde.com.au</recipient>
+            <type>user</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>cnotify__Notification_Templates/Bank_Account_Details_Change_Rejected</template>
+    </alerts>
+    <alerts>
+        <fullName>Warehouse_Bank_Change_Approval</fullName>
+        <description>Warehouse Bank Change Approval</description>
+        <protected>false</protected>
+        <recipients>
+            <recipient>cjackson@orde.com.au</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>ppolemikos@orde.com.au</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>rjohnston@orde.com.au</recipient>
+            <type>user</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>cnotify__Notification_Templates/Warehouse_Account_Change_Approval</template>
+    </alerts>
+    <fieldUpdates>
+        <fullName>Collections_Account_Name_Change</fullName>
+        <field>Collection_Bank_Account_Name__c</field>
+        <formula>Collection_Account_Name_Change__c</formula>
+        <name>Collections Account Name Change</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Collections_Account_Number_Change</fullName>
+        <field>Collection_Bank_Account_Number__c</field>
+        <formula>Collection_Account_Number_Change__c</formula>
+        <name>Collections Account Number Change</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Collections_BSB_Change</fullName>
+        <field>Collection_BSB_Number__c</field>
+        <formula>Collection_Account_BSB_Change__c</formula>
+        <name>Collections BSB Change</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Disbursal_Account_BSB_Change</fullName>
+        <field>BSB_Number__c</field>
+        <formula>Disbursal_Bank_BSB_Change__c</formula>
+        <name>Disbursal Account BSB Change</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Disbursal_Account_Name_Change</fullName>
+        <field>Bank_Account_Name__c</field>
+        <formula>Disbursal_Bank_Name_Change__c</formula>
+        <name>Disbursal Account Name Change</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Disbursal_Account_Number_Change</fullName>
+        <field>Bank_Account_Number__c</field>
+        <formula>Disbursal_Bank_Account_Change__c</formula>
+        <name>Disbursal Account Number Change</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Trust_Account_BSB_Change</fullName>
+        <field>Trust_BSB_Number__c</field>
+        <formula>Trust_Bank_BSB_Change__c</formula>
+        <name>Trust Account BSB Change</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Trust_Account_Name_Change</fullName>
+        <field>Trust_Account_Name__c</field>
+        <formula>Trust_Bank_Name_Change__c</formula>
+        <name>Trust Account Name Change</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Trust_Account_Number_Change</fullName>
+        <field>Trust_Account_Number__c</field>
+        <formula>Trust_Bank_Number_Change__c</formula>
+        <name>Trust Account Number Change</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+</Workflow>

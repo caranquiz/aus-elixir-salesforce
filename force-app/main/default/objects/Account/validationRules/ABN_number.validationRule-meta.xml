@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ABN_number</fullName>
+    <active>true</active>
+    <description>ABN number must be recorded</description>
+    <errorConditionFormula>AND(ISPICKVAL(Direct_Accredited__c, &quot;Yes&quot;), ISBLANK(ABN__c))</errorConditionFormula>
+    <errorMessage>Please enter ABN</errorMessage>
+</ValidationRule>

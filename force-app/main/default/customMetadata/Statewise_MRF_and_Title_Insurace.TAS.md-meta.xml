@@ -4,7 +4,7 @@
     <protected>false</protected>
     <values>
         <field>Mortgage_Registration_Fee__c</field>
-        <value xsi:type="xsd:double">138.51</value>
+        <value xsi:type="xsd:double">141.07</value>
     </values>
     <values>
         <field>Stamp_Duty__c</field>

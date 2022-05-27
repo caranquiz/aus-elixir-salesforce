@@ -1,0 +1,53 @@
+/**
+ * Created by Ethan Sargent on 27/08/2021.
+ */
+
+@import 'c/cssLibrary';
+
+
+h3
+{
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.tableEmptyContent
+{
+    text-align: center;
+    color: #999;
+    width: 100%;
+}
+
+.fieldLabel
+{
+    font-size: 10px;
+    width: 110px;
+}
+
+.fieldValue
+{
+    font-size:12px;
+}
+
+.mobile-table
+{
+    width: 80%;
+}
+
+.mobile-actions
+{
+    width: 100%;
+}
+
+
+.mobile-button-wrapper
+{
+    float: right;
+    display: flex;
+}
+
+.mobile-button-item
+{
+    padding-left: 5px;
+
+}

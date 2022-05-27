@@ -1259,17 +1259,5 @@ global class ConstantValues {
   
   public static final String READY_TO_BOOK='Ready to Book';
   public static final String SETTLEMENT_BOOKED='Settlement Booked';
-  
-  //Interest Rate Changes Constants
-  public static final String FIXED ='Fixed';
-  public static final String SUCCESSFULLY = '% successfully.';
-  public static final String RATE_CHANGED_SUCCESS = 'SUCCESS::Rate has been changed to ';
-  public static final String RATE_CHANGE_FAILURE_MSG= 'FAILURE::Rate could not have been changed due to ERROR::';
-  public static final String EQUAL_MONTHLY_INSTALLMENTS = 'Equal Monthly Installments';
-  public static final String NEW_DUE_DAY_MISSING = 'New Due Day is missing.';
-  public static final String LOAN_FREQUENCY_IS_MISSING = 'Loan Frequency is missing.';
-  public static final String TOTAL_NO_OF_INSTALLMENTS_MISSING = 'Total number of installments is missing.';
-  public static final String INTEREST_ONLY_PERIOD_MISSING = 'Interest only period is missing.';
-  public static final String PRINCIPAL_REMAINING = 'Principal Remaining';
 
 }

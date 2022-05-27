@@ -26,6 +26,42 @@
         <type>Flexipage</type>
         <pageOrSobjectType>Gift_Register__c</pageOrSobjectType>
     </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <comment>Action override created by Lightning App Builder during activation.</comment>
+        <content>Training_Register</content>
+        <formFactor>Small</formFactor>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Flexipage</type>
+        <pageOrSobjectType>Training_Register__c</pageOrSobjectType>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <comment>Action override created by Lightning App Builder during activation.</comment>
+        <content>Training_Register</content>
+        <formFactor>Large</formFactor>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Flexipage</type>
+        <pageOrSobjectType>Training_Register__c</pageOrSobjectType>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <comment>Action override created by Lightning App Builder during activation.</comment>
+        <content>Lead_Layout_Lending</content>
+        <formFactor>Small</formFactor>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Flexipage</type>
+        <pageOrSobjectType>Lead</pageOrSobjectType>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <comment>Action override created by Lightning App Builder during activation.</comment>
+        <content>Lead_Layout_Lending</content>
+        <formFactor>Large</formFactor>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Flexipage</type>
+        <pageOrSobjectType>Lead</pageOrSobjectType>
+    </actionOverrides>
     <brand>
         <headerColor>#05D7F2</headerColor>
         <logo>ORDE_Logo_Cyan_RGB_300dpi</logo>
@@ -405,7 +441,7 @@
         <formFactor>Large</formFactor>
         <pageOrSobjectType>standard-home</pageOrSobjectType>
         <type>Flexipage</type>
-        <profile>ReadOnly</profile>
+        <profile>Read Only</profile>
     </profileActionOverrides>
     <profileActionOverrides>
         <actionName>View</actionName>
@@ -442,96 +478,6 @@
         <recordType>Contact.Customer</recordType>
         <type>Flexipage</type>
         <profile>Credit Analyst</profile>
-    </profileActionOverrides>
-    <profileActionOverrides>
-        <actionName>View</actionName>
-        <content>Lead_Layout_Lending</content>
-        <formFactor>Large</formFactor>
-        <pageOrSobjectType>Lead</pageOrSobjectType>
-        <recordType>Lead.Broker</recordType>
-        <type>Flexipage</type>
-        <profile>Admin</profile>
-    </profileActionOverrides>
-    <profileActionOverrides>
-        <actionName>View</actionName>
-        <content>Loan_Scenario</content>
-        <formFactor>Small</formFactor>
-        <pageOrSobjectType>Opportunity</pageOrSobjectType>
-        <recordType>Opportunity.Loan_Scenario</recordType>
-        <type>Flexipage</type>
-        <profile>BDM</profile>
-    </profileActionOverrides>
-    <profileActionOverrides>
-        <actionName>View</actionName>
-        <content>Loan_Scenario</content>
-        <formFactor>Large</formFactor>
-        <pageOrSobjectType>Opportunity</pageOrSobjectType>
-        <recordType>Opportunity.Loan_Scenario</recordType>
-        <type>Flexipage</type>
-        <profile>BDM</profile>
-    </profileActionOverrides>
-    <profileActionOverrides>
-        <actionName>View</actionName>
-        <content>Loan_Scenario</content>
-        <formFactor>Small</formFactor>
-        <pageOrSobjectType>Opportunity</pageOrSobjectType>
-        <recordType>Opportunity.Loan_Scenario</recordType>
-        <type>Flexipage</type>
-        <profile>Credit Analyst</profile>
-    </profileActionOverrides>
-    <profileActionOverrides>
-        <actionName>View</actionName>
-        <content>Loan_Scenario</content>
-        <formFactor>Large</formFactor>
-        <pageOrSobjectType>Opportunity</pageOrSobjectType>
-        <recordType>Opportunity.Loan_Scenario</recordType>
-        <type>Flexipage</type>
-        <profile>Credit Analyst</profile>
-    </profileActionOverrides>
-    <profileActionOverrides>
-        <actionName>View</actionName>
-        <content>Loan_Scenario</content>
-        <formFactor>Small</formFactor>
-        <pageOrSobjectType>Opportunity</pageOrSobjectType>
-        <recordType>Opportunity.Loan_Scenario</recordType>
-        <type>Flexipage</type>
-        <profile>Elixir System Admin</profile>
-    </profileActionOverrides>
-    <profileActionOverrides>
-        <actionName>View</actionName>
-        <content>Loan_Scenario</content>
-        <formFactor>Large</formFactor>
-        <pageOrSobjectType>Opportunity</pageOrSobjectType>
-        <recordType>Opportunity.Loan_Scenario</recordType>
-        <type>Flexipage</type>
-        <profile>Elixir System Admin</profile>
-    </profileActionOverrides>
-    <profileActionOverrides>
-        <actionName>View</actionName>
-        <content>Broker</content>
-        <formFactor>Small</formFactor>
-        <pageOrSobjectType>Account</pageOrSobjectType>
-        <recordType>Account.Broker_Type</recordType>
-        <type>Flexipage</type>
-        <profile>Credit Analyst</profile>
-    </profileActionOverrides>
-    <profileActionOverrides>
-        <actionName>View</actionName>
-        <content>Broker</content>
-        <formFactor>Large</formFactor>
-        <pageOrSobjectType>Account</pageOrSobjectType>
-        <recordType>Account.Broker_Type</recordType>
-        <type>Flexipage</type>
-        <profile>Credit Analyst</profile>
-    </profileActionOverrides>
-    <profileActionOverrides>
-        <actionName>View</actionName>
-        <content>Broker</content>
-        <formFactor>Small</formFactor>
-        <pageOrSobjectType>Account</pageOrSobjectType>
-        <recordType>Account.Broker_Type</recordType>
-        <type>Flexipage</type>
-        <profile>Elixir System Admin</profile>
     </profileActionOverrides>
     <profileActionOverrides>
         <actionName>View</actionName>
@@ -648,24 +594,6 @@
         <pageOrSobjectType>Lead</pageOrSobjectType>
         <recordType>Lead.Aggregator_Direct_Accredited_Broker</recordType>
         <type>Flexipage</type>
-        <profile>CJ Temp</profile>
-    </profileActionOverrides>
-    <profileActionOverrides>
-        <actionName>View</actionName>
-        <content>Lead_Layout_Lending</content>
-        <formFactor>Large</formFactor>
-        <pageOrSobjectType>Lead</pageOrSobjectType>
-        <recordType>Lead.Aggregator_Direct_Accredited_Broker</recordType>
-        <type>Flexipage</type>
-        <profile>CJ Temp</profile>
-    </profileActionOverrides>
-    <profileActionOverrides>
-        <actionName>View</actionName>
-        <content>Lead_Layout_Lending</content>
-        <formFactor>Small</formFactor>
-        <pageOrSobjectType>Lead</pageOrSobjectType>
-        <recordType>Lead.Aggregator_Direct_Accredited_Broker</recordType>
-        <type>Flexipage</type>
         <profile>Credit Analyst</profile>
     </profileActionOverrides>
     <profileActionOverrides>
@@ -718,7 +646,7 @@
         <content>Lead_Layout_Lending</content>
         <formFactor>Small</formFactor>
         <pageOrSobjectType>Lead</pageOrSobjectType>
-        <recordType>Lead.Broker</recordType>
+        <recordType>Lead.Direct_Accredited_ACR</recordType>
         <type>Flexipage</type>
         <profile>BDM</profile>
     </profileActionOverrides>
@@ -727,7 +655,7 @@
         <content>Lead_Layout_Lending</content>
         <formFactor>Large</formFactor>
         <pageOrSobjectType>Lead</pageOrSobjectType>
-        <recordType>Lead.Broker</recordType>
+        <recordType>Lead.Direct_Accredited_ACR</recordType>
         <type>Flexipage</type>
         <profile>BDM</profile>
     </profileActionOverrides>
@@ -736,25 +664,7 @@
         <content>Lead_Layout_Lending</content>
         <formFactor>Small</formFactor>
         <pageOrSobjectType>Lead</pageOrSobjectType>
-        <recordType>Lead.Broker</recordType>
-        <type>Flexipage</type>
-        <profile>CJ Temp</profile>
-    </profileActionOverrides>
-    <profileActionOverrides>
-        <actionName>View</actionName>
-        <content>Lead_Layout_Lending</content>
-        <formFactor>Large</formFactor>
-        <pageOrSobjectType>Lead</pageOrSobjectType>
-        <recordType>Lead.Broker</recordType>
-        <type>Flexipage</type>
-        <profile>CJ Temp</profile>
-    </profileActionOverrides>
-    <profileActionOverrides>
-        <actionName>View</actionName>
-        <content>Lead_Layout_Lending</content>
-        <formFactor>Small</formFactor>
-        <pageOrSobjectType>Lead</pageOrSobjectType>
-        <recordType>Lead.Broker</recordType>
+        <recordType>Lead.Direct_Accredited_ACR</recordType>
         <type>Flexipage</type>
         <profile>Credit Analyst</profile>
     </profileActionOverrides>
@@ -763,7 +673,7 @@
         <content>Lead_Layout_Lending</content>
         <formFactor>Large</formFactor>
         <pageOrSobjectType>Lead</pageOrSobjectType>
-        <recordType>Lead.Broker</recordType>
+        <recordType>Lead.Direct_Accredited_ACR</recordType>
         <type>Flexipage</type>
         <profile>Credit Analyst</profile>
     </profileActionOverrides>
@@ -772,7 +682,7 @@
         <content>Lead_Layout_Lending</content>
         <formFactor>Small</formFactor>
         <pageOrSobjectType>Lead</pageOrSobjectType>
-        <recordType>Lead.Broker</recordType>
+        <recordType>Lead.Direct_Accredited_ACR</recordType>
         <type>Flexipage</type>
         <profile>Elixir System Admin</profile>
     </profileActionOverrides>
@@ -781,7 +691,7 @@
         <content>Lead_Layout_Lending</content>
         <formFactor>Large</formFactor>
         <pageOrSobjectType>Lead</pageOrSobjectType>
-        <recordType>Lead.Broker</recordType>
+        <recordType>Lead.Direct_Accredited_ACR</recordType>
         <type>Flexipage</type>
         <profile>Elixir System Admin</profile>
     </profileActionOverrides>
@@ -790,9 +700,99 @@
         <content>Lead_Layout_Lending</content>
         <formFactor>Small</formFactor>
         <pageOrSobjectType>Lead</pageOrSobjectType>
-        <recordType>Lead.Broker</recordType>
+        <recordType>Lead.Direct_Accredited_ACR</recordType>
         <type>Flexipage</type>
         <profile>Admin</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Lead_Layout_Lending</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Lead</pageOrSobjectType>
+        <recordType>Lead.Direct_Accredited_ACR</recordType>
+        <type>Flexipage</type>
+        <profile>Admin</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Loan_Scenario</content>
+        <formFactor>Small</formFactor>
+        <pageOrSobjectType>Opportunity</pageOrSobjectType>
+        <recordType>Opportunity.Loan_Scenario</recordType>
+        <type>Flexipage</type>
+        <profile>BDM</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Loan_Scenario</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Opportunity</pageOrSobjectType>
+        <recordType>Opportunity.Loan_Scenario</recordType>
+        <type>Flexipage</type>
+        <profile>BDM</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Loan_Scenario</content>
+        <formFactor>Small</formFactor>
+        <pageOrSobjectType>Opportunity</pageOrSobjectType>
+        <recordType>Opportunity.Loan_Scenario</recordType>
+        <type>Flexipage</type>
+        <profile>Credit Analyst</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Loan_Scenario</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Opportunity</pageOrSobjectType>
+        <recordType>Opportunity.Loan_Scenario</recordType>
+        <type>Flexipage</type>
+        <profile>Credit Analyst</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Loan_Scenario</content>
+        <formFactor>Small</formFactor>
+        <pageOrSobjectType>Opportunity</pageOrSobjectType>
+        <recordType>Opportunity.Loan_Scenario</recordType>
+        <type>Flexipage</type>
+        <profile>Elixir System Admin</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Loan_Scenario</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Opportunity</pageOrSobjectType>
+        <recordType>Opportunity.Loan_Scenario</recordType>
+        <type>Flexipage</type>
+        <profile>Elixir System Admin</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Broker</content>
+        <formFactor>Small</formFactor>
+        <pageOrSobjectType>Account</pageOrSobjectType>
+        <recordType>Account.Broker_Type</recordType>
+        <type>Flexipage</type>
+        <profile>Credit Analyst</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Broker</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Account</pageOrSobjectType>
+        <recordType>Account.Broker_Type</recordType>
+        <type>Flexipage</type>
+        <profile>Credit Analyst</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Broker</content>
+        <formFactor>Small</formFactor>
+        <pageOrSobjectType>Account</pageOrSobjectType>
+        <recordType>Account.Broker_Type</recordType>
+        <type>Flexipage</type>
+        <profile>Elixir System Admin</profile>
     </profileActionOverrides>
     <profileActionOverrides>
         <actionName>View</actionName>
@@ -823,24 +823,511 @@
     </profileActionOverrides>
     <profileActionOverrides>
         <actionName>View</actionName>
-        <content>Broker</content>
+        <content>Operational_Breach</content>
         <formFactor>Small</formFactor>
-        <pageOrSobjectType>Account</pageOrSobjectType>
-        <recordType>Account.Broker_Type</recordType>
+        <pageOrSobjectType>Breach_Register__c</pageOrSobjectType>
+        <recordType>Breach_Register__c.Operational_Breach</recordType>
         <type>Flexipage</type>
-        <profile>CJ Temp</profile>
+        <profile>Elixir System Admin</profile>
     </profileActionOverrides>
     <profileActionOverrides>
         <actionName>View</actionName>
-        <content>Broker</content>
+        <content>Operational_Breach</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Breach_Register__c</pageOrSobjectType>
+        <recordType>Breach_Register__c.Operational_Breach</recordType>
+        <type>Flexipage</type>
+        <profile>Elixir System Admin</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Customer_Person_Account_Individuals</content>
+        <formFactor>Small</formFactor>
+        <pageOrSobjectType>Account</pageOrSobjectType>
+        <recordType>Account.Borrower</recordType>
+        <type>Flexipage</type>
+        <profile>BDM</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Customer_Person_Account_Individuals</content>
         <formFactor>Large</formFactor>
         <pageOrSobjectType>Account</pageOrSobjectType>
-        <recordType>Account.Broker_Type</recordType>
+        <recordType>Account.Borrower</recordType>
         <type>Flexipage</type>
-        <profile>CJ Temp</profile>
+        <profile>BDM</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Customer_Person_Account_Individuals</content>
+        <formFactor>Small</formFactor>
+        <pageOrSobjectType>Account</pageOrSobjectType>
+        <recordType>Account.Borrower</recordType>
+        <type>Flexipage</type>
+        <profile>Credit Analyst</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Customer_Person_Account_Individuals</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Account</pageOrSobjectType>
+        <recordType>Account.Borrower</recordType>
+        <type>Flexipage</type>
+        <profile>Credit Analyst</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Customer_Person_Account_Individuals</content>
+        <formFactor>Small</formFactor>
+        <pageOrSobjectType>Account</pageOrSobjectType>
+        <recordType>Account.Borrower</recordType>
+        <type>Flexipage</type>
+        <profile>Elixir System Admin</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Customer_Person_Account_Individuals</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Account</pageOrSobjectType>
+        <recordType>Account.Borrower</recordType>
+        <type>Flexipage</type>
+        <profile>Elixir System Admin</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Customer_Person_Account_Individuals</content>
+        <formFactor>Small</formFactor>
+        <pageOrSobjectType>Account</pageOrSobjectType>
+        <recordType>Account.Borrower</recordType>
+        <type>Flexipage</type>
+        <profile>Admin</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Customer_Person_Account_Individuals</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Account</pageOrSobjectType>
+        <recordType>Account.Borrower</recordType>
+        <type>Flexipage</type>
+        <profile>Admin</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Compliance_Breach</content>
+        <formFactor>Small</formFactor>
+        <pageOrSobjectType>Breach_Register__c</pageOrSobjectType>
+        <recordType>Breach_Register__c.Compliance_Breach</recordType>
+        <type>Flexipage</type>
+        <profile>Elixir System Admin</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Compliance_Breach</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Breach_Register__c</pageOrSobjectType>
+        <recordType>Breach_Register__c.Compliance_Breach</recordType>
+        <type>Flexipage</type>
+        <profile>Elixir System Admin</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Compliance_Breach</content>
+        <formFactor>Small</formFactor>
+        <pageOrSobjectType>Breach_Register__c</pageOrSobjectType>
+        <recordType>Breach_Register__c.Compliance_Breach</recordType>
+        <type>Flexipage</type>
+        <profile>Admin</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Compliance_Breach</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Breach_Register__c</pageOrSobjectType>
+        <recordType>Breach_Register__c.Compliance_Breach</recordType>
+        <type>Flexipage</type>
+        <profile>Admin</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Operational_Breach</content>
+        <formFactor>Small</formFactor>
+        <pageOrSobjectType>Breach_Register__c</pageOrSobjectType>
+        <recordType>Breach_Register__c.Operational_Breach</recordType>
+        <type>Flexipage</type>
+        <profile>BDM</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Operational_Breach</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Breach_Register__c</pageOrSobjectType>
+        <recordType>Breach_Register__c.Operational_Breach</recordType>
+        <type>Flexipage</type>
+        <profile>BDM</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Operational_Breach</content>
+        <formFactor>Small</formFactor>
+        <pageOrSobjectType>Breach_Register__c</pageOrSobjectType>
+        <recordType>Breach_Register__c.Operational_Breach</recordType>
+        <type>Flexipage</type>
+        <profile>Credit Analyst</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Operational_Breach</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Breach_Register__c</pageOrSobjectType>
+        <recordType>Breach_Register__c.Operational_Breach</recordType>
+        <type>Flexipage</type>
+        <profile>Credit Analyst</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Operational_Breach</content>
+        <formFactor>Small</formFactor>
+        <pageOrSobjectType>Breach_Register__c</pageOrSobjectType>
+        <recordType>Breach_Register__c.Operational_Breach</recordType>
+        <type>Flexipage</type>
+        <profile>Admin</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Operational_Breach</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Breach_Register__c</pageOrSobjectType>
+        <recordType>Breach_Register__c.Operational_Breach</recordType>
+        <type>Flexipage</type>
+        <profile>Admin</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Compliance_Breach</content>
+        <formFactor>Small</formFactor>
+        <pageOrSobjectType>Breach_Register__c</pageOrSobjectType>
+        <recordType>Breach_Register__c.Compliance_Breach</recordType>
+        <type>Flexipage</type>
+        <profile>BDM</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Compliance_Breach</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Breach_Register__c</pageOrSobjectType>
+        <recordType>Breach_Register__c.Compliance_Breach</recordType>
+        <type>Flexipage</type>
+        <profile>BDM</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Compliance_Breach</content>
+        <formFactor>Small</formFactor>
+        <pageOrSobjectType>Breach_Register__c</pageOrSobjectType>
+        <recordType>Breach_Register__c.Compliance_Breach</recordType>
+        <type>Flexipage</type>
+        <profile>Credit Analyst</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Compliance_Breach</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Breach_Register__c</pageOrSobjectType>
+        <recordType>Breach_Register__c.Compliance_Breach</recordType>
+        <type>Flexipage</type>
+        <profile>Credit Analyst</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Customer_Person_Account_Individuals</content>
+        <formFactor>Small</formFactor>
+        <pageOrSobjectType>Account</pageOrSobjectType>
+        <recordType>PersonAccount.PersonAccount</recordType>
+        <type>Flexipage</type>
+        <profile>BDM</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Customer_Person_Account_Individuals</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Account</pageOrSobjectType>
+        <recordType>PersonAccount.PersonAccount</recordType>
+        <type>Flexipage</type>
+        <profile>BDM</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Customer_Person_Account_Individuals</content>
+        <formFactor>Small</formFactor>
+        <pageOrSobjectType>Account</pageOrSobjectType>
+        <recordType>PersonAccount.PersonAccount</recordType>
+        <type>Flexipage</type>
+        <profile>Credit Analyst</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Customer_Person_Account_Individuals</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Account</pageOrSobjectType>
+        <recordType>PersonAccount.PersonAccount</recordType>
+        <type>Flexipage</type>
+        <profile>Credit Analyst</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Customer_Person_Account_Individuals</content>
+        <formFactor>Small</formFactor>
+        <pageOrSobjectType>Account</pageOrSobjectType>
+        <recordType>PersonAccount.PersonAccount</recordType>
+        <type>Flexipage</type>
+        <profile>Elixir System Admin</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Customer_Person_Account_Individuals</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Account</pageOrSobjectType>
+        <recordType>PersonAccount.PersonAccount</recordType>
+        <type>Flexipage</type>
+        <profile>Elixir System Admin</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Customer_Person_Account_Individuals</content>
+        <formFactor>Small</formFactor>
+        <pageOrSobjectType>Account</pageOrSobjectType>
+        <recordType>PersonAccount.PersonAccount</recordType>
+        <type>Flexipage</type>
+        <profile>Admin</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Customer_Person_Account_Individuals</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Account</pageOrSobjectType>
+        <recordType>PersonAccount.PersonAccount</recordType>
+        <type>Flexipage</type>
+        <profile>Admin</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Privacy_Breach</content>
+        <formFactor>Small</formFactor>
+        <pageOrSobjectType>Breach_Register__c</pageOrSobjectType>
+        <recordType>Breach_Register__c.Privacy_Breach</recordType>
+        <type>Flexipage</type>
+        <profile>BDM</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Privacy_Breach</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Breach_Register__c</pageOrSobjectType>
+        <recordType>Breach_Register__c.Privacy_Breach</recordType>
+        <type>Flexipage</type>
+        <profile>BDM</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Privacy_Breach</content>
+        <formFactor>Small</formFactor>
+        <pageOrSobjectType>Breach_Register__c</pageOrSobjectType>
+        <recordType>Breach_Register__c.Privacy_Breach</recordType>
+        <type>Flexipage</type>
+        <profile>Credit Analyst</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Privacy_Breach</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Breach_Register__c</pageOrSobjectType>
+        <recordType>Breach_Register__c.Privacy_Breach</recordType>
+        <type>Flexipage</type>
+        <profile>Credit Analyst</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Privacy_Breach</content>
+        <formFactor>Small</formFactor>
+        <pageOrSobjectType>Breach_Register__c</pageOrSobjectType>
+        <recordType>Breach_Register__c.Privacy_Breach</recordType>
+        <type>Flexipage</type>
+        <profile>Elixir System Admin</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Privacy_Breach</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Breach_Register__c</pageOrSobjectType>
+        <recordType>Breach_Register__c.Privacy_Breach</recordType>
+        <type>Flexipage</type>
+        <profile>Elixir System Admin</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Privacy_Breach</content>
+        <formFactor>Small</formFactor>
+        <pageOrSobjectType>Breach_Register__c</pageOrSobjectType>
+        <recordType>Breach_Register__c.Privacy_Breach</recordType>
+        <type>Flexipage</type>
+        <profile>Admin</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Privacy_Breach</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Breach_Register__c</pageOrSobjectType>
+        <recordType>Breach_Register__c.Privacy_Breach</recordType>
+        <type>Flexipage</type>
+        <profile>Admin</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>AML_Breach</content>
+        <formFactor>Small</formFactor>
+        <pageOrSobjectType>Breach_Register__c</pageOrSobjectType>
+        <recordType>Breach_Register__c.AML_Breach</recordType>
+        <type>Flexipage</type>
+        <profile>BDM</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>AML_Breach</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Breach_Register__c</pageOrSobjectType>
+        <recordType>Breach_Register__c.AML_Breach</recordType>
+        <type>Flexipage</type>
+        <profile>BDM</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>AML_Breach</content>
+        <formFactor>Small</formFactor>
+        <pageOrSobjectType>Breach_Register__c</pageOrSobjectType>
+        <recordType>Breach_Register__c.AML_Breach</recordType>
+        <type>Flexipage</type>
+        <profile>Credit Analyst</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>AML_Breach</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Breach_Register__c</pageOrSobjectType>
+        <recordType>Breach_Register__c.AML_Breach</recordType>
+        <type>Flexipage</type>
+        <profile>Credit Analyst</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>AML_Breach</content>
+        <formFactor>Small</formFactor>
+        <pageOrSobjectType>Breach_Register__c</pageOrSobjectType>
+        <recordType>Breach_Register__c.AML_Breach</recordType>
+        <type>Flexipage</type>
+        <profile>Elixir System Admin</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>AML_Breach</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Breach_Register__c</pageOrSobjectType>
+        <recordType>Breach_Register__c.AML_Breach</recordType>
+        <type>Flexipage</type>
+        <profile>Elixir System Admin</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>AML_Breach</content>
+        <formFactor>Small</formFactor>
+        <pageOrSobjectType>Breach_Register__c</pageOrSobjectType>
+        <recordType>Breach_Register__c.AML_Breach</recordType>
+        <type>Flexipage</type>
+        <profile>Admin</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>AML_Breach</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Breach_Register__c</pageOrSobjectType>
+        <recordType>Breach_Register__c.AML_Breach</recordType>
+        <type>Flexipage</type>
+        <profile>Admin</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>SubAggregators</content>
+        <formFactor>Small</formFactor>
+        <pageOrSobjectType>Account</pageOrSobjectType>
+        <recordType>Account.Sub_Aggregator</recordType>
+        <type>Flexipage</type>
+        <profile>BDM</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>SubAggregators</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Account</pageOrSobjectType>
+        <recordType>Account.Sub_Aggregator</recordType>
+        <type>Flexipage</type>
+        <profile>BDM</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>SubAggregators</content>
+        <formFactor>Small</formFactor>
+        <pageOrSobjectType>Account</pageOrSobjectType>
+        <recordType>Account.Sub_Aggregator</recordType>
+        <type>Flexipage</type>
+        <profile>Credit Analyst</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>SubAggregators</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Account</pageOrSobjectType>
+        <recordType>Account.Sub_Aggregator</recordType>
+        <type>Flexipage</type>
+        <profile>Credit Analyst</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>SubAggregators</content>
+        <formFactor>Small</formFactor>
+        <pageOrSobjectType>Account</pageOrSobjectType>
+        <recordType>Account.Sub_Aggregator</recordType>
+        <type>Flexipage</type>
+        <profile>Elixir System Admin</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>SubAggregators</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Account</pageOrSobjectType>
+        <recordType>Account.Sub_Aggregator</recordType>
+        <type>Flexipage</type>
+        <profile>Elixir System Admin</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>SubAggregators</content>
+        <formFactor>Small</formFactor>
+        <pageOrSobjectType>Account</pageOrSobjectType>
+        <recordType>Account.Sub_Aggregator</recordType>
+        <type>Flexipage</type>
+        <profile>Admin</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>SubAggregators</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Account</pageOrSobjectType>
+        <recordType>Account.Sub_Aggregator</recordType>
+        <type>Flexipage</type>
+        <profile>Admin</profile>
     </profileActionOverrides>
     <tabs>standard-home</tabs>
     <tabs>Application_Pipeline</tabs>
+    <tabs>Settlements_Dashboard</tabs>
     <tabs>genesis__Applications__c</tabs>
     <tabs>loan__Loan_Account__c</tabs>
     <tabs>standard-Account</tabs>
@@ -851,7 +1338,8 @@
     <tabs>standard-Dashboard</tabs>
     <tabs>Training_Register__c</tabs>
     <tabs>Gift_Register__c</tabs>
-    <tabs>clcommon__Collateral__c</tabs>
+    <tabs>Breach_Register__c</tabs>
+    <tabs>Redraw_Request__c</tabs>
     <uiType>Lightning</uiType>
     <utilityBar>Credit_Team_UtilityBar</utilityBar>
 </CustomApplication>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Queue xmlns="http://soap.sforce.com/2006/04/metadata">
+    <doesSendEmailToMembers>false</doesSendEmailToMembers>
+    <name>Customer Assist Queue</name>
+    <queueMembers>
+        <users>
+            <user>cjackson@orde.com.au</user>
+            <user>csandford@orde.com.au</user>
+            <user>jshastri@orde.com.au</user>
+            <user>msinclair@orde.com.au</user>
+        </users>
+    </queueMembers>
+    <queueSobject>
+        <sobjectType>Task</sobjectType>
+    </queueSobject>
+    <queueSobject>
+        <sobjectType>genesis__Task_Setup__c</sobjectType>
+    </queueSobject>
+</Queue>

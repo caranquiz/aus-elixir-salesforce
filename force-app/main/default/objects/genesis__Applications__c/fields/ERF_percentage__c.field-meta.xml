@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>ERF_percentage__c</fullName>
+    <description>RJohnston 14/2/22 - https://wingategroup.atlassian.net/jira/software/c/projects/AMS/boards/8?modal=detail&amp;selectedIssue=AMS-1191
+To determine the ERF % fee that will be charged on a loan</description>
     <externalId>false</externalId>
     <label>ERF %</label>
     <precision>18</precision>

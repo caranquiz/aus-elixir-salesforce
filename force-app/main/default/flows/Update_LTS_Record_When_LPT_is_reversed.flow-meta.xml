@@ -35,15 +35,6 @@
         </value>
     </processMetadataValues>
     <processType>AutoLaunchedFlow</processType>
-    <start>
-        <locationX>50</locationX>
-        <locationY>50</locationY>
-        <connector>
-            <targetReference>Update_Consolidated_Loan_Balance</targetReference>
-        </connector>
-        <object>loan__Repayment_Transaction_Adjustment__c</object>
-        <recordTriggerType>Create</recordTriggerType>
-        <triggerType>RecordAfterSave</triggerType>
-    </start>
+    <startElementReference>Update_Consolidated_Loan_Balance</startElementReference>
     <status>Active</status>
 </Flow>

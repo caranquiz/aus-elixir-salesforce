@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>clcommon__Life_Insurance_Beneficiary_Name__c</fullName>
+    <defaultValue>false</defaultValue>
+    <deprecated>false</deprecated>
+    <description>This field will store the name of the beneficiary of the Life Insurance. This is an Account Lookup.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>This field will store the name of the beneficiary of the Life Insurance. This is an Account Lookup.</inlineHelpText>
+    <label>Life Insurance Beneficiary Name</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

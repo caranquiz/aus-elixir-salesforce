@@ -11,9 +11,11 @@
     <columns>genesis__Loan_Amount__c</columns>
     <columns>Aggregator__c</columns>
     <columns>Broker__c</columns>
-    <columns>Brokers_BDM__c</columns>
     <columns>Urgent__c</columns>
     <columns>CREATEDBY_USER</columns>
     <filterScope>Everything</filterScope>
     <label>All</label>
+    <sharedTo>
+        <role>Staff</role>
+    </sharedTo>
 </ListView>

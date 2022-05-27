@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <alerts>
+        <fullName>Department_approval_notice</fullName>
+        <description>Department approval notice</description>
+        <protected>false</protected>
+        <recipients>
+            <recipient>pcoghlan@orde.com.au</recipient>
+            <type>user</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>unfiled$public/Submit_to_Legal</template>
+    </alerts>
+    <alerts>
+        <fullName>New_breach_created</fullName>
+        <description>New breach created</description>
+        <protected>false</protected>
+        <recipients>
+            <recipient>pcoghlan@orde.com.au</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>rharkness@orde.com.au</recipient>
+            <type>user</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>cnotify__Notification_Templates/A_new_breach_has_been_created</template>
+    </alerts>
+    <alerts>
+        <fullName>Your_breach_report_has_been_rejected</fullName>
+        <description>Your breach report has been rejected</description>
+        <protected>false</protected>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>cnotify__Notification_Templates/Breach_rejection</template>
+    </alerts>
+    <fieldUpdates>
+        <fullName>Approved</fullName>
+        <field>Approved__c</field>
+        <literalValue>1</literalValue>
+        <name>Approved</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Department_head_approved</fullName>
+        <field>Stage__c</field>
+        <literalValue>Submitted to Legal and Compliance</literalValue>
+        <name>Department head approved</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Status_update</fullName>
+        <field>Stage__c</field>
+        <literalValue>Open</literalValue>
+        <name>Status update</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Submitted_for_approval</fullName>
+        <description>Submitted to department head for approval</description>
+        <field>Stage__c</field>
+        <literalValue>Submitted to Department Head</literalValue>
+        <name>Submitted for approval</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>stage_update</fullName>
+        <field>Stage__c</field>
+        <literalValue>Open</literalValue>
+        <name>stage update</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <tasks>
+        <fullName>Re_submit_breach_report</fullName>
+        <assignedToType>owner</assignedToType>
+        <description>Please re-submit the breach report within 48 hours.</description>
+        <dueDateOffset>2</dueDateOffset>
+        <notifyAssignee>false</notifyAssignee>
+        <priority>Normal</priority>
+        <protected>false</protected>
+        <status>Not Started</status>
+        <subject>Re-submit breach report</subject>
+    </tasks>
+</Workflow>

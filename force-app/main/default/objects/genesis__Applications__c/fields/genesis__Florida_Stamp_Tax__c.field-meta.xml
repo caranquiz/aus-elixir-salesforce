@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>genesis__Florida_Stamp_Tax__c</fullName>
+    <defaultValue>false</defaultValue>
+    <deprecated>false</deprecated>
+    <description>Indicate if the Florida documentary stamp tax is applicable.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Indicate if the Florida documentary stamp tax is applicable.</inlineHelpText>
+    <label>Florida Stamp Tax</label>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

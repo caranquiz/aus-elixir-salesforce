@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ConnectedApp xmlns="http://soap.sforce.com/2006/04/metadata">
+    <contactEmail>salesforce@argologic.com.au</contactEmail>
+    <label>Video for Email Templates Pardot Connection</label>
+    <oauthConfig>
+        <callbackUrl>https://orde.my.salesforce.com/services/authcallback/VideoComponentAuthProvider</callbackUrl>
+        <consumerKey>3MVG9G9pzCUSkzZuymCifCP53m77XS3GwlLdEbwYCsU7tYI0CDewOTkLCYZcZCJwo8HNPlkbzVC6ycvGBI7gK</consumerKey>
+        <isAdminApproved>false</isAdminApproved>
+        <scopes>RefreshToken</scopes>
+        <scopes>Pardot</scopes>
+    </oauthConfig>
+</ConnectedApp>

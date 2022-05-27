@@ -1,0 +1,62 @@
+<!--
+ - Created by Ethan Sargent on 3/08/2021.
+ -->
+
+<!-- Cl Direct Debit View -->
+<template>
+
+    <c-orde-table
+            table-data={directDebitTableInfo}
+            field-map={directDebitFieldMap}
+            allow-edit="true"
+            allow-delete="true"
+            onrecordedit={handleRecordEdit}
+            onrecorddelete={handleRecordDelete}
+    ></c-orde-table>
+    <template if:true={remainingIoGreaterThanZero}>
+        <div class="remaining-io-info-wrapper slds-p-around_medium">
+            <p class="remaining-io-info">As you have chosen to make Interest Only payments for this loan, no amount will be shown as your payment is calculated off your daily loan balance, and may change from month to month.</p>
+        </div>
+    </template>
+    <div class="slds-clearfix">
+        <lightning-button
+                class="slds-float_right orde-button"
+                variant="base"
+                label={newButtonText}
+                onclick={handleCreateNew}
+        ></lightning-button>
+    </div>
+
+    <template if:true={showEdit}>
+        <c-cl-direct-debit-manager
+                record-id={recordId}
+                loan-account-id={loanAccountId}
+                is-delete={showDelete}
+                direct-debit-type={directDebitType}
+                amount-type={amountType}
+                debit-date={debitDate}
+                transaction-amount={transactionAmount}
+                frequency={frequency}
+                condition-information={additionalConditions}
+                onflowcancel={handleCancelEdit}
+                onflowsuccess={handleSuccess}
+        ></c-cl-direct-debit-manager>
+    </template>
+    <template if:true={showDelete}>
+        <c-cl-direct-debit-manager
+                record-id={recordId}
+                condition-information={additionalConditions}
+                is-delete="true"
+                onflowcancel={handleCancelDelete}
+                onflowsuccess={handleSuccess}
+        ></c-cl-direct-debit-manager>
+    </template>
+    <template if:true={showNew}>
+        <c-cl-direct-debit-manager
+                condition-information={additionalConditions}
+                onflowcancel={handleCancelNew}
+                onflowsuccess={handleSuccess}
+                loan-account-id={loanAccountId}
+        ></c-cl-direct-debit-manager>
+    </template>
+</template>

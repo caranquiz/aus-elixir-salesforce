@@ -1,0 +1,1151 @@
+<soapenv:Envelope
+	xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+	<soapenv:Body>
+		<Application
+			xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+			xmlns="http://resources.nextgen.net/Reference/MAL/schema/NextGen-MALI/2008/12/05" Type="NewApplication" xsi:schemaLocation="http://resources.nextgen.net/Reference/MAL/schema/NextGen-MALI/2008/12/05 file:///C:/AOL/Web/LIM/ORDEBrokerApplication/Schema/ApplicationBatch.xsd">
+			<Identifier>200100096</Identifier>
+			<SalesChannel SalesChannelType="LenderAssigned">
+...
+</SalesChannel>
+			<SalesChannel SalesChannelType="Broker">
+...
+</SalesChannel>
+			<SalesChannel SalesChannelDescription="BDM">
+...
+</SalesChannel>
+			<Comment/>
+			<PartySegment>
+				<Party Type="Applicant" PrimaryApplicant="Yes">
+					<Identifier>1097796793796</Identifier>
+					<Privacy SignatureVerification="No" PointVerificationCompleted="No" ExistingCustomer="Yes" AllowCreditCheck="Yes" AllowThirdPartyDisclosure="Yes" ESignConsent="No">
+						<PointVerification DocumentType="abcd" DocumentNumber="12345" NameOnDocument="Josie Ann Test" VersionSighted="Original" VerificationCategory="Primary" Photographic="Yes" NameVerified="Yes" AddressVerified="Yes" SignatureVerified="Yes" DOBVerified="Yes">
+							<PlaceOfIssue>
+								<City>NSW</City>
+							</PlaceOfIssue>
+							<EndDate>2014-11-28</EndDate>
+						</PointVerification>
+
+                        <PointVerification DocumentType="abcd" DocumentNumber="12345" NameOnDocument="Josie Ann Test" VersionSighted="Original" VerificationCategory="Primary" Photographic="Yes" NameVerified="Yes" AddressVerified="Yes" SignatureVerified="Yes" DOBVerified="Yes">
+							<PlaceOfIssue>
+								<City>NSW</City>
+							</PlaceOfIssue>
+							<EndDate>2014-11-28</EndDate>
+						</PointVerification>
+						<DocumentsSightedBy LoanWriter="No"/>
+					</Privacy>
+					<ResponsibleLend AnyChange="No"/>
+					<Person FirstHomeBuyer="Yes" CustomerOfLender="Yes" EmployeeOfLender="Yes" Director="No" PreviousName="Jones" Sex="Female">
+						<PersonName>
+							<NameTitle Value="Miss"/>
+							<FirstName>Josie</FirstName>
+							<OtherName>Ann</OtherName>
+							<Surname>Test</Surname>
+						</PersonName>
+						<DateOfBirth>1980-01-01</DateOfBirth>
+						<MaritalStatus Status="Single" OtherDescription=""/>
+						<Dependent Age="1"/>
+						<Residency PermanentInAustralia="Yes" Status="Citizen">
+							<Country ISO3166="AU"/>
+						</Residency>
+						<CreditHistory>
+							<BorrowerProvHistory LegalIssue="Yes">
+								<RelatedEntityRef/>
+								<Comment>Test Declaration 1</Comment>
+							</BorrowerProvHistory>
+							<BorrowerProvHistory JudgementIssue="Yes">
+								<RelatedEntityRef/>
+								<Comment>Test Declaration 2</Comment>
+							</BorrowerProvHistory>
+						</CreditHistory>
+						<ContactDetails>
+							<AddressDetails Residential="Yes" Mailing="No" PriorAddress="No" PostSettlement="No" HousingStatus="Renting">
+								<RelatedEntityRef>1647390865503</RelatedEntityRef>
+								<StartAndEndDates>
+									<StartDate>2005-01-01</StartDate>
+								</StartAndEndDates>
+							</AddressDetails>
+							<AddressDetails Residential="No" Mailing="Yes" PriorAddress="No" PostSettlement="No">
+								<RelatedEntityRef>1647390865503</RelatedEntityRef>
+							</AddressDetails>
+							<HomePhone PreferredContactMethod="No">
+								<Phone>
+									<FixedPhone AreaCode="02">99999999</FixedPhone>
+								</Phone>
+								<Phone>
+									<Mobile>0401999999</Mobile>
+								</Phone>
+							</HomePhone>
+							<WorkPhone PreferredContactMethod="No">
+								<Phone>
+									<FixedPhone AreaCode="02">88888888</FixedPhone>
+								</Phone>
+								<Phone>
+									<Fax AreaCode="02">77777777</Fax>
+								</Phone>
+							</WorkPhone>
+							<Email PreferredContactMethod="Yes">test@test.com.au</Email>
+						</ContactDetails>
+                        <Employment OnProbation="No" PrimaryEmployment="No" PriorEmployment="No" Role="">
+							<Unemployed OnBenefits="Yes" Student="Yes" HomeDuties="Yes"/>
+							<StartAndEndDates>
+								<StartDate>2009-05-02</StartDate>
+							</StartAndEndDates>
+                            <EmploymentIncome>
+                                <ValueItem Value="456000">
+									<Identifier>idm1038945120-1</Identifier>
+									<Income Type="SelfEmployed" Description="" AddbackType="GrossSalary">
+										<Period Unit="Yearly">
+											<StartDate>2020-07-01</StartDate>
+											<EndDate>2021-06-30</EndDate>
+										</Period>
+									</Income>
+								</ValueItem>
+								<ValueItem Value="421980">
+									<Identifier>idm1038858848-1</Identifier>
+									<Income Type="SelfEmployed" Description="" AddbackType="GrossSalary">
+										<Period Unit="Yearly">
+											<StartDate>2019-07-01</StartDate>
+											<EndDate>2020-06-30</EndDate>
+										</Period>
+									</Income>
+								</ValueItem>
+							</EmploymentIncome>
+						</Employment>
+					</Person>
+				</Party>
+			</PartySegment>
+			<AddressSegment>
+				<AddressWrapper>
+					<Identifier>1647390865503</Identifier>
+					<Address>
+						<UnitNo>56</UnitNo>
+						<StreetNo>1</StreetNo>
+						<Street Type="Road">ADDISON</Street>
+						<City>MANLY</City>
+						<State Name="NSW"/>
+						<Postcode>2095</Postcode>
+						<Country ISO3166="AU"/>
+					</Address>
+				</AddressWrapper>
+			</AddressSegment>
+			<FinancialSegment NoOtherAssets="No" NoLiabilities="No" NoIncome="No">
+				<ValueItem Value="450000">
+					<Identifier>1097796822609</Identifier>
+					<OwnedByAllApplicants/>
+					<Asset Class="CurrentSecurity" SecurityType="RegisteredMortgage">
+						<RealEstate Transaction="Purchasing" PrimarySecurity="Yes" PropertyPrimaryPurpose="OwnerOccupied" ApprovalInPrinciple="No" Status="Established" Holding="Sole">
+							<Residential WillOwn3UnitsInComplex="No" WillOwn25PercentOfComplex="No" OffThePlan="No" Type="FullyDetachedHouse"/>
+							<EstimatedValue EstimateBasis="ApplicantEstimate">450000</EstimatedValue>
+							<ContractPrice LicencedRealEstateAgentContract="No" ContractPriceAmount="450000"/>
+							<VisitContact Type="Customer"/>
+							<Location>
+								<RelatedEntityRef>1647390865503</RelatedEntityRef>
+								<Title TitleType="Torrens" TenureType="Freehold"/>
+							</Location>
+						</RealEstate>
+					</Asset>
+				</ValueItem>
+				<ValueItem Value="500000">
+					<Identifier>1598152639934</Identifier>
+					<OwnedByAllApplicants/>
+					<Asset Class="CurrentAsset">
+						<RealEstate Status="Established" PropertyPrimaryPurpose="Investment" PrimarySecurity="No" ApprovalInPrinciple="No">
+							<Residential Type="AptUnitFlat"/>
+							<EstimatedValue EstimateBasis="ApplicantEstimate">500000</EstimatedValue>
+							<RentalIncome EvidenceOfTenancy="No" RentalAmount="500">
+								<Period Unit="Weekly"/>
+							</RentalIncome>
+							<Location>
+								<RelatedEntityRef>1647390865503</RelatedEntityRef>
+							</Location>
+							<ExistMortgage Priority="First">
+								<RelatedEntityRef>1598152639934-ExistMortgage</RelatedEntityRef>
+							</ExistMortgage>
+						</RealEstate>
+					</Asset>
+				</ValueItem>
+				<ValueItem Value="499000">
+					<Identifier>1598152639934-ExistMortgage</Identifier>
+					<OwnedByAllApplicants/>
+					<Liability Description="Real Estate Asset Linked Liability" Type="MortgageLoan" UnpaidBalance="499000" ScheduledBalance="2000">
+						<RelatedEntityRef>1598152639934-Party</RelatedEntityRef>
+						<ExistingLoan ClearingFromThisLoan="No">
+							<Repayments Value="2000">
+								<Period Unit="Monthly"/>
+							</Repayments>
+						</ExistingLoan>
+					</Liability>
+				</ValueItem>
+				<ValueItem Value="100000">
+					<Identifier>1415066689632</Identifier>
+					<OwnedByAllApplicants/>
+					<Asset Class="CurrentAsset">
+						<NonRealEstate PrimarySecurity="No">
+							<OtherAsset OtherAssetType="Boat" OtherAssetDescription=""/>
+							<EstimatedValue EstimateBasis="ApplicantEstimate">100000</EstimatedValue>
+						</NonRealEstate>
+					</Asset>
+				</ValueItem>
+				<ValueItem Value="175000">
+					<Identifier>1415066692174</Identifier>
+					<OwnedByAllApplicants/>
+					<Asset Class="CurrentAsset">
+						<NonRealEstate PrimarySecurity="No">
+							<OtherAsset OtherAssetType="PersonalEquityInAnyPrivateBusiness" OtherAssetDescription=""/>
+							<EstimatedValue EstimateBasis="ApplicantEstimate">175000</EstimatedValue>
+						</NonRealEstate>
+					</Asset>
+				</ValueItem>
+				<ValueItem Value="10">
+					<Identifier>1598150466433</Identifier>
+					<OwnedByAllApplicants/>
+					<Asset Class="CurrentAsset">
+						<NonRealEstate PrimarySecurity="No">
+							<OtherAsset OtherAssetType="Cash" OtherAssetDescription=""/>
+							<EstimatedValue EstimateBasis="ApplicantEstimate">10</EstimatedValue>
+						</NonRealEstate>
+					</Asset>
+				</ValueItem>
+				<ValueItem Value="10">
+					<Identifier>1598155651625</Identifier>
+					<OwnedByAllApplicants/>
+					<Asset Class="CurrentAsset">
+						<RelatedEntityRef>1598155651625-Party</RelatedEntityRef>
+						<NonRealEstate PrimarySecurity="No">
+							<OtherAsset OtherAssetType="CashManagement" OtherAssetDescription="Deposit Account">
+								<AccountNumber AcctNbr="" AcctName="" BSB=""/>
+							</OtherAsset>
+							<EstimatedValue EstimateBasis="ApplicantEstimate">10</EstimatedValue>
+						</NonRealEstate>
+					</Asset>
+				</ValueItem>
+				<ValueItem Value="10">
+					<Identifier>1598155652172</Identifier>
+					<OwnedByAllApplicants/>
+					<Asset Class="CurrentAsset">
+						<RelatedEntityRef>1598155652172-Party</RelatedEntityRef>
+						<NonRealEstate PrimarySecurity="No">
+							<OtherAsset OtherAssetType="ChequeAccount" OtherAssetDescription="Deposit Account">
+								<AccountNumber AcctNbr="" AcctName="" BSB=""/>
+							</OtherAsset>
+							<EstimatedValue EstimateBasis="ApplicantEstimate">10</EstimatedValue>
+						</NonRealEstate>
+					</Asset>
+				</ValueItem>
+				<ValueItem Value="10">
+					<Identifier>1598155652342</Identifier>
+					<OwnedByAllApplicants/>
+					<Asset Class="CurrentAsset">
+						<NonRealEstate PrimarySecurity="No">
+							<OtherAsset OtherAssetType="Collections" OtherAssetDescription=""/>
+							<EstimatedValue EstimateBasis="ApplicantEstimate">10</EstimatedValue>
+						</NonRealEstate>
+					</Asset>
+				</ValueItem>
+				<ValueItem Value="10">
+					<Identifier>1598155652499</Identifier>
+					<OwnedByAllApplicants/>
+					<Asset Class="CurrentAsset">
+						<NonRealEstate PrimarySecurity="No">
+							<OtherAsset OtherAssetType="DebentureCharge" OtherAssetDescription=""/>
+							<EstimatedValue EstimateBasis="ApplicantEstimate">10</EstimatedValue>
+						</NonRealEstate>
+					</Asset>
+				</ValueItem>
+				<ValueItem Value="10">
+					<Identifier>1598155652656</Identifier>
+					<OwnedByAllApplicants/>
+					<Asset Class="CurrentAsset">
+						<NonRealEstate PrimarySecurity="No">
+							<OtherAsset OtherAssetType="Gifts" OtherAssetDescription=""/>
+							<EstimatedValue EstimateBasis="ApplicantEstimate">10</EstimatedValue>
+						</NonRealEstate>
+					</Asset>
+				</ValueItem>
+				<ValueItem Value="10">
+					<Identifier>1598155652821</Identifier>
+					<OwnedByAllApplicants/>
+					<Asset Class="CurrentAsset">
+						<NonRealEstate PrimarySecurity="No">
+							<OtherAsset OtherAssetType="GoodwillOfBusiness" OtherAssetDescription=""/>
+							<EstimatedValue EstimateBasis="ApplicantEstimate">10</EstimatedValue>
+						</NonRealEstate>
+					</Asset>
+				</ValueItem>
+				<ValueItem Value="10">
+					<Identifier>1598155652973</Identifier>
+					<OwnedByAllApplicants/>
+					<Asset Class="CurrentAsset">
+						<NonRealEstate PrimarySecurity="No">
+							<OtherAsset OtherAssetType="Guarantee" OtherAssetDescription=""/>
+							<EstimatedValue EstimateBasis="ApplicantEstimate">10</EstimatedValue>
+						</NonRealEstate>
+					</Asset>
+				</ValueItem>
+				<ValueItem Value="10">
+					<Identifier>1598155653132</Identifier>
+					<OwnedByAllApplicants/>
+					<Asset Class="CurrentAsset">
+						<NonRealEstate PrimarySecurity="No">
+							<OtherAsset OtherAssetType="HomeContents" OtherAssetDescription=""/>
+							<EstimatedValue EstimateBasis="ApplicantEstimate">10</EstimatedValue>
+						</NonRealEstate>
+					</Asset>
+				</ValueItem>
+				<ValueItem Value="10">
+					<Identifier>1598155653289</Identifier>
+					<OwnedByAllApplicants/>
+					<Asset Class="CurrentAsset">
+						<RelatedEntityRef>1598155653289-Party</RelatedEntityRef>
+						<NonRealEstate PrimarySecurity="No">
+							<OtherAsset OtherAssetType="InvestmentSavings" OtherAssetDescription="Deposit Account">
+								<AccountNumber AcctNbr="" AcctName="" BSB=""/>
+							</OtherAsset>
+							<EstimatedValue EstimateBasis="ApplicantEstimate">10</EstimatedValue>
+						</NonRealEstate>
+					</Asset>
+				</ValueItem>
+				<ValueItem Value="10">
+					<Identifier>1598155653446</Identifier>
+					<OwnedByAllApplicants/>
+					<Asset Class="CurrentAsset">
+						<NonRealEstate PrimarySecurity="No">
+							<OtherAsset OtherAssetType="LifeInsurance" OtherAssetDescription=""/>
+							<EstimatedValue EstimateBasis="ApplicantEstimate">10</EstimatedValue>
+						</NonRealEstate>
+					</Asset>
+				</ValueItem>
+				<ValueItem Value="10">
+					<Identifier>1598155825131</Identifier>
+					<OwnedByAllApplicants/>
+					<Asset Class="CurrentAsset">
+						<NonRealEstate PrimarySecurity="No">
+							<OtherAsset OtherAssetType="ManagedFunds" OtherAssetDescription=""/>
+							<EstimatedValue EstimateBasis="ApplicantEstimate">10</EstimatedValue>
+						</NonRealEstate>
+					</Asset>
+				</ValueItem>
+				<ValueItem Value="10">
+					<Identifier>1598155989147</Identifier>
+					<OwnedByAllApplicants/>
+					<Asset Class="CurrentAsset">
+						<NonRealEstate PrimarySecurity="No">
+							<OtherAsset OtherAssetType="MotorVehicle" OtherAssetDescription="">
+								<MotorVehicle VehicleType="4WD" Year="" Make="Audi" Model=""/>
+							</OtherAsset>
+							<EstimatedValue EstimateBasis="ApplicantEstimate">10</EstimatedValue>
+						</NonRealEstate>
+					</Asset>
+				</ValueItem>
+				<ValueItem Value="10">
+					<Identifier>1598155993475</Identifier>
+					<OwnedByAllApplicants/>
+					<Asset Class="CurrentAsset">
+						<NonRealEstate PrimarySecurity="No">
+							<OtherAsset OtherAssetType="Other" OtherAssetDescription="Stuff"/>
+							<EstimatedValue EstimateBasis="ApplicantEstimate">10</EstimatedValue>
+						</NonRealEstate>
+					</Asset>
+				</ValueItem>
+				<ValueItem Value="10">
+					<Identifier>1598155996322</Identifier>
+					<OwnedByAllApplicants/>
+					<Asset Class="CurrentAsset">
+						<RelatedEntityRef>1598155996322-Party</RelatedEntityRef>
+						<NonRealEstate PrimarySecurity="No">
+							<OtherAsset OtherAssetType="OtherDepositAccount" OtherAssetDescription="Deposit Account">
+								<AccountNumber AcctNbr="" AcctName="" BSB=""/>
+							</OtherAsset>
+							<EstimatedValue EstimateBasis="ApplicantEstimate">10</EstimatedValue>
+						</NonRealEstate>
+					</Asset>
+				</ValueItem>
+				<ValueItem Value="10">
+					<Identifier>1598156028390</Identifier>
+					<OwnedByAllApplicants/>
+					<Asset Class="CurrentAsset">
+						<RelatedEntityRef>1598156028390-Party</RelatedEntityRef>
+						<NonRealEstate PrimarySecurity="No">
+							<OtherAsset OtherAssetType="PensionAccount" OtherAssetDescription="Deposit Account">
+								<AccountNumber AcctNbr="" AcctName="" BSB=""/>
+							</OtherAsset>
+							<EstimatedValue EstimateBasis="ApplicantEstimate">10</EstimatedValue>
+						</NonRealEstate>
+					</Asset>
+				</ValueItem>
+				<ValueItem Value="10">
+					<Identifier>1598156036019</Identifier>
+					<OwnedByAllApplicants/>
+					<Asset Class="CurrentAsset">
+						<NonRealEstate PrimarySecurity="No">
+							<OtherAsset OtherAssetType="Receivables" OtherAssetDescription=""/>
+							<EstimatedValue EstimateBasis="ApplicantEstimate">10</EstimatedValue>
+						</NonRealEstate>
+					</Asset>
+				</ValueItem>
+				<ValueItem Value="10">
+					<Identifier>1598156056027</Identifier>
+					<OwnedByAllApplicants/>
+					<Asset Class="CurrentAsset">
+						<RelatedEntityRef>1598156056027-Party</RelatedEntityRef>
+						<NonRealEstate PrimarySecurity="No">
+							<OtherAsset OtherAssetType="SavingsAccount" OtherAssetDescription="Deposit Account">
+								<AccountNumber AcctNbr="" AcctName="" BSB=""/>
+							</OtherAsset>
+							<EstimatedValue EstimateBasis="ApplicantEstimate">10</EstimatedValue>
+						</NonRealEstate>
+					</Asset>
+				</ValueItem>
+				<ValueItem Value="10">
+					<Identifier>1598156060350</Identifier>
+					<OwnedByAllApplicants/>
+					<Asset Class="CurrentAsset">
+						<NonRealEstate PrimarySecurity="No">
+							<OtherAsset OtherAssetType="Shares" OtherAssetDescription=""/>
+							<EstimatedValue EstimateBasis="ApplicantEstimate">10</EstimatedValue>
+						</NonRealEstate>
+					</Asset>
+				</ValueItem>
+				<ValueItem Value="10">
+					<Identifier>1598156064274</Identifier>
+					<OwnedByAllApplicants/>
+					<Asset Class="CurrentAsset">
+						<NonRealEstate PrimarySecurity="No">
+							<OtherAsset OtherAssetType="StockAndMachinery" OtherAssetDescription=""/>
+							<EstimatedValue EstimateBasis="ApplicantEstimate">10</EstimatedValue>
+						</NonRealEstate>
+					</Asset>
+				</ValueItem>
+				<ValueItem Value="10">
+					<Identifier>1598156070159</Identifier>
+					<OwnedByAllApplicants/>
+					<Asset Class="CurrentAsset">
+						<NonRealEstate PrimarySecurity="No">
+							<OtherAsset OtherAssetType="Superannuation" OtherAssetDescription=""/>
+							<EstimatedValue EstimateBasis="ApplicantEstimate">10</EstimatedValue>
+						</NonRealEstate>
+					</Asset>
+				</ValueItem>
+				<ValueItem Value="10">
+					<Identifier>1598156076515</Identifier>
+					<OwnedByAllApplicants/>
+					<Asset Class="CurrentAsset">
+						<RelatedEntityRef>1598156076515-Party</RelatedEntityRef>
+						<NonRealEstate PrimarySecurity="No">
+							<OtherAsset OtherAssetType="TermDeposit" OtherAssetDescription="Deposit Account">
+								<AccountNumber AcctNbr="" AcctName="" BSB=""/>
+							</OtherAsset>
+							<EstimatedValue EstimateBasis="ApplicantEstimate">10</EstimatedValue>
+						</NonRealEstate>
+					</Asset>
+				</ValueItem>
+				<ValueItem Value="10">
+					<Identifier>1598156079811</Identifier>
+					<OwnedByAllApplicants/>
+					<Asset Class="CurrentAsset">
+						<NonRealEstate PrimarySecurity="No">
+							<OtherAsset OtherAssetType="ToolsOfTrade" OtherAssetDescription=""/>
+							<EstimatedValue EstimateBasis="ApplicantEstimate">10</EstimatedValue>
+						</NonRealEstate>
+					</Asset>
+				</ValueItem>
+				<ValueItem Value="1000">
+					<Identifier>1415066695232</Identifier>
+					<OwnedByAllApplicants/>
+					<Liability Type="CarLease" Description="" UnpaidBalance="999" ScheduledBalance="1000" ContinuingAfterSettlement="Yes" CreditCardType="MasterCard">
+						<RelatedEntityRef>1415066695232-Party</RelatedEntityRef>
+						<ExistingLoan ClearingFromThisLoan="No">
+							<Repayments Value="500" TaxDeductible="No">
+								<Period Unit="Monthly"/>
+							</Repayments>
+						</ExistingLoan>
+						<AccountNumber AcctNbr="" AcctName="" BSB=""/>
+					</Liability>
+				</ValueItem>
+				<ValueItem Value="1000">
+					<Identifier>1594869875818</Identifier>
+					<OwnedByAllApplicants/>
+					<Liability Type="CommercialBill" Description="Study" UnpaidBalance="999" ScheduledBalance="1000" ContinuingAfterSettlement="Yes">
+						<RelatedEntityRef>1594869875818-Party</RelatedEntityRef>
+					</Liability>
+				</ValueItem>
+				<ValueItem Value="1000">
+					<Identifier>1598156304267</Identifier>
+					<OwnedByAllApplicants/>
+					<Liability Type="ContingentLiability" Description="" UnpaidBalance="999" ScheduledBalance="1000" ContinuingAfterSettlement="Yes">
+						<RelatedEntityRef>1598156304267-Party</RelatedEntityRef>
+					</Liability>
+				</ValueItem>
+				<ValueItem Value="1000">
+					<Identifier>1598156307593</Identifier>
+					<OwnedByAllApplicants/>
+					<Liability Type="CreditCard" Description="" UnpaidBalance="999" ScheduledBalance="1000" ContinuingAfterSettlement="Yes">
+						<RelatedEntityRef>1598156307593-Party</RelatedEntityRef>
+						<ExistingLoan ClearingFromThisLoan="No">
+							<Repayments Value="100" TaxDeductible="No">
+								<Period Unit="Monthly"/>
+							</Repayments>
+						</ExistingLoan>
+						<AccountNumber AcctNbr="" AcctName="" BSB=""/>
+					</Liability>
+				</ValueItem>
+				<ValueItem Value="1000">
+					<Identifier>1598156310653</Identifier>
+					<OwnedByAllApplicants/>
+					<Liability Type="HECS" Description="" UnpaidBalance="999" ScheduledBalance="1000" ContinuingAfterSettlement="Yes">
+						<RelatedEntityRef>1598156310653-Party</RelatedEntityRef>
+					</Liability>
+				</ValueItem>
+				<ValueItem Value="1000">
+					<Identifier>1598156314297</Identifier>
+					<OwnedByAllApplicants/>
+					<Liability Type="HirePurchase" Description="" UnpaidBalance="999" ScheduledBalance="1000" ContinuingAfterSettlement="Yes">
+						<RelatedEntityRef>1598156314297-Party</RelatedEntityRef>
+						<ExistingLoan ClearingFromThisLoan="No">
+							<Repayments Value="100" TaxDeductible="No">
+								<Period Unit="Monthly"/>
+							</Repayments>
+						</ExistingLoan>
+						<AccountNumber AcctNbr="" AcctName="" BSB=""/>
+					</Liability>
+				</ValueItem>
+				<ValueItem Value="1000">
+					<Identifier>1598156318371</Identifier>
+					<OwnedByAllApplicants/>
+					<Liability Type="Lease" Description="" UnpaidBalance="999" ScheduledBalance="1000" ContinuingAfterSettlement="Yes">
+						<RelatedEntityRef>1598156318371-Party</RelatedEntityRef>
+						<ExistingLoan ClearingFromThisLoan="No">
+							<Repayments Value="100" TaxDeductible="No">
+								<Period Unit="Monthly"/>
+							</Repayments>
+						</ExistingLoan>
+						<AccountNumber AcctNbr="" AcctName="" BSB=""/>
+					</Liability>
+				</ValueItem>
+				<ValueItem Value="1000">
+					<Identifier>1598156321375</Identifier>
+					<OwnedByAllApplicants/>
+					<Liability Type="LineOfCredit" Description="" UnpaidBalance="999" ScheduledBalance="1000" ContinuingAfterSettlement="Yes">
+						<RelatedEntityRef>1598156321375-Party</RelatedEntityRef>
+						<ExistingLoan ClearingFromThisLoan="No">
+							<Repayments Value="100" TaxDeductible="No">
+								<Period Unit="Monthly"/>
+							</Repayments>
+						</ExistingLoan>
+						<AccountNumber AcctNbr="" AcctName="" BSB=""/>
+					</Liability>
+				</ValueItem>
+				<ValueItem Value="1000">
+					<Identifier>1598156324535</Identifier>
+					<OwnedByAllApplicants/>
+					<Liability Type="LoanAsGuarantor" Description="" UnpaidBalance="999" ScheduledBalance="1000" ContinuingAfterSettlement="Yes">
+						<RelatedEntityRef>1598156324535-Party</RelatedEntityRef>
+						<ExistingLoan ClearingFromThisLoan="No">
+							<Repayments Value="100" TaxDeductible="No">
+								<Period Unit="Monthly"/>
+							</Repayments>
+						</ExistingLoan>
+						<AccountNumber AcctNbr="" AcctName="" BSB=""/>
+					</Liability>
+				</ValueItem>
+				<ValueItem Value="1000">
+					<Identifier>1598156332659</Identifier>
+					<OwnedByAllApplicants/>
+					<Liability Type="OtherLoan" Description="" UnpaidBalance="999" ScheduledBalance="1000" ContinuingAfterSettlement="Yes">
+						<RelatedEntityRef>1598156332659-Party</RelatedEntityRef>
+						<ExistingLoan ClearingFromThisLoan="No">
+							<Repayments Value="100" TaxDeductible="No">
+								<Period Unit="Monthly"/>
+							</Repayments>
+						</ExistingLoan>
+						<AccountNumber AcctNbr="" AcctName="" BSB=""/>
+					</Liability>
+				</ValueItem>
+				<ValueItem Value="1000">
+					<Identifier>1598156335788</Identifier>
+					<OwnedByAllApplicants/>
+					<Liability Type="OutstandingTaxation" Description="" UnpaidBalance="999" ScheduledBalance="1000" ContinuingAfterSettlement="Yes">
+						<RelatedEntityRef>1598156335788-Party</RelatedEntityRef>
+					</Liability>
+				</ValueItem>
+				<ValueItem Value="1000">
+					<Identifier>1598156339195</Identifier>
+					<OwnedByAllApplicants/>
+					<Liability Type="Overdraft" Description="" UnpaidBalance="999" ScheduledBalance="1000" ContinuingAfterSettlement="Yes">
+						<RelatedEntityRef>1598156339195-Party</RelatedEntityRef>
+						<ExistingLoan ClearingFromThisLoan="No">
+							<Repayments Value="100" TaxDeductible="No">
+								<Period Unit="Monthly"/>
+							</Repayments>
+						</ExistingLoan>
+						<AccountNumber AcctNbr="" AcctName="" BSB=""/>
+					</Liability>
+				</ValueItem>
+				<ValueItem Value="1000">
+					<Identifier>1598156343772</Identifier>
+					<OwnedByAllApplicants/>
+					<Liability Type="PersonalLoan" Description="" UnpaidBalance="999" ScheduledBalance="1000" ContinuingAfterSettlement="Yes">
+						<RelatedEntityRef>1598156343772-Party</RelatedEntityRef>
+						<ExistingLoan ClearingFromThisLoan="No">
+							<Repayments Value="100" TaxDeductible="No">
+								<Period Unit="Monthly"/>
+							</Repayments>
+						</ExistingLoan>
+						<AccountNumber AcctNbr="" AcctName="" BSB=""/>
+					</Liability>
+				</ValueItem>
+				<ValueItem Value="1000">
+					<Identifier>1598156347082</Identifier>
+					<OwnedByAllApplicants/>
+					<Liability Type="StoreCard" Description="" UnpaidBalance="999" ScheduledBalance="1000" ContinuingAfterSettlement="Yes">
+						<RelatedEntityRef>1598156347082-Party</RelatedEntityRef>
+						<ExistingLoan ClearingFromThisLoan="No">
+							<Repayments Value="100" TaxDeductible="No">
+								<Period Unit="Monthly"/>
+							</Repayments>
+						</ExistingLoan>
+						<AccountNumber AcctNbr="" AcctName="" BSB=""/>
+					</Liability>
+				</ValueItem>
+				<ValueItem Value="1000">
+					<Identifier>1598156354337</Identifier>
+					<OwnedByAllApplicants/>
+					<Liability Type="TermLoan" Description="" UnpaidBalance="999" ScheduledBalance="1000" ContinuingAfterSettlement="Yes">
+						<RelatedEntityRef>1598156354337-Party</RelatedEntityRef>
+						<ExistingLoan ClearingFromThisLoan="No">
+							<Repayments Value="100" TaxDeductible="No">
+								<Period Unit="Monthly"/>
+							</Repayments>
+						</ExistingLoan>
+						<AccountNumber AcctNbr="" AcctName="" BSB=""/>
+					</Liability>
+				</ValueItem>
+				<ValueItem Value="1000">
+					<Identifier>1598223150275</Identifier>
+					<OwnedByAllApplicants/>
+					<Liability Type="Other" Description="Stuff" UnpaidBalance="999" ScheduledBalance="1000" ContinuingAfterSettlement="Yes">
+						<RelatedEntityRef>1598223150275-Party</RelatedEntityRef>
+					</Liability>
+				</ValueItem>
+				<ValueItem Value="50">
+					<Identifier>1415066720238</Identifier>
+					<OwnedByAllApplicants/>
+					<Expense Type="Board" Description="" ContinuingAfterSettlement="Yes">
+						<Period Unit="Monthly"/>
+					</Expense>
+				</ValueItem>
+				<ValueItem Value="50">
+					<Identifier>1594869844160</Identifier>
+					<OwnedByAllApplicants/>
+					<Expense Type="ClothingPersonalCare" Description="" ContinuingAfterSettlement="Yes">
+						<Period Unit="Monthly"/>
+					</Expense>
+				</ValueItem>
+				<ValueItem Value="50">
+					<Identifier>1594869847445</Identifier>
+					<OwnedByAllApplicants/>
+					<Expense Type="Childcare" Description="" ContinuingAfterSettlement="Yes">
+						<Period Unit="Monthly"/>
+					</Expense>
+				</ValueItem>
+				<ValueItem Value="50">
+					<Identifier>1594869849854</Identifier>
+					<OwnedByAllApplicants/>
+					<Expense Type="ChildMaintenance" Description="" ContinuingAfterSettlement="Yes">
+						<Period Unit="Monthly"/>
+					</Expense>
+				</ValueItem>
+				<ValueItem Value="50">
+					<Identifier>1598224107453</Identifier>
+					<OwnedByAllApplicants/>
+					<Expense Type="EducationPublic" Description="" ContinuingAfterSettlement="Yes">
+						<Period Unit="Monthly"/>
+					</Expense>
+				</ValueItem>
+				<ValueItem Value="50">
+					<Identifier>1598225014585</Identifier>
+					<OwnedByAllApplicants/>
+					<Expense Type="EducationPrivate" Description="" ContinuingAfterSettlement="Yes">
+						<Period Unit="Monthly"/>
+					</Expense>
+				</ValueItem>
+				<ValueItem Value="50">
+					<Identifier>1598225016388</Identifier>
+					<OwnedByAllApplicants/>
+					<Expense Type="EducationTertiary" Description="" ContinuingAfterSettlement="Yes">
+						<Period Unit="Monthly"/>
+					</Expense>
+				</ValueItem>
+				<ValueItem Value="50">
+					<Identifier>1598225016534</Identifier>
+					<OwnedByAllApplicants/>
+					<Expense Type="Groceries" Description="" ContinuingAfterSettlement="Yes">
+						<Period Unit="Monthly"/>
+					</Expense>
+				</ValueItem>
+				<ValueItem Value="50">
+					<Identifier>1598225016702</Identifier>
+					<OwnedByAllApplicants/>
+					<Expense Type="InsuranceGeneral" Description="" ContinuingAfterSettlement="Yes">
+						<Period Unit="Monthly"/>
+					</Expense>
+				</ValueItem>
+				<ValueItem Value="50">
+					<Identifier>1598225016858</Identifier>
+					<OwnedByAllApplicants/>
+					<Expense Type="InsuranceMedical" Description="" ContinuingAfterSettlement="Yes">
+						<Period Unit="Monthly"/>
+					</Expense>
+				</ValueItem>
+				<ValueItem Value="50">
+					<Identifier>1598225017192</Identifier>
+					<OwnedByAllApplicants/>
+					<Expense Type="InvestmentUtilities" Description="" ContinuingAfterSettlement="Yes">
+						<Period Unit="Monthly"/>
+					</Expense>
+				</ValueItem>
+				<ValueItem Value="50">
+					<Identifier>1598225017331</Identifier>
+					<OwnedByAllApplicants/>
+					<Expense Type="MedicalHealth" Description="" ContinuingAfterSettlement="Yes">
+						<Period Unit="Monthly"/>
+					</Expense>
+				</ValueItem>
+				<ValueItem Value="50">
+					<Identifier>1598225017502</Identifier>
+					<OwnedByAllApplicants/>
+					<Expense Type="OtherExpenses" Description="" ContinuingAfterSettlement="Yes">
+						<Period Unit="Monthly"/>
+					</Expense>
+				</ValueItem>
+				<ValueItem Value="50">
+					<Identifier>1598225017647</Identifier>
+					<OwnedByAllApplicants/>
+					<Expense Type="OwnerOccupiedLandTaxBodyCorpAndStrataFees" Description="" ContinuingAfterSettlement="Yes">
+						<Period Unit="Monthly"/>
+					</Expense>
+				</ValueItem>
+				<ValueItem Value="50">
+					<Identifier>1598225069059</Identifier>
+					<OwnedByAllApplicants/>
+					<Expense Type="PrimaryResidenceCosts" Description="" ContinuingAfterSettlement="Yes">
+						<Period Unit="Monthly"/>
+					</Expense>
+				</ValueItem>
+				<ValueItem Value="50">
+					<Identifier>1598225073132</Identifier>
+					<OwnedByAllApplicants/>
+					<Expense Type="Recreation" Description="" ContinuingAfterSettlement="Yes">
+						<Period Unit="Monthly"/>
+					</Expense>
+				</ValueItem>
+				<ValueItem Value="50">
+					<Identifier>1598225077160</Identifier>
+					<OwnedByAllApplicants/>
+					<Expense Type="Rent" Description="" ContinuingAfterSettlement="Yes">
+						<Period Unit="Monthly"/>
+					</Expense>
+				</ValueItem>
+				<ValueItem Value="50">
+					<Identifier>1598225080770</Identifier>
+					<OwnedByAllApplicants/>
+					<Expense Type="Other" Description="" ContinuingAfterSettlement="Yes">
+						<Period Unit="Monthly"/>
+					</Expense>
+				</ValueItem>
+				<ValueItem Value="50">
+					<Identifier>1598225084248</Identifier>
+					<OwnedByAllApplicants/>
+					<Expense Type="SecondaryResidenceCosts" Description="" ContinuingAfterSettlement="Yes">
+						<Period Unit="Monthly"/>
+					</Expense>
+				</ValueItem>
+				<ValueItem Value="50">
+					<Identifier>1598225087567</Identifier>
+					<OwnedByAllApplicants/>
+					<Expense Type="TelephoneInternet" Description="" ContinuingAfterSettlement="Yes">
+						<Period Unit="Monthly"/>
+					</Expense>
+				</ValueItem>
+				<ValueItem Value="50">
+					<Identifier>1598225090623</Identifier>
+					<OwnedByAllApplicants/>
+					<Expense Type="Transport" Description="" ContinuingAfterSettlement="Yes">
+						<Period Unit="Monthly"/>
+					</Expense>
+				</ValueItem>
+				<ValueItem Value="2500">
+					<Identifier>1647388363934</Identifier>
+					<OwnedByAllApplicants/>
+					<Expense Type="InsurancesOther" Description="test" ContinuingAfterSettlement="Yes">
+						<Period Unit="Monthly"/>
+					</Expense>
+				</ValueItem>
+				<ValueItem Value="0">
+					<Identifier>1647395296581</Identifier>
+					<PercentOwned Percent="100">
+						<RelatedEntityRef>1097796793796</RelatedEntityRef>
+					</PercentOwned>
+					<Expense Type="Board" Description="" ContinuingAfterSettlement="Yes">
+						<Period Unit="Monthly"/>
+					</Expense>
+				</ValueItem>
+				<ValueItem Value="0">
+					<Identifier>1647395296582</Identifier>
+					<PercentOwned Percent="100">
+						<RelatedEntityRef>1097796793796</RelatedEntityRef>
+					</PercentOwned>
+					<Expense Type="Childcare" Description="" ContinuingAfterSettlement="Yes">
+						<Period Unit="Monthly"/>
+					</Expense>
+				</ValueItem>
+				<ValueItem Value="0">
+					<Identifier>1647395296583</Identifier>
+					<PercentOwned Percent="100">
+						<RelatedEntityRef>1097796793796</RelatedEntityRef>
+					</PercentOwned>
+					<Expense Type="ChildMaintenance" Description="" ContinuingAfterSettlement="Yes">
+						<Period Unit="Monthly"/>
+					</Expense>
+				</ValueItem>
+				<ValueItem Value="0">
+					<Identifier>1647395296584</Identifier>
+					<PercentOwned Percent="100">
+						<RelatedEntityRef>1097796793796</RelatedEntityRef>
+					</PercentOwned>
+					<Expense Type="ClothingPersonalCare" Description="" ContinuingAfterSettlement="Yes">
+						<Period Unit="Monthly"/>
+					</Expense>
+				</ValueItem>
+				<ValueItem Value="0">
+					<Identifier>1647395296585</Identifier>
+					<PercentOwned Percent="100">
+						<RelatedEntityRef>1097796793796</RelatedEntityRef>
+					</PercentOwned>
+					<Expense Type="InsuranceGeneral" Description="" ContinuingAfterSettlement="Yes">
+						<Period Unit="Monthly"/>
+					</Expense>
+				</ValueItem>
+				<ValueItem Value="0">
+					<Identifier>1647395296586</Identifier>
+					<PercentOwned Percent="100">
+						<RelatedEntityRef>1097796793796</RelatedEntityRef>
+					</PercentOwned>
+					<Expense Type="Groceries" Description="" ContinuingAfterSettlement="Yes">
+						<Period Unit="Monthly"/>
+					</Expense>
+				</ValueItem>
+				<ValueItem Value="0">
+					<Identifier>1647395296587</Identifier>
+					<PercentOwned Percent="100">
+						<RelatedEntityRef>1097796793796</RelatedEntityRef>
+					</PercentOwned>
+					<Expense Type="EducationTertiary" Description="" ContinuingAfterSettlement="Yes">
+						<Period Unit="Monthly"/>
+					</Expense>
+				</ValueItem>
+				<ValueItem Value="0">
+					<Identifier>1647395296588</Identifier>
+					<PercentOwned Percent="100">
+						<RelatedEntityRef>1097796793796</RelatedEntityRef>
+					</PercentOwned>
+					<Expense Type="InvestmentUtilities" Description="" ContinuingAfterSettlement="Yes">
+						<Period Unit="Monthly"/>
+					</Expense>
+				</ValueItem>
+				<ValueItem Value="0">
+					<Identifier>1647395296589</Identifier>
+					<PercentOwned Percent="100">
+						<RelatedEntityRef>1097796793796</RelatedEntityRef>
+					</PercentOwned>
+					<Expense Type="MedicalHealth" Description="" ContinuingAfterSettlement="Yes">
+						<Period Unit="Monthly"/>
+					</Expense>
+				</ValueItem>
+				<ValueItem Value="0">
+					<Identifier>1647395296590</Identifier>
+					<PercentOwned Percent="100">
+						<RelatedEntityRef>1097796793796</RelatedEntityRef>
+					</PercentOwned>
+					<Expense Type="OtherExpenses" Description="" ContinuingAfterSettlement="Yes">
+						<Period Unit="Monthly"/>
+					</Expense>
+				</ValueItem>
+				<ValueItem Value="0">
+					<Identifier>1647395296591</Identifier>
+					<PercentOwned Percent="100">
+						<RelatedEntityRef>1097796793796</RelatedEntityRef>
+					</PercentOwned>
+					<Expense Type="InsurancesOther" Description="" ContinuingAfterSettlement="Yes">
+						<Period Unit="Monthly"/>
+					</Expense>
+				</ValueItem>
+				<ValueItem Value="0">
+					<Identifier>1647395296592</Identifier>
+					<PercentOwned Percent="100">
+						<RelatedEntityRef>1097796793796</RelatedEntityRef>
+					</PercentOwned>
+					<Expense Type="OwnerOccupiedLandTaxBodyCorpAndStrataFees" Description="" ContinuingAfterSettlement="Yes">
+						<Period Unit="Monthly"/>
+					</Expense>
+				</ValueItem>
+				<ValueItem Value="0">
+					<Identifier>1647395296593</Identifier>
+					<PercentOwned Percent="100">
+						<RelatedEntityRef>1097796793796</RelatedEntityRef>
+					</PercentOwned>
+					<Expense Type="InsuranceMedical" Description="" ContinuingAfterSettlement="Yes">
+						<Period Unit="Monthly"/>
+					</Expense>
+				</ValueItem>
+				<ValueItem Value="0">
+					<Identifier>1647395296594</Identifier>
+					<PercentOwned Percent="100">
+						<RelatedEntityRef>1097796793796</RelatedEntityRef>
+					</PercentOwned>
+					<Expense Type="Petcare" Description="" ContinuingAfterSettlement="Yes">
+						<Period Unit="Monthly"/>
+					</Expense>
+				</ValueItem>
+				<ValueItem Value="0">
+					<Identifier>1647395296595</Identifier>
+					<PercentOwned Percent="100">
+						<RelatedEntityRef>1097796793796</RelatedEntityRef>
+					</PercentOwned>
+					<Expense Type="PrimaryResidenceCosts" Description="" ContinuingAfterSettlement="Yes">
+						<Period Unit="Monthly"/>
+					</Expense>
+				</ValueItem>
+				<ValueItem Value="0">
+					<Identifier>1647395296596</Identifier>
+					<PercentOwned Percent="100">
+						<RelatedEntityRef>1097796793796</RelatedEntityRef>
+					</PercentOwned>
+					<Expense Type="EducationPrivate" Description="" ContinuingAfterSettlement="Yes">
+						<Period Unit="Monthly"/>
+					</Expense>
+				</ValueItem>
+				<ValueItem Value="0">
+					<Identifier>1647395296597</Identifier>
+					<PercentOwned Percent="100">
+						<RelatedEntityRef>1097796793796</RelatedEntityRef>
+					</PercentOwned>
+					<Expense Type="EducationPublic" Description="" ContinuingAfterSettlement="Yes">
+						<Period Unit="Monthly"/>
+					</Expense>
+				</ValueItem>
+				<ValueItem Value="0">
+					<Identifier>1647395296598</Identifier>
+					<PercentOwned Percent="100">
+						<RelatedEntityRef>1097796793796</RelatedEntityRef>
+					</PercentOwned>
+					<Expense Type="Recreation" Description="" ContinuingAfterSettlement="Yes">
+						<Period Unit="Monthly"/>
+					</Expense>
+				</ValueItem>
+				<ValueItem Value="0">
+					<Identifier>1647395296599</Identifier>
+					<PercentOwned Percent="100">
+						<RelatedEntityRef>1097796793796</RelatedEntityRef>
+					</PercentOwned>
+					<Expense Type="Rent" Description="" ContinuingAfterSettlement="Yes">
+						<Period Unit="Monthly"/>
+					</Expense>
+				</ValueItem>
+				<ValueItem Value="0">
+					<Identifier>1647395296600</Identifier>
+					<PercentOwned Percent="100">
+						<RelatedEntityRef>1097796793796</RelatedEntityRef>
+					</PercentOwned>
+					<Expense Type="SecondaryResidenceCosts" Description="" ContinuingAfterSettlement="Yes">
+						<Period Unit="Monthly"/>
+					</Expense>
+				</ValueItem>
+				<ValueItem Value="0">
+					<Identifier>1647395296601</Identifier>
+					<PercentOwned Percent="100">
+						<RelatedEntityRef>1097796793796</RelatedEntityRef>
+					</PercentOwned>
+					<Expense Type="TelephoneInternet" Description="" ContinuingAfterSettlement="Yes">
+						<Period Unit="Monthly"/>
+					</Expense>
+				</ValueItem>
+				<ValueItem Value="0">
+					<Identifier>1647395296602</Identifier>
+					<PercentOwned Percent="100">
+						<RelatedEntityRef>1097796793796</RelatedEntityRef>
+					</PercentOwned>
+					<Expense Type="Transport" Description="" ContinuingAfterSettlement="Yes">
+						<Period Unit="Monthly"/>
+					</Expense>
+				</ValueItem>
+				<ValueItem Value="0">
+					<Identifier>1647395296603</Identifier>
+					<OwnedByAllApplicants/>
+					<Expense Type="SMSFManagement" Description="" ContinuingAfterSettlement="Yes">
+						<Period Unit="Monthly"/>
+					</Expense>
+				</ValueItem>
+			</FinancialSegment>
+			<RelatedPartySegment>
+				<RelatedParty RelPartyType="Lender">
+					<Identifier>1097796817156</Identifier>
+					<CompanyName BusinessName="ORDE"/>
+				</RelatedParty>
+				<RelatedParty RelPartyType="Employer">
+					<Identifier>1097796810218</Identifier>
+					<CompanyName BusinessName="Emp R Us"/>
+					<PersonName>
+						<NameTitle Value="Miss"/>
+						<FirstName>Ima</FirstName>
+						<Surname>Emp</Surname>
+					</PersonName>
+					<WorkPhone>
+						<Phone>
+							<FixedPhone CountryCode="61" AreaCode="02">88887777</FixedPhone>
+						</Phone>
+					</WorkPhone>
+				</RelatedParty>
+				<RelatedParty RelPartyType="Lender">
+					<Identifier>1598152639934-Party</Identifier>
+					<CompanyName BusinessName="ANZ"/>
+				</RelatedParty>
+				<RelatedParty RelPartyType="Lender">
+					<Identifier>1598155651625-Party</Identifier>
+					<CompanyName BusinessName="ANZ"/>
+				</RelatedParty>
+				<RelatedParty RelPartyType="Lender">
+					<Identifier>1598155652172-Party</Identifier>
+					<CompanyName BusinessName="ANZ"/>
+				</RelatedParty>
+				<RelatedParty RelPartyType="Lender">
+					<Identifier>1598155653289-Party</Identifier>
+					<CompanyName BusinessName="ANZ"/>
+				</RelatedParty>
+				<RelatedParty RelPartyType="Lender">
+					<Identifier>1598155996322-Party</Identifier>
+					<CompanyName BusinessName="ANZ"/>
+				</RelatedParty>
+				<RelatedParty RelPartyType="Lender">
+					<Identifier>1598156028390-Party</Identifier>
+					<CompanyName BusinessName="ANZ"/>
+				</RelatedParty>
+				<RelatedParty RelPartyType="Lender">
+					<Identifier>1598156056027-Party</Identifier>
+					<CompanyName BusinessName="ANZ"/>
+				</RelatedParty>
+				<RelatedParty RelPartyType="Lender">
+					<Identifier>1598156076515-Party</Identifier>
+					<CompanyName BusinessName="ANZ"/>
+				</RelatedParty>
+				<RelatedParty RelPartyType="Creditor">
+					<Identifier>1415066695232-Party</Identifier>
+					<CompanyName BusinessName="ANZ"/>
+				</RelatedParty>
+				<RelatedParty RelPartyType="Creditor">
+					<Identifier>1594869875818-Party</Identifier>
+					<CompanyName BusinessName=""/>
+				</RelatedParty>
+				<RelatedParty RelPartyType="Creditor">
+					<Identifier>1598156304267-Party</Identifier>
+					<CompanyName BusinessName=""/>
+				</RelatedParty>
+				<RelatedParty RelPartyType="Creditor">
+					<Identifier>1598156307593-Party</Identifier>
+					<CompanyName BusinessName="ANZ"/>
+				</RelatedParty>
+				<RelatedParty RelPartyType="Creditor">
+					<Identifier>1598156310653-Party</Identifier>
+					<CompanyName BusinessName=""/>
+				</RelatedParty>
+				<RelatedParty RelPartyType="Creditor">
+					<Identifier>1598156314297-Party</Identifier>
+					<CompanyName BusinessName="ANZ"/>
+				</RelatedParty>
+				<RelatedParty RelPartyType="Creditor">
+					<Identifier>1598156318371-Party</Identifier>
+					<CompanyName BusinessName="ANZ"/>
+				</RelatedParty>
+				<RelatedParty RelPartyType="Creditor">
+					<Identifier>1598156321375-Party</Identifier>
+					<CompanyName BusinessName="ANZ"/>
+				</RelatedParty>
+				<RelatedParty RelPartyType="Creditor">
+					<Identifier>1598156324535-Party</Identifier>
+					<CompanyName BusinessName="ANZ"/>
+				</RelatedParty>
+				<RelatedParty RelPartyType="Creditor">
+					<Identifier>1598156332659-Party</Identifier>
+					<CompanyName BusinessName="ANZ"/>
+				</RelatedParty>
+				<RelatedParty RelPartyType="Creditor">
+					<Identifier>1598156335788-Party</Identifier>
+					<CompanyName BusinessName=""/>
+				</RelatedParty>
+				<RelatedParty RelPartyType="Creditor">
+					<Identifier>1598156339195-Party</Identifier>
+					<CompanyName BusinessName="ANZ"/>
+				</RelatedParty>
+				<RelatedParty RelPartyType="Creditor">
+					<Identifier>1598156343772-Party</Identifier>
+					<CompanyName BusinessName="ANZ"/>
+				</RelatedParty>
+				<RelatedParty RelPartyType="Creditor">
+					<Identifier>1598156347082-Party</Identifier>
+					<CompanyName BusinessName="ANZ"/>
+				</RelatedParty>
+				<RelatedParty RelPartyType="Creditor">
+					<Identifier>1598156354337-Party</Identifier>
+					<CompanyName BusinessName="ANZ"/>
+				</RelatedParty>
+				<RelatedParty RelPartyType="Creditor">
+					<Identifier>1598223150275-Party</Identifier>
+					<CompanyName BusinessName=""/>
+				</RelatedParty>
+			</RelatedPartySegment>
+			<LoanDetailSegment AllSecuritiesLinked="Yes">
+				<LoanDetails>
+					<Identifier>1097796802265</Identifier>
+					<EstimatedSettlement>2025-03-26</EstimatedSettlement>
+					<LoanPurpose PrimaryPurpose="OwnerOccupied" OwnerBuilderApplication="No">
+						<LendingPurposeCode ABSCode="ABS-125" PurposeAmount="0.0" Description="125 - Purchase of newly erected dwellings - House by first mortgage"/>
+					</LoanPurpose>
+					<ContributionFunds Amount="150000" Type="Deposit" Description="" Loan="No"/>
+					<ContributionFunds Amount="25000" Type="Savings" Description="" Loan="No"/>
+					<ContributionFunds Amount="25000" Type="Cash" Description="" Loan="No"/>
+					<ContributionFunds Amount="10000" Type="Gift" Description="" Loan="No"/>
+					<LoanPortion ProductName="Residential (Redraw)" ProductCode="" StatementCycle="Monthly" PackageName="">
+						<Identifier>1097796802265-1</Identifier>
+						<LoanTerm Type="TotalTerm" Units="Years">30</LoanTerm>
+						<LoanTerm Type="Variable" PaymentType="PrincipalAndInterest" Units="Years">30</LoanTerm>
+						<AmountRequested Amount="250000" BaseAmount="250000"/>
+						<PaymentPeriod Payments="0.0">
+							<Period Unit="Monthly"/>
+						</PaymentPeriod>
+					</LoanPortion>
+				</LoanDetails>
+				<Representation>
+					<NominatedRepresentation>
+						<RelatedEntityRef/>
+					</NominatedRepresentation>
+				</Representation>
+			</LoanDetailSegment>
+			<QuestionSegment>
+				<Question Code="hardship" Response="Yes">
+					<RelatedEntityRef>1097796793796</RelatedEntityRef>
+					<Comment>Test Declaration 3</Comment>
+				</Question>
+				<Question Code="submittedLoan" Response="Yes">
+					<RelatedEntityRef>1097796793796</RelatedEntityRef>
+					<Comment>Test Declaration 4</Comment>
+				</Question>
+				<Question Code="bankruptcy" Response="Yes">
+					<RelatedEntityRef>1097796793796</RelatedEntityRef>
+					<Comment>Test Declaration 5</Comment>
+				</Question>
+			</QuestionSegment>
+			<CrossSellSegment Enabled="true"/>
+		</Application>
+	</soapenv:Body>
+</soapenv:Envelope>

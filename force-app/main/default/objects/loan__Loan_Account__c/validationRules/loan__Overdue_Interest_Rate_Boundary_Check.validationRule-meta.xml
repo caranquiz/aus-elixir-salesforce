@@ -3,7 +3,7 @@
     <fullName>loan__Overdue_Interest_Rate_Boundary_Check</fullName>
     <active>false</active>
     <description>Interest Rate Boundary Check</description>
-    <errorConditionFormula>AND(ISPICKVAL(loan__Loan_Product_Name__r.loan__Loan_Cycle_Setup__c, &#39;Same for all Loans&#39;),(loan__Overdue_Interest_Rate__c &gt; loan__Loan_Product_Name__r.loan__Max_Overdue_Interest_Rate__c
+    <errorConditionFormula>AND(ISPICKVAL(loan__Loan_Product_Name__r.loan__Loan_Cycle_Setup__c, &apos;Same for all Loans&apos;),(loan__Overdue_Interest_Rate__c &gt; loan__Loan_Product_Name__r.loan__Max_Overdue_Interest_Rate__c
  ||
  loan__Overdue_Interest_Rate__c &lt; loan__Loan_Product_Name__r.loan__Min_Overdue_Interest_Rate__c))</errorConditionFormula>
     <errorDisplayField>loan__Overdue_Interest_Rate__c</errorDisplayField>

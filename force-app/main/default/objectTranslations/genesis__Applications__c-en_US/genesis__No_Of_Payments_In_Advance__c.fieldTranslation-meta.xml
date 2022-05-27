@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label></label>
+    <name>genesis__No_Of_Payments_In_Advance__c</name>
+    <picklistValues>
+        <masterLabel>First and Last</masterLabel>
+        <translation></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>First and Last 2</masterLabel>
+        <translation></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>First and Last 3</masterLabel>
+        <translation></translation>
+    </picklistValues>
+</CustomFieldTranslation>

@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<SecuritySettings xmlns="http://soap.sforce.com/2006/04/metadata">
+<SecuritySettings xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <isTLSv12Required xsi:nil="true"/>
+    <isTLSv12RequiredCommunities xsi:nil="true"/>
     <networkAccess>
         <ipRanges>
             <end>106.51.157.69</end>
@@ -12,14 +14,14 @@
         </ipRanges>
     </networkAccess>
     <passwordPolicies>
-        <complexity>AlphaNumeric</complexity>
+        <complexity>UpperLowerCaseNumericSpecialCharacters</complexity>
         <expiration>NinetyDays</expiration>
-        <historyRestriction>3</historyRestriction>
-        <lockoutInterval>FifteenMinutes</lockoutInterval>
-        <maxLoginAttempts>TenAttempts</maxLoginAttempts>
-        <minimumPasswordLength>8</minimumPasswordLength>
+        <historyRestriction>6</historyRestriction>
+        <lockoutInterval>Forever</lockoutInterval>
+        <maxLoginAttempts>ThreeAttempts</maxLoginAttempts>
+        <minimumPasswordLength>10</minimumPasswordLength>
         <minimumPasswordLifetime>false</minimumPasswordLifetime>
-        <obscureSecretAnswer>false</obscureSecretAnswer>
+        <obscureSecretAnswer>true</obscureSecretAnswer>
         <questionRestriction>DoesNotContainPassword</questionRestriction>
     </passwordPolicies>
     <sessionSettings>
@@ -35,23 +37,18 @@
         <enableContentSniffingProtection>true</enableContentSniffingProtection>
         <enablePostForSessions>false</enablePostForSessions>
         <enableSMSIdentity>false</enableSMSIdentity>
-        <enableUpgradeInsecureRequests>true</enableUpgradeInsecureRequests>
         <enableXssProtection>true</enableXssProtection>
         <enforceIpRangesEveryRequest>false</enforceIpRangesEveryRequest>
-        <forceLogoutOnSessionTimeout>false</forceLogoutOnSessionTimeout>
+        <forceLogoutOnSessionTimeout>true</forceLogoutOnSessionTimeout>
         <forceRelogin>false</forceRelogin>
-        <hstsOnForcecomSites>false</hstsOnForcecomSites>
         <identityConfirmationOnEmailChange>false</identityConfirmationOnEmailChange>
         <identityConfirmationOnTwoFactorRegistrationEnabled>true</identityConfirmationOnTwoFactorRegistrationEnabled>
         <lockSessionsToDomain>true</lockSessionsToDomain>
         <lockSessionsToIp>false</lockSessionsToIp>
         <lockerServiceCSP>true</lockerServiceCSP>
-        <lockerServiceFrozenRealm>false</lockerServiceFrozenRealm>
         <redirectionWarning>true</redirectionWarning>
         <referrerPolicy>true</referrerPolicy>
         <requireHttpOnly>false</requireHttpOnly>
-        <requireHttps>true</requireHttps>
-        <securityCentralKillSession>true</securityCentralKillSession>
         <sessionTimeout>TwoHours</sessionTimeout>
     </sessionSettings>
 </SecuritySettings>

@@ -1,0 +1,159 @@
+.coa-name .financial-statement-table tr[level="2"] td:nth-child(1) {
+    padding-left: 20px;
+}
+
+.coa-name .financial-statement-table tr[level="3"] td:nth-child(1) {
+    padding-left: 40px;
+}
+
+.coa-name .financial-statement-table tr[level="4"] td:nth-child(1) {
+    padding-left: 60px;
+}
+
+.coa-name.nx-panel{
+    /* Change this values if the horizontal lines are not aligned */
+    padding-top: 8px!important;
+}
+
+/*.financial-statement-table thead {
+    display: none;
+}*/
+
+.financial-statement-table table tbody td {
+    background: none;
+    border-right: none;
+}
+
+.financial-statement-table tbody tr[row-type="HEADER"] {
+    height: 50px;
+}
+.financial-statement-table tbody tr[row-type="HEADER"] td {
+    border-bottom: 1px solid #333333;
+}
+
+.financial-statement-table tbody tr[row-type="HEADER"] td div {
+    height: 33px;
+    line-height: 38px;
+    vertical-align: bottom;
+}
+
+.financial-statement-table tbody tr[row-type="COMPUTE"] td,
+.financial-statement-table tbody tr[row-type="ROLLUP"] td {
+    font-weight: 900;
+}
+
+.custom-deck .sk-deck article {
+    padding: 0px;
+    border: 0px;
+}
+.custom-deck .nx-editor-contents{
+    margin: 0;
+}
+
+.field-value-hidden > .nx-basicfieldeditor-item-label{
+   width: 100% !important;
+}
+
+.field-value-hidden .nx-field {
+    display: none;
+}
+
+.main-header-label-editor .nx-editor-contents{
+   margin: 0; 
+}
+
+.field-label-hidden > .nx-basicfieldeditor-item-label{
+    display: none;
+}
+
+.field-label-hidden .nx-field {
+    width: 100% !important;
+}
+
+
+
+.statement-detail{
+    padding-top:56px;
+    height:100%;
+    padding-bottom:33px;
+    
+}
+.statement-detail .nx-field div.nx-fieldtext div.nx-template[row-type="HEADER"]{
+    
+    vertical-align: bottom;
+    border-bottom: 1px solid black;
+    position:absolute;
+    width:100%;
+    padding-top:37px;
+}
+
+.statement-detail .nx-field div.nx-fieldtext div.nx-template[row-type="INPUT"]{
+   
+    vertical-align: bottom;
+    border-bottom: 1px solid #d8dde6;
+    position:absolute;
+    width:100%;
+    
+}
+
+.statement-detail .nx-field div.nx-fieldtext div.nx-template[row-type="COMPUTE"],
+.statement-detail .nx-field div.nx-fieldtext div.nx-template[row-type="ROLLUP"]{
+    font-weight: 500;
+    vertical-align: bottom;
+    border-bottom: 1px solid #d8dde6;
+    width:100%;
+    position:absolute;
+}
+
+/*.statement-detail .nx-field{
+    padding-right: 100%;
+}*/
+.financial-statement-table.nx-skootable.nx-editor div.nx-editor-contents .nx-list .nx-list-contents .nx-item td div.nx-field div.nx-fieldtext div.nx-template div.nx-field div.nx-fieldtext{
+    font-weight:900;
+}
+
+.nx-basicfieldeditor-item.statement-detail #sk-AN4-427.nx-field{
+    width : 100%;
+    position:relative;
+    line-height:37px;
+}
+
+.statement-detail #sk-3Nqa-747.nx-field .nx-fieldtext{
+    position:relative;
+}
+/*.nx-basicfieldeditor-item {
+    height: 32px;
+    line-height: 20px;
+}
+
+div[pagename="StatementDetails"] .nx-page{
+    padding: 0px !important;
+}
+
+div[pagename="StatementDetails"] .nx-page-content {
+    padding: 0px;
+    
+    border-left: 1px solid #333333;
+}
+
+.nx-panel-custom-inner {
+    margin-right: 0;
+    margin-top: 6px;
+    margin-bottom: 6px;
+}
+
+.financial-statement-table table.nx-skootable-data tbody tr td:first-child {
+    border-left: none;
+}
+
+.financial-statement-table .nx-editor-contents .nx-list-footer{
+    display: none;
+}
+*/
+.custom-deck .nx-editor-contents .nx-list-footer{
+    display: none;
+}
+
+.stDetailColumn .nx-basicfieldeditor-section .nx-basicfieldeditor-section-header{
+    padding-top : 2px;
+}

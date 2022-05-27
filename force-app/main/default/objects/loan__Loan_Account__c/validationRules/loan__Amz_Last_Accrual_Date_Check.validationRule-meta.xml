@@ -3,7 +3,7 @@
     <fullName>loan__Amz_Last_Accrual_Date_Check</fullName>
     <active>true</active>
     <description>For Amz Based loans, the last accrual date cannot be moved back.</description>
-    <errorConditionFormula>AND (ISCHANGED(loan__Last_Accrual_Date__c),PRIORVALUE(loan__Last_Accrual_Date__c) =  DATE(3000,12,31),ISPICKVAL(loan__Product_Type__c, &#39;Amz Based Loan&#39;),
-CONTAINS( TEXT(loan__Loan_Status__c), &#39;Active&#39;))</errorConditionFormula>
+    <errorConditionFormula>AND (ISCHANGED(loan__Last_Accrual_Date__c),PRIORVALUE(loan__Last_Accrual_Date__c) =  DATE(3000,12,31),ISPICKVAL(loan__Product_Type__c, &apos;Amz Based Loan&apos;),
+CONTAINS( TEXT(loan__Loan_Status__c), &apos;Active&apos;))</errorConditionFormula>
     <errorMessage>For Amz Based loans, the last accrual date cannot be moved back.</errorMessage>
 </ValidationRule>

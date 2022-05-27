@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>genesis__Spousal_Notice__c</fullName>
+    <deprecated>false</deprecated>
+    <description>This field will store the notification type of the notice that needs to be sent to the spouse of the borrower in the loan application.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>This field will store the notification type of the notice that needs to be sent to the spouse of the borrower in the loan application.</inlineHelpText>
+    <label>Spousal Notice</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>A copy of the document evidencing extension of credit</fullName>
+                <default>false</default>
+                <label>A copy of the document evidencing extension of credit</label>
+            </value>
+            <value>
+                <fullName>A copy of the credit disclosure given to Applicant</fullName>
+                <default>false</default>
+                <label>A copy of the credit disclosure given to Applicant</label>
+            </value>
+            <value>
+                <fullName>No enclosure is included with Notice</fullName>
+                <default>false</default>
+                <label>No enclosure is included with Notice</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

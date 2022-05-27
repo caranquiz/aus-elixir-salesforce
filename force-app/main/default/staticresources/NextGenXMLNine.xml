@@ -1,0 +1,526 @@
+﻿<soapenv:Envelope
+    xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+    <soapenv:Body>
+        <Application Type="NewApplication">
+            <Identifier>2150870</Identifier>
+            <SalesChannel SalesChannelType="LenderAssigned">
+                <Identifier>sender-id</Identifier>
+            </SalesChannel>
+            <SalesChannel SalesChannelType="Broker">
+                <Identifier>CA08120735GB</Identifier>
+                <CompanyName BusinessName="Developer"/>
+                <PersonName>
+                    <NameTitle Value="Mrs"/>
+                    <FirstName>Broker</FirstName>
+                    <Surname>Man</Surname>
+                </PersonName>
+                <Address>
+                    <BuildingName>Noosa Boardroom</BuildingName>
+                    <FloorNo>1</FloorNo>
+                    <UnitNo>8</UnitNo>
+                    <StreetNo>20</StreetNo>
+                    <Street Type="Street">Taylor</Street>
+                    <City>SYDNEY</City>
+                    <State Name="NSW"/>
+                    <Postcode>2000</Postcode>
+                    <Country ISO3166="AU"/>
+                </Address>
+                <WorkPhone PreferredContactMethod="Yes">
+                    <Phone>
+                        <FixedPhone AreaCode="02">91231234r</FixedPhone>
+                    </Phone>
+                    <Phone>
+                        <Mobile>0444444444r</Mobile>
+                    </Phone>
+                    <Phone>
+                        <Fax AreaCode="02">72268302r</Fax>
+                    </Phone>
+                </WorkPhone>
+                <Email>rory.sheaffe@nextgen.netrer</Email>
+            </SalesChannel>
+            <SalesChannel SalesChannelDescription="BDM">
+                <Identifier/>
+            </SalesChannel>
+            <Comment/>
+            <PartySegment>
+                <Party Type="Applicant" PrimaryApplicant="Yes">
+                    <Identifier>1097796793796</Identifier>
+                    <Privacy AllowCreditCheck="No" SignatureVerification="No" PointVerificationCompleted="No" ExistingCustomer="No"/>
+                    <Trust TrustName="Delta" TrustType="SMSF" TrustDate="2022-02-01" CountryEstablished="AU" TradingName="Delta" SettlorExemption="No">
+                        <BeneficialOwner>
+                            <RelatedEntityRef>1645134851162</RelatedEntityRef>
+                            <Role Type="Trustee"/>
+                        </BeneficialOwner>
+                        <Settlor>
+                            <RelatedEntityRef>1645134789164</RelatedEntityRef>
+                        </Settlor>
+                        <ContactDetails>
+                            <AddressDetails Residential="Yes">
+                                <RelatedEntityRef>1645134760075</RelatedEntityRef>
+                            </AddressDetails>
+                            <AddressDetails>
+                                <RelatedEntityRef>1645134760075</RelatedEntityRef>
+                            </AddressDetails>
+                            <AddressDetails Mailing="Yes">
+                                <RelatedEntityRef>1645134760075</RelatedEntityRef>
+                            </AddressDetails>
+                        </ContactDetails>
+                    </Trust>
+                    <SMSF>
+                        <Trustee>
+                            <RelatedEntityRef Type="LoanParty">1645134949585</RelatedEntityRef>
+                        </Trustee>
+                        <Trustee>
+                            <RelatedEntityRef Type="LoanParty">1645136110100</RelatedEntityRef>
+                        </Trustee>
+                        <Member>
+                            <Contribution Type="Employer" Value="1000">
+                                <Period Unit="Yearly"/>
+                                <RelatedEntityRef Type="Employment">1645134949586</RelatedEntityRef>
+                            </Contribution>
+                            <Contribution Type="Additional" Value="0">
+                                <Period Unit="Yearly"/>
+                                <RelatedEntityRef Type="Employment">1645134949586</RelatedEntityRef>
+                            </Contribution>
+                            <Contribution Type="NonConcessional" Value="0">
+                                <Period Unit="Yearly"/>
+                                <RelatedEntityRef Type="Employment">1645134949586</RelatedEntityRef>
+                            </Contribution>
+                            <RelatedEntityRef Type="LoanParty">1645134949585</RelatedEntityRef>
+                        </Member>
+                        <Member>
+                            <Contribution Type="Employer" Value="2000">
+                                <Period Unit="Yearly"/>
+                                <RelatedEntityRef Type="Employment">1645136110103</RelatedEntityRef>
+                            </Contribution>
+                            <Contribution Type="Additional" Value="0">
+                                <Period Unit="Yearly"/>
+                                <RelatedEntityRef Type="Employment">1645136110103</RelatedEntityRef>
+                            </Contribution>
+                            <Contribution Type="NonConcessional" Value="0">
+                                <Period Unit="Yearly"/>
+                                <RelatedEntityRef Type="Employment">1645136110103</RelatedEntityRef>
+                            </Contribution>
+                            <RelatedEntityRef Type="LoanParty">1645136110100</RelatedEntityRef>
+                        </Member>
+                    </SMSF>
+                </Party>
+                <Party Type="SMSFMember" PrimaryApplicant="No">
+                    <Identifier>1645134949585</Identifier>
+                    <Privacy ExistingCustomer="No" AllowCreditCheck="Yes" AllowThirdPartyDisclosure="Yes" ESignConsent="No">
+                        <DocumentsSightedBy LoanWriter="No"/>
+                    </Privacy>
+                    <Person Director="No" Sex="Female" FirstHomeBuyer="No" CustomerOfLender="No" EmployeeOfLender="No">
+                        <PersonName>
+                            <NameTitle Value="Miss"/>
+                            <FirstName>Zelta</FirstName>
+                            <Surname>Zing</Surname>
+                        </PersonName>
+                        <DateOfBirth>1989-12-05</DateOfBirth>
+                        <MaritalStatus Status="Married">
+                            <RelatedEntityRef>1645136110100</RelatedEntityRef>
+                        </MaritalStatus>
+                        <Residency PermanentInAustralia="Yes" Status="Citizen">
+                            <Country ISO3166="AU"/>
+                        </Residency>
+                        <ContactDetails>
+                            <AddressDetails Residential="Yes" Mailing="No" PriorAddress="No" PostSettlement="No" HousingStatus="Renting">
+                                <RelatedEntityRef>1645134941852</RelatedEntityRef>
+                                <StartAndEndDates>
+                                    <StartDate>2015-10-22</StartDate>
+                                </StartAndEndDates>
+                            </AddressDetails>
+                            <AddressDetails Residential="No" Mailing="Yes" PriorAddress="No" PostSettlement="No">
+                                <RelatedEntityRef>1645134941852</RelatedEntityRef>
+                            </AddressDetails>
+                            <AddressDetails Residential="No" Mailing="No" PriorAddress="No" PostSettlement="Yes">
+                                <RelatedEntityRef>1645134941852</RelatedEntityRef>
+                            </AddressDetails>
+                            <HomePhone>
+                                <Phone>
+                                    <FixedPhone AreaCode="02">89568956</FixedPhone>
+                                </Phone>
+                            </HomePhone>
+                        </ContactDetails>
+                        <Employment OnProbation="No" PrimaryEmployment="Yes" PriorEmployment="No" Role="1111-11" RoleDescription="Parliamentarian or Councillor">
+                            <PAYE Type="FullTime">
+                                <RelatedEntityRef Type="RelatedParty">1645135579986</RelatedEntityRef>
+                            </PAYE>
+                            <StartAndEndDates>
+                                <StartDate>2017-05-10</StartDate>
+                            </StartAndEndDates>
+                            <EmploymentIncome>
+                                <ValueItem Value="0.0">
+                                    <Identifier>1.645136344813e+12-Income-1</Identifier>
+                                    <Income Type="GrossSalary">
+                                        <Period Unit="Monthly">
+                                            <StartDate>2020-07-01</StartDate>
+                                            <EndDate>2021-06-30</EndDate>
+                                        </Period>
+                                    </Income>
+                                </ValueItem>
+                            </EmploymentIncome>
+                        </Employment>
+                    </Person>
+                </Party>
+                <Party Type="SMSFMember" PrimaryApplicant="No">
+                    <Identifier>1645136110100</Identifier>
+                    <Privacy ExistingCustomer="No" AllowCreditCheck="Yes" AllowThirdPartyDisclosure="Yes" ESignConsent="No">
+                        <DocumentsSightedBy LoanWriter="No"/>
+                    </Privacy>
+                    <Person Director="No" Sex="Male" FirstHomeBuyer="No" CustomerOfLender="No" EmployeeOfLender="No">
+                        <PersonName>
+                            <NameTitle Value="Mr"/>
+                            <FirstName>Zang</FirstName>
+                            <Surname>Zang</Surname>
+                        </PersonName>
+                        <DateOfBirth>1988-06-04</DateOfBirth>
+                        <MaritalStatus Status="Married">
+                            <RelatedEntityRef>1645134949585</RelatedEntityRef>
+                        </MaritalStatus>
+                        <Residency PermanentInAustralia="Yes" Status="Citizen">
+                            <Country ISO3166="AU"/>
+                        </Residency>
+                        <ContactDetails>
+                            <AddressDetails Residential="Yes" Mailing="No" PriorAddress="No" PostSettlement="No" HousingStatus="Renting">
+                                <RelatedEntityRef>1645134941852</RelatedEntityRef>
+                                <StartAndEndDates>
+                                    <StartDate>2015-10-22</StartDate>
+                                </StartAndEndDates>
+                            </AddressDetails>
+                            <AddressDetails Residential="No" Mailing="Yes" PriorAddress="No" PostSettlement="No">
+                                <RelatedEntityRef>1645134941852</RelatedEntityRef>
+                            </AddressDetails>
+                            <AddressDetails Residential="No" Mailing="No" PriorAddress="No" PostSettlement="Yes">
+                                <RelatedEntityRef>1645134941852</RelatedEntityRef>
+                            </AddressDetails>
+                            <HomePhone>
+                                <Phone>
+                                    <FixedPhone AreaCode="02">89568956</FixedPhone>
+                                </Phone>
+                            </HomePhone>
+                        </ContactDetails>
+                        <Employment OnProbation="No" PrimaryEmployment="Yes" PriorEmployment="No" Role="2311-11" RoleDescription="General Medical Practitioner">
+                            <PAYE Type="FullTime">
+                                <RelatedEntityRef Type="RelatedParty">1645135579986</RelatedEntityRef>
+                            </PAYE>
+                            <StartAndEndDates>
+                                <StartDate>2017-05-10</StartDate>
+                            </StartAndEndDates>
+                            <EmploymentIncome>
+                                <ValueItem Value="0.0">
+                                    <Identifier>1-1645135666094</Identifier>
+                                    <Income Type="GrossSalary">
+                                        <Period Unit="Monthly">
+                                            <StartDate>2020-07-01</StartDate>
+                                            <EndDate>2021-06-30</EndDate>
+                                        </Period>
+                                    </Income>
+                                </ValueItem>
+                            </EmploymentIncome>
+                        </Employment>
+                    </Person>
+                </Party>
+                <Party Type="SecurityCustodian" PrimaryApplicant="No">
+                    <Identifier>1645136679695</Identifier>
+                    <Trust>
+                        <BeneficialOwner>
+                            <RelatedEntityRef/>
+                            <Role Type="Trustee"/>
+                        </BeneficialOwner>
+                    </Trust>
+                    <Company ANZSIC="8921" NatureOfBusiness="NonClassifiableEstablishments">
+                        <CompanyName BusinessName="ROSA PELESIA"/>
+                        <ContactDetails>
+                            <AddressDetails Mailing="Yes">
+                                <RelatedEntityRef/>
+                            </AddressDetails>
+                            <AddressDetails Residential="Yes">
+                                <RelatedEntityRef/>
+                            </AddressDetails>
+                        </ContactDetails>
+                        <Shareholder>
+                            <RelatedEntityRef/>
+                        </Shareholder>
+                        <CompanyType/>
+                        <CompanyNumber ABN="85599621834" ACN="789456789" ABRN=""/>
+                        <RegisteredIn>
+                            <Date>2016-06-29</Date>
+                        </RegisteredIn>
+                        <CompanyIncome/>
+                    </Company>
+                </Party>
+            </PartySegment>
+            <AddressSegment>
+                <AddressWrapper>
+                    <Identifier>1645134760075</Identifier>
+                    <Address>
+                        <UnitNo>5</UnitNo>
+                        <StreetNo>1</StreetNo>
+                        <Street Type="Place">AARON</Street>
+                        <City>WAHROONGA</City>
+                        <State Name="NSW"/>
+                        <Postcode>2076</Postcode>
+                        <Country ISO3166="AU"/>
+                    </Address>
+                </AddressWrapper>
+                <AddressWrapper>
+                    <Identifier>1645134809497</Identifier>
+                    <Address>
+                        <UnitNo>5</UnitNo>
+                        <StreetNo>1</StreetNo>
+                        <Street Type="Place">AARON</Street>
+                        <City>WAHROONGA</City>
+                        <State Name="NSW"/>
+                        <Postcode>2076</Postcode>
+                        <Country ISO3166="AU"/>
+                    </Address>
+                </AddressWrapper>
+                <AddressWrapper>
+                    <Identifier>1645134871677</Identifier>
+                    <Address>
+                        <UnitNo>66</UnitNo>
+                        <StreetNo>1</StreetNo>
+                        <Street Type="Road">ADDISON</Street>
+                        <City>MANLY</City>
+                        <State Name="NSW"/>
+                        <Postcode>2095</Postcode>
+                        <Country ISO3166="AU"/>
+                    </Address>
+                </AddressWrapper>
+                <AddressWrapper>
+                    <Identifier>1645134941852</Identifier>
+                    <Address>
+                        <UnitNo>556</UnitNo>
+                        <StreetNo>1</StreetNo>
+                        <Street Type="Drive">JACKSON</Street>
+                        <City>MASCOT</City>
+                        <State Name="NSW"/>
+                        <Postcode>2020</Postcode>
+                        <Country ISO3166="AU"/>
+                    </Address>
+                </AddressWrapper>
+                <AddressWrapper>
+                    <Identifier>1645135600492</Identifier>
+                    <Address>
+                        <UnitNo>66</UnitNo>
+                        <StreetNo>1</StreetNo>
+                        <Street Type="Road">ALAMEIN</Street>
+                        <City>SUSSEX INLET</City>
+                        <State Name="NSW"/>
+                        <Postcode>2540</Postcode>
+                        <Country ISO3166="AU"/>
+                    </Address>
+                </AddressWrapper>
+            </AddressSegment>
+            <FinancialSegment NoOtherAssets="No" NoLiabilities="No" NoIncome="No">
+                <ValueItem Value="100000">
+                    <Identifier>1097796822609</Identifier>
+                    <PercentOwned Percent="100">
+                        <RelatedEntityRef>1645136679695</RelatedEntityRef>
+                    </PercentOwned>
+                    <Asset Class="CurrentSecurity" SecurityType="RegisteredMortgage">
+                        <RealEstate Transaction="Purchasing" PrimarySecurity="Yes" PropertyPrimaryPurpose="Investment" ApprovalInPrinciple="No" Status="Established" Holding="Sole">
+                            <Rural Hectares="3" Usage="RuralResidential" WillOwn3UnitsInComplex="No" WillOwn25PercentOfComplex="No" OffThePlan="No" Type="NonSpecialisedIndustrial"/>
+                            <EstimatedValue EstimateBasis="ApplicantEstimate">100000</EstimatedValue>
+                            <ContractPrice ContractPriceAmount="930000" LicencedRealEstateAgentContract="Yes">
+                                <Date>2022-04-01</Date>
+                            </ContractPrice>
+                            <RentalIncome EvidenceOfTenancy="Yes" RentalAmount="600">
+                                <Period Unit="Yearly"/>
+                            </RentalIncome>
+                            <VisitContact Type="AgentVendor">
+                                <CompanyName BusinessName="LJ Hooker Bondi"/>
+                                <PersonName>
+                                    <NameTitle Value="Mr"/>
+                                    <FirstName>Brett</FirstName>
+                                    <Surname>Sutton</Surname>
+                                </PersonName>
+                                <WorkPhone PreferredContactMethod="Yes">
+                                    <Phone>
+                                        <FixedPhone AreaCode="03">99995555</FixedPhone>
+                                    </Phone>
+                                    <Phone>
+                                        <Mobile>0456123123</Mobile>
+                                    </Phone>
+                                </WorkPhone>
+                            </VisitContact>
+                            <Location>
+                                <RelatedEntityRef>1645134760075</RelatedEntityRef>
+                                <Title TitleType="Torrens" TenureType="UnitTitle">
+                                    <Identifier Name="TorrensPlanType"/>
+                                    <Identifier Name="TorrensTitleRef"/>
+                                    <Identifier Name="TorrensVolume"/>
+                                    <Identifier Name="TorrensFolio"/>
+                                    <Identifier Name="TorrensLot"/>
+                                </Title>
+                            </Location>
+                        </RealEstate>
+                    </Asset>
+                </ValueItem>
+            </FinancialSegment>
+            <RelatedPartySegment>
+                <RelatedParty RelPartyType="Lender">
+                    <Identifier>1097796817156</Identifier>
+                    <CompanyName BusinessName="ORDE"/>
+                </RelatedParty>
+                <RelatedParty RelPartyType="Creditor">
+                    <Identifier>1647476211646-Party</Identifier>
+                    <CompanyName BusinessName=""/>
+                </RelatedParty>
+                <RelatedParty RelPartyType="Employer">
+                    <Identifier>1097796810218</Identifier>
+                </RelatedParty>
+                <RelatedParty RelPartyType="TrustSettlor">
+                    <Identifier>1645134789164</Identifier>
+                    <PersonName>
+                        <NameTitle Value="Mr"/>
+                        <FirstName>Jen</FirstName>
+                        <Surname>Kaling</Surname>
+                    </PersonName>
+                    <RelatedEntityRef Type="ResidentialAddress">1645134809497</RelatedEntityRef>
+                    <WorkPhone>
+                        <Phone>
+                            <Mobile>0458956235</Mobile>
+                        </Phone>
+                        <Phone>
+                            <FixedPhone CountryCode="61" AreaCode="02">89568956</FixedPhone>
+                        </Phone>
+                        <Phone>
+                            <Fax CountryCode="61" AreaCode="02">78784578</Fax>
+                        </Phone>
+                    </WorkPhone>
+                    <Email>test@test.com</Email>
+                </RelatedParty>
+                <RelatedParty RelPartyType="Other">
+                    <Identifier>1645134789164</Identifier>
+                    <PersonName>
+                        <NameTitle Value="Mr"/>
+                        <FirstName>Jen</FirstName>
+                        <Surname>Kaling</Surname>
+                    </PersonName>
+                    <RelatedEntityRef Type="ResidentialAddress">1645134809497</RelatedEntityRef>
+                    <WorkPhone>
+                        <Phone>
+                            <Mobile>0458956235</Mobile>
+                        </Phone>
+                        <Phone>
+                            <FixedPhone CountryCode="61" AreaCode="02">89568956</FixedPhone>
+                        </Phone>
+                        <Phone>
+                            <Fax CountryCode="61" AreaCode="02">78784578</Fax>
+                        </Phone>
+                    </WorkPhone>
+                    <Email>test@test.com</Email>
+                </RelatedParty>
+                <RelatedParty RelPartyType="Shareholder">
+                    <Identifier>1645134851162</Identifier>
+                    <PersonName>
+                        <NameTitle Value="Mr"/>
+                        <FirstName>Zero</FirstName>
+                        <AlsoKnownAs>ZH</AlsoKnownAs>
+                        <Surname>Hero</Surname>
+                    </PersonName>
+                    <RelatedEntityRef Type="ResidentialAddress">1645134871677</RelatedEntityRef>
+                    <WorkPhone>
+                        <Phone>
+                            <Mobile>0485689562</Mobile>
+                        </Phone>
+                        <Phone>
+                            <FixedPhone CountryCode="61" AreaCode="02">89568956</FixedPhone>
+                        </Phone>
+                        <Phone>
+                            <Fax CountryCode="61" AreaCode="02">78457845</Fax>
+                        </Phone>
+                    </WorkPhone>
+                    <Email>testt@tt.com</Email>
+                </RelatedParty>
+                <RelatedParty RelPartyType="Other">
+                    <Identifier>1645134851162</Identifier>
+                    <PersonName>
+                        <NameTitle Value="Mr"/>
+                        <FirstName>Zero</FirstName>
+                        <AlsoKnownAs>ZH</AlsoKnownAs>
+                        <Surname>Hero</Surname>
+                    </PersonName>
+                    <RelatedEntityRef Type="ResidentialAddress">1645134871677</RelatedEntityRef>
+                    <WorkPhone>
+                        <Phone>
+                            <Mobile>0485689562</Mobile>
+                        </Phone>
+                        <Phone>
+                            <FixedPhone CountryCode="61" AreaCode="02">89568956</FixedPhone>
+                        </Phone>
+                        <Phone>
+                            <Fax CountryCode="61" AreaCode="02">78457845</Fax>
+                        </Phone>
+                    </WorkPhone>
+                    <Email>testt@tt.com</Email>
+                </RelatedParty>
+                <RelatedParty RelPartyType="Employer">
+                    <Identifier>1645135579986</Identifier>
+                    <CompanyName BusinessName="XERO PTY. LTD."/>
+                    <PersonName>
+                        <NameTitle Value="Mr"/>
+                        <FirstName>hang</FirstName>
+                        <Surname>hang</Surname>
+                    </PersonName>
+                    <RelatedEntityRef Type="ResidentialAddress">1645135600492</RelatedEntityRef>
+                    <WorkPhone>
+                        <Phone>
+                            <Mobile>0485698562</Mobile>
+                        </Phone>
+                        <Phone>
+                            <FixedPhone CountryCode="61" AreaCode="02">89895656</FixedPhone>
+                        </Phone>
+                        <Phone>
+                            <Fax CountryCode="61" AreaCode="02">78784545</Fax>
+                        </Phone>
+                    </WorkPhone>
+                    <Email>hang@test.com</Email>
+                    <CompanyNumber ABN="68095947023" ACN="095947023"/>
+                    <RegisteredIn>
+                        <Date>2004-03-31</Date>
+                    </RegisteredIn>
+                </RelatedParty>
+            </RelatedPartySegment>
+            <LoanDetailSegment>
+                <LoanDetails>
+                    <Identifier>1097796802265</Identifier>
+                    <EstimatedSettlement>2022-05-27</EstimatedSettlement>
+                    <LoanPurpose PrimaryPurpose="Investment" OwnerBuilderApplication="No">
+                        <ContributionFunds Amount="80000" Type="Deposit" Description="" Loan="No"/>
+                        <LendingPurposeCode ABSCode="ABS-127" PurposeAmount="0.0" Description="127 - Purchase of newly erected dwellings - Other dwelling by first mortgage"/>
+                        <RefinanceReason Reason="ReducedRepayments"/>
+                        <RefinanceReason Reason="MinimiseInterest"/>
+                    </LoanPurpose>
+                    <LoanPortion ProductName="SMSF Residential (Prime) (Full Doc)" ProductCode="PSMSFR" StatementCycle="Monthly" PackageName="">
+                        <Identifier>1097796802265-1</Identifier>
+                        <LoanTerm Type="TotalTerm" Units="Years">30</LoanTerm>
+                        <LoanTerm Type="Variable" PaymentType="PrincipalAndInterest" Units="Years">30</LoanTerm>
+                        <AmountRequested Amount="700000" BaseAmount="700000"/>
+                        <PaymentPeriod Payments="0.0">
+                            <Period Unit="Monthly"/>
+                        </PaymentPeriod>
+                        <RepaymentMethod Method="DirectDebitExistingAccount"/>
+                        <Features FeatureCode="FullDoc" FeatureName="Full Doc" FeatureComment=""/>
+                        <LoanParties>
+                            <Party RelatedID="1651445708664" NominatedBorrower="Yes"/>
+                        </LoanParties>
+                    </LoanPortion>
+                </LoanDetails>
+                <Representation Self="No">
+                    <NominatedRepresentation>
+                        <RelatedEntityRef>1652827637808</RelatedEntityRef>
+                    </NominatedRepresentation>
+                </Representation>
+            </LoanDetailSegment>
+            <QuestionSegment>
+                <Question Code="shareholderOrOfficer">
+                    <RelatedEntityRef>1097796793796</RelatedEntityRef>
+                </Question>
+            </QuestionSegment>
+            <CrossSellSegment Enabled="true"/>
+        </Application>
+    </soapenv:Body>
+</soapenv:Envelope>

@@ -30,6 +30,11 @@ Flexible Repayment - Interest calculated on the reduced principal balance with t
                 <default>false</default>
                 <label>Flexible Repayment</label>
             </value>
+            <value>
+                <fullName>Future Value Based</fullName>
+                <default>false</default>
+                <label>Future Value Based</label>
+            </value>
         </valueSetDefinition>
     </valueSet>
 </CustomField>

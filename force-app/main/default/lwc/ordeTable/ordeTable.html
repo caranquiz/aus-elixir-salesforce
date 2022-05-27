@@ -1,0 +1,84 @@
+<!--
+ - Created by Ethan Sargent on 23/07/2021.
+ -->
+
+<!-- Orde Table -->
+<template>
+    <lightning-layout-item size="12">
+        <h3 class="slds-m-top_medium slds-p-left_small">{tableData.heading}</h3>
+        <table class="orde-table">
+            <thead>
+            <tr>
+                <template for:each={tableData.headers} for:item="label">
+                    <th key={label}>
+                        {label}
+                    </th>
+                </template>
+                <template if:true={rowLevelActions}>
+                    <th class="slds-clearfix">
+                        <div class="slds-float_right slds-p-right_large">Actions</div>
+                    </th>
+                </template>
+            </tr>
+            </thead>
+            <tbody>
+            <template for:each={tableData.body} for:item="tableEntry">
+                <tr key={tableEntry.key}>
+                    <template for:each={tableEntry.fields} for:item="field">
+                        <td key={field}>
+                            <template if:true={field.isDate}>
+                                <lightning-formatted-date-time value={field.value}></lightning-formatted-date-time>
+                            </template>
+                            <template if:true={field.isDefault}>
+                                {field.value}
+                            </template>
+                        </td>
+                    </template>
+                    <template if:true={rowLevelActions}>
+                        <td>
+                            <div class="slds-clearfix">
+                                <div class="slds-m-right_small slds-float_right" if:false={tableEntry.restrictEdit}>
+                                    <lightning-button if:true={allowEdit}
+                                                      variant="base" label="Edit"
+                                                      class="orde-button"
+                                                      data-record-id={tableEntry.recordId}
+                                                      data-additional-conditions={tableEntry.additionalConditions}
+                                                      onclick={handleEdit}>Edit
+                                    </lightning-button>
+                                </div>
+                                <div class="slds-m-right_small slds-float_right" if:false={tableEntry.restrictDelete}>
+                                    <button if:true={allowDelete}
+                                            class="slds-button slds-button_destructive"
+                                            data-record-id={tableEntry.recordId}
+                                            data-additional-conditions={tableEntry.additionalConditions}
+                                            onclick={handleDelete}>Delete
+                                    </button>
+                                </div>
+                                <!--                                <lightning-button class="slds-m-right_small slds-float_right orde-button"-->
+                                <!--                                                  variant="base"-->
+                                <!--                                                  if:true={allowDownload}-->
+                                <!--                                                  data-record-id={tableEntry.recordId}-->
+                                <!--                                                  label="Download"-->
+                                <!--                                                  onclick={handleDownload}>Download-->
+                                <!--                                </lightning-button>-->
+                                <a href={tableEntry.downloadUrl} if:true={allowDownload}
+                                   class="slds-m-right_small slds-float_right orde-button slds-button" target="_blank">Download</a>
+                            </div>
+                        </td>
+                    </template>
+                </tr>
+            </template>
+            <template if:true={emptyTable}>
+                <tr>
+                    <td class="tableEmptyContent" colspan={colSpan}>No entries found.</td>
+                </tr>
+            </template>
+            </tbody>
+        </table>
+    </lightning-layout-item>
+    <!--    </template>-->
+
+    <!--    <template if:true={showSmallScreen}>-->
+    <!--        Small-->
+    <!--    </template>-->
+</template>

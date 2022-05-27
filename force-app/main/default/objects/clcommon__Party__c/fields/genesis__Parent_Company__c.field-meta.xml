@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>genesis__Parent_Company__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <deprecated>false</deprecated>
+    <description>Reference to account which is assigned as parent company to this party.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Reference to account which is assigned as parent company to this party.</inlineHelpText>
+    <label>Parent Company</label>
+    <referenceTo>Account</referenceTo>
+    <relationshipLabel>Parties (Parent Company)</relationshipLabel>
+    <relationshipName>Parties1</relationshipName>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

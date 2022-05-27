@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>clcommon__Asset_Class__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <deprecated>false</deprecated>
+    <externalId>false</externalId>
+    <label>Asset Class</label>
+    <lookupFilter>
+        <active>false</active>
+        <booleanFilter>1 AND 2</booleanFilter>
+        <filterItems>
+            <field>$Source.RecordTypeId</field>
+            <operation>equals</operation>
+            <value>Lease</value>
+        </filterItems>
+        <filterItems>
+            <field>clcommon__Asset_Class__c.Name</field>
+            <operation>notContain</operation>
+            <value>Consumer</value>
+        </filterItems>
+        <isOptional>true</isOptional>
+    </lookupFilter>
+    <referenceTo>clcommon__Asset_Class__c</referenceTo>
+    <relationshipLabel>CL Products</relationshipLabel>
+    <relationshipName>CL_Products</relationshipName>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

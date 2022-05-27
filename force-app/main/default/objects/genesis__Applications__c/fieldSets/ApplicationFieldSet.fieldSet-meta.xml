@@ -23,6 +23,16 @@
         <isRequired>false</isRequired>
     </displayedFields>
     <displayedFields>
+        <field>Total_HEM_Living_Expenses__c</field>
+        <isFieldManaged>false</isFieldManaged>
+        <isRequired>false</isRequired>
+    </displayedFields>
+    <displayedFields>
+        <field>Total_Monthly_Living_Expenses_Declared__c</field>
+        <isFieldManaged>false</isFieldManaged>
+        <isRequired>false</isRequired>
+    </displayedFields>
+    <displayedFields>
         <field>genesis__Bank_Account_Type__c</field>
         <isFieldManaged>false</isFieldManaged>
         <isRequired>false</isRequired>
@@ -574,11 +584,6 @@
     </displayedFields>
     <displayedFields>
         <field>genesis__Residual_Amount__c</field>
-        <isFieldManaged>false</isFieldManaged>
-        <isRequired>false</isRequired>
-    </displayedFields>
-    <displayedFields>
-        <field>Restrict_Redraw__c</field>
         <isFieldManaged>false</isFieldManaged>
         <isRequired>false</isRequired>
     </displayedFields>

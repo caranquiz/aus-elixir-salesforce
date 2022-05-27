@@ -52,6 +52,11 @@
                 <default>false</default>
                 <label>Withdrawn</label>
             </value>
+            <value>
+                <fullName>Loan Increase</fullName>
+                <default>false</default>
+                <label>Loan Increase</label>
+            </value>
         </valueSetDefinition>
     </valueSet>
 </CustomField>

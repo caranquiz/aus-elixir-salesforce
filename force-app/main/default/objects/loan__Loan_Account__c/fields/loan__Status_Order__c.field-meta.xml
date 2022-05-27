@@ -4,7 +4,7 @@
     <deprecated>false</deprecated>
     <externalId>false</externalId>
     <formula>CASE(
-  loan__Loan_Status__c, &#39;Active - Bad Standing&#39;, 1,
+  loan__Loan_Status__c, &apos;Active - Bad Standing&apos;, 1,
     100)</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
     <label>Status Order</label>

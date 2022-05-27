@@ -3,7 +3,7 @@
     <fullName>loan__OutstandingGreaterThanWriteoff__c</fullName>
     <deprecated>false</deprecated>
     <externalId>false</externalId>
-    <formula>IF(loan__Principal_Remaining__c+loan__Fees_Remaining__c+loan__Interest_Accrued_Not_Due__c &gt; loan__Write_off_Tolerance_Amount__c , &#39;true&#39;, &#39;false&#39;)</formula>
+    <formula>IF(loan__Principal_Remaining__c+loan__Fees_Remaining__c+loan__Interest_Accrued_Not_Due__c &gt; loan__Write_off_Tolerance_Amount__c , &apos;true&apos;, &apos;false&apos;)</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
     <label>Outstanding&gt;Writeoff</label>
     <required>false</required>

@@ -2,8 +2,8 @@
 <ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>loan__Negative_Payoff_Tolerance_Amount_Check</fullName>
     <active>true</active>
-    <description>&#39;Payoff Tolerance Amount&#39; cannot be negative</description>
+    <description>&apos;Payoff Tolerance Amount&apos; cannot be negative</description>
     <errorConditionFormula>loan__Write_off_Tolerance_Amount__c &lt; 0</errorConditionFormula>
     <errorDisplayField>loan__Write_off_Tolerance_Amount__c</errorDisplayField>
-    <errorMessage>&#39;Payoff Tolerance Amount&#39; cannot be negative</errorMessage>
+    <errorMessage>&apos;Payoff Tolerance Amount&apos; cannot be negative</errorMessage>
 </ValidationRule>

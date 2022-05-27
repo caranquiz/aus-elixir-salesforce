@@ -23,6 +23,11 @@
                 <default>false</default>
                 <label>Balances</label>
             </value>
+            <value>
+                <fullName>Schedule Balance</fullName>
+                <default>false</default>
+                <label>Schedule Balance</label>
+            </value>
         </valueSetDefinition>
     </valueSet>
 </CustomField>

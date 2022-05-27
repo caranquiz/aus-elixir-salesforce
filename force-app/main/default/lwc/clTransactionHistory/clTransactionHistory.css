@@ -1,0 +1,10 @@
+/**
+ * Created by Ethan Sargent on 22/07/2021.
+ */
+
+@import 'c/cssLibrary';
+
+.datepicker-wrapper
+{
+    max-width: 220px;
+}

@@ -310,9 +310,7 @@
                 <stringValue>CURRENT PAYMENT AMOUNT</stringValue>
             </value>
         </filters>
-        <getFirstRecordOnly>false</getFirstRecordOnly>
         <object>loan__Automated_Payment_Setup__c</object>
-        <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
     <recordUpdates>
         <name>update_last_record</name>
@@ -331,16 +329,7 @@
         </connector>
         <inputReference>APSUpdateList</inputReference>
     </recordUpdates>
-    <start>
-        <locationX>50</locationX>
-        <locationY>50</locationY>
-        <connector>
-            <targetReference>Get_APS_Records</targetReference>
-        </connector>
-        <object>loan__Loan_Account__c</object>
-        <recordTriggerType>CreateAndUpdate</recordTriggerType>
-        <triggerType>RecordAfterSave</triggerType>
-    </start>
+    <startElementReference>Get_APS_Records</startElementReference>
     <status>Active</status>
     <variables>
         <name>APSRecordUpdate</name>

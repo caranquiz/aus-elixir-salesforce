@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Waiting_for_Approval</fullName>
+    <columns>NAME</columns>
+    <columns>Recommended_By__c</columns>
+    <columns>Recommended_Date__c</columns>
+    <columns>genesis__Loan_Amount__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>genesis__Status__c</field>
+        <operation>equals</operation>
+        <value>Recommended</value>
+    </filters>
+    <label>Waiting  for Approval</label>
+    <sharedTo>
+        <role>Staff</role>
+    </sharedTo>
+</ListView>

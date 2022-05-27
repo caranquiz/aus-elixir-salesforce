@@ -4,6 +4,7 @@
     <externalId>false</externalId>
     <formula>IF(ISPICKVAL(Transaction__c, &apos;Purchase&apos;), IF(ISPICKVAL(Contract_Of_Sale__c, &apos;Yes&apos;), OR(ISPICKVAL(Licenced_Real_Estate_Agent_Contract__c, &apos;No&apos;), ISPICKVAL(Licenced_Real_Estate_Agent_Contract__c, &apos;&apos;)), FALSE), FALSE)</formula>
     <label>Licenced REA Contract Warning Check</label>
+    <trackHistory>false</trackHistory>
     <trackTrending>false</trackTrending>
     <type>Checkbox</type>
 </CustomField>

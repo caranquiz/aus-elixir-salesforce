@@ -4,6 +4,7 @@
     <externalId>false</externalId>
     <formula>ISPICKVAL(Construction__c, &apos;Yes&apos;)</formula>
     <label>Construction Section Render Check</label>
+    <trackHistory>false</trackHistory>
     <trackTrending>false</trackTrending>
     <type>Checkbox</type>
 </CustomField>

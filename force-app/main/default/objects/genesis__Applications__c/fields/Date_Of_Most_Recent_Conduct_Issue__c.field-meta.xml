@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Date_Of_Most_Recent_Conduct_Issue__c</fullName>
+    <description>RJohnston 17/5/21 - for reporting purposes on the latest conduct issue
+ https://wingategroup.atlassian.net/secure/RapidBoard.jspa?rapidView=8&amp;projectKey=AMS&amp;modal=detail&amp;selectedIssue=AMS-826</description>
     <externalId>false</externalId>
     <label>Date Of Most Recent Conduct Issue</label>
     <required>false</required>

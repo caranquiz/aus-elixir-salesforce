@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>genesis__Accept_Application</fullName>
+    <availability>online</availability>
+    <displayType>massActionButton</displayType>
+    <hasMenubar>false</hasMenubar>
+    <hasScrollbars>true</hasScrollbars>
+    <hasToolbar>false</hasToolbar>
+    <height>600</height>
+    <isResizable>true</isResizable>
+    <linkType>page</linkType>
+    <masterLabel>Accept Application</masterLabel>
+    <openType>newWindow</openType>
+    <page>genesis__AcceptApplication</page>
+    <position>none</position>
+    <protected>false</protected>
+    <requireRowSelection>true</requireRowSelection>
+    <showsLocation>false</showsLocation>
+    <showsStatus>false</showsStatus>
+</WebLink>

@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>ERF_if_paid_within__c</fullName>
+    <description>RJohnston 14/2/22 - https://wingategroup.atlassian.net/jira/software/c/projects/AMS/boards/8?modal=detail&amp;selectedIssue=AMS-1191
+To determine how many years the borrower can take before they can be charged and ERF</description>
     <externalId>false</externalId>
     <label>ERF if paid within (Years)</label>
     <precision>18</precision>

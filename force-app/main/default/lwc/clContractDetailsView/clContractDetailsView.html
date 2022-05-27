@@ -1,0 +1,14 @@
+<!--
+ - Created by Ethan Sargent on 15/07/2021.
+ -->
+
+<!-- Cl Contract Details View -->
+<template>
+    <lightning-layout>
+        <lightning-layout-item size="12" small-device-size="12" medium-device-size="6">
+            <template for:each={displayFields} for:item="field">
+                <c-orde-field key={field.label} field={field} display-separator="true"></c-orde-field>
+            </template>
+        </lightning-layout-item>
+    </lightning-layout>
+</template>

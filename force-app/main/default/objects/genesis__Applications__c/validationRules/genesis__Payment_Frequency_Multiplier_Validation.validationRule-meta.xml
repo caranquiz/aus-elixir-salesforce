@@ -7,9 +7,9 @@ Payment Frequency Multiplier should not be allowed to input for Payment Frequenc
     <errorConditionFormula>IF( ISBLANK(genesis__Payment_Frequency_Multiplier__c),FALSE,
  OR(genesis__Payment_Frequency_Multiplier__c &lt;= 0,
   NOT(
-   OR( ISPICKVAL(genesis__Payment_Frequency__c,&#39;Daily&#39;),
-      ISPICKVAL(genesis__Payment_Frequency__c,&#39;WEEKLY&#39;),
-      ISPICKVAL(genesis__Payment_Frequency__c,&#39;MONTHLY&#39;)
+   OR( ISPICKVAL(genesis__Payment_Frequency__c,&apos;Daily&apos;),
+      ISPICKVAL(genesis__Payment_Frequency__c,&apos;WEEKLY&apos;),
+      ISPICKVAL(genesis__Payment_Frequency__c,&apos;MONTHLY&apos;)
      )
     )
   )

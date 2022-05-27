@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Complete_Payee_Name_and_ABN</fullName>
+    <active>true</active>
+    <description>18/03/2021 - RJohnston
+Jira - https://wingategroup.atlassian.net/browse/OIBCR-232
+Validations for required fields to make sure all information under direct accredited completed</description>
+    <errorConditionFormula>AND ( RecordType.DeveloperName = &quot;Broker_Type&quot;,
+AND(ISPICKVAL( Direct_Accredited__c , &quot;Yes&quot;),
+ISBLANK( ABN__c ),
+ISBLANK( Payee_Name__c )))</errorConditionFormula>
+    <errorMessage>Please complete the payee name and ABN number</errorMessage>
+</ValidationRule>

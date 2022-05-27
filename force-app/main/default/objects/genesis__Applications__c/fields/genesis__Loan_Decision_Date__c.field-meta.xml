@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>genesis__Loan_Decision_Date__c</fullName>
+    <deprecated>false</deprecated>
+    <description>This date is to record the date on which the loan decision has been made.This date must be updated via salesforce approval process or via other methods when the loan status is either approved or rejected.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>This date is to record the date on which the loan decision has been made.This date must be updated via salesforce approval process or via other methods when the loan status is either approved or rejected.</inlineHelpText>
+    <label>Loan Decision Date</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Date</type>
+</CustomField>

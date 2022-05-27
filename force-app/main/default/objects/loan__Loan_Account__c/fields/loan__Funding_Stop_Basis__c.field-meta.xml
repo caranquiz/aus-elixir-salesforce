@@ -3,7 +3,7 @@
     <fullName>loan__Funding_Stop_Basis__c</fullName>
     <deprecated>false</deprecated>
     <externalId>false</externalId>
-    <inlineHelpText>If Funding Stop Basis is set to &#39;Draw Period End&#39; then no further funding is allowed after Draw Period End Date</inlineHelpText>
+    <inlineHelpText>If Funding Stop Basis is set to &apos;Draw Period End&apos; then no further funding is allowed after Draw Period End Date</inlineHelpText>
     <label>Funding Stop Basis</label>
     <required>false</required>
     <trackHistory>false</trackHistory>

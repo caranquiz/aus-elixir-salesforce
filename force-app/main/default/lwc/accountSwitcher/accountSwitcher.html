@@ -1,0 +1,32 @@
+<!--
+ - Created by Ethan Sargent on 27/07/2021.
+ -->
+
+<!-- Account Switcher -->
+<template>
+    <template if:true={accountsRetrieved}>
+        <template for:each={displayAccounts} for:item="account">
+            <div key={account.recordId} class="slds-text-align_center slds-m-top_large slds-m-bottom_x-small">
+                <h2>{account.name}</h2>
+            </div>
+            <div class="switcher-card-container" key={account.recordId}>
+                <c-cl-orde-card card-title={account.name}>
+<!--                    <span slot="title" class="slds-p-around_medium"></span>-->
+                    <div class="slds-p-left_medium">
+                        <template for:each={account.fields} for:item="field">
+                            <c-orde-field key={field.key} field={field}></c-orde-field>
+                        </template>
+                        <lightning-button
+                                label="View Loans"
+                                variant="base"
+                                class="orde-button"
+                                data-account-id={account.recordId}
+                                onclick={viewLoans}
+                        >View Loans
+                        </lightning-button>
+                    </div>
+                </c-cl-orde-card>
+            </div>
+        </template>
+    </template>
+</template>

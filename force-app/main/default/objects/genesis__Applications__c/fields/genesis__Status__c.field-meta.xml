@@ -23,9 +23,14 @@
                 <label>App Processed</label>
             </value>
             <value>
-                <fullName>Conditional Issued</fullName>
+                <fullName>Conditional Assessed</fullName>
                 <default>false</default>
-                <label>Conditional Issued</label>
+                <label>Conditional Assessed</label>
+            </value>
+            <value>
+                <fullName>Conditionally Approved</fullName>
+                <default>false</default>
+                <label>Conditionally Approved</label>
             </value>
             <value>
                 <fullName>Conditional Accepted</fullName>
@@ -33,14 +38,9 @@
                 <label>Conditional Accepted</label>
             </value>
             <value>
-                <fullName>Val Ordered</fullName>
+                <fullName>Assessment in Progress</fullName>
                 <default>false</default>
-                <label>Val Ordered</label>
-            </value>
-            <value>
-                <fullName>Val Received</fullName>
-                <default>false</default>
-                <label>Val Received</label>
+                <label>Assessment in Progress</label>
             </value>
             <value>
                 <fullName>Recommended</fullName>

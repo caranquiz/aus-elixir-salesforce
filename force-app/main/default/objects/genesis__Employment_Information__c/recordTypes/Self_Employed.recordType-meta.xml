@@ -150,6 +150,17 @@
         </values>
     </picklistValues>
     <picklistValues>
+        <picklist>GST_Suitable__c</picklist>
+        <values>
+            <fullName>No</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Yes</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
         <picklist>Income_Type__c</picklist>
         <values>
             <fullName>Bonus</fullName>
@@ -239,6 +250,17 @@
         </values>
         <values>
             <fullName>Trade</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Months_Self_Employed_Suitable__c</picklist>
+        <values>
+            <fullName>No</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Yes</fullName>
             <default>false</default>
         </values>
     </picklistValues>

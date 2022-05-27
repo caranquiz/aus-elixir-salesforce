@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>clcommon__PUD__c</fullName>
+    <defaultValue>false</defaultValue>
+    <deprecated>false</deprecated>
+    <description>This checkbox will indicate if the property is a planned unit development</description>
+    <externalId>false</externalId>
+    <inlineHelpText>This checkbox will indicate if the property is a planned unit development</inlineHelpText>
+    <label>Planned Unit Development</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

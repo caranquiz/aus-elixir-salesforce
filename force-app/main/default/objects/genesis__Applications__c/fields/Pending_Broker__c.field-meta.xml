@@ -2,6 +2,9 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Pending_Broker__c</fullName>
     <defaultValue>false</defaultValue>
+    <description>https://wingategroup.atlassian.net/secure/RapidBoard.jspa?rapidView=8&amp;projectKey=AMS&amp;modal=detail&amp;selectedIssue=AMS-714
+RJohnston - 14/4/21
+For the team to be aware if we are waiting documents from the broker</description>
     <externalId>false</externalId>
     <label>Pending Broker</label>
     <trackFeedHistory>false</trackFeedHistory>

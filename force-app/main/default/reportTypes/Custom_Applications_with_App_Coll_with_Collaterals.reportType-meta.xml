@@ -5,7 +5,7 @@
     <deployed>true</deployed>
     <description>Custom Applications with App Coll with Collaterals</description>
     <join>
-        <outerJoin>false</outerJoin>
+        <outerJoin>true</outerJoin>
         <relationship>genesis__Application_Collaterals__r</relationship>
     </join>
     <label>Custom Applications with App Coll with Collaterals</label>
@@ -32,6 +32,7 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Approved LVR</displayNameOverride>
             <field>Actual_LVR__c</field>
             <table>genesis__Applications__c</table>
         </columns>
@@ -53,6 +54,12 @@
         <columns>
             <checkedByDefault>false</checkedByDefault>
             <field>Additional_Requirements__c</field>
+            <table>genesis__Applications__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>BDM</displayNameOverride>
+            <field>Brokers_BDM__c</field>
             <table>genesis__Applications__c</table>
         </columns>
         <columns>
@@ -92,12 +99,32 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
+            <field>Months_Self_Employed__c</field>
+            <table>genesis__Applications__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
             <field>Application_Fee__c</field>
             <table>genesis__Applications__c</table>
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
+            <field>Employment_Type__c</field>
+            <table>genesis__Applications__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
             <field>Id</field>
+            <table>genesis__Applications__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Recommended_By__c</field>
+            <table>genesis__Applications__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Matrix_Rate__c</field>
             <table>genesis__Applications__c</table>
         </columns>
         <columns>
@@ -132,7 +159,17 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
+            <field>Pending_Broker__c</field>
+            <table>genesis__Applications__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
             <field>genesis__Asset_Class__c</field>
+            <table>genesis__Applications__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Total_Number_of_Securities__c</field>
             <table>genesis__Applications__c</table>
         </columns>
         <columns>
@@ -183,11 +220,6 @@
         <columns>
             <checkedByDefault>false</checkedByDefault>
             <field>Broker__c</field>
-            <table>genesis__Applications__c</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>Brokers_BDM__c</field>
             <table>genesis__Applications__c</table>
         </columns>
         <columns>
@@ -287,6 +319,7 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Product</displayNameOverride>
             <field>genesis__CL_Product_Name__c</field>
             <table>genesis__Applications__c</table>
         </columns>
@@ -762,6 +795,7 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Approved Loan Amount</displayNameOverride>
             <field>genesis__Loan_Amount__c</field>
             <table>genesis__Applications__c</table>
         </columns>
@@ -1057,6 +1091,7 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Investment/Owner Occupied</displayNameOverride>
             <field>Primary_loan_purpose_list__c</field>
             <table>genesis__Applications__c</table>
         </columns>
@@ -1222,6 +1257,7 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Risk Grade</displayNameOverride>
             <field>Risk_grade_list__c</field>
             <table>genesis__Applications__c</table>
         </columns>
@@ -1527,12 +1563,22 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
+            <field>Primary_Approval_Date_for_Reports__c</field>
+            <table>genesis__Applications__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
             <field>Valuation_Fee__c</field>
             <table>genesis__Applications__c</table>
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
             <field>genesis__Vendor__c</field>
+            <table>genesis__Applications__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Valuation_Fee_Collected_at_Settlement__c</field>
             <table>genesis__Applications__c</table>
         </columns>
         <columns>
@@ -1553,6 +1599,21 @@
         <columns>
             <checkedByDefault>false</checkedByDefault>
             <field>genesis__Yield__c</field>
+            <table>genesis__Applications__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>First_Home_Buyer__c</field>
+            <table>genesis__Applications__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>genesis__Contact__c.Broker_ID__c</field>
+            <table>genesis__Applications__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Broker__c.Aggregator__c</field>
             <table>genesis__Applications__c</table>
         </columns>
         <masterLabel>Applications</masterLabel>
@@ -2706,6 +2767,21 @@
         <columns>
             <checkedByDefault>false</checkedByDefault>
             <field>genesis__Collateral__c.clcommon__Year__c</field>
+            <table>genesis__Applications__c.genesis__Application_Collaterals__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>genesis__Collateral__c.S_P_Location__c</field>
+            <table>genesis__Applications__c.genesis__Application_Collaterals__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>genesis__Collateral__c.QBE_Location__c</field>
+            <table>genesis__Applications__c.genesis__Application_Collaterals__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>genesis__Collateral__c.Valuation_Received_Date__c</field>
             <table>genesis__Applications__c.genesis__Application_Collaterals__r</table>
         </columns>
         <masterLabel>Application Collaterals</masterLabel>

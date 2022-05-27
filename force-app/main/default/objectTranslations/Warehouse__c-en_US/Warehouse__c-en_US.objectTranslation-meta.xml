@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Warehouse</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Warehouses</value>
+    </caseValues>
+    <layouts>
+        <layout>Warehouse Layout</layout>
+        <sections>
+            <label></label>
+            <section>Collection Bank Account Update</section>
+        </sections>
+        <sections>
+            <label></label>
+            <section>Collection Bank Details</section>
+        </sections>
+        <sections>
+            <label></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label></label>
+            <section>Disbursal Bank Account Update</section>
+        </sections>
+        <sections>
+            <label></label>
+            <section>Disbursal Bank Details</section>
+        </sections>
+        <sections>
+            <label></label>
+            <section>Trust Account Details</section>
+        </sections>
+        <sections>
+            <label></label>
+            <section>Trust Bank Account Update</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+    <validationRules>
+        <errorMessage></errorMessage>
+        <name>BSB_Number_Length</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage></errorMessage>
+        <name>Bank_Account_Number_Length</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage></errorMessage>
+        <name>WarehouseDisbursalCollectionBankChecks</name>
+    </validationRules>
+</CustomObjectTranslation>

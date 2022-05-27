@@ -1,0 +1,10 @@
+/**
+ * Created by Ethan Sargent on 19/08/2021.
+ */
+
+@import 'c/cssLibrary';
+
+.picklist-width
+{
+    max-width: 150px;
+}

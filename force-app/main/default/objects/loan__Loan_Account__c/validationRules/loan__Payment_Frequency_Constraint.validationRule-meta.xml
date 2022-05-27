@@ -5,5 +5,5 @@
     <description>Payment Frequency and loan term interdependency constraint</description>
     <errorConditionFormula>loan__Number_of_Installments__c = 1  &amp;&amp;  !ISPICKVAL(loan__Frequency_of_Loan_Payment__c , &quot;Single-Payment&quot;)</errorConditionFormula>
     <errorDisplayField>loan__Frequency_of_Loan_Payment__c</errorDisplayField>
-    <errorMessage>Payment Frequency should always be &#39;Single-Payment&#39; for loan with 1 term</errorMessage>
+    <errorMessage>Payment Frequency should always be &apos;Single-Payment&apos; for loan with 1 term</errorMessage>
 </ValidationRule>

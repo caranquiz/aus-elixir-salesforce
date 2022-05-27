@@ -1,0 +1,130 @@
+/**
+ * Created by Ethan Sargent on 8/07/2021.
+ */
+
+
+
+.tab-button
+{
+    color: #05D7F2;
+    margin: auto;
+    width: 100%;
+    border-radius: 0 !important;
+    padding-bottom: 0.25em;
+}
+
+@media only screen and (max-width: 500px)
+{
+    .tab-button
+    {
+        font-size: 1.2rem;
+    }
+
+}
+
+.tab-button-container
+{
+    padding-top: .5em;
+    padding-bottom: .5em;
+}
+
+.selected-tab
+{
+    border-bottom: 2px solid #05D7F2;
+}
+
+.orde-border-bottom
+{
+    border-bottom: 1px solid rgba(28,31,27,0.2);
+}
+
+.orde-card-header
+{
+    font-size: 24px;
+}
+
+.field-separator
+{
+    width: 100%;
+}
+
+.fieldLabel
+{
+    color: black;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.fieldValue
+{
+    color: #283137;
+    font-size: 16px;
+}
+
+.fieldGroup
+{
+    margin: 1em 0;
+}
+
+.orde-card
+{
+
+    box-shadow: 0 2px 5px rgba(0,0,0, 0.2);
+    width: 100%;
+
+}
+
+.switcher-card-container
+{
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 30px;
+}
+
+.submit-spinner-wrapper
+{
+    margin-top: 2rem;
+    margin-left: auto;
+    margin-right: auto;
+    width: 200px;
+    text-align: center;
+}
+
+.switcher-card-container:first-of-type
+{
+    margin-top: 10px;
+}
+
+h2
+{
+    font-size: 18px;
+    color: #05D7F2;
+    font-weight: bold;
+}
+
+h3
+{
+    font-size: 18px;
+}
+
+h4
+{
+    font-weight: bold;
+}
+
+.orde-button
+{
+    background-color: rgb(41, 48, 56);
+    color: white !important;
+    border-radius: 5px;
+    padding: 0 1rem;
+    line-height:30px;
+    box-sizing: border-box;
+    display: inline-flex;
+}
+
+.orde-button:hover
+{
+    background-color: rgb(61,68,76);
+}

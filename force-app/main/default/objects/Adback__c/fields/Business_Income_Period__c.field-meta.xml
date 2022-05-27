@@ -2,6 +2,13 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Business_Income_Period__c</fullName>
     <externalId>false</externalId>
+    <inlineHelpText>Add-backs:
+• Director’s income/salaries (where not already included in calculations)
+• Director’s super in excess of 9.5%)of gross income
+• Depreciation
+• Interest on loans being refinanced
+• Non-recurring expenses (confirmed by accountant).
+[19]</inlineHelpText>
     <label>Business Income Period</label>
     <required>false</required>
     <trackTrending>false</trackTrending>

@@ -1,0 +1,180 @@
+.selected-btn {
+    background: #16325C !important; /* Or some other color */
+}
+
+.show{
+    visibility: hidden;
+}
+
+.hide{
+    visibility: visible;
+}
+h2 {
+    visibility: hidden;
+}
+.selected-btn {
+    background: #16325C!important; /* Or some other color */
+}
+.clorequired{
+
+}
+.progress-indicator {
+    margin-bottom: 20px;
+}
+.progress-indicator .progress-chunk .progress-text {
+    line-height: 32px;
+    font-size: 12px;
+}
+.progress-indicator div {
+    padding: 0px;
+}
+.progress-text {
+    padding: 0px;
+}
+.text-content {
+    font-size: 12px;
+    line-height: 12px;
+}
+.progress-triangle-outline {
+    /* display: none; */
+    border-left: 25px solid #ffffff;
+}
+.progress-indicator .progress-chunk.current .progress-triangle {
+    border-left: 20px solid #1cbdd4;
+}
+.progress-indicator .progress-chunk.done .progress-triangle {
+    border-left: 20px solid #2d5074;
+}
+.progress-indicator .progress-chunk .progress-triangle {
+    border-left: 20px solid #dddddd;
+}
+.progress-indicator .progress-chunk.current .progress-triangle-outline {
+    border-left: 22px solid #ffffff;
+    transform: translate(100%, -50%);
+}
+.progress-indicator .progress-chunk.done .progress-triangle-outline {
+    border-left: 22px solid #ffffff;
+    transform: translate(100%, -50%);
+}
+.progress-indicator .progress-chunk .progress-triangle-outline {
+    border-left: 22px solid #ffffff;
+    transform: translate(100%, -50%);
+}
+.nx-pagetitle-subtitle {
+    font-size: 12px;
+    color: #121212;
+}
+.nx-page {
+    overflow: hidden;
+}
+.ui-dialog-title {
+    font-size: 14px;
+}
+.ui-dialog .ui-widget .ui-widget-content .ui-corner-all .ui-front div {
+    overflow: none;
+}
+.nx-skootable-order-icon-wrapper span {
+  display: none;
+}
+
+span.nx-skootable-has-ordering{
+font-size: 0px;
+}
+
+.required .nx-skootable-has-ordering:before { content: "Equipment Name" !important; font-size: 12px; }
+.nx-skootable-has-ordering:before { content: "Equipment Type"; font-size: 12px; }
+
+table.nx-skootable-data tbody tr.Highlighted-row td {
+   background-color: LightCoral;
+}
+/*#submit-new-appraisal{*/
+/*    height: 37px;*/
+/*    width: 58px;*/
+/*    padding-top: 29px;*/
+/*}*/
+
+#submit-new-appraisal img {
+    display: block;
+    width: 73%;
+    cursor:default;
+    margin-top: -53px;
+    margin-left: 72px;
+}
+
+.image-button.new-house:after {
+    content: 'Do you want to request a new appraisal for this collateral?';
+    margin-top: -42px;
+    /*margin-left: -127px;*/
+    margin-left: 9px;
+}
+
+#new-house-wrapper {
+    text-align:center;
+}
+
+#new-appraisal-btnset {
+    /*margin-left: 72px;*/
+    text-align: center;
+}
+
+#new-appraisal-btnset .nx-header-buttonset.sk-buttonset-left{
+    /*margin-left: -24px;*/
+}
+
+#new-appraisal-btnset .ui-button-text {
+    /*width: 120px;*/
+}
+
+#appraisal-req-due-date-id {
+    text-align:center;
+    margin-right: 30px;
+}
+
+#appraisal-req-due-date-id .nx-basicfieldeditor-item-label{
+   width: 22%;
+}
+
+
+#new-collateral-pledge-amt-wpr .nx-pagetitle-subtitle {
+    top:0;
+    position: unset;
+    font-family: Lato
+}
+
+#new-collateral-pledge-amt-wpr .nx-pagetitle.nx-editor .nx-template{
+    font-style: italic;
+    font-weight: bold;
+    font-size: 13px;
+}
+
+#existing-collateral-pledge-amt-wpr .nx-pagetitle.nx-editor .nx-template{
+    font-style: italic;
+    font-weight: bold;
+    font-size: 13px;
+}
+
+#existing-collateral-pledge-amt-wpr .nx-pagetitle-subtitle {
+    top:0;
+    position: unset;
+    font-family: Lato
+}
+
+
+#new-collateral-pledge-amt-wpr .nx-pagetitle-subtitle {
+    line-height: 14pt;
+}
+
+#existing-coll-pledge-inner-wrapper .nx-pagetitle-subtitle {
+    line-height: 14pt;
+}
+
+
+#sk-tiO8J-2005 .nx-pagetitle-subtitle {
+    position: relative;
+    top:0;
+    padding-left: 6px;
+}
+
+div#collateralWizard .sk-action-field {
+    display: none;
+}

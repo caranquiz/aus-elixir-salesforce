@@ -283,6 +283,7 @@ public with sharing class ChildChecklistAPI {
         genesis__Collateral__r.Check_Val_Ordered_Date__c,
         genesis__Collateral__r.Valuation_Received_Date__c,
         genesis__Collateral__r.Valuation_Received_Date_Check__c,
+        genesis__Collateral__r.Status_Check__c,
         X110_check__c,
         X110_Render_Check__c
       FROM genesis__Application_Collateral__c

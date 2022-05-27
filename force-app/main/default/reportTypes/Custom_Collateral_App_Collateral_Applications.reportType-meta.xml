@@ -142,6 +142,11 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
+            <field>QBE_Location__c</field>
+            <table>clcommon__Collateral__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
             <field>clcommon__Collateral_Type__c</field>
             <table>clcommon__Collateral__c</table>
         </columns>
@@ -153,6 +158,11 @@
         <columns>
             <checkedByDefault>false</checkedByDefault>
             <field>Commercial_Type__c</field>
+            <table>clcommon__Collateral__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>S_P_Location__c</field>
             <table>clcommon__Collateral__c</table>
         </columns>
         <columns>
@@ -208,6 +218,11 @@
         <columns>
             <checkedByDefault>false</checkedByDefault>
             <field>clcommon__Contract_Date__c</field>
+            <table>clcommon__Collateral__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Valuer__c</field>
             <table>clcommon__Collateral__c</table>
         </columns>
         <columns>
@@ -1331,11 +1346,6 @@
         <columns>
             <checkedByDefault>false</checkedByDefault>
             <field>genesis__Application__c.Broker__c</field>
-            <table>clcommon__Collateral__c.genesis__Application_Collaterals__r</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>genesis__Application__c.Brokers_BDM__c</field>
             <table>clcommon__Collateral__c.genesis__Application_Collaterals__r</table>
         </columns>
         <columns>

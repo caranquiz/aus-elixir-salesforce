@@ -1,0 +1,35 @@
+<!--
+ - Created by Ethan Sargent on 26/07/2021.
+ -->
+
+<!-- Orde Field -->
+<template>
+    <template if:false={inline}>
+        <div class="fieldGroup">
+            <p class={labelClass}>{field.label}</p>
+            <template if:true={field.isDefault}>
+                <p class="fieldValue">{field.value}</p>
+            </template>
+            <template if:true={field.isDate}>
+                <lightning-formatted-date-time class="fieldValue" value={field.value}></lightning-formatted-date-time>
+            </template>
+        </div>
+    </template>
+    <template if:true={inline}>
+            <td class={labelClass} style="display: inline">{field.label}</td>
+            <template if:true={field.isDefault}>
+                <td class="fieldValue" style="display: inline; float: right;">{field.value}</td>
+            </template>
+            <template if:true={field.isDate}>
+                <td>
+                    <lightning-formatted-date-time style="display:inline; float:right;" class="fieldValue"
+                                                   value={field.value}></lightning-formatted-date-time>
+                </td>
+            </template>
+        </tr>
+    </template>
+
+    <template if:true={displaySeparator}>
+        <div class="field-separator orde-border-bottom"></div>
+    </template>
+</template>

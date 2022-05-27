@@ -217,6 +217,10 @@
             <fullName>Bills</fullName>
             <default>false</default>
         </values>
+        <values>
+            <fullName>Schedule Balance</fullName>
+            <default>false</default>
+        </values>
     </picklistValues>
     <picklistValues>
         <picklist>loan__Disbursal_Status__c</picklist>
@@ -375,6 +379,10 @@
         </values>
         <values>
             <fullName>Flexible Repayment</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Future Value Based</fullName>
             <default>false</default>
         </values>
     </picklistValues>

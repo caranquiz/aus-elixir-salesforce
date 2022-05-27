@@ -3,10 +3,10 @@
     <fullName>Legal_finalization_breach</fullName>
     <active>true</active>
     <errorConditionFormula>AND(ISPICKVAL(Stage__c, &quot;Closed&quot;),
-OR(ISPICKVAL(Report_to_ASIC__c, &quot;&quot;),
-ISPICKVAL(Breach_reported_to_ASIC__c, &quot;&quot;),
-ISPICKVAL(Breach_Significance_Compliance__c, &quot;&quot;),
-ISPICKVAL(Is_a_process_improvement_required__c, &quot;&quot;),
+OR(ISBLANK(TEXT(Report_to_ASIC__c)),
+ISBLANK(TEXT(Breach_reported_to_ASIC__c)),
+ISBLANK(TEXT(Breach_Significance_Compliance__c)),
+ISBLANK(TEXT(Is_a_process_improvement_required__c)),
 ISBLANK( Risk_Classification__c)))</errorConditionFormula>
     <errorMessage>Please complete all fields in the Head of Compliance section before proceeding.</errorMessage>
 </ValidationRule>

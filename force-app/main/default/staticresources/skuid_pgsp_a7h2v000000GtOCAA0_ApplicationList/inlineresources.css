@@ -1,0 +1,42 @@
+html {
+    height: 100%;
+}
+
+body {
+    background-color: #EBEEF0;
+    font: normal normal 400 12px Lato;
+    padding: 0 !important;
+    height: 100%;
+}
+
+body > .nx-page {
+    padding: 0;
+    background-color: #EBEEF0;
+    /*margin:10px;*/
+}
+
+#myRecentLoanOppTitle {
+    margin-bottom:-37px;
+}
+
+#myRecentLoanOppTableId {
+    margin-top: 20px;
+    vertical-align: top;
+    display: inline;
+}
+
+/*#myRecentLoanOppTitle .nx-template {*/
+/*    font-size: 15px;*/
+/*    font-weight: bold;*/
+/*}*/
+ 
+/*#myTopLoanOppId .nx-template {*/
+/*    font-size: 15px;*/
+/*    font-weight: bold;*/
+/*}*/
+
+#topPanelSetApplicationList .nx-pagetitle-maintitle {
+    font-size: 15px;
+    margin-left: -12px;
+    font-weight: 700;
+}

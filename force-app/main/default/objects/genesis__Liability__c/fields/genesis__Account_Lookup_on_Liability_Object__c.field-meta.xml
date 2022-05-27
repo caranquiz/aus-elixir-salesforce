@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>genesis__Account_Lookup_on_Liability_Object__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <deprecated>false</deprecated>
+    <description>Liability Information needs to have a lookup on Account.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Liability Information needs to have a lookup on Account.</inlineHelpText>
+    <label>Account Lookup on Liability Object</label>
+    <referenceTo>Account</referenceTo>
+    <relationshipLabel>Liabilities</relationshipLabel>
+    <relationshipName>Liabilities</relationshipName>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

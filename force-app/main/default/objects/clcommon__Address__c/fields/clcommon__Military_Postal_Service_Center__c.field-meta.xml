@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>clcommon__Military_Postal_Service_Center__c</fullName>
+    <deprecated>false</deprecated>
+    <description>This field will be enabled only if the Military address checkbox is true .This field will store the postal service center if the address is a military address.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>This field will store the postal service center if the address is a military address.</inlineHelpText>
+    <label>Military Postal Service Center</label>
+    <length>255</length>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

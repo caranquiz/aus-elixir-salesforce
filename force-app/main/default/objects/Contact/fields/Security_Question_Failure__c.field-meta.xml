@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Security_Question_Failure__c</fullName>
+    <description>Stores number of failures when attempting to answer the security question for the customer portal.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Number of times user has failed to enter their security question correctly</inlineHelpText>
+    <label>Security Question Failure</label>
+    <precision>2</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

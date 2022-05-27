@@ -1,0 +1,13 @@
+.add-members-button-title .nx-header-right,
+.add-members-button-title .nx-header-right > div,
+.add-members-button-title .nx-header-right > div > div[role="button"]{
+    width: 100%;
+}
+
+.add-members-button-title .nx-header-right > div > div[role="button"]{
+    background: #1cbdd4;
+}
+
+.add-members-button-title .nx-header-right > div > div[role="button"] > .ui-button-text{
+    font-size: 16px;
+}

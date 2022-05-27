@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<CustomField xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>ints__Is_Lenddo_Verified__c</fullName>
     <deprecated>false</deprecated>
     <description>Check box to determine if the contact information is sent to Lenddo for verification vis the Lenddo Button or not.</description>
@@ -8,6 +8,7 @@
     <label>Is Lenddo Verified?</label>
     <required>false</required>
     <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
     <type>Picklist</type>
     <valueSet>
         <valueSetDefinition>

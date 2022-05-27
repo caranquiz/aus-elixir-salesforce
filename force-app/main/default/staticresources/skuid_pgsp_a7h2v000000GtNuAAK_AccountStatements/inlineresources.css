@@ -1,0 +1,122 @@
+html, 
+body,
+div[pagename="AccountStatements"],
+div[pagename="AccountStatements"] > .nx-page-content,
+div[pagename="AccountStatements"] #fs-aggregate,
+div[pagename="AccountStatements"] #fs-balance-sheet,
+div[pagename="AccountStatements"] #fs-balance-sheet-iframe,
+div[pagename="AccountStatements"] #fs-balance-sheet-iframe div,
+div[pagename="AccountStatements"] #fs-balance-sheet-iframe div iframe,
+div[pagename="AccountStatements"] #fs-income-statement,
+div[pagename="AccountStatements"] #fs-income-statement-iframe,
+div[pagename="AccountStatements"] #fs-income-statement-iframe div,
+div[pagename="AccountStatements"] #fs-income-statement-iframe div iframe,
+div[pagename="AccountStatements"] #fs-cashflow,
+div[pagename="AccountStatements"] #fs-cashflow-iframe,
+div[pagename="AccountStatements"] #fs-cashflow-iframe div,
+div[pagename="AccountStatements"] #fs-cashflow-iframe div iframe,
+div[pagename="AccountStatements"] #fs-ratio-analysis,
+div[pagename="AccountStatements"] #fs-ratio-iframe,
+div[pagename="AccountStatements"] #fs-ratio-iframe div,
+div[pagename="AccountStatements"] #fs-ratio-iframe div iframe,
+div[pagename="AccountStatements"] #fs-trend-analysis,
+div[pagename="AccountStatements"] #fs-trend-analysis-iframe,
+div[pagename="AccountStatements"] #fs-trend-analysis-iframe div,
+div[pagename="AccountStatements"] #fs-trend-analysis-iframe div iframe,
+div[pagename="AccountStatements"] #fs-sensitivity-analysis,
+div[pagename="AccountStatements"] #fs-sensitivity-analysis-iframe,
+div[pagename="AccountStatements"] #fs-sensitivity-analysis-iframe div,
+div[pagename="AccountStatements"] #fs-sensitivity-analysis-iframe div iframe{
+    height: 100%;
+}
+
+div[pagename="AccountStatements"] #fs-aggregate {
+    height: calc(100% - 100px);
+}
+
+html {
+    overflow: hidden;
+}
+
+div[pagename="AccountStatements"]{
+    padding-top: 0px;
+    background:none;
+}
+
+.nx-editor-header .nx-header-right .ui-button.iconic-button,
+.nx-editor-header .nx-header-right .ui-button.iconic-button.ui-state-hover,
+.nx-editor-header .nx-header-right .ui-button.iconic-button.ui-state-focus,
+.ui-button.iconic-button {
+    width: 32px;
+    height: 32px;
+    line-height: 32px;
+    border-radius: 50%;
+    outline: none;
+    cursor: pointer;
+    background-color: transparent;   
+}
+
+
+.ui-button.iconic-button.iconic-button-barchart:before,
+.ui-button.iconic-button.iconic-button-barchart.ui-state-hover:before,
+.ui-button.iconic-button.iconic-button-barchart.ui-state-focus:before {
+    font-family: FontAwesome;
+    content: "\f080";
+    font-size: 20px;
+    color: #FFA21D;
+    vertical-align: middle;
+    border: 2px solid #2D5074;
+}
+
+.balancesheet-css{
+    margin-top:30px;
+}
+.edit-statement
+{
+    padding-right: 70px;
+}
+
+#edit-dropdown{
+    background-color: white;
+    border-top: 0;
+    box-shadow: 0 0 3px 2px rgba(0,0,0,0.1);
+
+}
+
+div.sk-dropnav-dropdown .sk-navigation-item:hover {
+    background: #eee;
+}
+
+div.sk-dropnav-dropdown .sk-navigation-item:hover>a,div.sk-navigation-dropdown>.sk-dropnav-dropdown .sk-navigation-item:focus>a,div.sk-navigation-dropdown>.sk-dropnav-dropdown .sk-navigation-item:hover>.sk-navigation-item-label,div.sk-navigation-dropdown>.sk-dropnav-dropdown .sk-navigation-item:focus>.sk-navigation-item-label {
+    background: #eee;
+    color: #000;
+}
+
+.sk-dropnav-dropdown div.sk-navigation-dropdown .sk-navigation-item:hover,.sk-dropnav-dropdown div.sk-navigation-dropdown .sk-navigation-item:focus {
+    background: #fff;
+    color: #000;
+}
+
+div.sk-navigation-dropdown .sk-navigation-item-selected {
+    background: #fff;
+    color: #000;
+}
+
+.sk-dropnav-arrow:after {
+    content: "\f142";
+    float: right;
+    font-family: fontawesome;
+    font-size: 23px;
+}
+
+.sk-dropnav-arrow div {
+    display:none;
+}
+
+div.sk-navigation-dropdown>.sk-dropnav-text {
+    display:none;
+}
+
+.ui-dialog{
+    top:60px!important;
+}

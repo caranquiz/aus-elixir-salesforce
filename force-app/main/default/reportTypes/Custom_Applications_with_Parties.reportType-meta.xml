@@ -101,6 +101,11 @@
             <table>genesis__Applications__c</table>
         </columns>
         <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Recommended_By__c</field>
+            <table>genesis__Applications__c</table>
+        </columns>
+        <columns>
             <checkedByDefault>true</checkedByDefault>
             <field>Name</field>
             <table>genesis__Applications__c</table>
@@ -162,12 +167,32 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
+            <field>Loan_Status_Commentary__c</field>
+            <table>genesis__Applications__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Pending_Broker__c</field>
+            <table>genesis__Applications__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Employment_Type__c</field>
+            <table>genesis__Applications__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
             <field>genesis__Bank_Account_Type__c</field>
             <table>genesis__Applications__c</table>
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
             <field>genesis__Bank_Name__c</field>
+            <table>genesis__Applications__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Brokers_BDM__c</field>
             <table>genesis__Applications__c</table>
         </columns>
         <columns>
@@ -187,12 +212,12 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>Brokers_BDM__c</field>
+            <field>Broker_Trail_Percentage__c</field>
             <table>genesis__Applications__c</table>
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>Broker_Trail_Percentage__c</field>
+            <field>Months_Self_Employed__c</field>
             <table>genesis__Applications__c</table>
         </columns>
         <columns>
@@ -1543,6 +1568,26 @@
         <columns>
             <checkedByDefault>false</checkedByDefault>
             <field>genesis__Yield__c</field>
+            <table>genesis__Applications__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>First_Home_Buyer__c</field>
+            <table>genesis__Applications__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>CL_Contract__c.Id</field>
+            <table>genesis__Applications__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>CL_Contract__c.Name</field>
+            <table>genesis__Applications__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Broker__c.Aggregator__c</field>
             <table>genesis__Applications__c</table>
         </columns>
         <masterLabel>Applications</masterLabel>
@@ -3785,7 +3830,7 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>Broker_Underwriter__c.Main_Business_Contacts__c</field>
+            <field>Broker_Underwriter__c.Primary_Contact__c</field>
             <table>genesis__Applications__c.genesis__Parties__r</table>
         </columns>
         <columns>
@@ -4056,6 +4101,51 @@
         <columns>
             <checkedByDefault>false</checkedByDefault>
             <field>clcommon__Type__c.Id</field>
+            <table>genesis__Applications__c.genesis__Parties__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Number_of_Secretaries__c</field>
+            <table>genesis__Applications__c.genesis__Parties__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Secretary_Check__c</field>
+            <table>genesis__Applications__c.genesis__Parties__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>clcommon__Contact__c.Broker_ID__c</field>
+            <table>genesis__Applications__c.genesis__Parties__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Broker_Underwriter__c.Broker_ID__c</field>
+            <table>genesis__Applications__c.genesis__Parties__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>clcommon__Account__c.Settlement_Email__c</field>
+            <table>genesis__Applications__c.genesis__Parties__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>clcommon__Account__c.FirstName</field>
+            <table>genesis__Applications__c.genesis__Parties__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>clcommon__Contact__c.Email</field>
+            <table>genesis__Applications__c.genesis__Parties__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>clcommon__Contact__c.FirstName</field>
+            <table>genesis__Applications__c.genesis__Parties__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>clcommon__Contact__c.Name</field>
             <table>genesis__Applications__c.genesis__Parties__r</table>
         </columns>
         <masterLabel>Parties</masterLabel>

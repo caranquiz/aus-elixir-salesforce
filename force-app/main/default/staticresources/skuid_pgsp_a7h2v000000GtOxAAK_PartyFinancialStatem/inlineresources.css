@@ -1,0 +1,82 @@
+.nx-editor-contents{
+    margin-left: 20px;
+}
+
+.dropdown-row-css{
+    max-width:90%;
+    position:relative;
+    height: 1px;
+    z-index:5;
+}
+
+ .nx-editor .required select
+ {
+    border: 1px solid #e0e0e0;
+ }
+
+.nx-basicfieldeditor-item 
+{
+    border-bottom: 0px;
+    font-family: "Helvetica","Arial",sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 20px;
+}
+
+.nx-basicfieldeditor-item-label
+{
+    width: max-content;
+    padding-right: 10px;
+}
+.edit-statement
+{
+    padding-right: 70px;
+}
+
+#edit-dropdown{
+    border-top: 0;
+    box-shadow: 0 0 3px 2px rgba(0,0,0,0.1);
+
+}
+
+div.sk-dropnav-dropdown .sk-navigation-item:hover {
+    background: #eee;
+}
+
+
+div.sk-dropnav-dropdown .sk-navigation-item:hover>a,div.sk-navigation-dropdown>.sk-dropnav-dropdown .sk-navigation-item:focus>a,div.sk-navigation-dropdown>.sk-dropnav-dropdown .sk-navigation-item:hover>.sk-navigation-item-label,div.sk-navigation-dropdown>.sk-dropnav-dropdown .sk-navigation-item:focus>.sk-navigation-item-label {
+    background: #eee;
+    color: #000;
+}
+
+.sk-dropnav-dropdown div.sk-navigation-dropdown .sk-navigation-item:hover,.sk-dropnav-dropdown div.sk-navigation-dropdown .sk-navigation-item:focus {
+    background: #fff;
+    color: #000;
+}
+
+div.sk-navigation-dropdown .sk-navigation-item-selected {
+    background: #fff;
+    color: #000;
+}
+
+.sk-dropnav-arrow:after {
+    content: "\f142";
+    float: right;
+    font-family: fontawesome;
+    font-size: 23px;
+}
+
+.sk-dropnav-arrow div {
+    display:none;
+}
+
+div.sk-navigation-dropdown>.sk-dropnav-text {
+    display:none;
+}
+
+.nx-basicfieldeditor-item-label
+{
+    font-weight: 700;
+    font-size: 12px;
+    color: rgba(0,0,0,.54);
+}

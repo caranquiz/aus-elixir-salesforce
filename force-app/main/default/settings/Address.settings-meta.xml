@@ -765,9 +765,9 @@
         </countries>
         <countries>
             <active>true</active>
-            <integrationValue>Cote d&#39;Ivoire</integrationValue>
+            <integrationValue>Cote d&apos;Ivoire</integrationValue>
             <isoCode>CI</isoCode>
-            <label>Cote d&#39;Ivoire</label>
+            <label>Cote d&apos;Ivoire</label>
             <orgDefault>false</orgDefault>
             <standard>true</standard>
             <visible>true</visible>
@@ -2147,9 +2147,9 @@
             </states>
             <states>
                 <active>true</active>
-                <integrationValue>L&#39;Aquila</integrationValue>
+                <integrationValue>L&apos;Aquila</integrationValue>
                 <isoCode>AQ</isoCode>
-                <label>L&#39;Aquila</label>
+                <label>L&apos;Aquila</label>
                 <standard>true</standard>
                 <visible>true</visible>
             </states>
@@ -3079,9 +3079,9 @@
         </countries>
         <countries>
             <active>true</active>
-            <integrationValue>Korea, Democratic People&#39;s Republic of</integrationValue>
+            <integrationValue>Korea, Democratic People&apos;s Republic of</integrationValue>
             <isoCode>KP</isoCode>
-            <label>Korea, Democratic People&#39;s Republic of</label>
+            <label>Korea, Democratic People&apos;s Republic of</label>
             <orgDefault>false</orgDefault>
             <standard>true</standard>
             <visible>true</visible>
@@ -3124,9 +3124,9 @@
         </countries>
         <countries>
             <active>true</active>
-            <integrationValue>Lao People&#39;s Democratic Republic</integrationValue>
+            <integrationValue>Lao People&apos;s Democratic Republic</integrationValue>
             <isoCode>LA</isoCode>
-            <label>Lao People&#39;s Democratic Republic</label>
+            <label>Lao People&apos;s Democratic Republic</label>
             <orgDefault>false</orgDefault>
             <standard>true</standard>
             <visible>true</visible>

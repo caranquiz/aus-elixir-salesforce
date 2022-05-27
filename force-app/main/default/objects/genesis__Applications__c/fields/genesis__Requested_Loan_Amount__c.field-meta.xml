@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>genesis__Requested_Loan_Amount__c</fullName>
+    <deprecated>false</deprecated>
+    <description>This field keeps the information of requested loan amount at the time of application creation</description>
+    <externalId>false</externalId>
+    <inlineHelpText>This field keeps the information of requested loan amount at the time of application creation</inlineHelpText>
+    <label>Requested Loan Amount</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Currency</type>
+</CustomField>

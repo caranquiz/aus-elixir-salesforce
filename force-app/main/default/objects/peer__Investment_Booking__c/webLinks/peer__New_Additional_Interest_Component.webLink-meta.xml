@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>peer__New_Additional_Interest_Component</fullName>
+    <availability>online</availability>
+    <displayType>button</displayType>
+    <height>600</height>
+    <linkType>page</linkType>
+    <masterLabel>New Additional Interest Component</masterLabel>
+    <openType>sidebar</openType>
+    <page>peer__InterestComponentSetup</page>
+    <protected>false</protected>
+</WebLink>

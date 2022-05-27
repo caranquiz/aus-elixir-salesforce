@@ -18,12 +18,12 @@
         <filterItems>
             <field>clcommon__Billing_Group__c.clcommon__Account__c</field>
             <operation>equals</operation>
-            <value/>
+            <value></value>
         </filterItems>
         <filterItems>
             <field>clcommon__Billing_Group__c.clcommon__Contact__c</field>
             <operation>equals</operation>
-            <value/>
+            <value></value>
         </filterItems>
         <isOptional>false</isOptional>
     </lookupFilter>

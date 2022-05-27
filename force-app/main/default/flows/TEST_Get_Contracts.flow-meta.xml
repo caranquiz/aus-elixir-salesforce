@@ -64,18 +64,9 @@
                 <elementReference>accountId</elementReference>
             </value>
         </filters>
-        <getFirstRecordOnly>false</getFirstRecordOnly>
         <object>loan__Loan_Account__c</object>
-        <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
-    <runInMode>SystemModeWithoutSharing</runInMode>
-    <start>
-        <locationX>50</locationX>
-        <locationY>50</locationY>
-        <connector>
-            <targetReference>Get_CL_ContractsSubflow</targetReference>
-        </connector>
-    </start>
+    <startElementReference>Get_CL_ContractsSubflow</startElementReference>
     <status>Active</status>
     <variables>
         <name>accountId</name>

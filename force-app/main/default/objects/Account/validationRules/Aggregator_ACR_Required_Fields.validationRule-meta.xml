@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Aggregator_ACR_Required_Fields</fullName>
+    <active>true</active>
+    <description>18/03/2021 - RJohnston
+Jira: https://wingategroup.atlassian.net/browse/OIBCR-232 
+Validations for required fields were broker is an ACR of an aggregator</description>
+    <errorConditionFormula>AND ( RecordType.DeveloperName = &quot;Broker_Type&quot;, 
+ISPICKVAL( Direct_Accredited__c , &quot;No&quot;),
+ISBLANK( Aggregator__c ),
+ISBLANK( ACR__c )   )</errorConditionFormula>
+    <errorMessage>Please enter Aggregator name and ACR number.</errorMessage>
+</ValidationRule>

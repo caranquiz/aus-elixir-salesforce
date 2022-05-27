@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <OrgPreferenceSettings xmlns="http://soap.sforce.com/2006/04/metadata">
     <preferences>
+        <settingName>ActivityAnalyticsEnabled</settingName>
+        <settingValue>true</settingValue>
+    </preferences>
+    <preferences>
         <settingName>AnalyticsSharingEnable</settingName>
-        <settingValue>false</settingValue>
+        <settingValue>true</settingValue>
     </preferences>
     <preferences>
         <settingName>ApexApprovalLockUnlock</settingName>
@@ -29,10 +33,6 @@
         <settingValue>true</settingValue>
     </preferences>
     <preferences>
-        <settingName>ContentSniffingProtection</settingName>
-        <settingValue>true</settingValue>
-    </preferences>
-    <preferences>
         <settingName>DeleteMonitoringDataEnabled</settingName>
         <settingValue>false</settingValue>
     </preferences>
@@ -49,10 +49,6 @@
         <settingValue>false</settingValue>
     </preferences>
     <preferences>
-        <settingName>HstsSitesCommunities</settingName>
-        <settingValue>false</settingValue>
-    </preferences>
-    <preferences>
         <settingName>LocalNames</settingName>
         <settingValue>false</settingValue>
     </preferences>
@@ -62,7 +58,7 @@
     </preferences>
     <preferences>
         <settingName>NetworksEnabled</settingName>
-        <settingValue>false</settingValue>
+        <settingValue>true</settingValue>
     </preferences>
     <preferences>
         <settingName>NotesReservedPref01</settingName>
@@ -78,11 +74,11 @@
     </preferences>
     <preferences>
         <settingName>PardotAppV1Enabled</settingName>
-        <settingValue>false</settingValue>
+        <settingValue>true</settingValue>
     </preferences>
     <preferences>
         <settingName>PardotEmbeddedAnalyticsPref</settingName>
-        <settingValue>false</settingValue>
+        <settingValue>true</settingValue>
     </preferences>
     <preferences>
         <settingName>PardotEnabled</settingName>
@@ -90,14 +86,6 @@
     </preferences>
     <preferences>
         <settingName>PortalUserShareOnCase</settingName>
-        <settingValue>true</settingValue>
-    </preferences>
-    <preferences>
-        <settingName>RedirectionWarning</settingName>
-        <settingValue>true</settingValue>
-    </preferences>
-    <preferences>
-        <settingName>ReferrerPolicy</settingName>
         <settingValue>true</settingValue>
     </preferences>
     <preferences>
@@ -121,11 +109,11 @@
         <settingValue>false</settingValue>
     </preferences>
     <preferences>
-        <settingName>SelfSetPasswordInApi</settingName>
-        <settingValue>true</settingValue>
+        <settingName>SendThroughGmailPref</settingName>
+        <settingValue>false</settingValue>
     </preferences>
     <preferences>
-        <settingName>SendThroughGmailPref</settingName>
+        <settingName>ShapeExportPref</settingName>
         <settingValue>false</settingValue>
     </preferences>
     <preferences>
@@ -137,10 +125,6 @@
         <settingValue>false</settingValue>
     </preferences>
     <preferences>
-        <settingName>UpgradeInsecureRequestsPref</settingName>
-        <settingValue>true</settingValue>
-    </preferences>
-    <preferences>
         <settingName>UseLanguageFallback</settingName>
         <settingValue>false</settingValue>
     </preferences>
@@ -150,14 +134,6 @@
     </preferences>
     <preferences>
         <settingName>UsersAreLightningOnly</settingName>
-        <settingValue>false</settingValue>
-    </preferences>
-    <preferences>
-        <settingName>VerifyOn2faRegistration</settingName>
-        <settingValue>true</settingValue>
-    </preferences>
-    <preferences>
-        <settingName>VerifyOnEmailChange</settingName>
         <settingValue>false</settingValue>
     </preferences>
     <preferences>
@@ -187,9 +163,5 @@
     <preferences>
         <settingName>VoiceMailEnabled</settingName>
         <settingValue>false</settingValue>
-    </preferences>
-    <preferences>
-        <settingName>XssProtection</settingName>
-        <settingValue>true</settingValue>
     </preferences>
 </OrgPreferenceSettings>

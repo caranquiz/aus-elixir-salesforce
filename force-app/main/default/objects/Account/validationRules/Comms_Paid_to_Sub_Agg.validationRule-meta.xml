@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Comms_Paid_to_Sub_Agg</fullName>
+    <active>true</active>
+    <description>Ensure if user selects to for commissions to to go Sub Aggregator that a Sub Agg is Entered</description>
+    <errorConditionFormula>AND ( RecordType.DeveloperName = &quot;Broker_Type&quot;,
+ISPICKVAL( Commission_Paid_To__c , &quot;Sub Aggregator&quot;),
+ISBLANK( Sub_Aggregator__c ))</errorConditionFormula>
+    <errorMessage>Please enter a Sub Aggregator to pay commissions to</errorMessage>
+</ValidationRule>

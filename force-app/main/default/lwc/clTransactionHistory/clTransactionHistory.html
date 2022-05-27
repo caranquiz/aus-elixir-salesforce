@@ -1,0 +1,57 @@
+<!--
+ - Created by Ethan Sargent on 22/07/2021.
+ -->
+
+<!-- Cl Transaction History -->
+<template>
+    <lightning-layout multiple-rows="true">
+        <lightning-layout-item flexibility="no-flex"
+                               padding="horizontal-small">
+            <div>
+                <lightning-input
+                        class="datepicker-wrapper"
+                        type="date"
+                        label="Start Date"
+                        value={startDate}
+                        onchange={handleStartDateChange}
+                ></lightning-input>
+            </div>
+        </lightning-layout-item>
+        <lightning-layout-item flexibility="no-flex"
+                               padding="horizontal-small">
+            <div class="datepicker-wrapper">
+                <lightning-input
+                        type="date"
+                        label="End Date"
+                        value={endDate}
+                        onchange={handleEndDateChange}
+                ></lightning-input>
+            </div>
+        </lightning-layout-item>
+    </lightning-layout>
+    <div class="slds-p-around_medium">
+        <lightning-button
+                label="Search"
+                variant="base"
+                class="slds-m-right_small orde-button"
+                onclick={handleSearch}
+        ></lightning-button>
+        <lightning-button
+                label="Reset"
+                variant="neutral"
+                class="slds-button_reset"
+                onclick={handleReset}
+        ></lightning-button>
+    </div>
+
+    <lightning-layout multiple-rows="true">
+        <template for:each={transactionData} for:item="transactionType">
+            <lightning-layout-item size="12" key={transactionType}>
+                <c-orde-table
+                        key={transactionType}
+                        table-data={transactionType}>
+                </c-orde-table>
+            </lightning-layout-item>
+        </template>
+    </lightning-layout>
+</template>

@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Approx_Funds_Being_Received__c</fullName>
+    <description>RJohnston 8/11 - for being able to report on loans that have requested a full or partial discharge 
+https://wingategroup.atlassian.net/jira/software/c/projects/AMS/boards/8?modal=detail&amp;selectedIssue=AMS-900</description>
     <externalId>false</externalId>
     <label>Approx Funds Being Received</label>
     <precision>18</precision>

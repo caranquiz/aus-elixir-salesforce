@@ -1,0 +1,15 @@
+<!--
+ - Created by Ethan Sargent on 17/08/2021.
+ -->
+
+<!-- Portal Banner -->
+<template>
+    <div class="banner-wrapper">
+        <div class="banner-image-container">
+            <img class="banner-image" src={portalBannerImage} alt="banner Image">
+        </div>
+        <div if:true={bannerText} class="banner-text-container slds-text-align_center">
+            {bannerText}
+        </div>
+    </div>
+</template>

@@ -1,0 +1,853 @@
+<soapenv:Envelope
+	xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+	<soapenv:Body>
+		<Application
+			xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+			xmlns="http://resources.nextgen.net/Reference/MAL/schema/NextGen-MALI/2008/12/05" Type="NewApplication" xsi:schemaLocation="http://resources.nextgen.net/Reference/MAL/schema/NextGen-MALI/2008/12/05 file:///C:/AOL/Web/LIM/ORDEBrokerApplication/Schema/ApplicationBatch.xsd">
+			<Identifier>2150881</Identifier>
+			<SalesChannel SalesChannelType="LenderAssigned">
+				<Identifier>sender-id</Identifier>
+			</SalesChannel>
+			<SalesChannel SalesChannelType="Broker">
+				<Identifier>CA08120735GB</Identifier>
+				<CompanyName BusinessName="Developer"/>
+				<PersonName>
+					<NameTitle Value="Mrs"/>
+					<FirstName>Broker</FirstName>
+					<Surname>Man</Surname>
+				</PersonName>
+				<Address>
+					<BuildingName>Noosa Boardroom</BuildingName>
+					<FloorNo>1</FloorNo>
+					<UnitNo>8</UnitNo>
+					<StreetNo>20</StreetNo>
+					<Street Type="Street">Taylor</Street>
+					<City>SYDNEY</City>
+					<State Name="NSW"/>
+					<Postcode>2000</Postcode>
+					<Country ISO3166="AU"/>
+				</Address>
+				<WorkPhone PreferredContactMethod="Yes">
+					<Phone>
+						<FixedPhone AreaCode="02">91231234r</FixedPhone>
+					</Phone>
+					<Phone>
+						<Mobile>0444444444r</Mobile>
+					</Phone>
+					<Phone>
+						<Fax AreaCode="02">72268302r</Fax>
+					</Phone>
+				</WorkPhone>
+				<Email>rory.sheaffe@nextgen.netrer</Email>
+			</SalesChannel>
+			<SalesChannel SalesChannelDescription="BDM">
+				<Identifier/>
+			</SalesChannel>
+			<Comment/>
+			<PartySegment>
+				<Party Type="Applicant" PrimaryApplicant="Yes">
+					<Identifier>1415094522972</Identifier>
+					<Privacy ExistingCustomer="No" AllowCreditCheck="Yes" AllowThirdPartyDisclosure="Yes" ESignConsent="No">
+						<DocumentsSightedBy LoanWriter="No"/>
+					</Privacy>
+					<Trust TrustName="Test Trust" TrustDate="2005-01-01" TrustType="Unit" CountryEstablished="AU" TradingName="Testy test tester Trust" SettlorExemption="Yes">
+						<BeneficialOwner>
+							<RelatedEntityRef>1415099583122</RelatedEntityRef>
+							<Role Type="Trustee"/>
+						</BeneficialOwner>
+						<ContactDetails>
+							<AddressDetails>
+								<RelatedEntityRef>1647396240289</RelatedEntityRef>
+							</AddressDetails>
+						</ContactDetails>
+					</Trust>
+					<ResponsibleLend AnyChange="No"/>
+					<Company CustomerOfLender="No" ANZSIC="0111" NatureOfBusiness="NonClassifiableEstablishments">
+						<CompanyName BusinessName="NEXTGEN.NET PTY LTD"/>
+						<ContactPersonName>
+							<NameTitle Value="Miss"/>
+							<FirstName>Josie</FirstName>
+							<Surname>Testingtester</Surname>
+						</ContactPersonName>
+						<ContactDetails>
+							<AddressDetails Mailing="Yes">
+								<RelatedEntityRef>1647396240289</RelatedEntityRef>
+							</AddressDetails>
+							<AddressDetails Residential="Yes">
+								<RelatedEntityRef>1647396240289</RelatedEntityRef>
+							</AddressDetails>
+							<AddressDetails>
+								<RelatedEntityRef>1415099109686</RelatedEntityRef>
+							</AddressDetails>
+							<WorkPhone PreferredContactMethod="Yes">
+								<Phone>
+									<FixedPhone AreaCode="02">88888888</FixedPhone>
+								</Phone>
+							</WorkPhone>
+							<Email/>
+						</ContactDetails>
+						<Shareholder>
+							<RelatedEntityRef/>
+						</Shareholder>
+						<CompanyType Type="PtyLtd"/>
+						<CompanyNumber ABN="56062989753" ACN="062989753" ABRN=""/>
+						<RegisteredIn>
+							<Date>1993-12-31</Date>
+							<State Name="NSW"/>
+						</RegisteredIn>
+						<CompanyIncome>
+							<ValueItem Value="300000">
+								<Identifier>idp140644668761904</Identifier>
+								<Income Type="CompanyProfitBeforeTax" Description="">
+									<Period Unit="Yearly">
+										<StartDate>2019-07-01</StartDate>
+										<EndDate>2020-06-30</EndDate>
+									</Period>
+								</Income>
+							</ValueItem>
+							<ValueItem Value="250000">
+								<Identifier>39706662-b421-4f0a-a0cd-d83af72d0303</Identifier>
+								<Income Type="CompanyProfitBeforeTax" Description="">
+									<Period Unit="Yearly">
+										<StartDate>2018-07-01</StartDate>
+										<EndDate>2019-06-30</EndDate>
+									</Period>
+									<RelatedEntityRef>idp140644668761904</RelatedEntityRef>
+								</Income>
+							</ValueItem>
+						</CompanyIncome>
+					</Company>
+					<Person Director="Yes" Sex="Female" FirstHomeBuyer="No" CustomerOfLender="No" EmployeeOfLender="No">
+						<PersonName>
+							<NameTitle Value="Miss"/>
+							<FirstName>Zelta</FirstName>
+							<Surname>Zing</Surname>
+						</PersonName>
+						<DateOfBirth>1989-12-05</DateOfBirth>
+						<MaritalStatus Status="Single"/>
+						<Residency PermanentInAustralia="Yes" Status="Citizen">
+							<Country ISO3166="AU"/>
+						</Residency>
+						<ContactDetails>
+							<AddressDetails Residential="Yes" Mailing="No" PriorAddress="No" PostSettlement="No" HousingStatus="Renting">
+								<RelatedEntityRef>1645134941852</RelatedEntityRef>
+								<StartAndEndDates>
+									<StartDate>2015-10-22</StartDate>
+								</StartAndEndDates>
+							</AddressDetails>
+							<AddressDetails Residential="No" Mailing="Yes" PriorAddress="No" PostSettlement="No">
+								<RelatedEntityRef>1645134941852</RelatedEntityRef>
+							</AddressDetails>
+							<AddressDetails Residential="No" Mailing="No" PriorAddress="No" PostSettlement="Yes">
+								<RelatedEntityRef>1645134941852</RelatedEntityRef>
+							</AddressDetails>
+							<HomePhone>
+								<Phone>
+									<FixedPhone AreaCode="02">89568956</FixedPhone>
+								</Phone>
+							</HomePhone>
+						</ContactDetails>
+						<Employment OnProbation="No" PrimaryEmployment="Yes" PriorEmployment="No" Role="1111-11" RoleDescription="Parliamentarian or Councillor">
+							<PAYE Type="FullTime">
+								<RelatedEntityRef Type="RelatedParty">1645135579986</RelatedEntityRef>
+							</PAYE>
+							<StartAndEndDates>
+								<StartDate>2017-05-10</StartDate>
+							</StartAndEndDates>
+							<EmploymentIncome>
+								<ValueItem Value="0.0">
+									<Identifier>1.645136344813e+12-Income-1</Identifier>
+									<Income Type="GrossSalary">
+										<Period Unit="Monthly">
+											<StartDate>2020-07-01</StartDate>
+											<EndDate>2021-06-30</EndDate>
+										</Period>
+									</Income>
+								</ValueItem>
+							</EmploymentIncome>
+						</Employment>
+					</Person>
+					<RelatedParty>
+						<RelatedEntityRef Type="Other"/>
+					</RelatedParty>
+				</Party>
+				<Party Type="SMSFMember" PrimaryApplicant="No">
+					<Identifier>1645136110100</Identifier>
+					<Privacy ExistingCustomer="No" AllowCreditCheck="Yes" AllowThirdPartyDisclosure="Yes" ESignConsent="No">
+						<DocumentsSightedBy LoanWriter="No"/>
+					</Privacy>
+					<Person Director="No" Sex="Male" FirstHomeBuyer="No" CustomerOfLender="No" EmployeeOfLender="No">
+						<PersonName>
+							<NameTitle Value="Mr"/>
+							<FirstName>Zang</FirstName>
+							<Surname>Zang</Surname>
+						</PersonName>
+						<DateOfBirth>1988-06-04</DateOfBirth>
+						<MaritalStatus Status="Married">
+							<RelatedEntityRef>1645134949585</RelatedEntityRef>
+						</MaritalStatus>
+						<Residency PermanentInAustralia="Yes" Status="Citizen">
+							<Country ISO3166="AU"/>
+						</Residency>
+						<ContactDetails>
+							<AddressDetails Residential="Yes" Mailing="No" PriorAddress="No" PostSettlement="No" HousingStatus="Renting">
+								<RelatedEntityRef>1645134941852</RelatedEntityRef>
+								<StartAndEndDates>
+									<StartDate>2015-10-22</StartDate>
+								</StartAndEndDates>
+							</AddressDetails>
+							<AddressDetails Residential="No" Mailing="Yes" PriorAddress="No" PostSettlement="No">
+								<RelatedEntityRef>1645134941852</RelatedEntityRef>
+							</AddressDetails>
+							<AddressDetails Residential="No" Mailing="No" PriorAddress="No" PostSettlement="Yes">
+								<RelatedEntityRef>1645134941852</RelatedEntityRef>
+							</AddressDetails>
+							<HomePhone>
+								<Phone>
+									<FixedPhone AreaCode="02">89568956</FixedPhone>
+								</Phone>
+							</HomePhone>
+						</ContactDetails>
+						<Employment OnProbation="No" PrimaryEmployment="Yes" PriorEmployment="No" Role="2311-11" RoleDescription="General Medical Practitioner">
+							<PAYE Type="FullTime">
+								<RelatedEntityRef Type="RelatedParty">1645135579986</RelatedEntityRef>
+							</PAYE>
+							<StartAndEndDates>
+								<StartDate>2017-05-10</StartDate>
+							</StartAndEndDates>
+							<EmploymentIncome>
+								<ValueItem Value="0.0">
+									<Identifier>1-1645135666094</Identifier>
+									<Income Type="GrossSalary">
+										<Period Unit="Monthly">
+											<StartDate>2020-07-01</StartDate>
+											<EndDate>2021-06-30</EndDate>
+										</Period>
+									</Income>
+								</ValueItem>
+							</EmploymentIncome>
+						</Employment>
+					</Person>
+				</Party>
+                <Party Type="SMSFMember" PrimaryApplicant="No">
+					<Identifier>1645136110100</Identifier>
+					<Privacy ExistingCustomer="No" AllowCreditCheck="Yes" AllowThirdPartyDisclosure="Yes" ESignConsent="No">
+						<DocumentsSightedBy LoanWriter="No"/>
+					</Privacy>
+					<Company CustomerOfLender="No" ANZSIC="0111" NatureOfBusiness="NonClassifiableEstablishments">
+						<CompanyName BusinessName="NEXTGEN.NET PTY LTD"/>
+						<ContactPersonName>
+							<NameTitle Value="Miss"/>
+							<FirstName>Josie</FirstName>
+							<Surname>Testingtester</Surname>
+						</ContactPersonName>
+						<ContactDetails>
+							<AddressDetails Mailing="Yes">
+								<RelatedEntityRef>1647396240289</RelatedEntityRef>
+							</AddressDetails>
+							<AddressDetails Residential="Yes">
+								<RelatedEntityRef>1647396240289</RelatedEntityRef>
+							</AddressDetails>
+							<AddressDetails>
+								<RelatedEntityRef>1415099109686</RelatedEntityRef>
+							</AddressDetails>
+							<WorkPhone PreferredContactMethod="Yes">
+								<Phone>
+									<FixedPhone AreaCode="02">88888888</FixedPhone>
+								</Phone>
+							</WorkPhone>
+							<Email/>
+						</ContactDetails>
+						<Shareholder>
+							<RelatedEntityRef/>
+						</Shareholder>
+						<CompanyType Type="PtyLtd"/>
+						<CompanyNumber ABN="56062989753" ACN="062989753" ABRN=""/>
+						<RegisteredIn>
+							<Date>1993-12-31</Date>
+							<State Name="NSW"/>
+						</RegisteredIn>
+						<CompanyIncome>
+							<ValueItem Value="300000">
+								<Identifier>idp140644668761904</Identifier>
+								<Income Type="CompanyProfitBeforeTax" Description="">
+									<Period Unit="Yearly">
+										<StartDate>2019-07-01</StartDate>
+										<EndDate>2020-06-30</EndDate>
+									</Period>
+								</Income>
+							</ValueItem>
+							<ValueItem Value="250000">
+								<Identifier>39706662-b421-4f0a-a0cd-d83af72d0303</Identifier>
+								<Income Type="CompanyProfitBeforeTax" Description="">
+									<Period Unit="Yearly">
+										<StartDate>2018-07-01</StartDate>
+										<EndDate>2019-06-30</EndDate>
+									</Period>
+									<RelatedEntityRef>idp140644668761904</RelatedEntityRef>
+								</Income>
+							</ValueItem>
+						</CompanyIncome>
+					</Company>
+				</Party>
+                <Party Type="Applicant" PrimaryApplicant="NO">
+					<Identifier>1415094522972</Identifier>
+					<Privacy ExistingCustomer="No" AllowCreditCheck="Yes" AllowThirdPartyDisclosure="Yes" ESignConsent="No">
+						<DocumentsSightedBy LoanWriter="No"/>
+					</Privacy>
+					<Trust TrustName="Test Trust" TrustDate="2005-01-01" TrustType="SMSF" CountryEstablished="AU" TradingName="Testy test tester Trust" SettlorExemption="Yes">
+						<BeneficialOwner>
+							<RelatedEntityRef>1415099583122</RelatedEntityRef>
+							<Role Type="Trustee"/>
+						</BeneficialOwner>
+						<ContactDetails>
+							<AddressDetails>
+								<RelatedEntityRef>1647396240289</RelatedEntityRef>
+							</AddressDetails>
+						</ContactDetails>
+					</Trust>
+					<ResponsibleLend AnyChange="No"/>
+					<Company CustomerOfLender="No" ANZSIC="0111" NatureOfBusiness="NonClassifiableEstablishments">
+						<CompanyName BusinessName="NEXTGEN.NET PTY LTD"/>
+						<ContactPersonName>
+							<NameTitle Value="Miss"/>
+							<FirstName>Josie</FirstName>
+							<Surname>Testingtester</Surname>
+						</ContactPersonName>
+						<ContactDetails>
+							<AddressDetails Mailing="Yes">
+								<RelatedEntityRef>1647396240289</RelatedEntityRef>
+							</AddressDetails>
+							<AddressDetails Residential="Yes">
+								<RelatedEntityRef>1647396240289</RelatedEntityRef>
+							</AddressDetails>
+							<AddressDetails>
+								<RelatedEntityRef>1415099109686</RelatedEntityRef>
+							</AddressDetails>
+							<WorkPhone PreferredContactMethod="Yes">
+								<Phone>
+									<FixedPhone AreaCode="02">88888888</FixedPhone>
+								</Phone>
+							</WorkPhone>
+							<Email/>
+						</ContactDetails>
+						<Shareholder>
+							<RelatedEntityRef/>
+						</Shareholder>
+						<CompanyType Type="PtyLtd"/>
+						<CompanyNumber ABN="56062989753" ACN="062989753" ABRN=""/>
+						<RegisteredIn>
+							<Date>1993-12-31</Date>
+							<State Name="NSW"/>
+						</RegisteredIn>
+						<CompanyIncome>
+							<ValueItem Value="300000">
+								<Identifier>idp140644668761904</Identifier>
+								<Income Type="CompanyProfitBeforeTax" Description="">
+									<Period Unit="Yearly">
+										<StartDate>2019-07-01</StartDate>
+										<EndDate>2020-06-30</EndDate>
+									</Period>
+								</Income>
+							</ValueItem>
+							<ValueItem Value="250000">
+								<Identifier>39706662-b421-4f0a-a0cd-d83af72d0303</Identifier>
+								<Income Type="CompanyProfitBeforeTax" Description="">
+									<Period Unit="Yearly">
+										<StartDate>2018-07-01</StartDate>
+										<EndDate>2019-06-30</EndDate>
+									</Period>
+									<RelatedEntityRef>idp140644668761904</RelatedEntityRef>
+								</Income>
+							</ValueItem>
+						</CompanyIncome>
+					</Company>
+					<Person Director="Yes" Sex="Female" FirstHomeBuyer="No" CustomerOfLender="No" EmployeeOfLender="No">
+						<PersonName>
+							<NameTitle Value="Miss"/>
+							<FirstName>Zelta</FirstName>
+							<Surname>Zing</Surname>
+						</PersonName>
+						<DateOfBirth>1989-12-05</DateOfBirth>
+						<MaritalStatus Status="Single"/>
+						<Residency PermanentInAustralia="Yes" Status="Citizen">
+							<Country ISO3166="AU"/>
+						</Residency>
+						<ContactDetails>
+							<AddressDetails Residential="Yes" Mailing="No" PriorAddress="No" PostSettlement="No" HousingStatus="Renting">
+								<RelatedEntityRef>1645134941852</RelatedEntityRef>
+								<StartAndEndDates>
+									<StartDate>2015-10-22</StartDate>
+								</StartAndEndDates>
+							</AddressDetails>
+							<AddressDetails Residential="No" Mailing="Yes" PriorAddress="No" PostSettlement="No">
+								<RelatedEntityRef>1645134941852</RelatedEntityRef>
+							</AddressDetails>
+							<AddressDetails Residential="No" Mailing="No" PriorAddress="No" PostSettlement="Yes">
+								<RelatedEntityRef>1645134941852</RelatedEntityRef>
+							</AddressDetails>
+							<HomePhone>
+								<Phone>
+									<FixedPhone AreaCode="02">89568956</FixedPhone>
+								</Phone>
+							</HomePhone>
+						</ContactDetails>
+						<Employment OnProbation="No" PrimaryEmployment="Yes" PriorEmployment="No" Role="1111-11" RoleDescription="Parliamentarian or Councillor">
+							<PAYE Type="FullTime">
+								<RelatedEntityRef Type="RelatedParty">1645135579986</RelatedEntityRef>
+							</PAYE>
+							<StartAndEndDates>
+								<StartDate>2017-05-10</StartDate>
+							</StartAndEndDates>
+							<EmploymentIncome>
+								<ValueItem Value="0.0">
+									<Identifier>1.645136344813e+12-Income-1</Identifier>
+									<Income Type="GrossSalary">
+										<Period Unit="Monthly">
+											<StartDate>2020-07-01</StartDate>
+											<EndDate>2021-06-30</EndDate>
+										</Period>
+									</Income>
+								</ValueItem>
+							</EmploymentIncome>
+						</Employment>
+					</Person>
+					<RelatedParty>
+						<RelatedEntityRef Type="Other"/>
+					</RelatedParty>
+				</Party>
+				<!-- <Party Type="SMSFMember" PrimaryApplicant="No"><Identifier>1645134949585</Identifier><Privacy ExistingCustomer="No" AllowCreditCheck="Yes" AllowThirdPartyDisclosure="Yes" ESignConsent="No"><DocumentsSightedBy LoanWriter="No"/></Privacy><Person Director="Yes" Sex="Female" FirstHomeBuyer="No" CustomerOfLender="No" EmployeeOfLender="No"><PersonName><NameTitle Value="Miss"/><FirstName>Zelta</FirstName><Surname>Zing</Surname></PersonName><DateOfBirth>1989-12-05</DateOfBirth><MaritalStatus Status="Single"/><Residency PermanentInAustralia="Yes" Status="Citizen"><Country ISO3166="AU"/></Residency><ContactDetails><AddressDetails Residential="Yes" Mailing="No" PriorAddress="No" PostSettlement="No" HousingStatus="Renting"><RelatedEntityRef>1645134941852</RelatedEntityRef><StartAndEndDates><StartDate>2015-10-22</StartDate></StartAndEndDates></AddressDetails><AddressDetails Residential="No" Mailing="Yes" PriorAddress="No" PostSettlement="No"><RelatedEntityRef>1645134941852</RelatedEntityRef></AddressDetails><AddressDetails Residential="No" Mailing="No" PriorAddress="No" PostSettlement="Yes"><RelatedEntityRef>1645134941852</RelatedEntityRef></AddressDetails><HomePhone><Phone><FixedPhone AreaCode="02">89568956</FixedPhone></Phone></HomePhone></ContactDetails><Employment OnProbation="No" PrimaryEmployment="Yes" PriorEmployment="No" Role="1111-11" RoleDescription="Parliamentarian or Councillor"><PAYE Type="FullTime"><RelatedEntityRef Type="RelatedParty">1645135579986</RelatedEntityRef></PAYE><StartAndEndDates><StartDate>2017-05-10</StartDate></StartAndEndDates><EmploymentIncome><ValueItem Value="0.0"><Identifier>1.645136344813e+12-Income-1</Identifier><Income Type="GrossSalary"><Period Unit="Monthly"><StartDate>2020-07-01</StartDate><EndDate>2021-06-30</EndDate></Period></Income></ValueItem></EmploymentIncome></Employment></Person></Party><Party Type="SMSFMember" PrimaryApplicant="No"><Identifier>1645136110100</Identifier><Privacy ExistingCustomer="No" AllowCreditCheck="Yes" AllowThirdPartyDisclosure="Yes" ESignConsent="No"><DocumentsSightedBy LoanWriter="No"/></Privacy><Person Director="Yes" Sex="Male" FirstHomeBuyer="No" CustomerOfLender="No" EmployeeOfLender="No"><PersonName><NameTitle Value="Mr"/><FirstName>Zang</FirstName><Surname>Zang</Surname></PersonName><DateOfBirth>1988-06-04</DateOfBirth><MaritalStatus Status="Single"/><Residency PermanentInAustralia="Yes" Status="Citizen"><Country ISO3166="AU"/></Residency><ContactDetails><AddressDetails Residential="Yes" Mailing="No" PriorAddress="No" PostSettlement="No" HousingStatus="Renting"><RelatedEntityRef>1645134941852</RelatedEntityRef><StartAndEndDates><StartDate>2015-10-22</StartDate></StartAndEndDates></AddressDetails><AddressDetails Residential="No" Mailing="Yes" PriorAddress="No" PostSettlement="No"><RelatedEntityRef>1645134941852</RelatedEntityRef></AddressDetails><AddressDetails Residential="No" Mailing="No" PriorAddress="No" PostSettlement="Yes"><RelatedEntityRef>1645134941852</RelatedEntityRef></AddressDetails><HomePhone><Phone><FixedPhone AreaCode="02">89568956</FixedPhone></Phone></HomePhone></ContactDetails><Employment OnProbation="No" PrimaryEmployment="Yes" PriorEmployment="No" Role="2311-11" RoleDescription="General Medical Practitioner"><PAYE Type="FullTime"><RelatedEntityRef Type="RelatedParty">1645135579986</RelatedEntityRef></PAYE><StartAndEndDates><StartDate>2017-05-10</StartDate></StartAndEndDates><EmploymentIncome><ValueItem Value="0.0"><Identifier>1-1645135666094</Identifier><Income Type="GrossSalary"><Period Unit="Monthly"><StartDate>2020-07-01</StartDate><EndDate>2021-06-30</EndDate></Period></Income></ValueItem></EmploymentIncome></Employment></Person></Party><Party Type="SecurityCustodian" PrimaryApplicant="No"><Identifier>1645136679695</Identifier><Trust><BeneficialOwner><RelatedEntityRef/><Role Type="Trustee"/></BeneficialOwner></Trust><Company ANZSIC="8921" NatureOfBusiness="NonClassifiableEstablishments"><CompanyName BusinessName="ROSA PELESIA"/><ContactDetails><AddressDetails Mailing="Yes"><RelatedEntityRef/></AddressDetails><AddressDetails Residential="Yes"><RelatedEntityRef/></AddressDetails></ContactDetails><Shareholder><RelatedEntityRef/></Shareholder><CompanyType/><CompanyNumber ABN="85599621834" ACN="789456789" ABRN=""/><RegisteredIn><Date>2016-06-29</Date></RegisteredIn><CompanyIncome/></Company></Party><Party Type="SMSFMember" PrimaryApplicant="No"><Identifier>1645143273409</Identifier><Privacy ExistingCustomer="No" AllowCreditCheck="Yes" AllowThirdPartyDisclosure="Yes" ESignConsent="No"><DocumentsSightedBy LoanWriter="No"/></Privacy><Person Director="Yes" Sex="Male" FirstHomeBuyer="No" CustomerOfLender="No" EmployeeOfLender="No"><PersonName><NameTitle Value="Mr"/><FirstName>Sen</FirstName><Surname>Cal</Surname></PersonName><DateOfBirth>2000-05-02</DateOfBirth><MaritalStatus Status="Single"/><Residency PermanentInAustralia="Yes" Status="Citizen"><Country ISO3166="AU"/></Residency><ContactDetails><AddressDetails Residential="Yes" Mailing="No" PriorAddress="No" PostSettlement="No" HousingStatus="Renting"><RelatedEntityRef>1645134871677</RelatedEntityRef><StartAndEndDates><StartDate>2015-10-22</StartDate></StartAndEndDates></AddressDetails><AddressDetails Residential="No" Mailing="Yes" PriorAddress="No" PostSettlement="No"><RelatedEntityRef>1645134871677</RelatedEntityRef></AddressDetails><HomePhone><Phone><FixedPhone AreaCode="02">89568956</FixedPhone></Phone></HomePhone></ContactDetails><Employment OnProbation="No" PrimaryEmployment="Yes" PriorEmployment="No" Role="2411-11" RoleDescription="Pre-Primary School Teacher"><PAYE Type="FullTime"><RelatedEntityRef/></PAYE><StartAndEndDates><StartDate>2017-05-10</StartDate></StartAndEndDates><EmploymentIncome><ValueItem Value="0.0"><Identifier>1.645144183506e+12-Income-1</Identifier><Income Type="GrossSalary"><Period Unit="Monthly"><StartDate>2020-07-01</StartDate><EndDate>2021-06-30</EndDate></Period></Income></ValueItem></EmploymentIncome></Employment></Person></Party><Party Type="SMSFMember" PrimaryApplicant="No"><Identifier>1645143529869</Identifier><Privacy ExistingCustomer="No" AllowCreditCheck="Yes" AllowThirdPartyDisclosure="Yes" ESignConsent="No"><DocumentsSightedBy LoanWriter="No"/></Privacy><Person Director="Yes" Sex="Male" FirstHomeBuyer="No" CustomerOfLender="No" EmployeeOfLender="No"><PersonName><NameTitle Value="Mr"/><FirstName>Yen</FirstName><Surname>Yen</Surname></PersonName><DateOfBirth>2000-05-02</DateOfBirth><MaritalStatus Status="Single"/><Residency PermanentInAustralia="Yes" Status="Citizen"><Country ISO3166="AU"/></Residency><ContactDetails><AddressDetails Residential="Yes" Mailing="No" PriorAddress="No" PostSettlement="No" HousingStatus="Renting"><RelatedEntityRef>1645143560092</RelatedEntityRef><StartAndEndDates><StartDate>2015-10-22</StartDate></StartAndEndDates></AddressDetails><AddressDetails Residential="No" Mailing="Yes" PriorAddress="No" PostSettlement="No"><RelatedEntityRef>1645143560092</RelatedEntityRef></AddressDetails><HomePhone><Phone><FixedPhone AreaCode="02">78457845</FixedPhone></Phone></HomePhone></ContactDetails><Employment OnProbation="No" PrimaryEmployment="Yes" PriorEmployment="No" Role="4111-01" RoleDescription="Supervisor, General Mechanical Engineering Tradespersons"><PAYE Type="FullTime"><RelatedEntityRef/></PAYE><StartAndEndDates><StartDate>2017-05-10</StartDate></StartAndEndDates><EmploymentIncome><ValueItem Value="0.0"><Identifier>1.64514454509e+12-Income-1</Identifier><Income Type="GrossSalary"><Period Unit="Monthly"><StartDate>2020-07-01</StartDate><EndDate>2021-06-30</EndDate></Period></Income></ValueItem></EmploymentIncome></Employment></Person></Party> -->
+			</PartySegment>
+			<AddressSegment>
+				<AddressWrapper>
+					<Identifier>1645134760075</Identifier>
+					<Address>
+						<UnitNo>5</UnitNo>
+						<StreetNo>1</StreetNo>
+						<Street Type="Place">AARON</Street>
+						<City>WAHROONGA</City>
+						<State Name="NSW"/>
+						<Postcode>2076</Postcode>
+						<Country ISO3166="AU"/>
+					</Address>
+				</AddressWrapper>
+				<AddressWrapper>
+					<Identifier>1645134809497</Identifier>
+					<Address>
+						<UnitNo>5</UnitNo>
+						<StreetNo>1</StreetNo>
+						<Street Type="Place">AARON</Street>
+						<City>WAHROONGA</City>
+						<State Name="NSW"/>
+						<Postcode>2076</Postcode>
+						<Country ISO3166="AU"/>
+					</Address>
+				</AddressWrapper>
+				<AddressWrapper>
+					<Identifier>1645134871677</Identifier>
+					<Address>
+						<UnitNo>66</UnitNo>
+						<StreetNo>1</StreetNo>
+						<Street Type="Road">ADDISON</Street>
+						<City>MANLY</City>
+						<State Name="NSW"/>
+						<Postcode>2095</Postcode>
+						<Country ISO3166="AU"/>
+					</Address>
+				</AddressWrapper>
+				<AddressWrapper>
+					<Identifier>1645134941852</Identifier>
+					<Address>
+						<UnitNo>556</UnitNo>
+						<StreetNo>1</StreetNo>
+						<Street Type="Drive">JACKSON</Street>
+						<City>MASCOT</City>
+						<State Name="NSW"/>
+						<Postcode>2020</Postcode>
+						<Country ISO3166="AU"/>
+					</Address>
+				</AddressWrapper>
+				<AddressWrapper>
+					<Identifier>1645135600492</Identifier>
+					<Address>
+						<UnitNo>66</UnitNo>
+						<StreetNo>1</StreetNo>
+						<Street Type="Road">ALAMEIN</Street>
+						<City>SUSSEX INLET</City>
+						<State Name="NSW"/>
+						<Postcode>2540</Postcode>
+						<Country ISO3166="AU"/>
+					</Address>
+				</AddressWrapper>
+				<AddressWrapper>
+					<Identifier>1645143560092</Identifier>
+					<Address>
+						<UnitNo>66</UnitNo>
+						<StreetNo>1</StreetNo>
+						<Street Type="Road">ACACIA</Street>
+						<City>KIRRAWEE</City>
+						<State Name="NSW"/>
+						<Postcode>2232</Postcode>
+						<Country ISO3166="AU"/>
+					</Address>
+				</AddressWrapper>
+			</AddressSegment>
+			<FinancialSegment NoOtherAssets="No" NoLiabilities="No" NoIncome="No">
+				<ValueItem Value="100000">
+					<Identifier>1097796822609</Identifier>
+					<PercentOwned Percent="100">
+						<RelatedEntityRef>1645136679695</RelatedEntityRef>
+					</PercentOwned>
+					<Asset Class="CurrentSecurity" SecurityType="RegisteredMortgage">
+						<RealEstate Transaction="Purchasing" PrimarySecurity="Yes" PropertyPrimaryPurpose="Investment" ApprovalInPrinciple="No" Status="Established" Holding="Sole">
+							<Residential WillOwn3UnitsInComplex="No" WillOwn25PercentOfComplex="No" OffThePlan="No" Type="AptUnitFlat"/>
+							<EstimatedValue EstimateBasis="ApplicantEstimate">100000</EstimatedValue>
+							<ContractPrice LicencedRealEstateAgentContract="No" ContractPriceAmount="100000"/>
+							<RentalIncome EvidenceOfTenancy="No" RentalAmount="2500">
+								<Period Unit="Monthly"/>
+							</RentalIncome>
+							<Location>
+								<RelatedEntityRef>1645134760075</RelatedEntityRef>
+								<Title TitleType="Torrens" TenureType="CommunityTitle"/>
+							</Location>
+						</RealEstate>
+					</Asset>
+				</ValueItem>
+				<ValueItem Value="50000">
+					<Identifier>1646346705932</Identifier>
+					<OwnedByAllApplicants/>
+					<Asset Class="CurrentAsset">
+						<NonRealEstate PrimarySecurity="No">
+							<OtherAsset OtherAssetType="Boat" OtherAssetDescription="test"/>
+							<EstimatedValue EstimateBasis="ApplicantEstimate">50000</EstimatedValue>
+						</NonRealEstate>
+					</Asset>
+				</ValueItem>
+				<ValueItem Value="2500">
+					<Identifier>1646346713513</Identifier>
+					<OwnedByAllApplicants/>
+					<Liability Type="CommercialBill" Description="test" UnpaidBalance="60000" ScheduledBalance="2500" ContinuingAfterSettlement="Yes">
+						<RelatedEntityRef>1646346713513-Party</RelatedEntityRef>
+					</Liability>
+				</ValueItem>
+				<ValueItem Value="600">
+					<Identifier>1646346724871</Identifier>
+					<OwnedByAllApplicants/>
+					<Income Type="Addback" Description="" AddbackType="Depreciation">
+						<Period Unit="Monthly"/>
+					</Income>
+				</ValueItem>
+				<ValueItem Value="5000">
+					<Identifier>1646346731483</Identifier>
+					<PercentOwned Percent="100">
+						<RelatedEntityRef>1097796793796</RelatedEntityRef>
+					</PercentOwned>
+					<Expense Type="Other" Description="test" ContinuingAfterSettlement="Yes">
+						<Period Unit="Monthly"/>
+					</Expense>
+				</ValueItem>
+				<ValueItem Value="5000">
+					<Identifier>1647471202646</Identifier>
+					<OwnedByAllApplicants/>
+					<Expense Type="Board" Description="" ContinuingAfterSettlement="Yes">
+						<Period Unit="Monthly"/>
+					</Expense>
+				</ValueItem>
+				<ValueItem Value="5000">
+					<Identifier>1647471202647</Identifier>
+					<OwnedByAllApplicants/>
+					<Expense Type="Childcare" Description="" ContinuingAfterSettlement="Yes">
+						<Period Unit="Monthly"/>
+					</Expense>
+				</ValueItem>
+				<ValueItem Value="5000">
+					<Identifier>1647471202648</Identifier>
+					<OwnedByAllApplicants/>
+					<Expense Type="ChildMaintenance" Description="" ContinuingAfterSettlement="Yes">
+						<Period Unit="Monthly"/>
+					</Expense>
+				</ValueItem>
+				<ValueItem Value="5000">
+					<Identifier>1647471202649</Identifier>
+					<OwnedByAllApplicants/>
+					<Expense Type="ClothingPersonalCare" Description="" ContinuingAfterSettlement="Yes">
+						<Period Unit="Monthly"/>
+					</Expense>
+				</ValueItem>
+				<ValueItem Value="5000">
+					<Identifier>1647471202650</Identifier>
+					<OwnedByAllApplicants/>
+					<Expense Type="InsuranceGeneral" Description="" ContinuingAfterSettlement="Yes">
+						<Period Unit="Monthly"/>
+					</Expense>
+				</ValueItem>
+				<ValueItem Value="5000">
+					<Identifier>1647471202651</Identifier>
+					<OwnedByAllApplicants/>
+					<Expense Type="Groceries" Description="" ContinuingAfterSettlement="Yes">
+						<Period Unit="Monthly"/>
+					</Expense>
+				</ValueItem>
+				<ValueItem Value="5000">
+					<Identifier>1647471202652</Identifier>
+					<OwnedByAllApplicants/>
+					<Expense Type="EducationTertiary" Description="" ContinuingAfterSettlement="Yes">
+						<Period Unit="Monthly"/>
+					</Expense>
+				</ValueItem>
+				<ValueItem Value="5000">
+					<Identifier>1647471202653</Identifier>
+					<OwnedByAllApplicants/>
+					<Expense Type="InvestmentUtilities" Description="" ContinuingAfterSettlement="Yes">
+						<Period Unit="Monthly"/>
+					</Expense>
+				</ValueItem>
+				<ValueItem Value="5000">
+					<Identifier>1647471202654</Identifier>
+					<OwnedByAllApplicants/>
+					<Expense Type="MedicalHealth" Description="" ContinuingAfterSettlement="Yes">
+						<Period Unit="Monthly"/>
+					</Expense>
+				</ValueItem>
+				<ValueItem Value="5000">
+					<Identifier>1647471202655</Identifier>
+					<OwnedByAllApplicants/>
+					<Expense Type="OtherExpenses" Description="" ContinuingAfterSettlement="Yes">
+						<Period Unit="Monthly"/>
+					</Expense>
+				</ValueItem>
+				<ValueItem Value="5000">
+					<Identifier>1647471202656</Identifier>
+					<OwnedByAllApplicants/>
+					<Expense Type="InsurancesOther" Description="" ContinuingAfterSettlement="Yes">
+						<Period Unit="Monthly"/>
+					</Expense>
+				</ValueItem>
+				<ValueItem Value="5000">
+					<Identifier>1647471202657</Identifier>
+					<OwnedByAllApplicants/>
+					<Expense Type="OwnerOccupiedLandTaxBodyCorpAndStrataFees" Description="" ContinuingAfterSettlement="Yes">
+						<Period Unit="Monthly"/>
+					</Expense>
+				</ValueItem>
+				<ValueItem Value="5000">
+					<Identifier>1647471202658</Identifier>
+					<OwnedByAllApplicants/>
+					<Expense Type="InsuranceMedical" Description="" ContinuingAfterSettlement="Yes">
+						<Period Unit="Monthly"/>
+					</Expense>
+				</ValueItem>
+				<ValueItem Value="5000">
+					<Identifier>1647471202659</Identifier>
+					<OwnedByAllApplicants/>
+					<Expense Type="Other" Description="" ContinuingAfterSettlement="Yes">
+						<Period Unit="Monthly"/>
+					</Expense>
+				</ValueItem>
+				<ValueItem Value="5000">
+					<Identifier>1647471202660</Identifier>
+					<OwnedByAllApplicants/>
+					<Expense Type="PrimaryResidenceCosts" Description="" ContinuingAfterSettlement="Yes">
+						<Period Unit="Monthly"/>
+					</Expense>
+				</ValueItem>
+				<ValueItem Value="5000">
+					<Identifier>1647471202661</Identifier>
+					<OwnedByAllApplicants/>
+					<Expense Type="EducationPrivate" Description="" ContinuingAfterSettlement="Yes">
+						<Period Unit="Monthly"/>
+					</Expense>
+				</ValueItem>
+				<ValueItem Value="5000">
+					<Identifier>1647471202662</Identifier>
+					<OwnedByAllApplicants/>
+					<Expense Type="EducationPublic" Description="" ContinuingAfterSettlement="Yes">
+						<Period Unit="Monthly"/>
+					</Expense>
+				</ValueItem>
+				<ValueItem Value="5000">
+					<Identifier>1647471202663</Identifier>
+					<OwnedByAllApplicants/>
+					<Expense Type="Recreation" Description="" ContinuingAfterSettlement="Yes">
+						<Period Unit="Monthly"/>
+					</Expense>
+				</ValueItem>
+				<ValueItem Value="5000">
+					<Identifier>1647471202664</Identifier>
+					<OwnedByAllApplicants/>
+					<Expense Type="Rent" Description="" ContinuingAfterSettlement="Yes">
+						<Period Unit="Monthly"/>
+					</Expense>
+				</ValueItem>
+				<ValueItem Value="5000">
+					<Identifier>1647471202665</Identifier>
+					<OwnedByAllApplicants/>
+					<Expense Type="SecondaryResidenceCosts" Description="" ContinuingAfterSettlement="Yes">
+						<Period Unit="Monthly"/>
+					</Expense>
+				</ValueItem>
+				<ValueItem Value="5000">
+					<Identifier>1647471202666</Identifier>
+					<OwnedByAllApplicants/>
+					<Expense Type="TelephoneInternet" Description="" ContinuingAfterSettlement="Yes">
+						<Period Unit="Monthly"/>
+					</Expense>
+				</ValueItem>
+				<ValueItem Value="5000">
+					<Identifier>1647471202667</Identifier>
+					<OwnedByAllApplicants/>
+					<Expense Type="Transport" Description="" ContinuingAfterSettlement="Yes">
+						<Period Unit="Monthly"/>
+					</Expense>
+				</ValueItem>
+			</FinancialSegment>
+			<RelatedPartySegment>
+				<RelatedParty RelPartyType="Lender">
+					<Identifier>1097796817156</Identifier>
+					<CompanyName BusinessName="ORDE"/>
+				</RelatedParty>
+				<RelatedParty RelPartyType="Employer">
+					<Identifier>1097796810218</Identifier>
+				</RelatedParty>
+				<RelatedParty RelPartyType="TrustSettlor">
+					<Identifier>1645134789164</Identifier>
+					<PersonName>
+						<NameTitle Value="Mr"/>
+						<FirstName>Jen</FirstName>
+						<Surname>Kaling</Surname>
+					</PersonName>
+					<RelatedEntityRef Type="ResidentialAddress">1645134809497</RelatedEntityRef>
+					<WorkPhone>
+						<Phone>
+							<Mobile>0458956235</Mobile>
+						</Phone>
+						<Phone>
+							<FixedPhone CountryCode="61" AreaCode="02">89568956</FixedPhone>
+						</Phone>
+						<Phone>
+							<Fax CountryCode="61" AreaCode="02">78784578</Fax>
+						</Phone>
+					</WorkPhone>
+					<Email>test@test.com</Email>
+				</RelatedParty>
+				<RelatedParty RelPartyType="Other">
+					<Identifier>1645134789164</Identifier>
+					<PersonName>
+						<NameTitle Value="Mr"/>
+						<FirstName>Jen</FirstName>
+						<Surname>Kaling</Surname>
+					</PersonName>
+					<RelatedEntityRef Type="ResidentialAddress">1645134809497</RelatedEntityRef>
+					<WorkPhone>
+						<Phone>
+							<Mobile>0458956235</Mobile>
+						</Phone>
+						<Phone>
+							<FixedPhone CountryCode="61" AreaCode="02">89568956</FixedPhone>
+						</Phone>
+						<Phone>
+							<Fax CountryCode="61" AreaCode="02">78784578</Fax>
+						</Phone>
+					</WorkPhone>
+					<Email>test@test.com</Email>
+				</RelatedParty>
+				<RelatedParty RelPartyType="Shareholder">
+					<Identifier>1645134851162</Identifier>
+					<PersonName>
+						<NameTitle Value="Mr"/>
+						<FirstName>Zero</FirstName>
+						<AlsoKnownAs>ZH</AlsoKnownAs>
+						<Surname>Hero</Surname>
+					</PersonName>
+					<RelatedEntityRef Type="ResidentialAddress">1645134871677</RelatedEntityRef>
+					<WorkPhone>
+						<Phone>
+							<Mobile>0485689562</Mobile>
+						</Phone>
+						<Phone>
+							<FixedPhone CountryCode="61" AreaCode="02">89568956</FixedPhone>
+						</Phone>
+						<Phone>
+							<Fax CountryCode="61" AreaCode="02">78457845</Fax>
+						</Phone>
+					</WorkPhone>
+					<Email>testt@tt.com</Email>
+				</RelatedParty>
+				<RelatedParty RelPartyType="Other">
+					<Identifier>1645134851162</Identifier>
+					<PersonName>
+						<NameTitle Value="Mr"/>
+						<FirstName>Zero</FirstName>
+						<AlsoKnownAs>ZH</AlsoKnownAs>
+						<Surname>Hero</Surname>
+					</PersonName>
+					<RelatedEntityRef Type="ResidentialAddress">1645134871677</RelatedEntityRef>
+					<WorkPhone>
+						<Phone>
+							<Mobile>0485689562</Mobile>
+						</Phone>
+						<Phone>
+							<FixedPhone CountryCode="61" AreaCode="02">89568956</FixedPhone>
+						</Phone>
+						<Phone>
+							<Fax CountryCode="61" AreaCode="02">78457845</Fax>
+						</Phone>
+					</WorkPhone>
+					<Email>testt@tt.com</Email>
+				</RelatedParty>
+				<RelatedParty RelPartyType="Employer">
+					<Identifier>1645135579986</Identifier>
+					<CompanyName BusinessName="XERO PTY. LTD."/>
+					<PersonName>
+						<NameTitle Value="Mr"/>
+						<FirstName>hang</FirstName>
+						<Surname>hang</Surname>
+					</PersonName>
+					<RelatedEntityRef Type="ResidentialAddress">1645135600492</RelatedEntityRef>
+					<WorkPhone>
+						<Phone>
+							<Mobile>0485698562</Mobile>
+						</Phone>
+						<Phone>
+							<FixedPhone CountryCode="61" AreaCode="02">89895656</FixedPhone>
+						</Phone>
+						<Phone>
+							<Fax CountryCode="61" AreaCode="02">78784545</Fax>
+						</Phone>
+					</WorkPhone>
+					<Email>hang@test.com</Email>
+					<CompanyNumber ABN="68095947023" ACN="095947023"/>
+					<RegisteredIn>
+						<Date>2004-03-31</Date>
+					</RegisteredIn>
+				</RelatedParty>
+				<RelatedParty RelPartyType="Creditor">
+					<Identifier>1646346713513-Party</Identifier>
+					<CompanyName BusinessName=""/>
+				</RelatedParty>
+			</RelatedPartySegment>
+			<LoanDetailSegment>
+				<LoanDetails>
+					<Identifier>1097796802265</Identifier>
+					<EstimatedSettlement>2025-12-30</EstimatedSettlement>
+					<LoanPurpose PrimaryPurpose="Investment" OwnerBuilderApplication="No">
+						<LendingPurposeCode ABSCode="ABS-125" PurposeAmount="0.0" Description="125 - Purchase of newly erected dwellings - House by first mortgage"/>
+					</LoanPurpose>
+					<LoanPortion ProductName="SMSF Commercial (Prime)" ProductCode="" StatementCycle="Monthly" PackageName="">
+						<Identifier>1097796802265-1</Identifier>
+						<LoanTerm Type="TotalTerm" Units="Years">15</LoanTerm>
+						<LoanTerm Type="Variable" PaymentType="PrincipalAndInterest" Units="Years">15</LoanTerm>
+						<AmountRequested Amount="100000" BaseAmount="100000"/>
+					</LoanPortion>
+				</LoanDetails>
+				<Representation>
+					<NominatedRepresentation>
+						<RelatedEntityRef/>
+					</NominatedRepresentation>
+				</Representation>
+			</LoanDetailSegment>
+			<QuestionSegment/>
+			<CrossSellSegment Enabled="true"/>
+		</Application>
+	</soapenv:Body>
+</soapenv:Envelope>

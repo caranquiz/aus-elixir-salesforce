@@ -44,6 +44,11 @@
                 <default>false</default>
                 <label>WA</label>
             </value>
+            <value>
+                <fullName>ACT</fullName>
+                <default>false</default>
+                <label>ACT</label>
+            </value>
         </valueSetDefinition>
     </valueSet>
 </CustomField>

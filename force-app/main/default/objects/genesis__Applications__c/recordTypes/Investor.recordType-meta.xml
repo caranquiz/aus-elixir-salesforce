@@ -357,6 +357,32 @@
         </values>
     </picklistValues>
     <picklistValues>
+        <picklist>External_Auditor__c</picklist>
+        <values>
+            <fullName>AUP</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Kapstream</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>NAB</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>First_Home_Buyer__c</picklist>
+        <values>
+            <fullName>No</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Yes</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
         <picklist>Fixed_Rate_Lock_In__c</picklist>
         <values>
             <fullName>No</fullName>
@@ -588,6 +614,17 @@
         </values>
     </picklistValues>
     <picklistValues>
+        <picklist>Previously_Bankrupt__c</picklist>
+        <values>
+            <fullName>No</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Yes</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
         <picklist>Primary_Loan_Purpose__c</picklist>
         <values>
             <fullName>Construction</fullName>
@@ -703,10 +740,6 @@
             <default>false</default>
         </values>
         <values>
-            <fullName>Prepaid Interest</fullName>
-            <default>false</default>
-        </values>
-        <values>
             <fullName>Principal and Interest</fullName>
             <default>false</default>
         </values>
@@ -757,6 +790,32 @@
         </values>
     </picklistValues>
     <picklistValues>
+        <picklist>Settlement_Fee__c</picklist>
+        <values>
+            <fullName>No</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Yes</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Settlement_Loan_Document_Delivery__c</picklist>
+        <values>
+            <fullName>DigiDocs</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Email to Broker</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Email to Customer</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
         <picklist>Signed_The_Form__c</picklist>
         <values>
             <fullName>No</fullName>
@@ -764,6 +823,49 @@
         </values>
         <values>
             <fullName>Yes</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Solicitor_Status__c</picklist>
+        <values>
+            <fullName>Docs Returned</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Docs Sent</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Docs Verified</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>File in Doc Prep QA</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>File in Settlement QA</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Instructions Received</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Matter On Hold</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Outstanding Requirements</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Ready to Book</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Settlement Booked</fullName>
             <default>false</default>
         </values>
     </picklistValues>
@@ -885,7 +987,7 @@
         <picklist>Valuation_Fee_Collected_at_Settlement__c</picklist>
         <values>
             <fullName>No</fullName>
-            <default>false</default>
+            <default>true</default>
         </values>
         <values>
             <fullName>Yes</fullName>
@@ -1395,6 +1497,25 @@
         </values>
         <values>
             <fullName>No enclosure is included with Notice</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>genesis__Status__c</picklist>
+        <values>
+            <fullName>Assessment in Progress</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Conditional Assessed</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Conditionally Approved</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Solicitor Instructed</fullName>
             <default>false</default>
         </values>
     </picklistValues>

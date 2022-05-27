@@ -4,7 +4,7 @@
     <defaultValue>false</defaultValue>
     <deprecated>false</deprecated>
     <externalId>false</externalId>
-    <inlineHelpText>This flag will be checked if the lending account has crossed it&#39;s maturity date and there is outstanding balance on this contract.</inlineHelpText>
+    <inlineHelpText>This flag will be checked if the lending account has crossed it&apos;s maturity date and there is outstanding balance on this contract.</inlineHelpText>
     <label>Matured</label>
     <trackHistory>false</trackHistory>
     <trackTrending>false</trackTrending>

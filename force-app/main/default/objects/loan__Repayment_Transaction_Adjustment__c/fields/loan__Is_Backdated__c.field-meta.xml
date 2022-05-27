@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>loan__Is_Backdated__c</fullName>
+    <defaultValue>false</defaultValue>
+    <deprecated>false</deprecated>
+    <description>This field will represent whether the Reversal is backdated.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>This field will represent whether the Reversal is backdated.</inlineHelpText>
+    <label>Is Backdated</label>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

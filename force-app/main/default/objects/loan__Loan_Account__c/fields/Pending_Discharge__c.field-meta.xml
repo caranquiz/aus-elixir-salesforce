@@ -2,6 +2,8 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Pending_Discharge__c</fullName>
     <defaultValue>false</defaultValue>
+    <description>RJohnston 8/11 - for being able to report on loans that have requested a full or partial discharge 
+https://wingategroup.atlassian.net/jira/software/c/projects/AMS/boards/8?modal=detail&amp;selectedIssue=AMS-900</description>
     <externalId>false</externalId>
     <label>Pending Discharge</label>
     <trackHistory>false</trackHistory>

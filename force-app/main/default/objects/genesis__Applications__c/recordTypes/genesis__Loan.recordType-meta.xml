@@ -107,6 +107,10 @@
             <default>false</default>
         </values>
         <values>
+            <fullName>Loan Increase</fullName>
+            <default>false</default>
+        </values>
+        <values>
             <fullName>Opened in Error</fullName>
             <default>false</default>
         </values>
@@ -366,6 +370,32 @@
         </values>
     </picklistValues>
     <picklistValues>
+        <picklist>External_Auditor__c</picklist>
+        <values>
+            <fullName>AUP</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Kapstream</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>NAB</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>First_Home_Buyer__c</picklist>
+        <values>
+            <fullName>No</fullName>
+            <default>true</default>
+        </values>
+        <values>
+            <fullName>Yes</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
         <picklist>Fixed_Rate_Lock_In__c</picklist>
         <values>
             <fullName>No</fullName>
@@ -597,6 +627,17 @@
         </values>
     </picklistValues>
     <picklistValues>
+        <picklist>Previously_Bankrupt__c</picklist>
+        <values>
+            <fullName>No</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Yes</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
         <picklist>Primary_Loan_Purpose__c</picklist>
         <values>
             <fullName>Construction</fullName>
@@ -716,10 +757,6 @@
             <default>false</default>
         </values>
         <values>
-            <fullName>Prepaid Interest</fullName>
-            <default>false</default>
-        </values>
-        <values>
             <fullName>Principal and Interest</fullName>
             <default>false</default>
         </values>
@@ -793,6 +830,32 @@
         </values>
     </picklistValues>
     <picklistValues>
+        <picklist>Settlement_Fee__c</picklist>
+        <values>
+            <fullName>No</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Yes</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Settlement_Loan_Document_Delivery__c</picklist>
+        <values>
+            <fullName>DigiDocs</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Email to Broker</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Email to Customer</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
         <picklist>Signed_The_Form__c</picklist>
         <values>
             <fullName>No</fullName>
@@ -800,6 +863,49 @@
         </values>
         <values>
             <fullName>Yes</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Solicitor_Status__c</picklist>
+        <values>
+            <fullName>Docs Returned</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Docs Sent</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Docs Verified</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>File in Doc Prep QA</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>File in Settlement QA</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Instructions Received</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Matter On Hold</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Outstanding Requirements</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Ready to Book</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Settlement Booked</fullName>
             <default>false</default>
         </values>
     </picklistValues>
@@ -921,7 +1027,7 @@
         <picklist>Valuation_Fee_Collected_at_Settlement__c</picklist>
         <values>
             <fullName>No</fullName>
-            <default>false</default>
+            <default>true</default>
         </values>
         <values>
             <fullName>Yes</fullName>
@@ -1109,8 +1215,12 @@
             <default>false</default>
         </values>
         <values>
-            <fullName>Monthly</fullName>
+            <fullName>Billing Frequency</fullName>
             <default>true</default>
+        </values>
+        <values>
+            <fullName>Monthly</fullName>
+            <default>false</default>
         </values>
         <values>
             <fullName>Weekly</fullName>
@@ -1457,7 +1567,7 @@
             <default>false</default>
         </values>
         <values>
-            <fullName>Approved - Converted to Contract</fullName>
+            <fullName>Assessment in Progress</fullName>
             <default>false</default>
         </values>
         <values>
@@ -1465,19 +1575,19 @@
             <default>false</default>
         </values>
         <values>
+            <fullName>Conditional Accepted</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Conditional Assessed</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Conditionally Approved</fullName>
+            <default>false</default>
+        </values>
+        <values>
             <fullName>Declined</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>Formally Approved</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>Indicative Accepted</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>Indicative Issued</fullName>
             <default>false</default>
         </values>
         <values>
@@ -1489,15 +1599,7 @@
             <default>false</default>
         </values>
         <values>
-            <fullName>Recommended</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>Val Ordered</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>Val Received</fullName>
+            <fullName>Solicitor Instructed</fullName>
             <default>false</default>
         </values>
     </picklistValues>

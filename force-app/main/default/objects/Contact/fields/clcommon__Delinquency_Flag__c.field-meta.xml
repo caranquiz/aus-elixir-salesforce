@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<CustomField xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>clcommon__Delinquency_Flag__c</fullName>
     <defaultValue>false</defaultValue>
     <deprecated>false</deprecated>
@@ -8,5 +8,6 @@
     <inlineHelpText>To identify Delinquency Status of Contact</inlineHelpText>
     <label>Delinquency Flag</label>
     <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
     <type>Checkbox</type>
 </CustomField>

@@ -298,6 +298,10 @@
     <picklistValues>
         <picklist>State__c</picklist>
         <values>
+            <fullName>ACT</fullName>
+            <default>false</default>
+        </values>
+        <values>
             <fullName>NSW</fullName>
             <default>false</default>
         </values>

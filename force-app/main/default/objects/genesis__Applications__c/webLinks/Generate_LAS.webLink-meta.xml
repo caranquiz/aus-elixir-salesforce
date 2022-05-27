@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Generate_LAS</fullName>
+    <availability>online</availability>
+    <displayType>button</displayType>
+    <encodingKey>UTF-8</encodingKey>
+    <hasMenubar>false</hasMenubar>
+    <hasScrollbars>true</hasScrollbars>
+    <hasToolbar>false</hasToolbar>
+    <height>600</height>
+    <isResizable>true</isResizable>
+    <linkType>url</linkType>
+    <masterLabel>Generate LAS</masterLabel>
+    <openType>newWindow</openType>
+    <position>none</position>
+    <protected>false</protected>
+    <showsLocation>false</showsLocation>
+    <showsStatus>false</showsStatus>
+    <url>/apex/APXTConga4__Conga_Composer?SolMgr=1&amp;serverUrl={!API.Partner_Server_URL_370}&amp;QueryId=[BrokerUnderwriter]aCK5m00000002LvGAI%3Fpv0%3D{!genesis__Applications__c.Id},[SecurityQuery]aCK5m00000002L9GAI%3Fpv0%3D{!genesis__Applications__c.Id},[IndBor]aCK5m00000003JtGAI%3Fpv0%3D{!genesis__Applications__c.Id},[NonIndBor]aCK5K000000000aWAA%3Fpv0%3D{!genesis__Applications__c.Id},[PolicyConditionsQuer]aCK5K000000001YWAQ%3Fpv0%3D{!genesis__Applications__c.Id},[con]aCK5K000000001TWAQ%3Fpv0%3D{!genesis__Applications__c.Id},[AppExc]aCK5K000000001OWAQ%3Fpv0%3D{!genesis__Applications__c.Id},[ParColExc]aCK5K000000001JWAQ%3Fpv0%3D{!genesis__Applications__c.Id},[ManExc]aCK5K0000000019WAA%3Fpv0%3D{!genesis__Applications__c.Id},[LivingExp]aCK5K0000000014WAA%3Fpv0%3D{!genesis__Applications__c.Id},[AssetsLia]aCK5K000000000kWAA%3Fpv0%3D{!genesis__Applications__c.Id},[IndPAYG]aCK5K000000000pWAA%3Fpv0%3D{!genesis__Applications__c.Id},[FullIncome]aCK5K000000000uWAA%3Fpv0%3D{!genesis__Applications__c.Id},[AltIncome]aCK5K000000000zWAA%3Fpv0%3D{!genesis__Applications__c.Id},[IndSelf]aCK5K000000001iWAA%3Fpv0%3D{!genesis__Applications__c.Id},[IndSelfAlt]aCK5K000000000fWAA%3Fpv0%3D{!genesis__Applications__c.Id},[BorCoApp]aCK5m00000002LyGAI%3Fpv0%3D{!genesis__Applications__c.Id},[AllGua]aCK5m00000002M7GAI%3Fpv0%3D{!genesis__Applications__c.Id},[NewExis]aCK5K000000001EWAQ%3Fpv0%3D{!genesis__Applications__c.Id},[AppWar]aCK5K0000000022WAA%3Fpv0%3D{!genesis__Applications__c.Id},
+[AppSecWar]aCK5K000000001xWAA%3Fpv0%3D{!genesis__Applications__c.Id},
+[ManWar]aCK5K000000001sWAA%3Fpv0%3D{!genesis__Applications__c.Id},
+[AggrCheck]aCK5K000000001nWAA%3Fpv0%3D{!genesis__Applications__c.Id}[GuarCheck]aCK5m00000002M0GAI%3Fpv0%3D{!genesis__Applications__c.Id},[BorrCap]aCK5K000000001dWAA%3Fpv0%3D{!genesis__Applications__c.Id}&amp;Id={!genesis__Applications__c.Id}&amp;TemplateId=aCS5K0000000001&amp;SC0=1&amp;SC1=Attachments&amp;OFN=Loan+Approval+Summary+Document+{!genesis__Applications__c.Name}&amp;AttachmentParentID={!genesis__Applications__c.Id}&amp;DefaultPDF=1</url>
+</WebLink>

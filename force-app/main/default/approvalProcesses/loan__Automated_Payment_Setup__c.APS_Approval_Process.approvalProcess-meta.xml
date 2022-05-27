@@ -27,6 +27,10 @@
         <type>user</type>
     </allowedSubmitters>
     <allowedSubmitters>
+        <submitter>audit@nab.com.au</submitter>
+        <type>user</type>
+    </allowedSubmitters>
+    <allowedSubmitters>
         <submitter>blowrie@orde.com.au</submitter>
         <type>user</type>
     </allowedSubmitters>
@@ -71,7 +75,19 @@
         <type>user</type>
     </allowedSubmitters>
     <allowedSubmitters>
+        <submitter>insightssecurity@00d2v000001gpdxeau.com</submitter>
+        <type>user</type>
+    </allowedSubmitters>
+    <allowedSubmitters>
+        <submitter>integration@00d2v000001gpdxeau.com</submitter>
+        <type>user</type>
+    </allowedSubmitters>
+    <allowedSubmitters>
         <submitter>jgidman@orde.com.au</submitter>
+        <type>user</type>
+    </allowedSubmitters>
+    <allowedSubmitters>
+        <submitter>jgunter@orde.com.au</submitter>
         <type>user</type>
     </allowedSubmitters>
     <allowedSubmitters>
@@ -95,11 +111,19 @@
         <type>user</type>
     </allowedSubmitters>
     <allowedSubmitters>
+        <submitter>msinclair@orde.com.au</submitter>
+        <type>user</type>
+    </allowedSubmitters>
+    <allowedSubmitters>
         <submitter>pcoghlan@orde.com.au</submitter>
         <type>user</type>
     </allowedSubmitters>
     <allowedSubmitters>
         <submitter>ppolemikos@orde.com.au</submitter>
+        <type>user</type>
+    </allowedSubmitters>
+    <allowedSubmitters>
+        <submitter>pridley@orde.com.au</submitter>
         <type>user</type>
     </allowedSubmitters>
     <allowedSubmitters>
@@ -182,6 +206,14 @@
             </approver>
             <approver>
                 <name>jshastri@orde.com.au</name>
+                <type>user</type>
+            </approver>
+            <approver>
+                <name>msinclair@orde.com.au</name>
+                <type>user</type>
+            </approver>
+            <approver>
+                <name>rharkness@orde.com.au</name>
                 <type>user</type>
             </approver>
             <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>

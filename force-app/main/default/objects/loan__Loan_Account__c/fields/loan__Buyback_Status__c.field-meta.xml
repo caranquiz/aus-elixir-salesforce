@@ -3,7 +3,7 @@
     <fullName>loan__Buyback_Status__c</fullName>
     <deprecated>false</deprecated>
     <externalId>false</externalId>
-    <inlineHelpText>This field is used to indicate the loan&#39;s buyback status.</inlineHelpText>
+    <inlineHelpText>This field is used to indicate the loan&apos;s buyback status.</inlineHelpText>
     <label>Buyback Status</label>
     <required>false</required>
     <trackHistory>false</trackHistory>

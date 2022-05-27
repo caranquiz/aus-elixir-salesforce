@@ -1,0 +1,122 @@
+#sk-1uFo3V-67{
+    -webkit-animation: fadein .5s; /* Safari, Chrome and Opera > 12.1 */
+    animation: fadein .5s;
+}
+
+.nx-page{
+    padding: 0 0 10px 0;
+}
+
+@keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/* Safari, Chrome and Opera > 12.1 */
+@-webkit-keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/* If header is present */
+.bodyDiv .sk-headerwrapper {
+    display: none;
+}
+
+.bodyDiv .nx-pagebuilder-toolbar-wrapper-fixed {
+    padding: 0 27px;
+}
+
+/** legacy IE8 support **/
+.sk-ie-legacy .sk-grid-division{
+    width: 200px;
+    height: 43px;
+    display: block;
+    float: left;
+}
+.sk-ie-legacy .sk-master-grid-navigation,
+.sk-ie-legacy .sk-master-grid-navigation .sk-navigation{
+    width: 450px;
+    color: #eee !important;
+}
+.sk-ie-legacy .sk-master-grid-profpic{
+    width: 30px;
+}
+.sk-ie-legacy .sk-master-grid-logo{
+    width: 101px;
+}
+.sk-ie-legacy .sk-master-grid-division-rightside{
+    float: right;
+    color: #eee;
+}
+
+.sk-ie-legacy .sk-subnavigation,
+.sk-ie-legacy .sk-dropnav-dropdown,
+.sk-ie-legacy .sk-subnavigation div{
+    background: #333 !important;
+}
+
+.sk-ie-legacy .sk-master-grid-division-search .ui-autocomplete-input{
+    background: #222;
+}
+
+.sk-ie-legacy .sk-master-grid-division-search .sk-search-results{
+    background: #111;
+}
+.sk-headerwrapper{
+    z-index: 43;
+}
+.interaction-container {
+    margin-top: 3px;
+    float: right;
+    margin-right: 10px;
+}
+
+.interaction-container.hibernating {
+    opacity: 0.3;
+}
+
+.interaction-avatar {
+    display: none;
+    position: relative;
+    margin-left: 3px;
+}
+
+.interaction-avatar IMG {
+    background-color: white;
+    height: 25px;
+}
+
+.interaction-avatar.composerOpened IMG {
+    border: solid 1px #212324;
+}
+
+.interaction-avatar.composerUnsavedChanges IMG {
+    border: solid 1px red;
+}
+
+.interaction-avatar.stale IMG {
+    opacity: 0.3;
+}
+
+.interaction-avatar .unsaved-changes-warning {
+    display: none;
+    /* Prevent the warning icon from grabbing the focus and preventing the tooltip from showing */
+    pointer-events: none;
+}
+
+.interaction-avatar.composerUnsavedChanges .unsaved-changes-warning {
+    display: block;
+    position: absolute;
+	left: 0;
+	bottom: 0;
+	color: red;
+	text-shadow: 1px 1px 2px black;
+}
+.message-container > .nx-editor-header {
+    display: none;
+}
+
+.message-container > .nx-messages:empty {
+    display: none;
+}

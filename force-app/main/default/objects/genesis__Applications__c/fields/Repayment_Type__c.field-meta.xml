@@ -26,11 +26,6 @@
                 <default>false</default>
                 <label>Interest Only</label>
             </value>
-            <value>
-                <fullName>Prepaid Interest</fullName>
-                <default>false</default>
-                <label>Prepaid Interest</label>
-            </value>
         </valueSetDefinition>
     </valueSet>
 </CustomField>

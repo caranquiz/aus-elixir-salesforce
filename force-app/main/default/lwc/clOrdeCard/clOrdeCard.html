@@ -1,0 +1,17 @@
+<!--
+ - Created by Ethan Sargent on 10/08/2021.
+ -->
+
+<!-- Cl Orde Table -->
+<template>
+    <div class="orde-card">
+        <h2 if:true={cardTitle} class="slds-m-around_medium slds-p-top_medium">{cardTitle}</h2>
+        <div if:true={centerTitle} class="slds-align_absolute-center slds-m-around_medium slds-p-top_medium" style="width: 100%">
+            <h2>{centerTitle}</h2>
+        </div>
+        <slot name="header"></slot>
+        <div class="slds-m-around_medium orde-card-border">
+            <slot></slot>
+        </div>
+    </div>
+</template>

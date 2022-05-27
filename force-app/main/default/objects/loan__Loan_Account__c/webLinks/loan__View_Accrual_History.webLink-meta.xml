@@ -9,5 +9,5 @@
     <masterLabel>Accrual History</masterLabel>
     <openType>sidebar</openType>
     <protected>false</protected>
-    <url>/apex/{!IF ( ISBLANK($Setup.loan__Org_Parameters__c.loan__Namespace_Prefix__c ), &#39;&#39;,  $Setup.loan__Org_Parameters__c.loan__Namespace_Prefix__c + &#39;__&#39;)}loanAccrualHistory?Id={!loan__Loan_Account__c.Id}</url>
+    <url>/apex/{!IF ( ISBLANK($Setup.loan__Org_Parameters__c.loan__Namespace_Prefix__c ), &apos;&apos;,  $Setup.loan__Org_Parameters__c.loan__Namespace_Prefix__c + &apos;__&apos;)}loanAccrualHistory?Id={!loan__Loan_Account__c.Id}</url>
 </WebLink>

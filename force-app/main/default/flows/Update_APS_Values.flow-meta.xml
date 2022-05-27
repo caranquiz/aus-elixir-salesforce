@@ -596,16 +596,7 @@
         </inputAssignments>
         <inputReference>$Record</inputReference>
     </recordUpdates>
-    <start>
-        <locationX>50</locationX>
-        <locationY>54</locationY>
-        <connector>
-            <targetReference>APS_Outcome_Validation</targetReference>
-        </connector>
-        <object>loan__Automated_Payment_Setup__c</object>
-        <recordTriggerType>CreateAndUpdate</recordTriggerType>
-        <triggerType>RecordAfterSave</triggerType>
-    </start>
+    <startElementReference>APS_Outcome_Validation</startElementReference>
     <status>Active</status>
     <variables>
         <name>TransactionAmount</name>

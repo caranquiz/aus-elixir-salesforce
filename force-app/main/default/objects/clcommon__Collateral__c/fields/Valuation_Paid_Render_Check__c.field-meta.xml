@@ -4,6 +4,7 @@
     <externalId>false</externalId>
     <formula>AND(ISPICKVAL(Valuation_Ordered__c, &apos;Yes&apos;), ISPICKVAL(Valuation_Ordered_by_Lender__c, &apos;Yes&apos;))</formula>
     <label>Valuation Paid Render Check</label>
+    <trackHistory>false</trackHistory>
     <trackTrending>false</trackTrending>
     <type>Checkbox</type>
 </CustomField>

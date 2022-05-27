@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Secondary_Approval_Date_for_Reports__c</fullName>
+    <description>RJohnston 7/6/21
+For reporting the secondary approval date as original field wasn&apos;t a date field
+https://wingategroup.atlassian.net/secure/RapidBoard.jspa?rapidView=8&amp;projectKey=AMS&amp;modal=detail&amp;selectedIssue=AMS-746</description>
     <externalId>false</externalId>
     <formula>DATEVALUE(Secondary_Approval_Date__c)</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>

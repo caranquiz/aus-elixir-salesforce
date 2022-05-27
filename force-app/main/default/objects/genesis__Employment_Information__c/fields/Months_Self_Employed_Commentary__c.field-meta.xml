@@ -3,9 +3,8 @@
     <fullName>Months_Self_Employed_Commentary__c</fullName>
     <externalId>false</externalId>
     <label>Months Self Employed Commentary</label>
-    <length>255</length>
-    <required>false</required>
+    <length>1000</length>
     <trackTrending>false</trackTrending>
-    <type>Text</type>
-    <unique>false</unique>
+    <type>LongTextArea</type>
+    <visibleLines>2</visibleLines>
 </CustomField>

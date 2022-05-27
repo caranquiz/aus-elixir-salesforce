@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>genesis__Skip_Usage_On_Parent_Application__c</fullName>
+    <defaultValue>false</defaultValue>
+    <deprecated>false</deprecated>
+    <description>If true, then this application will not be considered in computing values on the associated Credit Line or Package application.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>If true, then this application will not be considered in computing values on the associated Credit Line or Package application.</inlineHelpText>
+    <label>Skip Usage On Parent Application</label>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

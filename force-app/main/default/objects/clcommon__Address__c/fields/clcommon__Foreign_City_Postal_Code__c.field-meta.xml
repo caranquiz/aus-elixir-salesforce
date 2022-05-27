@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>clcommon__Foreign_City_Postal_Code__c</fullName>
+    <deprecated>false</deprecated>
+    <description>This field is to capture the foreign city postal code related to the address, if address is not local.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>This field is to capture the foreign city postal code related to the address, if address is not local.</inlineHelpText>
+    <label>Foreign City Postal Code</label>
+    <length>255</length>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

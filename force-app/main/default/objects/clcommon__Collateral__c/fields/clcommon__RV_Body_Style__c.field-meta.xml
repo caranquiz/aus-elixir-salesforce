@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>clcommon__RV_Body_Style__c</fullName>
+    <deprecated>false</deprecated>
+    <description>To capture the Recreational Vehicle body style.</description>
+    <externalId>false</externalId>
+    <label>RV Body/Style</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Camping Trailer</fullName>
+                <default>false</default>
+                <label>Camping Trailer</label>
+            </value>
+            <value>
+                <fullName>Class A Motor Home,</fullName>
+                <default>false</default>
+                <label>Class A Motor Home,</label>
+            </value>
+            <value>
+                <fullName>Class C Motor Home</fullName>
+                <default>false</default>
+                <label>Class C Motor Home</label>
+            </value>
+            <value>
+                <fullName>Fifth Wheel</fullName>
+                <default>false</default>
+                <label>Fifth Wheel</label>
+            </value>
+            <value>
+                <fullName>Travel Trailer</fullName>
+                <default>false</default>
+                <label>Travel Trailer</label>
+            </value>
+            <value>
+                <fullName>Truck Camper</fullName>
+                <default>false</default>
+                <label>Truck Camper</label>
+            </value>
+            <value>
+                <fullName>Vacuum</fullName>
+                <default>false</default>
+                <label>Vacuum</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

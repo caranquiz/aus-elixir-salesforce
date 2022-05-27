@@ -4,12 +4,12 @@
     <active>false</active>
     <errorConditionFormula>OR(
 AND(
-ISPICKVAL( loan__Loan_Product_Name__r.loan__Loan_Product_Type__c , &#39;Client&#39;),
+ISPICKVAL( loan__Loan_Product_Name__r.loan__Loan_Product_Type__c , &apos;Client&apos;),
 NOT($Setup.loan__Org_Parameters__c.loan__Integrate_Salesforce_CRM__c),
 ISBLANK( loan__Client__c)
 ),
 AND(
-ISPICKVAL( loan__Loan_Product_Name__r.loan__Loan_Product_Type__c , &#39;Client&#39;),
+ISPICKVAL( loan__Loan_Product_Name__r.loan__Loan_Product_Type__c , &apos;Client&apos;),
 $Setup.loan__Org_Parameters__c.loan__Integrate_Salesforce_CRM__c,
 ISBLANK(  loan__Contact__c )
 )

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Total_Current_Income_Period__c</fullName>
+    <externalId>false</externalId>
+    <inlineHelpText>If income has varied substantially (+/- 20% as a guide) over the last two years, commentary is required.
+Max increase in year on year is capped at 120% of previous year. Where the income has decreased year on year, the second year’s income is to be used</inlineHelpText>
+    <label>Total Current Income Period</label>
+    <summarizedField>genesis__Income__c.genesis__Amount__c</summarizedField>
+    <summaryFilterItems>
+        <field>genesis__Income__c.Business_Income_Period__c</field>
+        <operation>equals</operation>
+        <value>Current</value>
+    </summaryFilterItems>
+    <summaryForeignKey>genesis__Income__c.genesis__Application__c</summaryForeignKey>
+    <summaryOperation>sum</summaryOperation>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Summary</type>
+</CustomField>

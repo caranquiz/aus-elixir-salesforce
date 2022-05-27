@@ -2,7 +2,7 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>PrePaid_Interest_Remaining_for_funding__c</fullName>
     <externalId>false</externalId>
-    <formula>IF(Application__r.genesis__CL_Product_Name__c == &#39;Construction Development&#39; || Application__r.genesis__CL_Product_Name__c == &#39;Residential Construction&#39;, Application__r.PrePaid_Interest_Remaining_for_funding__c, 0)</formula>
+    <formula>IF(Application__r.genesis__CL_Product_Name__c == &apos;Construction Development&apos; || Application__r.genesis__CL_Product_Name__c == &apos;Residential Construction&apos;, Application__r.PrePaid_Interest_Remaining_for_funding__c, 0)</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
     <label>PrePaid Interest Remaining for funding</label>
     <precision>18</precision>

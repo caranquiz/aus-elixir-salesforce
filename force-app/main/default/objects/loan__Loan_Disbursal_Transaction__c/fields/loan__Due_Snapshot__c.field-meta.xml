@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>loan__Due_Snapshot__c</fullName>
+    <defaultValue>&quot;&quot;</defaultValue>
+    <deprecated>false</deprecated>
+    <description>Stores snapshot of dues satisfied. This occurs when advance additional interest is added to bill and is collected by disbursal.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Stores snapshot of dues satisfied. This occurs when advance additional interest is added to bill and is collected by disbursal.</inlineHelpText>
+    <label>Due Snapshot</label>
+    <length>32768</length>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>LongTextArea</type>
+    <visibleLines>3</visibleLines>
+</CustomField>

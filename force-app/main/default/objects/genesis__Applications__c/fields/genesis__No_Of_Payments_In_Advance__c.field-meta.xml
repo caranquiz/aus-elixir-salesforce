@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>genesis__No_Of_Payments_In_Advance__c</fullName>
+    <deprecated>false</deprecated>
+    <description>This field captures the no.of payments that the lessee will pay along with the first payment</description>
+    <externalId>false</externalId>
+    <label>No Of Payments In Advance</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>1ST AND LAST</fullName>
+                <default>false</default>
+                <label>First and Last</label>
+            </value>
+            <value>
+                <fullName>1ST AND LAST2</fullName>
+                <default>false</default>
+                <label>First and Last 2</label>
+            </value>
+            <value>
+                <fullName>1ST AND LAST3</fullName>
+                <default>false</default>
+                <label>First and Last 3</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

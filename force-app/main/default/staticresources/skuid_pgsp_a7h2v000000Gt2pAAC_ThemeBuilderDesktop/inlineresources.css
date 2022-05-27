@@ -1,0 +1,14 @@
+.display-none{
+    display: none;
+}
+.sk-headerwrapper{
+    position: relative !important;
+}
+html, body, .nx-page {
+  height: 100%;
+  overflow: hidden;
+}
+
+.tb-preview .sk-search-results{
+    display: block !important;
+}

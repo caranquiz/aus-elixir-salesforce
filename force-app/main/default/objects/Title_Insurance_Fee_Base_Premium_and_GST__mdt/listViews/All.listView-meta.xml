@@ -3,6 +3,7 @@
     <fullName>All</fullName>
     <columns>MasterLabel</columns>
     <columns>DeveloperName</columns>
+    <columns>Additional_Fee_per_Unit__c</columns>
     <columns>Base_Premium__c</columns>
     <columns>Base_Premiumum_Unit__c</columns>
     <columns>GST__c</columns>

@@ -115,6 +115,7 @@ private class ChangeBorrowerTest {
     ChangeBorrower.applicationPartyDetailsWS(null,null);
     ChangeBorrower.applicationPartyDetailsWS(appList[0].Id,null);
     ChangeBorrower.applicationPartyDetailsWS(null,accList[0].Id);
+    CheckCommisionStatus.CheckCommisionStatusWS(null);
     Test.stopTest();
   }
   @isTest
@@ -133,6 +134,7 @@ private class ChangeBorrowerTest {
     System.assertEquals(accList.size(), 2, 'Accounts are present.');
     Test.startTest();
     ChangeBorrower.applicationPartyDetailsWS(appList[0].Id,accList[0].Id);
+    CheckCommisionStatus.CheckCommisionStatusWS(accList[0].Id);
     Test.stopTest();
   }
 }

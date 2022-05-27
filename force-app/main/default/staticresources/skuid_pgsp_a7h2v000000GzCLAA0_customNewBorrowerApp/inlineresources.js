@@ -110,7 +110,6 @@ if(applicationRowData && applicationRowData.genesis__Account__c){
     skuid.model.updateData([commonAccountModel],function(){
         if(!(commonAccountModel.data && commonAccountModel.data.length > 0)){
             var newPSRow = commonAccountModel.createRow({ });
-            console.log("AccountData=>>>>>",newPSRow);
         }else{
             if(commonAccountModel.data[0].genesis__Business_Information__c){
                 // fetch business info
@@ -126,7 +125,6 @@ if(applicationRowData && applicationRowData.genesis__Account__c){
     if(!(commonAccountModel.data && commonAccountModel.data.length > 0)){
         var newPSRow = commonAccountModel.createRow({ });
         var newBIRow = biModel.createRow({ });
-        console.log("AccountData=>>>>>",newPSRow);
     }
 }
 });
@@ -179,7 +177,6 @@ skuid.snippet.register('saveApplication',function(args) {var params = arguments[
   $ = skuid.$;
   $xml = skuid.utils.makeXMLDoc;
 	var context = {};
-  console.log('check 1<========');
 var newAppParams = {};
 var editorWrapper = $('#AppTitleHeader'); 
 if(skuid.page.params.id){
@@ -286,17 +283,16 @@ if(!appRow.genesis__Other_Financed_fees__c){
 if(!appRow.genesis__Expected_Start_Date__c){
     appRow.genesis__Expected_Start_Date__c = branchRow.loan__Current_System_Date__c;
 }
-if(!appRow.genesis__Expected_First_Payment_Date__c){
+/*if(!appRow.genesis__Expected_First_Payment_Date__c){
     var dt = new Date(branchRow.loan__Current_System_Date__c);
     appRow.genesis__Expected_First_Payment_Date__c = dt.setMonth(dt.getMonth() + 1);
-}
+}*/
 if(selectedProductRow.clcommon__Product_Name__c == 'Construction Development'){
     appRow.genesis__Interest_Calculation_Method__c = 'Flat';
 }
 newAppParams.applicationM = applicationModel;
 newAppParams.pmtstreamM = null;
 newAppParams.businessM = businessModel;
-console.log("Application=>>>>>>",newAppParams);
 if(accRow.Name){
     var accRow1 = accountModel.getFirstRow();
     accountModel.updateRow(accRow1,{clcommon__Legal_Entity_Type__c:skuid.model.getModel('CommonApplicationModel').data[0].Legal_Entity__c});
@@ -314,7 +310,6 @@ if(accRow.Name){
         return;
     }
     newAppParams.accountM = accountModel;
-    console.log("Existing Account ",newAppParams.accountM);
 }else{
     newAppParams.accountM = null;
 }
@@ -341,7 +336,6 @@ if(contactRow && contactRow.LastName && !accRow.Name){
         return;
     }
     newAppParams.contactM = contactModel;
-    console.log("Existing Contact ",newAppParams.contactM);
 }else{
     newAppParams.contactM = null;
 }
@@ -351,7 +345,6 @@ var skuidApplicationId = appRow.Id;
 $.blockUI({
     onBlock: function() {
         var result=saveNGApplication(newAppParams);
-        console.log(result);
         var resultJSON = $.parseJSON(result[0]);
         if(resultJSON.errorMessage){
             $.unblockUI();
@@ -359,13 +352,8 @@ $.blockUI({
             return;
         }
         
-        
-        console.log(resultJSON.content[0].genesis__Account__c);
-        console.log(resultJSON.content[0].clcommon__Legal_Entity_Type__c);
-        
         var legalEntityId = accountModel.data[0]['clcommon__Legal_Entity_Type__c'];
         var myquery = "SELECT Name FROM clcommon__Legal_Entity__c WHERE id = '"+applicationModel.data[0].Legal_Entity__c+"'"; 
-        console.log(myquery);
         var resultQuery;
         resultQuery = sforce.connection.query(myquery); 
         records = resultQuery.getArray("records"); 
@@ -373,7 +361,6 @@ $.blockUI({
         //Query party type individual for contact person details.
         var individualPartyId = "SELECT Id FROM clcommon__Legal_Entity__c WHERE Name = 'Individual'"; 
         var companyPartyId = "SELECT Id FROM clcommon__Legal_Entity__c WHERE Name = 'Company'";
-        console.log(individualPartyId);
         var resultIndPartyQuery;
         resultIndPartyQuery = sforce.connection.query(companyPartyId); 
         
@@ -387,7 +374,6 @@ $.blockUI({
             );
             //changed
             contactModel.save({callback : function(saveContact){
-                console.log(saveContact);
             }})
         } else if(records[0].Name === 'Individual'){
             if(contactRow.FirstName && contactRow.MiddleName && contactRow.LastName){
@@ -396,8 +382,6 @@ $.blockUI({
                 accObj.Name=fullName;
                 accObj.Id=resultJSON.content[0].genesis__Account__c;
                 var updateAccResult = sforce.connection.update([accObj]);
-                
-                console.log(updateAccResult);
                if(updateAccResult[0].getBoolean("success")){
                }else{
                    alert(updateAccResult);

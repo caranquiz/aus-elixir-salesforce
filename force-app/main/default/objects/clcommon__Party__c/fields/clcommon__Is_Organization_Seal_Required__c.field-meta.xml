@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>clcommon__Is_Organization_Seal_Required__c</fullName>
+    <defaultValue>false</defaultValue>
+    <deprecated>false</deprecated>
+    <description>This field is used to indicate that the organization seal is required for the business entity.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>This field is used to indicate that the organization seal is required for the business entity.</inlineHelpText>
+    <label>Is Organization Seal Required</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

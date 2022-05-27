@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>clcommon__Vessel_Type__c</fullName>
+    <deprecated>false</deprecated>
+    <description>To capture the vessel type</description>
+    <externalId>false</externalId>
+    <label>Vessel Type</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Power Boat</fullName>
+                <default>false</default>
+                <label>Power Boat</label>
+            </value>
+            <value>
+                <fullName>Sail Boat</fullName>
+                <default>false</default>
+                <label>Sail Boat</label>
+            </value>
+            <value>
+                <fullName>Personal Watercraft</fullName>
+                <default>false</default>
+                <label>Personal Watercraft</label>
+            </value>
+            <value>
+                <fullName>Outboard Motor</fullName>
+                <default>false</default>
+                <label>Outboard Motor</label>
+            </value>
+            <value>
+                <fullName>Boat Trailer</fullName>
+                <default>false</default>
+                <label>Boat Trailer</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

@@ -1,0 +1,34 @@
+<!--
+ - Created by Ethan Sargent on 29/07/2021.
+ -->
+
+<!-- Loan Switcher -->
+<template>
+    <template if:true={loansRetrieved}>
+        <template for:each={loansGroupedByAccount} for:item="loanGroup">
+            <div key={loanGroup.accountId} class="slds-text-align_center slds-m-top_large slds-m-bottom_x-smallsmall">
+                <h2>{loanGroup.accountName}</h2>
+            </div>
+            <template for:each={loanGroup.loans} for:item="loan">
+                <div key={loan.recordId} class="switcher-card-container">
+                    <c-cl-orde-card card-title={loan.name}>
+<!--                        <span slot="title" class="slds-p-around_medium">{loan.name}</span>-->
+                        <div class="slds-p-left_medium">
+                            <template for:each={loan.fields} for:item="field">
+                                <c-orde-field key={field.key} field={field}></c-orde-field>
+                            </template>
+                            <lightning-button
+                                    label="View Loan"
+                                    variant="base"
+                                    class="orde-button"
+                                    data-loan-id={loan.recordId}
+                                    onclick={viewLoan}
+                            >View Loan
+                            </lightning-button>
+                        </div>
+                    </c-cl-orde-card>
+                </div>
+            </template>
+        </template>
+    </template>
+</template>

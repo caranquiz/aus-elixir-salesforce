@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>clcommon__US_Territory__c</fullName>
+    <deprecated>false</deprecated>
+    <description>This field is to be added to capture the US Territory.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>This field is to be added to capture the US Territory.</inlineHelpText>
+    <label>US Territory</label>
+    <length>30</length>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

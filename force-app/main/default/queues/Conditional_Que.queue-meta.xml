@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Queue xmlns="http://soap.sforce.com/2006/04/metadata">
+    <doesSendEmailToMembers>true</doesSendEmailToMembers>
+    <name>Loan Application Queue</name>
+    <queueMembers>
+        <users>
+            <user>aheifetz@orde.com.au</user>
+            <user>dcherry@orde.com.au</user>
+            <user>fautolitano@orde.com.au</user>
+            <user>jkusur@orde.com.au</user>
+            <user>jgidman@orde.com.au</user>
+            <user>rharkness@orde.com.au</user>
+            <user>slay@orde.com.au</user>
+        </users>
+    </queueMembers>
+    <queueSobject>
+        <sobjectType>Task</sobjectType>
+    </queueSobject>
+    <queueSobject>
+        <sobjectType>genesis__Task_Setup__c</sobjectType>
+    </queueSobject>
+</Queue>

@@ -1,0 +1,51 @@
+body {
+	background-color: #FFFFFF;
+}
+
+body > .nx-page {
+    background-color: #FFFFFF;
+}
+thead {
+   visibility: hidden;
+    display : none;
+}
+
+.nx-list .nx-skootable-data thead{
+   visibility: hidden;
+    display : none;
+}
+
+.mobile-checkbox {
+   visibility: hidden;
+    display : none;
+}
+
+#assignReasonDrawer > div.nx-editor-header{
+    visibility: hidden !important;
+    display : none !important;
+}
+
+
+#assignReasonDrawer.nx-skootable.nx-editor .nx-editor-header{
+    visibility: hidden !important;
+    display : none !important;
+}
+
+#assignReasonDrawer > div:nth-child(3) > table:nth-child(1) > tbody:nth-child(2) > tr:nth-child(1) > td:nth-child(1){
+    width: 30px !important;
+}
+
+#assignReasonTable > div:nth-child(3) > table:nth-child(1) > tbody:nth-child(2) > tr:nth-child(1) > td:nth-child(1){
+    width: 30px !important;
+}
+
+#assignReasonTable > div:nth-child(3) > table:nth-child(1) > tbody:nth-child(2) > tr:nth-child(1) > td:nth-child(2){
+    width: 30px !important;
+}
+
+tr.nx-item:nth-child(1) > td:nth-child(1){
+    width: 30px !important;
+}
+table.nx-skootable-data tbody tr td {
+    background-color:white !important;
+}

@@ -4,11 +4,11 @@
     <active>false</active>
     <description>This validation rule is deprecated.</description>
     <errorConditionFormula>AND(
-ISPICKVAL( loan__Loan_Product_Name__r.loan__Loan_Product_Type__c  , &#39;Center-Group-Client&#39;),
+ISPICKVAL( loan__Loan_Product_Name__r.loan__Loan_Product_Type__c  , &apos;Center-Group-Client&apos;),
  OR(
          ISBLANK( loan__Client__r.loan__Center__c ) ,
          ISBLANK( loan__Client__r.loan__Group__c )
   )
 )</errorConditionFormula>
-    <errorMessage>The Loan Product is of type &#39;Center-Group-Client (Center Loan)&#39;.  Client must be associated with a Center and a Group.</errorMessage>
+    <errorMessage>The Loan Product is of type &apos;Center-Group-Client (Center Loan)&apos;.  Client must be associated with a Center and a Group.</errorMessage>
 </ValidationRule>

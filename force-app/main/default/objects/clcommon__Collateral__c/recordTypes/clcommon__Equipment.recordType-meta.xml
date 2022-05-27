@@ -16,9 +16,31 @@
         </values>
     </picklistValues>
     <picklistValues>
+        <picklist>Arms_Length_Valuer_Commentary__c</picklist>
+        <values>
+            <fullName>No</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Yes</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
         <picklist>Builder_Type_List__c</picklist>
         <values>
             <fullName>Default</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Check_Val_Received__c</picklist>
+        <values>
+            <fullName>No</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Yes</fullName>
             <default>false</default>
         </values>
     </picklistValues>
@@ -70,6 +92,17 @@
         </values>
         <values>
             <fullName>Warehouse</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Comparable_Sales_Evident__c</picklist>
+        <values>
+            <fullName>No</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Yes</fullName>
             <default>false</default>
         </values>
     </picklistValues>
@@ -159,6 +192,17 @@
         </values>
     </picklistValues>
     <picklistValues>
+        <picklist>Cover_Type__c</picklist>
+        <values>
+            <fullName>Body Corporate</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Standard</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
         <picklist>Deposit_Paid__c</picklist>
         <values>
             <fullName>No</fullName>
@@ -171,6 +215,51 @@
     </picklistValues>
     <picklistValues>
         <picklist>Detailed_Costings_Held__c</picklist>
+        <values>
+            <fullName>No</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Yes</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Distressed_Asset__c</picklist>
+        <values>
+            <fullName>No</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Yes</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Document_Status__c</picklist>
+        <values>
+            <fullName>ERROR</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>EXPIRED</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>FAILURE</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>PENDING</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>READY</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Favorable_Purchase__c</picklist>
         <values>
             <fullName>No</fullName>
             <default>false</default>
@@ -218,13 +307,20 @@
         </values>
     </picklistValues>
     <picklistValues>
-        <picklist>Land_Area_Units__c</picklist>
+        <picklist>Is_Purchaser_the_Mortgagor__c</picklist>
         <values>
-            <fullName>Acres</fullName>
+            <fullName>No</fullName>
             <default>false</default>
         </values>
         <values>
-            <fullName>Hectares</fullName>
+            <fullName>Yes</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Land_Area_Units__c</picklist>
+        <values>
+            <fullName>Acres</fullName>
             <default>false</default>
         </values>
         <values>
@@ -266,7 +362,29 @@
         </values>
     </picklistValues>
     <picklistValues>
+        <picklist>Manual_Title_Search_Required__c</picklist>
+        <values>
+            <fullName>No</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Yes</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
         <picklist>NRAS_Property__c</picklist>
+        <values>
+            <fullName>No</fullName>
+            <default>true</default>
+        </values>
+        <values>
+            <fullName>Yes</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Ordered_Upfront__c</picklist>
         <values>
             <fullName>No</fullName>
             <default>true</default>
@@ -368,6 +486,28 @@
         </values>
         <values>
             <fullName>Yearly</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Rental_Income_Verified__c</picklist>
+        <values>
+            <fullName>No</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Yes</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Replacement_Type__c</picklist>
+        <values>
+            <fullName>Body Corporate</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Standard</fullName>
             <default>false</default>
         </values>
     </picklistValues>
@@ -555,6 +695,21 @@
         </values>
     </picklistValues>
     <picklistValues>
+        <picklist>Title_Search_Status__c</picklist>
+        <values>
+            <fullName>Search Required</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Title Ordered</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Title Received</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
         <picklist>Title_System__c</picklist>
         <values>
             <fullName>Company</fullName>
@@ -644,7 +799,7 @@
         <picklist>Transaction__c</picklist>
         <values>
             <fullName>Purchase</fullName>
-            <default>true</default>
+            <default>false</default>
         </values>
         <values>
             <fullName>Refinance</fullName>
@@ -861,7 +1016,7 @@
         <picklist>Valuation_Ordered_by_Lender__c</picklist>
         <values>
             <fullName>No</fullName>
-            <default>false</default>
+            <default>true</default>
         </values>
         <values>
             <fullName>Yes</fullName>
@@ -903,6 +1058,17 @@
     </picklistValues>
     <picklistValues>
         <picklist>Valuation_Required__c</picklist>
+        <values>
+            <fullName>No</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Yes</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Valuer_Risk_Gradings_3_or_more__c</picklist>
         <values>
             <fullName>No</fullName>
             <default>false</default>
@@ -972,6 +1138,21 @@
         </values>
     </picklistValues>
     <picklistValues>
+        <picklist>clcommon__Fuel_Type__c</picklist>
+        <values>
+            <fullName>Diesel</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Gasoline</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>N%2FA</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
         <picklist>clcommon__Held_By__c</picklist>
         <values>
             <fullName>Lender</fullName>
@@ -987,6 +1168,21 @@
         </values>
     </picklistValues>
     <picklistValues>
+        <picklist>clcommon__Hull_Type__c</picklist>
+        <values>
+            <fullName>Aluminum</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Fiberglass</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Wood</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
         <picklist>clcommon__Issued_By__c</picklist>
         <values>
             <fullName>Lender</fullName>
@@ -994,6 +1190,17 @@
         </values>
         <values>
             <fullName>Other Issuer</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>clcommon__Motor_Type__c</picklist>
+        <values>
+            <fullName>Inboard</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Outboard</fullName>
             <default>false</default>
         </values>
     </picklistValues>
@@ -1104,6 +1311,48 @@
         </values>
         <values>
             <fullName>Serviced%2FManaged apartment</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>clcommon__Purchasing_From__c</picklist>
+        <values>
+            <fullName>Dealer</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Individual</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>clcommon__RV_Body_Style__c</picklist>
+        <values>
+            <fullName>Camping Trailer</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Class A Motor Home%2C</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Class C Motor Home</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Fifth Wheel</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Travel Trailer</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Truck Camper</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Vacuum</fullName>
             <default>false</default>
         </values>
     </picklistValues>
@@ -1357,6 +1606,21 @@
         </values>
     </picklistValues>
     <picklistValues>
+        <picklist>clcommon__Trailer_Body_Style__c</picklist>
+        <values>
+            <fullName>Farm</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Homemade</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Manufactured</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
         <picklist>clcommon__Value_Source__c</picklist>
         <values>
             <fullName>Appraisal</fullName>
@@ -1368,6 +1632,40 @@
         </values>
         <values>
             <fullName>Other</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>clcommon__Vehicle_Type__c</picklist>
+        <values>
+            <fullName>new vehicles</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>used vehicles</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>clcommon__Vessel_Type__c</picklist>
+        <values>
+            <fullName>Boat Trailer</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Outboard Motor</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Personal Watercraft</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Power Boat</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Sail Boat</fullName>
             <default>false</default>
         </values>
     </picklistValues>

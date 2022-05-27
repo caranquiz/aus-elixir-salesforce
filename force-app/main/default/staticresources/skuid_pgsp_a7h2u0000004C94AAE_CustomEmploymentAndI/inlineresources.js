@@ -9,7 +9,6 @@ renderer.readonly(field, value);
 });
 skuid.snippet.register('ABN Company Check',function(args) {var params = arguments[0],
     $ = skuid.$;
-console.log('*1');
 var appModel = skuid.model.getModel('OriginalApplication');
 var appRow = appModel.data[0];
 var records = skuid.$.map(arguments[0].list.getSelectedItems(),function(item){
@@ -21,29 +20,24 @@ var records = skuid.$.map(arguments[0].list.getSelectedItems(),function(item){
         alert("Please select at only one Company Name");
     } else{
         //if(records[0].Company_Name__c !== ''){
-        console.log(records[0].Party__c+'Party Id');
         var del = sforce.apex.execute('ABNNameCallout','deleteCompanyList',
                 {
                     sfId : records[0].Party__c,
                     typeIndicator : 'E'
                    
         });
-        console.log('*3');
         var ret = sforce.apex.execute('ABNNameCallout','makeABNSkuidCallout',
         {  
             sfId : records[0].Id,
             typeIndicator : 'E'
          });
         if(ret != 'SUCCESS'){
-            console.log('*2');
-            console.log(ret);
             alert('Kindly provide a valid name search for ABN search.');
             var apptyObj = new sforce.SObject("genesis__applications__c");
             apptyObj.Id = appRow.Id;
             apptyObj.Button_disable__c = 'False';
             var result = sforce.connection.update([apptyObj]);
             appModel.updateData();
-            console.log('*4');
             return false;
         }
         else if(!ret){
@@ -54,17 +48,11 @@ var records = skuid.$.map(arguments[0].list.getSelectedItems(),function(item){
             var result = sforce.connection.update([apptyObj]);
             var appModel = skuid.model.getModel('OriginalApplication');
             appModel.updateData();
-            console.log('*5');
             return false;
         }
         else{
-                console.log('*6');
                 return true;
             }
-        /*}
-        else{
-            alert('Kindly provide a valid name search for ABN search.');
-        }*/
     }
 });
 skuid.snippet.register('ABNCheck',function(args) {var params = arguments[0],
@@ -76,8 +64,6 @@ skuid.snippet.register('ABNCheck',function(args) {var params = arguments[0],
     var records = skuid.$.map(arguments[0].list.getSelectedItems(),function(item){
         return item.row;
     });
-    //console.log(records);
-    //console.log(arguments[0].list);
     if ( !records[0]  || records.length < 1) {
         alert("Please select at least one Company");
     }else if(records  && records.length > 1){
@@ -94,10 +80,8 @@ skuid.snippet.register('ABNCheck',function(args) {var params = arguments[0],
 skuid.snippet.register('fullDocument',function(args) {var params = arguments[0],
 $ = skuid.$;
 var SelfModel = skuid.model.getModel('SelfEmploymentDetails');
-//console.log(SelfModel.getRows()) ;
 var flag = false ;
 $.each(SelfModel.getRows(),function(i,row){
-    //console.log(row.Document_Type__c) ;
     if(row.Document_Type__c === 'Full'){
         flag = true ;
     } 
@@ -120,7 +104,6 @@ $ = skuid.$;
 var SelfModel = skuid.model.getModel('SelfEmploymentDetails');
 var flag = false ;
 $.each(SelfModel.getRows(),function(i,row){
-    //console.log(row.Document_Type__c) ;
     if(row.Document_Type__c === 'Alt'){
         flag = true ;
     } 
@@ -142,7 +125,6 @@ var ret;
                         $.unblockUI();
                         //window.location.reload();
                     }else{
-                        //console.log(ret+'==HERE==');
                         alert(ret);
                         $.unblockUI();
                         //window.location.reload();
@@ -176,5 +158,41 @@ skuid.snippet.register('IncomeSummaryEmpModelReload',function(args) {var params 
     appModel.updateData();
     var payGModel = skuid.model.getModel('PayGEmploymentDetails');
     payGModel.updateData();
+});
+skuid.snippet.register('PrimaryEmploymentValidation',function(args) {var primaryEmpModel = skuid.model.getModel('PrimaryEmploymentModel');
+var recData = primaryEmpModel.data;
+var num = recData.length;
+if(num > 1){
+    alert('Select only 1 Employment Information record from PAYG or Self Employed section to attach it as Primary Employment.');
+    return false;
+}
+});
+skuid.snippet.register('AddPrimaryEmployment',function(args) {var primEmpModel = skuid.model.getModel('PrimaryEmploymentModel');
+var primEmpModelRec  = primEmpModel.data;
+var records = arguments[0].item;
+for(var eachRec of primEmpModel.getRows()){
+    if(eachRec.Id === records.row.Id){
+        primEmpModel.updateRow(eachRec, {Primary_Employment__c: true});
+    }
+    else{
+        primEmpModel.updateRow(eachRec, {Primary_Employment__c: false});
+    }
+}
+});
+skuid.snippet.register('DefaultPrimaryEmp',function(args) {//if only one or more record is present and no employment record is selected as primary employment then by default it becomes the primary employment
+var primaryEmpModel = skuid.model.getModel('PrimaryEmploymentModel');
+var recData = primaryEmpModel.data;
+var num = recData.length;
+var primaryEmpSelectedModel = skuid.model.getModel('PrimaryEmploymentSelectedModel');
+var primData = primaryEmpSelectedModel.data;
+var numPrimData = primData.length;
+if(numPrimData === 0 && num > 0){
+    var empObj = new sforce.SObject("genesis__Employment_Information__c");
+    empObj.Id = (primaryEmpModel.data[0]).Id;
+    empObj.Primary_Employment__c = true;
+    var result = sforce.connection.update([empObj]);
+    (skuid.model.getModel('PayGEmploymentDetails')).updateData();
+    (skuid.model.getModel('SelfEmploymentDetails')).updateData();
+}
 });
 }(window.skuid));

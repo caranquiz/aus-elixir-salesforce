@@ -180,7 +180,15 @@
     <tabs>standard-Opportunity</tabs>
     <tabs>standard-Lead</tabs>
     <tabs>loan__Fiscal_Year__c</tabs>
+    <tabs>Breach_Register__c</tabs>
+    <tabs>Redraw_Request__c</tabs>
     <workspaceConfig>
+        <mappings>
+            <tab>Breach_Register__c</tab>
+        </mappings>
+        <mappings>
+            <tab>Redraw_Request__c</tab>
+        </mappings>
         <mappings>
             <tab>loan__Fiscal_Year__c</tab>
         </mappings>

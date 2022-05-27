@@ -4,6 +4,7 @@
     <externalId>false</externalId>
     <formula>IF(ISPICKVAL(Valuation_Received__c, &apos;Yes&apos;), IF(ISPICKVAL( Valuer_Risk_Gradings_3_or_more__c, &apos;Yes&apos;),TRUE, FALSE), FALSE)</formula>
     <label>Valuer Risk Gradings Com Warning Check</label>
+    <trackHistory>false</trackHistory>
     <trackTrending>false</trackTrending>
     <type>Checkbox</type>
 </CustomField>

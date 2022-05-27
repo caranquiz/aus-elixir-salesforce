@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>clcommon__Mortgagor__c</fullName>
+    <defaultValue>false</defaultValue>
+    <deprecated>false</deprecated>
+    <description>This checkbox will identify the GRANTOR as a Mortgagor. Mortgagor is the owner of the collateral of type &quot;real estate&quot; that has a senior lien.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>This checkbox will identify the GRANTOR as a Mortgagor. Mortgagor is the owner of the collateral of type &quot;real estate&quot; that has a senior lien.</inlineHelpText>
+    <label>Mortgagor</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

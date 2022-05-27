@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <validationRules>
+        <errorMessage></errorMessage>
+        <name>Bank_Account_Name_Length</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage></errorMessage>
+        <name>Bank_Account_Number_Length</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage></errorMessage>
+        <name>Length_of_BSB_Number</name>
+    </validationRules>
+</CustomObjectTranslation>

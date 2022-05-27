@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <recordTypes>
+        <label></label>
+        <name>Contractor</name>
+    </recordTypes>
+    <recordTypes>
+        <label></label>
+        <name>PAYG</name>
+    </recordTypes>
+    <recordTypes>
+        <label></label>
+        <name>Self_Employed</name>
+    </recordTypes>
+    <recordTypes>
+        <label></label>
+        <name>Unemployed</name>
+    </recordTypes>
+    <validationRules>
+        <errorMessage></errorMessage>
+        <name>ABN_Effective_from</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage></errorMessage>
+        <name>Phone_Number_Check</name>
+    </validationRules>
+</CustomObjectTranslation>

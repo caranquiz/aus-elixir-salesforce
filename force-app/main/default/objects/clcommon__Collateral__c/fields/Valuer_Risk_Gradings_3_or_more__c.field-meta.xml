@@ -4,6 +4,7 @@
     <externalId>false</externalId>
     <label>Valuer Risk Gradings 3 or more</label>
     <required>false</required>
+    <trackHistory>false</trackHistory>
     <trackTrending>false</trackTrending>
     <type>Picklist</type>
     <valueSet>

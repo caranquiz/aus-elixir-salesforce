@@ -5,6 +5,15 @@
     <externalId>false</externalId>
     <inlineHelpText>The following ORDE Financial team members have been mentioned in this report</inlineHelpText>
     <label>Other Staff</label>
+    <lookupFilter>
+        <active>true</active>
+        <filterItems>
+            <field>User.Profile.Name</field>
+            <operation>notEqual</operation>
+            <value>Orde Customer Community Login User</value>
+        </filterItems>
+        <isOptional>false</isOptional>
+    </lookupFilter>
     <referenceTo>User</referenceTo>
     <relationshipName>Breach_Register</relationshipName>
     <required>false</required>

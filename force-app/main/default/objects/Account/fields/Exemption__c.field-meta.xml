@@ -26,24 +26,24 @@
                 <label>Rehabilitation Allowance</label>
             </value>
             <value>
-                <fullName>Sole Parent&#39;s Pension</fullName>
+                <fullName>Sole Parent&apos;s Pension</fullName>
                 <default>false</default>
-                <label>Sole Parent&#39;s Pension</label>
+                <label>Sole Parent&apos;s Pension</label>
             </value>
             <value>
-                <fullName>Widow&#39;s Pension</fullName>
+                <fullName>Widow&apos;s Pension</fullName>
                 <default>false</default>
-                <label>Widow&#39;s Pension</label>
+                <label>Widow&apos;s Pension</label>
             </value>
             <value>
-                <fullName>Carer&#39;s Pension</fullName>
+                <fullName>Carer&apos;s Pension</fullName>
                 <default>false</default>
-                <label>Carer&#39;s Pension</label>
+                <label>Carer&apos;s Pension</label>
             </value>
             <value>
-                <fullName>Service/Vetran&#39;s Pension</fullName>
+                <fullName>Service/Vetran&apos;s Pension</fullName>
                 <default>false</default>
-                <label>Service/Vetran&#39;s Pension</label>
+                <label>Service/Vetran&apos;s Pension</label>
             </value>
             <value>
                 <fullName>Special Benefit</fullName>
@@ -51,9 +51,9 @@
                 <label>Special Benefit</label>
             </value>
             <value>
-                <fullName>Wife&#39;s Pension</fullName>
+                <fullName>Wife&apos;s Pension</fullName>
                 <default>false</default>
-                <label>Wife&#39;s Pension</label>
+                <label>Wife&apos;s Pension</label>
             </value>
             <value>
                 <fullName>Non Profit Organisation</fullName>

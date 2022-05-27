@@ -4,7 +4,7 @@
     <defaultValue>$Setup.loan__Fractionalization_Parameters__c.loan__Default_Service_Rate__c</defaultValue>
     <deprecated>false</deprecated>
     <externalId>false</externalId>
-    <inlineHelpText>Default service rate on investor&#39;s investments</inlineHelpText>
+    <inlineHelpText>Default service rate on investor&apos;s investments</inlineHelpText>
     <label>Service Rate On Investment</label>
     <precision>7</precision>
     <required>false</required>

@@ -3,6 +3,6 @@
     <fullName>loan__Term_Check_for_Line_of_credit</fullName>
     <active>true</active>
     <description>Validates that the Contract Term cannot be less than Draw or Repayment Term.</description>
-    <errorConditionFormula>AND(ISPICKVAL(loan__Product_Type__c, &#39;Line of Credit&#39;) ,(loan__draw_term__c &gt; loan__Number_of_Installments__c))</errorConditionFormula>
+    <errorConditionFormula>AND(ISPICKVAL(loan__Product_Type__c, &apos;Line of Credit&apos;) ,(loan__draw_term__c &gt; loan__Number_of_Installments__c))</errorConditionFormula>
     <errorMessage>Contract Term cannot be less than Draw Term</errorMessage>
 </ValidationRule>

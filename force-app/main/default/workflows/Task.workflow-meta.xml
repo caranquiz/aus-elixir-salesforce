@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <alerts>
+        <fullName>Assigned_to_Notification_to_Task_Creator</fullName>
+        <description>Assigned to Notification to Task Creator</description>
+        <protected>false</protected>
+        <recipients>
+            <type>creator</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>cnotify__Notification_Templates/Breach_rejection</template>
+    </alerts>
+    <alerts>
+        <fullName>Email_Task_Creator_when_Task_is_Complete</fullName>
+        <description>Email Task Creator when Task is Complete</description>
+        <protected>false</protected>
+        <recipients>
+            <type>creator</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>cnotify__Notification_Templates/Notify_Creators_of_Task_Compleation</template>
+    </alerts>
+    <alerts>
+        <fullName>Notify_Task_Creator_of_Assignment_Change</fullName>
+        <description>Notify Task Creator of Assignment Change</description>
+        <protected>false</protected>
+        <recipients>
+            <type>creator</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>cnotify__Notification_Templates/Notify_Creators_of_Task_Assignment_Change</template>
+    </alerts>
+    <alerts>
+        <fullName>Task_Allocated_to_Loan_Approval_Que</fullName>
+        <description>Task Allocated to Loan Approval Que</description>
+        <protected>false</protected>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>cnotify__Notification_Templates/Loan_Approval_Que_Task_Allocation</template>
+    </alerts>
+</Workflow>
