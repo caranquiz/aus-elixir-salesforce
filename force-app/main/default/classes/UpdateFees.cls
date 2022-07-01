@@ -245,6 +245,10 @@ global class UpdateFees{
                             && ((additionalAppFeeMap.get(ConstantValues.SMSF_RESIDENTIAL)).Additional_Fee_for_Application_Fee__c)>0){
                         eachApp.Suggested_Application_Fee__c = eachApp.Suggested_Application_Fee__c + ((((additionalAppFeeMap.get(ConstantValues.SMSF_RESIDENTIAL)).Additional_Fee_for_Application_Fee__c))/100)*eachApp.genesis__Loan_Amount__c;
                     }
+                    if(eachApp.Suggested_Application_Fee__c !=null){
+                        Decimal toround = eachApp.Suggested_Application_Fee__c;
+                        eachApp.Suggested_Application_Fee__c = toround.setScale(2);
+                    }
                 }
                 update appList;
             }   

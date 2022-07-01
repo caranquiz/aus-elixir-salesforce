@@ -88,9 +88,12 @@ global with sharing class ConvertToContract{
                     banAcc.loan__Account_Usage__c = System.label.Borrower_Bank_Account_Type;
                     banAcc.loan__Bank_Name__c = app.genesis__Account__r.BSB__c;
                     banAcc.loan__Account__c = app.genesis__Account__c;
+                    // banAcc.Created_After_Conversion__c = true;
                     if(banAcc != null){
                         insert banAcc;
                         contr.loan__Borrower_ACH__c = banAcc.Id;
+                        // contr.Borrower_ACH_Change__c = banAcc.Id;
+                        System.debug('contract');
                     }
                 }
                 //Change made by Rameswari on 24/12/2020
@@ -165,6 +168,9 @@ global with sharing class ConvertToContract{
                 loanCollateral.Original_Valuation_Date__c=collateral.clcommon__Value_Date__c;
                 loanCollateral.Original_Value__c=collateral.clcommon__Value__c;
                 loanCollateral.Original_Valuer__c=collateral.Valuer__c;
+                loanCollateral.Current_Valuation_Date__c=collateral.clcommon__Value_Date__c;
+                loanCollateral.Current_Value__c=collateral.clcommon__Value__c;
+                loanCollateral.Current_Valuer__c=collateral.Valuer__c;
                 loanCollateral.Plan__c=collateral.Title_Plan__c;
                 loanCollateral.Property_Insurance_Expiry_Date__c=collateral.Home_Insurance_Certificate_Expiry_Date__c;
                 loanCollateral.Property_Insurance_Interested_Party__c=collateral.Interested_Party__c;

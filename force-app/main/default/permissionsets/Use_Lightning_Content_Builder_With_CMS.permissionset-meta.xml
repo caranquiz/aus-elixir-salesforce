@@ -1742,12 +1742,27 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Contact.BDM_Mobile__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Contact.Bankrupt__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Contact.Birthdate</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Contact.Broker_ID_Pardot__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Contact.Broker_ID_Text__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -1773,6 +1788,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Contact.Company__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Contact.Converted__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -3157,6 +3177,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Lead.Broker_Specialisation__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Lead.Broker_Training_Completed__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -3183,6 +3208,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Lead.Confirmation_of_PI_Insurance__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Lead.Converted__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -3283,6 +3313,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Lead.Opt_Out_of_Marketing__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Lead.Other_Specialisation__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -11482,6 +11517,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>loan__Loan_Account__c.APS_Status__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>loan__Loan_Account__c.Actual_Security_Value__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -11577,12 +11617,22 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>loan__Loan_Account__c.First_Repayment_Date__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>loan__Loan_Account__c.Fixed_Rate_Term__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>loan__Loan_Account__c.Fixed_Rate__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>loan__Loan_Account__c.Flat_Repayment_Amount__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -11618,6 +11668,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>loan__Loan_Account__c.NCCP_status_list__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>loan__Loan_Account__c.New_Interest_Change_Status__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -11682,6 +11737,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>loan__Loan_Account__c.Remaining_Term_from_Schedule__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>loan__Loan_Account__c.Repayment_Type__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -11697,7 +11757,17 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>loan__Loan_Account__c.Scheduled_Balance_As_at_IR_change_date__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>loan__Loan_Account__c.Second_Repayment_Date_After_IR_Change__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>loan__Loan_Account__c.Second_Repayment_Date__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>

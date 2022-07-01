@@ -30,6 +30,11 @@ For filtering applications for external auditors</description>
                 <default>false</default>
                 <label>AUP</label>
             </value>
+            <value>
+                <fullName>CBA</fullName>
+                <default>false</default>
+                <label>CBA</label>
+            </value>
         </valueSetDefinition>
     </valueSet>
 </CustomField>

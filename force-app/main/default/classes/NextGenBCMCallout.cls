@@ -11,7 +11,7 @@ Devloper's comment : Some part of the codes are hardcoded and not been put in Co
 global with sharing class NextGenBCMCallout {
     public static void searchByAppId(Id appId){
         Map<String, Object> queryIdMap = new Map<String, Object>();
-    	Map<String, Object> requestParamMap = new Map<String, Object>();
+        Map<String, Object> requestParamMap = new Map<String, Object>();
         try{
             StaticResource nextGenBCMRequest = [SELECT Body
                                             FROM StaticResource 

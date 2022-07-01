@@ -16,6 +16,7 @@ global class ConstantValues {
   global static final string INVESTMENT_AMT_CANNOT_BE_LESS_MSG = 'Investment amount cannot be less than requested loan amount for this single tranche loan.';
   global static final string DISBURSEMENT = 'Disbursement';
   global static final string APPROVED = 'Approved';
+  global static final string REJECTED = 'Rejected';
   global static final string AVER = 'aver';
   global static final string FEE_AMNT = 'feeAmnt';
 
@@ -326,6 +327,8 @@ global class ConstantValues {
   public static final String NODEVALUE_KEY = 'NodeValue';
 
   // Exceptions
+  public static final String AML_APPROVAL_PROCESS_STILL_PENDING_RULE = 'AML Approval Process Still Pending Rule';
+  public static final String AML_SEARCH_NOT_COMPLETED_RULE = 'AML Search Not Completed Rule';
   public static final String NO_APPLICATION = 'No Application found';
   public static final String NO_PARTY = 'No Party found';
   public static final String NO_CONTACT = 'No Contact found';
@@ -1179,6 +1182,7 @@ global class ConstantValues {
   
   //CheckRules
   public static final String SUGGESTED_APPLICATION_FEE_WARNING='Suggested Application Fee Warning';
+  public static final String SECURITY_LOCATION ='[Securitylocation]';
 
   //UpdateFees
   public static final String BETWEEN_ONE_POINT_FIVE_AND_TWO_AND_LVR_65='Between $1.5mil and $2mil & LVR < 65';
@@ -1259,5 +1263,60 @@ global class ConstantValues {
   
   public static final String READY_TO_BOOK='Ready to Book';
   public static final String SETTLEMENT_BOOKED='Settlement Booked';
+  
+  //Interest Rate Changes Constants
+  public static final String FIXED ='Fixed';
+  public static final String SUCCESSFULLY = '% successfully.';
+  public static final String RATE_CHANGED_SUCCESS = 'SUCCESS::Rate has been changed to ';
+  public static final String RATE_CHANGE_FAILURE_MSG= 'FAILURE::Rate could not have been changed due to ERROR::';
+  public static final String EQUAL_MONTHLY_INSTALLMENTS = 'Equal Monthly Installments';
+  public static final String NEW_DUE_DAY_MISSING = 'New Due Day is missing.';
+  public static final String LOAN_FREQUENCY_IS_MISSING = 'Loan Frequency is missing.';
+  public static final String TOTAL_NO_OF_INSTALLMENTS_MISSING = 'Total number of installments is missing.';
+  public static final String INTEREST_ONLY_PERIOD_MISSING = 'Interest only period is missing.';
+  public static final String PRINCIPAL_REMAINING = 'Principal Remaining';
+
+  public static final String FIXED_AMOUNT ='FIXED AMOUNT';
+  public static final String CURRENT_PAYMENT_AMOUNT ='CURRENT PAYMENT AMOUNT';
+  public static final String APS_updated_Successfully ='APS updated Successfully';
+  public static final String ONE_TIME ='ONE TIME';
+  public static final String Billing_Frequency ='Billing Frequency';
+  public static final String LAST_BILLED_AMOUNT ='LAST BILLED AMOUNT';
+  public static final String APS_DIDNT_CHANGE ='APS didn\''+'t change';
+  public static final String FAIL_TO_UPDATE_APS ='Fail to update APS';
+
+  // SEND EMAIL 
+  public static final String INVALID = 'invalid';
+  // public static final String NULL = 'null';
+  public static final String PERSONAL_ACCOUNT_NAME = '[account name]';
+  public static final String APPROVAL_COMMENT = '[approval comments]';
+  public static final String FILTER = 'FILTER';
+  public static final String AML_APPROVAL_APPROVED_MAIL_SUBJECT = 'AML Screening Approval Request for [account name] has been Approved';
+  public static final String AML_APPROVAL_APPROVED_MAIL_BODY = 'Hi,\n\nThis is to notify that the AML screening for [account name] has been approved.\n\nThe application can now progress.\n\nKind Regards,';
+  public static final String AML_APPROVAL_REJECTED_MAIL_SUBJECT = 'AML Screening Approval Request for [account name] has been Rejected';
+  public static final String AML_APPROVAL_REJECTED_MAIL_BODY = 'Hi,\n\nThis is to notify that the AML screening for [account name] has been rejected because [approval comments].\n\nPlease review and re-submit.\n\nKind Regards,';
+
+  //LoanStatementBulkGeneration File
+  public static final String FAILED = 'Failed';
+  public static final String ABORTED = 'Aborted';
+  public static final String STATEMENT_NOT_GENERATED = 'No CL Contract is left whose statement is not generated';
+  public static final String CONGA_CL_CONTRACT_QUERY = 'Select id,Name,Generate_Statement_Bulk__c  From loan__Loan_Account__c Where (loan__Loan_Status__c=\''+'Active - Good Standing'+'\' or loan__Loan_Status__c=\''+'Active - Bad Standing'+'\' or loan__Loan_Status__c=\''+'Active - Matured'+'\' or loan__Loan_Status__c=\''+'Closed - Obligations met'+'\' or loan__Loan_Status__c=\''+'Active - Marked for Closure'+'\') and Statement_Start_Date__c!=null and Statement_End_Date__c!=null Order by id Limit 900 offset ';
+  public static final String ALL_CL_CONTRACT_QUERY = 'Select id,Name From loan__Loan_Account__c Order by id Limit 900 offset ';
+
+  //NEXTGEN 
+  public static final String PURCHASE_NEW = 'Purchase New';
+  public static final String PURCHASE_EXISTING = 'Purchase Existing';
+  public static final String CONSTRUCTION = 'Construction';
+  public static final String REFINANCE_CASH_OUT = 'Refinance Cash Out';
+  public static final String REFINANCE_BUSINESS_PURPOSES = 'Refinance Business Purposes';
+  public static final String REFINANCE_DEBT_CONSOLIDATION = 'Refinance Debt Consolidation';
+  public static final String REFINANCE = 'Refinance';
+  public static final String PURCHARE_NEW_LENDING = 'Purchase-New';
+  public static final String PURCHASE_EXISTING_LENDING = 'Purchase - Existing';
+  public static final String CONSTRUCTION_DWELLING = 'Construction of dwelling - House';
+  public static final String CONSTRUCTION_OTHER_DWELLING = 'Construction of dwelling - Other dwelling';
+  public static final String REFINANCE_EXISTING = 'Refinance - Existing Mortgages';
+  public static final String REFINANCE_EQUITY = 'Refinance - Equity Release';
+  public static final String REFINANCE_DEBT_LENDING = 'Refinance - Debt Consolidation';
 
 }

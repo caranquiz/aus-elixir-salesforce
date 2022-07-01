@@ -3782,6 +3782,16 @@
             <field>genesis__Account__c.PersonContact.IsPersonAccount</field>
             <table>loan__Loan_Account__c.Applications__r</table>
         </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>genesis__Account__c.Clawback__c</field>
+            <table>loan__Loan_Account__c.Applications__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Broker__c.Clawback__c</field>
+            <table>loan__Loan_Account__c.Applications__r</table>
+        </columns>
         <masterLabel>Applications</masterLabel>
     </sections>
     <sections>

@@ -59,6 +59,13 @@
                 <numberValue>1.0</numberValue>
             </value>
         </assignmentItems>
+        <assignmentItems>
+            <assignToReference>$Record.Amount_Type_Change__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>CURRENT PAYMENT AMOUNT</stringValue>
+            </value>
+        </assignmentItems>
         <connector>
             <targetReference>Updating_Transaction_Amount</targetReference>
         </connector>
@@ -96,6 +103,13 @@
                 <numberValue>2.0</numberValue>
             </value>
         </assignmentItems>
+        <assignmentItems>
+            <assignToReference>$Record.Amount_Type_Change__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>CURRENT PAYMENT AMOUNT</stringValue>
+            </value>
+        </assignmentItems>
         <connector>
             <targetReference>Updating_Transaction_Amount</targetReference>
         </connector>
@@ -131,6 +145,13 @@
             <operator>Assign</operator>
             <value>
                 <numberValue>4.0</numberValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>$Record.Amount_Type_Change__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>CURRENT PAYMENT AMOUNT</stringValue>
             </value>
         </assignmentItems>
         <connector>
@@ -214,7 +235,7 @@
         <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
         <rules>
             <name>Current_Payment_amount_is_changed_or_Frequency_ic_changed_to_weekly</name>
-            <conditionLogic>1 AND 3 AND (2 OR 4 OR 5)</conditionLogic>
+            <conditionLogic>1 AND 3 AND (2 OR 4 OR 5) AND 6</conditionLogic>
             <conditions>
                 <leftValueReference>$Record.loan__Amount_Type__c</leftValueReference>
                 <operator>EqualTo</operator>
@@ -250,6 +271,13 @@
                     <booleanValue>true</booleanValue>
                 </rightValue>
             </conditions>
+            <conditions>
+                <leftValueReference>$Record.Created_after_reschedule__c</leftValueReference>
+                <operator>IsChanged</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
             <connector>
                 <targetReference>Current_Payment_amount_is_changed_or_Frequency_is_changed_to_weekly</targetReference>
             </connector>
@@ -257,7 +285,7 @@
         </rules>
         <rules>
             <name>Current_Payment_amount_is_changed_or_Frequency_is_changed_to_bi_weekly</name>
-            <conditionLogic>1 AND ( 2 OR 3 OR 5) AND 4</conditionLogic>
+            <conditionLogic>1 AND ( 2 OR 3 OR 5) AND 4 AND 6</conditionLogic>
             <conditions>
                 <leftValueReference>$Record.loan__Amount_Type__c</leftValueReference>
                 <operator>EqualTo</operator>
@@ -293,6 +321,13 @@
                     <booleanValue>true</booleanValue>
                 </rightValue>
             </conditions>
+            <conditions>
+                <leftValueReference>$Record.Created_after_reschedule__c</leftValueReference>
+                <operator>IsChanged</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
             <connector>
                 <targetReference>Current_Payment_amount_is_changed_or_Frequency_is_changed_to_biweekly</targetReference>
             </connector>
@@ -300,7 +335,7 @@
         </rules>
         <rules>
             <name>Current_Payment_amount_is_changed_or_Frequency_is_changed_to_Monthly</name>
-            <conditionLogic>2 AND (3 OR 6) AND ( 1 OR 4 OR 5)</conditionLogic>
+            <conditionLogic>2 AND (3 OR 6) AND ( 1 OR 4 OR 5) AND 7</conditionLogic>
             <conditions>
                 <leftValueReference>APSisNew</leftValueReference>
                 <operator>EqualTo</operator>
@@ -341,6 +376,13 @@
                 <operator>EqualTo</operator>
                 <rightValue>
                     <stringValue>Billing Frequency</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Created_after_reschedule__c</leftValueReference>
+                <operator>IsChanged</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
                 </rightValue>
             </conditions>
             <connector>

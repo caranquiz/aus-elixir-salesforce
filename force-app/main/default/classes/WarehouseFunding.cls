@@ -120,7 +120,7 @@ global class WarehouseFunding {
                     );
                   }
                     }else if (
-                      (brokerPartyList[0].Commission_Paid_To__c).equals(ConstantValues.SUB_AGGREGATOR)
+                      brokerPartyList[0].Commission_Paid_To__c == ConstantValues.SUB_AGGREGATOR
                     ) {
                       if (
                         brokerPartyList[0].clcommon__Account__c != null &&
@@ -180,33 +180,28 @@ global class WarehouseFunding {
           app.Paid_Subsequent_Drawdown_PrepaidInterest__c = 0;
           app.Utilised_Subsequent_Drawdown_Prepaid_Fee__c = 0;
           loanAcc.Paid_Prepaid_Interest__c = app.First_Tranche_Prepaid_Interest__c;
-          if (
-            app.genesis__CL_Product_Name__c ==
-            System.label.Residential_Construction
-          ) {
-            clcommon__Deposit__c dep = new clcommon__Deposit__c();
-            dep.loan__Loan_Account__c = loanAcc.Id;
-            dep.clcommon__Deposit_Rate__c = app.genesis__Interest_Rate__c;
-            dep.clcommon__Deposit_Amount__c = 0;
-            dep.clcommon__Current_Deposit_Rate__c = app.genesis__Interest_Rate__c;
-            dep.clcommon__Transaction_Date__c = currentSystemDate;
-            dep.clcommon__Deposit_Interest_Accrued__c = 0;
-            dep.clcommon__Sequence__c = 1;
-            dep.clcommon__Priority__c = 1;
-            insert dep;
-            //Code added to facilitate that when the interest rate on loan changes - the deposit rate changes too
-            /************************************************************************/
-            loan__Loan_Parameters__c loanParams = new loan__Loan_Parameters__c();
-            loanParams.loan__Auto_Change_Deposit_Rate__c = true;
-            insert loanParams;
-            loanAcc.loan__Loan_Parameters__c = loanParams.Id;
-            /************************************************************************/
-            //Code added by RB on 2/2/2022 to facilitate update of Deposit Offset Days and Next Deposit Payment Date 
-            //for deposit enabled construction products
-            loanAcc.loan__Deposit_Payment_Offset_Days__c = 0;
-            if(loanAcc.loan__First_Installment_Date__c != NULL){
+          clcommon__Deposit__c dep = new clcommon__Deposit__c();
+          dep.loan__Loan_Account__c = loanAcc.Id;
+          dep.clcommon__Deposit_Rate__c = app.genesis__Interest_Rate__c;
+          dep.clcommon__Deposit_Amount__c = 0;
+          dep.clcommon__Current_Deposit_Rate__c = app.genesis__Interest_Rate__c;
+          dep.clcommon__Transaction_Date__c = currentSystemDate;
+          dep.clcommon__Deposit_Interest_Accrued__c = 0;
+          dep.clcommon__Sequence__c = 1;
+          dep.clcommon__Priority__c = 1;
+          insert dep;
+          //Code added to facilitate that when the interest rate on loan changes - the deposit rate changes too
+          /************************************************************************/
+          loan__Loan_Parameters__c loanParams = new loan__Loan_Parameters__c();
+          loanParams.loan__Auto_Change_Deposit_Rate__c = true;
+          insert loanParams;
+          loanAcc.loan__Loan_Parameters__c = loanParams.Id;
+          /************************************************************************/
+          //Code added by RB on 2/2/2022 to facilitate update of Deposit Offset Days and Next Deposit Payment Date 
+          //for deposit enabled construction products
+          loanAcc.loan__Deposit_Payment_Offset_Days__c = 0;
+          if(loanAcc.loan__First_Installment_Date__c != NULL){
               loanAcc.loan__Next_Deposit_Payment_Date__c = loanAcc.loan__First_Installment_Date__c;
-            }
           }
         } else if (
           (app.genesis__CL_Product_Name__c ==
@@ -235,19 +230,7 @@ global class WarehouseFunding {
             app.Construction_Progress_Payment_Fee__c;
           app.Subsequent_Drawdown__c = 0;
           app.Drawdown_Prepaid_Interest__c = 0;
-        } else if (
-          app.genesis__CL_Product_Name__c == System.label.Residential ||
-          app.genesis__CL_Product_Name__c == System.label.Commercial ||
-          app.genesis__CL_Product_Name__c ==
-          System.label.Retained_Stock_Residential ||
-          app.genesis__CL_Product_Name__c ==
-          System.label.Retained_Stock_Commercial ||
-          app.genesis__CL_Product_Name__c ==
-          System.label.Highest_Best_Use_Residential ||
-          app.genesis__CL_Product_Name__c ==
-          System.label.Highest_Best_Use_Commercial ||
-          app.genesis__CL_Product_Name__c == System.label.Vacant_Land_Residential
-        ) {
+        } else{
           clcommon__Deposit__c dep = new clcommon__Deposit__c();
           dep.loan__Loan_Account__c = loanAcc.Id;
           dep.clcommon__Deposit_Rate__c = app.genesis__Interest_Rate__c;
@@ -273,13 +256,6 @@ global class WarehouseFunding {
           }
           /************************************************************************/
           
-          retCheck = createDisbusals(
-            loanAcc.Id,
-            app.genesis__Loan_Amount__c,
-            loanAcc.Name,
-            app
-          );
-        } else {
           retCheck = createDisbusals(
             loanAcc.Id,
             app.genesis__Loan_Amount__c,

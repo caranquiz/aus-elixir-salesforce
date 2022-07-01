@@ -3,6 +3,11 @@
     <apiVersion>49.0</apiVersion>
     <packageVersions>
         <majorNumber>8</majorNumber>
+        <minorNumber>179</minorNumber>
+        <namespace>APXTConga4</namespace>
+    </packageVersions>
+    <packageVersions>
+        <majorNumber>8</majorNumber>
         <minorNumber>22</minorNumber>
         <namespace>APXT_BPM</namespace>
     </packageVersions>

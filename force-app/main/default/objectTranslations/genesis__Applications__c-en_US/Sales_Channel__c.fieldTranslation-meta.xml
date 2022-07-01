@@ -15,7 +15,15 @@
         <translation></translation>
     </picklistValues>
     <picklistValues>
+        <masterLabel>Next Gen</masterLabel>
+        <translation></translation>
+    </picklistValues>
+    <picklistValues>
         <masterLabel>Online Channel</masterLabel>
+        <translation></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Simpology</masterLabel>
         <translation></translation>
     </picklistValues>
 </CustomFieldTranslation>

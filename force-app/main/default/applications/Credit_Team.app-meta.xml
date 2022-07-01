@@ -1340,6 +1340,7 @@
     <tabs>Gift_Register__c</tabs>
     <tabs>Breach_Register__c</tabs>
     <tabs>Redraw_Request__c</tabs>
+    <tabs>peer__Bank_Recon_Exception__c</tabs>
     <uiType>Lightning</uiType>
     <utilityBar>Credit_Team_UtilityBar</utilityBar>
 </CustomApplication>

@@ -74,7 +74,7 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Active CL Contract Status</shortDescription>
-        <value>Active - Good Standing,Active - Bad Standing,Active - Matured,Closed - Obligations met</value>
+        <value>Active - Good Standing,Active - Bad Standing,Active - Matured,Closed - Obligations met,Active - Marked for Closure</value>
     </labels>
     <labels>
         <fullName>Aggregator</fullName>
@@ -756,7 +756,7 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>LAIs for Interest Rate Change</shortDescription>
-        <value>LAI-00001763,LAI-00001764</value>
+        <value>XXX</value>
     </labels>
     <labels>
         <fullName>Loan_Statuses_for_Rate_Change</fullName>

@@ -1829,4 +1829,22 @@ public with sharing class GenericUtilityTestHelper {
     insert loanColl;
     return loanColl;
   }
+  public static APXTConga4__Conga_Merge_Query__c returnCongaQuery(){
+    APXTConga4__Conga_Merge_Query__c congaQuery=new APXTConga4__Conga_Merge_Query__c();
+        congaQuery.APXTConga4__Name__c='Cl Contract Query';
+        congaQuery.APXTConga4__Query__c='Select id,Generate_Statement_Bulk__c From loan__Loan_Account__c '+
+        'Where (loan__Loan_Status__c=\''+'Active - Good Standing'+'\' or loan__Loan_Status__c=\''+'Active - Bad Standing'+
+        '\' or loan__Loan_Status__c=\''+'Active - Matured'+'\' or loan__Loan_Status__c=\''+'Closed - Obligations met'+
+        '\' or loan__Loan_Status__c=\''+'Active - Marked for Closure'+'\') and Statement_Start_Date__c!=null '+
+        'and Statement_End_Date__c!=null Order by id Limit 900';
+        insert congaQuery;
+        return congaQuery;
+  }
+  public static loan__Loan_account_Due_Details__c returnBill(Id loanId){
+    loan__Loan_account_Due_Details__c objBill =new loan__Loan_account_Due_Details__c(
+        loan__DD_Primary_Flag__c = TRUE, loan__Due_Date__c = Date.newInstance(2023,12,12),
+        loan__Loan_Account__c = loanId);
+        insert objBill;
+        return objBill;
+  }
 }

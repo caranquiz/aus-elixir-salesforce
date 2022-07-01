@@ -153,16 +153,13 @@ public class NextGenApplicationHelper {
             List<Telephone_Contact_Number__c> contactNumberList=new List<Telephone_Contact_Number__c>();
             List<clcommon__Address__c> addressList=new List<clcommon__Address__c>();
             List<clcommon__Address__c> addressList2=new List<clcommon__Address__c>();
-
+            List<String> firstNameBrokerList=new List<String>();
+            List<String> lastNameBrokerList=new List<String>();
             Map<String,String> addressMap=new Map<String,String>();
 
-            brokerName=NextGenPartyCreation.salesChannelBrokerCheck(applicationMap);
+            brokerName=NextGenPartyCreation.salesChannelBrokerCheck(applicationMap,firstNameBrokerList,lastNameBrokerList);
             if(brokerName!=null){
                 brokerNameList.add(brokerName);
-                brokerNameList.add(brokerName+' Pty Ltd');
-                brokerNameList.add(brokerName+' Proprietary Ltd');
-                brokerNameList.add(brokerName+' Proprietary Limited');
-                brokerNameList.add(brokerName+' Pty Limited');
             }
             
             if(brokerName != null && brokerName.contains('Pty ')){
@@ -170,7 +167,13 @@ public class NextGenApplicationHelper {
             }else if(brokerName != null && brokerName.contains('Proprietary ')){
                 brokerName=brokerName.substringBefore(' Proprietary');
             }
-            
+            if(brokerName!=null){
+                brokerNameList.add(brokerName);
+                brokerNameList.add(brokerName+' Pty Ltd');
+                brokerNameList.add(brokerName+' Proprietary Ltd');
+                brokerNameList.add(brokerName+' Proprietary Limited');
+                brokerNameList.add(brokerName+' Pty Limited');
+            }
             List<Account> brokerAccountList=[SELECT id,Name FROM Account WHERE Name in:brokerNameList AND loan__Broker__c=true];
 
             if(
@@ -2042,33 +2045,36 @@ public class NextGenApplicationHelper {
         }
 
         Map<String,Object> loanDetailSegmentMap=new Map<String,Object>();
-                if (
-                    ((Map<String,Object>)applicationMap) !=null &&
-                    ((Map<String, Object>) applicationMap.get('Application')) !=null &&
-                    ((Map<String, Object>) ((Map<String, Object>) applicationMap.get('Application'))
-                    .get('LoanDetailSegment')) != null 
-                    ) {
-                        loanDetailSegmentMap=(Map<String, Object>) ((Map<String, Object>) applicationMap.get('Application')).get('LoanDetailSegment');
+        if (
+            ((Map<String,Object>)applicationMap) !=null &&
+            ((Map<String, Object>) applicationMap.get('Application')) !=null &&
+            ((Map<String, Object>) ((Map<String, Object>) applicationMap.get('Application'))
+            .get('LoanDetailSegment')) != null 
+            ) {
+                loanDetailSegmentMap=(Map<String, Object>) ((Map<String, Object>) applicationMap.get('Application')).get('LoanDetailSegment');
+        }
+        List<genesis__Applications__c> objApplicationList=new List<genesis__Applications__c>();
+        NextGenLoanDetailCreation.LoanDetailRecordCreation(loanDetailSegmentMap,financialSegmentMap,objApplicationList,accountList,borrowerAccount);
+        if(objApplicationList.size()>0){
+            String result=SkuidValuesUpdateHelper.updateFirstPaymentDate(objApplicationList[0].id);
+        }
+        if (
+            ((Map<String,Object>)applicationMap) !=null &&
+            ((Map<String, Object>) applicationMap.get('Application')) !=null &&
+            ((Map<String, Object>) ((Map<String, Object>) applicationMap.get('Application'))
+            .get('Identifier')) != null && objApplicationList.size()>0
+            ) {
+                if(((String)((Map<String, Object>) ((Map<String, Object>) applicationMap.get('Application')).get('Identifier')).get('NodeValue')).contains('-')){
+                    objApplicationList[0].Originator_ID__c=(String)((Map<String, Object>) (
+                                    (Map<String, Object>) applicationMap.get('Application')).get('Identifier')).get('NodeValue');
+                }else{
+                    objApplicationList[0].Originator_ID__c=(String)((Map<String, Object>) (
+                            (Map<String, Object>) applicationMap.get('Application')).get('Identifier')).get('NodeValue')+'-NGN';
                 }
-                List<genesis__Applications__c> objApplicationList=new List<genesis__Applications__c>();
-                NextGenLoanDetailCreation.LoanDetailRecordCreation(loanDetailSegmentMap,financialSegmentMap,objApplicationList,accountList,borrowerAccount);
-                if (
-                    ((Map<String,Object>)applicationMap) !=null &&
-                    ((Map<String, Object>) applicationMap.get('Application')) !=null &&
-                    ((Map<String, Object>) ((Map<String, Object>) applicationMap.get('Application'))
-                    .get('Identifier')) != null && objApplicationList.size()>0
-                    ) {
-                        if(((String)((Map<String, Object>) ((Map<String, Object>) applicationMap.get('Application')).get('Identifier')).get('NodeValue')).contains('-')){
-                            objApplicationList[0].Originator_ID__c=(String)((Map<String, Object>) (
-                                            (Map<String, Object>) applicationMap.get('Application')).get('Identifier')).get('NodeValue');
-                        }else{
-                            objApplicationList[0].Originator_ID__c=(String)((Map<String, Object>) (
-                                    (Map<String, Object>) applicationMap.get('Application')).get('Identifier')).get('NodeValue')+'-NGN';
-                        }
-                    }
-                    if(objApplicationList.size()>0){
-                        NextGenLoanDetailCreation.loanSolicitorDetails(relatedPartySegmentMap, objApplicationList[0]);
-                    }
+            }
+            if(objApplicationList.size()>0){
+                NextGenLoanDetailCreation.loanSolicitorDetails(relatedPartySegmentMap, objApplicationList[0]);
+            }
 
             Set<Account> accountSet=new Set<Account>();
             List<Account> accountList2=new List<Account>();
@@ -2290,6 +2296,8 @@ public class NextGenApplicationHelper {
             }
             
             clcommon__Party__c objBrokerParty = new clcommon__Party__c();
+            List<Contact> objBrokerContactList=[SELECT id FROM Contact WHERE FirstName in: firstNameBrokerList AND LastName in: lastNameBrokerList];
+            
             if(brokerAccountList.size()>0){
                 objBrokerParty.clcommon__Account__c = brokerAccountList[0].id;
                 if(objApplicationList.size()>0){
@@ -2299,6 +2307,9 @@ public class NextGenApplicationHelper {
                     if(objPartyType.Name==ConstantValues.BROKER_PARTY_TYPE){
                         objBrokerParty.clcommon__Type__c=objPartyType.id;
                     }
+                }
+                if(objBrokerContactList.size()>0){
+                    objBrokerParty.Broker_Underwriter__c=objBrokerContactList[0].id;
                 }
                 partyList.add(objBrokerParty);
                 

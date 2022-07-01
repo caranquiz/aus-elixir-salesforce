@@ -326,8 +326,12 @@ public with sharing class NextGenCollateralCreation {
                                     percentageDecimal.put(partyHousehold.id,Decimal.valueOf(
                                         ((String)((Map<String,Object>)eachPercentOwned).get('Percent')))/100);
                                 }
-                                if(!objIdentifierPartyMap2.containsKey(((String)((Map<String,Object>)
-                                ((Map<String,Object>)eachPercentOwned).get('RelatedEntityRef')).get('NodeValue'))) ){
+                                if((!objIdentifierPartyMap2.containsKey(((String)((Map<String,Object>)
+                                ((Map<String,Object>)eachPercentOwned).get('RelatedEntityRef')).get('NodeValue'))))|| 
+                                (objIdentifierPartyMap2.containsKey(((String)((Map<String,Object>)(
+                                (Map<String,Object>)eachPercentOwned).get('RelatedEntityRef')).get('NodeValue'))) && 
+                                objIdentifierPartyMap2.get(((String)((Map<String,Object>)(
+                                (Map<String,Object>)eachPercentOwned).get('RelatedEntityRef')).get('NodeValue'))).id == NULL ) ){
                                     for(clcommon__Party__c objParty:partyList){
                                         objIdentifierPartyMap2.put(((String)((Map<String,Object>)
                                         ((Map<String,Object>)eachPercentOwned).get('RelatedEntityRef')).get('NodeValue')),objParty);
@@ -356,13 +360,13 @@ public with sharing class NextGenCollateralCreation {
                                     (Map<String,Object>)((Map<String,Object>)eachPercentOwned).get('RelatedEntityRef')).get('NodeValue'))) && 
                                     objParty.id==(objIdentifierPartyMap.get(((String)((Map<String,Object>)(
                                     (Map<String,Object>)eachPercentOwned).get('RelatedEntityRef')).get('NodeValue')))).id ){
+                                    
                                     percentageDecimal.put(objParty.id,Decimal.valueOf(
                                         ((String)((Map<String,Object>)eachPercentOwned).get('Percent')))/100);
                                     objIdentifierPartyMap2.put(((String)(
                                         (Map<String,Object>)((Map<String,Object>)eachPercentOwned)
                                         .get('RelatedEntityRef')).get('NodeValue')),objParty);
-                                }
-                            }
+                                }                            }
                             if(objParty.clcommon__Type__r.Name=='HouseHold'){
                                 partyHousehold=objParty;
                             }
@@ -377,8 +381,12 @@ public with sharing class NextGenCollateralCreation {
                                     ((String)((Map<String,Object>)eachPercentOwned).get('Percent')))/100);
 
                             }
-                            if(!objIdentifierPartyMap2.containsKey(((String)((Map<String,Object>)(
-                                (Map<String,Object>)eachPercentOwned).get('RelatedEntityRef')).get('NodeValue'))) ){
+                            if((!objIdentifierPartyMap2.containsKey(((String)((Map<String,Object>)(
+                                (Map<String,Object>)eachPercentOwned).get('RelatedEntityRef')).get('NodeValue')))) || 
+                                (objIdentifierPartyMap2.containsKey(((String)((Map<String,Object>)(
+                                (Map<String,Object>)eachPercentOwned).get('RelatedEntityRef')).get('NodeValue'))) && 
+                                objIdentifierPartyMap2.get(((String)((Map<String,Object>)(
+                                (Map<String,Object>)eachPercentOwned).get('RelatedEntityRef')).get('NodeValue'))).id == NULL ) ){
                                 for(clcommon__Party__c objParty:partyList){
                                     objIdentifierPartyMap2.put(((String)(
                                         (Map<String,Object>)((Map<String,Object>)eachPercentOwned).get('RelatedEntityRef')).get('NodeValue')),objParty);
@@ -390,7 +398,6 @@ public with sharing class NextGenCollateralCreation {
                         
                     }
                 
-
                 if(((Map<String, Object>) eachValueItem) != null && 
                 ((Map<String, Object>) ((Map<String, Object>) eachValueItem)
                 .get('OwnedByAllApplicants')) !=null){

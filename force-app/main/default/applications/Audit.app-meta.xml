@@ -35,8 +35,6 @@
         <profile>Elixir System Admin</profile>
     </profileActionOverrides>
     <tabs>genesis__Applications__c</tabs>
-    <tabs>Breach_Register__c</tabs>
-    <tabs>Redraw_Request__c</tabs>
     <uiType>Lightning</uiType>
     <utilityBar>Loan_File_Audit_UtilityBar</utilityBar>
 </CustomApplication>

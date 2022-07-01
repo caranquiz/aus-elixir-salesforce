@@ -546,63 +546,72 @@ public class NextGenPartyCreation {
             List<Object> refCompanyIncome = ((List<Object>) ((Map<String, Object>)((Map<String, Object>) 
                     ((Map<String, Object>) each).get('Company')).get('CompanyIncome')).get('ValueItem'));
             for(Object eachCompanyIncome:refCompanyIncome){
-                genesis__Income__c objIncome=new genesis__Income__c();
-                if(((Map<String, Object>) eachCompanyIncome) != null &&
-                    ((Map<String, Object>) ((Map<String, Object>) eachCompanyIncome)
-                    .get('Income')) != null && (String)((Map<String, Object>) ((Map<String, Object>) eachCompanyIncome)
-                    .get('Income')).get('Type') != null){
-                        objParty.Document_Type__c='Full';
-                        objIncome.Income_Full__c=true;
-                    String companyType=(String)((Map<String, Object>) (
-                        (Map<String, Object>) eachCompanyIncome).get('Income')).get('Type');
-                    if((String)((Map<String, Object>) (
-                        (Map<String, Object>) eachCompanyIncome).get('Income')).get('Description')!=null){
-                        objIncome.Description__c=(String)((Map<String, Object>) (
-                            (Map<String, Object>) eachCompanyIncome).get('Income')).get('Description');
-                    }
-                    if(companyType=='CompanyProfitBeforeTax'){
-                        objIncome.Business_Income_Type__c='Profit Before Tax';
-                        objIncome.Non_SMSF_Business_Income_Type__c='Profit Before Tax';
-
-                    }else if(companyType=='Addback' && (String)((Map<String, Object>) 
-                            ((Map<String, Object>) eachCompanyIncome).get('Income')).get('AddbackType')=='Depreciation'){
-                        objIncome.Business_Income_Type__c='Depreciation';
-                        objIncome.Non_SMSF_Business_Income_Type__c='Depreciation';
-
-                    }else if(companyType=='Addback' && (String)((Map<String, Object>) 
-                            ((Map<String, Object>) eachCompanyIncome).get('Income')).get('AddbackType')=='NonCashBenefits'){
-                        objIncome.Business_Income_Type__c='Non Cash Benefits';
-                        objIncome.Non_SMSF_Business_Income_Type__c='Non Cash Benefits';
-
-                    }else if(companyType=='Addback' && (String)((Map<String, Object>) 
-                            ((Map<String, Object>) eachCompanyIncome).get('Income')).get('AddbackType')=='NonRecurringExpenses'){
-                        objIncome.Business_Income_Type__c='Non Recurring Expenses';
-                        objIncome.Non_SMSF_Business_Income_Type__c='Non Recurring Expenses';
-
-                    }
-                }
                 if(((Map<String, Object>) eachCompanyIncome) != null &&
                     ((String) ((Map<String, Object>) eachCompanyIncome)
-                    .get('Value')) != null){
-                        objIncome.genesis__Amount__c=Decimal.valueOf(
-                            (String) ((Map<String, Object>) eachCompanyIncome)
-                            .get('Value'));
+                    .get('Value')) != null &&
+                    Decimal.valueOf(
+                    (String) ((Map<String, Object>) eachCompanyIncome)
+                    .get('Value'))>0)
+                {
+                    genesis__Income__c objIncome=new genesis__Income__c();
+                    if(((Map<String, Object>) eachCompanyIncome) != null &&
+                        ((Map<String, Object>) ((Map<String, Object>) eachCompanyIncome)
+                        .get('Income')) != null && (String)((Map<String, Object>) ((Map<String, Object>) eachCompanyIncome)
+                        .get('Income')).get('Type') != null){
+                            objParty.Document_Type__c='Full';
+                            objIncome.Income_Full__c=true;
+                        String companyType=(String)((Map<String, Object>) (
+                            (Map<String, Object>) eachCompanyIncome).get('Income')).get('Type');
+                        if((String)((Map<String, Object>) (
+                            (Map<String, Object>) eachCompanyIncome).get('Income')).get('Description')!=null){
+                            objIncome.Description__c=(String)((Map<String, Object>) (
+                                (Map<String, Object>) eachCompanyIncome).get('Income')).get('Description');
+                        }
+                        if(companyType=='CompanyProfitBeforeTax'){
+                            objIncome.Business_Income_Type__c='Profit Before Tax';
+                            objIncome.Non_SMSF_Business_Income_Type__c='Profit Before Tax';
+    
+                        }else if(companyType=='Addback' && (String)((Map<String, Object>) 
+                                ((Map<String, Object>) eachCompanyIncome).get('Income')).get('AddbackType')=='Depreciation'){
+                            objIncome.Business_Income_Type__c='Depreciation';
+                            objIncome.Non_SMSF_Business_Income_Type__c='Depreciation';
+    
+                        }else if(companyType=='Addback' && (String)((Map<String, Object>) 
+                                ((Map<String, Object>) eachCompanyIncome).get('Income')).get('AddbackType')=='NonCashBenefits'){
+                            objIncome.Business_Income_Type__c='Non Cash Benefits';
+                            objIncome.Non_SMSF_Business_Income_Type__c='Non Cash Benefits';
+    
+                        }else if(companyType=='Addback' && (String)((Map<String, Object>) 
+                                ((Map<String, Object>) eachCompanyIncome).get('Income')).get('AddbackType')=='NonRecurringExpenses'){
+                            objIncome.Business_Income_Type__c='Non Recurring Expenses';
+                            objIncome.Non_SMSF_Business_Income_Type__c='Non Recurring Expenses';
+    
+                        }
+                    }
+                    if(((Map<String, Object>) eachCompanyIncome) != null &&
+                        ((String) ((Map<String, Object>) eachCompanyIncome)
+                        .get('Value')) != null){
+                            objIncome.genesis__Amount__c=Decimal.valueOf(
+                                (String) ((Map<String, Object>) eachCompanyIncome)
+                                .get('Value'));
+                    }
+                    if(((Map<String, Object>) eachCompanyIncome) != null &&
+                        ((Map<String, Object>) ((Map<String, Object>) eachCompanyIncome)
+                        .get('Income')) != null && 
+                        ((Map<String, Object>)((Map<String, Object>) ((Map<String, Object>) eachCompanyIncome)
+                        .get('Income')).get('RelatedEntityRef')) != null){
+                            objIncome.Business_Income_Period__c='Previous';
+                            objParty.Total_Previous_Income_Period__c+=objIncome.genesis__Amount__c;
+    
+                    }else{
+                        objIncome.Business_Income_Period__c='Current';
+                        objParty.Total_Current_Income_Period__c+=objIncome.genesis__Amount__c;
+    
+                    }
+                    objCompanyIncomeMap.put(objAccount.Name+
+                            objIncome.Business_Income_Period__c+objIncome.Business_Income_Type__c,objIncome);
                 }
-                if(((Map<String, Object>) eachCompanyIncome) != null &&
-                    ((Map<String, Object>) ((Map<String, Object>) eachCompanyIncome)
-                    .get('Income')) != null && 
-                    ((Map<String, Object>)((Map<String, Object>) ((Map<String, Object>) eachCompanyIncome)
-                    .get('Income')).get('RelatedEntityRef')) != null){
-                        objIncome.Business_Income_Period__c='Previous';
-                        objParty.Total_Previous_Income_Period__c+=objIncome.genesis__Amount__c;
-
-                }else{
-                    objIncome.Business_Income_Period__c='Current';
-                    objParty.Total_Current_Income_Period__c+=objIncome.genesis__Amount__c;
-
-                }
-                objCompanyIncomeMap.put(objAccount.Name+
-                        objIncome.Business_Income_Period__c+objIncome.Business_Income_Type__c,objIncome);
+                
             }
 
         }else if(((Map<String, Object>) each) != null &&
@@ -614,7 +623,14 @@ public class NextGenPartyCreation {
                 .get('Company')).get('CompanyIncome'))).contains('ValueItem={') ){
             Object eachCompanyIncome = ((Object) ((Map<String, Object>)(
                 (Map<String, Object>) ((Map<String, Object>) each).get('Company')).get('CompanyIncome')).get('ValueItem'));
-            genesis__Income__c objIncome=new genesis__Income__c();
+            if(((Map<String, Object>) eachCompanyIncome) != null &&
+                ((String) ((Map<String, Object>) eachCompanyIncome)
+                .get('Value')) != null &&
+                Decimal.valueOf(
+                (String) ((Map<String, Object>) eachCompanyIncome)
+                .get('Value'))>0)
+            {
+                genesis__Income__c objIncome=new genesis__Income__c();
                 if(((Map<String, Object>) eachCompanyIncome) != null &&
                     ((Map<String, Object>) ((Map<String, Object>) eachCompanyIncome)
                     .get('Income')) != null && (String)((Map<String, Object>) ((Map<String, Object>) eachCompanyIncome)
@@ -672,6 +688,7 @@ public class NextGenPartyCreation {
                     }
                 objCompanyIncomeMap.put(objAccount.Name+
                         objIncome.Business_Income_Period__c+objIncome.Business_Income_Type__c,objIncome);
+            }
         }
     }
 
@@ -925,7 +942,10 @@ public class NextGenPartyCreation {
             }
     }
     //Broker Record Parsing
-    public static String salesChannelBrokerCheck(Map<String,Object> applicationMap){
+    public static String salesChannelBrokerCheck(Map<String,Object> applicationMap,
+        List<String> firstNameBroker,
+        List<String> lastNameBroker
+    ){
         String brokerName='';
         if(
                 ((Map<String,Object>)applicationMap) !=null &&
@@ -974,6 +994,22 @@ public class NextGenPartyCreation {
                             ((Map<String, Object>) eachSalesChannel).get('PersonName')).get('Surname')).get('NodeValue');
                         }
                     }
+                    if(((Map<String, Object>) eachSalesChannel) != null &&
+                        ((Map<String,Object>) ((Map<String, Object>) eachSalesChannel)
+                        .get('PersonName')) != null && ((Map<String,Object>)((Map<String,Object>) 
+                        ((Map<String, Object>) eachSalesChannel)
+                        .get('PersonName')).get('FirstName')) != null){
+                            firstNameBroker.add((String)((Map<String,Object>)((Map<String,Object>) 
+                            ((Map<String, Object>) eachSalesChannel).get('PersonName')).get('FirstName')).get('NodeValue'));
+                        }
+                        if(((Map<String, Object>) eachSalesChannel) != null &&
+                        ((Map<String,Object>) ((Map<String, Object>) eachSalesChannel)
+                        .get('PersonName')) != null && ((Map<String,Object>)((Map<String,Object>) 
+                        ((Map<String, Object>) eachSalesChannel)
+                        .get('PersonName')).get('Surname')) != null){
+                            lastNameBroker.add((String)((Map<String,Object>)((Map<String,Object>) 
+                            ((Map<String, Object>) eachSalesChannel).get('PersonName')).get('Surname')).get('NodeValue'));
+                        }
                     
                 }
         }else if(
@@ -1021,7 +1057,22 @@ public class NextGenPartyCreation {
                                 (Map<String, Object>) each).get('PersonName')).get('Surname')).get('NodeValue');
                         }
                     }
-                    
+                    if(((Map<String, Object>) each) != null &&
+                    ((Map<String,Object>) ((Map<String, Object>) each)
+                    .get('PersonName')) != null && ((Map<String,Object>)((Map<String,Object>) 
+                    ((Map<String, Object>) each)
+                    .get('PersonName')).get('FirstName')) != null){
+                        firstNameBroker.add((String)((Map<String,Object>)((Map<String,Object>) 
+                        ((Map<String, Object>) each).get('PersonName')).get('FirstName')).get('NodeValue'));
+                    }
+                    if(((Map<String, Object>) each) != null &&
+                    ((Map<String,Object>) ((Map<String, Object>) each)
+                    .get('PersonName')) != null && ((Map<String,Object>)((Map<String,Object>) 
+                    ((Map<String, Object>) each)
+                    .get('PersonName')).get('Surname')) != null){
+                        lastNameBroker.add((String)((Map<String,Object>)((Map<String,Object>) 
+                        ((Map<String, Object>) each).get('PersonName')).get('Surname')).get('NodeValue'));
+                    }
                 }
             }
         }

@@ -30,15 +30,7 @@
                 <type>user</type>
             </approver>
             <approver>
-                <name>ppolemikos@orde.com.au</name>
-                <type>user</type>
-            </approver>
-            <approver>
                 <name>rharkness@orde.com.au</name>
-                <type>user</type>
-            </approver>
-            <approver>
-                <name>rjohnston@orde.com.au</name>
                 <type>user</type>
             </approver>
             <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>

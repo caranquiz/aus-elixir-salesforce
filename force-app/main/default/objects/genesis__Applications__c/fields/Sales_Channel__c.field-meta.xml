@@ -32,6 +32,16 @@
                 <default>false</default>
                 <label>Online Channel</label>
             </value>
+            <value>
+                <fullName>Next Gen</fullName>
+                <default>false</default>
+                <label>Next Gen</label>
+            </value>
+            <value>
+                <fullName>Simpology</fullName>
+                <default>false</default>
+                <label>Simpology</label>
+            </value>
         </valueSetDefinition>
     </valueSet>
 </CustomField>

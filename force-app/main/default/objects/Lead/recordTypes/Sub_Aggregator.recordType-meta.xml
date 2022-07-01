@@ -28,6 +28,33 @@
         </values>
     </picklistValues>
     <picklistValues>
+        <picklist>Broker_Specialisation__c</picklist>
+        <values>
+            <fullName>Altdoc</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Commercial</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Credit Impaired</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Development</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Other</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>SMSF</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
         <picklist>Guilty_of_a_Crime__c</picklist>
         <values>
             <fullName>No</fullName>

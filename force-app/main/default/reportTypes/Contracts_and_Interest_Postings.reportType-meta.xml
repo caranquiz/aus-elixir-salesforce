@@ -5,6 +5,10 @@
     <deployed>true</deployed>
     <description>Contracts and Interest Postings</description>
     <join>
+        <join>
+            <outerJoin>true</outerJoin>
+            <relationship>loan__Loan_Transaction_Summaries__r</relationship>
+        </join>
         <outerJoin>true</outerJoin>
         <relationship>loan__Interest_Posting_Transactions__r</relationship>
     </join>
@@ -2417,6 +2421,11 @@
             <checkedByDefault>false</checkedByDefault>
             <field>loan__Transaction_Time__c</field>
             <table>loan__Loan_Account__c.loan__Interest_Posting_Transactions__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>loan__Consolidated_Loan_Balance__c</field>
+            <table>loan__Loan_Account__c.loan__Interest_Posting_Transactions__r.loan__Loan_Transaction_Summaries__r</table>
         </columns>
         <masterLabel>Interest Posting Transactions</masterLabel>
     </sections>

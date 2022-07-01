@@ -376,6 +376,10 @@
             <default>false</default>
         </values>
         <values>
+            <fullName>CBA</fullName>
+            <default>false</default>
+        </values>
+        <values>
             <fullName>Kapstream</fullName>
             <default>false</default>
         </values>
@@ -814,7 +818,15 @@
             <default>false</default>
         </values>
         <values>
+            <fullName>Next Gen</fullName>
+            <default>false</default>
+        </values>
+        <values>
             <fullName>Online Channel</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Simpology</fullName>
             <default>false</default>
         </values>
     </picklistValues>

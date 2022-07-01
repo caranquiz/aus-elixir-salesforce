@@ -1767,6 +1767,18 @@ global with sharing class CheckRules {
               stringVal
             );
           }
+          if (
+            eachChecklistDetails.Application_Collateral__c != null &&
+            eachChecklistDetails.Application_Collateral__r.genesis__Collateral__r !=
+            null &&
+            eachChecklistDetails.Application_Collateral__r.genesis__Collateral__r.Full_Address__c !=
+            null
+          ) {
+            message = message.replace(
+              ConstantValues.SECURITY_LOCATION,
+              eachChecklistDetails.Application_Collateral__r.genesis__Collateral__r.Full_Address__c
+            );
+          }
         }else if (
           eachChecklistDetails.Checklist__r.genesis__Rule__r.Name ==
           ConstantValues.NO_SECRETARY_APPOINTED_CONDITION

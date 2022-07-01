@@ -1,10 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <name>Create_APS_One_Time</name>
+        <label>Create APS One Time</label>
+        <locationX>815</locationX>
+        <locationY>944</locationY>
+        <actionName>OneTimeAPSCreation</actionName>
+        <actionType>apex</actionType>
+        <connector>
+            <targetReference>Create_OneTime_APS_PI</targetReference>
+        </connector>
+        <inputParameters>
+            <name>apsIdList</name>
+            <value>
+                <elementReference>APSIdList</elementReference>
+            </value>
+        </inputParameters>
+    </actionCalls>
+    <actionCalls>
+        <name>Create_OneTime_APS_PI</name>
+        <label>Create OneTime APS PI</label>
+        <locationX>816</locationX>
+        <locationY>1067</locationY>
+        <actionName>OneTimeAPSCreation</actionName>
+        <actionType>apex</actionType>
+        <inputParameters>
+            <name>apsIdList</name>
+            <value>
+                <elementReference>APSPIRecord.Id</elementReference>
+            </value>
+        </inputParameters>
+    </actionCalls>
     <assignments>
         <name>Current_Payment_amount_is_changed_or_Frequency_is_changed_2_Monthly</name>
         <label>Current Payment amount is changed or Frequency is changed to Monthly</label>
-        <locationX>609</locationX>
-        <locationY>175</locationY>
+        <locationX>2284</locationX>
+        <locationY>863</locationY>
         <assignmentItems>
             <assignToReference>Iterating_through_APS.loan__Transaction_Amount__c</assignToReference>
             <operator>Assign</operator>
@@ -47,8 +78,8 @@
     <assignments>
         <name>Current_Payment_amount_is_changed_or_Frequency_is_changed_to_biweekly</name>
         <label>Current Payment amount is changed or Frequency is changed to bi-weekly</label>
-        <locationX>541</locationX>
-        <locationY>716</locationY>
+        <locationX>2020</locationX>
+        <locationY>863</locationY>
         <assignmentItems>
             <assignToReference>Iterating_through_APS.loan__Transaction_Amount__c</assignToReference>
             <operator>Assign</operator>
@@ -91,8 +122,8 @@
     <assignments>
         <name>Current_Payment_amount_is_changed_or_Frequency_is_changed_to_weekly</name>
         <label>Current Payment amount is changed or Frequency is changed to weekly</label>
-        <locationX>763</locationX>
-        <locationY>397</locationY>
+        <locationX>1756</locationX>
+        <locationY>863</locationY>
         <assignmentItems>
             <assignToReference>Iterating_through_APS.loan__Transaction_Amount__c</assignToReference>
             <operator>Assign</operator>
@@ -132,11 +163,34 @@
             <targetReference>Iterating_through_APS</targetReference>
         </connector>
     </assignments>
+    <assignments>
+        <name>Get_APS_id_Record</name>
+        <label>Get APS id Record</label>
+        <locationX>1055</locationX>
+        <locationY>824</locationY>
+        <assignmentItems>
+            <assignToReference>APSPIRecord.Id</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Iterating_APS_One_Time_Creation.Id</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>APSIdPIList</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>APSPIRecord</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Iterating_APS_One_Time_Creation</targetReference>
+        </connector>
+    </assignments>
     <decisions>
         <name>APS_Outcome_Validation</name>
         <label>APS Outcome Validation</label>
-        <locationX>408</locationX>
-        <locationY>482</locationY>
+        <locationX>2152</locationX>
+        <locationY>743</locationY>
         <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
         <rules>
             <name>Current_Payment_amount_is_changed_or_Frequency_ic_changed_to_weekly</name>
@@ -212,6 +266,74 @@
             <label>Current Payment amount is changed or Frequency is changed to Monthly</label>
         </rules>
     </decisions>
+    <decisions>
+        <name>checkBorrowerACHChangedOrNot</name>
+        <label>checkBorrowerACHChangedOrNot</label>
+        <locationX>1088</locationX>
+        <locationY>383</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Flat_Amount_is_not_null</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Flat_Repayment_Amount__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.First_Repayment_Date__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Flat_Repayment_Amount__c</leftValueReference>
+                <operator>IsChanged</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Get_Record_when_Flat_Amount_is_not_null</targetReference>
+            </connector>
+            <label>Flat Amount is not null</label>
+        </rules>
+        <rules>
+            <name>Flat_Amount_null</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Flat_Repayment_Amount__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Flat_Repayment_Amount__c</leftValueReference>
+                <operator>IsChanged</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Get_APS_Records</targetReference>
+            </connector>
+            <label>Flat Amount null</label>
+        </rules>
+    </decisions>
+    <formulas>
+        <name>APSIdList</name>
+        <dataType>String</dataType>
+        <expression>null</expression>
+    </formulas>
+    <formulas>
+        <name>isNew</name>
+        <dataType>Boolean</dataType>
+        <expression>ISNEW()</expression>
+    </formulas>
     <formulas>
         <name>TransactionAmountBy2</name>
         <dataType>Currency</dataType>
@@ -227,10 +349,24 @@
     <interviewLabel>CL Contract Updation {!$Flow.CurrentDateTime}</interviewLabel>
     <label>CL Contract Updation</label>
     <loops>
+        <name>Iterating_APS_One_Time_Creation</name>
+        <label>Iterating APS One Time Creation</label>
+        <locationX>821</locationX>
+        <locationY>775</locationY>
+        <collectionReference>Get_Record_when_Flat_Amount_is_not_null</collectionReference>
+        <iterationOrder>Asc</iterationOrder>
+        <nextValueConnector>
+            <targetReference>Get_APS_id_Record</targetReference>
+        </nextValueConnector>
+        <noMoreValuesConnector>
+            <targetReference>Create_APS_One_Time</targetReference>
+        </noMoreValuesConnector>
+    </loops>
+    <loops>
         <name>Iterating_through_APS</name>
         <label>Iterating through APS</label>
-        <locationX>178</locationX>
-        <locationY>472</locationY>
+        <locationX>1670</locationX>
+        <locationY>623</locationY>
         <collectionReference>Get_APS_Records</collectionReference>
         <iterationOrder>Asc</iterationOrder>
         <nextValueConnector>
@@ -262,8 +398,8 @@
     <recordLookups>
         <name>Get_APS_Records</name>
         <label>Get APS Records</label>
-        <locationX>179</locationX>
-        <locationY>321</locationY>
+        <locationX>1668</locationX>
+        <locationY>503</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Iterating_through_APS</targetReference>
@@ -312,25 +448,87 @@
         </filters>
         <object>loan__Automated_Payment_Setup__c</object>
     </recordLookups>
+    <recordLookups>
+        <name>Get_Record_when_Flat_Amount_is_not_null</name>
+        <label>Get Record when Flat Amount is not null</label>
+        <locationX>823</locationX>
+        <locationY>596</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Iterating_APS_One_Time_Creation</targetReference>
+        </connector>
+        <filters>
+            <field>loan__Active__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <filters>
+            <field>loan__CL_Contract__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>loan__Type__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>ONE TIME</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Created_after_reschedule__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <filters>
+            <field>loan__Type__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>RECURRING</stringValue>
+            </value>
+        </filters>
+        <object>loan__Automated_Payment_Setup__c</object>
+    </recordLookups>
     <recordUpdates>
         <name>update_last_record</name>
         <label>update last record</label>
-        <locationX>180</locationX>
-        <locationY>851</locationY>
+        <locationX>1668</locationX>
+        <locationY>1295</locationY>
         <inputReference>APSRecordUpdate</inputReference>
     </recordUpdates>
     <recordUpdates>
         <name>Updating_Transaction_Amount</name>
         <label>Updating Transaction Amount</label>
-        <locationX>180</locationX>
-        <locationY>646</locationY>
+        <locationX>1668</locationX>
+        <locationY>1175</locationY>
         <connector>
             <targetReference>update_last_record</targetReference>
         </connector>
         <inputReference>APSUpdateList</inputReference>
     </recordUpdates>
-    <startElementReference>Get_APS_Records</startElementReference>
+    <startElementReference>checkBorrowerACHChangedOrNot</startElementReference>
     <status>Active</status>
+    <variables>
+        <name>APSIdPIList</name>
+        <dataType>SObject</dataType>
+        <isCollection>true</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+        <objectType>loan__Automated_Payment_Setup__c</objectType>
+    </variables>
+    <variables>
+        <name>APSPIRecord</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+        <objectType>loan__Automated_Payment_Setup__c</objectType>
+    </variables>
     <variables>
         <name>APSRecordUpdate</name>
         <dataType>SObject</dataType>

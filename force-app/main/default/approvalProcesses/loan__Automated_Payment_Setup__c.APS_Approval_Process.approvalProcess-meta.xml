@@ -19,15 +19,7 @@
         <type>user</type>
     </allowedSubmitters>
     <allowedSubmitters>
-        <submitter>anne.tran@au.ey.com</submitter>
-        <type>user</type>
-    </allowedSubmitters>
-    <allowedSubmitters>
         <submitter>athorley@orde.com.au</submitter>
-        <type>user</type>
-    </allowedSubmitters>
-    <allowedSubmitters>
-        <submitter>audit@nab.com.au</submitter>
         <type>user</type>
     </allowedSubmitters>
     <allowedSubmitters>
@@ -108,6 +100,14 @@
     </allowedSubmitters>
     <allowedSubmitters>
         <submitter>kpatterson@orde.com.au</submitter>
+        <type>user</type>
+    </allowedSubmitters>
+    <allowedSubmitters>
+        <submitter>mabela@orde.com.au</submitter>
+        <type>user</type>
+    </allowedSubmitters>
+    <allowedSubmitters>
+        <submitter>mmahajan@orde.com.au</submitter>
         <type>user</type>
     </allowedSubmitters>
     <allowedSubmitters>
@@ -209,11 +209,11 @@
                 <type>user</type>
             </approver>
             <approver>
-                <name>msinclair@orde.com.au</name>
+                <name>mmahajan@orde.com.au</name>
                 <type>user</type>
             </approver>
             <approver>
-                <name>rharkness@orde.com.au</name>
+                <name>msinclair@orde.com.au</name>
                 <type>user</type>
             </approver>
             <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>

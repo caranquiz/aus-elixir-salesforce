@@ -281,7 +281,14 @@ public class IndividualApplicantNextGen {
                             .get('Value')) != null){
                                 objIncome.genesis__Amount__c=Decimal.valueOf((String) ((Map<String, Object>) eachIncome).get('Value'));
                         }
-                        objIncomeMap.put(objIncome,objEmploymentInfo.Company_Name__c+'PAYG');
+                        if(((Map<String, Object>) eachIncome) != null &&
+                        ((String) ((Map<String, Object>) eachIncome)
+                        .get('Value')) != null &&
+                        Decimal.valueOf(
+                        (String) ((Map<String, Object>) eachIncome)
+                        .get('Value'))>0){
+                            objIncomeMap.put(objIncome,objEmploymentInfo.Company_Name__c+'PAYG');
+                        }
                     }
                     objEmploymentInfoMap.put(objEmploymentInfo,employmentString);
                 }
@@ -429,8 +436,14 @@ public class IndividualApplicantNextGen {
                                     }
                                 }
                             }
-                            
-                            objIncomeMap.put(objIncome,objEmploymentInfo.Company_Name__c);
+                            if(((Map<String, Object>) eachIncome) != null &&
+                            ((String) ((Map<String, Object>) eachIncome)
+                            .get('Value')) != null &&
+                            Decimal.valueOf(
+                            (String) ((Map<String, Object>) eachIncome)
+                            .get('Value'))>0){
+                                objIncomeMap.put(objIncome,objEmploymentInfo.Company_Name__c);
+                            }
 
                         }
                     }else if(((Map<String, Object>) eachEmployment) != null &&
@@ -470,8 +483,15 @@ public class IndividualApplicantNextGen {
                             }
                             objIncome.Business_Income_Period__c='Current';
                             objEmploymentInfo.Total_Current_Income_Period__c+=objIncome.genesis__Amount__c;
-
+                            if(((Map<String, Object>) eachIncome) != null &&
+                                ((String) ((Map<String, Object>) eachIncome)
+                                .get('Value')) != null &&
+                                Decimal.valueOf(
+                                (String) ((Map<String, Object>) eachIncome)
+                                .get('Value'))>0
+                            ){
                             objIncomeMap.put(objIncome,objEmploymentInfo.Company_Name__c);
+                            }
 
                     }
                     objEmploymentInfoMap.put(objEmploymentInfo,employmentString);
@@ -766,7 +786,14 @@ public class IndividualApplicantNextGen {
                                     objIncome.genesis__Amount__c=Decimal.valueOf(
                                         (String) ((Map<String, Object>) eachIncome).get('Value'));
                             }
-                            objIncomeMap.put(objIncome,objEmploymentInfo.Company_Name__c+'PAYG');
+                            if(((Map<String, Object>) eachIncome) != null &&
+                            ((String) ((Map<String, Object>) eachIncome)
+                            .get('Value')) != null &&
+                            Decimal.valueOf(
+                            (String) ((Map<String, Object>) eachIncome)
+                            .get('Value'))>0){
+                                objIncomeMap.put(objIncome,objEmploymentInfo.Company_Name__c+'PAYG');
+                            }
                         }
 
                 }else if(((Map<String, Object>) eachEmployment) != null &&
@@ -816,8 +843,14 @@ public class IndividualApplicantNextGen {
                             .get('Value')) != null){
                                 objIncome.genesis__Amount__c=Decimal.valueOf((String) ((Map<String, Object>) eachIncome).get('Value'));
                         }
-                        
-                        objIncomeMap.put(objIncome,objEmploymentInfo.Company_Name__c+'PAYG');
+                        if(((Map<String, Object>) eachIncome) != null &&
+                            ((String) ((Map<String, Object>) eachIncome)
+                            .get('Value')) != null &&
+                            Decimal.valueOf(
+                            (String) ((Map<String, Object>) eachIncome)
+                            .get('Value'))>0){
+                            objIncomeMap.put(objIncome,objEmploymentInfo.Company_Name__c+'PAYG');
+                        }
                     }
                 }
                 if(((Map<String, Object>) eachEmployment) != null &&
@@ -966,8 +999,14 @@ public class IndividualApplicantNextGen {
                                     }
                                 }
                             }
-                            
+                            if(((Map<String, Object>) eachIncome) != null &&
+                            ((String) ((Map<String, Object>) eachIncome)
+                            .get('Value')) != null &&
+                            Decimal.valueOf(
+                            (String) ((Map<String, Object>) eachIncome)
+                            .get('Value'))>0){
                             objIncomeMap.put(objIncome,objEmploymentInfo.Company_Name__c);
+                            }
 
                         }
                     }else if(((Map<String, Object>) eachEmployment) != null &&
@@ -1009,8 +1048,14 @@ public class IndividualApplicantNextGen {
                             }
                             objIncome.Business_Income_Period__c='Current';
                             objEmploymentInfo.Total_Current_Income_Period__c=objIncome.genesis__Amount__c;
-
-                            objIncomeMap.put(objIncome,objEmploymentInfo.Company_Name__c);
+                            if(((Map<String, Object>) eachIncome) != null &&
+                                ((String) ((Map<String, Object>) eachIncome)
+                                .get('Value')) != null &&
+                                Decimal.valueOf(
+                                (String) ((Map<String, Object>) eachIncome)
+                                .get('Value'))>0){
+                                objIncomeMap.put(objIncome,objEmploymentInfo.Company_Name__c);
+                            }
 
                     }
 

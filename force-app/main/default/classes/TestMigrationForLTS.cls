@@ -85,6 +85,8 @@ public with sharing class TestMigrationForLTS {
         Database.update(loanAcc);
         loanAcc.loan__Interest_Rate__c = 5;
         loanAcc.loan__Number_of_Installments__c = 12;
+        loanAcc.Statement_End_Date__c=Date.newInstance(2022, 06, 20);
+        loanAcc.Statement_Start_Date__c=Date.newInstance(2022, 05, 10);
         Database.update(loanAcc);
         List<loan__Loan_Account__c> loanAccountList=[SELECT id FROM loan__Loan_Account__c WHERE loan__Interest_Rate__c=5];
         system.assertEquals(
@@ -112,9 +114,17 @@ public with sharing class TestMigrationForLTS {
         }
         Database.update(objList);
 
+        APXTConga4__Conga_Merge_Query__c congaQuery=GenericUtilityTestHelper.returnCongaQuery();
+        List<APXTConga4__Conga_Merge_Query__c> congaQueryList=[SELECT id FROM APXTConga4__Conga_Merge_Query__c WHERE APXTConga4__Name__c='Cl Contract Query'];
+        System.assert(congaQueryList.size()==1,'Conga Query Should not be null');
+
         //Conga Batch Details
         APXT_BPM__Conductor__c congaBatch=GenericUtilityTestHelper.returnCongaBatch();
-        System.assert(congaBatch != null,'Conga Batch Should not be null');
+        congaBatch.Count_Cl_Contract_Size__c=0;
+        congaBatch.APXT_BPM__Query_Id__c=congaQuery.id;
+        Database.update(congaBatch,false);
+        List<APXT_BPM__Conductor__c> congaBatchList=[SELECT id FROM APXT_BPM__Conductor__c WHERE Count_Cl_Contract_Size__c=0 AND APXT_BPM__Query_Id__c=:congaQuery.id];
+        System.assert(congaBatchList.size()==1,'Conga Batch Should not be null');
 
         ContentVersion content=GenericUtilityTestHelper.returnContentVersion();
         System.assert(content != null,'ContentVersion Should not be null');
@@ -240,6 +250,8 @@ public with sharing class TestMigrationForLTS {
                                                         name,
                                                         Statement_Generation_End_Date__c,
                                                         Statement_Generation_Start_Date__c,
+                                                        Count_Cl_Contract_Size__c,
+                                                        APXT_BPM__Query_Id__c,
                                                         APXT_BPM__Title__c
                                                     FROM APXT_BPM__Conductor__c 
                                                     WHERE APXT_BPM__Title__c=: ConstantValues.STATEMENT_CONGA_BATCH];
@@ -430,18 +442,18 @@ public with sharing class TestMigrationForLTS {
         handler.process(loanAccList);
        
         List<loan__Loan_Transaction_Summary__c> newSummariesList = [SELECT Id,loan__Current_Interest_Rate__c,
-                                                                      loan__Current_Loan_Balance__c,
-                                                                      loan__Current_Payoff_Balance__c,
-                                                                      loan__Current_Principal_Remaining__c,
-                                                                      loan__Disbursal_Reversal__c,
-                                                                      loan__Transaction_Amount__c,
-                                                                	  loan__Repayment_Txn_Reversal__c,
-                                                                      loan__Loan_Payment_Txn__c,
-                                                              		  loan__Loan_Disbursal__c,
-                                                                      loan__Transaction_Type_Id__r.loan__Transaction_Name__C,
-                                                                      loan__Consolidated_Loan_Balance__c
-                                                               FROM loan__Loan_Transaction_Summary__c
-                                                               Order By CreatedDate ASC];
+                                                                        loan__Current_Loan_Balance__c,
+                                                                        loan__Current_Payoff_Balance__c,
+                                                                        loan__Current_Principal_Remaining__c,
+                                                                        loan__Disbursal_Reversal__c,
+                                                                        loan__Transaction_Amount__c,
+                                                                        loan__Repayment_Txn_Reversal__c,
+                                                                        loan__Loan_Payment_Txn__c,
+                                                                        loan__Loan_Disbursal__c,
+                                                                        loan__Transaction_Type_Id__r.loan__Transaction_Name__C,
+                                                                        loan__Consolidated_Loan_Balance__c
+                                                                FROM loan__Loan_Transaction_Summary__c
+                                                                Order By CreatedDate ASC];
         System.assertEquals(newSummariesList.size(),3);
 
         for(loan__Loan_Transaction_Summary__c lts:newSummariesList){
@@ -554,7 +566,9 @@ public with sharing class TestMigrationForLTS {
                             name,
                             Statement_Generation_End_Date__c,
                             Statement_Generation_Start_Date__c,
-                            APXT_BPM__Title__c
+                            APXT_BPM__Title__c,
+                            APXT_BPM__Query_Id__c,
+                            Count_Cl_Contract_Size__c
                             FROM APXT_BPM__Conductor__c 
                             WHERE APXT_BPM__Title__c=: ConstantValues.STATEMENT_CONGA_BATCH];
         System.assert(congaBatchRecord != null,'Conga Batch Should not be null');
@@ -659,7 +673,9 @@ public with sharing class TestMigrationForLTS {
                             name,
                             Statement_Generation_End_Date__c,
                             Statement_Generation_Start_Date__c,
-                            APXT_BPM__Title__c
+                            APXT_BPM__Title__c,
+                            APXT_BPM__Query_Id__c,
+                            Count_Cl_Contract_Size__c
                             FROM APXT_BPM__Conductor__c 
                             WHERE APXT_BPM__Title__c=: ConstantValues.STATEMENT_CONGA_BATCH];
         System.assert(congaBatchRecord != null,'Conga Batch Should not be null');
@@ -1084,7 +1100,9 @@ public with sharing class TestMigrationForLTS {
                             name,
                             Statement_Generation_End_Date__c,
                             Statement_Generation_Start_Date__c,
-                            APXT_BPM__Title__c
+                            APXT_BPM__Title__c,
+                            APXT_BPM__Query_Id__c,
+                            Count_Cl_Contract_Size__c
                             FROM APXT_BPM__Conductor__c 
                             WHERE APXT_BPM__Title__c=: ConstantValues.STATEMENT_CONGA_BATCH];
         System.assert(congaBatchRecord != null,'Conga Batch Should not be null');
@@ -1240,6 +1258,8 @@ public with sharing class TestMigrationForLTS {
                             name,
                             Statement_Generation_End_Date__c,
                             Statement_Generation_Start_Date__c,
+                            Count_Cl_Contract_Size__c,
+                            APXT_BPM__Query_Id__c,
                             APXT_BPM__Title__c
                             FROM APXT_BPM__Conductor__c 
                             WHERE APXT_BPM__Title__c=: ConstantValues.STATEMENT_CONGA_BATCH];

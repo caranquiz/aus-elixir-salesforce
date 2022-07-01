@@ -17,6 +17,7 @@ public class NextGenLoanDetailCreation {
         List<Account> accountList,
         String borrowerAccount
     ){
+        Date currentSysDate =(Test.isRunningTest()?Date.Today():(new loan.GlobalLoanUtilFacade()).getCurrentSystemDate());
         List<String> repaymentType=new List<String>();
         List<clcommon__CL_Product__c> clProductList=[SELECT id,
                                                             Name,
@@ -44,6 +45,10 @@ public class NextGenLoanDetailCreation {
                                     ((Map<String, Object>) eachLoanDetail).get('LoanPurpose')).get('PrimaryPurpose');
                         }
                 }
+                objApplication.Sales_Channel__c='Next Gen';
+                objApplication.genesis__Interest_Rate__c=0;
+                objApplication.genesis__Expected_Start_Date__c=currentSysDate;
+
                 if(((Map<String, Object>) eachLoanDetail) != null &&
                 ((Map<String, Object>) ((Map<String, Object>) eachLoanDetail)
                 .get('LoanPurpose')) !=null &&
@@ -55,87 +60,54 @@ public class NextGenLoanDetailCreation {
                     String description=(String)((Map<String,Object>)(
                         (Map<String, Object>) ((Map<String, Object>) eachLoanDetail)
                         .get('LoanPurpose')).get('LendingPurposeCode')).get('Description');
-                        objApplication.Primary_Loan_Purpose__c = (description.equalsIgnoreCase('125 - purchase of newly erected dwellings - House by first mortgage')  ||
-                        description.equalsIgnoreCase('127 - Purchase of newly erected dwellings - Other dwelling by first mortgage')) ? 'Purchase New'                                       
-                        : (description.equalsIgnoreCase('129 - Purchase of established dwelling - house by first mortgage') ||
-                        description.equalsIgnoreCase('131 - Purchase of established dwelling - Other dwelling - secured by first mortgage') ||
-                        description.equalsIgnoreCase('231 - Purchases of individual residential blocks of land') ||
-                        description.equalsIgnoreCase('329 - Finance for the Purchase of land and buildings - Dwellings for rental/resale (not owner occupied)') ||
-                        description.equalsIgnoreCase('330 - Finance for the Purchase of land and buildings - non-residential buildings - shops') ||
-                        description.equalsIgnoreCase('331 - Finance for the Purchase of land and buildings - non-residential buildings - offices') ||
-                        description.equalsIgnoreCase('332 - Finance for the Purchase of land and buildings - non-residential buildings - industrial (eg. factories, motor repair shops)') ||
-                        description.equalsIgnoreCase('335 - Finance for the Purchase of land and buildings - non-residential buildings - rural property') ||
-                        description.equalsIgnoreCase('336 - Finance for the Purchase of land and buildings - non-residential buildings - other land (for residential block development)') ||
-                        description.equalsIgnoreCase('337 - Finance for then Purchase of land and buildings - non-residential buldings - other real property (not elsewhere listed)')) ? 'Purchase Existing'
-                        : (description.equalsIgnoreCase('245 - Purchase / construction of dwelling for rental / resale') ||
-                        description.equalsIgnoreCase('121 - Construction of dwellings - House by first mortgage') ||
-                        description.equalsIgnoreCase('327 - Construction Finance - Alteration and/or additions (excludes maintenance and repairs and other improvements that don\''+'t include building work)')||
-                        description.equalsIgnoreCase('320 - Construction Finance - Erection of dwellings for rental/resale (not owner occupied)')) ? 'Construction'
-                        : (description.equalsIgnoreCase('123 - Construction of dwellings - Other dwelling first mortgage') ||
-                        description.equalsIgnoreCase('322 - Construction Finance - Erection of non-residential buildings - offices') ||
-                        description.equalsIgnoreCase('323 - Construction Finance - Erection of non-residential buildings - industrial (eg. Factories, motor repair shops)') ||
-                        description.equalsIgnoreCase('321 - Construction Finance - Erection of non-residential buildings - shop')) ? 'Construction'
-                        : (description.equalsIgnoreCase('143 - Alterations and additions (excluding swimming pools)') ||
-                        description.equalsIgnoreCase('221 - Motor cars and station wagons -new') ||
-                        description.equalsIgnoreCase('223 - Motor cars and station wagons - used') ||
-                        description.equalsIgnoreCase('225 - Other motor vehicles') ||
-                        description.equalsIgnoreCase('227 - Motorcycles, scooters') ||
-                        description.equalsIgnoreCase('229 - Boats, caravans and trailers') ||
-                        description.equalsIgnoreCase('237 - Purchase of household and personal goods') ||
-                        description.equalsIgnoreCase('241 - Travel and holidays') ||
-                        description.equalsIgnoreCase('247 - Other personal investment (including shares and purchase of land for investment)')) ? 'Refinance Cash Out'
-                        : (description.equalsIgnoreCase('340 - Wholesale Finance - eg (wholesalers or retailers purchase of goods, working capital)') ||
-                        description.equalsIgnoreCase('341 - Purchase of plant and equipment - motore vehicles (excluding motor cycles etc)') ||
-                        description.equalsIgnoreCase('342 - Purchase of plant and equipment - other transport equipment (eg. motorcycles, trailers, caravans, boats, aircraft)') ||
-                        description.equalsIgnoreCase('343 - Purchase of plant and equipment - other (eg. earth moving equipment, agricultural equipment, computers)')) ? 'Refinance Business Purposes'
-                        : (description.equalsIgnoreCase('243 - Refinancing - commercial finance')) ? 'Refinance Business Purposes'
-                        : (description.equalsIgnoreCase('239 - Debt consolidation (excluding refinance for existing loans)') ||
-                        description.equalsIgnoreCase('348 - Refinancing - Personal finance')) ? 'Refinance Debt Consolidation'
-                        : (description.equalsIgnoreCase('249 - Other (including shares and purchase of land for investment)') ||
-                        description.equalsIgnoreCase('349 - Other - all purpose (eg. maintenance and repairs and other improvements that don\''+'t involve building work)')) ? 'Refinance Cash Out'
-                        :(description!=null && description.contains('133')) ? 'Refinance'
-                        : '';
+                        if(description!=null){
+                            objApplication.Primary_Loan_Purpose__c = (description.contains('125')  || description.contains('127')) ? ConstantValues.PURCHASE_NEW                                       
+                                : (description.contains('129') || description.contains('131') ||
+                                description.contains('231') || description.contains('329') || 
+                                description.contains('330') || description.contains('331') ||
+                                description.contains('332') || description.contains('335') ||
+                                description.contains('336') ||description.contains('337')) ? ConstantValues.PURCHASE_EXISTING
+                                : (description.contains('245') || description.contains('121') ||
+                                description.contains('327')|| description.contains('320')) ? ConstantValues.CONSTRUCTION
+                                : (description.contains('123') || description.contains('322') ||
+                                description.contains('323') || description.contains('321')) ? ConstantValues.CONSTRUCTION
+                                : (description.contains('143') || description.contains('221') ||
+                                description.contains('223') || description.contains('225') ||
+                                description.contains('227') || description.contains('229') ||
+                                description.contains('237') || description.contains('241') ||
+                                description.contains('247')) ? ConstantValues.REFINANCE_CASH_OUT
+                                : (description.contains('340') || description.contains('341') ||
+                                description.contains('342') || description.contains('343')) ? ConstantValues.REFINANCE_BUSINESS_PURPOSES
+                                : (description.contains('243')) ? ConstantValues.REFINANCE_BUSINESS_PURPOSES
+                                : (description.contains('239') || description.contains('348')) ? ConstantValues.REFINANCE_DEBT_CONSOLIDATION
+                                : (description.contains('249') || description.contains('349')) ? ConstantValues.REFINANCE_CASH_OUT
+                                :(description.contains('133')) ? ConstantValues.REFINANCE
+                                : '';
 
-                        objApplication.ABS_lending_purpose__c = (description.equalsIgnoreCase('125 - purchase of newly erected dwellings - House by first mortgage')  ||
-                        description.equalsIgnoreCase('127 - Purchase of newly erected dwellings - Other dwelling by first mortgage')) ? 'Purchase-New'                                       
-                        : (description.equalsIgnoreCase('129 - Purchase of established dwelling - house by first mortgage') ||
-                        description.equalsIgnoreCase('131 - Purchase of established dwelling - Other dwelling - secured by first mortgage') ||
-                        description.equalsIgnoreCase('231 - Purchases of individual residential blocks of land') ||
-                        description.equalsIgnoreCase('329 - Finance for the Purchase of land and buildings - Dwellings for rental/resale (not owner occupied)') ||
-                        description.equalsIgnoreCase('330 - Finance for the Purchase of land and buildings - non-residential buildings - shops') ||
-                        description.equalsIgnoreCase('331 - Finance for the Purchase of land and buildings - non-residential buildings - offices') ||
-                        description.equalsIgnoreCase('332 - Finance for the Purchase of land and buildings - non-residential buildings - industrial (eg. factories, motor repair shops)') ||
-                        description.equalsIgnoreCase('335 - Finance for the Purchase of land and buildings - non-residential buildings - rural property') ||
-                        description.equalsIgnoreCase('336 - Finance for the Purchase of land and buildings - non-residential buildings - other land (for residential block development)') ||
-                        description.equalsIgnoreCase('337 - Finance for then Purchase of land and buildings - non-residential buldings - other real property (not elsewhere listed)')) ? 'Purchase - Existing'
-                        : (description.equalsIgnoreCase('245 - Purchase / construction of dwelling for rental / resale') ||
-                        description.equalsIgnoreCase('121 - Construction of dwellings - House by first mortgage') ||
-                        description.equalsIgnoreCase('327 - Construction Finance - Alteration and/or additions (excludes maintenance and repairs and other improvements that don\''+'t include building work)')||
-                        description.equalsIgnoreCase('320 - Construction Finance - Erection of dwellings for rental/resale (not owner occupied)')) ? 'Construction of dwelling - House'
-                        : (description.equalsIgnoreCase('123 - Construction of dwellings - Other dwelling first mortgage') ||
-                        description.equalsIgnoreCase('322 - Construction Finance - Erection of non-residential buildings - offices') ||
-                        description.equalsIgnoreCase('323 - Construction Finance - Erection of non-residential buildings - industrial (eg. Factories, motor repair shops)') ||
-                        description.equalsIgnoreCase('321 - Construction Finance - Erection of non-residential buildings - shop')) ? 'Construction of dwelling - Other dwelling'
-                        : (description.equalsIgnoreCase('143 - Alterations and additions (excluding swimming pools)') ||
-                        description.equalsIgnoreCase('221 - Motor cars and station wagons -new') ||
-                        description.equalsIgnoreCase('223 - Motor cars and station wagons - used') ||
-                        description.equalsIgnoreCase('225 - Other motor vehicles') ||
-                        description.equalsIgnoreCase('227 - Motorcycles, scooters') ||
-                        description.equalsIgnoreCase('229 - Boats, caravans and trailers') ||
-                        description.equalsIgnoreCase('237 - Purchase of household and personal goods') ||
-                        description.equalsIgnoreCase('241 - Travel and holidays') ||
-                        description.equalsIgnoreCase('247 - Other personal investment (including shares and purchase of land for investment)')) ? 'Refinance - Existing Mortgages'
-                        : (description.equalsIgnoreCase('340 - Wholesale Finance - eg (wholesalers or retailers purchase of goods, working capital)') ||
-                        description.equalsIgnoreCase('341 - Purchase of plant and equipment - motore vehicles (excluding motor cycles etc)') ||
-                        description.equalsIgnoreCase('342 - Purchase of plant and equipment - other transport equipment (eg. motorcycles, trailers, caravans, boats, aircraft)') ||
-                        description.equalsIgnoreCase('343 - Purchase of plant and equipment - other (eg. earth moving equipment, agricultural equipment, computers)')) ? 'Refinance - Equity Release'
-                        : (description.equalsIgnoreCase('243 - Refinancing - commercial finance')) ? 'Refinance - Debt Consolidation'
-                        : (description.equalsIgnoreCase('239 - Debt consolidation (excluding refinance for existing loans)') ||
-                        description.equalsIgnoreCase('348 - Refinancing - Personal finance')) ? 'Refinance - Debt Consolidation'
-                        : (description.equalsIgnoreCase('249 - Other (including shares and purchase of land for investment)') ||
-                        description.equalsIgnoreCase('349 - Other - all purpose (eg. maintenance and repairs and other improvements that don\''+'t involve building work)')) ? 'Refinance - Equity Release'
-                        :(description!=null && description.contains('133'))? 'Refinance - Existing Mortgages'
-                        : '';
+                                objApplication.ABS_lending_purpose__c = (description.contains('125')  || description.contains('127')) ? ConstantValues.PURCHARE_NEW_LENDING                                       
+                                    : (description.contains('129') || description.contains('131') ||
+                                    description.contains('231') || description.contains('329') ||
+                                    description.contains('330') || description.contains('331') ||
+                                    description.contains('332') || description.contains('335') ||
+                                    description.contains('336') || description.contains('337')) ? ConstantValues.PURCHASE_EXISTING_LENDING
+                                    : (description.contains('245') || description.contains('121') ||
+                                    description.contains('327')|| description.contains('320')) ? ConstantValues.CONSTRUCTION_DWELLING
+                                    : (description.contains('123') || description.contains('322') ||
+                                    description.contains('323') || description.contains('321')) ? ConstantValues.CONSTRUCTION_OTHER_DWELLING
+                                    : (description.contains('143') || description.contains('221') ||
+                                    description.contains('223') || description.contains('225') ||
+                                    description.contains('227') || description.contains('229') ||
+                                    description.contains('237') || description.contains('241') ||
+                                    description.contains('247')) ? ConstantValues.REFINANCE_EXISTING
+                                    : (description.contains('340') || description.contains('341') ||
+                                    description.contains('342') || description.contains('343')) ? ConstantValues.REFINANCE_EQUITY
+                                    : (description.contains('243')) ? ConstantValues.REFINANCE_DEBT_LENDING
+                                    : (description.contains('239') || description.contains('348')) ? ConstantValues.REFINANCE_DEBT_LENDING
+                                    : (description.contains('249') || description.contains('349')) ? ConstantValues.REFINANCE_EQUITY
+                                    :(description.contains('133'))? ConstantValues.REFINANCE_EXISTING
+                                    : '';
+                        }
+                        
                 }
                 if(((Map<String, Object>) eachLoanDetail) != null &&
                     ((Map<String, Object>) ((Map<String, Object>) eachLoanDetail)
