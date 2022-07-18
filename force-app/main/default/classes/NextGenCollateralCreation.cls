@@ -19,7 +19,11 @@ public with sharing class NextGenCollateralCreation {
                 List<clcommon__Collateral__c> objCollateralList=new List<clcommon__Collateral__c>();
                 Map<String,String> ownerDetailMap=new Map<String,String>();
                 List<genesis__Application_Collateral__c> objAppCollList=new List<genesis__Application_Collateral__c>();
-                
+                List < clcommon__Collateral_Type__c > propertyTypeList = [SELECT Id FROM clcommon__Collateral_Type__c WHERE Name =: ConstantValues.PROPERTY];
+                Id propertyTypeId = NULL;
+                if(propertyTypeList.isEmpty() == FALSE){
+                    propertyTypeId = propertyTypeList[0].Id;
+                }
                 if(
                     ((Map<String, Object>)financialSegmentMap)!= null &&
                     String.valueOf(
@@ -52,6 +56,9 @@ public with sharing class NextGenCollateralCreation {
                                 }
                                 if(objCollateral !=null){
                                     objCollateral.Valuation_Ordered_by_Lender__c='No';
+                                    if(propertyTypeId != NULL){
+                                        objCollateral.clcommon__Collateral_Type__c = propertyTypeId;
+                                    }
                                     if(
                                     ((Map<String, Object>)loanDetailSegmentMap)!= null &&
                                     String.valueOf(
@@ -133,6 +140,9 @@ public with sharing class NextGenCollateralCreation {
                         }
                         if(objCollateral!=null){
                             objCollateral.Valuation_Ordered_by_Lender__c='No';
+                            if(propertyTypeId != NULL){
+                                objCollateral.clcommon__Collateral_Type__c = propertyTypeId;
+                            }
                             if(
                             ((Map<String, Object>)loanDetailSegmentMap)!= null &&
                             String.valueOf(
@@ -196,6 +206,8 @@ public with sharing class NextGenCollateralCreation {
                 if(objAppCollList.size()>0){
                     insert objAppCollList;
                 }
+                //Code added by Rameswari on 14/07/22 to update QBE and S&P location values
+                SkuidValuesUpdateHelper.updateLocationValues(appId);
                 return ownerDetailMap;
     }
     public static void AssetLiabilityRecordCreation(

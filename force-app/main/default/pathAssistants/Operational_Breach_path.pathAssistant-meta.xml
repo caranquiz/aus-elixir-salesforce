@@ -4,5 +4,9 @@
     <entityName>Breach_Register__c</entityName>
     <fieldName>Stage__c</fieldName>
     <masterLabel>Operational Breach path</masterLabel>
+    <pathAssistantSteps>
+        <fieldNames>Stage__c</fieldNames>
+        <picklistValueName>Closed</picklistValueName>
+    </pathAssistantSteps>
     <recordTypeName>Operational_Breach</recordTypeName>
 </PathAssistant>

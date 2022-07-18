@@ -1,10 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <actionCalls>
+        <name>Borrower_ACH_Approval_Email</name>
+        <label>Borrower ACH Approval Email</label>
+        <locationX>524</locationX>
+        <locationY>623</locationY>
+        <actionName>BorrowerACHApprovalEmail</actionName>
+        <actionType>apex</actionType>
+        <inputParameters>
+            <name>contractId</name>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </inputParameters>
+    </actionCalls>
+    <actionCalls>
         <name>Create_APS_One_Time</name>
         <label>Create APS One Time</label>
-        <locationX>815</locationX>
-        <locationY>944</locationY>
+        <locationX>1107</locationX>
+        <locationY>993</locationY>
         <actionName>OneTimeAPSCreation</actionName>
         <actionType>apex</actionType>
         <connector>
@@ -20,8 +34,8 @@
     <actionCalls>
         <name>Create_OneTime_APS_PI</name>
         <label>Create OneTime APS PI</label>
-        <locationX>816</locationX>
-        <locationY>1067</locationY>
+        <locationX>1107</locationX>
+        <locationY>1131</locationY>
         <actionName>OneTimeAPSCreation</actionName>
         <actionType>apex</actionType>
         <inputParameters>
@@ -166,8 +180,8 @@
     <assignments>
         <name>Get_APS_id_Record</name>
         <label>Get APS id Record</label>
-        <locationX>1055</locationX>
-        <locationY>824</locationY>
+        <locationX>1330</locationX>
+        <locationY>798</locationY>
         <assignmentItems>
             <assignToReference>APSPIRecord.Id</assignToReference>
             <operator>Assign</operator>
@@ -273,6 +287,35 @@
         <locationY>383</locationY>
         <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
         <rules>
+            <name>Chenged</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Borrower_ACH_Change__c</leftValueReference>
+                <operator>IsChanged</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Borrower_ACH_Change__c</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <elementReference>$Record.loan__Borrower_ACH__c</elementReference>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.loan__Borrower_ACH__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>updateRecordType</targetReference>
+            </connector>
+            <label>Chenged</label>
+        </rules>
+        <rules>
             <name>Flat_Amount_is_not_null</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
@@ -351,8 +394,8 @@
     <loops>
         <name>Iterating_APS_One_Time_Creation</name>
         <label>Iterating APS One Time Creation</label>
-        <locationX>821</locationX>
-        <locationY>775</locationY>
+        <locationX>1105</locationX>
+        <locationY>797</locationY>
         <collectionReference>Get_Record_when_Flat_Amount_is_not_null</collectionReference>
         <iterationOrder>Asc</iterationOrder>
         <nextValueConnector>
@@ -451,8 +494,8 @@
     <recordLookups>
         <name>Get_Record_when_Flat_Amount_is_not_null</name>
         <label>Get Record when Flat Amount is not null</label>
-        <locationX>823</locationX>
-        <locationY>596</locationY>
+        <locationX>1105</locationX>
+        <locationY>641</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Iterating_APS_One_Time_Creation</targetReference>
@@ -500,6 +543,22 @@
         <locationX>1668</locationX>
         <locationY>1295</locationY>
         <inputReference>APSRecordUpdate</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <name>updateRecordType</name>
+        <label>updateRecordType</label>
+        <locationX>524</locationX>
+        <locationY>503</locationY>
+        <connector>
+            <targetReference>Borrower_ACH_Approval_Email</targetReference>
+        </connector>
+        <inputAssignments>
+            <field>RecordTypeId</field>
+            <value>
+                <stringValue>0129p000000AoJk</stringValue>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
     </recordUpdates>
     <recordUpdates>
         <name>Updating_Transaction_Amount</name>

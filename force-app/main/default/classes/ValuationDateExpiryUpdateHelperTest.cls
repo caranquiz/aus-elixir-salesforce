@@ -22,10 +22,15 @@ public class ValuationDateExpiryUpdateHelperTest {
         //Inserting Account
         Account testAccount = GenericUtilityTestHelper.insertDummyAccount();
         testAccount.clcommon__Legal_Entity_Type__c=legEntity.Id;
+        RecordType objRecordType = [Select Id,Name from RecordType where Name = 'Valuer'];
+        if(objRecordType != NULL){
+            testAccount.RecordTypeId = objRecordType.Id;
+        }
         update testAccount;
         List<Account> testAccountList=[SELECT id 
                                         FROM Account 
                                         WHERE clcommon__Legal_Entity_Type__r.Name=:ConstantValues.indType 
+                                        AND RecordTypeId =: objRecordType.Id
                                         LIMIT 1];
         System.AssertNotEquals(
          testAccount.Id,
@@ -82,6 +87,13 @@ public class ValuationDateExpiryUpdateHelperTest {
             testApplicationColl.Id,
             null,
             'Application Collateral inserted successfully'
+        );
+        //Inserting Valuer Party Type
+        clcommon__Party_Type__c partyType = GenericUtilityTestHelper.insertPartyType('Valuer');
+        System.AssertNotEquals(
+            partyType.Id,
+            null,
+            'Valuer Party Type inserted successfully'
         );
     }
     @isTest
@@ -386,4 +398,28 @@ public class ValuationDateExpiryUpdateHelperTest {
 
         test.stopTest();
     }
+@isTest
+    static void collateralTest2(){
+
+        test.startTest();
+        List<Account> testAccountList=[SELECT Id FROM Account];
+        System.AssertNotEquals(
+         testAccountList.size(),
+         0,
+         'Account found successfully.'
+        );
+        Id valId = testAccountList[0].Id;
+        clcommon__Collateral__c collateral=[SELECT id,Valuer__c FROM clcommon__Collateral__c];
+        collateral.Valuer__c = valId;
+        update collateral;
+        
+        List<clcommon__Collateral__c> collateralList=[SELECT id 
+                                                        FROM clcommon__Collateral__c 
+                                                        WHERE Valuer__c =: valId];
+        System.assertEquals(
+            collateralList.size(), 
+            1, 
+            'Collateral Updated Sucessfully');
+        test.stopTest();
+        }
 }

@@ -6516,6 +6516,16 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>clcommon__Party__c.Employment_ABN_Effective_From_Rule_Check__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>clcommon__Party__c.Employment_ABN_Effective_From__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>clcommon__Party__c.Employment_Type__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -11456,12 +11466,67 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>loan__Bank_Account__c.Account_Change__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>loan__Bank_Account__c.Account_Usage_Change__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>loan__Bank_Account__c.Active_Change__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>loan__Bank_Account__c.Approved__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>loan__Bank_Account__c.BSB_Number_Change__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>loan__Bank_Account__c.BSB_Number__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>loan__Bank_Account__c.Bank_Account_Name_Change__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>loan__Bank_Account__c.Bank_Account_Name__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>loan__Bank_Account__c.Bank_Account_Number_Change__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>loan__Bank_Account__c.Bank_Name_Change__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>loan__Bank_Account__c.Created_After_Conversion__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>loan__Bank_Account__c.Field_Update__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>loan__Bank_Account__c.Submit_For_Approval__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -11662,6 +11727,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>loan__Loan_Account__c.Approx_Funds_Being_Received__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>loan__Loan_Account__c.Borrower_ACH_Change__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>

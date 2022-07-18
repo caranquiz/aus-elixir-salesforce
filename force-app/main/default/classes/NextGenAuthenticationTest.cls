@@ -188,7 +188,16 @@ public class NextGenAuthenticationTest{
             appCollateralList.size(),
             1
         );
-
+        
+        //Insert Collateral Type
+        clcommon__Collateral_Type__c collateralType = GenericUtilityTestHelper.returnCollType();
+        List<clcommon__Collateral_Type__c> collateralTypeList=[SELECT id 
+                                            FROM clcommon__Collateral_Type__c 
+                                            WHERE Name=: ConstantValues.PROPERTY];
+        System.assertEquals(
+            collateralTypeList.size(),
+            1
+        );
     }
     @isTest
     static void createApplicationTestEighteen(){

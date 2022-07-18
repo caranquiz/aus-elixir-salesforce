@@ -144,7 +144,7 @@
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
     <deploymentStatus>Deployed</deploymentStatus>
     <deprecated>false</deprecated>
-    <enableActivities>false</enableActivities>
+    <enableActivities>true</enableActivities>
     <enableBulkApi>true</enableBulkApi>
     <enableEnhancedLookup>true</enableEnhancedLookup>
     <enableFeeds>false</enableFeeds>
@@ -163,6 +163,7 @@
         <type>AutoNumber</type>
     </nameField>
     <pluralLabel>Bank Accounts</pluralLabel>
+    <recordTypeTrackHistory>false</recordTypeTrackHistory>
     <searchLayouts>
         <lookupDialogsAdditionalFields>loan__Bank_Name__c</lookupDialogsAdditionalFields>
         <lookupDialogsAdditionalFields>loan__Bank_Account_Number__c</lookupDialogsAdditionalFields>

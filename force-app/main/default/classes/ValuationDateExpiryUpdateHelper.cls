@@ -87,7 +87,7 @@ global with sharing class ValuationDateExpiryUpdateHelper {
         try{
             appList=[SELECT id,
                             Actual_Security_Value__c,
-                            Expected_security_value__c	
+                            Expected_security_value__c  
                         FROM genesis__Applications__c 
                         WHERE id IN: appId];
             appCollateralList=[SELECT id,
@@ -134,6 +134,90 @@ global with sharing class ValuationDateExpiryUpdateHelper {
             }
         }catch(Exception e){
             GenericUtility.insertLog('ValuationDateExpiryUpdateHelper.valueUpdate',e);
+        }
+    }
+    global static void valuerPartyInsertion(List<Id> collateralList){
+        List <clcommon__Party__c> newPartyList = new List<clcommon__Party__c>();
+        Set <Id> accountIds = new Set <Id>();
+        Integer count = 0;
+        List <clcommon__Party_Type__c> valuerPartyTypeList = [Select Id 
+                                                              from clcommon__Party_Type__c 
+                                                              where Name =: ConstantValues.VALUER_PARTY_TYPE limit 1];
+        try{
+            if(valuerPartyTypeList.size() == 0){
+                throw new CustomException(ConstantValues.VALUER_NOT_PRESENT);
+            }
+            List <genesis__Application_Collateral__c> appCollateralList = [Select Id,
+                                                                                    genesis__Collateral__c,
+                                                                                    genesis__Collateral__r.Valuer__c,
+                                                                                    genesis__Application__c 
+                                                                           from genesis__Application_Collateral__c 
+                                                                           where genesis__Collateral__c in : collateralList 
+                                                                           and genesis__Collateral__r.Valuer__c != NULL 
+                                                                           order by genesis__Application__c];
+            List <clcommon__Party__c> valuerPartyList = [Select Id,
+                                                                genesis__Application__c,clcommon__Account__c
+                                                                from clcommon__Party__c 
+                                                         where genesis__Application__c in 
+                                                             (Select genesis__Application__c 
+                                                             from genesis__Application_Collateral__c
+                                                             where genesis__Collateral__c in : collateralList)
+                                                             and Party_Type_Name__c =: ConstantValues.VALUER_PARTY_TYPE
+                                                             order by genesis__Application__c];
+             for(genesis__Application_Collateral__c objAppCollateral : appCollateralList){
+                count = 0;
+                for(clcommon__Party__c objParty : valuerPartyList){
+                    if(objParty.genesis__Application__c == objAppCollateral.genesis__Application__c && objParty.clcommon__Account__c == objAppCollateral.genesis__Collateral__r.Valuer__c){
+                        count++;
+                    }
+                }
+                if(count == 0){
+                    if((accountIds.size() > 0 
+                        && !(accountIds.contains(objAppCollateral.genesis__Collateral__r.Valuer__c))) 
+                        || accountIds.size() == 0){
+                        clcommon__Party__c newParty = new clcommon__Party__c(genesis__Application__c=objAppCollateral.genesis__Application__c,
+                            clcommon__Account__c=objAppCollateral.genesis__Collateral__r.Valuer__c, clcommon__Type__c = valuerPartyTypeList[0].Id);
+                        newPartyList.add(newParty);
+                        accountIds.add(objAppCollateral.genesis__Collateral__r.Valuer__c);
+                    }
+                }
+             }
+             if(newPartyList.size() > 0){
+                 insert newPartyList;
+             }
+        }catch(Exception e){
+                    GenericUtility.insertLog('ValuationDateExpiryUpdateHelper.valuerPartyInsertion',e);
+        }
+    }
+    global static void updateTotalSecurities(Set<Id> appplicationSet){  
+        try{
+            List < genesis__Applications__c > updatedAppList = new List < genesis__Applications__c > ();
+            List < genesis__Applications__c > appList = [SELECT ID,
+                                                            Total_Number_of_Securities__c
+                                                         FROM genesis__Applications__c
+                                                         WHERE ID IN : appplicationSet
+                                                         ORDER BY ID];
+            List < genesis__Application_Collateral__c > appCollateralList = [SELECT ID,
+                                                                                genesis__Application__c
+                                                                             FROM genesis__Application_Collateral__c
+                                                                             WHERE genesis__Application__c IN : appplicationSet
+                                                                             ORDER BY genesis__Application__c];
+            Integer count = 0;
+            for(genesis__Applications__c objApp : appList){
+                    count = 0;
+                for(genesis__Application_Collateral__c objAppCollateral : appCollateralList){
+                    if(objApp.Id == objAppCollateral.genesis__Application__c){
+                        count+=1;
+                    }
+                }
+                if(objApp.Total_Number_of_Securities__c != count){
+                    objApp.Total_Number_of_Securities__c = count;
+                    updatedAppList.add(objApp);
+                }
+            }
+            Database.update(updatedAppList);
+        }catch(Exception e){
+                    GenericUtility.insertLog('ValuationDateExpiryUpdateHelper.updateTotalSecurities',e);
         }
     }
 }

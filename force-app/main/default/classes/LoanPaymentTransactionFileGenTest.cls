@@ -33,6 +33,8 @@ private class LoanPaymentTransactionFileGenTest {
     loan__Bank_Account__c testPayeebankAccount = GenericUtilityTestHelper.getBankAccount(
       testAccount
     );
+    testPayeebankAccount.Submit_For_Approval__c = true;
+    update testPayeebankAccount;
     System.assertNotEquals(
       testPayeebankAccount.Id,
       null,
@@ -42,6 +44,8 @@ private class LoanPaymentTransactionFileGenTest {
     loan__Bank_Account__c testPayerbankAccount = GenericUtilityTestHelper.getPayerBankAccount(
       testAccount
     );
+    testPayerbankAccount.Submit_For_Approval__c = true;
+    update testPayerbankAccount;
     System.assertNotEquals(
       testPayeebankAccount.Id,
       null,
@@ -78,6 +82,7 @@ private class LoanPaymentTransactionFileGenTest {
       'Loan account insert error'
     );
     testLoanAccount.loan__Borrower_ACH__c = testPayerbankAccount.Id;
+    testLoanAccount.Borrower_ACH_Change__c = testPayerbankAccount.Id;
     Warehouse__c warehouse = GenericUtilityTestHelper.returnWarehouse();
     System.assertNotEquals(warehouse.Id, null, 'Warehouse insert error');
     testLoanAccount.Warehouse__c = warehouse.id;
@@ -232,10 +237,12 @@ private class LoanPaymentTransactionFileGenTest {
       [SELECT Id FROM loan__Loan_Payment_Transaction__c]
     );
     loan__Loan_Account__c loanContract = [
-      SELECT Id, loan__Borrower_ACH__c
+      SELECT Id, loan__Borrower_ACH__c 
+ 
       FROM loan__Loan_Account__c
     ];
     loanContract.loan__Borrower_ACH__c = null;
+
     update loanContract;
     List<loan__Loan_Account__c> testLoanContract=[SELECT Id, 
                                                         loan__Borrower_ACH__c
@@ -294,4 +301,25 @@ private class LoanPaymentTransactionFileGenTest {
     abaControl.runLDTFileGen();
     test.stopTest();
   }
+    static testMethod void callABAFilegenerationPage1() {
+    List<clcommon__DAG_Schedule__c> dagSchedule=[SELECT id FROM clcommon__DAG_Schedule__c];
+    List<loan__Automated_Payment_Setup__c> testAPSList=[SELECT id,loan__CL_Contract__c FROM loan__Automated_Payment_Setup__c];
+    List<Id> contractIdList = new List<Id>();
+    for(loan__Automated_Payment_Setup__c eachAPS : testAPSList){
+        contractIdList.add(eachAPS.loan__CL_Contract__c);
+    }
+    List<loan__Loan_Account__c> objContractList = [SELECT id,
+                                            Borrower_ACH_Change__r.Submit_For_Approval__c
+                                            FROM loan__Loan_Account__c
+                                            WHERE id in: contractIdList];
+    for(loan__Loan_Account__c eachContract : objContractList){
+        eachContract.Borrower_ACH_Change__r.Submit_For_Approval__c = false;
+    }                                        
+    update objContractList;
+    test.startTest();
+    ABAFileGeneratorController abaControl = new ABAFileGeneratorController();
+    abaControl.runLPTFileGen();
+    abaControl.runLDTFileGen();
+    test.stopTest();
+}
 }

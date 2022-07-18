@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Approve_Bank_Account_Change</fullName>
+    <availability>online</availability>
+    <displayType>button</displayType>
+    <linkType>javascript</linkType>
+    <masterLabel>Approve Bank Account Change</masterLabel>
+    <openType>onClickJavaScript</openType>
+    <protected>false</protected>
+    <url>{!REQUIRESCRIPT(&quot;/soap/ajax/29.0/connection.js&quot;)}
+{!REQUIRESCRIPT(&quot;/soap/ajax/29.0/apex.js&quot;)}
+
+
+if(&quot;{!loan__Loan_Account__c.loan__Borrower_ACH__c}&quot;===&quot;{!loan__Loan_Account__c.Borrower_ACH_Change__c}&quot;){
+alert(&quot;Borrower ACH and Borrower ACH Change are same&quot;);
+}
+
+else{
+var userProfile = &quot;{!User.Profile}&quot;;
+if(userProfile === &quot;System Administrator&quot; || userProfile ===&quot;Elixir System Admin&quot; || userProfile ===&quot;Credit Analyst&quot;){
+var borrowerAch = &quot;{!loan__Loan_Account__c.loan__Borrower_ACH__c}&quot;;
+var borrowerAchChange = &quot;{!loan__Loan_Account__c.Borrower_ACH_Change__c}&quot;;
+if(borrowerAchChange === &apos;&apos;){
+alert(&quot;Borrower ACH Change is NULL&quot;)
+}
+else{
+var status = sforce.apex.execute(&quot;UpdateBorrowerACH&quot;,&quot;checkStatusWS&quot;,{contractId : &quot;{!loan__Loan_Account__c.Id}&quot;});
+if(status[0] === &apos;true&apos;){
+//var confirmMessage = &quot;Borrower ACH is changed from &quot;+ borrowerAch +&quot; to &quot;+ borrowerAchChange +&quot; Do you want to approve this?&quot;;
+var confirmMessage = &quot;Are you sure you want to approve the ACH change from &quot;+ borrowerAch +
+&quot; to &quot; + borrowerAchChange;
+var confirm = window.confirm(confirmMessage);
+if(confirm){
+var changeBorrowerACH =
+sforce.apex.execute(&quot;UpdateBorrowerACH&quot;,&quot;updateAfterApprovalWS&quot;,{contractId : &quot;{!loan__Loan_Account__c.Id}&quot;});
+var approved =
+sforce.apex.execute(&quot;UpdateBorrowerACH&quot;,&quot;sendEmailAfterApprovedWS&quot;,{contractId : &quot;{!loan__Loan_Account__c.Id}&quot;});
+location.reload();
+}
+}
+else{
+alert(&quot;Borrower ACH change is not approved because the bank account approval is pending and needs to be approved first&quot;);
+}
+}
+}
+else{
+alert(&quot;This Profile has not access to Approve&quot;);
+}
+}</url>
+</WebLink>

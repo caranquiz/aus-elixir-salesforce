@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Bank_Account_Record</fullName>
+    <active>true</active>
+    <label>Bank Account Record</label>
+    <picklistValues>
+        <picklist>Account_Usage_Change__c</picklist>
+        <values>
+            <fullName>Advance Trust Account</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Borrower%2FInvestor Account</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Broker Account</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Business Account</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Collections Trust Account</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Investor Trust Account</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Tax Withholding Account</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>loan__Account_Type__c</picklist>
+        <values>
+            <fullName>Checking</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Saving</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>loan__Account_Usage__c</picklist>
+        <values>
+            <fullName>Advance Trust Account</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Borrower%2FInvestor Account</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Broker Account</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Business Account</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Collections Trust Account</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Investor Trust Account</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Tax Withholding Account</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>peer__Working_Place_Type__c</picklist>
+        <values>
+            <fullName>Big company</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Government company</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Personal company</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Small company</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>State employed</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Unemployed</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+</RecordType>

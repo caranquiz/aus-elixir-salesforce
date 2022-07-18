@@ -1647,8 +1647,8 @@ public class IndividualApplicantNextGen {
         if (((Map<String, Object>) address.get('Country')) != null) {
             if((String) ((Map<String, Object>) address.get('Country'))
             .get('ISO3166')=='Au'){
-                objCollateral.Country__c='Austrailia';
-                objCollateral.clcommon__Collateral_Name__c+='Austrailia';
+                objCollateral.Country__c='Australia';
+                objCollateral.clcommon__Collateral_Name__c+='Australia';
             }else{
                 objCollateral.Country__c=(String) ((Map<String, Object>) address.get('Country'))
             .get('ISO3166') ;

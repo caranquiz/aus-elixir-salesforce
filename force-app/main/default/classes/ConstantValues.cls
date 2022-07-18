@@ -1318,5 +1318,15 @@ global class ConstantValues {
   public static final String REFINANCE_EXISTING = 'Refinance - Existing Mortgages';
   public static final String REFINANCE_EQUITY = 'Refinance - Equity Release';
   public static final String REFINANCE_DEBT_LENDING = 'Refinance - Debt Consolidation';
+  
+  public static final String VALUER_NOT_PRESENT = 'Valuer party type not present!';
+  
+  public static final String PROPERTY = 'Property';
+
+  public static final String PAYG = 'PAYG';
+  public static final String UNEMPLOYMENT_STUDENT_HOME_DUTIES_RETIREMENT = 'Unemployment/Student/Home Duties/Retirement';
+  public static final String OTHER = 'Other';
+  public static final String TEST_EMAIL_ID = 'test@ck.com';
+  public static final String TEST_TEXT = 'Test';
 
 }

@@ -138,6 +138,11 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
+            <field>Conga_Batch_Start_Date__c</field>
+            <table>loan__Loan_Account__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
             <field>Interest_Rate_Change_Notification_Date__c</field>
             <table>loan__Loan_Account__c</table>
         </columns>

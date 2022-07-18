@@ -1,8 +1,54 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <layouts>
+        <layout>New Bank Account Creation Layout</layout>
+        <sections>
+            <label></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label></label>
+            <section>Fields</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>ReadOnly Layout</layout>
+        <sections>
+            <label></label>
+            <section>Bank Account Detail Update Changes</section>
+        </sections>
+        <sections>
+            <label></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label></label>
+            <section>Fields</section>
+        </sections>
+    </layouts>
+    <recordTypes>
+        <label></label>
+        <name>Bank_Account_Record</name>
+    </recordTypes>
+    <recordTypes>
+        <label></label>
+        <name>Lock_Bank_Account</name>
+    </recordTypes>
+    <recordTypes>
+        <label></label>
+        <name>New_Bank_Account</name>
+    </recordTypes>
+    <validationRules>
+        <errorMessage></errorMessage>
+        <name>Bank_Account_Name_Change_Length</name>
+    </validationRules>
     <validationRules>
         <errorMessage></errorMessage>
         <name>Bank_Account_Name_Length</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage></errorMessage>
+        <name>Bank_Account_Number_Change_Length</name>
     </validationRules>
     <validationRules>
         <errorMessage></errorMessage>
@@ -10,6 +56,14 @@
     </validationRules>
     <validationRules>
         <errorMessage></errorMessage>
+        <name>Bank_Account_Number_Update</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage></errorMessage>
         <name>Length_of_BSB_Number</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage></errorMessage>
+        <name>Length_of_BSB_Number_Change</name>
     </validationRules>
 </CustomObjectTranslation>

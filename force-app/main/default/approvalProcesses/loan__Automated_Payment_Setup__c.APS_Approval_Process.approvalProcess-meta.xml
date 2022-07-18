@@ -216,6 +216,10 @@
                 <name>msinclair@orde.com.au</name>
                 <type>user</type>
             </approver>
+            <approver>
+                <name>rjohnston@orde.com.au</name>
+                <type>user</type>
+            </approver>
             <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>
         </assignedApprover>
         <label>Step 1</label>

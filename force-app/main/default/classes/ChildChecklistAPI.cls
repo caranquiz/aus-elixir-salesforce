@@ -312,6 +312,7 @@ public with sharing class ChildChecklistAPI {
         Months_Self_Employed__c,
         ABN_Effective_from_Rule_Check__c,
         Party__r.Business_Applicant__c,
+        Party__r.Employment_ABN_Effective_From_Rule_Check__c,
         ABN_Effective_From_Exception_Check__c
       FROM genesis__Employment_Information__c
       WHERE genesis__Application__c = :appId

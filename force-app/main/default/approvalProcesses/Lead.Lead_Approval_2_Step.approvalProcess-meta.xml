@@ -26,6 +26,10 @@
                 <name>msinclair@orde.com.au</name>
                 <type>user</type>
             </approver>
+            <approver>
+                <name>rjohnston@orde.com.au</name>
+                <type>user</type>
+            </approver>
             <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>
         </assignedApprover>
         <label>Submit for Approval</label>
@@ -40,6 +44,14 @@
             </approver>
             <approver>
                 <name>jshastri@orde.com.au</name>
+                <type>user</type>
+            </approver>
+            <approver>
+                <name>msinclair@orde.com.au</name>
+                <type>user</type>
+            </approver>
+            <approver>
+                <name>rjohnston@orde.com.au</name>
                 <type>user</type>
             </approver>
             <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>

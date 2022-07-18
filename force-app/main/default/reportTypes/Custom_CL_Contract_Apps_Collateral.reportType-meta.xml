@@ -353,6 +353,11 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
+            <field>Scheduled_Balance_As_at_IR_change_date__c</field>
+            <table>loan__Loan_Account__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
             <field>loan__Borrower_ACH__c</field>
             <table>loan__Loan_Account__c</table>
         </columns>

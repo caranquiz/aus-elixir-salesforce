@@ -88,12 +88,11 @@ global with sharing class ConvertToContract{
                     banAcc.loan__Account_Usage__c = System.label.Borrower_Bank_Account_Type;
                     banAcc.loan__Bank_Name__c = app.genesis__Account__r.BSB__c;
                     banAcc.loan__Account__c = app.genesis__Account__c;
-                    // banAcc.Created_After_Conversion__c = true;
+                    banAcc.Created_After_Conversion__c = true;
                     if(banAcc != null){
                         insert banAcc;
-                        contr.loan__Borrower_ACH__c = banAcc.Id;
-                        // contr.Borrower_ACH_Change__c = banAcc.Id;
-                        System.debug('contract');
+                        //contr.loan__Borrower_ACH__c = banAcc.Id;
+                        contr.Borrower_ACH_Change__c = banAcc.Id;
                     }
                 }
                 //Change made by Rameswari on 24/12/2020
@@ -341,4 +340,5 @@ global with sharing class ConvertToContract{
             GenericUtility.insertBatchProcessLog('ConvertToContract',e);
         }
     }
+    
 }

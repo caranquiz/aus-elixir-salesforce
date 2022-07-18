@@ -127,6 +127,11 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
+            <field>Remaining_IO_Period__c</field>
+            <table>loan__Loan_Account__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
             <field>Total_Sum_Of_Linked_Loans__c</field>
             <table>loan__Loan_Account__c</table>
         </columns>

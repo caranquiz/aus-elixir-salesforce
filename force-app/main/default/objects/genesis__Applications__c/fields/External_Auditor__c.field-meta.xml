@@ -35,6 +35,11 @@ For filtering applications for external auditors</description>
                 <default>false</default>
                 <label>CBA</label>
             </value>
+            <value>
+                <fullName>Ernst and Young</fullName>
+                <default>false</default>
+                <label>Ernst and Young</label>
+            </value>
         </valueSetDefinition>
     </valueSet>
 </CustomField>

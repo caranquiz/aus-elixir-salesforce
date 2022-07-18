@@ -16,6 +16,7 @@ trigger CollateralTrigger on clcommon__Collateral__c (After update) {
     List<Id> applicationId = new List<Id>();
     List<Id> appId2 = new List<Id>();
     List<Id> appId3 = new List<Id>();
+    List<Id> collIdList=new List<Id>();
     List<genesis__Application_Collateral__c> appcollateralList=new List<genesis__Application_Collateral__c>();
     if(trigger.isUpdate && trigger.isAfter){
         Savepoint sp = Database.setSavepoint();
@@ -50,7 +51,9 @@ trigger CollateralTrigger on clcommon__Collateral__c (After update) {
                     if(collateral.Estimated_Value__c!= oldcollateral.Estimated_Value__c){
                         collateralValueList.add(collateral.Id);
                     }
-                    
+                    if(collateral.Valuer__c!= oldcollateral.Valuer__c){
+                        collIdList.add(collateral.Id);
+                    }
                 }
                 
                 for(genesis__Application_Collateral__c appcollateral:appcollateralList){
@@ -67,6 +70,9 @@ trigger CollateralTrigger on clcommon__Collateral__c (After update) {
                 }
                 
                 ValuationDateExpiryUpdateHelper.colletaralValuationDateExpiry(collId);
+                if(collIdList.size() > 0){
+                    ValuationDateExpiryUpdateHelper.valuerPartyInsertion(collIdList);
+                }
                 UpdateFees.updateMortgageFees(appIds);
                 UpdateFees.updateTitleInsuranceFees(applicationId);
                 UpdateFees.updateApplicationFees(appId2);

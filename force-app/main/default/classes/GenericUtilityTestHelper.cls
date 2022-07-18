@@ -1847,4 +1847,10 @@ public with sharing class GenericUtilityTestHelper {
         insert objBill;
         return objBill;
   }
+  public static clcommon__Collateral_Type__c returnCollType(){
+    clcommon__Collateral_Type__c objCollType =new clcommon__Collateral_Type__c(
+        Name = 'Property');
+        insert objCollType;
+        return objCollType;
+  }
 }

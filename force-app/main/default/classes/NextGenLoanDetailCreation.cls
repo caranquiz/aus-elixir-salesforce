@@ -186,7 +186,7 @@ public class NextGenLoanDetailCreation {
                             .get('AmountRequested')).get('Amount'));
                 }
 
-                if(((Map<String, Object>) eachLoanDetail) != null &&
+                /*if(((Map<String, Object>) eachLoanDetail) != null &&
                     ((Map<String, Object>) ((Map<String, Object>) eachLoanDetail)
                     .get('Fees')) !=null && ((String)((Map<String, Object>) 
                     ((Map<String, Object>) eachLoanDetail)
@@ -194,6 +194,38 @@ public class NextGenLoanDetailCreation {
                     (String)((Map<String, Object>) ((Map<String, Object>) eachLoanDetail)
                     .get('Fees')).get('Type')=='LMI'){
                     objApplication.Lenders_Mortgage_Insurance__c='Yes';
+                }*/
+                if(((Map<String, Object>)eachLoanDetail)!= null &&
+                    String.valueOf(
+                    ((Map<String, Object>)eachLoanDetail
+                    ))
+                    .contains('Fees=(')){
+                    List<Object> refFees = ((List<Object>) (
+                        (Map<String, Object>)eachLoanDetail).get('Fees'));
+                    for(Object eachFees: refFees){
+                        if(((Map<String, Object>) eachFees) != null &&
+                            ((String) ((Map<String, Object>) eachFees)
+                            .get('Type')) != null &&
+                            ((String) ((Map<String, Object>) eachFees)
+                            .get('Type'))=='LMI'){
+                            
+                            objApplication.Lenders_Mortgage_Insurance__c='Yes';
+                        }
+                    }
+
+                }else if(((Map<String, Object>)eachLoanDetail)!= null &&
+                String.valueOf(
+                ((Map<String, Object>)eachLoanDetail
+                ))
+                .contains('Fees={')){
+                    Object eachFees = ((Object)  ((Map<String, Object>)eachLoanDetail).get('Fees'));
+                    if(((Map<String, Object>) eachFees) != null &&
+                        ((String) ((Map<String, Object>) eachFees)
+                        .get('Type')) != null &&
+                        ((String) ((Map<String, Object>) eachFees)
+                        .get('Type'))=='LMI'){
+                        objApplication.Lenders_Mortgage_Insurance__c='Yes';
+                    }
                 }
                 if(((Map<String, Object>)loanTermMap)!= null &&
                     String.valueOf(

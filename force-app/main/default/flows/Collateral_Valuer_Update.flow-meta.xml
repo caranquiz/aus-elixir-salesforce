@@ -137,5 +137,5 @@
         <object>clcommon__Party_Type__c</object>
     </recordLookups>
     <startElementReference>Get_Application_Collateral_Record</startElementReference>
-    <status>Active</status>
+    <status>Obsolete</status>
 </Flow>

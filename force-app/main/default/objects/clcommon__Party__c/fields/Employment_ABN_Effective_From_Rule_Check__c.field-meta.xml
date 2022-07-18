@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Employment_ABN_Effective_From_Rule_Check__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF( INCLUDES( Employment_Type__c ,&apos;Self Employed&apos;) ,IF(AND(IF(MONTH(TODAY())&gt;MONTH(DATEVALUE( Employment_ABN_Effective_From__c ) ),YEAR(TODAY())-YEAR(DATEVALUE(Employment_ABN_Effective_From__c )),IF(AND(MONTH(TODAY())=MONTH(DATEVALUE (Employment_ABN_Effective_From__c )),DAY(TODAY())&gt;=DAY(DATEVALUE (Employment_ABN_Effective_From__c ))),YEAR(TODAY())-YEAR(DATEVALUE(Employment_ABN_Effective_From__c )),(YEAR(TODAY())-YEAR(DATEVALUE(Employment_ABN_Effective_From__c )))-1))&lt;2,NOT(ISBLANK( DATEVALUE(Employment_ABN_Effective_From__c )))),true,false),false)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Employment ABN Effective From Rule Check</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

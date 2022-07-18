@@ -96,6 +96,101 @@
         </sections>
     </layouts>
     <layouts>
+        <layout>Borrower ACH Read Only Layout</layout>
+        <sections>
+            <label></label>
+            <section>Account Balance Details</section>
+        </sections>
+        <sections>
+            <label></label>
+            <section>Activity</section>
+        </sections>
+        <sections>
+            <label></label>
+            <section>Activity List</section>
+        </sections>
+        <sections>
+            <label></label>
+            <section>Amortization</section>
+        </sections>
+        <sections>
+            <label></label>
+            <section>Charge Off Details</section>
+        </sections>
+        <sections>
+            <label></label>
+            <section>Contract</section>
+        </sections>
+        <sections>
+            <label></label>
+            <section>Credit Bureau Reporting</section>
+        </sections>
+        <sections>
+            <label></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label></label>
+            <section>Delinquent Dues</section>
+        </sections>
+        <sections>
+            <label></label>
+            <section>Deposit Details</section>
+        </sections>
+        <sections>
+            <label></label>
+            <section>Files</section>
+        </sections>
+        <sections>
+            <label></label>
+            <section>Funding</section>
+        </sections>
+        <sections>
+            <label></label>
+            <section>Linked Loans</section>
+        </sections>
+        <sections>
+            <label></label>
+            <section>Loan Details</section>
+        </sections>
+        <sections>
+            <label></label>
+            <section>Notices</section>
+        </sections>
+        <sections>
+            <label></label>
+            <section>One time ACH Details</section>
+        </sections>
+        <sections>
+            <label></label>
+            <section>Payment Tolerance and Grace Period</section>
+        </sections>
+        <sections>
+            <label></label>
+            <section>Posting and Capitalization Details</section>
+        </sections>
+        <sections>
+            <label></label>
+            <section>Prepayment Penalty</section>
+        </sections>
+        <sections>
+            <label></label>
+            <section>Protect</section>
+        </sections>
+        <sections>
+            <label></label>
+            <section>Recurring ACH Details</section>
+        </sections>
+        <sections>
+            <label></label>
+            <section>Refinance</section>
+        </sections>
+        <sections>
+            <label></label>
+            <section>Warehouse</section>
+        </sections>
+    </layouts>
+    <layouts>
         <layout>Loan Account Layout -Audit</layout>
         <sections>
             <label></label>
@@ -182,6 +277,10 @@
             <section>Warehouse</section>
         </sections>
     </layouts>
+    <recordTypes>
+        <label></label>
+        <name>Borrower_ACH_Read_Only_Record</name>
+    </recordTypes>
     <recordTypes>
         <description></description>
         <label></label>
@@ -457,6 +556,10 @@
     </webLinks>
     <webLinks>
         <label></label>
+        <name>Approve_Bank_Account_Change</name>
+    </webLinks>
+    <webLinks>
+        <label></label>
         <name>Generate_Statement_Document</name>
     </webLinks>
     <webLinks>
@@ -466,6 +569,10 @@
     <webLinks>
         <label></label>
         <name>Redraw2</name>
+    </webLinks>
+    <webLinks>
+        <label></label>
+        <name>Reject_Bank_Account_Change</name>
     </webLinks>
     <webLinks>
         <label></label>

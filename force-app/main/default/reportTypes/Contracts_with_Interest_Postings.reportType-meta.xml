@@ -142,6 +142,11 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
+            <field>Remaining_IO_Period__c</field>
+            <table>loan__Loan_Account__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
             <field>loan__Account__c</field>
             <table>loan__Loan_Account__c</table>
         </columns>

@@ -2403,6 +2403,11 @@
             <field>loan__Contact__c.IsPersonAccount</field>
             <table>loan__Loan_Account__c.loan__Coborrowers__r</table>
         </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>loan__Account__c.clcommon__Legal_Entity_Type__c</field>
+            <table>loan__Loan_Account__c.loan__Coborrowers__r</table>
+        </columns>
         <masterLabel>Contract Parties</masterLabel>
     </sections>
 </ReportType>
