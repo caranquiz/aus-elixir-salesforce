@@ -4,12 +4,12 @@
     <name>Loan Application Queue</name>
     <queueMembers>
         <users>
+            <user>astevenson@orde.com.au</user>
             <user>aheifetz@orde.com.au</user>
             <user>dguerouani@orde.com.au</user>
             <user>fautolitano@orde.com.au</user>
             <user>jkusur@orde.com.au</user>
             <user>jgidman@orde.com.au</user>
-            <user>rharkness@orde.com.au</user>
             <user>slay@orde.com.au</user>
         </users>
     </queueMembers>

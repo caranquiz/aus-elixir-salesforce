@@ -193,14 +193,18 @@ public class GenerateStatementController {
                 }
                 if(eachTxn.loan__Description__c != NULL && (eachTxn.loan__Description__c).containsIgnoreCase(ConstantValues.INT_RATE)){
                     //Checks has not been done on index of characters as the field is populated by product and description snapshot always contains new and old description values
-                    Integer intRateIndex = ((eachTxn.loan__Description__c).indexOf(ConstantValues.INT_RATE)+7);
                     Decimal oldRate,newRate;
-                    if(eachTxn.loan__Description__c.length() >= intRateIndex+6){
-                        oldRate = Decimal.valueOf((eachTxn.loan__Description__c).substring(intRateIndex,intRateIndex+6));
+                    Integer firstIntRateIndex = eachTxn.loan__Description__c.IndexOf(ConstantValues.INT_RATE);
+                    Integer firstIntRateIndexEnd = eachTxn.loan__Description__c.IndexOf(ConstantValues.INT_PRD);
+                    Integer firstIntRateIndexStart = firstIntRateIndex+(ConstantValues.INT_RATE.length());
+                    Integer lastIntRateIndex = eachTxn.loan__Description__c.lastIndexOf(ConstantValues.INT_RATE);
+                    Integer lastIntRateIndexEnd = eachTxn.loan__Description__c.lastIndexOf(ConstantValues.INT_PRD);
+                    Integer lastIntRateIndexStart = lastIntRateIndex+(ConstantValues.INT_RATE.length());                    
+                    if(firstIntRateIndexStart != NULL && firstIntRateIndexStart > 0) {
+                        oldRate = Decimal.valueOf(eachTxn.loan__Description__c.substring(firstIntRateIndexStart,firstIntRateIndexEnd));   
                     }
-                    Integer lastIntRateIndex = ((eachTxn.loan__Description__c).lastIndexOf(ConstantValues.INT_RATE)+7);
-                    if(eachTxn.loan__Description__c.length() >= lastIntRateIndex+4){
-                        newRate = Decimal.valueOf((eachTxn.loan__Description__c).substring(lastIntRateIndex,lastIntRateIndex+4));
+                    if(lastIntRateIndexStart != NULL && lastIntRateIndexStart > 0) {
+                        newRate = Decimal.valueOf(eachTxn.loan__Description__c.substring(lastIntRateIndexStart,lastIntRateIndexEnd));
                     }
                     if(numberDaysDue <= 365 && oldRate != NULL && newRate != NULL && oldRate != newRate){
                         eachTxn.Rate_Changed__c = true;

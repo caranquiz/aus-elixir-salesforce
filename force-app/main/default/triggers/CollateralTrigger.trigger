@@ -54,6 +54,9 @@ trigger CollateralTrigger on clcommon__Collateral__c (After update) {
                     if(collateral.Valuer__c!= oldcollateral.Valuer__c){
                         collIdList.add(collateral.Id);
                     }
+                    if(collateral.Contract_Price_Amount__c!= oldcollateral.Contract_Price_Amount__c){
+                        collateralValueList.add(collateral.Id);
+                    }
                 }
                 
                 for(genesis__Application_Collateral__c appcollateral:appcollateralList){

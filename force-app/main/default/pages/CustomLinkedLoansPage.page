@@ -11,9 +11,16 @@
     <apex:sectionHeader title="Linked Loans" />
         <apex:outputPanel id="searchOutputPanel">
             <apex:pageBlock id="Details">
-                <apex:pageMessages ></apex:pageMessages>
+                <apex:pageMessages id="pageMsg"></apex:pageMessages>
                 <apex:pageBlockButtons >
-                    <apex:commandButton value="Save" action="{!Save}"/>
+                    <apex:actionstatus id="idActionStatus">
+                        <apex:facet name="stop">                  
+                            <apex:commandButton value="Save" action="{!Save}" reRender="pageMsg" disabled="false" status="idActionStatus"/>
+                        </apex:facet>
+                        <apex:facet name="start">
+                           <apex:commandButton disabled="true" status="idActionStatus" value="Saving..."/>
+                        </apex:facet>
+                    </apex:actionstatus>
                     <apex:commandButton value="Cancel" action="{!Cancel}"/> 
                 </apex:pageBlockButtons>
                 <apex:pageblockSection title="Enter Details" id="detailInfo" columns="2"

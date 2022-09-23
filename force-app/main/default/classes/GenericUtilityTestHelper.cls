@@ -23,6 +23,27 @@ public with sharing class GenericUtilityTestHelper {
     insert legEntity;
     return legEntity;
   }
+    public static clcommon__Legal_Entity__c returnJointLegalEntity() {
+    clcommon__Legal_Entity__c legEntity = new clcommon__Legal_Entity__c(
+      Name = 'Joint'
+    );
+    insert legEntity;
+    return legEntity;
+  }
+  public static clcommon__Party_Type__c returnBorrowerPartyType() {
+    clcommon__Party_Type__c partyType = new clcommon__Party_Type__c(
+      Name = 'Borrower'
+    );
+    insert partyType;
+    return partyType;
+  }
+  public static clcommon__Party_Type__c returnHouseholdPartyType() {
+    clcommon__Party_Type__c partyType = new clcommon__Party_Type__c(
+      Name = 'Household'
+    );
+    insert partyType;
+    return partyType;
+  }
   public static account insertDummyAccount() {
     account dummyClient2 = new account();
     dummyClient2.Name = 'Elixir';
@@ -1715,6 +1736,8 @@ public with sharing class GenericUtilityTestHelper {
     Director__c director=new Director__c();
     director.Party__c=partyId;
     director.Entity_Type__c='Director';
+    director.Entity_Name__c = 'Rameswari Rai Barman';
+    
     insert director;
     return director;
   }
@@ -1852,5 +1875,16 @@ public with sharing class GenericUtilityTestHelper {
         Name = 'Property');
         insert objCollType;
         return objCollType;
+  }
+  public static genesis__Checklist__c returnCheckList(Id assessmentId){
+    genesis__Checklist__c objcheckList = new genesis__Checklist__c(genesis__Message__c = 'SUCCESS',
+        genesis__Assessed_Record_Id__c = assessmentId);
+    insert objcheckList;
+    return objcheckList;
+  }
+  public static Checklist_Detail__c returnCheckListDetail(Id checkListId){
+    Checklist_Detail__c objcheckListDetail = new Checklist_Detail__c(Status__c = 'SUCCESS', Checklist__c  = checkListId);
+    insert objcheckListDetail;
+    return objcheckListDetail;
   }
 }

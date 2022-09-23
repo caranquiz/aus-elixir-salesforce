@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Person_Account_Email_Validation</fullName>
+    <active>true</active>
+    <errorConditionFormula>RecordType.Name = &apos;Person Account&apos;  &amp;&amp; 
+( 
+  CONTAINS( PersonEmail , &apos;admin@&apos;) ||
+  CONTAINS( PersonEmail , &apos;default@&apos;) ||
+  CONTAINS( PersonEmail , &apos;email@&apos;) ||
+  CONTAINS( PersonEmail , &apos;feedback@&apos;) ||
+  CONTAINS( PersonEmail , &apos;info@&apos;) ||
+  CONTAINS( PersonEmail , &apos;mail@&apos;) ||
+  CONTAINS( PersonEmail , &apos;marketing@&apos;) ||
+  CONTAINS( PersonEmail , &apos;news@&apos;) ||
+  CONTAINS( PersonEmail , &apos;newsletter@&apos;) ||
+  CONTAINS( PersonEmail , &apos;ops@&apos;) ||
+  CONTAINS( PersonEmail , &apos;orders@&apos;) ||
+  CONTAINS( PersonEmail , &apos;press@&apos;) ||
+  CONTAINS( PersonEmail , &apos;pressrelease@&apos;) ||
+  CONTAINS( PersonEmail , &apos;sales@&apos;) ||
+  CONTAINS( PersonEmail , &apos;security@&apos;) ||
+  CONTAINS( PersonEmail , &apos;support@&apos;)
+)</errorConditionFormula>
+    <errorMessage>Please enter a valid email address not containing the following
+admin@, default@, email@, feedback@, info@, mail@, marketing@, news@, newsletter@, ops@, orders@, press@, pressrelease@, sales@, security@, support@</errorMessage>
+</ValidationRule>

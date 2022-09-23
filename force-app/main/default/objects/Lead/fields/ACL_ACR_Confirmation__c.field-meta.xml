@@ -5,5 +5,6 @@
     <externalId>false</externalId>
     <label>ACL &amp; ACR Confirmation</label>
     <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
     <type>Checkbox</type>
 </CustomField>

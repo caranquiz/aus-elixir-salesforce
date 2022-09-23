@@ -572,13 +572,24 @@ System.debug(each.Checklist__r.genesis__Rule__r.Name);
     GenericUtility.insertRestResourceIntegrationLog('ABC','requestog','responselog','1234');
     GenericUtility.insertCustomExceptionLog('ABC','Message');
     GenericUtility.insertLog('ABC','Message');
+
+    genesis__Checklist__c objCheckList = GenericUtilityTestHelper.returnCheckList(applicationDetailsList[0].Id);
+    List <genesis__Checklist__c> objCheckListReturn = [SELECT ID FROM genesis__Checklist__c];
+    System.debug('objCheckListReturn'+objCheckListReturn);
+    System.assertEquals(objCheckListReturn.size() > 0, TRUE, 'Checklist inserted correctly');
+    
+    Checklist_Detail__c objCheckListDetail = GenericUtilityTestHelper.returnCheckListDetail(objCheckListReturn[0].Id);
+    List <Checklist_Detail__c> objCheckListDetailReturn = [SELECT ID FROM Checklist_Detail__c];
+    System.debug('objCheckListDetailReturn'+objCheckListDetailReturn);
+    System.assertEquals(objCheckListDetailReturn.size() > 0, TRUE, 'Checklist Detail inserted correctly');
+    
+    CheckListDetailDeletionBatch objSchedule1 = new CheckListDetailDeletionBatch();
+    String schedule1 = '0 0 23 * * ?';
+    system.schedule('Test CheckListDetailDeletionBatch', schedule1, objSchedule1 );
+    CheckListDeletionBatch objSchedule = new CheckListDeletionBatch();
+    String schedule = '0 0 23 * * ?';
+    system.schedule('Test CheckListDeletionBatch', schedule, objSchedule );
     Test.stopTest();
-    System.assertEquals(ConstantValues.Success, returnValue, 'Success');
-    List<Checklist_Detail__c> logList = [SELECT Id, Status__c, Checklist__r.genesis__Rule__r.Name FROM Checklist_Detail__c WHERE Status__c = 'SUCCESS'];
-    for(Checklist_Detail__c each : logList) {
-        System.debug(each);
-System.debug(each.Checklist__r.genesis__Rule__r.Name);
-    }
   }
   @isTest
   static void testChecklistDetailsAPIMethods() {

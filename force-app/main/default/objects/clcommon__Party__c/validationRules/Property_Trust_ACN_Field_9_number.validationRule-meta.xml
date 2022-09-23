@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Property_Trust_ACN_Field_9_number</fullName>
+    <active>false</active>
+    <errorConditionFormula>LEN(Property_Trust_ACN__c) != 9 &amp;&amp;
+Legal_Entity_Type__c = &apos;SMSF&apos;</errorConditionFormula>
+    <errorMessage>Property Trust ACN Field must be 9 numbers.</errorMessage>
+</ValidationRule>

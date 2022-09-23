@@ -7,19 +7,19 @@
         <translation></translation>
     </picklistValues>
     <picklistValues>
-        <masterLabel>CBA</masterLabel>
-        <translation></translation>
-    </picklistValues>
-    <picklistValues>
         <masterLabel>Ernst and Young</masterLabel>
         <translation></translation>
     </picklistValues>
     <picklistValues>
-        <masterLabel>Kapstream</masterLabel>
+        <masterLabel>Macquarie</masterLabel>
         <translation></translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>NAB</masterLabel>
+        <translation></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Westpac</masterLabel>
         <translation></translation>
     </picklistValues>
 </CustomFieldTranslation>

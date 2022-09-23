@@ -87,7 +87,8 @@ global with sharing class ValuationDateExpiryUpdateHelper {
         try{
             appList=[SELECT id,
                             Actual_Security_Value__c,
-                            Expected_security_value__c  
+                            Expected_security_value__c,
+                            Total_Contract_Price__c 
                         FROM genesis__Applications__c 
                         WHERE id IN: appId];
             appCollateralList=[SELECT id,
@@ -96,16 +97,20 @@ global with sharing class ValuationDateExpiryUpdateHelper {
                                     genesis__Application__r.id,
                                     genesis__Collateral__r.clcommon__Value__c,
                                     genesis__Collateral__r.Estimated_Value__c,
-                                    genesis__Collateral__r.clcommon__Collateral_Name__c
+                                    genesis__Collateral__r.clcommon__Collateral_Name__c,
+                                    genesis__Collateral__r.Contract_Price_Amount__c
                                 FROM genesis__Application_Collateral__c 
                                 WHERE genesis__Application__c IN: appId];
             Map<Id,Double> sumOfValueMap=new Map<Id,Double>();
             Map<Id,Double> sumOfExpectedMap=new Map<Id,Double>();
+            Map<Id,Double> sumOfContractMap=new Map<Id,Double>();
             for(genesis__Applications__c application:appList){
                 sumOfValueMap.put(application.id, 0.0);
                 sumOfExpectedMap.put(application.id, 0.0);
+                sumOfContractMap.put(application.id,0.0);
             }
             for(genesis__Application_Collateral__c appColl:appCollateralList){
+                System.debug(appColl.genesis__Collateral__r.Contract_Price_Amount__c);
                 if(sumOfValueMap.containsKey(appColl.genesis__Application__r.id) 
                         && sumOfValueMap.get(appColl.genesis__Application__r.id)!=NULL
                         && appColl.genesis__Collateral__c != NULL
@@ -118,6 +123,12 @@ global with sharing class ValuationDateExpiryUpdateHelper {
                         && appColl.genesis__Collateral__r.Estimated_Value__c!=NULL){
                     sumOfExpectedMap.put(appColl.genesis__Application__r.id,sumOfExpectedMap.get(appColl.genesis__Application__r.id)+appColl.genesis__Collateral__r.Estimated_Value__c);
                 }
+                if(sumOfContractMap.containsKey(appColl.genesis__Application__r.id) 
+                        && sumOfContractMap.get(appColl.genesis__Application__r.id)!=NULL 
+                        && appColl.genesis__Collateral__c!=NULL
+                        && appColl.genesis__Collateral__r.Contract_Price_Amount__c!=NULL){
+                    sumOfContractMap.put(appColl.genesis__Application__r.id,sumOfContractMap.get(appColl.genesis__Application__r.id)+appColl.genesis__Collateral__r.Contract_Price_Amount__c);
+                }
             }
             for(genesis__Applications__c application:appList){
                 if(sumOfValueMap.containsKey(application.id) 
@@ -128,8 +139,13 @@ global with sharing class ValuationDateExpiryUpdateHelper {
                         && sumOfExpectedMap.get(application.id)!=NULL){
                     application.Expected_security_value__c=sumOfExpectedMap.get(application.id);
                 }
+                if(sumOfContractMap.containsKey(application.id) 
+                        && sumOfContractMap.get(application.id)!=NULL){
+                    application.Total_Contract_Price__c=sumOfContractMap.get(application.id);
+                }
             }
             if(appList.size()>0){
+                System.debug('hi');
                 Database.update(appList,false);
             }
         }catch(Exception e){

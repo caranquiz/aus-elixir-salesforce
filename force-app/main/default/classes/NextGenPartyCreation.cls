@@ -226,7 +226,7 @@ public class NextGenPartyCreation {
                             objAccount.Number_Of_Dependents__pc+=1;
                     }
                     if(objAccount.Ages__pc!=null){
-                        objAccount.Ages__pc+=';'+String.valueOf(ages);
+                        objAccount.Ages__pc+=','+String.valueOf(ages);
                     }else{
                         objAccount.Ages__pc=String.valueOf(ages);
                     }

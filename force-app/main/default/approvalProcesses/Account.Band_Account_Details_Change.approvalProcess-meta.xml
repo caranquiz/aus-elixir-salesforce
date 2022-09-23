@@ -22,15 +22,15 @@
         <allowDelegate>false</allowDelegate>
         <assignedApprover>
             <approver>
-                <name>cjackson@orde.com.au</name>
-                <type>user</type>
-            </approver>
-            <approver>
-                <name>jshastri@orde.com.au</name>
+                <name>dcherry@orde.com.au</name>
                 <type>user</type>
             </approver>
             <approver>
                 <name>rharkness@orde.com.au</name>
+                <type>user</type>
+            </approver>
+            <approver>
+                <name>rjohnston@orde.com.au</name>
                 <type>user</type>
             </approver>
             <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>

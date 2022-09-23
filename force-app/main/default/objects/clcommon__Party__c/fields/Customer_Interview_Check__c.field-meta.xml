@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Customer_Interview_Check__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF( Legal_Entity_Type__c == &apos;Individual&apos; &amp;&amp; CONTAINS(AML_search_result__c, &apos;PEP&apos;) &amp;&amp; NOT(CONTAINS(AML_search_result__c, &apos;Clear&apos;))  ,True,False )||
+IF( Legal_Entity_Type__c == &apos;Individual&apos; &amp;&amp; CONTAINS(AML_search_result__c, &apos;GWL&apos;) &amp;&amp;  NOT(CONTAINS(AML_search_result__c, &apos;Clear&apos;)) ,True,False ) ||
+IF(ISPICKVAL(genesis__Application__r.NCCP_status_list__c, &apos;Regulated&apos;) &amp;&amp;
+Legal_Entity_Type__c == &apos;Individual&apos;, True, False) ||
+IF(Legal_Entity_Type__c == &apos;Individual&apos; &amp;&amp; genesis__Application__r.genesis__CL_Product_Name__c ==&apos;SMSF Residential&apos; , True,False)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Customer Interview Check</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

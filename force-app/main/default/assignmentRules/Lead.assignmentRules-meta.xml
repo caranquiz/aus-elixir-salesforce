@@ -2,7 +2,7 @@
 <AssignmentRules xmlns="http://soap.sforce.com/2006/04/metadata">
     <assignmentRule>
         <fullName>Aggregator and State</fullName>
-        <active>false</active>
+        <active>true</active>
         <ruleEntry>
             <assignedTo>brobb@orde.com.au</assignedTo>
             <assignedToType>User</assignedToType>
@@ -24,20 +24,21 @@
         <ruleEntry>
             <assignedTo>tlemon@orde.com.au</assignedTo>
             <assignedToType>User</assignedToType>
-            <booleanFilter>(1 AND 2) OR (3 AND 4 AND 5)</booleanFilter>
+            <booleanFilter>(1 AND 2 AND 6) OR (3 AND 4 AND 5)</booleanFilter>
             <criteriaItems>
                 <field>Lead.Aggregator__c</field>
                 <operation>equals</operation>
-                <value>Finsure</value>
+                <value>Finsure,Loankit</value>
             </criteriaItems>
             <criteriaItems>
                 <field>Lead.State</field>
                 <operation>equals</operation>
-                <value>NSW,ACT</value>
+                <value>NSW</value>
             </criteriaItems>
             <criteriaItems>
                 <field>Lead.Aggregator__c</field>
                 <operation>equals</operation>
+                <value>Other</value>
             </criteriaItems>
             <criteriaItems>
                 <field>Lead.Round_Robin__c</field>
@@ -47,7 +48,12 @@
             <criteriaItems>
                 <field>Lead.State</field>
                 <operation>equals</operation>
-                <value>NSW,ACT</value>
+                <value>NSW</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Lead.Round_Robin__c</field>
+                <operation>equals</operation>
+                <value>1,2</value>
             </criteriaItems>
         </ruleEntry>
         <ruleEntry>
@@ -57,21 +63,22 @@
             <criteriaItems>
                 <field>Lead.Aggregator__c</field>
                 <operation>contains</operation>
-                <value>Outsource</value>
+                <value>Outsource,Nectar Mortgages</value>
             </criteriaItems>
             <criteriaItems>
                 <field>Lead.State</field>
                 <operation>equals</operation>
-                <value>NSW,ACT</value>
+                <value>NSW</value>
             </criteriaItems>
             <criteriaItems>
                 <field>Lead.Aggregator__c</field>
                 <operation>equals</operation>
+                <value>Other</value>
             </criteriaItems>
             <criteriaItems>
                 <field>Lead.State</field>
                 <operation>equals</operation>
-                <value>NSW,ACT</value>
+                <value>NSW</value>
             </criteriaItems>
             <criteriaItems>
                 <field>Lead.Round_Robin__c</field>
@@ -86,21 +93,22 @@
             <criteriaItems>
                 <field>Lead.Aggregator__c</field>
                 <operation>equals</operation>
-                <value>VOW Financial,Yellow Brick Road</value>
+                <value>VOW Financial,Yellow Brick Road,Specialist Finance Group</value>
             </criteriaItems>
             <criteriaItems>
                 <field>Lead.State</field>
                 <operation>equals</operation>
-                <value>NSW,ACT</value>
+                <value>NSW</value>
             </criteriaItems>
             <criteriaItems>
                 <field>Lead.Aggregator__c</field>
                 <operation>equals</operation>
+                <value>Other</value>
             </criteriaItems>
             <criteriaItems>
                 <field>Lead.State</field>
                 <operation>equals</operation>
-                <value>NSW,ACT</value>
+                <value>NSW</value>
             </criteriaItems>
             <criteriaItems>
                 <field>Lead.Round_Robin__c</field>
@@ -111,25 +119,26 @@
         <ruleEntry>
             <assignedTo>gsmith@orde.com.au</assignedTo>
             <assignedToType>User</assignedToType>
-            <booleanFilter>(1 AND 2) OR (3 AND 4 AND 5)</booleanFilter>
+            <booleanFilter>(1 AND 2 AND 4) OR (3 AND 4 AND 5)</booleanFilter>
             <criteriaItems>
                 <field>Lead.Aggregator__c</field>
                 <operation>contains</operation>
-                <value>Finsure</value>
+                <value>Finsure,Loankit</value>
             </criteriaItems>
             <criteriaItems>
                 <field>Lead.State</field>
                 <operation>equals</operation>
-                <value>VIC,TAS</value>
+                <value>VIC</value>
             </criteriaItems>
             <criteriaItems>
                 <field>Lead.Aggregator__c</field>
                 <operation>equals</operation>
+                <value>Other</value>
             </criteriaItems>
             <criteriaItems>
                 <field>Lead.State</field>
                 <operation>equals</operation>
-                <value>VIC,TAS</value>
+                <value>VIC</value>
             </criteriaItems>
             <criteriaItems>
                 <field>Lead.Round_Robin__c</field>
@@ -140,66 +149,111 @@
         <ruleEntry>
             <assignedTo>pridley@orde.com.au</assignedTo>
             <assignedToType>User</assignedToType>
-            <booleanFilter>(1 AND 2) OR (3 AND 4 AND 5)</booleanFilter>
+            <booleanFilter>(1 AND 2) OR (3 AND 4 AND 5) OR (6)</booleanFilter>
             <criteriaItems>
                 <field>Lead.Aggregator__c</field>
                 <operation>equals</operation>
-                <value>Outsource Financial,VOW Financial,Yellow Brick Road</value>
+                <value>Outsource Financial,VOW Financial,Yellow Brick Road,Specialist Finance Group,Nectar Mortgages</value>
             </criteriaItems>
             <criteriaItems>
                 <field>Lead.State</field>
                 <operation>equals</operation>
-                <value>,VIC,TAS</value>
+                <value>VIC</value>
             </criteriaItems>
             <criteriaItems>
                 <field>Lead.Aggregator__c</field>
                 <operation>equals</operation>
+                <value>Other</value>
             </criteriaItems>
             <criteriaItems>
                 <field>Lead.State</field>
                 <operation>equals</operation>
-                <value>VIC,TAS</value>
+                <value>VIC</value>
             </criteriaItems>
             <criteriaItems>
                 <field>Lead.Round_Robin__c</field>
                 <operation>equals</operation>
                 <value>2</value>
             </criteriaItems>
+            <criteriaItems>
+                <field>Lead.State</field>
+                <operation>equals</operation>
+                <value>TAS</value>
+            </criteriaItems>
         </ruleEntry>
         <ruleEntry>
             <assignedTo>zspeth@orde.com.au</assignedTo>
             <assignedToType>User</assignedToType>
+            <booleanFilter>(1 AND 2 AND 3) OR (4) OR (5 AND 6 AND 7)</booleanFilter>
             <criteriaItems>
                 <field>Lead.Aggregator__c</field>
                 <operation>equals</operation>
+                <value>Other</value>
             </criteriaItems>
             <criteriaItems>
                 <field>Lead.State</field>
                 <operation>equals</operation>
-                <value>NSW,ACT</value>
+                <value>NSW</value>
             </criteriaItems>
             <criteriaItems>
                 <field>Lead.Round_Robin__c</field>
                 <operation>equals</operation>
                 <value>1</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Lead.State</field>
+                <operation>equals</operation>
+                <value>ACT</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Lead.Aggregator__c</field>
+                <operation>equals</operation>
+                <value>Finsure,Loankit</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Lead.State</field>
+                <operation>equals</operation>
+                <value>NSW</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Lead.Round_Robin__c</field>
+                <operation>equals</operation>
+                <value>3,4</value>
             </criteriaItems>
         </ruleEntry>
         <ruleEntry>
             <assignedTo>kpatterson@orde.com.au</assignedTo>
             <assignedToType>User</assignedToType>
+            <booleanFilter>(1 AND 2 AND 3) OR (4 AND 5 AND 6)</booleanFilter>
             <criteriaItems>
                 <field>Lead.Aggregator__c</field>
                 <operation>equals</operation>
+                <value>Other</value>
             </criteriaItems>
             <criteriaItems>
                 <field>Lead.State</field>
                 <operation>equals</operation>
-                <value>VIC,TAS</value>
+                <value>VIC</value>
             </criteriaItems>
             <criteriaItems>
                 <field>Lead.Round_Robin__c</field>
                 <operation>equals</operation>
                 <value>1</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Lead.Aggregator__c</field>
+                <operation>equals</operation>
+                <value>Finsure,Loankit</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Lead.State</field>
+                <operation>equals</operation>
+                <value>VIC</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Lead.Round_Robin__c</field>
+                <operation>equals</operation>
+                <value>1,2</value>
             </criteriaItems>
         </ruleEntry>
     </assignmentRule>

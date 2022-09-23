@@ -51,6 +51,78 @@
         <protected>false</protected>
     </fieldUpdates>
     <fieldUpdates>
+        <fullName>Check_AML_Approved</fullName>
+        <field>AML_approved__c</field>
+        <literalValue>1</literalValue>
+        <name>Check AML Approved</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Check_Approved_Field</fullName>
+        <field>Approved__c</field>
+        <literalValue>1</literalValue>
+        <name>Check Approved Field</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Check_In_Approval_Process</fullName>
+        <field>In_Approval_Process__c</field>
+        <literalValue>1</literalValue>
+        <name>Check In Approval Process</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Check_rejected_Field</fullName>
+        <field>Rejected__c</field>
+        <literalValue>1</literalValue>
+        <name>Check rejected Field</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Uncheck_Approved_Field</fullName>
+        <field>Approved__c</field>
+        <literalValue>0</literalValue>
+        <name>Uncheck Approved Field</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Uncheck_In_Approval_Process</fullName>
+        <field>In_Approval_Process__c</field>
+        <literalValue>0</literalValue>
+        <name>Uncheck In Approval Process</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Uncheck_In_Approval_Process_Field</fullName>
+        <field>In_Approval_Process__c</field>
+        <literalValue>0</literalValue>
+        <name>Uncheck In Approval Process Field</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Uncheck_Rejected_Field</fullName>
+        <field>Rejected__c</field>
+        <literalValue>0</literalValue>
+        <name>Uncheck Rejected Field</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
         <fullName>Update_Account_Name_Field</fullName>
         <description>Updates account name for requested change field</description>
         <field>Bank_Account_Name__c</field>

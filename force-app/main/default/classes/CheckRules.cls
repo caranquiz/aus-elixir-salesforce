@@ -50,7 +50,7 @@ global with sharing class CheckRules {
         rulesNameList.add(ConstantValues.EXIT_STRATEGY_SUITABLE_RULE_CONTACT);
         rulesNameList.add(ConstantValues.BORROWER_IS_A_STAFF_MEMBER);
         rulesNameList.add(ConstantValues.GST_SUITABLE_RULE);
-        rulesNameList.add(ConstantVAlues.ABN_EFFECTIVE_RULE);
+        //rulesNameList.add(ConstantVAlues.ABN_EFFECTIVE_RULE);
         rulesNameList.add(ConstantValues.EXPLANATION_OF_CREDIT_EVENTS);
         rulesNameList.add(ConstantValues.EXPLANATION_OF_CREDIT_ENQUIRIES);
         rulesNameList.add(ConstantValues.EXPLANATION_OF_BANKRUPTCY);
@@ -75,9 +75,9 @@ global with sharing class CheckRules {
         rulesNameList.add(ConstantValues.COMMISSION_STATUS_RULE);
         rulesNameList.add(ConstantValues.PREVIOUS_CONDUCT_SUITABLE);
         rulesNameList.add(ConstantValues.LMI_RULE);
-        rulesNameList.add(
+        /*rulesNameList.add(
           ConstantValues.SELF_EMPLOYMENT_ABN_EFFECTIVE_FROM_RULE
-        );
+        );*/
       } else if (tabName == ConstantValues.LOAN_DETAILS) {
         rulesNameList.add(ConstantValues.ERF_CAN_NOT_BE_CHARGED_ON_A_REGULATED_LOAN_RULE);
         rulesNameList.add(ConstantValues.CASHOUT_PURPOSE_RULE);
@@ -97,7 +97,7 @@ global with sharing class CheckRules {
         rulesNameList.add(ConstantValues.BORROWER_IS_A_STAFF_MEMBER);
       } else if (tabName == ConstantValues.NON_INDIVIDUAL_CONTACT_DETAILS) {
         rulesNameList.add(ConstantValues.GST_SUITABLE_RULE);
-        rulesNameList.add(ConstantVAlues.ABN_EFFECTIVE_RULE);
+        //rulesNameList.add(ConstantVAlues.ABN_EFFECTIVE_RULE);
       } else if (tabName == ConstantValues.CREDIT_HISTORY) {
         rulesNameList.add(ConstantValues.EXPLANATION_OF_CREDIT_EVENTS);
         rulesNameList.add(ConstantValues.EXPLANATION_OF_CREDIT_ENQUIRIES);
@@ -114,9 +114,9 @@ global with sharing class CheckRules {
           ConstantValues.INCOME_INCONSISTANT_WITH_DECLARATION_RULE
         );
         rulesNameList.add(ConstantValues.GST_EFFECTIVE_FROM_RULE);
-        rulesNameList.add(
+        /*rulesNameList.add(
           ConstantValues.SELF_EMPLOYMENT_ABN_EFFECTIVE_FROM_RULE
-        );
+        );*/
       } else if (tabName == ConstantValues.LIVING_EXPENSE) {
         rulesNameList.add(
           ConstantValues.LIVING_EXPENSE_EXPLANATION_SUITABLE_RULE
@@ -153,7 +153,9 @@ global with sharing class CheckRules {
         rulesNameList.add(ConstantValues.OVERRIDE_EXCEPTION);
         rulesNameList.add(ConstantValues.ABN_EFFECTIVE_SELF_EMPLOYEMENT_EXCEPTION);
       } else if (tabName == ConstantValues.WARNING) {
-        rulesNameList.add(ConstantValues.BROKER_DOCS_WARNING);
+        rulesNameList.add(ConstantValues.SELF_EMPLOYMENT_ABN_EFFECTIVE_FROM_RULE);
+        rulesNameList.add(ConstantVAlues.ABN_EFFECTIVE_RULE);
+       rulesNameList.add(ConstantValues.BROKER_DOCS_WARNING);
         rulesNameList.add(ConstantValues.POLITICALLY_EXPOSED_WARNING);
         rulesNameList.add(ConstantValues.KYC_AML_WARNING);
         rulesNameList.add(ConstantValues.RISK_WARNING);
@@ -231,6 +233,10 @@ global with sharing class CheckRules {
         );
         rulesNameList.add(ConstantValues.DATE_OF_CREDIT_REPORT_WARNING);
       } else if (tabName == ConstantValues.CONDITION) {
+        rulesNameList.add(ConstantValues.TRUST_DEED_VETTING_FOR_SMSF_CONDITION_TWO);
+        rulesNameList.add(ConstantValues.TRUST_DEED_VETTING_FOR_SMSF_CONDITION_ONE);
+        rulesNameList.add(ConstantValues.CONTRACT_OF_SALE_CONDITION);
+        rulesNameList.add(ConstantValues.UNDERSTAND_ENGLISH_CONDITION);
         rulesNameList.add(ConstantValues.ABN_EFFECTIVE_FROM_ECEPTION);
         rulesNameList.add(ConstantValues.ESTIMATED_COMPLETION_DATE);
         rulesNameList.add(ConstantValues.IS_PURCHASOR_MORTGAGOR_CONDITION);
@@ -255,6 +261,7 @@ global with sharing class CheckRules {
         rulesNameList.add(ConstantValues.ACCEPTABLE_VALUATIONSS_CONDITION);
         rulesNameList.add(ConstantValues.CERTIFICATE_OF_TITLE_TO_BE_ISSUED_CONDITION);
         rulesNameList.add(ConstantValues.ACCOUNTANTS_INTERVIEW_CONDITION);
+        rulesNameList.add(ConstantValues.ACCOUNTANTS_INTERVIEW_CONDITION_FOR_COMPANY);
         rulesNameList.add(ConstantValues.GENERAL_SECURITY_AGREEMENT_CONDITION);
         rulesNameList.add(ConstantValues.SUPERANNUATION_CAPACITY_CONDITION);
         rulesNameList.add(ConstantValues.TRUST_DEED_VETTED_CONDITION);
@@ -283,13 +290,16 @@ global with sharing class CheckRules {
         rulesNameList.add(ConstantValues.ERF_PERCENTAGE_OR_TERM_DOES_NOT_MATCH_PRODUCT_DEFAULT_WARNING);
         //rulesNameList.add(ConstantValues.CERTIFICATE_OF_TITLE_TO_BE_ISSUED_CONDITION);
         rulesNameList.add(ConstantValues.STRUCTURE_AND_SERVICING_REVIEW_CONDITION);
+        //rulesNameList.add(ConstantValues.TRUST_DEED_VETTING_FOR_SMSF_CONDITION);
         loanDetailsRiskGradeWarningCheck(applicationId);
         loanDetailsPrimaryPurposeWarningCheck(applicationId);
         loanDetailsDocumentCompareWarningCheck(applicationId);
         loanDetailsValuationPaidWarningCheck(applicationId);
         applicationSettlementFeeCheck(applicationId);
       }else if(tabName == ConstantValues.TAB_NAME_RULE){
-        rulesNameList.add(ConstantValues.ABN_EFFECTIVE_RULE);
+        rulesNameList.add(ConstantValues.AML_APPROVAL_PROCESS_STILL_PENDING_RULE);
+        rulesNameList.add(ConstantValues.AML_SEARCH_NOT_COMPLETED_RULE);
+        //rulesNameList.add(ConstantValues.ABN_EFFECTIVE_RULE);
         //rulesNameList.add(ConstantValues.ABN_STATUS_EXPLANATION_SUITABLE_RULE);
         rulesNameList.add(ConstantValues.ACCOUNTANT_AWARE_OF_ANY_CIRCUMSTANCE);
         rulesNameList.add(ConstantValues.ACCOUNTANT_CALL_SUITABLE_RULE);
@@ -314,7 +324,7 @@ global with sharing class CheckRules {
         rulesNameList.add(ConstantValues.LIVING_EXPENSE_EXPLANATION_SUITABLE_RULE);
         rulesNameList.add(ConstantValues.PREVIOUS_CONDUCT_SUITABLE);
         rulesNameList.add(ConstantValues.SATISFACTORY_EXPLANATION_PROVIDED_RULE);
-        rulesNameList.add(ConstantValues.SELF_EMPLOYMENT_ABN_EFFECTIVE_FROM_RULE);
+        //rulesNameList.add(ConstantValues.SELF_EMPLOYMENT_ABN_EFFECTIVE_FROM_RULE);
         rulesNameList.add(ConstantValues.TEMPORARY_VISA_SUITABILITY_RULE);
         rulesNameList.add(ConstantValues.CREDIT_EVENTS_RULE);
       }else if(tabName == ConstantValues.TAB_NAME_RULE2){
@@ -1564,6 +1574,7 @@ global with sharing class CheckRules {
           Checklist__r.genesis__Rule__r.genesis__Message_failure__c,
           Party__c,
           Party__r.clcommon__Account__r.Name,
+          Party__r.Property_Trust_Name__c,
           Checklist__r.genesis__Application__c,
           Asset_Information__c,
           Asset_Information__r.Address__c,
@@ -1607,6 +1618,7 @@ global with sharing class CheckRules {
         }
       }
       for (Checklist_Detail__c eachChecklistDetails : checklistDetails) {
+        System.debug('Rule Name --> ' +eachChecklistDetails.Checklist__r.genesis__Rule__r.Name);
         message = eachChecklistDetails.Checklist__r.genesis__Rule__r.genesis__Message_failure__c;
         if (
           eachChecklistDetails.Checklist__r.genesis__Rule__r.Name ==
@@ -1676,6 +1688,14 @@ global with sharing class CheckRules {
         } else if (
           eachChecklistDetails.Checklist__r.genesis__Rule__r.Name ==
           ConstantValues.ACCOUNTANTS_INTERVIEW_CONDITION
+        ){
+          message = message.replace(
+            ConstantValues.IND_APPLICANT_KEY ,
+            eachChecklistDetails.Party__r.clcommon__Account__r.Name
+          );
+        }else if (
+          eachChecklistDetails.Checklist__r.genesis__Rule__r.Name ==
+          ConstantValues.ACCOUNTANTS_INTERVIEW_CONDITION_FOR_COMPANY
         ){
           message = message.replace(
             ConstantValues.IND_APPLICANT_KEY ,
@@ -1796,6 +1816,36 @@ global with sharing class CheckRules {
           ConstantValues.CREDIT_EVENTS_RULE
         ) {
           message = message + ' ' + eachChecklistDetails.Party__r.clcommon__Account__r.Name + ' please complete this field)';
+        } else if (
+           eachChecklistDetails.Checklist__r.genesis__Rule__r.Name ==
+           ConstantValues.AML_APPROVAL_PROCESS_STILL_PENDING_RULE
+        ){
+           message = message.replace(
+           ConstantValues.IND_APPLICANT_KEY,
+           eachChecklistDetails.Party__r.clcommon__Account__r.Name); 
+        }else if (
+           eachChecklistDetails.Checklist__r.genesis__Rule__r.Name ==
+           ConstantValues.AML_SEARCH_NOT_COMPLETED_RULE
+        ){
+           message = message.replace(
+           ConstantValues.IND_APPLICANT_KEY,
+           eachChecklistDetails.Party__r.clcommon__Account__r.Name); 
+        }else if (
+          eachChecklistDetails.Checklist__r.genesis__Rule__r.Name ==
+          ConstantValues.TRUST_DEED_VETTING_FOR_SMSF_CONDITION_ONE &&
+          eachChecklistDetails.Party__r.ABN_Company_Name__c != null
+        ){
+          message = message.replace(
+          ConstantValues.IND_APPLICANT_KEY,
+          eachChecklistDetails.Party__r.ABN_Company_Name__c); 
+        }else if (
+          eachChecklistDetails.Checklist__r.genesis__Rule__r.Name ==
+          ConstantValues.TRUST_DEED_VETTING_FOR_SMSF_CONDITION_TWO &&
+          eachChecklistDetails.Party__r.Property_Trust_Name__c != null
+        ){
+          message = message.replace(
+            ConstantValues.PROPERTY_TRUST_NAME,
+            eachChecklistDetails.Party__r.Property_Trust_Name__c);
         }
         eachChecklistDetails.Manual_Message__c = message;
       }

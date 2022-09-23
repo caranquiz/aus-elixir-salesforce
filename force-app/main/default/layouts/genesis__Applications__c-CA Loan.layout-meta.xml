@@ -6,12 +6,7 @@
         <detailHeading>true</detailHeading>
         <editHeading>true</editHeading>
         <label>App</label>
-        <layoutColumns>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Brokers_BDM__c</field>
-            </layoutItems>
-        </layoutColumns>
+        <layoutColumns/>
         <layoutColumns/>
         <style>TwoColumnsLeftToRight</style>
     </layoutSections>
@@ -64,6 +59,19 @@
             </layoutItem>
         </relatedContentItems>
     </relatedContent>
+    <relatedLists>
+        <fields>NAME</fields>
+        <fields>clcommon__Account__c</fields>
+        <fields>Party_Type_Name__c</fields>
+        <relatedList>clcommon__Party__c.genesis__Application__c</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <fields>NAME</fields>
+        <fields>genesis__Party_Account_Name__c</fields>
+        <fields>genesis__Party_Name__c</fields>
+        <fields>genesis__Party_Type__c</fields>
+        <relatedList>genesis__Application_Parties__c.genesis__Application__c</relatedList>
+    </relatedLists>
     <showEmailCheckbox>false</showEmailCheckbox>
     <showHighlightsPanel>false</showHighlightsPanel>
     <showInteractionLogPanel>false</showInteractionLogPanel>

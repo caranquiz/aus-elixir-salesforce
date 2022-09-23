@@ -39,7 +39,9 @@ global class InterestRateChangeBatch extends clcommon.DynamicJob {
                                                'loan__Pmt_Amt_Cur__c, '+
                                                'loan__Uncleared_Repayment_Amount__c, '+
                                                'loan__Loan_Status__c, '+
-                                               'loan__Delinquent_Amount__c '+
+                                               'loan__Delinquent_Amount__c, '+
+                                               'loan__Maturity_Date_Current__c, '+
+                                               'loan__Previous_Installment_Date__c '+
                                            'FROM loan__Loan_Account__c '+
                                            'WHERE New_Interest_Rate__c != NULL '+
                                            'AND New_Interest_Rate_Effective_Date__c <= {0}'+

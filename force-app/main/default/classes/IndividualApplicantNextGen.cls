@@ -748,11 +748,11 @@ public class IndividualApplicantNextGen {
                             objIncome.PAYG_Income__c=true;
                             if(((Map<String, Object>) eachIncome) != null &&
                                 ((Map<String, Object>) ((Map<String, Object>) eachIncome)
-                                .get('Income ')) != null && 
+                                .get('Income')) != null && 
                                 ((String)((Map<String, Object>) ((Map<String, Object>) eachIncome)
-                                .get('Income ')).get('Type')) != null){
+                                .get('Income')).get('Type')) != null){
                                 String incomeType=(String)((Map<String, Object>) (
-                                    (Map<String, Object>) eachIncome).get('Income ')).get('Type');
+                                    (Map<String, Object>) eachIncome).get('Income')).get('Type');
                             
                                 if(incomeType.equalsIgnoreCase('GrossSalary')){
                                     objIncome.PAYG_Income_Type__c='Gross Salary';
@@ -807,11 +807,11 @@ public class IndividualApplicantNextGen {
                         objIncome.PAYG_Income__c=true;
                         if(((Map<String, Object>) eachIncome) != null &&
                             ((Map<String, Object>) ((Map<String, Object>) eachIncome)
-                            .get('Income ')) != null && 
+                            .get('Income')) != null && 
                             ((String)((Map<String, Object>) ((Map<String, Object>) eachIncome)
-                            .get('Income ')).get('Type')) != null){
+                            .get('Income')).get('Type')) != null){
                             String incomeType=(String)((Map<String, Object>) 
-                                ((Map<String, Object>) eachIncome).get('Income ')).get('Type');
+                                ((Map<String, Object>) eachIncome).get('Income')).get('Type');
                         
                             if(incomeType.equalsIgnoreCase('GrossSalary')){
                                 objIncome.PAYG_Income_Type__c='Gross Salary';
@@ -1539,9 +1539,15 @@ public class IndividualApplicantNextGen {
             .get(ConstantValues.NODE_VALUE) ;
         }
         if (((Map<String, Object>) address.get('Country')) != null) {
-            contactAddress.clcommon__Country__c=
-            (String) ((Map<String, Object>) address.get('Country'))
-            .get('ISO3166') ;
+            if(((String) ((Map<String, Object>) address.get('Country'))
+                .get('ISO3166')) == 'AU'){
+                contactAddress.clcommon__Country__c= 'Australia';
+            }
+            else{
+                contactAddress.clcommon__Country__c=
+                (String) ((Map<String, Object>) address.get('Country'))
+                .get('ISO3166') ;
+            }
         }
         return contactAddress;
     }
@@ -1646,7 +1652,7 @@ public class IndividualApplicantNextGen {
         }
         if (((Map<String, Object>) address.get('Country')) != null) {
             if((String) ((Map<String, Object>) address.get('Country'))
-            .get('ISO3166')=='Au'){
+            .get('ISO3166')=='AU'){
                 objCollateral.Country__c='Australia';
                 objCollateral.clcommon__Collateral_Name__c+='Australia';
             }else{
@@ -1709,11 +1715,20 @@ public class IndividualApplicantNextGen {
                         }
                         if (((Map<String, Object>) ((Map<String, Object>) ((Map<String, Object>) each)
                                         .get('Address')).get('Country')) != null) {
-                            addressMap.put((String)((Map<String, Object>) (
+                            if(((String) ((Map<String, Object>) ((Map<String, Object>) (
+                                (Map<String, Object>) each).get('Address')).get('Country'))
+                                .get('ISO3166')) == 'AU'){
+                                addressMap.put((String)((Map<String, Object>) (
+                                (Map<String, Object>) each).get('Identifier')).get('NodeValue')+'Country',
+                                'Australia');        
+                                }
+                            else{
+                                addressMap.put((String)((Map<String, Object>) (
                                 (Map<String, Object>) each).get('Identifier')).get('NodeValue')+'Country',
                                 (String) ((Map<String, Object>) ((Map<String, Object>) (
                                 (Map<String, Object>) each).get('Address')).get('Country'))
                                 .get('ISO3166'));
+                                }
                         }
                         contactAddressMap.put((String)((Map<String, Object>) 
                             ((Map<String, Object>) each).get('Identifier')).get('NodeValue'),
@@ -1767,9 +1782,16 @@ public class IndividualApplicantNextGen {
                         }
                         if (((Map<String, Object>) ((Map<String, Object>) ((Map<String, Object>) each)
                                         .get('Address')).get('Country')) != null) {
-                            addressMap.put((String)((Map<String, Object>) ((Map<String, Object>) each).get('Identifier')).get('NodeValue')+'Country',
-                            (String) ((Map<String, Object>) ((Map<String, Object>) ((Map<String, Object>) each).get('Address')).get('Country'))
+                            if((String) ((Map<String, Object>) ((Map<String, Object>) ((Map<String, Object>) each).get('Address')).get('Country'))
+                                    .get('ISO3166') == 'AU'){
+                                addressMap.put((String)((Map<String, Object>) ((Map<String, Object>) each).get('Identifier')).get('NodeValue')+'Country',
+                                'Australia');
+                            }
+                            else{            
+                                addressMap.put((String)((Map<String, Object>) ((Map<String, Object>) each).get('Identifier')).get('NodeValue')+'Country',
+                                (String) ((Map<String, Object>) ((Map<String, Object>) ((Map<String, Object>) each).get('Address')).get('Country'))
                                     .get('ISO3166'));
+                            }
                         }
                         contactAddressMap.put((String)((Map<String, Object>) (
                             (Map<String, Object>) each).get('Identifier')).get('NodeValue'),
@@ -1822,7 +1844,7 @@ public class IndividualApplicantNextGen {
             String.valueOf(
             ((Map<String, Object>)eachMember
             ))
-                 .contains('Contribution={')){
+                .contains('Contribution={')){
                 Object eachContribution=((Object) ((Map<String, Object>)eachMember).get('Contribution'));
                 genesis__Income__c objIncome=new genesis__Income__c();
                 objIncome.Business_Income_Period__c='Current';

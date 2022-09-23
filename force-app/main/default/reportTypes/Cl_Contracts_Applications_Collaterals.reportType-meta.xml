@@ -131,6 +131,16 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
+            <field>Total_Sum_Of_Linked_Loans__c</field>
+            <table>loan__Loan_Account__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Total_Sum_of_Financier_Exposure__c</field>
+            <table>loan__Loan_Account__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
             <field>loan__ACH_Routing_Number__c</field>
             <table>loan__Loan_Account__c</table>
         </columns>
@@ -151,6 +161,16 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
+            <field>Financier_Linked_Loans__c</field>
+            <table>loan__Loan_Account__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Matrix_Rate__c</field>
+            <table>loan__Loan_Account__c.Applications__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
             <field>Pending_Discharge_Date__c</field>
             <table>loan__Loan_Account__c</table>
         </columns>
@@ -166,6 +186,11 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
+            <field>Remaining_Loan_Term__c</field>
+            <table>loan__Loan_Account__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
             <field>Approx_Funds_Being_Received__c</field>
             <table>loan__Loan_Account__c</table>
         </columns>
@@ -173,6 +198,11 @@
             <checkedByDefault>false</checkedByDefault>
             <field>Id</field>
             <table>loan__Loan_Account__c.Applications__r.genesis__Application_Collaterals__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Linked_Loans__c</field>
+            <table>loan__Loan_Account__c</table>
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
@@ -2199,6 +2229,11 @@
             <field>Second_Repayment_Date_After_IR_Change__c</field>
             <table>loan__Loan_Account__c</table>
         </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>loan__Contact__c.Broker_Underwriter__c</field>
+            <table>loan__Loan_Account__c</table>
+        </columns>
         <masterLabel>CL Contracts</masterLabel>
     </sections>
     <sections>
@@ -3790,6 +3825,21 @@
         <columns>
             <checkedByDefault>false</checkedByDefault>
             <field>Broker__c.Clawback__c</field>
+            <table>loan__Loan_Account__c.Applications__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Broker__c.Name</field>
+            <table>loan__Loan_Account__c.Applications__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Broker__c.TextName</field>
+            <table>loan__Loan_Account__c.Applications__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Broker__c.Mortgage_Manager__c</field>
             <table>loan__Loan_Account__c.Applications__r</table>
         </columns>
         <masterLabel>Applications</masterLabel>

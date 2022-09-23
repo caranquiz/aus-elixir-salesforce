@@ -147,6 +147,11 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
+            <field>KYC_AML_verified__c</field>
+            <table>genesis__Applications__c.genesis__Parties__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
             <field>clcommon__Type__c</field>
             <table>genesis__Applications__c.genesis__Parties__r</table>
         </columns>
@@ -2276,6 +2281,76 @@
         <columns>
             <checkedByDefault>false</checkedByDefault>
             <field>Settlement_Fee__c</field>
+            <table>genesis__Applications__c.genesis__Parties__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>clcommon__Account__c.PersonContact.IsPersonAccount</field>
+            <table>genesis__Applications__c.genesis__Parties__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>clcommon__Account__c.PersonContact.PEP__c</field>
+            <table>genesis__Applications__c.genesis__Parties__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Property_Trust_ACN__c</field>
+            <table>genesis__Applications__c.genesis__Parties__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>AML_search_result__c</field>
+            <table>genesis__Applications__c.genesis__Parties__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Customer_Interview_Check__c</field>
+            <table>genesis__Applications__c.genesis__Parties__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>clcommon__Account__c.Id</field>
+            <table>genesis__Applications__c.genesis__Parties__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>clcommon__Account__c.Name</field>
+            <table>genesis__Applications__c.genesis__Parties__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>clcommon__Account__c.TextName</field>
+            <table>genesis__Applications__c.genesis__Parties__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>clcommon__Account__c.AML_approved__c</field>
+            <table>genesis__Applications__c.genesis__Parties__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>clcommon__Account__c.AML_search_result__c</field>
+            <table>genesis__Applications__c.genesis__Parties__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>clcommon__Account__c.AML_search_result_check__c</field>
+            <table>genesis__Applications__c.genesis__Parties__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>clcommon__Account__c.PersonContact.Birthdate</field>
+            <table>genesis__Applications__c.genesis__Parties__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>clcommon__Account__c.PersonContact.OtherCountry</field>
+            <table>genesis__Applications__c.genesis__Parties__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>clcommon__Account__c.Screened_Date__c</field>
             <table>genesis__Applications__c.genesis__Parties__r</table>
         </columns>
         <masterLabel>Parties</masterLabel>

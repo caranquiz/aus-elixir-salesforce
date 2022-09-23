@@ -9,7 +9,7 @@ Devloper's comment : Some part of the codes are hardcoded and not been put in Co
                     they are referenced only here and its a one time use.
 ****************************************************************************************************/
 public class NextGenLoanDetailCreation {
-
+    public static List<Account> accList = new List<Account>();
     public static void LoanDetailRecordCreation(
         Map<String, Object> loanDetailSegmentMap,
         Map<String, Object> financialSegmentMap,
@@ -28,9 +28,20 @@ public class NextGenLoanDetailCreation {
             String.valueOf(
             ((Map<String, Object>)loanDetailSegmentMap
             ))
-            .contains('LoanDetails={')){
+            .contains('LoanDetails')){
                 genesis__Applications__c objApplication=new genesis__Applications__c();
-                Object eachLoanDetail = ((Object) (loanDetailSegmentMap).get('LoanDetails'));
+                Object eachLoanDetail;
+                if(String.valueOf(
+                    ((Map<String, Object>)loanDetailSegmentMap
+                    ))
+                    .contains('LoanDetails={')){
+                        eachLoanDetail = ((Object) (loanDetailSegmentMap).get('LoanDetails'));
+                }else if(String.valueOf(
+                    ((Map<String, Object>)loanDetailSegmentMap
+                    ))
+                    .contains('LoanDetails=(')){
+                        eachLoanDetail = ((List<Object>) (loanDetailSegmentMap).get('LoanDetails'))[0];
+                }
                 
                 if(((Map<String, Object>) eachLoanDetail) != null &&
                     ((Map<String, Object>) ((Map<String, Object>) eachLoanDetail)
@@ -339,10 +350,16 @@ public class NextGenLoanDetailCreation {
                             for(Account objAccount:accountList){
                                 if((objAccount.FirstName+objAccount.PersonEmail)==borrowerAccount ||
                                         (objAccount.Name)==borrowerAccount){
-                                    objAccount.Bank_Account_Name__c=(String)((Map<String, Object>)(
+                                    String bankAccountname=(String)((Map<String, Object>)(
                                         (Map<String, Object>) ((Map<String, Object>) loanTermMap)
                                         .get('RepaymentMethod'))
                                         .get('AccountNumber')).get('AcctName');
+                                    if(bankAccountname.length()>32){
+                                        objAccount.Bank_Account_Name__c=bankAccountname.substring(0,32);
+                                    }else{
+                                        objAccount.Bank_Account_Name__c=bankAccountname;
+                                    }
+                                    
                                 }
                             }
                         }
@@ -714,8 +731,7 @@ public class NextGenLoanDetailCreation {
 
     }
 
-    public static List<Account> CheckDuplicateAccount(List<Account> accountList,List<Account> duplicateAccountList){
-
+    public static List<Account> CheckDuplicateAccount(List<Account> accountList,List<Account> duplicateAccountList){       
         List<clcommon__Legal_Entity__c> indivilegalEntityList=[SELECT id,
                                                                     Name 
                                                                 FROM clcommon__Legal_Entity__c 
@@ -743,6 +759,7 @@ public class NextGenLoanDetailCreation {
                                                     FirstName,
                                                     LastName,
                                                     PersonEmail,
+                                                    PersonBirthdate,
                                                     ints__Driver_License__pc,
                                                     clcommon__Marital_Status__pc,
                                                     clcommon__Years_At_Current_Address__pc,
@@ -751,16 +768,21 @@ public class NextGenLoanDetailCreation {
                                                     Phone,
                                                     PersonMobilePhone,
                                                     Ages__pc,
+                                                    Bank_Account_Name__c,
+                                                    Bank_Account_Number__c,
+                                                    BSB__c,
                                                     clcommon__Legal_Entity_Type__c 
                                                 FROM Account 
                                                 WHERE FirstName in: firstName 
                                                 AND LastName in: lastName 
-                                                AND PersonEmail in: email 
                                                 AND PersonBirthdate in: dateOfBirthCheck];
 
         List<Account> objCompanyAccountList=[SELECT id,
                                                 Name,
                                                 clcommon__Legal_Entity_Type__c,
+                                                Bank_Account_Name__c,
+                                                Bank_Account_Number__c,
+                                                BSB__c,
                                                 ints__Driver_License__pc 
                                                 FROM Account 
                                                 WHERE Name in: accountName];
@@ -771,9 +793,11 @@ public class NextGenLoanDetailCreation {
                 if(objAccount.clcommon__Legal_Entity_Type__c==objIndividualAccount.clcommon__Legal_Entity_Type__c && 
                         objAccount.FirstName==objIndividualAccount.FirstName &&
                         objAccount.LastName==objIndividualAccount.LastName && 
-                        objAccount.PersonEmail==objIndividualAccount.PersonEmail
+                        objAccount.PersonBirthdate==objIndividualAccount.PersonBirthdate
                 ){
-                    objDuplicateAccount.add(objAccount);
+                    if(objAccount.PersonEmail!=null){
+                        objIndividualAccount.PersonEmail=objAccount.PersonEmail;
+                    }
                     if(objAccount.ints__Driver_License__pc!=null){
                         objIndividualAccount.ints__Driver_License__pc=objAccount.ints__Driver_License__pc;
                     }
@@ -798,6 +822,16 @@ public class NextGenLoanDetailCreation {
                     if(objAccount.PersonMobilePhone!=null){
                         objIndividualAccount.PersonMobilePhone=objAccount.PersonMobilePhone;
                     }
+                    if(objAccount.Bank_Account_Name__c!=null){
+                        objIndividualAccount.Bank_Account_Name__c=objAccount.Bank_Account_Name__c;
+                    }
+                    if(objAccount.Bank_Account_Number__c!=null){
+                        objIndividualAccount.Bank_Account_Number__c=objAccount.Bank_Account_Number__c;
+                    }
+                    if(objAccount.BSB__c!=null){
+                        objIndividualAccount.BSB__c=objAccount.BSB__c;
+                    }
+                    objDuplicateAccount.add(objAccount);
                     objAccountList.add(objIndividualAccount);
                     break;
                 }
@@ -811,12 +845,21 @@ public class NextGenLoanDetailCreation {
                     if(objAccount.ints__Driver_License__pc!=null){
                         objIndividualAccount.ints__Driver_License__pc=objAccount.ints__Driver_License__pc;
                     }
+                    if(objAccount.Bank_Account_Name__c!=null){
+                        objIndividualAccount.Bank_Account_Name__c=objAccount.Bank_Account_Name__c;
+                    }
+                    if(objAccount.Bank_Account_Number__c!=null){
+                        objIndividualAccount.Bank_Account_Number__c=objAccount.Bank_Account_Number__c;
+                    }
+                    if(objAccount.BSB__c!=null){
+                        objIndividualAccount.BSB__c=objAccount.BSB__c;
+                    }
                     objAccountList.add(objIndividualAccount);
                     break;
                 }
             }
         }
-    
+  
         for(Account objDuplicate:objDuplicateAccount){
             if(accountList.size()>0){
                 for (Integer iterator = accountList.size() - 1; iterator >= 0 ; --iterator) {
@@ -837,6 +880,7 @@ public class NextGenLoanDetailCreation {
         }
         
         return objAccountList;
+        
     }
 
 }

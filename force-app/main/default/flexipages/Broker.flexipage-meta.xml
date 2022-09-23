@@ -24,51 +24,6 @@
         <type>Region</type>
     </flexiPageRegions>
     <flexiPageRegions>
-        <name>Facet-f8da98f5-6b4b-4aa8-a06c-2a306a4ddac4</name>
-        <type>Facet</type>
-    </flexiPageRegions>
-    <flexiPageRegions>
-        <name>Facet-0434490b-89db-47fd-80c8-9b51affbe941</name>
-        <type>Facet</type>
-    </flexiPageRegions>
-    <flexiPageRegions>
-        <componentInstances>
-            <componentInstanceProperties>
-                <name>active</name>
-                <value>true</value>
-            </componentInstanceProperties>
-            <componentInstanceProperties>
-                <name>body</name>
-                <value>Facet-f8da98f5-6b4b-4aa8-a06c-2a306a4ddac4</value>
-            </componentInstanceProperties>
-            <componentInstanceProperties>
-                <name>title</name>
-                <value>Standard.Tab.relatedLists</value>
-            </componentInstanceProperties>
-            <componentName>flexipage:tab</componentName>
-        </componentInstances>
-        <componentInstances>
-            <componentInstanceProperties>
-                <name>body</name>
-                <value>Facet-0434490b-89db-47fd-80c8-9b51affbe941</value>
-            </componentInstanceProperties>
-            <componentInstanceProperties>
-                <name>title</name>
-                <value>Standard.Tab.detail</value>
-            </componentInstanceProperties>
-            <componentName>flexipage:tab</componentName>
-        </componentInstances>
-        <name>Facet-f29322be-55b1-4e51-8aff-e7afccd97f13</name>
-        <type>Facet</type>
-    </flexiPageRegions>
-    <flexiPageRegions>
-        <componentInstances>
-            <componentInstanceProperties>
-                <name>tabs</name>
-                <value>Facet-f29322be-55b1-4e51-8aff-e7afccd97f13</value>
-            </componentInstanceProperties>
-            <componentName>flexipage:tabset</componentName>
-        </componentInstances>
         <componentInstances>
             <componentName>force:detailPanel</componentName>
         </componentInstances>

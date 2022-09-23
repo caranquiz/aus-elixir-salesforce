@@ -29,6 +29,10 @@
         <recipients>
             <type>owner</type>
         </recipients>
+        <recipients>
+            <recipient>msinclair@orde.com.au</recipient>
+            <type>user</type>
+        </recipients>
         <senderType>CurrentUser</senderType>
         <template>cnotify__Notification_Templates/Lead_Rejection</template>
     </alerts>

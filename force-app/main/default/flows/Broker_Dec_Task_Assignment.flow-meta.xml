@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <assignments>
+        <name>Assign_to_Broker_Ops</name>
+        <label>Assign to Broker Ops</label>
+        <locationX>176</locationX>
+        <locationY>431</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.OwnerId</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Broker_Ops_Queue.Id</elementReference>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <description>Task Created from Pardot for when broker completes accreditation dec</description>
+    <interviewLabel>Broker Dec Task Assignment {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Broker Dec Task Assignment</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordLookups>
+        <name>Broker_Ops_Queue</name>
+        <label>Broker Ops Queue</label>
+        <locationX>176</locationX>
+        <locationY>311</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Assign_to_Broker_Ops</targetReference>
+        </connector>
+        <filters>
+            <field>DeveloperName</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Broker_Operations_Queue</stringValue>
+            </value>
+        </filters>
+        <object>Group</object>
+    </recordLookups>
+    <startElementReference>Broker_Ops_Queue</startElementReference>
+    <status>Active</status>
+    <variables>
+        <name>GetBrokerOpsQueue</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <value>
+            <stringValue>Broker_Operations_Queue</stringValue>
+        </value>
+    </variables>
+</Flow>

@@ -15,7 +15,11 @@
         <allowDelegate>false</allowDelegate>
         <assignedApprover>
             <approver>
-                <name>cjackson@orde.com.au</name>
+                <name>dcherry@orde.com.au</name>
+                <type>user</type>
+            </approver>
+            <approver>
+                <name>jregan@orde.com.au</name>
                 <type>user</type>
             </approver>
             <approver>
@@ -39,7 +43,7 @@
         <allowDelegate>false</allowDelegate>
         <assignedApprover>
             <approver>
-                <name>cjackson@orde.com.au</name>
+                <name>dcherry@orde.com.au</name>
                 <type>user</type>
             </approver>
             <approver>
@@ -75,7 +79,7 @@
             <type>FieldUpdate</type>
         </action>
     </finalApprovalActions>
-    <finalApprovalRecordLock>true</finalApprovalRecordLock>
+    <finalApprovalRecordLock>false</finalApprovalRecordLock>
     <finalRejectionActions>
         <action>
             <name>lead</name>

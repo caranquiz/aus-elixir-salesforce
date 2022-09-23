@@ -19,6 +19,7 @@ global with sharing class ConvertToContract{
                 //updating the status of application
                 update app;
                 attachValues(appId);
+                insertCompanyRelatedAccount(appId);
             }
             else{
                 Database.rollback(sp);
@@ -340,5 +341,138 @@ global with sharing class ConvertToContract{
             GenericUtility.insertBatchProcessLog('ConvertToContract',e);
         }
     }
-    
+    public static void insertCompanyRelatedAccount(Id appId){
+        List<clcommon__Party__c> objCompanyPartyList=[SELECT
+                                                        id,
+                                                        Upfront_Payment_Percentage__c,
+                                                        Commission_Paid_To__c,
+                                                        Commission_Paid__c,
+                                                        Commission_Structure__c,
+                                                        clcommon__Account__c,
+                                                        clcommon__Account__r.parentId,
+                                                        clcommon__Account__r.Sub_Aggregator__c,
+                                                        clcommon__Account__r.Name,
+                                                        Trustee_Type__c,
+                                                        Settlement_Fee__c
+                                                    FROM clcommon__Party__c
+                                                    WHERE genesis__Application__c = :appId
+                                                    AND Legal_Entity_Type__c IN (:ConstantValues.COMPANY_KEY,:ConstantValues.TRUST,:ConstantValues.ENQUIRY_SMSF)
+                                                    AND clcommon__Type__r.Name IN (:ConstantValues.BORROWER,:ConstantValues.CO_APPLICANT)
+                                                    ];
+        List<Director__c> objCurrentDirectorList=[SELECT id,
+                                                        Entity_Name__c,
+                                                        Party__r.clcommon__Account__c,
+                                                        Party__c,
+                                                        Party__r.Trustee_Type__c
+                                                    FROM Director__c 
+                                                    WHERE Party__c in: objCompanyPartyList
+                                                    AND Entity_Type__c=: ConstantValues.DIRECTOR];
+        Map<String,id> entityNameList=new Map<String,id>();
+        Map<String,String> roleMap =new Map<String,String>();
+        for(Director__c objCurrentDirector:objCurrentDirectorList){
+            if(objCurrentDirector.Party__r.Trustee_Type__c!= ConstantValues.indType){
+               //Modified by Rameswari on 26/7/22 to enable directors that were added by Equifax Credit Reports
+                String lastName = '', firstName = '', middleName = '';
+                List<String> nameSplit = (objCurrentDirector.Entity_Name__c).split(' ');
+                Integer count = 0;
+                for(String eachName : nameSplit){
+                    if(count == 0){
+                        lastName = nameSplit[count];
+                    }
+                    else if(count == 1){
+                        firstName = nameSplit[count]+' ';
+                    }
+                    else if (middleName != ''){
+                        middleName = middleName+ ' '+nameSplit[count]+' ';
+                    }
+                    else{
+                        middleName = nameSplit[count]+' ';
+                    }
+                    count ++;
+                }
+                entityNameList.put(firstName.toLowerCase()+middleName.toLowerCase()+lastName.toLowerCase(),objCurrentDirector.Party__r.clcommon__Account__c);
+                roleMap.put(firstName.toLowerCase()+middleName.toLowerCase()+lastName.toLowerCase(),ConstantValues.DIRECTOR);
+            }
+        }
+        for(clcommon__Party__c objParty:objCompanyPartyList){
+            if(objParty.Trustee_Type__c== ConstantValues.indType){
+                String accountName=objParty.clcommon__Account__r.Name;
+                if(accountName.contains(' &')){
+                    entityNameList.put((accountName.substringBefore(' &').toLowerCase()),objParty.clcommon__Account__c);
+                    roleMap.put((accountName.substringBefore(' &').toLowerCase()),ConstantValues.TRUSTEE); 
+                }else if(accountName.contains(ConstantValues.ATF)){
+                    entityNameList.put((accountName.substringBefore(ConstantValues.ATF).toLowerCase()),objParty.clcommon__Account__c);
+                    roleMap.put((accountName.substringBefore(ConstantValues.ATF).toLowerCase()),ConstantValues.TRUSTEE); 
+                }
+                if(accountName.contains(' &') && accountName.contains(ConstantValues.ATF)){
+                    entityNameList.put((accountName.substringBetween('& ', ' ATF')).toLowerCase(),objParty.clcommon__Account__c);
+                    roleMap.put((accountName.substringBetween('& ', ' ATF')).toLowerCase(),ConstantValues.TRUSTEE); 
+                }      
+            }
+        }
+        List<clcommon__Party__c> objPartyList=[SELECT
+                                                    id,
+                                                    Upfront_Payment_Percentage__c,
+                                                    Commission_Paid_To__c,
+                                                    Commission_Paid__c,
+                                                    Commission_Structure__c,
+                                                    clcommon__Account__c,
+                                                    clcommon__Account__r.id,
+                                                    clcommon__Account__r.Name,
+                                                    clcommon__Account__r.FirstName,
+                                                    clcommon__Account__r.MiddleName,        
+                                                    clcommon__Account__r.LastName,
+                                                    clcommon__Account__r.parentId,
+                                                    clcommon__Account__r.Sub_Aggregator__c,
+                                                    Settlement_Fee__c
+                                                FROM clcommon__Party__c
+                                                WHERE genesis__Application__c = :appId
+                                                AND Legal_Entity_Type__c=: ConstantValues.indType
+                                                AND clcommon__Type__r.Name=: ConstantValues.GUARANTOR
+                                                ];
+        List<Id> accountIdList=new List<Id>();
+        Map<Id,Id> contactMap=new Map<Id,Id>();
+        List<AccountContactRelation> objAccountContactRelList=new List<AccountContactRelation>();
+        for(clcommon__Party__c objParty:objPartyList){
+            accountIdList.add(objParty.clcommon__Account__r.Id);
+        }
+        List<Contact> objContactList=[SELECT id,AccountId FROM Contact WHERE AccountId in:accountIdList];
+        for(Contact objContact:objContactList){
+            contactMap.put(objContact.AccountId,objContact.id);
+        }
+        for(clcommon__Party__c objParty:objPartyList){
+            if(entityNameList.containsKey((objParty.clcommon__Account__r.Name).toLowerCase())
+                && entityNameList.get((objParty.clcommon__Account__r.Name).toLowerCase())!=null){
+                    AccountContactRelation objAccountContactRel=new AccountContactRelation();
+                    objAccountContactRel.AccountId=entityNameList.get((objParty.clcommon__Account__r.Name).toLowerCase());
+                    objAccountContactRel.ContactId=contactMap.get(objParty.clcommon__Account__r.Id);
+                    if(roleMap.get((objParty.clcommon__Account__r.Name).toLowerCase()) != NULL){
+                        objAccountContactRel.Roles = roleMap.get((objParty.clcommon__Account__r.Name).toLowerCase());
+                    }
+                    objAccountContactRelList.add(objAccountContactRel);
+            }else if(objParty.clcommon__Account__r.MiddleName!=null && entityNameList.containsKey((objParty.clcommon__Account__r.FirstName+objParty.clcommon__Account__r.MiddleName+objParty.clcommon__Account__r.LastName).toLowerCase())
+            && entityNameList.get((objParty.clcommon__Account__r.FirstName+objParty.clcommon__Account__r.MiddleName+objParty.clcommon__Account__r.LastName).toLowerCase())!=null){
+                AccountContactRelation objAccountContactRel=new AccountContactRelation();
+                objAccountContactRel.AccountId=entityNameList.get(((objParty.clcommon__Account__r.FirstName+objParty.clcommon__Account__r.MiddleName+objParty.clcommon__Account__r.LastName).toLowerCase()));
+                objAccountContactRel.ContactId=contactMap.get(objParty.clcommon__Account__r.Id);
+                if(roleMap.get((objParty.clcommon__Account__r.FirstName+objParty.clcommon__Account__r.MiddleName+objParty.clcommon__Account__r.LastName).toLowerCase()) != NULL){
+                    objAccountContactRel.Roles = roleMap.get((objParty.clcommon__Account__r.FirstName+objParty.clcommon__Account__r.MiddleName+objParty.clcommon__Account__r.LastName).toLowerCase());
+                }
+                objAccountContactRelList.add(objAccountContactRel);
+            }else if(entityNameList.containsKey((objParty.clcommon__Account__r.FirstName+objParty.clcommon__Account__r.LastName).toLowerCase())
+            && entityNameList.get((objParty.clcommon__Account__r.FirstName+objParty.clcommon__Account__r.LastName).toLowerCase())!=null){
+                AccountContactRelation objAccountContactRel=new AccountContactRelation();
+                objAccountContactRel.AccountId=entityNameList.get(((objParty.clcommon__Account__r.FirstName+objParty.clcommon__Account__r.LastName).toLowerCase()));
+                objAccountContactRel.ContactId=contactMap.get(objParty.clcommon__Account__r.Id);
+                if(roleMap.get((objParty.clcommon__Account__r.FirstName+objParty.clcommon__Account__r.LastName).toLowerCase()) != NULL){
+                    objAccountContactRel.Roles = roleMap.get((objParty.clcommon__Account__r.FirstName+objParty.clcommon__Account__r.LastName).toLowerCase());
+                }
+                objAccountContactRelList.add(objAccountContactRel);
+            }
+
+        }
+        if(objAccountContactRelList.size()>0){
+            Database.insert(objAccountContactRelList,false);
+        }
+    }
 }

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Checklist_Detail_Fails__c</fullName>
+    <externalId>false</externalId>
+    <label>Checklist Detail Fails</label>
+    <summaryFilterItems>
+        <field>Checklist_Detail__c.Status__c</field>
+        <operation>notEqual</operation>
+        <value>SUCCESS</value>
+    </summaryFilterItems>
+    <summaryForeignKey>Checklist_Detail__c.Checklist__c</summaryForeignKey>
+    <summaryOperation>count</summaryOperation>
+    <trackTrending>false</trackTrending>
+    <type>Summary</type>
+</CustomField>

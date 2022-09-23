@@ -4,5 +4,6 @@
     <displayFormat>{0}</displayFormat>
     <externalId>true</externalId>
     <label>Lead Number</label>
+    <trackHistory>false</trackHistory>
     <type>AutoNumber</type>
 </CustomField>

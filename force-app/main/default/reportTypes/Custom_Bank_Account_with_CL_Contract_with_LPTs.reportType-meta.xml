@@ -164,6 +164,16 @@
             <field>peer__Working_Place_Type__c</field>
             <table>loan__Bank_Account__c</table>
         </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Signatures_confirmed__c</field>
+            <table>loan__Bank_Account__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Active_Change__c</field>
+            <table>loan__Bank_Account__c</table>
+        </columns>
         <masterLabel>Bank Accounts</masterLabel>
     </sections>
     <sections>

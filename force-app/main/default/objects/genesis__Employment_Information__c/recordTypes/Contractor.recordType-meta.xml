@@ -120,6 +120,28 @@
         </values>
     </picklistValues>
     <picklistValues>
+        <picklist>Employer_Address_Confirm__c</picklist>
+        <values>
+            <fullName>No</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Yes</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Employer_Name_Confirm__c</picklist>
+        <values>
+            <fullName>No</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Yes</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
         <picklist>Employer_Phone_Independently_Verified__c</picklist>
         <values>
             <fullName>No</fullName>
@@ -316,6 +338,17 @@
     </picklistValues>
     <picklistValues>
         <picklist>Override__c</picklist>
+        <values>
+            <fullName>No</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Yes</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Role_Confirm__c</picklist>
         <values>
             <fullName>No</fullName>
             <default>false</default>

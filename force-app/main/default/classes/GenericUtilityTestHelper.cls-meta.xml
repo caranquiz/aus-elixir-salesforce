@@ -12,13 +12,13 @@
         <namespace>APXT_BPM</namespace>
     </packageVersions>
     <packageVersions>
-        <majorNumber>2</majorNumber>
-        <minorNumber>9003</minorNumber>
+        <majorNumber>3</majorNumber>
+        <minorNumber>3000</minorNumber>
         <namespace>clcommon</namespace>
     </packageVersions>
     <packageVersions>
-        <majorNumber>2</majorNumber>
-        <minorNumber>9001</minorNumber>
+        <majorNumber>3</majorNumber>
+        <minorNumber>3008</minorNumber>
         <namespace>genesis</namespace>
     </packageVersions>
     <packageVersions>
@@ -28,7 +28,7 @@
     </packageVersions>
     <packageVersions>
         <majorNumber>3</majorNumber>
-        <minorNumber>3030</minorNumber>
+        <minorNumber>3004</minorNumber>
         <namespace>loan</namespace>
     </packageVersions>
     <status>Active</status>

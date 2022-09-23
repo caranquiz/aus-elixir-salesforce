@@ -28,7 +28,12 @@ public with sharing class InterestRateChangeHandler {
                         ID loanID = loanAcc.Id;
                         Date transactionDate = systemDate;
                         if(loanAcc.Remaining_Term_from_Schedule__c != NULL){
-                            noOfInstallments = Integer.ValueOf(loanAcc.Remaining_Term_from_Schedule__c);
+                            if(loanAcc.loan__Previous_Installment_Date__c != NULL && loanAcc.loan__Previous_Installment_Date__c >= loanAcc.New_Interest_Rate_Effective_Date__c && loanAcc.loan__Previous_Installment_Date__c <= systemDate){
+                                noOfInstallments = Integer.ValueOf(loanAcc.Remaining_Term_from_Schedule__c)+1;
+                            }
+                            else{
+                                noOfInstallments = Integer.ValueOf(loanAcc.Remaining_Term_from_Schedule__c);
+                            }
                         }
                         else{
                             throw new CustomException(ConstantValues.TOTAL_NO_OF_INSTALLMENTS_MISSING);
@@ -71,6 +76,12 @@ public with sharing class InterestRateChangeHandler {
                         }
                         else{
                             throw new CustomException(ConstantValues.LOAN_FREQUENCY_IS_MISSING);
+                        }
+                        if(loanAcc.loan__Maturity_Date_Current__c != NULL){
+                            rescheduleParametersmap.put('OT_Maturity_Date__c', loanAcc.loan__Maturity_Date_Current__c);
+                        }
+                        else{
+                            throw new CustomException(ConstantValues.MATURITY_DATE_IS_MISSING);
                         }
                         rescheduleParametersmap.put('Reschedule_Balance__c', ConstantValues.PRINCIPAL_REMAINING);
                         rescheduleParametersmap.put('New_Due_Day__c', Integer.ValueOf(loanAcc.loan__Due_Day__c));

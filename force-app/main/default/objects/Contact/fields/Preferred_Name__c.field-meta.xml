@@ -5,7 +5,7 @@
 https://wingategroup.atlassian.net/secure/RapidBoard.jspa?rapidView=10&amp;projectKey=OIBCR&amp;modal=detail&amp;selectedIssue=OIBCR-349</description>
     <externalId>false</externalId>
     <label>Preferred Name</label>
-    <length>32</length>
+    <length>255</length>
     <required>false</required>
     <trackFeedHistory>false</trackFeedHistory>
     <trackHistory>false</trackHistory>

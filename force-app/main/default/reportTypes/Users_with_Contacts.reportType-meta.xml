@@ -1613,6 +1613,11 @@
             <field>Sub_Aggregator__c</field>
             <table>User.Accounts__r</table>
         </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>AML_search_result__c</field>
+            <table>User.Accounts__r</table>
+        </columns>
         <masterLabel>Accounts</masterLabel>
     </sections>
 </ReportType>

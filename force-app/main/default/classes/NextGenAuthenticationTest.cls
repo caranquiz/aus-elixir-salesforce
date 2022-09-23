@@ -454,6 +454,18 @@ public class NextGenAuthenticationTest{
     }
     @isTest
     static void createApplicationTestTwelve(){
+
+        List<clcommon__Legal_Entity__c> legEntityList=[SELECT id 
+                                                        FROM clcommon__Legal_Entity__c 
+                                                        WHERE Name='Individual'];
+
+        Id rtId = [SELECT Id FROM RecordType WHERE IsPersonType = TRUE AND SObjectType='Account' LIMIT 1].Id;
+        Account objAccount = new Account(RecordTypeId=rtId);
+        objAccount.clcommon__Legal_Entity_Type__c=legEntityList[0].id;
+        objAccount.FirstName='Josie';
+        objAccount.LastName='Test';
+        objAccount.PersonBirthdate=Date.newInstance(1980,01,01);
+        insert objAccount;        
         test.startTest();
         StaticResource applicationXML = [SELECT Id,
                                             Name, Body

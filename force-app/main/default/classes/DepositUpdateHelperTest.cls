@@ -13,10 +13,18 @@ public with sharing class DepositUpdateHelperTest {
     //Inserting Legal Entity
     clcommon__Legal_Entity__c legEntity = GenericUtilityTestHelper.returnLegalEntity();
     System.assertEquals(legEntity.Name, 'Individual');
+    
+    //Inserting Legal Entity
+    clcommon__Legal_Entity__c companyLegEntity = GenericUtilityTestHelper.returnCompanyLegalEntity();
+    System.assertEquals(companyLegEntity.Name, 'Company');
 
     //Inserting Account
     Account acc = GenericUtilityTestHelper.returnBorrowerAccount(legEntity.Id);
     System.assertEquals(acc.name, 'Dummy Account');
+    
+    //Inserting Account
+    Account companyAcc = GenericUtilityTestHelper.returnBorrowerAccount(companyLegEntity.Id);
+    System.assertEquals(companyAcc.name, 'Dummy Account');
 
     //Inserting CL Product
     clcommon__CL_Product__c clProductName = GenericUtilityTestHelper.insertClProduct();
@@ -67,6 +75,16 @@ public with sharing class DepositUpdateHelperTest {
       null,
       'Party type insertion is successful'
     );
+    
+    //Insert Co-applicant Party Type
+    clcommon__Party_Type__c coAppPartyType = GenericUtilityTestHelper.insertPartyType(
+      ConstantValues.CO_APPLICANT
+    );
+    System.assertNotEquals(
+      coAppPartyType.Id,
+      null,
+      'Party type insertion is successful'
+    );
     //Inserting Borrower Party
     clcommon__Party__c party = GenericUtilityTestHelper.createBorowerParty(
       acc,
@@ -78,6 +96,27 @@ public with sharing class DepositUpdateHelperTest {
       null,
       'Party inserted successfully!'
     );
+    //Inserting CO_APPLICANT Party
+    clcommon__Party__c coAppPrty = GenericUtilityTestHelper.createBorowerParty(
+      companyAcc,
+      coAppPartyType.Id,
+      app.Id
+    );
+    System.AssertNotEquals(
+      coAppPrty.Id,
+      null,
+      'Party inserted successfully!'
+    );
+    //Inserting Director
+    Director__c director = GenericUtilityTestHelper.returnDirector(
+      coAppPrty.Id
+    );
+    System.AssertNotEquals(
+      director.Id,
+      null,
+      'Director inserted successfully!'
+    );
+    
     //Insert Application Collaterals
     genesis__Application_Collateral__c appCollateral = GenericUtilityTestHelper.returnAppCollateral(
       app.Id,
@@ -280,6 +319,7 @@ public with sharing class DepositUpdateHelperTest {
   }
   @isTest
   static void caseScenarioFornonFITLoans() {
+    Date currentSystemDate = date.today();
     clcommon__CL_Product__c prod = [
       SELECT Id
       FROM clcommon__CL_Product__c
@@ -296,6 +336,48 @@ public with sharing class DepositUpdateHelperTest {
     update app;
     WarehouseFunding.executeFun(loanC.Id, ware.Id);
     Database.executeBatch(new UpdateUnpaidBillsFlagBatch(), 10);
+    
+    List<loan__Repayment_Schedule__c> repaymentList = [SELECT Id,
+                                                            loan__Is_Archived__c,
+                                                            loan__Due_Date__c 
+                                                        FROM loan__Repayment_Schedule__c 
+                                                        LIMIT 10]; 
+    if(repaymentList!=NULL && repaymentList.size() > 0){    
+        for(loan__Repayment_Schedule__c objrepayment : repaymentList ) {    
+            objrepayment.loan__Is_Archived__c = true;   
+            objrepayment.loan__Due_Date__c = currentSystemDate + 40;    
+        }   
+    }   
+    update repaymentList;
+    List<loan__Repayment_Schedule__c> repaymentListCheck = [SELECT Id,
+                                                            loan__Is_Archived__c,
+                                                            loan__Due_Date__c 
+                                                        FROM loan__Repayment_Schedule__c
+                                                        WHERE loan__Is_Archived__c = TRUE];
+    System.assertEquals(repaymentListCheck.size() > 0, TRUE, 'Repayment List updated successfully!'); 
+    app.genesis__Status__c = 'Loan Settled';
+    app.genesis__Expected_First_Payment_Date__c = currentSystemDate + 40;
+    app.genesis__Interest_Rate__c = 5;
+    app.genesis__Term__c = 12;
+    update app;  
+    List <genesis__applications__c> appList = [SELECT ID 
+                                                    FROM genesis__applications__c 
+                                                    WHERE genesis__Status__c = 'Loan Settled'];
+    System.assertEquals(appList.size() > 0, TRUE, 'Application updated Successfully!');
+    genesis.SkuidNewApplication.generateSchedule(appList[0].Id);
+    List<genesis__Amortization_Schedule__c> amortizationList = [SELECT Id, 
+                                                                       genesis__Application__r.genesis__Status__c   
+                                                                  FROM genesis__Amortization_Schedule__c    
+                                                                  LIMIT 10]; 
+    System.debug('amortizationList'+amortizationList);
+    AmortizationScheduleDeletionBatch objSchedule = new AmortizationScheduleDeletionBatch();    
+    String schedule = '0 0 23 * * ?';   
+    system.schedule('Test AmortizationScheduleDeletionBatch', schedule, objSchedule );  
+    LoanRepaymentScheduleDeletionBatch objSchedule1 = new LoanRepaymentScheduleDeletionBatch(); 
+    String schedule1 = '0 0 23 * * ?';  
+    system.schedule('Test LoanRepaymentScheduleDeletionBatch', schedule1, objSchedule1 );   
+    Database.executeBatch(new LoanRepaymentScheduleDeletionBatch(), 10);
+    
     test.stopTest();
   }
   @isTest
@@ -330,7 +412,7 @@ public with sharing class DepositUpdateHelperTest {
     DepositPaymentCreationCustomQuery.getCustomQuery('loan.LoanDepositPaymentCreationDynamicJob');
     LoanCollateralUpdateBatch obj=new LoanCollateralUpdateBatch();
     String sch = '0 0 23 * * ?';
-		Id jobId = system.schedule('Test Check', sch, obj );
+        Id jobId = system.schedule('Test Check', sch, obj );
 
     LoanCollateralUpdateBatchExecution.executeLoanCollateralUpdateBatchWS();
 
@@ -339,5 +421,14 @@ public with sharing class DepositUpdateHelperTest {
     test.stopTest();
     AsyncApexJob aaj = [SELECT Id, Status, JobItemsProcessed, TotalJobItems, NumberOfErrors FROM AsyncApexJob WHERE ID =: batchJobId OR ID=:jobId ];
     System.assert(aaj.Status=='Completed', 'Job run successfully');
+    
+    List <clcommon__Party__c> partyList = [Select Id from clcommon__Party__c where genesis__Application__c =: app.Id and clcommon__Type__r.Name =: ConstantValues.CO_APPLICANT];
+    if(partyList.size() > 0){
+        partyList[0].Trustee_Type__c = 'Corporate';
+        update partyList[0];
+    }
+    partyList = [Select Id from clcommon__Party__c where genesis__Application__c =: app.Id and Trustee_Type__c = 'Corporate'];
+    System.assert(partyList.size() > 0, 'Party updated successfully!');
+    ConvertToContract.insertCompanyRelatedAccount(app.Id);
   }
 }

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>AML_search_result__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF(INCLUDES( clcommon__Account__r.AML_search_result__c , &quot;PEP&quot;), &quot;PEP&quot;, NULL) + BR() +
+IF(INCLUDES( clcommon__Account__r.AML_search_result__c , &quot;GWL&quot;), &quot;GWL&quot;, NULL) + BR() +
+IF(INCLUDES( clcommon__Account__r.AML_search_result__c , &quot;Clear&quot;), &quot;Clear&quot;, NULL)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>AML search result</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

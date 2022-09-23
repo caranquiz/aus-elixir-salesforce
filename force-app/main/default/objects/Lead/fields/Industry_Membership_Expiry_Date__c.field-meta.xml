@@ -8,5 +8,6 @@ New field to allow conversions to happen</description>
     <label>Industry Membership Expiry Date</label>
     <required>false</required>
     <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
     <type>Date</type>
 </CustomField>

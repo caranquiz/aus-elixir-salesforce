@@ -21,24 +21,42 @@ For filtering applications for external auditors</description>
                 <label>NAB</label>
             </value>
             <value>
-                <fullName>Kapstream</fullName>
-                <default>false</default>
-                <label>Kapstream</label>
-            </value>
-            <value>
                 <fullName>AUP</fullName>
                 <default>false</default>
                 <label>AUP</label>
             </value>
             <value>
-                <fullName>CBA</fullName>
-                <default>false</default>
-                <label>CBA</label>
-            </value>
-            <value>
                 <fullName>Ernst and Young</fullName>
                 <default>false</default>
                 <label>Ernst and Young</label>
+            </value>
+            <value>
+                <fullName>Macquarie</fullName>
+                <default>false</default>
+                <label>Macquarie</label>
+            </value>
+            <value>
+                <fullName>Westpac</fullName>
+                <default>false</default>
+                <label>Westpac</label>
+            </value>
+            <value>
+                <fullName>CBA</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>CBA</label>
+            </value>
+            <value>
+                <fullName>Kapstream</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Kapstream</label>
+            </value>
+            <value>
+                <fullName>Moodys</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Moodys</label>
             </value>
         </valueSetDefinition>
     </valueSet>

@@ -627,6 +627,7 @@ global class ConstantValues {
   public static final String GUARANTOR = 'Guarantor';
   public static final String GUARANTOR_PARTY_UPDATE = 'guarantor';
   public static final String JOINT = 'joint';
+  public static final String JOINT_TYPE = 'Joint';
   public static final String PRINCIPAL = 'principal';
   public static final String ENTITY_RELATED_INFO = 'entityRelatedInfo';
   public static final String ENTITY_NAME = 'entityName';
@@ -852,6 +853,7 @@ global class ConstantValues {
   public static final String EDUCATION_WARNING = 'Education and Childcare Warning';
   public static final String INVETSMENT_PROPERTY_WARNING = 'Investment Property Warning Check';
   public static final String RENT_BOARD_WARNING = 'Rent/Board (post settlement of this facility) Warning';
+  public static final String CONTRACT_OF_SALE_CONDITION = 'Contract of Sale Condition';
   public static final String IS_PURCHASOR_MORTGAGOR_CONDITION = 'Is Purchaser the Mortgagor Condition';
   public static final String HOME_INSURANCE_CERTIFICATE_PROVIDED_CONDITION = 'Home Insurance Certificate Provide Warning';
   public static final String HMI_BODY_CORPORATE_CONDITION = 'Home Insurance Certificate Provide and Body Corporate Condition';
@@ -930,6 +932,7 @@ global class ConstantValues {
   public static final String DOES_APPLICANT_UNDERSTAND_ENG_COND_TXT_KEY = '[Does applicant understand English Condition Text]';
   public static final String DOES_APPLICANT_UNDERSTAND_ENG_COND_TXT = 'Receipt of certificate from registered translator or bilingual solicitor acting for [individual applicant] confirming they have read and understood the transaction documents and Guarantors/Borrowers to obtain independent legal advice regarding this transaction';
   public static final String IND_APPLICANT_KEY = '[individual applicant]';
+  public static final String PROPERTY_TRUST_NAME = '[Property Trust Name]';
   public static final String GIFT_GIVER_NAME_KEY = '[add gift giver name]';
   public static final String GIFT_AMOUNT_KEY = '[add dollar amount]';
   public static final String LENDER_DETAILS_KEY = '[Lender Details]';
@@ -981,6 +984,8 @@ global class ConstantValues {
   public static final Decimal CREDIT_RECORD_VALUE = 1000;
   public static final String SETTLEMENT_FEE_WARNING = 'Settlement Fee % Warning';
   public static final String APPLICATION_SETTLEMENT_FEE_WARNING = 'Settlement Fee Percentage Warning';
+  public static final String TRUST_DEED_VETTING_FOR_SMSF_CONDITION_ONE = 'Trust Deed vetting for SMSF Condition One';
+  public static final String TRUST_DEED_VETTING_FOR_SMSF_CONDITION_TWO = 'Trust Deed vetting for SMSF Condition Two';
   public static final String INDENTIFICATION_CHECKLIST_CONDITION = 'Identification checklist Condition';
   public static final String EXIT_STRATEGY_CONDITION = 'Exit Strategy Condition';
   public static final String ACCEPTABLE_VALUATIONSS_CONDITION = 'Acceptable Valuation(s) Condition';
@@ -988,6 +993,7 @@ global class ConstantValues {
   public static final String SUPERANNUATION_CAPACITY_CONDITION = 'Superannuation Capacity Condition';
   public static final String TRUST_DEED_VETTED_CONDITION = 'Trust Deed Vetted Condition';
   public static final String ACCOUNTANTS_INTERVIEW_CONDITION = 'Accountant’s Interview Condition';
+  public static final String ACCOUNTANTS_INTERVIEW_CONDITION_FOR_COMPANY = 'Accountants Interview Condition for Company';
   public static final String STRUCTURE_AND_SERVICING_REVIEW_CONDITION = 'Structure and Servicing Review Condition';
   public static final String GENERAL_SECURITY_AGREEMENT_CONDITION = 'General Security Agreement Condition';
   public static final String NOT_ATTACHED_TO_TRUST_CONDITION = 'Not Attached to Trust Condition';
@@ -1020,6 +1026,7 @@ global class ConstantValues {
 
   //GenerateStatment
   public static final String INT_RATE = 'Int Rt:';
+  public static final String INT_PRD = ' Int Prd:';
   public static final String INVALID_LOAN= 'Invalid Loan';
   public static final String END_DATE_CANT_BE_IN_FUTURE = 'End date cant be in future';
   public static final String GENERATE_STATEMENT_DOC = 'Generate_Statement_Document';
@@ -1275,6 +1282,7 @@ global class ConstantValues {
   public static final String TOTAL_NO_OF_INSTALLMENTS_MISSING = 'Total number of installments is missing.';
   public static final String INTEREST_ONLY_PERIOD_MISSING = 'Interest only period is missing.';
   public static final String PRINCIPAL_REMAINING = 'Principal Remaining';
+  public static final String MATURITY_DATE_IS_MISSING = 'Maturity Date is missing.';
 
   public static final String FIXED_AMOUNT ='FIXED AMOUNT';
   public static final String CURRENT_PAYMENT_AMOUNT ='CURRENT PAYMENT AMOUNT';
@@ -1328,5 +1336,10 @@ global class ConstantValues {
   public static final String OTHER = 'Other';
   public static final String TEST_EMAIL_ID = 'test@ck.com';
   public static final String TEST_TEXT = 'Test';
-
+  public static final String FORTNIGHTLY = 'Fortnightly';
+  public static final String YEARLY = 'Yearly';
+  
+  public static final String ATF =' ATF';
+  
+  public static final String TRUSTEE = 'Trustee';
 }

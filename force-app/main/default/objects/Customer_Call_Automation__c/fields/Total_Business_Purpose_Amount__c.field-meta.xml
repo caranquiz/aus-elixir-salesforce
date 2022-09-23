@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Total_Business_Purpose_Amount__c</fullName>
+    <externalId>false</externalId>
+    <formula>Party__r.genesis__Application__r.Buy_Asset_Investment_Amount__c  +  Party__r.genesis__Application__r.Marketing_Advertising_Amount__c + Party__r.genesis__Application__r.Business_Other_Amount__c +
+Party__r.genesis__Application__r.Purchase_Business_Amount__c +
+Party__r.genesis__Application__r.Working_Capital_Amount__c</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Total Business Purpose Amount</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Currency</type>
+</CustomField>

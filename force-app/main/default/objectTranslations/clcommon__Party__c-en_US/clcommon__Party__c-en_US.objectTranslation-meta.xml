@@ -21,6 +21,14 @@
     </validationRules>
     <validationRules>
         <errorMessage></errorMessage>
+        <name>Property_ACN_Number_no_space_rule</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage></errorMessage>
+        <name>Property_Trust_ACN_Field_9_number</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage></errorMessage>
         <name>Remove_spaces_from_ACN_number</name>
     </validationRules>
 </CustomObjectTranslation>

@@ -2,7 +2,7 @@
  * Created by caleb on 10/06/2022.
  */
 
-public with sharing class SendInterestRateChangeEmailsQueueble implements System.Queueable
+public with sharing class SendInterestRateChangeEmailsQueueble implements System.Queueable, System.Finalizer
 {
     public static Integer BATCH_SIZE = 100;
 
@@ -29,6 +29,7 @@ public with sharing class SendInterestRateChangeEmailsQueueble implements System
 
     public void execute(QueueableContext param1)
     {
+        System.attachFinalizer(this);
         loanAccountsUpdateToMeatCriteria.sort();
         System.debug('loanAccountsUpdateToMeatCriteria = ' + loanAccountsUpdateToMeatCriteria);
         System.debug('minimumIdExclusive = ' + minimumIdExclusive);
@@ -70,8 +71,9 @@ public with sharing class SendInterestRateChangeEmailsQueueble implements System
                             OR loan__Account__r.clcommon__Legal_Entity_Type__r.Name = 'individual'
                     )
                     AND Id > :minimumIdExclusive
-                    ORDER BY Id
+                    //ORDER BY Id
                     LIMIT :BATCH_SIZE
+                    FOR UPDATE
             ];
         }
         else
@@ -109,8 +111,9 @@ public with sharing class SendInterestRateChangeEmailsQueueble implements System
                             OR loan__Account__r.clcommon__Legal_Entity_Type__pr.Name = 'individual'
                             OR loan__Account__r.clcommon__Legal_Entity_Type__r.Name = 'individual'
                     )
-                    ORDER BY Id
+                    //ORDER BY Id
                     LIMIT :BATCH_SIZE
+                    FOR UPDATE
             ];
         }
 
@@ -140,6 +143,9 @@ public with sharing class SendInterestRateChangeEmailsQueueble implements System
                 '    </p>\n' +
                 '    <p>\n' +
                 '        Please be advised that the interest rate for your ORDE loan {1} will {2} from {3}% p.a. variable to {4}% p.a. variable effective {5}\n' +
+                '    </p>\n' +
+                '    <p>\n' +
+                '        {17}\n' +
                 '    </p>\n' +
                 '    :begin:p1\n' +
                 '    <p>\n' +
@@ -192,6 +198,8 @@ public with sharing class SendInterestRateChangeEmailsQueueble implements System
                 '\n' +
                 '</html>';
 
+        String openingParagraph = Label.Interest_Change_Email_Opening_Paragraph.equalsIgnoreCase('Empty') ? '' : Label.Interest_Change_Email_Opening_Paragraph;
+
         Map<InvocableInterestRateChangeEmailDto, Task> emailInfoToTask = new Map<InvocableInterestRateChangeEmailDto, Task>();
         for (loan__Coborrower__c cb : coborrowers)
         {
@@ -231,6 +239,8 @@ public with sharing class SendInterestRateChangeEmailsQueueble implements System
                 dataToInterpolate.add(cb.loan__Contact__r.Email);
                 dataToInterpolate.add(cb.loan__Loan__r.Name);
             }
+
+            dataToInterpolate.add(openingParagraph);
 
             InvocableInterestRateChangeEmailDto emailInfoDto = new InvocableInterestRateChangeEmailDto();
             if (cb.loan__Account__r.IsPersonAccount)
@@ -339,5 +349,16 @@ public with sharing class SendInterestRateChangeEmailsQueueble implements System
         q.loanAccountsUpdateToMeatCriteria = loanAccountsUpdateToMeatCriteria;
         if (!Test.isRunningTest())
             System.enqueueJob(q);
+    }
+
+    public void execute(FinalizerContext param1)
+    {
+        if (param1.getException() != null)
+        {
+            if (param1.getException().getMessage().contains('UNABLE_TO_LOCK_ROW'))
+            {
+                System.enqueueJob(this);
+            }
+        }
     }
 }

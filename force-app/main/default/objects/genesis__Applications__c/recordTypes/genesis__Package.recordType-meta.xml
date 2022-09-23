@@ -363,11 +363,15 @@
             <default>false</default>
         </values>
         <values>
-            <fullName>Kapstream</fullName>
+            <fullName>Macquarie</fullName>
             <default>false</default>
         </values>
         <values>
             <fullName>NAB</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Westpac</fullName>
             <default>false</default>
         </values>
     </picklistValues>

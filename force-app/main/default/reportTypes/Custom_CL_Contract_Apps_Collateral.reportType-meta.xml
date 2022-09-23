@@ -3853,6 +3853,11 @@
             <field>First_Home_Buyer__c</field>
             <table>loan__Loan_Account__c.Applications__r</table>
         </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Broker__c.Mortgage_Manager__c</field>
+            <table>loan__Loan_Account__c.Applications__r</table>
+        </columns>
         <masterLabel>Applications</masterLabel>
     </sections>
     <sections>

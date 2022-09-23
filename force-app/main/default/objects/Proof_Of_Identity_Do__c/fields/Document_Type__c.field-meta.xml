@@ -185,6 +185,11 @@
                 <default>false</default>
                 <label>Water Utility Bill</label>
             </value>
+            <value>
+                <fullName>New Zealand Passport</fullName>
+                <default>false</default>
+                <label>New Zealand Passport</label>
+            </value>
         </valueSetDefinition>
     </valueSet>
 </CustomField>

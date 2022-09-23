@@ -3831,6 +3831,21 @@
             <field>Secretary_Check__c</field>
             <table>genesis__Applications__c.genesis__Parties__r</table>
         </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Property_Trust_ACN__c</field>
+            <table>genesis__Applications__c.genesis__Parties__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>AML_search_result__c</field>
+            <table>genesis__Applications__c.genesis__Parties__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Customer_Interview_Check__c</field>
+            <table>genesis__Applications__c.genesis__Parties__r</table>
+        </columns>
         <masterLabel>Parties</masterLabel>
     </sections>
     <sections>

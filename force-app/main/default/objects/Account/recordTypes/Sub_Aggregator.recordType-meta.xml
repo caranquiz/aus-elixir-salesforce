@@ -15,6 +15,21 @@
         </values>
     </picklistValues>
     <picklistValues>
+        <picklist>AML_search_result__c</picklist>
+        <values>
+            <fullName>Clear</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>GWL</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>PEP</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
         <picklist>AccountSource</picklist>
         <values>
             <fullName>Advertisement</fullName>

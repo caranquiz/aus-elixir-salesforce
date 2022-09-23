@@ -100,7 +100,13 @@ public with sharing class ChildChecklistAPI {
     List<clcommon__Party__c> partyList = [
       SELECT
         Id,
+        Customer_Interview_Check__c,
+        Customer_Interview_Signed__c,
+        Customer_Interview_completed__c,
         clcommon__Contact__c,
+        clcommon__Account__r.AML_search_result_check__c,
+        clcommon__Account__r.In_Approval_Process__c,
+        clcommon__Account__r.AML_search_result__c,
         clcommon__Account__r.Temporary_Visa_Suitability__pc,
         clcommon__Account__r.Temporary_Visa_Suitability_Rule_Check__pc,
         clcommon__Account__r.Age_of_Applicant__pc,
@@ -184,7 +190,6 @@ public with sharing class ChildChecklistAPI {
         genesis__Application__r.NCCP_status_list__c,
         //genesis__Application__r.ABS_Lending_Purpose_Check__c,
         genesis__Application__r.genesis__CL_Product_Name__c,
-        Customer_Interview_completed__c,
         Bankrupt_Discharged_Date_Warning_Check__c,
         Exp_of_Bankruptcy_Received_Warning_Check__c,
         Date_of_Credit_Report_Warning_Check__c,
@@ -198,13 +203,19 @@ public with sharing class ChildChecklistAPI {
         Secretary_Check__c,
         Settlement_Fee_Check__c,
         Credit_Event_Check__c,
-        Age_Check__c
+        Age_Check__c,
+        Understand_English__c   
       FROM clcommon__Party__c
       WHERE genesis__Application__c = :appId
     ];
     List<genesis__Income__c> incomeList = [
       SELECT
         Id,
+        Party__r.Document_Type__c,
+        Company_Type_of_Documents_Sighted__c,
+        Accountant_Letter_Verified__c,
+        Accountant_Call__c, 
+        Accountant_Interview_Condition_Comp_Chec__c,
         Party__c,
         Employment_Information__c,
         Employment_Information__r.Party__c,
@@ -249,6 +260,9 @@ public with sharing class ChildChecklistAPI {
     List<genesis__Application_Collateral__c> collateralList = [
       SELECT
         Id,
+        genesis__Collateral__r.Type__c,
+        genesis__Application__r.genesis__CL_Product_Name__c,
+        genesis__Collateral__r.Transaction__c,
         genesis__Collateral__r.Check_Val_Value_Rule_Check__c,
         genesis__Collateral__r.Check_Val_Value_Render__c,
         genesis__Collateral__r.Distressed_Asset_Rule_Check__c,

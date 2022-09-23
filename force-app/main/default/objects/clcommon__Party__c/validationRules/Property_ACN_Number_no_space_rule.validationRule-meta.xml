@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Property_ACN_Number_no_space_rule</fullName>
+    <active>true</active>
+    <errorConditionFormula>CONTAINS( Property_Trust_ACN__c , &quot; &quot;) &amp;&amp;
+Legal_Entity_Type__c = &apos;SMSF&apos;</errorConditionFormula>
+    <errorMessage>Please Remove Spaces from Property Trust ACN Field.</errorMessage>
+</ValidationRule>

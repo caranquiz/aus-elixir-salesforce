@@ -36,7 +36,7 @@
         <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
         <rules>
             <name>New_Application_or_Status_Change</name>
-            <conditionLogic>or</conditionLogic>
+            <conditionLogic>3 AND (1 OR 2)</conditionLogic>
             <conditions>
                 <leftValueReference>$Record.genesis__Status__c</leftValueReference>
                 <operator>IsChanged</operator>
@@ -49,6 +49,13 @@
                 <operator>EqualTo</operator>
                 <rightValue>
                     <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.genesis__Status__c</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <stringValue>Conditional Assessed</stringValue>
                 </rightValue>
             </conditions>
             <connector>

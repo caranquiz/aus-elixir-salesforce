@@ -180,6 +180,11 @@
             <field>loan__Loan_Status__c</field>
             <table>loan__Bank_Account__c.loan__Lending__r</table>
         </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Signatures_confirmed__c</field>
+            <table>loan__Bank_Account__c</table>
+        </columns>
         <masterLabel>Bank Accounts</masterLabel>
     </sections>
     <sections>

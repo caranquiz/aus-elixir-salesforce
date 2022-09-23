@@ -756,7 +756,7 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>LAIs for Interest Rate Change</shortDescription>
-        <value>XXX</value>
+        <value>xxx</value>
     </labels>
     <labels>
         <fullName>Loan_Statuses_for_Rate_Change</fullName>
@@ -793,5 +793,19 @@
         <protected>false</protected>
         <shortDescription>Peter Polemikos Email</shortDescription>
         <value>ppolemikos@orde.com.au</value>
+    </labels>
+    <labels>
+        <fullName>Days_consideration_for_deleting_loan_repayment_schedule_records</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Days consideration for deleting loan repayment schedule records</shortDescription>
+        <value>35</value>
+    </labels>
+    <labels>
+        <fullName>Interest_Change_Email_Opening_Paragraph</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Interest Change Email Opening Paragraph</shortDescription>
+        <value>As with most lenders, ORDE Financial’s costs to fund the loans provided to our borrowers, are determined by multiple factors. As a result, ORDE’s cost of funds are presently increasing by more than changes to the RBA official cash rate. In these circumstances ORDE has made the difficult decision to increase borrower rates reflecting our costs.</value>
     </labels>
 </CustomLabels>

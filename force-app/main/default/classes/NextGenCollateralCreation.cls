@@ -634,7 +634,7 @@ public with sharing class NextGenCollateralCreation {
             }
         }               
         if(objAssetInfoList.size()>0){
-            Database.insert(objAssetInfoList,false);
+            Database.insert(objAssetInfoList);
         }
         if(objLiabilityList.size()>0){
             Database.insert (objLiabilityList,false);
@@ -1162,6 +1162,15 @@ public with sharing class NextGenCollateralCreation {
                 objAssetInfo.genesis__Market_Value__c=(Decimal.valueOf((String)((Map<String, Object>)
                     ((Map<String, Object>)((Map<String, Object>) ((Map<String, Object>) eachValueItem)
                     .get('Asset')).get('RealEstate')).get('EstimatedValue')).get('NodeValue')))*percent;
+        }else if(((Map<String, Object>) eachValueItem) != null &&
+            ((Map<String, Object>) ((Map<String, Object>) eachValueItem)
+            .get('Asset')) !=null &&
+            ((Map<String, Object>)((Map<String, Object>) ((Map<String, Object>) eachValueItem)
+            .get('Asset')).get('RealEstate')) !=null &&
+            ((String) ((Map<String, Object>) eachValueItem)
+            .get('Value')) !=null){
+            objAssetInfo.genesis__Market_Value__c=(Decimal.valueOf((String) ((Map<String, Object>) eachValueItem)
+            .get('Value')))*percent;
         }
         
         if(((Map<String, Object>) eachValueItem) != null &&
@@ -1203,7 +1212,10 @@ public with sharing class NextGenCollateralCreation {
                     .get('Asset')).get('RealEstate')).get('RentalIncome')).get('RentalAmount')))*percent));
                 }else if((String)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>)
                 ((Map<String, Object>) ((Map<String, Object>) eachValueItem)
-            .get('Asset')).get('RealEstate')).get('RentalIncome')).get('Period')).get('Unit')=='Yearly'){
+            .get('Asset')).get('RealEstate')).get('RentalIncome')).get('Period')).get('Unit')=='Yearly' ||
+            (String)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>)
+            ((Map<String, Object>) ((Map<String, Object>) eachValueItem)
+        .get('Asset')).get('RealEstate')).get('RentalIncome')).get('Period')).get('Unit')=='Annually'){
                     objAssetInfo.Monthly_Income__c=(decimal)((Decimal.valueOf((String)((Map<String, Object>)
                     ((Map<String, Object>)((Map<String, Object>) ((Map<String, Object>) eachValueItem)
                     .get('Asset')).get('RealEstate')).get('RentalIncome')).get('RentalAmount')))*percent)/12;
@@ -1292,6 +1304,15 @@ public with sharing class NextGenCollateralCreation {
                 objAssetInfo.genesis__Market_Value__c=(Decimal.valueOf((String)((Map<String, Object>)
                 ((Map<String, Object>)((Map<String, Object>) ((Map<String, Object>) eachValueItem)
                 .get('Asset')).get('NonRealEstate')).get('EstimatedValue')).get('NodeValue')))*percent;
+        }else if(((Map<String, Object>) eachValueItem) != null &&
+            ((Map<String, Object>) ((Map<String, Object>) eachValueItem)
+            .get('Asset')) !=null &&
+            ((Map<String, Object>)((Map<String, Object>) ((Map<String, Object>) eachValueItem)
+            .get('Asset')).get('NonRealEstate')) !=null &&
+            ((String) ((Map<String, Object>) eachValueItem)
+            .get('Value')) !=null){
+            objAssetInfo.genesis__Market_Value__c=(Decimal.valueOf((String) ((Map<String, Object>) eachValueItem)
+            .get('Value')))*percent;
         }
         if(((Map<String, Object>) eachValueItem) != null &&
             ((Map<String, Object>) ((Map<String, Object>) eachValueItem)

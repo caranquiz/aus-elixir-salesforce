@@ -86,6 +86,12 @@
         <style>CustomLinks</style>
     </layoutSections>
     <relatedLists>
+        <fields>NAME</fields>
+        <fields>Industry__c</fields>
+        <fields>Main_Business_Activity__c</fields>
+        <relatedList>genesis__Employment_Information__c.Party__c</relatedList>
+    </relatedLists>
+    <relatedLists>
         <fields>TASK.SUBJECT</fields>
         <fields>TASK.WHO_NAME</fields>
         <fields>ACTIVITY.TASK</fields>

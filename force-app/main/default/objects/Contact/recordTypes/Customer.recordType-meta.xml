@@ -4,6 +4,17 @@
     <active>true</active>
     <label>Customer</label>
     <picklistValues>
+        <picklist>Accreditation_previously_withdrawn__c</picklist>
+        <values>
+            <fullName>No</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Yes</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
         <picklist>Accredited_Products__c</picklist>
         <values>
             <fullName>Commercial</fullName>
@@ -61,6 +72,17 @@
         </values>
     </picklistValues>
     <picklistValues>
+        <picklist>Been_Bankrupt__c</picklist>
+        <values>
+            <fullName>No</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Yes</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
         <picklist>Broker_Membership_Type__c</picklist>
         <values>
             <fullName>CAFBA</fullName>
@@ -91,6 +113,17 @@
         </values>
         <values>
             <fullName>Internal Review</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Direct_Accredited__c</picklist>
+        <values>
+            <fullName>No</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Yes</fullName>
             <default>false</default>
         </values>
     </picklistValues>
@@ -128,6 +161,17 @@
         </values>
         <values>
             <fullName>Other</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Guilty_of_a_Crime__c</picklist>
+        <values>
+            <fullName>No</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Yes</fullName>
             <default>false</default>
         </values>
     </picklistValues>
