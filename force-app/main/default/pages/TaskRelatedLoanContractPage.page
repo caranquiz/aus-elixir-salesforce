@@ -1,0 +1,31 @@
+<apex:page standardController="collect__Loan_Account__c" sidebar="false" showheader="false" lightningStylesheets="true" extensions="TaskRelatedLoanContractController" >
+    <apex:form >
+        <apex:commandButton title="Create New Task" value="New Task" onclick="window.open('/lightning/o/Task/new?defaultFieldValues=WhatId={!collect__Loan_Account__c.CL_Contract__c},retURL=%2F{!collect__Loan_Account__c.Id}'
+        ,'_blank','width=600,height=600,location=no,resizable=yes,toolbar=no,status=no,menubar=no,scrollbars=1', 1)"/>
+        <apex:commandButton title="Log A Call" value="Log a Call" onclick="window.open('/lightning/o/Task/new?defaultFieldValues=title=Call,WhatId={!collect__Loan_Account__c.CL_Contract__c},followup=1,Subject=Call,retURL=%2F{!collect__Loan_Account__c.Id}'
+        ,'_blank','width=600,height=600,location=no,resizable=yes,toolbar=no,status=no,menubar=no,scrollbars=1', 1);"/>
+        <apex:pageBlock title="Activity History">
+            <div style="height:150px; display:block; overflow:auto">
+                <apex:pageBlockTable value="{!TaskList}" var="ct">
+                    <apex:column > 
+                        <apex:facet name="header">Action</apex:facet>
+                        <apex:commandLink action="{!deleteTask}" value="Del" style="color:#015ba7;" onclick="if(!confirm('Are you sure?')) return false;">
+                            <apex:param name="rowId" assignTo="{!taskId }" value="{!ct.Id}"/>                 
+                        </apex:commandLink>
+                    </apex:column>
+                    <apex:column >
+                        <apex:facet name="header">Subject</apex:facet>
+                        <apex:outputLink value="/{!ct.id}" >
+                            <apex:outputText value="{!ct.Subject}"/>
+                        </apex:outputLink>
+                    </apex:column>  
+                    <apex:column headerValue="Description" value="{! ct.Description__c}"/>
+                    <apex:column headerValue="Name" value="{! ct.whoId}"/>
+                    <apex:column headerValue="Due Date" value="{! ct.ActivityDate}"/>
+                    <apex:column headerValue="Assigned To" value="{! ct.OwnerId}"/>
+                    <apex:column headerValue="Last Modified Date/Time" value="{! ct.LastModifiedDate}"/>
+                   </apex:pageBlockTable>
+            </div>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

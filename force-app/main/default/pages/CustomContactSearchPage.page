@@ -1,0 +1,43 @@
+<apex:page standardController="loan__Loan_Account__c" extensions="LoanContactExtension" lightningStylesheets="true" docType="html-5.0" title="{!acct.name}">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/latest/jquery.js"></script>
+    <style>
+        .apexp .bPageBlock.apexDefaultPageBlock .back .Submit .invInfo .detailInfo{
+        color:Black;
+        background-color:white;
+        }
+    </style> 
+    <apex:form style="border-style:solid;border-width:0px;
+    border-2px;background-color:navyblue">
+    <apex:sectionHeader title="Contacts" />
+        <apex:outputPanel id="searchOutputPanel">
+            <apex:pageBlock id="Details">
+                <apex:pageMessages id="pageMsg"></apex:pageMessages>
+                <apex:pageBlockButtons >
+                    <apex:actionstatus id="idActionStatus">
+                        <apex:facet name="stop">                  
+                            <apex:commandButton value="Export to PDF" action="{!Save}" reRender="pageMsg" disabled="false" status="idActionStatus" style="border: 2px solid rgb(236 235 234);
+                               padding: 10px;
+                               border-radius: 13px;
+                               background-color: #69696947;
+                               color: black;
+                               text-decoration: none;
+                               font-weight: 400;"/>
+                        </apex:facet>
+                     </apex:actionstatus>
+                    <apex:commandButton value="Cancel" action="{!Cancel}" style="border: 2px solid rgb(236 235 234);
+                               padding: 10px;
+                               border-radius: 13px;
+                               background-color: #69696947;
+                               color: black;
+                               text-decoration: none;
+                               font-weight: 400;"/> 
+                </apex:pageBlockButtons>
+                <apex:pageblockSection title="Enter Details" id="detailInfo" columns="2"
+                    collapsible="false">
+                    <apex:inputField value="{!coborrowerList.loan__Contact__c}" label="Contact" required="true">
+                    </apex:inputField> 
+                </apex:pageblockSection>
+            </apex:pageBlock>
+        </apex:outputPanel>
+     </apex:form>
+</apex:page>

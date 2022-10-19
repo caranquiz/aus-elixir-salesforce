@@ -1,3 +1,11 @@
+/****************************************************************************************************
+Company: Cloudkaptan Consultancy Services Pvt. Ltd.
+Author: Ariz Mazhary
+Description : This class is controller to show Task in Contract object. 
+Development Date : 20/09/2022
+Last Modified Date : 27/09/2022
+****************************************************************************************************/
+
 global class TaskRelatedLoanContractController {
     public List<loan__Loan_Account__c> acctList {get;set;}
     public String taskId {get; set;}
@@ -16,11 +24,14 @@ global class TaskRelatedLoanContractController {
                                 CL_Contract__r.Name
                             FROM collect__Loan_Account__c 
                             WHERE id = :ApexPages.currentPage().getParameters().get('id')];
-		Id loanId=collectAccount.CL_Contract__c;
-        acctList = [SELECT id,
-                      Name,loan__Account__c 
-                  FROM loan__Loan_Account__c 
-                  WHERE id = :loanId];
+        if(collectAccount!=null){
+            Id loanId=collectAccount.CL_Contract__c;
+            acctList = [SELECT id,
+                            Name,loan__Account__c 
+                        FROM loan__Loan_Account__c 
+                        WHERE id = :loanId];
+        }
+		
     }
     //This method returns the Task Details related to CL Contract.
     public List<Task> gettaskList(){

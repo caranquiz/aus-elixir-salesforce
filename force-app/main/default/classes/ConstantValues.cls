@@ -637,6 +637,7 @@ global class ConstantValues {
   public static final String ENQUIRY_SMSF = 'SMSF';
   public static final String TRUST = 'Trust';
   public static final String TRUSTEE_ACN = 'trusteeACN';
+  public static final String TRUSTEE = 'Trustee';
   public static final String COMPANY_ENQUIRY_RESPONSE_RECEIVED_SUCCESSFULLY = 'Company Enquiry Response Received Successfully';
   public static final String DIRECTOR = 'Director';
   public static final String NO_DIRECTORS_FOUND = ' \nNo Directors found';
@@ -1292,7 +1293,7 @@ global class ConstantValues {
   public static final String LAST_BILLED_AMOUNT ='LAST BILLED AMOUNT';
   public static final String APS_DIDNT_CHANGE ='APS didn\''+'t change';
   public static final String FAIL_TO_UPDATE_APS ='Fail to update APS';
-
+  
   // SEND EMAIL 
   public static final String INVALID = 'invalid';
   // public static final String NULL = 'null';
@@ -1331,15 +1332,96 @@ global class ConstantValues {
   
   public static final String PROPERTY = 'Property';
 
+
   public static final String PAYG = 'PAYG';
   public static final String UNEMPLOYMENT_STUDENT_HOME_DUTIES_RETIREMENT = 'Unemployment/Student/Home Duties/Retirement';
   public static final String OTHER = 'Other';
+  // public static final String WEEKLY = 'Weekly';
+  public static final String FORTNIGHTLY = 'Fortnightly';
+  // public static final String MONTHLY = 'Monthly';
+  public static final String YEARLY = 'Yearly';
   public static final String TEST_EMAIL_ID = 'test@ck.com';
   public static final String TEST_TEXT = 'Test';
-  public static final String FORTNIGHTLY = 'Fortnightly';
-  public static final String YEARLY = 'Yearly';
-  
-  public static final String ATF =' ATF';
-  
-  public static final String TRUSTEE = 'Trustee';
+  public static final String EMAIL = 'Email';
+
+  public static final String ATF =' ATF';   
+  public static final String NO_BROKER_PARTY='No Broker Party';
+  public static final String NO_BROKER_UNDERWRITER='No Broker Underwriter';
+
+  // Dishonour Notification
+  public static final String DISHONOUR_EMAIL_TEMPLATE = 'Dishonoured Email Template';   
+  public static final String LAI_NAME = '{LAI XXXX}';  
+  public static final String PERSON_ACCOUNT_NAME = '{Account.Name}';
+  public static final String LOAN_CURRENT_PAYMENT_AMOUNT = '{Current Payment Amount}';
+  public static final String NEXT_DUE_DATE = '{Next Due Date}';
+  public static final String MESSAGE = 'Message';
+  public static final String CONTACT_FIRST_NAME = '{!loan__Coborrower__c.Contact_First_Name__c}';
+  public static final String LOAN_COBORROWER_CONTACT_NAME = '{!loan__Coborrower__c.Contact_Name__c}';
+  public static final String CONTACT_NAME = '{!Contact.Name}';
+  public static final String LOAN_COBORROWER_CONTACT_ADDRESS = '{!loan__Coborrower__c.Contact_Address__c}';
+  public static final String CURRENT_BRANCH_SYSTEM_DATE = '{!User.genesis__Current_Branch_s_System_Date__c}';
+  public static final String COBORROWER_CURRENT_PAYMENT_AMOUNT = '{!loan__Coborrower__c.Current_Payment_Amount_of_Contract__c}';
+  public static final String COBORROWER_NEXT_DUE_DATE = '{!loan__Coborrower__c.Next_Due_Date_Contract__c}';
+  public static final String COBORROWER_CONTRACT_NAME = '{!loan__Coborrower__c.Contract_Name__c}';
+  public static final String COBORROWER_CONTRACT_SECURITY_NAMES = '{!loan__Coborrower__c.Contract_Security_Names__c}';
+  public static final String COBORROWER_CONTRACT_INDIVIDUAL_PARTY_NAMES = '{!loan__Coborrower__c.Contract_Individual_Party_Names__c}';
+  public static final String DISHONOUR_LPT_AMOUNT = '{!loan__Coborrower__c.Dishonour_LPT_Amount__c}';  
+  public static final String DISHONOUR_LPT_DATE = '{!loan__Coborrower__c.Dishonour_LPT_Date__c}';
+  public static final String QUEUE='Queue';
+  public static final String COLLECTION_QUEUE_TASK='Collections Dishonour Queue'; 
+  public static final String DISHONORED_PAYMENT_EMAIL='Dishonored payment-No Email';
+  public static final String DISHONOUR_NOTICE='Dishonour_Notice';
+  public static final String LOAN_aCCOUNT_APPLICATION='{!loan__Loan_Account__c.ApplicationId__c}';
+  public static final String LOAN_LOAN_ACCOUNT_ID='{!loan__Loan_Account__c.Id}';
+  public static final String LOAN_ACCOUN_NAME='{!loan__Loan_Account__c.Name}';
+   public static final String LOAN_ACCOUNT_CONTACT='{!loan__Loan_Account__c.loan__ContactId__c }';
+  public static final String CORRECT_CONTACT='Select Correct Contact';
+
+  public static final String ACCOUNT_SID = '{$accountSid}';
+  public static final String POST = 'POST';
+  public static final String AUTRALIA_COUNTRY_CODE = '+61';
+  public static final String TWILIO_VERSION = '3.2.0';
+  public static final String X_TWILIO_CLIENT = 'X-Twilio-Client';
+  public static final String USER_AGENT = 'User-Agent';
+  public static final String ACCEPT = 'Accept';
+  public static final String ACCEPT_CHARSET = 'Accept-Charset'; 
+  public static final String AUTHORIZATION = 'Authorization';
+  public static final String SALESFORCE = 'salesforce-';
+  public static final String TWILIO_SALESFORCE = 'twilio-salesforce/';
+  public static final String APPLICATION_JSON = 'application/json';
+  public static final String UTF_8 = 'utf-8';
+  public static final String BASIC = 'Basic ';
+
+  public static final String ASSIST_ORDE = 'Assist ORDE';
+
+  public static final String MANUAL_SMS_BODY_START='Dear ';
+  public static final String MANUAL_SMS_BODY_ONE=', your direct debit loan repayment of $';
+  public static final String MANUAL_SMS_BODY_TWO=' made on ';
+  public static final String MANUAL_SMS_BODY_THREE=' for the loan account ';
+  public static final String MANUAL_SMS_BODY_END=' was dishonoured by your financial institution. Please call ORDE Financial on 03 8657 2575 to rectify the missed loan repayment. Thanks. DO NOT REPLY BY SMS.';
+
+  public static final String CREATE_TASK_LABEL='Create Task';
+  public static final String CREATE_TASK_DESCRIPTION='Create Task when No Email is Held';
+  public static final Integer ZERO=0;
+  public static final Integer TWENTYFOUR=24;
+  public static final Integer TEN=10;
+  public static final Integer THREE=3;
+
+  // Attachment //
+  public static final String EMPLOYMENT_AND_INCOME_DETAILS = 'Employment And Income Details';
+  public static final String CONTACT_DETAILS = 'Contact Details'; 
+  public static final String ASSET_AND_LIABILITIES = 'Asset And Liabilities';
+  public static final String CREADIT_HISTORY = 'Credit History';
+  public static final String IDENTITY_DOCUMENTS = 'Identity Documents';
+  public static final String PAYG_DOCUMENTS = 'PAYG Documents'; 
+  public static final String NEXTGEN_INCOME_FILE = 'NextGen Income File'; 
+
+  public static final String IDENTITY_DOCUMENTS_FILE = 'Identity Documents File';
+  public static final String CONTACT_DETAILS_FILE = 'Contact Details File';
+  public static final String INCOME_FILE = 'Income File';
+  public static final String SECURITY_FILE = 'Security File';
+  public static final String LOAN_DETAILS_FILE = 'Loan Details File';
+  public static final String ASSETS_AND_LIABILITIES_FILE = 'Assets & Liabilities File';
+  public static final String SECURITY_DOCUMENTS = 'Security Documents';  
+  public static final String NEXT_GEN_ASSET_AND_LIABILITY = 'Next Gen Asset & Liability';
 }

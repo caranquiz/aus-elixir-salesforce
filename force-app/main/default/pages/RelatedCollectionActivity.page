@@ -1,0 +1,5 @@
+<apex:page standardController="loan__Loan_Account__c" sidebar="false" showheader="false" lightningStylesheets="true">
+<div style="height:auto;width:100vw; display:block; overflow:auto"> 
+<apex:relatedList list="Collection_Activities__r" pageSize="20"></apex:relatedList> 
+</div>
+</apex:page>

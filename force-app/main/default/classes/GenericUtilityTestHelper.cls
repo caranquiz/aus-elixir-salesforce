@@ -23,7 +23,7 @@ public with sharing class GenericUtilityTestHelper {
     insert legEntity;
     return legEntity;
   }
-    public static clcommon__Legal_Entity__c returnJointLegalEntity() {
+  public static clcommon__Legal_Entity__c returnJointLegalEntity() {
     clcommon__Legal_Entity__c legEntity = new clcommon__Legal_Entity__c(
       Name = 'Joint'
     );
@@ -50,6 +50,22 @@ public with sharing class GenericUtilityTestHelper {
     insert dummyClient2;
     return dummyClient2;
   }
+  public static Account insertPersonAccount() {
+    Id personAccountRecordTypeId =  Schema.SObjectType.Account.getRecordTypeInfosByDeveloperName().get('PersonAccount').getRecordTypeId();
+    Account newPersonAccount = new Account();
+    newPersonAccount.FirstName = 'Person';
+    newPersonAccount.LastName = 'Account';
+    newPersonAccount.RecordTypeId = personAccountRecordTypeId;
+    insert newPersonAccount;
+    return newPersonAccount;
+  }
+  public static Contact insertPersonContact(Account accountObject) {
+    Contact dummyContact = new Contact();
+    dummyContact.accountId = accountObject.Id;
+    dummyContact.Account = accountObject;
+    insert dummyContact;
+    return dummyContact;
+  }
   public static Contact insertDummyContact(Account accountObject) {
     Contact dummyContact = new Contact();
     dummyContact.LastName = 'Elixir';
@@ -57,6 +73,34 @@ public with sharing class GenericUtilityTestHelper {
     dummyContact.Account = accountObject;
     insert dummyContact;
     return dummyContact;
+  }
+  public static loan__Coborrower__c insertContractParty(Account accountObject,Contact objContact,loan__Loan_Account__c objContract) {
+    loan__Coborrower__c dummyContractParty = new loan__Coborrower__c();
+    dummyContractParty.loan__Account__c = accountObject.id;
+    dummyContractParty.loan__Contact__c = objContact.id;
+    dummyContractParty.loan__Loan__c = objContract.id;
+    insert dummyContractParty;
+    return dummyContractParty;
+  }
+  public static AccountContactRelation insertAccountContactRelation(Id accountId,Id contactId, String role){
+    AccountContactRelation accountContactRel = new AccountContactRelation(AccountId = accountId, ContactId = contactId,Roles = role);
+    insert accountContactRel;
+    return accountContactRel;
+  }
+  public static collect__Collection_Activity__c insertCollectionActivity(String contractName) {
+    collect__Collection_Activity__c dummyCollectionActivity = new collect__Collection_Activity__c();
+    dummyCollectionActivity.collect__Loan_Account_Name__c = contractName;
+    dummyCollectionActivity.collect__Action__c = 'Email';
+    dummyCollectionActivity.Mail_Sent__c = False;
+    insert dummyCollectionActivity;
+    return dummyCollectionActivity;
+  }
+  public static loan__Loan_Payment_Transaction__c insertLPT(Id contractId) {
+    loan__Loan_Payment_Transaction__c dummyLPT = new loan__Loan_Payment_Transaction__c();
+    dummyLPT.loan__Transaction_Amount__c = 853;
+    dummyLPT.loan__Transaction_Date__c = date.newinstance(2022, 12, 17);
+    insert dummyLPT;
+    return dummyLPT;
   }
   public static Account returnBorrowerAccount(Id legEntityId) {
     //Inserting account
@@ -1622,15 +1666,15 @@ public with sharing class GenericUtilityTestHelper {
     insert borrower;
     return borrower;
   }
-   public static loan__Loan_Disbursal_Transaction__c returnDisbursal(Id loanAccId,Date currentSystemDate,Id pmode){
-      loan__Loan_Disbursal_Transaction__c disTxn = new loan__Loan_Disbursal_Transaction__c();
-      disTxn.loan__Loan_Account__c = loanAccId;
-      disTxn.loan__Disbursal_Date__c = currentSystemDate;
-      disTxn.loan__Transaction_Creation_Date__c = currentSystemDate;
-      distxn.loan__Disbursed_Amt__c=10000;
-      disTxn.loan__Mode_Of_Payment__c = pmode;
-      return disTxn;
-   }
+  public static loan__Loan_Disbursal_Transaction__c returnDisbursal(Id loanAccId,Date currentSystemDate,Id pmode){
+    loan__Loan_Disbursal_Transaction__c disTxn = new loan__Loan_Disbursal_Transaction__c();
+    disTxn.loan__Loan_Account__c = loanAccId;
+    disTxn.loan__Disbursal_Date__c = currentSystemDate;
+    disTxn.loan__Transaction_Creation_Date__c = currentSystemDate;
+    distxn.loan__Disbursed_Amt__c=10000;
+    disTxn.loan__Mode_Of_Payment__c = pmode;
+    return disTxn;
+  }
 
   public static loan__Loan_Payment_Transaction__c returnPayment(Id loanAccId,Date currentSystemDate,Id pMode){
       loan__Loan_Payment_Transaction__c pmt = new loan__Loan_Payment_Transaction__c();
@@ -1736,8 +1780,6 @@ public with sharing class GenericUtilityTestHelper {
     Director__c director=new Director__c();
     director.Party__c=partyId;
     director.Entity_Type__c='Director';
-    director.Entity_Name__c = 'Rameswari Rai Barman';
-    
     insert director;
     return director;
   }
@@ -1793,13 +1835,13 @@ public with sharing class GenericUtilityTestHelper {
     insert objCoborrower;
     return objCoborrower;
   }
-  public static APXT_BPM__Conductor__c returnCongaBatch(){
+   /*public static APXT_BPM__Conductor__c returnCongaBatch(){
       APXT_BPM__Conductor__c congaBatch=new APXT_BPM__Conductor__c();
       congaBatch.APXT_BPM__Title__c=ConstantValues.STATEMENT_CONGA_BATCH;
       congaBatch.APXT_BPM__Description__c='Generate Statement';
       insert congaBatch;
       return congaBatch;
-  }
+  }*/
   public static ContentVersion returnContentVersion(){
       ContentVersion content=new ContentVersion(); 
       content.Title='Half Yearly Statement'; 
@@ -1876,15 +1918,51 @@ public with sharing class GenericUtilityTestHelper {
         insert objCollType;
         return objCollType;
   }
-  public static genesis__Checklist__c returnCheckList(Id assessmentId){
-    genesis__Checklist__c objcheckList = new genesis__Checklist__c(genesis__Message__c = 'SUCCESS',
-        genesis__Assessed_Record_Id__c = assessmentId);
-    insert objcheckList;
-    return objcheckList;
+
+  public static collect__Loan_Account__c returnCollectAccount(Id loanId,Id accountId,Id contactId){
+    collect__Loan_Account__c objLoanContract =new collect__Loan_Account__c();
+    objLoanContract.CL_Contract__c=loanId;
+    objLoanContract.collect__Account__c=accountId;
+    objLoanContract.collect__Contact__c=contactId;
+    objLoanContract.collect__External_ID__c=loanId;
+    insert objLoanContract;
+    return objLoanContract;
   }
-  public static Checklist_Detail__c returnCheckListDetail(Id checkListId){
-    Checklist_Detail__c objcheckListDetail = new Checklist_Detail__c(Status__c = 'SUCCESS', Checklist__c  = checkListId);
-    insert objcheckListDetail;
-    return objcheckListDetail;
+
+  public static Group returnGroup(){
+      Group queryGroup = new Group(Name='Collections Dishonour Queue', DeveloperName='Collection_Queue_to_Assign_Task');
+      insert queryGroup;
+      return queryGroup;
+  }
+
+  public static collect__Queue__c returnQueue(){
+      collect__Queue__c objQueue=new collect__Queue__c();
+      objQueue.Name='COLLECTIONS DISHONOR QUEUE';
+      insert objQueue;
+      return objQueue;
+  }
+  public static collect__Queue_User__c returnQueueuser(Id userId,Id queueId){
+      collect__Queue_User__c objQueueUserTest=new collect__Queue_User__c();
+      objQueueUserTest.collect__User__c=userId;
+      objQueueUserTest.collect__Queue__c =queueId;
+      insert objQueueUserTest;
+      return objQueueUserTest;
+  }
+  public static User returnUser(){
+      User u = new User(
+          ProfileId = [SELECT Id FROM Profile WHERE Name = 'System Administrator'].Id,
+          LastName = 'last',
+          Email = 'puser000@cloudkaptan.com',
+          Username = 'puser000@cloudkaptan.com' + System.currentTimeMillis(),
+          CompanyName = 'TEST',
+          Title = 'title',
+          Alias = 'alias',
+          TimeZoneSidKey = 'America/Los_Angeles',
+          EmailEncodingKey = 'UTF-8',
+          LanguageLocaleKey = 'en_US',
+          LocaleSidKey = 'en_US'
+      );
+      insert u;
+      return u;
   }
 }

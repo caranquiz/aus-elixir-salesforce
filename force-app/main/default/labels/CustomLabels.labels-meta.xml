@@ -168,14 +168,14 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>CollateralOwnerCreationEndDate</shortDescription>
-        <value>25-07-2022</value>
+        <value>31-07-2022</value>
     </labels>
     <labels>
         <fullName>CollateralOwnerCreationStartDate</fullName>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>CollateralOwnerCreationStartDate</shortDescription>
-        <value>25-06-2022</value>
+        <value>01-01-2022</value>
     </labels>
     <labels>
         <fullName>Commercial</fullName>
@@ -660,14 +660,14 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Transaction End Date</shortDescription>
-        <value>18-12-2021</value>
+        <value>24-12-2021</value>
     </labels>
     <labels>
         <fullName>Transaction_Start_Date</fullName>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Transaction Start Date</shortDescription>
-        <value>18-5-2018</value>
+        <value>24-7-2021</value>
     </labels>
     <labels>
         <fullName>True</fullName>
@@ -756,7 +756,7 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>LAIs for Interest Rate Change</shortDescription>
-        <value>xxx</value>
+        <value>LAI-00001986,LAI-00001964,LAI-00001984,LAI-00001985,LAI-00001965,LAI-00001987,LAI-00001983,LAI-00001966,LAI-00001988,LAI-00001993,LAI-00001967,LAI-00001989,LAI-00001982,LAI-00001963,LAI-00001991,LAI-00001978,LAI-00001980,LAI-00001992</value>
     </labels>
     <labels>
         <fullName>Loan_Statuses_for_Rate_Change</fullName>
@@ -806,6 +806,41 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Interest Change Email Opening Paragraph</shortDescription>
-        <value>As with most lenders, ORDE Financial’s costs to fund the loans provided to our borrowers, are determined by multiple factors. As a result, ORDE’s cost of funds are presently increasing by more than changes to the RBA official cash rate. In these circumstances ORDE has made the difficult decision to increase borrower rates reflecting our costs.</value>
+        <value>Empty</value>
+    </labels>
+    <labels>
+        <fullName>Active_Loan_Status</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Active Loan Status</shortDescription>
+        <value>Active - Good Standing,Active - Bad Standing,Active - Matured</value>
+    </labels>
+    <labels>
+        <fullName>CollectionActivityQuery</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CollectionActivityQuery</shortDescription>
+        <value>SELECT id,collect__Loan_Account_Name__c FROM collect__Collection_Activity__c WHERE collect__Action__c = &apos;Email&apos; AND Mail_Sent__c = False</value>
+    </labels>
+    <labels>
+        <fullName>Dishonour_SMS</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Dishonour SMS</shortDescription>
+        <value>Dear {Account.Name}, your direct debit loan repayment of ${Current Payment Amount} made on {Next Due Date} for the loan account {LAI XXXX} was dishonoured by your financial institution. Please call ORDE Financial on 03 8657 2575 to rectify the missed loan repayment. Thanks. DO NOT REPLY BY SMS.</value>
+    </labels>
+    <labels>
+        <fullName>Manual_SMS_Collection_Sample</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Manual SMS Collection Sample</shortDescription>
+        <value>Dear {!Account.Name}, your direct debit loan repayment of ${Transaction Amount} made on {Transaction Date} for the loan account LAI-XXXX was dishonoured by your financial institution. Please call ORDE Financial on 03 8657 2575 to rectify the missed loan repayment. Thanks. DO NOT REPLY BY SMS.</value>
+    </labels>
+    <labels>
+        <fullName>Twilio_Endpoint_URL</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Twilio Endpoint URL</shortDescription>
+        <value>https://api.twilio.com/2010-04-01/Accounts/{$accountSid}/Messages.json</value>
     </labels>
 </CustomLabels>

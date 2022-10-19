@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>ORDE_Letterhead</letterhead>
+    <name>Dishonoured Email Template</name>
+    <style>formalLetter</style>
+    <subject>Direct Debit Payment Dishonour</subject>
+    <textOnly>{!loan__Coborrower__c.Contact_Name__c}  {!Today}
+{!loan__Coborrower__c.Contact_Address__c}
+Dear {!loan__Coborrower__c.Contact_First_Name__c},
+
+{!loan__Coborrower__c.Customer_Capacity__c}
+
+Loan Id : {!loan__Coborrower__c.Contract_Name__c}
+Borrower :  {!loan__Coborrower__c.Contract_Individual_Party_Names__c}
+Security : {!loan__Coborrower__c.Contract_Security_Names__c}
+Lender : ORDE Financial
+
+
+Direct Debit Repayment Dishonour Notice
+
+We are notifying you that the scheduled repayment of ${!loan__Coborrower__c.Dishonour_LPT_Amount__c} on
+
+{!loan__Coborrower__c.Dishonour_LPT_Date__c} under the Direct Debit Request has been dishonoured by your financial institution. This may be an oversight.
+
+Please contact us on 03 8657 2575 to arrange payment, or to set up a new Direct Debit Request.
+
+Please ignore this letter if you have recently made the repayment.
+
+We’re open for business Monday through to Friday from 8:30am to 5:30pm (except for Australian National Public Holidays). If you need us, we’re here. Our Customer Assist Team will be on hand and ready to help.
+
+
+
+Email : assist@orde.com.au
+
+Phone : 03 8657 2575
+Your sincerely
+
+ORDE Customer Assist Team
+E assist@orde.com.au P 03 8657 2575</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>
