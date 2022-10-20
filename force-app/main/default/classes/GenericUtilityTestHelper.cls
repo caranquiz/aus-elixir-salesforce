@@ -1835,13 +1835,13 @@ public with sharing class GenericUtilityTestHelper {
     insert objCoborrower;
     return objCoborrower;
   }
-   /*public static APXT_BPM__Conductor__c returnCongaBatch(){
+   public static APXT_BPM__Conductor__c returnCongaBatch(){
       APXT_BPM__Conductor__c congaBatch=new APXT_BPM__Conductor__c();
       congaBatch.APXT_BPM__Title__c=ConstantValues.STATEMENT_CONGA_BATCH;
       congaBatch.APXT_BPM__Description__c='Generate Statement';
       insert congaBatch;
       return congaBatch;
-  }*/
+  }
   public static ContentVersion returnContentVersion(){
       ContentVersion content=new ContentVersion(); 
       content.Title='Half Yearly Statement'; 
@@ -1964,5 +1964,16 @@ public with sharing class GenericUtilityTestHelper {
       );
       insert u;
       return u;
+  }
+  public static genesis__Checklist__c returnCheckList(Id assessmentId){ 
+    genesis__Checklist__c objcheckList = new genesis__Checklist__c(genesis__Message__c = 'SUCCESS', 
+        genesis__Assessed_Record_Id__c = assessmentId); 
+    insert objcheckList;    
+    return objcheckList;    
+  } 
+  public static Checklist_Detail__c returnCheckListDetail(Id checkListId){  
+    Checklist_Detail__c objcheckListDetail = new Checklist_Detail__c(Status__c = 'SUCCESS', Checklist__c  = checkListId);   
+    insert objcheckListDetail;  
+    return objcheckListDetail;  
   }
 }

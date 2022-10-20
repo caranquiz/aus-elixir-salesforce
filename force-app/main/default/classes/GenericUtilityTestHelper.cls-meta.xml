@@ -7,6 +7,11 @@
         <namespace>APXTConga4</namespace>
     </packageVersions>
     <packageVersions>
+        <majorNumber>8</majorNumber>
+        <minorNumber>22</minorNumber>
+        <namespace>APXT_BPM</namespace>
+    </packageVersions>
+    <packageVersions>
         <majorNumber>2</majorNumber>
         <minorNumber>9003</minorNumber>
         <namespace>clcommon</namespace>

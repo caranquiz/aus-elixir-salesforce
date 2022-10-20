@@ -270,7 +270,7 @@
         <componentInstances>
             <componentInstanceProperties>
                 <name>actionNames</name>
-                <value>[&quot;Edit&quot;,&quot;Delete&quot;,&quot;collect__Loan_Account__c.Log_a_Call&quot;]</value>
+                <value>[&quot;Edit&quot;,&quot;Delete&quot;]</value>
             </componentInstanceProperties>
             <componentInstanceProperties>
                 <name>collapsed</name>

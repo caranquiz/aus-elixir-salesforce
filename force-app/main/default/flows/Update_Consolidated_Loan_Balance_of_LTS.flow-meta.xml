@@ -90,7 +90,7 @@
         <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
         <rules>
             <name>Create_Task_When_Bank_detail_changed</name>
-            <conditionLogic>1 AND 2 AND  ( (3 AND 4) OR 5) AND 6</conditionLogic>
+            <conditionLogic>1 AND 2 AND  ( (3 AND 4) OR 5) AND 6 AND 7</conditionLogic>
             <conditions>
                 <leftValueReference>$Record.loan__Rejected__c</leftValueReference>
                 <operator>EqualTo</operator>
@@ -133,6 +133,13 @@
                     <stringValue>No</stringValue>
                 </rightValue>
             </conditions>
+            <conditions>
+                <leftValueReference>$Record.loan__Payment_Mode__r.Name</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Direct Debit</stringValue>
+                </rightValue>
+            </conditions>
             <connector>
                 <targetReference>Create_Task</targetReference>
             </connector>
@@ -140,7 +147,7 @@
         </rules>
         <rules>
             <name>Create_Task_After_settlement</name>
-            <conditionLogic>1 AND 2 AND  ( (3 AND 4) OR 5) AND 6</conditionLogic>
+            <conditionLogic>1 AND 2 AND  ( (3 AND 4) OR 5) AND 6 AND 7</conditionLogic>
             <conditions>
                 <leftValueReference>$Record.loan__Rejected__c</leftValueReference>
                 <operator>EqualTo</operator>
@@ -181,6 +188,13 @@
                 <operator>EqualTo</operator>
                 <rightValue>
                     <stringValue>No</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.loan__Payment_Mode__r.Name</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Direct Debit</stringValue>
                 </rightValue>
             </conditions>
             <connector>
@@ -240,6 +254,13 @@
                 <operator>EqualTo</operator>
                 <rightValue>
                     <stringValue>No</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.loan__Payment_Mode__r.Name</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Direct Debit</stringValue>
                 </rightValue>
             </conditions>
             <connector>

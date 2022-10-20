@@ -11,14 +11,14 @@
         <backgroundColor>#FFFFFF</backgroundColor>
         <height>0</height>
         <horizontalAlignment>Left</horizontalAlignment>
-        <logo>SharedDocuments/Collection_ORDE_Logo.png</logo>
+        <logo>SharedDocuments/Collections_ORDE_Logo.png</logo>
         <verticalAlignment>Middle</verticalAlignment>
     </footer>
     <header>
         <backgroundColor>#FFFFFF</backgroundColor>
         <height>0</height>
         <horizontalAlignment>Left</horizontalAlignment>
-        <logo>SharedDocuments/Collection_ORDE_Logo.png</logo>
+        <logo>SharedDocuments/Collections_ORDE_Logo.png</logo>
         <verticalAlignment>Middle</verticalAlignment>
     </header>
     <middleLine>
