@@ -1780,6 +1780,7 @@ public with sharing class GenericUtilityTestHelper {
     Director__c director=new Director__c();
     director.Party__c=partyId;
     director.Entity_Type__c='Director';
+    director.Entity_Name__c = 'Rameswari Rai Barman';
     insert director;
     return director;
   }

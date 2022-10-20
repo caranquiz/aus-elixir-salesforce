@@ -361,7 +361,7 @@
         <componentInstances>
             <componentName>runtime_sales_activities:activityPanel</componentName>
         </componentInstances>
-        <name>activityTabContent</name>
+        <name>Facet-c415dc84-c7f7-410f-aa4a-70858230f128</name>
         <type>Facet</type>
     </flexiPageRegions>
     <flexiPageRegions>
@@ -372,7 +372,7 @@
             </componentInstanceProperties>
             <componentInstanceProperties>
                 <name>body</name>
-                <value>activityTabContent</value>
+                <value>Facet-c415dc84-c7f7-410f-aa4a-70858230f128</value>
             </componentInstanceProperties>
             <componentInstanceProperties>
                 <name>title</name>
@@ -380,14 +380,14 @@
             </componentInstanceProperties>
             <componentName>flexipage:tab</componentName>
         </componentInstances>
-        <name>sidebartabs</name>
+        <name>Facet-f9443bbc-0087-433e-b900-9a4ea49d871f</name>
         <type>Facet</type>
     </flexiPageRegions>
     <flexiPageRegions>
         <componentInstances>
             <componentInstanceProperties>
                 <name>tabs</name>
-                <value>sidebartabs</value>
+                <value>Facet-f9443bbc-0087-433e-b900-9a4ea49d871f</value>
             </componentInstanceProperties>
             <componentName>flexipage:tabset</componentName>
         </componentInstances>

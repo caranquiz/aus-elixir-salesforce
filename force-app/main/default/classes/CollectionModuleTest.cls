@@ -125,6 +125,26 @@ public class CollectionModuleTest {
             1,
             'Co-Borrower insertion error'
         );
+
+        loan__Coborrower__c contractPartyTwo = GenericUtilityTestHelper.insertContractParty(
+            testAccount,
+            testContact,
+            testLoanAccount
+        );
+        System.assertNotEquals(
+            contractPartyTwo.id,
+            null,
+            'Co-Borrower insertion successfull'
+        );
+        contractPartyTwo.loan__Party_Type__c = ConstantValues.CO_APPLICANT;
+        contractPartyTwo.loan__Contact__c = null;
+        update contractPartyTwo;
+        System.assertEquals(
+            contractPartyTwo.loan__Party_Type__c,
+            ConstantValues.CO_APPLICANT,
+            'Co-Borrower updated successfull'
+        );
+
         
         //Salesforce Queue
         Group queryGroup = GenericUtilityTestHelper.returnGroup();

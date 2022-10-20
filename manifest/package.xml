@@ -21,6 +21,7 @@
 <members>UpdateBorrowerACH</members>
 <members>UpdateBorrowerACHTest</members>
 <members>WarehouseFunding</members>
+<members>ValuationDateExpiryUpdateHelperTest</members>
 <name>ApexClass</name>
 </types>
 <types>
@@ -35,6 +36,7 @@
 <members>ContractUpdateEmailTrigger</members>
 <members>LoanCollateralTrigger</members>
 <members>QueueUserTrigger</members>
+<members>ApplicationTrigger</members>
 <name>ApexTrigger</name>
 </types>
 <types>
@@ -78,10 +80,6 @@
 <name>CustomLabel</name>
 </types>
 <types>
-<members>CustomLabels</members>
-<name>CustomLabels</name>
-</types>
-<types>
 <members>unfiled$public/Dishonoured_Email_Template</members>
 <name>EmailTemplate</name>
 </types>
@@ -95,10 +93,6 @@
 <name>Flow</name>
 </types>
 <types>
-<members>ORDE_Letterhead</members>
-<name>Letterhead</name>
-</types>
-<types>
 <members>Collection_Queue_to_Assign_Task</members>
 <name>Queue</name>
 </types>
@@ -110,6 +104,21 @@
 <members>loan__Loan_Account__c.Dishonour_Notice</members>
 <members>loan__Loan_Account__c.Select_Contact_to_Send_Emails</members>
 <name>WebLink</name>
+</types>
+<types>
+<members>collect__Collection_Activity__c-collect__Collection Activity Layout</members>
+<members>collect__Loan_Account__c-collect__Contract Layout</members>
+<members>loan__Loan_Account__c-loan__Loan Account Layout</members>
+<members>PersonAccount-Person Account Layout</members>
+<name>Layout</name>
+</types>
+<types>
+<members>Admin</members>
+<members>BDM</members>
+<members>Credit Analyst</members>
+<members>Elixir System Admin</members>
+<members>System Administrator %28Portal%29</members>
+<name>Profile</name>
 </types>
 <version>48.0</version>
 </Package>
