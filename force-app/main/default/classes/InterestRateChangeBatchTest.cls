@@ -66,7 +66,6 @@ public class InterestRateChangeBatchTest{
         loan__Automated_Payment_Setup__c objAPS=GenericUtilityTestHelper.returnAPS(objContract.id,objPaymentMode.id);
         objAPS.Created_after_reschedule__c=true;
         objAPS.loan__Amount_Type__c='FIXED AMOUNT';
-        objAPS.loan__Transaction_Amount__c=2000;
         update objAPS;
         List<loan__Automated_Payment_Setup__c> objAPSList=[SELECT id FROM loan__Automated_Payment_Setup__c WHERE Created_after_reschedule__c=true AND loan__Amount_Type__c='FIXED AMOUNT'];
         System.assertEquals(
@@ -98,14 +97,7 @@ public class InterestRateChangeBatchTest{
                                                loan__Uncleared_Repayment_Amount__c,
                                                loan__Loan_Status__c,
                                                loan__Delinquent_Amount__c
-                                        FROM loan__Loan_Account__c];  
-
-        List<loan__Automated_Payment_Setup__c> objAPSList=[SELECT id FROM loan__Automated_Payment_Setup__c];
-        
-
-        List<Id> apsIdList=new List<Id>();
-        apsIdList.add(objAPSList[0].id);
-        OneTimeAPSCreation.oneTimeAPSCreationPILoan(apsIdList);
+                                        FROM loan__Loan_Account__c];                  
         InterestRateChangeBatch obj = new InterestRateChangeBatch();
         String sch = '0 0 23 * * ?';
         system.schedule('Test Check', sch, obj );
@@ -140,8 +132,6 @@ public class InterestRateChangeBatchTest{
             objContractList[0].Interest_Rate_Change_Notification_Date__c = Date.Today() + 5;
             objContractList[0].Second_Repayment_Date_After_IR_Change__c = Date.Today() + 30;
             objContractList[0].loan__Due_Day__c = (Date.Today() + 1).day();
-            objContractList[0].Flat_Repayment_Amount__c = 3000;
-            objContractList[0].First_Repayment_Date__c = Date.Today() + 1;
         }
         Database.update(objContractList,false);
         Date firstRepaymentDateAfterIrChange = Date.Today() + 1;
@@ -158,58 +148,71 @@ public class InterestRateChangeBatchTest{
             String sch = '0 0 23 * * ?';
             system.schedule('Test Check', sch, obj );
         }
-        List<loan__Automated_Payment_Setup__c> objAPSList=[SELECT id FROM loan__Automated_Payment_Setup__c];
-        objAPSList[0].loan__Type__c='RECURRING';
-        objAPSList[0].loan__Frequency__c='Weekly';
-        objAPSList[0].loan__Debit_Date__c=Date.Today() ;
-        objAPSList[0].loan__Actual_Date__c=Date.Today() ;
-        update objAPSList;
-        List<loan__Automated_Payment_Setup__c> objAPSList2=[SELECT id FROM loan__Automated_Payment_Setup__c WHERE loan__Type__c='RECURRING' AND loan__Frequency__c='Weekly'];
-        System.assertEquals(
-            objAPSList2.size(), 
-            1, 
-            'APS Updated'
-        );
-        List<Id> apsIdList=new List<Id>();
-        apsIdList.add(objAPSList[0].id);
-        OneTimeAPSCreation.oneTimeAPSCreationPILoan(apsIdList);
         test.stopTest();
     }
     @isTest
     static void InterestRateChangeBatchTestMethodeThree(){
-
         test.startTest();
         List<loan__Loan_Account__c>objContractList = [SELECT id,
-                                        Flat_Repayment_Amount__c,
-                                        Interest_Rate_Change_Notification_Date__c
+                                               Name,
+                                               New_Interest_Rate__c,
+                                               New_Interest_Rate_Effective_Date__c,
+                                               loan__Next_Installment_Date__c,
+                                               Calculated_Upcoming_Repayment_Amount__c,
+                                               loan__Interest_Rate__c,
+                                               Repayment_Type__c ,
+                                               Remaining_Loan_Term__c,
+                                               Remaining_Term_from_Schedule__c,
+                                               Remaining_IO_Period__c,
+                                               loan__Due_Day__c,
+                                               loan__Frequency_of_Loan_Payment__c,
+                                               Interest_Rate_Change_Notification_Date__c,
+                                               First_Repayment_Date_After_IR_Change__c,
+                                               Second_Repayment_Date_After_IR_Change__c,
+                                               loan__Pmt_Amt_Cur__c,
+                                               loan__Uncleared_Repayment_Amount__c,
+                                               loan__Loan_Status__c,
+                                               loan__Delinquent_Amount__c
                                         FROM loan__Loan_Account__c];
         if(objContractList.size()>0){
-            objContractList[0].Flat_Repayment_Amount__c = 3000;
-            objContractList[0].First_Repayment_Date__c = date.newinstance(2021,8,12);
-            objContractList[0].Interest_Rate_Change_Notification_Date__c = date.newinstance(2021,8,10);
+            objContractList[0].First_Repayment_Date_After_IR_Change__c = Date.Today() + 1;
+            objContractList[0].Interest_Rate_Change_Notification_Date__c = Date.Today() + 5;
+            objContractList[0].Second_Repayment_Date_After_IR_Change__c = Date.Today() + 30;
+            objContractList[0].loan__Due_Day__c = ((Date.Today() + 1).day())+1;
         }
-        update objContractList;
-        List<loan__Loan_Account__c> objLoanList=[SELECT id 
-                                                            FROM loan__Loan_Account__c 
-                                                            WHERE Flat_Repayment_Amount__c=3000];
-        System.assertEquals(
-            objLoanList.size(), 
-            1, 
-            'Contract Updated'
-        );
+        Database.update(objContractList,false);
+        Date firstRepaymentDateAfterIrChange = Date.Today() + 1;
+        List<loan__Loan_Account__c> objLoanAccountList = [SELECT id,
+                                        First_Repayment_Date_After_IR_Change__c,
+                                        Interest_Rate_Change_Notification_Date__c,
+                                        New_Interest_Rate_Effective_Date__c,
+                                        Second_Repayment_Date_After_IR_Change__c,
+                                        loan__Due_Day__c
+                                        FROM loan__Loan_Account__c
+                                        WHERE First_Repayment_Date_After_IR_Change__c =: firstRepaymentDateAfterIrChange];
+        if(objLoanAccountList.size()>0){
+            InterestRateChangeBatch obj = new InterestRateChangeBatch();
+            String sch = '0 0 23 * * ?';
+            system.schedule('Test Check', sch, obj );
+        }
+        test.stopTest();
+    }
+    @isTest
+    static void InterestRateChangeBatchTestMethodeFour(){
 
+        test.startTest();
+        
         List<loan__Automated_Payment_Setup__c> objAPSList=[SELECT id FROM loan__Automated_Payment_Setup__c];
         objAPSList[0].loan__Type__c='RECURRING';
-        objAPSList[0].loan__Amount_Type__c='CURRENT PAYMENT AMOUNT';
         objAPSList[0].loan__Frequency__c='Monthly';
-        objAPSList[0].loan__Debit_Date__c=date.newinstance(2021,8,12);
-        objAPSList[0].loan__Actual_Date__c=date.newinstance(2021,8,12);
+        objAPSList[0].loan__Actual_Date__c=date.today();
+        //objAPSList[0].loan__Debit_Date__c=date.newinstance(2022,11,1);
         update objAPSList;
         List<loan__Automated_Payment_Setup__c> objAPSList2=[SELECT id FROM loan__Automated_Payment_Setup__c WHERE loan__Type__c='RECURRING' AND loan__Frequency__c='Monthly'];
         System.assertEquals(
             objAPSList2.size(), 
             1, 
-            'APS Updated'
+            'APS Inserted'
         );
 
         List<Id> apsIdList=new List<Id>();
@@ -235,7 +238,7 @@ public class InterestRateChangeBatchTest{
         System.assertEquals(
             objLoanList.size(), 
             1, 
-            'Contract Updated'
+            'Contract Inserted'
         );
 
         List<loan__Automated_Payment_Setup__c> objAPSList=[SELECT id FROM loan__Automated_Payment_Setup__c];
@@ -247,7 +250,7 @@ public class InterestRateChangeBatchTest{
         System.assertEquals(
             objAPSList.size(), 
             1, 
-            'APS Updated'
+            'APS Inserted'
         );
 
         List<Id> apsIdList=new List<Id>();
@@ -276,14 +279,13 @@ public class InterestRateChangeBatchTest{
         System.assertEquals(
             objLoanList.size(), 
             1, 
-            'Contract Updated'
+            'Contract Inserted'
         );
 
         List<loan__Automated_Payment_Setup__c> objAPSList=[SELECT id FROM loan__Automated_Payment_Setup__c];
         objAPSList[0].loan__Type__c='RECURRING';
         objAPSList[0].loan__Frequency__c='Monthly';
-        objAPSList[0].loan__Debit_Date__c=date.newinstance(2021,8,12);
-        objAPSList[0].loan__Actual_Date__c=date.newinstance(2021,8,12);
+        objAPSList[0].loan__Actual_Date__c=date.today();
         update objAPSList;
         List<loan__Automated_Payment_Setup__c> objAPSList2=[SELECT id 
                                                             FROM loan__Automated_Payment_Setup__c 
@@ -292,7 +294,7 @@ public class InterestRateChangeBatchTest{
         System.assertEquals(
             objAPSList.size(), 
             1, 
-            'APS Updated'
+            'APS Inserted'
         );
 
         List<Id> apsIdList=new List<Id>();

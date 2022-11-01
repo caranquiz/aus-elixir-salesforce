@@ -11,9 +11,11 @@ Description : This class is used to update stored interest rates when processing
 public with sharing class InterestRateChangeHandler {
     public static void updateRate(List< loan__Loan_Account__c> loanList) {
         Date currentSysDate =(Test.isRunningTest()?Date.Today():(new loan.GlobalLoanUtilFacade()).getCurrentSystemDate());
+        Date pmntDate;
         List< loan__Loan_Account__c> updatedLoanList = new List< loan__Loan_Account__c>();
         Integer interestOnlyPeriod,noOfInstallments,noOfFlexPmnts = 1;
         Savepoint sp = Database.setSavepoint();
+        Boolean dueDayChanged = false;
         List <clcommon__Repayment_Plan__c> repList = [SELECT Id 
                                                         FROM clcommon__Repayment_Plan__c 
                                                         WHERE loan__Loan_Account__c In : loanList];
@@ -99,13 +101,22 @@ public with sharing class InterestRateChangeHandler {
                             else if(loanAcc.Remaining_Term_from_Schedule__c >= 2){
                                 noOfFlexPmnts = Integer.ValueOf(loanAcc.Remaining_Term_from_Schedule__c-2);
                             }
+                            if(loanAcc.First_Repayment_Date_After_IR_Change__c.day() == Integer.ValueOf(loanAcc.loan__Due_Day__c)){
+                                pmntDate = Date.newInstance(loanAcc.First_Repayment_Date_After_IR_Change__c.year(),
+                                    loanAcc.First_Repayment_Date_After_IR_Change__c.month(),
+                                    Integer.ValueOf(loanAcc.loan__Due_Day__c));
+                            }
+                            else{
+                                pmntDate = loanAcc.First_Repayment_Date_After_IR_Change__c;
+                                dueDayChanged = true;
+                                rescheduleParametersmap.put('Repayment_Start_Date__c',loanAcc.First_Repayment_Date_After_IR_Change__c);
+                                rescheduleParams = new loan.LoanRescheduleParameters(rescheduleParametersmap);
+                            }
                             repaymentPlan.add(new clcommon__Repayment_Plan__c(clcommon__Sequence_Number__c = 1,
                                 clcommon__Payment_Type__c = ConstantValues.EQUAL_MONTHLY_INSTALLMENTS,
                                 clcommon__Number_Of_Payments__c = 1,
                                 clcommon__Effective_Date__c = loanAcc.New_Interest_Rate_Effective_Date__c,
-                                clcommon__Payment_Start_Date__c = Date.newInstance(loanAcc.First_Repayment_Date_After_IR_Change__c.year(),
-                                    loanAcc.First_Repayment_Date_After_IR_Change__c.month(),
-                                    Integer.ValueOf(loanAcc.loan__Due_Day__c)),
+                                clcommon__Payment_Start_Date__c = pmntDate,
                                 clcommon__Payment_Amount__c = loanAcc.loan__Pmt_Amt_Cur__c,
                                 clcommon__Frequency__c = frequencyOfPayment,
                                 clcommon__Due_Day__c = Integer.ValueOf(loanAcc.loan__Due_Day__c)));
@@ -141,13 +152,22 @@ public with sharing class InterestRateChangeHandler {
                             else if(loanAcc.Remaining_Term_from_Schedule__c >= 1){
                                 noOfFlexPmnts = Integer.ValueOf(loanAcc.Remaining_Term_from_Schedule__c-1);
                             }
+                            if(loanAcc.First_Repayment_Date_After_IR_Change__c.day() == Integer.ValueOf(loanAcc.loan__Due_Day__c)){
+                                pmntDate = Date.newInstance(loanAcc.First_Repayment_Date_After_IR_Change__c.year(),
+                                    loanAcc.First_Repayment_Date_After_IR_Change__c.month(),
+                                    Integer.ValueOf(loanAcc.loan__Due_Day__c));
+                            }
+                            else{
+                                pmntDate = loanAcc.First_Repayment_Date_After_IR_Change__c;
+                                dueDayChanged = true;
+                                rescheduleParametersmap.put('Repayment_Start_Date__c',loanAcc.First_Repayment_Date_After_IR_Change__c);
+                                rescheduleParams = new loan.LoanRescheduleParameters(rescheduleParametersmap);
+                            }
                             repaymentPlan.add(new clcommon__Repayment_Plan__c(clcommon__Sequence_Number__c = 1,
                                 clcommon__Payment_Type__c = ConstantValues.EQUAL_MONTHLY_INSTALLMENTS,
                                 clcommon__Number_Of_Payments__c = noOfFlexPmnts,
-                                clcommon__Effective_Date__c = loanAcc.New_Interest_Rate_Effective_Date__c,
-                                clcommon__Payment_Start_Date__c = Date.newInstance(loanAcc.First_Repayment_Date_After_IR_Change__c.year(),
-                                    loanAcc.First_Repayment_Date_After_IR_Change__c.month(),
-                                    Integer.ValueOf(loanAcc.loan__Due_Day__c)),
+                                clcommon__Effective_Date__c = loanAcc.New_Interest_Rate_Effective_Date__c,  
+                                clcommon__Payment_Start_Date__c = pmntDate,
                                 clcommon__Payment_Amount__c = loanAcc.Calculated_Upcoming_Repayment_Amount__c,
                                 clcommon__Frequency__c = frequencyOfPayment,
                                 clcommon__Due_Day__c = Integer.ValueOf(loanAcc.loan__Due_Day__c)));
@@ -172,6 +192,47 @@ public with sharing class InterestRateChangeHandler {
                                 objLoanAccount.Flat_Repayment_Amount__c= loanAcc.Calculated_Upcoming_Repayment_Amount__c;
                         }else{
                             objLoanAccount.Flat_Repayment_Amount__c= loanAcc.loan__Pmt_Amt_Cur__c;
+                        }
+                        //Checking if the due day has been changed if the next repayment date falls on a holiday
+                        if(dueDayChanged == true){
+                            Map<String, Object> rescheduleNewParametersmap = new Map<String, Object>();
+                            rescheduleNewParametersmap.put('Loan_Account__c', loanID);
+                            rescheduleNewParametersmap.put('Txn_Date__c', loanAcc.New_Interest_Rate_Effective_Date__c);
+                            if(loanAcc.First_Repayment_Date_After_IR_Change__c != NULL){
+                                rescheduleParametersmap.put('Repayment_Start_Date__c',loanAcc.First_Repayment_Date_After_IR_Change__c);
+                            }
+                            rescheduleNewParametersmap.put('Interest_Rate__c', loanAcc.New_Interest_Rate__c);
+                            rescheduleNewParametersmap.put('Maintain_Delinquency__c', true);
+                            if(noOfInstallments >= 0){
+                                rescheduleNewParametersmap.put('Number_of_Installments__c', noOfInstallments);
+                            }
+                            else{
+                                throw new CustomException(ConstantValues.TOTAL_NO_OF_INSTALLMENTS_MISSING);
+                            }
+                            if(interestOnlyPeriod >= 0){
+                                rescheduleNewParametersmap.put('Interest_Only_Period__c', interestOnlyPeriod);
+                            }
+                            else{
+                                throw new CustomException(ConstantValues.INTEREST_ONLY_PERIOD_MISSING);
+                            }
+                            if(loanAcc.loan__Frequency_of_Loan_Payment__c != NULL){
+                                rescheduleNewParametersmap.put('Frequency_of_Loan_Payment__c', loanAcc.loan__Frequency_of_Loan_Payment__c);
+                            }
+                            else{
+                                throw new CustomException(ConstantValues.LOAN_FREQUENCY_IS_MISSING);
+                            }
+                            if(loanAcc.loan__Maturity_Date_Current__c != NULL){
+                                rescheduleNewParametersmap.put('OT_Maturity_Date__c', loanAcc.loan__Maturity_Date_Current__c);
+                            }
+                            else{
+                                throw new CustomException(ConstantValues.MATURITY_DATE_IS_MISSING);
+                            }
+                            rescheduleNewParametersmap.put('Reschedule_Balance__c', ConstantValues.PRINCIPAL_REMAINING);
+                            rescheduleNewParametersmap.put('New_Due_Day__c', Integer.ValueOf(loanAcc.loan__Due_Day__c));
+                            loan.LoanRescheduleParameters rescheduleNewParams = new loan.LoanRescheduleParameters(rescheduleNewParametersmap);
+                            loan.LoanActionFactory factoryParam = new loan.LoanActionFactory();
+                            loan.LoanAction10 loanActionParam = factoryParam.getLoanAction10API();
+                            loanActionParam.rescheduleALoan(rescheduleNewParams);
                         }
                         objLoanAccount.First_Repayment_Date__c  = loanAcc.First_Repayment_Date_After_IR_Change__c;
                         objLoanAccount.Second_Repayment_Date__c= loanAcc.Second_Repayment_Date_After_IR_Change__c;
