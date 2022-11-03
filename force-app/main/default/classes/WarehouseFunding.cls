@@ -38,7 +38,9 @@ global class WarehouseFunding {
             loan__Last_Disbursal_Amount__c,
             Repayment_Type__c,
             Warehouse__c,
-            loan__First_Installment_Date__c
+            First_Payment_after_Settlement__c,
+            loan__First_Installment_Date__c,
+            Individual_Borrower_Names__c
           FROM loan__Loan_Account__c
           WHERE id = :loanId
         ];
@@ -255,7 +257,26 @@ global class WarehouseFunding {
             loanAcc.loan__Next_Deposit_Payment_Date__c = loanAcc.loan__First_Installment_Date__c;
           }
           /************************************************************************/
-          
+          List<String> partyTypeList = new String[]{ConstantValues.BORROWER,ConstantValues.CO_APPLICANT};
+          List<clcommon__Party__c> objPartyList = [SELECT id,
+                                                    clcommon__Account__c,
+                                                    clcommon__Contact__c,
+                                                    clcommon__Account__r.Name
+                                                    FROM clcommon__Party__c
+                                                    WHERE genesis__Application__c = :app.Id
+                                                    AND Party_Type_Name__c in: partyTypeList
+                                                    AND clcommon__Account__c != null];
+          String partyNames='';
+          Integer i = 0;
+          for(clcommon__Party__c objParty : objPartyList){
+            if(i==0){
+              partyNames += objParty.clcommon__Account__r.Name;
+            }else{
+              partyNames += ' & ' + objParty.clcommon__Account__r.Name;
+            }
+            i++;
+          }
+          loanAcc.Individual_Borrower_Names__c = partyNames;
           retCheck = createDisbusals(
             loanAcc.Id,
             app.genesis__Loan_Amount__c,
@@ -283,6 +304,7 @@ global class WarehouseFunding {
           update app;
         }
         if (loanAcc != null) {
+          loanAcc.First_Payment_after_Settlement__c=true;
           update loanAcc;
         }
       } catch (Exception e) {

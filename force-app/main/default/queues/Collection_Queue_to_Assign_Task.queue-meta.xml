@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Queue xmlns="http://soap.sforce.com/2006/04/metadata">
+    <doesSendEmailToMembers>true</doesSendEmailToMembers>
+    <name>Collections Dishonour Queue</name>
+    <queueMembers>
+        <users>
+            <user>akusur@orde.com.au</user>
+            <user>blowrie@orde.com.au</user>
+            <user>provisioningcls@38trialforce.com</user>
+            <user>jgunter@orde.com.au</user>
+            <user>jshastri@orde.com.au</user>
+            <user>mmahajan@orde.com.au</user>
+        </users>
+    </queueMembers>
+    <queueSobject>
+        <sobjectType>Task</sobjectType>
+    </queueSobject>
+</Queue>

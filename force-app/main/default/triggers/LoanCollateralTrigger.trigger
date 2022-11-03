@@ -5,7 +5,7 @@ Description : This trigger fires when Loan Collateral is created or updated.
 Development Date : 14/02/2022
 Last Modified Date : 24/02/2022
 ****************************************************************************************************/
-trigger LoanCollateralTrigger on loan__Loan_Collateral__c (after insert,after Update) {
+trigger LoanCollateralTrigger on loan__Loan_Collateral__c (after insert,after Update,after delete) {
     List<loan__Loan_Collateral__c> loanCollList=new List<loan__Loan_Collateral__c>();
     List<Id> loanIdList=new List<Id>();
     try{
@@ -13,14 +13,21 @@ trigger LoanCollateralTrigger on loan__Loan_Collateral__c (after insert,after Up
         if(!(disCustomTrigger.LoanCollateralTrigger__c)){
             if (Trigger.isInsert) {
                 for (loan__Loan_Collateral__c collateral: Trigger.new) {
-                    loanIdList.add(collateral.loan__Loan__c);
+                    if(collateral.loan__Loan__c != NULL){
+                        loanIdList.add(collateral.loan__Loan__c);
+                    }
                     loanCollList.add(collateral);
                 }
             }else{
                 for (loan__Loan_Collateral__c collateral: Trigger.new) {
                     loan__Loan_Collateral__c oldcollateral = Trigger.oldMap.get(collateral.Id);
-                    if(collateral.Primary_Security__c != oldcollateral.Primary_Security__c || collateral.Current_Value__c != oldcollateral.Current_Value__c){
-                        loanIdList.add(collateral.loan__Loan__c);
+                    if(collateral.Primary_Security__c != oldcollateral.Primary_Security__c || 
+                        collateral.Current_Value__c != oldcollateral.Current_Value__c || 
+                        collateral.Full_Address__c != oldcollateral.Full_Address__c ||
+                        collateral.Security_Status__c != oldcollateral.Security_Status__c){
+                        if(collateral.loan__Loan__c != NULL){
+                            loanIdList.add(collateral.loan__Loan__c);
+                        }
                         loanCollList.add(collateral);
                     }
                 }

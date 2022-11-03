@@ -48,7 +48,8 @@ public static void updateFields(List<loan__Bank_Account__c> newBankAccountList, 
             }
             contractList = [SELECT id,
                                 loan__Borrower_ACH__c,
-                                Borrower_ACH_Change__c
+                                Borrower_ACH_Change__c,
+                                Bank_Detail_Change__c
                                 FROM loan__Loan_Account__c
                                 WHERE Borrower_ACH_Change__c in: bankAccountIdList];
             for(loan__Bank_Account__c eachBankAccount : newBankAccountList){
@@ -70,8 +71,13 @@ public static void updateFields(List<loan__Bank_Account__c> newBankAccountList, 
                                     eachContract.loan__Borrower_ACH__c = eachContract.Borrower_ACH_Change__c;
                                }
                             }
-                            Database.update(contractList,false);
+                        }else{
+                            for(loan__Loan_Account__c eachContract : contractList){
+                                eachContract.Bank_Detail_Change__c=true;
+                            }
+
                         }
+                        Database.update(contractList,false);
                         eachBankAccount.Created_After_Conversion__c = false;
                     } else{
                         eachBankAccount.Bank_Account_Number_Change__c = oldMap.get(eachBankAccount.id).loan__Bank_Account_Number__c;

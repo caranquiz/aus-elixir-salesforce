@@ -1,336 +1,124 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
-    <types>
-        <members>*</members>
-        <name>ActionLinkGroupTemplate</name>
-    </types>
-    <types>
-        <members>*</members>
-        <name>ApexClass</name>
-    </types>
-    <types>
-        <members>*</members>
-        <name>ApexComponent</name>
-    </types>
-    <types>
-        <members>*</members>
-        <name>ApexPage</name>
-    </types>
-    <types>
-        <members>*</members>
-        <name>ApexTrigger</name>
-    </types>
-    <types>
-        <members>*</members>
-        <name>AppMenu</name>
-    </types>
-    <types>
-        <members>*</members>
-        <name>ApprovalProcess</name>
-    </types>
-    <types>
-        <members>*</members>
-        <name>AssignmentRules</name>
-    </types>
-    <types>
-        <members>*</members>
-        <name>AuraDefinitionBundle</name>
-    </types>
-    <types>
-        <members>*</members>
-        <name>AuthProvider</name>
-    </types>
-    <types>
-        <members>*</members>
-        <name>AutoResponseRules</name>
-    </types>
-    <types>
-        <members>*</members>
-        <name>BrandingSet</name>
-    </types>
-    <types>
-        <members>*</members>
-        <name>CallCenter</name>
-    </types>
-    <types>
-        <members>*</members>
-        <name>Certificate</name>
-    </types>
-    <types>
-        <members>*</members>
-        <name>CleanDataService</name>
-    </types>
-    <types>
-        <members>*</members>
-        <name>Community</name>
-    </types>
-    <types>
-        <members>*</members>
-        <name>ConnectedApp</name>
-    </types>
-    <types>
-        <members>*</members>
-        <name>ContentAsset</name>
-    </types>
-    <types>
-        <members>*</members>
-        <name>CorsWhitelistOrigin</name>
-    </types>
-    <types>
-        <members>*</members>
-        <name>CustomApplication</name>
-    </types>
-    <types>
-        <members>*</members>
-        <name>CustomApplicationComponent</name>
-    </types>
-    <types>
-        <members>*</members>
-        <name>CustomFeedFilter</name>
-    </types>
-    <types>
-        <members>*</members>
-        <name>CustomHelpMenuSection</name>
-    </types>
-    <types>
-        <members>*</members>
-        <name>CustomLabels</name>
-    </types>
-    <types>
-        <members>*</members>
-        <name>CustomMetadata</name>
-    </types>
-    <types>
-        <members>*</members>
-        <name>CustomObject</name>
-    </types>
-    <types>
-        <members>*</members>
-        <name>CustomObjectTranslation</name>
-    </types>
-    <types>
-        <members>*</members>
-        <name>CustomPageWebLink</name>
-    </types>
-    <types>
-        <members>*</members>
-        <name>CustomPermission</name>
-    </types>
-    <types>
-        <members>*</members>
-        <name>CustomSite</name>
-    </types>
-    <types>
-        <members>*</members>
-        <name>CustomTab</name>
-    </types>
-    <types>
-        <members>*</members>
-        <name>Dashboard</name>
-    </types>
-    <types>
-        <members>*</members>
-        <name>DataCategoryGroup</name>
-    </types>
-    <types>
-        <members>*</members>
-        <name>DelegateGroup</name>
-    </types>
-    <types>
-        <members>*</members>
-        <name>Document</name>
-    </types>
-    <types>
-        <members>*</members>
-        <name>DuplicateRule</name>
-    </types>
-    <types>
-        <members>*</members>
-        <name>EclairGeoData</name>
-    </types>
-    <types>
-        <members>*</members>
-        <name>EmailServicesFunction</name>
-    </types>
-    <types>
-        <members>*</members>
-        <name>EmailTemplate</name>
-    </types>
-    <types>
-        <members>*</members>
-        <name>EscalationRules</name>
-    </types>
-    <types>
-        <members>*</members>
-        <name>ExternalDataSource</name>
-    </types>
-    <types>
-        <members>*</members>
-        <name>ExternalServiceRegistration</name>
-    </types>
-    <types>
-        <members>*</members>
-        <name>FlexiPage</name>
-    </types>
-    <types>
-        <members>*</members>
-        <name>Flow</name>
-    </types>
-    <types>
-        <members>*</members>
-        <name>FlowCategory</name>
-    </types>
-    <types>
-        <members>*</members>
-        <name>FlowDefinition</name>
-    </types>
-    <types>
-        <members>*</members>
-        <name>GlobalValueSet</name>
-    </types>
-    <types>
-        <members>*</members>
-        <name>GlobalValueSetTranslation</name>
-    </types>
-    <types>
-        <members>*</members>
-        <name>HomePageComponent</name>
-    </types>
-    <types>
-        <members>*</members>
-        <name>HomePageLayout</name>
-    </types>
-    <types>
-        <members>*</members>
-        <name>InstalledPackage</name>
-    </types>
-    <types>
-        <members>*</members>
-        <name>Layout</name>
-    </types>
-    <types>
-        <members>*</members>
-        <name>Letterhead</name>
-    </types>
-    <types>
-        <members>*</members>
-        <name>LightningBolt</name>
-    </types>
-    <types>
-        <members>*</members>
-        <name>LightningComponentBundle</name>
-    </types>
-    <types>
-        <members>*</members>
-        <name>LightningExperienceTheme</name>
-    </types>
-    <types>
-        <members>*</members>
-        <name>MatchingRules</name>
-    </types>
-    <types>
-        <members>*</members>
-        <name>NamedCredential</name>
-    </types>
-    <types>
-        <members>*</members>
-        <name>NetworkBranding</name>
-    </types>
-    <types>
-        <members>*</members>
-        <name>PathAssistant</name>
-    </types>
-    <types>
-        <members>*</members>
-        <name>PermissionSet</name>
-    </types>
-    <types>
-        <members>*</members>
-        <name>PlatformCachePartition</name>
-    </types>
-    <types>
-        <members>*</members>
-        <name>PostTemplate</name>
-    </types>
-    <types>
-        <members>*</members>
-        <name>Profile</name>
-    </types>
-    <types>
-        <members>*</members>
-        <name>ProfileSessionSetting</name>
-    </types>
-    <types>
-        <members>*</members>
-        <name>Queue</name>
-    </types>
-    <types>
-        <members>*</members>
-        <name>QuickAction</name>
-    </types>
-    <types>
-        <members>*</members>
-        <name>RecommendationStrategy</name>
-    </types>
-    <types>
-        <members>*</members>
-        <name>RecordActionDeployment</name>
-    </types>
-    <types>
-        <members>*</members>
-        <name>RemoteSiteSetting</name>
-    </types>
-    <types>
-        <members>*</members>
-        <name>ReportType</name>
-    </types>
-    <types>
-        <members>*</members>
-        <name>Role</name>
-    </types>
-    <types>
-        <members>*</members>
-        <name>SamlSsoConfig</name>
-    </types>
-    <types>
-        <members>*</members>
-        <name>Scontrol</name>
-    </types>
-    <types>
-        <members>*</members>
-        <name>Settings</name>
-    </types>
-    <types>
-        <members>*</members>
-        <name>SharingRules</name>
-    </types>
-    <types>
-        <members>*</members>
-        <name>SiteDotCom</name>
-    </types>
-    <types>
-        <members>*</members>
-        <name>StandardValueSetTranslation</name>
-    </types>
-    <types>
-        <members>*</members>
-        <name>StaticResource</name>
-    </types>
-    <types>
-        <members>*</members>
-        <name>SynonymDictionary</name>
-    </types>
-    <types>
-        <members>*</members>
-        <name>TopicsForObjects</name>
-    </types>
-    <types>
-        <members>*</members>
-        <name>TransactionSecurityPolicy</name>
-    </types>
-    <types>
-        <members>*</members>
-        <name>Workflow</name>
-    </types>
-    <version>46.0</version>
+<fullName>Collection Dev</fullName>
+<types>
+<members>BankAccountTriggerHelper</members>
+<members>BankAccountTriggerHelperTest</members>
+<members>CollectionBatchHandler</members>
+<members>CollectionBatchTest</members>
+<members>CollectionEmailBatch</members>
+<members>CollectionModuleTest</members>
+<members>CollectionSMSBatch</members>
+<members>ConstantValues</members>
+<members>CreateTaskToContract</members>
+<members>CustomGatewayClass</members>
+<members>DepositUpdateHelperTest</members>
+<members>GenericUtilityTestHelper</members>
+<members>LoanCollateralTriggerHelper</members>
+<members>LoanContactExtension</members>
+<members>QueueUserTriggerHelper</members>
+<members>SendSMSControllerClass</members>
+<members>TaskRelatedLoanContractController</members>
+<members>UpdateBorrowerACH</members>
+<members>UpdateBorrowerACHTest</members>
+<members>WarehouseFunding</members>
+<members>ValuationDateExpiryUpdateHelperTest</members>
+<name>ApexClass</name>
+</types>
+<types>
+<members>CustomContactSearchPage</members>
+<members>RelatedCollectionActivity</members>
+<members>SendSMSPage</members>
+<members>TaskRelatedLoanContractPage</members>
+<name>ApexPage</name>
+</types>
+<types>
+<members>ContractTrigger</members>
+<members>ContractUpdateEmailTrigger</members>
+<members>LoanCollateralTrigger</members>
+<members>QueueUserTrigger</members>
+<members>ApplicationTrigger</members>
+<name>ApexTrigger</name>
+</types>
+<types>
+<members>CL_Collection_Console</members>
+<name>CustomApplication</name>
+</types>
+<types>
+<members>Disable_Custom_Triggers__c.ContractTrigger__c</members>
+<members>Disable_Custom_Triggers__c.ContractUpdateEmailTrigger__c</members>
+<members>Disable_Custom_Triggers__c.QueueUserTrigger__c</members>
+<members>collect__Collection_Activity__c.Body__c</members>
+<members>collect__Collection_Activity__c.CL_Contract__c</members>
+<members>collect__Collection_Activity__c.Contract_Name__c</members>
+<members>collect__Collection_Activity__c.Mail_Sent__c</members>
+<members>collect__Collection_Activity__c.Subject__c</members>
+<members>collect__Loan_Account__c.CL_Contract__c</members>
+<members>loan__Coborrower__c.Contact_Address__c</members>
+<members>loan__Coborrower__c.Contact_First_Name__c</members>
+<members>loan__Coborrower__c.Contact_Name__c</members>
+<members>loan__Coborrower__c.Contract_Individual_Party_Names__c</members>
+<members>loan__Coborrower__c.Contract_Name__c</members>
+<members>loan__Coborrower__c.Contract_Security_Names__c</members>
+<members>loan__Coborrower__c.Customer_Capacity__c</members>
+<members>loan__Coborrower__c.Dishonour_LPT_Amount__c</members>
+<members>loan__Coborrower__c.Dishonour_LPT_Date__c</members>
+<members>loan__Loan_Account__c.All_Security_Addresses__c</members>
+<members>loan__Loan_Account__c.Assign_to_Queue__c</members>
+<members>loan__Loan_Account__c.Bank_Detail_Change__c</members>
+<members>loan__Loan_Account__c.First_LPT_after_Bank_detail_Change__c</members>
+<members>loan__Loan_Account__c.First_LPT_after_Settlement__c</members>
+<members>loan__Loan_Account__c.First_Payment_after_Settlement__c</members>
+<members>loan__Loan_Account__c.Individual_Borrower_Names__c</members>
+<members>loan__Loan_Account__c.Selected_Contact_to_Send_Emails__c</members>
+<members>loan__Loan_Account__c.Send_Email_Dishonor_Notice_to_Customer__c</members>
+<members>loan__Loan_Payment_Transaction__c.Dishonour_Override__c</members>
+<name>CustomField</name>
+</types>
+<types>
+<members>Dishonour_SMS</members>
+<members>Twilio_Endpoint_URL</members>
+<name>CustomLabel</name>
+</types>
+<types>
+<members>unfiled$public/Dishonoured_Email_Template</members>
+<name>EmailTemplate</name>
+</types>
+<types>
+<members>CL_Collection_Console_UtilityBar</members>
+<members>Contract_Record_Page</members>
+<name>FlexiPage</name>
+</types>
+<types>
+<members>Update_Consolidated_Loan_Balance_of_LTS</members>
+<name>Flow</name>
+</types>
+<types>
+<members>Collection_Queue_to_Assign_Task</members>
+<name>Queue</name>
+</types>
+<types>
+<members>collect__Collection_Reports/Bounced_Back_Email_Report_mwM</members>
+<name>Report</name>
+</types>
+<types>
+<members>loan__Loan_Account__c.Dishonour_Notice</members>
+<members>loan__Loan_Account__c.Select_Contact_to_Send_Emails</members>
+<name>WebLink</name>
+</types>
+<types>
+<members>collect__Collection_Activity__c-collect__Collection Activity Layout</members>
+<members>collect__Loan_Account__c-collect__Contract Layout</members>
+<members>loan__Loan_Account__c-loan__Loan Account Layout</members>
+<members>PersonAccount-Person Account Layout</members>
+<name>Layout</name>
+</types>
+<types>
+<members>Admin</members>
+<members>BDM</members>
+<members>Credit Analyst</members>
+<members>Elixir System Admin</members>
+<members>System Administrator %28Portal%29</members>
+<name>Profile</name>
+</types>
+<version>48.0</version>
 </Package>

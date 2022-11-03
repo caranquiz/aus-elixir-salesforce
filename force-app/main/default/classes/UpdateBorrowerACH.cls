@@ -11,12 +11,14 @@ global with sharing class UpdateBorrowerACH {
         try{
             loan__Loan_Account__c contract = [SELECT id,
                 loan__Borrower_ACH__c,
+                Bank_Detail_Change__c,
                 Borrower_ACH_Change__c
                 FROM loan__Loan_Account__c
                 WHERE id =: contractId];
             if(contract.loan__Borrower_ACH__c != contract.Borrower_ACH_Change__c){
                 contract.loan__Borrower_ACH__c = contract.Borrower_ACH_Change__c;
                 contract.RecordTypeId = ConstantValues.CONTRACT_LOAN_RECORD_TYPE_ID;
+                contract.Bank_Detail_Change__c=true;
             }
             Database.update(contract);
         }catch(Exception e){

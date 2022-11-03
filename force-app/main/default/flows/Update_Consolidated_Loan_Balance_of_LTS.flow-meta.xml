@@ -1,10 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <actionCalls>
+        <name>Create_Task_Related_To_Contract</name>
+        <label>Create Task Related To Contract</label>
+        <locationX>1268</locationX>
+        <locationY>831</locationY>
+        <actionName>CreateTaskToContract</actionName>
+        <actionType>apex</actionType>
+        <connector>
+            <targetReference>Send_Email_Dishonor_Notice_to_Customer</targetReference>
+        </connector>
+        <inputParameters>
+            <name>loanIdList</name>
+            <value>
+                <elementReference>$Record.loan__Loan_Account__r.Id</elementReference>
+            </value>
+        </inputParameters>
+    </actionCalls>
+    <actionCalls>
         <name>LPT_Record</name>
         <label>LPT Record</label>
-        <locationX>180</locationX>
-        <locationY>571</locationY>
+        <locationX>831</locationX>
+        <locationY>450</locationY>
         <actionName>LTSConsolidatedLoanBalanceUpdate</actionName>
         <actionType>apex</actionType>
         <inputParameters>
@@ -14,12 +31,243 @@
             </value>
         </inputParameters>
     </actionCalls>
+    <assignments>
+        <name>Update_Contract_Party</name>
+        <label>Update Contract Party</label>
+        <locationX>1966</locationX>
+        <locationY>962</locationY>
+        <assignmentItems>
+            <assignToReference>Each_Contract_Party.Dishonour_LPT_Date__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$Record.loan__Transaction_Date__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>Each_Contract_Party.Dishonour_LPT_Amount__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$Record.loan__Transaction_Amount__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>ContractPartyRecordUpdate.Id</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Each_Contract_Party.Id</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>ContractPartyRecordUpdate.Dishonour_LPT_Amount__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Each_Contract_Party.Dishonour_LPT_Amount__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>ContractPartyRecordUpdate.Dishonour_LPT_Date__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Each_Contract_Party.Dishonour_LPT_Date__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>ContractPartyList</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>ContractPartyRecordUpdate</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Each_Contract_Party</targetReference>
+        </connector>
+    </assignments>
     <decisions>
         <name>LPT_is_cleared_or_rejected_or_reversed</name>
         <label>LPT is cleared or rejected or reversed</label>
-        <locationX>173</locationX>
-        <locationY>344</locationY>
+        <locationX>1028</locationX>
+        <locationY>636</locationY>
         <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Create_Task_When_Bank_detail_changed</name>
+            <conditionLogic>1 AND 2 AND  ( (3 AND 4) OR 5) AND 6 AND 7</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.loan__Rejected__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.loan__Rejected__c</leftValueReference>
+                <operator>IsChanged</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.loan__Loan_Account__r.First_LPT_after_Bank_detail_Change__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Name</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <elementReference>$Record.loan__Loan_Account__r.First_LPT_after_Bank_detail_Change__c</elementReference>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.loan__Loan_Account__r.Bank_Detail_Change__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Dishonour_Override__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>No</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.loan__Payment_Mode__r.Name</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Direct Debit</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Create_Task</targetReference>
+            </connector>
+            <label>Create Task When Bank detail changed</label>
+        </rules>
+        <rules>
+            <name>Create_Task_After_settlement</name>
+            <conditionLogic>1 AND 2 AND  ( (3 AND 4) OR 5) AND 6 AND 7</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.loan__Rejected__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.loan__Rejected__c</leftValueReference>
+                <operator>IsChanged</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.loan__Loan_Account__r.First_LPT_after_Settlement__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.loan__Loan_Account__r.First_LPT_after_Settlement__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <elementReference>$Record.Name</elementReference>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.loan__Loan_Account__r.First_Payment_after_Settlement__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Dishonour_Override__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>No</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.loan__Payment_Mode__r.Name</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Direct Debit</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Create_Task_After_First_LPT</targetReference>
+            </connector>
+            <label>Create Task After settlement</label>
+        </rules>
+        <rules>
+            <name>LPT_After_Settlement</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.loan__Loan_Account__r.First_Payment_after_Settlement__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Update_LPT_After_Settlement</targetReference>
+            </connector>
+            <label>LPT After Settlement</label>
+        </rules>
+        <rules>
+            <name>When_Bank_detail_Change</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.loan__Loan_Account__r.Bank_Detail_Change__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>First_LPT_after_Bank_detail_Change</targetReference>
+            </connector>
+            <label>When Bank detail Change</label>
+        </rules>
+        <rules>
+            <name>When_LPT_is_rejected_and_Dishonour</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.loan__Rejected__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.loan__Rejected__c</leftValueReference>
+                <operator>IsChanged</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Dishonour_Override__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>No</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.loan__Payment_Mode__r.Name</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Direct Debit</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Create_Task_Related_To_Contract</targetReference>
+            </connector>
+            <label>When LPT is rejected and Dishonour</label>
+        </rules>
         <rules>
             <name>When_LPT_is_updated</name>
             <conditionLogic>or</conditionLogic>
@@ -44,21 +292,43 @@
                     <booleanValue>true</booleanValue>
                 </rightValue>
             </conditions>
-            <conditions>
-                <leftValueReference>$Record.loan__Payoff_Balance__c</leftValueReference>
-                <operator>EqualTo</operator>
-                <rightValue>
-                    <numberValue>0.0</numberValue>
-                </rightValue>
-            </conditions>
             <connector>
                 <targetReference>LPT_Record</targetReference>
             </connector>
             <label>When LPT is updated</label>
         </rules>
     </decisions>
+    <formulas>
+        <name>Date</name>
+        <dataType>Date</dataType>
+        <expression>TODAY()</expression>
+    </formulas>
+    <formulas>
+        <name>reminderDateAndTime</name>
+        <dataType>DateTime</dataType>
+        <expression>NOW()</expression>
+    </formulas>
+    <formulas>
+        <name>ReminderDateTime</name>
+        <dataType>DateTime</dataType>
+        <expression>DATETIMEVALUE(TEXT(DATEVALUE(NOW()))+ &apos; 14:00:00&apos;) - (10/24)</expression>
+    </formulas>
     <interviewLabel>Update Consolidated Loan Balance of LTS {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Update Consolidated Loan Balance of LTS</label>
+    <loops>
+        <name>Each_Contract_Party</name>
+        <label>Each Contract Party</label>
+        <locationX>1640</locationX>
+        <locationY>962</locationY>
+        <collectionReference>Get_Contract_Party_Record</collectionReference>
+        <iterationOrder>Asc</iterationOrder>
+        <nextValueConnector>
+            <targetReference>Update_Contract_Party</targetReference>
+        </nextValueConnector>
+        <noMoreValuesConnector>
+            <targetReference>Update_Contract_Party_Record</targetReference>
+        </noMoreValuesConnector>
+    </loops>
     <processMetadataValues>
         <name>BuilderType</name>
         <value>
@@ -78,8 +348,318 @@
         </value>
     </processMetadataValues>
     <processType>AutoLaunchedFlow</processType>
-    <startElementReference>LPT_is_cleared_or_rejected_or_reversed</startElementReference>
+    <recordCreates>
+        <name>Create_Task</name>
+        <label>Create Task</label>
+        <locationX>874</locationX>
+        <locationY>839</locationY>
+        <assignRecordIdToReference>TaskId</assignRecordIdToReference>
+        <connector>
+            <targetReference>Update_Task</targetReference>
+        </connector>
+        <inputAssignments>
+            <field>ActivityDate</field>
+            <value>
+                <elementReference>Date</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Description__c</field>
+            <value>
+                <elementReference>Description</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>IsReminderSet</field>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>OwnerId</field>
+            <value>
+                <elementReference>Get_Collection_Queue_Record.Id</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>ReminderDateTime</field>
+            <value>
+                <elementReference>ReminderDateTime</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Subject</field>
+            <value>
+                <elementReference>Subject</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>WhatId</field>
+            <value>
+                <elementReference>$Record.loan__Loan_Account__r.Id</elementReference>
+            </value>
+        </inputAssignments>
+        <object>Task</object>
+    </recordCreates>
+    <recordCreates>
+        <name>Create_Task_After_First_LPT</name>
+        <label>Create Task After LPT</label>
+        <locationX>1028</locationX>
+        <locationY>861</locationY>
+        <connector>
+            <targetReference>Update_task_After_LPT</targetReference>
+        </connector>
+        <inputAssignments>
+            <field>ActivityDate</field>
+            <value>
+                <elementReference>Date</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Description__c</field>
+            <value>
+                <elementReference>Description3</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>IsReminderSet</field>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>OwnerId</field>
+            <value>
+                <elementReference>Get_Collection_Queue_Record.Id</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>ReminderDateTime</field>
+            <value>
+                <elementReference>ReminderDateTime</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Subject</field>
+            <value>
+                <elementReference>Subject</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>WhatId</field>
+            <value>
+                <elementReference>$Record.loan__Loan_Account__r.Id</elementReference>
+            </value>
+        </inputAssignments>
+        <object>Task</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordCreates>
+    <recordLookups>
+        <name>Get_Collection_Queue_Record</name>
+        <label>Get Collection Queue Record</label>
+        <locationX>1032</locationX>
+        <locationY>498</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>LPT_is_cleared_or_rejected_or_reversed</targetReference>
+        </connector>
+        <filters>
+            <field>DeveloperName</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Collection_Queue_to_Assign_Task</stringValue>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>Group</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordLookups>
+        <name>Get_Contract_Party_Record</name>
+        <label>Get Contract Party Record</label>
+        <locationX>1640</locationX>
+        <locationY>830</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Each_Contract_Party</targetReference>
+        </connector>
+        <filters>
+            <field>loan__Loan__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.loan__Loan_Account__r.Id</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>false</getFirstRecordOnly>
+        <object>loan__Coborrower__c</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordUpdates>
+        <name>First_LPT_after_Bank_detail_Change</name>
+        <label>First LPT after Bank detail Change</label>
+        <locationX>1245</locationX>
+        <locationY>448</locationY>
+        <inputAssignments>
+            <field>Bank_Detail_Change__c</field>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>First_LPT_after_Bank_detail_Change__c</field>
+            <value>
+                <elementReference>$Record.Name</elementReference>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record.loan__Loan_Account__r</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <name>Send_Email_Dishonor_Notice_to_Customer</name>
+        <label>Send  Email Dishonor Notice to Customer</label>
+        <locationX>1457</locationX>
+        <locationY>831</locationY>
+        <connector>
+            <targetReference>Get_Contract_Party_Record</targetReference>
+        </connector>
+        <inputAssignments>
+            <field>Assign_to_Queue__c</field>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Send_Email_Dishonor_Notice_to_Customer__c</field>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record.loan__Loan_Account__r</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <name>Update_Contract_Party_Record</name>
+        <label>Update Contract Party Record</label>
+        <locationX>1635</locationX>
+        <locationY>1115</locationY>
+        <connector>
+            <targetReference>Update_Last_Record</targetReference>
+        </connector>
+        <inputReference>ContractPartyList</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <name>Update_Last_Record</name>
+        <label>Update Last  Record</label>
+        <locationX>1629</locationX>
+        <locationY>1278</locationY>
+        <inputReference>ContractPartyRecordUpdate</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <name>Update_LPT_After_Settlement</name>
+        <label>Update LPT After Settlement</label>
+        <locationX>1662</locationX>
+        <locationY>447</locationY>
+        <inputAssignments>
+            <field>First_LPT_after_Settlement__c</field>
+            <value>
+                <elementReference>$Record.Name</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>First_Payment_after_Settlement__c</field>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record.loan__Loan_Account__r</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <name>Update_Task</name>
+        <label>Update Task</label>
+        <locationX>739</locationX>
+        <locationY>839</locationY>
+        <inputAssignments>
+            <field>Assign_to_Queue__c</field>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>First_LPT_after_Bank_detail_Change__c</field>
+            <value>
+                <stringValue></stringValue>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record.loan__Loan_Account__r</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <name>Update_task_After_LPT</name>
+        <label>Update task After LPT</label>
+        <locationX>1028</locationX>
+        <locationY>1049</locationY>
+        <inputAssignments>
+            <field>Assign_to_Queue__c</field>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>First_LPT_after_Settlement__c</field>
+            <value>
+                <stringValue></stringValue>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record.loan__Loan_Account__r</inputReference>
+    </recordUpdates>
+    <start>
+        <locationX>905</locationX>
+        <locationY>66</locationY>
+        <connector>
+            <targetReference>Get_Collection_Queue_Record</targetReference>
+        </connector>
+        <object>loan__Loan_Payment_Transaction__c</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
     <status>Active</status>
+    <textTemplates>
+        <name>Description</name>
+        <text>First Dishonor After Bank Deta</text>
+    </textTemplates>
+    <textTemplates>
+        <name>Description2</name>
+        <text>Review Bank Details</text>
+    </textTemplates>
+    <textTemplates>
+        <name>Description3</name>
+        <text>First Dishonor After Settlemen</text>
+    </textTemplates>
+    <textTemplates>
+        <name>FirstDishonorAfterBankDetailsChange</name>
+        <text>&lt;p&gt;Internal Task&lt;/p&gt;</text>
+    </textTemplates>
+    <textTemplates>
+        <name>NoEmailDescription</name>
+        <text>Dishonored payment - no email</text>
+    </textTemplates>
+    <textTemplates>
+        <name>Subject</name>
+        <text>Internal Task</text>
+    </textTemplates>
+    <variables>
+        <name>ContractPartyList</name>
+        <dataType>SObject</dataType>
+        <isCollection>true</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+        <objectType>loan__Coborrower__c</objectType>
+    </variables>
+    <variables>
+        <name>ContractPartyRecordUpdate</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+        <objectType>loan__Coborrower__c</objectType>
+    </variables>
     <variables>
         <name>LTSList</name>
         <dataType>SObject</dataType>
@@ -87,5 +667,15 @@
         <isInput>true</isInput>
         <isOutput>false</isOutput>
         <objectType>loan__Loan_Transaction_Summary__c</objectType>
+    </variables>
+    <variables>
+        <name>TaskId</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <value>
+            <stringValue></stringValue>
+        </value>
     </variables>
 </Flow>

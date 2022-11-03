@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomApplication xmlns="http://soap.sforce.com/2006/04/metadata">
+    <brand>
+        <headerColor>#0070D2</headerColor>
+        <shouldOverrideOrgTheme>false</shouldOverrideOrgTheme>
+    </brand>
+    <formFactors>Small</formFactors>
+    <formFactors>Large</formFactors>
+    <isNavAutoTempTabsDisabled>false</isNavAutoTempTabsDisabled>
+    <isNavPersonalizationDisabled>false</isNavPersonalizationDisabled>
+    <label>CL Collection Console</label>
+    <navType>Standard</navType>
+    <tabs>standard-home</tabs>
+    <tabs>collect__Loan_Account__c</tabs>
+    <tabs>loan__Loan_Account__c</tabs>
+    <tabs>collect__Service_Configuration</tabs>
+    <tabs>collect__CL_Collections_Configuration</tabs>
+    <tabs>collect__Queue_Dashboard</tabs>
+    <uiType>Lightning</uiType>
+    <utilityBar>CL_Collection_Console_UtilityBar</utilityBar>
+</CustomApplication>

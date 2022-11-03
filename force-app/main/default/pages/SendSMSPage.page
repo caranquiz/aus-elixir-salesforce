@@ -1,0 +1,17 @@
+<apex:page standardController="collect__Loan_Account__c" extensions="SendSMSControllerClass" cache="false" lightningStylesheets="true" >
+    <apex:form style="border-style:solid;border-width:0px;
+    border-2px;background-color:navyblue">
+        <apex:pageBlock id="sms">
+            <apex:pageBlockButtons >
+                <apex:commandButton action="{!SendSMS}" value="Send SMS"/>
+            </apex:pageBlockButtons>
+            <apex:pageblockSection title="Enter Details" id="detailInfo" columns="2"
+                    collapsible="false">
+                    <apex:outputLabel >Phone Number</apex:outputLabel>
+                <apex:inputText value="{!MobileNumber}"/>
+                <apex:outputLabel >Message</apex:outputLabel>
+                <apex:inputTextarea value="{!textMessage}"/>
+            </apex:pageblockSection>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>
