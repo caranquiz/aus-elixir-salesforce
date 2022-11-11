@@ -40,6 +40,56 @@
             </value>
         </inputParameters>
     </actionCalls>
+    <apiVersion>55.0</apiVersion>
+    <decisions>
+        <name>Created_or_Updated</name>
+        <label>Created or Updated</label>
+        <locationX>488</locationX>
+        <locationY>452</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Created</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>isNew</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Set_Broker_Segmentation_to_Accredited</targetReference>
+            </connector>
+            <label>Created</label>
+        </rules>
+        <rules>
+            <name>Updated</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>isNew</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Status_of_Account</targetReference>
+            </connector>
+            <label>Updated</label>
+        </rules>
+        <rules>
+            <name>Person_Account_RT</name>
+            <conditionLogic>or</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Record_Type_Dev_Name_Account__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>PersonAccount</stringValue>
+                </rightValue>
+            </conditions>
+            <label>Person Account RT</label>
+        </rules>
+    </decisions>
     <decisions>
         <name>Status_of_Account</name>
         <label>Status of Account</label>
@@ -162,10 +212,16 @@
             <label>Enter Approval Process</label>
         </rules>
     </decisions>
+    <environments>Default</environments>
     <formulas>
         <name>AMLSearchResultIncludeClear</name>
         <dataType>Boolean</dataType>
         <expression>INCLUDES({!$Record.AML_search_result__c}, &apos;Clear&apos;)</expression>
+    </formulas>
+    <formulas>
+        <name>isNew</name>
+        <dataType>Boolean</dataType>
+        <expression>ISNEW()</expression>
     </formulas>
     <interviewLabel>Account Flow {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Account Flow</label>
@@ -188,6 +244,123 @@
         </value>
     </processMetadataValues>
     <processType>AutoLaunchedFlow</processType>
-    <startElementReference>Status_of_Account</startElementReference>
+    <recordUpdates>
+        <name>Set_Broker_Segmentation_to_Accredited</name>
+        <label>Set Broker Segmentation to Accredited</label>
+        <locationX>884</locationX>
+        <locationY>615</locationY>
+        <filterLogic>or</filterLogic>
+        <filters>
+            <field>RecordTypeId</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>0122v000001uoYEAAY</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Record_Type_Dev_Name_Account__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Broker_Type</stringValue>
+            </value>
+        </filters>
+        <inputAssignments>
+            <field>Broker_Segmentation_Account__c</field>
+            <value>
+                <stringValue>Accredited</stringValue>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <name>Update_Mailing_Address</name>
+        <label>Update Mailing Address</label>
+        <locationX>737</locationX>
+        <locationY>294</locationY>
+        <connector>
+            <targetReference>Created_or_Updated</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Record_Type_Dev_Name_Account__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>PersonAccount</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>Is_this_the_Postal_Address__pc</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Yes</stringValue>
+            </value>
+        </filters>
+        <inputAssignments>
+            <field>PersonMailingCity</field>
+            <value>
+                <elementReference>$Record.PersonOtherCity</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>PersonMailingCountry</field>
+            <value>
+                <elementReference>$Record.PersonOtherCountry</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>PersonMailingGeocodeAccuracy</field>
+            <value>
+                <elementReference>$Record.PersonOtherGeocodeAccuracy</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>PersonMailingLatitude</field>
+            <value>
+                <elementReference>$Record.PersonOtherLatitude</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>PersonMailingLongitude</field>
+            <value>
+                <elementReference>$Record.PersonOtherLongitude</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>PersonMailingPostalCode</field>
+            <value>
+                <elementReference>$Record.PersonOtherPostalCode</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>PersonMailingState</field>
+            <value>
+                <elementReference>$Record.PersonOtherState</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>PersonMailingStreet</field>
+            <value>
+                <elementReference>$Record.PersonOtherStreet</elementReference>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <start>
+        <locationX>370</locationX>
+        <locationY>49</locationY>
+        <connector>
+            <targetReference>Update_Mailing_Address</targetReference>
+        </connector>
+        <object>Account</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
     <status>Active</status>
 </Flow>
